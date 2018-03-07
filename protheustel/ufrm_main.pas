@@ -81,8 +81,8 @@ procedure Tfrm_main.Action_phonebookExecute(Sender: TObject);
 begin
   inherited;
   frm_phonebook := Tfrm_phonebook.Create(Self);
-  frm_phonebook.Height := dxBevel_1.Height;
-  frm_phonebook.Width := dxBevel_1.Width;
+  frm_phonebook.Height := Bevel_1.Height;
+  frm_phonebook.Width := Bevel_1.Width;
   frm_phonebook.Show;
 end;
 
@@ -90,8 +90,8 @@ procedure Tfrm_main.Action_reportExecute(Sender: TObject);
 begin
   inherited;
   frm_report := Tfrm_report.Create(Self);
-  frm_report.Height := dxBevel_1.Height;
-  frm_report.Width := dxBevel_1.Width;
+  frm_report.Height := Bevel_1.Height;
+  frm_report.Width := Bevel_1.Width;
   frm_report.Show;
 end;
 
@@ -99,8 +99,8 @@ procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin
   inherited;
   frm_client := Tfrm_client.Create(Self);
-  frm_client.Height := dxBevel_1.Height;
-  frm_client.Width := dxBevel_1.Width;
+  frm_client.Height := Bevel_1.Height;
+  frm_client.Width := Bevel_1.Width;
   frm_client.Show;
 end;
 
@@ -108,8 +108,8 @@ procedure Tfrm_main.Action_contractExecute(Sender: TObject);
 begin
   inherited;
   frm_contract := Tfrm_contract.Create(Self);
-  frm_contract.Height := dxBevel_1.Height;
-  frm_contract.Width := dxBevel_1.Width;
+  frm_contract.Height := Bevel_1.Height;
+  frm_contract.Width := Bevel_1.Width;
   frm_contract.Show;
 end;
 
@@ -117,8 +117,8 @@ procedure Tfrm_main.Action_contract_userExecute(Sender: TObject);
 begin
   inherited;
   frm_contract_user := Tfrm_contract_user.Create(Self);
-  frm_contract_user.Height := dxBevel_1.Height;
-  frm_contract_user.Width := dxBevel_1.Width;
+  frm_contract_user.Height := Bevel_1.Height;
+  frm_contract_user.Width := Bevel_1.Width;
   frm_contract_user.Show;
 end;
 
@@ -126,8 +126,8 @@ procedure Tfrm_main.Action_enterpriseExecute(Sender: TObject);
 begin
   inherited;
   frm_enterprise := Tfrm_enterprise.Create(Self);
-  frm_enterprise.Height := dxBevel_1.Height;
-  frm_enterprise.Width := dxBevel_1.Width;
+  frm_enterprise.Height := Bevel_1.Height;
+  frm_enterprise.Width := Bevel_1.Width;
   frm_enterprise.Show;
 end;
 
@@ -135,8 +135,8 @@ procedure Tfrm_main.Action_supplierExecute(Sender: TObject);
 begin
   inherited;
   frm_supplier := Tfrm_supplier.Create(Self);
-  frm_supplier.Height := dxBevel_1.Height;
-  frm_supplier.Width := dxBevel_1.Width;
+  frm_supplier.Height := Bevel_1.Height;
+  frm_supplier.Width := Bevel_1.Width;
   frm_supplier.Show;
 end;
 
@@ -144,8 +144,8 @@ procedure Tfrm_main.dxBarButton1Click(Sender: TObject);
 begin
   inherited;
   frm_import_sippulse := Tfrm_import_sippulse.Create(Self);
-  frm_import_sippulse.Height := dxBevel_1.Height;
-  frm_import_sippulse.Width := dxBevel_1.Width;
+  frm_import_sippulse.Height := Bevel_1.Height;
+  frm_import_sippulse.Width := Bevel_1.Width;
   frm_import_sippulse.Show;
 end;
 

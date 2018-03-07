@@ -1,0 +1,46 @@
+unit ufrm_main_padrao;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  System.ImageList, FMX.ImgList, FMX.Menus, System.Actions, FMX.ActnList,
+  FMX.Controls.Presentation, FMX.StdCtrls;
+
+type
+  Tfrm_main_padrao = class(TForm)
+    MainMenu_1: TMainMenu;
+    ImageList_1: TImageList;
+    ActionList_1: TActionList;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
+    MenuItem6: TMenuItem;
+    ToolBar1: TToolBar;
+    act_sair: TAction;
+    act_sobre: TAction;
+    MenuItem7: TMenuItem;
+    MenuItem8: TMenuItem;
+    procedure act_sairExecute(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_main_padrao: Tfrm_main_padrao;
+
+implementation
+
+{$R *.fmx}
+
+procedure Tfrm_main_padrao.act_sairExecute(Sender: TObject);
+begin
+  Close;
+end;
+
+end.

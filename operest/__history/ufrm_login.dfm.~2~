@@ -1,0 +1,8 @@
+inherited frm_login: Tfrm_login
+  Caption = ''
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited cxImageList_1: TcxImageList
+    FormatVersion = 1
+  end
+end

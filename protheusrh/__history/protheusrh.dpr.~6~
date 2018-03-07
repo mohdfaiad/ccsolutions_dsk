@@ -1,0 +1,19 @@
+program protheusrh;
+
+uses
+  Vcl.Forms,
+  ufrm_protheusrh in 'ufrm_protheusrh.pas' {frm_protheusrh},
+  ufrm_form_default in '..\models\ufrm_form_default.pas' {frm_form_default},
+  ufrm_import_default in '..\models\ufrm_import_default.pas' {frm_import_default},
+  ufrm_login_default in '..\models\ufrm_login_default.pas' {frm_login_default},
+  ufrm_main_default in '..\models\ufrm_main_default.pas' {frm_main_default},
+  ufrm_main in 'ufrm_main.pas' {frm_main};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tfrm_main, frm_main);
+  Application.Run;
+end.

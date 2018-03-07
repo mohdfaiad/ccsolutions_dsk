@@ -1,0 +1,14 @@
+program protheusrh;
+
+uses
+  Vcl.Forms,
+  ufrm_protheusrh in 'ufrm_protheusrh.pas' {frm_protheusrh};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tfrm_protheusrh, frm_protheusrh);
+  Application.Run;
+end.

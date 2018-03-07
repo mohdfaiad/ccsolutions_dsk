@@ -1,0 +1,80 @@
+object frm_main: Tfrm_main
+  Left = 0
+  Top = 0
+  Caption = 'Main Padrao'
+  ClientHeight = 729
+  ClientWidth = 1008
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenu_1
+  OldCreateOrder = False
+  ShowHint = True
+  WindowState = wsMaximized
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Image_1: TImage
+    Left = 0
+    Top = 29
+    Width = 1008
+    Height = 681
+    Align = alClient
+    ExplicitTop = 35
+  end
+  object StatusBar_1: TStatusBar
+    Left = 0
+    Top = 710
+    Width = 1008
+    Height = 19
+    Panels = <>
+    ExplicitLeft = 512
+    ExplicitTop = 376
+    ExplicitWidth = 0
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Top = 0
+    Width = 1008
+    Height = 29
+    Caption = 'ToolBar_1'
+    TabOrder = 1
+    ExplicitLeft = 440
+    ExplicitTop = 368
+    ExplicitWidth = 150
+  end
+  object MainMenu_1: TMainMenu
+    Images = ImageList_1
+    Left = 496
+    Top = 368
+    object Sistema1: TMenuItem
+      Caption = 'Sistema'
+    end
+    object Cadastro1: TMenuItem
+      Caption = 'Cadastros'
+    end
+    object Relatrios1: TMenuItem
+      Caption = 'M'#243'dulo'
+    end
+    object Utilitrios1: TMenuItem
+      Caption = 'Relat'#243'rios'
+    end
+    object Utilitrios2: TMenuItem
+      Caption = 'Utilit'#225'rios'
+    end
+    object Ajuda1: TMenuItem
+      Caption = 'Ajuda'
+    end
+  end
+  object ActionList_1: TActionList
+    Images = ImageList_1
+    Left = 528
+    Top = 368
+  end
+  object ImageList_1: TImageList
+    Left = 560
+    Top = 368
+  end
+end

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/10/08 12:43:01.000.728,=C:\Users\eltonbahiabc\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/10/22 01:02:42.000.310,=C:\Users\eltonbahiabc\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/10/22 01:03:15.000.165,C:\development\ccsolutions\mod_dsk\operfin\ufrm_operfin.dfm=C:\Users\eltonbahiabc\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2017/10/22 01:03:15.000.165,C:\development\ccsolutions\mod_dsk\operfin\ufrm_operfin.pas=C:\Users\eltonbahiabc\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/10/22 01:03:19.000.554,C:\development\ccsolutions\mod_dsk\operfin\operfin.dproj=C:\Users\eltonbahiabc\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2017/10/22 01:04:12.000.680,=C:\development\ccsolutions\mod_dsk\models\ufrm_form_default.pas</Transaction>
+    <Transaction>2017/10/22 01:04:13.000.151,=C:\development\ccsolutions\mod_dsk\models\ufrm_login_default.pas</Transaction>
+    <Transaction>2017/10/22 01:04:14.000.245,=C:\development\ccsolutions\mod_dsk\models\ufrm_main_default.pas</Transaction>
+    <Transaction>2017/10/22 01:04:24.000.661,=C:\development\ccsolutions\mod_dsk\ufrm_dm.pas</Transaction>
+    <Transaction>2017/10/22 01:04:42.000.994,=C:\development\ccsolutions\mod_dsk\operfin\Unit1.pas</Transaction>
+    <Transaction>2017/10/22 01:04:56.000.939,C:\development\ccsolutions\mod_dsk\operfin\ufrm_main.dfm=C:\development\ccsolutions\mod_dsk\operfin\Unit1.dfm</Transaction>
+    <Transaction>2017/10/22 01:04:56.000.939,C:\development\ccsolutions\mod_dsk\operfin\ufrm_main.pas=C:\development\ccsolutions\mod_dsk\operfin\Unit1.pas</Transaction>
+    <Transaction>2017/10/22 01:06:05.000.515,=C:\development\ccsolutions\mod_dsk\operfin\Unit1.pas</Transaction>
+    <Transaction>2017/10/22 01:06:11.000.573,C:\development\ccsolutions\mod_dsk\operfin\ufrm_login.pas=C:\development\ccsolutions\mod_dsk\operfin\Unit1.pas</Transaction>
+    <Transaction>2017/10/22 01:06:11.000.573,C:\development\ccsolutions\mod_dsk\operfin\ufrm_login.dfm=C:\development\ccsolutions\mod_dsk\operfin\Unit1.dfm</Transaction>
+    <Transaction>2017/10/22 01:08:52.000.619,=C:\development\ccsolutions\mod_dsk\ufrm_contract.pas</Transaction>
+    <Transaction>2017/10/22 01:12:24.000.819,=C:\development\ccsolutions\mod_dsk\ufrm_contract_user.pas</Transaction>
+    <Transaction>2017/10/22 01:13:24.000.269,=C:\development\ccsolutions\mod_dsk\ufrm_client.pas</Transaction>
+    <Transaction>2017/10/22 01:13:27.000.329,=C:\development\ccsolutions\mod_dsk\ufrm_enterprise.pas</Transaction>
+    <Transaction>2017/10/22 01:13:29.000.138,=C:\development\ccsolutions\mod_dsk\ufrm_phonebook.pas</Transaction>
+    <Transaction>2017/10/22 01:15:36.000.238,=C:\development\ccsolutions\mod_dsk\ufrm_supplier.pas</Transaction>
+    <Transaction>2017/10/22 01:21:25.000.224,=C:\development\ccsolutions\mod_dsk\ufrm_employee.pas</Transaction>
+    <Transaction>2017/10/22 01:21:26.000.768,=C:\development\ccsolutions\mod_dsk\ufrm_role.pas</Transaction>
+    <Transaction>2017/10/22 01:23:24.000.098,=C:\development\ccsolutions\mod_dsk\ufrm_bank.pas</Transaction>
+    <Transaction>2017/10/22 01:43:39.000.260,=C:\development\ccsolutions\mod_dsk\operfin\Unit1.pas</Transaction>
+    <Transaction>2017/10/22 01:44:00.000.043,C:\development\ccsolutions\mod_dsk\ufrm_receipt.pas=C:\development\ccsolutions\mod_dsk\operfin\Unit1.pas</Transaction>
+    <Transaction>2017/10/22 01:44:00.000.043,C:\development\ccsolutions\mod_dsk\ufrm_receipt.dfm=C:\development\ccsolutions\mod_dsk\operfin\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

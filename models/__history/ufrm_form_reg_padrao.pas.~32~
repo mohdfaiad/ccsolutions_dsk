@@ -1,0 +1,74 @@
+unit ufrm_form_reg_padrao;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TabControl,
+  FMX.StdCtrls, FMX.Controls.Presentation, System.Rtti, FMX.Grid.Style,
+  FMX.ScrollBox, FMX.Grid, Data.Bind.Controls, FMX.Layouts, Fmx.Bind.Navigator,
+  System.ImageList, FMX.ImgList, System.Actions, FMX.ActnList, FMX.Objects,
+  FMX.Edit, FMX.ListBox;
+
+type
+  Tfrm_form_reg_padrao = class(TForm)
+    TabControl_1: TTabControl;
+    TabItem_1: TTabItem;
+    TabItem_2: TTabItem;
+    TabControl1: TTabControl;
+    TabItem_3: TTabItem;
+    Panel_1: TPanel;
+    Grid_1: TGrid;
+    ActionList_1: TActionList;
+    ImageList_1: TImageList;
+    act_fechar: TAction;
+    act_first_register: TAction;
+    act_prior_register: TAction;
+    act_next_register: TAction;
+    act_last_register: TAction;
+    act_insert_register: TAction;
+    act_edit_register: TAction;
+    act_save_register: TAction;
+    act_cancel_register: TAction;
+    act_delete_register: TAction;
+    act_refresh_information: TAction;
+    Rectangle_1: TRectangle;
+    SpeedButton_first: TSpeedButton;
+    SpeedButton_prior: TSpeedButton;
+    SpeedButton_next: TSpeedButton;
+    SpeedButton_last: TSpeedButton;
+    SpeedButton_insert: TSpeedButton;
+    SpeedButton_edit: TSpeedButton;
+    SpeedButton_save: TSpeedButton;
+    SpeedButton_cancel: TSpeedButton;
+    SpeedButton_delete: TSpeedButton;
+    SpeedButton_refresh: TSpeedButton;
+    SpeedButton_close: TSpeedButton;
+    Rectangle_2: TRectangle;
+    Panel_2: TPanel;
+    Label1: TLabel;
+    Edit1: TEdit;
+    Label2: TLabel;
+    ComboBox1: TComboBox;
+    SpeedButton1: TSpeedButton;
+    act_filter: TAction;
+    procedure act_fecharExecute(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_form_reg_padrao: Tfrm_form_reg_padrao;
+
+implementation
+
+{$R *.fmx}
+
+procedure Tfrm_form_reg_padrao.act_fecharExecute(Sender: TObject);
+begin
+  Close;
+end;
+
+end.

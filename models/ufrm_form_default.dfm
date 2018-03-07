@@ -99,6 +99,10 @@ object frm_form_default: Tfrm_form_default
     end
     object cxTabSheet_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object cxPageControl_2: TcxPageControl
         AlignWithMargins = True
         Left = 3
@@ -117,6 +121,10 @@ object frm_form_default: Tfrm_form_default
         ClientRectTop = 28
         object cxTabSheet_3: TcxTabSheet
           Caption = 'Informa'#231#245'es'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl_1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -334,7 +342,7 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 226
+      DockedLeft = 281
       DockedTop = 28
       FloatLeft = 818
       FloatTop = 8
@@ -356,7 +364,7 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 375
+      DockedLeft = 430
       DockedTop = 28
       FloatLeft = 818
       FloatTop = 8
@@ -378,7 +386,7 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 521
+      DockedLeft = 576
       DockedTop = 28
       FloatLeft = 818
       FloatTop = 8
@@ -573,9 +581,11 @@ object frm_form_default: Tfrm_form_default
       Category = 0
     end
     object cxBarEditItem_1: TcxBarEditItem
-      Caption = 'Imprimir'
+      Caption = 'Relat'#243'rio'
       Category = 0
+      Hint = 'Relat'#243'rio'
       Visible = ivAlways
+      ShowCaption = True
       Width = 150
       PropertiesClassName = 'TcxShellComboBoxProperties'
       Properties.DropDownWidth = 350

@@ -295,11 +295,11 @@ object frm_form_default: Tfrm_form_default
         end
         item
           Visible = True
-          ItemName = 'dxBarButton2'
+          ItemName = 'dxBarButton_report_edit'
         end
         item
           Visible = True
-          ItemName = 'dxBarButton3'
+          ItemName = 'dxBarButton_report_preview'
         end>
       OneOnRow = False
       Row = 1
@@ -356,7 +356,7 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 360
+      DockedLeft = 375
       DockedTop = 28
       FloatLeft = 818
       FloatTop = 8
@@ -365,8 +365,26 @@ object frm_form_default: Tfrm_form_default
       ItemLinks = <
         item
           Visible = True
-          ItemName = 'dxBarSubItem2'
+          ItemName = 'dxBarSubItem_2'
         end>
+      OneOnRow = False
+      Row = 1
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object dxBarManager_1Bar6: TdxBar
+      Caption = 'Personalizados'
+      CaptionButtons = <>
+      DockControl = dxBarDockControl_1
+      DockedDockControl = dxBarDockControl_1
+      DockedLeft = 521
+      DockedTop = 28
+      FloatLeft = 818
+      FloatTop = 8
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      ItemLinks = <>
       OneOnRow = False
       Row = 1
       UseOwnFont = False
@@ -462,10 +480,49 @@ object frm_form_default: Tfrm_form_default
       Caption = 'Importar Dados'
       Category = 0
       Visible = ivAlways
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        20000000000000040000000000000000000000000000000000003131315CD1D1
+        D1FCD4D4D4FED5D5D5FFD5D5D5FFD5D5D5FFD5D5D5FFD5D5D5FFD5D5D5FFD5D5
+        D5FFD4D5D4FFD3D4D3FED1D1D1FC3333335D000000000000000047474774DEDE
+        DEFDE0E0E0FEE1E1E1FFE1E1E1FFE1E1E1FFE1E1E1FFE1E1E1FFE1E1E1FFDFE1
+        E0FFBCD6BDFF9AD49DFEDCDEDCFD49494975000000010000000047474774DFDF
+        DFFDE3E3E3FFE3E3E3FFE3E3E3FFE3E3E3FFE2E2E2FFE1E2E2FFDCDFDCFF8ED1
+        92FF41D249FF55D35DFF78CD7DFE478B4ACA2056249E09160A4147474774E0E0
+        E0FDE3E3E3FFE3E3E3FFE3E3E3FFE3E3E3FFE2E3E3FFC5DAC6FF61D068FF40D7
+        49FF3FD748FF3FD748FF3FD648FE3FD648FE3ED346FD1445177348484874E0E0
+        E0FDE4E4E4FFE4E4E4FFE4E4E4FFE4E4E4FFE2E3E2FF66D76DFF45DA4FFF43D9
+        4DFF43DA4CFF43DA4CFF43DA4CFF43DA4CFF41D64BFD1647197448484874E1E1
+        E1FDE5E5E5FFE5E5E5FFE5E5E5FFE4E5E4FFE4E4E4FFDDE4DEFF8DDF92FF4ADC
+        54FF48DC52FF48DC52FF48DA52FE47DA51FE45D64FFC17471A7348484874E2E2
+        E2FDE6E6E6FFE6E6E6FFE6E6E6FFE6E6E6FFE5E6E5FFE5E5E5FFE4E5E4FFBCE3
+        BEFF60DF68FF7BE082FFBBE2BDFE537255970A1C0B400207031748484874E3E3
+        E3FDE6E6E6FFE6E6E6FFE6E6E6FFE6E6E6FFE6E6E6FFE6E6E6FFE6E6E6FFE5E6
+        E5FFDCE5DCFFBFE4C1FFE2E3E2FD4A4B4B75000000010000000049494974E3E3
+        E3FDE7E7E7FFE7E7E7FFE7E7E7FFE7E7E7FFE7E7E7FFE7E7E7FFE7E7E7FFE6E7
+        E6FFE6E7E6FFE6E7E6FFE3E3E3FD4B4B4B75000000010000000049494974E4E4
+        E4FDE8E8E8FFE8E8E8FFE8E8E8FFE8E8E8FFE8E8E8FFE8E8E8FFE8E8E8FFE8E8
+        E8FFE8E8E8FFE8E8E8FFE4E4E4FD4B4B4B75000000010000000049494974E5E5
+        E5FDE8E8E8FFE8E8E8FFE8E8E8FFE8E8E8FFE8E8E8FFE8E8E8FFE8E8E8FFE8E8
+        E8FFE8E8E8FFE8E8E8FFE5E5E5FD4C4C4C75000000010000000049494974E5E5
+        E5FDE9E9E9FFE9E9E9FFE9E9E9FFE9E9E9FFE9E9E9FFE9E9E9FFE9E9E9FFE9E8
+        E8FFE8E8E8FFE8E8E8FFE5E5E5FD4C4C4C7500000001000000004A4A4A74E6E6
+        E6FDEAEAEAFFEAEAEAFFEAEAEAFFEAEAEAFFEAEAEAFFEAEAEAFFEAEAEAFFE9E9
+        E9FFE6E5E2FFDDD9D1FEDDD9D2FD4948477300000000000000004A4A4A74E7E7
+        E7FDEBEBEBFFEBEBEBFFEBEBEBFFEBEBEBFFEBEBEBFFEBEBEBFFEBEBEBFFEAEA
+        E9FFD6BD8CFEC49941FD95732FCD0605021400000000000000004A4A4A74E8E8
+        E8FDEAEAEAFEEAEAEAFEEAEAEAFEEAEAEAFEEAEAEAFEEAEAEAFEEAEAEAFEEAEA
+        E9FED8BC85FD9F7B33CD0705021400000000000000000000000036363658E0E0
+        E0F4E5E5E5F7E5E5E5F7E5E5E5F7E5E5E5F7E5E5E5F7E5E5E5F7E5E5E5F7E3E3
+        E2F6AE986BCC0706021500000000000000000000000000000000}
       Images = cxImageList_1
-      ItemLinks = <>
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton_import'
+        end>
     end
-    object dxBarSubItem2: TdxBarSubItem
+    object dxBarSubItem_2: TdxBarSubItem
       Caption = 'Exportar Dados'
       Category = 0
       Visible = ivAlways
@@ -508,33 +565,12 @@ object frm_form_default: Tfrm_form_default
       ItemLinks = <
         item
           Visible = True
-          ItemName = 'dxBarButton1'
+          ItemName = 'dxBarButton_export'
         end>
     end
-    object dxBarButton1: TdxBarButton
+    object dxBarButton_export: TdxBarButton
       Action = Action_export
       Category = 0
-    end
-    object dxBarTreeViewCombo1: TdxBarTreeViewCombo
-      Caption = 'New Item'
-      Category = 0
-      Hint = 'New Item'
-      Visible = ivAlways
-      Glyph.Data = {
-        F6000000424DF600000000000000760000002800000010000000100000000100
-        0400000000008000000000000000000000001000000000000000000000000000
-        8000008000000080800080000000800080008080000080808000C0C0C0000000
-        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00FFFFFFFFFFFF
-        FFFFFFFFFF000FFFFFFFF0000F0F0FFFFFFFF0FFFF000FFFFFFFF0FFFFFFFFFF
-        FFFFF0FFFFFFFFFF000FF0FFFFF0000F0F0FF0FFFFF0FFFF000FF0FFFFFFFFFF
-        FFFFF0FFFF000FFFFFFFF0000F0F0FFFFFFFF0FFFF000FFFFFFFFFFFFFFFFFFF
-        FFFF000FFFFFFFFFFFFF0F0FFFFFFFFFFFFF000FFFFFFFFFFFFF}
-      Images = cxImageList_1
-      Indent = 19
-      ShowButtons = True
-      ShowLines = True
-      ShowRoot = True
-      SortType = stNone
     end
     object cxBarEditItem_1: TcxBarEditItem
       Caption = 'Imprimir'
@@ -548,12 +584,16 @@ object frm_form_default: Tfrm_form_default
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports'
       Properties.ViewOptions = [scvoShowFiles, scvoShowZipFilesWithFolders]
     end
-    object dxBarButton2: TdxBarButton
+    object dxBarButton_report_edit: TdxBarButton
       Action = Action_print_edit
       Category = 0
     end
-    object dxBarButton3: TdxBarButton
+    object dxBarButton_report_preview: TdxBarButton
       Action = Action_print
+      Category = 0
+    end
+    object dxBarButton_import: TdxBarButton
+      Action = Action_import
       Category = 0
     end
   end
@@ -647,6 +687,11 @@ object frm_form_default: Tfrm_form_default
       ShortCut = 16454
       OnExecute = Action_closeExecute
       OnUpdate = Action_insertUpdate
+    end
+    object Action_import: TAction
+      Caption = 'Import Registros'
+      Hint = 'Importar Registros'
+      OnExecute = Action_importExecute
     end
     object Action_export: TAction
       Caption = 'Exportar Registros'
@@ -1435,6 +1480,29 @@ object frm_form_default: Tfrm_form_default
     DocxOptions.FooterStyle.Font.Style = []
     AccessOptions.TableName = 'EXPORT_TABLE'
     Left = 424
+    Top = 48
+  end
+  object QImport3Wizard_1: TQImport3Wizard
+    DataSet = qry
+    Formats.DecimalSeparator = ','
+    Formats.ThousandSeparator = '.'
+    Formats.DateSeparator = '/'
+    Formats.TimeSeparator = ':'
+    Formats.BooleanTrue.Strings = (
+      'True')
+    Formats.BooleanFalse.Strings = (
+      'False')
+    Formats.NullValues.Strings = (
+      'Null')
+    Formats.ShortDateFormat = 'dd/MM/yy'
+    Formats.LongDateFormat = 'd MMMM yyyy'
+    Formats.ShortTimeFormat = 'hh:mm'
+    Formats.LongTimeFormat = 'hh:mm:ss'
+    FieldFormats = <>
+    ErrorLog = True
+    ErrorLogFileName = 'error.log'
+    AddType = qatInsert
+    Left = 392
     Top = 48
   end
 end

@@ -23,7 +23,8 @@ uses
   ufrm_consult_cpf in '..\ufrm_consult_cpf.pas' {frm_consult_cpf},
   ufrm_login in '..\ufrm_login.pas' {frm_login},
   ufrm_insurance in '..\ufrm_insurance.pas' {frm_insurance},
-  ufrm_department in '..\ufrm_department.pas' {frm_department};
+  ufrm_department in '..\ufrm_department.pas' {frm_department},
+  ufrm_medicine in '..\ufrm_medicine.pas' {frm_medicine};
 
 {$R *.res}
 

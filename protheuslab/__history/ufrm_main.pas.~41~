@@ -20,7 +20,7 @@ uses
   dxSkinSharp, dxSkinSharpPlus, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
   dxSkinSummer2008, dxSkinTheAsphaltWorld, dxSkinsDefaultPainters,
   dxSkinValentine, dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
+  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint, System.UITypes,
   dxSkinXmas2008Blue, dxSkinsdxRibbonPainter, dxRibbonCustomizationForm,
   cxContainer, cxEdit, dxSkinscxPCPainter, dxSkinsdxBarPainter,
   System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList, dxSkinsForm,
@@ -45,14 +45,22 @@ type
     dxBarLargeButton6: TdxBarLargeButton;
     dxBarManager_1Bar3: TdxBar;
     Action_exam: TAction;
-    dxBarLargeButton7: TdxBarLargeButton;
-    dxBarButton1: TdxBarButton;
     Action_material: TAction;
     dxBarManager_1Bar4: TdxBar;
     dxBarLargeButton8: TdxBarLargeButton;
     Action_report: TAction;
     dxBarLargeButton9: TdxBarLargeButton;
     rbpopmenu_1: TdxRibbonPopupMenu;
+    dxBarButton2: TdxBarButton;
+    dxBarButton3: TdxBarButton;
+    dxBarManager_1Bar5: TdxBar;
+    dxBarLargeButton7: TdxBarLargeButton;
+    Action_insurance: TAction;
+    Action_department: TAction;
+    dxBarLargeButton10: TdxBarLargeButton;
+    dxBarLargeButton11: TdxBarLargeButton;
+    Action_medicine: TAction;
+    dxBarLargeButton12: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -63,6 +71,9 @@ type
     procedure Action_examExecute(Sender: TObject);
     procedure Action_materialExecute(Sender: TObject);
     procedure Action_reportExecute(Sender: TObject);
+    procedure Action_insuranceExecute(Sender: TObject);
+    procedure Action_departmentExecute(Sender: TObject);
+    procedure Action_medicineExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -78,7 +89,8 @@ implementation
 
 uses ufrm_login, ufrm_contract, ufrm_contract_user, ufrm_enterprise,
   ufrm_phonebook, ufrm_receipt, ufrm_supplier, ufrm_client,
-  ufrm_exam, ufrm_material, ufrm_report;
+  ufrm_exam, ufrm_material, ufrm_report, ufrm_insurance, ufrm_department,
+  ufrm_medicine;
 
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin
@@ -128,6 +140,22 @@ begin
   end;
 end;
 
+procedure Tfrm_main.Action_departmentExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_department) then
+  begin
+    frm_department := Tfrm_department.Create(Self);
+    frm_department.Height := Bevel_1.Height;
+    frm_department.Width := Bevel_1.Width;
+    frm_department.Show
+  end
+  else
+  begin
+    frm_department.WindowState := wsNormal;
+  end;
+end;
+
 procedure Tfrm_main.Action_enterpriseExecute(Sender: TObject);
 begin
   inherited;
@@ -160,6 +188,22 @@ begin
   end;
 end;
 
+procedure Tfrm_main.Action_insuranceExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_insurance) then
+  begin
+    frm_insurance := Tfrm_insurance.Create(Self);
+    frm_insurance.Height := Bevel_1.Height;
+    frm_insurance.Width := Bevel_1.Width;
+    frm_insurance.Show
+  end
+  else
+  begin
+    frm_insurance.WindowState := wsNormal;
+  end;
+end;
+
 procedure Tfrm_main.Action_materialExecute(Sender: TObject);
 begin
   inherited;
@@ -173,6 +217,22 @@ begin
   else
   begin
     frm_exam.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_medicineExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_medicine) then
+  begin
+    frm_medicine := Tfrm_medicine.Create(Self);
+    frm_medicine.Height := Bevel_1.Height;
+    frm_medicine.Width := Bevel_1.Width;
+    frm_medicine.Show
+  end
+  else
+  begin
+    frm_medicine.WindowState := wsNormal;
   end;
 end;
 

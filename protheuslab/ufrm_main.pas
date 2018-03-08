@@ -58,6 +58,8 @@ type
     Action_insurance: TAction;
     Action_department: TAction;
     dxBarLargeButton10: TdxBarLargeButton;
+    Action_medicine: TAction;
+    dxBarLargeButton12: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -70,6 +72,7 @@ type
     procedure Action_reportExecute(Sender: TObject);
     procedure Action_insuranceExecute(Sender: TObject);
     procedure Action_departmentExecute(Sender: TObject);
+    procedure Action_medicineExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -85,7 +88,8 @@ implementation
 
 uses ufrm_login, ufrm_contract, ufrm_contract_user, ufrm_enterprise,
   ufrm_phonebook, ufrm_receipt, ufrm_supplier, ufrm_client,
-  ufrm_exam, ufrm_material, ufrm_report, ufrm_insurance, ufrm_department;
+  ufrm_exam, ufrm_material, ufrm_report, ufrm_insurance, ufrm_department,
+  ufrm_medicine;
 
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin
@@ -212,6 +216,22 @@ begin
   else
   begin
     frm_exam.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_medicineExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_medicine) then
+  begin
+    frm_medicine := Tfrm_medicine.Create(Self);
+    frm_medicine.Height := Bevel_1.Height;
+    frm_medicine.Width := Bevel_1.Width;
+    frm_medicine.Show
+  end
+  else
+  begin
+    frm_medicine.WindowState := wsNormal;
   end;
 end;
 

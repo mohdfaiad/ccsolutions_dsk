@@ -121,6 +121,10 @@ inherited frm_main: Tfrm_main
         item
           Visible = True
           ItemName = 'dxBarLargeButton12'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton1'
         end>
       OneOnRow = True
       Row = 0
@@ -359,6 +363,10 @@ inherited frm_main: Tfrm_main
       Action = Action_medicine
       Category = 0
     end
+    object dxBarButton1: TdxBarButton
+      Action = Action_request_type
+      Category = 0
+    end
   end
   inherited ActionList_1: TActionList
     object Action_contract: TAction
@@ -442,6 +450,12 @@ inherited frm_main: Tfrm_main
       Hint = 'Manuten'#231#227'o Medicametos'
       ImageIndex = 10
       OnExecute = Action_medicineExecute
+    end
+    object Action_request_type: TAction
+      Category = 'Cadastros'
+      Caption = 'Tipos de Requisi'#231#227'o'
+      Hint = 'Manuten'#231#227'o Tipos de Requisi'#231#245'es'
+      OnExecute = Action_request_typeExecute
     end
   end
   inherited cxImageList_1: TcxImageList

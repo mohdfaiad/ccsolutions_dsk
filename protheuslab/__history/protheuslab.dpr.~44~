@@ -22,7 +22,10 @@ uses
   ufrm_consult_cnpj in '..\ufrm_consult_cnpj.pas' {frm_consult_cnpj},
   ufrm_consult_cpf in '..\ufrm_consult_cpf.pas' {frm_consult_cpf},
   ufrm_login in '..\ufrm_login.pas' {frm_login},
-  ufrm_insurance in '..\ufrm_insurance.pas' {frm_main_default1};
+  ufrm_insurance in '..\ufrm_insurance.pas' {frm_insurance},
+  ufrm_department in '..\ufrm_department.pas' {frm_department},
+  ufrm_medicine in '..\ufrm_medicine.pas' {frm_medicine},
+  ufrm_request_type in '..\ufrm_request_type.pas' {frm_request_type};
 
 {$R *.res}
 
@@ -33,6 +36,6 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
-  Application.CreateForm(Tfrm_main_default1, frm_main_default1);
+  Application.CreateForm(Tfrm_request_type, frm_request_type);
   Application.Run;
 end.

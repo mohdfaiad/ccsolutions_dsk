@@ -24,7 +24,8 @@ uses
   ufrm_login in '..\ufrm_login.pas' {frm_login},
   ufrm_insurance in '..\ufrm_insurance.pas' {frm_insurance},
   ufrm_department in '..\ufrm_department.pas' {frm_department},
-  ufrm_medicine in '..\ufrm_medicine.pas' {frm_medicine};
+  ufrm_medicine in '..\ufrm_medicine.pas' {frm_medicine},
+  ufrm_request_type in '..\ufrm_request_type.pas' {frm_request_type};
 
 {$R *.res}
 

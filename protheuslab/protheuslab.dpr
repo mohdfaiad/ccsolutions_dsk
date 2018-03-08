@@ -21,7 +21,9 @@ uses
   ufrm_dm_ds in '..\ufrm_dm_ds.pas' {frm_dm_ds: TDataModule},
   ufrm_consult_cnpj in '..\ufrm_consult_cnpj.pas' {frm_consult_cnpj},
   ufrm_consult_cpf in '..\ufrm_consult_cpf.pas' {frm_consult_cpf},
-  ufrm_login in '..\ufrm_login.pas' {frm_login};
+  ufrm_login in '..\ufrm_login.pas' {frm_login},
+  ufrm_insurance in '..\ufrm_insurance.pas' {frm_insurance},
+  ufrm_department in '..\ufrm_department.pas' {frm_department};
 
 {$R *.res}
 

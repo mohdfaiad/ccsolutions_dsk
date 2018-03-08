@@ -1,5 +1,7 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo RH - CCS Protheus.'
+  ExplicitWidth = 1024
+  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
@@ -40,9 +42,7 @@ inherited frm_main: Tfrm_main
   end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar1: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
-      FloatClientWidth = 63
+      FloatClientWidth = 66
       FloatClientHeight = 162
       ItemLinks = <
         item
@@ -175,7 +175,7 @@ inherited frm_main: Tfrm_main
     end
     object Action_enterprise: TAction
       Category = 'Cadastros'
-      Caption = 'Empreas'
+      Caption = 'Empresas'
       Hint = 'Manuten'#231#227'o Empresas'
       ImageIndex = 2
       OnExecute = Action_enterpriseExecute

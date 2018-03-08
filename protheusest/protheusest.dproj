@@ -208,6 +208,10 @@
             <Form>frm_product_class_sub</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\ufrm_product_department.pas">
+            <Form>frm_product_department</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

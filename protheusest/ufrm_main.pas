@@ -64,6 +64,8 @@ type
     dxBarButton5: TdxBarButton;
     dxBarButton6: TdxBarButton;
     dxBarLargeButton10: TdxBarLargeButton;
+    Action_product_department: TAction;
+    dxBarButton7: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contratExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -79,6 +81,7 @@ type
     procedure Action_product_unitExecute(Sender: TObject);
     procedure Action_product_classExecute(Sender: TObject);
     procedure Action_product_class_subExecute(Sender: TObject);
+    procedure Action_product_departmentExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -95,7 +98,7 @@ implementation
 uses ufrm_login, ufrm_brand, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_product, ufrm_supplier, ufrm_report,
   ufrm_ncm, ufrm_manufacturer, ufrm_product_unit, ufrm_product_class,
-  ufrm_product_class_sub;
+  ufrm_product_class_sub, ufrm_product_department;
 
 procedure Tfrm_main.Action_brandExecute(Sender: TObject);
 begin
@@ -270,6 +273,22 @@ begin
   else
   begin
     frm_product_class_sub.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_product_departmentExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_product_department) then
+  begin
+    frm_product_department := Tfrm_product_department.Create(Self);
+    frm_product_department.Height := Bevel_1.Height;
+    frm_product_department.Width := Bevel_1.Width;
+    frm_product_department.Show
+  end
+  else
+  begin
+    frm_product_department.WindowState := wsNormal;
   end;
 end;
 

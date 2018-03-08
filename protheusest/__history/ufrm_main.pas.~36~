@@ -50,8 +50,20 @@ type
     dxBarLargeButton7: TdxBarLargeButton;
     dxBarLargeButton8: TdxBarLargeButton;
     Action_brand: TAction;
-    dxBarButton1: TdxBarButton;
     Action_ncm: TAction;
+    Action_manufacturer: TAction;
+    Action_product_unit: TAction;
+    dxBarLargeButton9: TdxBarLargeButton;
+    rbpopmenu_1: TdxRibbonPopupMenu;
+    Action_product_class: TAction;
+    Action_product_class_sub: TAction;
+    dxBarButton1: TdxBarButton;
+    dxBarButton2: TdxBarButton;
+    dxBarButton3: TdxBarButton;
+    dxBarButton4: TdxBarButton;
+    dxBarButton5: TdxBarButton;
+    dxBarButton6: TdxBarButton;
+    dxBarLargeButton10: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contratExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -63,6 +75,10 @@ type
     procedure Action_productExecute(Sender: TObject);
     procedure Action_brandExecute(Sender: TObject);
     procedure Action_ncmExecute(Sender: TObject);
+    procedure Action_manufacturerExecute(Sender: TObject);
+    procedure Action_product_unitExecute(Sender: TObject);
+    procedure Action_product_classExecute(Sender: TObject);
+    procedure Action_product_class_subExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -78,7 +94,8 @@ implementation
 
 uses ufrm_login, ufrm_brand, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_product, ufrm_supplier, ufrm_report,
-  ufrm_ncm;
+  ufrm_ncm, ufrm_manufacturer, ufrm_product_unit, ufrm_product_class,
+  ufrm_product_class_sub;
 
 procedure Tfrm_main.Action_brandExecute(Sender: TObject);
 begin
@@ -160,6 +177,22 @@ begin
   end;
 end;
 
+procedure Tfrm_main.Action_manufacturerExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_manufacturer) then
+  begin
+    frm_manufacturer := Tfrm_manufacturer.Create(Self);
+    frm_manufacturer.Height := Bevel_1.Height;
+    frm_manufacturer.Width := Bevel_1.Width;
+    frm_manufacturer.Show
+  end
+  else
+  begin
+    frm_manufacturer.WindowState := wsNormal;
+  end;
+end;
+
 procedure Tfrm_main.Action_ncmExecute(Sender: TObject);
 begin
   inherited;
@@ -205,6 +238,54 @@ begin
   else
   begin
     frm_product.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_product_classExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_product_class) then
+  begin
+    frm_product_class := Tfrm_product_class.Create(Self);
+    frm_product_class.Height := Bevel_1.Height;
+    frm_product_class.Width := Bevel_1.Width;
+    frm_product_class.Show
+  end
+  else
+  begin
+    frm_product_class.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_product_class_subExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_product_class_sub) then
+  begin
+    frm_product_class_sub := Tfrm_product_class_sub.Create(Self);
+    frm_product_class_sub.Height := Bevel_1.Height;
+    frm_product_class_sub.Width := Bevel_1.Width;
+    frm_product_class_sub.Show
+  end
+  else
+  begin
+    frm_product_class_sub.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_product_unitExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_product_unit) then
+  begin
+    frm_product_unit := Tfrm_product_unit.Create(Self);
+    frm_product_unit.Height := Bevel_1.Height;
+    frm_product_unit.Width := Bevel_1.Width;
+    frm_product_unit.Show
+  end
+  else
+  begin
+    frm_product_unit.WindowState := wsNormal;
   end;
 end;
 

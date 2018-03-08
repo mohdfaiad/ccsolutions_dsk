@@ -108,8 +108,6 @@ type
     cxDBTextEdit3: TcxDBTextEdit;
     dxLayoutItem14: TdxLayoutItem;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
-    cxTabSheet1: TcxTabSheet;
-    cxTabSheet2: TcxTabSheet;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
   private

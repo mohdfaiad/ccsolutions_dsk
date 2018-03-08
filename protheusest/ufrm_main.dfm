@@ -468,6 +468,10 @@ inherited frm_main: Tfrm_main
       SyncImageIndex = False
       ImageIndex = 4
     end
+    object dxBarButton7: TdxBarButton
+      Action = Action_product_department
+      Category = 0
+    end
   end
   inherited ActionList_1: TActionList
     object Action_contrat: TAction
@@ -561,6 +565,12 @@ inherited frm_main: Tfrm_main
       Caption = 'Sub-Classe'
       Hint = 'Manuten'#231#227'o Sub-Classe Produto'
       OnExecute = Action_product_class_subExecute
+    end
+    object Action_product_department: TAction
+      Category = 'Cadastros'
+      Caption = 'Departamentos e Se'#231#245'es'
+      Hint = 'Manuten'#231#227'o Departamentos dos Produtos'
+      OnExecute = Action_product_departmentExecute
     end
   end
   inherited cxImageList_1: TcxImageList
@@ -1919,6 +1929,10 @@ inherited frm_main: Tfrm_main
       item
         Visible = True
         ItemName = 'dxBarButton3'
+      end
+      item
+        Visible = True
+        ItemName = 'dxBarButton7'
       end
       item
         Visible = True

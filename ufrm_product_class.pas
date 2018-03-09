@@ -46,8 +46,24 @@ type
     cxGrid_1DBTableView1prc_dt_registration: TcxGridDBColumn;
     cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
+    qry_product_class_sub: TFDQuery;
+    ds_product_class_sub: TDataSource;
+    qry_product_class_subprs_id: TFDAutoIncField;
+    qry_product_class_subcontract_ctr_id: TIntegerField;
+    qry_product_class_subproduct_class_prc_id: TIntegerField;
+    qry_product_class_subprs_name: TStringField;
+    qry_product_class_subprs_dt_registration: TDateTimeField;
+    dxLayoutGroup3: TdxLayoutGroup;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    dxLayoutItem4: TdxLayoutItem;
+    cxGrid1DBTableView1prs_id: TcxGridDBColumn;
+    cxGrid1DBTableView1prs_name: TcxGridDBColumn;
+    cxGrid1DBTableView1prs_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure qry_product_class_subAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -74,7 +90,14 @@ end;
 procedure Tfrm_product_class.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qryprc_dt_registration.Value := Date + Time;
+  qryprc_dt_registration.Value := Now;
+end;
+
+procedure Tfrm_product_class.qry_product_class_subAfterInsert
+  (DataSet: TDataSet);
+begin
+  inherited;
+  qry_product_class_subprs_dt_registration.Value := Now;
 end;
 
 end.

@@ -204,10 +204,6 @@
             <Form>frm_product_class</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\ufrm_product_class_sub.pas">
-            <Form>frm_product_class_sub</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\ufrm_product_department.pas">
             <Form>frm_product_department</Form>
             <FormType>dfm</FormType>

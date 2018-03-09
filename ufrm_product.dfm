@@ -4,7 +4,6 @@ inherited frm_product: Tfrm_product
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -16,12 +15,36 @@ inherited frm_product: Tfrm_product
             DataBinding.FieldName = 'pro_id'
             Width = 75
           end
-          object cxGrid_1DBTableView1material_mat_id: TcxGridDBColumn
-            DataBinding.FieldName = 'material_mat_id'
-            Width = 75
-          end
           object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
             DataBinding.FieldName = 'contract_ctr_id'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1supplier_sup_id: TcxGridDBColumn
+            DataBinding.FieldName = 'supplier_sup_id'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1product_class_prc_id: TcxGridDBColumn
+            DataBinding.FieldName = 'product_class_prc_id'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1product_class_sub_prs_id: TcxGridDBColumn
+            DataBinding.FieldName = 'product_class_sub_prs_id'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1manufacturer_man_id: TcxGridDBColumn
+            DataBinding.FieldName = 'manufacturer_man_id'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1product_unit_pru_id: TcxGridDBColumn
+            DataBinding.FieldName = 'product_unit_pru_id'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1brand_bra_id: TcxGridDBColumn
+            DataBinding.FieldName = 'brand_bra_id'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1ncm_ncm_id: TcxGridDBColumn
+            DataBinding.FieldName = 'ncm_ncm_id'
             Width = 75
           end
           object cxGrid_1DBTableView1pro_type: TcxGridDBColumn
@@ -43,6 +66,34 @@ inherited frm_product: Tfrm_product
           object cxGrid_1DBTableView1pro_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'pro_dt_registration'
             Width = 125
+          end
+          object cxGrid_1DBTableView1pro_barcod: TcxGridDBColumn
+            DataBinding.FieldName = 'pro_barcod'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1pro_barcod_manufacturer: TcxGridDBColumn
+            DataBinding.FieldName = 'pro_barcod_manufacturer'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1pro_height: TcxGridDBColumn
+            DataBinding.FieldName = 'pro_height'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1pro_width: TcxGridDBColumn
+            DataBinding.FieldName = 'pro_width'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1pro_length: TcxGridDBColumn
+            DataBinding.FieldName = 'pro_length'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1pro_weight: TcxGridDBColumn
+            DataBinding.FieldName = 'pro_weight'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1pro_liter: TcxGridDBColumn
+            DataBinding.FieldName = 'pro_liter'
+            Width = 100
           end
         end
       end
@@ -306,7 +357,7 @@ inherited frm_product: Tfrm_product
               ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
-              ItemIndex = 3
+              ItemIndex = 1
             end
             object dxLayoutItem5: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -472,9 +523,153 @@ inherited frm_product: Tfrm_product
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Medidas e Pesos'
-        end
-        object cxTabSheet2: TcxTabSheet
-          Caption = 'Endere'#231'o'
+          object dxLayoutControl1: TdxLayoutControl
+            Left = 0
+            Top = 0
+            Width = 762
+            Height = 432
+            Align = alClient
+            TabOrder = 0
+            LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            ExplicitLeft = 224
+            ExplicitTop = 200
+            ExplicitWidth = 300
+            ExplicitHeight = 250
+            object cxDBCurrencyEdit3: TcxDBCurrencyEdit
+              Left = 51
+              Top = 38
+              DataBinding.DataField = 'pro_height'
+              DataBinding.DataSource = ds
+              Properties.DecimalPlaces = 4
+              Properties.DisplayFormat = '0.0000;-0.0000'
+              Style.HotTrack = False
+              TabOrder = 0
+              Width = 121
+            end
+            object cxDBCurrencyEdit4: TcxDBCurrencyEdit
+              Left = 220
+              Top = 38
+              DataBinding.DataField = 'pro_width'
+              DataBinding.DataSource = ds
+              Properties.DecimalPlaces = 4
+              Properties.DisplayFormat = '0.0000;-0.0000'
+              Style.HotTrack = False
+              TabOrder = 1
+              Width = 121
+            end
+            object cxDBCurrencyEdit5: TcxDBCurrencyEdit
+              Left = 415
+              Top = 38
+              DataBinding.DataField = 'pro_length'
+              DataBinding.DataSource = ds
+              Properties.DecimalPlaces = 4
+              Properties.DisplayFormat = '0.0000;-0.0000'
+              Style.HotTrack = False
+              TabOrder = 2
+              Width = 121
+            end
+            object cxDBCurrencyEdit1: TcxDBCurrencyEdit
+              Left = 51
+              Top = 103
+              DataBinding.DataField = 'pro_weight'
+              DataBinding.DataSource = ds
+              Properties.DecimalPlaces = 4
+              Properties.DisplayFormat = '0.0000;-0.0000'
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 121
+            end
+            object cxDBCurrencyEdit2: TcxDBCurrencyEdit
+              Left = 220
+              Top = 103
+              DataBinding.DataField = 'pro_liter'
+              DataBinding.DataSource = ds
+              Properties.DecimalPlaces = 4
+              Properties.DisplayFormat = '0.0000;-0.0000'
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 121
+            end
+            object dxLayoutControl1Group_Root: TdxLayoutGroup
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              ButtonOptions.Buttons = <>
+              Hidden = True
+              ItemIndex = 1
+              ShowBorder = False
+              Index = -1
+            end
+            object dxLayoutGroup3: TdxLayoutGroup
+              Parent = dxLayoutControl1Group_Root
+              CaptionOptions.Text = 'Medidas'
+              ButtonOptions.Buttons = <>
+              ItemIndex = 2
+              LayoutDirection = ldHorizontal
+              Index = 0
+            end
+            object dxLayoutGroup4: TdxLayoutGroup
+              Parent = dxLayoutControl1Group_Root
+              CaptionOptions.Text = 'Pesos'
+              ButtonOptions.Buttons = <>
+              ItemIndex = 1
+              LayoutDirection = ldHorizontal
+              Index = 1
+            end
+            object dxLayoutItem17: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Altura'
+              Control = cxDBCurrencyEdit3
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem18: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Largura'
+              Control = cxDBCurrencyEdit4
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem19: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              AlignVert = avClient
+              CaptionOptions.Text = 'Comprimento'
+              Control = cxDBCurrencyEdit5
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
+            object dxLayoutItem15: TdxLayoutItem
+              Parent = dxLayoutGroup4
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Peso'
+              Control = cxDBCurrencyEdit1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem16: TdxLayoutItem
+              Parent = dxLayoutGroup4
+              AlignHorz = ahLeft
+              AlignVert = avBottom
+              CaptionOptions.Text = 'Litro'
+              Control = cxDBCurrencyEdit2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+          end
         end
       end
     end
@@ -498,12 +693,6 @@ inherited frm_product: Tfrm_product
       Origin = 'pro_id'
       ProviderFlags = [pfInWhere, pfInKey]
       ReadOnly = True
-    end
-    object qrymaterial_mat_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Material ID'
-      FieldName = 'material_mat_id'
-      Origin = 'material_mat_id'
     end
     object qrycontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -606,8 +795,44 @@ inherited frm_product: Tfrm_product
     end
     object qryncm_ncm_id: TIntegerField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'NCM ID'
       FieldName = 'ncm_ncm_id'
       Origin = 'ncm_ncm_id'
+    end
+    object qrypro_height: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Altura'
+      FieldName = 'pro_height'
+      Origin = 'pro_height'
+      Precision = 12
+    end
+    object qrypro_width: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Largura'
+      FieldName = 'pro_width'
+      Origin = 'pro_width'
+      Precision = 12
+    end
+    object qrypro_length: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Comprimento'
+      FieldName = 'pro_length'
+      Origin = 'pro_length'
+      Precision = 12
+    end
+    object qrypro_weight: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Peso'
+      FieldName = 'pro_weight'
+      Origin = 'pro_weight'
+      Precision = 12
+    end
+    object qrypro_liter: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Litro'
+      FieldName = 'pro_liter'
+      Origin = 'pro_liter'
+      Precision = 12
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -643,6 +868,7 @@ inherited frm_product: Tfrm_product
     Top = 96
   end
   object qry_supplier: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -716,10 +942,10 @@ inherited frm_product: Tfrm_product
   object qry_product_class_sub: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    IndexFieldNames = 'product_class_prc_id'
+    MasterSource = ds_product_class
+    MasterFields = 'prc_id'
+    DetailFields = 'product_class_prc_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from product_class_sub')

@@ -26,7 +26,6 @@ uses
   ufrm_product_unit in '..\ufrm_product_unit.pas' {frm_product_unit},
   ufrm_manufacturer in '..\ufrm_manufacturer.pas' {frm_manufacturer},
   ufrm_product_class in '..\ufrm_product_class.pas' {frm_product_class},
-  ufrm_product_class_sub in '..\ufrm_product_class_sub.pas' {frm_product_class_sub},
   ufrm_product_department in '..\ufrm_product_department.pas' {frm_product_department};
 
 {$R *.res}

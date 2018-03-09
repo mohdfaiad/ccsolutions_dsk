@@ -5,6 +5,10 @@ inherited frm_product_department: Tfrm_product_department
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prd_id: TcxGridDBColumn
@@ -76,14 +80,18 @@ inherited frm_product_department: Tfrm_product_department
                 Images = cxImageList_1
                 object cxGrid1DBTableView1prs_id: TcxGridDBColumn
                   DataBinding.FieldName = 'prs_id'
+                  Options.Editing = False
                   Width = 75
                 end
                 object cxGrid1DBTableView1prs_name: TcxGridDBColumn
                   DataBinding.FieldName = 'prs_name'
+                  PropertiesClassName = 'TcxTextEditProperties'
+                  Properties.CharCase = ecUpperCase
                   Width = 200
                 end
                 object cxGrid1DBTableView1prs_dt_registration: TcxGridDBColumn
                   DataBinding.FieldName = 'prs_dt_registration'
+                  Options.Editing = False
                   Width = 125
                 end
               end
@@ -154,6 +162,7 @@ inherited frm_product_department: Tfrm_product_department
       FieldName = 'prd_id'
       Origin = 'prd_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -206,6 +215,7 @@ inherited frm_product_department: Tfrm_product_department
       FieldName = 'prs_id'
       Origin = 'prs_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_product_sectorproduct_department_prd_id: TIntegerField
       AutoGenerateValue = arDefault

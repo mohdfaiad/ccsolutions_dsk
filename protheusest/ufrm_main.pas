@@ -56,12 +56,10 @@ type
     dxBarLargeButton9: TdxBarLargeButton;
     rbpopmenu_1: TdxRibbonPopupMenu;
     Action_product_class: TAction;
-    Action_product_class_sub: TAction;
     dxBarButton1: TdxBarButton;
     dxBarButton2: TdxBarButton;
     dxBarButton3: TdxBarButton;
     dxBarButton4: TdxBarButton;
-    dxBarButton5: TdxBarButton;
     dxBarButton6: TdxBarButton;
     dxBarLargeButton10: TdxBarLargeButton;
     Action_product_department: TAction;
@@ -80,7 +78,6 @@ type
     procedure Action_manufacturerExecute(Sender: TObject);
     procedure Action_product_unitExecute(Sender: TObject);
     procedure Action_product_classExecute(Sender: TObject);
-    procedure Action_product_class_subExecute(Sender: TObject);
     procedure Action_product_departmentExecute(Sender: TObject);
   private
     { Private declarations }
@@ -98,7 +95,7 @@ implementation
 uses ufrm_login, ufrm_brand, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_product, ufrm_supplier, ufrm_report,
   ufrm_ncm, ufrm_manufacturer, ufrm_product_unit, ufrm_product_class,
-  ufrm_product_class_sub, ufrm_product_department;
+  ufrm_product_department;
 
 procedure Tfrm_main.Action_brandExecute(Sender: TObject);
 begin
@@ -257,22 +254,6 @@ begin
   else
   begin
     frm_product_class.WindowState := wsNormal;
-  end;
-end;
-
-procedure Tfrm_main.Action_product_class_subExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_product_class_sub) then
-  begin
-    frm_product_class_sub := Tfrm_product_class_sub.Create(Self);
-    frm_product_class_sub.Height := Bevel_1.Height;
-    frm_product_class_sub.Width := Bevel_1.Width;
-    frm_product_class_sub.Show
-  end
-  else
-  begin
-    frm_product_class_sub.WindowState := wsNormal;
   end;
 end;
 

@@ -1,6 +1,7 @@
 inherited frm_product_class: Tfrm_product_class
   Caption = 'Manuten'#231#227'o: Classes'
   OnClose = FormClose
+  ExplicitTop = -33
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -48,7 +49,59 @@ inherited frm_product_class: Tfrm_product_class
             inherited dbedt_dt_registration: TcxDBDateEdit
               DataBinding.DataField = 'prc_dt_registration'
             end
-            object cxDBTextEdit1: TcxDBTextEdit [2]
+            object cxGrid1: TcxGrid [2]
+              Left = 17
+              Top = 168
+              Width = 728
+              Height = 200
+              TabOrder = 3
+              object cxGrid1DBTableView1: TcxGridDBTableView
+                Navigator.Buttons.ConfirmDelete = True
+                Navigator.Buttons.CustomButtons = <>
+                Navigator.Buttons.Images = cxImageList_1
+                Navigator.Buttons.First.ImageIndex = 0
+                Navigator.Buttons.PriorPage.Visible = False
+                Navigator.Buttons.Prior.ImageIndex = 1
+                Navigator.Buttons.Next.ImageIndex = 2
+                Navigator.Buttons.NextPage.Visible = False
+                Navigator.Buttons.Last.ImageIndex = 3
+                Navigator.Buttons.Insert.ImageIndex = 4
+                Navigator.Buttons.Delete.ImageIndex = 8
+                Navigator.Buttons.Edit.ImageIndex = 5
+                Navigator.Buttons.Post.ImageIndex = 6
+                Navigator.Buttons.Cancel.ImageIndex = 7
+                Navigator.Buttons.Refresh.Visible = False
+                Navigator.Buttons.SaveBookmark.Visible = False
+                Navigator.Buttons.GotoBookmark.Visible = False
+                Navigator.Buttons.Filter.ImageIndex = 10
+                Navigator.Visible = True
+                DataController.DataSource = ds_product_class_sub
+                DataController.Summary.DefaultGroupSummaryItems = <>
+                DataController.Summary.FooterSummaryItems = <>
+                DataController.Summary.SummaryGroups = <>
+                Images = cxImageList_1
+                object cxGrid1DBTableView1prs_id: TcxGridDBColumn
+                  DataBinding.FieldName = 'prs_id'
+                  Options.Editing = False
+                  Width = 75
+                end
+                object cxGrid1DBTableView1prs_name: TcxGridDBColumn
+                  DataBinding.FieldName = 'prs_name'
+                  PropertiesClassName = 'TcxTextEditProperties'
+                  Properties.CharCase = ecUpperCase
+                  Width = 200
+                end
+                object cxGrid1DBTableView1prs_dt_registration: TcxGridDBColumn
+                  DataBinding.FieldName = 'prs_dt_registration'
+                  Options.Editing = False
+                  Width = 125
+                end
+              end
+              object cxGrid1Level1: TcxGridLevel
+                GridView = cxGrid1DBTableView1
+              end
+            end
+            object cxDBTextEdit1: TcxDBTextEdit [3]
               Left = 59
               Top = 103
               DataBinding.DataField = 'prc_name'
@@ -58,12 +111,33 @@ inherited frm_product_class: Tfrm_product_class
               TabOrder = 2
               Width = 294
             end
+            inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
+              ItemIndex = 2
+            end
+            object dxLayoutGroup3: TdxLayoutGroup
+              Parent = dxLayoutControl_1Group_Root
+              CaptionOptions.Text = 'Sub-Classe'
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              SizeOptions.Width = 742
+              ButtonOptions.Buttons = <>
+              Index = 2
+            end
+            object dxLayoutItem4: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              Control = cxGrid1
+              ControlOptions.OriginalHeight = 200
+              ControlOptions.OriginalWidth = 250
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
               CaptionOptions.Text = 'Nome'
               Control = cxDBTextEdit1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 294
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -125,5 +199,54 @@ inherited frm_product_class: Tfrm_product_class
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
+  end
+  object qry_product_class_sub: TFDQuery
+    Active = True
+    AfterInsert = qry_product_class_subAfterInsert
+    IndexFieldNames = 'product_class_prc_id'
+    MasterSource = ds
+    MasterFields = 'prc_id'
+    DetailFields = 'product_class_prc_id'
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select * from product_class_sub')
+    Left = 584
+    Top = 96
+    object qry_product_class_subprs_id: TFDAutoIncField
+      DisplayLabel = 'C'#243'd. ID'
+      FieldName = 'prs_id'
+      Origin = 'prs_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qry_product_class_subcontract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Contrato ID'
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
+    end
+    object qry_product_class_subproduct_class_prc_id: TIntegerField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Classe'
+      FieldName = 'product_class_prc_id'
+      Origin = 'product_class_prc_id'
+    end
+    object qry_product_class_subprs_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'prs_name'
+      Origin = 'prs_name'
+      Size = 50
+    end
+    object qry_product_class_subprs_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'prs_dt_registration'
+      Origin = 'prs_dt_registration'
+    end
+  end
+  object ds_product_class_sub: TDataSource
+    DataSet = qry_product_class_sub
+    Left = 616
+    Top = 96
   end
 end

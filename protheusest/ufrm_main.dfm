@@ -1,5 +1,6 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Estoque - CCS Protheus.'
+  ExplicitLeft = -237
   ExplicitWidth = 1024
   ExplicitHeight = 640
   PixelsPerInch = 96
@@ -186,10 +187,6 @@ inherited frm_main: Tfrm_main
     end
     object dxBarButton4: TdxBarButton
       Action = Action_brand
-      Category = 0
-    end
-    object dxBarButton5: TdxBarButton
-      Action = Action_product_class_sub
       Category = 0
     end
     object dxBarButton6: TdxBarButton
@@ -556,15 +553,9 @@ inherited frm_main: Tfrm_main
     end
     object Action_product_class: TAction
       Category = 'M'#243'dulo'
-      Caption = 'Classe'
+      Caption = 'Classe e Sub-Classe'
       Hint = 'Manuten'#231#227'o Classes Produtos'
       OnExecute = Action_product_classExecute
-    end
-    object Action_product_class_sub: TAction
-      Category = 'M'#243'dulo'
-      Caption = 'Sub-Classe'
-      Hint = 'Manuten'#231#227'o Sub-Classe Produto'
-      OnExecute = Action_product_class_subExecute
     end
     object Action_product_department: TAction
       Category = 'Cadastros'
@@ -1917,10 +1908,6 @@ inherited frm_main: Tfrm_main
       item
         Visible = True
         ItemName = 'dxBarButton6'
-      end
-      item
-        Visible = True
-        ItemName = 'dxBarButton5'
       end
       item
         Visible = True

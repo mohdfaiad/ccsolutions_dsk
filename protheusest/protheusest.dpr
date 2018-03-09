@@ -27,7 +27,8 @@ uses
   ufrm_manufacturer in '..\ufrm_manufacturer.pas' {frm_manufacturer},
   ufrm_product_class in '..\ufrm_product_class.pas' {frm_product_class},
   ufrm_product_department in '..\ufrm_product_department.pas' {frm_product_department},
-  ufrm_purchase_order in '..\ufrm_purchase_order.pas' {frm_purchase_order};
+  ufrm_purchase_order in '..\ufrm_purchase_order.pas' {frm_purchase_order},
+  ufrm_stock in '..\ufrm_stock.pas' {frm_stock};
 
 {$R *.res}
 

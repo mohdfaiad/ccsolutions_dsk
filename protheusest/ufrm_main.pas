@@ -66,6 +66,8 @@ type
     dxBarButton7: TdxBarButton;
     Action_purchase_order: TAction;
     dxBarLargeButton11: TdxBarLargeButton;
+    Action_stock: TAction;
+    dxBarLargeButton12: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contratExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -82,6 +84,7 @@ type
     procedure Action_product_classExecute(Sender: TObject);
     procedure Action_product_departmentExecute(Sender: TObject);
     procedure Action_purchase_orderExecute(Sender: TObject);
+    procedure Action_stockExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -98,7 +101,7 @@ implementation
 uses ufrm_login, ufrm_brand, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_product, ufrm_supplier, ufrm_report,
   ufrm_ncm, ufrm_manufacturer, ufrm_product_unit, ufrm_product_class,
-  ufrm_product_department, ufrm_purchase_order;
+  ufrm_product_department, ufrm_purchase_order, ufrm_stock;
 
 procedure Tfrm_main.Action_brandExecute(Sender: TObject);
 begin
@@ -321,6 +324,22 @@ begin
   else
   begin
     frm_report.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_stockExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_stock) then
+  begin
+    frm_stock := Tfrm_stock.Create(Self);
+    frm_stock.Height := Bevel_1.Height;
+    frm_stock.Width := Bevel_1.Width;
+    frm_stock.Show
+  end
+  else
+  begin
+    frm_stock.WindowState := wsNormal;
   end;
 end;
 

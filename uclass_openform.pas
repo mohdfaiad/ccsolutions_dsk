@@ -27,7 +27,7 @@ procedure TOpenForm.createForm(frm: TForm; size: TBevel);
 begin
   if not Assigned(frm) then
   begin
-    frm := frm.Create(frm);
+    frm := frm.Create(Self);
     frm.Height := size.Height;
     frm.Width := size.Width;
     frm.Show;

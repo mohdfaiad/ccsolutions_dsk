@@ -67,6 +67,14 @@ type
     cxGrid1DBTableView1poi_product_quant: TcxGridDBColumn;
     cxGrid1DBTableView1poi_dt_registration: TcxGridDBColumn;
     cxGrid1DBTableView1Column1: TcxGridDBColumn;
+    qrypco_status: TStringField;
+    qrypoc_status_reason: TStringField;
+    cxDBTextEdit2: TcxDBTextEdit;
+    dxLayoutItem6: TdxLayoutItem;
+    cxDBComboBox1: TcxDBComboBox;
+    dxLayoutItem3: TdxLayoutItem;
+    cxGrid_1DBTableView1pco_status: TcxGridDBColumn;
+    cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);

@@ -3,7 +3,8 @@ unit ufrm_purchase_order;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_form_default, cxGraphics,
   cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxSkinsCore, dxSkinBlack,
   dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
@@ -32,7 +33,7 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  cxSpinEdit;
+  cxSpinEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxCurrencyEdit;
 
 type
   Tfrm_purchase_order = class(Tfrm_form_default)
@@ -51,12 +52,31 @@ type
     cxGrid_1DBTableView1employee_emp_id: TcxGridDBColumn;
     cxGrid_1DBTableView1pco_dt_registration: TcxGridDBColumn;
     dxLayoutGroup3: TdxLayoutGroup;
-    cxDBSpinEdit1: TcxDBSpinEdit;
-    dxLayoutItem3: TdxLayoutItem;
     cxGrid1DBTableView1: TcxGridDBTableView;
     cxGrid1Level1: TcxGridLevel;
     cxGrid1: TcxGrid;
     dxLayoutItem4: TdxLayoutItem;
+    qry_product: TFDQuery;
+    ds_product: TDataSource;
+    qry_employee: TFDQuery;
+    ds_employee: TDataSource;
+    cxDBLookupComboBox1: TcxDBLookupComboBox;
+    dxLayoutItem5: TdxLayoutItem;
+    qry_purchase_order_itenproduct_pro_id: TIntegerField;
+    cxGrid1DBTableView1poi_id: TcxGridDBColumn;
+    cxGrid1DBTableView1poi_product_quant: TcxGridDBColumn;
+    cxGrid1DBTableView1poi_dt_registration: TcxGridDBColumn;
+    cxGrid1DBTableView1Column1: TcxGridDBColumn;
+    qrypco_status: TStringField;
+    qrypoc_status_reason: TStringField;
+    cxDBTextEdit2: TcxDBTextEdit;
+    dxLayoutItem6: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    cxDBComboBox1: TcxDBComboBox;
+    dxLayoutItem3: TdxLayoutItem;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure qryAfterInsert(DataSet: TDataSet);
+    procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -71,5 +91,26 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_purchase_order.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  frm_purchase_order.Destroy;
+  frm_purchase_order := Nil;
+end;
+
+procedure Tfrm_purchase_order.qryAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+  qrypco_dt_registration.Value := Now;
+end;
+
+procedure Tfrm_purchase_order.qry_purchase_order_itenAfterInsert
+  (DataSet: TDataSet);
+begin
+  inherited;
+  qry_purchase_order_itenpoi_dt_registration.Value := Now;
+end;
 
 end.

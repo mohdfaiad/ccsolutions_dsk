@@ -182,14 +182,6 @@ inherited frm_stock: Tfrm_stock
       end
     end
   end
-  inherited dxBarManager_1: TdxBarManager
-    inherited dxBarManager_1Bar4: TdxBar
-      DockedLeft = 427
-    end
-    inherited dxBarManager_1Bar5: TdxBar
-      DockedLeft = 281
-    end
-  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end

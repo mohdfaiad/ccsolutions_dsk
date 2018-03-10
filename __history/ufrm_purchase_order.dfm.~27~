@@ -4,7 +4,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -83,17 +82,40 @@ inherited frm_purchase_order: Tfrm_purchase_order
                 Images = cxImageList_1
                 object cxGrid1DBTableView1poi_id: TcxGridDBColumn
                   DataBinding.FieldName = 'poi_id'
+                  Options.Editing = False
                   Width = 75
                 end
-                object cxGrid1DBTableView1purchase_order_pco_id: TcxGridDBColumn
-                  DataBinding.FieldName = 'purchase_order_pco_id'
-                  Width = 75
+                object cxGrid1DBTableView1Column1: TcxGridDBColumn
+                  DataBinding.FieldName = 'product_pro_id'
+                  PropertiesClassName = 'TcxLookupComboBoxProperties'
+                  Properties.CharCase = ecUpperCase
+                  Properties.DropDownListStyle = lsFixedList
+                  Properties.DropDownWidth = 350
+                  Properties.KeyFieldNames = 'pro_id'
+                  Properties.ListColumns = <
+                    item
+                      Caption = 'Nome'
+                      Width = 250
+                      FieldName = 'pro_name'
+                    end
+                    item
+                      Caption = 'C'#243'd. ID'
+                      FieldName = 'pro_id'
+                    end>
+                  Properties.ListSource = ds_product
+                  Width = 200
                 end
                 object cxGrid1DBTableView1poi_product_quant: TcxGridDBColumn
                   DataBinding.FieldName = 'poi_product_quant'
+                  PropertiesClassName = 'TcxCurrencyEditProperties'
+                  Properties.DecimalPlaces = 4
+                  Properties.DisplayFormat = '0.0000;-0.0000'
+                  Width = 75
                 end
                 object cxGrid1DBTableView1poi_dt_registration: TcxGridDBColumn
                   DataBinding.FieldName = 'poi_dt_registration'
+                  Options.Editing = False
+                  Width = 125
                 end
               end
               object cxGrid1Level1: TcxGridLevel
@@ -111,6 +133,13 @@ inherited frm_purchase_order: Tfrm_purchase_order
               Properties.KeyFieldNames = 'emp_id'
               Properties.ListColumns = <
                 item
+                  Caption = 'Nome'
+                  Width = 250
+                  FieldName = 'rec_name'
+                end
+                item
+                  Caption = 'C'#243'd. ID'
+                  Width = 75
                   FieldName = 'emp_id'
                 end>
               Properties.ListSource = ds_employee
@@ -208,6 +237,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   object qry_purchase_order_iten: TFDQuery
+    Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
     IndexFieldNames = 'purchase_order_pco_id'
     MasterSource = ds
@@ -282,7 +312,10 @@ inherited frm_purchase_order: Tfrm_purchase_order
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from employee')
+      
+        'select e.emp_id, e.record_rec_id, e.emp_type, e.emp_status, r.re' +
+        'c_name, e.contract_ctr_id from employee as e'#10'inner join record a' +
+        's r on e.record_rec_id = r.rec_id')
     Left = 520
     Top = 96
   end

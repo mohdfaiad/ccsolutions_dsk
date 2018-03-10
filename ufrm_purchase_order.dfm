@@ -1,10 +1,15 @@
 inherited frm_purchase_order: Tfrm_purchase_order
   Caption = 'Manuten'#231#227'o: Pedidos de Compra'
   OnClose = FormClose
+  ExplicitTop = -33
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pco_id: TcxGridDBColumn
@@ -18,6 +23,14 @@ inherited frm_purchase_order: Tfrm_purchase_order
           object cxGrid_1DBTableView1employee_emp_id: TcxGridDBColumn
             DataBinding.FieldName = 'employee_emp_id'
             Width = 75
+          end
+          object cxGrid_1DBTableView1pco_status: TcxGridDBColumn
+            DataBinding.FieldName = 'pco_status'
+            Width = 50
+          end
+          object cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn
+            DataBinding.FieldName = 'poc_status_reason'
+            Width = 250
           end
           object cxGrid_1DBTableView1pco_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'pco_dt_registration'
@@ -53,8 +66,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
               Top = 168
               Width = 728
               Height = 244
-              Align = alCustom
-              TabOrder = 3
+              TabOrder = 5
               object cxGrid1DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.ConfirmDelete = True
                 Navigator.Buttons.CustomButtons = <>
@@ -122,7 +134,32 @@ inherited frm_purchase_order: Tfrm_purchase_order
                 GridView = cxGrid1DBTableView1
               end
             end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [3]
+            object cxDBComboBox1: TcxDBComboBox [3]
+              Left = 413
+              Top = 103
+              DataBinding.DataField = 'pco_status'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.Items.Strings = (
+                'A - ABERTO'
+                'F - FECHADO'
+                'C - CANCELADO')
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 121
+            end
+            object cxDBTextEdit2: TcxDBTextEdit [4]
+              Left = 577
+              Top = 103
+              DataBinding.DataField = 'poc_status_reason'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 168
+            end
+            object cxDBLookupComboBox1: TcxDBLookupComboBox [5]
               Left = 77
               Top = 103
               DataBinding.DataField = 'employee_emp_id'
@@ -148,20 +185,25 @@ inherited frm_purchase_order: Tfrm_purchase_order
               Width = 294
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
+              ItemIndex = 2
             end
-            object dxLayoutGroup3: TdxLayoutGroup
+            inherited dxLayoutItem1: TdxLayoutItem [8]
+            end
+            inherited dxLayoutItem2: TdxLayoutItem [9]
+            end
+            object dxLayoutGroup3: TdxLayoutGroup [10]
               Parent = dxLayoutControl_1Group_Root
+              AlignHorz = ahLeft
               CaptionOptions.Text = 'Itens do Pedido de Compra'
               SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
               SizeOptions.SizableHorz = True
               SizeOptions.SizableVert = True
-              SizeOptions.Height = 282
+              SizeOptions.Height = 150
               SizeOptions.Width = 742
               ButtonOptions.Buttons = <>
               Index = 2
             end
-            object dxLayoutItem4: TdxLayoutItem
+            object dxLayoutItem4: TdxLayoutItem [11]
               Parent = dxLayoutGroup3
               Control = cxGrid1
               ControlOptions.OriginalHeight = 244
@@ -169,9 +211,36 @@ inherited frm_purchase_order: Tfrm_purchase_order
               ControlOptions.ShowBorder = False
               Index = 0
             end
+            inherited dxLayoutGroup2: TdxLayoutGroup [12]
+              AlignHorz = ahClient
+              LayoutDirection = ldHorizontal
+            end
+            object dxLayoutItem3: TdxLayoutItem
+              Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Status'
+              Control = cxDBComboBox1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem6: TdxLayoutItem
+              Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Motivo'
+              Control = cxDBTextEdit2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 168
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
             object dxLayoutItem5: TdxLayoutItem
               Parent = dxLayoutGroup2
               AlignHorz = ahLeft
+              AlignVert = avClient
               CaptionOptions.Text = 'Funcion'#225'rio'
               Control = cxDBLookupComboBox1
               ControlOptions.OriginalHeight = 21
@@ -202,6 +271,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
       FieldName = 'pco_id'
       Origin = 'pco_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -214,6 +284,21 @@ inherited frm_purchase_order: Tfrm_purchase_order
       DisplayLabel = 'Funcion'#225'rio ID'
       FieldName = 'employee_emp_id'
       Origin = 'employee_emp_id'
+    end
+    object qrypco_status: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'pco_status'
+      Origin = 'pco_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qrypoc_status_reason: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Motivo'
+      FieldName = 'poc_status_reason'
+      Origin = 'poc_status_reason'
+      Size = 45
     end
     object qrypco_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
@@ -253,6 +338,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
       FieldName = 'poi_id'
       Origin = 'poi_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_purchase_order_itenpurchase_order_pco_id: TIntegerField
       AutoGenerateValue = arDefault

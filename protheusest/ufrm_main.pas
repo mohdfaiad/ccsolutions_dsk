@@ -56,18 +56,22 @@ type
     dxBarLargeButton9: TdxBarLargeButton;
     rbpopmenu_1: TdxRibbonPopupMenu;
     Action_product_class: TAction;
-    dxBarButton1: TdxBarButton;
-    dxBarButton2: TdxBarButton;
-    dxBarButton3: TdxBarButton;
-    dxBarButton4: TdxBarButton;
-    dxBarButton6: TdxBarButton;
     dxBarLargeButton10: TdxBarLargeButton;
     Action_product_department: TAction;
-    dxBarButton7: TdxBarButton;
     Action_purchase_order: TAction;
     dxBarLargeButton11: TdxBarLargeButton;
     Action_stock: TAction;
-    dxBarLargeButton12: TdxBarLargeButton;
+    dxBarLargeButton13: TdxBarLargeButton;
+    rbpopmenu_2: TdxRibbonPopupMenu;
+    Action_product_entry: TAction;
+    dxBarButton5: TdxBarButton;
+    dxBarButton8: TdxBarButton;
+    dxBarButton9: TdxBarButton;
+    dxBarButton10: TdxBarButton;
+    dxBarButton11: TdxBarButton;
+    dxBarButton12: TdxBarButton;
+    dxBarButton13: TdxBarButton;
+    dxBarButton14: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contratExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -85,6 +89,7 @@ type
     procedure Action_product_departmentExecute(Sender: TObject);
     procedure Action_purchase_orderExecute(Sender: TObject);
     procedure Action_stockExecute(Sender: TObject);
+    procedure Action_product_entryExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -101,7 +106,8 @@ implementation
 uses ufrm_login, ufrm_brand, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_product, ufrm_supplier, ufrm_report,
   ufrm_ncm, ufrm_manufacturer, ufrm_product_unit, ufrm_product_class,
-  ufrm_product_department, ufrm_purchase_order, ufrm_stock;
+  ufrm_product_department, ufrm_purchase_order, ufrm_stock, uclass_frm_open,
+  ufrm_stock_entry;
 
 procedure Tfrm_main.Action_brandExecute(Sender: TObject);
 begin
@@ -170,7 +176,7 @@ end;
 procedure Tfrm_main.Action_enterpriseExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_enterprise) then
+  if not Assigned(frm_manufacturer) then
   begin
     frm_enterprise := Tfrm_enterprise.Create(Self);
     frm_enterprise.Height := Bevel_1.Height;
@@ -276,6 +282,22 @@ begin
   else
   begin
     frm_product_department.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_product_entryExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_stock_entry) then
+  begin
+    frm_stock_entry := Tfrm_stock_entry.Create(Self);
+    frm_stock_entry.Height := Bevel_1.Height;
+    frm_stock_entry.Width := Bevel_1.Width;
+    frm_stock_entry.Show
+  end
+  else
+  begin
+    frm_stock_entry.WindowState := wsNormal;
   end;
 end;
 

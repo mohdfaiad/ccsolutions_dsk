@@ -90,7 +90,7 @@ procedure Tfrm_contract_user.FormClose(Sender: TObject;
 begin
   inherited;
   frm_contract_user.Destroy;
-  frm_contract_user := NIl;
+  frm_contract_user := Nil;
 end;
 
 procedure Tfrm_contract_user.qryAfterInsert(DataSet: TDataSet);

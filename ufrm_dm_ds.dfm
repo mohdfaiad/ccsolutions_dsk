@@ -11,7 +11,7 @@ object frm_dm_ds: Tfrm_dm_ds
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from client')
-    Left = 24
+    Left = 32
     Top = 24
   end
   object qry_enterprise: TFDQuery
@@ -23,10 +23,10 @@ object frm_dm_ds: Tfrm_dm_ds
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from enterprise')
-    Left = 56
-    Top = 24
+    Left = 32
+    Top = 72
   end
-  object qry_import_call_log: TFDQuery
+  object qry_stock: TFDQuery
     Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -34,8 +34,8 @@ object frm_dm_ds: Tfrm_dm_ds
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from import_call_log')
-    Left = 88
-    Top = 24
+      'select * from stock')
+    Left = 32
+    Top = 120
   end
 end

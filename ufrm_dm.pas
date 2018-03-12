@@ -23,10 +23,12 @@ type
     qry_signinctr_usr_username: TStringField;
     qry_signinctr_usr_password: TStringField;
     mysql_driver: TFDPhysMySQLDriverLink;
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    qry,qry2,qry3:TFDQuery;
   end;
 
 var
@@ -37,5 +39,18 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+procedure Tfrm_dm.DataModuleCreate(Sender: TObject);
+begin
+qry:=TFDQuery.Create(Self);
+qry.Connection:=connCCS;
+
+qry2:=TFDQuery.Create(Self);
+qry2.Connection:=connCCS;
+
+qry3:=TFDQuery.Create(Self);
+qry3.Connection:=connCCS;
+
+end;
 
 end.

@@ -1,0 +1,40 @@
+unit uclass_close_frm;
+
+interface
+
+uses
+  System.Classes, Vcl.Forms;
+
+type
+  TCloseForm = class(TComponent)
+  private
+    { private declarations }
+  protected
+    { protected declarations }
+  public
+    { public declarations }
+    procedure closeFrm(frm: TForm);
+    constructor Create(AOwner: TComponent); override;
+  published
+    { published declarations }
+  end;
+
+implementation
+
+uses
+  System.SysUtils;
+
+{ TCloseForm }
+
+procedure TCloseForm.closeFrm(frm: TForm);
+begin
+  FreeAndNil(frm);
+end;
+
+constructor TCloseForm.Create(AOwner: TComponent);
+begin
+  inherited;
+
+end;
+
+end.

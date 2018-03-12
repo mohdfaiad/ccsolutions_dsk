@@ -217,8 +217,13 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\uclass_compression_image.pas"/>
-        <DCCReference Include="..\uclass_open_form.pas"/>
+        <DCCReference Include="..\uclass_frm_open.pas"/>
         <DCCReference Include="..\uclass_zipcode.pas"/>
+        <DCCReference Include="..\uclass_frm_close.pas"/>
+        <DCCReference Include="..\ufrm_stock_entry.pas">
+            <Form>frm_stock_entry</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

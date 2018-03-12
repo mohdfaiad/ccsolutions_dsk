@@ -1,7 +1,6 @@
 inherited frm_product_class: Tfrm_product_class
-  Caption = 'Manuten'#231#227'o: Classes'
+  Caption = 'Manuten'#231#227'o: Classes e Sub-Classes'
   OnClose = FormClose
-  ExplicitTop = -33
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -217,6 +216,7 @@ inherited frm_product_class: Tfrm_product_class
       FieldName = 'prs_id'
       Origin = 'prs_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_product_class_subcontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault

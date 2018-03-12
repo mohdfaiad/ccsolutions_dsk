@@ -42,7 +42,6 @@ type
     qryenterprise_ent_id: TIntegerField;
     qrysto_type: TStringField;
     qrysto_status: TStringField;
-    qrysto_description: TStringField;
     qrysto_dt_registration: TDateTimeField;
     cxDBTextEdit3: TcxDBTextEdit;
     dxLayoutItem8: TdxLayoutItem;
@@ -51,7 +50,6 @@ type
     cxGrid_1DBTableView1enterprise_ent_id: TcxGridDBColumn;
     cxGrid_1DBTableView1sto_type: TcxGridDBColumn;
     cxGrid_1DBTableView1sto_status: TcxGridDBColumn;
-    cxGrid_1DBTableView1sto_description: TcxGridDBColumn;
     cxGrid_1DBTableView1sto_dt_registration: TcxGridDBColumn;
     cxDBComboBox1: TcxDBComboBox;
     dxLayoutItem4: TdxLayoutItem;
@@ -62,6 +60,8 @@ type
     dxLayoutItem3: TdxLayoutItem;
     qry_enterprise: TFDQuery;
     ds_enterprise: TDataSource;
+    qrysto_name: TStringField;
+    cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private

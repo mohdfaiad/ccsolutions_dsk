@@ -12,7 +12,7 @@ type
   Tfrm_dm_ds = class(TDataModule)
     qry_client: TFDQuery;
     qry_enterprise: TFDQuery;
-    qry_import_call_log: TFDQuery;
+    qry_stock: TFDQuery;
   private
     { Private declarations }
   public

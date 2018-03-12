@@ -19,7 +19,7 @@ uses
   dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
   dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
   dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark, uclass_zipcode,
+  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark, uclass_frm_close,
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
   dxSkinXmas2008Blue, dxSkinscxPCPainter, dxBarBuiltInMenu, cxStyles,
   cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, Data.DB,
@@ -160,14 +160,13 @@ type
     DBImage1: TDBImage;
     dxLayoutItem11: TdxLayoutItem;
     ACBrCEP1: TACBrCEP;
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_insert_imageExecute(Sender: TObject);
     procedure Action_delete_imageExecute(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     imgObj: TCompress_image;
-    cepObj: TZipcode;
   public
     { Public declarations }
   end;

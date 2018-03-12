@@ -1,0 +1,25 @@
+unit uclass_zipcode_br;
+
+interface
+
+uses
+  System.Classes;
+
+type
+  TZipcode = class(TComponent)
+  private
+    { private declarations }
+  protected
+    { protected declarations }
+  public
+    { public declarations }
+
+  published
+    { published declarations }
+  end;
+
+implementation
+
+{ TZipcode }
+
+end.

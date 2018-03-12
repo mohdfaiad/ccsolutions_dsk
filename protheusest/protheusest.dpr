@@ -30,8 +30,10 @@ uses
   ufrm_purchase_order in '..\ufrm_purchase_order.pas' {frm_purchase_order},
   ufrm_stock in '..\ufrm_stock.pas' {frm_stock},
   uclass_compression_image in '..\uclass_compression_image.pas',
-  uclass_open_form in '..\uclass_open_form.pas',
-  uclass_zipcode in '..\uclass_zipcode.pas';
+  uclass_frm_open in '..\uclass_frm_open.pas',
+  uclass_zipcode in '..\uclass_zipcode.pas',
+  uclass_frm_close in '..\uclass_frm_close.pas',
+  ufrm_stock_entry in '..\ufrm_stock_entry.pas' {frm_stock_entry};
 
 {$R *.res}
 

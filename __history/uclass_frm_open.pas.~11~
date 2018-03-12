@@ -1,0 +1,46 @@
+unit uclass_frm_open;
+
+interface
+
+uses
+  Vcl.Forms, Vcl.ExtCtrls, System.Classes;
+
+type
+  TOpenForm = class(TComponent)
+  private
+    { private declarations }
+  protected
+    { protected declarations }
+  public
+    { public declarations }
+    constructor Create; virtual;
+    destructor Destroy; override;
+    procedure openFrm(frm: TForm; frmc: TFormClass; size: TBevel);
+  published
+    { published declarations }
+  end;
+
+implementation
+
+{ TOpenForm }
+
+constructor TOpenForm.Create;
+begin
+
+end;
+
+destructor TOpenForm.Destroy;
+begin
+
+  inherited;
+end;
+
+procedure TOpenForm.openFrm(frm: TForm; frmc: TFormClass; size: TBevel);
+begin
+  frm := frmc.Create(frm);
+  frm.Height := size.Height;
+  frm.Width := size.Width;
+  frm.Show;
+end;
+
+end.

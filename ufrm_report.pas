@@ -24,8 +24,7 @@ uses
   ACBrEnterTab, System.ImageList, Vcl.ImgList, cxGraphics, Vcl.Menus,
   System.Actions, Vcl.ActnList, dxBar, cxClasses, frxClass, frxDesgn,
   cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxCustomData, cxStyles,
-  cxTL, cxTLdxBarBuiltInMenu, cxInplaceContainer, AdvTreeViewBase,
-  AdvTreeViewData, AdvCustomTreeView, AdvTreeView, AdvDirectoryTreeView,
+  cxTL, cxTLdxBarBuiltInMenu, cxInplaceContainer,
   Vcl.ComCtrls, cxContainer, cxEdit, cxTreeView, Winapi.ShlObj, cxShellCommon,
   cxShellTreeView, cxShellComboBox, cxBarEditItem;
 

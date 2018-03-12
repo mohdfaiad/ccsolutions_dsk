@@ -19,7 +19,7 @@ uses
   dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
   dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
   dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark, uclass_zipcode,
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
   dxSkinXmas2008Blue, dxSkinscxPCPainter, dxBarBuiltInMenu, cxStyles,
   cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, Data.DB,
@@ -34,7 +34,8 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxShellComboBox, QExport4Dialog, cxBarEditItem, dxBarExtItems,
-  QImport3Wizard;
+  QImport3Wizard, cxImage, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons,
+  Vcl.ExtDlgs, uclass_compression_image, Vcl.DBCtrls, ACBrSocket, ACBrCEP;
 
 type
   Tfrm_enterprise = class(Tfrm_form_default)
@@ -61,14 +62,14 @@ type
     dxLayoutItem13: TdxLayoutItem;
     cxTabSheet_address: TcxTabSheet;
     dxLayoutControl_address: TdxLayoutControl;
-    cxDBTextEdit21: TcxDBTextEdit;
-    cxDBTextEdit23: TcxDBTextEdit;
-    cxDBTextEdit25: TcxDBTextEdit;
-    cxDBTextEdit26: TcxDBTextEdit;
-    cxDBTextEdit27: TcxDBTextEdit;
-    cxDBButtonEdit2: TcxDBButtonEdit;
-    cxDBTextEdit22: TcxDBTextEdit;
-    cxDBTextEdit29: TcxDBTextEdit;
+    dbtxtedt_address: TcxDBTextEdit;
+    dbtxtedt_street: TcxDBTextEdit;
+    dbtxtedt_city: TcxDBTextEdit;
+    dbtxtedt_state: TcxDBTextEdit;
+    dbtxtedt_country: TcxDBTextEdit;
+    dbbtnedt_cep: TcxDBButtonEdit;
+    dbtxtedt_number: TcxDBTextEdit;
+    dbtxtedt_complement: TcxDBTextEdit;
     dxLayoutControl_addressGroup_Root: TdxLayoutGroup;
     dxLayoutGroup6: TdxLayoutGroup;
     dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
@@ -81,23 +82,7 @@ type
     dxLayoutItem18: TdxLayoutItem;
     dxLayoutItem25: TdxLayoutItem;
     dxLayoutItem36: TdxLayoutItem;
-    cxTabSheet_contact: TcxTabSheet;
-    dxLayoutControl2: TdxLayoutControl;
-    cxDBTextEdit13: TcxDBTextEdit;
-    cxDBTextEdit14: TcxDBTextEdit;
-    cxDBTextEdit15: TcxDBTextEdit;
-    cxDBTextEdit16: TcxDBTextEdit;
-    cxDBTextEdit17: TcxDBTextEdit;
-    dxLayoutGroup4: TdxLayoutGroup;
-    dxLayoutGroup8: TdxLayoutGroup;
-    dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
-    dxLayoutItem20: TdxLayoutItem;
-    dxLayoutItem21: TdxLayoutItem;
-    dxLayoutItem22: TdxLayoutItem;
-    dxLayoutItem23: TdxLayoutItem;
-    dxLayoutItem27: TdxLayoutItem;
     dxLayoutGroup3: TdxLayoutGroup;
-    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     qryent_ie: TStringField;
     qryent_im: TStringField;
     qryent_suframa: TStringField;
@@ -145,13 +130,44 @@ type
     cxGrid_1DBTableView1ent_phone1: TcxGridDBColumn;
     cxGrid_1DBTableView1ent_contact: TcxGridDBColumn;
     cxGrid_1DBTableView1ent_dt_registration: TcxGridDBColumn;
-    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
+    dxLayoutGroup5: TdxLayoutGroup;
+    cxDBTextEdit8: TcxDBTextEdit;
+    dxLayoutItem12: TdxLayoutItem;
+    cxDBTextEdit9: TcxDBTextEdit;
+    dxLayoutItem14: TdxLayoutItem;
+    cxDBTextEdit10: TcxDBTextEdit;
+    dxLayoutItem15: TdxLayoutItem;
+    cxDBTextEdit11: TcxDBTextEdit;
+    dxLayoutItem16: TdxLayoutItem;
+    cxDBTextEdit12: TcxDBTextEdit;
+    dxLayoutItem17: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup;
+    OpenPictureDialog1: TOpenPictureDialog;
+    PopupMenu1: TPopupMenu;
+    Action_insert_image: TAction;
+    Action_delete_image: TAction;
+    Inserir2: TMenuItem;
+    Deletar1: TMenuItem;
+    qryent_image: TBlobField;
+    cxTabSheet1: TcxTabSheet;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutGroup4: TdxLayoutGroup;
+    DBImage1: TDBImage;
+    dxLayoutItem11: TdxLayoutItem;
+    ACBrCEP1: TACBrCEP;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure Action_insert_imageExecute(Sender: TObject);
+    procedure Action_delete_imageExecute(Sender: TObject);
   private
     { Private declarations }
+    imgObj: TCompress_image;
+    cepObj: TZipcode;
   public
     { Public declarations }
   end;
@@ -164,6 +180,19 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_enterprise.Action_delete_imageExecute(Sender: TObject);
+begin
+  inherited;
+  ds.DataSet.FieldByName('ent_image').Value := Null;
+end;
+
+procedure Tfrm_enterprise.Action_insert_imageExecute(Sender: TObject);
+begin
+  inherited;
+  imgObj := TCompress_image.Create;
+  imgObj.imgCompress(DBImage1, OpenPictureDialog1);
+end;
 
 procedure Tfrm_enterprise.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

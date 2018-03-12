@@ -23,10 +23,12 @@ uses
   ufrm_supplier in '..\ufrm_supplier.pas' {frm_supplier},
   ufrm_report in '..\ufrm_report.pas' {frm_report},
   ufrm_ncm in '..\ufrm_ncm.pas' {frm_ncm},
-  ufrm_product_type in '..\ufrm_product_type.pas' {frm_product_type},
+  ufrm_product_unit in '..\ufrm_product_unit.pas' {frm_product_unit},
   ufrm_manufacturer in '..\ufrm_manufacturer.pas' {frm_manufacturer},
   ufrm_product_class in '..\ufrm_product_class.pas' {frm_product_class},
-  ufrm_product_class_sub in '..\ufrm_product_class_sub.pas' {frm_form_default1};
+  ufrm_product_department in '..\ufrm_product_department.pas' {frm_product_department},
+  ufrm_purchase_order in '..\ufrm_purchase_order.pas' {frm_purchase_order},
+  ufrm_stock in '..\ufrm_stock.pas' {frm_stock};
 
 {$R *.res}
 
@@ -37,7 +39,5 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
-  Application.CreateForm(Tfrm_product_class, frm_product_class);
-  Application.CreateForm(Tfrm_form_default1, frm_form_default1);
   Application.Run;
 end.

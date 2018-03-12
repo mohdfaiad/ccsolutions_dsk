@@ -28,7 +28,10 @@ uses
   ufrm_product_class in '..\ufrm_product_class.pas' {frm_product_class},
   ufrm_product_department in '..\ufrm_product_department.pas' {frm_product_department},
   ufrm_purchase_order in '..\ufrm_purchase_order.pas' {frm_purchase_order},
-  ufrm_stock in '..\ufrm_stock.pas' {frm_stock};
+  ufrm_stock in '..\ufrm_stock.pas' {frm_stock},
+  uclass_compression_image in '..\uclass_compression_image.pas',
+  uclass_open_form in '..\uclass_open_form.pas',
+  uclass_zipcode in '..\uclass_zipcode.pas';
 
 {$R *.res}
 

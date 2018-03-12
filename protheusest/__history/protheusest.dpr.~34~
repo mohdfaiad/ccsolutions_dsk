@@ -23,10 +23,13 @@ uses
   ufrm_supplier in '..\ufrm_supplier.pas' {frm_supplier},
   ufrm_report in '..\ufrm_report.pas' {frm_report},
   ufrm_ncm in '..\ufrm_ncm.pas' {frm_ncm},
-  ufrm_product_type in '..\ufrm_product_type.pas' {frm_product_type},
+  ufrm_product_unit in '..\ufrm_product_unit.pas' {frm_product_unit},
   ufrm_manufacturer in '..\ufrm_manufacturer.pas' {frm_manufacturer},
   ufrm_product_class in '..\ufrm_product_class.pas' {frm_product_class},
-  ufrm_product_class_sub in '..\ufrm_product_class_sub.pas' {frm_product_class_sub};
+  ufrm_product_department in '..\ufrm_product_department.pas' {frm_product_department},
+  ufrm_purchase_order in '..\ufrm_purchase_order.pas' {frm_purchase_order},
+  ufrm_stock in '..\ufrm_stock.pas' {frm_stock},
+  uclass_compression_image in '..\uclass_compression_image.pas';
 
 {$R *.res}
 

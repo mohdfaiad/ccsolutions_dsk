@@ -50,8 +50,26 @@ type
     dxLayoutItem3: TdxLayoutItem;
     cxDBComboBox1: TcxDBComboBox;
     dxLayoutItem4: TdxLayoutItem;
+    dxLayoutGroup3: TdxLayoutGroup;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    dxLayoutItem5: TdxLayoutItem;
+    qry_cost_center_detail: TFDQuery;
+    ds_cost_center_detail: TDataSource;
+    qry_cost_center_detailcod_id: TFDAutoIncField;
+    qry_cost_center_detailcontract_ctr_id: TIntegerField;
+    qry_cost_center_detailcost_center_coc_id: TIntegerField;
+    qry_cost_center_detailcod_name: TStringField;
+    qry_cost_center_detailcod_status: TStringField;
+    qry_cost_center_detailcod_dt_registration: TDateTimeField;
+    cxGrid1DBTableView1cod_id: TcxGridDBColumn;
+    cxGrid1DBTableView1cod_name: TcxGridDBColumn;
+    cxGrid1DBTableView1cod_status: TcxGridDBColumn;
+    cxGrid1DBTableView1cod_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure qry_cost_center_detailAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -78,6 +96,12 @@ procedure Tfrm_cost_center.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   qrycod_dt_registration.Value := Date + Time;
+end;
+
+procedure Tfrm_cost_center.qry_cost_center_detailAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+  qry_cost_center_detailcod_dt_registration.Value := Now;
 end;
 
 end.

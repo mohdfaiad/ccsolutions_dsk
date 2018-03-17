@@ -357,6 +357,10 @@ inherited frm_enterprise: Tfrm_enterprise
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl_address: TdxLayoutControl
             Left = 0
             Top = 0
@@ -500,7 +504,6 @@ inherited frm_enterprise: Tfrm_enterprise
               AlignVert = avTop
               ButtonOptions.Buttons = <>
               Hidden = True
-              ItemIndex = 1
               ShowBorder = False
               Index = -1
             end
@@ -702,6 +705,10 @@ inherited frm_enterprise: Tfrm_enterprise
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Imagens'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0

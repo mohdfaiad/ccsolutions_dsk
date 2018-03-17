@@ -106,7 +106,7 @@ inherited frm_main: Tfrm_main
         end
         item
           Visible = True
-          ItemName = 'dxBarLargeButton13'
+          ItemName = 'dxBarLargeButton14'
         end>
       OneOnRow = False
       Row = 0
@@ -137,7 +137,7 @@ inherited frm_main: Tfrm_main
     object dxBarManager_1Bar4: TdxBar
       Caption = 'Contas'
       CaptionButtons = <>
-      DockedLeft = 252
+      DockedLeft = 247
       DockedTop = 0
       FloatLeft = 1042
       FloatTop = 8
@@ -369,7 +369,6 @@ inherited frm_main: Tfrm_main
       Hint = 'Centro de Custo'
       Visible = ivAlways
       ButtonStyle = bsDropDown
-      DropDownMenu = rbpopmenu_2
       LargeGlyph.Data = {
         36100000424D3610000000000000360000002800000020000000200000000100
         2000000000000010000000000000000000000000000000000000000000000000
@@ -511,15 +510,13 @@ inherited frm_main: Tfrm_main
       Category = 0
     end
     object dxBarButton3: TdxBarButton
-      Action = Action_account_plan_analitic
+      Caption = 'New Button'
       Category = 0
+      Hint = 'New Button'
+      Visible = ivAlways
     end
-    object dxBarButton4: TdxBarButton
+    object dxBarLargeButton14: TdxBarLargeButton
       Action = Action_cost_center_group
-      Category = 0
-    end
-    object dxBarButton5: TdxBarButton
-      Action = Action_cost_center_subgroup
       Category = 0
     end
   end
@@ -603,33 +600,22 @@ inherited frm_main: Tfrm_main
     end
     object Action_account_type: TAction
       Category = 'Plano de Contas'
-      Caption = 'Tipos de Contas'
+      Caption = 'Tipos'
       Hint = 'Manuten'#231#227'o Tipos de Contas'
       OnExecute = Action_account_typeExecute
     end
     object Action_account_plan_synthetic: TAction
       Category = 'Plano de Contas'
-      Caption = 'Plano de Conta - Sint'#233'tica'
+      Caption = 'Plano de Conta'
       Hint = 'Manuten'#231#227'o de Planos de Conta Sint'#233'ticas'
       OnExecute = Action_account_plan_syntheticExecute
     end
-    object Action_account_plan_analitic: TAction
-      Category = 'Plano de Contas'
-      Caption = 'Plano de Conta - Anal'#237'tica'
-      Hint = 'Manuten'#231#227'o de Planos de Conta Anal'#237'ticas'
-      OnExecute = Action_account_plan_analiticExecute
-    end
     object Action_cost_center_group: TAction
       Category = 'Centro de Custo'
-      Caption = 'Grupo'
+      Caption = 'Centro de Custo'
       Hint = 'Manuten'#231#227'o Custo de Grupos - Grupo'
+      ImageIndex = 16
       OnExecute = Action_cost_center_groupExecute
-    end
-    object Action_cost_center_subgroup: TAction
-      Category = 'Centro de Custo'
-      Caption = 'Sub-Grupo'
-      Hint = 'Manuten'#231#227'o Custo de Grupos - Sub-Grupo'
-      OnExecute = Action_cost_center_subgroupExecute
     end
   end
   inherited cxImageList_1: TcxImageList
@@ -2907,30 +2893,10 @@ inherited frm_main: Tfrm_main
       item
         Visible = True
         ItemName = 'dxBarButton2'
-      end
-      item
-        Visible = True
-        ItemName = 'dxBarButton3'
       end>
     Ribbon = dxRibbon1
     UseOwnFont = False
     Left = 824
-    Top = 16
-  end
-  object rbpopmenu_2: TdxRibbonPopupMenu
-    BarManager = dxBarManager_1
-    ItemLinks = <
-      item
-        Visible = True
-        ItemName = 'dxBarButton4'
-      end
-      item
-        Visible = True
-        ItemName = 'dxBarButton5'
-      end>
-    Ribbon = dxRibbon1
-    UseOwnFont = False
-    Left = 856
     Top = 16
   end
 end

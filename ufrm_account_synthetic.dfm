@@ -1,5 +1,5 @@
 inherited frm_account_synthetic: Tfrm_account_synthetic
-  Caption = 'Manuten'#231#227'o: Plano de Conta - Sint'#233'tica'
+  Caption = 'Manuten'#231#227'o: Planos de Contas'
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
@@ -66,32 +66,7 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
             inherited dbedt_dt_registration: TcxDBDateEdit
               DataBinding.DataField = 'acp_dt_registration'
             end
-            object cxDBTextEdit1: TcxDBTextEdit [2]
-              Left = 59
-              Top = 130
-              DataBinding.DataField = 'acp_name'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 4
-              Width = 294
-            end
-            object cxDBComboBox1: TcxDBComboBox [3]
-              Left = 232
-              Top = 103
-              DataBinding.DataField = 'acp_status'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.Items.Strings = (
-                'A - ATIVO'
-                'D - DESATIVADO')
-              Style.HotTrack = False
-              TabOrder = 3
-              Width = 121
-            end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [4]
+            object cxDBLookupComboBox1: TcxDBLookupComboBox [2]
               Left = 59
               Top = 103
               DataBinding.DataField = 'account_type_act_id'
@@ -116,35 +91,104 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
               TabOrder = 2
               Width = 121
             end
+            object cxGrid1: TcxGrid [3]
+              Left = 17
+              Top = 195
+              Width = 728
+              Height = 198
+              TabOrder = 5
+              object cxGrid1DBTableView1: TcxGridDBTableView
+                Navigator.Buttons.ConfirmDelete = True
+                Navigator.Buttons.CustomButtons = <>
+                Navigator.Buttons.Images = cxImageList_1
+                Navigator.Buttons.First.ImageIndex = 0
+                Navigator.Buttons.PriorPage.Visible = False
+                Navigator.Buttons.Prior.ImageIndex = 1
+                Navigator.Buttons.Next.ImageIndex = 2
+                Navigator.Buttons.NextPage.Visible = False
+                Navigator.Buttons.Last.ImageIndex = 3
+                Navigator.Buttons.Insert.ImageIndex = 4
+                Navigator.Buttons.Delete.ImageIndex = 8
+                Navigator.Buttons.Edit.ImageIndex = 5
+                Navigator.Buttons.Post.ImageIndex = 6
+                Navigator.Buttons.Cancel.ImageIndex = 7
+                Navigator.Buttons.Refresh.ImageIndex = 9
+                Navigator.Buttons.SaveBookmark.Visible = False
+                Navigator.Buttons.GotoBookmark.Visible = False
+                Navigator.Buttons.Filter.ImageIndex = 10
+                Navigator.Visible = True
+                DataController.DataSource = ds_account_account_detail
+                DataController.Summary.DefaultGroupSummaryItems = <>
+                DataController.Summary.FooterSummaryItems = <>
+                DataController.Summary.SummaryGroups = <>
+                Images = cxImageList_1
+                object cxGrid1DBTableView1acd_id: TcxGridDBColumn
+                  DataBinding.FieldName = 'acd_id'
+                  Options.Editing = False
+                  Width = 75
+                end
+                object cxGrid1DBTableView1acd_name: TcxGridDBColumn
+                  DataBinding.FieldName = 'acd_name'
+                  PropertiesClassName = 'TcxTextEditProperties'
+                  Properties.CharCase = ecUpperCase
+                  Width = 200
+                end
+                object cxGrid1DBTableView1acd_status: TcxGridDBColumn
+                  DataBinding.FieldName = 'acd_status'
+                  PropertiesClassName = 'TcxComboBoxProperties'
+                  Properties.CharCase = ecUpperCase
+                  Properties.DropDownListStyle = lsFixedList
+                  Properties.Items.Strings = (
+                    'A - ATIVO'
+                    'D - DESATIVADO')
+                  Width = 50
+                end
+                object cxGrid1DBTableView1acd_dt_registration: TcxGridDBColumn
+                  DataBinding.FieldName = 'acd_dt_registration'
+                  Options.Editing = False
+                  Width = 125
+                end
+              end
+              object cxGrid1Level1: TcxGridLevel
+                GridView = cxGrid1DBTableView1
+              end
+            end
+            object cxDBTextEdit1: TcxDBTextEdit [4]
+              Left = 59
+              Top = 130
+              DataBinding.DataField = 'acp_name'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 294
+            end
+            object cxDBComboBox1: TcxDBComboBox [5]
+              Left = 232
+              Top = 103
+              DataBinding.DataField = 'acp_status'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
+              Properties.Items.Strings = (
+                'A - ATIVO'
+                'D - DESATIVADO')
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 121
+            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               CaptionOptions.Visible = False
               ItemIndex = 1
             end
-            object dxLayoutItem4: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              AlignHorz = ahClient
-              AlignVert = avTop
-              CaptionOptions.Text = 'Nome'
-              Control = cxDBTextEdit1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutItem3: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Status'
-              Control = cxDBComboBox1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
+            inherited dxLayoutGroup2: TdxLayoutGroup
+              LayoutDirection = ldHorizontal
             end
             object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignVert = avClient
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignHorz = ahLeft
+              AlignVert = avTop
               CaptionOptions.Text = 'Tipo'
               Control = cxDBLookupComboBox1
               ControlOptions.OriginalHeight = 21
@@ -152,8 +196,55 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
               ControlOptions.ShowBorder = False
               Index = 0
             end
+            object dxLayoutGroup3: TdxLayoutGroup
+              Parent = dxLayoutControl_1Group_Root
+              CaptionOptions.Text = 'Plano de Conta - Anal'#237'tica'
+              SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
+              SizeOptions.SizableHorz = True
+              SizeOptions.SizableVert = True
+              SizeOptions.Height = 236
+              SizeOptions.Width = 742
+              ButtonOptions.Buttons = <>
+              Index = 2
+            end
+            object dxLayoutItem6: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              Control = cxGrid1
+              ControlOptions.OriginalHeight = 198
+              ControlOptions.OriginalWidth = 250
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem4: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignHorz = ahClient
+              AlignVert = avTop
+              CaptionOptions.Text = 'Nome'
+              Control = cxDBTextEdit1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 294
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
             object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
+              Index = 0
+              AutoCreated = True
+            end
+            object dxLayoutItem3: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Status'
+              Control = cxDBComboBox1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup1
               AlignVert = avTop
               LayoutDirection = ldHorizontal
               Index = 0
@@ -256,5 +347,63 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     DataSet = qry_account_type
     Left = 616
     Top = 96
+  end
+  object qry_account_account_detail: TFDQuery
+    Active = True
+    AfterInsert = qry_account_account_detailAfterInsert
+    IndexFieldNames = 'account_plan_acp_id'
+    MasterSource = ds
+    MasterFields = 'acp_id'
+    DetailFields = 'account_plan_acp_id'
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select * from account_plan_detail')
+    Left = 584
+    Top = 144
+    object qry_account_account_detailacd_id: TFDAutoIncField
+      DisplayLabel = 'C'#243'd. ID'
+      FieldName = 'acd_id'
+      Origin = 'acd_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object qry_account_account_detailcontract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Contrato ID'
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
+    end
+    object qry_account_account_detailaccount_plan_acp_id: TIntegerField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Plano de Conta - Sintetica ID'
+      FieldName = 'account_plan_acp_id'
+      Origin = 'account_plan_acp_id'
+    end
+    object qry_account_account_detailacd_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'acd_name'
+      Origin = 'acd_name'
+      Size = 50
+    end
+    object qry_account_account_detailacd_status: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'acd_status'
+      Origin = 'acd_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_account_account_detailacd_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'acd_dt_registration'
+      Origin = 'acd_dt_registration'
+    end
+  end
+  object ds_account_account_detail: TDataSource
+    DataSet = qry_account_account_detail
+    Left = 616
+    Top = 144
   end
 end

@@ -72,6 +72,10 @@ type
     dxBarButton12: TdxBarButton;
     dxBarButton13: TdxBarButton;
     dxBarButton14: TdxBarButton;
+    Action_stock_iten: TAction;
+    Action_stock_transfer: TAction;
+    dxBarButton1: TdxBarButton;
+    dxBarButton2: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contratExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -90,6 +94,8 @@ type
     procedure Action_purchase_orderExecute(Sender: TObject);
     procedure Action_stockExecute(Sender: TObject);
     procedure Action_product_entryExecute(Sender: TObject);
+    procedure Action_stock_itenExecute(Sender: TObject);
+    procedure Action_stock_transferExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -107,7 +113,7 @@ uses ufrm_login, ufrm_brand, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_product, ufrm_supplier, ufrm_report,
   ufrm_ncm, ufrm_manufacturer, ufrm_product_unit, ufrm_product_class,
   ufrm_product_department, ufrm_purchase_order, ufrm_stock, uclass_frm_open,
-  ufrm_stock_entry;
+  ufrm_stock_entry, ufrm_stock_iten, ufrm_stock_transfer;
 
 procedure Tfrm_main.Action_brandExecute(Sender: TObject);
 begin
@@ -362,6 +368,39 @@ begin
   else
   begin
     frm_stock.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_stock_itenExecute(Sender: TObject);
+begin
+  inherited;
+  inherited;
+  if not Assigned(frm_stock_iten) then
+  begin
+    frm_stock_iten := Tfrm_stock_iten.Create(Self);
+    frm_stock_iten.Height := Bevel_1.Height;
+    frm_stock_iten.Width := Bevel_1.Width;
+    frm_stock_iten.Show
+  end
+  else
+  begin
+    frm_stock_iten.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_stock_transferExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_stock_transfer) then
+  begin
+    frm_stock_transfer := Tfrm_stock_transfer.Create(Self);
+    frm_stock_transfer.Height := Bevel_1.Height;
+    frm_stock_transfer.Width := Bevel_1.Width;
+    frm_stock_transfer.Show
+  end
+  else
+  begin
+    frm_stock_transfer.WindowState := wsNormal;
   end;
 end;
 

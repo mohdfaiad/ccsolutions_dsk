@@ -634,6 +634,14 @@ inherited frm_main: Tfrm_main
       Action = Action_product_department
       Category = 0
     end
+    object dxBarButton1: TdxBarButton
+      Action = Action_stock_transfer
+      Category = 0
+    end
+    object dxBarButton2: TdxBarButton
+      Action = Action_stock_iten
+      Category = 0
+    end
   end
   inherited ActionList_1: TActionList
     object Action_contrat: TAction
@@ -743,9 +751,21 @@ inherited frm_main: Tfrm_main
     end
     object Action_product_entry: TAction
       Category = 'M'#243'dulo'
-      Caption = 'Entrada de Produtos'
+      Caption = 'Entrada'
       Hint = 'Manuten'#231#227'o Entrada de Produtos'
       OnExecute = Action_product_entryExecute
+    end
+    object Action_stock_iten: TAction
+      Category = 'M'#243'dulo'
+      Caption = 'Itens por Estoque'
+      Hint = 'Manuten'#231#227'o Itens por Estoques'
+      OnExecute = Action_stock_itenExecute
+    end
+    object Action_stock_transfer: TAction
+      Category = 'M'#243'dulo'
+      Caption = 'Transfer'#234'ncia'
+      Hint = 'Manuten'#231#227'o Transfer'#234'ncias entre Estoques'
+      OnExecute = Action_stock_transferExecute
     end
   end
   inherited cxImageList_1: TcxImageList
@@ -2390,6 +2410,14 @@ inherited frm_main: Tfrm_main
       item
         Visible = True
         ItemName = 'dxBarButton8'
+      end
+      item
+        Visible = True
+        ItemName = 'dxBarButton1'
+      end
+      item
+        Visible = True
+        ItemName = 'dxBarButton2'
       end>
     Ribbon = dxRibbon1
     UseOwnFont = False

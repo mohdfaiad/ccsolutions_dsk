@@ -280,8 +280,8 @@ inherited frm_client: Tfrm_client
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
               Properties.Items.Strings = (
-                'PF - Pessoa F'#237'sica'
-                'PJ - Pessoa Jur'#237'dica')
+                'PF - PESSOA JURIDICA'
+                'PJ - PESSOA FISICA')
               Properties.OnChange = cxDBComboBox1PropertiesChange
               Style.HotTrack = False
               TabOrder = 3

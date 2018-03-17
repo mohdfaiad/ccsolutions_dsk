@@ -1,7 +1,6 @@
 inherited frm_purchase_order: Tfrm_purchase_order
   Caption = 'Manuten'#231#227'o: Pedidos de Compra'
   OnClose = FormClose
-  ExplicitTop = -33
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -187,11 +186,11 @@ inherited frm_purchase_order: Tfrm_purchase_order
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 2
             end
-            inherited dxLayoutItem1: TdxLayoutItem [8]
+            inherited dxLayoutGroup2: TdxLayoutGroup
+              AlignHorz = ahClient
+              LayoutDirection = ldHorizontal
             end
-            inherited dxLayoutItem2: TdxLayoutItem [9]
-            end
-            object dxLayoutGroup3: TdxLayoutGroup [10]
+            object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutControl_1Group_Root
               AlignHorz = ahLeft
               CaptionOptions.Text = 'Itens do Pedido de Compra'
@@ -203,17 +202,13 @@ inherited frm_purchase_order: Tfrm_purchase_order
               ButtonOptions.Buttons = <>
               Index = 2
             end
-            object dxLayoutItem4: TdxLayoutItem [11]
+            object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutGroup3
               Control = cxGrid1
               ControlOptions.OriginalHeight = 244
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
               Index = 0
-            end
-            inherited dxLayoutGroup2: TdxLayoutGroup [12]
-              AlignHorz = ahClient
-              LayoutDirection = ldHorizontal
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2

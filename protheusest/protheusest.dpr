@@ -33,7 +33,9 @@ uses
   uclass_frm_open in '..\uclass_frm_open.pas',
   uclass_zipcode in '..\uclass_zipcode.pas',
   uclass_frm_close in '..\uclass_frm_close.pas',
-  ufrm_stock_entry in '..\ufrm_stock_entry.pas' {frm_stock_entry};
+  ufrm_stock_entry in '..\ufrm_stock_entry.pas' {frm_stock_entry},
+  ufrm_stock_iten in '..\ufrm_stock_iten.pas' {frm_stock_iten},
+  ufrm_stock_transfer in '..\ufrm_stock_transfer.pas' {frm_stock_transfer};
 
 {$R *.res}
 

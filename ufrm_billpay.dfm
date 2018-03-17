@@ -686,15 +686,6 @@ inherited frm_billpay: Tfrm_billpay
       FieldName = 'bpy_value'
       Origin = 'bpy_value'
       Precision = 12
-      Size = 2
-    end
-    object qrybpy_addition: TBCDField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Acr'#233'scimo'
-      FieldName = 'bpy_addition'
-      Origin = 'bpy_addition'
-      Precision = 12
-      Size = 2
     end
     object qrybpy_discount: TBCDField
       AutoGenerateValue = arDefault
@@ -702,7 +693,13 @@ inherited frm_billpay: Tfrm_billpay
       FieldName = 'bpy_discount'
       Origin = 'bpy_discount'
       Precision = 12
-      Size = 2
+    end
+    object qrybpy_addition: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Acr'#233'scimo'
+      FieldName = 'bpy_addition'
+      Origin = 'bpy_addition'
+      Precision = 12
     end
     object qrybpy_amount_pay: TBCDField
       AutoGenerateValue = arDefault
@@ -710,7 +707,6 @@ inherited frm_billpay: Tfrm_billpay
       FieldName = 'bpy_amount_pay'
       Origin = 'bpy_amount_pay'
       Precision = 12
-      Size = 2
     end
     object qrybpy_amount_paid: TBCDField
       AutoGenerateValue = arDefault
@@ -718,7 +714,6 @@ inherited frm_billpay: Tfrm_billpay
       FieldName = 'bpy_amount_paid'
       Origin = 'bpy_amount_paid'
       Precision = 12
-      Size = 2
     end
     object qrybpy_document: TStringField
       AutoGenerateValue = arDefault

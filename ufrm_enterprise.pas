@@ -19,7 +19,7 @@ uses
   dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
   dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
   dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark, uclass_frm_close,
+  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
   dxSkinXmas2008Blue, dxSkinscxPCPainter, dxBarBuiltInMenu, cxStyles,
   cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, Data.DB,
@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxShellComboBox, QExport4Dialog, cxBarEditItem, dxBarExtItems,
   QImport3Wizard, cxImage, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons,
-  Vcl.ExtDlgs, uclass_compression_image, Vcl.DBCtrls, ACBrSocket, ACBrCEP;
+  Vcl.ExtDlgs, Vcl.DBCtrls, ACBrSocket, ACBrCEP;
 
 type
   Tfrm_enterprise = class(Tfrm_form_default)
@@ -166,7 +166,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
-    imgObj: TCompress_image;
+    //imgObj: TCompress_image;
   public
     { Public declarations }
   end;
@@ -189,8 +189,8 @@ end;
 procedure Tfrm_enterprise.Action_insert_imageExecute(Sender: TObject);
 begin
   inherited;
-  imgObj := TCompress_image.Create;
-  imgObj.imgCompress(DBImage1, OpenPictureDialog1);
+//  imgObj := TCompress_image.Create;
+//  imgObj.imgCompress(DBImage1, OpenPictureDialog1);
 end;
 
 procedure Tfrm_enterprise.FormClose(Sender: TObject; var Action: TCloseAction);

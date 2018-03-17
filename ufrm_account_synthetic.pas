@@ -59,9 +59,28 @@ type
     dxLayoutItem3: TdxLayoutItem;
     cxDBLookupComboBox1: TcxDBLookupComboBox;
     dxLayoutItem5: TdxLayoutItem;
+    dxLayoutGroup3: TdxLayoutGroup;
+    qry_account_account_detail: TFDQuery;
+    ds_account_account_detail: TDataSource;
+    qry_account_account_detailacd_id: TFDAutoIncField;
+    qry_account_account_detailcontract_ctr_id: TIntegerField;
+    qry_account_account_detailaccount_plan_acp_id: TIntegerField;
+    qry_account_account_detailacd_name: TStringField;
+    qry_account_account_detailacd_status: TStringField;
+    qry_account_account_detailacd_dt_registration: TDateTimeField;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    dxLayoutItem6: TdxLayoutItem;
+    cxGrid1DBTableView1acd_id: TcxGridDBColumn;
+    cxGrid1DBTableView1acd_name: TcxGridDBColumn;
+    cxGrid1DBTableView1acd_status: TcxGridDBColumn;
+    cxGrid1DBTableView1acd_dt_registration: TcxGridDBColumn;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure qry_account_account_detailAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -89,6 +108,13 @@ procedure Tfrm_account_synthetic.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   qryacp_dt_registration.Value := Date + Time;
+end;
+
+procedure Tfrm_account_synthetic.qry_account_account_detailAfterInsert
+  (DataSet: TDataSet);
+begin
+  inherited;
+  qry_account_account_detailacd_dt_registration.Value := Now;
 end;
 
 end.

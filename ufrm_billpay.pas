@@ -95,7 +95,6 @@ type
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     qrysupplier_sup_id: TIntegerField;
     cxGrid_1DBTableView1supplier_sup_id: TcxGridDBColumn;
-    qrybpy_addition: TBCDField;
     cxGrid_1DBTableView1bpy_addition: TcxGridDBColumn;
     qryenterprise_ent_id: TIntegerField;
     qrybpy_invoice: TStringField;
@@ -133,6 +132,7 @@ type
     qryaccount_plan_detail_acd_id: TIntegerField;
     qrycost_center_coc_id: TIntegerField;
     qrycost_center_detail_cod_id: TIntegerField;
+    qrybpy_addition: TBCDField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private

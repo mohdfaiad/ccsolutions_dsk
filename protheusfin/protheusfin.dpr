@@ -27,10 +27,7 @@ uses
   ufrm_account_type in '..\ufrm_account_type.pas' {frm_account_type},
   ufrm_login in '..\ufrm_login.pas' {frm_login},
   ufrm_account_synthetic in '..\ufrm_account_synthetic.pas' {frm_account_synthetic},
-  ufrm_account_analitic in '..\ufrm_account_analitic.pas' {frm_account_analitic},
-  ufrm_cost_center in '..\ufrm_cost_center.pas' {frm_cost_center},
-  ufrm_cost_center_detail in '..\ufrm_cost_center_detail.pas' {frm_cost_center_detail},
-  uclass_openform in '..\uclass_openform.pas';
+  ufrm_cost_center in '..\ufrm_cost_center.pas' {frm_cost_center};
 
 {$R *.res}
 

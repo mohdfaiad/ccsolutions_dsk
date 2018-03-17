@@ -5,6 +5,10 @@ inherited frm_billreceive: Tfrm_billreceive
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1brc_id: TcxGridDBColumn
@@ -405,7 +409,6 @@ inherited frm_billreceive: Tfrm_billreceive
       FieldName = 'brc_value'
       Origin = 'brc_value'
       Precision = 12
-      Size = 2
     end
     object qrybrc_discount: TBCDField
       AutoGenerateValue = arDefault
@@ -413,7 +416,6 @@ inherited frm_billreceive: Tfrm_billreceive
       FieldName = 'brc_discount'
       Origin = 'brc_discount'
       Precision = 12
-      Size = 2
     end
     object qrybrc_addition: TBCDField
       AutoGenerateValue = arDefault
@@ -421,7 +423,6 @@ inherited frm_billreceive: Tfrm_billreceive
       FieldName = 'brc_addition'
       Origin = 'brc_addition'
       Precision = 12
-      Size = 2
     end
     object qrybrc_ammount_receive: TBCDField
       AutoGenerateValue = arDefault
@@ -429,7 +430,6 @@ inherited frm_billreceive: Tfrm_billreceive
       FieldName = 'brc_ammount_receive'
       Origin = 'brc_ammount_receive'
       Precision = 12
-      Size = 2
     end
     object qrybrc_document: TStringField
       AutoGenerateValue = arDefault

@@ -58,18 +58,14 @@ type
     dxBarLargeButton11: TdxBarLargeButton;
     Action_account_type: TAction;
     Action_account_plan_synthetic: TAction;
-    Action_account_plan_analitic: TAction;
     Action_cost_center_group: TAction;
-    Action_cost_center_subgroup: TAction;
     dxBarLargeButton12: TdxBarLargeButton;
     dxBarLargeButton13: TdxBarLargeButton;
     rbpopmenu_1: TdxRibbonPopupMenu;
-    rbpopmenu_2: TdxRibbonPopupMenu;
     dxBarButton1: TdxBarButton;
     dxBarButton2: TdxBarButton;
     dxBarButton3: TdxBarButton;
-    dxBarButton4: TdxBarButton;
-    dxBarButton5: TdxBarButton;
+    dxBarLargeButton14: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -83,10 +79,8 @@ type
     procedure Action_bill_receiveExecute(Sender: TObject);
     procedure Action_reportExecute(Sender: TObject);
     procedure Action_account_typeExecute(Sender: TObject);
-    procedure Action_account_plan_analiticExecute(Sender: TObject);
     procedure Action_account_plan_syntheticExecute(Sender: TObject);
     procedure Action_cost_center_groupExecute(Sender: TObject);
-    procedure Action_cost_center_subgroupExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -102,24 +96,8 @@ implementation
 
 uses ufrm_login, ufrm_bank, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_receipt, ufrm_supplier, ufrm_billpay,
-  ufrm_billreceive, ufrm_report, ufrm_account_type, ufrm_account_analitic,
-  ufrm_account_synthetic, ufrm_cost_center, ufrm_cost_center_detail;
-
-procedure Tfrm_main.Action_account_plan_analiticExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_account_analitic) then
-  begin
-    frm_account_analitic := Tfrm_account_analitic.Create(Self);
-    frm_account_analitic.Height := Bevel_1.Height;
-    frm_account_analitic.Width := Bevel_1.Width;
-    frm_account_analitic.Show;
-  end
-  else
-  begin
-    frm_account_analitic.WindowState := wsNormal;
-  end;
-end;
+  ufrm_billreceive, ufrm_report, ufrm_account_type, ufrm_account_synthetic,
+  ufrm_cost_center;
 
 procedure Tfrm_main.Action_account_plan_syntheticExecute(Sender: TObject);
 begin
@@ -262,22 +240,6 @@ begin
   else
   begin
     frm_cost_center.WindowState := wsNormal;
-  end;
-end;
-
-procedure Tfrm_main.Action_cost_center_subgroupExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_cost_center_detail) then
-  begin
-    frm_cost_center_detail := Tfrm_cost_center_detail.Create(Self);
-    frm_cost_center_detail.Height := Bevel_1.Height;
-    frm_cost_center_detail.Width := Bevel_1.Width;
-    frm_cost_center_detail.Show;
-  end
-  else
-  begin
-    frm_cost_center_detail.WindowState := wsNormal;
   end;
 end;
 

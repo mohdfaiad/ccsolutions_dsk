@@ -43,6 +43,7 @@ object frm_search: Tfrm_search
     Height = 27
     Align = dalTop
     BarManager = dxBarManager_1
+    ExplicitWidth = 584
   end
   object dxStatusBar_1: TdxStatusBar
     Left = 0
@@ -57,6 +58,9 @@ object frm_search: Tfrm_search
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+    ExplicitLeft = 304
+    ExplicitTop = 168
+    ExplicitWidth = 0
   end
   object dxBarManager_1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
@@ -204,7 +208,6 @@ object frm_search: Tfrm_search
       Caption = 'Fechar'
       Hint = 'Fechar Formul'#225'rio'
       ImageIndex = 1
-      OnExecute = Action_closeExecute
     end
   end
   object qry: TFDQuery

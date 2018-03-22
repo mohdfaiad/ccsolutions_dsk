@@ -46,7 +46,6 @@ type
     dxStatusBar_1: TdxStatusBar;
     qry: TFDQuery;
     ds: TDataSource;
-    procedure Action_closeExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -59,10 +58,5 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure Tfrm_search.Action_closeExecute(Sender: TObject);
-begin
-  Close;
-end;
 
 end.

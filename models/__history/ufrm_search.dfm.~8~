@@ -1,0 +1,124 @@
+object frm_search: Tfrm_search
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsSingle
+  Caption = 'Formul'#225'rio de Pesquisa'
+  ClientHeight = 321
+  ClientWidth = 594
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  ShowHint = True
+  PixelsPerInch = 96
+  TextHeight = 13
+  object dxStatusBar_1: TdxStatusBar
+    Left = 0
+    Top = 301
+    Width = 594
+    Height = 20
+    Images = cxImageList_1
+    Panels = <>
+    PaintStyle = stpsUseLookAndFeel
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ExplicitLeft = 304
+    ExplicitTop = 168
+    ExplicitWidth = 0
+  end
+  object cxGrid_1: TcxGrid
+    Left = 0
+    Top = 27
+    Width = 594
+    Height = 274
+    Align = alClient
+    Images = cxImageList_1
+    TabOrder = 1
+    ExplicitLeft = 24
+    ExplicitTop = -13
+    ExplicitWidth = 584
+    ExplicitHeight = 288
+    object cxGrid_1DBTableView1: TcxGridDBTableView
+      Navigator.Buttons.CustomButtons = <>
+      DataController.Summary.DefaultGroupSummaryItems = <>
+      DataController.Summary.FooterSummaryItems = <>
+      DataController.Summary.SummaryGroups = <>
+    end
+    object cxGrid_1Level1: TcxGridLevel
+      GridView = cxGrid_1DBTableView1
+    end
+  end
+  object dxBarDockControl1: TdxBarDockControl
+    Left = 0
+    Top = 0
+    Width = 594
+    Height = 27
+    Align = dalTop
+    BarManager = dxBarManager_1
+    ExplicitWidth = 584
+  end
+  object dxBarManager_1: TdxBarManager
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    Categories.Strings = (
+      'Default')
+    Categories.ItemsVisibles = (
+      2)
+    Categories.Visibles = (
+      True)
+    ImageOptions.Images = cxImageList_1
+    PopupMenuLinks = <>
+    UseSystemFont = True
+    Left = 472
+    Top = 72
+    object dxBarManager_1Bar1: TdxBar
+      Caption = 'Navega'#231#227'o'
+      CaptionButtons = <>
+      DockControl = dxBarDockControl1
+      DockedDockControl = dxBarDockControl1
+      DockedLeft = 0
+      DockedTop = 0
+      FloatLeft = 618
+      FloatTop = 8
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      Images = cxImageList_1
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton1'
+        end>
+      OneOnRow = True
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object dxBarButton1: TdxBarButton
+      Caption = 'New Button'
+      Category = 0
+      Hint = 'New Button'
+      Visible = ivAlways
+    end
+  end
+  object cxImageList_1: TcxImageList
+    FormatVersion = 1
+    DesignInfo = 4719032
+  end
+  object ActionList_1: TActionList
+    Images = cxImageList_1
+    Left = 504
+    Top = 72
+  end
+end

@@ -30,8 +30,13 @@ uses
   ufrm_purchase_order in '..\ufrm_purchase_order.pas' {frm_purchase_order},
   ufrm_stock in '..\ufrm_stock.pas' {frm_stock},
   uclass_compression_image in '..\uclass_compression_image.pas',
-  uclass_open_form in '..\uclass_open_form.pas',
-  uclass_zipcode_br in '..\uclass_zipcode_br.pas';
+  uclass_frm_open in '..\uclass_frm_open.pas',
+  uclass_zipcode in '..\uclass_zipcode.pas',
+  uclass_frm_close in '..\uclass_frm_close.pas',
+  ufrm_stock_entry in '..\ufrm_stock_entry.pas' {frm_stock_entry},
+  ufrm_stock_iten in '..\ufrm_stock_iten.pas' {frm_stock_iten},
+  ufrm_stock_transfer in '..\ufrm_stock_transfer.pas' {frm_stock_transfer},
+  ufrm_search in '..\models\ufrm_search.pas' {frm_search};
 
 {$R *.res}
 
@@ -42,5 +47,6 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
+  Application.CreateForm(Tfrm_search, frm_search);
   Application.Run;
 end.

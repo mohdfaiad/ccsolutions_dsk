@@ -232,6 +232,10 @@
             <Form>frm_stock_transfer</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\models\ufrm_search.pas">
+            <Form>frm_search</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

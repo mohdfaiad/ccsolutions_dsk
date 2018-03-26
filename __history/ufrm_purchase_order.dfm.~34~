@@ -1,12 +1,18 @@
 inherited frm_purchase_order: Tfrm_purchase_order
   Caption = 'Manuten'#231#227'o: Pedidos de Compra'
   OnClose = FormClose
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
+          OnCustomDrawCell = cxGrid_1DBTableView1CustomDrawCell
           object cxGrid_1DBTableView1pco_id: TcxGridDBColumn
             DataBinding.FieldName = 'pco_id'
             Width = 75
@@ -19,16 +25,173 @@ inherited frm_purchase_order: Tfrm_purchase_order
             DataBinding.FieldName = 'employee_emp_id'
             Width = 75
           end
+          object cxGrid_1DBTableView1pco_status: TcxGridDBColumn
+            DataBinding.FieldName = 'pco_status'
+            Width = 50
+          end
+          object cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn
+            DataBinding.FieldName = 'poc_status_reason'
+            Width = 250
+          end
           object cxGrid_1DBTableView1pco_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'pco_dt_registration'
             Width = 125
           end
         end
       end
+      object FlowPanel1: TFlowPanel
+        Left = 2
+        Top = 418
+        Width = 518
+        Height = 26
+        Alignment = taLeftJustify
+        Anchors = [akLeft, akBottom]
+        TabOrder = 1
+        object Shape1: TShape
+          Left = 1
+          Top = 1
+          Width = 18
+          Height = 24
+          Brush.Color = 33023
+          DragCursor = crDefault
+          Pen.Color = 4227327
+          Shape = stCircle
+        end
+        object lbAberto: TLabel
+          Left = 19
+          Top = 1
+          Width = 84
+          Height = 22
+          Cursor = crHandPoint
+          AutoSize = False
+          Caption = ' - (A) Aberto'
+          DragCursor = crDefault
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Layout = tlCenter
+          OnClick = lbAbertoClick
+        end
+        object Shape2: TShape
+          Left = 103
+          Top = 1
+          Width = 18
+          Height = 24
+          Brush.Color = clRed
+          DragCursor = crDefault
+          Pen.Color = 4227327
+          Shape = stCircle
+        end
+        object lbCancelado: TLabel
+          Left = 121
+          Top = 1
+          Width = 96
+          Height = 22
+          Cursor = crHandPoint
+          AutoSize = False
+          Caption = ' - (C) Cancelado'
+          DragCursor = crDefault
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Layout = tlCenter
+          OnClick = lbCanceladoClick
+        end
+        object Shape3: TShape
+          Left = 217
+          Top = 1
+          Width = 18
+          Height = 24
+          Brush.Color = clBlue
+          DragCursor = crDefault
+          Pen.Color = 4227327
+          Shape = stCircle
+        end
+        object lbFechado: TLabel
+          Left = 235
+          Top = 1
+          Width = 84
+          Height = 22
+          Cursor = crHandPoint
+          AutoSize = False
+          Caption = '- (F) Fechado'
+          DragCursor = crDefault
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Layout = tlCenter
+          OnClick = lbFechadoClick
+        end
+        object Shape4: TShape
+          Left = 319
+          Top = 1
+          Width = 18
+          Height = 24
+          Brush.Color = clGreen
+          DragCursor = crDefault
+          Pen.Color = 4227327
+          Shape = stCircle
+        end
+        object lbLiberado: TLabel
+          Left = 337
+          Top = 1
+          Width = 72
+          Height = 22
+          Cursor = crHandPoint
+          AutoSize = False
+          Caption = '- (L) Liberado'
+          DragCursor = crDefault
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Layout = tlCenter
+          OnClick = lbLiberadoClick
+        end
+        object Shape5: TShape
+          Left = 409
+          Top = 1
+          Width = 18
+          Height = 24
+          Brush.Color = clBlack
+          DragCursor = crDefault
+          Pen.Color = 4227327
+          Shape = stCircle
+        end
+        object lbTodos: TLabel
+          Left = 427
+          Top = 1
+          Width = 84
+          Height = 22
+          Cursor = crHandPoint
+          AutoSize = False
+          Caption = ' - (T) Todos'
+          DragCursor = crDefault
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Layout = tlCenter
+          OnClick = lbTodosClick
+        end
+      end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
+      ExplicitLeft = 5
+      ExplicitTop = 31
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
@@ -53,8 +216,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
               Top = 168
               Width = 728
               Height = 244
-              Align = alCustom
-              TabOrder = 3
+              TabOrder = 5
               object cxGrid1DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.ConfirmDelete = True
                 Navigator.Buttons.CustomButtons = <>
@@ -122,7 +284,34 @@ inherited frm_purchase_order: Tfrm_purchase_order
                 GridView = cxGrid1DBTableView1
               end
             end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [3]
+            object cxDBComboBox1: TcxDBComboBox [3]
+              Left = 413
+              Top = 103
+              DataBinding.DataField = 'pco_status'
+              DataBinding.DataSource = ds
+              Enabled = False
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.Items.Strings = (
+                'A - ABERTO'
+                'F - FECHADO'
+                'C - CANCELADO')
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 52
+            end
+            object cxDBTextEdit2: TcxDBTextEdit [4]
+              Left = 508
+              Top = 103
+              DataBinding.DataField = 'poc_status_reason'
+              DataBinding.DataSource = ds
+              Enabled = False
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 168
+            end
+            object cxDBLookupComboBox1: TcxDBLookupComboBox [5]
               Left = 77
               Top = 103
               DataBinding.DataField = 'employee_emp_id'
@@ -148,15 +337,20 @@ inherited frm_purchase_order: Tfrm_purchase_order
               Width = 294
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
+              ItemIndex = 2
+            end
+            inherited dxLayoutGroup2: TdxLayoutGroup
+              AlignHorz = ahClient
+              LayoutDirection = ldHorizontal
             end
             object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutControl_1Group_Root
+              AlignHorz = ahLeft
               CaptionOptions.Text = 'Itens do Pedido de Compra'
               SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
               SizeOptions.SizableHorz = True
               SizeOptions.SizableVert = True
-              SizeOptions.Height = 282
+              SizeOptions.Height = 150
               SizeOptions.Width = 742
               ButtonOptions.Buttons = <>
               Index = 2
@@ -169,9 +363,34 @@ inherited frm_purchase_order: Tfrm_purchase_order
               ControlOptions.ShowBorder = False
               Index = 0
             end
+            object dxLayoutItem3: TdxLayoutItem
+              Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Status'
+              Control = cxDBComboBox1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 52
+              ControlOptions.ShowBorder = False
+              Enabled = False
+              Index = 1
+            end
+            object dxLayoutItem6: TdxLayoutItem
+              Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Motivo'
+              Control = cxDBTextEdit2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 168
+              ControlOptions.ShowBorder = False
+              Enabled = False
+              Index = 2
+            end
             object dxLayoutItem5: TdxLayoutItem
               Parent = dxLayoutGroup2
               AlignHorz = ahLeft
+              AlignVert = avClient
               CaptionOptions.Text = 'Funcion'#225'rio'
               Control = cxDBLookupComboBox1
               ControlOptions.OriginalHeight = 21
@@ -184,24 +403,57 @@ inherited frm_purchase_order: Tfrm_purchase_order
       end
     end
   end
+  inherited dxBarManager_1: TdxBarManager
+    inherited dxBarManager_1Bar6: TdxBar
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxCancelPed'
+        end
+        item
+          Visible = True
+          ItemName = 'dxLiberarPed'
+        end>
+    end
+    object dxCancelPed: TdxBarButton
+      Caption = 'Cancelar Pedido'
+      Category = 0
+      Hint = 'Cancelar Pedido de Compra'
+      Visible = ivAlways
+      OnClick = dxCancelPedClick
+    end
+    object dxLiberarPed: TdxBarButton
+      Caption = 'Liberar Pedido'
+      Category = 0
+      Hint = 'Liberar Pedido de Compra'
+      Visible = ivAlways
+      OnClick = dxLiberarPedClick
+    end
+  end
+  inherited ds: TDataSource
+    OnDataChange = dsDataChange
+  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
   inherited qry: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from purchase_order')
+      'select * from purchase_order'
+      'where pco_type = '#39'C'#39)
     object qrypco_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'pco_id'
       Origin = 'pco_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -215,11 +467,33 @@ inherited frm_purchase_order: Tfrm_purchase_order
       FieldName = 'employee_emp_id'
       Origin = 'employee_emp_id'
     end
+    object qrypco_status: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'pco_status'
+      Origin = 'pco_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qrypoc_status_reason: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Motivo'
+      FieldName = 'poc_status_reason'
+      Origin = 'poc_status_reason'
+      Size = 45
+    end
     object qrypco_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'pco_dt_registration'
       Origin = 'pco_dt_registration'
+    end
+    object qrypco_type: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pco_type'
+      Origin = 'pco_type'
+      FixedChar = True
+      Size = 1
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -239,20 +513,34 @@ inherited frm_purchase_order: Tfrm_purchase_order
   object qry_purchase_order_iten: TFDQuery
     Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
+    AfterEdit = qry_purchase_order_itenAfterEdit
+    CachedUpdates = True
     IndexFieldNames = 'purchase_order_pco_id'
     MasterSource = ds
     MasterFields = 'pco_id'
     DetailFields = 'purchase_order_pco_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter1
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from purchase_order_iten')
-    Left = 584
+      'select * from purchase_order_iten'
+      'where purchase_order_pco_id = :pco_id')
+    Left = 568
     Top = 96
+    ParamData = <
+      item
+        Name = 'PCO_ID'
+        DataType = ftAutoInc
+        ParamType = ptInput
+        Value = 1
+      end>
     object qry_purchase_order_itenpoi_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'poi_id'
       Origin = 'poi_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_purchase_order_itenpurchase_order_pco_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -295,13 +583,13 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from product')
-    Left = 648
-    Top = 96
+    Left = 656
+    Top = 160
   end
   object ds_product: TDataSource
     DataSet = qry_product
-    Left = 680
-    Top = 96
+    Left = 696
+    Top = 160
   end
   object qry_employee: TFDQuery
     Active = True
@@ -316,12 +604,12 @@ inherited frm_purchase_order: Tfrm_purchase_order
         'select e.emp_id, e.record_rec_id, e.emp_type, e.emp_status, r.re' +
         'c_name, e.contract_ctr_id from employee as e'#10'inner join record a' +
         's r on e.record_rec_id = r.rec_id')
-    Left = 520
-    Top = 96
+    Left = 488
+    Top = 88
   end
   object ds_employee: TDataSource
     DataSet = qry_employee
-    Left = 552
-    Top = 96
+    Left = 464
+    Top = 120
   end
 end

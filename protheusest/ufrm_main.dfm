@@ -1,6 +1,5 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Estoque - CCS Protheus.'
-  ExplicitLeft = -237
   ExplicitWidth = 1024
   ExplicitHeight = 640
   PixelsPerInch = 96
@@ -642,6 +641,16 @@ inherited frm_main: Tfrm_main
       Action = Action_stock_iten
       Category = 0
     end
+    object dxBarLargeButton12: TdxBarLargeButton
+      Caption = 'New Button'
+      Category = 0
+      Hint = 'New Button'
+      Visible = ivAlways
+    end
+    object dxBarButton3: TdxBarButton
+      Action = Action_request
+      Category = 0
+    end
   end
   inherited ActionList_1: TActionList
     object Action_contrat: TAction
@@ -766,6 +775,12 @@ inherited frm_main: Tfrm_main
       Caption = 'Transfer'#234'ncia'
       Hint = 'Manuten'#231#227'o Transfer'#234'ncias entre Estoques'
       OnExecute = Action_stock_transferExecute
+    end
+    object Action_request: TAction
+      Category = 'M'#243'dulo'
+      Caption = 'Requisi'#231#227'o'
+      Hint = 'Manuten'#231#227'o Requisi'#231#227'o'
+      OnExecute = Action_requestExecute
     end
   end
   inherited cxImageList_1: TcxImageList
@@ -2410,6 +2425,10 @@ inherited frm_main: Tfrm_main
       item
         Visible = True
         ItemName = 'dxBarButton8'
+      end
+      item
+        Visible = True
+        ItemName = 'dxBarButton3'
       end
       item
         Visible = True

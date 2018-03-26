@@ -24,18 +24,29 @@ uses
   cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, Data.DB,
   cxDBData, dxSkinsdxBarPainter, System.Actions, Vcl.ActnList, System.ImageList,
   Vcl.ImgList, dxBar, cxGridLevel, cxClasses, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxStatusBar;
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxStatusBar,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   Tfrm_search = class(TForm)
-    dxStatusBar1: TdxStatusBar;
-    cxGrid1DBTableView1: TcxGridDBTableView;
-    cxGrid1Level1: TcxGridLevel;
-    cxGrid1: TcxGrid;
+    cxGrid_1DBTableView1: TcxGridDBTableView;
+    cxGrid_1Level1: TcxGridLevel;
+    cxGrid_1: TcxGrid;
     dxBarDockControl1: TdxBarDockControl;
     dxBarManager_1: TdxBarManager;
     cxImageList_1: TcxImageList;
     ActionList_1: TActionList;
+    dxBarManager_1Bar1: TdxBar;
+    dxBarButton1: TdxBarButton;
+    Action_select: TAction;
+    Action_close: TAction;
+    dxBarButton2: TdxBarButton;
+    dxStatusBar_1: TdxStatusBar;
+    qry: TFDQuery;
+    ds: TDataSource;
+    procedure Action_closeExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -48,5 +59,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Tfrm_search.Action_closeExecute(Sender: TObject);
+begin
+  Close;
+end;
 
 end.

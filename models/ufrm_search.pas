@@ -36,7 +36,6 @@ type
     cxGrid_1: TcxGrid;
     dxBarDockControl1: TdxBarDockControl;
     dxBarManager_1: TdxBarManager;
-    cxImageList_1: TcxImageList;
     ActionList_1: TActionList;
     dxBarManager_1Bar1: TdxBar;
     dxBarButton1: TdxBarButton;
@@ -46,6 +45,7 @@ type
     dxStatusBar_1: TdxStatusBar;
     qry: TFDQuery;
     ds: TDataSource;
+    cxImageList_1: TcxImageList;
     procedure Action_closeExecute(Sender: TObject);
   private
     { Private declarations }

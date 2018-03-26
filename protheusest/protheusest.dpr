@@ -27,7 +27,6 @@ uses
   ufrm_manufacturer in '..\ufrm_manufacturer.pas' {frm_manufacturer},
   ufrm_product_class in '..\ufrm_product_class.pas' {frm_product_class},
   ufrm_product_department in '..\ufrm_product_department.pas' {frm_product_department},
-  ufrm_purchase_order in '..\ufrm_purchase_order.pas' {frm_purchase_order},
   ufrm_stock in '..\ufrm_stock.pas' {frm_stock},
   uclass_compression_image in '..\uclass_compression_image.pas',
   uclass_frm_open in '..\uclass_frm_open.pas',
@@ -36,7 +35,9 @@ uses
   ufrm_stock_entry in '..\ufrm_stock_entry.pas' {frm_stock_entry},
   ufrm_stock_iten in '..\ufrm_stock_iten.pas' {frm_stock_iten},
   ufrm_stock_transfer in '..\ufrm_stock_transfer.pas' {frm_stock_transfer},
-  ufrm_search in '..\models\ufrm_search.pas' {frm_search};
+  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
+  ufrm_purchase_order in '..\ufrm_purchase_order.pas' {frm_purchase_order},
+  ufrm_request in '..\ufrm_request.pas' {frm_request};
 
 {$R *.res}
 

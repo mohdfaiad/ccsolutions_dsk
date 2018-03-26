@@ -118,6 +118,7 @@ type
     QImport3Wizard_1: TQImport3Wizard;
     Action_import: TAction;
     dxBarButton_import: TdxBarButton;
+    FDSchemaAdapter_1: TFDSchemaAdapter;
     procedure cxGrid_1DBTableView1DblClick(Sender: TObject);
     procedure Action_insertUpdate(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
@@ -161,19 +162,19 @@ end;
 
 procedure Tfrm_form_default.Action_cancelUpdate(Sender: TObject);
 begin
-  if ds.State in [dsBrowse] then
+  if ds.State in [dsInsert, dsEdit] then
   begin
-    Action_first.Enabled := True;
-    Action_prior.Enabled := True;
-    Action_next.Enabled := True;
-    Action_last.Enabled := True;
-    Action_insert.Enabled := True;
-    Action_edit.Enabled := True;
-    Action_save.Enabled := False;
-    Action_cancel.Enabled := False;
-    Action_delete.Enabled := True;
-    Action_refresh.Enabled := True;
-    Action_close.Enabled := True;
+    Action_first.Enabled := False;
+    Action_prior.Enabled := False;
+    Action_next.Enabled := False;
+    Action_last.Enabled := False;
+    Action_insert.Enabled := False;
+    Action_edit.Enabled := False;
+    Action_save.Enabled := True;
+    Action_cancel.Enabled := True;
+    Action_delete.Enabled := False;
+    Action_refresh.Enabled := False;
+    Action_close.Enabled := False;
   end;
 end;
 
@@ -266,6 +267,8 @@ begin
     MB_DEFBUTTON2) = IDYES then
   begin
     ds.DataSet.Post;
+    if qry.CachedUpdates then
+      FDSchemaAdapter_1.ApplyUpdates(0);
   end;
 end;
 

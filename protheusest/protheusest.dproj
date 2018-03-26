@@ -208,10 +208,6 @@
             <Form>frm_product_department</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\ufrm_purchase_order.pas">
-            <Form>frm_purchase_order</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\ufrm_stock.pas">
             <Form>frm_stock</Form>
             <FormType>dfm</FormType>
@@ -234,6 +230,14 @@
         </DCCReference>
         <DCCReference Include="..\models\ufrm_search.pas">
             <Form>frm_search</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_purchase_order.pas">
+            <Form>frm_purchase_order</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_request.pas">
+            <Form>frm_request</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

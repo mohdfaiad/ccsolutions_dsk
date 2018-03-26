@@ -33,7 +33,8 @@ uses
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, ACBrBase, ACBrEnterTab,
-  QExport4Dialog, dxBarExtItems, cxShellComboBox, cxBarEditItem, frxDesgn;
+  QExport4Dialog, dxBarExtItems, cxShellComboBox, cxBarEditItem, frxDesgn,
+  QImport3Wizard;
 
 type
   Tfrm_form_default = class(TForm)
@@ -92,7 +93,7 @@ type
     dxBarManager_1Bar4: TdxBar;
     dxBarManager_1Bar5: TdxBar;
     dxBarSubItem_1: TdxBarSubItem;
-    dxBarSubItem2: TdxBarSubItem;
+    dxBarSubItem_2: TdxBarSubItem;
     dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList;
     qry: TFDQuery;
     dxLayoutControl_1Group_Root: TdxLayoutGroup;
@@ -107,14 +108,16 @@ type
     ACBrEnterTab_1: TACBrEnterTab;
     QExport4Dialog_1: TQExport4Dialog;
     Action_export: TAction;
-    dxBarButton1: TdxBarButton;
-    dxBarTreeViewCombo1: TdxBarTreeViewCombo;
+    dxBarButton_export: TdxBarButton;
     cxBarEditItem_1: TcxBarEditItem;
     Action_print: TAction;
-    dxBarButton2: TdxBarButton;
+    dxBarButton_report_edit: TdxBarButton;
     Action_print_edit: TAction;
-    dxBarButton3: TdxBarButton;
-    frxdesigner: TfrxDesigner;
+    dxBarButton_report_preview: TdxBarButton;
+    dxBarManager_1Bar6: TdxBar;
+    QImport3Wizard_1: TQImport3Wizard;
+    Action_import: TAction;
+    dxBarButton_import: TdxBarButton;
     procedure cxGrid_1DBTableView1DblClick(Sender: TObject);
     procedure Action_insertUpdate(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
@@ -131,7 +134,7 @@ type
     procedure Action_cancelUpdate(Sender: TObject);
     procedure dxLayoutControl_1DblClick(Sender: TObject);
     procedure Action_exportExecute(Sender: TObject);
-    procedure Action_print_editExecute(Sender: TObject);
+    procedure Action_importExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -144,8 +147,6 @@ var
 implementation
 
 {$R *.dfm}
-
-uses ;
 
 procedure Tfrm_form_default.Action_cancelExecute(Sender: TObject);
 begin
@@ -208,6 +209,11 @@ begin
   ds.DataSet.First;
 end;
 
+procedure Tfrm_form_default.Action_importExecute(Sender: TObject);
+begin
+  QImport3Wizard_1.Execute;
+end;
+
 procedure Tfrm_form_default.Action_insertExecute(Sender: TObject);
 begin
   ds.DataSet.Insert;
@@ -240,14 +246,6 @@ end;
 procedure Tfrm_form_default.Action_nextExecute(Sender: TObject);
 begin
   ds.DataSet.Next;
-end;
-
-procedure Tfrm_form_default.Action_print_editExecute(Sender: TObject);
-begin
-  frm_report.frxdesigner.SaveDir := cxBarEditItem_1.GetNamePath;
-  frm_report.frxdesigner.OpenDir := cxBarEditItem_1.GetNamePath;
-  frm_report.frxreport.LoadFromFile(cxBarEditItem_1.GetNamePath, True);
-  frm_report.frxreport.DesignReport();
 end;
 
 procedure Tfrm_form_default.Action_priorExecute(Sender: TObject);

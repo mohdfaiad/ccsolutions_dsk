@@ -1,10 +1,9 @@
-unit ufrm_purchase_order;
+unit ufrm_request;
 
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_form_default, cxGraphics,
   cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxSkinsCore, dxSkinBlack,
   dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
@@ -33,49 +32,55 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  cxSpinEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxCurrencyEdit,
-  Vcl.StdCtrls, Vcl.ExtCtrls;
+  cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, dxLayoutControlAdapters,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
 
 type
-  Tfrm_purchase_order = class(Tfrm_form_default)
-    qry_purchase_order_iten: TFDQuery;
-    ds_purchase_order_iten: TDataSource;
+  Tfrm_request = class(Tfrm_form_default)
     qrypco_id: TFDAutoIncField;
     qrycontract_ctr_id: TIntegerField;
     qryemployee_emp_id: TIntegerField;
+    qrypco_type: TStringField;
+    qrypco_status: TStringField;
+    qrypoc_status_reason: TStringField;
     qrypco_dt_registration: TDateTimeField;
-    qry_purchase_order_itenpoi_id: TFDAutoIncField;
-    qry_purchase_order_itenpurchase_order_pco_id: TIntegerField;
-    qry_purchase_order_itenpoi_product_quant: TBCDField;
-    qry_purchase_order_itenpoi_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1pco_id: TcxGridDBColumn;
     cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1employee_emp_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1pco_type: TcxGridDBColumn;
+    cxGrid_1DBTableView1pco_status: TcxGridDBColumn;
+    cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn;
     cxGrid_1DBTableView1pco_dt_registration: TcxGridDBColumn;
+    cxDBTextEdit2: TcxDBTextEdit;
+    dxLayoutItem7: TdxLayoutItem;
+    cxDBTextEdit3: TcxDBTextEdit;
+    dxLayoutItem8: TdxLayoutItem;
+    qry_employee: TFDQuery;
+    ds_employee: TDataSource;
+    DataSource1: TDataSource;
+    cxDBLookupComboBox1: TcxDBLookupComboBox;
+    dxLayoutItem10: TdxLayoutItem;
     dxLayoutGroup3: TdxLayoutGroup;
+    qry_purchase_order_iten: TFDQuery;
+    ds_purchase_order_iten: TDataSource;
     cxGrid1DBTableView1: TcxGridDBTableView;
     cxGrid1Level1: TcxGridLevel;
     cxGrid1: TcxGrid;
-    dxLayoutItem4: TdxLayoutItem;
-    qry_product: TFDQuery;
-    ds_product: TDataSource;
-    qry_employee: TFDQuery;
-    ds_employee: TDataSource;
-    cxDBLookupComboBox1: TcxDBLookupComboBox;
-    dxLayoutItem5: TdxLayoutItem;
-    qry_purchase_order_itenproduct_pro_id: TIntegerField;
+    dxLayoutItem3: TdxLayoutItem;
+    cxGrid1Level2: TcxGridLevel;
     cxGrid1DBTableView1poi_id: TcxGridDBColumn;
+    cxGrid1DBTableView1purchase_order_pco_id: TcxGridDBColumn;
+    cxGrid1DBTableView1product_pro_id: TcxGridDBColumn;
     cxGrid1DBTableView1poi_product_quant: TcxGridDBColumn;
     cxGrid1DBTableView1poi_dt_registration: TcxGridDBColumn;
-    cxGrid1DBTableView1Column1: TcxGridDBColumn;
-    qrypco_status: TStringField;
-    qrypoc_status_reason: TStringField;
-    cxDBTextEdit2: TcxDBTextEdit;
-    dxLayoutItem6: TdxLayoutItem;
-    cxDBComboBox1: TcxDBComboBox;
-    dxLayoutItem3: TdxLayoutItem;
-    cxGrid_1DBTableView1pco_status: TcxGridDBColumn;
-    cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn;
+    ds_product: TDataSource;
+    qry_product: TFDQuery;
+    qry_purchase_order_itenpoi_id: TFDAutoIncField;
+    qry_purchase_order_itenpurchase_order_pco_id: TIntegerField;
+    qry_purchase_order_itenproduct_pro_id: TIntegerField;
+    qry_purchase_order_itenpoi_product_quant: TBCDField;
+    qry_purchase_order_itenpoi_dt_registration: TDateTimeField;
+    dxCancelReq: TdxBarButton;
     FlowPanel1: TFlowPanel;
     Shape1: TShape;
     lbAberto: TLabel;
@@ -87,35 +92,37 @@ type
     lbLiberado: TLabel;
     Shape5: TShape;
     lbTodos: TLabel;
-    dxCancelPed: TdxBarButton;
-    qrypco_type: TStringField;
-    dxLiberarPed: TdxBarButton;
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    dxLibRequ: TdxBarButton;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure dxCancelReqClick(Sender: TObject);
+    procedure qryBeforePost(DataSet: TDataSet);
     procedure cxGrid_1DBTableView1CustomDrawCell(Sender: TcxCustomGridTableView;
       ACanvas: TcxCanvas; AViewInfo: TcxGridTableDataCellViewInfo;
       var ADone: Boolean);
     procedure lbAbertoClick(Sender: TObject);
     procedure lbCanceladoClick(Sender: TObject);
+    procedure filter(tipo:string);
     procedure lbFechadoClick(Sender: TObject);
     procedure lbLiberadoClick(Sender: TObject);
     procedure lbTodosClick(Sender: TObject);
-    procedure dxCancelPedClick(Sender: TObject);
-    procedure qry_purchase_order_itenAfterEdit(DataSet: TDataSet);
-    procedure dxLiberarPedClick(Sender: TObject);
     procedure dsDataChange(Sender: TObject; Field: TField);
-    procedure FormCreate(Sender: TObject);
+    procedure dxLibRequClick(Sender: TObject);
+    procedure qry_purchase_order_itenAfterEdit(DataSet: TDataSet);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
-  procedure filter(status:string);
-  procedure limpaCache(Sender:TObject);
   public
     { Public declarations }
+  //variaveis para parametros do sistema
+  diaMaximoVenc:Integer;
+  procedure limpaCache(Sender:TObject);
   end;
 
 var
-  frm_purchase_order: Tfrm_purchase_order;
+  frm_request: Tfrm_request;
 
 implementation
 
@@ -123,7 +130,7 @@ implementation
 
 uses ufrm_dm;
 
-procedure Tfrm_purchase_order.cxGrid_1DBTableView1CustomDrawCell(
+procedure Tfrm_request.cxGrid_1DBTableView1CustomDrawCell(
   Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
   AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
 var
@@ -147,22 +154,30 @@ begin
 
       if (Valor = 'L') then
          ACanvas.Font.Color  := clGreen;
+
+
+   //   else
+   //      ACanvas.Brush.Color  := clWindow;
+  //    IF AViewInfo.GridRecord.Selected then begin
+ //        ACanvas.Brush.Color := clSkyBlue;
+///         ACanvas.Font.Color  := clBlue;
+//      end;
    end;
 
 end;
 
-procedure Tfrm_purchase_order.dsDataChange(Sender: TObject; Field: TField);
+procedure Tfrm_request.dsDataChange(Sender: TObject; Field: TField);
 begin
   inherited;
  if (qrypco_status.AsString = 'C') or (qrypco_status.AsString = 'F') then
-   dxCancelPed.Enabled:=false
+   dxCancelReq.Enabled:=false
    else
-    dxCancelPed.Enabled:=True;
+    dxCancelReq.Enabled:=True;
 
-  dxLiberarPed.Enabled:=qrypco_status.AsString = 'A';
+  dxLibRequ.Enabled:=qrypco_status.AsString = 'A';
 end;
 
-Procedure Tfrm_purchase_order.dxCancelPedClick(Sender: TObject);
+procedure Tfrm_request.dxCancelReqClick(Sender: TObject);
 var
 motCancel:string;
 begin
@@ -176,106 +191,139 @@ if Application.MessageBox('Deseja cancelar essa requisição?','REQUISIÇÃO',MB_YES
      qrypco_status.AsString:='C';
      qrypoc_status_reason.AsString:=motCancel;
      qry.Post;
-     FDSchemaAdapter_1.ApplyUpdates(0);
+     FDSchemaAdapter1.ApplyUpdates(0);
    end
    else
-   Application.MessageBox('Motivo do cancelamento menor que 20 caracteres!','PEDIDO',MB_OK + MB_ICONWARNING);
+   Application.MessageBox('Motivo do cancelamento menor que 20 caracteres!','REQUISIÇÃO',MB_OK + MB_ICONWARNING);
  end;
 end;
 
-procedure Tfrm_purchase_order.dxLiberarPedClick(Sender: TObject);
+procedure Tfrm_request.dxLibRequClick(Sender: TObject);
 var
 motLib:string;
 begin
   inherited;
-if Application.MessageBox('Deseja liberar essa requisição?','PEDIDO',MB_YESNO + MB_ICONQUESTION) = mrYes  then
+if Application.MessageBox('Deseja liberar essa requisição?','REQUISIÇÃO',MB_YESNO + MB_ICONQUESTION) = mrYes  then
  begin
   motLib:=UpperCase(InputBox('Liberação','Informe uma observação da liberação! (Não obrigatório)',motLib));
   qry.Edit;
   qrypco_status.AsString:='L';
   qrypoc_status_reason.AsString:=motLib;
   qry.Post;
-  FDSchemaAdapter_1.ApplyUpdates(0);
+  FDSchemaAdapter1.ApplyUpdates(0);
  end;
-
 end;
 
-procedure Tfrm_purchase_order.filter(status: string);
+procedure Tfrm_request.filter(tipo: string);
 begin
-  qry.Filter := 'pco_status = ' + QuotedStr(status);
+  qry.Filter := 'pco_status = ' + QuotedStr(tipo);
   qry.Filtered := True;
 end;
 
-procedure Tfrm_purchase_order.FormClose(Sender: TObject;
-  var Action: TCloseAction);
+procedure Tfrm_request.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-  frm_purchase_order.Destroy;
-  frm_purchase_order := Nil;
+  frm_request.Destroy;
+  frm_request := Nil;
 end;
 
-procedure Tfrm_purchase_order.FormCreate(Sender: TObject);
+procedure Tfrm_request.FormCreate(Sender: TObject);
 begin
   inherited;
-FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+FDSchemaAdapter1.AfterApplyUpdate:=limpaCache;
+with frm_dm.qry,sql do
+ begin
+   close;
+   text:='select prs_req_day_exp from parameter_stock';
+   prepare;
+   open;
+   diaMaximoVenc:=FieldByName('prs_req_day_exp').AsInteger;
+
+ end;
 end;
 
-procedure Tfrm_purchase_order.lbAbertoClick(Sender: TObject);
+procedure Tfrm_request.FormShow(Sender: TObject);
 begin
   inherited;
-   filter('A');
+with frm_dm.qry, sql do
+ begin
+   close;
+   text:= 'select count(*) from purchase_order ' +
+          'where pco_type = ''R'' and pco_status = ''A'' '+
+          ' and pco_dt_registration < (select date_sub(curdate(), interval :dia day))';
+   ParamByName('dia').AsString:=IntToStr(diaMaximoVenc);
+   prepare;
+   open;
+   if Fields[0].AsInteger > 0 then
+   Application.MessageBox(PWideChar('Existe(m) ' +  Fields[0].AsString + ' requisição(ões) vencida(s)'),'AVISO',MB_OK + MB_ICONWARNING);
+end;
 end;
 
-procedure Tfrm_purchase_order.lbCanceladoClick(Sender: TObject);
+procedure Tfrm_request.lbAbertoClick(Sender: TObject);
 begin
   inherited;
-  filter('C');
+  filter('A');
 end;
 
-procedure Tfrm_purchase_order.lbFechadoClick(Sender: TObject);
+procedure Tfrm_request.lbCanceladoClick(Sender: TObject);
 begin
   inherited;
- filter('F');
+ filter('C');
 end;
 
-procedure Tfrm_purchase_order.lbLiberadoClick(Sender: TObject);
+procedure Tfrm_request.lbFechadoClick(Sender: TObject);
 begin
   inherited;
- filter('L');
+filter('F');
 end;
 
-procedure Tfrm_purchase_order.lbTodosClick(Sender: TObject);
+procedure Tfrm_request.lbLiberadoClick(Sender: TObject);
+begin
+  inherited;
+filter('L');
+end;
+
+procedure Tfrm_request.lbTodosClick(Sender: TObject);
 begin
   inherited;
 qry.Filtered:=False;
 end;
 
-procedure Tfrm_purchase_order.limpaCache(Sender: TObject);
+procedure Tfrm_request.limpaCache(Sender: TObject);
 begin
 qry.CommitUpdates();
 qry_purchase_order_iten.CommitUpdates();
 end;
 
-procedure Tfrm_purchase_order.qryAfterInsert(DataSet: TDataSet);
+procedure Tfrm_request.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qrypco_status.AsString:='A';
-  qrypco_dt_registration.Value:=now;
-  qrypco_type.AsString:='R';
-  qry.Post;
-  qry.Edit;
- end;
+qrypco_status.AsString:='A';
+qrypco_dt_registration.Value:=now;
+qrypco_type.AsString:='R';
+qry.Post;
+qry.Edit;
+end;
 
-procedure Tfrm_purchase_order.qry_purchase_order_itenAfterEdit(
-  DataSet: TDataSet);
+procedure Tfrm_request.qryBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
+ begin
+   Application.MessageBox('Só é permitido alterar uma requisição que esteja em aberto!','Requisição', MB_ICONINFORMATION + MB_OK);
+   qry.CancelUpdates;
+   Exit;
+ end;
+end;
+
+procedure Tfrm_request.qry_purchase_order_itenAfterEdit(DataSet: TDataSet);
 begin
   inherited;
 if not (qry.State in [dsInsert,dsEdit]) then
  qry.Edit;
 end;
 
-procedure Tfrm_purchase_order.qry_purchase_order_itenAfterInsert
-  (DataSet: TDataSet);
+procedure Tfrm_request.qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
 begin
   inherited;
 if not (qry.State in [dsInsert,dsEdit]) then
@@ -289,7 +337,6 @@ if not (qry.State in [dsInsert,dsEdit]) then
  end;
 
 qry_purchase_order_itenpoi_dt_registration.Value:=Now;
-
 end;
 
 end.

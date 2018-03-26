@@ -176,7 +176,7 @@ if Application.MessageBox('Deseja cancelar essa requisição?','REQUISIÇÃO',MB_YES
      qrypco_status.AsString:='C';
      qrypoc_status_reason.AsString:=motCancel;
      qry.Post;
-     FDSchemaAdapter_1.ApplyUpdates(0);
+     FDSchemaAdapter1.ApplyUpdates(0);
    end
    else
    Application.MessageBox('Motivo do cancelamento menor que 20 caracteres!','PEDIDO',MB_OK + MB_ICONWARNING);
@@ -195,7 +195,7 @@ if Application.MessageBox('Deseja liberar essa requisição?','PEDIDO',MB_YESNO + 
   qrypco_status.AsString:='L';
   qrypoc_status_reason.AsString:=motLib;
   qry.Post;
-  FDSchemaAdapter_1.ApplyUpdates(0);
+  FDSchemaAdapter1.ApplyUpdates(0);
  end;
 
 end;
@@ -217,7 +217,7 @@ end;
 procedure Tfrm_purchase_order.FormCreate(Sender: TObject);
 begin
   inherited;
-FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+FDSchemaAdapter1.AfterApplyUpdate:=limpaCache;
 end;
 
 procedure Tfrm_purchase_order.lbAbertoClick(Sender: TObject);

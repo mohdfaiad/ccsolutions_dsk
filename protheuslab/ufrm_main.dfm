@@ -82,7 +82,7 @@ inherited frm_main: Tfrm_main
           Visible = True
           ItemName = 'dxBarLargeButton2'
         end>
-      Row = 1
+      OneOnRow = False
     end
     object dxBarManager_1Bar2: TdxBar
       Caption = #218'til'
@@ -170,7 +170,7 @@ inherited frm_main: Tfrm_main
           Visible = True
           ItemName = 'dxBarLargeButton10'
         end>
-      OneOnRow = True
+      OneOnRow = False
       Row = 0
       UseOwnFont = False
       Visible = True

@@ -76,6 +76,9 @@ type
     Action_stock_transfer: TAction;
     dxBarButton1: TdxBarButton;
     dxBarButton2: TdxBarButton;
+    dxBarLargeButton12: TdxBarLargeButton;
+    dxBarButton3: TdxBarButton;
+    Action_request: TAction;
     procedure FormCreate(Sender: TObject);
     procedure Action_contratExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -96,6 +99,7 @@ type
     procedure Action_product_entryExecute(Sender: TObject);
     procedure Action_stock_itenExecute(Sender: TObject);
     procedure Action_stock_transferExecute(Sender: TObject);
+    procedure Action_requestExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -113,7 +117,7 @@ uses ufrm_login, ufrm_brand, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_product, ufrm_supplier, ufrm_report,
   ufrm_ncm, ufrm_manufacturer, ufrm_product_unit, ufrm_product_class,
   ufrm_product_department, ufrm_purchase_order, ufrm_stock, uclass_frm_open,
-  ufrm_stock_entry, ufrm_stock_iten, ufrm_stock_transfer;
+  ufrm_stock_entry, ufrm_stock_iten, ufrm_stock_transfer, ufrm_request;
 
 procedure Tfrm_main.Action_brandExecute(Sender: TObject);
 begin
@@ -352,6 +356,22 @@ begin
   else
   begin
     frm_report.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_requestExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_request) then
+  begin
+    frm_request := Tfrm_request.Create(Self);
+    frm_request.Height := Bevel_1.Height;
+    frm_request.Width := Bevel_1.Width;
+    frm_request.Show
+  end
+  else
+  begin
+    frm_request.WindowState := wsNormal;
   end;
 end;
 

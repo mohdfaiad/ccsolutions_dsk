@@ -136,6 +136,7 @@ type
     procedure dxLayoutControl_1DblClick(Sender: TObject);
     procedure Action_exportExecute(Sender: TObject);
     procedure Action_importExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -280,6 +281,23 @@ end;
 procedure Tfrm_form_default.dxLayoutControl_1DblClick(Sender: TObject);
 begin
   dxLayoutControl_1.Customization := True;
+end;
+
+procedure Tfrm_form_default.FormCreate(Sender: TObject);
+var
+i:Integer;
+begin
+//procedimento criado dia 26/03/2018 para verificar se tem alguma query fechado
+//caso esteja fechado ele abre...   e se caso o pagecontrol está em "Manutençào"
+//coloca automáticamente em "Pesquisa"
+//autor: Elizeu Souza
+for I := 0 to Self.ComponentCount -1 do
+  if Self.Components[i] is TFDQuery then
+   begin
+    TFDQuery(Self.Components[i]).Prepare;
+    TFDQuery(Self.Components[i]).Open;
+   end;
+ cxPageControl_1.ActivePageIndex:=0;
 end;
 
 end.

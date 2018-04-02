@@ -15,6 +15,7 @@ object frm_form_default: Tfrm_form_default
   Position = poDesigned
   ShowHint = True
   Visible = True
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object cxPageControl_1: TcxPageControl
@@ -24,7 +25,7 @@ object frm_form_default: Tfrm_form_default
     Height = 506
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet_1
+    Properties.ActivePage = cxTabSheet_2
     Properties.CustomButtons.Buttons = <>
     Properties.HotImages = cxImageList_1
     Properties.Images = cxImageList_1

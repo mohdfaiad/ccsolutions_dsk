@@ -138,6 +138,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
+  procedure limpaCache(Sender:TObject);
   public
     { Public declarations }
   end;
@@ -372,6 +373,8 @@ end;
 
 procedure Tfrm_stock_transfer.cxDBButtonEdit1PropertiesButtonClick
   (Sender: TObject; AButtonIndex: Integer);
+var
+numReq:string;
 begin
   inherited;
   if Trim(cxDBButtonEdit1.Text) = '' then
@@ -385,8 +388,7 @@ begin
   if Application.MessageBox('Deseja importar a requisição?', 'Transferência',
     MB_YESNO + MB_ICONQUESTION) = mrYes then
   begin
-    if not qry_purchase_order.Locate('pco_id',
-      qrypurchase_order_pco_id.AsInteger, [loCaseInsensitive, loPartialKey])
+    if not qry_purchase_order.Locate('pco_id',cxDBButtonEdit1.Text, [loCaseInsensitive, loPartialKey])
     then
     begin
       Application.MessageBox('Requisiçao não localizada!', 'Transferência',
@@ -394,9 +396,8 @@ begin
       Exit;
     end;
 
-    qry_purchase_order.Locate('pco_id', qrypurchase_order_pco_id.AsString,
-      [loCaseInsensitive, loPartialKey]);
-
+    qry_purchase_order.Locate('pco_id',cxDBButtonEdit1.Text,[loCaseInsensitive, loPartialKey]);
+    numReq:=cxDBButtonEdit1.Text;
     if qry_purchase_orderpco_status.AsString = 'F' then
     begin
       Application.MessageBox('Requisiçao já utilizadaem uma transferência!',
@@ -407,6 +408,7 @@ begin
     qry.Insert;
     qryemployee_emp_id_request.AsInteger :=
       qry_purchase_orderemployee_emp_id.AsInteger;
+    qrypurchase_order_pco_id.AsString:=numReq;
     qry.Post;
     with frm_dm.qry, sql do
     begin
@@ -429,15 +431,13 @@ begin
         Next;
       end;
     end;
+    qry_product_transfer_iten.Refresh;
     qry_purchase_order.Edit;
     qry_purchase_orderpco_status.AsString := 'F';
     qry_purchase_order.Post;
 
-    Application.MessageBox('Importação realizada com sucesso!', 'Transferência',
-      MB_OK + MB_ICONWARNING);
-
+    Application.MessageBox('Importação realizada com sucesso!', 'Transferência',MB_OK + MB_ICONWARNING);
   end;
-
 end;
 
 procedure Tfrm_stock_transfer.FormClose(Sender: TObject;
@@ -446,6 +446,12 @@ begin
   inherited;
   frm_stock_transfer.Destroy;
   frm_stock_transfer := NIl;
+end;
+
+procedure Tfrm_stock_transfer.limpaCache(Sender: TObject);
+begin
+qry.CommitUpdates();
+qry_product_transfer_iten.CommitUpdates();
 end;
 
 procedure Tfrm_stock_transfer.PopupMenu_1Popup(Sender: TObject);

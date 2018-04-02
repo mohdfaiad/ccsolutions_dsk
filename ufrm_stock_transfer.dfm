@@ -7,6 +7,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 514
+    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 514
     ClientRectBottom = 508
     inherited cxTabSheet_1: TcxTabSheet
@@ -294,7 +295,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahClient
               AlignVert = avTop
-              ItemIndex = 2
             end
             object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutControl_1Group_Root
@@ -455,6 +455,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -550,22 +551,26 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   object qry_product_transfer_iten: TFDQuery
     Active = True
     AfterInsert = qry_product_transfer_itenAfterInsert
+    CachedUpdates = True
     IndexFieldNames = 'product_transfer_prt_id'
     MasterSource = ds
     MasterFields = 'prt_id'
     DetailFields = 'product_transfer_prt_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter1
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from product_transfer_iten'
       'where product_transfer_prt_id = :prt_id')
-    Left = 559
-    Top = 146
+    Left = 463
+    Top = 242
     ParamData = <
       item
         Name = 'PRT_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = Null
+        Value = 1
       end>
     object qry_product_transfer_itenpti_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
@@ -611,8 +616,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     SQL.Strings = (
       'select * from stock_iten'
       'where stock_sto_id = :stock')
-    Left = 495
-    Top = 146
+    Left = 415
+    Top = 130
     ParamData = <
       item
         Name = 'STOCK'
@@ -675,14 +680,14 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       ''
       'where stock_sto_id = :stock_sto_id_exit'
       'order by pro_name')
-    Left = 624
-    Top = 144
+    Left = 672
+    Top = 224
     ParamData = <
       item
         Name = 'STOCK_STO_ID_EXIT'
         DataType = ftInteger
         ParamType = ptInput
-        Value = Null
+        Value = 4
       end>
     object qry_productproduct_pro_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -720,7 +725,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       #10'select sto_id,sto_name,contract_ctr_id  from stock'#13#10#10
@@ -765,6 +769,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       
         'select e.emp_id, e.record_rec_id, e.emp_type, e.emp_status, r.re' +
@@ -775,7 +781,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object ds_employee: TDataSource
     DataSet = qry_employee
-    Left = 528
+    Left = 592
     Top = 104
   end
   object qry_purchase_order: TFDQuery
@@ -788,8 +794,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     SQL.Strings = (
       'select * from purchase_order'
       '')
-    Left = 591
-    Top = 146
+    Left = 583
+    Top = 186
     object qry_purchase_orderpco_id: TFDAutoIncField
       FieldName = 'pco_id'
       Origin = 'pco_id'

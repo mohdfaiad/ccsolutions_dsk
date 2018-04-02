@@ -42,8 +42,6 @@ type
     qrycontract_ctr_id: TIntegerField;
     qrysupplier_sup_id: TIntegerField;
     qrypurchase_order_pco_id: TIntegerField;
-    qrypde_invoice: TStringField;
-    qrypde_dt_emission: TDateField;
     qrypde_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1pde_id: TcxGridDBColumn;
     cxGrid_1DBTableView1supplier_sup_id: TcxGridDBColumn;
@@ -101,6 +99,11 @@ type
     qry_stock_itenproduct_sector_prs_id: TIntegerField;
     qry_stock_itensti_product_quant: TBCDField;
     qry_stock_itensti_dt_registration: TDateTimeField;
+    qrypde_invoice: TIntegerField;
+    qrypde_invoice_serie: TIntegerField;
+    qrypde_invoice_dt_emission: TDateField;
+    qrypde_document: TStringField;
+    qryped_cost_delivery: TBCDField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_product_entryAfterInsert(DataSet: TDataSet);
     procedure ConfirmaEntrada1Click(Sender: TObject);

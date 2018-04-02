@@ -257,10 +257,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitLeft = 248
-            ExplicitTop = 168
-            ExplicitWidth = 300
-            ExplicitHeight = 250
             object cxGrid1: TcxGrid
               Left = 17
               Top = 38
@@ -395,6 +391,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from product_entry')
+    Left = 592
     object qrypde_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'pde_id'
@@ -420,19 +417,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
       FieldName = 'purchase_order_pco_id'
       Origin = 'purchase_order_pco_id'
     end
-    object qrypde_invoice: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'NF'
-      FieldName = 'pde_invoice'
-      Origin = 'pde_invoice'
-      Size = 45
-    end
-    object qrypde_dt_emission: TDateField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Emis.'
-      FieldName = 'pde_dt_emission'
-      Origin = 'pde_dt_emission'
-    end
     object qrypde_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Reg.'
@@ -452,6 +436,33 @@ inherited frm_stock_entry: Tfrm_stock_entry
       Origin = 'pde_status'
       FixedChar = True
       Size = 1
+    end
+    object qrypde_invoice: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'pde_invoice'
+      Origin = 'pde_invoice'
+    end
+    object qrypde_invoice_serie: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'pde_invoice_serie'
+      Origin = 'pde_invoice_serie'
+    end
+    object qrypde_invoice_dt_emission: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'pde_invoice_dt_emission'
+      Origin = 'pde_invoice_dt_emission'
+    end
+    object qrypde_document: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pde_document'
+      Origin = 'pde_document'
+      Size = 25
+    end
+    object qryped_cost_delivery: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'ped_cost_delivery'
+      Origin = 'ped_cost_delivery'
+      Precision = 12
     end
   end
   inherited QImport3Wizard_1: TQImport3Wizard [11]
@@ -478,7 +489,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
         Name = 'PDE_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = 9
+        Value = 10
       end>
     object qry_product_entrypei_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
@@ -527,19 +538,20 @@ inherited frm_stock_entry: Tfrm_stock_entry
     SQL.Strings = (
       'select * from stock_iten'
       'where stock_sto_id = :stock_sto_id')
-    Left = 423
-    Top = 98
+    Left = 359
+    Top = 90
     ParamData = <
       item
         Name = 'STOCK_STO_ID'
         DataType = ftInteger
         ParamType = ptInput
-        Value = Null
+        Value = 4
       end>
     object qry_stock_itensti_id: TFDAutoIncField
       FieldName = 'sti_id'
       Origin = 'sti_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_stock_itenstock_sto_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -624,8 +636,8 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from stock')
-    Left = 648
-    Top = 96
+    Left = 512
+    Top = 176
   end
   object ds_stock: TDataSource
     DataSet = qry_stock

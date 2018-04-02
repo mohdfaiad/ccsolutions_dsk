@@ -40,17 +40,16 @@ inherited frm_purchase_order: Tfrm_purchase_order
         end
       end
       object FlowPanel1: TFlowPanel
-        Left = 6
+        Left = 2
         Top = 418
         Width = 518
         Height = 26
         Alignment = taLeftJustify
         Anchors = [akLeft, akBottom]
-        BevelOuter = bvNone
         TabOrder = 1
         object Shape1: TShape
-          Left = 0
-          Top = 0
+          Left = 1
+          Top = 1
           Width = 18
           Height = 24
           Brush.Color = 33023
@@ -59,8 +58,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
           Shape = stCircle
         end
         object lbAberto: TLabel
-          Left = 18
-          Top = 0
+          Left = 19
+          Top = 1
           Width = 84
           Height = 22
           Cursor = crHandPoint
@@ -77,8 +76,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
           OnClick = lbAbertoClick
         end
         object Shape2: TShape
-          Left = 102
-          Top = 0
+          Left = 103
+          Top = 1
           Width = 18
           Height = 24
           Brush.Color = clRed
@@ -87,8 +86,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
           Shape = stCircle
         end
         object lbCancelado: TLabel
-          Left = 120
-          Top = 0
+          Left = 121
+          Top = 1
           Width = 96
           Height = 22
           Cursor = crHandPoint
@@ -105,8 +104,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
           OnClick = lbCanceladoClick
         end
         object Shape3: TShape
-          Left = 216
-          Top = 0
+          Left = 217
+          Top = 1
           Width = 18
           Height = 24
           Brush.Color = clBlue
@@ -115,8 +114,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
           Shape = stCircle
         end
         object lbFechado: TLabel
-          Left = 234
-          Top = 0
+          Left = 235
+          Top = 1
           Width = 84
           Height = 22
           Cursor = crHandPoint
@@ -133,8 +132,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
           OnClick = lbFechadoClick
         end
         object Shape4: TShape
-          Left = 318
-          Top = 0
+          Left = 319
+          Top = 1
           Width = 18
           Height = 24
           Brush.Color = clGreen
@@ -143,8 +142,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
           Shape = stCircle
         end
         object lbLiberado: TLabel
-          Left = 336
-          Top = 0
+          Left = 337
+          Top = 1
           Width = 72
           Height = 22
           Cursor = crHandPoint
@@ -161,8 +160,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
           OnClick = lbLiberadoClick
         end
         object Shape5: TShape
-          Left = 408
-          Top = 0
+          Left = 409
+          Top = 1
           Width = 18
           Height = 24
           Brush.Color = clBlack
@@ -171,8 +170,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
           Shape = stCircle
         end
         object lbTodos: TLabel
-          Left = 426
-          Top = 0
+          Left = 427
+          Top = 1
           Width = 84
           Height = 22
           Cursor = crHandPoint
@@ -191,8 +190,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
+      ExplicitLeft = 5
+      ExplicitTop = 31
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
@@ -521,6 +520,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
     MasterFields = 'pco_id'
     DetailFields = 'purchase_order_pco_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter1
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
@@ -533,7 +533,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
         Name = 'PCO_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = Null
+        Value = 1
       end>
     object qry_purchase_order_itenpoi_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'

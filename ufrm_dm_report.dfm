@@ -1,7 +1,7 @@
 object frm_dm_report: Tfrm_dm_report
   OldCreateOrder = False
-  Height = 436
-  Width = 640
+  Height = 389
+  Width = 425
   object frxds_client: TfrxDBDataset
     UserName = 'Clientes'
     CloseDataSource = False
@@ -85,8 +85,8 @@ object frm_dm_report: Tfrm_dm_report
       'ent_dt_registration=Dt. Reg.')
     DataSet = frm_dm_ds.qry_enterprise
     BCDToCurrency = False
-    Left = 104
-    Top = 72
+    Left = 176
+    Top = 32
   end
   object frxds_import_call_log: TfrxDBDataset
     UserName = 'Import - Liga'#231#245'es'
@@ -103,8 +103,8 @@ object frm_dm_report: Tfrm_dm_report
       'imp_rate=Valor'
       'imp_total=Valor Total')
     BCDToCurrency = False
-    Left = 208
-    Top = 72
+    Left = 104
+    Top = 88
   end
   object frxfdcomp_1: TfrxFDComponents
     DefaultDatabase = frm_dm.connCCS

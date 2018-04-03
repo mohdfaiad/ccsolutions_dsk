@@ -8,10 +8,14 @@ inherited frm_request: Tfrm_request
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Width = 877
+    Properties.ActivePage = cxTabSheet_1
     ExplicitWidth = 877
     ClientRectRight = 871
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 869
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         Width = 863
         ExplicitWidth = 863
@@ -201,13 +205,19 @@ inherited frm_request: Tfrm_request
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 869
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         Width = 863
         ExplicitWidth = 863
         ClientRectRight = 857
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
           ExplicitWidth = 855
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 855
             ExplicitWidth = 855
@@ -464,7 +474,7 @@ inherited frm_request: Tfrm_request
     inherited cxBarEditItem_1: TcxBarEditItem
       Properties.DropDownWidth = 250
       Properties.IncrementalSearch = False
-      Properties.Root.CustomPath = 'c:\ccsolutions_dsk\reports'
+      Properties.Root.CustomPath = 'c:\ccsolutions_dsk\reports\request'
     end
     object dxCancelReq: TdxBarButton
       Caption = 'Cancelar Requisi'#231#227'o'
@@ -479,6 +489,11 @@ inherited frm_request: Tfrm_request
       Hint = 'Liberar Requisi'#231#227'o'
       Visible = ivAlways
       OnClick = dxLibRequClick
+    end
+  end
+  inherited ActionList_1: TActionList
+    inherited Action_print: TAction
+      OnExecute = Action_printExecute
     end
   end
   inherited ds: TDataSource
@@ -706,8 +721,13 @@ inherited frm_request: Tfrm_request
     Left = 290
     Top = 99
   end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
   object frxReport1: TfrxReport
-    Version = '5.6.1'
+    Version = '6.0.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -715,7 +735,7 @@ inherited frm_request: Tfrm_request
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43186.390207372700000000
-    ReportOptions.LastChange = 43187.459834282410000000
+    ReportOptions.LastChange = 43187.459834282400000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -725,6 +745,7 @@ inherited frm_request: Tfrm_request
     Top = 99
     Datasets = <
       item
+        DataSetName = 'enterprise'
       end
       item
         DataSet = frx_db_iten
@@ -752,8 +773,10 @@ inherited frm_request: Tfrm_request
       RightMargin = 10.000000000000000000
       TopMargin = 10.000000000000000000
       BottomMargin = 10.000000000000000000
+      Frame.Typ = []
       object ReportTitle1: TfrxReportTitle
         FillType = ftBrush
+        Frame.Typ = []
         Height = 102.047310000000000000
         Top = 18.897650000000000000
         Width = 718.110700000000000000
@@ -762,6 +785,7 @@ inherited frm_request: Tfrm_request
           Top = 3.779530000000000000
           Width = 117.165430000000000000
           Height = 86.929190000000000000
+          Frame.Typ = []
           Picture.Data = {
             0A54504E474F626A65637489504E470D0A1A0A0000000D494844520000054800
             00040E080600000009F4D2670000001974455874536F6674776172650041646F
@@ -2784,11 +2808,13 @@ inherited frm_request: Tfrm_request
           Width = 578.268090000000000000
           Height = 22.677180000000000000
           DataField = 'ent_first_name'
+          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -21
           Font.Name = 'Arial'
           Font.Style = []
+          Frame.Typ = []
           HAlign = haCenter
           Memo.UTF8W = (
             '[enterprise."ent_first_name"]')
@@ -2799,11 +2825,13 @@ inherited frm_request: Tfrm_request
           Top = 34.015770000000000000
           Width = 578.268090000000000000
           Height = 18.897650000000000000
+          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -15
           Font.Name = 'Arial'
           Font.Style = []
+          Frame.Typ = []
           HAlign = haCenter
           Memo.UTF8W = (
             
@@ -2817,11 +2845,13 @@ inherited frm_request: Tfrm_request
           Width = 578.268090000000000000
           Height = 18.897650000000000000
           DataField = 'ent_add_bus_address'
+          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
+          Frame.Typ = []
           HAlign = haCenter
           Memo.UTF8W = (
             '[enterprise."ent_add_bus_address"]')
@@ -2830,6 +2860,7 @@ inherited frm_request: Tfrm_request
       end
       object ReportSummary1: TfrxReportSummary
         FillType = ftBrush
+        Frame.Typ = []
         Height = 177.637910000000000000
         Top = 464.882190000000000000
         Width = 718.110700000000000000
@@ -2838,6 +2869,7 @@ inherited frm_request: Tfrm_request
           Top = 14.897650000000000000
           Width = 706.772110000000000000
           Height = 18.897650000000000000
+          Frame.Typ = []
           Memo.UTF8W = (
             
               'Esta requisi'#231#227'o ter'#225' vencimento ap'#243's [paramentros."prs_req_day_e' +
@@ -2867,6 +2899,7 @@ inherited frm_request: Tfrm_request
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
+          Frame.Typ = []
           HAlign = haCenter
           Memo.UTF8W = (
             'Mamaus / Amazonas - [FormatDateTime('#39'DDDDDD'#39',Date)]')
@@ -2889,6 +2922,7 @@ inherited frm_request: Tfrm_request
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
+          Frame.Typ = []
           HAlign = haCenter
           Memo.UTF8W = (
             '[Requisicao."_funcionario"]'
@@ -2900,6 +2934,7 @@ inherited frm_request: Tfrm_request
         FillType = ftBrush
         Frame.Color = clGreen
         Frame.DropShadow = True
+        Frame.Typ = []
         Frame.BottomLine.Width = 15.000000000000000000
         Height = 45.354360000000000000
         Top = 313.700990000000000000
@@ -2916,6 +2951,7 @@ inherited frm_request: Tfrm_request
           Font.Height = -12
           Font.Name = 'Arial'
           Font.Style = [fsBold]
+          Frame.Typ = []
           Memo.UTF8W = (
             'C'#243'digo')
           ParentFont = False
@@ -2930,6 +2966,7 @@ inherited frm_request: Tfrm_request
           Font.Height = -12
           Font.Name = 'Arial'
           Font.Style = [fsBold]
+          Frame.Typ = []
           Memo.UTF8W = (
             'Und.')
           ParentFont = False
@@ -2944,6 +2981,7 @@ inherited frm_request: Tfrm_request
           Font.Height = -12
           Font.Name = 'Arial'
           Font.Style = [fsBold]
+          Frame.Typ = []
           Memo.UTF8W = (
             'Quant.')
           ParentFont = False
@@ -2958,6 +2996,7 @@ inherited frm_request: Tfrm_request
           Font.Height = -12
           Font.Name = 'Arial'
           Font.Style = [fsBold]
+          Frame.Typ = []
           Memo.UTF8W = (
             'Nome')
           ParentFont = False
@@ -2972,6 +3011,7 @@ inherited frm_request: Tfrm_request
       end
       object DetailData1: TfrxDetailData
         FillType = ftBrush
+        Frame.Typ = []
         Height = 22.677180000000000000
         Top = 381.732530000000000000
         Width = 718.110700000000000000
@@ -2984,6 +3024,7 @@ inherited frm_request: Tfrm_request
           DataField = 'product_pro_id'
           DataSet = frx_db_iten
           DataSetName = 'Itens'
+          Frame.Typ = []
           Memo.UTF8W = (
             '[Itens."product_pro_id"]')
         end
@@ -2994,6 +3035,7 @@ inherited frm_request: Tfrm_request
           DataField = 'pro_name'
           DataSet = frx_db_iten
           DataSetName = 'Itens'
+          Frame.Typ = []
           Memo.UTF8W = (
             '[Itens."pro_name"]')
         end
@@ -3004,6 +3046,7 @@ inherited frm_request: Tfrm_request
           DataField = 'pru_initials'
           DataSet = frx_db_iten
           DataSetName = 'Itens'
+          Frame.Typ = []
           Memo.UTF8W = (
             '[Itens."pru_initials"]')
         end
@@ -3019,6 +3062,7 @@ inherited frm_request: Tfrm_request
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
+          Frame.Typ = []
           HAlign = haRight
           Memo.UTF8W = (
             '[Itens."poi_product_quant"]')
@@ -3027,6 +3071,7 @@ inherited frm_request: Tfrm_request
       end
       object PageHeader1: TfrxPageHeader
         FillType = ftBrush
+        Frame.Typ = []
         Height = 109.606370000000000000
         Top = 143.622140000000000000
         Width = 718.110700000000000000
@@ -3040,6 +3085,7 @@ inherited frm_request: Tfrm_request
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = [fsBold]
+          Frame.Typ = []
           Memo.UTF8W = (
             'Requerente')
           ParentFont = False
@@ -3049,6 +3095,7 @@ inherited frm_request: Tfrm_request
           Top = 26.456710000000000000
           Width = 714.331170000000000000
           Height = 71.811070000000000000
+          Frame.Typ = []
         end
         object Memo2: TfrxMemoView
           Left = 5.338590000000000000
@@ -3060,6 +3107,7 @@ inherited frm_request: Tfrm_request
           Font.Height = -12
           Font.Name = 'Arial'
           Font.Style = [fsBold]
+          Frame.Typ = []
           Memo.UTF8W = (
             'Estoque:')
           ParentFont = False
@@ -3072,6 +3120,7 @@ inherited frm_request: Tfrm_request
           DataField = '_solicitante'
           DataSet = frxDBDataset2
           DataSetName = 'Requisicao'
+          Frame.Typ = []
           Memo.UTF8W = (
             '[Requisicao."_solicitante"]')
         end
@@ -3085,6 +3134,7 @@ inherited frm_request: Tfrm_request
           Font.Height = -12
           Font.Name = 'Arial'
           Font.Style = [fsBold]
+          Frame.Typ = []
           Memo.UTF8W = (
             'Funcion'#225'rios:')
           ParentFont = False
@@ -3096,6 +3146,7 @@ inherited frm_request: Tfrm_request
           Height = 18.897650000000000000
           DataSet = frxDBDataset2
           DataSetName = 'Requisicao'
+          Frame.Typ = []
           Memo.UTF8W = (
             '[Requisicao."_funcionario"]')
         end
@@ -3109,6 +3160,7 @@ inherited frm_request: Tfrm_request
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = [fsBold]
+          Frame.Typ = []
           HAlign = haRight
           Memo.UTF8W = (
             

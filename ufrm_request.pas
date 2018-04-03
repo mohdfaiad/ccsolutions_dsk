@@ -134,6 +134,7 @@ type
       Sender: TcxCustomGridTableView; AItem: TcxCustomGridTableItem;
       var ADone: Boolean);
     procedure Action_saveExecute(Sender: TObject);
+    procedure Action_printExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -152,8 +153,25 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_request.Action_printExecute(Sender: TObject);
+begin
+  inherited;
+   if Application.MessageBox('Deseja imprimir o relatório selecionado','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
+   begin
+     frxReport_1.LoadFromFile('C:\ccsolutions_dsk\reports\request' +cxBarEditItem_1.ToString);
+     frxReport_1.ShowReport;
+   end;
+
+
+
+
+
+
+end;
+
 procedure Tfrm_request.Action_saveExecute(Sender: TObject);
 begin
+ cxGrid1.SetFocus;
 if qrystock_sto_id.AsInteger <= 0  then
  begin
    Application.MessageBox('Estoque soolicitante não foi informado, favor informar!','AVISO',MB_OK + MB_ICONWARNING);
@@ -287,6 +305,7 @@ with frm_dm.qry,sql do
    diaMaximoVenc:=FieldByName('prs_req_day_exp').AsInteger;
 
  end;
+
 end;
 
 procedure Tfrm_request.FormShow(Sender: TObject);

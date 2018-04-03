@@ -101,8 +101,6 @@ type
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     frxDBDataset2: TfrxDBDataset;
-    DBGrid1: TDBGrid;
-    dxLayoutItem5: TdxLayoutItem;
     qry_solicitante: TStringField;
     qry_funcionario: TStringField;
     frx_db_iten: TfrxDBDataset;
@@ -240,7 +238,7 @@ if Application.MessageBox('Deseja cancelar essa requisição?','REQUISIÇÃO',MB_YES
      qrypco_status.AsString:='C';
      qrypoc_status_reason.AsString:=motCancel;
      qry.Post;
-     FDSchemaAdapter1.ApplyUpdates(0);
+     FDSchemaAdapter_1.ApplyUpdates(0);
    end
    else
    Application.MessageBox('Motivo do cancelamento menor que 20 caracteres!','REQUISIÇÃO',MB_OK + MB_ICONWARNING);
@@ -259,7 +257,7 @@ if Application.MessageBox('Deseja liberar essa requisição?','REQUISIÇÃO',MB_YESN
   qrypco_status.AsString:='L';
   qrypoc_status_reason.AsString:=motLib;
   qry.Post;
-  FDSchemaAdapter1.ApplyUpdates(0);
+  FDSchemaAdapter_1.ApplyUpdates(0);
  end;
 end;
 
@@ -279,8 +277,7 @@ end;
 procedure Tfrm_request.FormCreate(Sender: TObject);
 begin
   inherited;
-cxBarEditItem_1
-FDSchemaAdapter1.AfterApplyUpdate:=limpaCache;
+FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
 with frm_dm.qry,sql do
  begin
    close;

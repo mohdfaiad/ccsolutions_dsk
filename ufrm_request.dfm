@@ -2,14 +2,12 @@ inherited frm_request: Tfrm_request
   Caption = 'Manuten'#231#227'o: Pedido de Requisi'#231#227'o '
   ClientWidth = 877
   OnClose = FormClose
-  OnCreate = FormCreate
   OnShow = FormShow
   ExplicitWidth = 893
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Width = 877
-    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 877
     ClientRectRight = 871
     inherited cxTabSheet_1: TcxTabSheet
@@ -203,19 +201,13 @@ inherited frm_request: Tfrm_request
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 869
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         Width = 863
         ExplicitWidth = 863
         ClientRectRight = 857
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
           ExplicitWidth = 855
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 855
             ExplicitWidth = 855
@@ -359,20 +351,6 @@ inherited frm_request: Tfrm_request
               TabOrder = 4
               Width = 44
             end
-            object DBGrid1: TDBGrid [7]
-              Left = 72
-              Top = 402
-              Width = 615
-              Height = 116
-              BorderStyle = bsNone
-              DataSource = frm_dm.ds_enterprise
-              TabOrder = 7
-              TitleFont.Charset = DEFAULT_CHARSET
-              TitleFont.Color = clWindowText
-              TitleFont.Height = -11
-              TitleFont.Name = 'Tahoma'
-              TitleFont.Style = []
-            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               CaptionOptions.Visible = False
               ItemIndex = 2
@@ -462,14 +440,6 @@ inherited frm_request: Tfrm_request
               Enabled = False
               Index = 2
             end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutGroup3
-              CaptionOptions.Text = 'DBGrid1'
-              Control = DBGrid1
-              ControlOptions.OriginalHeight = 116
-              ControlOptions.OriginalWidth = 320
-              Index = 1
-            end
           end
         end
       end
@@ -518,7 +488,6 @@ inherited frm_request: Tfrm_request
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     CachedUpdates = True
@@ -527,6 +496,7 @@ inherited frm_request: Tfrm_request
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from purchase_order'
       'where pco_type = '#39'R'#39)
@@ -614,7 +584,6 @@ inherited frm_request: Tfrm_request
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   object qry_employee: TFDQuery [13]
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -639,7 +608,6 @@ inherited frm_request: Tfrm_request
     Top = 112
   end
   object qry_purchase_order_iten: TFDQuery [16]
-    Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
     AfterEdit = qry_purchase_order_itenAfterEdit
     CachedUpdates = True
@@ -648,7 +616,7 @@ inherited frm_request: Tfrm_request
     MasterFields = 'pco_id'
     DetailFields = 'purchase_order_pco_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter1
+    SchemaAdapter = FDSchemaAdapter_1
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
@@ -665,7 +633,7 @@ inherited frm_request: Tfrm_request
         Name = 'PCO_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = 3
+        Value = Null
       end>
     object qry_purchase_order_itenpoi_id: TFDAutoIncField
       FieldName = 'poi_id'
@@ -734,19 +702,29 @@ inherited frm_request: Tfrm_request
     Left = 648
     Top = 304
   end
-  inherited FDSchemaAdapter1: TFDSchemaAdapter
+  inherited FDSchemaAdapter_1: TFDSchemaAdapter
     Left = 290
     Top = 99
   end
-  inherited frxReport1: TfrxReport
+  object frxReport1: TfrxReport
+    Version = '5.6.1'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43186.390207372700000000
     ReportOptions.LastChange = 43187.459834282410000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
     Left = 154
     Top = 99
     Datasets = <
       item
-        DataSet = frm_dm.frx_db_enterprise
-        DataSetName = 'enterprise'
       end
       item
         DataSet = frx_db_iten
@@ -2806,8 +2784,6 @@ inherited frm_request: Tfrm_request
           Width = 578.268090000000000000
           Height = 22.677180000000000000
           DataField = 'ent_first_name'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -21
@@ -2823,8 +2799,6 @@ inherited frm_request: Tfrm_request
           Top = 34.015770000000000000
           Width = 578.268090000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -15
@@ -2843,8 +2817,6 @@ inherited frm_request: Tfrm_request
           Width = 578.268090000000000000
           Height = 18.897650000000000000
           DataField = 'ent_add_bus_address'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -3148,7 +3120,6 @@ inherited frm_request: Tfrm_request
     end
   end
   object qry_stock: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -3198,7 +3169,6 @@ inherited frm_request: Tfrm_request
     Top = 194
   end
   object qry_parameter_stock: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from parameter_stock')

@@ -163,19 +163,19 @@ end;
 
 procedure Tfrm_form_default.Action_cancelUpdate(Sender: TObject);
 begin
-  if ds.State in [dsInsert, dsEdit] then
+  if ds.State in [dsBrowse] then
   begin
-    Action_first.Enabled := False;
-    Action_prior.Enabled := False;
-    Action_next.Enabled := False;
-    Action_last.Enabled := False;
-    Action_insert.Enabled := False;
-    Action_edit.Enabled := False;
-    Action_save.Enabled := True;
-    Action_cancel.Enabled := True;
-    Action_delete.Enabled := False;
-    Action_refresh.Enabled := False;
-    Action_close.Enabled := False;
+    Action_first.Enabled := True;
+    Action_prior.Enabled := True;
+    Action_next.Enabled := True;
+    Action_last.Enabled := True;
+    Action_insert.Enabled := True;
+    Action_edit.Enabled := True;
+    Action_save.Enabled := False;
+    Action_cancel.Enabled := False;
+    Action_delete.Enabled := True;
+    Action_refresh.Enabled := True;
+    Action_close.Enabled := True;
   end;
 end;
 

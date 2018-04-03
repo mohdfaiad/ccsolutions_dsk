@@ -190,8 +190,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 5
-      ExplicitTop = 31
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
@@ -437,7 +437,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
@@ -510,8 +509,11 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
+  inherited FDSchemaAdapter_1: TFDSchemaAdapter
+    Left = 304
+    Top = 64
+  end
   object qry_purchase_order_iten: TFDQuery
-    Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
     AfterEdit = qry_purchase_order_itenAfterEdit
     CachedUpdates = True
@@ -520,7 +522,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
     MasterFields = 'pco_id'
     DetailFields = 'purchase_order_pco_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter1
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
@@ -574,7 +575,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Top = 96
   end
   object qry_product: TFDQuery
-    Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -592,7 +592,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Top = 160
   end
   object qry_employee: TFDQuery
-    Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin

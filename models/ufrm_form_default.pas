@@ -34,7 +34,7 @@ uses
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, ACBrBase, ACBrEnterTab,
   QExport4Dialog, dxBarExtItems, cxShellComboBox, cxBarEditItem, frxDesgn,
-  QImport3Wizard;
+  QImport3Wizard, frxClass;
 
 type
   Tfrm_form_default = class(TForm)
@@ -119,6 +119,7 @@ type
     Action_import: TAction;
     dxBarButton_import: TdxBarButton;
     FDSchemaAdapter_1: TFDSchemaAdapter;
+    frxReport_1: TfrxReport;
     procedure cxGrid_1DBTableView1DblClick(Sender: TObject);
     procedure Action_insertUpdate(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
@@ -158,6 +159,7 @@ begin
     MB_DEFBUTTON2) = IDYES then
   begin
     ds.DataSet.Cancel;
+    cxTabSheet_1.Show;
   end;
 end;
 
@@ -270,6 +272,8 @@ begin
     ds.DataSet.Post;
     if qry.CachedUpdates then
       FDSchemaAdapter_1.ApplyUpdates(0);
+      Application.MessageBox('Registros salvos com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
+      cxTabSheet_1.Show;
   end;
 end;
 
@@ -298,6 +302,10 @@ for I := 0 to Self.ComponentCount -1 do
     TFDQuery(Self.Components[i]).Open;
    end;
  cxPageControl_1.ActivePageIndex:=0;
+
+  cxTabSheet_1.TabVisible:=False;
+  cxTabSheet_2.TabVisible:=False;
+  cxTabSheet_1.Show;
 end;
 
 end.

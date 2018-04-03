@@ -1289,7 +1289,7 @@ object frm_form_default: Tfrm_form_default
       end>
   end
   object dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
-    Left = 488
+    Left = 480
     Top = 48
     object dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
     end
@@ -1300,7 +1300,7 @@ object frm_form_default: Tfrm_form_default
   end
   object ACBrEnterTab_1: TACBrEnterTab
     EnterAsTab = True
-    Left = 456
+    Left = 448
     Top = 48
   end
   object QExport4Dialog_1: TQExport4Dialog
@@ -1482,7 +1482,7 @@ object frm_form_default: Tfrm_form_default
     DocxOptions.FooterStyle.Font.Name = 'Calibri'
     DocxOptions.FooterStyle.Font.Style = []
     AccessOptions.TableName = 'EXPORT_TABLE'
-    Left = 424
+    Left = 408
     Top = 48
   end
   object QImport3Wizard_1: TQImport3Wizard
@@ -1505,11 +1505,32 @@ object frm_form_default: Tfrm_form_default
     ErrorLog = True
     ErrorLogFileName = 'error.log'
     AddType = qatInsert
-    Left = 392
+    Left = 384
     Top = 48
   end
   object FDSchemaAdapter_1: TFDSchemaAdapter
-    Left = 360
+    Left = 344
     Top = 48
+  end
+  object frxReport_1: TfrxReport
+    Version = '6.0.4'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Padr'#227'o'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 43193.605400104170000000
+    ReportOptions.LastChange = 43193.605400104170000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 439
+    Top = 146
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
 end

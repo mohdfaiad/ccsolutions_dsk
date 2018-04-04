@@ -15,7 +15,7 @@ object frm_dm: Tfrm_dm
   end
   object wait_cursor: TFDGUIxWaitCursor
     Provider = 'Forms'
-    Left = 136
+    Left = 128
     Top = 72
   end
   object manCCS: TFDManager
@@ -25,8 +25,8 @@ object frm_dm: Tfrm_dm
     FormatOptions.OwnMapRules = True
     FormatOptions.MapRules = <>
     Active = True
-    Left = 136
-    Top = 16
+    Left = 128
+    Top = 8
   end
   object qry_signin: TFDQuery
     Active = True

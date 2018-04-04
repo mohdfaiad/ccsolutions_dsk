@@ -1,8 +1,8 @@
 object frm_dm: Tfrm_dm
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Height = 192
-  Width = 215
+  Height = 254
+  Width = 284
   object connCCS: TFDConnection
     Params.Strings = (
       'ConnectionDef=ccs_connection')
@@ -46,19 +46,19 @@ object frm_dm: Tfrm_dm
         Name = 'CONTRACT'
         DataType = ftInteger
         ParamType = ptInput
-        Value = Null
+        Value = 1
       end
       item
         Name = 'USERNAME'
         DataType = ftString
         ParamType = ptInput
-        Value = Null
+        Value = 'elizeusouza'
       end
       item
         Name = 'PASSWORD'
         DataType = ftString
         ParamType = ptInput
-        Value = Null
+        Value = '123'
       end>
     object qry_signinctr_id: TFDAutoIncField
       FieldName = 'ctr_id'
@@ -91,5 +91,218 @@ object frm_dm: Tfrm_dm
     VendorLib = 'C:\ccsolutions_dsk\bin\libmysql.dll'
     Left = 40
     Top = 72
+  end
+  object qry_enterprise: TFDQuery
+    Active = True
+    IndexFieldNames = 'contract_ctr_id'
+    MasterSource = ds_signin
+    MasterFields = 'ctr_id'
+    Connection = connCCS
+    SQL.Strings = (
+      'select * from enterprise'
+      'where contract_ctr_id =:ctr_id')
+    Left = 44
+    Top = 190
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftAutoInc
+        ParamType = ptInput
+        Value = 1
+      end>
+    object qry_enterpriseent_id: TFDAutoIncField
+      FieldName = 'ent_id'
+      Origin = 'ent_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object qry_enterprisecontract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
+    end
+    object qry_enterpriseent_type: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_type'
+      Origin = 'ent_type'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_enterpriseent_first_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_first_name'
+      Origin = 'ent_first_name'
+      Size = 50
+    end
+    object qry_enterpriseent_last_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_last_name'
+      Origin = 'ent_last_name'
+      Size = 50
+    end
+    object qry_enterpriseent_email: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_email'
+      Origin = 'ent_email'
+      Size = 65
+    end
+    object qry_enterpriseent_cnpj: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_cnpj'
+      Origin = 'ent_cnpj'
+      Size = 25
+    end
+    object qry_enterpriseent_ie: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_ie'
+      Origin = 'ent_ie'
+      Size = 25
+    end
+    object qry_enterpriseent_im: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_im'
+      Origin = 'ent_im'
+      Size = 25
+    end
+    object qry_enterpriseent_suframa: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_suframa'
+      Origin = 'ent_suframa'
+      Size = 25
+    end
+    object qry_enterpriseent_add_bus_zipcode: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_zipcode'
+      Origin = 'ent_add_bus_zipcode'
+      Size = 9
+    end
+    object qry_enterpriseent_add_bus_address: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_address'
+      Origin = 'ent_add_bus_address'
+      Size = 50
+    end
+    object qry_enterpriseent_add_bus_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_number'
+      Origin = 'ent_add_bus_number'
+      Size = 5
+    end
+    object qry_enterpriseent_add_bus_street: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_street'
+      Origin = 'ent_add_bus_street'
+      Size = 45
+    end
+    object qry_enterpriseent_add_bus_complement: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_complement'
+      Origin = 'ent_add_bus_complement'
+      Size = 50
+    end
+    object qry_enterpriseent_add_bus_city: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_city'
+      Origin = 'ent_add_bus_city'
+      Size = 35
+    end
+    object qry_enterpriseent_add_bus_state: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_state'
+      Origin = 'ent_add_bus_state'
+      FixedChar = True
+      Size = 3
+    end
+    object qry_enterpriseent_add_bus_country: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_country'
+      Origin = 'ent_add_bus_country'
+      Size = 25
+    end
+    object qry_enterpriseent_phone1: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_phone1'
+      Origin = 'ent_phone1'
+      Size = 15
+    end
+    object qry_enterpriseent_phone2: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_phone2'
+      Origin = 'ent_phone2'
+      Size = 15
+    end
+    object qry_enterpriseent_phone3: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_phone3'
+      Origin = 'ent_phone3'
+      Size = 15
+    end
+    object qry_enterpriseent_phone4: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_phone4'
+      Origin = 'ent_phone4'
+      Size = 15
+    end
+    object qry_enterpriseent_contact: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_contact'
+      Origin = 'ent_contact'
+      Size = 25
+    end
+    object qry_enterpriseent_dt_open: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_dt_open'
+      Origin = 'ent_dt_open'
+    end
+    object qry_enterpriseent_image: TBlobField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_image'
+      Origin = 'ent_image'
+    end
+    object qry_enterpriseent_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_dt_registration'
+      Origin = 'ent_dt_registration'
+    end
+  end
+  object ds_enterprise: TDataSource
+    DataSet = qry_enterprise
+    Left = 144
+    Top = 184
+  end
+  object frx_db_enterprise: TfrxDBDataset
+    UserName = 'enterprise'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'ent_id=ent_id'
+      'contract_ctr_id=contract_ctr_id'
+      'ent_type=ent_type'
+      'ent_first_name=ent_first_name'
+      'ent_last_name=ent_last_name'
+      'ent_email=ent_email'
+      'ent_cnpj=ent_cnpj'
+      'ent_ie=ent_ie'
+      'ent_im=ent_im'
+      'ent_suframa=ent_suframa'
+      'ent_add_bus_zipcode=ent_add_bus_zipcode'
+      'ent_add_bus_address=ent_add_bus_address'
+      'ent_add_bus_number=ent_add_bus_number'
+      'ent_add_bus_street=ent_add_bus_street'
+      'ent_add_bus_complement=ent_add_bus_complement'
+      'ent_add_bus_city=ent_add_bus_city'
+      'ent_add_bus_state=ent_add_bus_state'
+      'ent_add_bus_country=ent_add_bus_country'
+      'ent_phone1=ent_phone1'
+      'ent_phone2=ent_phone2'
+      'ent_phone3=ent_phone3'
+      'ent_phone4=ent_phone4'
+      'ent_contact=ent_contact'
+      'ent_dt_open=ent_dt_open'
+      'ent_image=ent_image'
+      'ent_dt_registration=ent_dt_registration')
+    DataSet = qry_enterprise
+    BCDToCurrency = False
+    Left = 216
+    Top = 184
   end
 end

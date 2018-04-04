@@ -9,7 +9,7 @@ uses
   FireDAC.Phys.MSSQLDef, FireDAC.Phys.ODBCBase, FireDAC.Phys.MSSQL,
   FireDAC.Comp.UI, Data.DB, FireDAC.Comp.Client, FireDAC.Stan.Param,
   FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
-  FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef;
+  FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, frxClass, frxDBSet;
 
 type
   Tfrm_dm = class(TDataModule)
@@ -23,6 +23,35 @@ type
     qry_signinctr_usr_username: TStringField;
     qry_signinctr_usr_password: TStringField;
     mysql_driver: TFDPhysMySQLDriverLink;
+    qry_enterprise: TFDQuery;
+    qry_enterpriseent_id: TFDAutoIncField;
+    qry_enterprisecontract_ctr_id: TIntegerField;
+    qry_enterpriseent_type: TStringField;
+    qry_enterpriseent_first_name: TStringField;
+    qry_enterpriseent_last_name: TStringField;
+    qry_enterpriseent_email: TStringField;
+    qry_enterpriseent_cnpj: TStringField;
+    qry_enterpriseent_ie: TStringField;
+    qry_enterpriseent_im: TStringField;
+    qry_enterpriseent_suframa: TStringField;
+    qry_enterpriseent_add_bus_zipcode: TStringField;
+    qry_enterpriseent_add_bus_address: TStringField;
+    qry_enterpriseent_add_bus_number: TStringField;
+    qry_enterpriseent_add_bus_street: TStringField;
+    qry_enterpriseent_add_bus_complement: TStringField;
+    qry_enterpriseent_add_bus_city: TStringField;
+    qry_enterpriseent_add_bus_state: TStringField;
+    qry_enterpriseent_add_bus_country: TStringField;
+    qry_enterpriseent_phone1: TStringField;
+    qry_enterpriseent_phone2: TStringField;
+    qry_enterpriseent_phone3: TStringField;
+    qry_enterpriseent_phone4: TStringField;
+    qry_enterpriseent_contact: TStringField;
+    qry_enterpriseent_dt_open: TDateField;
+    qry_enterpriseent_image: TBlobField;
+    qry_enterpriseent_dt_registration: TDateTimeField;
+    ds_enterprise: TDataSource;
+    frx_db_enterprise: TfrxDBDataset;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

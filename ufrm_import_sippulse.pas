@@ -25,7 +25,7 @@ uses
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   QImport3Wizard, ACBrBase, ACBrEnterTab, System.ImageList, Vcl.ImgList,
   cxGraphics, System.Actions, Vcl.ActnList, dxBar, cxClasses, Vcl.Grids,
-  Vcl.DBGrids, frxClass, frxDBSet, frxDCtrl;
+  Vcl.DBGrids, frxClass, frxDBSet, frxDCtrl, frxChart;
 
 type
   Tfrm_import_sippulse = class(Tfrm_import_default)

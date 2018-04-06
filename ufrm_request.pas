@@ -41,8 +41,6 @@ type
     qrypco_id: TFDAutoIncField;
     qrycontract_ctr_id: TIntegerField;
     qryemployee_emp_id: TIntegerField;
-    qrypco_type: TStringField;
-    qrypco_status: TStringField;
     qrypoc_status_reason: TStringField;
     qrypco_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1pco_id: TcxGridDBColumn;
@@ -111,12 +109,13 @@ type
     qry_parameter_stockprs_id: TFDAutoIncField;
     qry_parameter_stockprs_req_day_exp: TIntegerField;
     qry_parameter_stockdt_registration: TDateTimeField;
+    qrypco_type: TStringField;
+    qrypco_status: TStringField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure dxCancelReqClick(Sender: TObject);
-    procedure qryBeforePost(DataSet: TDataSet);
     procedure cxGrid_1DBTableView1CustomDrawCell(Sender: TcxCustomGridTableView;
       ACanvas: TcxCanvas; AViewInfo: TcxGridTableDataCellViewInfo;
       var ADone: Boolean);
@@ -135,6 +134,8 @@ type
       var ADone: Boolean);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_printExecute(Sender: TObject);
+    procedure Action_insertExecute(Sender: TObject);
+    procedure qry_purchase_order_itenBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -153,19 +154,22 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_request.Action_insertExecute(Sender: TObject);
+begin
+  qry.Filtered:=False;
+  inherited;
+
+end;
+
 procedure Tfrm_request.Action_printExecute(Sender: TObject);
+
 begin
   inherited;
-   if Application.MessageBox('Deseja imprimir o relatório selecionado','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
+   if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
    begin
-     frxReport_1.LoadFromFile('C:\ccsolutions_dsk\reports\request' +cxBarEditItem_1.ToString);
+     frxReport_1.LoadFromFile('C:\ccsolutions_dsk\reports\request\' +cxBarEditItem_1.EditValue);
      frxReport_1.ShowReport;
    end;
-
-
-
-
-
 
 end;
 
@@ -179,6 +183,19 @@ if qrystock_sto_id.AsInteger <= 0  then
    cxDBLookupComboBox2.SetFocus;
    exit;
  end;
+  if (ds_purchase_order_iten.State in [dsEdit,dsInsert]) then
+   begin
+     ds_purchase_order_iten.DataSet.Post;
+   end;
+   cxTabSheet_1.Show;
+
+if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
+ begin
+   Application.MessageBox('Só é permitido alterar uma requisição que esteja em aberto!','Requisição', MB_ICONINFORMATION + MB_OK);
+   qry.CancelUpdates;
+   Exit;
+ end;
+
   inherited;
 
 end;
@@ -238,6 +255,7 @@ begin
    dxCancelReq.Enabled:=false
    else
     dxCancelReq.Enabled:=True;
+
 
   dxLibRequ.Enabled:=qrypco_status.AsString = 'A';
 end;
@@ -334,25 +352,25 @@ end;
 procedure Tfrm_request.lbCanceladoClick(Sender: TObject);
 begin
   inherited;
- filter('C');
+  filter('C');
 end;
 
 procedure Tfrm_request.lbFechadoClick(Sender: TObject);
 begin
   inherited;
-filter('F');
+  filter('F');
 end;
 
 procedure Tfrm_request.lbLiberadoClick(Sender: TObject);
 begin
   inherited;
-filter('L');
+  filter('L');
 end;
 
 procedure Tfrm_request.lbTodosClick(Sender: TObject);
 begin
   inherited;
-qry.Filtered:=False;
+  qry.Filtered:=False;
 end;
 
 procedure Tfrm_request.limpaCache(Sender: TObject);
@@ -369,17 +387,6 @@ qrypco_dt_registration.Value:=now;
 qrypco_type.AsString:='R';
 qry.Post;
 qry.Edit;
-end;
-
-procedure Tfrm_request.qryBeforePost(DataSet: TDataSet);
-begin
-  inherited;
-if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
- begin
-   Application.MessageBox('Só é permitido alterar uma requisição que esteja em aberto!','Requisição', MB_ICONINFORMATION + MB_OK);
-   qry.CancelUpdates;
-   Exit;
- end;
 end;
 
 procedure Tfrm_request.qry_purchase_order_itenAfterEdit(DataSet: TDataSet);
@@ -403,6 +410,20 @@ if not (qry.State in [dsInsert,dsEdit]) then
  end;
 
 qry_purchase_order_itenpoi_dt_registration.Value:=Now;
+end;
+
+procedure Tfrm_request.qry_purchase_order_itenBeforePost(DataSet: TDataSet);
+begin
+
+  if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
+   begin
+    Application.MessageBox('Não é permitido alterar a quantidade do produto de requisições liberadas!','Requisição', MB_ICONINFORMATION + MB_OK);
+    qry_purchase_order_iten.CancelUpdates;
+    Exit;
+   end;
+
+ inherited;
+
 end;
 
 end.

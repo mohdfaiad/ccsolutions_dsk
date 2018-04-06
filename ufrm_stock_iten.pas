@@ -34,7 +34,7 @@ uses
   cxCalendar, cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
   cxGrid, cxPC, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons, cxLabel,
-  Vcl.Buttons, cxCurrencyEdit;
+  Vcl.Buttons, cxCurrencyEdit, frxClass;
 
 type
   Tfrm_stock_iten = class(Tfrm_form_default)

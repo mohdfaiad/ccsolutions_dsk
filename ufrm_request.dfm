@@ -3,19 +3,18 @@ inherited frm_request: Tfrm_request
   ClientWidth = 877
   OnClose = FormClose
   OnShow = FormShow
+  ExplicitTop = -60
   ExplicitWidth = 893
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Width = 877
-    Properties.ActivePage = cxTabSheet_1
+    Properties.ActivePage = cxTabSheet_2
+    ExplicitTop = 61
     ExplicitWidth = 877
     ClientRectRight = 871
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 869
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         Width = 863
         ExplicitWidth = 863
@@ -205,19 +204,13 @@ inherited frm_request: Tfrm_request
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 869
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         Width = 863
         ExplicitWidth = 863
         ClientRectRight = 857
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
           ExplicitWidth = 855
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 855
             ExplicitWidth = 855
@@ -252,6 +245,7 @@ inherited frm_request: Tfrm_request
                 Navigator.Buttons.Append.Enabled = False
                 Navigator.Buttons.Append.Visible = False
                 Navigator.Buttons.Delete.ImageIndex = 8
+                Navigator.Buttons.Delete.Visible = True
                 Navigator.Buttons.Edit.ImageIndex = 5
                 Navigator.Buttons.Post.ImageIndex = 6
                 Navigator.Buttons.Cancel.ImageIndex = 7
@@ -267,10 +261,12 @@ inherited frm_request: Tfrm_request
                 object cxGrid1DBTableView1poi_id: TcxGridDBColumn
                   Caption = 'C'#243'd. '
                   DataBinding.FieldName = 'poi_id'
+                  Options.Editing = False
                 end
                 object cxGrid1DBTableView1purchase_order_pco_id: TcxGridDBColumn
                   Caption = 'Requisi'#231#227'o'
                   DataBinding.FieldName = 'purchase_order_pco_id'
+                  Options.Editing = False
                   Width = 100
                 end
                 object cxGrid1DBTableView1product_pro_id: TcxGridDBColumn
@@ -498,13 +494,15 @@ inherited frm_request: Tfrm_request
   end
   inherited ds: TDataSource
     OnDataChange = dsDataChange
+    Left = 352
+    Top = 160
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
-    BeforePost = qryBeforePost
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -515,37 +513,26 @@ inherited frm_request: Tfrm_request
     SQL.Strings = (
       'select * from purchase_order'
       'where pco_type = '#39'R'#39)
-    Left = 400
-    Top = 104
+    Left = 488
+    Top = 120
     object qrypco_id: TFDAutoIncField
+      Alignment = taCenter
       FieldName = 'pco_id'
       Origin = 'pco_id'
       ProviderFlags = [pfInWhere, pfInKey]
       ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       FieldName = 'contract_ctr_id'
       Origin = 'contract_ctr_id'
     end
     object qryemployee_emp_id: TIntegerField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       FieldName = 'employee_emp_id'
       Origin = 'employee_emp_id'
-    end
-    object qrypco_type: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'pco_type'
-      Origin = 'pco_type'
-      FixedChar = True
-      Size = 1
-    end
-    object qrypco_status: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'pco_status'
-      Origin = 'pco_status'
-      FixedChar = True
-      Size = 1
     end
     object qrypoc_status_reason: TStringField
       AutoGenerateValue = arDefault
@@ -583,6 +570,22 @@ inherited frm_request: Tfrm_request
       Size = 100
       Lookup = True
     end
+    object qrypco_type: TStringField
+      Alignment = taCenter
+      AutoGenerateValue = arDefault
+      FieldName = 'pco_type'
+      Origin = 'pco_type'
+      FixedChar = True
+      Size = 1
+    end
+    object qrypco_status: TStringField
+      Alignment = taCenter
+      AutoGenerateValue = arDefault
+      FieldName = 'pco_status'
+      Origin = 'pco_status'
+      FixedChar = True
+      Size = 1
+    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -599,6 +602,7 @@ inherited frm_request: Tfrm_request
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   object qry_employee: TFDQuery [13]
+    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -614,17 +618,19 @@ inherited frm_request: Tfrm_request
   end
   object ds_employee: TDataSource [14]
     DataSet = qry_employee
-    Left = 504
-    Top = 160
+    Left = 528
+    Top = 152
   end
   object ds_stock: TDataSource [15]
     DataSet = qry_stock
-    Left = 720
-    Top = 112
+    Left = 712
+    Top = 144
   end
   object qry_purchase_order_iten: TFDQuery [16]
+    Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
     AfterEdit = qry_purchase_order_itenAfterEdit
+    BeforePost = qry_purchase_order_itenBeforePost
     CachedUpdates = True
     IndexFieldNames = 'purchase_order_pco_id'
     MasterSource = ds
@@ -641,22 +647,24 @@ inherited frm_request: Tfrm_request
       'inner join product on product_pro_id =  pro_id'#10
       'left join product_unit on product_unit_pru_id = pru_id'
       'where purchase_order_pco_id = :pco_id')
-    Left = 536
-    Top = 112
+    Left = 360
+    Top = 280
     ParamData = <
       item
         Name = 'PCO_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = Null
+        Value = 3
       end>
     object qry_purchase_order_itenpoi_id: TFDAutoIncField
+      Alignment = taCenter
       FieldName = 'poi_id'
       Origin = 'poi_id'
       ProviderFlags = [pfInWhere, pfInKey]
       ReadOnly = True
     end
     object qry_purchase_order_itenpurchase_order_pco_id: TIntegerField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       FieldName = 'purchase_order_pco_id'
       Origin = 'purchase_order_pco_id'
@@ -697,13 +705,13 @@ inherited frm_request: Tfrm_request
   end
   object ds_purchase_order_iten: TDataSource [17]
     DataSet = qry_purchase_order_iten
-    Left = 536
-    Top = 304
+    Left = 544
+    Top = 280
   end
   object ds_product: TDataSource [18]
     DataSet = qry_product
     Left = 712
-    Top = 288
+    Top = 280
   end
   object qry_product: TFDQuery [19]
     IndexFieldNames = 'contract_ctr_id'
@@ -715,11 +723,11 @@ inherited frm_request: Tfrm_request
       'select * from product'
       'order by pro_name')
     Left = 648
-    Top = 304
+    Top = 280
   end
   inherited FDSchemaAdapter_1: TFDSchemaAdapter
-    Left = 290
-    Top = 99
+    Left = 370
+    Top = 107
   end
   inherited frxReport_1: TfrxReport
     Datasets = <>
@@ -735,16 +743,17 @@ inherited frm_request: Tfrm_request
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43186.390207372700000000
-    ReportOptions.LastChange = 43187.459834282400000000
+    ReportOptions.LastChange = 43194.387885833300000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
       ''
       'end.')
-    Left = 154
-    Top = 99
+    Left = 138
+    Top = 155
     Datasets = <
       item
+        DataSet = frm_dm.frx_db_enterprise
         DataSetName = 'enterprise'
       end
       item
@@ -2808,6 +2817,7 @@ inherited frm_request: Tfrm_request
           Width = 578.268090000000000000
           Height = 22.677180000000000000
           DataField = 'ent_first_name'
+          DataSet = frm_dm.frx_db_enterprise
           DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -2825,6 +2835,7 @@ inherited frm_request: Tfrm_request
           Top = 34.015770000000000000
           Width = 578.268090000000000000
           Height = 18.897650000000000000
+          DataSet = frm_dm.frx_db_enterprise
           DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -2845,6 +2856,7 @@ inherited frm_request: Tfrm_request
           Width = 578.268090000000000000
           Height = 18.897650000000000000
           DataField = 'ent_add_bus_address'
+          DataSet = frm_dm.frx_db_enterprise
           DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -3172,6 +3184,7 @@ inherited frm_request: Tfrm_request
     end
   end
   object qry_stock: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -3182,8 +3195,8 @@ inherited frm_request: Tfrm_request
       'select sto_name,sto_id,contract_ctr_id from stock'
       'where sto_status = '#39'A'#39
       'order by sto_name')
-    Left = 656
-    Top = 120
+    Left = 632
+    Top = 144
   end
   object frxDBDataset2: TfrxDBDataset
     UserName = 'Requisicao'
@@ -3201,8 +3214,8 @@ inherited frm_request: Tfrm_request
       '_funcionario=_funcionario')
     DataSet = qry
     BCDToCurrency = False
-    Left = 72
-    Top = 112
+    Left = 136
+    Top = 208
   end
   object frx_db_iten: TfrxDBDataset
     UserName = 'Itens'
@@ -3217,15 +3230,16 @@ inherited frm_request: Tfrm_request
       'pru_initials=pru_initials')
     DataSet = qry_purchase_order_iten
     BCDToCurrency = False
-    Left = 95
-    Top = 194
+    Left = 135
+    Top = 266
   end
   object qry_parameter_stock: TFDQuery
+    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from parameter_stock')
-    Left = 279
-    Top = 418
+    Left = 231
+    Top = 186
     object qry_parameter_stockprs_id: TFDAutoIncField
       FieldName = 'prs_id'
       Origin = 'prs_id'
@@ -3252,7 +3266,7 @@ inherited frm_request: Tfrm_request
       'dt_registration=dt_registration')
     DataSet = qry_parameter_stock
     BCDToCurrency = False
-    Left = 159
-    Top = 434
+    Left = 167
+    Top = 402
   end
 end

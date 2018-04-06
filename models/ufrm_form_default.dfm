@@ -25,7 +25,7 @@ object frm_form_default: Tfrm_form_default
     Height = 506
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet_2
+    Properties.ActivePage = cxTabSheet_1
     Properties.CustomButtons.Buttons = <>
     Properties.HotImages = cxImageList_1
     Properties.Images = cxImageList_1
@@ -586,6 +586,7 @@ object frm_form_default: Tfrm_form_default
       Properties.Root.BrowseFolder = bfCustomPath
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports'
       Properties.ViewOptions = [scvoShowFiles, scvoShowZipFilesWithFolders]
+      InternalEditValue = nil
     end
     object dxBarButton_report_edit: TdxBarButton
       Action = Action_print_edit

@@ -1,15 +1,13 @@
 inherited frm_stock_iten: Tfrm_stock_iten
   Caption = 'Manuten'#231#227'o: Itens em Estoques'
   OnClose = FormClose
+  ExplicitTop = -36
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     OnPageChanging = cxPageControl_1PageChanging
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
@@ -36,16 +34,8 @@ inherited frm_stock_iten: Tfrm_stock_iten
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'sto_id'
@@ -57,7 +47,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
               Left = 17
               Top = 168
               Width = 728
-              Height = 244
+              Height = 225
               PopupMenu = PopupMenu1
               TabOrder = 3
               object cxGrid1DBTableView1: TcxGridDBTableView
@@ -130,7 +120,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               CaptionOptions.Visible = False
-              ItemIndex = 1
+              ItemIndex = 2
             end
             object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutControl_1Group_Root
@@ -138,7 +128,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
               SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
               SizeOptions.SizableHorz = True
               SizeOptions.SizableVert = True
-              SizeOptions.Height = 282
+              SizeOptions.Height = 254
               SizeOptions.Width = 742
               ButtonOptions.Buttons = <>
               Index = 2
@@ -146,7 +136,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
             object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutGroup3
               Control = cxGrid1
-              ControlOptions.OriginalHeight = 244
+              ControlOptions.OriginalHeight = 225
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
               Index = 0
@@ -181,6 +171,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
     SQL.Strings = (
       'select * from stock')
     object qrysto_id: TFDAutoIncField
+      Alignment = taCenter
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'sto_id'
       Origin = 'sto_id'
@@ -188,12 +179,14 @@ inherited frm_stock_iten: Tfrm_stock_iten
       ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Contrato ID'
       FieldName = 'contract_ctr_id'
       Origin = 'contract_ctr_id'
     end
     object qryenterprise_ent_id: TIntegerField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Empresa ID'
       FieldName = 'enterprise_ent_id'
@@ -207,6 +200,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
       Size = 50
     end
     object qrysto_status: TStringField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Status'
       FieldName = 'sto_status'
@@ -235,6 +229,13 @@ inherited frm_stock_iten: Tfrm_stock_iten
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
+  inherited frxReport_1: TfrxReport
+    Left = 391
+    Top = 186
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
   object qry_stock_iten: TFDQuery
     Active = True
     IndexFieldNames = 'stock_sto_id'
@@ -255,9 +256,10 @@ inherited frm_stock_iten: Tfrm_stock_iten
         Name = 'STO_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = 3
+        Value = 4
       end>
     object qry_stock_itenproduct_pro_id: TIntegerField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'product_pro_id'

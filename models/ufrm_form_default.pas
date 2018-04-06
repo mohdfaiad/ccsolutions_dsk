@@ -273,13 +273,13 @@ begin
     if qry.CachedUpdates then
       FDSchemaAdapter_1.ApplyUpdates(0);
       Application.MessageBox('Registros salvos com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
-      cxTabSheet_1.Show;
   end;
 end;
 
 procedure Tfrm_form_default.cxGrid_1DBTableView1DblClick(Sender: TObject);
 begin
   cxTabSheet_3.Show;
+  Action_edit.Execute;
 end;
 
 procedure Tfrm_form_default.dxLayoutControl_1DblClick(Sender: TObject);

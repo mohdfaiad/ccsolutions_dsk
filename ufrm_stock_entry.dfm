@@ -1,15 +1,17 @@
 inherited frm_stock_entry: Tfrm_stock_entry
   Caption = 'Manuten'#231#227'o: Entrada de Produtos'
+  ClientHeight = 447
   OnClose = FormClose
+  ExplicitHeight = 486
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Height = 392
+    Properties.ActivePage = cxTabSheet_2
+    ClientRectBottom = 386
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
+        Height = 352
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pde_id: TcxGridDBColumn
             DataBinding.FieldName = 'pde_id'
@@ -38,7 +40,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
             Width = 100
           end
           object cxGrid_1DBTableView1pde_dt_emission: TcxGridDBColumn
-            DataBinding.FieldName = 'pde_dt_emission'
+            DataBinding.FieldName = 'pde_invoice_dt_emission'
             Width = 100
           end
           object cxGrid_1DBTableView1pde_dt_registration: TcxGridDBColumn
@@ -49,17 +51,13 @@ inherited frm_stock_entry: Tfrm_stock_entry
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
+        Height = 352
+        Properties.ActivePage = cxTabSheet1
+        ClientRectBottom = 346
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
+            Height = 318
             inherited dbedt_id: TcxDBTextEdit
               Left = 84
               DataBinding.DataField = 'pde_id'
@@ -128,8 +126,9 @@ inherited frm_stock_entry: Tfrm_stock_entry
             object cxDBDateEdit1: TcxDBDateEdit [5]
               Left = 432
               Top = 184
-              DataBinding.DataField = 'pde_dt_emission'
+              DataBinding.DataField = 'pde_invoice_dt_emission'
               DataBinding.DataSource = ds
+              Properties.DateButtons = [btnClear]
               Style.HotTrack = False
               TabOrder = 7
               Width = 121
@@ -249,14 +248,16 @@ inherited frm_stock_entry: Tfrm_stock_entry
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Produtos'
+          ExplicitHeight = 432
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
             Width = 762
-            Height = 432
+            Height = 318
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            ExplicitHeight = 432
             object cxGrid1: TcxGrid
               Left = 17
               Top = 38
@@ -381,14 +382,15 @@ inherited frm_stock_entry: Tfrm_stock_entry
     FormatVersion = 1
   end
   inherited qry: TFDQuery [10]
-    Active = True
     AfterInsert = qryAfterInsert
     BeforeDelete = qryBeforeDelete
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from product_entry')
     Left = 592
@@ -418,6 +420,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
       Origin = 'purchase_order_pco_id'
     end
     object qrypde_dt_registration: TDateTimeField
+      Alignment = taRightJustify
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'pde_dt_registration'
@@ -448,6 +451,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
       Origin = 'pde_invoice_serie'
     end
     object qrypde_invoice_dt_emission: TDateField
+      Alignment = taRightJustify
       AutoGenerateValue = arDefault
       FieldName = 'pde_invoice_dt_emission'
       Origin = 'pde_invoice_dt_emission'
@@ -472,24 +476,27 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   object qry_product_entry: TFDQuery [12]
-    Active = True
     AfterInsert = qry_product_entryAfterInsert
+    CachedUpdates = True
     IndexFieldNames = 'product_entry_pde_id'
     MasterSource = ds
     MasterFields = 'pde_id'
     DetailFields = 'product_entry_pde_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from product_entry_itens'#10
       'where product_entry_pde_id = :pde_id')
-    Left = 455
-    Top = 98
+    Left = 383
+    Top = 242
     ParamData = <
       item
         Name = 'PDE_ID'
-        DataType = ftAutoInc
+        DataType = ftInteger
         ParamType = ptInput
-        Value = 10
+        Value = Null
       end>
     object qry_product_entrypei_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
@@ -586,6 +593,11 @@ inherited frm_stock_entry: Tfrm_stock_entry
     end
   end
   inherited cxGridPopupMenu_1: TcxGridPopupMenu [15]
+  end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
   object qry_purchase_order: TFDQuery
     Active = True

@@ -1,22 +1,19 @@
 inherited frm_stock_transfer: Tfrm_stock_transfer
   Caption = 'Manuten'#231#227'o: Transfer'#234'ncias'
-  ClientHeight = 569
+  ClientHeight = 552
   OnClose = FormClose
-  ExplicitHeight = 608
+  ExplicitHeight = 591
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Height = 514
+    Height = 497
     Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 514
-    ClientRectBottom = 508
+    ClientRectBottom = 491
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
       ExplicitHeight = 480
       inherited cxGrid_1: TcxGrid
-        Height = 474
+        Height = 457
         ExplicitHeight = 474
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prt_id: TcxGridDBColumn
@@ -63,21 +60,15 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
       ExplicitHeight = 480
       inherited cxPageControl_2: TcxPageControl
-        Height = 474
+        Height = 457
         ExplicitHeight = 474
-        ClientRectBottom = 468
+        ClientRectBottom = 451
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
           ExplicitHeight = 440
           inherited dxLayoutControl_1: TdxLayoutControl
-            Height = 440
+            Height = 423
             ExplicitHeight = 440
             inherited dbedt_id: TcxDBTextEdit
               Left = 73
@@ -93,7 +84,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               Left = 17
               Top = 222
               Width = 728
-              Height = 198
+              Height = 179
               TabOrder = 10
               object cxGrid1DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.ConfirmDelete = True
@@ -120,6 +111,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
                 DataController.Summary.DefaultGroupSummaryItems = <>
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
+                OptionsView.NoDataToDisplayInfoText = '<Nenhum dado a ser exibido>'
                 object cxGrid1DBTableView1pti_id: TcxGridDBColumn
                   DataBinding.FieldName = 'pti_id'
                   Options.Editing = False
@@ -290,7 +282,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               Width = 121
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
+              ItemIndex = 2
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahClient
@@ -303,7 +295,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
               SizeOptions.SizableHorz = True
               SizeOptions.SizableVert = True
-              SizeOptions.Height = 236
+              SizeOptions.Height = 218
               SizeOptions.Width = 742
               ButtonOptions.Buttons = <>
               Index = 2
@@ -311,7 +303,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup3
               Control = cxGrid1
-              ControlOptions.OriginalHeight = 198
+              ControlOptions.OriginalHeight = 179
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
               Index = 0
@@ -461,9 +453,11 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from product_transfer')
     object qryprt_id: TFDAutoIncField
+      Alignment = taCenter
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'prt_id'
       Origin = 'prt_id'
@@ -471,42 +465,49 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Contrato ID'
       FieldName = 'contract_ctr_id'
       Origin = 'contract_ctr_id'
     end
     object qryemployee_emp_id_request: TIntegerField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Solicitante'
       FieldName = 'employee_emp_id_request'
       Origin = 'employee_emp_id_request'
     end
     object qryemployee_emp_id_agent: TIntegerField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Respons'#225'vel'
       FieldName = 'employee_emp_id_agent'
       Origin = 'employee_emp_id_agent'
     end
     object qryemployee_emp_id_lecturer: TIntegerField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Conferente'
       FieldName = 'employee_emp_id_lecturer'
       Origin = 'employee_emp_id_lecturer'
     end
     object qrystock_sto_id_exit: TIntegerField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Est. Sa'#237'da'
       FieldName = 'stock_sto_id_exit'
       Origin = 'stock_sto_id_exit'
     end
     object qrystock_sto_id_entrance: TIntegerField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Est. Entrada'
       FieldName = 'stock_sto_id_entrance'
       Origin = 'stock_sto_id_entrance'
     end
     object qryprt_status: TStringField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Status'
       FieldName = 'prt_status'
@@ -548,8 +549,16 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
+  inherited FDSchemaAdapter_1: TFDSchemaAdapter
+    Left = 304
+  end
+  inherited frxReport_1: TfrxReport
+    Left = 463
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
   object qry_product_transfer_iten: TFDQuery
-    Active = True
     AfterInsert = qry_product_transfer_itenAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'product_transfer_prt_id'
@@ -557,20 +566,20 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     MasterFields = 'prt_id'
     DetailFields = 'product_transfer_prt_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter1
+    SchemaAdapter = FDSchemaAdapter_1
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from product_transfer_iten'
       'where product_transfer_prt_id = :prt_id')
-    Left = 463
-    Top = 242
+    Left = 455
+    Top = 290
     ParamData = <
       item
         Name = 'PRT_ID'
-        DataType = ftAutoInc
+        DataType = ftInteger
         ParamType = ptInput
-        Value = 1
+        Value = Null
       end>
     object qry_product_transfer_itenpti_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
@@ -616,7 +625,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     SQL.Strings = (
       'select * from stock_iten'
       'where stock_sto_id = :stock')
-    Left = 415
+    Left = 351
     Top = 130
     ParamData = <
       item
@@ -664,7 +673,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     end
   end
   object qry_product: TFDQuery
-    Active = True
     IndexFieldNames = 'stock_sto_id'
     MasterSource = ds
     MasterFields = 'stock_sto_id_exit'
@@ -717,7 +725,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object ds_product: TDataSource
     DataSet = qry_product
-    Left = 656
+    Left = 648
     Top = 144
   end
   object qry_stock_exit: TFDQuery
@@ -737,7 +745,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         Name = 'CTR_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = Null
+        Value = 1
       end>
     object qry_stock_exitsto_id: TFDAutoIncField
       FieldName = 'sto_id'
@@ -785,17 +793,18 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Top = 104
   end
   object qry_purchase_order: TFDQuery
-    Active = True
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from purchase_order'
       '')
-    Left = 583
-    Top = 186
+    Left = 303
+    Top = 418
     object qry_purchase_orderpco_id: TFDAutoIncField
       FieldName = 'pco_id'
       Origin = 'pco_id'
@@ -837,5 +846,50 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       FieldName = 'pco_dt_registration'
       Origin = 'pco_dt_registration'
     end
+  end
+  object qry_purchase_order_iten: TFDQuery
+    Active = True
+    CachedUpdates = True
+    IndexFieldNames = 'purchase_order_pco_id'
+    MasterFields = 'pco_id'
+    Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
+    SQL.Strings = (
+      'select * from purchase_order_iten'
+      'where purchase_order_pco_id = :pco_id')
+    Left = 416
+    Top = 457
+    ParamData = <
+      item
+        Name = 'PCO_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qry_purchase_order_itenpoi_id: TFDAutoIncField
+      FieldName = 'poi_id'
+    end
+    object qry_purchase_order_itenpurchase_order_pco_id: TIntegerField
+      FieldName = 'purchase_order_pco_id'
+    end
+    object qry_purchase_order_itenproduct_pro_id: TIntegerField
+      FieldName = 'product_pro_id'
+    end
+    object qry_purchase_order_itenpoi_product_quant: TBCDField
+      FieldName = 'poi_product_quant'
+      Precision = 12
+    end
+    object qry_purchase_order_itenpoi_product_quant_served: TBCDField
+      FieldName = 'poi_product_quant_served'
+      Precision = 12
+    end
+    object qry_purchase_order_itenpoi_dt_registration: TDateTimeField
+      FieldName = 'poi_dt_registration'
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = qry_purchase_order_iten
+    Left = 544
+    Top = 448
   end
 end

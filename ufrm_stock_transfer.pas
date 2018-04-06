@@ -34,7 +34,7 @@ uses
   cxBarEditItem, cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit,
   cxCalendar, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGrid, cxPC, cxDBLookupComboBox, cxLookupEdit, cxDBLookupEdit, Vcl.Grids,
-  Vcl.DBGrids, cxCurrencyEdit, cxButtonEdit;
+  Vcl.DBGrids, cxCurrencyEdit, cxButtonEdit, frxClass;
 
 type
   Tfrm_stock_transfer = class(Tfrm_form_default)
@@ -126,6 +126,14 @@ type
     dxLayoutItem10: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
+    qry_purchase_order_iten: TFDQuery;
+    qry_purchase_order_itenpoi_id: TFDAutoIncField;
+    qry_purchase_order_itenpurchase_order_pco_id: TIntegerField;
+    qry_purchase_order_itenproduct_pro_id: TIntegerField;
+    qry_purchase_order_itenpoi_product_quant: TBCDField;
+    qry_purchase_order_itenpoi_product_quant_served: TBCDField;
+    qry_purchase_order_itenpoi_dt_registration: TDateTimeField;
+    DataSource1: TDataSource;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure ConfirmarTransfernciaSaida1Click(Sender: TObject);
@@ -136,11 +144,14 @@ type
     procedure cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
-  procedure limpaCache(Sender:TObject);
+
   public
     { Public declarations }
+   procedure limpaCache(Sender:TObject);
   end;
 
 var
@@ -151,6 +162,47 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_stock_transfer.Action_saveExecute(Sender: TObject);
+var
+fecha:Boolean;
+begin
+ fecha:=True;
+  qry_product_transfer_iten.First;
+  while not qry_product_transfer_iten.Eof do
+   begin
+      qry_purchase_order_iten.Locate('product_pro_id',
+      qry_product_transfer_itenproduct_pro_id.AsInteger);
+      qry_purchase_order_iten.Edit;
+      qry_purchase_order_itenpoi_product_quant_served.AsFloat :=
+      qry_purchase_order_itenpoi_product_quant_served.AsFloat +
+      qry_product_transfer_itenpti_product_quant.AsFloat;
+      qry_purchase_order_iten.Post;
+
+      qry_product_transfer_iten.Next;
+   end;
+
+ {  qry_purchase_order_iten.First;
+   while not qry_purchase_order_iten.Eof do
+    begin
+      if (qry_purchase_order_itenpoi_product_quant_served.AsFloat < qry_purchase_order_itenpoi_product_quant.AsFloat) then
+       begin
+         fecha := False;
+       end;
+       qry_purchase_order_iten.Next;
+    end;
+
+   if fecha then
+    begin
+      qry_purchase_order.Edit;
+      qry_purchase_orderpco_status.AsString := 'F';
+      qry_purchase_order.Post;
+    end;
+  }
+
+  inherited;
+  ds.DataSet.Edit;
+end;
 
 procedure Tfrm_stock_transfer.CancelarTransferncia1Click(Sender: TObject);
 begin
@@ -377,9 +429,9 @@ var
 numReq:string;
 begin
   inherited;
-  if Trim(cxDBButtonEdit1.Text) = '' then
+  if (Trim(cxDBButtonEdit1.Text)= '') then
   begin
-    Application.MessageBox('Informe uma requisiçao para importação!',
+    Application.MessageBox('Informe uma requisiçao, o estoque de saída e entrada para importação!',
       'Transferência', MB_OK + MB_ICONWARNING);
     cxDBButtonEdit1.SetFocus;
     Exit;
@@ -406,11 +458,12 @@ begin
     end;
 
     qry.Insert;
-    qryemployee_emp_id_request.AsInteger :=
-      qry_purchase_orderemployee_emp_id.AsInteger;
+    qryemployee_emp_id_request.AsInteger := qry_purchase_orderemployee_emp_id.AsInteger;
     qrypurchase_order_pco_id.AsString:=numReq;
     qry.Post;
-    with frm_dm.qry, sql do
+    qry.Edit;
+
+    with frm_dm.qry,sql do
     begin
       Close;
       Text := 'select * from purchase_order_iten ' +
@@ -423,24 +476,20 @@ begin
       while not Eof do
       begin
         qry_product_transfer_iten.Insert;
-        qry_product_transfer_itenproduct_pro_id.AsInteger :=
-          FieldByName('product_pro_id').AsInteger;
-        qry_product_transfer_itenpti_product_quant.AsFloat :=
-          FieldByName('poi_product_quant').AsFloat;
+        qry_product_transfer_itenproduct_pro_id.AsInteger := FieldByName('product_pro_id').AsInteger;
+        qry_product_transfer_itenpti_product_quant.AsFloat := FieldByName('poi_product_quant').AsFloat - FieldByName('poi_product_quant_served').AsFloat;
         qry_product_transfer_iten.Post;
         Next;
       end;
+
     end;
-    qry_product_transfer_iten.Refresh;
-    qry_purchase_order.Edit;
-    qry_purchase_orderpco_status.AsString := 'F';
-    qry_purchase_order.Post;
 
     Application.MessageBox('Importação realizada com sucesso!', 'Transferência',MB_OK + MB_ICONWARNING);
+
   end;
 end;
 
-procedure Tfrm_stock_transfer.FormClose(Sender: TObject;
+Procedure Tfrm_stock_transfer.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
@@ -448,10 +497,16 @@ begin
   frm_stock_transfer := NIl;
 end;
 
+procedure Tfrm_stock_transfer.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+end;
+
 procedure Tfrm_stock_transfer.limpaCache(Sender: TObject);
 begin
-qry.CommitUpdates();
-qry_product_transfer_iten.CommitUpdates();
+  qry.CommitUpdates();
+  qry_product_transfer_iten.CommitUpdates();
 end;
 
 procedure Tfrm_stock_transfer.PopupMenu_1Popup(Sender: TObject);

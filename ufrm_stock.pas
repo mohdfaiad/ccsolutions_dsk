@@ -33,7 +33,7 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  cxSpinEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox;
+  cxSpinEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, frxClass;
 
 type
   Tfrm_stock = class(Tfrm_form_default)
@@ -64,6 +64,7 @@ type
     cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -78,6 +79,12 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_stock.Action_saveExecute(Sender: TObject);
+begin
+   inherited;
+   cxTabSheet_1.Show;
+end;
 
 procedure Tfrm_stock.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

@@ -34,7 +34,8 @@ uses
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxSpinEdit, dxLayoutControlAdapters, Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids,
-  Vcl.DBGrids, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxCurrencyEdit;
+  Vcl.DBGrids, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxCurrencyEdit,
+  frxClass;
 
 type
   Tfrm_stock_entry = class(Tfrm_form_default)
@@ -111,10 +112,13 @@ type
     procedure qryBeforeDelete(DataSet: TDataSet);
     procedure Cancelarentrada1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure limpaCache(Sender:TObject);
   end;
 
 var
@@ -125,6 +129,18 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_stock_entry.Action_saveExecute(Sender: TObject);
+begin
+  if qry_product_entry.IsEmpty then
+   begin
+     Application.MessageBox('Não é possível salvar falta incluir os produtos dessa nota !','AVISO DO SISTEMA',MB_OK + MB_ICONQUESTION);
+      Exit;
+   end;
+
+  inherited;
+  ds.DataSet.Edit;
+end;
 
 procedure Tfrm_stock_entry.Cancelarentrada1Click(Sender: TObject);
 begin
@@ -215,6 +231,19 @@ begin
   frm_stock_entry := Nil;
 end;
 
+procedure Tfrm_stock_entry.FormCreate(Sender: TObject);
+begin
+  inherited;
+ FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+
+end;
+
+procedure Tfrm_stock_entry.limpaCache(Sender: TObject);
+begin
+qry.CommitUpdates();
+qry_product_entry .CommitUpdates();
+end;
+
 procedure Tfrm_stock_entry.PopupMenu_1Popup(Sender: TObject);
 begin
   inherited;
@@ -227,6 +256,10 @@ begin
   inherited;
   qrypde_dt_registration.Value := Now;
   qrypde_status.AsString := 'A';
+  qry.Post;
+  qry.Edit;
+
+
 end;
 
 procedure Tfrm_stock_entry.qryBeforeDelete(DataSet: TDataSet);

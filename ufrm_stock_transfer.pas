@@ -134,6 +134,7 @@ type
     qry_purchase_order_itenpoi_product_quant_served: TBCDField;
     qry_purchase_order_itenpoi_dt_registration: TDateTimeField;
     DataSource1: TDataSource;
+    DBGrid1: TDBGrid;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure ConfirmarTransfernciaSaida1Click(Sender: TObject);

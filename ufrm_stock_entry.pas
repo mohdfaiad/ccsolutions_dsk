@@ -105,6 +105,15 @@ type
     qrypde_invoice_dt_emission: TDateField;
     qrypde_document: TStringField;
     qryped_cost_delivery: TBCDField;
+    qry_purchase_orderpco_id: TFDAutoIncField;
+    qry_purchase_ordercontract_ctr_id: TIntegerField;
+    qry_purchase_orderemployee_emp_id: TIntegerField;
+    qry_purchase_orderstock_sto_id: TIntegerField;
+    qry_purchase_orderpco_type: TStringField;
+   qry_purchase_orderpco_status: TStringField;
+    qry_purchase_orderpoc_status_reason: TStringField;
+    qry_purchase_orderpco_dt_registration: TDateTimeField;
+    cxGrid_1DBTableView1pde_status: TcxGridDBColumn;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_product_entryAfterInsert(DataSet: TDataSet);
     procedure ConfirmaEntrada1Click(Sender: TObject);
@@ -114,6 +123,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure qryBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -139,7 +149,12 @@ begin
    end;
 
   inherited;
-  ds.DataSet.Edit;
+   qry_purchase_order.Edit;
+   qry_purchase_orderpco_status.AsString := 'E';
+   qry_purchase_order.Post;
+   qry_purchase_order.ApplyUpdates(0);
+
+   ds.DataSet.Edit;
 end;
 
 procedure Tfrm_stock_entry.Cancelarentrada1Click(Sender: TObject);
@@ -215,9 +230,12 @@ begin
         end;
         qry_product_entry.Next;
       end;
+
       qry.Edit;
       qrypde_status.AsString := 'E';
       qry.Post;
+      qry.ApplyUpdates(0);
+
       Application.MessageBox('Entrada confirmada com sucesso!', 'Entrada',MB_OK + MB_ICONINFORMATION);
     end;
   end;
@@ -240,8 +258,9 @@ end;
 
 procedure Tfrm_stock_entry.limpaCache(Sender: TObject);
 begin
-qry.CommitUpdates();
-qry_product_entry .CommitUpdates();
+    qry.CommitUpdates();
+    qry_product_entry .CommitUpdates();
+    qry_purchase_order.CommitUpdates();
 end;
 
 procedure Tfrm_stock_entry.PopupMenu_1Popup(Sender: TObject);
@@ -271,6 +290,16 @@ begin
       'Entrada', MB_OK + MB_ICONINFORMATION);
     exit;
   end;
+end;
+
+procedure Tfrm_stock_entry.qryBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+  if (ds_product_entry.State in [dsEdit,dsInsert]) then
+   begin
+     ds_product_entry.DataSet.Post;
+   end;
+
 end;
 
 procedure Tfrm_stock_entry.qry_product_entryAfterInsert(DataSet: TDataSet);

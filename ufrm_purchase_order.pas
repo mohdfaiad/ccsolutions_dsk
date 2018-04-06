@@ -34,7 +34,7 @@ uses
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxSpinEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxCurrencyEdit,
-  Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.StdCtrls, Vcl.ExtCtrls, frxClass;
 
 type
   Tfrm_purchase_order = class(Tfrm_form_default)
@@ -106,6 +106,8 @@ type
     procedure dxLiberarPedClick(Sender: TObject);
     procedure dsDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure qryBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   procedure filter(status:string);
@@ -122,6 +124,20 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_purchase_order.Action_saveExecute(Sender: TObject);
+begin
+  if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
+   begin
+     Application.MessageBox('Só é permitido alterar um pedido de compra que esteja em aberto!','PEDIDO DE COMPRA', MB_ICONINFORMATION + MB_OK);
+     qry.CancelUpdates;
+     qry_purchase_order_iten.CancelUpdates;
+     cxTabSheet_1.Show;
+     Exit;
+   end;
+  inherited;
+  cxTabSheet_1.Show;
+end;
 
 procedure Tfrm_purchase_order.cxGrid_1DBTableView1CustomDrawCell(
   Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
@@ -217,7 +233,7 @@ end;
 procedure Tfrm_purchase_order.FormCreate(Sender: TObject);
 begin
   inherited;
-FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
 end;
 
 procedure Tfrm_purchase_order.lbAbertoClick(Sender: TObject);
@@ -252,8 +268,8 @@ end;
 
 procedure Tfrm_purchase_order.limpaCache(Sender: TObject);
 begin
-qry.CommitUpdates();
-qry_purchase_order_iten.CommitUpdates();
+   qry.CommitUpdates();
+   qry_purchase_order_iten.CommitUpdates();
 end;
 
 procedure Tfrm_purchase_order.qryAfterInsert(DataSet: TDataSet);
@@ -261,10 +277,19 @@ begin
   inherited;
   qrypco_status.AsString:='A';
   qrypco_dt_registration.Value:=now;
-  qrypco_type.AsString:='R';
+  qrypco_type.AsString:='C';
   qry.Post;
   qry.Edit;
  end;
+
+procedure Tfrm_purchase_order.qryBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+   if (ds_purchase_order_iten.State in [dsEdit,dsInsert]) then
+   begin
+     ds_purchase_order_iten.DataSet.Post;
+   end;
+end;
 
 procedure Tfrm_purchase_order.qry_purchase_order_itenAfterEdit(
   DataSet: TDataSet);

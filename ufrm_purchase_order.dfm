@@ -1,16 +1,18 @@
 inherited frm_purchase_order: Tfrm_purchase_order
   Caption = 'Manuten'#231#227'o: Pedidos de Compra'
+  ClientHeight = 542
   OnClose = FormClose
-  OnCreate = FormCreate
+  ExplicitTop = -17
+  ExplicitHeight = 581
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Height = 487
+    Properties.ActivePage = cxTabSheet_2
+    ClientRectBottom = 481
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
+        Height = 447
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           OnCustomDrawCell = cxGrid_1DBTableView1CustomDrawCell
           object cxGrid_1DBTableView1pco_id: TcxGridDBColumn
@@ -41,12 +43,13 @@ inherited frm_purchase_order: Tfrm_purchase_order
       end
       object FlowPanel1: TFlowPanel
         Left = 2
-        Top = 418
+        Top = 399
         Width = 518
         Height = 26
         Alignment = taLeftJustify
         Anchors = [akLeft, akBottom]
         TabOrder = 1
+        ExplicitTop = 418
         object Shape1: TShape
           Left = 1
           Top = 1
@@ -190,17 +193,13 @@ inherited frm_purchase_order: Tfrm_purchase_order
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
+        Height = 447
+        ClientRectBottom = 441
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
+            Height = 413
+            ExplicitHeight = 416
             inherited dbedt_id: TcxDBTextEdit
               Left = 77
               DataBinding.DataField = 'pco_id'
@@ -215,7 +214,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
               Left = 17
               Top = 168
               Width = 728
-              Height = 244
+              Height = 225
               TabOrder = 5
               object cxGrid1DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.ConfirmDelete = True
@@ -358,7 +357,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
             object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutGroup3
               Control = cxGrid1
-              ControlOptions.OriginalHeight = 244
+              ControlOptions.OriginalHeight = 225
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
               Index = 0
@@ -437,13 +436,16 @@ inherited frm_purchase_order: Tfrm_purchase_order
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
+    BeforePost = qryBeforePost
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from purchase_order'
       'where pco_type = '#39'C'#39)
@@ -513,6 +515,11 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Left = 304
     Top = 64
   end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
   object qry_purchase_order_iten: TFDQuery
     AfterInsert = qry_purchase_order_itenAfterInsert
     AfterEdit = qry_purchase_order_itenAfterEdit
@@ -522,6 +529,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
     MasterFields = 'pco_id'
     DetailFields = 'purchase_order_pco_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (

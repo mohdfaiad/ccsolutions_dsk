@@ -1,20 +1,24 @@
 inherited frm_stock_transfer: Tfrm_stock_transfer
   Caption = 'Manuten'#231#227'o: Transfer'#234'ncias'
-  ClientHeight = 552
+  ClientHeight = 569
   OnClose = FormClose
-  ExplicitHeight = 591
+  ExplicitTop = -43
+  ExplicitHeight = 608
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Height = 497
+    Height = 514
     Properties.ActivePage = cxTabSheet_2
-    ExplicitHeight = 514
-    ClientRectBottom = 491
+    ExplicitHeight = 497
+    ClientRectBottom = 508
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitHeight = 480
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 463
       inherited cxGrid_1: TcxGrid
-        Height = 457
-        ExplicitHeight = 474
+        Height = 474
+        ExplicitHeight = 457
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prt_id: TcxGridDBColumn
             DataBinding.FieldName = 'prt_id'
@@ -60,16 +64,22 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitHeight = 480
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 463
       inherited cxPageControl_2: TcxPageControl
-        Height = 457
-        ExplicitHeight = 474
-        ClientRectBottom = 451
+        Height = 474
+        ExplicitHeight = 457
+        ClientRectBottom = 468
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitHeight = 440
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
+          ExplicitHeight = 423
           inherited dxLayoutControl_1: TdxLayoutControl
-            Height = 423
-            ExplicitHeight = 440
+            Height = 440
+            ExplicitHeight = 437
             inherited dbedt_id: TcxDBTextEdit
               Left = 73
               DataBinding.DataField = 'prt_id'
@@ -84,7 +94,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               Left = 17
               Top = 222
               Width = 728
-              Height = 179
+              Height = 155
               TabOrder = 10
               object cxGrid1DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.ConfirmDelete = True
@@ -295,7 +305,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
               SizeOptions.SizableHorz = True
               SizeOptions.SizableVert = True
-              SizeOptions.Height = 218
+              SizeOptions.Height = 192
               SizeOptions.Width = 742
               ButtonOptions.Buttons = <>
               Index = 2
@@ -303,7 +313,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup3
               Control = cxGrid1
-              ControlOptions.OriginalHeight = 179
+              ControlOptions.OriginalHeight = 155
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
               Index = 0
@@ -420,6 +430,19 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         end
       end
     end
+  end
+  object DBGrid1: TDBGrid [2]
+    Left = 24
+    Top = 497
+    Width = 681
+    Height = 120
+    DataSource = DataSource1
+    TabOrder = 6
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
   end
   inherited cxGridPopupMenu_1: TcxGridPopupMenu
     Left = 520
@@ -745,7 +768,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         Name = 'CTR_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = 1
+        Value = Null
       end>
     object qry_stock_exitsto_id: TFDAutoIncField
       FieldName = 'sto_id'
@@ -868,6 +891,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       end>
     object qry_purchase_order_itenpoi_id: TFDAutoIncField
       FieldName = 'poi_id'
+      ReadOnly = True
     end
     object qry_purchase_order_itenpurchase_order_pco_id: TIntegerField
       FieldName = 'purchase_order_pco_id'
@@ -889,7 +913,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object DataSource1: TDataSource
     DataSet = qry_purchase_order_iten
-    Left = 544
-    Top = 448
+    Left = 296
+    Top = 520
   end
 end

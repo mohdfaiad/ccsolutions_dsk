@@ -3,18 +3,20 @@ inherited frm_request: Tfrm_request
   ClientWidth = 877
   OnClose = FormClose
   OnShow = FormShow
-  ExplicitTop = -60
+  ExplicitTop = -36
   ExplicitWidth = 893
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Width = 877
     Properties.ActivePage = cxTabSheet_2
-    ExplicitTop = 61
     ExplicitWidth = 877
     ClientRectRight = 871
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 869
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         Width = 863
         ExplicitWidth = 863
@@ -204,13 +206,19 @@ inherited frm_request: Tfrm_request
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 869
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         Width = 863
         ExplicitWidth = 863
         ClientRectRight = 857
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
           ExplicitWidth = 855
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 855
             ExplicitWidth = 855
@@ -654,7 +662,7 @@ inherited frm_request: Tfrm_request
         Name = 'PCO_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = 3
+        Value = Null
       end>
     object qry_purchase_order_itenpoi_id: TFDAutoIncField
       Alignment = taCenter

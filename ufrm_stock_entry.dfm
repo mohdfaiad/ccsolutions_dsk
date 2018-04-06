@@ -8,10 +8,13 @@ inherited frm_stock_entry: Tfrm_stock_entry
   inherited cxPageControl_1: TcxPageControl
     Height = 392
     Properties.ActivePage = cxTabSheet_2
+    ExplicitHeight = 392
     ClientRectBottom = 386
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitHeight = 358
       inherited cxGrid_1: TcxGrid
         Height = 352
+        ExplicitHeight = 352
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pde_id: TcxGridDBColumn
             DataBinding.FieldName = 'pde_id'
@@ -35,6 +38,10 @@ inherited frm_stock_entry: Tfrm_stock_entry
             DataBinding.FieldName = 'purchase_order_pco_id'
             Width = 85
           end
+          object cxGrid_1DBTableView1pde_status: TcxGridDBColumn
+            DataBinding.FieldName = 'pde_status'
+            Width = 70
+          end
           object cxGrid_1DBTableView1pde_invoice: TcxGridDBColumn
             DataBinding.FieldName = 'pde_invoice'
             Width = 100
@@ -51,13 +58,16 @@ inherited frm_stock_entry: Tfrm_stock_entry
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitHeight = 358
       inherited cxPageControl_2: TcxPageControl
         Height = 352
-        Properties.ActivePage = cxTabSheet1
+        ExplicitHeight = 352
         ClientRectBottom = 346
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitHeight = 318
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 318
+            ExplicitHeight = 318
             inherited dbedt_id: TcxDBTextEdit
               Left = 84
               DataBinding.DataField = 'pde_id'
@@ -104,10 +114,12 @@ inherited frm_stock_entry: Tfrm_stock_entry
               Properties.KeyFieldNames = 'pco_id'
               Properties.ListColumns = <
                 item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
+                  FieldName = 'pco_dt_registration'
+                end
+                item
                   FieldName = 'pco_id'
                 end>
+              Properties.ListFieldIndex = 1
               Properties.ListSource = ds_purchase_order
               Style.HotTrack = False
               TabOrder = 5
@@ -163,18 +175,23 @@ inherited frm_stock_entry: Tfrm_stock_entry
               Top = 103
               DataBinding.DataField = 'pde_status'
               DataBinding.DataSource = ds
+              Enabled = False
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
               Properties.Items.Strings = (
                 'A - ABERTO'
                 'E - EFETIVADO'
                 'C - CANCELADO')
+              Properties.ReadOnly = True
               Style.HotTrack = False
               TabOrder = 2
               Width = 121
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
+            end
+            inherited dxLayoutGroup2: TdxLayoutGroup
+              ItemIndex = 3
             end
             object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2
@@ -242,13 +259,13 @@ inherited frm_stock_entry: Tfrm_stock_entry
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
+              Enabled = False
               Index = 0
             end
           end
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Produtos'
-          ExplicitHeight = 432
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -257,7 +274,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitHeight = 432
             object cxGrid1: TcxGrid
               Left = 17
               Top = 38
@@ -383,6 +399,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
   end
   inherited qry: TFDQuery [10]
     AfterInsert = qryAfterInsert
+    BeforePost = qryBeforePost
     BeforeDelete = qryBeforeDelete
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
@@ -433,6 +450,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
       Origin = 'stock_sto_id'
     end
     object qrypde_status: TStringField
+      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Status'
       FieldName = 'pde_status'
@@ -489,8 +507,8 @@ inherited frm_stock_entry: Tfrm_stock_entry
     SQL.Strings = (
       'select * from product_entry_itens'#10
       'where product_entry_pde_id = :pde_id')
-    Left = 383
-    Top = 242
+    Left = 391
+    Top = 210
     ParamData = <
       item
         Name = 'PDE_ID'
@@ -600,18 +618,68 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Style = <>
   end
   object qry_purchase_order: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     BeforeDelete = qryBeforeDelete
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
-      'select * from purchase_order')
-    Left = 584
-    Top = 96
+      'SELECT * FROM purchase_order'#10#10
+      
+        'where pco_id not in (select purchase_order_pco_id from product_e' +
+        'ntry'#10
+      'where pde_status = '#39'E'#39')'#10'and pco_type = '#39'C'#39)
+    Left = 592
+    Top = 200
+    object qry_purchase_orderpco_id: TFDAutoIncField
+      FieldName = 'pco_id'
+      Origin = 'pco_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qry_purchase_ordercontract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
+    end
+    object qry_purchase_orderemployee_emp_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'employee_emp_id'
+      Origin = 'employee_emp_id'
+    end
+    object qry_purchase_orderstock_sto_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'stock_sto_id'
+      Origin = 'stock_sto_id'
+    end
+    object qry_purchase_orderpco_type: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pco_type'
+      Origin = 'pco_type'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_purchase_orderpco_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pco_status'
+      Origin = 'pco_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_purchase_orderpoc_status_reason: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'poc_status_reason'
+      Origin = 'poc_status_reason'
+      Size = 45
+    end
+    object qry_purchase_orderpco_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'pco_dt_registration'
+      Origin = 'pco_dt_registration'
+    end
   end
   object ds_purchase_order: TDataSource
     DataSet = qry_purchase_order

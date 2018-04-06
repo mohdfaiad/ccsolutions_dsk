@@ -120,7 +120,7 @@ type
     dxBarButton_import: TdxBarButton;
     FDSchemaAdapter_1: TFDSchemaAdapter;
     frxReport_1: TfrxReport;
-    ACBrCEP1: TACBrCEP;
+    ACBrCEP_1: TACBrCEP;
     procedure cxGrid_1DBTableView1DblClick(Sender: TObject);
     procedure Action_insertUpdate(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);

@@ -309,8 +309,6 @@ inherited frm_bank: Tfrm_bank
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitLeft = 136
-            ExplicitTop = 3
             object cxDBTextEdit21: TcxDBTextEdit
               Left = 220
               Top = 38
@@ -821,7 +819,7 @@ inherited frm_bank: Tfrm_bank
     Variables = <>
     Style = <>
   end
-  inherited ACBrCEP1: TACBrCEP
-    OnBuscaEfetuada = ACBrCEP1BuscaEfetuada
+  inherited ACBrCEP_1: TACBrCEP
+    OnBuscaEfetuada = ACBrCEP_1BuscaEfetuada
   end
 end

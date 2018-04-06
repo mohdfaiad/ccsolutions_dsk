@@ -4,6 +4,7 @@ inherited frm_enterprise: Tfrm_enterprise
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_1
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -111,16 +112,9 @@ inherited frm_enterprise: Tfrm_enterprise
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -357,10 +351,6 @@ inherited frm_enterprise: Tfrm_enterprise
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl_address: TdxLayoutControl
             Left = 0
             Top = 0
@@ -380,6 +370,7 @@ inherited frm_enterprise: Tfrm_enterprise
                   Kind = bkEllipsis
                 end>
               Properties.CharCase = ecUpperCase
+              Properties.OnButtonClick = dbbtnedt_cepPropertiesButtonClick
               Style.HotTrack = False
               TabOrder = 0
               Width = 121
@@ -705,10 +696,6 @@ inherited frm_enterprise: Tfrm_enterprise
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Imagens'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -717,17 +704,17 @@ inherited frm_enterprise: Tfrm_enterprise
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            object DBImage1: TDBImage
-              Left = 18
-              Top = 39
-              Width = 105
-              Height = 101
-              BorderStyle = bsNone
-              DataField = 'ent_image'
-              DataSource = ds
-              PopupMenu = PopupMenu1
-              Stretch = True
+            object cxDBImage1: TcxDBImage
+              Left = 17
+              Top = 38
+              DataBinding.DataField = 'ent_image'
+              DataBinding.DataSource = ds
+              Properties.FitMode = ifmProportionalStretch
+              Properties.GraphicClassName = 'TJPEGImage'
+              Style.HotTrack = False
               TabOrder = 0
+              Height = 100
+              Width = 140
             end
             object dxLayoutControl1Group_Root: TdxLayoutGroup
               AlignHorz = ahLeft
@@ -745,9 +732,10 @@ inherited frm_enterprise: Tfrm_enterprise
             end
             object dxLayoutItem11: TdxLayoutItem
               Parent = dxLayoutGroup4
-              Control = DBImage1
-              ControlOptions.OriginalHeight = 101
-              ControlOptions.OriginalWidth = 105
+              Control = cxDBImage1
+              ControlOptions.OriginalHeight = 100
+              ControlOptions.OriginalWidth = 140
+              ControlOptions.ShowBorder = False
               Index = 0
             end
           end
@@ -962,6 +950,14 @@ inherited frm_enterprise: Tfrm_enterprise
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
+  inherited ACBrCEP_1: TACBrCEP
+    OnBuscaEfetuada = ACBrCEP_1BuscaEfetuada
+  end
   object OpenPictureDialog1: TOpenPictureDialog
     Left = 391
     Top = 98
@@ -976,12 +972,5 @@ inherited frm_enterprise: Tfrm_enterprise
     object Deletar1: TMenuItem
       Action = Action_delete_image
     end
-  end
-  object ACBrCEP1: TACBrCEP
-    ProxyPort = '8080'
-    WebService = wsCorreios
-    PesquisarIBGE = False
-    Left = 458
-    Top = 99
   end
 end

@@ -34,7 +34,8 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxMemo, cxCurrencyEdit,
-  cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem;
+  cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket,
+  ACBrCEP, frxClass, frxDBSet,unit_function, ACBrExtenso;
 
 type
   Tfrm_receipt = class(Tfrm_form_default)
@@ -74,8 +75,12 @@ type
     cxGrid_1DBTableView1rec_description: TcxGridDBColumn;
     cxGrid_1DBTableView1rec_dt_emission: TcxGridDBColumn;
     cxGrid_1DBTableView1rec_dt_registration: TcxGridDBColumn;
+    frx_db_recibo: TfrxDBDataset;
+    frx_db_recibo_cliente: TfrxDBDataset;
+    ACBrExtenso1: TACBrExtenso;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure Action_printExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -90,6 +95,14 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_receipt.Action_printExecute(Sender: TObject);
+begin
+  inherited;
+ frxReport_1.LoadFromFile('c:\ccsolutions_dsk\reports\financial\rep_relatorio_recibo.fr3');
+ frxReport_1.variables['extenso'] := QuotedStr(valorPorExtenso(qryrec_value.AsFloat));
+ frxReport_1.ShowReport;
+end;
 
 procedure Tfrm_receipt.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

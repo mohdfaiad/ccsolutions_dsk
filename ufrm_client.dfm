@@ -5,10 +5,6 @@ inherited frm_client: Tfrm_client
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1cli_id: TcxGridDBColumn
@@ -182,17 +178,8 @@ inherited frm_client: Tfrm_client
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet3
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 76
@@ -311,7 +298,7 @@ inherited frm_client: Tfrm_client
               Width = 121
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 2
+              ItemIndex = 1
             end
             inherited dxLayoutGroup1: TdxLayoutGroup
               ItemIndex = 1
@@ -1316,10 +1303,6 @@ inherited frm_client: Tfrm_client
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitLeft = 40
-            ExplicitTop = 48
-            ExplicitWidth = 300
-            ExplicitHeight = 250
             object cxDBTextEdit34: TcxDBTextEdit
               Left = 123
               Top = 38

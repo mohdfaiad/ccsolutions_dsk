@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxShellComboBox, QExport4Dialog, cxBarEditItem, dxBarExtItems,
   QImport3Wizard, cxImage, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons,
-  Vcl.ExtDlgs, Vcl.DBCtrls, ACBrSocket, ACBrCEP;
+  Vcl.ExtDlgs, Vcl.DBCtrls, ACBrSocket, ACBrCEP, frxClass;
 
 type
   Tfrm_enterprise = class(Tfrm_form_default)
@@ -157,13 +157,15 @@ type
     dxLayoutControl1Group_Root: TdxLayoutGroup;
     dxLayoutControl1: TdxLayoutControl;
     dxLayoutGroup4: TdxLayoutGroup;
-    DBImage1: TDBImage;
+    cxDBImage1: TcxDBImage;
     dxLayoutItem11: TdxLayoutItem;
-    ACBrCEP1: TACBrCEP;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_insert_imageExecute(Sender: TObject);
     procedure Action_delete_imageExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure dbbtnedt_cepPropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
+    procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
   private
     { Private declarations }
     //imgObj: TCompress_image;
@@ -180,6 +182,23 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_enterprise.ACBrCEP_1BuscaEfetuada(Sender: TObject);
+ var
+i:Integer;
+begin
+  inherited;
+    for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+    begiN
+     qryent_add_bus_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
+     qryent_add_bus_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
+     qryent_add_bus_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
+     qryent_add_bus_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
+     qryent_add_bus_state.AsString     := ACBrCEP_1.Enderecos[i].UF;
+     qryent_add_bus_country.AsString     := 'BRASIL';
+     dbtxtedt_number.SetFocus;
+end;
+end;
+
 procedure Tfrm_enterprise.Action_delete_imageExecute(Sender: TObject);
 begin
   inherited;
@@ -191,6 +210,13 @@ begin
   inherited;
 //  imgObj := TCompress_image.Create;
 //  imgObj.imgCompress(DBImage1, OpenPictureDialog1);
+end;
+
+procedure Tfrm_enterprise.dbbtnedt_cepPropertiesButtonClick(Sender: TObject;
+  AButtonIndex: Integer);
+begin
+  inherited;
+ ACBrCEP_1.BuscarPorCEP(dbbtnedt_cep.Text);
 end;
 
 procedure Tfrm_enterprise.FormClose(Sender: TObject; var Action: TCloseAction);

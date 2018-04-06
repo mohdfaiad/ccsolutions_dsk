@@ -103,7 +103,7 @@ object frm_dm_report: Tfrm_dm_report
       'imp_rate=Valor'
       'imp_total=Valor Total')
     BCDToCurrency = False
-    Left = 104
+    Left = 176
     Top = 88
   end
   object frxfdcomp_1: TfrxFDComponents

@@ -34,7 +34,7 @@ uses
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxSpinEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxCurrencyEdit,
-  Vcl.StdCtrls, Vcl.ExtCtrls, frxClass;
+  Vcl.StdCtrls, Vcl.ExtCtrls, frxClass, ACBrSocket, ACBrCEP;
 
 type
   Tfrm_purchase_order = class(Tfrm_form_default)
@@ -136,7 +136,7 @@ begin
      Exit;
    end;
   inherited;
-  cxTabSheet_1.Show;
+
 end;
 
 procedure Tfrm_purchase_order.cxGrid_1DBTableView1CustomDrawCell(

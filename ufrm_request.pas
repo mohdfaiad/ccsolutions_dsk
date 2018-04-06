@@ -34,7 +34,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, dxLayoutControlAdapters,
   Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, frxClass, frxDBSet, Vcl.Grids,
-  Vcl.DBGrids;
+  Vcl.DBGrids, ACBrSocket, ACBrCEP;
 
 type
   Tfrm_request = class(Tfrm_form_default)
@@ -187,7 +187,6 @@ if qrystock_sto_id.AsInteger <= 0  then
    begin
      ds_purchase_order_iten.DataSet.Post;
    end;
-   cxTabSheet_1.Show;
 
 if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
  begin

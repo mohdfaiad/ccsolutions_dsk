@@ -2,17 +2,21 @@ inherited frm_purchase_order: Tfrm_purchase_order
   Caption = 'Manuten'#231#227'o: Pedidos de Compra'
   ClientHeight = 542
   OnClose = FormClose
-  ExplicitTop = -17
   ExplicitHeight = 581
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 487
-    Properties.ActivePage = cxTabSheet_2
+    ExplicitHeight = 487
     ClientRectBottom = 481
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       inherited cxGrid_1: TcxGrid
         Height = 447
+        ExplicitHeight = 447
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           OnCustomDrawCell = cxGrid_1DBTableView1CustomDrawCell
           object cxGrid_1DBTableView1pco_id: TcxGridDBColumn
@@ -193,13 +197,16 @@ inherited frm_purchase_order: Tfrm_purchase_order
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitHeight = 453
       inherited cxPageControl_2: TcxPageControl
         Height = 447
+        ExplicitHeight = 447
         ClientRectBottom = 441
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitHeight = 413
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 413
-            ExplicitHeight = 416
+            ExplicitHeight = 413
             inherited dbedt_id: TcxDBTextEdit
               Left = 77
               DataBinding.DataField = 'pco_id'

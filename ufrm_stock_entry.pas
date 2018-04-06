@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxSpinEdit, dxLayoutControlAdapters, Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids,
   Vcl.DBGrids, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxCurrencyEdit,
-  frxClass;
+  frxClass, ACBrSocket, ACBrCEP;
 
 type
   Tfrm_stock_entry = class(Tfrm_form_default)
@@ -153,8 +153,7 @@ begin
    qry_purchase_orderpco_status.AsString := 'E';
    qry_purchase_order.Post;
    qry_purchase_order.ApplyUpdates(0);
-
-   ds.DataSet.Edit;
+
 end;
 
 procedure Tfrm_stock_entry.Cancelarentrada1Click(Sender: TObject);

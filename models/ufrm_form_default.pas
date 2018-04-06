@@ -160,6 +160,8 @@ begin
     MB_DEFBUTTON2) = IDYES then
   begin
     ds.DataSet.Cancel;
+    if qry.CachedUpdates then
+     FDSchemaAdapter_1.CancelUpdates;
     cxTabSheet_1.Show;
   end;
 end;
@@ -274,6 +276,7 @@ begin
     if qry.CachedUpdates then
       FDSchemaAdapter_1.ApplyUpdates(0);
       Application.MessageBox('Registros salvos com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
+     cxTabSheet_1.Show;
   end;
 end;
 

@@ -34,7 +34,7 @@ uses
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, ACBrBase, ACBrEnterTab,
   QExport4Dialog, dxBarExtItems, cxShellComboBox, cxBarEditItem, frxDesgn,
-  QImport3Wizard, frxClass;
+  QImport3Wizard, frxClass, cxLocalization, ACBrSocket, ACBrCEP;
 
 type
   Tfrm_form_default = class(TForm)
@@ -120,6 +120,7 @@ type
     dxBarButton_import: TdxBarButton;
     FDSchemaAdapter_1: TFDSchemaAdapter;
     frxReport_1: TfrxReport;
+    ACBrCEP1: TACBrCEP;
     procedure cxGrid_1DBTableView1DblClick(Sender: TObject);
     procedure Action_insertUpdate(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
@@ -291,6 +292,7 @@ procedure Tfrm_form_default.FormCreate(Sender: TObject);
 var
 i:Integer;
 begin
+
 //procedimento criado dia 26/03/2018 para verificar se tem alguma query fechado
 //caso esteja fechado ele abre...   e se caso o pagecontrol está em "Manutençào"
 //coloca automáticamente em "Pesquisa"

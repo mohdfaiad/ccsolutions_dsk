@@ -25,7 +25,7 @@ uses
   dxStatusBar, dxRibbonStatusBar, cxLabel, dxGallery, dxGalleryControl,
   dxRibbonBackstageViewGalleryControl, System.Actions, Vcl.ActnList,
   System.ImageList, Vcl.ImgList, cxImage, dxGDIPlusClasses, Vcl.ExtCtrls,
-  dxSkinscxPCPainter, dxBevel, ACBrBase, ACBrDownload;
+  dxSkinscxPCPainter, dxBevel, ACBrBase, ACBrDownload, cxLocalization;
 
 type
   Tfrm_main_default = class(TdxRibbonForm)
@@ -50,6 +50,7 @@ type
     dxBarManager_1Bar1: TdxBar;
     dxRibbonBackstageViewTabSheet2: TdxRibbonBackstageViewTabSheet;
     Bevel_1: TBevel;
+    cxLocalizer1: TcxLocalizer;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -69,6 +70,12 @@ implementation
 procedure Tfrm_main_default.FormCreate(Sender: TObject);
 begin
   DisableAero := True;
-end;
-
+  // VERIFICA SE EXISTE O ARQUIVO DENTRO DA PASTA
+  if FileExists('c:\development\TraduçãoDev.ini') then
+  begin
+    cxLocalizer1.LoadFromFile('c:\development\TraduçãoDev.ini');
+    cxLocalizer1.LanguageIndex := 1; // MUDA DE LINGUAGEM
+    cxLocalizer1.Active := TRUE;     // ATIVA O COMPONENTE
+  end;
+ end;
 end.

@@ -12,10 +12,6 @@ inherited frm_bank: Tfrm_bank
   end
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1bnk_id: TcxGridDBColumn
@@ -94,16 +90,9 @@ inherited frm_bank: Tfrm_bank
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = cxTabSheet_address
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 80
@@ -312,10 +301,6 @@ inherited frm_bank: Tfrm_bank
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -324,6 +309,8 @@ inherited frm_bank: Tfrm_bank
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            ExplicitLeft = 136
+            ExplicitTop = 3
             object cxDBTextEdit21: TcxDBTextEdit
               Left = 220
               Top = 38
@@ -385,6 +372,7 @@ inherited frm_bank: Tfrm_bank
                   Kind = bkEllipsis
                 end>
               Properties.CharCase = ecUpperCase
+              Properties.OnButtonClick = cxDBButtonEdit2PropertiesButtonClick
               Style.HotTrack = False
               TabOrder = 0
               Width = 121
@@ -392,7 +380,7 @@ inherited frm_bank: Tfrm_bank
             object cxDBTextEdit22: TcxDBTextEdit
               Left = 542
               Top = 38
-              DataBinding.DataField = 'bnk_account_number'
+              DataBinding.DataField = 'bnk_add_bus_number'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
@@ -538,10 +526,6 @@ inherited frm_bank: Tfrm_bank
         end
         object cxTabSheet_contact: TcxTabSheet
           Caption = 'Contatos'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -829,5 +813,15 @@ inherited frm_bank: Tfrm_bank
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
+  end
+  inherited frxReport_1: TfrxReport
+    Left = 495
+    Top = 210
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
+  inherited ACBrCEP1: TACBrCEP
+    OnBuscaEfetuada = ACBrCEP1BuscaEfetuada
   end
 end

@@ -25,7 +25,7 @@ object frm_form_default: Tfrm_form_default
     Height = 506
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet_1
+    Properties.ActivePage = cxTabSheet_2
     Properties.CustomButtons.Buttons = <>
     Properties.HotImages = cxImageList_1
     Properties.Images = cxImageList_1
@@ -1533,5 +1533,12 @@ object frm_form_default: Tfrm_form_default
     Datasets = <>
     Variables = <>
     Style = <>
+  end
+  object ACBrCEP1: TACBrCEP
+    ProxyPort = '8080'
+    WebService = wsRepublicaVirtual
+    PesquisarIBGE = True
+    Left = 258
+    Top = 35
   end
 end

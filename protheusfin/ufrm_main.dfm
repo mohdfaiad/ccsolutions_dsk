@@ -1,7 +1,5 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Financeiro - CCS Protheus.'
-  ExplicitWidth = 1024
-  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited Image_1: TImage
@@ -2883,7 +2881,7 @@ inherited frm_main: Tfrm_main
           0000000000000000000000000000000000000000000000000000}
       end>
   end
-  object rbpopmenu_1: TdxRibbonPopupMenu
+  object rbpopmenu_1: TdxRibbonPopupMenu [9]
     BarManager = dxBarManager_1
     ItemLinks = <
       item

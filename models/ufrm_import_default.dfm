@@ -32,7 +32,7 @@ object frm_import_default: Tfrm_import_default
     Height = 534
     Align = alClient
     DataSource = ds
-    TabOrder = 5
+    TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11

@@ -34,7 +34,7 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxImage, cxShellComboBox, QExport4Dialog, cxBarEditItem,
-  dxBarExtItems, QImport3Wizard;
+  dxBarExtItems, QImport3Wizard, Vcl.StdCtrls, frxClass;
 
 type
   Tfrm_client = class(Tfrm_form_default)
@@ -235,6 +235,15 @@ type
     Action_consult_cpf: TAction;
     Action_consult_cnpj: TAction;
     dxBarButton1: TdxBarButton;
+    cxTabSheet3: TcxTabSheet;
+    Label1: TLabel;
+    dxLayoutControl4Group_Root: TdxLayoutGroup;
+    dxLayoutControl4: TdxLayoutControl;
+    dxLayoutGroup11: TdxLayoutGroup;
+    cxDBTextEdit34: TcxDBTextEdit;
+    dxLayoutItem42: TdxLayoutItem;
+    qrycli_status: TStringField;
+    qrycli_account_code_sippulse: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);

@@ -3,7 +3,8 @@ unit ufrm_import_sippulse;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_import_default, Data.DB,
   dxSkinsCore, dxSkinBlack, dxSkinBlue, dxSkinBlueprint, dxSkinCaramel,
   dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide, dxSkinDevExpressDarkStyle,
@@ -25,7 +26,7 @@ uses
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   QImport3Wizard, ACBrBase, ACBrEnterTab, System.ImageList, Vcl.ImgList,
   cxGraphics, System.Actions, Vcl.ActnList, dxBar, cxClasses, Vcl.Grids,
-  Vcl.DBGrids, frxClass, frxDBSet, frxDCtrl, frxChart;
+  Vcl.DBGrids, frxClass, frxDBSet, frxDCtrl, frxChart, dxBarExtItems,DateUtils;
 
 type
   Tfrm_import_sippulse = class(Tfrm_import_default)
@@ -92,10 +93,18 @@ type
     qryclient_cli_id: TIntegerField;
     qryimp_date: TDateTimeField;
     qry_duracao: TLargeintField;
+    dxBarButton3: TdxBarButton;
+    Action_print: TAction;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryBeforePost(DataSet: TDataSet);
+    procedure Action_importExecute(Sender: TObject);
+    procedure QImport3Wizard_1AfterImport(Sender: TObject);
+    procedure Action_printExecute(Sender: TObject);
+    procedure qryAfterPost(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    rec,recPost:Integer;
   public
     { Public declarations }
   end;
@@ -109,6 +118,27 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_import_sippulse.Action_importExecute(Sender: TObject);
+begin
+rec:=0;
+recPost:=0;
+  inherited;
+
+end;
+
+procedure Tfrm_import_sippulse.Action_printExecute(Sender: TObject);
+begin
+  inherited;
+if Application.MessageBox('Deseja visualizar o relatório da conta de consumo?', 'CONSUMO',
+                          MB_YESNO + MB_ICONQUESTION) = mrYes then
+ begin
+   frxDbLigacoes.Clear;
+   frxDbLigacoes.LoadFromFile('c:\ccsolutions_dsk\reports\rep_relatorio_ligacoes.fr3');
+   frxDbLigacoes.ShowReport;
+ end;
+
+end;
+
 procedure Tfrm_import_sippulse.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -116,43 +146,104 @@ begin
   frm_import_sippulse.Free;
 end;
 
+procedure Tfrm_import_sippulse.FormCreate(Sender: TObject);
+begin
+  inherited;
+qry.Close;
+qry.ParamByName('ini').AsDate:= StartOfTheMonth(now);
+qry.ParamByName('fin').AsDate:= EndOfTheMonth(now);
+qry.Prepare;
+qry.Open;
+end;
+
+procedure Tfrm_import_sippulse.QImport3Wizard_1AfterImport(Sender: TObject);
+begin
+  inherited;
+ ShowMessage('-------------------------------------------------------' +#13+
+             '        A V I S O S   D A   I M P O R T A Ç Ã O '+#13+
+             '-------------------------------------------------------'+#13+#13+
+             '          Quantidade de registros no arquivo = ' + FormatFloat('000',QImport3Wizard_1.ImportRecCount) + #13+#13+
+             '-------------------------------------------------------');
+end;
+
+procedure Tfrm_import_sippulse.qryAfterPost(DataSet: TDataSet);
+begin
+  inherited;
+    recPost:=recPost + 1;
+ end;
+
 procedure Tfrm_import_sippulse.qryBeforePost(DataSet: TDataSet);
 Var
-  intSegundos : Integer;
-  wdHoras, wdMinutos, wdSegundos : Word;
+  intSegundos: Integer;
+  wdHoras, wdMinutos, wdSegundos: Word;
 begin
   wdHoras := 0;
   wdMinutos := 0;
   wdSegundos := 0;
 
-  intSegundos := qry_duracao.AsInteger;  // Informe aqui o número de segundos
+  intSegundos := qry_duracao.AsInteger; // Informe aqui o número de segundos
 
-  While intSegundos >= 3600 Do     // Capturando as horas
+  While intSegundos >= 3600 Do // Capturando as horas
   Begin
-     wdHoras := wdHoras + 1;
-     intSegundos := intSegundos - 3600;
+    wdHoras := wdHoras + 1;
+    intSegundos := intSegundos - 3600;
   End;
 
-  While(intSegundos >= 60)Do        // Capturando os Minutos
+  While (intSegundos >= 60) Do // Capturando os Minutos
   Begin
     wdMinutos := wdMinutos + 1;
     intSegundos := intSegundos - 60;
   End;
 
-  wdSegundos := intSegundos;       // Capturando os Segundos
+  wdSegundos := intSegundos; // Capturando os Segundos
 
-  qryimp_duration.AsString:=FormatDateTime('hh:mm:ss',StrToTime(IntToStr(wdHoras) + ':' + IntToStr(wdMinutos) + ':' + IntToStr(wdSegundos)));
+  qryimp_duration.AsString := FormatDateTime('hh:mm:ss',
+    StrToTime(IntToStr(wdHoras) + ':' + IntToStr(wdMinutos) + ':' +
+    IntToStr(wdSegundos)));
   if qryimp_type.AsString = 'VC1' then
-  qryimp_type.AsString:='Movel Local';
+    qryimp_type.AsString := 'Movel Local';
 
   if qryimp_type.AsString = 'VC3' then
-  qryimp_type.AsString:='Movel DDD';
+    qryimp_type.AsString := 'Movel DDD';
 
   if qryimp_type.AsString = 'FIXO_LOCAL' then
-  qryimp_type.AsString:='Fixo Local';
+    qryimp_type.AsString := 'Fixo Local';
 
   if qryimp_type.AsString = 'FIXO_LDN' then
-  qryimp_type.AsString:='Fixo DDD';
+    qryimp_type.AsString := 'Fixo DDD';
+
+with frm_dm.qry,sql do
+ begin
+  close;
+  text:=' select cli_id from client ' +
+        ' where cli_account_code_sippulse = :cliente';
+  ParamByName('cliente').AsString:=qrycli_account_code_sippulse.AsString;
+  prepare;
+  open;
+
+  qryclient_cli_id.AsInteger:=FieldByName('cli_id').AsInteger;
+
+   Close;
+   Text:=' select  count(*) from import_call_log ' +
+         ' WHERE imp_type = :imp_type ' +
+         ' and imp_from = :imp_from  ' +
+         ' and imp_to = :imp_to '+
+         ' and imp_date =:imp_date ';
+   ParamByName('imp_type').AsString:=qryimp_type.AsString;
+   ParamByName('imp_from').AsString:=qryimp_from.AsString;
+   ParamByName('imp_to').AsString:=qryimp_to.AsString;;
+   ParamByName('imp_date').AsString:=FormatDateTime('yyyy-MM-dd hh:mm:ss',qryimp_date.AsDateTime);
+   Prepare;
+   open;
+
+   if Fields[0].AsInteger > 0  then
+    begin
+    rec:=rec + 1;
+    qry.Delete;
+    end;
+ end;
+
 end;
+
 
 end.

@@ -187,6 +187,7 @@ inherited frm_client: Tfrm_client
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = cxTabSheet3
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -1245,6 +1246,15 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
+          object Label1: TLabel
+            Left = 0
+            Top = 22
+            Width = 31
+            Height = 13
+            Caption = 'Label1'
+            Color = clWhite
+            ParentColor = False
+          end
           object dxLayoutControl3: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1296,6 +1306,57 @@ inherited frm_client: Tfrm_client
             end
           end
         end
+        object cxTabSheet3: TcxTabSheet
+          Caption = 'Telefonia'
+          object dxLayoutControl4: TdxLayoutControl
+            Left = 0
+            Top = 0
+            Width = 762
+            Height = 432
+            Align = alClient
+            TabOrder = 0
+            LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            ExplicitLeft = 40
+            ExplicitTop = 48
+            ExplicitWidth = 300
+            ExplicitHeight = 250
+            object cxDBTextEdit34: TcxDBTextEdit
+              Left = 123
+              Top = 38
+              DataBinding.DataField = 'cli_account_code_sippulse'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 0
+              Width = 254
+            end
+            object dxLayoutControl4Group_Root: TdxLayoutGroup
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              ButtonOptions.Buttons = <>
+              Hidden = True
+              ShowBorder = False
+              Index = -1
+            end
+            object dxLayoutGroup11: TdxLayoutGroup
+              Parent = dxLayoutControl4Group_Root
+              CaptionOptions.Text = 'Par'#226'metros Sippulse'
+              ButtonOptions.Buttons = <>
+              Index = 0
+            end
+            object dxLayoutItem42: TdxLayoutItem
+              Parent = dxLayoutGroup11
+              CaptionOptions.Text = 'C'#243'd. Cliente Sippulse'
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              SizeOptions.Width = 360
+              Control = cxDBTextEdit34
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+          end
+        end
       end
     end
   end
@@ -1336,7 +1397,6 @@ inherited frm_client: Tfrm_client
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -1590,6 +1650,19 @@ inherited frm_client: Tfrm_client
       FieldName = 'cli_image'
       Origin = 'cli_image'
     end
+    object qrycli_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_status'
+      Origin = 'cli_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qrycli_account_code_sippulse: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_account_code_sippulse'
+      Origin = 'cli_account_code_sippulse'
+      Size = 50
+    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -1604,5 +1677,14 @@ inherited frm_client: Tfrm_client
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
+  end
+  inherited FDSchemaAdapter_1: TFDSchemaAdapter
+    Left = 320
+    Top = 24
+  end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
 end

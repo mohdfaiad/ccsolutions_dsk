@@ -8,17 +8,16 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   inherited cxPageControl_1: TcxPageControl
     Height = 475
     Properties.ActivePage = cxTabSheet_2
-    ExplicitTop = -49
     ExplicitHeight = 475
     ClientRectBottom = 469
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 776
-      ExplicitHeight = 480
+      ExplicitHeight = 441
       inherited cxGrid_1: TcxGrid
         Height = 435
-        ExplicitHeight = 474
+        ExplicitHeight = 435
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prt_id: TcxGridDBColumn
             DataBinding.FieldName = 'prt_id'
@@ -67,19 +66,19 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 776
-      ExplicitHeight = 480
+      ExplicitHeight = 441
       inherited cxPageControl_2: TcxPageControl
         Height = 435
-        ExplicitHeight = 474
+        ExplicitHeight = 435
         ClientRectBottom = 429
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 762
-          ExplicitHeight = 440
+          ExplicitHeight = 401
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 401
-            ExplicitHeight = 417
+            ExplicitHeight = 401
             inherited dbedt_id: TcxDBTextEdit
               Left = 73
               DataBinding.DataField = 'prt_id'
@@ -467,7 +466,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     SQL.Strings = (
       'select * from product_transfer')
     object qryprt_id: TFDAutoIncField
-      Alignment = taCenter
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'prt_id'
       Origin = 'prt_id'
@@ -475,49 +473,42 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
-      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Contrato ID'
       FieldName = 'contract_ctr_id'
       Origin = 'contract_ctr_id'
     end
     object qryemployee_emp_id_request: TIntegerField
-      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Solicitante'
       FieldName = 'employee_emp_id_request'
       Origin = 'employee_emp_id_request'
     end
     object qryemployee_emp_id_agent: TIntegerField
-      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Respons'#225'vel'
       FieldName = 'employee_emp_id_agent'
       Origin = 'employee_emp_id_agent'
     end
     object qryemployee_emp_id_lecturer: TIntegerField
-      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Conferente'
       FieldName = 'employee_emp_id_lecturer'
       Origin = 'employee_emp_id_lecturer'
     end
     object qrystock_sto_id_exit: TIntegerField
-      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Est. Sa'#237'da'
       FieldName = 'stock_sto_id_exit'
       Origin = 'stock_sto_id_exit'
     end
     object qrystock_sto_id_entrance: TIntegerField
-      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Est. Entrada'
       FieldName = 'stock_sto_id_entrance'
       Origin = 'stock_sto_id_entrance'
     end
     object qryprt_status: TStringField
-      Alignment = taCenter
       AutoGenerateValue = arDefault
       DisplayLabel = 'Status'
       FieldName = 'prt_status'
@@ -526,6 +517,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       Size = 1
     end
     object qryprt_status_reason: TStringField
+      Alignment = taRightJustify
       AutoGenerateValue = arDefault
       DisplayLabel = 'Motivo'
       FieldName = 'prt_status_reason'
@@ -533,6 +525,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       Size = 50
     end
     object qryprt_dt_registration: TDateTimeField
+      Alignment = taRightJustify
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'prt_dt_registration'

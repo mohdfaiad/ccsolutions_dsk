@@ -8,10 +8,14 @@ inherited frm_request: Tfrm_request
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Width = 877
+    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 877
     ClientRectRight = 871
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 869
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         Width = 863
         ExplicitWidth = 863
@@ -201,13 +205,19 @@ inherited frm_request: Tfrm_request
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 869
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         Width = 863
         ExplicitWidth = 863
         ClientRectRight = 857
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
           ExplicitWidth = 855
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 855
             ExplicitWidth = 855
@@ -513,20 +523,17 @@ inherited frm_request: Tfrm_request
     Left = 488
     Top = 120
     object qrypco_id: TFDAutoIncField
-      Alignment = taCenter
       FieldName = 'pco_id'
       Origin = 'pco_id'
       ProviderFlags = [pfInWhere, pfInKey]
       ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
-      Alignment = taCenter
       AutoGenerateValue = arDefault
       FieldName = 'contract_ctr_id'
       Origin = 'contract_ctr_id'
     end
     object qryemployee_emp_id: TIntegerField
-      Alignment = taCenter
       AutoGenerateValue = arDefault
       FieldName = 'employee_emp_id'
       Origin = 'employee_emp_id'
@@ -568,7 +575,6 @@ inherited frm_request: Tfrm_request
       Lookup = True
     end
     object qrypco_type: TStringField
-      Alignment = taCenter
       AutoGenerateValue = arDefault
       FieldName = 'pco_type'
       Origin = 'pco_type'
@@ -576,7 +582,6 @@ inherited frm_request: Tfrm_request
       Size = 1
     end
     object qrypco_status: TStringField
-      Alignment = taCenter
       AutoGenerateValue = arDefault
       FieldName = 'pco_status'
       Origin = 'pco_status'
@@ -654,14 +659,12 @@ inherited frm_request: Tfrm_request
         Value = Null
       end>
     object qry_purchase_order_itenpoi_id: TFDAutoIncField
-      Alignment = taCenter
       FieldName = 'poi_id'
       Origin = 'poi_id'
       ProviderFlags = [pfInWhere, pfInKey]
       ReadOnly = True
     end
     object qry_purchase_order_itenpurchase_order_pco_id: TIntegerField
-      Alignment = taCenter
       AutoGenerateValue = arDefault
       FieldName = 'purchase_order_pco_id'
       Origin = 'purchase_order_pco_id'

@@ -1,24 +1,24 @@
 inherited frm_stock_transfer: Tfrm_stock_transfer
   Caption = 'Manuten'#231#227'o: Transfer'#234'ncias'
-  ClientHeight = 569
+  ClientHeight = 530
   OnClose = FormClose
-  ExplicitTop = -43
-  ExplicitHeight = 608
+  ExplicitHeight = 569
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Height = 514
+    Height = 475
     Properties.ActivePage = cxTabSheet_2
-    ExplicitHeight = 497
-    ClientRectBottom = 508
+    ExplicitTop = -49
+    ExplicitHeight = 475
+    ClientRectBottom = 469
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 776
-      ExplicitHeight = 463
+      ExplicitHeight = 480
       inherited cxGrid_1: TcxGrid
-        Height = 474
-        ExplicitHeight = 457
+        Height = 435
+        ExplicitHeight = 474
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prt_id: TcxGridDBColumn
             DataBinding.FieldName = 'prt_id'
@@ -67,19 +67,19 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 776
-      ExplicitHeight = 463
+      ExplicitHeight = 480
       inherited cxPageControl_2: TcxPageControl
-        Height = 474
-        ExplicitHeight = 457
-        ClientRectBottom = 468
+        Height = 435
+        ExplicitHeight = 474
+        ClientRectBottom = 429
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 762
-          ExplicitHeight = 423
+          ExplicitHeight = 440
           inherited dxLayoutControl_1: TdxLayoutControl
-            Height = 440
-            ExplicitHeight = 437
+            Height = 401
+            ExplicitHeight = 417
             inherited dbedt_id: TcxDBTextEdit
               Left = 73
               DataBinding.DataField = 'prt_id'
@@ -292,7 +292,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               Width = 121
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 2
+              ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahClient
@@ -430,19 +430,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         end
       end
     end
-  end
-  object DBGrid1: TDBGrid [2]
-    Left = 24
-    Top = 497
-    Width = 681
-    Height = 120
-    DataSource = DataSource1
-    TabOrder = 6
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
   end
   inherited cxGridPopupMenu_1: TcxGridPopupMenu
     Left = 520
@@ -826,8 +813,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     SQL.Strings = (
       'select * from purchase_order'
       '')
-    Left = 303
-    Top = 418
+    Left = 295
+    Top = 394
     object qry_purchase_orderpco_id: TFDAutoIncField
       FieldName = 'pco_id'
       Origin = 'pco_id'
@@ -871,17 +858,17 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     end
   end
   object qry_purchase_order_iten: TFDQuery
-    Active = True
     CachedUpdates = True
     IndexFieldNames = 'purchase_order_pco_id'
+    MasterSource = ds_purchase_iten
     MasterFields = 'pco_id'
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from purchase_order_iten'
       'where purchase_order_pco_id = :pco_id')
-    Left = 416
-    Top = 457
+    Left = 432
+    Top = 441
     ParamData = <
       item
         Name = 'PCO_ID'
@@ -911,9 +898,9 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       FieldName = 'poi_dt_registration'
     end
   end
-  object DataSource1: TDataSource
-    DataSet = qry_purchase_order_iten
-    Left = 296
-    Top = 520
+  object ds_purchase_iten: TDataSource
+    DataSet = qry_purchase_order
+    Left = 440
+    Top = 392
   end
 end

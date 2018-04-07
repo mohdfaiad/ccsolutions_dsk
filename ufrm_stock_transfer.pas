@@ -34,7 +34,7 @@ uses
   cxBarEditItem, cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit,
   cxCalendar, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGrid, cxPC, cxDBLookupComboBox, cxLookupEdit, cxDBLookupEdit, Vcl.Grids,
-  Vcl.DBGrids, cxCurrencyEdit, cxButtonEdit, frxClass;
+  Vcl.DBGrids, cxCurrencyEdit, cxButtonEdit, frxClass, ACBrSocket, ACBrCEP;
 
 type
   Tfrm_stock_transfer = class(Tfrm_form_default)
@@ -133,8 +133,7 @@ type
     qry_purchase_order_itenpoi_product_quant: TBCDField;
     qry_purchase_order_itenpoi_product_quant_served: TBCDField;
     qry_purchase_order_itenpoi_dt_registration: TDateTimeField;
-    DataSource1: TDataSource;
-    DBGrid1: TDBGrid;
+    ds_purchase_iten: TDataSource;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure ConfirmarTransfernciaSaida1Click(Sender: TObject);
@@ -183,7 +182,7 @@ begin
       qry_product_transfer_iten.Next;
    end;
 
- {  qry_purchase_order_iten.First;
+  qry_purchase_order_iten.First;
    while not qry_purchase_order_iten.Eof do
     begin
       if (qry_purchase_order_itenpoi_product_quant_served.AsFloat < qry_purchase_order_itenpoi_product_quant.AsFloat) then
@@ -199,10 +198,10 @@ begin
       qry_purchase_orderpco_status.AsString := 'F';
       qry_purchase_order.Post;
     end;
-  }
+
 
   inherited;
-  ds.DataSet.Edit;
+
 end;
 
 procedure Tfrm_stock_transfer.CancelarTransferncia1Click(Sender: TObject);

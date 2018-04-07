@@ -275,7 +275,6 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     Left = 480
   end
   inherited qry: TFDQuery
-    Active = True
     BeforePost = qryBeforePost
     AfterPost = qryAfterPost
     IndexFieldNames = 'contract_ctr_id'
@@ -393,7 +392,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     PrintOptions.Printer = 'Padr'#227'o'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43147.480269664400000000
-    ReportOptions.LastChange = 43196.535038553200000000
+    ReportOptions.LastChange = 43196.822850011570000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -3231,7 +3230,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           ParentFont = False
         end
         object Memo7: TfrxMemoView
-          Left = 85.795275590551200000
+          Left = 85.795275590551190000
           Top = 2.000000000000000000
           Width = 56.692950000000000000
           Height = 13.984254410000000000
@@ -5745,7 +5744,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         FillType = ftBrush
         Frame.Typ = []
         Height = 18.897650000000000000
-        Top = 68.031540000000000000
+        Top = 68.031540000000010000
         Width = 718.110700000000000000
         DataSet = frxDbLigacoes.qry_grafico
         DataSetName = 'qry_grafico'
@@ -5790,10 +5789,9 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Left = 180.740260000000000000
           Width = 49.133890000000000000
           Height = 15.118120000000000000
-          DataField = 'sum(imp_total)'
           DataSet = frxDbLigacoes.qry_grafico
           DataSetName = 'qry_grafico'
-          DisplayFormat.FormatStr = '%2.2n'
+          DisplayFormat.FormatStr = '%2.5n'
           DisplayFormat.Kind = fkNumeric
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -5940,12 +5938,12 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         object Memo47: TfrxMemoView
           IndexTag = 1
           Left = 161.842610000000000000
-          Top = 6.779530000000000000
+          Top = 6.779529999999990000
           Width = 68.031540000000000000
           Height = 18.897650000000000000
           DataSet = frxDbLigacoes.qry_grafico_total
           DataSetName = 'qry_grafico_total'
-          DisplayFormat.FormatStr = '%2.2n'
+          DisplayFormat.FormatStr = '%2.5n'
           DisplayFormat.Kind = fkNumeric
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack

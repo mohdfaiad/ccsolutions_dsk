@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxMemo, cxCurrencyEdit,
   cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket,
-  ACBrCEP, frxClass, frxDBSet,unit_function, ACBrExtenso;
+  ACBrCEP, frxClass, frxDBSet, ACBrExtenso;
 
 type
   Tfrm_receipt = class(Tfrm_form_default)
@@ -100,7 +100,7 @@ procedure Tfrm_receipt.Action_printExecute(Sender: TObject);
 begin
   inherited;
  frxReport_1.LoadFromFile('c:\ccsolutions_dsk\reports\financial\rep_relatorio_recibo.fr3');
- frxReport_1.variables['extenso'] := QuotedStr(valorPorExtenso(qryrec_value.AsFloat));
+ frxReport_1.variables['extenso'] := QuotedStr(ACBrExtenso1.ValorToTexto(qryrec_value.AsFloat));
  frxReport_1.ShowReport;
 end;
 

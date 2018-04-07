@@ -26,7 +26,7 @@ uses
   ACBrDownload, System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList,
   dxSkinsForm, dxBar, dxStatusBar, dxRibbonStatusBar, cxLabel, dxGalleryControl,
   dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
-  dxRibbon, dxBevel, dxGDIPlusClasses, Vcl.ExtCtrls;
+  dxRibbon, dxBevel, dxGDIPlusClasses, Vcl.ExtCtrls, cxLocalization;
 
 type
   Tfrm_main = class(Tfrm_main_default)

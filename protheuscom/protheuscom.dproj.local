@@ -1,19 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2018/04/06 20:53:50.000.502,=C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2018/04/06 20:55:56.000.598,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\ufrm_protheuscom.dfm=C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2018/04/06 20:55:56.000.598,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\ufrm_protheuscom.pas=C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2018/04/06 20:56:02.000.889,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\protheuscom.dproj=C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2018/04/06 20:57:18.000.459,=C:\development\ccsolutions\ccsolutions_dsk\trunk\models\ufrm_form_default.pas</Transaction>
-    <Transaction>2018/04/06 20:57:19.000.177,=C:\development\ccsolutions\ccsolutions_dsk\trunk\models\ufrm_import_default.pas</Transaction>
-    <Transaction>2018/04/06 20:57:21.000.716,=C:\development\ccsolutions\ccsolutions_dsk\trunk\models\ufrm_main_default.pas</Transaction>
-    <Transaction>2018/04/06 20:57:22.000.289,=C:\development\ccsolutions\ccsolutions_dsk\trunk\models\ufrm_search.pas</Transaction>
-    <Transaction>2018/04/06 20:58:39.000.296,=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\Unit1.pas</Transaction>
-    <Transaction>2018/04/06 20:58:49.000.334,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\ufrm_main.pas=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\Unit1.pas</Transaction>
-    <Transaction>2018/04/06 20:58:49.000.334,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\ufrm_main.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\Unit1.dfm</Transaction>
-    <Transaction>2018/04/06 21:11:03.970,=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_dm.pas</Transaction>
-    <Transaction>2018/04/06 21:11:04.829,=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_dm_ds.pas</Transaction>
-    <Transaction>2018/04/06 21:11:05.083,=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_dm_report.pas</Transaction>
+    <Transaction>2018/04/06 20:55:56.000.598,C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\ufrm_protheuscom.dfm</Transaction>
+    <Transaction>2018/04/06 20:56:02.000.889,C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\protheuscom.dproj</Transaction>
+    <Transaction>2018/04/06 20:58:49.000.334,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\ufrm_main.dfm</Transaction>
   </Transactions>
 </BorlandProject>

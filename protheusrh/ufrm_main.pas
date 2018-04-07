@@ -26,7 +26,8 @@ uses
   ACBrDownload, System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList,
   dxSkinsForm, dxBar, dxStatusBar, dxRibbonStatusBar, cxLabel, dxGalleryControl,
   dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
-  dxRibbon, dxBevel, dxGDIPlusClasses, Vcl.ExtCtrls, uclass_openform;
+  dxRibbon, dxBevel, dxGDIPlusClasses, Vcl.ExtCtrls,
+  cxLocalization;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -57,7 +58,6 @@ type
     procedure Action_reportExecute(Sender: TObject);
   private
     { Private declarations }
-    objFrm: TOpenForm;
   public
     { Public declarations }
   end;

@@ -42,6 +42,8 @@ inherited frm_main: Tfrm_main
   end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar1: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 66
       FloatClientHeight = 162
       ItemLinks = <

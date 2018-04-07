@@ -108,7 +108,7 @@ inherited frm_main: Tfrm_main
         end
         item
           Visible = True
-          ItemName = 'dxBarLargeButton9'
+          ItemName = 'dxBarLargeButton13'
         end
         item
           Visible = True
@@ -116,7 +116,7 @@ inherited frm_main: Tfrm_main
         end
         item
           Visible = True
-          ItemName = 'dxBarLargeButton13'
+          ItemName = 'dxBarLargeButton9'
         end>
       OneOnRow = True
       Row = 0

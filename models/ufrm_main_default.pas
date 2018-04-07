@@ -50,7 +50,7 @@ type
     dxBarManager_1Bar1: TdxBar;
     dxRibbonBackstageViewTabSheet2: TdxRibbonBackstageViewTabSheet;
     Bevel_1: TBevel;
-    cxLocalizer1: TcxLocalizer;
+    cxLocalizer_1: TcxLocalizer;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -73,9 +73,9 @@ begin
   // VERIFICA SE EXISTE O ARQUIVO DENTRO DA PASTA
   if FileExists('c:\development\TraduçãoDev.ini') then
   begin
-    cxLocalizer1.LoadFromFile('c:\development\TraduçãoDev.ini');
-    cxLocalizer1.LanguageIndex := 1; // MUDA DE LINGUAGEM
-    cxLocalizer1.Active := TRUE;     // ATIVA O COMPONENTE
+    cxLocalizer_1.LoadFromFile('c:\development\TraduçãoDev.ini');
+    cxLocalizer_1.LanguageIndex := 1; // MUDA DE LINGUAGEM
+    cxLocalizer_1.Active := TRUE;     // ATIVA O COMPONENTE
   end;
  end;
 end.

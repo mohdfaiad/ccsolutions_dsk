@@ -2365,8 +2365,8 @@ object frm_main_default: Tfrm_main_default
     FormatVersion = 1
     DesignInfo = 524920
   end
-  object cxLocalizer1: TcxLocalizer
-    Left = 440
+  object cxLocalizer_1: TcxLocalizer
+    Left = 504
     Top = 8
   end
 end

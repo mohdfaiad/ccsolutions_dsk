@@ -25,7 +25,7 @@ object frm_form_default: Tfrm_form_default
     Height = 506
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet_2
+    Properties.ActivePage = cxTabSheet_1
     Properties.CustomButtons.Buttons = <>
     Properties.HotImages = cxImageList_1
     Properties.Images = cxImageList_1
@@ -1290,7 +1290,7 @@ object frm_form_default: Tfrm_form_default
       end>
   end
   object dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
-    Left = 480
+    Left = 488
     Top = 48
     object dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
     end
@@ -1301,7 +1301,7 @@ object frm_form_default: Tfrm_form_default
   end
   object ACBrEnterTab_1: TACBrEnterTab
     EnterAsTab = True
-    Left = 448
+    Left = 456
     Top = 48
   end
   object QExport4Dialog_1: TQExport4Dialog
@@ -1351,7 +1351,7 @@ object frm_form_default: Tfrm_form_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ','
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
+    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET
@@ -1483,7 +1483,7 @@ object frm_form_default: Tfrm_form_default
     DocxOptions.FooterStyle.Font.Name = 'Calibri'
     DocxOptions.FooterStyle.Font.Style = []
     AccessOptions.TableName = 'EXPORT_TABLE'
-    Left = 408
+    Left = 424
     Top = 48
   end
   object QImport3Wizard_1: TQImport3Wizard
@@ -1506,11 +1506,11 @@ object frm_form_default: Tfrm_form_default
     ErrorLog = True
     ErrorLogFileName = 'error.log'
     AddType = qatInsert
-    Left = 384
+    Left = 392
     Top = 48
   end
   object FDSchemaAdapter_1: TFDSchemaAdapter
-    Left = 344
+    Left = 360
     Top = 48
   end
   object frxReport_1: TfrxReport
@@ -1528,8 +1528,8 @@ object frm_form_default: Tfrm_form_default
       'begin'
       ''
       'end.')
-    Left = 439
-    Top = 146
+    Left = 295
+    Top = 48
     Datasets = <>
     Variables = <>
     Style = <>
@@ -1538,7 +1538,7 @@ object frm_form_default: Tfrm_form_default
     ProxyPort = '8080'
     WebService = wsRepublicaVirtual
     PesquisarIBGE = True
-    Left = 258
-    Top = 35
+    Left = 328
+    Top = 48
   end
 end

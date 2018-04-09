@@ -767,7 +767,7 @@ object frm_form_default: Tfrm_form_default
   end
   object cxImageList_1: TcxImageList
     FormatVersion = 1
-    DesignInfo = 3146409
+    DesignInfo = 3146408
     ImageInfo = <
       item
         Image.Data = {

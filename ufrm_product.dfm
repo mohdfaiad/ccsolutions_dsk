@@ -1,10 +1,16 @@
 inherited frm_product: Tfrm_product
   Caption = 'Manuten'#231#227'o: Produtos e Servi'#231'os'
   OnClose = FormClose
+  ExplicitTop = -167
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pro_id: TcxGridDBColumn
@@ -95,8 +101,17 @@ inherited frm_product: Tfrm_product
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = cxTabSheet2
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 77
@@ -104,23 +119,11 @@ inherited frm_product: Tfrm_product
               ExplicitLeft = 77
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 297
+              Left = 250
               DataBinding.DataField = 'pro_dt_registration'
-              ExplicitLeft = 297
+              ExplicitLeft = 250
             end
-            object cxDBMemo1: TcxDBMemo [2]
-              Left = 77
-              Top = 238
-              DataBinding.DataField = 'pro_description'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.ScrollBars = ssVertical
-              Style.HotTrack = False
-              TabOrder = 13
-              Height = 89
-              Width = 535
-            end
-            object cxDBComboBox1: TcxDBComboBox [3]
+            object cxDBComboBox1: TcxDBComboBox [2]
               Left = 77
               Top = 103
               DataBinding.DataField = 'pro_type'
@@ -136,157 +139,7 @@ inherited frm_product: Tfrm_product
               TabOrder = 2
               Width = 121
             end
-            object cxDBLookupComboBox2: TcxDBLookupComboBox [4]
-              Left = 77
-              Top = 157
-              DataBinding.DataField = 'supplier_sup_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'pro_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Raz'#227'o'
-                  Width = 250
-                  FieldName = 'sup_first_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'sup_id'
-                end>
-              Properties.ListSource = ds_supplier
-              Style.HotTrack = False
-              TabOrder = 5
-              Width = 121
-            end
-            object cxDBLookupComboBox3: TcxDBLookupComboBox [5]
-              Left = 297
-              Top = 157
-              DataBinding.DataField = 'manufacturer_man_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'man_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Raz'#227'o'
-                  Width = 250
-                  FieldName = 'man_first_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'man_id'
-                end>
-              Properties.ListSource = ds_manufacturer
-              Style.HotTrack = False
-              TabOrder = 6
-              Width = 121
-            end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [6]
-              Left = 491
-              Top = 157
-              DataBinding.DataField = 'ncm_ncm_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'ncm_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'C'#243'digo'
-                  Width = 100
-                  FieldName = 'ncm_code'
-                end
-                item
-                  Caption = 'Descri'#231#227'o'
-                  Width = 250
-                  FieldName = 'ncm_description'
-                end>
-              Properties.ListSource = ds_ncm
-              Style.HotTrack = False
-              TabOrder = 7
-              Width = 121
-            end
-            object cxDBLookupComboBox4: TcxDBLookupComboBox [7]
-              Left = 77
-              Top = 184
-              DataBinding.DataField = 'brand_bra_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'bra_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Nome'
-                  Width = 250
-                  FieldName = 'bra_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'bra_id'
-                end>
-              Properties.ListSource = ds_brand
-              Style.HotTrack = False
-              TabOrder = 8
-              Width = 121
-            end
-            object cxDBLookupComboBox5: TcxDBLookupComboBox [8]
-              Left = 297
-              Top = 184
-              DataBinding.DataField = 'product_class_prc_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'prc_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Nome'
-                  Width = 250
-                  FieldName = 'prc_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'prc_id'
-                end>
-              Properties.ListSource = ds_product_class
-              Style.HotTrack = False
-              TabOrder = 9
-              Width = 121
-            end
-            object cxDBLookupComboBox6: TcxDBLookupComboBox [9]
-              Left = 491
-              Top = 184
-              DataBinding.DataField = 'product_class_sub_prs_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'prs_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Nome'
-                  Width = 250
-                  FieldName = 'prs_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'prs_id'
-                end>
-              Properties.ListSource = ds_product_class_sub
-              Style.HotTrack = False
-              TabOrder = 10
-              Width = 121
-            end
-            object cxDBTextEdit1: TcxDBTextEdit [10]
+            object cxDBTextEdit1: TcxDBTextEdit [3]
               Left = 77
               Top = 130
               DataBinding.DataField = 'pro_name'
@@ -296,7 +149,7 @@ inherited frm_product: Tfrm_product
               TabOrder = 3
               Width = 341
             end
-            object cxDBLookupComboBox7: TcxDBLookupComboBox [11]
+            object cxDBLookupComboBox7: TcxDBLookupComboBox [4]
               Left = 491
               Top = 130
               DataBinding.DataField = 'product_unit_pru_id'
@@ -321,7 +174,157 @@ inherited frm_product: Tfrm_product
               TabOrder = 4
               Width = 121
             end
-            object cxDBTextEdit2: TcxDBTextEdit [12]
+            object cxDBLookupComboBox2: TcxDBLookupComboBox [5]
+              Left = 77
+              Top = 157
+              DataBinding.DataField = 'supplier_sup_id'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
+              Properties.KeyFieldNames = 'pro_id'
+              Properties.ListColumns = <
+                item
+                  Caption = 'Raz'#227'o'
+                  Width = 250
+                  FieldName = 'sup_first_name'
+                end
+                item
+                  Caption = 'C'#243'd. ID'
+                  Width = 75
+                  FieldName = 'sup_id'
+                end>
+              Properties.ListSource = ds_supplier
+              Style.HotTrack = False
+              TabOrder = 5
+              Width = 121
+            end
+            object cxDBLookupComboBox3: TcxDBLookupComboBox [6]
+              Left = 297
+              Top = 157
+              DataBinding.DataField = 'manufacturer_man_id'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
+              Properties.KeyFieldNames = 'man_id'
+              Properties.ListColumns = <
+                item
+                  Caption = 'Raz'#227'o'
+                  Width = 250
+                  FieldName = 'man_first_name'
+                end
+                item
+                  Caption = 'C'#243'd. ID'
+                  Width = 75
+                  FieldName = 'man_id'
+                end>
+              Properties.ListSource = ds_manufacturer
+              Style.HotTrack = False
+              TabOrder = 6
+              Width = 121
+            end
+            object cxDBLookupComboBox1: TcxDBLookupComboBox [7]
+              Left = 482
+              Top = 157
+              DataBinding.DataField = 'ncm_ncm_id'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
+              Properties.KeyFieldNames = 'ncm_id'
+              Properties.ListColumns = <
+                item
+                  Caption = 'C'#243'digo'
+                  Width = 100
+                  FieldName = 'ncm_code'
+                end
+                item
+                  Caption = 'Descri'#231#227'o'
+                  Width = 250
+                  FieldName = 'ncm_description'
+                end>
+              Properties.ListSource = ds_ncm
+              Style.HotTrack = False
+              TabOrder = 7
+              Width = 121
+            end
+            object cxDBLookupComboBox4: TcxDBLookupComboBox [8]
+              Left = 77
+              Top = 184
+              DataBinding.DataField = 'brand_bra_id'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
+              Properties.KeyFieldNames = 'bra_id'
+              Properties.ListColumns = <
+                item
+                  Caption = 'Nome'
+                  Width = 250
+                  FieldName = 'bra_name'
+                end
+                item
+                  Caption = 'C'#243'd. ID'
+                  Width = 75
+                  FieldName = 'bra_id'
+                end>
+              Properties.ListSource = ds_brand
+              Style.HotTrack = False
+              TabOrder = 8
+              Width = 121
+            end
+            object cxDBLookupComboBox5: TcxDBLookupComboBox [9]
+              Left = 297
+              Top = 184
+              DataBinding.DataField = 'product_class_prc_id'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
+              Properties.KeyFieldNames = 'prc_id'
+              Properties.ListColumns = <
+                item
+                  Caption = 'Nome'
+                  Width = 250
+                  FieldName = 'prc_name'
+                end
+                item
+                  Caption = 'C'#243'd. ID'
+                  Width = 75
+                  FieldName = 'prc_id'
+                end>
+              Properties.ListSource = ds_product_class
+              Style.HotTrack = False
+              TabOrder = 9
+              Width = 121
+            end
+            object cxDBLookupComboBox6: TcxDBLookupComboBox [10]
+              Left = 482
+              Top = 184
+              DataBinding.DataField = 'product_class_sub_prs_id'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
+              Properties.KeyFieldNames = 'prs_id'
+              Properties.ListColumns = <
+                item
+                  Caption = 'Nome'
+                  Width = 250
+                  FieldName = 'prs_name'
+                end
+                item
+                  Caption = 'C'#243'd. ID'
+                  Width = 75
+                  FieldName = 'prs_id'
+                end>
+              Properties.ListSource = ds_product_class_sub
+              Style.HotTrack = False
+              TabOrder = 10
+              Width = 121
+            end
+            object cxDBTextEdit2: TcxDBTextEdit [11]
               Left = 77
               Top = 211
               DataBinding.DataField = 'pro_barcod'
@@ -331,7 +334,7 @@ inherited frm_product: Tfrm_product
               TabOrder = 11
               Width = 121
             end
-            object cxDBTextEdit3: TcxDBTextEdit [13]
+            object cxDBTextEdit3: TcxDBTextEdit [12]
               Left = 297
               Top = 211
               DataBinding.DataField = 'pro_barcod_manufacturer'
@@ -341,25 +344,34 @@ inherited frm_product: Tfrm_product
               TabOrder = 12
               Width = 121
             end
+            object cxDBMemo1: TcxDBMemo [13]
+              Left = 77
+              Top = 238
+              DataBinding.DataField = 'pro_description'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.ScrollBars = ssVertical
+              Style.HotTrack = False
+              TabOrder = 13
+              Height = 89
+              Width = 535
+            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
             end
-            inherited dxLayoutGroup2: TdxLayoutGroup
+            inherited dxLayoutItem1: TdxLayoutItem [16]
+            end
+            inherited dxLayoutItem2: TdxLayoutItem [17]
+            end
+            inherited dxLayoutGroup2: TdxLayoutGroup [18]
+              AlignHorz = ahRight
               ItemIndex = 1
             end
-            object dxLayoutItem5: TdxLayoutItem
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2
-              CaptionOptions.Text = 'Descri'#231#227'o'
-              Control = cxDBMemo1
-              ControlOptions.OriginalHeight = 89
-              ControlOptions.OriginalWidth = 185
-              ControlOptions.ShowBorder = False
-              Index = 4
-            end
-            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              LayoutDirection = ldHorizontal
-              Index = 2
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              Index = 0
               AutoCreated = True
             end
             object dxLayoutItem6: TdxLayoutItem
@@ -373,6 +385,41 @@ inherited frm_product: Tfrm_product
               ControlOptions.ShowBorder = False
               Index = 0
             end
+            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem3: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Nome'
+              Control = cxDBTextEdit1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 341
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem12: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              AlignVert = avClient
+              CaptionOptions.Text = 'Unid. Medida'
+              Control = cxDBLookupComboBox7
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
             object dxLayoutItem7: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup4
               AlignHorz = ahLeft
@@ -383,13 +430,6 @@ inherited frm_product: Tfrm_product
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 0
-            end
-            object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 1
-              AutoCreated = True
             end
             object dxLayoutItem8: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup4
@@ -412,6 +452,12 @@ inherited frm_product: Tfrm_product
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 2
+            end
+            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              LayoutDirection = ldHorizontal
+              Index = 2
+              AutoCreated = True
             end
             object dxLayoutItem9: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup2
@@ -445,40 +491,11 @@ inherited frm_product: Tfrm_product
               ControlOptions.ShowBorder = False
               Index = 2
             end
-            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+            object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              Index = 0
-              AutoCreated = True
-            end
-            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignVert = avTop
               LayoutDirection = ldHorizontal
-              Index = 1
+              Index = 3
               AutoCreated = True
-            end
-            object dxLayoutItem3: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Nome'
-              Control = cxDBTextEdit1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 341
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutItem12: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
-              AlignVert = avClient
-              CaptionOptions.Text = 'Unid. Medida'
-              Control = cxDBLookupComboBox7
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
             end
             object dxLayoutItem13: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup3
@@ -501,11 +518,14 @@ inherited frm_product: Tfrm_product
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
+            object dxLayoutItem5: TdxLayoutItem
               Parent = dxLayoutGroup2
-              LayoutDirection = ldHorizontal
-              Index = 3
-              AutoCreated = True
+              CaptionOptions.Text = 'Descri'#231#227'o'
+              Control = cxDBMemo1
+              ControlOptions.OriginalHeight = 89
+              ControlOptions.OriginalWidth = 185
+              ControlOptions.ShowBorder = False
+              Index = 4
             end
           end
         end
@@ -579,7 +599,6 @@ inherited frm_product: Tfrm_product
               AlignVert = avTop
               ButtonOptions.Buttons = <>
               Hidden = True
-              ItemIndex = 1
               ShowBorder = False
               Index = -1
             end
@@ -652,6 +671,101 @@ inherited frm_product: Tfrm_product
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 1
+            end
+          end
+        end
+        object cxTabSheet2: TcxTabSheet
+          Caption = 'Insumos'
+          object dxLayoutControl2: TdxLayoutControl
+            Left = 0
+            Top = 0
+            Width = 762
+            Height = 432
+            Align = alClient
+            TabOrder = 0
+            LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            ExplicitLeft = 72
+            ExplicitTop = 112
+            ExplicitWidth = 300
+            ExplicitHeight = 250
+            object cxGrid1: TcxGrid
+              Left = 17
+              Top = 38
+              Width = 418
+              Height = 200
+              TabOrder = 0
+              object cxGrid1DBTableView1: TcxGridDBTableView
+                Navigator.Buttons.CustomButtons = <>
+                Navigator.Buttons.Images = cxImageList_1
+                Navigator.Buttons.First.ImageIndex = 0
+                Navigator.Buttons.PriorPage.Visible = False
+                Navigator.Buttons.Prior.ImageIndex = 1
+                Navigator.Buttons.Next.ImageIndex = 2
+                Navigator.Buttons.NextPage.Visible = False
+                Navigator.Buttons.Last.ImageIndex = 3
+                Navigator.Buttons.Insert.ImageIndex = 4
+                Navigator.Buttons.Insert.Visible = True
+                Navigator.Buttons.Append.Visible = False
+                Navigator.Buttons.Delete.ImageIndex = 8
+                Navigator.Buttons.Edit.ImageIndex = 5
+                Navigator.Buttons.Refresh.ImageIndex = 9
+                Navigator.Buttons.Filter.ImageIndex = 10
+                Navigator.Visible = True
+                DataController.DataSource = ds_product_input
+                DataController.Summary.DefaultGroupSummaryItems = <>
+                DataController.Summary.FooterSummaryItems = <>
+                DataController.Summary.SummaryGroups = <>
+                object cxGrid1DBTableView1pri_id: TcxGridDBColumn
+                  DataBinding.FieldName = 'pri_id'
+                end
+                object cxGrid1DBTableView1product_pro_id: TcxGridDBColumn
+                  DataBinding.FieldName = 'product_pro_id'
+                end
+                object cxGrid1DBTableView1product_pro_id_input: TcxGridDBColumn
+                  DataBinding.FieldName = 'product_pro_id_input'
+                  PropertiesClassName = 'TcxLookupComboBoxProperties'
+                  Properties.KeyFieldNames = 'pro_id'
+                  Properties.ListColumns = <
+                    item
+                      FieldName = 'pro_name'
+                    end
+                    item
+                      FieldName = 'pro_id'
+                    end>
+                  Properties.ListSource = ds_product_list_input
+                end
+                object cxGrid1DBTableView1pri_dt_registration: TcxGridDBColumn
+                  DataBinding.FieldName = 'pri_dt_registration'
+                end
+              end
+              object cxGrid1Level1: TcxGridLevel
+                GridView = cxGrid1DBTableView1
+              end
+            end
+            object dxLayoutControl2Group_Root: TdxLayoutGroup
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              ButtonOptions.Buttons = <>
+              Hidden = True
+              ShowBorder = False
+              Index = -1
+            end
+            object dxLayoutGroup5: TdxLayoutGroup
+              Parent = dxLayoutControl2Group_Root
+              CaptionOptions.Text = 'New Group'
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              SizeOptions.Width = 432
+              ButtonOptions.Buttons = <>
+              Index = 0
+            end
+            object dxLayoutItem20: TdxLayoutItem
+              Parent = dxLayoutGroup5
+              Control = cxGrid1
+              ControlOptions.OriginalHeight = 200
+              ControlOptions.OriginalWidth = 250
+              ControlOptions.ShowBorder = False
+              Index = 0
             end
           end
         end
@@ -833,6 +947,11 @@ inherited frm_product: Tfrm_product
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
   object qry_ncm: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
@@ -933,8 +1052,8 @@ inherited frm_product: Tfrm_product
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from product_class_sub')
-    Left = 456
-    Top = 96
+    Left = 416
+    Top = 88
   end
   object ds_product_class_sub: TDataSource
     DataSet = qry_product_class_sub
@@ -958,5 +1077,54 @@ inherited frm_product: Tfrm_product
     DataSet = qry_product_unit
     Left = 552
     Top = 96
+  end
+  object qry_product_input: TFDQuery
+    Active = True
+    IndexFieldNames = 'product_pro_id_input'
+    MasterSource = ds
+    MasterFields = 'pro_id'
+    DetailFields = 'product_pro_id_input'
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select * from product_input'
+      'where product_pro_id_input = :pro_id')
+    Left = 346
+    Top = 107
+    ParamData = <
+      item
+        Name = 'PRO_ID'
+        DataType = ftAutoInc
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object ds_product_input: TDataSource
+    DataSet = qry_product_input
+    Left = 423
+    Top = 154
+  end
+  object qry_product_list_input: TFDQuery
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select pro_id,pro_name from product'#13#10#10
+      'order by pro_name ')
+    Left = 375
+    Top = 258
+    object qry_product_list_inputpro_id: TFDAutoIncField
+      FieldName = 'pro_id'
+      Origin = 'pro_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qry_product_list_inputpro_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_name'
+      Origin = 'pro_name'
+      Size = 50
+    end
+  end
+  object ds_product_list_input: TDataSource
+    DataSet = qry_product_list_input
+    Left = 456
+    Top = 232
   end
 end

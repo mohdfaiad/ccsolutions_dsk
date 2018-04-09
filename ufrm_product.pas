@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxCurrencyEdit, cxMemo, cxShellComboBox, QExport4Dialog, cxBarEditItem,
   dxBarExtItems, QImport3Wizard, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox;
+  cxDBLookupComboBox, ACBrSocket, ACBrCEP, frxClass;
 
 type
   Tfrm_product = class(Tfrm_form_default)
@@ -140,6 +140,24 @@ type
     cxGrid_1DBTableView1pro_length: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_weight: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_liter: TcxGridDBColumn;
+    qry_product_input: TFDQuery;
+    cxTabSheet2: TcxTabSheet;
+    dxLayoutControl2Group_Root: TdxLayoutGroup;
+    dxLayoutControl2: TdxLayoutControl;
+    dxLayoutGroup5: TdxLayoutGroup;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    dxLayoutItem20: TdxLayoutItem;
+    ds_product_input: TDataSource;
+    cxGrid1DBTableView1pri_id: TcxGridDBColumn;
+    cxGrid1DBTableView1product_pro_id: TcxGridDBColumn;
+    cxGrid1DBTableView1product_pro_id_input: TcxGridDBColumn;
+    cxGrid1DBTableView1pri_dt_registration: TcxGridDBColumn;
+    qry_product_list_input: TFDQuery;
+    qry_product_list_inputpro_id: TFDAutoIncField;
+    qry_product_list_inputpro_name: TStringField;
+    ds_product_list_input: TDataSource;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
   private

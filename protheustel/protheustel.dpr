@@ -4,10 +4,8 @@ uses
   Vcl.Forms,
   ufrm_protheustel in 'ufrm_protheustel.pas' {frm_protheustel},
   ufrm_form_default in '..\models\ufrm_form_default.pas' {frm_form_default},
-  ufrm_login_default in '..\models\ufrm_login_default.pas' {frm_login_default},
   ufrm_main_default in '..\models\ufrm_main_default.pas' {frm_main_default},
   ufrm_main in 'ufrm_main.pas' {frm_main},
-  ufrm_login in 'ufrm_login.pas' {frm_login},
   ufrm_dm in '..\ufrm_dm.pas' {frm_dm: TDataModule},
   ufrm_dm_ds in '..\ufrm_dm_ds.pas' {frm_dm_ds: TDataModule},
   ufrm_dm_report in '..\ufrm_dm_report.pas' {frm_dm_report: TDataModule},
@@ -21,7 +19,9 @@ uses
   ufrm_import_default in '..\models\ufrm_import_default.pas' {frm_import_default},
   ufrm_import_sippulse in '..\ufrm_import_sippulse.pas' {frm_import_sippulse},
   ufrm_consult_cnpj in '..\ufrm_consult_cnpj.pas' {frm_consult_cnpj},
-  ufrm_consult_cpf in '..\ufrm_consult_cpf.pas' {frm_consult_cpf};
+  ufrm_consult_cpf in '..\ufrm_consult_cpf.pas' {frm_consult_cpf},
+  ufrm_voip_server in '..\ufrm_voip_server.pas' {frm_voip_server},
+  ufrm_login in '..\ufrm_login.pas' {frm_login};
 
 {$R *.res}
 
@@ -30,7 +30,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfrm_dm, frm_dm);
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
-  Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
   Application.Run;
 end.

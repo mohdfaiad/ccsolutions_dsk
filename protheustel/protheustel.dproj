@@ -110,20 +110,12 @@
             <Form>frm_form_default</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\models\ufrm_login_default.pas">
-            <Form>frm_login_default</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\models\ufrm_main_default.pas">
             <Form>frm_main_default</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="ufrm_main.pas">
             <Form>frm_main</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="ufrm_login.pas">
-            <Form>frm_login</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_dm.pas">
@@ -183,6 +175,14 @@
         </DCCReference>
         <DCCReference Include="..\ufrm_consult_cpf.pas">
             <Form>frm_consult_cpf</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_voip_server.pas">
+            <Form>frm_voip_server</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_login.pas">
+            <Form>frm_login</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

@@ -12,10 +12,7 @@ inherited frm_request: Tfrm_request
     ExplicitWidth = 877
     ClientRectRight = 871
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 869
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         Width = 863
         ExplicitWidth = 863
@@ -205,19 +202,13 @@ inherited frm_request: Tfrm_request
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 869
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         Width = 863
         ExplicitWidth = 863
         ClientRectRight = 857
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
           ExplicitWidth = 855
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 855
             ExplicitWidth = 855
@@ -656,7 +647,7 @@ inherited frm_request: Tfrm_request
         Name = 'PCO_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = Null
+        Value = 1
       end>
     object qry_purchase_order_itenpoi_id: TFDAutoIncField
       FieldName = 'poi_id'
@@ -730,9 +721,25 @@ inherited frm_request: Tfrm_request
     Top = 107
   end
   inherited frxReport_1: TfrxReport
+    Left = 255
+    Top = 56
     Datasets = <>
     Variables = <>
     Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = []
+    end
   end
   object frxReport1: TfrxReport
     Version = '6.0.4'
@@ -743,7 +750,7 @@ inherited frm_request: Tfrm_request
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43186.390207372700000000
-    ReportOptions.LastChange = 43194.387885833300000000
+    ReportOptions.LastChange = 43199.691398472220000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -2855,7 +2862,6 @@ inherited frm_request: Tfrm_request
           Top = 60.472480000000000000
           Width = 578.268090000000000000
           Height = 18.897650000000000000
-          DataField = 'ent_add_bus_address'
           DataSet = frm_dm.frx_db_enterprise
           DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
@@ -2866,7 +2872,9 @@ inherited frm_request: Tfrm_request
           Frame.Typ = []
           HAlign = haCenter
           Memo.UTF8W = (
-            '[enterprise."ent_add_bus_address"]')
+            
+              'Endere'#231'o: [enterprise."ent_add_bus_address"], [enterprise."ent_a' +
+              'dd_bus_number"] - [enterprise."ent_add_bus_street"]')
           ParentFont = False
         end
       end
@@ -3010,7 +3018,7 @@ inherited frm_request: Tfrm_request
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            'Nome')
+            'Produto')
           ParentFont = False
         end
         object Line1: TfrxLineView

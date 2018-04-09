@@ -34,7 +34,7 @@ uses
   cxCalendar, cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
   cxGrid, cxPC, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons, cxLabel,
-  Vcl.Buttons, cxCurrencyEdit, frxClass, ACBrSocket, ACBrCEP;
+  Vcl.Buttons, cxCurrencyEdit, frxClass, ACBrSocket, ACBrCEP, frxDBSet;
 
 type
   Tfrm_stock_iten = class(Tfrm_form_default)
@@ -61,15 +61,20 @@ type
     PopupMenu1: TPopupMenu;
     ExibirItensabaixodoestoqueminmo1: TMenuItem;
     ExibirtodososItens1: TMenuItem;
+    frxDBD_Estoque: TfrxDBDataset;
+    frxDBD_Estoque_Itens: TfrxDBDataset;
+    qryEmpresa: TStringField;
     qry_stock_itenproduct_pro_id: TIntegerField;
     qry_stock_itenpro_name: TStringField;
+    qry_stock_itenpru_name: TStringField;
     qry_stock_itensti_product_quant: TBCDField;
     qry_stock_itensti_product_quant_min: TBCDField;
-    cxGrid1DBTableView1pro_name: TcxGridDBColumn;
-    cxGrid1DBTableView1sti_product_quant: TcxGridDBColumn;
-    cxGrid1DBTableView1sti_product_quant_min: TcxGridDBColumn;
     qry_stock_itenstock_sto_id: TIntegerField;
     cxGrid1DBTableView1product_pro_id: TcxGridDBColumn;
+    cxGrid1DBTableView1pro_name: TcxGridDBColumn;
+    cxGrid1DBTableView1pru_name: TcxGridDBColumn;
+    cxGrid1DBTableView1sti_product_quant: TcxGridDBColumn;
+    cxGrid1DBTableView1sti_product_quant_min: TcxGridDBColumn;
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
     procedure cxPageControl_1PageChanging(Sender: TObject; NewPage: TcxTabSheet;
@@ -79,6 +84,7 @@ type
     procedure PopupMenu1Popup(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure Action_printExecute(Sender: TObject);
   private
     { Private declarations }
     estMin: Boolean;
@@ -113,6 +119,16 @@ begin
   Exit;
   inherited;
 
+end;
+
+procedure Tfrm_stock_iten.Action_printExecute(Sender: TObject);
+begin
+  inherited;
+  if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
+   begin
+     frxReport_1.LoadFromFile('C:\ccsolutions_dsk\reports\stock_Iten\' +cxBarEditItem_1.EditValue);
+     frxReport_1.ShowReport;
+   end;
 end;
 
 procedure Tfrm_stock_iten.cxPageControl_1PageChanging(Sender: TObject;

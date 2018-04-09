@@ -374,8 +374,8 @@ end;
 
 procedure Tfrm_request.limpaCache(Sender: TObject);
 begin
-qry.CommitUpdates();
-qry_purchase_order_iten.CommitUpdates();
+  qry.CommitUpdates();
+  qry_purchase_order_iten.CommitUpdates();
 end;
 
 procedure Tfrm_request.qryAfterInsert(DataSet: TDataSet);

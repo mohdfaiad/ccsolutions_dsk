@@ -51,7 +51,6 @@ type
     dxRibbonBackstageViewTabSheet2: TdxRibbonBackstageViewTabSheet;
     Bevel_1: TBevel;
     cxLocalizer_1: TcxLocalizer;
-    dxBarButton2: TdxBarButton;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }

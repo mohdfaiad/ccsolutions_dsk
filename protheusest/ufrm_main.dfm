@@ -1,7 +1,5 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Estoque - CCS Protheus.'
-  ExplicitWidth = 1024
-  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited Bevel_1: TBevel
@@ -48,6 +46,8 @@ inherited frm_main: Tfrm_main
   end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar1: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 87
       FloatClientHeight = 270
       ItemLinks = <
@@ -635,10 +635,6 @@ inherited frm_main: Tfrm_main
     end
     object dxBarButton1: TdxBarButton
       Action = Action_stock_transfer
-      Category = 0
-    end
-    object dxBarButton2: TdxBarButton
-      Action = Action_stock_iten
       Category = 0
     end
     object dxBarLargeButton12: TdxBarLargeButton
@@ -2433,10 +2429,6 @@ inherited frm_main: Tfrm_main
       item
         Visible = True
         ItemName = 'dxBarButton1'
-      end
-      item
-        Visible = True
-        ItemName = 'dxBarButton2'
       end>
     Ribbon = dxRibbon1
     UseOwnFont = False

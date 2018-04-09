@@ -75,7 +75,6 @@ type
     Action_stock_iten: TAction;
     Action_stock_transfer: TAction;
     dxBarButton1: TdxBarButton;
-    dxBarButton2: TdxBarButton;
     dxBarLargeButton12: TdxBarLargeButton;
     dxBarButton3: TdxBarButton;
     Action_request: TAction;

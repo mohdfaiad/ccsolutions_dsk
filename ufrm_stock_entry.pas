@@ -114,6 +114,13 @@ type
     qry_purchase_orderpoc_status_reason: TStringField;
     qry_purchase_orderpco_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1pde_status: TcxGridDBColumn;
+    qry_stocksto_id: TFDAutoIncField;
+    qry_stockcontract_ctr_id: TIntegerField;
+    qry_stockenterprise_ent_id: TIntegerField;
+    qry_stocksto_type: TStringField;
+    qry_stocksto_name: TStringField;
+    qry_stocksto_status: TStringField;
+    qry_stocksto_dt_registration: TDateTimeField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_product_entryAfterInsert(DataSet: TDataSet);
     procedure ConfirmaEntrada1Click(Sender: TObject);
@@ -198,12 +205,14 @@ begin
     qry_product_entry.First;
     with frm_dm.qry, sql do
     begin
-      Text := ' select * from stock_iten ' + ' where product_pro_id =:item';
+      Text := ' select * from stock_iten ' +
+              ' where product_pro_id =:item' +
+              ' AND stock_sto_id =:stok_id';
 
       while not qry_product_entry.Eof do
       begin
-        ParamByName('item').AsString :=
-          qry_product_entryproduct_pro_id.AsString;
+        ParamByName('item').AsString := qry_product_entryproduct_pro_id.AsString;
+        ParamByName('stok_id').AsString := qrystock_sto_id.AsString;
         prepare;
         open;
 
@@ -229,7 +238,7 @@ begin
         end;
         qry_product_entry.Next;
       end;
-
+      qry_stock_iten.ApplyUpdates(0);
       qry.Edit;
       qrypde_status.AsString := 'E';
       qry.Post;
@@ -240,7 +249,6 @@ begin
   end;
 
 end;
-
 procedure Tfrm_stock_entry.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -260,6 +268,7 @@ begin
     qry.CommitUpdates();
     qry_product_entry .CommitUpdates();
     qry_purchase_order.CommitUpdates();
+    qry_stock_iten.CommitUpdates();
 end;
 
 procedure Tfrm_stock_entry.PopupMenu_1Popup(Sender: TObject);

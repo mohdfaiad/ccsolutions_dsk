@@ -67,7 +67,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
       ExplicitHeight = 358
       inherited cxPageControl_2: TcxPageControl
         Height = 352
-        Properties.ActivePage = cxTabSheet1
         ExplicitHeight = 352
         ClientRectBottom = 346
         inherited cxTabSheet_3: TcxTabSheet
@@ -387,6 +386,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
   end
   inherited PopupMenu_1: TPopupMenu [7]
     OnPopup = PopupMenu_1Popup
+    Top = 0
     object ConfirmaEntrada1: TMenuItem
       Caption = 'Confirmar entrada'
       OnClick = ConfirmaEntrada1Click
@@ -563,12 +563,13 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Top = 98
   end
   object qry_stock_iten: TFDQuery [14]
-    Active = True
+    CachedUpdates = True
     IndexFieldNames = 'stock_sto_id'
     MasterSource = ds
     MasterFields = 'stock_sto_id'
     DetailFields = 'stock_sto_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from stock_iten'
       'where stock_sto_id = :stock_sto_id')
@@ -697,7 +698,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Top = 96
   end
   object qry_supplier: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     BeforeDelete = qryBeforeDelete
     IndexFieldNames = 'contract_ctr_id'
@@ -728,6 +728,46 @@ inherited frm_stock_entry: Tfrm_stock_entry
       'select * from stock')
     Left = 512
     Top = 176
+    object qry_stocksto_id: TFDAutoIncField
+      FieldName = 'sto_id'
+      Origin = 'sto_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qry_stockcontract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
+    end
+    object qry_stockenterprise_ent_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'enterprise_ent_id'
+      Origin = 'enterprise_ent_id'
+    end
+    object qry_stocksto_type: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_type'
+      Origin = 'sto_type'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_stocksto_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_name'
+      Origin = 'sto_name'
+      Size = 50
+    end
+    object qry_stocksto_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_status'
+      Origin = 'sto_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_stocksto_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_dt_registration'
+      Origin = 'sto_dt_registration'
+    end
   end
   object ds_stock: TDataSource
     DataSet = qry_stock

@@ -2347,6 +2347,12 @@ object frm_main_default: Tfrm_main_default
       Visible = True
       WholeRow = False
     end
+    object dxBarButton2: TdxBarButton
+      Caption = 'New Button'
+      Category = 0
+      Hint = 'New Button'
+      Visible = ivAlways
+    end
   end
   object dxSkinController_1: TdxSkinController
     NativeStyle = False

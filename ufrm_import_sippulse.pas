@@ -143,7 +143,8 @@ procedure Tfrm_import_sippulse.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
-  frm_import_sippulse.Free;
+  frm_import_sippulse.Destroy;
+  frm_import_sippulse := Nil;
 end;
 
 procedure Tfrm_import_sippulse.FormCreate(Sender: TObject);

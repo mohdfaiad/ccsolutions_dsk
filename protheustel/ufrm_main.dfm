@@ -51,8 +51,6 @@ inherited frm_main: Tfrm_main
       True
       True)
     inherited dxBarManager_1Bar1: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
       FloatClientWidth = 87
       FloatClientHeight = 270
       ItemLinks = <
@@ -77,7 +75,7 @@ inherited frm_main: Tfrm_main
           ItemName = 'dxBarLargeButton2'
         end>
     end
-    object dxBarManager_1Bar2: TdxBar
+    object dxBarManager_1Bar2: TdxBar [3]
       Caption = 'F'#225'brica'
       CaptionButtons = <>
       DockedLeft = 0
@@ -97,7 +95,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar3: TdxBar
+    object dxBarManager_1Bar3: TdxBar [4]
       Caption = #218'til'
       CaptionButtons = <>
       DockedLeft = 0
@@ -117,7 +115,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar4: TdxBar
+    object dxBarManager_1Bar4: TdxBar [5]
       Caption = 'Telefonia'
       CaptionButtons = <>
       DockedLeft = 0

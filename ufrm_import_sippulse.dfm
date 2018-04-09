@@ -370,6 +370,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     end
     object qryimp_date: TDateTimeField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Data'
       FieldName = 'imp_date'
       Origin = 'imp_date'
     end

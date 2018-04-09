@@ -39,10 +39,6 @@ inherited frm_voip_server: Tfrm_voip_server
             DataBinding.FieldName = 'voip_username'
             Width = 150
           end
-          object cxGrid_1DBTableView1voip_password: TcxGridDBColumn
-            DataBinding.FieldName = 'voip_password'
-            Width = 150
-          end
           object cxGrid_1DBTableView1voip_api_address: TcxGridDBColumn
             DataBinding.FieldName = 'voip_api_address'
             Width = 200
@@ -57,10 +53,6 @@ inherited frm_voip_server: Tfrm_voip_server
           end
           object cxGrid_1DBTableView1voip_api_username: TcxGridDBColumn
             DataBinding.FieldName = 'voip_api_username'
-            Width = 150
-          end
-          object cxGrid_1DBTableView1voip_api_password: TcxGridDBColumn
-            DataBinding.FieldName = 'voip_api_password'
             Width = 150
           end
           object cxGrid_1DBTableView1voip_api_key: TcxGridDBColumn
@@ -153,6 +145,7 @@ inherited frm_voip_server: Tfrm_voip_server
               Top = 211
               DataBinding.DataField = 'voip_password'
               DataBinding.DataSource = ds
+              Properties.EchoMode = eemPassword
               Style.HotTrack = False
               TabOrder = 7
               Width = 121
@@ -302,6 +295,7 @@ inherited frm_voip_server: Tfrm_voip_server
               Top = 92
               DataBinding.DataField = 'voip_api_password'
               DataBinding.DataSource = ds
+              Properties.EchoMode = eemPassword
               Style.HotTrack = False
               TabOrder = 4
               Width = 121

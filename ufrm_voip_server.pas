@@ -59,12 +59,10 @@ type
     cxGrid_1DBTableView1voip_address: TcxGridDBColumn;
     cxGrid_1DBTableView1voip_port: TcxGridDBColumn;
     cxGrid_1DBTableView1voip_username: TcxGridDBColumn;
-    cxGrid_1DBTableView1voip_password: TcxGridDBColumn;
     cxGrid_1DBTableView1voip_api_address: TcxGridDBColumn;
     cxGrid_1DBTableView1voip_api_port: TcxGridDBColumn;
     cxGrid_1DBTableView1voip_api_webservice: TcxGridDBColumn;
     cxGrid_1DBTableView1voip_api_username: TcxGridDBColumn;
-    cxGrid_1DBTableView1voip_api_password: TcxGridDBColumn;
     cxGrid_1DBTableView1voip_api_key: TcxGridDBColumn;
     cxGrid_1DBTableView1voip_dt_registration: TcxGridDBColumn;
     cxTabSheet1: TcxTabSheet;

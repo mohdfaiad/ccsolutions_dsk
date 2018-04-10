@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxSpinEdit, dxLayoutControlAdapters, Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids,
   Vcl.DBGrids, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxCurrencyEdit,
-  frxClass, ACBrSocket, ACBrCEP;
+  frxClass, ACBrSocket, ACBrCEP, frxDBSet;
 
 type
   Tfrm_stock_entry = class(Tfrm_form_default)
@@ -121,6 +121,11 @@ type
     qry_stocksto_name: TStringField;
     qry_stocksto_status: TStringField;
     qry_stocksto_dt_registration: TDateTimeField;
+    frxDBD_Entrada: TfrxDBDataset;
+    frxDBD_Entrada_Itens: TfrxDBDataset;
+    qry_product_entryNome_Produto: TStringField;
+    qryFornecedor: TStringField;
+    qryEstoque: TStringField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_product_entryAfterInsert(DataSet: TDataSet);
     procedure ConfirmaEntrada1Click(Sender: TObject);
@@ -131,6 +136,7 @@ type
     procedure Action_saveExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure qryBeforePost(DataSet: TDataSet);
+    procedure Action_printExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -146,6 +152,16 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_stock_entry.Action_printExecute(Sender: TObject);
+begin
+  inherited;
+   if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
+    begin
+     frxReport_1.LoadFromFile('C:\ccsolutions_dsk\reports\stock_entry\' +cxBarEditItem_1.EditValue);
+     frxReport_1.ShowReport;
+    end;
+end;
 
 procedure Tfrm_stock_entry.Action_saveExecute(Sender: TObject);
 begin

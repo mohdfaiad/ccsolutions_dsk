@@ -185,6 +185,7 @@ procedure Tfrm_stock_transfer.Action_saveExecute(Sender: TObject);
 var
 fecha:Boolean;
 begin
+//Variavel para analizar se todos os produtos da requisição já foram atendido
  fecha:=True;
   qry_product_transfer_iten.First;
   while not qry_product_transfer_iten.Eof do
@@ -307,6 +308,17 @@ begin
         qry_product_transfer_iten.Next;
       end;
     end;
+
+    qry.Edit;
+    qryprt_status.AsString := 'T'; // Transferencia em transito
+    qry.Post;
+    Application.MessageBox('Saída da transferência confirmada com sucesso!',
+      'Entrada', MB_OK + MB_ICONINFORMATION);
+
+    qry.Edit;
+    qryprt_status.AsString := 'C';
+    qry.Post;
+
     Application.MessageBox('Transferência cancelada com sucesso!', 'Entrada',
       MB_OK + MB_ICONINFORMATION);
   end;
@@ -365,7 +377,7 @@ begin
     end;
 
     qry.Edit;
-    qryprt_status.AsString := 'E'; // Transferencia em transito
+    qryprt_status.AsString := 'E'; // Transferencia em Efetivada
     qry.Post;
     Application.MessageBox('Entrada da transferência confirmada com sucesso!',
       'Entrada', MB_OK + MB_ICONINFORMATION);
@@ -475,7 +487,9 @@ begin
       Exit;
     end;
 
+    if not(qry.State in [dsinsert])  then
     qry.Insert;
+
     qryemployee_emp_id_request.AsInteger := qry_purchase_orderemployee_emp_id.AsInteger;
     qrypurchase_order_pco_id.AsString:=numReq;
     qry.Post;
@@ -525,6 +539,9 @@ procedure Tfrm_stock_transfer.limpaCache(Sender: TObject);
 begin
   qry.CommitUpdates();
   qry_product_transfer_iten.CommitUpdates();
+  qry_purchase_order.CommitUpdates();
+  qry_purchase_order_iten.CommitUpdates();
+
 end;
 
 procedure Tfrm_stock_transfer.PopupMenu_1Popup(Sender: TObject);

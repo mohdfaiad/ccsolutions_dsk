@@ -706,6 +706,7 @@ object frm_form_default: Tfrm_form_default
       Caption = 'Imprimir'
       Hint = 'Visualizar Relat'#243'rio'
       ImageIndex = 12
+      OnExecute = Action_printExecute
     end
     object Action_print_edit: TAction
       Caption = 'Editar'
@@ -1351,7 +1352,7 @@ object frm_form_default: Tfrm_form_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ','
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
+    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET
@@ -1528,8 +1529,8 @@ object frm_form_default: Tfrm_form_default
       'begin'
       ''
       'end.')
-    Left = 295
-    Top = 48
+    Left = 247
+    Top = 56
     Datasets = <>
     Variables = <>
     Style = <>

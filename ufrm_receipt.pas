@@ -97,17 +97,11 @@ implementation
 uses ufrm_dm;
 
 procedure Tfrm_receipt.Action_printExecute(Sender: TObject);
- var
-   caminho : string;
+
 begin
-  inherited;
+ // inherited;
+    frxReport_1.LoadFromFile(TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue);
 
-    caminho := cxBarEditItem_1.GetNamePath;
-    caminho := cxBarEditItem_1.EditValue;
-    caminho := cxBarEditItem_1.Properties.GetNamePath;
-    caminho := cxBarEditItem_1.GetNamePath.Empty;
-
-    frxReport_1.LoadFromFile('C:\ccsolutions_dsk\reports\financial\' +cxBarEditItem_1.EditValue);
     frxReport_1.variables['extenso'] := QuotedStr(ACBrExtenso1.ValorToTexto(qryrec_value.AsFloat));
     frxReport_1.ShowReport;
 end;

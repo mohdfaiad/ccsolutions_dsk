@@ -139,6 +139,7 @@ type
     procedure Action_exportExecute(Sender: TObject);
     procedure Action_importExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Action_printExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -255,6 +256,14 @@ begin
   ds.DataSet.Next;
 end;
 
+procedure Tfrm_form_default.Action_printExecute(Sender: TObject);
+begin
+
+   frxReport_1.LoadFromFile(TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue);
+   frxReport_1.ShowReport;
+
+end;
+
 procedure Tfrm_form_default.Action_priorExecute(Sender: TObject);
 begin
   ds.DataSet.Prior;
@@ -275,6 +284,7 @@ begin
     ds.DataSet.Post;
     if qry.CachedUpdates then
       FDSchemaAdapter_1.ApplyUpdates(0);
+
       Application.MessageBox('Registros salvos com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
      cxTabSheet_1.Show;
   end;

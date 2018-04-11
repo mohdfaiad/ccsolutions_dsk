@@ -7,7 +7,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 475
-    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 475
     ClientRectBottom = 469
     inherited cxTabSheet_1: TcxTabSheet
@@ -66,6 +65,9 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         ExplicitHeight = 435
         ClientRectBottom = 429
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
           ExplicitHeight = 401
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 401
@@ -420,6 +422,14 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         end
       end
     end
+  end
+  object cxButton1: TcxButton [2]
+    Left = 672
+    Top = 72
+    Width = 75
+    Height = 25
+    Caption = 'cxButton1'
+    TabOrder = 6
   end
   inherited dxBarManager_1: TdxBarManager
     inherited cxBarEditItem_1: TcxBarEditItem
@@ -3108,7 +3118,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         Name = 'PRT_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = Null
+        Value = 39
       end>
     object qry_product_transfer_itenpti_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
@@ -3234,7 +3244,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         Name = 'STOCK_STO_ID_EXIT'
         DataType = ftInteger
         ParamType = ptInput
-        Value = Null
+        Value = 1
       end>
     object qry_productproduct_pro_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -3268,6 +3278,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Top = 144
   end
   object qry_stock_exit: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -3309,6 +3320,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Top = 146
   end
   object qry_employee: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'

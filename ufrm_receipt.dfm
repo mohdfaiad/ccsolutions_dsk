@@ -4,6 +4,7 @@ inherited frm_receipt: Tfrm_receipt
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -226,6 +227,11 @@ inherited frm_receipt: Tfrm_receipt
       end
     end
   end
+  inherited dxBarManager_1: TdxBarManager
+    inherited cxBarEditItem_1: TcxBarEditItem
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\financial'
+    end
+  end
   inherited ActionList_1: TActionList
     inherited Action_print: TAction
       OnExecute = Action_printExecute
@@ -319,7 +325,7 @@ inherited frm_receipt: Tfrm_receipt
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43196.672751666700000000
-    ReportOptions.LastChange = 43196.738721851800000000
+    ReportOptions.LastChange = 43201.429792824080000000
     Left = 415
     Top = 122
     Datasets = <

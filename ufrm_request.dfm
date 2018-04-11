@@ -640,8 +640,8 @@ inherited frm_request: Tfrm_request
       'inner join product on product_pro_id =  pro_id'#10
       'left join product_unit on product_unit_pru_id = pru_id'
       'where purchase_order_pco_id = :pco_id')
-    Left = 360
-    Top = 280
+    Left = 280
+    Top = 472
     ParamData = <
       item
         Name = 'PCO_ID'
@@ -750,7 +750,7 @@ inherited frm_request: Tfrm_request
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43186.390207372700000000
-    ReportOptions.LastChange = 43199.691398472220000000
+    ReportOptions.LastChange = 43199.691398472200000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -3187,6 +3187,11 @@ inherited frm_request: Tfrm_request
               'N'#186' da Requisi'#231#227'o: [Requisicao."pco_id"]  - Emiss'#227'o: [Requisicao.' +
               '"pco_dt_registration"]')
           ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end>
         end
       end
     end
@@ -3246,8 +3251,8 @@ inherited frm_request: Tfrm_request
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from parameter_stock')
-    Left = 231
-    Top = 186
+    Left = 295
+    Top = 410
     object qry_parameter_stockprs_id: TFDAutoIncField
       FieldName = 'prs_id'
       Origin = 'prs_id'

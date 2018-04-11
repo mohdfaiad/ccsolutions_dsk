@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxCurrencyEdit,
   cxShellComboBox, cxBarEditItem, dxBarExtItems, QExport4Dialog, frxDesgn,
-  QImport3Wizard;
+  QImport3Wizard, ACBrSocket, ACBrCEP, frxClass;
 
 type
   Tfrm_billreceive = class(Tfrm_form_default)

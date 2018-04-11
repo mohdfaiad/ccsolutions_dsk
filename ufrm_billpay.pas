@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxCurrencyEdit,
   QExport4Dialog, cxShellComboBox, cxBarEditItem, dxBarExtItems, frxDesgn,
-  QImport3Wizard;
+  QImport3Wizard, ACBrSocket, ACBrCEP, frxClass;
 
 type
   Tfrm_billpay = class(Tfrm_form_default)
@@ -135,6 +135,7 @@ type
     qrybpy_addition: TBCDField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -149,6 +150,19 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm, ufrm_main;
+
+procedure Tfrm_billpay.Action_saveExecute(Sender: TObject);
+begin
+  if qry.State in [dsInsert] then
+   begin
+     if Application.MessageBox('Deseja cadastrar outras parcelas baseada nessa conta ?','CONTAS A PAGAR', MB_YESNO + MB_ICONQUESTION) = IDYES then
+      ShowMessage('Parcela duplicada com sucesso!');
+      exit
+   end;
+
+    inherited;
+
+end;
 
 procedure Tfrm_billpay.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

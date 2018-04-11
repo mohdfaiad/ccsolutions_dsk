@@ -35,7 +35,7 @@ uses
   cxCalendar, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGrid, cxPC, cxDBLookupComboBox, cxLookupEdit, cxDBLookupEdit, Vcl.Grids,
   Vcl.DBGrids, cxCurrencyEdit, cxButtonEdit, frxClass, ACBrSocket, ACBrCEP,
-  frxDBSet;
+  frxDBSet, Vcl.StdCtrls, cxButtons;
 
 type
   Tfrm_stock_transfer = class(Tfrm_form_default)
@@ -141,6 +141,7 @@ type
     qrySolicitante: TStringField;
     qryStock_Entrada: TStringField;
     qry_product_transfer_itenProduto: TStringField;
+    cxButton1: TcxButton;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure ConfirmarTransfernciaSaida1Click(Sender: TObject);
@@ -176,8 +177,8 @@ begin
   inherited;
   if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
    begin
-     frxReport_1.LoadFromFile('C:\ccsolutions_dsk\reports\product_transfer\' +cxBarEditItem_1.EditValue);
-     frxReport_1.ShowReport;
+    frxReport_1.LoadFromFile('C:\ccsolutions_dsk\reports\product_transfer\' +cxBarEditItem_1.EditValue);
+    frxReport_1.ShowReport;
    end;
 end;
 
@@ -251,7 +252,7 @@ begin
       while not qry_product_transfer_iten.Eof do
       begin
         qry_stock_iten.Locate('product_pro_id',
-          qry_product_transfer_itenproduct_pro_id.AsString,
+          qry_product_transfer_itenproduct_pro_id.AsInteger,
           [loCaseInsensitive, loPartialKey]);
         qry_stock_iten.Edit;
         qry_stock_itensti_product_quant.AsFloat :=

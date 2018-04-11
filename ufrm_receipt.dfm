@@ -232,11 +232,6 @@ inherited frm_receipt: Tfrm_receipt
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\financial'
     end
   end
-  inherited ActionList_1: TActionList
-    inherited Action_print: TAction
-      OnExecute = Action_printExecute
-    end
-  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end

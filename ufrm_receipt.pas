@@ -100,10 +100,12 @@ procedure Tfrm_receipt.Action_printExecute(Sender: TObject);
 
 begin
  // inherited;
+    if Application.MessageBox('Deseja imprimir o recibo selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
+   begin
     frxReport_1.LoadFromFile(TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue);
-
     frxReport_1.variables['extenso'] := QuotedStr(ACBrExtenso1.ValorToTexto(qryrec_value.AsFloat));
     frxReport_1.ShowReport;
+   end;
 end;
 
 procedure Tfrm_receipt.FormClose(Sender: TObject; var Action: TCloseAction);

@@ -59,15 +59,15 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
       ExplicitHeight = 441
       inherited cxPageControl_2: TcxPageControl
         Height = 435
         ExplicitHeight = 435
         ClientRectBottom = 429
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
           ExplicitHeight = 401
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 401
@@ -429,16 +429,11 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Width = 75
     Height = 25
     Caption = 'cxButton1'
-    TabOrder = 6
+    TabOrder = 2
   end
   inherited dxBarManager_1: TdxBarManager
     inherited cxBarEditItem_1: TcxBarEditItem
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\product_transfer'
-    end
-  end
-  inherited ActionList_1: TActionList
-    inherited Action_print: TAction
-      OnExecute = Action_printExecute
     end
   end
   inherited cxGridPopupMenu_1: TcxGridPopupMenu

@@ -84,7 +84,6 @@ type
     procedure PopupMenu1Popup(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
-    procedure Action_printExecute(Sender: TObject);
   private
     { Private declarations }
     estMin: Boolean;
@@ -119,16 +118,6 @@ begin
   Exit;
   inherited;
 
-end;
-
-procedure Tfrm_stock_iten.Action_printExecute(Sender: TObject);
-begin
-  inherited;
-  if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
-   begin
-     frxReport_1.LoadFromFile('C:\ccsolutions_dsk\reports\stock_Iten\' +cxBarEditItem_1.EditValue);
-     frxReport_1.ShowReport;
-   end;
 end;
 
 procedure Tfrm_stock_iten.cxPageControl_1PageChanging(Sender: TObject;

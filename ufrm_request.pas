@@ -133,7 +133,6 @@ type
       Sender: TcxCustomGridTableView; AItem: TcxCustomGridTableItem;
       var ADone: Boolean);
     procedure Action_saveExecute(Sender: TObject);
-    procedure Action_printExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
     procedure qry_purchase_order_itenBeforePost(DataSet: TDataSet);
   private
@@ -158,18 +157,6 @@ procedure Tfrm_request.Action_insertExecute(Sender: TObject);
 begin
   qry.Filtered:=False;
   inherited;
-
-end;
-
-procedure Tfrm_request.Action_printExecute(Sender: TObject);
-
-begin
-  inherited;
-   if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
-   begin
-     frxReport_1.LoadFromFile('C:\ccsolutions_dsk\reports\request\' +cxBarEditItem_1.EditValue);
-     frxReport_1.ShowReport;
-   end;
 
 end;
 

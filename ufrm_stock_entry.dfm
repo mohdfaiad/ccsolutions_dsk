@@ -11,9 +11,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     ExplicitHeight = 392
     ClientRectBottom = 386
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
       ExplicitHeight = 358
       inherited cxGrid_1: TcxGrid
         Height = 352
@@ -61,9 +58,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
       ExplicitHeight = 358
       inherited cxPageControl_2: TcxPageControl
         Height = 352
@@ -71,9 +65,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
         ExplicitHeight = 352
         ClientRectBottom = 346
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
           ExplicitHeight = 318
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 318
@@ -383,11 +374,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     inherited cxBarEditItem_1: TcxBarEditItem
       Properties.IncrementalSearch = False
       Properties.Root.CustomPath = 'c:\ccsolutions_dsk\reports\stock_entry'
-    end
-  end
-  inherited ActionList_1: TActionList
-    inherited Action_print: TAction
-      OnExecute = Action_printExecute
     end
   end
   inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList [4]

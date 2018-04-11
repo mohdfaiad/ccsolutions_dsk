@@ -485,11 +485,6 @@ inherited frm_request: Tfrm_request
       OnClick = dxLibRequClick
     end
   end
-  inherited ActionList_1: TActionList
-    inherited Action_print: TAction
-      OnExecute = Action_printExecute
-    end
-  end
   inherited ds: TDataSource
     OnDataChange = dsDataChange
     Left = 352
@@ -722,7 +717,6 @@ inherited frm_request: Tfrm_request
   end
   inherited frxReport_1: TfrxReport
     Left = 255
-    Top = 56
     Datasets = <>
     Variables = <>
     Style = <>

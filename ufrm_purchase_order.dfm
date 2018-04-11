@@ -7,13 +7,9 @@
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 487
-    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 487
     ClientRectBottom = 481
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
       ExplicitHeight = 453
       inherited cxGrid_1: TcxGrid
         Height = 447
@@ -197,18 +193,12 @@
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
       ExplicitHeight = 453
       inherited cxPageControl_2: TcxPageControl
         Height = 447
         ExplicitHeight = 447
         ClientRectBottom = 441
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
           ExplicitHeight = 413
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 413
@@ -443,11 +433,6 @@
       Hint = 'Liberar Pedido de Compra'
       Visible = ivAlways
       OnClick = dxLiberarPedClick
-    end
-  end
-  inherited ActionList_1: TActionList
-    inherited Action_print: TAction
-      OnExecute = Action_printExecute
     end
   end
   inherited ds: TDataSource

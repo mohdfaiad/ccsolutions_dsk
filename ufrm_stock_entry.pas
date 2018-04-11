@@ -136,7 +136,6 @@ type
     procedure Action_saveExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure qryBeforePost(DataSet: TDataSet);
-    procedure Action_printExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -152,16 +151,6 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
-
-procedure Tfrm_stock_entry.Action_printExecute(Sender: TObject);
-begin
-  inherited;
-   if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
-    begin
-     frxReport_1.LoadFromFile('C:\ccsolutions_dsk\reports\stock_entry\' +cxBarEditItem_1.EditValue);
-     frxReport_1.ShowReport;
-    end;
-end;
 
 procedure Tfrm_stock_entry.Action_saveExecute(Sender: TObject);
 begin

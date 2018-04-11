@@ -112,7 +112,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
     procedure qryBeforePost(DataSet: TDataSet);
-    procedure Action_printExecute(Sender: TObject);
   private
     { Private declarations }
   procedure filter(status:string);
@@ -129,16 +128,6 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
-
-procedure Tfrm_purchase_order.Action_printExecute(Sender: TObject);
-begin
-  inherited;
-  if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
-   begin
-     frxReport_1.LoadFromFile('C:\ccsolutions_dsk\reports\purchase_order\' +cxBarEditItem_1.EditValue);
-     frxReport_1.ShowReport;
-   end;
-end;
 
 procedure Tfrm_purchase_order.Action_saveExecute(Sender: TObject);
 begin

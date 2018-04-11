@@ -258,9 +258,11 @@ end;
 
 procedure Tfrm_form_default.Action_printExecute(Sender: TObject);
 begin
-
-   frxReport_1.LoadFromFile(TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue);
-   frxReport_1.ShowReport;
+  if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
+   begin
+     frxReport_1.LoadFromFile(TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue);
+     frxReport_1.ShowReport;
+   end;
 
 end;
 

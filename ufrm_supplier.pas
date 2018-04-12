@@ -34,7 +34,7 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxShellComboBox, QExport4Dialog, cxBarEditItem, dxBarExtItems,
-  QImport3Wizard;
+  QImport3Wizard, ACBrSocket, ACBrCEP, frxClass;
 
 type
   Tfrm_supplier = class(Tfrm_form_default)
@@ -144,6 +144,9 @@ type
     dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
+    procedure cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
   private
     { Private declarations }
   public
@@ -158,6 +161,30 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_supplier.ACBrCEP_1BuscaEfetuada(Sender: TObject);
+ var
+i:Integer;
+begin
+  inherited;
+  for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+    begiN
+     qrysup_add_bus_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
+     qrysup_add_bus_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
+     qrysup_add_bus_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
+     qrysup_add_bus_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
+     qrysup_add_bus_state.AsString     := ACBrCEP_1.Enderecos[i].UF;
+     qrysup_add_bus_country.AsString     := 'BRASIL';
+     cxDBTextEdit22.SetFocus;
+    end;
+end;
+
+procedure Tfrm_supplier.cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
+  AButtonIndex: Integer);
+begin
+  inherited;
+ ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit2.Text);
+end;
 
 procedure Tfrm_supplier.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

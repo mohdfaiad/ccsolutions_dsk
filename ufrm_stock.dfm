@@ -1,11 +1,16 @@
 inherited frm_stock: Tfrm_stock
   Caption = 'Manuten'#231#227'o Estoques'
   OnClose = FormClose
+  ExplicitLeft = -386
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
@@ -40,8 +45,16 @@ inherited frm_stock: Tfrm_stock
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -120,7 +133,7 @@ inherited frm_stock: Tfrm_stock
               ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
-              ItemIndex = 2
+              ItemIndex = 1
             end
             object dxLayoutItem8: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -262,12 +275,12 @@ inherited frm_stock: Tfrm_stock
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from enterprise')
-    Left = 584
-    Top = 96
+    Left = 568
+    Top = 112
   end
   object ds_enterprise: TDataSource
     DataSet = qry_enterprise
     Left = 616
-    Top = 96
+    Top = 112
   end
 end

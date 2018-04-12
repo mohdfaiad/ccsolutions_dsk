@@ -1,15 +1,10 @@
 inherited frm_supplier: Tfrm_supplier
   Caption = 'Manuten'#231#227'o: Fornecedores'
   OnClose = FormClose
-  ExplicitTop = -39
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sup_id: TcxGridDBColumn
@@ -112,16 +107,8 @@ inherited frm_supplier: Tfrm_supplier
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 67
@@ -382,6 +369,7 @@ inherited frm_supplier: Tfrm_supplier
                   Kind = bkEllipsis
                 end>
               Properties.CharCase = ecUpperCase
+              Properties.OnButtonClick = cxDBButtonEdit2PropertiesButtonClick
               Style.HotTrack = False
               TabOrder = 0
               Width = 121
@@ -508,7 +496,7 @@ inherited frm_supplier: Tfrm_supplier
               CaptionOptions.Text = 'Compl.'
               Control = cxDBTextEdit29
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 86
+              ControlOptions.OriginalWidth = 603
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -868,5 +856,13 @@ inherited frm_supplier: Tfrm_supplier
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
+  end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
+  inherited ACBrCEP_1: TACBrCEP
+    OnBuscaEfetuada = ACBrCEP_1BuscaEfetuada
   end
 end

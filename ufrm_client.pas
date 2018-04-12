@@ -34,7 +34,8 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxImage, cxShellComboBox, QExport4Dialog, cxBarEditItem,
-  dxBarExtItems, QImport3Wizard, Vcl.StdCtrls, frxClass, ACBrSocket, ACBrCEP;
+  dxBarExtItems, QImport3Wizard, Vcl.StdCtrls, frxClass, ACBrSocket, ACBrCEP,
+  dxLayoutControlAdapters, cxButtons;
 
 type
   Tfrm_client = class(Tfrm_form_default)
@@ -250,8 +251,16 @@ type
     procedure Action_consult_cpfExecute(Sender: TObject);
     procedure changeType;
     procedure cxDBComboBox1PropertiesChange(Sender: TObject);
+    procedure cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
+    procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
+    procedure cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
+    procedure cxDBButtonEdit3PropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
   private
     { Private declarations }
+    cep:Integer;
   public
     { Public declarations }
   end;
@@ -264,6 +273,55 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm, ufrm_consult_cnpj, ufrm_consult_cpf;
+
+procedure Tfrm_client.ACBrCEP_1BuscaEfetuada(Sender: TObject);
+ var
+i:Integer;
+begin
+  inherited;
+ if cep = 1 then
+  begin
+    for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+    begiN
+     qrycli_add_bus_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
+     qrycli_add_bus_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
+     qrycli_add_bus_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
+     qrycli_add_bus_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
+     qrycli_add_bus_state.AsString     := ACBrCEP_1.Enderecos[i].UF;
+     qrycli_add_bus_country.AsString     := 'BRASIL';
+     cxDBTextEdit22.SetFocus;
+    end;
+  end;
+
+  if cep = 2 then
+  begin
+    for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+    begiN
+     qrycli_add_bil_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
+     qrycli_add_bil_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
+     qrycli_add_bil_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
+     qrycli_add_bus_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
+     qrycli_add_bil_city.AsString     := ACBrCEP_1.Enderecos[i].UF;
+     qrycli_add_bil_country.AsString     := 'BRASIL';
+     cxDBTextEdit14.SetFocus;
+    end;
+  end;
+
+ if cep = 3 then
+  begin
+    for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+    begiN
+     qrycli_add_del_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
+     qrycli_add_del_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
+     qrycli_add_del_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
+     qrycli_add_del_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
+     qrycli_add_bil_city.AsString     := ACBrCEP_1.Enderecos[i].UF;
+     qrycli_add_del_country.AsString     := 'BRASIL';
+     cxDBTextEdit6.SetFocus;
+    end;
+  end;
+
+ end;
 
 procedure Tfrm_client.Action_consult_cnpjExecute(Sender: TObject);
 begin
@@ -302,6 +360,30 @@ begin
     dxLayoutItem34.Visible := True;
     dxLayoutItem35.Visible := True;
   end;
+end;
+
+procedure Tfrm_client.cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
+  AButtonIndex: Integer);
+begin
+  inherited;
+  cep:=2;
+  ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit1.Text);
+end;
+
+procedure Tfrm_client.cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
+  AButtonIndex: Integer);
+begin
+  inherited;
+ cep:=1;
+ ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit2.Text);
+end;
+
+procedure Tfrm_client.cxDBButtonEdit3PropertiesButtonClick(Sender: TObject;
+  AButtonIndex: Integer);
+begin
+  inherited;
+  cep:=3;
+  ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit3.Text);
 end;
 
 procedure Tfrm_client.cxDBComboBox1PropertiesChange(Sender: TObject);

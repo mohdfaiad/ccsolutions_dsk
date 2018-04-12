@@ -1,6 +1,7 @@
 inherited frm_client: Tfrm_client
   Caption = 'Manuten'#231#227'o: Clientes'
   OnClose = FormClose
+  ExplicitTop = -82
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -454,52 +455,48 @@ inherited frm_client: Tfrm_client
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             object cxDBTextEdit8: TcxDBTextEdit
-              Left = 10000
-              Top = 10000
+              Left = 60
+              Top = 101
               DataBinding.DataField = 'cli_add_del_complement'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 20
-              Visible = False
               Width = 603
             end
             object cxDBTextEdit9: TcxDBTextEdit
-              Left = 10000
-              Top = 10000
+              Left = 60
+              Top = 128
               DataBinding.DataField = 'cli_add_del_city'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 21
-              Visible = False
               Width = 121
             end
             object cxDBTextEdit10: TcxDBTextEdit
-              Left = 10000
-              Top = 10000
+              Left = 225
+              Top = 128
               DataBinding.DataField = 'cli_add_del_state'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 22
-              Visible = False
               Width = 121
             end
             object cxDBTextEdit11: TcxDBTextEdit
-              Left = 10000
-              Top = 10000
+              Left = 382
+              Top = 128
               DataBinding.DataField = 'cli_add_del_country'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 23
-              Visible = False
               Width = 121
             end
             object cxDBButtonEdit2: TcxDBButtonEdit
-              Left = 60
-              Top = 47
+              Left = 10000
+              Top = 10000
               DataBinding.DataField = 'cli_add_bus_zipcode'
               DataBinding.DataSource = ds
               Properties.Buttons = <
@@ -508,94 +505,102 @@ inherited frm_client: Tfrm_client
                   Kind = bkEllipsis
                 end>
               Properties.CharCase = ecUpperCase
+              Properties.OnButtonClick = cxDBButtonEdit2PropertiesButtonClick
               Style.HotTrack = False
               TabOrder = 0
+              Visible = False
               Width = 121
             end
             object cxDBTextEdit24: TcxDBTextEdit
-              Left = 60
-              Top = 101
+              Left = 10000
+              Top = 10000
               DataBinding.DataField = 'cli_add_bus_complement'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 4
+              Visible = False
               Width = 603
             end
             object cxDBTextEdit27: TcxDBTextEdit
-              Left = 382
-              Top = 128
+              Left = 10000
+              Top = 10000
               DataBinding.DataField = 'cli_add_bus_country'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 7
+              Visible = False
               Width = 121
             end
             object cxDBTextEdit26: TcxDBTextEdit
-              Left = 225
-              Top = 128
+              Left = 10000
+              Top = 10000
               DataBinding.DataField = 'cli_add_bus_state'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 6
+              Visible = False
               Width = 121
             end
             object cxDBTextEdit25: TcxDBTextEdit
-              Left = 60
-              Top = 128
+              Left = 10000
+              Top = 10000
               DataBinding.DataField = 'cli_add_bus_city'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 5
+              Visible = False
               Width = 121
             end
             object cxDBTextEdit21: TcxDBTextEdit
-              Left = 60
-              Top = 74
+              Left = 10000
+              Top = 10000
               DataBinding.DataField = 'cli_add_bus_address'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 1
+              Visible = False
               Width = 286
             end
             object cxDBTextEdit22: TcxDBTextEdit
-              Left = 382
-              Top = 74
+              Left = 10000
+              Top = 10000
               DataBinding.DataField = 'cli_add_bus_number'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 2
+              Visible = False
               Width = 121
             end
             object cxDBTextEdit23: TcxDBTextEdit
-              Left = 542
-              Top = 74
+              Left = 10000
+              Top = 10000
               DataBinding.DataField = 'cli_add_bus_street'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 3
+              Visible = False
               Width = 121
             end
             object cxDBTextEdit5: TcxDBTextEdit
-              Left = 10000
-              Top = 10000
+              Left = 60
+              Top = 74
               DataBinding.DataField = 'cli_add_del_address'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 17
-              Visible = False
               Width = 286
             end
             object cxDBButtonEdit3: TcxDBButtonEdit
-              Left = 10000
-              Top = 10000
+              Left = 60
+              Top = 47
               DataBinding.DataField = 'cli_add_del_zipcode'
               DataBinding.DataSource = ds
               Properties.Buttons = <
@@ -604,31 +609,29 @@ inherited frm_client: Tfrm_client
                   Kind = bkEllipsis
                 end>
               Properties.CharCase = ecUpperCase
+              Properties.OnButtonClick = cxDBButtonEdit3PropertiesButtonClick
               Style.HotTrack = False
               TabOrder = 16
-              Visible = False
               Width = 121
             end
             object cxDBTextEdit6: TcxDBTextEdit
-              Left = 10000
-              Top = 10000
+              Left = 382
+              Top = 74
               DataBinding.DataField = 'cli_add_del_number'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 18
-              Visible = False
               Width = 121
             end
             object cxDBTextEdit7: TcxDBTextEdit
-              Left = 10000
-              Top = 10000
+              Left = 542
+              Top = 74
               DataBinding.DataField = 'cli_add_del_street'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 19
-              Visible = False
               Width = 121
             end
             object cxDBButtonEdit1: TcxDBButtonEdit
@@ -642,6 +645,7 @@ inherited frm_client: Tfrm_client
                   Kind = bkEllipsis
                 end>
               Properties.CharCase = ecUpperCase
+              Properties.OnButtonClick = cxDBButtonEdit1PropertiesButtonClick
               Style.HotTrack = False
               TabOrder = 8
               Visible = False
@@ -731,6 +735,7 @@ inherited frm_client: Tfrm_client
               LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
               ButtonOptions.Buttons = <>
               Hidden = True
+              ItemIndex = 2
               LayoutDirection = ldTabbed
               ShowBorder = False
               Index = -1
@@ -1669,5 +1674,8 @@ inherited frm_client: Tfrm_client
     Datasets = <>
     Variables = <>
     Style = <>
+  end
+  inherited ACBrCEP_1: TACBrCEP
+    OnBuscaEfetuada = ACBrCEP_1BuscaEfetuada
   end
 end

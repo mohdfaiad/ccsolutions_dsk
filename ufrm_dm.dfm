@@ -1,8 +1,8 @@
 object frm_dm: Tfrm_dm
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Height = 254
-  Width = 284
+  Height = 293
+  Width = 432
   object connCCS: TFDConnection
     Params.Strings = (
       'ConnectionDef=ccs_connection')
@@ -108,7 +108,7 @@ object frm_dm: Tfrm_dm
         Name = 'CTR_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = 1
+        Value = Null
       end>
     object qry_enterpriseent_id: TFDAutoIncField
       FieldName = 'ent_id'
@@ -304,5 +304,21 @@ object frm_dm: Tfrm_dm
     BCDToCurrency = False
     Left = 216
     Top = 184
+  end
+  object connCDL: TFDConnection
+    Params.Strings = (
+      'Database=bitlab'
+      'User_Name=sa'
+      'Password=YxKtcdl1'
+      'Server=cdlaboratorio.dyndns.org'
+      'DriverID=MSSQL')
+    Connected = True
+    LoginPrompt = False
+    Left = 264
+    Top = 8
+  end
+  object mssql_driver: TFDPhysMSSQLDriverLink
+    Left = 344
+    Top = 8
   end
 end

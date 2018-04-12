@@ -52,6 +52,8 @@ type
     qry_enterpriseent_dt_registration: TDateTimeField;
     ds_enterprise: TDataSource;
     frx_db_enterprise: TfrxDBDataset;
+    connCDL: TFDConnection;
+    mssql_driver: TFDPhysMSSQLDriverLink;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

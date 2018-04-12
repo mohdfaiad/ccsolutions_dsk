@@ -4,11 +4,8 @@ inherited frm_product_unit: Tfrm_product_unit
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pru_id: TcxGridDBColumn
@@ -35,16 +32,8 @@ inherited frm_product_unit: Tfrm_product_unit
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'pru_id'
@@ -106,18 +95,20 @@ inherited frm_product_unit: Tfrm_product_unit
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
-    AfterInsert = qryAfterInsert
+    AfterDelete = qryAfterDelete
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from product_unit')
     object qrypru_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'pru_id'
+      ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
       DisplayLabel = 'Contrato ID'
@@ -151,5 +142,10 @@ inherited frm_product_unit: Tfrm_product_unit
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
+  end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
 end

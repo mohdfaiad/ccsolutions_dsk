@@ -32,7 +32,8 @@ uses
   cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar, cxBarEditItem,
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC;
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
+  ACBrSocket, ACBrCEP, frxClass;
 
 type
   Tfrm_product_unit = class(Tfrm_form_default)
@@ -52,10 +53,12 @@ type
     cxGrid_1DBTableView1pru_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure qryAfterDelete(DataSet: TDataSet);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure limpaCache(Sender:TObject);
   end;
 
 var
@@ -73,6 +76,17 @@ begin
   inherited;
   frm_product_unit.Destroy;
   frm_product_unit := Nil;
+end;
+
+procedure Tfrm_product_unit.limpaCache(Sender: TObject);
+begin
+  qry.CommitUpdates();
+end;
+
+procedure Tfrm_product_unit.qryAfterDelete(DataSet: TDataSet);
+begin
+  inherited;
+  qry.ApplyUpdates(0);
 end;
 
 procedure Tfrm_product_unit.qryAfterInsert(DataSet: TDataSet);

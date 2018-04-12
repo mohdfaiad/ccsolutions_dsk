@@ -32,7 +32,8 @@ uses
   cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar, cxBarEditItem,
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC;
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
+  ACBrSocket, ACBrCEP, frxClass;
 
 type
   Tfrm_product_class = class(Tfrm_form_default)
@@ -64,10 +65,16 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_product_class_subAfterInsert(DataSet: TDataSet);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure qryAfterDelete(DataSet: TDataSet);
+    procedure qry_product_class_subAfterDelete(DataSet: TDataSet);
+    procedure Action_deleteExecute(Sender: TObject);
+    procedure qry_product_class_subAfterOpen(DataSet: TDataSet);
   private
     { Private declarations }
   public
     { Public declarations }
+     procedure limpaCache(Sender:TObject);
   end;
 
 var
@@ -79,6 +86,26 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_product_class.Action_deleteExecute(Sender: TObject);
+begin
+   if qry_product_class_sub.RecordCount >=1 then
+     begin
+       Application.MessageBox('Não é possível deletar esta classe de produtos, pos existe sub classe ligadas a ela !','AVISO DO SISTEMA', MB_OK);
+       Exit;
+     end;
+  inherited;
+
+end;
+
+procedure Tfrm_product_class.Action_saveExecute(Sender: TObject);
+begin
+  inherited;
+   if (qry_product_class_sub.State in [dsEdit,dsInsert]) then
+   begin
+     qry_product_class_sub.Post;
+   end;
+end;
+
 procedure Tfrm_product_class.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -87,10 +114,30 @@ begin
   frm_product_class := Nil;
 end;
 
+procedure Tfrm_product_class.limpaCache(Sender: TObject);
+begin
+   qry.CommitUpdates();
+   qry_product_class_sub.CommitUpdates();
+end;
+
+procedure Tfrm_product_class.qryAfterDelete(DataSet: TDataSet);
+begin
+  inherited;
+   qry.ApplyUpdates(0);
+
+end;
+
 procedure Tfrm_product_class.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   qryprc_dt_registration.Value := Now;
+end;
+
+procedure Tfrm_product_class.qry_product_class_subAfterDelete(
+  DataSet: TDataSet);
+begin
+  inherited;
+  qry_product_class_sub.ApplyUpdates(0);
 end;
 
 procedure Tfrm_product_class.qry_product_class_subAfterInsert
@@ -98,6 +145,12 @@ procedure Tfrm_product_class.qry_product_class_subAfterInsert
 begin
   inherited;
   qry_product_class_subprs_dt_registration.Value := Now;
+end;
+
+procedure Tfrm_product_class.qry_product_class_subAfterOpen(DataSet: TDataSet);
+begin
+  inherited;
+  qry_product_class_sub.ApplyUpdates(0);
 end;
 
 end.

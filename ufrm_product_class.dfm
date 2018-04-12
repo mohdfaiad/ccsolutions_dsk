@@ -4,11 +4,8 @@ inherited frm_product_class: Tfrm_product_class
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prc_id: TcxGridDBColumn
@@ -31,16 +28,8 @@ inherited frm_product_class: Tfrm_product_class
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'prc_id'
@@ -149,13 +138,15 @@ inherited frm_product_class: Tfrm_product_class
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
+    AfterDelete = qryAfterDelete
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from product_class')
     object qryprc_id: TFDAutoIncField
@@ -199,14 +190,23 @@ inherited frm_product_class: Tfrm_product_class
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
   object qry_product_class_sub: TFDQuery
     Active = True
+    AfterOpen = qry_product_class_subAfterOpen
     AfterInsert = qry_product_class_subAfterInsert
+    AfterDelete = qry_product_class_subAfterDelete
+    CachedUpdates = True
     IndexFieldNames = 'product_class_prc_id'
     MasterSource = ds
     MasterFields = 'prc_id'
     DetailFields = 'product_class_prc_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from product_class_sub')
     Left = 584

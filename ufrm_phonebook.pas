@@ -33,7 +33,8 @@ uses
   dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar, cxDBEdit,
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  cxShellComboBox, QExport4Dialog, cxBarEditItem, dxBarExtItems, QImport3Wizard;
+  cxShellComboBox, QExport4Dialog, cxBarEditItem, dxBarExtItems, QImport3Wizard,
+  frxClass, frxDBSet, ACBrSocket, ACBrCEP;
 
 type
   Tfrm_phonebook = class(Tfrm_form_default)
@@ -49,7 +50,6 @@ type
     dxLayoutItem7: TdxLayoutItem;
     cxDBTextEdit6: TcxDBTextEdit;
     dxLayoutItem8: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
     cxDBTextEdit7: TcxDBTextEdit;
     dxLayoutItem9: TdxLayoutItem;
@@ -74,12 +74,16 @@ type
     cxGrid_1DBTableView1pho_phone3: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_phone4: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_dt_registration: TcxGridDBColumn;
+    frxDBD_Lista_Telefonica: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure cxTabSheet_3Show(Sender: TObject);
+    procedure qryAfterDelete(DataSet: TDataSet);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure limpaCache(Sender:TObject);
   end;
 
 var
@@ -91,11 +95,28 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_phonebook.cxTabSheet_3Show(Sender: TObject);
+begin
+  inherited;
+  cxDBTextEdit1.SetFocus;
+end;
+
 procedure Tfrm_phonebook.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
   frm_phonebook.Destroy;
   frm_phonebook := Nil;
+end;
+
+procedure Tfrm_phonebook.limpaCache(Sender: TObject);
+begin
+    qry.CommitUpdates();
+end;
+
+procedure Tfrm_phonebook.qryAfterDelete(DataSet: TDataSet);
+begin
+  inherited;
+  qry.ApplyUpdates(0);
 end;
 
 procedure Tfrm_phonebook.qryAfterInsert(DataSet: TDataSet);

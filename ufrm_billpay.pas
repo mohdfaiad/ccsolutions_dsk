@@ -156,7 +156,7 @@ begin
   if qry.State in [dsInsert] then
    begin
      if Application.MessageBox('Deseja cadastrar outras parcelas baseada nessa conta ?','CONTAS A PAGAR', MB_YESNO + MB_ICONQUESTION) = IDYES then
-      ShowMessage('Parcela duplicada com sucesso ok Beleza!');
+      ShowMessage('Parcela duplicada com sucesso ok Bele!');
       exit
    end;
 

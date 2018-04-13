@@ -80,7 +80,11 @@ type
     dxBarButton1: TdxBarButton;
     cxImageList_1: TcxImageList;
     dxBarButton2: TdxBarButton;
+    cxGrid1DBTableView1Column1: TcxGridDBColumn;
+    qry_duplicAccountvalor: TBCDField;
     procedure cxButton1Click(Sender: TObject);
+    procedure dxBarButton2Click(Sender: TObject);
+    procedure dxBarButton1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -104,12 +108,85 @@ qry_duplicAccount.CancelUpdates;
 
 for I := 1 to StrToInt(cxEditQuantidade.Text) do
  begin
-  qry_duplicAccount.Insert;
+  qry_duplicAccount.Append;
   qry_duplicAccountnumDoc.AsString:=frm_billpay.qrybpy_document.AsString;
-  qry_duplicAccountparcela.AsString:=frm_billpay.qrybpy_installment.AsString;
-  qry_duplicAccountdtVenc.AsDateTime:=frm_billpay.qrybpy_dt_maturity.AsDateTime + (30* i);
+  qry_duplicAccountparcela.AsString:=frm_billpay.qrybpy_document.AsString + '/'+ IntToStr(i + 1);
+  qry_duplicAccountvalor.AsFloat:=frm_billpay.qrybpy_value.AsFloat;
+
+
+  if cxCbTipoDuplic.ItemIndex = 0 then
+   qry_duplicAccountdtVenc.AsDateTime:=frm_billpay.qrybpy_dt_maturity.AsDateTime + i;
+
+  if cxCbTipoDuplic.ItemIndex = 1 then
+   qry_duplicAccountdtVenc.AsDateTime:=frm_billpay.qrybpy_dt_maturity.AsDateTime + 7 * i;
+
+  if cxCbTipoDuplic.ItemIndex = 2 then
+   qry_duplicAccountdtVenc.AsDateTime:=frm_billpay.qrybpy_dt_maturity.AsDateTime + 15 * i;
+
+  if cxCbTipoDuplic.ItemIndex = 3 then
+   qry_duplicAccountdtVenc.AsDateTime:=IncMonth(frm_billpay.qrybpy_dt_maturity.AsDateTime,i);
+
   qry_duplicAccount.Post;
  end;
+end;
+
+procedure Tfrm_duplicAccount.dxBarButton1Click(Sender: TObject);
+var
+enterprise_ent_id,supplier_sup_id,account_plan_acp_id,account_plan_detail_acd_id,
+cost_center_coc_id,cost_center_detail_cod_id:Integer;
+bpy_addition,bpy_discount,bpy_amount_pay:Double;
+bpy_reference,bpy_invoice:string;
+
+
+begin
+if Application.MessageBox('Deseja confirmar o lançamento das paracelas geradas ?','PARCELA',MB_YESNO + MB_ICONQUESTION) = mrYes  then
+ begin
+  enterprise_ent_id:= frm_billpay.qryenterprise_ent_id.AsInteger;
+  supplier_sup_id:= frm_billpay.qrysupplier_sup_id.AsInteger;
+  account_plan_acp_id:=frm_billpay.qryaccount_plan_acp_id.AsInteger;
+  account_plan_detail_acd_id:=frm_billpay.qryaccount_plan_detail_acd_id.AsInteger;
+  cost_center_coc_id:=frm_billpay.qrycost_center_coc_id.AsInteger;
+  cost_center_detail_cod_id:=frm_billpay.qrycost_center_detail_cod_id.AsInteger;
+  bpy_addition:=frm_billpay.qrybpy_addition.AsFloat;
+  bpy_discount:=frm_billpay.qrybpy_discount.AsFloat;
+  bpy_amount_pay:=frm_billpay.qrybpy_amount_pay.AsFloat;
+  bpy_reference:=frm_billpay.qrybpy_reference.AsString;
+  bpy_invoice:=frm_billpay.qrybpy_invoice.AsString;
+
+
+  qry_duplicAccount.First;
+  while not qry_duplicAccount.Eof do
+   begin
+    frm_billpay.qry.Append;
+    frm_billpay.qrybpy_document.AsString:= qry_duplicAccountnumDoc.AsString;
+    frm_billpay.qrybpy_installment.AsString:= qry_duplicAccountparcela.AsString;
+    frm_billpay.qrybpy_dt_maturity.Value:=qry_duplicAccountdtVenc.Value;
+    frm_billpay.qrybpy_value.AsFloat:= qry_duplicAccountvalor.AsFloat;
+    frm_billpay.qryenterprise_ent_id.AsInteger :=enterprise_ent_id;
+//    frm_billpay.qrysupplier_sup_id.AsInteger:=supplier_sup_id;
+//    frm_billpay.qryaccount_plan_acp_id.AsInteger:=account_plan_acp_id;
+//    frm_billpay.qryaccount_plan_detail_acd_id.AsInteger:=account_plan_detail_acd_id;
+//    frm_billpay.qrycost_center_coc_id.AsInteger:= cost_center_coc_id;
+//    frm_billpay.qrycost_center_detail_cod_id.AsInteger:=cost_center_detail_cod_id;
+    frm_billpay.qrybpy_addition.AsFloat:= bpy_addition;
+    frm_billpay.qrybpy_discount.AsFloat:= bpy_discount;
+    frm_billpay.qrybpy_amount_pay.AsFloat:= bpy_amount_pay;
+    frm_billpay.qrybpy_dt_emission.AsDateTime:=Now;
+    frm_billpay.qrybpy_reference.AsString:=bpy_reference;
+    frm_billpay.qrybpy_invoice.AsString:=bpy_invoice;
+    frm_billpay.qrybpy_status.AsString:='A';
+    frm_billpay.qrybpy_dt_registration.Value:=Now;
+    frm_billpay.qry.Post;
+    qry_duplicAccount.Next;
+   end;
+ end;
+end;
+
+procedure Tfrm_duplicAccount.dxBarButton2Click(Sender: TObject);
+begin
+if Application.MessageBox('Deseja sair sem salvar as parcelas?','PARCELA',MB_YESNO + MB_ICONQUESTION) = mrYes  then
+ close;
+
 end;
 
 end.

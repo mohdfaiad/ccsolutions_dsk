@@ -26,8 +26,6 @@ object frm_duplicAccount: Tfrm_duplicAccount
     LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
     ShowDesignSelectors = False
     HighlightRoot = False
-    ExplicitWidth = 697
-    ExplicitHeight = 376
     object cxEditCodigo: TcxTextEdit
       Left = 63
       Top = 38
@@ -92,13 +90,13 @@ object frm_duplicAccount: Tfrm_duplicAccount
       Left = 17
       Top = 130
       Properties.Items.Strings = (
-        'Di'#225'rio'
-        'Semanal'
-        'Quinzenal'
-        'Mensal')
+        'DI'#193'RIO'
+        'SEMANAL'
+        'QUINZENAL'
+        'MENSAL')
       Style.HotTrack = False
       TabOrder = 6
-      Text = 'Mensal'
+      Text = 'MENSAL'
       Width = 121
     end
     object cxEditQuantidade: TcxTextEdit
@@ -135,6 +133,10 @@ object frm_duplicAccount: Tfrm_duplicAccount
           Caption = 'Vencimento'
           DataBinding.FieldName = 'dtVenc'
           Width = 130
+        end
+        object cxGrid1DBTableView1Column1: TcxGridDBColumn
+          Caption = 'Valor'
+          DataBinding.FieldName = 'valor'
         end
       end
       object cxGrid1Level1: TcxGridLevel
@@ -269,7 +271,6 @@ object frm_duplicAccount: Tfrm_duplicAccount
     object dxLayoutGroup2: TdxLayoutGroup
       Parent = dxLayoutControl1Group_Root
       ButtonOptions.Buttons = <>
-      ItemIndex = 2
       LayoutDirection = ldHorizontal
       Index = 1
     end
@@ -347,7 +348,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
     SQL.Strings = (
       
         'SELECT bpy_document as numDoc,bpy_installment as parcela,'#10'bpy_dt' +
-        '_maturity as dtVenc FROM billpay'
+        '_maturity as dtVenc,bpy_value as valor FROM billpay'
       'where bpy_id = -1')
     Left = 216
     Top = 312
@@ -367,6 +368,12 @@ object frm_duplicAccount: Tfrm_duplicAccount
       AutoGenerateValue = arDefault
       FieldName = 'dtVenc'
       Origin = 'bpy_dt_maturity'
+    end
+    object qry_duplicAccountvalor: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valor'
+      Origin = 'bpy_value'
+      Precision = 12
     end
   end
   object ds_qry_duplicAccount: TDataSource
@@ -428,6 +435,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
       Hint = 'Salvar'
       Visible = ivAlways
       ImageIndex = 6
+      OnClick = dxBarButton1Click
     end
     object dxBarButton2: TdxBarButton
       Caption = 'Sair'
@@ -435,6 +443,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
       Hint = 'Sair'
       Visible = ivAlways
       ImageIndex = 11
+      OnClick = dxBarButton2Click
     end
   end
   object cxImageList_1: TcxImageList

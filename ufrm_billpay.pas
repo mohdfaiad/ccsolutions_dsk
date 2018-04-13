@@ -149,20 +149,25 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, ufrm_main;
+uses ufrm_dm, ufrm_main, ufrm_duplicAccount;
 
 procedure Tfrm_billpay.Action_saveExecute(Sender: TObject);
 begin
-  if qry.State in [dsInsert] then
-   begin
-     if Application.MessageBox('Deseja cadastrar outras parcelas baseada nessa conta ?','CONTAS A PAGAR', MB_YESNO + MB_ICONQUESTION) = IDYES then
-      ShowMessage('Parcela duplicada com sucesso ok Bele!');
-      exit
-   end;
 
     inherited;
-
-end;
+ if Application.MessageBox('Deseja cadastrar outras parcelas baseada nessa conta ?','CONTAS A PAGAR', MB_YESNO + MB_ICONQUESTION) = IDYES then
+     begin
+      Application.CreateForm(Tfrm_duplicAccount,frm_duplicAccount);
+      frm_duplicAccount.Caption:='Duplilcação de Contas a Pagar';
+      frm_duplicAccount.cxEditCodigo.TExt:=qrybpy_id.AsString;
+      frm_duplicAccount.cxEditDescricao.TExt:=qrybpy_reference.AsString;
+      frm_duplicAccount.cxEditNumDoc.TExt:=qrybpy_document.AsString;
+      frm_duplicAccount.cxEditLancamento.TExt:=FormatDateTime('dd/mm/yyyy',qrybpy_dt_registration.AsDateTime);
+      frm_duplicAccount.cxEditVenc.TExt:=FormatDateTime('dd/mm/yyyy', qrybpy_dt_maturity.AsDateTime);
+      frm_duplicAccount.cxEditValor.TExt:=FormatFloat('0.0,00', qrybpy_value.AsFloat);
+      frm_duplicAccount.Showmodal;
+     end;
+   end;
 
 procedure Tfrm_billpay.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

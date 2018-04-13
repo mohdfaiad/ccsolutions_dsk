@@ -4,8 +4,8 @@ object frm_duplicAccount: Tfrm_duplicAccount
   BorderIcons = []
   BorderStyle = bsSingle
   Caption = 'Duplilca'#231#227'o de Contas a Pagar'
-  ClientHeight = 403
-  ClientWidth = 697
+  ClientHeight = 446
+  ClientWidth = 703
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,16 +19,18 @@ object frm_duplicAccount: Tfrm_duplicAccount
   object dxLayoutControl1: TdxLayoutControl
     Left = 0
     Top = 27
-    Width = 697
-    Height = 376
+    Width = 703
+    Height = 419
     Align = alClient
     TabOrder = 0
     LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
     ShowDesignSelectors = False
     HighlightRoot = False
+    ExplicitWidth = 697
+    ExplicitHeight = 376
     object cxEditCodigo: TcxTextEdit
       Left = 63
-      Top = 0
+      Top = 38
       Enabled = False
       Style.Color = clBtnFace
       Style.HotTrack = False
@@ -38,7 +40,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
     end
     object cxEditDescricao: TcxTextEdit
       Left = 240
-      Top = 0
+      Top = 38
       Enabled = False
       Style.Color = clBtnFace
       Style.HotTrack = False
@@ -48,7 +50,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
     end
     object cxEditLancamento: TcxTextEdit
       Left = 279
-      Top = 27
+      Top = 65
       Enabled = False
       Style.Color = clBtnFace
       Style.HotTrack = False
@@ -58,7 +60,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
     end
     object cxEditVenc: TcxTextEdit
       Left = 443
-      Top = 27
+      Top = 65
       Enabled = False
       Style.Color = clBtnFace
       Style.HotTrack = False
@@ -68,7 +70,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
     end
     object cxEditValor: TcxTextEdit
       Left = 599
-      Top = 27
+      Top = 65
       Enabled = False
       Style.Color = clBtnFace
       Style.HotTrack = False
@@ -78,7 +80,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
     end
     object cxEditNumDoc: TcxTextEdit
       Left = 63
-      Top = 27
+      Top = 65
       Enabled = False
       Style.Color = clBtnFace
       Style.HotTrack = False
@@ -88,7 +90,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
     end
     object cxCbTipoDuplic: TcxComboBox
       Left = 17
-      Top = 92
+      Top = 130
       Properties.Items.Strings = (
         'Di'#225'rio'
         'Semanal'
@@ -101,7 +103,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
     end
     object cxEditQuantidade: TcxTextEdit
       Left = 144
-      Top = 92
+      Top = 130
       Style.HotTrack = False
       TabOrder = 7
       Text = '1'
@@ -109,7 +111,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
     end
     object cxGrid1: TcxGrid
       Left = 17
-      Top = 139
+      Top = 177
       Width = 662
       Height = 200
       TabOrder = 9
@@ -141,7 +143,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
     end
     object cxButton1: TcxButton
       Left = 219
-      Top = 86
+      Top = 124
       Width = 82
       Height = 25
       BiDiMode = bdRightToLeftNoAlign

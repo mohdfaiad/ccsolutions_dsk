@@ -27,7 +27,8 @@ uses
   ufrm_account_type in '..\ufrm_account_type.pas' {frm_account_type},
   ufrm_login in '..\ufrm_login.pas' {frm_login},
   ufrm_account_synthetic in '..\ufrm_account_synthetic.pas' {frm_account_synthetic},
-  ufrm_cost_center in '..\ufrm_cost_center.pas' {frm_cost_center};
+  ufrm_cost_center in '..\ufrm_cost_center.pas' {frm_cost_center},
+  ufrm_duplicAccount in '..\ufrm_duplicAccount.pas' {frm_duplicAccount};
 
 {$R *.res}
 

@@ -8,9 +8,11 @@ inherited frm_main: Tfrm_main
   end
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
+      Active = False
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
+      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar2'
@@ -79,7 +81,7 @@ inherited frm_main: Tfrm_main
           ItemName = 'dxBarLargeButton5'
         end>
     end
-    object dxBarManager_1Bar2: TdxBar
+    object dxBarManager_1Bar2: TdxBar [3]
       Caption = 'Financeiro'
       CaptionButtons = <>
       DockedLeft = 0
@@ -112,7 +114,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar3: TdxBar
+    object dxBarManager_1Bar3: TdxBar [4]
       Caption = #218'ltil'
       CaptionButtons = <>
       DockedLeft = 0
@@ -132,7 +134,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar4: TdxBar
+    object dxBarManager_1Bar4: TdxBar [5]
       Caption = 'Contas'
       CaptionButtons = <>
       DockedLeft = 247
@@ -156,7 +158,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar5: TdxBar
+    object dxBarManager_1Bar5: TdxBar [6]
       Caption = 'Fabrica'
       CaptionButtons = <>
       DockedLeft = 0
@@ -501,10 +503,6 @@ inherited frm_main: Tfrm_main
     end
     object dxBarButton1: TdxBarButton
       Action = Action_account_type
-      Category = 0
-    end
-    object dxBarButton2: TdxBarButton
-      Action = Action_account_plan_synthetic
       Category = 0
     end
     object dxBarButton3: TdxBarButton

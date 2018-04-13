@@ -64,7 +64,6 @@ type
     dxBarLargeButton13: TdxBarLargeButton;
     rbpopmenu_1: TdxRibbonPopupMenu;
     dxBarButton1: TdxBarButton;
-    dxBarButton2: TdxBarButton;
     dxBarButton3: TdxBarButton;
     dxBarLargeButton14: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);

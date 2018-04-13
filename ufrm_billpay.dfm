@@ -4,7 +4,7 @@ inherited frm_billpay: Tfrm_billpay
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_1
+    ExplicitTop = 61
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -77,6 +77,7 @@ inherited frm_billpay: Tfrm_billpay
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
+        ExplicitLeft = -13
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -260,7 +261,7 @@ inherited frm_billpay: Tfrm_billpay
               Width = 121
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 2
+              ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahClient
@@ -456,10 +457,6 @@ inherited frm_billpay: Tfrm_billpay
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Cont'#225'bil'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -878,8 +875,8 @@ inherited frm_billpay: Tfrm_billpay
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from cost_center_detail')
-    Left = 512
-    Top = 144
+    Left = 432
+    Top = 272
   end
   object ds_cost_center_detail: TDataSource
     DataSet = qry_cost_center_detail
@@ -895,7 +892,7 @@ inherited frm_billpay: Tfrm_billpay
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from account_plan')
-    Left = 448
+    Left = 440
     Top = 96
   end
   object ds_account_plan: TDataSource
@@ -913,11 +910,11 @@ inherited frm_billpay: Tfrm_billpay
     SQL.Strings = (
       'select * from account_plan_detail')
     Left = 448
-    Top = 144
+    Top = 216
   end
   object ds_account_plan_detail: TDataSource
     DataSet = qry_account_plan_detail
-    Left = 480
-    Top = 144
+    Left = 552
+    Top = 232
   end
 end

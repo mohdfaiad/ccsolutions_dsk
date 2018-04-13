@@ -153,9 +153,21 @@ uses ufrm_dm, ufrm_main, ufrm_duplicAccount;
 
 procedure Tfrm_billpay.Action_saveExecute(Sender: TObject);
 begin
+ if qryaccount_plan_acp_id.AsInteger = 0 then
+  begin
+   Application.MessageBox('Conta Sintética não informada!','CONTAS A PAGAR', MB_OK + MB_ICONINFORMATION);
+   exit;
+  end;
+
+ if qryaccount_plan_detail_acd_id.AsInteger = 0 then
+  begin
+   Application.MessageBox('Conta Analítica não informada!','CONTAS A PAGAR', MB_OK + MB_ICONINFORMATION);
+   exit;
+  end;
+
 
     inherited;
- if Application.MessageBox('Deseja cadastrar outras parcelas baseada nessa conta ?','CONTAS A PAGAR', MB_YESNO + MB_ICONQUESTION) = IDYES then
+   if Application.MessageBox('Deseja cadastrar outras parcelas baseada nessa conta ?','CONTAS A PAGAR', MB_YESNO + MB_ICONQUESTION) = IDYES then
      begin
       Application.CreateForm(Tfrm_duplicAccount,frm_duplicAccount);
       frm_duplicAccount.Caption:='Duplilcação de Contas a Pagar';
@@ -180,6 +192,7 @@ procedure Tfrm_billpay.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   qrybpy_dt_registration.Value := Date + Time;
+  qrybpy_status.AsString:='A';
 end;
 
 end.

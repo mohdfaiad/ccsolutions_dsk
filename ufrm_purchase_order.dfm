@@ -193,12 +193,18 @@
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
       ExplicitHeight = 453
       inherited cxPageControl_2: TcxPageControl
         Height = 447
         ExplicitHeight = 447
         ClientRectBottom = 441
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
           ExplicitHeight = 413
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 413
@@ -416,9 +422,6 @@
           Visible = True
           ItemName = 'dxLiberarPed'
         end>
-    end
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\purchase_order'
     end
     object dxCancelPed: TdxBarButton
       Caption = 'Cancelar Pedido'
@@ -2966,7 +2969,7 @@
         Name = 'PCO_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = 4
+        Value = Null
       end>
     object qry_purchase_order_itenpoi_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'

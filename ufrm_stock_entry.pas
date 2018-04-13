@@ -264,7 +264,7 @@ end;
 procedure Tfrm_stock_entry.FormCreate(Sender: TObject);
 begin
   inherited;
- FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+   FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
 
 end;
 

@@ -7,7 +7,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 392
-    Properties.ActivePage = cxTabSheet_1
     ExplicitHeight = 392
     ClientRectBottom = 386
     inherited cxTabSheet_1: TcxTabSheet
@@ -67,7 +66,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
       ExplicitHeight = 358
       inherited cxPageControl_2: TcxPageControl
         Height = 352
-        Properties.ActivePage = cxTabSheet1
         ExplicitHeight = 352
         ClientRectBottom = 346
         inherited cxTabSheet_3: TcxTabSheet
@@ -531,7 +529,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   object qry_product_entry: TFDQuery [12]
-    Active = True
     AfterInsert = qry_product_entryAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'product_entry_pde_id'

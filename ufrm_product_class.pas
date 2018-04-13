@@ -65,11 +65,13 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_product_class_subAfterInsert(DataSet: TDataSet);
-    procedure Action_saveExecute(Sender: TObject);
     procedure qryAfterDelete(DataSet: TDataSet);
     procedure qry_product_class_subAfterDelete(DataSet: TDataSet);
     procedure Action_deleteExecute(Sender: TObject);
     procedure qry_product_class_subAfterOpen(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
+    procedure qryBeforePost(DataSet: TDataSet);
+    procedure qryAfterOpen(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -97,21 +99,18 @@ begin
 
 end;
 
-procedure Tfrm_product_class.Action_saveExecute(Sender: TObject);
-begin
-  inherited;
-   if (qry_product_class_sub.State in [dsEdit,dsInsert]) then
-   begin
-     qry_product_class_sub.Post;
-   end;
-end;
-
 procedure Tfrm_product_class.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
   frm_product_class.Destroy;
   frm_product_class := Nil;
+end;
+
+procedure Tfrm_product_class.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
 end;
 
 procedure Tfrm_product_class.limpaCache(Sender: TObject);
@@ -130,7 +129,23 @@ end;
 procedure Tfrm_product_class.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qryprc_dt_registration.Value := Now;
+   qryprc_dt_registration.Value := Now;
+   qry.Post;
+end;
+
+procedure Tfrm_product_class.qryAfterOpen(DataSet: TDataSet);
+begin
+  inherited;
+  qry.ApplyUpdates(0);
+end;
+
+procedure Tfrm_product_class.qryBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+      if (qry_product_class_sub.State in [dsEdit,dsInsert]) then
+   begin
+     qry_product_class_sub.Post;
+   end;
 end;
 
 procedure Tfrm_product_class.qry_product_class_subAfterDelete(

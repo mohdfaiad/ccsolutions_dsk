@@ -4,8 +4,11 @@ inherited frm_product_class: Tfrm_product_class
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prc_id: TcxGridDBColumn
@@ -30,6 +33,10 @@ inherited frm_product_class: Tfrm_product_class
     inherited cxTabSheet_2: TcxTabSheet
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'prc_id'
@@ -138,7 +145,10 @@ inherited frm_product_class: Tfrm_product_class
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
+    AfterOpen = qryAfterOpen
     AfterInsert = qryAfterInsert
+    BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
@@ -149,6 +159,8 @@ inherited frm_product_class: Tfrm_product_class
     SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from product_class')
+    Left = 504
+    Top = 264
     object qryprc_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'prc_id'
@@ -196,7 +208,6 @@ inherited frm_product_class: Tfrm_product_class
     Style = <>
   end
   object qry_product_class_sub: TFDQuery
-    Active = True
     AfterOpen = qry_product_class_subAfterOpen
     AfterInsert = qry_product_class_subAfterInsert
     AfterDelete = qry_product_class_subAfterDelete
@@ -207,10 +218,12 @@ inherited frm_product_class: Tfrm_product_class
     DetailFields = 'product_class_prc_id'
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from product_class_sub')
-    Left = 584
-    Top = 96
+    Left = 496
+    Top = 336
     object qry_product_class_subprs_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'prs_id'
@@ -246,7 +259,7 @@ inherited frm_product_class: Tfrm_product_class
   end
   object ds_product_class_sub: TDataSource
     DataSet = qry_product_class_sub
-    Left = 616
-    Top = 96
+    Left = 632
+    Top = 336
   end
 end

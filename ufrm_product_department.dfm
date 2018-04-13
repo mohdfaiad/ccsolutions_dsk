@@ -148,13 +148,16 @@ inherited frm_product_department: Tfrm_product_department
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
+    BeforePost = qryBeforePost
+    AfterDelete = qryAfterDelete
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from product_department')
     object qryprd_id: TFDAutoIncField
@@ -198,14 +201,22 @@ inherited frm_product_department: Tfrm_product_department
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
   object qry_product_sector: TFDQuery
-    Active = True
     AfterInsert = qry_product_sectorAfterInsert
+    CachedUpdates = True
     IndexFieldNames = 'product_department_prd_id'
     MasterSource = ds
     MasterFields = 'prd_id'
     DetailFields = 'product_department_prd_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from product_sector')
     Left = 584

@@ -32,7 +32,8 @@ uses
   cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar, cxBarEditItem,
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC;
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
+  ACBrSocket, ACBrCEP, frxClass;
 
 type
   Tfrm_product_department = class(Tfrm_form_default)
@@ -63,10 +64,15 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_product_sectorAfterInsert(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
+    procedure qryBeforePost(DataSet: TDataSet);
+    procedure Action_deleteExecute(Sender: TObject);
+    procedure qryAfterDelete(DataSet: TDataSet);
   private
     { Private declarations }
   public
     { Public declarations }
+     procedure limpaCache(Sender:TObject);
   end;
 
 var
@@ -78,6 +84,17 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_product_department.Action_deleteExecute(Sender: TObject);
+begin
+   if qry_product_sector.RecordCount >=1 then
+     begin
+       Application.MessageBox('Não é possível excluir este departamento, pos existe sub departamentos ligados a ele !','AVISO DO SISTEMA', MB_ICONINFORMATION + MB_OK);
+       Exit;
+     end;
+  inherited;
+
+end;
+
 procedure Tfrm_product_department.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -86,10 +103,40 @@ begin
   frm_product_department := Nil;
 end;
 
+procedure Tfrm_product_department.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+end;
+
+procedure Tfrm_product_department.limpaCache(Sender: TObject);
+begin
+  qry.CommitUpdates();
+  qry_product_sector.CommitUpdates();
+end;
+
+procedure Tfrm_product_department.qryAfterDelete(DataSet: TDataSet);
+begin
+  inherited;
+   qry.ApplyUpdates(0);
+   FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+end;
+
 procedure Tfrm_product_department.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qryprd_dt_registration.Value := Date + Time;
+   qryprd_dt_registration.Value := Date + Time;
+   qry.Post;
+   qry.Edit;
+end;
+
+procedure Tfrm_product_department.qryBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+  if qry_product_sector.State in [dsInsert,dsEdit] then
+   begin
+     qry_product_sector.Post;
+   end;
 end;
 
 procedure Tfrm_product_department.qry_product_sectorAfterInsert

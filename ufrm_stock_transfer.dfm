@@ -10,6 +10,9 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     ExplicitHeight = 475
     ClientRectBottom = 469
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
       ExplicitHeight = 441
       inherited cxGrid_1: TcxGrid
         Height = 435
@@ -59,15 +62,18 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
       ExplicitHeight = 441
       inherited cxPageControl_2: TcxPageControl
         Height = 435
         ExplicitHeight = 435
         ClientRectBottom = 429
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
           ExplicitHeight = 401
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 401
@@ -423,18 +429,15 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       end
     end
   end
-  object cxButton1: TcxButton [2]
-    Left = 672
-    Top = 72
-    Width = 75
-    Height = 25
-    Caption = 'cxButton1'
-    TabOrder = 2
-  end
   inherited dxBarManager_1: TdxBarManager
+    Left = 624
+    Top = 96
     inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\product_transfer'
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\transferencia'
     end
+  end
+  inherited ActionList_1: TActionList
+    Top = 104
   end
   inherited cxGridPopupMenu_1: TcxGridPopupMenu
     Left = 520
@@ -457,6 +460,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
+    DesignInfo = 1049272
   end
   inherited qry: TFDQuery
     Active = True
@@ -3113,7 +3117,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         Name = 'PRT_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = 39
+        Value = Null
       end>
     object qry_product_transfer_itenpti_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
@@ -3239,7 +3243,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         Name = 'STOCK_STO_ID_EXIT'
         DataType = ftInteger
         ParamType = ptInput
-        Value = 1
+        Value = Null
       end>
     object qry_productproduct_pro_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -3289,7 +3293,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         Name = 'CTR_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = 1
+        Value = Null
       end>
     object qry_stock_exitsto_id: TFDAutoIncField
       FieldName = 'sto_id'

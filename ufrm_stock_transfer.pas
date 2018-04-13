@@ -141,7 +141,6 @@ type
     qrySolicitante: TStringField;
     qryStock_Entrada: TStringField;
     qry_product_transfer_itenProduto: TStringField;
-    cxButton1: TcxButton;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure ConfirmarTransfernciaSaida1Click(Sender: TObject);

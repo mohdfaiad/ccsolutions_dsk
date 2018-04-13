@@ -458,6 +458,7 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
+          OnShow = cxTabSheet_addressShow
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0

@@ -258,6 +258,7 @@ type
       AButtonIndex: Integer);
     procedure cxDBButtonEdit3PropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
+    procedure cxTabSheet_addressShow(Sender: TObject);
   private
     { Private declarations }
     cep:Integer;
@@ -390,6 +391,12 @@ procedure Tfrm_client.cxDBComboBox1PropertiesChange(Sender: TObject);
 begin
   inherited;
   changeType;
+end;
+
+procedure Tfrm_client.cxTabSheet_addressShow(Sender: TObject);
+begin
+  inherited;
+ dxLayoutControl1Group_Root.ItemIndex:=0;
 end;
 
 procedure Tfrm_client.FormClose(Sender: TObject; var Action: TCloseAction);

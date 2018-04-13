@@ -1,6 +1,7 @@
 inherited frm_product_class: Tfrm_product_class
   Caption = 'Manuten'#231#227'o: Classes e Sub-Classes'
   OnClose = FormClose
+  ExplicitTop = -36
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -31,6 +32,10 @@ inherited frm_product_class: Tfrm_product_class
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
@@ -107,9 +112,13 @@ inherited frm_product_class: Tfrm_product_class
               Width = 294
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 2
+              ItemIndex = 1
             end
-            object dxLayoutGroup3: TdxLayoutGroup
+            inherited dxLayoutItem1: TdxLayoutItem [6]
+            end
+            inherited dxLayoutItem2: TdxLayoutItem [7]
+            end
+            object dxLayoutGroup3: TdxLayoutGroup [8]
               Parent = dxLayoutControl_1Group_Root
               CaptionOptions.Text = 'Sub-Classe'
               SizeOptions.AssignedValues = [sovSizableHorz]
@@ -118,13 +127,16 @@ inherited frm_product_class: Tfrm_product_class
               ButtonOptions.Buttons = <>
               Index = 2
             end
-            object dxLayoutItem4: TdxLayoutItem
+            object dxLayoutItem4: TdxLayoutItem [9]
               Parent = dxLayoutGroup3
               Control = cxGrid1
               ControlOptions.OriginalHeight = 200
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
               Index = 0
+            end
+            inherited dxLayoutGroup2: TdxLayoutGroup [10]
+              AlignHorz = ahClient
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -140,6 +152,10 @@ inherited frm_product_class: Tfrm_product_class
         end
       end
     end
+  end
+  inherited ds: TDataSource
+    Left = 568
+    Top = 232
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
@@ -159,8 +175,8 @@ inherited frm_product_class: Tfrm_product_class
     SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from product_class')
-    Left = 504
-    Top = 264
+    Left = 520
+    Top = 232
     object qryprc_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'prc_id'
@@ -222,8 +238,8 @@ inherited frm_product_class: Tfrm_product_class
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from product_class_sub')
-    Left = 496
-    Top = 336
+    Left = 528
+    Top = 296
     object qry_product_class_subprs_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'prs_id'
@@ -259,7 +275,7 @@ inherited frm_product_class: Tfrm_product_class
   end
   object ds_product_class_sub: TDataSource
     DataSet = qry_product_class_sub
-    Left = 632
-    Top = 336
+    Left = 608
+    Top = 272
   end
 end

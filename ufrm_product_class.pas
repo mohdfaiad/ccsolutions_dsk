@@ -131,6 +131,7 @@ begin
   inherited;
    qryprc_dt_registration.Value := Now;
    qry.Post;
+   qry.Edit;
 end;
 
 procedure Tfrm_product_class.qryAfterOpen(DataSet: TDataSet);

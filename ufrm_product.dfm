@@ -197,6 +197,7 @@ inherited frm_product: Tfrm_product
               Properties.ListSource = ds_supplier
               Style.HotTrack = False
               TabOrder = 5
+              OnEnter = cxDBLookupComboBox2Enter
               Width = 121
             end
             object cxDBLookupComboBox3: TcxDBLookupComboBox [6]
@@ -210,18 +211,15 @@ inherited frm_product: Tfrm_product
               Properties.KeyFieldNames = 'man_id'
               Properties.ListColumns = <
                 item
-                  Caption = 'Raz'#227'o'
-                  Width = 250
-                  FieldName = 'man_first_name'
+                  FieldName = 'man_last_name'
                 end
                 item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
                   FieldName = 'man_id'
                 end>
               Properties.ListSource = ds_manufacturer
               Style.HotTrack = False
               TabOrder = 6
+              OnEnter = cxDBLookupComboBox3Enter
               Width = 121
             end
             object cxDBLookupComboBox1: TcxDBLookupComboBox [7]
@@ -247,6 +245,7 @@ inherited frm_product: Tfrm_product
               Properties.ListSource = ds_ncm
               Style.HotTrack = False
               TabOrder = 7
+              OnEnter = cxDBLookupComboBox1Enter
               Width = 121
             end
             object cxDBLookupComboBox4: TcxDBLookupComboBox [8]
@@ -272,6 +271,7 @@ inherited frm_product: Tfrm_product
               Properties.ListSource = ds_brand
               Style.HotTrack = False
               TabOrder = 8
+              OnEnter = cxDBLookupComboBox4Enter
               Width = 121
             end
             object cxDBLookupComboBox5: TcxDBLookupComboBox [9]
@@ -297,6 +297,7 @@ inherited frm_product: Tfrm_product
               Properties.ListSource = ds_product_class
               Style.HotTrack = False
               TabOrder = 9
+              OnEnter = cxDBLookupComboBox5Enter
               Width = 121
             end
             object cxDBLookupComboBox6: TcxDBLookupComboBox [10]
@@ -322,10 +323,86 @@ inherited frm_product: Tfrm_product
               Properties.ListSource = ds_product_class_sub
               Style.HotTrack = False
               TabOrder = 10
+              OnEnter = cxDBLookupComboBox6Enter
               Width = 121
             end
             object cxDBTextEdit2: TcxDBTextEdit [11]
               Left = 77
+<<<<<<< .mine
+              Top = 130
+              DataBinding.DataField = 'pro_name'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 341
+            end
+            object cxDBLookupComboBox7: TcxDBLookupComboBox [11]
+              Left = 491
+              Top = 130
+              DataBinding.DataField = 'product_unit_pru_id'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
+              Properties.KeyFieldNames = 'pru_id'
+              Properties.ListColumns = <
+                item
+                  Caption = 'Nome'
+                  Width = 250
+                  FieldName = 'pru_name'
+                end
+                item
+                  Caption = 'C'#243'd. ID'
+                  Width = 75
+                  FieldName = 'pru_id'
+                end>
+              Properties.ListSource = ds_product_unit
+              Style.HotTrack = False
+              TabOrder = 4
+              OnEnter = cxDBLookupComboBox7Enter
+              Width = 121
+            end
+            object cxDBTextEdit2: TcxDBTextEdit [12]
+              Left = 77
+||||||| .r50
+              Top = 130
+              DataBinding.DataField = 'pro_name'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 341
+            end
+            object cxDBLookupComboBox7: TcxDBLookupComboBox [11]
+              Left = 491
+              Top = 130
+              DataBinding.DataField = 'product_unit_pru_id'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
+              Properties.KeyFieldNames = 'pru_id'
+              Properties.ListColumns = <
+                item
+                  Caption = 'Nome'
+                  Width = 250
+                  FieldName = 'pru_name'
+                end
+                item
+                  Caption = 'C'#243'd. ID'
+                  Width = 75
+                  FieldName = 'pru_id'
+                end>
+              Properties.ListSource = ds_product_unit
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 121
+            end
+            object cxDBTextEdit2: TcxDBTextEdit [12]
+              Left = 77
+=======
+>>>>>>> .r90
               Top = 211
               DataBinding.DataField = 'pro_barcod'
               DataBinding.DataSource = ds
@@ -1000,6 +1077,147 @@ inherited frm_product: Tfrm_product
       'select * from manufacturer')
     Left = 520
     Top = 144
+    object qry_manufacturerman_id: TFDAutoIncField
+      FieldName = 'man_id'
+      Origin = 'man_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qry_manufacturercontract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
+    end
+    object qry_manufacturerman_first_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_first_name'
+      Origin = 'man_first_name'
+      Size = 50
+    end
+    object qry_manufacturerman_last_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_last_name'
+      Origin = 'man_last_name'
+      Size = 50
+    end
+    object qry_manufacturerman_email: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_email'
+      Origin = 'man_email'
+      Size = 65
+    end
+    object qry_manufacturerman_cnpj: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_cnpj'
+      Origin = 'man_cnpj'
+      Size = 25
+    end
+    object qry_manufacturerman_ie: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_ie'
+      Origin = 'man_ie'
+      Size = 25
+    end
+    object qry_manufacturerman_im: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_im'
+      Origin = 'man_im'
+      Size = 25
+    end
+    object qry_manufacturerman_suframa: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_suframa'
+      Origin = 'man_suframa'
+      Size = 25
+    end
+    object qry_manufacturerman_dt_open: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_dt_open'
+      Origin = 'man_dt_open'
+    end
+    object qry_manufacturerman_add_bus_zipcode: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_zipcode'
+      Origin = 'man_add_bus_zipcode'
+      Size = 9
+    end
+    object qry_manufacturerman_add_bus_address: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_address'
+      Origin = 'man_add_bus_address'
+      Size = 50
+    end
+    object qry_manufacturerman_add_bus_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_number'
+      Origin = 'man_add_bus_number'
+      Size = 5
+    end
+    object qry_manufacturerman_add_bus_street: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_street'
+      Origin = 'man_add_bus_street'
+      Size = 45
+    end
+    object qry_manufacturerman_add_bus_complement: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_complement'
+      Origin = 'man_add_bus_complement'
+      Size = 50
+    end
+    object qry_manufacturerman_add_bus_city: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_city'
+      Origin = 'man_add_bus_city'
+      Size = 35
+    end
+    object qry_manufacturerman_add_bus_state: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_state'
+      Origin = 'man_add_bus_state'
+      FixedChar = True
+      Size = 3
+    end
+    object qry_manufacturerman_add_bus_country: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_country'
+      Origin = 'man_add_bus_country'
+      Size = 25
+    end
+    object qry_manufacturerman_phone1: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_phone1'
+      Origin = 'man_phone1'
+      Size = 15
+    end
+    object qry_manufacturerman_phone2: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_phone2'
+      Origin = 'man_phone2'
+      Size = 15
+    end
+    object qry_manufacturerman_phone3: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_phone3'
+      Origin = 'man_phone3'
+      Size = 15
+    end
+    object qry_manufacturerman_phone4: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_phone4'
+      Origin = 'man_phone4'
+      Size = 15
+    end
+    object qry_manufacturerman_contact: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_contact'
+      Origin = 'man_contact'
+      Size = 25
+    end
+    object qry_manufacturerman_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_dt_registration'
+      Origin = 'man_dt_registration'
+    end
   end
   object ds_manufacturer: TDataSource
     DataSet = qry_manufacturer

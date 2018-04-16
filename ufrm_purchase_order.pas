@@ -112,6 +112,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
     procedure qryBeforePost(DataSet: TDataSet);
+    procedure Action_deleteExecute(Sender: TObject);
   private
     { Private declarations }
   procedure filter(status:string);
@@ -128,6 +129,18 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_purchase_order.Action_deleteExecute(Sender: TObject);
+begin
+ if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
+  begin
+
+  end;
+
+
+  inherited;
+
+end;
 
 procedure Tfrm_purchase_order.Action_saveExecute(Sender: TObject);
 begin

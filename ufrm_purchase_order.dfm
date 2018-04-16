@@ -2,6 +2,7 @@
   Caption = 'Manuten'#231#227'o: Pedidos de Compra'
   ClientHeight = 542
   OnClose = FormClose
+  ExplicitTop = -17
   ExplicitHeight = 581
   PixelsPerInch = 96
   TextHeight = 13
@@ -43,9 +44,9 @@
         end
       end
       object FlowPanel1: TFlowPanel
-        Left = 2
+        Left = 3
         Top = 399
-        Width = 518
+        Width = 662
         Height = 26
         Alignment = taLeftJustify
         Anchors = [akLeft, akBottom]
@@ -193,18 +194,12 @@
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
       ExplicitHeight = 453
       inherited cxPageControl_2: TcxPageControl
         Height = 447
         ExplicitHeight = 447
         ClientRectBottom = 441
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
           ExplicitHeight = 413
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 413
@@ -3016,8 +3011,8 @@
   end
   object ds_purchase_order_iten: TDataSource
     DataSet = qry_purchase_order_iten
-    Left = 616
-    Top = 96
+    Left = 600
+    Top = 160
   end
   object qry_product: TFDQuery
     Active = True

@@ -4,9 +4,12 @@ inherited frm_stock_iten: Tfrm_stock_iten
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     OnPageChanging = cxPageControl_1PageChanging
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
@@ -162,7 +165,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
   end
   inherited dxBarManager_1: TdxBarManager
     inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\stock_Iten'
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\itens de estoque'
     end
   end
   inherited cxImageList_1: TcxImageList
@@ -2748,7 +2751,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
         Name = 'STO_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = 1
+        Value = Null
       end>
     object qry_stock_itenproduct_pro_id: TIntegerField
       AutoGenerateValue = arDefault

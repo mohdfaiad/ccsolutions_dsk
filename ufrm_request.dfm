@@ -11,10 +11,7 @@ inherited frm_request: Tfrm_request
     ExplicitWidth = 877
     ClientRectRight = 871
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 869
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         Width = 863
         ExplicitWidth = 863
@@ -204,19 +201,13 @@ inherited frm_request: Tfrm_request
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 869
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         Width = 863
         ExplicitWidth = 863
         ClientRectRight = 857
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
           ExplicitWidth = 855
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 855
             ExplicitWidth = 855
@@ -476,6 +467,7 @@ inherited frm_request: Tfrm_request
     inherited cxBarEditItem_1: TcxBarEditItem
       Properties.DropDownWidth = 250
       Properties.IncrementalSearch = False
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\requesicao'
     end
     object dxCancelReq: TdxBarButton
       Caption = 'Cancelar Requisi'#231#227'o'

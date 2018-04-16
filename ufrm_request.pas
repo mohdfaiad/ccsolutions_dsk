@@ -165,7 +165,7 @@ begin
  cxGrid1.SetFocus;
 if qrystock_sto_id.AsInteger <= 0  then
  begin
-   Application.MessageBox('Estoque soolicitante não foi informado, favor informar!','AVISO',MB_OK + MB_ICONWARNING);
+   Application.MessageBox('Estoque solicitante não foi informado, favor informar!','AVISO',MB_OK + MB_ICONWARNING);
    cxPageControl_2.ActivePageIndex:=1;
    cxDBLookupComboBox2.SetFocus;
    exit;

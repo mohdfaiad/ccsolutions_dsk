@@ -10,9 +10,11 @@ inherited frm_main: Tfrm_main
   end
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
+      Active = False
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
+      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar3'
@@ -72,7 +74,7 @@ inherited frm_main: Tfrm_main
           ItemName = 'dxBarLargeButton4'
         end>
     end
-    object dxBarManager_1Bar2: TdxBar
+    object dxBarManager_1Bar2: TdxBar [3]
       Caption = #218'til'
       CaptionButtons = <>
       DockedLeft = 0
@@ -92,7 +94,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar3: TdxBar
+    object dxBarManager_1Bar3: TdxBar [4]
       Caption = 'Estoque'
       CaptionButtons = <>
       DockedLeft = 0
@@ -124,7 +126,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar4: TdxBar
+    object dxBarManager_1Bar4: TdxBar [5]
       Caption = 'F'#225'brica'
       CaptionButtons = <>
       DockedLeft = 0
@@ -178,7 +180,6 @@ inherited frm_main: Tfrm_main
       Hint = 'Manuten'#231#227'o Produtos'
       Visible = ivAlways
       ButtonStyle = bsDropDown
-      DropDownMenu = rbpopmenu_1
       OnClick = Action_productExecute
       LargeImageIndex = 4
     end
@@ -192,7 +193,6 @@ inherited frm_main: Tfrm_main
       Hint = 'Produtos'
       Visible = ivAlways
       ButtonStyle = bsDropDown
-      DropDownMenu = rbpopmenu_1
       Glyph.Data = {
         36100000424D3610000000000000360000002800000020000000200000000100
         2000000000000010000000000000000000000000000000000000000000000000
@@ -637,12 +637,18 @@ inherited frm_main: Tfrm_main
       Action = Action_stock_transfer
       Category = 0
     end
+<<<<<<< .mine
     object dxBarLargeButton12: TdxBarLargeButton
-      Caption = 'New Button'
+      Action = Action_stock_iten
       Category = 0
-      Hint = 'New Button'
-      Visible = ivAlways
     end
+||||||| .r50
+    object dxBarButton2: TdxBarButton
+      Action = Action_stock_iten
+      Category = 0
+    end
+=======
+>>>>>>> .r104
     object dxBarButton3: TdxBarButton
       Action = Action_request
       Category = 0
@@ -2379,7 +2385,7 @@ inherited frm_main: Tfrm_main
           0000000000000000000000000000000000000000000000000000}
       end>
   end
-  object rbpopmenu_1: TdxRibbonPopupMenu
+  object TdxRibbonPopupMenu
     BarManager = dxBarManager_1
     ItemLinks = <
       item
@@ -2429,6 +2435,22 @@ inherited frm_main: Tfrm_main
       item
         Visible = True
         ItemName = 'dxBarButton1'
+<<<<<<< .mine
+      end
+      item
+        Visible = True
+        ItemName = 'dxBarLargeButton12'
+      end
+      item
+        Visible = True
+        ItemName = 'dxBarButton2'
+||||||| .r50
+      end
+      item
+        Visible = True
+        ItemName = 'dxBarButton2'
+=======
+>>>>>>> .r104
       end>
     Ribbon = dxRibbon1
     UseOwnFont = False

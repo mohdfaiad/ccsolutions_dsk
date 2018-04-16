@@ -25,7 +25,9 @@ uses
   Data.DB, System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList,
   dxStatusBar, dxRibbonStatusBar, dxSkinscxPCPainter, dxBarBuiltInMenu, cxPC,
   Vcl.Menus, Vcl.StdCtrls, cxButtons, dxGDIPlusClasses, ACBrBase, ACBrEnterTab,
-  Vcl.Buttons, FireDAC.Comp.Client;
+  Vcl.Buttons, FireDAC.Comp.Client,  IdSMTP, IdSSLOpenSSL, IdMessage, IdText, IdAttachmentFile,
+  IdExplicitTLSClientServerBase, IdBaseComponent, IdComponent, IdTCPConnection,
+  IdTCPClient, IdMessageClient, IdSMTPBase;
 
 type
   Tfrm_login = class(TForm)
@@ -46,9 +48,12 @@ type
     ACBrEnterTab_1: TACBrEnterTab;
     cxButton1: TcxButton;
     cxButton2: TcxButton;
+    IdSMTP1: TIdSMTP;
     procedure Action_cancelExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_accessExecute(Sender: TObject);
+    procedure edt_contractKeyPress(Sender: TObject; var Key: Char);
+    procedure cxLabel4Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -91,6 +96,106 @@ begin
   begin
     Application.Terminate;
   end;
+end;
+
+procedure Tfrm_login.cxLabel4Click(Sender: TObject);
+var
+  // variáveis e objetos necessários para o envio
+  IdSSLIOHandlerSocket: TIdSSLIOHandlerSocketOpenSSL;
+  IdSMTP: TIdSMTP;
+  IdMessage: TIdMessage;
+  IdText: TIdText;
+  sAnexo: string;
+begin
+   // instanciação dos objetos
+  IdSSLIOHandlerSocket := TIdSSLIOHandlerSocketOpenSSL.Create(Self);
+  IdSMTP := TIdSMTP.Create(Self);
+  IdMessage := TIdMessage.Create(Self);
+
+   try
+    // Configuração do protocolo SSL (TIdSSLIOHandlerSocketOpenSSL)
+    IdSSLIOHandlerSocket.SSLOptions.Method := sslvSSLv23;
+    IdSSLIOHandlerSocket.SSLOptions.Mode := sslmClient;
+
+    // Configuração do servidor SMTP (TIdSMTP)
+    IdSMTP.IOHandler := IdSSLIOHandlerSocket;
+//    IdSMTP.UseTLS := utUseImplicitTLS;
+    IdSMTP.AuthType := satNone;
+    IdSMTP.Port := 587;
+    IdSMTP.Host := 'mail.ccsbrasil.com';
+    IdSMTP.Username := 'elizeu.souza@ccsbrasil.com';
+    IdSMTP.Password := 'admin0910@@';
+
+         // Configuração da mensagem (TIdMessage)
+    IdMessage.From.Address := 'elizeusouza2008@gmail.com';
+    IdMessage.From.Name := 'Sistema CCS';
+    IdMessage.ReplyTo.EMailAddresses := IdMessage.From.Address;
+    IdMessage.Recipients.Add.Text := 'elizeusouza@hotmail.com';
+//    IdMessage.Recipients.Add.Text := 'destinatario2@email.com'; // opcional
+//    IdMessage.Recipients.Add.Text := 'destinatario3@email.com'; // opcional
+    IdMessage.Subject := 'Recuperar de Senha';
+    IdMessage.Encoding := meMIME;
+
+      // Configuração do corpo do email (TIdText)
+    IdText := TIdText.Create(IdMessage.MessageParts);
+    IdText.Body.Add('Corpo do e-mail');
+    IdText.ContentType := 'text/plain; charset=iso-8859-1';
+
+        // Opcional - Anexo da mensagem (TIdAttachmentFile)
+//    sAnexo := 'C:\Anexo.pdf';
+    if FileExists(sAnexo) then
+    begin
+      TIdAttachmentFile.Create(IdMessage.MessageParts, sAnexo);
+    end;
+
+       // Conexão e autenticação
+    try
+      IdSMTP.Connect;
+      IdSMTP.Authenticate;
+    except
+      on E:Exception do
+      begin
+        MessageDlg('Erro na conexão ou autenticação: ' +
+          E.Message, mtWarning, [mbOK], 0);
+        Exit;
+      end;
+    end;
+
+        // Envio da mensagem
+    try
+      IdSMTP.Send(IdMessage);
+      MessageDlg('Mensagem enviada com sucesso!', mtInformation, [mbOK], 0);
+    except
+      On E:Exception do
+      begin
+        MessageDlg('Erro ao enviar a mensagem: ' +
+          E.Message, mtWarning, [mbOK], 0);
+      end;
+    end;
+  finally
+    // desconecta do servidor
+    IdSMTP.Disconnect;
+    // liberação da DLL
+    UnLoadOpenSSLLibrary;
+    // liberação dos objetos da memória
+    FreeAndNil(IdMessage);
+    FreeAndNil(IdSSLIOHandlerSocket);
+    FreeAndNil(IdSMTP);
+  end;
+end;
+
+
+
+procedure Tfrm_login.edt_contractKeyPress(Sender: TObject; var Key: Char);
+begin
+if not (key in ['0'..'9',#08]) then
+ begin
+  key:=#0;
+  Application.MessageBox('Somente é permetido números!','LOGIN', MB_OK + MB_ICONEXCLAMATION);
+ end;
+
+If not( key in['0'..'9',#08] ) then
+  key:=#0;
 end;
 
 procedure Tfrm_login.FormShow(Sender: TObject);

@@ -2170,6 +2170,7 @@ object frm_login: Tfrm_login
         Left = 3
         Top = 45
         TabOrder = 0
+        OnKeyPress = edt_contractKeyPress
         Width = 250
       end
       object edt_username: TcxTextEdit
@@ -2217,6 +2218,7 @@ object frm_login: Tfrm_login
         StyleFocused.LookAndFeel.NativeStyle = True
         StyleHot.LookAndFeel.NativeStyle = True
         Transparent = True
+        OnClick = cxLabel4Click
       end
       object cxButton1: TcxButton
         Left = 3
@@ -2373,5 +2375,11 @@ object frm_login: Tfrm_login
     EnterAsTab = True
     Left = 392
     Top = 208
+  end
+  object IdSMTP1: TIdSMTP
+    AuthType = satSASL
+    SASLMechanisms = <>
+    Left = 92
+    Top = 105
   end
 end

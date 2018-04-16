@@ -54,6 +54,7 @@ type
     Action_manufacturer: TAction;
     Action_product_unit: TAction;
     dxBarLargeButton9: TdxBarLargeButton;
+    rbpopmenu_1: TdxRibbonPopupMenu;
     Action_product_class: TAction;
     dxBarLargeButton10: TdxBarLargeButton;
     Action_product_department: TAction;
@@ -77,6 +78,8 @@ type
     dxBarLargeButton12: TdxBarLargeButton;
     dxBarButton3: TdxBarButton;
     Action_request: TAction;
+    Action_stock_out: TAction;
+    dxBarButton4: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contratExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -98,6 +101,7 @@ type
     procedure Action_stock_itenExecute(Sender: TObject);
     procedure Action_stock_transferExecute(Sender: TObject);
     procedure Action_requestExecute(Sender: TObject);
+    procedure Action_stock_outExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -115,7 +119,8 @@ uses ufrm_login, ufrm_brand, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_product, ufrm_supplier, ufrm_report,
   ufrm_ncm, ufrm_manufacturer, ufrm_product_unit, ufrm_product_class,
   ufrm_product_department, ufrm_purchase_order, ufrm_stock, uclass_frm_open,
-  ufrm_stock_entry, ufrm_stock_iten, ufrm_stock_transfer, ufrm_request;
+  ufrm_stock_entry, ufrm_stock_iten, ufrm_stock_transfer, ufrm_request,
+  ufrm_stock_out;
 
 procedure Tfrm_main.Action_brandExecute(Sender: TObject);
 begin
@@ -404,6 +409,22 @@ begin
   begin
     frm_stock_iten.WindowState := wsNormal;
   end;
+end;
+
+procedure Tfrm_main.Action_stock_outExecute(Sender: TObject);
+begin
+  inherited;
+   if not Assigned(frm_stock_out) then
+    begin
+      frm_stock_out := Tfrm_stock_out.Create(Self);
+      frm_stock_out.Height := Bevel_1.Height;
+      frm_stock_out.Width := Bevel_1.Width;
+      frm_stock_out.Show
+    end
+    else
+    begin
+      frm_stock_out.WindowState := wsNormal;
+    end;
 end;
 
 procedure Tfrm_main.Action_stock_transferExecute(Sender: TObject);

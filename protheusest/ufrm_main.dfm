@@ -1,5 +1,7 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Estoque - CCS Protheus.'
+  ExplicitWidth = 1024
+  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited Bevel_1: TBevel
@@ -180,6 +182,7 @@ inherited frm_main: Tfrm_main
       Hint = 'Manuten'#231#227'o Produtos'
       Visible = ivAlways
       ButtonStyle = bsDropDown
+      DropDownMenu = rbpopmenu_1
       OnClick = Action_productExecute
       LargeImageIndex = 4
     end
@@ -193,6 +196,7 @@ inherited frm_main: Tfrm_main
       Hint = 'Produtos'
       Visible = ivAlways
       ButtonStyle = bsDropDown
+      DropDownMenu = rbpopmenu_1
       Glyph.Data = {
         36100000424D3610000000000000360000002800000020000000200000000100
         2000000000000010000000000000000000000000000000000000000000000000
@@ -637,20 +641,16 @@ inherited frm_main: Tfrm_main
       Action = Action_stock_transfer
       Category = 0
     end
-<<<<<<< .mine
     object dxBarLargeButton12: TdxBarLargeButton
       Action = Action_stock_iten
       Category = 0
     end
-||||||| .r50
-    object dxBarButton2: TdxBarButton
-      Action = Action_stock_iten
-      Category = 0
-    end
-=======
->>>>>>> .r104
     object dxBarButton3: TdxBarButton
       Action = Action_request
+      Category = 0
+    end
+    object dxBarButton4: TdxBarButton
+      Action = Action_stock_out
       Category = 0
     end
   end
@@ -783,6 +783,11 @@ inherited frm_main: Tfrm_main
       Caption = 'Requisi'#231#227'o'
       Hint = 'Manuten'#231#227'o Requisi'#231#227'o'
       OnExecute = Action_requestExecute
+    end
+    object Action_stock_out: TAction
+      Category = 'M'#243'dulo'
+      Caption = 'Sa'#237'da do Estoque'
+      OnExecute = Action_stock_outExecute
     end
   end
   inherited cxImageList_1: TcxImageList
@@ -2385,7 +2390,7 @@ inherited frm_main: Tfrm_main
           0000000000000000000000000000000000000000000000000000}
       end>
   end
-  object TdxRibbonPopupMenu
+  object rbpopmenu_1: TdxRibbonPopupMenu
     BarManager = dxBarManager_1
     ItemLinks = <
       item
@@ -2435,7 +2440,6 @@ inherited frm_main: Tfrm_main
       item
         Visible = True
         ItemName = 'dxBarButton1'
-<<<<<<< .mine
       end
       item
         Visible = True
@@ -2443,14 +2447,7 @@ inherited frm_main: Tfrm_main
       end
       item
         Visible = True
-        ItemName = 'dxBarButton2'
-||||||| .r50
-      end
-      item
-        Visible = True
-        ItemName = 'dxBarButton2'
-=======
->>>>>>> .r104
+        ItemName = 'dxBarButton4'
       end>
     Ribbon = dxRibbon1
     UseOwnFont = False

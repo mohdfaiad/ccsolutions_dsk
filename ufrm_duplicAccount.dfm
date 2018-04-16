@@ -14,6 +14,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object dxLayoutControl1: TdxLayoutControl
@@ -159,7 +160,6 @@ object frm_duplicAccount: Tfrm_duplicAccount
       AlignVert = avTop
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 1
       ShowBorder = False
       Index = -1
     end

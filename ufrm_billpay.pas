@@ -166,6 +166,13 @@ begin
   end;
 
 
+  if qrysupplier_sup_id.AsInteger = 0 then
+  begin
+   Application.MessageBox('Fornecedor não informada!','CONTAS A PAGAR', MB_OK + MB_ICONINFORMATION);
+   exit;
+  end;
+
+
     inherited;
    if Application.MessageBox('Deseja cadastrar outras parcelas baseada nessa conta ?','CONTAS A PAGAR', MB_YESNO + MB_ICONQUESTION) = IDYES then
      begin
@@ -177,6 +184,7 @@ begin
       frm_duplicAccount.cxEditLancamento.TExt:=FormatDateTime('dd/mm/yyyy',qrybpy_dt_registration.AsDateTime);
       frm_duplicAccount.cxEditVenc.TExt:=FormatDateTime('dd/mm/yyyy', qrybpy_dt_maturity.AsDateTime);
       frm_duplicAccount.cxEditValor.TExt:=FormatFloat('0.0,00', qrybpy_value.AsFloat);
+      frm_duplicAccount.Tag:=0;
       frm_duplicAccount.Showmodal;
      end;
    end;

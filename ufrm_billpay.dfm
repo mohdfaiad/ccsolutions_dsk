@@ -4,7 +4,6 @@ inherited frm_billpay: Tfrm_billpay
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    ExplicitTop = 61
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -77,7 +76,6 @@ inherited frm_billpay: Tfrm_billpay
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
-        ExplicitLeft = -13
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28

@@ -7,6 +7,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 392
+    Properties.ActivePage = cxTabSheet_1
     ExplicitHeight = 392
     ClientRectBottom = 386
     inherited cxTabSheet_1: TcxTabSheet
@@ -31,10 +32,10 @@ inherited frm_stock_entry: Tfrm_stock_entry
             Properties.KeyFieldNames = 'sup_id'
             Properties.ListColumns = <
               item
-                FieldName = 'sup_first_name'
+                FieldName = 'sup_id'
               end>
             Properties.ListSource = ds_supplier
-            Width = 250
+            Width = 100
           end
           object cxGrid_1DBTableView1purchase_order_pco_id: TcxGridDBColumn
             DataBinding.FieldName = 'purchase_order_pco_id'
@@ -66,7 +67,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
       ExplicitHeight = 358
       inherited cxPageControl_2: TcxPageControl
         Height = 352
-        Properties.ActivePage = cxTabSheet1
         ExplicitHeight = 352
         ClientRectBottom = 346
         inherited cxTabSheet_3: TcxTabSheet
@@ -177,6 +177,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
               Properties.ListSource = ds_supplier
               Style.HotTrack = False
               TabOrder = 3
+              OnEnter = cxDBLookupComboBox1Enter
               Width = 294
             end
             object cxDBComboBox1: TcxDBComboBox [7]
@@ -418,6 +419,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     BeforeDelete = qryBeforeDelete
+    AfterDelete = qryAfterDelete
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -543,8 +545,8 @@ inherited frm_stock_entry: Tfrm_stock_entry
     SQL.Strings = (
       'select * from product_entry_itens'#10
       'where product_entry_pde_id = :pde_id')
-    Left = 391
-    Top = 210
+    Left = 455
+    Top = 98
     ParamData = <
       item
         Name = 'PDE_ID'
@@ -3187,8 +3189,8 @@ inherited frm_stock_entry: Tfrm_stock_entry
         'where pco_id not in (select purchase_order_pco_id from product_e' +
         'ntry'#10
       'where pde_status = '#39'E'#39')'#10'and pco_type = '#39'C'#39)
-    Left = 592
-    Top = 200
+    Left = 584
+    Top = 96
     object qry_purchase_orderpco_id: TFDAutoIncField
       FieldName = 'pco_id'
       Origin = 'pco_id'
@@ -3271,8 +3273,8 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from stock')
-    Left = 512
-    Top = 176
+    Left = 648
+    Top = 96
     object qry_stocksto_id: TFDAutoIncField
       FieldName = 'sto_id'
       Origin = 'sto_id'

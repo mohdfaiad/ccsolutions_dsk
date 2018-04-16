@@ -1,11 +1,9 @@
 inherited frm_product: Tfrm_product
   Caption = 'Manuten'#231#227'o: Produtos e Servi'#231'os'
   OnClose = FormClose
-  ExplicitTop = -167
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -106,7 +104,6 @@ inherited frm_product: Tfrm_product
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet2
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -222,6 +219,7 @@ inherited frm_product: Tfrm_product
               Properties.ListSource = ds_manufacturer
               Style.HotTrack = False
               TabOrder = 6
+              OnEnter = cxDBLookupComboBox3Enter
               Width = 121
             end
             object cxDBLookupComboBox1: TcxDBLookupComboBox [7]
@@ -247,6 +245,7 @@ inherited frm_product: Tfrm_product
               Properties.ListSource = ds_ncm
               Style.HotTrack = False
               TabOrder = 7
+              OnEnter = cxDBLookupComboBox1Enter
               Width = 121
             end
             object cxDBLookupComboBox4: TcxDBLookupComboBox [8]
@@ -297,6 +296,7 @@ inherited frm_product: Tfrm_product
               Properties.ListSource = ds_product_class
               Style.HotTrack = False
               TabOrder = 9
+              OnEnter = cxDBLookupComboBox5Enter
               Width = 121
             end
             object cxDBLookupComboBox6: TcxDBLookupComboBox [10]
@@ -322,6 +322,7 @@ inherited frm_product: Tfrm_product
               Properties.ListSource = ds_product_class_sub
               Style.HotTrack = False
               TabOrder = 10
+              OnEnter = cxDBLookupComboBox6Enter
               Width = 121
             end
             object cxDBTextEdit2: TcxDBTextEdit [11]
@@ -359,11 +360,7 @@ inherited frm_product: Tfrm_product
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
             end
-            inherited dxLayoutItem1: TdxLayoutItem [16]
-            end
-            inherited dxLayoutItem2: TdxLayoutItem [17]
-            end
-            inherited dxLayoutGroup2: TdxLayoutGroup [18]
+            inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahRight
               ItemIndex = 1
             end
@@ -684,10 +681,6 @@ inherited frm_product: Tfrm_product
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitLeft = 72
-            ExplicitTop = 112
-            ExplicitWidth = 300
-            ExplicitHeight = 250
             object cxGrid1: TcxGrid
               Left = 17
               Top = 38
@@ -1108,12 +1101,13 @@ inherited frm_product: Tfrm_product
     SQL.Strings = (
       'select pro_id,pro_name from product'#13#10#10
       'order by pro_name ')
-    Left = 375
-    Top = 258
+    Left = 655
+    Top = 202
     object qry_product_list_inputpro_id: TFDAutoIncField
       FieldName = 'pro_id'
       Origin = 'pro_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_product_list_inputpro_name: TStringField
       AutoGenerateValue = arDefault
@@ -1124,7 +1118,7 @@ inherited frm_product: Tfrm_product
   end
   object ds_product_list_input: TDataSource
     DataSet = qry_product_list_input
-    Left = 456
-    Top = 232
+    Left = 688
+    Top = 200
   end
 end

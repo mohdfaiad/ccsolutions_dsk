@@ -140,33 +140,7 @@ type
     cxGrid_1DBTableView1pro_length: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_weight: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_liter: TcxGridDBColumn;
-<<<<<<< .mine
-    qry_manufacturerman_id: TFDAutoIncField;
-    qry_manufacturercontract_ctr_id: TIntegerField;
-    qry_manufacturerman_first_name: TStringField;
-    qry_manufacturerman_last_name: TStringField;
-    qry_manufacturerman_email: TStringField;
-    qry_manufacturerman_cnpj: TStringField;
-    qry_manufacturerman_ie: TStringField;
-    qry_manufacturerman_im: TStringField;
-    qry_manufacturerman_suframa: TStringField;
-    qry_manufacturerman_dt_open: TDateField;
-    qry_manufacturerman_add_bus_zipcode: TStringField;
-    qry_manufacturerman_add_bus_address: TStringField;
-    qry_manufacturerman_add_bus_number: TStringField;
-    qry_manufacturerman_add_bus_street: TStringField;
-    qry_manufacturerman_add_bus_complement: TStringField;
-    qry_manufacturerman_add_bus_city: TStringField;
-    qry_manufacturerman_add_bus_state: TStringField;
-    qry_manufacturerman_add_bus_country: TStringField;
-    qry_manufacturerman_phone1: TStringField;
-    qry_manufacturerman_phone2: TStringField;
-    qry_manufacturerman_phone3: TStringField;
-    qry_manufacturerman_phone4: TStringField;
-    qry_manufacturerman_contact: TStringField;
-    qry_manufacturerman_dt_registration: TDateTimeField;
-||||||| .r50
-=======
+
     qry_product_input: TFDQuery;
     cxTabSheet2: TcxTabSheet;
     dxLayoutControl2Group_Root: TdxLayoutGroup;
@@ -185,7 +159,7 @@ type
     qry_product_list_inputpro_id: TFDAutoIncField;
     qry_product_list_inputpro_name: TStringField;
     ds_product_list_input: TDataSource;
->>>>>>> .r90
+
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure cxDBLookupComboBox6Enter(Sender: TObject);

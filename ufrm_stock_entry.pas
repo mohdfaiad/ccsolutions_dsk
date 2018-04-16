@@ -136,6 +136,8 @@ type
     procedure Action_saveExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure qryBeforePost(DataSet: TDataSet);
+    procedure cxDBLookupComboBox1Enter(Sender: TObject);
+    procedure qryAfterDelete(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -154,7 +156,7 @@ uses ufrm_dm;
 
 procedure Tfrm_stock_entry.Action_saveExecute(Sender: TObject);
 begin
-  if qry_product_entry.IsEmpty then
+   if qry_product_entry.IsEmpty then
    begin
      Application.MessageBox('Não é possível salvar falta incluir os produtos dessa nota !','AVISO DO SISTEMA',MB_OK + MB_ICONQUESTION);
       Exit;
@@ -254,6 +256,12 @@ begin
   end;
 
 end;
+procedure Tfrm_stock_entry.cxDBLookupComboBox1Enter(Sender: TObject);
+begin
+  inherited;
+  qry_supplier.refresh;
+end;
+
 procedure Tfrm_stock_entry.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -281,6 +289,12 @@ begin
   inherited;
   ConfirmaEntrada1.Enabled := qrypde_status.AsString = 'A';
   Cancelarentrada1.Enabled := qrypde_status.AsString <> 'C';
+end;
+
+procedure Tfrm_stock_entry.qryAfterDelete(DataSet: TDataSet);
+begin
+  inherited;
+   qry.ApplyUpdates(0);
 end;
 
 procedure Tfrm_stock_entry.qryAfterInsert(DataSet: TDataSet);

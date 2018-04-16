@@ -362,7 +362,6 @@ inherited frm_product: Tfrm_product
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahRight
-              ItemIndex = 1
             end
             object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2

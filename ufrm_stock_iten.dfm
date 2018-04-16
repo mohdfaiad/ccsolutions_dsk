@@ -4,12 +4,13 @@ inherited frm_stock_iten: Tfrm_stock_iten
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_1
     OnPageChanging = cxPageControl_1PageChanging
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
@@ -36,8 +37,16 @@ inherited frm_stock_iten: Tfrm_stock_iten
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'sto_id'
@@ -2732,24 +2741,26 @@ inherited frm_stock_iten: Tfrm_stock_iten
     end
   end
   object qry_stock_iten: TFDQuery
-    Active = True
     IndexFieldNames = 'stock_sto_id'
     MasterSource = ds
     MasterFields = 'sto_id'
     DetailFields = 'stock_sto_id'
     Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'SELECT product_pro_id,pro_name, pru_name, sti_product_quant, '
-      'sti_product_quant_min, stock_sto_id FROM stock_iten'#13#10#10
-      'inner join product on pro_id = product_pro_id'#13#10#10
-      'inner join product_unit on pru_id = product_unit_pru_id'#10
-      'where pro_id= product_pro_id'#10'and stock_sto_id =:sto_id')
-    Left = 543
-    Top = 98
+      'select product_pro_id,pro_name, pru_name, sti_product_quant,'
+      ' '#10'sti_product_quant_min, stock_sto_id from stock_iten'#13#10#10
+      ''
+      'left join product on pro_id = product_pro_id'#10
+      'left join product_unit on pru_id = product_unit_pru_id'#10
+      'where stock_sto_id =:sto_id')
+    Left = 575
+    Top = 186
     ParamData = <
       item
         Name = 'STO_ID'
-        DataType = ftAutoInc
+        DataType = ftInteger
         ParamType = ptInput
         Value = Null
       end>

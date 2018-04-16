@@ -137,7 +137,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure cxDBLookupComboBox1Enter(Sender: TObject);
-    procedure qryAfterDelete(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -289,12 +288,6 @@ begin
   inherited;
   ConfirmaEntrada1.Enabled := qrypde_status.AsString = 'A';
   Cancelarentrada1.Enabled := qrypde_status.AsString <> 'C';
-end;
-
-procedure Tfrm_stock_entry.qryAfterDelete(DataSet: TDataSet);
-begin
-  inherited;
-   qry.ApplyUpdates(0);
 end;
 
 procedure Tfrm_stock_entry.qryAfterInsert(DataSet: TDataSet);

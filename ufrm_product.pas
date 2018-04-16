@@ -169,6 +169,7 @@ type
     procedure cxDBLookupComboBox3Enter(Sender: TObject);
     procedure cxDBLookupComboBox5Enter(Sender: TObject);
     procedure cxDBLookupComboBox7Enter(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -183,6 +184,18 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_product.Action_saveExecute(Sender: TObject);
+begin
+  if (Trim(cxDBLookupComboBox7.Text)='') OR (Trim(cxDBTextEdit1.Text)='')  then
+   begin
+     Application.MessageBox('Por favor imformar a unidade de medida do produto !','AVISO CADASTRO DE PRODUTO',MB_OK+MB_ICONINFORMATION);
+     Exit;
+   end;
+
+  inherited;
+
+end;
 
 procedure Tfrm_product.cxDBLookupComboBox1Enter(Sender: TObject);
 begin

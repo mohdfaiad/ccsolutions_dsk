@@ -10,6 +10,9 @@ inherited frm_stock_entry: Tfrm_stock_entry
     ExplicitHeight = 392
     ClientRectBottom = 386
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
       ExplicitHeight = 358
       inherited cxGrid_1: TcxGrid
         Height = 352
@@ -57,12 +60,19 @@ inherited frm_stock_entry: Tfrm_stock_entry
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
       ExplicitHeight = 358
       inherited cxPageControl_2: TcxPageControl
         Height = 352
+        Properties.ActivePage = cxTabSheet1
         ExplicitHeight = 352
         ClientRectBottom = 346
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
           ExplicitHeight = 318
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 318
@@ -417,7 +427,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     BeforeDelete = qryBeforeDelete
-    AfterDelete = qryAfterDelete
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin

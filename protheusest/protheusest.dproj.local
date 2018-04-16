@@ -97,6 +97,8 @@
     <File Path="..\ufrm_supplier.dfm"/>
     <File Path="..\ufrm_request.pas"/>
     <File Path="..\ufrm_request.dfm"/>
+    <File Path="..\ufrm_stock_out.pas"/>
+    <File Path="..\ufrm_stock_out.dfm"/>
     <File Path="ufrm_main.pas"/>
     <File Path="ufrm_main.dfm"/>
     <File Path="ufrm_protheusest.pas"/>

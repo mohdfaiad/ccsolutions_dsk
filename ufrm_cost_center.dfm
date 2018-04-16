@@ -1,7 +1,6 @@
 inherited frm_cost_center: Tfrm_cost_center
   Caption = 'Manuten'#231#227'o: Centro de Custo - Grupo'
   OnClose = FormClose
-  ExplicitTop = -33
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -249,14 +248,20 @@ inherited frm_cost_center: Tfrm_cost_center
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
   object qry_cost_center_detail: TFDQuery
-    Active = True
     AfterInsert = qry_cost_center_detailAfterInsert
+    CachedUpdates = True
     IndexFieldNames = 'cost_center_coc_id'
     MasterSource = ds
     MasterFields = 'coc_id'
     DetailFields = 'cost_center_coc_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from cost_center_detail')
     Left = 584
@@ -266,6 +271,7 @@ inherited frm_cost_center: Tfrm_cost_center
       FieldName = 'cod_id'
       Origin = 'cod_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_cost_center_detailcontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault

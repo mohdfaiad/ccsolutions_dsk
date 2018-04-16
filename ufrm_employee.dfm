@@ -1,11 +1,9 @@
 inherited frm_employee: Tfrm_employee
   Caption = 'Cadastro de funcio'#225'rio'
   OnClose = FormClose
-  ExplicitTop = -36
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -177,7 +175,6 @@ inherited frm_employee: Tfrm_employee
           inherited dxLayoutControl_1: TdxLayoutControl
             ShowDesignSelectors = False
             HighlightRoot = False
-            ExplicitLeft = -2
             inherited dbedt_id: TcxDBTextEdit
               Left = 88
               DataBinding.DataField = 'rec_id'
@@ -455,6 +452,10 @@ inherited frm_employee: Tfrm_employee
         end
         object cxTabSheet3: TcxTabSheet
           Caption = 'Documentos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl3: TdxLayoutControl
             Left = 0
             Top = 0
@@ -602,7 +603,6 @@ inherited frm_employee: Tfrm_employee
               Parent = dxLayoutControl3Group_Root
               CaptionOptions.Text = 'Documentos'
               ButtonOptions.Buttons = <>
-              ItemIndex = 2
               Index = 0
             end
             object dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup
@@ -829,6 +829,10 @@ inherited frm_employee: Tfrm_employee
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Endere'#231'os'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1052,6 +1056,10 @@ inherited frm_employee: Tfrm_employee
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Contatos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1117,7 +1125,6 @@ inherited frm_employee: Tfrm_employee
               Parent = dxLayoutControl2Group_Root
               CaptionOptions.Text = 'Contatos'
               ButtonOptions.Buttons = <>
-              ItemIndex = 3
               LayoutDirection = ldHorizontal
               Index = 0
             end

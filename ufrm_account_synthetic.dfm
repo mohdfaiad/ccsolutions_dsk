@@ -95,7 +95,7 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
               Left = 17
               Top = 195
               Width = 728
-              Height = 198
+              Height = 174
               TabOrder = 5
               object cxGrid1DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.ConfirmDelete = True
@@ -202,7 +202,7 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
               SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
               SizeOptions.SizableHorz = True
               SizeOptions.SizableVert = True
-              SizeOptions.Height = 236
+              SizeOptions.Height = 209
               SizeOptions.Width = 742
               ButtonOptions.Buttons = <>
               Index = 2
@@ -210,7 +210,7 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
             object dxLayoutItem6: TdxLayoutItem
               Parent = dxLayoutGroup3
               Control = cxGrid1
-              ControlOptions.OriginalHeight = 198
+              ControlOptions.OriginalHeight = 174
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
               Index = 0
@@ -266,13 +266,15 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
+    BeforePost = qryBeforePost
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from account_plan')
     object qryacp_id: TFDAutoIncField
@@ -330,9 +332,12 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
   object qry_account_type: TFDQuery
-    Active = True
-    AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -340,8 +345,8 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from account_type')
-    Left = 584
-    Top = 96
+    Left = 672
+    Top = 136
   end
   object ds_account_type: TDataSource
     DataSet = qry_account_type
@@ -349,19 +354,29 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     Top = 96
   end
   object qry_account_account_detail: TFDQuery
-    Active = True
     AfterInsert = qry_account_account_detailAfterInsert
+    CachedUpdates = True
     IndexFieldNames = 'account_plan_acp_id'
     MasterSource = ds
     MasterFields = 'acp_id'
     DetailFields = 'account_plan_acp_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from account_plan_detail')
-    Left = 584
-    Top = 144
+      'select * from account_plan_detail'#10
+      'where account_plan_acp_id =:acp_id')
+    Left = 552
+    Top = 208
+    ParamData = <
+      item
+        Name = 'ACP_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
     object qry_account_account_detailacd_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
       FieldName = 'acd_id'
       Origin = 'acd_id'
       ProviderFlags = [pfInWhere, pfInKey]
@@ -369,26 +384,22 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     end
     object qry_account_account_detailcontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
       FieldName = 'contract_ctr_id'
       Origin = 'contract_ctr_id'
     end
     object qry_account_account_detailaccount_plan_acp_id: TIntegerField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Plano de Conta - Sintetica ID'
       FieldName = 'account_plan_acp_id'
       Origin = 'account_plan_acp_id'
     end
     object qry_account_account_detailacd_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
       FieldName = 'acd_name'
       Origin = 'acd_name'
       Size = 50
     end
     object qry_account_account_detailacd_status: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Status'
       FieldName = 'acd_status'
       Origin = 'acd_status'
       FixedChar = True
@@ -396,14 +407,13 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     end
     object qry_account_account_detailacd_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
       FieldName = 'acd_dt_registration'
       Origin = 'acd_dt_registration'
     end
   end
   object ds_account_account_detail: TDataSource
     DataSet = qry_account_account_detail
-    Left = 616
-    Top = 144
+    Left = 656
+    Top = 184
   end
 end

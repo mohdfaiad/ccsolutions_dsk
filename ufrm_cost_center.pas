@@ -32,7 +32,8 @@ uses
   cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar, cxBarEditItem,
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC;
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
+  ACBrSocket, ACBrCEP, frxClass;
 
 type
   Tfrm_cost_center = class(Tfrm_form_default)

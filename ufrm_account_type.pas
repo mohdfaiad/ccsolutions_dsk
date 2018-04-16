@@ -32,7 +32,8 @@ uses
   cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar, cxBarEditItem,
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC;
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
+  ACBrSocket, ACBrCEP, frxClass;
 
 type
   Tfrm_account_type = class(Tfrm_form_default)
@@ -67,7 +68,7 @@ implementation
 
 uses ufrm_dm;
 
-procedure Tfrm_account_type.FormClose(Sender: TObject;
+Procedure Tfrm_account_type.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;

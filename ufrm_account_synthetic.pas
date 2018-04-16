@@ -34,7 +34,8 @@ uses
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxSpinEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxCheckBox,
-  cxGroupBox, cxCheckGroup, cxDBCheckGroup, Vcl.ComCtrls;
+  cxGroupBox, cxCheckGroup, cxDBCheckGroup, Vcl.ComCtrls, ACBrSocket, ACBrCEP,
+  frxClass;
 
 type
   Tfrm_account_synthetic = class(Tfrm_form_default)
@@ -62,12 +63,6 @@ type
     dxLayoutGroup3: TdxLayoutGroup;
     qry_account_account_detail: TFDQuery;
     ds_account_account_detail: TDataSource;
-    qry_account_account_detailacd_id: TFDAutoIncField;
-    qry_account_account_detailcontract_ctr_id: TIntegerField;
-    qry_account_account_detailaccount_plan_acp_id: TIntegerField;
-    qry_account_account_detailacd_name: TStringField;
-    qry_account_account_detailacd_status: TStringField;
-    qry_account_account_detailacd_dt_registration: TDateTimeField;
     cxGrid1DBTableView1: TcxGridDBTableView;
     cxGrid1Level1: TcxGridLevel;
     cxGrid1: TcxGrid;
@@ -78,13 +73,24 @@ type
     cxGrid1DBTableView1acd_dt_registration: TcxGridDBColumn;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    qry_account_account_detailacd_id: TFDAutoIncField;
+    qry_account_account_detailcontract_ctr_id: TIntegerField;
+    qry_account_account_detailaccount_plan_acp_id: TIntegerField;
+    qry_account_account_detailacd_name: TStringField;
+    qry_account_account_detailacd_status: TStringField;
+    qry_account_account_detailacd_dt_registration: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_account_account_detailAfterInsert(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
+    procedure qryAfterInsert(DataSet: TDataSet);
+    procedure qryBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
     { Public declarations }
+
+    procedure limpaCache(Sender:TObject);
+
   end;
 
 var
@@ -104,10 +110,35 @@ begin
   frm_account_synthetic := Nil;
 end;
 
+procedure Tfrm_account_synthetic.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+end;
+
+procedure Tfrm_account_synthetic.limpaCache(Sender: TObject);
+begin
+    qry.CommitUpdates();
+    qry_account_account_detail.CommitUpdates();
+end;
+
 procedure Tfrm_account_synthetic.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qryacp_dt_registration.Value := Date + Time;
+  qryacp_dt_registration.Value := Now;
+  qry.Post;
+  qry.Edit;
+end;
+
+procedure Tfrm_account_synthetic.qryBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+  if qry_account_account_detail.State in [dsInsert, dsEdit] then
+    begin
+      qry_account_account_detail.Post;
+    end;
+
+
 end;
 
 procedure Tfrm_account_synthetic.qry_account_account_detailAfterInsert
@@ -115,6 +146,7 @@ procedure Tfrm_account_synthetic.qry_account_account_detailAfterInsert
 begin
   inherited;
   qry_account_account_detailacd_dt_registration.Value := Now;
+  qry_account_account_detailcontract_ctr_id.AsInteger := qrycontract_ctr_id.AsInteger;
 end;
 
 end.

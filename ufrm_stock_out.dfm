@@ -1,10 +1,11 @@
 inherited frm_stock_out: Tfrm_stock_out
   Caption = 'Sa'#237'da do Estoque'
   OnClose = FormClose
+  ExplicitLeft = -175
+  ExplicitTop = -179
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -70,7 +71,6 @@ inherited frm_stock_out: Tfrm_stock_out
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -322,7 +322,6 @@ inherited frm_stock_out: Tfrm_stock_out
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
@@ -524,7 +523,7 @@ inherited frm_stock_out: Tfrm_stock_out
       'select * from stock_iten'
       'where stock_sto_id = 1')
     Left = 279
-    Top = 266
+    Top = 338
     object qry_stock_itensti_id: TFDAutoIncField
       FieldName = 'sti_id'
       Origin = 'sti_id'

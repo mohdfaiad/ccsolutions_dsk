@@ -37,16 +37,18 @@ uses
   ufrm_stock_transfer in '..\ufrm_stock_transfer.pas' {frm_stock_transfer},
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   ufrm_purchase_order in '..\ufrm_purchase_order.pas' {frm_purchase_order},
-  ufrm_request in '..\ufrm_request.pas' {frm_request};
+  ufrm_request in '..\ufrm_request.pas' {frm_request},
+  ufrm_stock_out in '..\ufrm_stock_out.pas' {frm_stock_out};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(Tfrm_dm, frm_dm);
+  AApplication.CreateForm(Tfrm_dm, frm_dm);
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
-  Application.Run;
+  Application.CreateForm(Tfrm_stock_out, frm_stock_out);
+  pplication.Run;
 end.

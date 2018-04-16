@@ -2390,6 +2390,9 @@ inherited frm_main: Tfrm_main
           0000000000000000000000000000000000000000000000000000}
       end>
   end
+  inherited cxLocalizer_1: TcxLocalizer
+    Left = 456
+  end
   object rbpopmenu_1: TdxRibbonPopupMenu
     BarManager = dxBarManager_1
     ItemLinks = <

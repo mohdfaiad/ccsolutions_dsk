@@ -8,10 +8,14 @@ inherited frm_request: Tfrm_request
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Width = 877
+    Properties.ActivePage = cxTabSheet_1
     ExplicitWidth = 877
     ClientRectRight = 871
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 869
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         Width = 863
         ExplicitWidth = 863
@@ -53,7 +57,7 @@ inherited frm_request: Tfrm_request
       object FlowPanel1: TFlowPanel
         Left = 3
         Top = 419
-        Width = 542
+        Width = 659
         Height = 26
         Alignment = taLeftJustify
         Anchors = [akLeft, akBottom]
@@ -201,13 +205,19 @@ inherited frm_request: Tfrm_request
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 869
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         Width = 863
         ExplicitWidth = 863
         ClientRectRight = 857
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
           ExplicitWidth = 855
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 855
             ExplicitWidth = 855
@@ -495,6 +505,7 @@ inherited frm_request: Tfrm_request
   inherited qry: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
+    AfterDelete = qryAfterDelete
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -505,8 +516,8 @@ inherited frm_request: Tfrm_request
     SQL.Strings = (
       'select * from purchase_order'
       'where pco_type = '#39'R'#39)
-    Left = 488
-    Top = 120
+    Left = 632
+    Top = 96
     object qrypco_id: TFDAutoIncField
       FieldName = 'pco_id'
       Origin = 'pco_id'
@@ -634,8 +645,8 @@ inherited frm_request: Tfrm_request
       'inner join product on product_pro_id =  pro_id'#10
       'left join product_unit on product_unit_pru_id = pru_id'
       'where purchase_order_pco_id = :pco_id')
-    Left = 280
-    Top = 472
+    Left = 536
+    Top = 336
     ParamData = <
       item
         Name = 'PCO_ID'

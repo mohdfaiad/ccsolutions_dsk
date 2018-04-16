@@ -135,6 +135,8 @@ type
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
     procedure qry_purchase_order_itenBeforePost(DataSet: TDataSet);
+    procedure Action_deleteExecute(Sender: TObject);
+    procedure qryAfterDelete(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -152,6 +154,28 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_request.Action_deleteExecute(Sender: TObject);
+begin
+  if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
+  begin
+     Application.MessageBox('Só é permitido excluir uma requisição que esteja em aberto!','PEDIDO DE REQUISIÇÃO', MB_ICONINFORMATION + MB_OK);
+     qry.CancelUpdates;
+     qry_purchase_order_iten.CancelUpdates;
+     Exit;
+  end;
+  qry_purchase_order_iten.First;
+  while not qry_purchase_order_iten.Eof do
+   begin
+     qry_purchase_order_iten.Delete;
+   end;
+
+   qry_purchase_order_iten.ApplyUpdates(0);
+
+
+  inherited;
+
+end;
 
 procedure Tfrm_request.Action_insertExecute(Sender: TObject);
 begin
@@ -363,6 +387,14 @@ procedure Tfrm_request.limpaCache(Sender: TObject);
 begin
   qry.CommitUpdates();
   qry_purchase_order_iten.CommitUpdates();
+end;
+
+procedure Tfrm_request.qryAfterDelete(DataSet: TDataSet);
+begin
+  inherited;
+   qry.ApplyUpdates(0);
+   qry.Close;
+   qry.Open;
 end;
 
 procedure Tfrm_request.qryAfterInsert(DataSet: TDataSet);

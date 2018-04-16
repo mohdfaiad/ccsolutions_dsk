@@ -300,7 +300,9 @@ end;
 procedure Tfrm_purchase_order.qryAfterDelete(DataSet: TDataSet);
 begin
   inherited;
-  qry.ApplyUpdates(0);
+    qry.ApplyUpdates(0);
+    qry.Close;
+    qry.Open;
 end;
 
 procedure Tfrm_purchase_order.qryAfterInsert(DataSet: TDataSet);

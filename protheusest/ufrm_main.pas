@@ -424,6 +424,7 @@ begin
     else
     begin
       frm_stock_out.WindowState := wsNormal;
+
     end;
 end;
 

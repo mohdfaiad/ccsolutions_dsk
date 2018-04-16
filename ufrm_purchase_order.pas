@@ -113,6 +113,7 @@ type
     procedure Action_saveExecute(Sender: TObject);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure Action_deleteExecute(Sender: TObject);
+    procedure qryAfterDelete(DataSet: TDataSet);
   private
     { Private declarations }
   procedure filter(status:string);
@@ -134,12 +135,19 @@ procedure Tfrm_purchase_order.Action_deleteExecute(Sender: TObject);
 begin
  if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
   begin
-
+     Application.MessageBox('Só é permitido excluir um pedido de compra que esteja em aberto!','PEDIDO DE COMPRA', MB_ICONINFORMATION + MB_OK);
+     qry.CancelUpdates;
+     qry_purchase_order_iten.CancelUpdates;
+     Exit;
   end;
+  qry_purchase_order_iten.First;
+  while not qry_purchase_order_iten.Eof do
+   begin
+     qry_purchase_order_iten.Delete;
+   end;
 
-
+   qry_purchase_order_iten.ApplyUpdates(0);
   inherited;
-
 end;
 
 procedure Tfrm_purchase_order.Action_saveExecute(Sender: TObject);
@@ -287,6 +295,12 @@ procedure Tfrm_purchase_order.limpaCache(Sender: TObject);
 begin
    qry.CommitUpdates();
    qry_purchase_order_iten.CommitUpdates();
+end;
+
+procedure Tfrm_purchase_order.qryAfterDelete(DataSet: TDataSet);
+begin
+  inherited;
+  qry.ApplyUpdates(0);
 end;
 
 procedure Tfrm_purchase_order.qryAfterInsert(DataSet: TDataSet);

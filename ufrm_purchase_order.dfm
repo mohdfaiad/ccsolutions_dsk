@@ -2,7 +2,6 @@
   Caption = 'Manuten'#231#227'o: Pedidos de Compra'
   ClientHeight = 542
   OnClose = FormClose
-  ExplicitTop = -17
   ExplicitHeight = 581
   PixelsPerInch = 96
   TextHeight = 13
@@ -443,6 +442,7 @@
     Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
+    AfterDelete = qryAfterDelete
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -2957,7 +2957,7 @@
     SQL.Strings = (
       'select * from purchase_order_iten'
       'where purchase_order_pco_id = :pco_id')
-    Left = 568
+    Left = 592
     Top = 96
     ParamData = <
       item
@@ -3045,13 +3045,13 @@
         'select e.emp_id, e.record_rec_id, e.emp_type, e.emp_status, r.re' +
         'c_name, e.contract_ctr_id from employee as e'#10'inner join record a' +
         's r on e.record_rec_id = r.rec_id')
-    Left = 488
-    Top = 88
+    Left = 424
+    Top = 96
   end
   object ds_employee: TDataSource
     DataSet = qry_employee
     Left = 464
-    Top = 120
+    Top = 96
   end
   object frxDBD_Pedido_Compra: TfrxDBDataset
     UserName = 'purchase_order'

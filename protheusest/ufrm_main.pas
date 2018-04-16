@@ -54,7 +54,6 @@ type
     Action_manufacturer: TAction;
     Action_product_unit: TAction;
     dxBarLargeButton9: TdxBarLargeButton;
-    rbpopmenu_1: TdxRibbonPopupMenu;
     Action_product_class: TAction;
     dxBarLargeButton10: TdxBarLargeButton;
     Action_product_department: TAction;

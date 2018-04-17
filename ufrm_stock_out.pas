@@ -33,7 +33,7 @@ uses
   cxDropDownEdit, cxCalendar, cxDBEdit, cxTextEdit, dxLayoutControl,
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, cxDBLookupComboBox, cxLookupEdit,
-  cxDBLookupEdit, dxLayoutControlAdapters, Vcl.StdCtrls, Vcl.Buttons;
+  cxDBLookupEdit, dxLayoutControlAdapters, Vcl.StdCtrls, Vcl.Buttons, frxDBSet;
 
 type
   Tfrm_stock_out = class(Tfrm_form_default)
@@ -103,6 +103,13 @@ type
     cxDBLookupComboBox3: TcxDBLookupComboBox;
     dxLayoutItem3: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    frxDBD_Estoque_Saida: TfrxDBDataset;
+    frxDBD_Saida_Itens: TfrxDBDataset;
+    qryCliente: TStringField;
+    qryEmpresa: TStringField;
+    qry_doctordoc_id: TFDAutoIncField;
+    qry_doctorcontract_ctr_id: TIntegerField;
+    qry_lab_request_itensProduto: TStringField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);

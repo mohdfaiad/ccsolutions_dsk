@@ -1,7 +1,6 @@
 inherited frm_product_class: Tfrm_product_class
   Caption = 'Manuten'#231#227'o: Classes e Sub-Classes'
   OnClose = FormClose
-  ExplicitTop = -36
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -114,11 +113,10 @@ inherited frm_product_class: Tfrm_product_class
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
             end
-            inherited dxLayoutItem1: TdxLayoutItem [6]
+            inherited dxLayoutGroup2: TdxLayoutGroup
+              AlignHorz = ahClient
             end
-            inherited dxLayoutItem2: TdxLayoutItem [7]
-            end
-            object dxLayoutGroup3: TdxLayoutGroup [8]
+            object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutControl_1Group_Root
               CaptionOptions.Text = 'Sub-Classe'
               SizeOptions.AssignedValues = [sovSizableHorz]
@@ -127,16 +125,13 @@ inherited frm_product_class: Tfrm_product_class
               ButtonOptions.Buttons = <>
               Index = 2
             end
-            object dxLayoutItem4: TdxLayoutItem [9]
+            object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutGroup3
               Control = cxGrid1
               ControlOptions.OriginalHeight = 200
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
               Index = 0
-            end
-            inherited dxLayoutGroup2: TdxLayoutGroup [10]
-              AlignHorz = ahClient
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2

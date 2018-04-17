@@ -1,8 +1,6 @@
 inherited frm_stock_out: Tfrm_stock_out
   Caption = 'Sa'#237'da do Estoque'
   OnClose = FormClose
-  ExplicitLeft = -175
-  ExplicitTop = -179
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -97,6 +95,7 @@ inherited frm_stock_out: Tfrm_stock_out
                   FieldName = 'cli_id'
                 end>
               Properties.ListSource = ds_qry_client
+              Properties.OnPopup = cxDBLookupComboBox2PropertiesPopup
               Style.HotTrack = False
               TabOrder = 4
               Width = 474
@@ -117,6 +116,7 @@ inherited frm_stock_out: Tfrm_stock_out
                   FieldName = 'ent_id'
                 end>
               Properties.ListSource = ds_enterprise
+              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 2
               Width = 306
@@ -137,6 +137,7 @@ inherited frm_stock_out: Tfrm_stock_out
                   FieldName = 'doc_id'
                 end>
               Properties.ListSource = ds_qry_doctor
+              Properties.OnPopup = cxDBLookupComboBox3PropertiesPopup
               Style.HotTrack = False
               TabOrder = 3
               Width = 98

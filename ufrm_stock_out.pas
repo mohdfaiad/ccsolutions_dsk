@@ -108,6 +108,9 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
+    procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox3PropertiesPopup(Sender: TObject);
   private
     { Private declarations }
   public
@@ -167,6 +170,27 @@ with frm_dm.qry, sql do
     end;
  end;
 
+end;
+
+procedure Tfrm_stock_out.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  //Atualização do combobox
+  qry_enterprise.Refresh;
+end;
+
+procedure Tfrm_stock_out.cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+   //Atualização do combobox
+  qry_client.Refresh;
+end;
+
+procedure Tfrm_stock_out.cxDBLookupComboBox3PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+   //Atualização do combobox
+  qry_doctor.Refresh;
 end;
 
 procedure Tfrm_stock_out.FormClose(Sender: TObject; var Action: TCloseAction);

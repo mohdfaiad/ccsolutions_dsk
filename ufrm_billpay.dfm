@@ -198,6 +198,7 @@ inherited frm_billpay: Tfrm_billpay
                   FieldName = 'sup_id'
                 end>
               Properties.ListSource = ds_supplier
+              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 2
               Width = 301
@@ -223,6 +224,7 @@ inherited frm_billpay: Tfrm_billpay
                   FieldName = 'ent_id'
                 end>
               Properties.ListSource = ds_enterprise
+              Properties.OnPopup = cxDBLookupComboBox2PropertiesPopup
               Style.HotTrack = False
               TabOrder = 4
               Width = 301

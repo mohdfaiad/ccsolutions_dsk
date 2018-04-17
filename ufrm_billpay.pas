@@ -136,6 +136,8 @@ type
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
+    procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
   private
     { Private declarations }
   public
@@ -188,6 +190,20 @@ begin
       frm_duplicAccount.Showmodal;
      end;
    end;
+
+procedure Tfrm_billpay.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+   //comando para atualizar combobox
+   qry_supplier.Refresh;
+end;
+
+procedure Tfrm_billpay.cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  //Comando para atualizar combobox
+   qry_enterprise.Refresh;
+end;
 
 procedure Tfrm_billpay.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

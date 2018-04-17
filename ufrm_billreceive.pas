@@ -97,6 +97,7 @@ type
     cxGrid_1DBTableView1brc_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
   private
     { Private declarations }
   public
@@ -111,6 +112,13 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_billreceive.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  //Comando para atualizar combobox
+  qry_client.Refresh;
+end;
 
 procedure Tfrm_billreceive.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

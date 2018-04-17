@@ -144,6 +144,7 @@ inherited frm_billreceive: Tfrm_billreceive
                   FieldName = 'cli_id'
                 end>
               Properties.ListSource = ds_client
+              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 2
               Width = 306

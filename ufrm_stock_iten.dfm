@@ -2755,8 +2755,8 @@ inherited frm_stock_iten: Tfrm_stock_iten
       'left join product on pro_id = product_pro_id'#10
       'left join product_unit on pru_id = product_unit_pru_id'#10
       'where stock_sto_id =:sto_id')
-    Left = 575
-    Top = 186
+    Left = 589
+    Top = 90
     ParamData = <
       item
         Name = 'STO_ID'
@@ -2805,12 +2805,12 @@ inherited frm_stock_iten: Tfrm_stock_iten
   end
   object ds_qry_stock_iten: TDataSource
     DataSet = qry_stock_iten
-    Left = 615
-    Top = 98
+    Left = 621
+    Top = 90
   end
   object PopupMenu1: TPopupMenu
     OnPopup = PopupMenu1Popup
-    Left = 647
+    Left = 719
     Top = 98
     object ExibirItensabaixodoestoqueminmo1: TMenuItem
       Caption = 'Exibir Itens abaixo do estoque min'#237'mo'
@@ -2834,7 +2834,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
     CloseDataSource = False
     DataSet = qry_stock_iten
     BCDToCurrency = False
-    Left = 504
-    Top = 240
+    Left = 384
+    Top = 296
   end
 end

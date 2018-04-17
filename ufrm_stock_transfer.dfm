@@ -433,21 +433,28 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     end
   end
   inherited dxBarManager_1: TdxBarManager
-    Left = 624
-    Top = 96
+    Left = 622
+    Top = 16
     inherited cxBarEditItem_1: TcxBarEditItem
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\transferencia'
     end
   end
   inherited ActionList_1: TActionList
-    Top = 104
+    Left = 696
+    Top = 16
+  end
+  inherited ds: TDataSource
+    Left = 584
+    Top = 40
   end
   inherited cxGridPopupMenu_1: TcxGridPopupMenu
-    Left = 520
+    Left = 512
+    Top = 40
   end
   inherited PopupMenu_1: TPopupMenu
     OnPopup = PopupMenu_1Popup
-    Left = 552
+    Left = 736
+    Top = 16
     object ConfirmarTransfernciaSaida1: TMenuItem
       Caption = 'Confirmar Transfer'#234'ncia - Sa'#237'da'
       OnClick = ConfirmarTransfernciaSaida1Click
@@ -463,7 +470,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
-    DesignInfo = 1049272
+    DesignInfo = 1049230
   end
   inherited qry: TFDQuery
     Active = True
@@ -478,8 +485,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from product_transfer')
-    Left = 88
-    Top = 344
+    Left = 554
+    Top = 40
     object qryprt_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'prt_id'
@@ -598,7 +605,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   inherited FDSchemaAdapter_1: TFDSchemaAdapter
-    Left = 304
+    Left = 320
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
@@ -3098,6 +3105,9 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       end
     end
   end
+  inherited ACBrCEP_1: TACBrCEP
+    Left = 352
+  end
   object qry_product_transfer_iten: TFDQuery
     Active = True
     AfterInsert = qry_product_transfer_itenAfterInsert
@@ -3113,8 +3123,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     SQL.Strings = (
       'select * from product_transfer_iten'
       'where product_transfer_prt_id = :prt_id')
-    Left = 87
-    Top = 410
+    Left = 615
+    Top = 146
     ParamData = <
       item
         Name = 'PRT_ID'
@@ -3167,7 +3177,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object dsItens: TDataSource
     DataSet = qry_product_transfer_iten
-    Left = 527
+    Left = 655
     Top = 146
   end
   object qry_stock_iten: TFDQuery
@@ -3175,8 +3185,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     SQL.Strings = (
       'select * from stock_iten'
       'where stock_sto_id = :stock')
-    Left = 351
-    Top = 130
+    Left = 511
+    Top = 122
     ParamData = <
       item
         Name = 'STOCK'
@@ -3239,8 +3249,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       ''
       'where stock_sto_id = :stock_sto_id_exit'
       'order by pro_name')
-    Left = 672
-    Top = 224
+    Left = 696
+    Top = 56
     ParamData = <
       item
         Name = 'STOCK_STO_ID_EXIT'
@@ -3276,8 +3286,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object ds_product: TDataSource
     DataSet = qry_product
-    Left = 648
-    Top = 144
+    Left = 728
+    Top = 56
   end
   object qry_stock_exit: TFDQuery
     Active = True
@@ -3290,7 +3300,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       'where contract_ctr_id = :ctr_id'#10
       'order by sto_name')
     Left = 615
-    Top = 186
+    Top = 98
     ParamData = <
       item
         Name = 'CTR_ID'
@@ -3318,8 +3328,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object ds_stock_exit: TDataSource
     DataSet = qry_stock_exit
-    Left = 719
-    Top = 146
+    Left = 647
+    Top = 98
   end
   object qry_employee: TFDQuery
     Active = True
@@ -3335,13 +3345,13 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         'select e.emp_id, e.record_rec_id, e.emp_type, e.emp_status, r.re' +
         'c_name, e.contract_ctr_id from employee as e'#10'inner join record a' +
         's r on e.record_rec_id = r.rec_id')
-    Left = 496
-    Top = 104
+    Left = 624
+    Top = 56
   end
   object ds_employee: TDataSource
     DataSet = qry_employee
-    Left = 592
-    Top = 104
+    Left = 657
+    Top = 56
   end
   object qry_purchase_order: TFDQuery
     CachedUpdates = True
@@ -3354,8 +3364,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     SQL.Strings = (
       'select * from purchase_order'
       '')
-    Left = 223
-    Top = 354
+    Left = 543
+    Top = 122
     object qry_purchase_orderpco_id: TFDAutoIncField
       FieldName = 'pco_id'
       Origin = 'pco_id'
@@ -3409,8 +3419,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     SQL.Strings = (
       'select * from purchase_order_iten'
       'where purchase_order_pco_id = :pco_id')
-    Left = 240
-    Top = 409
+    Left = 512
+    Top = 81
     ParamData = <
       item
         Name = 'PCO_ID'
@@ -3442,8 +3452,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object ds_purchase_iten: TDataSource
     DataSet = qry_purchase_order
-    Left = 440
-    Top = 392
+    Left = 544
+    Top = 80
   end
   object frxDBD_Stock_Transfer: TfrxDBDataset
     UserName = 'Stock_Transfer'

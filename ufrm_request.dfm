@@ -8,6 +8,7 @@ inherited frm_request: Tfrm_request
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Width = 877
+    ExplicitTop = 54
     ExplicitWidth = 877
     ClientRectRight = 871
     inherited cxTabSheet_1: TcxTabSheet
@@ -497,14 +498,12 @@ inherited frm_request: Tfrm_request
   end
   inherited ds: TDataSource
     OnDataChange = dsDataChange
-    Left = 352
-    Top = 160
+    Left = 615
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     AfterDelete = qryAfterDelete
     CachedUpdates = True
@@ -517,8 +516,7 @@ inherited frm_request: Tfrm_request
     SQL.Strings = (
       'select * from purchase_order'
       'where pco_type = '#39'R'#39)
-    Left = 632
-    Top = 96
+    Left = 585
     object qrypco_id: TFDAutoIncField
       FieldName = 'pco_id'
       Origin = 'pco_id'
@@ -601,7 +599,6 @@ inherited frm_request: Tfrm_request
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   object qry_employee: TFDQuery [13]
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -612,21 +609,20 @@ inherited frm_request: Tfrm_request
         'select e.emp_id, e.record_rec_id, e.emp_type, e.emp_status, r.re' +
         'c_name, e.contract_ctr_id from employee as e'#10'inner join record a' +
         's r on e.record_rec_id = r.rec_id')
-    Left = 704
-    Top = 200
+    Left = 664
+    Top = 88
   end
   object ds_employee: TDataSource [14]
     DataSet = qry_employee
-    Left = 528
-    Top = 152
+    Left = 695
+    Top = 88
   end
   object ds_stock: TDataSource [15]
     DataSet = qry_stock
-    Left = 712
-    Top = 144
+    Left = 624
+    Top = 88
   end
   object qry_purchase_order_iten: TFDQuery [16]
-    Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
     AfterEdit = qry_purchase_order_itenAfterEdit
     BeforePost = qry_purchase_order_itenBeforePost
@@ -646,8 +642,8 @@ inherited frm_request: Tfrm_request
       'inner join product on product_pro_id =  pro_id'#10
       'left join product_unit on product_unit_pru_id = pru_id'
       'where purchase_order_pco_id = :pco_id')
-    Left = 536
-    Top = 336
+    Left = 344
+    Top = 367
     ParamData = <
       item
         Name = 'PCO_ID'
@@ -702,13 +698,13 @@ inherited frm_request: Tfrm_request
   end
   object ds_purchase_order_iten: TDataSource [17]
     DataSet = qry_purchase_order_iten
-    Left = 544
-    Top = 280
+    Left = 379
+    Top = 367
   end
   object ds_product: TDataSource [18]
     DataSet = qry_product
-    Left = 712
-    Top = 280
+    Left = 625
+    Top = 136
   end
   object qry_product: TFDQuery [19]
     IndexFieldNames = 'contract_ctr_id'
@@ -719,12 +715,11 @@ inherited frm_request: Tfrm_request
     SQL.Strings = (
       'select * from product'
       'order by pro_name')
-    Left = 648
-    Top = 280
+    Left = 592
+    Top = 136
   end
   inherited FDSchemaAdapter_1: TFDSchemaAdapter
-    Left = 370
-    Top = 107
+    Top = 50
   end
   inherited frxReport_1: TfrxReport
     Left = 255
@@ -3202,7 +3197,6 @@ inherited frm_request: Tfrm_request
     end
   end
   object qry_stock: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -3213,8 +3207,8 @@ inherited frm_request: Tfrm_request
       'select sto_name,sto_id,contract_ctr_id from stock'
       'where sto_status = '#39'A'#39
       'order by sto_name')
-    Left = 632
-    Top = 144
+    Left = 588
+    Top = 88
   end
   object frxDBDataset2: TfrxDBDataset
     UserName = 'Requisicao'
@@ -3252,12 +3246,11 @@ inherited frm_request: Tfrm_request
     Top = 266
   end
   object qry_parameter_stock: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from parameter_stock')
-    Left = 295
-    Top = 410
+    Left = 121
+    Top = 368
     object qry_parameter_stockprs_id: TFDAutoIncField
       FieldName = 'prs_id'
       Origin = 'prs_id'
@@ -3284,7 +3277,7 @@ inherited frm_request: Tfrm_request
       'dt_registration=dt_registration')
     DataSet = qry_parameter_stock
     BCDToCurrency = False
-    Left = 167
-    Top = 402
+    Left = 87
+    Top = 370
   end
 end

@@ -3001,6 +3001,7 @@ inherited frm_stock_out: Tfrm_stock_out
       FieldName = 'doc_id'
       Origin = 'doc_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_doctorcontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault

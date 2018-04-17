@@ -33,7 +33,7 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  cxButtonEdit;
+  cxButtonEdit, frxClass, frxDBSet, ACBrSocket, ACBrCEP;
 
 type
   Tfrm_manufacturer = class(Tfrm_form_default)
@@ -141,6 +141,7 @@ type
     dxLayoutItem23: TdxLayoutItem;
     dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    frxDBD_Fabriante: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
   private

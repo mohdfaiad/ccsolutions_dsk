@@ -64,6 +64,7 @@ type
     qrysto_name: TStringField;
     cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
     frxDBD_Estoque: TfrxDBDataset;
+    qryEmpresa: TStringField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);

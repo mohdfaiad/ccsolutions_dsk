@@ -25,7 +25,8 @@ uses
   Data.DB, System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList,
   dxStatusBar, dxRibbonStatusBar, dxSkinscxPCPainter, dxBarBuiltInMenu, cxPC,
   Vcl.Menus, Vcl.StdCtrls, cxButtons, dxGDIPlusClasses, ACBrBase, ACBrEnterTab,
-  Vcl.Buttons, FireDAC.Comp.Client, ACBrMail,IdHashMessageDigest;
+  Vcl.Buttons, FireDAC.Comp.Client, ACBrMail,IdHashMessageDigest,
+  Vcl.Samples.Gauges;
 
 type
   Tfrm_login = class(TForm)
@@ -47,13 +48,29 @@ type
     cxButton1: TcxButton;
     cxButton2: TcxButton;
     ACBrMail1: TACBrMail;
+    cxTabSheet1: TcxTabSheet;
+    Image2: TImage;
+    cxLabel5: TcxLabel;
+    edt_passwordCurrent: TcxTextEdit;
+    cxLabel6: TcxLabel;
+    edt_passwordNew: TcxTextEdit;
+    cxLabel7: TcxLabel;
+    edt_passwordConfirm: TcxTextEdit;
+    cxLabel8: TcxLabel;
+    gaugePassword: TGauge;
+    cxButton3: TcxButton;
+    cxButton4: TcxButton;
     procedure Action_cancelExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_accessExecute(Sender: TObject);
     procedure edt_contractKeyPress(Sender: TObject; var Key: Char);
     procedure cxLabel4Click(Sender: TObject);
+    procedure cxButton3Click(Sender: TObject);
+    procedure cxButton4Click(Sender: TObject);
+    procedure edt_passwordNewPropertiesChange(Sender: TObject);
   private
     { Private declarations }
+  forcaSenha:Integer;
   public
     { Public declarations }
   end;
@@ -71,7 +88,7 @@ procedure Tfrm_login.Action_accessExecute(Sender: TObject);
 var
 md5 : TIdHashMessageDigest;
 begin
-  md5:=TIdHashMessageDige1st5.Create;
+  md5:=TIdHashMessageDigest5.Create;
 
   frm_dm.qry_signin.Close;
   frm_dm.qry_signin.Params.ClearValues();
@@ -86,10 +103,9 @@ begin
    if Length(frm_dm.qry_signinctr_usr_password.AsString) = 0  then
     begin
      Application.MessageBox('Usuário sem senha definida favor informar sua senha!', 'LOGIN',MB_OK + MB_ICONINFORMATION);
-     Application.CreateForm(Tfrm_changePassword,frm_changePassword);
-     frm_changePassword.edt_contract.Text:=frm_dm.qry_signinctr_id.AsString;
-     frm_changePassword.edt_username.Text:=frm_dm.qry_signinctr_usr_username.AsString;
-     frm_changePassword.ShowModal;
+     cxPageControl1.Pages[1].TabVisible:=True;
+     cxPageControl1.ActivePageIndex:=1;
+     exit;
     end;
 
     ModalResult := mrOk;
@@ -108,6 +124,74 @@ begin
   begin
     Application.Terminate;
   end;
+end;
+
+procedure Tfrm_login.cxButton3Click(Sender: TObject);
+var
+md5 : TIdHashMessageDigest;
+begin
+if edt_passwordConfirm.Text <> edt_passwordNew.Text then
+ begin
+  Application.MessageBox('A nova senha e a confirmação não coincidem!', 'SENHA',MB_OK + MB_ICONERROR);
+  edt_passwordNew.SetFocus;
+  exit;
+ end;
+
+if Length(edt_passwordNew.Text) < 5 then
+ begin
+  Application.MessageBox('Senha deve ter no mínimo 5 caracteres!', 'SENHA',MB_OK + MB_ICONERROR);
+  edt_passwordNew.SetFocus;
+  exit;
+ end;
+
+
+if Application.MessageBox('Desja confirmar a alteração em sua senha?', 'SENHA',MB_YESNO + MB_ICONQUESTION) = mrYes then
+ begin
+ with frm_dm.qry,sql do
+  begin
+   close;
+   text:= 'select ctr_usr_password from contract_user ' +
+          'where contract_ctr_id = :contrato ' +
+          'and ctr_usr_username = :nome '+
+          'and (ctr_usr_password = :senha or ctr_usr_password is null)';
+   ParamByName('contrato').AsString:= edt_contract.Text;
+   ParamByName('nome').AsString:=edt_username.Text;
+   ParamByName('senha').AsString:=edt_passwordCurrent.Text;
+   prepare;
+   open;
+
+   if IsEmpty then
+    begin
+     Application.MessageBox('A senha informada não confere para o usuário selecionado!', 'SENHA',MB_OK + MB_ICONERROR);
+     Exit
+    end;
+
+   md5:=TIdHashMessageDigest5.Create;
+   close;
+   text:= ' update contract_user ' +
+          ' set  ctr_usr_password = :senhaAtual '+
+          'where contract_ctr_id = :contrato ' +
+          'and ctr_usr_username = :nome '+
+          'and (ctr_usr_password = :senha or ctr_usr_password is null)';
+   ParamByName('contrato').AsString:= edt_contract.Text;
+   ParamByName('nome').AsString:=edt_username.Text;
+   ParamByName('senha').AsString:=edt_passwordCurrent.Text;
+   ParamByName('contrato').AsString:= edt_contract.Text;
+   ParamByName('senhaAtual').AsString:=md5.HashStringAsHex(edt_passwordNew.Text);
+   prepare;
+   ExecSQL;
+
+   Application.MessageBox('Senha alterada com sucesso!', 'SENHA',MB_OK + MB_ICONINFORMATION);
+   Application.Terminate;
+  end;
+ end;
+
+end;
+
+procedure Tfrm_login.cxButton4Click(Sender: TObject);
+begin
+if Application.MessageBox('Desja sair do sistema sem Cadastrar/Alterar sua senha?', 'SENHA',MB_YESNO + MB_ICONQUESTION) = mrYes then
+Application.Terminate;
 end;
 
 procedure Tfrm_login.cxLabel4Click(Sender: TObject);
@@ -146,9 +230,82 @@ If not( key in['0'..'9',#08] ) then
   key:=#0;
 end;
 
+procedure Tfrm_login.edt_passwordNewPropertiesChange(Sender: TObject);
+const
+ n :Array [1..10]  of char  = ('0','1','2','3','4','5','6','7','8','9');
+ l :Array [1..26]  of char  = ('a','b','c','d','e','f','g','h','i','j','l','m',
+ 'n','o','p','q','r','s','t','u','v','x','z','w','k','y');
+
+ le :Array [1..26]  of char  = ('A','B','C','D','E','F','G','H','I','J','L','M',
+ 'N','O','P','Q','R','S','T','U','V','X','Z','W','K','Y');
+
+ s :Array [1..15]  of char  = ('!','@','#','$','%','&','*','(',')','-','+','=','?','<','>');
+
+var
+i:Integer;
+begin
+ gaugePassword.Progress:=0;
+ gaugePassword.ForeColor:=clWhite;
+ forcaSenha:=0;
+
+begin
+ for i:=1 to length(n) do
+  if pos(n[i],edt_passwordNew.Text)>0 then
+   begin
+    forcaSenha:=forcaSenha + 25;
+    Break;
+   end;
+
+
+ for i:=1 to length(l) do
+  if pos(l[i],edt_passwordNew.Text)>0 then
+   begin
+    forcaSenha:=forcaSenha + 25;
+    Break;
+   end;
+
+ for i:=1 to length(le) do
+  if pos(le[i],edt_passwordNew.Text)>0 then
+   begin
+    forcaSenha:=forcaSenha + 25;
+    Break
+   end;
+
+ for i:=1 to length(s) do
+  if pos(s[i],edt_passwordNew.Text)>0 then
+   begin
+    forcaSenha:=forcaSenha + 25;
+    Break
+   end;
+
+
+if forcaSenha <= 25 then
+ begin
+    gaugePassword.ForeColor:=clRed;
+ end;
+
+ if (forcaSenha >= 25) and (forcaSenha  <= 50) then
+ begin
+    gaugePassword.ForeColor:=$000080FF;
+ end;
+
+  if forcaSenha  >50 then
+ begin
+    gaugePassword.ForeColor:=clGreen;
+ end;
+
+ gaugePassword.Progress:=forcaSenha;
+
+end;
+
+end;
+
 procedure Tfrm_login.FormShow(Sender: TObject);
 begin
   edt_contract.SetFocus;
+  cxPageControl1.Pages[1].TabVisible:=False;
+  gaugePassword.Progress:=0;
+  forcaSenha:=0;
 end;
 
 end.

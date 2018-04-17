@@ -209,8 +209,16 @@
             <Form>frm_cost_center</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\models\ufrm_search.pas">
+            <Form>frm_search</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <DCCReference Include="..\ufrm_duplicAccount.pas">
             <Form>frm_duplicAccount</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_changePassword.pas">
+            <Form>frm_changePassword</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

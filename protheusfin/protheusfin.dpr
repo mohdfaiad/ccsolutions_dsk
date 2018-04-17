@@ -28,7 +28,9 @@ uses
   ufrm_login in '..\ufrm_login.pas' {frm_login},
   ufrm_account_synthetic in '..\ufrm_account_synthetic.pas' {frm_account_synthetic},
   ufrm_cost_center in '..\ufrm_cost_center.pas' {frm_cost_center},
-  ufrm_duplicAccount in '..\ufrm_duplicAccount.pas' {frm_duplicAccount};
+  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
+  ufrm_duplicAccount in '..\ufrm_duplicAccount.pas' {frm_duplicAccount},
+  ufrm_changePassword in '..\ufrm_changePassword.pas' {frm_changePassword};
 
 {$R *.res}
 
@@ -39,5 +41,6 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
+  Application.CreateForm(Tfrm_search, frm_search);
   Application.Run;
 end.

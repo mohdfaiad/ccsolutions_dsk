@@ -279,7 +279,7 @@ inherited frm_stock: Tfrm_stock
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
-    ReportOptions.LastChange = 43207.523349918980000000
+    ReportOptions.LastChange = 43207.659000486110000000
     Left = 167
     Datasets = <
       item
@@ -2587,6 +2587,7 @@ inherited frm_stock: Tfrm_stock
     end
   end
   object qry_enterprise: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin

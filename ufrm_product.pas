@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxCurrencyEdit, cxMemo, cxShellComboBox, QExport4Dialog, cxBarEditItem,
   dxBarExtItems, QImport3Wizard, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, ACBrSocket, ACBrCEP, frxClass;
+  cxDBLookupComboBox, ACBrSocket, ACBrCEP, frxClass, frxDBSet;
 
 type
   Tfrm_product = class(Tfrm_form_default)
@@ -159,6 +159,8 @@ type
     qry_product_list_inputpro_id: TFDAutoIncField;
     qry_product_list_inputpro_name: TStringField;
     ds_product_list_input: TDataSource;
+    frxDBD_Produto: TfrxDBDataset;
+    frxReport1: TfrxReport;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);

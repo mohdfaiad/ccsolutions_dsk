@@ -162,7 +162,6 @@ type
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
-    procedure cxDBLookupComboBox6Enter(Sender: TObject);
     procedure cxDBLookupComboBox1Enter(Sender: TObject);
     procedure cxDBLookupComboBox4Enter(Sender: TObject);
     procedure cxDBLookupComboBox2Enter(Sender: TObject);
@@ -170,6 +169,13 @@ type
     procedure cxDBLookupComboBox5Enter(Sender: TObject);
     procedure cxDBLookupComboBox7Enter(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
+    procedure cxDBLookupComboBox6Enter(Sender: TObject);
+    procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox4PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox3PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox5PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox6PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox7PropertiesPopup(Sender: TObject);
   private
     { Private declarations }
   public
@@ -209,10 +215,24 @@ begin
   qry_supplier.Refresh;
 end;
 
+procedure Tfrm_product.cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  //Comando para atualização do combobox
+   qry_supplier.Refresh;
+end;
+
 procedure Tfrm_product.cxDBLookupComboBox3Enter(Sender: TObject);
 begin
   inherited;
+  //Comando para atualização do combobox
   qry_manufacturer.Refresh;
+end;
+
+procedure Tfrm_product.cxDBLookupComboBox3PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+   qry_manufacturer.Refresh;
 end;
 
 procedure Tfrm_product.cxDBLookupComboBox4Enter(Sender: TObject);
@@ -221,25 +241,53 @@ begin
   qry_brand.Refresh;
 end;
 
+procedure Tfrm_product.cxDBLookupComboBox4PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+   //Comando para atualização do combobox
+   qry_brand.Refresh;
+end;
+
 procedure Tfrm_product.cxDBLookupComboBox5Enter(Sender: TObject);
 begin
   inherited;
    qry_product_class.Refresh;
 end;
 
+procedure Tfrm_product.cxDBLookupComboBox5PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+    //Comando para atualização do combobox
+   qry_product_class.Refresh;
+end;
+
 procedure Tfrm_product.cxDBLookupComboBox6Enter(Sender: TObject);
 begin
   inherited;
-  qry_product_class.Locate('prc_id',qryproduct_class_prc_id.AsInteger,[loCaseInsensitive, loPartialKey]);
+   qry_product_class.Locate('prc_id',qryproduct_class_prc_id.AsInteger,[loCaseInsensitive, loPartialKey]);
 end;
 
-procedure Tfrm_product.cxDBLookupComboBox7Enter(Sender: TObject);
+procedure Tfrm_product.cxDBLookupComboBox6PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+   //Comando para atualização do combobox
+  qry_product_class_sub.Refresh;
+end;
+
+Procedure Tfrm_product.cxDBLookupComboBox7Enter(Sender: TObject);
 begin
   inherited;
    qry_product_unit.Refresh;
 end;
 
-procedure Tfrm_product.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure Tfrm_product.cxDBLookupComboBox7PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+   //Comando para atualização do combobox
+   qry_product_unit.Refresh;
+end;
+
+Procedure Tfrm_product.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
   frm_product.Destroy;

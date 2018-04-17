@@ -1,6 +1,7 @@
 inherited frm_product: Tfrm_product
   Caption = 'Manuten'#231#227'o: Produtos e Servi'#231'os'
   OnClose = FormClose
+  ExplicitTop = -36
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -167,6 +168,7 @@ inherited frm_product: Tfrm_product
                   FieldName = 'pru_id'
                 end>
               Properties.ListSource = ds_product_unit
+              Properties.OnPopup = cxDBLookupComboBox7PropertiesPopup
               Style.HotTrack = False
               TabOrder = 4
               Width = 121
@@ -192,6 +194,7 @@ inherited frm_product: Tfrm_product
                   FieldName = 'sup_id'
                 end>
               Properties.ListSource = ds_supplier
+              Properties.OnPopup = cxDBLookupComboBox2PropertiesPopup
               Style.HotTrack = False
               TabOrder = 5
               Width = 121
@@ -217,6 +220,7 @@ inherited frm_product: Tfrm_product
                   FieldName = 'man_id'
                 end>
               Properties.ListSource = ds_manufacturer
+              Properties.OnPopup = cxDBLookupComboBox3PropertiesPopup
               Style.HotTrack = False
               TabOrder = 6
               OnEnter = cxDBLookupComboBox3Enter
@@ -269,6 +273,7 @@ inherited frm_product: Tfrm_product
                   FieldName = 'bra_id'
                 end>
               Properties.ListSource = ds_brand
+              Properties.OnPopup = cxDBLookupComboBox4PropertiesPopup
               Style.HotTrack = False
               TabOrder = 8
               Width = 121
@@ -294,6 +299,7 @@ inherited frm_product: Tfrm_product
                   FieldName = 'prc_id'
                 end>
               Properties.ListSource = ds_product_class
+              Properties.OnPopup = cxDBLookupComboBox5PropertiesPopup
               Style.HotTrack = False
               TabOrder = 9
               OnEnter = cxDBLookupComboBox5Enter
@@ -320,6 +326,7 @@ inherited frm_product: Tfrm_product
                   FieldName = 'prs_id'
                 end>
               Properties.ListSource = ds_product_class_sub
+              Properties.OnPopup = cxDBLookupComboBox6PropertiesPopup
               Style.HotTrack = False
               TabOrder = 10
               OnEnter = cxDBLookupComboBox6Enter
@@ -362,6 +369,7 @@ inherited frm_product: Tfrm_product
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahRight
+              ItemIndex = 1
             end
             object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2

@@ -321,6 +321,7 @@ inherited frm_request: Tfrm_request
                   FieldName = 'sto_id'
                 end>
               Properties.ListSource = ds_stock
+              Properties.OnPopup = cxDBLookupComboBox2PropertiesPopup
               Style.HotTrack = False
               TabOrder = 2
               Width = 258
@@ -349,6 +350,7 @@ inherited frm_request: Tfrm_request
                   FieldName = 'emp_id'
                 end>
               Properties.ListSource = ds_employee
+              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 3
               Width = 207

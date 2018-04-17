@@ -137,6 +137,8 @@ type
     procedure qry_purchase_order_itenBeforePost(DataSet: TDataSet);
     procedure Action_deleteExecute(Sender: TObject);
     procedure qryAfterDelete(DataSet: TDataSet);
+    procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
   private
     { Private declarations }
   public
@@ -208,6 +210,18 @@ if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypc
 
   inherited;
 
+end;
+
+procedure Tfrm_request.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  qry_employee.Refresh;
+end;
+
+procedure Tfrm_request.cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  qry_stock.Refresh;
 end;
 
 procedure Tfrm_request.cxGrid_1DBTableView1CustomDrawCell(

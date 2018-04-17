@@ -196,6 +196,9 @@
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
       ExplicitHeight = 453
       inherited cxPageControl_2: TcxPageControl
         Height = 447
@@ -340,12 +343,13 @@
                   FieldName = 'emp_id'
                 end>
               Properties.ListSource = ds_employee
+              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 2
               Width = 294
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 2
+              ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahClient

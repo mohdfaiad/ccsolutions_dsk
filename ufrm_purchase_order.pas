@@ -114,6 +114,7 @@ type
     procedure qryBeforePost(DataSet: TDataSet);
     procedure Action_deleteExecute(Sender: TObject);
     procedure qryAfterDelete(DataSet: TDataSet);
+    procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
   private
     { Private declarations }
   procedure filter(status:string);
@@ -162,6 +163,13 @@ begin
    end;
   inherited;
 
+end;
+
+procedure Tfrm_purchase_order.cxDBLookupComboBox1PropertiesPopup(
+  Sender: TObject);
+begin
+  inherited;
+  qry_employee.Refresh;
 end;
 
 procedure Tfrm_purchase_order.cxGrid_1DBTableView1CustomDrawCell(

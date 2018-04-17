@@ -25,9 +25,7 @@ uses
   Data.DB, System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList,
   dxStatusBar, dxRibbonStatusBar, dxSkinscxPCPainter, dxBarBuiltInMenu, cxPC,
   Vcl.Menus, Vcl.StdCtrls, cxButtons, dxGDIPlusClasses, ACBrBase, ACBrEnterTab,
-  Vcl.Buttons, FireDAC.Comp.Client,  IdSMTP, IdSSLOpenSSL, IdMessage, IdText, IdAttachmentFile,
-  IdExplicitTLSClientServerBase, IdBaseComponent, IdComponent, IdTCPConnection,
-  IdTCPClient, IdMessageClient, IdSMTPBase;
+  Vcl.Buttons, FireDAC.Comp.Client, ACBrMail,IdHashMessageDigest;
 
 type
   Tfrm_login = class(TForm)
@@ -48,7 +46,7 @@ type
     ACBrEnterTab_1: TACBrEnterTab;
     cxButton1: TcxButton;
     cxButton2: TcxButton;
-    IdSMTP1: TIdSMTP;
+    ACBrMail1: TACBrMail;
     procedure Action_cancelExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_accessExecute(Sender: TObject);
@@ -67,19 +65,33 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, ufrm_changePassword;
 
 procedure Tfrm_login.Action_accessExecute(Sender: TObject);
+var
+md5 : TIdHashMessageDigest;
 begin
+  md5:=TIdHashMessageDige1st5.Create;
+
   frm_dm.qry_signin.Close;
   frm_dm.qry_signin.Params.ClearValues();
   frm_dm.qry_signin.Params[0].AsInteger := StrToInt(edt_contract.Text);
   frm_dm.qry_signin.Params[1].AsString := edt_username.Text;
-  frm_dm.qry_signin.Params[2].AsString := edt_password.Text;
+  frm_dm.qry_signin.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
   frm_dm.qry_signin.Open();
+
 
   if frm_dm.qry_signin.RecordCount = 1 then
   begin
+   if Length(frm_dm.qry_signinctr_usr_password.AsString) = 0  then
+    begin
+     Application.MessageBox('Usuário sem senha definida favor informar sua senha!', 'LOGIN',MB_OK + MB_ICONINFORMATION);
+     Application.CreateForm(Tfrm_changePassword,frm_changePassword);
+     frm_changePassword.edt_contract.Text:=frm_dm.qry_signinctr_id.AsString;
+     frm_changePassword.edt_username.Text:=frm_dm.qry_signinctr_usr_username.AsString;
+     frm_changePassword.ShowModal;
+    end;
+
     ModalResult := mrOk;
   end
   else
@@ -100,91 +112,27 @@ end;
 
 procedure Tfrm_login.cxLabel4Click(Sender: TObject);
 var
-  // variáveis e objetos necessários para o envio
-  IdSSLIOHandlerSocket: TIdSSLIOHandlerSocketOpenSSL;
-  IdSMTP: TIdSMTP;
-  IdMessage: TIdMessage;
-  IdText: TIdText;
-  sAnexo: string;
+msn:TMemo;
 begin
-   // instanciação dos objetos
-  IdSSLIOHandlerSocket := TIdSSLIOHandlerSocketOpenSSL.Create(Self);
-  IdSMTP := TIdSMTP.Create(Self);
-  IdMessage := TIdMessage.Create(Self);
+ msn:=TMemo.Create(Self);
+ msn.Visible:=False;
+ msn.Parent:=Self;
+ msn.Lines.Add('<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"></head>');
+ msn.Lines.Add('<body text="#000000" bgcolor="#FFFFFF">');
+ msn.Lines.Add('<b>Olá,</b>  ELIZEU  SOUZA<br>');
+ msn.Lines.Add('<br>');
+ msn.Lines.Add('Conforme solicitado, segue sua senha abaixo:<br>');
+ msn.Lines.Add('<br>');
+ msn.Lines.Add('<b>Senha:</b> skGuDm9c<br>');
+ msn.Lines.Add('<br>');
+ msn.Lines.Add('Atenção: para efetuar seu login corretamente, verifique as letras maiúsculas e minúsculas. Lembre-se que sua senha é pessoal e intransferível.<br>');
+ msn.Lines.Add('</body></html>');
+ ACBrMail1.AddAddress('elizeusouza2008@gmail.com');
+ ACBrMail1.Body.Assign(msn.Lines);
 
-   try
-    // Configuração do protocolo SSL (TIdSSLIOHandlerSocketOpenSSL)
-    IdSSLIOHandlerSocket.SSLOptions.Method := sslvSSLv23;
-    IdSSLIOHandlerSocket.SSLOptions.Mode := sslmClient;
-
-    // Configuração do servidor SMTP (TIdSMTP)
-    IdSMTP.IOHandler := IdSSLIOHandlerSocket;
-//    IdSMTP.UseTLS := utUseImplicitTLS;
-    IdSMTP.AuthType := satNone;
-    IdSMTP.Port := 587;
-    IdSMTP.Host := 'mail.ccsbrasil.com';
-    IdSMTP.Username := 'elizeu.souza@ccsbrasil.com';
-    IdSMTP.Password := 'admin0910@@';
-
-         // Configuração da mensagem (TIdMessage)
-    IdMessage.From.Address := 'elizeusouza2008@gmail.com';
-    IdMessage.From.Name := 'Sistema CCS';
-    IdMessage.ReplyTo.EMailAddresses := IdMessage.From.Address;
-    IdMessage.Recipients.Add.Text := 'elizeusouza@hotmail.com';
-//    IdMessage.Recipients.Add.Text := 'destinatario2@email.com'; // opcional
-//    IdMessage.Recipients.Add.Text := 'destinatario3@email.com'; // opcional
-    IdMessage.Subject := 'Recuperar de Senha';
-    IdMessage.Encoding := meMIME;
-
-      // Configuração do corpo do email (TIdText)
-    IdText := TIdText.Create(IdMessage.MessageParts);
-    IdText.Body.Add('Corpo do e-mail');
-    IdText.ContentType := 'text/plain; charset=iso-8859-1';
-
-        // Opcional - Anexo da mensagem (TIdAttachmentFile)
-//    sAnexo := 'C:\Anexo.pdf';
-    if FileExists(sAnexo) then
-    begin
-      TIdAttachmentFile.Create(IdMessage.MessageParts, sAnexo);
-    end;
-
-       // Conexão e autenticação
-    try
-      IdSMTP.Connect;
-      IdSMTP.Authenticate;
-    except
-      on E:Exception do
-      begin
-        MessageDlg('Erro na conexão ou autenticação: ' +
-          E.Message, mtWarning, [mbOK], 0);
-        Exit;
-      end;
-    end;
-
-        // Envio da mensagem
-    try
-      IdSMTP.Send(IdMessage);
-      MessageDlg('Mensagem enviada com sucesso!', mtInformation, [mbOK], 0);
-    except
-      On E:Exception do
-      begin
-        MessageDlg('Erro ao enviar a mensagem: ' +
-          E.Message, mtWarning, [mbOK], 0);
-      end;
-    end;
-  finally
-    // desconecta do servidor
-    IdSMTP.Disconnect;
-    // liberação da DLL
-    UnLoadOpenSSLLibrary;
-    // liberação dos objetos da memória
-    FreeAndNil(IdMessage);
-    FreeAndNil(IdSSLIOHandlerSocket);
-    FreeAndNil(IdSMTP);
-  end;
+ ACBrMail1.Send(false);
+ msn.Destroy;
 end;
-
-
 
 procedure Tfrm_login.edt_contractKeyPress(Sender: TObject; var Key: Char);
 begin

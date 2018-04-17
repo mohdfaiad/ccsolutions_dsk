@@ -29,7 +29,6 @@ object frm_dm: Tfrm_dm
     Top = 8
   end
   object qry_signin: TFDQuery
-    Active = True
     Connection = connCCS
     SQL.Strings = (
       
@@ -38,7 +37,8 @@ object frm_dm: Tfrm_dm
       '    INNER JOIN contract_user cu ON c.ctr_id = cu.contract_ctr_id'
       
         '    WHERE c.ctr_id = :contract AND cu.ctr_usr_username = :userna' +
-        'me AND cu.ctr_usr_password = :password')
+        'me AND (cu.ctr_usr_password = :password or ctr_usr_password is n' +
+        'ull)')
     Left = 40
     Top = 128
     ParamData = <

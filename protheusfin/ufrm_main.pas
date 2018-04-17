@@ -22,82 +22,65 @@ uses
   dxSkinValentine, dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint, System.UITypes,
   dxSkinXmas2008Blue, dxSkinsdxRibbonPainter, dxRibbonCustomizationForm,
-  cxContainer, cxEdit, dxSkinscxPCPainter, dxSkinsdxBarPainter, ACBrBase,
-  ACBrDownload, System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList,
-  dxSkinsForm, dxBar, dxStatusBar, dxRibbonStatusBar, cxLabel, dxGalleryControl,
+  cxContainer, cxEdit, dxSkinscxPCPainter, dxSkinsdxBarPainter,
+  System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList, dxSkinsForm,
+  dxBar, dxStatusBar, dxRibbonStatusBar, cxLabel, dxGalleryControl,
   dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
-  dxRibbon, dxBevel, dxGDIPlusClasses, Vcl.ExtCtrls, cxLocalization;
+  dxRibbon, dxGDIPlusClasses, Vcl.ExtCtrls, dxBevel, ACBrBase, ACBrDownload,
+  cxLocalization;
 
 type
   Tfrm_main = class(Tfrm_main_default)
-    Action_contrat: TAction;
+    dxBarLargeButton1: TdxBarLargeButton;
+    Action_contract: TAction;
     Action_contract_user: TAction;
     Action_enterprise: TAction;
     Action_client: TAction;
     Action_supplier: TAction;
-    Action_product: TAction;
-    Action_phonebook: TAction;
-    Action_report: TAction;
-    dxBarLargeButton1: TdxBarLargeButton;
     dxBarLargeButton2: TdxBarLargeButton;
     dxBarLargeButton3: TdxBarLargeButton;
     dxBarLargeButton4: TdxBarLargeButton;
     dxBarLargeButton5: TdxBarLargeButton;
     dxBarManager_1Bar2: TdxBar;
-    dxBarManager_1Bar3: TdxBar;
-    dxBarManager_1Bar4: TdxBar;
     dxBarLargeButton6: TdxBarLargeButton;
+    Action_bank: TAction;
+    Action_receipt: TAction;
     dxBarLargeButton7: TdxBarLargeButton;
+    dxBarManager_1Bar3: TdxBar;
     dxBarLargeButton8: TdxBarLargeButton;
-    Action_brand: TAction;
-    Action_ncm: TAction;
-    Action_manufacturer: TAction;
-    Action_product_unit: TAction;
+    Action_phonebook: TAction;
+    dxBarManager_1Bar4: TdxBar;
     dxBarLargeButton9: TdxBarLargeButton;
-    Action_product_class: TAction;
     dxBarLargeButton10: TdxBarLargeButton;
-    Action_product_department: TAction;
-    Action_purchase_order: TAction;
+    Action_bill_pay: TAction;
+    Action_bill_receive: TAction;
+    dxBarManager_1Bar5: TdxBar;
+    Action_report: TAction;
     dxBarLargeButton11: TdxBarLargeButton;
-    Action_stock: TAction;
-    dxBarLargeButton13: TdxBarLargeButton;
-    rbpopmenu_2: TdxRibbonPopupMenu;
-    Action_product_entry: TAction;
-    dxBarButton5: TdxBarButton;
-    dxBarButton8: TdxBarButton;
-    dxBarButton9: TdxBarButton;
-    dxBarButton10: TdxBarButton;
-    dxBarButton11: TdxBarButton;
-    dxBarButton12: TdxBarButton;
-    dxBarButton13: TdxBarButton;
-    dxBarButton14: TdxBarButton;
-    Action_stock_iten: TAction;
-    Action_stock_transfer: TAction;
-    dxBarButton1: TdxBarButton;
+    Action_account_type: TAction;
+    Action_account_plan_synthetic: TAction;
+    Action_cost_center_group: TAction;
     dxBarLargeButton12: TdxBarLargeButton;
+    dxBarLargeButton13: TdxBarLargeButton;
+    rbpopmenu_1: TdxRibbonPopupMenu;
+    dxBarButton1: TdxBarButton;
     dxBarButton3: TdxBarButton;
-    Action_request: TAction;
+    dxBarLargeButton14: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);
-    procedure Action_contratExecute(Sender: TObject);
+    procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
     procedure Action_enterpriseExecute(Sender: TObject);
     procedure Action_clientExecute(Sender: TObject);
     procedure Action_supplierExecute(Sender: TObject);
-    procedure Action_reportExecute(Sender: TObject);
+    procedure Action_bankExecute(Sender: TObject);
+    procedure Action_receiptExecute(Sender: TObject);
     procedure Action_phonebookExecute(Sender: TObject);
-    procedure Action_productExecute(Sender: TObject);
-    procedure Action_brandExecute(Sender: TObject);
-    procedure Action_ncmExecute(Sender: TObject);
-    procedure Action_manufacturerExecute(Sender: TObject);
-    procedure Action_product_unitExecute(Sender: TObject);
-    procedure Action_product_classExecute(Sender: TObject);
-    procedure Action_product_departmentExecute(Sender: TObject);
-    procedure Action_purchase_orderExecute(Sender: TObject);
-    procedure Action_stockExecute(Sender: TObject);
-    procedure Action_product_entryExecute(Sender: TObject);
-    procedure Action_stock_itenExecute(Sender: TObject);
-    procedure Action_stock_transferExecute(Sender: TObject);
-    procedure Action_requestExecute(Sender: TObject);
+    procedure Action_bill_payExecute(Sender: TObject);
+    procedure Action_bill_receiveExecute(Sender: TObject);
+    procedure Action_reportExecute(Sender: TObject);
+    procedure Action_account_typeExecute(Sender: TObject);
+    procedure Action_account_plan_syntheticExecute(Sender: TObject);
+    procedure Action_cost_center_groupExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -111,25 +94,88 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_login, ufrm_brand, ufrm_client, ufrm_contract, ufrm_contract_user,
-  ufrm_enterprise, ufrm_phonebook, ufrm_product, ufrm_supplier, ufrm_report,
-  ufrm_ncm, ufrm_manufacturer, ufrm_product_unit, ufrm_product_class,
-  ufrm_product_department, ufrm_purchase_order, ufrm_stock, uclass_frm_open,
-  ufrm_stock_entry, ufrm_stock_iten, ufrm_stock_transfer, ufrm_request;
+uses ufrm_login, ufrm_bank, ufrm_client, ufrm_contract, ufrm_contract_user,
+  ufrm_enterprise, ufrm_phonebook, ufrm_receipt, ufrm_supplier, ufrm_billpay,
+  ufrm_billreceive, ufrm_report, ufrm_account_type, ufrm_account_synthetic,
+  ufrm_cost_center;
 
-procedure Tfrm_main.Action_brandExecute(Sender: TObject);
+procedure Tfrm_main.Action_account_plan_syntheticExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_brand) then
+  if not Assigned(frm_account_synthetic) then
   begin
-    frm_brand := Tfrm_brand.Create(Self);
-    frm_brand.Height := Bevel_1.Height;
-    frm_brand.Width := Bevel_1.Width;
-    frm_brand.Show
+    frm_account_synthetic := Tfrm_account_synthetic.Create(Self);
+    frm_account_synthetic.Height := Bevel_1.Height;
+    frm_account_synthetic.Width := Bevel_1.Width;
+    frm_account_synthetic.Show;
   end
   else
   begin
-    frm_brand.WindowState := wsNormal;
+    frm_account_synthetic.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_account_typeExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_account_type) then
+  begin
+    frm_account_type := Tfrm_account_type.Create(Self);
+    frm_account_type.Height := Bevel_1.Height;
+    frm_account_type.Width := Bevel_1.Width;
+    frm_account_type.Show;
+  end
+  else
+  begin
+    frm_account_type.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_bankExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_bank) then
+  begin
+    frm_bank := Tfrm_bank.Create(Self);
+    frm_bank.Height := Bevel_1.Height;
+    frm_bank.Width := Bevel_1.Width;
+    frm_bank.Show;
+  end
+  else
+  begin
+    frm_bank.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_bill_payExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_billpay) then
+  begin
+    frm_billpay := Tfrm_billpay.Create(Self);
+    frm_billpay.Height := Bevel_1.Height;
+    frm_billpay.Width := Bevel_1.Width;
+    frm_billpay.Show;
+  end
+  else
+  begin
+    frm_billpay.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_bill_receiveExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_billreceive) then
+  begin
+    frm_billreceive := Tfrm_billreceive.Create(Self);
+    frm_billreceive.Height := Bevel_1.Height;
+    frm_billreceive.Width := Bevel_1.Width;
+    frm_billreceive.Show;
+  end
+  else
+  begin
+    frm_billreceive.WindowState := wsNormal;
   end;
 end;
 
@@ -141,11 +187,27 @@ begin
     frm_client := Tfrm_client.Create(Self);
     frm_client.Height := Bevel_1.Height;
     frm_client.Width := Bevel_1.Width;
-    frm_client.Show
+    frm_client.Show;
   end
   else
   begin
     frm_client.WindowState := wsNormal;
+  end;
+end;
+
+procedure Tfrm_main.Action_contractExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_contract) then
+  begin
+    frm_contract := Tfrm_contract.Create(Self);
+    frm_contract.Height := Bevel_1.Height;
+    frm_contract.Width := Bevel_1.Width;
+    frm_contract.Show;
+  end
+  else
+  begin
+    frm_contract.WindowState := wsNormal;
   end;
 end;
 
@@ -157,75 +219,43 @@ begin
     frm_contract_user := Tfrm_contract_user.Create(Self);
     frm_contract_user.Height := Bevel_1.Height;
     frm_contract_user.Width := Bevel_1.Width;
-    frm_contract_user.Show
+    frm_contract_user.Show;
   end
   else
   begin
-    frm_contract.WindowState := wsNormal;
+    frm_contract_user.WindowState := wsNormal;
   end;
 end;
 
-procedure Tfrm_main.Action_contratExecute(Sender: TObject);
+procedure Tfrm_main.Action_cost_center_groupExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_contract) then
+  if not Assigned(frm_cost_center) then
   begin
-    frm_contract := Tfrm_contract.Create(Self);
-    frm_contract.Height := Bevel_1.Height;
-    frm_contract.Width := Bevel_1.Width;
-    frm_contract.Show
+    frm_cost_center := Tfrm_cost_center.Create(Self);
+    frm_cost_center.Height := Bevel_1.Height;
+    frm_cost_center.Width := Bevel_1.Width;
+    frm_cost_center.Show;
   end
   else
   begin
-    frm_contract.WindowState := wsNormal;
+    frm_cost_center.WindowState := wsNormal;
   end;
 end;
 
 procedure Tfrm_main.Action_enterpriseExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_manufacturer) then
+  if not Assigned(frm_enterprise) then
   begin
     frm_enterprise := Tfrm_enterprise.Create(Self);
     frm_enterprise.Height := Bevel_1.Height;
     frm_enterprise.Width := Bevel_1.Width;
-    frm_enterprise.Show
+    frm_enterprise.Show;
   end
   else
   begin
     frm_enterprise.WindowState := wsNormal;
-  end;
-end;
-
-procedure Tfrm_main.Action_manufacturerExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_manufacturer) then
-  begin
-    frm_manufacturer := Tfrm_manufacturer.Create(Self);
-    frm_manufacturer.Height := Bevel_1.Height;
-    frm_manufacturer.Width := Bevel_1.Width;
-    frm_manufacturer.Show
-  end
-  else
-  begin
-    frm_manufacturer.WindowState := wsNormal;
-  end;
-end;
-
-procedure Tfrm_main.Action_ncmExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_ncm) then
-  begin
-    frm_ncm := Tfrm_ncm.Create(Self);
-    frm_ncm.Height := Bevel_1.Height;
-    frm_ncm.Width := Bevel_1.Width;
-    frm_ncm.Show
-  end
-  else
-  begin
-    frm_ncm.WindowState := wsNormal;
   end;
 end;
 
@@ -237,7 +267,7 @@ begin
     frm_phonebook := Tfrm_phonebook.Create(Self);
     frm_phonebook.Height := Bevel_1.Height;
     frm_phonebook.Width := Bevel_1.Width;
-    frm_phonebook.Show
+    frm_phonebook.Show;
   end
   else
   begin
@@ -245,99 +275,19 @@ begin
   end;
 end;
 
-procedure Tfrm_main.Action_productExecute(Sender: TObject);
+procedure Tfrm_main.Action_receiptExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_product) then
+  if not Assigned(frm_receipt) then
   begin
-    frm_product := Tfrm_product.Create(Self);
-    frm_product.Height := Bevel_1.Height;
-    frm_product.Width := Bevel_1.Width;
-    frm_product.Show
+    frm_receipt := Tfrm_receipt.Create(Self);
+    frm_receipt.Height := Bevel_1.Height;
+    frm_receipt.Width := Bevel_1.Width;
+    frm_receipt.Show;
   end
   else
   begin
-    frm_product.WindowState := wsNormal;
-  end;
-end;
-
-procedure Tfrm_main.Action_product_classExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_product_class) then
-  begin
-    frm_product_class := Tfrm_product_class.Create(Self);
-    frm_product_class.Height := Bevel_1.Height;
-    frm_product_class.Width := Bevel_1.Width;
-    frm_product_class.Show
-  end
-  else
-  begin
-    frm_product_class.WindowState := wsNormal;
-  end;
-end;
-
-procedure Tfrm_main.Action_product_departmentExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_product_department) then
-  begin
-    frm_product_department := Tfrm_product_department.Create(Self);
-    frm_product_department.Height := Bevel_1.Height;
-    frm_product_department.Width := Bevel_1.Width;
-    frm_product_department.Show
-  end
-  else
-  begin
-    frm_product_department.WindowState := wsNormal;
-  end;
-end;
-
-procedure Tfrm_main.Action_product_entryExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_stock_entry) then
-  begin
-    frm_stock_entry := Tfrm_stock_entry.Create(Self);
-    frm_stock_entry.Height := Bevel_1.Height;
-    frm_stock_entry.Width := Bevel_1.Width;
-    frm_stock_entry.Show
-  end
-  else
-  begin
-    frm_stock_entry.WindowState := wsNormal;
-  end;
-end;
-
-procedure Tfrm_main.Action_product_unitExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_product_unit) then
-  begin
-    frm_product_unit := Tfrm_product_unit.Create(Self);
-    frm_product_unit.Height := Bevel_1.Height;
-    frm_product_unit.Width := Bevel_1.Width;
-    frm_product_unit.Show
-  end
-  else
-  begin
-    frm_product_unit.WindowState := wsNormal;
-  end;
-end;
-
-procedure Tfrm_main.Action_purchase_orderExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_purchase_order) then
-  begin
-    frm_purchase_order := Tfrm_purchase_order.Create(Self);
-    frm_purchase_order.Height := Bevel_1.Height;
-    frm_purchase_order.Width := Bevel_1.Width;
-    frm_purchase_order.Show
-  end
-  else
-  begin
-    frm_purchase_order.WindowState := wsNormal;
+    frm_receipt.WindowState := wsNormal;
   end;
 end;
 
@@ -349,76 +299,11 @@ begin
     frm_report := Tfrm_report.Create(Self);
     frm_report.Height := Bevel_1.Height;
     frm_report.Width := Bevel_1.Width;
-    frm_report.Show
+    frm_report.Show;
   end
   else
   begin
     frm_report.WindowState := wsNormal;
-  end;
-end;
-
-procedure Tfrm_main.Action_requestExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_request) then
-  begin
-    frm_request := Tfrm_request.Create(Self);
-    frm_request.Height := Bevel_1.Height;
-    frm_request.Width := Bevel_1.Width;
-    frm_request.Show
-  end
-  else
-  begin
-    frm_request.WindowState := wsNormal;
-  end;
-end;
-
-procedure Tfrm_main.Action_stockExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_stock) then
-  begin
-    frm_stock := Tfrm_stock.Create(Self);
-    frm_stock.Height := Bevel_1.Height;
-    frm_stock.Width := Bevel_1.Width;
-    frm_stock.Show
-  end
-  else
-  begin
-    frm_stock.WindowState := wsNormal;
-  end;
-end;
-
-procedure Tfrm_main.Action_stock_itenExecute(Sender: TObject);
-begin
-  inherited;
-  inherited;
-  if not Assigned(frm_stock_iten) then
-  begin
-    frm_stock_iten := Tfrm_stock_iten.Create(Self);
-    frm_stock_iten.Height := Bevel_1.Height;
-    frm_stock_iten.Width := Bevel_1.Width;
-    frm_stock_iten.Show
-  end
-  else
-  begin
-    frm_stock_iten.WindowState := wsNormal;
-  end;
-end;
-
-procedure Tfrm_main.Action_stock_transferExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_stock_transfer) then
-  begin
-    frm_stock_transfer := Tfrm_stock_transfer.Create(Self);
-    frm_stock_transfer.Height := Bevel_1.Height;
-    frm_stock_transfer.Width := Bevel_1.Width;
-    frm_stock_transfer.Show
-  end
-  else
-  begin
-    frm_stock_transfer.WindowState := wsNormal;
   end;
 end;
 
@@ -430,7 +315,7 @@ begin
     frm_supplier := Tfrm_supplier.Create(Self);
     frm_supplier.Height := Bevel_1.Height;
     frm_supplier.Width := Bevel_1.Width;
-    frm_supplier.Show
+    frm_supplier.Show;
   end
   else
   begin

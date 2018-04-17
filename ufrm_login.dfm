@@ -2376,10 +2376,21 @@ object frm_login: Tfrm_login
     Left = 392
     Top = 208
   end
-  object IdSMTP1: TIdSMTP
-    AuthType = satSASL
-    SASLMechanisms = <>
-    Left = 92
-    Top = 105
+  object ACBrMail1: TACBrMail
+    Host = 'mail.ccsbrasil.com'
+    Port = '587'
+    Username = 'elizeu.souza@ccsbrasil.com'
+    Password = 'admin0910@@'
+    SetSSL = False
+    SetTLS = False
+    IsHTML = True
+    Attempts = 3
+    From = 'elizeu.souza@ccsbrasil.com'
+    FromName = 'Elizeu Souza'
+    Subject = 'Teste do Sistema'
+    DefaultCharset = UTF_8
+    IDECharset = ISO_8859_1
+    Left = 196
+    Top = 65
   end
 end

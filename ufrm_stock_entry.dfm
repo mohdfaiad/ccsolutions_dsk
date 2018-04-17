@@ -66,7 +66,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
       ExplicitHeight = 358
       inherited cxPageControl_2: TcxPageControl
         Height = 352
-        Properties.ActivePage = cxTabSheet1
         ExplicitHeight = 352
         ClientRectBottom = 346
         inherited cxTabSheet_3: TcxTabSheet
@@ -108,6 +107,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
                   FieldName = 'sto_id'
                 end>
               Properties.ListSource = ds_stock
+              Properties.OnPopup = cxDBLookupComboBox2PropertiesPopup
               Style.HotTrack = False
               TabOrder = 4
               Width = 294
@@ -130,6 +130,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
                 end>
               Properties.ListFieldIndex = 1
               Properties.ListSource = ds_purchase_order
+              Properties.OnPopup = cxDBLookupComboBox3PropertiesPopup
               Style.HotTrack = False
               TabOrder = 5
               Width = 121
@@ -175,6 +176,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
                   FieldName = 'sup_id'
                 end>
               Properties.ListSource = ds_supplier
+              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 3
               OnEnter = cxDBLookupComboBox1Enter
@@ -423,7 +425,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     FormatVersion = 1
   end
   inherited qry: TFDQuery [10]
-    Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     BeforeDelete = qryBeforeDelete
@@ -3251,7 +3252,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Top = 96
   end
   object qry_supplier: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     BeforeDelete = qryBeforeDelete
     IndexFieldNames = 'contract_ctr_id'
@@ -3270,7 +3270,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Top = 96
   end
   object qry_stock: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     BeforeDelete = qryBeforeDelete
     IndexFieldNames = 'contract_ctr_id'
@@ -3330,7 +3329,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Top = 96
   end
   object qry_product: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     BeforeDelete = qryBeforeDelete
     IndexFieldNames = 'contract_ctr_id'

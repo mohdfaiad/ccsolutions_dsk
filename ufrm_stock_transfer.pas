@@ -153,6 +153,9 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
+    procedure cxDBLookupComboBox3PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
   private
     { Private declarations }
 
@@ -510,7 +513,31 @@ begin
   end;
 end;
 
-Procedure Tfrm_stock_transfer.FormClose(Sender: TObject;
+procedure Tfrm_stock_transfer.cxDBLookupComboBox1PropertiesPopup(
+  Sender: TObject);
+begin
+  inherited;
+   //Atualização do combobox
+   qry_stock_exit.Refresh;
+end;
+
+procedure Tfrm_stock_transfer.cxDBLookupComboBox2PropertiesPopup(
+  Sender: TObject);
+begin
+  inherited;
+  //Atualização do combobox
+   qry_stock_exit.Refresh;
+end;
+
+procedure Tfrm_stock_transfer.cxDBLookupComboBox3PropertiesPopup(
+  Sender: TObject);
+begin
+  inherited;
+  //Atualização do combobox
+  qry_employee.Refresh;
+end;
+
+procedure Tfrm_stock_transfer.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;

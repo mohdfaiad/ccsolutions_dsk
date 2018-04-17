@@ -1,11 +1,9 @@
 inherited frm_stock: Tfrm_stock
   Caption = 'Manuten'#231#227'o Estoques'
   OnClose = FormClose
-  ExplicitLeft = -386
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -125,6 +123,7 @@ inherited frm_stock: Tfrm_stock
                   FieldName = 'ent_id'
                 end>
               Properties.ListSource = ds_enterprise
+              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 4
               Width = 294
@@ -261,6 +260,7 @@ inherited frm_stock: Tfrm_stock
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   inherited frxReport_1: TfrxReport
+    Left = 167
     Datasets = <>
     Variables = <>
     Style = <>
@@ -282,5 +282,13 @@ inherited frm_stock: Tfrm_stock
     DataSet = qry_enterprise
     Left = 616
     Top = 112
+  end
+  object frxDBD_Estoque: TfrxDBDataset
+    UserName = 'Estoque'
+    CloseDataSource = False
+    DataSet = qry
+    BCDToCurrency = False
+    Left = 160
+    Top = 104
   end
 end

@@ -198,6 +198,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
                   FieldName = 'sto_id'
                 end>
               Properties.ListSource = ds_stock_exit
+              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 8
               Width = 121
@@ -216,6 +217,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
                   FieldName = 'sto_id'
                 end>
               Properties.ListSource = ds_stock_exit
+              Properties.OnPopup = cxDBLookupComboBox2PropertiesPopup
               Style.HotTrack = False
               TabOrder = 9
               Width = 121
@@ -250,6 +252,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
                   FieldName = 'emp_id'
                 end>
               Properties.ListSource = ds_employee
+              Properties.OnPopup = cxDBLookupComboBox3PropertiesPopup
               Style.HotTrack = False
               TabOrder = 5
               Width = 121

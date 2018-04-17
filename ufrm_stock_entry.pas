@@ -137,6 +137,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure cxDBLookupComboBox1Enter(Sender: TObject);
+    procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox3PropertiesPopup(Sender: TObject);
   private
     { Private declarations }
   public
@@ -258,7 +261,29 @@ end;
 procedure Tfrm_stock_entry.cxDBLookupComboBox1Enter(Sender: TObject);
 begin
   inherited;
+  //Atualização do combobox
   qry_supplier.refresh;
+end;
+
+procedure Tfrm_stock_entry.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  //Atualização do combobox
+   qry_supplier.refresh;
+end;
+
+procedure Tfrm_stock_entry.cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  //Atualização do combobox
+  qry_stock.Refresh;
+end;
+
+procedure Tfrm_stock_entry.cxDBLookupComboBox3PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  //Atualização do combobox
+   qry_purchase_order.refresh;
 end;
 
 procedure Tfrm_stock_entry.FormClose(Sender: TObject; var Action: TCloseAction);

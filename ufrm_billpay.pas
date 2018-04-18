@@ -133,6 +133,12 @@ type
     qrycost_center_coc_id: TIntegerField;
     qrycost_center_detail_cod_id: TIntegerField;
     qrybpy_addition: TBCDField;
+    qry_account_planacp_id: TFDAutoIncField;
+    qry_account_plancontract_ctr_id: TIntegerField;
+    qry_account_planaccount_type_act_id: TIntegerField;
+    qry_account_planacp_name: TStringField;
+    qry_account_planacp_status: TStringField;
+    qry_account_planacp_dt_registration: TDateTimeField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
@@ -199,14 +205,14 @@ procedure Tfrm_billpay.cxDBLookupComboBox10PropertiesPopup(Sender: TObject);
 begin
   inherited;
   //comando para atualizar combobox
-   qry_cost_center_detail.Refresh;
+   qry_cost_center.Locate('coc_id',qrycost_center_coc_id.AsInteger,[loCaseInsensitive, loPartialKey]);
 end;
 
 procedure Tfrm_billpay.cxDBLookupComboBox11PropertiesPopup(Sender: TObject);
 begin
   inherited;
   //comando para atualizar combobox
-  qry_account_plan_detail.Refresh;
+   qry_account_plan.Locate('acp_id',qryaccount_plan_acp_id.AsInteger,[loCaseInsensitive, loPartialKey]);
 end;
 
 procedure Tfrm_billpay.cxDBLookupComboBox12PropertiesPopup(Sender: TObject);

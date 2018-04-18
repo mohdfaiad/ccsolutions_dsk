@@ -84,6 +84,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qryBeforePost(DataSet: TDataSet);
+    procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -101,6 +103,23 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_account_synthetic.Action_deleteExecute(Sender: TObject);
+begin
+  Application.MessageBox('Não é permitido excluir nenhum plano de conta !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
+  Exit;
+
+  inherited;
+
+end;
+
+procedure Tfrm_account_synthetic.cxDBLookupComboBox1PropertiesPopup(
+  Sender: TObject);
+begin
+  inherited;
+  //Comando para atualizar combobox
+  qry_account_type.Refresh;
+end;
 
 procedure Tfrm_account_synthetic.FormClose(Sender: TObject;
   var Action: TCloseAction);

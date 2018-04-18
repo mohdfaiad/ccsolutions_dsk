@@ -899,6 +899,39 @@ inherited frm_billpay: Tfrm_billpay
       'select * from account_plan')
     Left = 440
     Top = 96
+    object qry_account_planacp_id: TFDAutoIncField
+      FieldName = 'acp_id'
+      Origin = 'acp_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qry_account_plancontract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
+    end
+    object qry_account_planaccount_type_act_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'account_type_act_id'
+      Origin = 'account_type_act_id'
+    end
+    object qry_account_planacp_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'acp_name'
+      Origin = 'acp_name'
+      Size = 50
+    end
+    object qry_account_planacp_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'acp_status'
+      Origin = 'acp_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_account_planacp_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'acp_dt_registration'
+      Origin = 'acp_dt_registration'
+    end
   end
   object ds_account_plan: TDataSource
     DataSet = qry_account_plan

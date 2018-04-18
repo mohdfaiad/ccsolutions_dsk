@@ -180,6 +180,9 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
+    inherited dxBarButton2: TdxBarButton
+      Action = Action_account_plan_synthetic
+    end
     object dxBarLargeButton1: TdxBarLargeButton
       Action = Action_contract
       Category = 0
@@ -508,10 +511,8 @@ inherited frm_main: Tfrm_main
       Category = 0
     end
     object dxBarButton3: TdxBarButton
-      Caption = 'New Button'
+      Action = Action_account_plan_synthetic
       Category = 0
-      Hint = 'New Button'
-      Visible = ivAlways
     end
     object dxBarLargeButton14: TdxBarLargeButton
       Action = Action_cost_center_group
@@ -2890,7 +2891,7 @@ inherited frm_main: Tfrm_main
       end
       item
         Visible = True
-        ItemName = 'dxBarButton2'
+        ItemName = 'dxBarButton3'
       end>
     Ribbon = dxRibbon1
     UseOwnFont = False

@@ -26,7 +26,7 @@ uses
   dxStatusBar, dxRibbonStatusBar, dxSkinscxPCPainter, dxBarBuiltInMenu, cxPC,
   Vcl.Menus, Vcl.StdCtrls, cxButtons, dxGDIPlusClasses, ACBrBase, ACBrEnterTab,
   Vcl.Buttons, FireDAC.Comp.Client, ACBrMail,IdHashMessageDigest,
-  Vcl.Samples.Gauges;
+  Vcl.Samples.Gauges, ACBrValidador, cxMaskEdit, cxButtonEdit;
 
 type
   Tfrm_login = class(TForm)
@@ -39,7 +39,6 @@ type
     edt_username: TcxTextEdit;
     Image1: TImage;
     cxTabSheet_1: TcxTabSheet;
-    edt_password: TcxTextEdit;
     cxLabel3: TcxLabel;
     cxLabel4: TcxLabel;
     Action_access: TAction;
@@ -51,15 +50,16 @@ type
     cxTabSheet1: TcxTabSheet;
     Image2: TImage;
     cxLabel5: TcxLabel;
-    edt_passwordCurrent: TcxTextEdit;
     cxLabel6: TcxLabel;
-    edt_passwordNew: TcxTextEdit;
     cxLabel7: TcxLabel;
-    edt_passwordConfirm: TcxTextEdit;
     cxLabel8: TcxLabel;
     gaugePassword: TGauge;
     cxButton3: TcxButton;
     cxButton4: TcxButton;
+    edt_password: TcxButtonEdit;
+    edt_passwordCurrent: TcxButtonEdit;
+    edt_passwordNew: TcxButtonEdit;
+    edt_passwordConfirm: TcxButtonEdit;
     procedure Action_cancelExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_accessExecute(Sender: TObject);
@@ -68,6 +68,8 @@ type
     procedure cxButton3Click(Sender: TObject);
     procedure cxButton4Click(Sender: TObject);
     procedure edt_passwordNewPropertiesChange(Sender: TObject);
+    procedure edt_passwordPropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
   private
     { Private declarations }
   forcaSenha:Integer;
@@ -82,7 +84,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, ufrm_changePassword;
+uses ufrm_dm;
 
 procedure Tfrm_login.Action_accessExecute(Sender: TObject);
 var
@@ -105,6 +107,9 @@ begin
      Application.MessageBox('Usuário sem senha definida favor informar sua senha!', 'LOGIN',MB_OK + MB_ICONINFORMATION);
      cxPageControl1.Pages[1].TabVisible:=True;
      cxPageControl1.ActivePageIndex:=1;
+     cxPageControl1.Pages[0].TabVisible:=False;
+     edt_passwordCurrent.SetFocus;
+
      exit;
     end;
 
@@ -198,24 +203,66 @@ procedure Tfrm_login.cxLabel4Click(Sender: TObject);
 var
 msn:TMemo;
 begin
- msn:=TMemo.Create(Self);
- msn.Visible:=False;
- msn.Parent:=Self;
- msn.Lines.Add('<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"></head>');
- msn.Lines.Add('<body text="#000000" bgcolor="#FFFFFF">');
- msn.Lines.Add('<b>Olá,</b>  ELIZEU  SOUZA<br>');
- msn.Lines.Add('<br>');
- msn.Lines.Add('Conforme solicitado, segue sua senha abaixo:<br>');
- msn.Lines.Add('<br>');
- msn.Lines.Add('<b>Senha:</b> skGuDm9c<br>');
- msn.Lines.Add('<br>');
- msn.Lines.Add('Atenção: para efetuar seu login corretamente, verifique as letras maiúsculas e minúsculas. Lembre-se que sua senha é pessoal e intransferível.<br>');
- msn.Lines.Add('</body></html>');
- ACBrMail1.AddAddress('elizeusouza2008@gmail.com');
- ACBrMail1.Body.Assign(msn.Lines);
+if Length(edt_contract.Text) = 0  then
+ begin
+  Application.MessageBox('Contrato não informado!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
+  edt_contract.SetFocus;
+  Exit;
+ end;
 
- ACBrMail1.Send(false);
- msn.Destroy;
+if Length(edt_username.Text) = 0  then
+ begin
+  Application.MessageBox('Usuário não informado!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
+  edt_username.SetFocus;
+  Exit;
+ end;
+
+ with frm_dm.qry,sql do
+  begin
+   close;
+   text:='select contract_ctr_id,ctr_usr_first_name,ctr_usr_password,ctr_usr_email from contract_user ' +
+         'where contract_ctr_id =:contrato' +
+         'and ctr_usr_username = :usuario';
+   ParamByName('contrato').AsString:=edt_contract.Text;
+   ParamByNAme('usuario').AsString:=edt_username.Text;
+   Prepare;
+   Open;
+
+
+
+   if IsEmpty then
+    begin
+     Application.MessageBox('Usuário não encontrado para esse contrato!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
+     edt_username.SetFocus;
+     Exit;
+    end;
+
+   if Length(FieldByName('ctr_usr_email').AsString) = 0 then
+    begin
+     Application.MessageBox('email não encontrado para esse usuário!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
+     edt_username.SetFocus;
+     Exit;
+    end;
+
+
+   msn:=TMemo.Create(Self);
+   msn.Visible:=False;
+   msn.Parent:=Self;
+   msn.Lines.Add('<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"></head>');
+   msn.Lines.Add('<body text="#000000" bgcolor="#FFFFFF">');
+   msn.Lines.Add('<b>Olá,</b> '  + FieldByName('ctr_usr_first_name').AsString + '<br>');
+   msn.Lines.Add('<br>');
+   msn.Lines.Add('Conforme solicitado, segue sua senha abaixo:<br>');
+   msn.Lines.Add('<br>');
+   msn.Lines.Add('<b>Senha:</b> ' + FieldByName('ctr_usr_password').AsString + '<br>');
+   msn.Lines.Add('<br>');
+   msn.Lines.Add('Atenção: para efetuar seu login corretamente, verifique as letras maiúsculas e minúsculas. Lembre-se que sua senha é pessoal e intransferível.<br>');
+   msn.Lines.Add('</body></html>');
+   ACBrMail1.AddAddress(FieldByName('ctr_usr_email').AsString);
+   ACBrMail1.Body.Assign(msn.Lines);
+   ACBrMail1.Send(false);
+   msn.Destroy;
+  end;
 end;
 
 procedure Tfrm_login.edt_contractKeyPress(Sender: TObject; var Key: Char);
@@ -298,6 +345,16 @@ if forcaSenha <= 25 then
 
 end;
 
+end;
+
+procedure Tfrm_login.edt_passwordPropertiesButtonClick(Sender: TObject;
+  AButtonIndex: Integer);
+begin
+  if TcxButtonEdit(Sender).Properties.EchoMode <> eemPassword then
+    TcxButtonEdit(Sender).Properties.EchoMode := eemPassword
+
+  else
+    TcxButtonEdit(Sender).Properties.EchoMode := eemNormal;
 end;
 
 procedure Tfrm_login.FormShow(Sender: TObject);

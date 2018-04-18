@@ -393,7 +393,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     PrintOptions.Printer = 'Padr'#227'o'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43147.480269664400000000
-    ReportOptions.LastChange = 43199.774362673610000000
+    ReportOptions.LastChange = 43208.544573009260000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -597,7 +597,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       object connect: TfrxFDDatabase
         ConnectionDefName = 'ccs_connection'
         DriverName = 'MySQL'
-        DatabaseName = 'ccs_dev'
+        DatabaseName = 'ccs'
         Params.Strings = (
           'ConnectionDef=ccs_connection')
         LoginPrompt = False
@@ -3435,7 +3435,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         Width = 718.110700000000000000
         object Memo1: TfrxMemoView
           Left = 574.488560000000000000
-          Top = 3.779530000000000000
+          Top = 3.779530000000020000
           Width = 105.826840000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -3556,7 +3556,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Left = 597.165740000000000000
           Width = 75.590600000000000000
           Height = 11.338590000000000000
-          DisplayFormat.FormatStr = '%2.5n'
+          DisplayFormat.FormatStr = '%2.2n'
           DisplayFormat.Kind = fkNumeric
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -3695,7 +3695,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           ParentFont = False
         end
         object Memo7: TfrxMemoView
-          Left = 85.795275590551200000
+          Left = 85.795275590551190000
           Top = 2.000000000000000000
           Width = 56.692950000000000000
           Height = 13.984254410000000000
@@ -3767,7 +3767,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Top = 3.000000000000000000
           Width = 291.023761180000000000
           Height = 13.984254410000000000
-          DisplayFormat.FormatStr = '%2.5n'
+          DisplayFormat.FormatStr = '%2.2n'
           DisplayFormat.Kind = fkNumeric
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -3989,7 +3989,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         FillType = ftBrush
         Frame.Typ = [ftBottom]
         Height = 192.756030000000000000
-        Top = 16.000000000000000000
+        Top = 18.897650000000000000
         Width = 718.110700000000000000
         object Shape2: TfrxShapeView
           Left = 3.779530000000000000
@@ -6418,7 +6418,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         FillType = ftBrush
         Frame.Typ = []
         Height = 41.574830000000000000
-        Top = 228.000000000000000000
+        Top = 272.126160000000000000
         Width = 718.110700000000000000
         object Subreport1: TfrxSubreport
           Left = 156.850495000000000000
@@ -6429,8 +6429,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         end
       end
       object Chart2: TfrxChartView
-        Left = -3.779530000000000000
-        Top = 763.465060000000000000
+        Left = -11.338590000000000000
+        Top = 687.874460000000000000
         Width = 721.890230000000000000
         Height = 291.023810000000000000
         HighlightColor = clBlack
@@ -6466,6 +6466,34 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
             YSource = 'qry_grafico2."sum(imp_duration) div 100"'
           end>
       end
+      object PageFooter2: TfrxPageFooter
+        FillType = ftBrush
+        Frame.Typ = [ftTop]
+        Height = 22.677180000000000000
+        Top = 336.378170000000000000
+        Width = 718.110700000000000000
+        object Memo84: TfrxMemoView
+          Left = 574.488560000000000000
+          Top = 3.779530000000020000
+          Width = 105.826840000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haRight
+          Memo.UTF8W = (
+            'P'#225'gina [Page#] de [TotalPages#]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end>
+        end
+      end
     end
     object Page2: TfrxReportPage
       Font.Charset = DEFAULT_CHARSET
@@ -6485,7 +6513,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         FillType = ftBrush
         Frame.Typ = []
         Height = 18.897650000000000000
-        Top = 68.031540000000000000
+        Top = 64.000000000000000000
         Width = 718.110700000000000000
         DataSet = frxDbLigacoes.qry_grafico
         DataSetName = 'qry_grafico'
@@ -6532,7 +6560,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Height = 15.118120000000000000
           DataSet = frxDbLigacoes.qry_grafico
           DataSetName = 'qry_grafico'
-          DisplayFormat.FormatStr = '%2.5n'
+          DisplayFormat.FormatStr = '%2.2n'
           DisplayFormat.Kind = fkNumeric
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -6569,7 +6597,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         FillType = ftBrush
         Frame.Typ = []
         Height = 26.456710000000000000
-        Top = 18.897650000000000000
+        Top = 16.000000000000000000
         Width = 718.110700000000000000
         object Memo24: TfrxMemoView
           Top = 7.000000000000000000
@@ -6638,7 +6666,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         FillType = ftBrush
         Frame.Typ = []
         Height = 30.236240000000000000
-        Top = 109.606370000000000000
+        Top = 104.000000000000000000
         Width = 718.110700000000000000
         object qry_grafico_totalformatsumimp_duration1000: TfrxMemoView
           IndexTag = 1
@@ -6684,7 +6712,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Height = 18.897650000000000000
           DataSet = frxDbLigacoes.qry_grafico_total
           DataSetName = 'qry_grafico_total'
-          DisplayFormat.FormatStr = '%2.5n'
+          DisplayFormat.FormatStr = '%2.2n'
           DisplayFormat.Kind = fkNumeric
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack

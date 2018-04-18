@@ -52,13 +52,13 @@ object frm_dm: Tfrm_dm
         Name = 'USERNAME'
         DataType = ftString
         ParamType = ptInput
-        Value = 'elizeusouza'
+        Value = 'elizeu'
       end
       item
         Name = 'PASSWORD'
         DataType = ftString
         ParamType = ptInput
-        Value = '123'
+        Value = ''
       end>
     object qry_signinctr_id: TFDAutoIncField
       FieldName = 'ctr_id'

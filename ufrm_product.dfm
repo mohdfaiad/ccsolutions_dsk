@@ -104,7 +104,6 @@ inherited frm_product: Tfrm_product
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -223,7 +222,6 @@ inherited frm_product: Tfrm_product
               Properties.OnPopup = cxDBLookupComboBox3PropertiesPopup
               Style.HotTrack = False
               TabOrder = 6
-              OnEnter = cxDBLookupComboBox3Enter
               Width = 121
             end
             object cxDBLookupComboBox1: TcxDBLookupComboBox [7]
@@ -247,9 +245,9 @@ inherited frm_product: Tfrm_product
                   FieldName = 'ncm_description'
                 end>
               Properties.ListSource = ds_ncm
+              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 7
-              OnEnter = cxDBLookupComboBox1Enter
               Width = 121
             end
             object cxDBLookupComboBox4: TcxDBLookupComboBox [8]
@@ -302,7 +300,6 @@ inherited frm_product: Tfrm_product
               Properties.OnPopup = cxDBLookupComboBox5PropertiesPopup
               Style.HotTrack = False
               TabOrder = 9
-              OnEnter = cxDBLookupComboBox5Enter
               Width = 121
             end
             object cxDBLookupComboBox6: TcxDBLookupComboBox [10]

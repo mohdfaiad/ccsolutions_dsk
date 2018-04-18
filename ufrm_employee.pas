@@ -32,7 +32,7 @@ uses
   Vcl.ActnList, dxBar, cxBarEditItem, cxClasses, dxLayoutContainer, cxMaskEdit,
   cxDropDownEdit, cxCalendar, cxDBEdit, cxTextEdit, dxLayoutControl,
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
-  cxGridDBTableView, cxGrid, cxPC, cxImage, Vcl.ComCtrls;
+  cxGridDBTableView, cxGrid, cxPC, cxImage, Vcl.ComCtrls, cxButtonEdit;
 
 type
   Tfrm_employee = class(Tfrm_form_default)
@@ -175,8 +175,6 @@ type
     dxLayoutItem30: TdxLayoutItem;
     cxDBTextEdit29: TcxDBTextEdit;
     dxLayoutItem31: TdxLayoutItem;
-    cxDBTextEdit30: TcxDBTextEdit;
-    dxLayoutItem32: TdxLayoutItem;
     cxTabSheet2: TcxTabSheet;
     dxLayoutControl2Group_Root: TdxLayoutGroup;
     dxLayoutControl2: TdxLayoutControl;
@@ -188,7 +186,6 @@ type
     cxDBTextEdit32: TcxDBTextEdit;
     dxLayoutItem34: TdxLayoutItem;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup14: TdxLayoutAutoCreatedGroup;
@@ -208,9 +205,7 @@ type
     dxLayoutItem39: TdxLayoutItem;
     cxDBTextEdit36: TcxDBTextEdit;
     dxLayoutItem40: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup18: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup13: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup11: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup10: TdxLayoutAutoCreatedGroup;
     cxDBComboBox1: TcxDBComboBox;
     dxLayoutItem35: TdxLayoutItem;
@@ -227,10 +222,19 @@ type
     StatusBar1: TStatusBar;
     cxDBComboBox2: TcxDBComboBox;
     dxLayoutItem41: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup;
+    cxDBButtonEdit1: TcxDBButtonEdit;
+    dxLayoutItem23: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup11: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup18: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
+    procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
   private
     { Private declarations }
+    cep: integer;
   public
     { Public declarations }
     procedure limpaCache(Sender:TObject);
@@ -246,6 +250,33 @@ implementation
 uses ufrm_dm;
 
 { Tfrm_employee }
+
+
+
+procedure Tfrm_employee.ACBrCEP_1BuscaEfetuada(Sender: TObject);
+ var
+  i:Integer;
+begin
+  inherited;
+  for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+    begiN
+     qryrec_add_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
+     qryrec_add_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
+     qryrec_add_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
+     qryrec_add_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
+     qryrec_add_state.AsString     := ACBrCEP_1.Enderecos[i].UF;
+     qryrec_add_country.AsString     := 'BRASIL';
+     cxDBTextEdit29.SetFocus;
+    end;
+end;
+
+procedure Tfrm_employee.cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
+  AButtonIndex: Integer);
+begin
+  inherited;
+   cep :=1;
+    ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit1.Text);
+end;
 
 procedure Tfrm_employee.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

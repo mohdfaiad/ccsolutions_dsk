@@ -88,11 +88,12 @@ begin
     frm_phonebook := Tfrm_phonebook.Create(Self);
     frm_phonebook.Height := Bevel_1.Height;
     frm_phonebook.Width := Bevel_1.Width;
-    frm_phonebook.Show
+    frm_phonebook.Show;
   end
   else
   begin
     frm_phonebook.WindowState := wsNormal;
+    frm_phonebook.Show;
   end;
 end;
 
@@ -104,11 +105,12 @@ begin
     frm_report := Tfrm_report.Create(Self);
     frm_report.Height := Bevel_1.Height;
     frm_report.Width := Bevel_1.Width;
-    frm_report.Show
+    frm_report.Show;
   end
   else
   begin
     frm_report.WindowState := wsNormal;
+    frm_report.Show;
   end;
 end;
 
@@ -120,11 +122,12 @@ begin
     frm_client := Tfrm_client.Create(Self);
     frm_client.Height := Bevel_1.Height;
     frm_client.Width := Bevel_1.Width;
-    frm_client.Show
+    frm_client.Show;
   end
   else
   begin
     frm_client.WindowState := wsNormal;
+    frm_client.Show;
   end;
 end;
 
@@ -136,11 +139,12 @@ begin
     frm_contract := Tfrm_contract.Create(Self);
     frm_contract.Height := Bevel_1.Height;
     frm_contract.Width := Bevel_1.Width;
-    frm_contract.Show
+    frm_contract.Show;
   end
   else
   begin
     frm_contract.WindowState := wsNormal;
+    frm_contract.Show;
   end;
 end;
 
@@ -152,11 +156,12 @@ begin
     frm_contract_user := Tfrm_contract_user.Create(Self);
     frm_contract_user.Height := Bevel_1.Height;
     frm_contract_user.Width := Bevel_1.Width;
-    frm_contract_user.Show
+    frm_contract_user.Show;
   end
   else
   begin
     frm_contract_user.WindowState := wsNormal;
+    frm_contract_user.Show;
   end;
 end;
 
@@ -168,11 +173,12 @@ begin
     frm_enterprise := Tfrm_enterprise.Create(Self);
     frm_enterprise.Height := Bevel_1.Height;
     frm_enterprise.Width := Bevel_1.Width;
-    frm_enterprise.Show
+    frm_enterprise.Show;
   end
   else
   begin
     frm_enterprise.WindowState := wsNormal;
+    frm_enterprise.Show;
   end;
 end;
 
@@ -184,11 +190,12 @@ begin
     frm_supplier := Tfrm_supplier.Create(Self);
     frm_supplier.Height := Bevel_1.Height;
     frm_supplier.Width := Bevel_1.Width;
-    frm_supplier.Show
+    frm_supplier.Show;
   end
   else
   begin
     frm_supplier.WindowState := wsNormal;
+    frm_supplier.Show;
   end;
 end;
 
@@ -200,11 +207,12 @@ begin
     frm_voip_server := Tfrm_voip_server.Create(Self);
     frm_voip_server.Height := Bevel_1.Height;
     frm_voip_server.Width := Bevel_1.Width;
-    frm_voip_server.Show
+    frm_voip_server.Show;
   end
   else
   begin
     frm_voip_server.WindowState := wsNormal;
+    frm_voip_server.Show;
   end;
 end;
 
@@ -216,11 +224,12 @@ begin
     frm_import_sippulse := Tfrm_import_sippulse.Create(Self);
     frm_import_sippulse.Height := Bevel_1.Height;
     frm_import_sippulse.Width := Bevel_1.Width;
-    frm_import_sippulse.Show
+    frm_import_sippulse.Show;
   end
   else
   begin
     frm_import_sippulse.WindowState := wsNormal;
+    frm_import_sippulse.Show;
   end;
 end;
 

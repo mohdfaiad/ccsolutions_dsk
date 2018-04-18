@@ -66,6 +66,7 @@ type
     dxBarButton1: TdxBarButton;
     dxBarButton3: TdxBarButton;
     dxBarLargeButton14: TdxBarLargeButton;
+    cxImageList1: TcxImageList;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -97,7 +98,7 @@ implementation
 uses ufrm_login, ufrm_bank, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_receipt, ufrm_supplier, ufrm_billpay,
   ufrm_billreceive, ufrm_report, ufrm_account_type, ufrm_account_synthetic,
-  ufrm_cost_center;
+  ufrm_cost_center, ufrm_dm;
 
 procedure Tfrm_main.Action_account_plan_syntheticExecute(Sender: TObject);
 begin
@@ -342,6 +343,12 @@ begin
   inherited;
   frm_login := Tfrm_login.Create(Self);
   frm_login.ShowModal;
+
+  dxRibbonStatusBar1.Panels[1].Text :=FormatFloat('0000',frm_dm.qry_signinctr_id.AsInteger);
+  dxRibbonStatusBar1.Panels[3].Text :=frm_dm.qry_enterpriseent_last_name.AsString;
+  dxRibbonStatusBar1.Panels[5].Text :=frm_dm.qry_signinctr_usr_username.AsString;
+  dxRibbonStatusBar1.Panels[7].Text :=FormatDateTime('dd/MM/yyyy',date);
+
 
   if frm_login.ModalResult <> mrOk then
   begin

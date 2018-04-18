@@ -70,6 +70,7 @@ type
     cxGrid_1DBTableView1ctr_usr_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -83,7 +84,31 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_report;
+uses ufrm_report, ufrm_dm;
+
+procedure Tfrm_contract_user.Action_saveExecute(Sender: TObject);
+begin
+  //Condição para não permitir salvar o mesmo nome de usuário
+  //Que utilize o mesmo número de contrato
+ with frm_dm.qry,sql do
+  begin
+    Close;
+    Text:='select * from contract_user '+
+         'where contract_ctr_id =:ctr_id '+
+         'and ctr_usr_username =:ctr_usr_username';
+    ParamByName('CTR_ID').Value := qrycontract_ctr_id.Value;
+    ParamByName('CTR_USR_USERNAME').AsString := cxDBTextEdit4.Text;
+    Prepare;
+    Open;
+    if RecordCount >=1 then
+     begin
+      Application.MessageBox('Este nome de usuário já existe no sistema, por favor cadastre outro nome ! ','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
+     end
+     else
+    inherited;
+  end;
+  //
+end;
 
 procedure Tfrm_contract_user.FormClose(Sender: TObject;
   var Action: TCloseAction);

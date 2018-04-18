@@ -33,6 +33,10 @@ inherited frm_role: Tfrm_role
     inherited cxTabSheet_2: TcxTabSheet
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 80
@@ -157,5 +161,10 @@ inherited frm_role: Tfrm_role
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
+  end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
 end

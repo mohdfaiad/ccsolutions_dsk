@@ -33,7 +33,7 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxCurrencyEdit, cxShellComboBox, QExport4Dialog, cxBarEditItem, dxBarExtItems,
-  QImport3Wizard;
+  QImport3Wizard, ACBrSocket, ACBrCEP, frxClass;
 
 type
   Tfrm_role = class(Tfrm_form_default)
@@ -71,7 +71,8 @@ uses ufrm_dm;
 procedure Tfrm_role.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-  frm_role.Free;
+    frm_role.Destroy;
+    frm_role := Nil;
 end;
 
 procedure Tfrm_role.qryAfterInsert(DataSet: TDataSet);

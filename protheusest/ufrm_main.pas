@@ -135,6 +135,7 @@ begin
   else
   begin
     frm_brand.WindowState := wsNormal;
+    frm_brand.Show;
   end;
 end;
 
@@ -151,6 +152,7 @@ begin
   else
   begin
     frm_client.WindowState := wsNormal;
+    frm_client.Show;
   end;
 end;
 
@@ -166,7 +168,8 @@ begin
   end
   else
   begin
-    frm_contract.WindowState := wsNormal;
+    frm_contract_user.WindowState := wsNormal;
+    frm_contract_user.Show;
   end;
 end;
 
@@ -183,13 +186,14 @@ begin
   else
   begin
     frm_contract.WindowState := wsNormal;
+    frm_contract.Show;
   end;
 end;
 
 procedure Tfrm_main.Action_enterpriseExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_manufacturer) then
+  if not Assigned(frm_enterprise) then
   begin
     frm_enterprise := Tfrm_enterprise.Create(Self);
     frm_enterprise.Height := Bevel_1.Height;
@@ -199,6 +203,7 @@ begin
   else
   begin
     frm_enterprise.WindowState := wsNormal;
+    frm_enterprise.Show;
   end;
 end;
 
@@ -215,6 +220,7 @@ begin
   else
   begin
     frm_manufacturer.WindowState := wsNormal;
+    frm_manufacturer.Show;
   end;
 end;
 
@@ -231,6 +237,7 @@ begin
   else
   begin
     frm_ncm.WindowState := wsNormal;
+    frm_ncm.Show;
   end;
 end;
 
@@ -247,6 +254,7 @@ begin
   else
   begin
     frm_phonebook.WindowState := wsNormal;
+    frm_phonebook.Show;
   end;
 end;
 
@@ -263,6 +271,7 @@ begin
   else
   begin
     frm_product.WindowState := wsNormal;
+    frm_product.Show;
   end;
 end;
 
@@ -279,6 +288,7 @@ begin
   else
   begin
     frm_product_class.WindowState := wsNormal;
+    frm_product_class.Show;
   end;
 end;
 
@@ -295,6 +305,7 @@ begin
   else
   begin
     frm_product_department.WindowState := wsNormal;
+    frm_product_department.Show;
   end;
 end;
 
@@ -311,6 +322,7 @@ begin
   else
   begin
     frm_stock_entry.WindowState := wsNormal;
+    frm_stock_entry.Show;
   end;
 end;
 
@@ -327,6 +339,7 @@ begin
   else
   begin
     frm_product_unit.WindowState := wsNormal;
+    frm_product_unit.Show;
   end;
 end;
 
@@ -343,6 +356,7 @@ begin
   else
   begin
     frm_purchase_order.WindowState := wsNormal;
+    frm_purchase_order.Show;
   end;
 end;
 
@@ -359,6 +373,7 @@ begin
   else
   begin
     frm_report.WindowState := wsNormal;
+    frm_report.Show;
   end;
 end;
 
@@ -375,6 +390,7 @@ begin
   else
   begin
     frm_request.WindowState := wsNormal;
+    frm_request.Show;
   end;
 end;
 
@@ -391,6 +407,7 @@ begin
   else
   begin
     frm_stock.WindowState := wsNormal;
+    frm_stock.Show;
   end;
 end;
 
@@ -408,6 +425,7 @@ begin
   else
   begin
     frm_stock_iten.WindowState := wsNormal;
+    frm_stock_iten.Show;
   end;
 end;
 
@@ -424,6 +442,7 @@ begin
     else
     begin
       frm_stock_out.WindowState := wsNormal;
+      frm_stock_out.Show;
 
     end;
 end;
@@ -441,6 +460,7 @@ begin
   else
   begin
     frm_stock_transfer.WindowState := wsNormal;
+    frm_stock_transfer.Show;
   end;
 end;
 
@@ -457,6 +477,7 @@ begin
   else
   begin
     frm_supplier.WindowState := wsNormal;
+    frm_supplier.Show;
   end;
 end;
 

@@ -85,6 +85,7 @@ begin
   else
   begin
     frm_contract.WindowState := wsNormal;
+    frm_contract.Show;
   end;
 end;
 
@@ -101,6 +102,7 @@ begin
   else
   begin
     frm_contract_user.WindowState := wsNormal;
+    frm_contract_user.Show;
   end;
 end;
 
@@ -117,6 +119,7 @@ begin
   else
   begin
     frm_employee.WindowState := wsNormal;
+    frm_employee.Show;
   end;
 end;
 
@@ -133,6 +136,7 @@ begin
   else
   begin
     frm_enterprise.WindowState := wsNormal;
+    frm_enterprise.Show;
   end;
 end;
 
@@ -149,6 +153,7 @@ begin
   else
   begin
     frm_phonebook.WindowState := wsNormal;
+    frm_phonebook.Show;
   end;
 end;
 
@@ -165,6 +170,7 @@ begin
   else
   begin
     frm_report.WindowState := wsNormal;
+    frm_report.Show;
   end;
 end;
 
@@ -176,12 +182,13 @@ begin
     frm_role := Tfrm_role.Create(Self);
     frm_role.Height := Bevel_1.Height;
     frm_role.Width := Bevel_1.Width;
-    frm_role.Show;
+    frm_role.Show
   end
   else
-  begin
+   begin
     frm_role.WindowState := wsNormal;
-  end;
+    frm_role.Show;
+   end;
 end;
 
 procedure Tfrm_main.FormCreate(Sender: TObject);

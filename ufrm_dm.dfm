@@ -37,8 +37,8 @@ object frm_dm: Tfrm_dm
       '    INNER JOIN contract_user cu ON c.ctr_id = cu.contract_ctr_id'
       
         '    WHERE c.ctr_id = :contract AND cu.ctr_usr_username = :userna' +
-        'me AND (cu.ctr_usr_password = :password or ctr_usr_password is n' +
-        'ull)')
+        'me and (cu.ctr_usr_password=:password or cu.ctr_usr_password is ' +
+        'null)'#10)
     Left = 40
     Top = 128
     ParamData = <
@@ -58,7 +58,7 @@ object frm_dm: Tfrm_dm
         Name = 'PASSWORD'
         DataType = ftString
         ParamType = ptInput
-        Value = ''
+        Value = Null
       end>
     object qry_signinctr_id: TFDAutoIncField
       FieldName = 'ctr_id'

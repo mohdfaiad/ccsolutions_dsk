@@ -97,8 +97,8 @@ begin
   frm_dm.qry_signin.Params[0].AsInteger := StrToInt(edt_contract.Text);
   frm_dm.qry_signin.Params[1].AsString := edt_username.Text;
   frm_dm.qry_signin.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
-  frm_dm.qry_signin.Open();
-
+  frm_dm.qry_signin.Prepare;
+  frm_dm.qry_signin.Open;
 
   if frm_dm.qry_signin.RecordCount = 1 then
   begin
@@ -109,7 +109,6 @@ begin
      cxPageControl1.ActivePageIndex:=1;
      cxPageControl1.Pages[0].TabVisible:=False;
      edt_passwordCurrent.SetFocus;
-
      exit;
     end;
 
@@ -221,13 +220,12 @@ if Length(edt_username.Text) = 0  then
   begin
    close;
    text:='select contract_ctr_id,ctr_usr_first_name,ctr_usr_password,ctr_usr_email from contract_user ' +
-         'where contract_ctr_id =:contrato' +
+         'where contract_ctr_id =:contrato ' +
          'and ctr_usr_username = :usuario';
    ParamByName('contrato').AsString:=edt_contract.Text;
    ParamByNAme('usuario').AsString:=edt_username.Text;
    Prepare;
    Open;
-
 
 
    if IsEmpty then
@@ -254,7 +252,7 @@ if Length(edt_username.Text) = 0  then
    msn.Lines.Add('<br>');
    msn.Lines.Add('Conforme solicitado, segue sua senha abaixo:<br>');
    msn.Lines.Add('<br>');
-   msn.Lines.Add('<b>Senha:</b> ' + FieldByName('ctr_usr_password').AsString + '<br>');
+   msn.Lines.Add('<b>Senha:</b> ' + Trim(FieldByName('ctr_usr_password').AsString) + '<br>');
    msn.Lines.Add('<br>');
    msn.Lines.Add('Atenção: para efetuar seu login corretamente, verifique as letras maiúsculas e minúsculas. Lembre-se que sua senha é pessoal e intransferível.<br>');
    msn.Lines.Add('</body></html>');
@@ -272,6 +270,7 @@ if not (key in ['0'..'9',#08]) then
   key:=#0;
   Application.MessageBox('Somente é permetido números!','LOGIN', MB_OK + MB_ICONEXCLAMATION);
  end;
+
 
 If not( key in['0'..'9',#08] ) then
   key:=#0;

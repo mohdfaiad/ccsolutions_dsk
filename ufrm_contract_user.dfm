@@ -1,6 +1,7 @@
 inherited frm_contract_user: Tfrm_contract_user
   Caption = 'Manuten'#231#227'o: Usu'#225'rios'
   OnClose = FormClose
+  ExplicitLeft = -26
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -101,25 +102,15 @@ inherited frm_contract_user: Tfrm_contract_user
               TabOrder = 4
               Width = 121
             end
-            object cxDBTextEdit5: TcxDBTextEdit [6]
+            object cxDBTextEdit3: TcxDBTextEdit [6]
               Left = 245
-              Top = 130
-              DataBinding.DataField = 'ctr_usr_password'
-              DataBinding.DataSource = ds
-              Properties.EchoMode = eemPassword
-              Style.HotTrack = False
-              TabOrder = 6
-              Width = 121
-            end
-            object cxDBTextEdit3: TcxDBTextEdit [7]
-              Left = 420
               Top = 130
               DataBinding.DataField = 'ctr_usr_email'
               DataBinding.DataSource = ds
               Properties.CharCase = ecLowerCase
               Style.HotTrack = False
-              TabOrder = 7
-              Width = 307
+              TabOrder = 6
+              Width = 296
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
@@ -187,17 +178,6 @@ inherited frm_contract_user: Tfrm_contract_user
               ControlOptions.ShowBorder = False
               Index = 2
             end
-            object dxLayoutItem7: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Senha'
-              Control = cxDBTextEdit5
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
             object dxLayoutItem5: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup1
               AlignHorz = ahLeft
@@ -205,9 +185,9 @@ inherited frm_contract_user: Tfrm_contract_user
               CaptionOptions.Text = 'E-mail'
               Control = cxDBTextEdit3
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 307
+              ControlOptions.OriginalWidth = 296
               ControlOptions.ShowBorder = False
-              Index = 2
+              Index = 1
             end
           end
         end

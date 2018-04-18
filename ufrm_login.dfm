@@ -2283,7 +2283,7 @@ object frm_login: Tfrm_login
     end
     object cxTabSheet1: TcxTabSheet
       Caption = 'Alterar Senha'
-      ImageIndex = 1
+      ImageIndex = 2
       object Image2: TImage
         AlignWithMargins = True
         Left = 259

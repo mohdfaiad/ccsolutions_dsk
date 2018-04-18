@@ -53,8 +53,6 @@ type
     dxLayoutItem5: TdxLayoutItem;
     cxDBTextEdit4: TcxDBTextEdit;
     dxLayoutItem6: TdxLayoutItem;
-    cxDBTextEdit5: TcxDBTextEdit;
-    dxLayoutItem7: TdxLayoutItem;
     cxDBDateEdit1: TcxDBDateEdit;
     dxLayoutItem8: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;

@@ -84,7 +84,7 @@ inherited frm_main: Tfrm_main
         end>
       OneOnRow = False
     end
-    object dxBarManager_1Bar2: TdxBar
+    object dxBarManager_1Bar2: TdxBar [3]
       Caption = #218'til'
       CaptionButtons = <>
       DockedLeft = 0
@@ -104,7 +104,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar3: TdxBar
+    object dxBarManager_1Bar3: TdxBar [4]
       Caption = 'Laborat'#243'rio'
       CaptionButtons = <>
       DockedLeft = 0
@@ -132,7 +132,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar4: TdxBar
+    object dxBarManager_1Bar4: TdxBar [5]
       Caption = 'F'#225'brica'
       CaptionButtons = <>
       DockedLeft = 0
@@ -152,7 +152,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar5: TdxBar
+    object dxBarManager_1Bar5: TdxBar [6]
       Caption = 'Cadastro'
       CaptionButtons = <>
       DockedLeft = 346
@@ -342,10 +342,6 @@ inherited frm_main: Tfrm_main
         0000000000003B3D3E47BCC4C7E3D3DCE0FFD3DCE0FFD3DCE0FFD3DCE0FFD3DC
         E0FFD3DCE0FFBCC4C7E33B3D3E47000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000}
-    end
-    object dxBarButton2: TdxBarButton
-      Action = Action_material
-      Category = 0
     end
     object dxBarButton3: TdxBarButton
       Action = Action_exam

@@ -26,7 +26,7 @@ uses
   System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList, dxSkinsForm,
   dxBar, dxStatusBar, dxRibbonStatusBar, cxLabel, dxGalleryControl,
   dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
-  dxRibbon, dxGDIPlusClasses, Vcl.ExtCtrls, dxBevel;
+  dxRibbon, dxGDIPlusClasses, Vcl.ExtCtrls, dxBevel, cxLocalization;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -51,7 +51,6 @@ type
     Action_report: TAction;
     dxBarLargeButton9: TdxBarLargeButton;
     rbpopmenu_1: TdxRibbonPopupMenu;
-    dxBarButton2: TdxBarButton;
     dxBarButton3: TdxBarButton;
     dxBarManager_1Bar5: TdxBar;
     dxBarLargeButton7: TdxBarLargeButton;
@@ -102,11 +101,12 @@ begin
     frm_client := Tfrm_client.Create(Self);
     frm_client.Height := Bevel_1.Height;
     frm_client.Width := Bevel_1.Width;
-    frm_client.Show
+    frm_client.Show;
   end
   else
   begin
     frm_client.WindowState := wsNormal;
+    frm_client.Show;
   end;
 end;
 
@@ -118,11 +118,12 @@ begin
     frm_contract := Tfrm_contract.Create(Self);
     frm_contract.Height := Bevel_1.Height;
     frm_contract.Width := Bevel_1.Width;
-    frm_contract.Show
+    frm_contract.Show;
   end
   else
   begin
     frm_contract.WindowState := wsNormal;
+    frm_contract.Show;
   end;
 end;
 
@@ -134,11 +135,12 @@ begin
     frm_contract_user := Tfrm_contract_user.Create(Self);
     frm_contract_user.Height := Bevel_1.Height;
     frm_contract_user.Width := Bevel_1.Width;
-    frm_contract_user.Show
+    frm_contract_user.Show;
   end
   else
   begin
     frm_contract_user.WindowState := wsNormal;
+    frm_contract_user.Show;
   end;
 end;
 
@@ -150,11 +152,12 @@ begin
     frm_department := Tfrm_department.Create(Self);
     frm_department.Height := Bevel_1.Height;
     frm_department.Width := Bevel_1.Width;
-    frm_department.Show
+    frm_department.Show;
   end
   else
   begin
     frm_department.WindowState := wsNormal;
+    frm_department.Show;
   end;
 end;
 
@@ -166,11 +169,12 @@ begin
     frm_enterprise := Tfrm_enterprise.Create(Self);
     frm_enterprise.Height := Bevel_1.Height;
     frm_enterprise.Width := Bevel_1.Width;
-    frm_enterprise.Show
+    frm_enterprise.Show;
   end
   else
   begin
     frm_contract_user.WindowState := wsNormal;
+    frm_enterprise.Show;
   end;
 end;
 
@@ -182,11 +186,12 @@ begin
     frm_exam := Tfrm_exam.Create(Self);
     frm_exam.Height := Bevel_1.Height;
     frm_exam.Width := Bevel_1.Width;
-    frm_exam.Show
+    frm_exam.Show;
   end
   else
   begin
     frm_exam.WindowState := wsNormal;
+    frm_exam.Show;
   end;
 end;
 
@@ -198,11 +203,12 @@ begin
     frm_insurance := Tfrm_insurance.Create(Self);
     frm_insurance.Height := Bevel_1.Height;
     frm_insurance.Width := Bevel_1.Width;
-    frm_insurance.Show
+    frm_insurance.Show;
   end
   else
   begin
     frm_insurance.WindowState := wsNormal;
+    frm_insurance.Show;
   end;
 end;
 
@@ -214,11 +220,12 @@ begin
     frm_material := Tfrm_material.Create(Self);
     frm_material.Height := Bevel_1.Height;
     frm_material.Width := Bevel_1.Width;
-    frm_material.Show
+    frm_material.Show;
   end
   else
   begin
     frm_exam.WindowState := wsNormal;
+    frm_material.Show;
   end;
 end;
 
@@ -230,11 +237,12 @@ begin
     frm_medicine := Tfrm_medicine.Create(Self);
     frm_medicine.Height := Bevel_1.Height;
     frm_medicine.Width := Bevel_1.Width;
-    frm_medicine.Show
+    frm_medicine.Show;
   end
   else
   begin
     frm_medicine.WindowState := wsNormal;
+    frm_medicine.Show;
   end;
 end;
 
@@ -246,11 +254,12 @@ begin
     frm_phonebook := Tfrm_phonebook.Create(Self);
     frm_phonebook.Height := Bevel_1.Height;
     frm_phonebook.Width := Bevel_1.Width;
-    frm_phonebook.Show
+    frm_phonebook.Show;
   end
   else
   begin
     frm_phonebook.WindowState := wsNormal;
+    frm_phonebook.Show;
   end;
 end;
 
@@ -262,11 +271,12 @@ begin
     frm_report := Tfrm_report.Create(Self);
     frm_report.Height := Bevel_1.Height;
     frm_report.Width := Bevel_1.Width;
-    frm_report.Show
+    frm_report.Show;
   end
   else
   begin
     frm_report.WindowState := wsNormal;
+    frm_report.Show;
   end;
 end;
 
@@ -278,11 +288,12 @@ begin
     frm_request_type := Tfrm_request_type.Create(Self);
     frm_request_type.Height := Bevel_1.Height;
     frm_request_type.Width := Bevel_1.Width;
-    frm_request_type.Show
+    frm_request_type.Show;
   end
   else
   begin
     frm_request_type.WindowState := wsNormal;
+    frm_request_type.Show;
   end;
 end;
 
@@ -294,11 +305,12 @@ begin
     frm_supplier := Tfrm_supplier.Create(Self);
     frm_supplier.Height := Bevel_1.Height;
     frm_supplier.Width := Bevel_1.Width;
-    frm_supplier.Show
+    frm_supplier.Show;
   end
   else
   begin
     frm_supplier.WindowState := wsNormal;
+     frm_supplier.Show;
   end;
 end;
 

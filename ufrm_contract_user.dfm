@@ -1,7 +1,6 @@
 inherited frm_contract_user: Tfrm_contract_user
   Caption = 'Manuten'#231#227'o: Usu'#225'rios'
   OnClose = FormClose
-  ExplicitLeft = -26
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -280,5 +279,12 @@ inherited frm_contract_user: Tfrm_contract_user
     Datasets = <>
     Variables = <>
     Style = <>
+  end
+  object ACBrValidador1: TACBrValidador
+    TipoDocto = docEmail
+    IgnorarChar = './-'
+    OnMsgErro = ACBrValidador1MsgErro
+    Left = 712
+    Top = 128
   end
 end

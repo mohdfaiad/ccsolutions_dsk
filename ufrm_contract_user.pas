@@ -34,7 +34,7 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxShellComboBox, frxDesgn, QExport4Dialog, cxBarEditItem, dxBarExtItems,
-  QImport3Wizard, ACBrSocket, ACBrCEP, frxClass;
+  QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, ACBrValidador;
 
 type
   Tfrm_contract_user = class(Tfrm_form_default)
@@ -66,9 +66,11 @@ type
     cxGrid_1DBTableView1ctr_usr_username: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_usr_dt_birth: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_usr_dt_registration: TcxGridDBColumn;
+    ACBrValidador1: TACBrValidador;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
+    procedure ACBrValidador1MsgErro(Mensagem: string);
   private
     { Private declarations }
   public
@@ -84,27 +86,46 @@ implementation
 
 uses ufrm_report, ufrm_dm;
 
+procedure Tfrm_contract_user.ACBrValidador1MsgErro(Mensagem: string);
+begin
+  inherited;
+   Application.MessageBox('E-mail não informado ou está inváido ! ','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
+end;
+
 procedure Tfrm_contract_user.Action_saveExecute(Sender: TObject);
 begin
   //Condição para não permitir salvar o mesmo nome de usuário
   //Que utilize o mesmo número de contrato
- with frm_dm.qry,sql do
-  begin
-    Close;
-    Text:='select * from contract_user '+
-         'where contract_ctr_id =:ctr_id '+
-         'and ctr_usr_username =:ctr_usr_username';
-    ParamByName('CTR_ID').Value := qrycontract_ctr_id.Value;
-    ParamByName('CTR_USR_USERNAME').AsString := cxDBTextEdit4.Text;
-    Prepare;
-    Open;
-    if RecordCount >=1 then
-     begin
-      Application.MessageBox('Este nome de usuário já existe no sistema, por favor cadastre outro nome ! ','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
-     end
-     else
-    inherited;
-  end;
+     with frm_dm.qry,sql do
+      begin
+        Close;
+        Text:='select * from contract_user '+
+             'where contract_ctr_id =:ctr_id '+
+             'and ctr_usr_username =:ctr_usr_username';
+        ParamByName('CTR_ID').Value := qrycontract_ctr_id.Value;
+        ParamByName('CTR_USR_USERNAME').AsString := cxDBTextEdit4.Text;
+        Prepare;
+        Open;
+        if (RecordCount >=1) and (qry.State in [dsInsert]) then
+         begin
+          Application.MessageBox('Este nome de usuário já existe no sistema, por favor cadastre outro nome ! ','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
+         end
+         else
+          begin
+             ACBrValidador1.Documento :=cxDBTextEdit3.Text;
+             if ACBrValidador1.Validar then
+              begin
+                inherited;
+              end
+              else
+               begin
+                // Application.MessageBox('E-mail informado está inváido ! ','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
+                 exit;
+               end;
+
+          end;
+
+      end;
   //
 end;
 
@@ -120,6 +141,8 @@ procedure Tfrm_contract_user.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   qryctr_usr_dt_registration.Value := Date + Time;
+
+
 end;
 
 end.

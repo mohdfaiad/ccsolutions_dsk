@@ -138,6 +138,10 @@ type
     procedure Action_saveExecute(Sender: TObject);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox9PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox10PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox12PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox11PropertiesPopup(Sender: TObject);
   private
     { Private declarations }
   public
@@ -191,6 +195,27 @@ begin
      end;
    end;
 
+procedure Tfrm_billpay.cxDBLookupComboBox10PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  //comando para atualizar combobox
+   qry_cost_center_detail.Refresh;
+end;
+
+procedure Tfrm_billpay.cxDBLookupComboBox11PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  //comando para atualizar combobox
+  qry_account_plan_detail.Refresh;
+end;
+
+procedure Tfrm_billpay.cxDBLookupComboBox12PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  //comando para atualizar combobox
+   qry_account_plan.Refresh;
+end;
+
 procedure Tfrm_billpay.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
 begin
   inherited;
@@ -203,6 +228,13 @@ begin
   inherited;
   //Comando para atualizar combobox
    qry_enterprise.Refresh;
+end;
+
+procedure Tfrm_billpay.cxDBLookupComboBox9PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  //Comando para atualizar combobox
+  qry_cost_center.Refresh;
 end;
 
 procedure Tfrm_billpay.FormClose(Sender: TObject; var Action: TCloseAction);

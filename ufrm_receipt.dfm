@@ -4,7 +4,6 @@ inherited frm_receipt: Tfrm_receipt
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -103,6 +102,7 @@ inherited frm_receipt: Tfrm_receipt
                   FieldName = 'ent_id'
                 end>
               Properties.ListSource = ds_enterprise
+              Properties.OnPopup = cxDBLookupComboBox2PropertiesPopup
               Style.HotTrack = False
               TabOrder = 2
               Width = 309
@@ -127,6 +127,7 @@ inherited frm_receipt: Tfrm_receipt
                   FieldName = 'cli_id'
                 end>
               Properties.ListSource = ds_client
+              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 3
               Width = 309

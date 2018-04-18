@@ -76,6 +76,7 @@ inherited frm_billpay: Tfrm_billpay
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -487,6 +488,7 @@ inherited frm_billpay: Tfrm_billpay
                   FieldName = 'coc_id'
                 end>
               Properties.ListSource = ds_cost_center
+              Properties.OnPopup = cxDBLookupComboBox9PropertiesPopup
               Style.HotTrack = False
               TabOrder = 2
               Width = 145
@@ -512,6 +514,7 @@ inherited frm_billpay: Tfrm_billpay
                   FieldName = 'acp_id'
                 end>
               Properties.ListSource = ds_account_plan
+              Properties.OnPopup = cxDBLookupComboBox12PropertiesPopup
               Style.HotTrack = False
               TabOrder = 0
               Width = 145
@@ -537,6 +540,7 @@ inherited frm_billpay: Tfrm_billpay
                   FieldName = 'acd_id'
                 end>
               Properties.ListSource = ds_account_plan_detail
+              Properties.OnPopup = cxDBLookupComboBox11PropertiesPopup
               Style.HotTrack = False
               TabOrder = 1
               Width = 145
@@ -562,6 +566,7 @@ inherited frm_billpay: Tfrm_billpay
                   FieldName = 'cod_id'
                 end>
               Properties.ListSource = ds_cost_center_detail
+              Properties.OnPopup = cxDBLookupComboBox10PropertiesPopup
               Style.HotTrack = False
               TabOrder = 3
               Width = 145

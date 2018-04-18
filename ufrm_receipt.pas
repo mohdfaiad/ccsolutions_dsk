@@ -81,6 +81,8 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_printExecute(Sender: TObject);
+    procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+    procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
   private
     { Private declarations }
   public
@@ -106,6 +108,20 @@ begin
     frxReport_1.variables['extenso'] := QuotedStr(ACBrExtenso1.ValorToTexto(qryrec_value.AsFloat));
     frxReport_1.ShowReport;
    end;
+end;
+
+procedure Tfrm_receipt.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+   //Comando para atualizar combobox
+  qry_client.Refresh;
+end;
+
+procedure Tfrm_receipt.cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  //Comando para atualizar combobox
+  qry_enterprise.Refresh;
 end;
 
 procedure Tfrm_receipt.FormClose(Sender: TObject; var Action: TCloseAction);

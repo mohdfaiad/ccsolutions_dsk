@@ -83,10 +83,12 @@ type
     procedure Action_printExecute(Sender: TObject);
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure limpaCache(Sender:TObject);
   end;
 
 var
@@ -129,6 +131,17 @@ begin
   inherited;
   frm_receipt.Destroy;
   frm_receipt := Nil;
+end;
+
+procedure Tfrm_receipt.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FDSchemaAdapter_1.AfterApplyUpdate := limpaCache;
+end;
+
+procedure Tfrm_receipt.limpaCache(Sender: TObject);
+begin
+   qry.CommitUpdates();
 end;
 
 procedure Tfrm_receipt.qryAfterInsert(DataSet: TDataSet);

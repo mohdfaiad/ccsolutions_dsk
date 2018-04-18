@@ -148,10 +148,12 @@ type
     procedure cxDBLookupComboBox10PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox12PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox11PropertiesPopup(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure limpaCache(Sender:TObject);
   end;
 
 var
@@ -248,6 +250,17 @@ begin
   inherited;
   frm_billpay.Destroy;
   frm_billpay := Nil;
+end;
+
+procedure Tfrm_billpay.FormCreate(Sender: TObject);
+begin
+  inherited;
+   FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+end;
+
+procedure Tfrm_billpay.limpaCache(Sender: TObject);
+begin
+   qry.CommitUpdates();
 end;
 
 procedure Tfrm_billpay.qryAfterInsert(DataSet: TDataSet);

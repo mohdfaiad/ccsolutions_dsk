@@ -112,6 +112,7 @@ begin
   else
   begin
     frm_account_synthetic.WindowState := wsNormal;
+    frm_account_synthetic.Show;
   end;
 end;
 
@@ -128,6 +129,7 @@ begin
   else
   begin
     frm_account_type.WindowState := wsNormal;
+    frm_account_type.Show;
   end;
 end;
 
@@ -144,6 +146,7 @@ begin
   else
   begin
     frm_bank.WindowState := wsNormal;
+    frm_bank.Show;
   end;
 end;
 
@@ -160,6 +163,7 @@ begin
   else
   begin
     frm_billpay.WindowState := wsNormal;
+    frm_billpay.Show;
   end;
 end;
 
@@ -176,6 +180,7 @@ begin
   else
   begin
     frm_billreceive.WindowState := wsNormal;
+    frm_billreceive.Show;
   end;
 end;
 
@@ -192,6 +197,7 @@ begin
   else
   begin
     frm_client.WindowState := wsNormal;
+    frm_client.Show;
   end;
 end;
 
@@ -208,6 +214,7 @@ begin
   else
   begin
     frm_contract.WindowState := wsNormal;
+    frm_contract.Show;
   end;
 end;
 
@@ -224,6 +231,7 @@ begin
   else
   begin
     frm_contract_user.WindowState := wsNormal;
+    frm_contract_user.Show;
   end;
 end;
 
@@ -240,6 +248,7 @@ begin
   else
   begin
     frm_cost_center.WindowState := wsNormal;
+    frm_cost_center.Show;
   end;
 end;
 
@@ -256,6 +265,7 @@ begin
   else
   begin
     frm_enterprise.WindowState := wsNormal;
+    frm_enterprise.Show;
   end;
 end;
 
@@ -272,6 +282,7 @@ begin
   else
   begin
     frm_phonebook.WindowState := wsNormal;
+    frm_phonebook.Show;
   end;
 end;
 
@@ -288,6 +299,7 @@ begin
   else
   begin
     frm_receipt.WindowState := wsNormal;
+    frm_receipt.Show;
   end;
 end;
 
@@ -304,6 +316,7 @@ begin
   else
   begin
     frm_report.WindowState := wsNormal;
+    frm_report.Show;
   end;
 end;
 
@@ -320,6 +333,7 @@ begin
   else
   begin
     frm_supplier.WindowState := wsNormal;
+    frm_supplier.Show;
   end;
 end;
 

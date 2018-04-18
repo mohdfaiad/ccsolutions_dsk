@@ -76,7 +76,6 @@ inherited frm_billpay: Tfrm_billpay
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -655,13 +654,14 @@ inherited frm_billpay: Tfrm_billpay
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from billpay')
     object qrybpy_id: TFDAutoIncField
@@ -903,6 +903,7 @@ inherited frm_billpay: Tfrm_billpay
       FieldName = 'acp_id'
       Origin = 'acp_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_account_plancontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault

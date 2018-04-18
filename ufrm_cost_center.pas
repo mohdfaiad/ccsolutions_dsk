@@ -71,10 +71,12 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_cost_center_detailAfterInsert(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure limpaCache(Sender:TObject);
   end;
 
 var
@@ -91,6 +93,17 @@ begin
   inherited;
   frm_cost_center.Destroy;
   frm_cost_center := Nil;
+end;
+
+procedure Tfrm_cost_center.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+end;
+
+procedure Tfrm_cost_center.limpaCache(Sender: TObject);
+begin
+  qry.CommitUpdates();
 end;
 
 procedure Tfrm_cost_center.qryAfterInsert(DataSet: TDataSet);

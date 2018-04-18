@@ -57,6 +57,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    procedure limpaCache(Sender:TObject);
   end;
 
 var
@@ -73,6 +74,11 @@ begin
   inherited;
     frm_role.Destroy;
     frm_role := Nil;
+end;
+
+procedure Tfrm_role.limpaCache(Sender: TObject);
+begin
+   qry.CommitUpdates();
 end;
 
 procedure Tfrm_role.qryAfterInsert(DataSet: TDataSet);

@@ -1,7 +1,6 @@
 inherited frm_account_synthetic: Tfrm_account_synthetic
   Caption = 'Manuten'#231#227'o: Planos de Contas'
   OnClose = FormClose
-  ExplicitTop = 6
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl

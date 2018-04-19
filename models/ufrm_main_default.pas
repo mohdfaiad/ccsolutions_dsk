@@ -58,6 +58,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+
   end;
 
 var
@@ -73,18 +74,12 @@ uses ufrm_dm, ufrm_search_enterprise;
 
 procedure Tfrm_main_default.dxRibbonStatusBar1Panels3Click(Sender: TObject);
 begin
-   if not Assigned(frm_search_enterprise) then
-  begin
-    frm_search_enterprise := Tfrm_search_enterprise.Create(Self);
-   // frm_search_enterprise.Height := Bevel_1.Height;
-   // frm_search_enterprise.Width := Bevel_1.Width;
-    frm_search_enterprise.Show;
-  end
-  else
-  begin
-    frm_search_enterprise.WindowState := wsNormal;
-    frm_search_enterprise.Show;
-  end;
+ Application.CreateForm(Tfrm_search_enterprise,frm_search_enterprise);
+ frm_search_enterprise.empresa:=dxRibbonStatusBar1.Panels[3].Text;
+ frm_search_enterprise.ShowModal;
+ dxRibbonStatusBar1.Panels[3].Text:=frm_search_enterprise.empresa;
+ frm_search_enterprise.Destroy;
+
 end;
 
 procedure Tfrm_main_default.FormCreate(Sender: TObject);
@@ -102,7 +97,7 @@ begin
 procedure Tfrm_main_default.FormShow(Sender: TObject);
 begin
     dxRibbonStatusBar1.Panels[1].Text :=FormatFloat('0000',frm_dm.qry_signinctr_id.AsInteger);
-    dxRibbonStatusBar1.Panels[3].Text :=frm_dm.qry_enterpriseent_last_name.AsString;
+    dxRibbonStatusBar1.Panels[3].Text := IntToStr(frm_dm.qry_enterpriseent_id.AsInteger)+' - '+frm_dm.qry_enterpriseent_last_name.AsString;
     dxRibbonStatusBar1.Panels[5].Text :=frm_dm.qry_signinctr_usr_username.AsString;
     dxRibbonStatusBar1.Panels[7].Text :=FormatDateTime('dd/MM/yyyy',date);
 end;

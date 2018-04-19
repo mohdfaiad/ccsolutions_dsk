@@ -66,10 +66,15 @@ type
     cxGrid_1DBTableView1ent_email: TcxGridDBColumn;
     cxGrid_1DBTableView1ent_cnpj: TcxGridDBColumn;
     procedure FormShow(Sender: TObject);
+    procedure cxGrid_1DBTableView1CellDblClick(Sender: TcxCustomGridTableView;
+      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+      AShift: TShiftState; var AHandled: Boolean);
   private
     { Private declarations }
   public
     { Public declarations }
+    Empresa:string;
+
   end;
 
 var
@@ -79,7 +84,17 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, ufrm_main_default;
+
+procedure Tfrm_search_enterprise.cxGrid_1DBTableView1CellDblClick(
+  Sender: TcxCustomGridTableView; ACellViewInfo: TcxGridTableDataCellViewInfo;
+  AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
+begin
+  inherited;
+   qry.Locate('ent_id',qryent_id.AsInteger,[loCaseInsensitive, loPartialKey]);
+   empresa := IntToStr(qryent_id.AsInteger)+ ' - '+qryent_last_name.AsString;
+   close;
+end;
 
 procedure Tfrm_search_enterprise.FormShow(Sender: TObject);
 begin

@@ -4,8 +4,15 @@ inherited frm_search_enterprise: Tfrm_search_enterprise
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxGrid_1: TcxGrid
+    ExplicitTop = 33
     inherited cxGrid_1DBTableView1: TcxGridDBTableView
+      OnCellDblClick = cxGrid_1DBTableView1CellDblClick
       DataController.DataSource = ds
+      DataController.Options = [dcoCaseInsensitive, dcoAssignGroupingValues, dcoAssignMasterDetailKeys, dcoSaveExpanding]
+      OptionsData.Deleting = False
+      OptionsData.DeletingConfirmation = False
+      OptionsData.Editing = False
+      OptionsData.Inserting = False
       object cxGrid_1DBTableView1ent_id: TcxGridDBColumn
         Caption = 'Cod. ID'
         DataBinding.FieldName = 'ent_id'
@@ -52,15 +59,26 @@ inherited frm_search_enterprise: Tfrm_search_enterprise
     Top = 24
   end
   inherited qry: TFDQuery
+    MasterSource = frm_dm.ds_signin
+    MasterFields = 'ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from enterprise')
+      'select * from enterprise'
+      'where contract_ctr_id =:ctr_id')
     Left = 384
     Top = 24
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
     object qryent_id: TFDAutoIncField
       FieldName = 'ent_id'
       Origin = 'ent_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault

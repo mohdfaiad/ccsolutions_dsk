@@ -43,11 +43,11 @@ inherited frm_contract_user: Tfrm_contract_user
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
+      ExplicitTop = 36
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -110,9 +110,6 @@ inherited frm_contract_user: Tfrm_contract_user
               Style.HotTrack = False
               TabOrder = 6
               Width = 296
-            end
-            inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               ItemIndex = 1
@@ -190,11 +187,59 @@ inherited frm_contract_user: Tfrm_contract_user
             end
           end
         end
+        object cxTabSheet1: TcxTabSheet
+          Caption = 'Controle'
+          OnShow = cxTabSheet1Show
+          object dxLayoutControl1: TdxLayoutControl
+            Left = 0
+            Top = 0
+            Width = 762
+            Height = 432
+            Align = alClient
+            TabOrder = 0
+            LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            OnDblClick = dxLayoutControl_1DblClick
+            object emps: TcxCheckListBox
+              Left = 10
+              Top = 10
+              Width = 383
+              Height = 175
+              Items = <
+                item
+                end
+                item
+                end
+                item
+                end>
+              TabOrder = 0
+            end
+            object dxLayoutGroup3: TdxLayoutGroup
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              ButtonOptions.Buttons = <>
+              Hidden = True
+              ShowBorder = False
+              Index = -1
+            end
+            object dxLayoutItem7: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              Control = emps
+              ControlOptions.OriginalHeight = 175
+              ControlOptions.OriginalWidth = 383
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+          end
+        end
       end
     end
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    Left = 512
+    Top = 40
   end
   inherited qry: TFDQuery
     Active = True
@@ -276,6 +321,8 @@ inherited frm_contract_user: Tfrm_contract_user
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   inherited frxReport_1: TfrxReport
+    Left = 271
+    Top = 40
     Datasets = <>
     Variables = <>
     Style = <>

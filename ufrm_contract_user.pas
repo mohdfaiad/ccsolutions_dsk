@@ -34,7 +34,8 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxShellComboBox, frxDesgn, QExport4Dialog, cxBarEditItem, dxBarExtItems,
-  QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, ACBrValidador;
+  QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, ACBrValidador, cxCheckListBox,
+  cxDBCheckListBox;
 
 type
   Tfrm_contract_user = class(Tfrm_form_default)
@@ -67,10 +68,17 @@ type
     cxGrid_1DBTableView1ctr_usr_dt_birth: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_usr_dt_registration: TcxGridDBColumn;
     ACBrValidador1: TACBrValidador;
+    cxTabSheet1: TcxTabSheet;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutGroup3: TdxLayoutGroup;
+    emps: TcxCheckListBox;
+    dxLayoutItem7: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
     procedure ACBrValidador1MsgErro(Mensagem: string);
+    procedure montar_empresa;
+    procedure cxTabSheet1Show(Sender: TObject);
   private
     { Private declarations }
   public
@@ -129,6 +137,12 @@ begin
   //
 end;
 
+procedure Tfrm_contract_user.cxTabSheet1Show(Sender: TObject);
+begin
+  inherited;
+montar_empresa;
+end;
+
 procedure Tfrm_contract_user.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -136,6 +150,37 @@ begin
   frm_contract_user.Destroy;
   frm_contract_user := Nil;
 end;
+
+procedure Tfrm_contract_user.montar_empresa;
+begin
+
+with frm_dm.qry,sql do
+ begin
+  close;
+  text := 'select a.ent_first_name, a.ent_id,b.ctr_usr_ent_ent_id from enterprise a '+
+          'left outer join contract_user_enterprise b on a.ent_id=b.ctr_usr_ent_ent_id '+
+          'and b.ctr_usr_ent_user_id = ' + QuotedStr(qryctr_usr_id.AsString) +
+          ' order by 1';
+  Prepared;
+  Open;
+  First;
+  emps.Items.clear;
+  while not Eof do
+  begin
+    emps.AddItem(Fields[0].Text);
+  // if trim(Fields[2].AsString) <> '' then
+   // TcxCheckListBoxItem(emps.Items).Checked:=True;
+
+
+//    emps.Checked[emps.Items.Count - 1] :=
+//      iif(trim(Fields[2].AsString) <> '', true, false);
+//    emp.add(Fields[1].Text);
+    Next;
+  end;
+ end;
+end;
+
+
 
 procedure Tfrm_contract_user.qryAfterInsert(DataSet: TDataSet);
 begin

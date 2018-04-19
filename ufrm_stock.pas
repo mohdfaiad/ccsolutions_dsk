@@ -69,6 +69,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -83,6 +84,39 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_stock.Action_deleteExecute(Sender: TObject);
+begin
+ //--- SQL para verificar se existe produtos em itens do estoque---
+ // Caso exista o estoque não poderá ser excluído
+  with frm_dm.qry3, sql do
+    begin
+      Clear;
+      Text := ' select * from stock_iten' +
+              ' where stock_sto_id =:sto_id';
+       ParamByName('sto_id').AsInteger := qrysto_id.AsInteger;
+       Prepare;
+       Open;
+
+     if RecordCount >=1 then
+     begin
+       Application.MessageBox('Não é permitido excluir este estóque pois o mesmo contem produtos !','AVISO DO ESTOQUE',MB_OK+MB_ICONINFORMATION);
+       exit;
+     end;
+
+    end;
+  //--Caso não retorne nenhum produto no itens do estoque poderá ser excluido
+   if Application.MessageBox('Tem certeza que deseja excluir este estoque ? ','AVISO DE EXCLUSÃO DO ESTOQUE',MB_YESNO + MB_ICONQUESTION) = mrYes then
+    begin
+
+     inherited;
+      qry.ApplyUpdates(0);
+
+    end;
+
+
+
+end;
 
 procedure Tfrm_stock.Action_saveExecute(Sender: TObject);
 begin

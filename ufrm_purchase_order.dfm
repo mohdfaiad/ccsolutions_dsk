@@ -196,18 +196,12 @@
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
       ExplicitHeight = 453
       inherited cxPageControl_2: TcxPageControl
         Height = 447
         ExplicitHeight = 447
         ClientRectBottom = 441
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
           ExplicitHeight = 413
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 413
@@ -2977,7 +2971,7 @@
         Name = 'PCO_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = Null
+        Value = 24
       end>
     object qry_purchase_order_itenpoi_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'

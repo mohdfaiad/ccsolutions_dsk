@@ -134,21 +134,28 @@ uses ufrm_dm;
 
 procedure Tfrm_purchase_order.Action_deleteExecute(Sender: TObject);
 begin
+//Condição para não permitir excluir um pedido de compra que esteja diferente do status de A - Aberto
  if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
   begin
-     Application.MessageBox('Só é permitido excluir um pedido de compra que esteja em aberto!','PEDIDO DE COMPRA', MB_ICONINFORMATION + MB_OK);
+     Application.MessageBox('Só é permitido excluir um pedido de compra que esteja em A - Aberto !','PEDIDO DE COMPRA', MB_ICONINFORMATION + MB_OK);
      qry.CancelUpdates;
      qry_purchase_order_iten.CancelUpdates;
      Exit;
   end;
-  qry_purchase_order_iten.First;
-  while not qry_purchase_order_iten.Eof do
-   begin
-     qry_purchase_order_iten.Delete;
-   end;
+ //Caso o pedido de compra esteja no status de aberto poderar ser excluido
+  if Application.MessageBox('Tem certeza que deseja excluir este pedido de compra ?','AVISO DE EXCLUSÃO DO PEDIDO DE COMPRA',MB_YESNO+MB_ICONQUESTION) = mrYes then
+    begin
+      qry_purchase_order_iten.First;
+      while not qry_purchase_order_iten.Eof do
+       begin
+         qry_purchase_order_iten.Delete;
+       end;
 
-   qry_purchase_order_iten.ApplyUpdates(0);
-  inherited;
+       qry_purchase_order_iten.ApplyUpdates(0);
+
+      inherited;
+    end;
+
 end;
 
 procedure Tfrm_purchase_order.Action_saveExecute(Sender: TObject);

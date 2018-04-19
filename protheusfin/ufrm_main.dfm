@@ -1,18 +1,12 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Financeiro - CCS Protheus.'
-  ExplicitLeft = -134
-  ExplicitTop = -358
-  ExplicitWidth = 1024
-  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited Image_1: TImage
-    Height = 408
     ExplicitTop = 187
     ExplicitHeight = 391
   end
   inherited Bevel_1: TBevel
-    Height = 408
     ExplicitLeft = 8
     ExplicitTop = 224
     ExplicitWidth = 1008
@@ -57,99 +51,6 @@ inherited frm_main: Tfrm_main
       end
     end
   end
-  inherited dxRibbonStatusBar1: TdxRibbonStatusBar
-    Top = 568
-    Height = 33
-    Panels = <
-      item
-        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
-        PanelStyle.ImageIndex = 0
-        PanelStyle.Font.Charset = DEFAULT_CHARSET
-        PanelStyle.Font.Color = clDefault
-        PanelStyle.Font.Height = -11
-        PanelStyle.Font.Name = 'Tahoma'
-        PanelStyle.Font.Style = [fsBold]
-        PanelStyle.ParentFont = False
-        Bevel = dxpbRaised
-        Text = 'Contrato:'
-        Width = 55
-      end
-      item
-        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
-        PanelStyle.EllipsisType = dxetSmartPath
-        Bevel = dxpbRaised
-        Width = 80
-      end
-      item
-        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
-        PanelStyle.ImageIndex = 1
-        PanelStyle.Font.Charset = DEFAULT_CHARSET
-        PanelStyle.Font.Color = clDefault
-        PanelStyle.Font.Height = -11
-        PanelStyle.Font.Name = 'Tahoma'
-        PanelStyle.Font.Style = [fsBold]
-        PanelStyle.ParentFont = False
-        Text = 'Empresa:'
-        Width = 54
-      end
-      item
-        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
-        Bevel = dxpbRaised
-        Width = 250
-      end
-      item
-        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
-        PanelStyle.ImageIndex = 2
-        PanelStyle.Font.Charset = DEFAULT_CHARSET
-        PanelStyle.Font.Color = clDefault
-        PanelStyle.Font.Height = -11
-        PanelStyle.Font.Name = 'Tahoma'
-        PanelStyle.Font.Style = [fsBold]
-        PanelStyle.ParentFont = False
-        Text = 'Usu'#225'rio:'
-        Width = 48
-      end
-      item
-        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
-        Width = 120
-      end
-      item
-        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
-        PanelStyle.ImageIndex = 3
-        PanelStyle.Font.Charset = DEFAULT_CHARSET
-        PanelStyle.Font.Color = clDefault
-        PanelStyle.Font.Height = -11
-        PanelStyle.Font.Name = 'Tahoma'
-        PanelStyle.Font.Style = [fsBold]
-        PanelStyle.ParentFont = False
-        Text = 'Data:'
-        Width = 35
-      end
-      item
-        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
-        Text = '01/01/2018'
-        Width = 60
-      end
-      item
-        PanelStyleClassName = 'TdxStatusBarKeyboardStatePanelStyle'
-        PanelStyle.CapsLockKeyAppearance.ActiveFontColor = clDefault
-        PanelStyle.CapsLockKeyAppearance.ActiveCaption = 'CAPS'
-        PanelStyle.CapsLockKeyAppearance.InactiveCaption = 'CAPS'
-        PanelStyle.NumLockKeyAppearance.ActiveFontColor = clDefault
-        PanelStyle.NumLockKeyAppearance.ActiveCaption = 'NUM'
-        PanelStyle.NumLockKeyAppearance.InactiveCaption = 'NUM'
-        PanelStyle.ScrollLockKeyAppearance.ActiveFontColor = clDefault
-        PanelStyle.ScrollLockKeyAppearance.ActiveCaption = 'SCRL'
-        PanelStyle.ScrollLockKeyAppearance.InactiveCaption = 'SCRL'
-        PanelStyle.InsertKeyAppearance.ActiveFontColor = clDefault
-        PanelStyle.InsertKeyAppearance.ActiveCaption = 'OVR'
-        PanelStyle.InsertKeyAppearance.InactiveCaption = 'INS'
-      end>
-    BiDiMode = bdRightToLeft
-    ParentBiDiMode = False
-    ExplicitTop = 568
-    ExplicitHeight = 33
-  end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager1Bar2: TdxBar
       FloatLeft = 355
@@ -158,6 +59,8 @@ inherited frm_main: Tfrm_main
       FloatClientHeight = 22
     end
     inherited dxBarManager_1Bar1: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 87
       FloatClientHeight = 270
       ItemLinks = <

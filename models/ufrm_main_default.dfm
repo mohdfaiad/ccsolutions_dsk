@@ -16,6 +16,7 @@ object frm_main_default: Tfrm_main_default
   ShowHint = True
   WindowState = wsMaximized
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Image_1: TImage
@@ -2272,7 +2273,93 @@ object frm_main_default: Tfrm_main_default
     Top = 578
     Width = 1008
     Height = 23
-    Panels = <>
+    Panels = <
+      item
+        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        PanelStyle.ImageIndex = 0
+        PanelStyle.Font.Charset = DEFAULT_CHARSET
+        PanelStyle.Font.Color = clDefault
+        PanelStyle.Font.Height = -11
+        PanelStyle.Font.Name = 'Tahoma'
+        PanelStyle.Font.Style = [fsBold]
+        PanelStyle.ParentFont = False
+        Text = 'Contrato:'
+        Width = 58
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        PanelStyle.EllipsisType = dxetSmartPath
+        Bevel = dxpbRaised
+        Width = 80
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        PanelStyle.ImageIndex = 1
+        PanelStyle.Font.Charset = DEFAULT_CHARSET
+        PanelStyle.Font.Color = clDefault
+        PanelStyle.Font.Height = -11
+        PanelStyle.Font.Name = 'Tahoma'
+        PanelStyle.Font.Style = [fsBold]
+        PanelStyle.ParentFont = False
+        Text = 'Empresa:'
+        Width = 58
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        Bevel = dxpbRaised
+        Width = 250
+        OnClick = dxRibbonStatusBar1Panels3Click
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        PanelStyle.ImageIndex = 2
+        PanelStyle.Font.Charset = DEFAULT_CHARSET
+        PanelStyle.Font.Color = clDefault
+        PanelStyle.Font.Height = -11
+        PanelStyle.Font.Name = 'Tahoma'
+        PanelStyle.Font.Style = [fsBold]
+        PanelStyle.ParentFont = False
+        Text = 'Usu'#225'rio:'
+        Width = 50
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        Width = 120
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        PanelStyle.ImageIndex = 3
+        PanelStyle.Font.Charset = DEFAULT_CHARSET
+        PanelStyle.Font.Color = clDefault
+        PanelStyle.Font.Height = -11
+        PanelStyle.Font.Name = 'Tahoma'
+        PanelStyle.Font.Style = [fsBold]
+        PanelStyle.ParentFont = False
+        Text = 'Data:'
+        Width = 35
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        Text = '01/01/2018'
+        Width = 60
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarKeyboardStatePanelStyle'
+        PanelStyle.CapsLockKeyAppearance.ActiveFontColor = clDefault
+        PanelStyle.CapsLockKeyAppearance.ActiveCaption = 'CAPS'
+        PanelStyle.CapsLockKeyAppearance.InactiveCaption = 'CAPS'
+        PanelStyle.NumLockKeyAppearance.ActiveFontColor = clDefault
+        PanelStyle.NumLockKeyAppearance.ActiveCaption = 'NUM'
+        PanelStyle.NumLockKeyAppearance.InactiveCaption = 'NUM'
+        PanelStyle.ScrollLockKeyAppearance.ActiveFontColor = clDefault
+        PanelStyle.ScrollLockKeyAppearance.ActiveCaption = 'SCRL'
+        PanelStyle.ScrollLockKeyAppearance.InactiveCaption = 'SCRL'
+        PanelStyle.InsertKeyAppearance.ActiveFontColor = clDefault
+        PanelStyle.InsertKeyAppearance.ActiveCaption = 'OVR'
+        PanelStyle.InsertKeyAppearance.InactiveCaption = 'INS'
+        MinWidth = 127
+        Width = 127
+      end>
     Ribbon = dxRibbon1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clDefault

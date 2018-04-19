@@ -52,6 +52,8 @@ type
     Bevel_1: TBevel;
     cxLocalizer_1: TcxLocalizer;
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure dxRibbonStatusBar1Panels3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -65,7 +67,25 @@ implementation
 
 {$R *.dfm}
 
+uses ufrm_dm, ufrm_search_enterprise;
+
 { TForm1 }
+
+procedure Tfrm_main_default.dxRibbonStatusBar1Panels3Click(Sender: TObject);
+begin
+   if not Assigned(frm_search_enterprise) then
+  begin
+    frm_search_enterprise := Tfrm_search_enterprise.Create(Self);
+   // frm_search_enterprise.Height := Bevel_1.Height;
+   // frm_search_enterprise.Width := Bevel_1.Width;
+    frm_search_enterprise.Show;
+  end
+  else
+  begin
+    frm_search_enterprise.WindowState := wsNormal;
+    frm_search_enterprise.Show;
+  end;
+end;
 
 procedure Tfrm_main_default.FormCreate(Sender: TObject);
 begin
@@ -77,5 +97,14 @@ begin
     cxLocalizer_1.LanguageIndex := 1; // MUDA DE LINGUAGEM
     cxLocalizer_1.Active := TRUE;     // ATIVA O COMPONENTE
   end;
+
  end;
+procedure Tfrm_main_default.FormShow(Sender: TObject);
+begin
+    dxRibbonStatusBar1.Panels[1].Text :=FormatFloat('0000',frm_dm.qry_signinctr_id.AsInteger);
+    dxRibbonStatusBar1.Panels[3].Text :=frm_dm.qry_enterpriseent_last_name.AsString;
+    dxRibbonStatusBar1.Panels[5].Text :=frm_dm.qry_signinctr_usr_username.AsString;
+    dxRibbonStatusBar1.Panels[7].Text :=FormatDateTime('dd/MM/yyyy',date);
+end;
+
 end.

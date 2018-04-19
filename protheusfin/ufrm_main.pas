@@ -344,12 +344,6 @@ begin
   frm_login := Tfrm_login.Create(Self);
   frm_login.ShowModal;
 
-  dxRibbonStatusBar1.Panels[1].Text :=FormatFloat('0000',frm_dm.qry_signinctr_id.AsInteger);
-  dxRibbonStatusBar1.Panels[3].Text :=frm_dm.qry_enterpriseent_last_name.AsString;
-  dxRibbonStatusBar1.Panels[5].Text :=frm_dm.qry_signinctr_usr_username.AsString;
-  dxRibbonStatusBar1.Panels[7].Text :=FormatDateTime('dd/MM/yyyy',date);
-
-
   if frm_login.ModalResult <> mrOk then
   begin
     MessageDlg('Você não se autenticou. A aplicação será encerrada!', mtWarning,

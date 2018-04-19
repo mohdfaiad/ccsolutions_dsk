@@ -68,7 +68,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, ufrm_search_enterprise;
+uses ufrm_dm,ufrm_search_enterprise;
 
 { TForm1 }
 

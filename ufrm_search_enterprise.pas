@@ -65,7 +65,6 @@ type
     cxGrid_1DBTableView1ent_last_name: TcxGridDBColumn;
     cxGrid_1DBTableView1ent_email: TcxGridDBColumn;
     cxGrid_1DBTableView1ent_cnpj: TcxGridDBColumn;
-    procedure FormShow(Sender: TObject);
     procedure cxGrid_1DBTableView1CellDblClick(Sender: TcxCustomGridTableView;
       ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
       AShift: TShiftState; var AHandled: Boolean);
@@ -91,16 +90,9 @@ procedure Tfrm_search_enterprise.cxGrid_1DBTableView1CellDblClick(
   AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
 begin
   inherited;
-   qry.Locate('ent_id',qryent_id.AsInteger,[loCaseInsensitive, loPartialKey]);
-   empresa := IntToStr(qryent_id.AsInteger)+ ' - '+qryent_last_name.AsString;
+   frm_dm.qry_enterprise.Locate('ent_id',frm_dm.qry_enterpriseent_id.AsInteger,[loCaseInsensitive, loPartialKey]);
+   empresa := IntToStr(frm_dm.qry_enterpriseent_id.AsInteger)+ ' - '+frm_dm.qry_enterpriseent_last_name.AsString;
    close;
-end;
-
-procedure Tfrm_search_enterprise.FormShow(Sender: TObject);
-begin
-  inherited;
-   qry.Close;
-   qry.Open;
 end;
 
 end.

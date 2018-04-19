@@ -54,6 +54,7 @@ type
     frx_db_enterprise: TfrxDBDataset;
     connCDL: TFDConnection;
     mssql_driver: TFDPhysMSSQLDriverLink;
+    qry_signinctr_usr_id: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -73,14 +74,15 @@ implementation
 
 procedure Tfrm_dm.DataModuleCreate(Sender: TObject);
 begin
-qry:=TFDQuery.Create(Self);
-qry.Connection:=connCCS;
+  qry:=TFDQuery.Create(Self);
+  qry.Connection:=connCCS;
 
-qry2:=TFDQuery.Create(Self);
-qry2.Connection:=connCCS;
+  qry2:=TFDQuery.Create(Self);
+  qry2.Connection:=connCCS;
 
-qry3:=TFDQuery.Create(Self);
-qry3.Connection:=connCCS;
+  qry3:=TFDQuery.Create(Self);
+  qry3.Connection:=connCCS;
+
 
 end;
 

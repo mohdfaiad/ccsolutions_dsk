@@ -32,8 +32,8 @@ object frm_dm: Tfrm_dm
     Connection = connCCS
     SQL.Strings = (
       
-        'SELECT c.ctr_id, cu.ctr_usr_first_name, cu.ctr_usr_username, cu.' +
-        'ctr_usr_password FROM contract c'
+        'SELECT c.ctr_id, cu.ctr_usr_id, cu.ctr_usr_first_name, cu.ctr_us' +
+        'r_username, cu.ctr_usr_password FROM contract c'
       '    INNER JOIN contract_user cu ON c.ctr_id = cu.contract_ctr_id'
       
         '    WHERE c.ctr_id = :contract AND cu.ctr_usr_username = :userna' +
@@ -81,6 +81,13 @@ object frm_dm: Tfrm_dm
       Origin = 'ctr_usr_password'
       Size = 25
     end
+    object qry_signinctr_usr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_usr_id'
+      Origin = 'ctr_usr_id'
+      ProviderFlags = []
+      ReadOnly = True
+    end
   end
   object ds_signin: TDataSource
     DataSet = qry_signin
@@ -100,15 +107,24 @@ object frm_dm: Tfrm_dm
     Connection = connCCS
     SQL.Strings = (
       'select * from enterprise'
-      'where contract_ctr_id =:ctr_id')
+      'where contract_ctr_id =:ctr_id'
+      
+        'and ent_id in (select ctr_usr_ent_ent_id  from contract_user_ent' +
+        'erprise where ctr_usr_ent_user_id =:ctr_usr_id)')
     Left = 44
     Top = 190
     ParamData = <
       item
         Name = 'CTR_ID'
-        DataType = ftAutoInc
+        DataType = ftInteger
         ParamType = ptInput
         Value = Null
+      end
+      item
+        Name = 'CTR_USR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 4
       end>
     object qry_enterpriseent_id: TFDAutoIncField
       FieldName = 'ent_id'

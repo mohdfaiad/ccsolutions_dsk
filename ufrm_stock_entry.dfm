@@ -60,18 +60,13 @@ inherited frm_stock_entry: Tfrm_stock_entry
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
       ExplicitHeight = 358
       inherited cxPageControl_2: TcxPageControl
         Height = 352
         ExplicitHeight = 352
         ClientRectBottom = 346
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
+          OnShow = cxTabSheet_3Show
           ExplicitHeight = 318
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 318
@@ -3278,9 +3273,26 @@ inherited frm_stock_entry: Tfrm_stock_entry
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from stock')
+      'select * from stock'#10' where contract_ctr_id =:ctr_id'
+      'and enterprise_ent_id in '
+      
+        '(select ctr_usr_ent_ent_id  from contract_user_enterprise where ' +
+        'ctr_usr_ent_user_id =:ctr_usr_id)')
     Left = 648
     Top = 96
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 1
+      end
+      item
+        Name = 'CTR_USR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 4
+      end>
     object qry_stocksto_id: TFDAutoIncField
       FieldName = 'sto_id'
       Origin = 'sto_id'

@@ -344,6 +344,7 @@ inherited frm_manufacturer: Tfrm_manufacturer
                   Kind = bkEllipsis
                 end>
               Properties.CharCase = ecUpperCase
+              Properties.OnButtonClick = cxDBButtonEdit1PropertiesButtonClick
               Style.HotTrack = False
               TabOrder = 0
               Width = 121
@@ -687,13 +688,15 @@ inherited frm_manufacturer: Tfrm_manufacturer
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
+    AfterDelete = qryAfterDelete
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from manufacturer')
     object qryman_id: TFDAutoIncField
@@ -3706,6 +3709,9 @@ inherited frm_manufacturer: Tfrm_manufacturer
         end
       end
     end
+  end
+  inherited ACBrCEP_1: TACBrCEP
+    OnBuscaEfetuada = ACBrCEP_1BuscaEfetuada
   end
   object frxDBD_Fabriante: TfrxDBDataset
     UserName = 'Fabricante'

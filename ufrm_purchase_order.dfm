@@ -202,6 +202,9 @@
         ExplicitHeight = 447
         ClientRectBottom = 441
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
           ExplicitHeight = 413
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 413
@@ -3018,8 +3021,8 @@
   end
   object ds_purchase_order_iten: TDataSource
     DataSet = qry_purchase_order_iten
-    Left = 600
-    Top = 160
+    Left = 624
+    Top = 96
   end
   object qry_product: TFDQuery
     Active = True
@@ -3031,13 +3034,13 @@
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from product')
-    Left = 656
-    Top = 160
+    Left = 664
+    Top = 96
   end
   object ds_product: TDataSource
     DataSet = qry_product
     Left = 696
-    Top = 160
+    Top = 96
   end
   object qry_employee: TFDQuery
     Active = True
@@ -3052,13 +3055,13 @@
         'select e.emp_id, e.record_rec_id, e.emp_type, e.emp_status, r.re' +
         'c_name, e.contract_ctr_id from employee as e'#10'inner join record a' +
         's r on e.record_rec_id = r.rec_id')
-    Left = 424
-    Top = 96
+    Left = 672
+    Top = 144
   end
   object ds_employee: TDataSource
     DataSet = qry_employee
-    Left = 464
-    Top = 96
+    Left = 704
+    Top = 144
   end
   object frxDBD_Pedido_Compra: TfrxDBDataset
     UserName = 'purchase_order'

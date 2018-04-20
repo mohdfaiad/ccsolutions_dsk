@@ -59,8 +59,6 @@ type
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     cxDBLookupComboBox1: TcxDBLookupComboBox;
     dxLayoutItem3: TdxLayoutItem;
-    qry_enterprise: TFDQuery;
-    ds_enterprise: TDataSource;
     qrysto_name: TStringField;
     cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
     frxDBD_Estoque: TfrxDBDataset;
@@ -68,7 +66,6 @@ type
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
-    procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
   private
     { Private declarations }
@@ -122,13 +119,6 @@ procedure Tfrm_stock.Action_saveExecute(Sender: TObject);
 begin
    inherited;
    cxTabSheet_1.Show;
-end;
-
-procedure Tfrm_stock.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
-begin
-  inherited;
-  //Atualização do combobox
-   qry_enterprise.Refresh;
 end;
 
 procedure Tfrm_stock.FormClose(Sender: TObject; var Action: TCloseAction);

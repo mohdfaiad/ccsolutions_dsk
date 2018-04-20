@@ -140,6 +140,7 @@ type
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox3PropertiesPopup(Sender: TObject);
+    procedure cxTabSheet_3Show(Sender: TObject);
   private
     { Private declarations }
   public
@@ -284,6 +285,16 @@ begin
   inherited;
   //Atualização do combobox
    qry_purchase_order.refresh;
+end;
+
+procedure Tfrm_stock_entry.cxTabSheet_3Show(Sender: TObject);
+begin
+  inherited;
+   qry_stock.Close;
+   qry_stock.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
+   qry_stock.Prepare;
+   qry_stock.Open;
+
 end;
 
 procedure Tfrm_stock_entry.FormClose(Sender: TObject; var Action: TCloseAction);

@@ -4,7 +4,6 @@ inherited frm_stock: Tfrm_stock
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_1
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -44,8 +43,16 @@ inherited frm_stock: Tfrm_stock
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -106,17 +113,12 @@ inherited frm_stock: Tfrm_stock
               Properties.KeyFieldNames = 'ent_id'
               Properties.ListColumns = <
                 item
-                  Caption = 'Raz'#227'o'
-                  Width = 250
-                  FieldName = 'ent_first_name'
+                  FieldName = 'ent_last_name'
                 end
                 item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
                   FieldName = 'ent_id'
                 end>
-              Properties.ListSource = ds_enterprise
-              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
+              Properties.ListSource = frm_dm.ds_enterprise
               Style.HotTrack = False
               TabOrder = 4
               Width = 294
@@ -184,8 +186,11 @@ inherited frm_stock: Tfrm_stock
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    Left = 464
+    Top = 104
+  end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
@@ -247,7 +252,7 @@ inherited frm_stock: Tfrm_stock
     object qryEmpresa: TStringField
       FieldKind = fkLookup
       FieldName = 'Empresa'
-      LookupDataSet = qry_enterprise
+      LookupDataSet = frm_dm.qry_enterprise
       LookupKeyFields = 'ent_id'
       LookupResultField = 'ent_first_name'
       KeyFields = 'enterprise_ent_id'
@@ -2577,24 +2582,6 @@ inherited frm_stock: Tfrm_stock
         end
       end
     end
-  end
-  object qry_enterprise: TFDQuery
-    Active = True
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
-    Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'select * from enterprise')
-    Left = 664
-    Top = 104
-  end
-  object ds_enterprise: TDataSource
-    DataSet = qry_enterprise
-    Left = 704
-    Top = 104
   end
   object frxDBD_Estoque: TfrxDBDataset
     UserName = 'Estoque'

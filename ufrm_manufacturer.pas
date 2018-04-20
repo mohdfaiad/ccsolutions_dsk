@@ -144,6 +144,11 @@ type
     frxDBD_Fabriante: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure Action_deleteExecute(Sender: TObject);
+    procedure qryAfterDelete(DataSet: TDataSet);
+    procedure cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
+    procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
   private
     { Private declarations }
   public
@@ -159,12 +164,55 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_manufacturer.ACBrCEP_1BuscaEfetuada(Sender: TObject);
+ var
+  i:Integer;
+begin
+  inherited;
+
+    for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+    begiN
+     qryman_add_bus_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
+     qryman_add_bus_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
+     qryman_add_bus_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
+     qryman_add_bus_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
+     qryman_add_bus_state.AsString     := ACBrCEP_1.Enderecos[i].UF;
+     qryman_add_bus_country.AsString     := 'BRASIL';
+     cxDBTextEdit10.SetFocus;
+    end;
+
+end;
+
+procedure Tfrm_manufacturer.Action_deleteExecute(Sender: TObject);
+begin
+  if Application.MessageBox('Tem certeza que deseja excluir este fabricante ?','AVISO DE EXCLUSÃO',MB_YESNO+MB_ICONQUESTION) = mrYes then
+    begin
+     inherited;
+    end;
+
+end;
+
+procedure Tfrm_manufacturer.cxDBButtonEdit1PropertiesButtonClick(
+  Sender: TObject; AButtonIndex: Integer);
+begin
+  inherited;
+  ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit1.Text);
+end;
+
 procedure Tfrm_manufacturer.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
   frm_manufacturer.Destroy;
   frm_manufacturer := Nil;
+end;
+
+procedure Tfrm_manufacturer.qryAfterDelete(DataSet: TDataSet);
+begin
+  inherited;
+   qry.ApplyUpdates(0);
+    qry.Close;
+    qry.Open;
 end;
 
 procedure Tfrm_manufacturer.qryAfterInsert(DataSet: TDataSet);

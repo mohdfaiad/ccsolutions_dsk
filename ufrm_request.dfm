@@ -204,13 +204,17 @@ inherited frm_request: Tfrm_request
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      OnShow = cxTabSheet_2Show
       ExplicitWidth = 869
       inherited cxPageControl_2: TcxPageControl
         Width = 863
         ExplicitWidth = 863
         ClientRectRight = 857
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
           ExplicitWidth = 855
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 855
             ExplicitWidth = 855
@@ -3197,11 +3201,50 @@ inherited frm_request: Tfrm_request
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select sto_name,sto_id,contract_ctr_id from stock'
-      'where sto_status = '#39'A'#39
-      'order by sto_name')
+      
+        'select sto_name,sto_id,contract_ctr_id,enterprise_ent_id from st' +
+        'ock'#13#10#10
+      'where sto_status = '#39'A'#39' and contract_ctr_id =:ctr_id'
+      'and enterprise_ent_id in '
+      
+        '(select ctr_usr_ent_ent_id  from contract_user_enterprise where ' +
+        'ctr_usr_ent_user_id =:ctr_usr_id)')
     Left = 588
     Top = 88
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 1
+      end
+      item
+        Name = 'CTR_USR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 4
+      end>
+    object qry_stocksto_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_name'
+      Origin = 'sto_name'
+      Size = 50
+    end
+    object qry_stocksto_id: TFDAutoIncField
+      FieldName = 'sto_id'
+      Origin = 'sto_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qry_stockcontract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
+    end
+    object qry_stockenterprise_ent_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'enterprise_ent_id'
+      Origin = 'enterprise_ent_id'
+    end
   end
   object frxDBDataset2: TfrxDBDataset
     UserName = 'Requisicao'

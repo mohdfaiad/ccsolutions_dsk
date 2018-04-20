@@ -82,8 +82,6 @@ type
     qry_product_transfer_itenpti_product_quant: TBCDField;
     qry_product_transfer_itenpti_dt_registration: TDateTimeField;
     qry_stock_exit: TFDQuery;
-    qry_stock_exitsto_id: TFDAutoIncField;
-    qry_stock_exitsto_name: TStringField;
     cxDBLookupComboBox1: TcxDBLookupComboBox;
     dxLayoutItem13: TdxLayoutItem;
     ds_stock_exit: TDataSource;
@@ -103,7 +101,6 @@ type
     qryprt_status: TStringField;
     qryprt_status_reason: TStringField;
     qryprt_dt_registration: TDateTimeField;
-    qry_stock_exitcontract_ctr_id: TIntegerField;
     qry_productproduct_pro_id: TIntegerField;
     qry_productpro_name: TStringField;
     qry_productstock_sto_id: TIntegerField;
@@ -141,6 +138,10 @@ type
     qrySolicitante: TStringField;
     qryStock_Entrada: TStringField;
     qry_product_transfer_itenProduto: TStringField;
+    qry_stock_exitsto_name: TStringField;
+    qry_stock_exitsto_id: TFDAutoIncField;
+    qry_stock_exitcontract_ctr_id: TIntegerField;
+    qry_stock_exitenterprise_ent_id: TIntegerField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure ConfirmarTransfernciaSaida1Click(Sender: TObject);

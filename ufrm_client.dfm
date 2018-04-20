@@ -4,7 +4,6 @@ inherited frm_client: Tfrm_client
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_1
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -188,6 +187,7 @@ inherited frm_client: Tfrm_client
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = cxTabSheet_address
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -1109,10 +1109,6 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Contatos'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1254,10 +1250,6 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1320,10 +1312,6 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet3: TcxTabSheet
           Caption = 'Telefonia'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0

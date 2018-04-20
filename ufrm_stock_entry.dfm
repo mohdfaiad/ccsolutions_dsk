@@ -60,6 +60,9 @@ inherited frm_stock_entry: Tfrm_stock_entry
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
       ExplicitHeight = 358
       inherited cxPageControl_2: TcxPageControl
         Height = 352
@@ -67,6 +70,9 @@ inherited frm_stock_entry: Tfrm_stock_entry
         ClientRectBottom = 346
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
           ExplicitHeight = 318
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 318
@@ -3273,7 +3279,10 @@ inherited frm_stock_entry: Tfrm_stock_entry
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from stock'#10' where contract_ctr_id =:ctr_id'
+      
+        'select sto_name,sto_id,contract_ctr_id,enterprise_ent_id from st' +
+        'ock'#13#10#10
+      'where sto_status = '#39'A'#39' and contract_ctr_id =:ctr_id'
       'and enterprise_ent_id in '
       
         '(select ctr_usr_ent_ent_id  from contract_user_enterprise where ' +
@@ -3293,11 +3302,16 @@ inherited frm_stock_entry: Tfrm_stock_entry
         ParamType = ptInput
         Value = 4
       end>
+    object qry_stocksto_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_name'
+      Origin = 'sto_name'
+      Size = 50
+    end
     object qry_stocksto_id: TFDAutoIncField
       FieldName = 'sto_id'
       Origin = 'sto_id'
       ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
     end
     object qry_stockcontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -3308,31 +3322,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
       AutoGenerateValue = arDefault
       FieldName = 'enterprise_ent_id'
       Origin = 'enterprise_ent_id'
-    end
-    object qry_stocksto_type: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'sto_type'
-      Origin = 'sto_type'
-      FixedChar = True
-      Size = 1
-    end
-    object qry_stocksto_name: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'sto_name'
-      Origin = 'sto_name'
-      Size = 50
-    end
-    object qry_stocksto_status: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'sto_status'
-      Origin = 'sto_status'
-      FixedChar = True
-      Size = 1
-    end
-    object qry_stocksto_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      FieldName = 'sto_dt_registration'
-      Origin = 'sto_dt_registration'
     end
   end
   object ds_stock: TDataSource

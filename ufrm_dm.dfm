@@ -100,7 +100,6 @@ object frm_dm: Tfrm_dm
     Top = 72
   end
   object qry_enterprise: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = ds_signin
     MasterFields = 'ctr_id'

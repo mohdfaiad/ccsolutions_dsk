@@ -111,6 +111,10 @@ type
     qry_parameter_stockdt_registration: TDateTimeField;
     qrypco_type: TStringField;
     qrypco_status: TStringField;
+    qry_stocksto_name: TStringField;
+    qry_stocksto_id: TFDAutoIncField;
+    qry_stockcontract_ctr_id: TIntegerField;
+    qry_stockenterprise_ent_id: TIntegerField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
@@ -139,6 +143,7 @@ type
     procedure qryAfterDelete(DataSet: TDataSet);
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+    procedure cxTabSheet_2Show(Sender: TObject);
   private
     { Private declarations }
   public
@@ -277,6 +282,15 @@ if not qry.Active then
    qry.Prepare;
    qry.Open;
  end;
+end;
+
+procedure Tfrm_request.cxTabSheet_2Show(Sender: TObject);
+begin
+  inherited;
+   qry_stock.Close;
+   qry_stock.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
+   qry_stock.Prepare;
+   qry_stock.Open;
 end;
 
 procedure Tfrm_request.dsDataChange(Sender: TObject; Field: TField);

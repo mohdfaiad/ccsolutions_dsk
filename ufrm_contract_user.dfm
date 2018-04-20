@@ -1,6 +1,7 @@
 inherited frm_contract_user: Tfrm_contract_user
   Caption = 'Manuten'#231#227'o: Usu'#225'rios'
   OnClose = FormClose
+  ExplicitTop = -8
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -43,11 +44,10 @@ inherited frm_contract_user: Tfrm_contract_user
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitTop = 36
+      ExplicitTop = 28
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -199,19 +199,15 @@ inherited frm_contract_user: Tfrm_contract_user
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             OnDblClick = dxLayoutControl_1DblClick
-            object emps: TcxCheckListBox
-              Left = 10
-              Top = 10
-              Width = 383
-              Height = 175
-              Items = <
-                item
-                end
-                item
-                end
-                item
-                end>
+            object cxListEmps: TcxCheckListBox
+              Left = 17
+              Top = 38
+              Width = 480
+              Height = 129
+              Items = <>
               TabOrder = 0
+              OnClick = cxListEmpsClick
+              OnClickCheck = cxListEmpsClickCheck
             end
             object dxLayoutGroup3: TdxLayoutGroup
               AlignHorz = ahLeft
@@ -221,11 +217,22 @@ inherited frm_contract_user: Tfrm_contract_user
               ShowBorder = False
               Index = -1
             end
-            object dxLayoutItem7: TdxLayoutItem
+            object dxLayoutGroup4: TdxLayoutGroup
               Parent = dxLayoutGroup3
-              Control = emps
-              ControlOptions.OriginalHeight = 175
-              ControlOptions.OriginalWidth = 383
+              CaptionOptions.Text = 'Lista de empresa'
+              SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
+              SizeOptions.SizableHorz = True
+              SizeOptions.SizableVert = True
+              SizeOptions.Height = 164
+              SizeOptions.Width = 494
+              ButtonOptions.Buttons = <>
+              Index = 0
+            end
+            object dxLayoutItem10: TdxLayoutItem
+              Parent = dxLayoutGroup4
+              Control = cxListEmps
+              ControlOptions.OriginalHeight = 129
+              ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -242,13 +249,14 @@ inherited frm_contract_user: Tfrm_contract_user
     Top = 40
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from contract_user')
     object qryctr_usr_id: TFDAutoIncField
@@ -333,5 +341,42 @@ inherited frm_contract_user: Tfrm_contract_user
     OnMsgErro = ACBrValidador1MsgErro
     Left = 712
     Top = 128
+  end
+  object qry_contract_user_enterprise: TFDQuery
+    CachedUpdates = True
+    IndexFieldNames = 'ctr_usr_ent_user_id'
+    MasterSource = ds
+    MasterFields = 'ctr_usr_id'
+    DetailFields = 'ctr_usr_ent_user_id'
+    Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      'select * from contract_user_enterprise'
+      'where ctr_usr_ent_user_id = :ctr_usr_id')
+    Left = 575
+    Top = 146
+    ParamData = <
+      item
+        Name = 'CTR_USR_ID'
+        DataType = ftAutoInc
+        ParamType = ptInput
+        Value = 1
+      end>
+    object qry_contract_user_enterprisectr_usr_ent_id: TFDAutoIncField
+      FieldName = 'ctr_usr_ent_id'
+    end
+    object qry_contract_user_enterprisectr_usr_ent_user_id: TIntegerField
+      FieldName = 'ctr_usr_ent_user_id'
+    end
+    object qry_contract_user_enterprisectr_usr_ent_ent_id: TIntegerField
+      FieldName = 'ctr_usr_ent_ent_id'
+    end
+  end
+  object ds_qry_contract_user_enterprise: TDataSource
+    DataSet = qry_contract_user_enterprise
+    Left = 575
+    Top = 202
   end
 end

@@ -71,18 +71,30 @@ type
     cxTabSheet1: TcxTabSheet;
     dxLayoutControl1: TdxLayoutControl;
     dxLayoutGroup3: TdxLayoutGroup;
-    emps: TcxCheckListBox;
-    dxLayoutItem7: TdxLayoutItem;
+    qry_contract_user_enterprise: TFDQuery;
+    ds_qry_contract_user_enterprise: TDataSource;
+    qry_contract_user_enterprisectr_usr_ent_id: TFDAutoIncField;
+    qry_contract_user_enterprisectr_usr_ent_user_id: TIntegerField;
+    qry_contract_user_enterprisectr_usr_ent_ent_id: TIntegerField;
+    dxLayoutGroup4: TdxLayoutGroup;
+    cxListEmps: TcxCheckListBox;
+    dxLayoutItem10: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
     procedure ACBrValidador1MsgErro(Mensagem: string);
     procedure montar_empresa;
     procedure cxTabSheet1Show(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure cxListEmpsClickCheck(Sender: TObject; AIndex: Integer; APrevState,
+      ANewState: TcxCheckBoxState);
+    procedure cxListEmpsClick(Sender: TObject);
   private
     { Private declarations }
+    listEmp:TStrings;
   public
     { Public declarations }
+  procedure limpaCache(Sender:TObject);
   end;
 
 var
@@ -143,6 +155,41 @@ begin
 montar_empresa;
 end;
 
+procedure Tfrm_contract_user.cxListEmpsClick(Sender: TObject);
+begin
+  inherited;
+ qry_contract_user_enterprise.Locate('ctr_usr_ent_ent_id',
+ listEmp[cxListEmps.ItemIndex],[]);
+
+end;
+
+procedure Tfrm_contract_user.cxListEmpsClickCheck(Sender: TObject;
+  AIndex: Integer; APrevState, ANewState: TcxCheckBoxState);
+ var
+cdusu,cdemp:string;
+begin
+  inherited;
+
+  if TcxCheckListBoxItem(cxListEmps.Items[cxListEmps.ItemIndex]).Checked then
+   begin
+    if not  qry_contract_user_enterprise.Locate('ctr_usr_ent_ent_id',
+     listEmp[cxListEmps.ItemIndex],[]) then
+      begin
+       qry_contract_user_enterprise.Insert;
+       qry_contract_user_enterprisectr_usr_ent_ent_id.AsString:=listEmp[cxListEmps.ItemIndex];
+       qry_contract_user_enterprise.Post;
+      end;
+   end;
+
+  if not TcxCheckListBoxItem(cxListEmps.Items[cxListEmps.ItemIndex]).Checked then
+   begin
+    qry_contract_user_enterprise.Locate('ctr_usr_ent_ent_id',
+     listEmp[cxListEmps.ItemIndex],[]);
+    qry_contract_user_enterprise.delete;
+   end;
+
+end;
+
 procedure Tfrm_contract_user.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -151,7 +198,22 @@ begin
   frm_contract_user := Nil;
 end;
 
+procedure Tfrm_contract_user.FormCreate(Sender: TObject);
+begin
+  inherited;
+ FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+ listEmp:=TStringList.Create;
+end;
+
+procedure Tfrm_contract_user.limpaCache(Sender: TObject);
+begin
+  qry.CommitUpdates();
+  qry_contract_user_enterprise.CommitUpdates();
+end;
+
 procedure Tfrm_contract_user.montar_empresa;
+var
+i:Integer;
 begin
 
 with frm_dm.qry,sql do
@@ -164,17 +226,16 @@ with frm_dm.qry,sql do
   Prepared;
   Open;
   First;
-  emps.Items.clear;
+  i:=0;
+  cxlistEmps.Items.clear;
+  listEmp.Clear;
   while not Eof do
   begin
-    emps.AddItem(Fields[0].Text);
-  // if trim(Fields[2].AsString) <> '' then
-   // TcxCheckListBoxItem(emps.Items).Checked:=True;
-
-
-//    emps.Checked[emps.Items.Count - 1] :=
-//      iif(trim(Fields[2].AsString) <> '', true, false);
-//    emp.add(Fields[1].Text);
+    cxlistEmps.AddItem(Fields[0].Text);
+   if trim(Fields[2].AsString) <> '' then
+    TcxCheckListBoxItem(cxlistEmps.Items[i]).Checked:=True;
+    listEmp.Add(Fields[1].AsString);
+    i:=i+1;
     Next;
   end;
  end;

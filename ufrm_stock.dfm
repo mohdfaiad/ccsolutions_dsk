@@ -1,9 +1,11 @@
 inherited frm_stock: Tfrm_stock
   Caption = 'Manuten'#231#227'o Estoques'
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -201,7 +203,24 @@ inherited frm_stock: Tfrm_stock
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
-      'select * from stock')
+      'select * from stock '#10'where contract_ctr_id =:ctr_id'#13#10#10
+      'and enterprise_ent_id in '
+      
+        '(select ctr_usr_ent_ent_id from contract_user_enterprise where c' +
+        'tr_usr_ent_user_id =:ctr_usr_id)')
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 1
+      end
+      item
+        Name = 'CTR_USR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 4
+      end>
     object qrysto_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'sto_id'

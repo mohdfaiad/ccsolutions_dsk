@@ -196,6 +196,9 @@
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
       ExplicitHeight = 453
       inherited cxPageControl_2: TcxPageControl
         Height = 447

@@ -514,9 +514,31 @@ inherited frm_request: Tfrm_request
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
-      'select * from purchase_order'
-      'where pco_type = '#39'R'#39)
+      'select * from purchase_order '#10'where pco_type = '#39'R'#39#13#10#10
+      ''
+      ''
+      
+        'and stock_sto_id in '#10'(select sto_id from stock '#10'where contract_c' +
+        'tr_id =:ctr_id'#13#10#10
+      ''
+      
+        'and enterprise_ent_id in '#10'(select ctr_usr_ent_ent_id from contra' +
+        'ct_user_enterprise '
+      'where ctr_usr_ent_user_id =:ctr_usr_id))')
     Left = 585
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 1
+      end
+      item
+        Name = 'CTR_USR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 4
+      end>
     object qrypco_id: TFDAutoIncField
       FieldName = 'pco_id'
       Origin = 'pco_id'

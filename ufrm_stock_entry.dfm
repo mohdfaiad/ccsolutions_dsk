@@ -2,14 +2,19 @@ inherited frm_stock_entry: Tfrm_stock_entry
   Caption = 'Manuten'#231#227'o: Entrada de Produtos'
   ClientHeight = 447
   OnClose = FormClose
+  OnShow = FormShow
   ExplicitHeight = 486
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 392
+    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 392
     ClientRectBottom = 386
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
       ExplicitHeight = 358
       inherited cxGrid_1: TcxGrid
         Height = 352
@@ -57,6 +62,9 @@ inherited frm_stock_entry: Tfrm_stock_entry
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
       ExplicitHeight = 358
       inherited cxPageControl_2: TcxPageControl
         Height = 352
@@ -64,6 +72,9 @@ inherited frm_stock_entry: Tfrm_stock_entry
         ClientRectBottom = 346
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
           ExplicitHeight = 318
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 318
@@ -428,8 +439,29 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
-      'select * from product_entry')
+      'SELECT * FROM product_entry'#13#10#10
+      ''
+      'where stock_sto_id in '#10'(select sto_id from stock '#13#10#10
+      ''
+      'where contract_ctr_id =:ctr_id'
+      
+        'and enterprise_ent_id in '#10'(select ctr_usr_ent_ent_id from contra' +
+        'ct_user_enterprise '
+      'where ctr_usr_ent_user_id =:ctr_usr_id)) ')
     Left = 592
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 1
+      end
+      item
+        Name = 'CTR_USR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 4
+      end>
     object qrypde_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'pde_id'
@@ -3325,6 +3357,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Top = 96
   end
   object qry_product: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     BeforeDelete = qryBeforeDelete
     IndexFieldNames = 'contract_ctr_id'

@@ -68,6 +68,7 @@ type
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -134,6 +135,18 @@ begin
   inherited;
   frm_stock.Destroy;
   frm_stock := Nil;
+end;
+
+procedure Tfrm_stock.FormShow(Sender: TObject);
+begin
+  inherited;
+  //SQL para exibir somente as unidade de estoque que o usuário tem acesso
+  qry.Close;
+  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
+  qry.Prepare;
+  qry.Open;
+
+
 end;
 
 procedure Tfrm_stock.qryAfterInsert(DataSet: TDataSet);

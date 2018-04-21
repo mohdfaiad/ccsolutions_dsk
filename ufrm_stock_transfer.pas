@@ -157,6 +157,8 @@ type
     procedure cxDBLookupComboBox3PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
+    procedure qryAfterDelete(DataSet: TDataSet);
   private
     { Private declarations }
 
@@ -173,6 +175,36 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_stock_transfer.Action_deleteExecute(Sender: TObject);
+begin
+
+ //Condição para não permitir excluir transferëncia que esteja diferente do status de A - Aberto
+  if (Trim(qryprt_status.AsString) <> 'A') or (Trim(qryprt_status.AsString) ='') then
+  // if (qryprt_status.OldValue  <> 'A') and ((qryprt_status.Value  <> 'A') or (qryprt_status.Value  = ''))  then
+  begin
+     Application.MessageBox('Só é permitido excluir uma transferencia que esteja em A - Aberto !','AVISO DE EXCLUSÃO DE TRANSFERENCIA', MB_ICONINFORMATION + MB_OK);
+     qry.CancelUpdates;
+     qry_product_transfer_iten.CancelUpdates;
+     Exit;
+
+  end;
+
+ //Caso a transferëncia esteja no status de aberto poderar ser excluida
+ if Application.MessageBox('Tem certeza que deseja excluir esta transferëncia ? ','AVISO DE EXCLUSÃO DE TRANSFERENCIA',MB_YESNO + MB_ICONQUESTION) = mrYes then
+   begin
+    qry_product_transfer_iten.First;
+    while not qry_product_transfer_iten.Eof do
+     begin
+       qry_product_transfer_iten.Delete;
+     end;
+
+     qry_product_transfer_iten.ApplyUpdates(0);
+
+     inherited;
+
+   end;
+end;
 
 procedure Tfrm_stock_transfer.Action_saveExecute(Sender: TObject);
 var
@@ -320,7 +352,7 @@ end;
 procedure Tfrm_stock_transfer.ConfirmarTransfernciaEntrada1Click
   (Sender: TObject);
 begin
-  inherited;
+
   if Application.MessageBox('Deseja confirmar a entrada da transferência',
     'Transferência', MB_YESNO + MB_ICONQUESTION) = mrYes then
   begin
@@ -374,12 +406,17 @@ begin
     qry.Post;
     Application.MessageBox('Entrada da transferência confirmada com sucesso!',
       'Entrada', MB_OK + MB_ICONINFORMATION);
+
+     inherited;
+
+     qry.ApplyUpdates(0);
+
   end;
 end;
 
 procedure Tfrm_stock_transfer.ConfirmarTransfernciaSaida1Click(Sender: TObject);
 begin
-  inherited;
+
   if Application.MessageBox('Deseja confirmar a saida da transferência',
     'Transferência', MB_YESNO + MB_ICONQUESTION) = mrYes then
   begin
@@ -443,6 +480,9 @@ begin
     qry.Post;
     Application.MessageBox('Saída da transferência confirmada com sucesso!',
       'Entrada', MB_OK + MB_ICONINFORMATION);
+
+    inherited;
+    qry.ApplyUpdates(0);
   end;
 end;
 
@@ -569,11 +609,22 @@ begin
   CancelarTransferncia1.Enabled := qryprt_status.AsString <> 'C';
 end;
 
+procedure Tfrm_stock_transfer.qryAfterDelete(DataSet: TDataSet);
+begin
+  inherited;
+    qry.ApplyUpdates(0);
+    qry.Close;
+    qry.Open;
+end;
+
 procedure Tfrm_stock_transfer.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   qryprt_status.AsString := 'A';
   qryprt_dt_registration.Value := Now;
+  qry.Post;
+  qry.Edit;
+
 end;
 
 procedure Tfrm_stock_transfer.qryBeforePost(DataSet: TDataSet);

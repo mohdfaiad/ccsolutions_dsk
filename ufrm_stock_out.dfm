@@ -6,6 +6,10 @@ inherited frm_stock_out: Tfrm_stock_out
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1req_id: TcxGridDBColumn
@@ -62,8 +66,16 @@ inherited frm_stock_out: Tfrm_stock_out
     end
     inherited cxTabSheet_2: TcxTabSheet
       OnShow = cxTabSheet_2Show
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -309,7 +321,7 @@ inherited frm_stock_out: Tfrm_stock_out
   end
   inherited dxBarManager_1: TdxBarManager
     inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\saida do estoque'
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\entrada estoque'
     end
   end
   inherited cxImageList_1: TcxImageList
@@ -2787,6 +2799,7 @@ inherited frm_stock_out: Tfrm_stock_out
     Top = 136
   end
   object qry_enterprise: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -2823,6 +2836,7 @@ inherited frm_stock_out: Tfrm_stock_out
       FieldName = 'ent_id'
       Origin = 'ent_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_enterpriseent_first_name: TStringField
       AutoGenerateValue = arDefault

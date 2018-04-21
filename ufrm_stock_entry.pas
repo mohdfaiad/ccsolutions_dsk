@@ -138,6 +138,7 @@ type
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox3PropertiesPopup(Sender: TObject);
     procedure cxTabSheet_3Show(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -287,6 +288,7 @@ end;
 procedure Tfrm_stock_entry.cxTabSheet_3Show(Sender: TObject);
 begin
   inherited;
+  //SQL para exibir somente as unidades de estoque que o usuário tem acesso
    qry_stock.Close;
    qry_stock.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
    qry_stock.Prepare;
@@ -306,6 +308,16 @@ begin
   inherited;
    FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
 
+end;
+
+procedure Tfrm_stock_entry.FormShow(Sender: TObject);
+begin
+  inherited;
+   //SQL para exibir somente as entradas no estoque dos estoques que o usuário tem acesso
+  qry.Close;
+  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
+  qry.Prepare;
+  qry.Open;
 end;
 
 procedure Tfrm_stock_entry.limpaCache(Sender: TObject);

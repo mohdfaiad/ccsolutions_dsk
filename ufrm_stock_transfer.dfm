@@ -476,6 +476,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
+    AfterDelete = qryAfterDelete
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin

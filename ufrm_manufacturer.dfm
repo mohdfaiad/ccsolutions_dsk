@@ -325,6 +325,10 @@ inherited frm_manufacturer: Tfrm_manufacturer
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Endere'#231'o'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -431,7 +435,6 @@ inherited frm_manufacturer: Tfrm_manufacturer
               Parent = dxLayoutControl1Group_Root
               CaptionOptions.Text = 'Endere'#231'o'
               ButtonOptions.Buttons = <>
-              ItemIndex = 1
               Index = 0
             end
             object dxLayoutItem19: TdxLayoutItem
@@ -543,6 +546,10 @@ inherited frm_manufacturer: Tfrm_manufacturer
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Contato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -608,7 +615,6 @@ inherited frm_manufacturer: Tfrm_manufacturer
               Parent = dxLayoutControl2Group_Root
               CaptionOptions.Text = 'Contato'
               ButtonOptions.Buttons = <>
-              ItemIndex = 1
               Index = 0
             end
             object dxLayoutItem11: TdxLayoutItem

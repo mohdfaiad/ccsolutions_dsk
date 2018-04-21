@@ -374,6 +374,13 @@ end;
 procedure Tfrm_request.FormShow(Sender: TObject);
 begin
   inherited;
+  //SQL para exibir somente as Requisições da Unidade de estoque que o usuário tem acesso
+  qry.Close;
+  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
+  qry.Prepare;
+  qry.Open;
+ //---------------------------------------------------------------------------
+
 with frm_dm.qry, sql do
  begin
    close;

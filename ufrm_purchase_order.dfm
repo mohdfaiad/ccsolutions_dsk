@@ -7,6 +7,7 @@
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 487
+    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 487
     ClientRectBottom = 481
     inherited cxTabSheet_1: TcxTabSheet
@@ -452,7 +453,6 @@
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
@@ -465,7 +465,15 @@
     SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from purchase_order'
-      'where pco_type = '#39'C'#39)
+      'where pco_type = '#39'C'#39' and contract_ctr_id =:ctr_id'#13#10#10
+      '')
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 1
+      end>
     object qrypco_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'pco_id'

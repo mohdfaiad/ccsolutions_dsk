@@ -10,9 +10,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     ExplicitHeight = 392
     ClientRectBottom = 386
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
       ExplicitHeight = 358
       inherited cxGrid_1: TcxGrid
         Height = 352
@@ -60,9 +57,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
       ExplicitHeight = 358
       inherited cxPageControl_2: TcxPageControl
         Height = 352
@@ -70,9 +64,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
         ClientRectBottom = 346
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
           ExplicitHeight = 318
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 318
@@ -3304,14 +3295,18 @@ inherited frm_stock_entry: Tfrm_stock_entry
       end>
     object qry_stocksto_name: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
       FieldName = 'sto_name'
       Origin = 'sto_name'
       Size = 50
     end
     object qry_stocksto_id: TFDAutoIncField
+      DisplayLabel = 'Cod. ID'
+      DisplayWidth = 15
       FieldName = 'sto_id'
       Origin = 'sto_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_stockcontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault

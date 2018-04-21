@@ -67,6 +67,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
+    procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
   private
     { Private declarations }
   public
@@ -121,7 +122,14 @@ begin
    cxTabSheet_1.Show;
 end;
 
-procedure Tfrm_stock.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure Tfrm_stock.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  //Para atualizar combobox
+   frm_dm.qry_enterprise.Refresh;
+end;
+
+Procedure Tfrm_stock.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
   frm_stock.Destroy;

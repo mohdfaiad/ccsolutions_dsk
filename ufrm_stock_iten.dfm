@@ -4,13 +4,9 @@ inherited frm_stock_iten: Tfrm_stock_iten
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_1
+    Properties.ActivePage = cxTabSheet_2
     OnPageChanging = cxPageControl_1PageChanging
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
@@ -37,16 +33,8 @@ inherited frm_stock_iten: Tfrm_stock_iten
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'sto_id'
@@ -177,11 +165,15 @@ inherited frm_stock_iten: Tfrm_stock_iten
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\itens de estoque'
     end
   end
+  inherited ActionList_1: TActionList
+    inherited Action_delete: TAction
+      Enabled = False
+    end
+  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -189,7 +181,25 @@ inherited frm_stock_iten: Tfrm_stock_iten
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from stock')
+      'select * from stock'
+      'where sto_status = '#39'A'#39' and contract_ctr_id =:ctr_id'
+      'and enterprise_ent_id in '
+      
+        '(select ctr_usr_ent_ent_id  from contract_user_enterprise where ' +
+        'ctr_usr_ent_user_id =:ctr_usr_id)')
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 1
+      end
+      item
+        Name = 'CTR_USR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 4
+      end>
     object qrysto_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'sto_id'

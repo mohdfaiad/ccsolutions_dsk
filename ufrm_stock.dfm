@@ -119,6 +119,7 @@ inherited frm_stock: Tfrm_stock
                   FieldName = 'ent_id'
                 end>
               Properties.ListSource = frm_dm.ds_enterprise
+              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 4
               Width = 294

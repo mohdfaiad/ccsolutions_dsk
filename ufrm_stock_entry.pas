@@ -274,7 +274,7 @@ procedure Tfrm_stock_entry.cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
 begin
   inherited;
   //Atualização do combobox
-  qry_stock.Refresh;
+   qry_stock.Refresh;
 end;
 
 procedure Tfrm_stock_entry.cxDBLookupComboBox3PropertiesPopup(Sender: TObject);

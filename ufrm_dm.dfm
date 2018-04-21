@@ -100,6 +100,7 @@ object frm_dm: Tfrm_dm
     Top = 72
   end
   object qry_enterprise: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = ds_signin
     MasterFields = 'ctr_id'
@@ -126,6 +127,8 @@ object frm_dm: Tfrm_dm
         Value = 4
       end>
     object qry_enterpriseent_id: TFDAutoIncField
+      DisplayLabel = 'Cod. ID'
+      DisplayWidth = 15
       FieldName = 'ent_id'
       Origin = 'ent_id'
       ProviderFlags = [pfInWhere, pfInKey]
@@ -151,6 +154,7 @@ object frm_dm: Tfrm_dm
     end
     object qry_enterpriseent_last_name: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
       FieldName = 'ent_last_name'
       Origin = 'ent_last_name'
       Size = 50

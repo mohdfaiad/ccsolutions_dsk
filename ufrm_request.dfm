@@ -3226,14 +3226,18 @@ inherited frm_request: Tfrm_request
       end>
     object qry_stocksto_name: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
       FieldName = 'sto_name'
       Origin = 'sto_name'
       Size = 50
     end
     object qry_stocksto_id: TFDAutoIncField
+      DisplayLabel = 'Cod. ID'
+      DisplayWidth = 15
       FieldName = 'sto_id'
       Origin = 'sto_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_stockcontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault

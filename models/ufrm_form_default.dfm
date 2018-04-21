@@ -25,7 +25,7 @@ object frm_form_default: Tfrm_form_default
     Height = 506
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet_2
+    Properties.ActivePage = cxTabSheet_1
     Properties.CustomButtons.Buttons = <>
     Properties.HotImages = cxImageList_1
     Properties.Images = cxImageList_1

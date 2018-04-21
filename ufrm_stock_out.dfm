@@ -4,11 +4,8 @@ inherited frm_stock_out: Tfrm_stock_out
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1req_id: TcxGridDBColumn
@@ -64,17 +61,9 @@ inherited frm_stock_out: Tfrm_stock_out
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      OnShow = cxTabSheet_2Show
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -109,11 +98,9 @@ inherited frm_stock_out: Tfrm_stock_out
               Properties.KeyFieldNames = 'ent_id'
               Properties.ListColumns = <
                 item
-                  Caption = 'Nome'
-                  FieldName = 'ent_first_name'
+                  FieldName = 'ent_last_name'
                 end
                 item
-                  Caption = 'C'#243'digo'
                   FieldName = 'ent_id'
                 end>
               Properties.ListSource = ds_enterprise
@@ -2800,7 +2787,6 @@ inherited frm_stock_out: Tfrm_stock_out
     Top = 136
   end
   object qry_enterprise: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -2808,20 +2794,47 @@ inherited frm_stock_out: Tfrm_stock_out
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select ent_id,ent_first_name,contract_ctr_id from enterprise'
-      'order by ent_first_name')
+      
+        'select ent_id,ent_first_name,ent_last_name,contract_ctr_id from ' +
+        'enterprise'
+      'where contract_ctr_id =:ctr_id'
+      
+        'and ent_id in (select ctr_usr_ent_ent_id  from contract_user_ent' +
+        'erprise where ctr_usr_ent_user_id =:ctr_usr_id)'
+      '')
     Left = 592
     Top = 136
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 1
+      end
+      item
+        Name = 'CTR_USR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 4
+      end>
     object qry_enterpriseent_id: TFDAutoIncField
+      DisplayLabel = 'Cod. ID'
+      DisplayWidth = 15
       FieldName = 'ent_id'
       Origin = 'ent_id'
       ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
     end
     object qry_enterpriseent_first_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ent_first_name'
       Origin = 'ent_first_name'
+      Size = 50
+    end
+    object qry_enterpriseent_last_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'ent_last_name'
+      Origin = 'ent_last_name'
       Size = 50
     end
     object qry_enterprisecontract_ctr_id: TIntegerField
@@ -2865,7 +2878,7 @@ inherited frm_stock_out: Tfrm_stock_out
         Name = 'REQ_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = Null
+        Value = 5
       end>
     object qry_lab_request_itenslri_id: TFDAutoIncField
       FieldName = 'lri_id'

@@ -46,8 +46,6 @@ type
     qrydt_registration: TDateTimeField;
     ds_enterprise: TDataSource;
     qry_enterprise: TFDQuery;
-    qry_enterpriseent_id: TFDAutoIncField;
-    qry_enterpriseent_first_name: TStringField;
     cxDBLookupComboBox1: TcxDBLookupComboBox;
     dxLayoutItem4: TdxLayoutItem;
     qry_client: TFDQuery;
@@ -80,7 +78,6 @@ type
     ds_qry_product_out: TDataSource;
     BitBtn1: TBitBtn;
     dxLayoutItem7: TdxLayoutItem;
-    qry_enterprisecontract_ctr_id: TIntegerField;
     qry_lab_request_itenslri_id: TFDAutoIncField;
     qry_lab_request_itenslab_request_req_id: TIntegerField;
     qry_lab_request_itensproduct_pro_id: TIntegerField;
@@ -110,6 +107,10 @@ type
     qry_doctordoc_id: TFDAutoIncField;
     qry_doctorcontract_ctr_id: TIntegerField;
     qry_lab_request_itensProduto: TStringField;
+    qry_enterpriseent_id: TFDAutoIncField;
+    qry_enterpriseent_first_name: TStringField;
+    qry_enterpriseent_last_name: TStringField;
+    qry_enterprisecontract_ctr_id: TIntegerField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -118,6 +119,7 @@ type
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox3PropertiesPopup(Sender: TObject);
+    procedure cxTabSheet_2Show(Sender: TObject);
   private
     { Private declarations }
   public
@@ -198,6 +200,16 @@ begin
   inherited;
    //Atualização do combobox
   qry_doctor.Refresh;
+end;
+
+procedure Tfrm_stock_out.cxTabSheet_2Show(Sender: TObject);
+begin
+  inherited;
+  //SQL para exibir somente as empresas que o usuário tem acesso
+  qry_enterprise.Close;
+  qry_enterprise.ParamByName('CTR_USR_ID').Value :=frm_dm.qry_signinctr_usr_id.Value;
+  qry_enterprise.Prepare;
+  qry_enterprise.Open;
 end;
 
 procedure Tfrm_stock_out.FormClose(Sender: TObject; var Action: TCloseAction);

@@ -181,7 +181,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               Properties.OnButtonClick = cxDBButtonEdit1PropertiesButtonClick
               Style.HotTrack = False
               TabOrder = 2
-              Width = 136
+              Width = 112
             end
             object cxDBLookupComboBox1: TcxDBLookupComboBox [4]
               Left = 73
@@ -201,10 +201,10 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 8
-              Width = 200
+              Width = 248
             end
             object cxDBLookupComboBox2: TcxDBLookupComboBox [5]
-              Left = 345
+              Left = 393
               Top = 157
               DataBinding.DataField = 'stock_sto_id_entrance'
               DataBinding.DataSource = ds
@@ -220,10 +220,10 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               Properties.OnPopup = cxDBLookupComboBox2PropertiesPopup
               Style.HotTrack = False
               TabOrder = 9
-              Width = 200
+              Width = 308
             end
             object cxDBSpinEdit5: TcxDBSpinEdit [6]
-              Left = 532
+              Left = 580
               Top = 130
               DataBinding.DataField = 'employee_emp_id_lecturer'
               DataBinding.DataSource = ds
@@ -255,10 +255,10 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               Properties.OnPopup = cxDBLookupComboBox3PropertiesPopup
               Style.HotTrack = False
               TabOrder = 5
-              Width = 200
+              Width = 248
             end
             object cxDBSpinEdit4: TcxDBSpinEdit [8]
-              Left = 345
+              Left = 393
               Top = 130
               DataBinding.DataField = 'employee_emp_id_agent'
               DataBinding.DataSource = ds
@@ -267,7 +267,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               Width = 121
             end
             object cxDBComboBox1: TcxDBComboBox [9]
-              Left = 251
+              Left = 227
               Top = 103
               DataBinding.DataField = 'prt_status'
               DataBinding.DataSource = ds
@@ -280,20 +280,20 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
                 'T - TRANSITO')
               Style.HotTrack = False
               TabOrder = 3
-              Width = 121
+              Width = 94
             end
             object cxDBTextEdit2: TcxDBTextEdit [10]
-              Left = 415
+              Left = 393
               Top = 103
               DataBinding.DataField = 'prt_status_reason'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 4
-              Width = 121
+              Width = 102
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
+              ItemIndex = 2
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahClient
@@ -326,7 +326,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               CaptionOptions.Text = 'N'#250'm. Req.'
               Control = cxDBButtonEdit1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 136
+              ControlOptions.OriginalWidth = 112
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -337,7 +337,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               CaptionOptions.Text = 'Est. Sa'#237'da'
               Control = cxDBLookupComboBox1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 200
+              ControlOptions.OriginalWidth = 248
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -356,7 +356,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               CaptionOptions.Text = 'Est. Entrada'
               Control = cxDBLookupComboBox2
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 200
+              ControlOptions.OriginalWidth = 308
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -378,7 +378,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               CaptionOptions.Text = 'Solicitante'
               Control = cxDBLookupComboBox3
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 200
+              ControlOptions.OriginalWidth = 248
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -405,7 +405,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               CaptionOptions.Text = 'Status'
               Control = cxDBComboBox1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 94
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -423,7 +423,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               CaptionOptions.Text = 'Motivo'
               Control = cxDBTextEdit2
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 102
               ControlOptions.ShowBorder = False
               Index = 2
             end
@@ -3290,6 +3290,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Top = 56
   end
   object qry_stock_exit: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -3320,14 +3321,18 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       end>
     object qry_stock_exitsto_name: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
       FieldName = 'sto_name'
       Origin = 'sto_name'
       Size = 50
     end
     object qry_stock_exitsto_id: TFDAutoIncField
+      DisplayLabel = 'Cod. ID'
+      DisplayWidth = 15
       FieldName = 'sto_id'
       Origin = 'sto_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_stock_exitcontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault

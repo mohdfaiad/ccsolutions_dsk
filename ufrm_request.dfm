@@ -205,7 +205,10 @@ inherited frm_request: Tfrm_request
     end
     inherited cxTabSheet_2: TcxTabSheet
       OnShow = cxTabSheet_2Show
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 869
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         Width = 863
         ExplicitWidth = 863
@@ -700,7 +703,7 @@ inherited frm_request: Tfrm_request
   end
   object ds_product: TDataSource [18]
     DataSet = qry_product
-    Left = 625
+    Left = 705
     Top = 136
   end
   object qry_product: TFDQuery [19]
@@ -712,7 +715,7 @@ inherited frm_request: Tfrm_request
     SQL.Strings = (
       'select * from product'
       'order by pro_name')
-    Left = 592
+    Left = 672
     Top = 136
   end
   inherited FDSchemaAdapter_1: TFDSchemaAdapter

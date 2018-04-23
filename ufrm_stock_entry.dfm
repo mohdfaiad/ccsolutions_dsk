@@ -68,6 +68,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
       ExplicitHeight = 358
       inherited cxPageControl_2: TcxPageControl
         Height = 352
+        Properties.ActivePage = cxTabSheet1
         ExplicitHeight = 352
         ClientRectBottom = 346
         inherited cxTabSheet_3: TcxTabSheet

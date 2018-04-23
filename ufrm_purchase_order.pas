@@ -160,6 +160,14 @@ end;
 
 procedure Tfrm_purchase_order.Action_saveExecute(Sender: TObject);
 begin
+
+   if qry_purchase_order_iten.IsEmpty then
+   begin
+     Application.MessageBox('Não é possível salvar, falta incluir os produtos neste Pedido !','AVISO DO SISTEMA',MB_OK + MB_ICONQUESTION);
+      Exit;
+   end;
+
+
   if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
    begin
      Application.MessageBox('Só é permitido alterar um pedido de compra que esteja em aberto!','PEDIDO DE COMPRA', MB_ICONINFORMATION + MB_OK);
@@ -244,16 +252,22 @@ var
 motLib:string;
 begin
   inherited;
-if Application.MessageBox('Deseja liberar essa requisição?','PEDIDO',MB_YESNO + MB_ICONQUESTION) = mrYes  then
- begin
-  motLib:=UpperCase(InputBox('Liberação','Informe uma observação da liberação! (Não obrigatório)',motLib));
-  qry.Edit;
-  qrypco_status.AsString:='L';
-  qrypoc_status_reason.AsString:=motLib;
-  qry.Post;
-  FDSchemaAdapter_1.ApplyUpdates(0);
- end;
-
+  if Application.MessageBox('Deseja liberar este Pedido de Compra ?','PEDIDO',MB_YESNO + MB_ICONQUESTION) = mrYes  then
+   begin
+   //Comando para verificar se existe produtos no Pedido, caso exista produto poderá ser liberado
+    if qry_purchase_order_iten.Locate('purchase_order_pco_id',qrypco_id.AsInteger,[loCaseInsensitive, loPartialKey]) then
+     begin
+      motLib:=UpperCase(InputBox('Liberação','Informe uma observação da liberação! (Não obrigatório)',motLib));
+      qry.Edit;
+      qrypco_status.AsString:='L';
+      qrypoc_status_reason.AsString:=motLib;
+      qry.Post;
+      FDSchemaAdapter_1.ApplyUpdates(0);
+     end
+     //Caso o Pedido esteja vasia sem produtos não podera ser liberado
+     else
+     Application.MessageBox('Não existe nenhum produto neste Pedido de Compra, portanto ele não pode ser liberado !','AVISO DO SISTEMA',MB_OK+MB_ICONQUESTION);
+   end;
 end;
 
 procedure Tfrm_purchase_order.filter(status: string);

@@ -2,11 +2,13 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   Caption = 'Manuten'#231#227'o: Transfer'#234'ncias'
   ClientHeight = 530
   OnClose = FormClose
+  OnShow = FormShow
   ExplicitHeight = 569
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 475
+    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 475
     ClientRectBottom = 469
     inherited cxTabSheet_1: TcxTabSheet
@@ -473,7 +475,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     DesignInfo = 1049230
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
@@ -485,9 +486,34 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
-      'select * from product_transfer')
+      'SELECT * FROM product_transfer'#13#10#10
+      
+        'where stock_sto_id_exit in (select sto_id from stock where contr' +
+        'act_ctr_id =:ctr_id'#13#10#10
+      
+        'and enterprise_ent_id in '#10'(select ctr_usr_ent_ent_id from contra' +
+        'ct_user_enterprise '#10'where ctr_usr_ent_user_id =:ctr_usr_id))'#13#10#10
+      
+        'and stock_sto_id_entrance in (select sto_id from stock where con' +
+        'tract_ctr_id =:ctr_id'#13#10#10
+      
+        'and enterprise_ent_id in '#10'(select ctr_usr_ent_ent_id from contra' +
+        'ct_user_enterprise '#10'where ctr_usr_ent_user_id =:ctr_usr_id))')
     Left = 554
     Top = 40
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 1
+      end
+      item
+        Name = 'CTR_USR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 4
+      end>
     object qryprt_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'prt_id'
@@ -3131,7 +3157,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         Name = 'PRT_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = 40
+        Value = 41
       end>
     object qry_product_transfer_itenpti_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'

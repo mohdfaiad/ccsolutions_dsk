@@ -159,6 +159,7 @@ type
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
     procedure qryAfterDelete(DataSet: TDataSet);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
 
@@ -260,6 +261,7 @@ begin
       qry.Edit;
       qryprt_status.AsString := 'C';
       qry.Post;
+
     end;
 
     // Caso a transferência esteja in transit, localiza os produtos que foi dado baixa
@@ -285,6 +287,8 @@ begin
         qry_stock_iten.Post;
         qry_product_transfer_iten.Next;
       end;
+
+
     end;
 
     if qryprt_status.AsString = 'E' then
@@ -332,6 +336,9 @@ begin
         qry_stock_iten.Post;
         qry_product_transfer_iten.Next;
       end;
+
+
+
     end;
 
     qry.Edit;
@@ -343,7 +350,7 @@ begin
     qry.Edit;
     qryprt_status.AsString := 'C';
     qry.Post;
-
+    qry.ApplyUpdates(0);
     Application.MessageBox('Transferência cancelada com sucesso!', 'Entrada',
       MB_OK + MB_ICONINFORMATION);
   end;
@@ -590,6 +597,18 @@ procedure Tfrm_stock_transfer.FormCreate(Sender: TObject);
 begin
   inherited;
   FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+end;
+
+procedure Tfrm_stock_transfer.FormShow(Sender: TObject);
+begin
+  inherited;
+   //SQL para exibir somente as Requisições da Unidade de estoque que o usuário tem acesso
+   qry.Close;
+   qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
+   qry.Prepare;
+   qry.Open;
+ //---------------------------------------------------------------------------
+
 end;
 
 procedure Tfrm_stock_transfer.limpaCache(Sender: TObject);

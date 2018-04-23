@@ -159,7 +159,7 @@ procedure Tfrm_stock_entry.Action_saveExecute(Sender: TObject);
 begin
    if qry_product_entry.IsEmpty then
    begin
-     Application.MessageBox('Não é possível salvar falta incluir os produtos dessa nota !','AVISO DO SISTEMA',MB_OK + MB_ICONQUESTION);
+     Application.MessageBox('Não é possível salvar, falta incluir os produtos desta Nota !','AVISO DO SISTEMA',MB_OK + MB_ICONQUESTION);
       Exit;
    end;
 
@@ -199,6 +199,7 @@ begin
       qry.Edit;
       qrypde_status.AsString := 'C';
       qry.Post;
+      qry.ApplyUpdates(0);
       Application.MessageBox('Cancelamento confirmado com sucesso!', 'Entrada',MB_OK + MB_ICONINFORMATION);
     end;
   end;

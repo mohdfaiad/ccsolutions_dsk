@@ -2181,7 +2181,6 @@ object frm_main_default: Tfrm_main_default
     TabOrder = 0
     TabStop = False
     object dxRibbon1Tab_1: TdxRibbonTab
-      Active = True
       Caption = 'Cadastros'
       Groups = <
         item
@@ -2190,6 +2189,7 @@ object frm_main_default: Tfrm_main_default
       Index = 0
     end
     object dxRibbon1Tab_2: TdxRibbonTab
+      Active = True
       Caption = 'M'#243'dulo'
       Groups = <>
       Index = 1
@@ -2461,5 +2461,11 @@ object frm_main_default: Tfrm_main_default
   object cxLocalizer_1: TcxLocalizer
     Left = 504
     Top = 8
+  end
+  object Timer_1: TTimer
+    Enabled = False
+    OnTimer = Timer_1Timer
+    Left = 324
+    Top = 302
   end
 end

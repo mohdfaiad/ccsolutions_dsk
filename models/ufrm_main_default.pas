@@ -25,7 +25,8 @@ uses
   dxStatusBar, dxRibbonStatusBar, cxLabel, dxGallery, dxGalleryControl,
   dxRibbonBackstageViewGalleryControl, System.Actions, Vcl.ActnList,
   System.ImageList, Vcl.ImgList, cxImage, dxGDIPlusClasses, Vcl.ExtCtrls,
-  dxSkinscxPCPainter, dxBevel, ACBrBase, ACBrDownload, cxLocalization;
+  dxSkinscxPCPainter, dxBevel, ACBrBase, ACBrDownload, cxLocalization,
+  Vcl.StdCtrls, Vcl.Buttons,uThred_logged;
 
 type
   Tfrm_main_default = class(TdxRibbonForm)
@@ -51,11 +52,14 @@ type
     dxRibbonBackstageViewTabSheet2: TdxRibbonBackstageViewTabSheet;
     Bevel_1: TBevel;
     cxLocalizer_1: TcxLocalizer;
+    Timer_1: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure dxRibbonStatusBar1Panels3Click(Sender: TObject);
+    procedure Timer_1Timer(Sender: TObject);
   private
     { Private declarations }
+
   public
     { Public declarations }
 
@@ -63,6 +67,8 @@ type
 
 var
   frm_main_default: Tfrm_main_default;
+  logado:Boolean;
+
 
 implementation
 
@@ -72,7 +78,7 @@ uses ufrm_dm,ufrm_search_enterprise;
 
 { TForm1 }
 
-procedure Tfrm_main_default.dxRibbonStatusBar1Panels3Click(Sender: TObject);
+Procedure Tfrm_main_default.dxRibbonStatusBar1Panels3Click(Sender: TObject);
 begin
  Application.CreateForm(Tfrm_search_enterprise,frm_search_enterprise);
  frm_search_enterprise.empresa:=dxRibbonStatusBar1.Panels[3].Text;
@@ -83,8 +89,11 @@ begin
 end;
 
 procedure Tfrm_main_default.FormCreate(Sender: TObject);
+
 begin
   DisableAero := True;
+  logado:=true;
+
   // VERIFICA SE EXISTE O ARQUIVO DENTRO DA PASTA
   if FileExists('c:\development\TraduçãoDev.ini') then
   begin
@@ -100,6 +109,28 @@ begin
     dxRibbonStatusBar1.Panels[3].Text := IntToStr(frm_dm.qry_enterpriseent_id.AsInteger)+' - '+frm_dm.qry_enterpriseent_last_name.AsString;
     dxRibbonStatusBar1.Panels[5].Text :=frm_dm.qry_signinctr_usr_username.AsString;
     dxRibbonStatusBar1.Panels[7].Text :=FormatDateTime('dd/MM/yyyy',date);
+    Timer_1.Enabled:=True;
+end;
+
+procedure Tfrm_main_default.Timer_1Timer(Sender: TObject);
+var
+ ThreadLogado:TLogado;
+begin
+if not frm_dm.qry_signin.Active then
+exit;
+  ThreadLogado:=TLogado.Create(True);
+  ThreadLogado.FreeOnTerminate:=True;
+  ThreadLogado.Resume;
+
+
+if not logado then
+ begin
+  Timer_1.Enabled:=false;
+  Application.MessageBox('Usuário foi desconectado do sistema!','AVISO', MB_OK + MB_ICONWARNING);
+  Application.Terminate;
+ end;
 end;
 
 end.
+
+

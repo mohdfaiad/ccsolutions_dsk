@@ -37,7 +37,17 @@ uses
   ufrm_stock_transfer in '..\ufrm_stock_transfer.pas' {frm_stock_transfer},
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   ufrm_purchase_order in '..\ufrm_purchase_order.pas' {frm_purchase_order},
-  ufrm_request in '..\ufrm_request.pas' {frm_request};
+  ufrm_request in '..\ufrm_request.pas' {frm_request},
+  uThred_logged in '..\uThred_logged.pas',
+  ufrm_billpay in '..\ufrm_billpay.pas' {frm_billpay},
+  ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
+  ufrm_bank in '..\ufrm_bank.pas' {frm_bank},
+  ufrm_receipt in '..\ufrm_receipt.pas' {frm_receipt},
+  ufrm_duplicAccount in '..\ufrm_duplicAccount.pas' {frm_duplicAccount},
+  ufrm_billreceive in '..\ufrm_billreceive.pas' {frm_billreceive},
+  ufrm_account_type in '..\ufrm_account_type.pas' {frm_account_type},
+  ufrm_account_synthetic in '..\ufrm_account_synthetic.pas' {frm_account_synthetic},
+  ufrm_cost_center in '..\ufrm_cost_center.pas' {frm_cost_center};
 
 {$R *.res}
 

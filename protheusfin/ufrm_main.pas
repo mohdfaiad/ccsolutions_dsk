@@ -66,7 +66,6 @@ type
     dxBarButton1: TdxBarButton;
     dxBarButton3: TdxBarButton;
     dxBarLargeButton14: TdxBarLargeButton;
-    cxImageList1: TcxImageList;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);

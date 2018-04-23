@@ -79,6 +79,10 @@ type
     dxLayoutGroup4: TdxLayoutGroup;
     cxListEmps: TcxCheckListBox;
     dxLayoutItem10: TdxLayoutItem;
+    qryctr_usr_status: TStringField;
+    qryctr_usr_logged: TStringField;
+    cxGrid_1DBTableView1Column1: TcxGridDBColumn;
+    DesconectarUsurio1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
@@ -89,6 +93,10 @@ type
     procedure cxListEmpsClickCheck(Sender: TObject; AIndex: Integer; APrevState,
       ANewState: TcxCheckBoxState);
     procedure cxListEmpsClick(Sender: TObject);
+    procedure cxGrid_1DBTableView1CustomDrawCell(Sender: TcxCustomGridTableView;
+      ACanvas: TcxCanvas; AViewInfo: TcxGridTableDataCellViewInfo;
+      var ADone: Boolean);
+    procedure DesconectarUsurio1Click(Sender: TObject);
   private
     { Private declarations }
     listEmp:TStrings;
@@ -153,6 +161,39 @@ procedure Tfrm_contract_user.cxTabSheet1Show(Sender: TObject);
 begin
   inherited;
 montar_empresa;
+end;
+
+procedure Tfrm_contract_user.DesconectarUsurio1Click(Sender: TObject);
+begin
+  inherited;
+ if Application.MessageBox('Deseja desconectar o usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
+  begin
+    qry.Edit;
+    qryctr_usr_logged.AsString:='N';
+    qry.Post;
+    qry.ApplyUpdates(0);
+    Application.MessageBox('Usuário desconectado com sucesso!','AVISO', MB_OK + MB_ICONWARNING)
+  end;
+
+end;
+
+procedure Tfrm_contract_user.cxGrid_1DBTableView1CustomDrawCell(
+  Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
+  AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
+
+var
+IndiceCampo: Integer;
+Valor      : Variant;
+begin
+  inherited;
+   if (AViewInfo <> nil) and ((Sender as TcxGridDBTableView).DataController.Dataset.Active ) then begin
+      IndiceCampo := (Sender as
+      TcxGridDBTableView).GetColumnByFieldName('ctr_usr_logged').Index;
+      Valor       := AViewInfo.GridRecord.Values[IndiceCampo];
+//      ACanvas.Font.Style  := [];
+      if (Valor = 'S') then
+         ACanvas.Font.Color  := clGreen;
+   end;
 end;
 
 procedure Tfrm_contract_user.cxListEmpsClick(Sender: TObject);

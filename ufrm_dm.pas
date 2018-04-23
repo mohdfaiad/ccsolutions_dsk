@@ -55,6 +55,7 @@ type
     connCDL: TFDConnection;
     mssql_driver: TFDPhysMSSQLDriverLink;
     qry_signinctr_usr_id: TIntegerField;
+    qry_signinctr_usr_logged: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

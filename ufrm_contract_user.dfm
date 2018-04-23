@@ -1,7 +1,7 @@
 inherited frm_contract_user: Tfrm_contract_user
   Caption = 'Manuten'#231#227'o: Usu'#225'rios'
   OnClose = FormClose
-  ExplicitTop = -8
+  ExplicitLeft = -289
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -12,6 +12,7 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
+          OnCustomDrawCell = cxGrid_1DBTableView1CustomDrawCell
           object cxGrid_1DBTableView1ctr_usr_id: TcxGridDBColumn
             DataBinding.FieldName = 'ctr_usr_id'
             Width = 75
@@ -40,10 +41,15 @@ inherited frm_contract_user: Tfrm_contract_user
             DataBinding.FieldName = 'ctr_usr_dt_registration'
             Width = 125
           end
+          object cxGrid_1DBTableView1Column1: TcxGridDBColumn
+            Caption = 'Logado'
+            DataBinding.FieldName = 'ctr_usr_logged'
+          end
         end
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 776
       ExplicitHeight = 472
@@ -241,6 +247,12 @@ inherited frm_contract_user: Tfrm_contract_user
       end
     end
   end
+  inherited PopupMenu_1: TPopupMenu
+    object DesconectarUsurio1: TMenuItem
+      Caption = 'Desconectar  Usu'#225'rio'
+      OnClick = DesconectarUsurio1Click
+    end
+  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
@@ -313,6 +325,20 @@ inherited frm_contract_user: Tfrm_contract_user
       FieldName = 'contract_ctr_id'
       Origin = 'contract_ctr_id'
     end
+    object qryctr_usr_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_usr_status'
+      Origin = 'ctr_usr_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qryctr_usr_logged: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_usr_logged'
+      Origin = 'ctr_usr_logged'
+      FixedChar = True
+      Size = 1
+    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -366,6 +392,7 @@ inherited frm_contract_user: Tfrm_contract_user
       end>
     object qry_contract_user_enterprisectr_usr_ent_id: TFDAutoIncField
       FieldName = 'ctr_usr_ent_id'
+      ReadOnly = True
     end
     object qry_contract_user_enterprisectr_usr_ent_user_id: TIntegerField
       FieldName = 'ctr_usr_ent_user_id'

@@ -457,6 +457,10 @@ inherited frm_billpay: Tfrm_billpay
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Cont'#225'bil'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0

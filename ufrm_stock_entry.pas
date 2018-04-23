@@ -156,7 +156,9 @@ implementation
 uses ufrm_dm;
 
 procedure Tfrm_stock_entry.Action_saveExecute(Sender: TObject);
+
 begin
+
    if qry_product_entry.IsEmpty then
    begin
      Application.MessageBox('Não é possível salvar, falta incluir os produtos desta Nota !','AVISO DO SISTEMA',MB_OK + MB_ICONQUESTION);
@@ -164,11 +166,20 @@ begin
    end;
 
   inherited;
-   qry_purchase_order.Edit;
-   qry_purchase_orderpco_status.AsString := 'E';
-   qry_purchase_order.Post;
-   qry_purchase_order.ApplyUpdates(0);
-
+
+  with frm_dm.qry2,sql do
+     begin
+       Close;
+       Clear;
+       Text := ' update purchase_order set pco_status =:Letra ' +
+               ' where pco_id =:pco_id ';
+       ParamByName('Letra').AsString := 'F';
+       ParamByName('pco_id').AsInteger := qrypurchase_order_pco_id.AsInteger;
+       Prepare;
+       ExecSQL;
+     end;
+
+
 end;
 
 procedure Tfrm_stock_entry.Cancelarentrada1Click(Sender: TObject);
@@ -196,10 +207,15 @@ begin
         qry_stock_iten.Post;
         qry_product_entry.Next;
       end;
+      qry_stock_iten.ApplyUpdates(0);
+
       qry.Edit;
       qrypde_status.AsString := 'C';
       qry.Post;
       qry.ApplyUpdates(0);
+      //---------------------------------
+      qry.Close;
+      qry.Open;
       Application.MessageBox('Cancelamento confirmado com sucesso!', 'Entrada',MB_OK + MB_ICONINFORMATION);
     end;
   end;
@@ -248,11 +264,14 @@ begin
         qry_product_entry.Next;
       end;
       qry_stock_iten.ApplyUpdates(0);
+      //--------------------------------
       qry.Edit;
       qrypde_status.AsString := 'E';
       qry.Post;
       qry.ApplyUpdates(0);
-
+      //-------------------------------
+      qry.Close;
+      qry.Open;
       Application.MessageBox('Entrada confirmada com sucesso!', 'Entrada',MB_OK + MB_ICONINFORMATION);
     end;
   end;

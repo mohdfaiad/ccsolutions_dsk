@@ -115,6 +115,7 @@ type
     procedure Action_deleteExecute(Sender: TObject);
     procedure qryAfterDelete(DataSet: TDataSet);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   procedure filter(status:string);
@@ -184,7 +185,7 @@ procedure Tfrm_purchase_order.cxDBLookupComboBox1PropertiesPopup(
   Sender: TObject);
 begin
   inherited;
-  qry_employee.Refresh;
+//  qry_employee.Refresh;
 end;
 
 procedure Tfrm_purchase_order.cxGrid_1DBTableView1CustomDrawCell(
@@ -231,20 +232,26 @@ var
 motCancel:string;
 begin
   inherited;
-if Application.MessageBox('Deseja cancelar essa requisição?','REQUISIÇÃO',MB_YESNO + MB_ICONQUESTION) = mrYes  then
- begin
-  motCancel:=UpperCase(InputBox('Cancelamento','Qual o motivo do cancelamento? (mínimo 20 caracteres)',motCancel));
-  if Length(trim(motCancel)) >= 20 then
+  if (qry.RecordCount >0) then
    begin
-     qry.Edit;
-     qrypco_status.AsString:='C';
-     qrypoc_status_reason.AsString:=motCancel;
-     qry.Post;
-     FDSchemaAdapter_1.ApplyUpdates(0);
+    if Application.MessageBox('Deseja cancelar este Pedido de Compra ?','PEDIDO',MB_YESNO + MB_ICONQUESTION) = mrYes  then
+     begin
+      motCancel:=UpperCase(InputBox('Cancelamento','Qual o motivo do cancelamento? (mínimo 20 caracteres)',motCancel));
+      if Length(trim(motCancel)) >= 20 then
+       begin
+         qry.Edit;
+         qrypco_status.AsString:='C';
+         qrypoc_status_reason.AsString:=motCancel;
+         qry.Post;
+         FDSchemaAdapter_1.ApplyUpdates(0);
+       end
+       else
+       Application.MessageBox('Motivo do cancelamento menor que 20 caracteres!','PEDIDO',MB_OK + MB_ICONWARNING);
+     end;
    end
    else
-   Application.MessageBox('Motivo do cancelamento menor que 20 caracteres!','PEDIDO',MB_OK + MB_ICONWARNING);
- end;
+    Application.MessageBox('Não existe nenhum pediddo para ser Cancelado !','PEDIDO',MB_OK + MB_ICONQUESTION);
+
 end;
 
 procedure Tfrm_purchase_order.dxLiberarPedClick(Sender: TObject);
@@ -288,6 +295,13 @@ procedure Tfrm_purchase_order.FormCreate(Sender: TObject);
 begin
   inherited;
   FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+end;
+
+procedure Tfrm_purchase_order.FormShow(Sender: TObject);
+begin
+  inherited;
+   qry_employee.Close;
+   qry_employee.Open;
 end;
 
 procedure Tfrm_purchase_order.lbAbertoClick(Sender: TObject);

@@ -317,20 +317,26 @@ var
 motCancel:string;
 begin
   inherited;
-if Application.MessageBox('Deseja cancelar essa requisição?','REQUISIÇÃO',MB_YESNO + MB_ICONQUESTION) = mrYes  then
- begin
-  motCancel:=UpperCase(InputBox('Cancelamento','Qual o motivo do cancelamento? (mínimo 20 caracteres)',motCancel));
-  if Length(trim(motCancel)) >= 20 then
+ if (qry.RecordCount >0) then
+  begin
+  if Application.MessageBox('Deseja cancelar essa requisição?','REQUISIÇÃO',MB_YESNO + MB_ICONQUESTION) = mrYes  then
    begin
-     qry.Edit;
-     qrypco_status.AsString:='C';
-     qrypoc_status_reason.AsString:=motCancel;
-     qry.Post;
-     FDSchemaAdapter_1.ApplyUpdates(0);
-   end
-   else
-   Application.MessageBox('Motivo do cancelamento menor que 20 caracteres!','REQUISIÇÃO',MB_OK + MB_ICONWARNING);
- end;
+    motCancel:=UpperCase(InputBox('Cancelamento','Qual o motivo do cancelamento? (mínimo 20 caracteres)',motCancel));
+    if Length(trim(motCancel)) >= 20 then
+     begin
+      qry.Edit;
+      qrypco_status.AsString:='C';
+      qrypoc_status_reason.AsString:=motCancel;
+      qry.Post;
+      FDSchemaAdapter_1.ApplyUpdates(0);
+     end
+    else
+    Application.MessageBox('Motivo do cancelamento menor que 20 caracteres!','REQUISIÇÃO',MB_OK + MB_ICONWARNING);
+   end;
+  end
+  else
+   Application.MessageBox('Não existe nenhuma Requisição para ser Cancelada !','REQUISIÇÃO',MB_OK + MB_ICONINFORMATION);
+
 end;
 
 procedure Tfrm_request.dxLibRequClick(Sender: TObject);

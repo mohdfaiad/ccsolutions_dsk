@@ -2,6 +2,7 @@
   Caption = 'Manuten'#231#227'o: Pedidos de Compra'
   ClientHeight = 542
   OnClose = FormClose
+  OnShow = FormShow
   ExplicitHeight = 581
   PixelsPerInch = 96
   TextHeight = 13
@@ -453,6 +454,7 @@
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
@@ -2963,7 +2965,6 @@
     end
   end
   object qry_purchase_order_iten: TFDQuery
-    Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
     AfterEdit = qry_purchase_order_itenAfterEdit
     CachedUpdates = True
@@ -2983,7 +2984,7 @@
     ParamData = <
       item
         Name = 'PCO_ID'
-        DataType = ftAutoInc
+        DataType = ftInteger
         ParamType = ptInput
         Value = 24
       end>
@@ -3064,10 +3065,18 @@
     SQL.Strings = (
       
         'select e.emp_id, e.record_rec_id, e.emp_type, e.emp_status, r.re' +
-        'c_name, e.contract_ctr_id from employee as e'#10'inner join record a' +
-        's r on e.record_rec_id = r.rec_id')
+        'c_name, e.contract_ctr_id from employee as '
+      'e'#10'inner join record as r on e.record_rec_id = r.rec_id'
+      'where e.contract_ctr_id =:ctr_id')
     Left = 672
     Top = 144
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 1
+      end>
   end
   object ds_employee: TDataSource
     DataSet = qry_employee

@@ -2901,8 +2901,4 @@ inherited frm_main: Tfrm_main
     Left = 824
     Top = 16
   end
-  inherited Timer_2: TTimer
-    Left = 384
-    Top = 8
-  end
 end

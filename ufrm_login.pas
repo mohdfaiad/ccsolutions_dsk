@@ -114,6 +114,12 @@ begin
    frm_dm.qry_enterprise.Prepare;
    frm_dm.qry_enterprise.Open;
 
+ if frm_dm.qry_loggedctr_usr_logged.AsString = 'B' then
+  begin
+  Application.MessageBox('Usuário foi bloaqueado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
+   Application.Terminate
+  end;
+
 
   if frm_dm.qry_signin.RecordCount = 1 then
   begin
@@ -135,7 +141,6 @@ begin
             ' where contract_ctr_id = ' + edt_contract.Text +
             ' and ctr_usr_password = '+ QuotedStr(md5.HashStringAsHex(edt_password.Text)) +
             ' and ctr_usr_username = ' + QuotedStr(edt_username.Text);
-      SaveToFile('c:\codTemp\sql.txt');
       Prepare;
       ExecSQL;
     end;

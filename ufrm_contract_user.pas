@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxShellComboBox, frxDesgn, QExport4Dialog, cxBarEditItem, dxBarExtItems,
   QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, ACBrValidador, cxCheckListBox,
-  cxDBCheckListBox;
+  cxDBCheckListBox, cxCheckBox;
 
 type
   Tfrm_contract_user = class(Tfrm_form_default)
@@ -83,6 +83,9 @@ type
     qryctr_usr_logged: TStringField;
     cxGrid_1DBTableView1Column1: TcxGridDBColumn;
     DesconectarUsurio1: TMenuItem;
+    BloqueerUsurio1: TMenuItem;
+    DesbloquearUsurio1: TMenuItem;
+    qryctr_usr_admin: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
@@ -97,6 +100,9 @@ type
       ACanvas: TcxCanvas; AViewInfo: TcxGridTableDataCellViewInfo;
       var ADone: Boolean);
     procedure DesconectarUsurio1Click(Sender: TObject);
+    procedure BloqueerUsurio1Click(Sender: TObject);
+    procedure PopupMenu_1Popup(Sender: TObject);
+    procedure DesbloquearUsurio1Click(Sender: TObject);
   private
     { Private declarations }
     listEmp:TStrings;
@@ -157,10 +163,36 @@ begin
   //
 end;
 
+procedure Tfrm_contract_user.BloqueerUsurio1Click(Sender: TObject);
+begin
+  inherited;
+ if Application.MessageBox('Deseja bloquer o usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
+  begin
+    qry.Edit;
+    qryctr_usr_logged.AsString:='B';
+    qry.Post;
+    qry.ApplyUpdates(0);
+    Application.MessageBox('Usuário bloqueado com sucesso!','AVISO', MB_OK + MB_ICONWARNING)
+  end;
+end;
+
 procedure Tfrm_contract_user.cxTabSheet1Show(Sender: TObject);
 begin
   inherited;
 montar_empresa;
+end;
+
+procedure Tfrm_contract_user.DesbloquearUsurio1Click(Sender: TObject);
+begin
+  inherited;
+ if Application.MessageBox('Deseja desbloquer o usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
+  begin
+    qry.Edit;
+    qryctr_usr_logged.AsString:='N';
+    qry.Post;
+    qry.ApplyUpdates(0);
+    Application.MessageBox('Usuário desbloqueado com sucesso!','AVISO', MB_OK + MB_ICONWARNING)
+  end;
 end;
 
 procedure Tfrm_contract_user.DesconectarUsurio1Click(Sender: TObject);
@@ -193,6 +225,9 @@ begin
 //      ACanvas.Font.Style  := [];
       if (Valor = 'S') then
          ACanvas.Font.Color  := clGreen;
+
+      if (Valor = 'B') then
+         ACanvas.Font.Color  := clRed;
    end;
 end;
 
@@ -283,6 +318,20 @@ with frm_dm.qry,sql do
 end;
 
 
+
+procedure Tfrm_contract_user.PopupMenu_1Popup(Sender: TObject);
+begin
+  inherited;
+ DesconectarUsurio1.Visible:=qryctr_usr_logged.AsString = 'S';
+ DesbloquearUsurio1.Visible:=qryctr_usr_logged.AsString = 'B';
+ BloqueerUsurio1.Visible:=qryctr_usr_logged.AsString <> 'B';
+
+
+ if qryctr_usr_logged.AsString = 'B' then
+  BloqueerUsurio1.Caption:='Desbloqueer Usuário'
+  else
+  BloqueerUsurio1.Caption:='Bloqueer Usuário';
+end;
 
 procedure Tfrm_contract_user.qryAfterInsert(DataSet: TDataSet);
 begin

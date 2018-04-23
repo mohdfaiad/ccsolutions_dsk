@@ -100,6 +100,14 @@ begin
   frm_dm.qry_signin.Prepare;
   frm_dm.qry_signin.Open;
 
+  frm_dm.qry_logged.Close;
+  frm_dm.qry_logged.Params.ClearValues();
+  frm_dm.qry_logged.Params[0].AsInteger := StrToInt(edt_contract.Text);
+  frm_dm.qry_logged.Params[1].AsString := edt_username.Text;
+  frm_dm.qry_logged.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
+  frm_dm.qry_logged.Prepare;
+  frm_dm.qry_logged.Open;
+
   // Select para listar as unidades de estoque que esse usuário tem acesso
    frm_dm.qry_enterprise.Close;
    frm_dm.qry_enterprise.ParamByName('CTR_USR_ID').Value :=frm_dm.qry_signinctr_usr_id.Value;
@@ -118,7 +126,7 @@ begin
      edt_passwordCurrent.SetFocus;
      exit;
     end;
-
+  if frm_dm.qry_signinctr_usr_logged.AsString <> 'B' then
    with frm_dm.qry,sql do
     begin
       close;

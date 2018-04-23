@@ -30,7 +30,9 @@ uses
   ufrm_cost_center in '..\ufrm_cost_center.pas' {frm_cost_center},
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   ufrm_duplicAccount in '..\ufrm_duplicAccount.pas' {frm_duplicAccount},
-  ufrm_changePassword in '..\ufrm_changePassword.pas' {frm_changePassword};
+  ufrm_changePassword in '..\ufrm_changePassword.pas' {frm_changePassword},
+  uThred_logged in '..\uThred_logged.pas',
+  ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise};
 
 {$R *.res}
 
@@ -42,5 +44,6 @@ begin
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
   Application.CreateForm(Tfrm_search, frm_search);
+  Application.CreateForm(Tfrm_search_enterprise, frm_search_enterprise);
   Application.Run;
 end.

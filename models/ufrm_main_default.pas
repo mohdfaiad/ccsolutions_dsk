@@ -53,10 +53,12 @@ type
     Bevel_1: TBevel;
     cxLocalizer_1: TcxLocalizer;
     Timer_1: TTimer;
+
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure dxRibbonStatusBar1Panels3Click(Sender: TObject);
     procedure Timer_1Timer(Sender: TObject);
+    procedure FormDeactivate(Sender: TObject);
   private
     { Private declarations }
 
@@ -67,7 +69,7 @@ type
 
 var
   frm_main_default: Tfrm_main_default;
-  logado:Boolean;
+  logado,bloqueado,ativa:Boolean;
 
 
 implementation
@@ -78,7 +80,7 @@ uses ufrm_dm,ufrm_search_enterprise;
 
 { TForm1 }
 
-Procedure Tfrm_main_default.dxRibbonStatusBar1Panels3Click(Sender: TObject);
+procedure Tfrm_main_default.dxRibbonStatusBar1Panels3Click(Sender: TObject);
 begin
  Application.CreateForm(Tfrm_search_enterprise,frm_search_enterprise);
  frm_search_enterprise.empresa:=dxRibbonStatusBar1.Panels[3].Text;
@@ -93,6 +95,8 @@ procedure Tfrm_main_default.FormCreate(Sender: TObject);
 begin
   DisableAero := True;
   logado:=true;
+  bloqueado:=false;
+  Timer_1.Enabled:=false;
 
   // VERIFICA SE EXISTE O ARQUIVO DENTRO DA PASTA
   if FileExists('c:\development\TraduçãoDev.ini') then
@@ -103,6 +107,11 @@ begin
   end;
 
  end;
+procedure Tfrm_main_default.FormDeactivate(Sender: TObject);
+begin
+//Timer_1.Enabled:=false;
+end;
+
 procedure Tfrm_main_default.FormShow(Sender: TObject);
 begin
     dxRibbonStatusBar1.Panels[1].Text :=FormatFloat('0000',frm_dm.qry_signinctr_id.AsInteger);
@@ -118,19 +127,29 @@ var
 begin
 if not frm_dm.qry_signin.Active then
 exit;
+
   ThreadLogado:=TLogado.Create(True);
   ThreadLogado.FreeOnTerminate:=True;
   ThreadLogado.Resume;
 
 
+
 if not logado then
  begin
   Timer_1.Enabled:=false;
-  Application.MessageBox('Usuário foi desconectado do sistema!','AVISO', MB_OK + MB_ICONWARNING);
+  Application.MessageBox('Usuário foi desconectado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
   Application.Terminate;
  end;
+
+if  bloqueado then
+ begin
+  Timer_1.Enabled:=false;
+  Application.MessageBox('Usuário foi bloaqueado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
+  Application.Terminate;
+ end;
+
 end;
 
 end.
 
-
+                 `

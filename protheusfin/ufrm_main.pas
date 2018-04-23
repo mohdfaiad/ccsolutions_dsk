@@ -27,7 +27,7 @@ uses
   dxBar, dxStatusBar, dxRibbonStatusBar, cxLabel, dxGalleryControl,
   dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
   dxRibbon, dxGDIPlusClasses, Vcl.ExtCtrls, dxBevel, ACBrBase, ACBrDownload,
-  cxLocalization;
+  cxLocalization, Vcl.StdCtrls, Vcl.Buttons;
 
 type
   Tfrm_main = class(Tfrm_main_default)

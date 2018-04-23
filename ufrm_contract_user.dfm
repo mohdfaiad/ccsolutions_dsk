@@ -1,7 +1,7 @@
 inherited frm_contract_user: Tfrm_contract_user
   Caption = 'Manuten'#231#227'o: Usu'#225'rios'
   OnClose = FormClose
-  ExplicitLeft = -289
+  ExplicitLeft = -316
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -248,9 +248,18 @@ inherited frm_contract_user: Tfrm_contract_user
     end
   end
   inherited PopupMenu_1: TPopupMenu
+    OnPopup = PopupMenu_1Popup
     object DesconectarUsurio1: TMenuItem
       Caption = 'Desconectar  Usu'#225'rio'
       OnClick = DesconectarUsurio1Click
+    end
+    object BloqueerUsurio1: TMenuItem
+      Caption = 'Bloqueer Usu'#225'rio'
+      OnClick = BloqueerUsurio1Click
+    end
+    object DesbloquearUsurio1: TMenuItem
+      Caption = 'Desbloquear Usu'#225'rio'
+      OnClick = DesbloquearUsurio1Click
     end
   end
   inherited cxImageList_1: TcxImageList
@@ -261,6 +270,7 @@ inherited frm_contract_user: Tfrm_contract_user
     Top = 40
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
@@ -336,6 +346,13 @@ inherited frm_contract_user: Tfrm_contract_user
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_logged'
       Origin = 'ctr_usr_logged'
+      FixedChar = True
+      Size = 1
+    end
+    object qryctr_usr_admin: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_usr_admin'
+      Origin = 'ctr_usr_admin'
       FixedChar = True
       Size = 1
     end

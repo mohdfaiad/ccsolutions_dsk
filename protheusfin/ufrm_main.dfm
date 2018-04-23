@@ -1,7 +1,5 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Financeiro - CCS Protheus.'
-  ExplicitWidth = 1024
-  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited Image_1: TImage
@@ -16,11 +14,9 @@ inherited frm_main: Tfrm_main
   end
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
-      Active = False
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
-      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar2'
@@ -2904,5 +2900,9 @@ inherited frm_main: Tfrm_main
     UseOwnFont = False
     Left = 824
     Top = 16
+  end
+  inherited Timer_2: TTimer
+    Left = 384
+    Top = 8
   end
 end

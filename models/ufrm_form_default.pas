@@ -34,7 +34,8 @@ uses
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, ACBrBase, ACBrEnterTab,
   QExport4Dialog, dxBarExtItems, cxShellComboBox, cxBarEditItem, frxDesgn,
-  QImport3Wizard, frxClass, cxLocalization, ACBrSocket, ACBrCEP;
+  QImport3Wizard, frxClass, cxLocalization, ACBrSocket, ACBrCEP,uThred_logged,
+  Vcl.ExtCtrls;
 
 type
   Tfrm_form_default = class(TForm)
@@ -152,6 +153,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses ufrm_main_default, ufrm_dm;
 
 procedure Tfrm_form_default.Action_cancelExecute(Sender: TObject);
 begin
@@ -323,6 +326,7 @@ for I := 0 to Self.ComponentCount -1 do
   cxTabSheet_1.TabVisible:=False;
   cxTabSheet_2.TabVisible:=False;
   cxTabSheet_1.Show;
+
 end;
 
 end.

@@ -349,4 +349,40 @@ object frm_dm: Tfrm_dm
     Left = 344
     Top = 8
   end
+  object qry_logged: TFDQuery
+    Connection = connCCS
+    SQL.Strings = (
+      'SELECT ctr_usr_logged FROM contract_user'
+      'WHERE contract_ctr_id= :contract '
+      'and ctr_usr_username = :username '
+      'and ctr_usr_password=:password')
+    Left = 344
+    Top = 184
+    ParamData = <
+      item
+        Name = 'CONTRACT'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'USERNAME'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'PASSWORD'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qry_loggedctr_usr_logged: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_usr_logged'
+      Origin = 'ctr_usr_logged'
+      FixedChar = True
+      Size = 1
+    end
+  end
 end

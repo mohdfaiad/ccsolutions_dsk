@@ -56,11 +56,13 @@ begin
   { Place thread code here }
   Priority:=tpLower;
 
-  frm_dm.qry_signin.Refresh;
-  if frm_dm.qry_signinctr_usr_logged.AsString = 'N' then
+  frm_dm.qry_logged.Refresh;
+  if frm_dm.qry_loggedctr_usr_logged.AsString = 'N' then
     logado:=False;
-    inherited;
 
-end;
+  if frm_dm.qry_loggedctr_usr_logged.AsString = 'B' then
+    bloqueado:=true;
+    inherited;
+ end;
 
 end.

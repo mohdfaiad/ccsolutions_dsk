@@ -16,6 +16,7 @@ object frm_main_default: Tfrm_main_default
   ShowHint = True
   WindowState = wsMaximized
   OnCreate = FormCreate
+  OnDeactivate = FormDeactivate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -2189,7 +2190,6 @@ object frm_main_default: Tfrm_main_default
       Index = 0
     end
     object dxRibbon1Tab_2: TdxRibbonTab
-      Active = True
       Caption = 'M'#243'dulo'
       Groups = <>
       Index = 1
@@ -2200,6 +2200,7 @@ object frm_main_default: Tfrm_main_default
       Index = 2
     end
     object dxRibbon1Tab_4: TdxRibbonTab
+      Active = True
       Caption = 'Utilit'#225'rios'
       Groups = <>
       Index = 3
@@ -2383,7 +2384,7 @@ object frm_main_default: Tfrm_main_default
     ImageOptions.LargeImages = cxImageList_1
     PopupMenuLinks = <>
     UseSystemFont = True
-    Left = 568
+    Left = 584
     Top = 8
     object dxBarManager1Bar1: TdxBar
       Caption = 'Quick Access Toolbar'
@@ -2449,23 +2450,23 @@ object frm_main_default: Tfrm_main_default
   end
   object ActionList_1: TActionList
     Images = cxImageList_1
-    Left = 600
+    Left = 624
     Top = 8
   end
   object cxImageList_1: TcxImageList
     Height = 32
     Width = 32
     FormatVersion = 1
-    DesignInfo = 524920
+    DesignInfo = 672
   end
   object cxLocalizer_1: TcxLocalizer
-    Left = 504
+    Left = 480
     Top = 8
   end
   object Timer_1: TTimer
     Enabled = False
     OnTimer = Timer_1Timer
-    Left = 324
-    Top = 302
+    Left = 444
+    Top = 7
   end
 end

@@ -295,7 +295,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               Width = 102
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 2
+              ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahClient
@@ -3136,7 +3136,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Left = 352
   end
   object qry_product_transfer_iten: TFDQuery
-    Active = True
     AfterInsert = qry_product_transfer_itenAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'product_transfer_prt_id'
@@ -3260,7 +3259,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     end
   end
   object qry_product: TFDQuery
-    Active = True
     IndexFieldNames = 'stock_sto_id'
     MasterSource = ds
     MasterFields = 'stock_sto_id_exit'
@@ -3317,7 +3315,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Top = 56
   end
   object qry_stock_exit: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -3378,7 +3375,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Top = 98
   end
   object qry_employee: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -3455,7 +3451,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     end
   end
   object qry_purchase_order_iten: TFDQuery
-    Active = True
     CachedUpdates = True
     IndexFieldNames = 'purchase_order_pco_id'
     MasterSource = ds_purchase_iten

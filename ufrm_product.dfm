@@ -4,6 +4,7 @@ inherited frm_product: Tfrm_product
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -779,11 +780,13 @@ inherited frm_product: Tfrm_product
   end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from product')
     object qrypro_id: TFDAutoIncField

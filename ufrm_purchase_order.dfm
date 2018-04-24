@@ -2,7 +2,6 @@
   Caption = 'Manuten'#231#227'o: Pedidos de Compra'
   ClientHeight = 542
   OnClose = FormClose
-  OnShow = FormShow
   ExplicitHeight = 581
   PixelsPerInch = 96
   TextHeight = 13
@@ -454,7 +453,6 @@
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
@@ -3055,7 +3053,6 @@
     Top = 96
   end
   object qry_employee: TFDQuery
-    Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin

@@ -353,6 +353,9 @@ begin
     qry.ApplyUpdates(0);
     Application.MessageBox('Transferência cancelada com sucesso!', 'Entrada',
       MB_OK + MB_ICONINFORMATION);
+
+    qry.Close;
+    qry.Open;
   end;
 end;
 
@@ -417,6 +420,8 @@ begin
      inherited;
 
      qry.ApplyUpdates(0);
+     qry.Close;
+     qry.Open;
 
   end;
 end;
@@ -490,6 +495,8 @@ begin
 
     inherited;
     qry.ApplyUpdates(0);
+    qry.Close;
+    qry.Open;
   end;
 end;
 

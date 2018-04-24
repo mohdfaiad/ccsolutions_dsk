@@ -115,7 +115,6 @@ type
     procedure Action_deleteExecute(Sender: TObject);
     procedure qryAfterDelete(DataSet: TDataSet);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   procedure filter(status:string);
@@ -185,7 +184,7 @@ procedure Tfrm_purchase_order.cxDBLookupComboBox1PropertiesPopup(
   Sender: TObject);
 begin
   inherited;
-//  qry_employee.Refresh;
+  qry_employee.Refresh;
 end;
 
 procedure Tfrm_purchase_order.cxGrid_1DBTableView1CustomDrawCell(
@@ -295,13 +294,6 @@ procedure Tfrm_purchase_order.FormCreate(Sender: TObject);
 begin
   inherited;
   FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
-end;
-
-procedure Tfrm_purchase_order.FormShow(Sender: TObject);
-begin
-  inherited;
-   qry_employee.Close;
-   qry_employee.Open;
 end;
 
 procedure Tfrm_purchase_order.lbAbertoClick(Sender: TObject);

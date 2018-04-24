@@ -53,6 +53,7 @@ type
     Bevel_1: TBevel;
     cxLocalizer_1: TcxLocalizer;
     Timer_1: TTimer;
+    Button1: TButton;
 
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -64,8 +65,8 @@ type
 
   public
     { Public declarations }
-  procedure controleAcesso(form:TForm; ctr_usr_id:Integer;ctr_usr_adm:String);
-  procedure insertControle(form:TForm;module:string);
+  procedure controleAcesso(ctr_usr_id:Integer;ctr_usr_adm:String);
+  procedure AtualizarControle(form:TForm;module:string);
   end;
 
 var
@@ -80,25 +81,44 @@ uses ufrm_dm,ufrm_search_enterprise;
 
 { TForm1 }
 
-procedure Tfrm_main_default.controleAcesso(form:TForm; ctr_usr_id: Integer;
+procedure Tfrm_main_default.controleAcesso(ctr_usr_id: Integer;
   ctr_usr_adm: String);
 var
 i:integer;
 begin
+if ctr_usr_adm = 'S' then
+ exit;
+
+ for I := 0 to Self.ComponentCount - 1 do
+  begin
+   if Self.Components[i] is TAction then
+    if TAction(Self.Components[i]).Tag <> 1 then
+     TAction(Self.Components[i]).Enabled:=false;
+  end;
+
  with frm_dm.qry,sql do
   begin
+   Close;
+   Text := ' select ctr_usr_act_action_name from contract_user_action '+
+           ' where ctr_usr_act_user_id = ' + IntToStr(ctr_usr_id);
+   Prepare;
+   Open;
+   DisableControls;
+   First;
 
-  if ctr_usr_adm <> 'S' then
+  while not Eof do
    begin
-    for I := 0 to form.ComponentCount - 1 do
+    for I := 0 to Self.ComponentCount - 1 do
      begin
-      if form.Components[i] is TAction then
-       if TAction(form.Components[i]).Tag <> 1 then
-        TAction(form.Components[i]).Enabled:=false;
-     end;
+      if Self.Components[i] is TAction then
+       if Taction(Self.components[i]).Name = FieldByName('ctr_usr_act_action_name').AsString then
+        Taction(Self.components[i]).Enabled := true;
+      end;
+    Next;
    end;
   end;
 end;
+
 
 procedure Tfrm_main_default.dxRibbonStatusBar1Panels3Click(Sender: TObject);
 begin
@@ -139,39 +159,41 @@ begin
     dxRibbonStatusBar1.Panels[5].Text :=frm_dm.qry_signinctr_usr_username.AsString;
     dxRibbonStatusBar1.Panels[7].Text :=FormatDateTime('dd/MM/yyyy',date);
     Timer_1.Enabled:=True;
+    controleAcesso(frm_dm.qry_signinctr_usr_id.AsInteger,frm_dm.qry_signinctr_usr_admin.AsString);
 end;
 
-procedure Tfrm_main_default.insertControle(form:TForm;module:string);
+procedure Tfrm_main_default.AtualizarControle(form:TForm;module:string);
 var
   i: Integer;
 begin
-(*
+
 with frm_dm.qry,sql do
  begin
   Close;
-  SQL.text := 'delete from system_action';
+  SQL.text := 'delete from system_action ' +
+              'where sys_act_module = ' + QuotedStr(module);
   Prepare;
   ExecSQL;
 
   Close;
-  SQL.text := 'insert into system_action(sys_act_name,sys_act_subtitle,sys_act_class) ' +
-              ' values (:sys_act_name,:sys_act_subtitle,:sys_act_class)';
+  SQL.text := 'insert into system_action(sys_act_name,sys_act_subtitle,sys_act_class,sys_act_module) ' +
+              ' values (:sys_act_name,:sys_act_subtitle,:sys_act_class,:system_act_module)';
   i := 0;
-  for I := 0 to frmPrincipal.ComponentCount -1 do
+  for I := 0 to form.ComponentCount -1 do
    begin
-    if Self.Components[i] is TAction then
+    if form.Components[i] is TAction then
      begin
-      if (TAction(self.Components[i]).tag = 0) and (TAction(self.Components[i]).Caption <> '-') then
+      if (TAction(form.Components[i]).tag = 0) and (TAction(form.Components[i]).Caption <> '-') then
        begin
-        Params[0].Value := TAction(Self.Components[i]).name;
-        Params[1].Value := TAction(Self.Components[i]).Hint;
-        Params[2].Value := TAction(self.Components[i]).Category;
-        Params[3].Value := 'A';
+        ParamByName('sys_act_name').AsString := TAction(form.Components[i]).name;
+        ParamByName('sys_act_subtitle').AsString := TAction(form.Components[i]).Hint;
+        ParamByName('system_act_module').AsString := TAction(form.Components[i]).Category;
+        ParamByName('sys_act_class').AsString := 'A';
         Prepare;
         ExecSQL;
        end;
      end;
-
+(*
     if Self.Components[i] is TMenuItem then
      begin
       if (TMenuItem(Self.Components[i]).tag=0) and (TMenuItem(Self.Components[i]).caption<>'-') then
@@ -183,10 +205,10 @@ with frm_dm.qry,sql do
         Prepared;
         ExecSQL;
        end;
-     end;
+     end;    *)
   end;
  end;
-  *)
+
 end;
 
 
@@ -221,4 +243,4 @@ end;
 
 end.
 
-                 `
+

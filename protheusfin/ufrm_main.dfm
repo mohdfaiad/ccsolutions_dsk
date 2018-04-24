@@ -51,6 +51,9 @@ inherited frm_main: Tfrm_main
       end
     end
   end
+  inherited Button1: TButton
+    OnClick = Button1Click
+  end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager1Bar2: TdxBar
       FloatLeft = 355
@@ -2885,7 +2888,7 @@ inherited frm_main: Tfrm_main
           0000000000000000000000000000000000000000000000000000}
       end>
   end
-  object rbpopmenu_1: TdxRibbonPopupMenu [9]
+  object rbpopmenu_1: TdxRibbonPopupMenu [10]
     BarManager = dxBarManager_1
     ItemLinks = <
       item

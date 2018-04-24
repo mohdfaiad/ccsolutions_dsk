@@ -81,7 +81,7 @@ type
     procedure Action_account_typeExecute(Sender: TObject);
     procedure Action_account_plan_syntheticExecute(Sender: TObject);
     procedure Action_cost_center_groupExecute(Sender: TObject);
-    procedure FormShow(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -338,6 +338,12 @@ begin
   end;
 end;
 
+procedure Tfrm_main.Button1Click(Sender: TObject);
+begin
+  inherited;
+ AtualizarControle(self,'FINANCEIRO');
+end;
+
 procedure Tfrm_main.FormCreate(Sender: TObject);
 begin
   inherited;
@@ -350,12 +356,6 @@ begin
       [mbOK], 0);
     Application.Terminate;
   end;
-end;
-
-procedure Tfrm_main.FormShow(Sender: TObject);
-begin
-  inherited;
-  controleAcesso(Self,frm_dm.qry_signinctr_usr_id.AsInteger,frm_dm.qry_signinctr_usr_admin.AsString);
 end;
 
 end.

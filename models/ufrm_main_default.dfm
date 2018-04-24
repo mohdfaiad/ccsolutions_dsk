@@ -2182,7 +2182,6 @@ object frm_main_default: Tfrm_main_default
     TabOrder = 0
     TabStop = False
     object dxRibbon1Tab_1: TdxRibbonTab
-      Active = True
       Caption = 'Cadastros'
       Groups = <
         item
@@ -2191,6 +2190,7 @@ object frm_main_default: Tfrm_main_default
       Index = 0
     end
     object dxRibbon1Tab_2: TdxRibbonTab
+      Active = True
       Caption = 'M'#243'dulo'
       Groups = <>
       Index = 1
@@ -2367,6 +2367,14 @@ object frm_main_default: Tfrm_main_default
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+  end
+  object Button1: TButton
+    Left = 8
+    Top = 246
+    Width = 25
+    Height = 25
+    Cursor = crHandPoint
+    TabOrder = 3
   end
   object dxBarManager_1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET

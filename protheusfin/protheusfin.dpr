@@ -43,7 +43,5 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
-  Application.CreateForm(Tfrm_search, frm_search);
-  Application.CreateForm(Tfrm_search_enterprise, frm_search_enterprise);
   Application.Run;
 end.

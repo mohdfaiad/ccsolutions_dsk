@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxShellComboBox, frxDesgn, QExport4Dialog, cxBarEditItem, dxBarExtItems,
   QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, ACBrValidador, cxCheckListBox,
-  cxDBCheckListBox, cxCheckBox;
+  cxDBCheckListBox, cxCheckBox, AdvTabSet, AdvOfficeTabSet;
 
 type
   Tfrm_contract_user = class(Tfrm_form_default)
@@ -88,6 +88,15 @@ type
     qryctr_usr_admin: TStringField;
     cxDBCheckBox1: TcxDBCheckBox;
     dxLayoutItem7: TdxLayoutItem;
+    dxLayoutGroup5: TdxLayoutGroup;
+    cxListMenu: TcxCheckListBox;
+    dxLayoutItem9: TdxLayoutItem;
+    AdvOfficeTabSet1: TAdvOfficeTabSet;
+    dxLayoutItem11: TdxLayoutItem;
+    qry_contract_user_action: TFDQuery;
+    qry_contract_user_actionctr_usr_act_id: TFDAutoIncField;
+    qry_contract_user_actionctr_usr_act_user_id: TIntegerField;
+    qry_contract_user_actionctr_usr_act_action_name: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
@@ -105,9 +114,13 @@ type
     procedure BloqueerUsurio1Click(Sender: TObject);
     procedure PopupMenu_1Popup(Sender: TObject);
     procedure DesbloquearUsurio1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure AdvOfficeTabSet1Change(Sender: TObject);
+    procedure cxListMenuClickCheck(Sender: TObject; AIndex: Integer; APrevState,
+      ANewState: TcxCheckBoxState);
   private
     { Private declarations }
-    listEmp:TStrings;
+    listEmp,listAction:TStrings;
   public
     { Public declarations }
   procedure limpaCache(Sender:TObject);
@@ -164,6 +177,49 @@ begin
       end;
   //
 end;
+
+procedure Tfrm_contract_user.AdvOfficeTabSet1Change(Sender: TObject);
+var
+  c: Integer;
+begin
+//  subs := TStringList.Create;
+  with frm_dm do
+   begin
+    qry.close;
+    qry.SQL.Text := ' select ctr_usr_act_action_name from contract_user_action ' +
+            ' where ctr_usr_act_user_id = ' +qryctr_usr_id.AsString +
+            ' and ctr_usr_act_action_name = :menu';
+
+    qry2.sql.Text := ' select sys_act_subtitle,sys_Act_name from system_action ' +
+                            ' where sys_act_module = ' + QuotedStr(AdvOfficeTabSet1.AdvOfficeTabs[AdvOfficeTabSet1.ActiveTabIndex].Caption) +
+                            ' order by sys_act_name';
+    qry2.Prepared;
+    qry2.Open;
+
+    qry2.First;
+    cxListMenu.Items.clear;
+    listAction.Clear;
+    c:=0;
+//    subs.clear;
+    while not qry2.Eof do
+    begin
+     cxListMenu.AddItem(qry2.FieldByName('sys_act_subtitle').AsString);
+     listAction.Add(qry2.FieldByName('sys_Act_name').AsString);
+//      subs.add((qvi2.FieldByName('menu_cod').AsString));
+     qry.ParamByName('menu').AsString := QuotedStr(qry2.FieldByName('sys_Act_name').AsString);
+     qry.Prepare;
+     qry.Open;
+     //  chk.Checked[chk.Items.Count - 1] := not qvi.Eof;
+
+     if not qry.IsEmpty then
+       TcxCheckListBoxItem(cxListMenu.Items[c]).Checked:= True;
+//      qvi.close;
+      c:=c + 1;
+      qry2.Next;
+    end;
+  end;
+end;
+
 
 procedure Tfrm_contract_user.BloqueerUsurio1Click(Sender: TObject);
 begin
@@ -268,6 +324,25 @@ begin
 
 end;
 
+procedure Tfrm_contract_user.cxListMenuClickCheck(Sender: TObject;
+  AIndex: Integer; APrevState, ANewState: TcxCheckBoxState);
+begin
+  inherited;
+if TcxCheckListBoxItem(cxListMenu.Items[cxListMenu.ItemIndex]).Checked then
+ begin
+  qry_contract_user_action.Insert;
+  qry_contract_user_actionctr_usr_act_action_name.AsString:= listAction[cxListMenu.ItemIndex];
+  qry_contract_user_action.Post;
+ end;
+
+if not TcxCheckListBoxItem(cxListMenu.Items[cxListMenu.ItemIndex]).Checked then
+  begin
+   qry_contract_user_action.Locate('ctr_usr_act_action_name',
+     listAction[cxListMenu.ItemIndex],[]);
+    qry_contract_user_action.delete;
+ end;
+end;
+
 procedure Tfrm_contract_user.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -281,12 +356,41 @@ begin
   inherited;
  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
  listEmp:=TStringList.Create;
+ listAction:=TStringList.Create;
 end;
+
+procedure Tfrm_contract_user.FormShow(Sender: TObject);
+var
+  c: Integer;
+begin
+ AdvOfficeTabSet1.AdvOfficeTabs.Clear;
+
+ with frm_dm.qry,sql do
+  begin
+    close;
+    Text := 'SELECT distinct sys_act_module FROM system_action '+
+                ' where sys_act_class = ''A'' '+
+                ' order by sys_act_module';
+    Prepared;
+    Open;
+    First;
+    while not Eof do
+     begin
+      AdvOfficeTabSet1.AdvOfficeTabs.AdvOfficeTabSet.AddTab(FieldByName('sys_act_module').AsString);
+      Next;
+    end;
+
+end;
+  inherited;
+
+end;
+
 
 procedure Tfrm_contract_user.limpaCache(Sender: TObject);
 begin
   qry.CommitUpdates();
   qry_contract_user_enterprise.CommitUpdates();
+  qry_contract_user_action.CommitUpdates()
 end;
 
 procedure Tfrm_contract_user.montar_empresa;

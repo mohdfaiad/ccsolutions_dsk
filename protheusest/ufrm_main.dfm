@@ -1,7 +1,7 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Estoque - CCS Protheus.'
-  ExplicitWidth = 1024
-  ExplicitHeight = 640
+  ExplicitWidth = 320
+  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 13
   inherited Bevel_1: TBevel
@@ -16,7 +16,6 @@ inherited frm_main: Tfrm_main
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
-      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar3'
@@ -31,6 +30,7 @@ inherited frm_main: Tfrm_main
       Index = 2
     end
     inherited dxRibbon1Tab_4: TdxRibbonTab
+      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar2'
@@ -89,6 +89,10 @@ inherited frm_main: Tfrm_main
         item
           Visible = True
           ItemName = 'dxBarLargeButton7'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton6'
         end>
       OneOnRow = True
       Row = 0
@@ -653,6 +657,10 @@ inherited frm_main: Tfrm_main
       Action = Action_stock_out
       Category = 0
     end
+    object dxBarButton6: TdxBarButton
+      Action = Action_replace_password
+      Category = 0
+    end
   end
   inherited ActionList_1: TActionList
     object Action_contrat: TAction
@@ -788,6 +796,12 @@ inherited frm_main: Tfrm_main
       Category = 'M'#243'dulo'
       Caption = 'Sa'#237'da do Estoque'
       OnExecute = Action_stock_outExecute
+    end
+    object Action_replace_password: TAction
+      Category = 'Utilit'#225'rios'
+      Caption = 'Trocar Senha'
+      Hint = 'Trocar senha de acesso ao Sistema'
+      OnExecute = Action_replace_passwordExecute
     end
   end
   inherited cxImageList_1: TcxImageList

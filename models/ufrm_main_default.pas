@@ -72,7 +72,6 @@ var
   frm_main_default: Tfrm_main_default;
   logado,bloqueado,ativa:Boolean;
 
-
 implementation
 
 {$R *.dfm}

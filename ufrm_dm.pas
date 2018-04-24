@@ -65,6 +65,7 @@ type
   public
     { Public declarations }
     qry,qry2,qry3:TFDQuery;
+    Acao: Integer;
   end;
 
 var

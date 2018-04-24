@@ -76,6 +76,7 @@ type
   forcaSenha:Integer;
   public
     { Public declarations }
+    Acao:Integer;
   end;
 
 var
@@ -158,79 +159,89 @@ end;
 
 procedure Tfrm_login.Action_cancelExecute(Sender: TObject);
 begin
+
   if MessageDlg('Você não se autenticou. A aplicação será encerrada!' + #13 +
-    'Deseja continuar?', mtConfirmation, mbYesNo, 0) = mrYes then
-  begin
-    Application.Terminate;
-  end;
+        'Deseja continuar?', mtConfirmation, mbYesNo, 0) = mrYes then
+     begin
+       Application.Terminate;
+     end;
+
 end;
 
 procedure Tfrm_login.cxButton3Click(Sender: TObject);
 var
 md5 : TIdHashMessageDigest;
 begin
-if edt_passwordConfirm.Text <> edt_passwordNew.Text then
- begin
-  Application.MessageBox('A nova senha e a confirmação não coincidem!', 'SENHA',MB_OK + MB_ICONERROR);
-  edt_passwordNew.SetFocus;
-  exit;
- end;
+   if edt_passwordConfirm.Text <> edt_passwordNew.Text then
+   begin
+    Application.MessageBox('A nova senha e a confirmação não coincidem!', 'SENHA',MB_OK + MB_ICONERROR);
+    edt_passwordNew.SetFocus;
+    exit;
+   end;
 
-if Length(edt_passwordNew.Text) < 5 then
- begin
-  Application.MessageBox('Senha deve ter no mínimo 5 caracteres!', 'SENHA',MB_OK + MB_ICONERROR);
-  edt_passwordNew.SetFocus;
-  exit;
- end;
+  if Length(edt_passwordNew.Text) < 5 then
+   begin
+    Application.MessageBox('Senha deve ter no mínimo 5 caracteres!', 'SENHA',MB_OK + MB_ICONERROR);
+    edt_passwordNew.SetFocus;
+    exit;
+   end;
 
 
 if Application.MessageBox('Desja confirmar a alteração em sua senha?', 'SENHA',MB_YESNO + MB_ICONQUESTION) = mrYes then
  begin
- with frm_dm.qry,sql do
-  begin
-   close;
-   text:= 'select ctr_usr_password from contract_user ' +
-          'where contract_ctr_id = :contrato ' +
-          'and ctr_usr_username = :nome '+
-          'and (ctr_usr_password = :senha or ctr_usr_password is null)';
-   ParamByName('contrato').AsString:= edt_contract.Text;
-   ParamByName('nome').AsString:=edt_username.Text;
-   ParamByName('senha').AsString:=edt_passwordCurrent.Text;
-   prepare;
-   open;
-
-   if IsEmpty then
-    begin
-     Application.MessageBox('A senha informada não confere para o usuário selecionado!', 'SENHA',MB_OK + MB_ICONERROR);
-     Exit
-    end;
-
    md5:=TIdHashMessageDigest5.Create;
-   close;
-   text:= ' update contract_user ' +
-          ' set  ctr_usr_password = :senhaAtual '+
-          'where contract_ctr_id = :contrato ' +
-          'and ctr_usr_username = :nome '+
-          'and (ctr_usr_password = :senha or ctr_usr_password is null)';
-   ParamByName('contrato').AsString:= edt_contract.Text;
-   ParamByName('nome').AsString:=edt_username.Text;
-   ParamByName('senha').AsString:=edt_passwordCurrent.Text;
-   ParamByName('contrato').AsString:= edt_contract.Text;
-   ParamByName('senhaAtual').AsString:=md5.HashStringAsHex(edt_passwordNew.Text);
-   prepare;
-   ExecSQL;
 
-   Application.MessageBox('Senha alterada com sucesso!', 'SENHA',MB_OK + MB_ICONINFORMATION);
-   Application.Terminate;
-  end;
- end;
+   with frm_dm.qry,sql do
+    begin
+     close;
+     text:= 'select ctr_usr_password from contract_user ' +
+            'where contract_ctr_id = :contrato ' +
+            'and ctr_usr_username = :nome '+
+            'and (ctr_usr_password = :senha or ctr_usr_password is null)';
+     ParamByName('contrato').AsString:= edt_contract.Text;
+     ParamByName('nome').AsString:=edt_username.Text;
+     ParamByName('senha').AsString:=md5.HashStringAsHex(edt_passwordCurrent.Text);
+     prepare;
+     open;
+
+     if IsEmpty then
+      begin
+       Application.MessageBox('A senha informada não confere para o usuário selecionado!', 'SENHA',MB_OK + MB_ICONERROR);
+       Exit
+      end;
+
+     close;
+     text:= ' update contract_user ' +
+            ' set  ctr_usr_password = :senhaAtual '+
+            'where contract_ctr_id = :contrato ' +
+            'and ctr_usr_username = :nome '+
+            'and (ctr_usr_password = :senha or ctr_usr_password is null)';
+     ParamByName('contrato').AsString:= edt_contract.Text;
+     ParamByName('nome').AsString:=edt_username.Text;
+     ParamByName('senha').AsString:=md5.HashStringAsHex(edt_passwordCurrent.Text);
+     ParamByName('contrato').AsString:= edt_contract.Text;
+     ParamByName('senhaAtual').AsString:=md5.HashStringAsHex(edt_passwordNew.Text);
+     prepare;
+     ExecSQL;
+
+     Application.MessageBox('Senha alterada com sucesso!', 'SENHA',MB_OK + MB_ICONINFORMATION);
+     Application.Terminate;
+    end;
+   end;
 
 end;
 
 procedure Tfrm_login.cxButton4Click(Sender: TObject);
 begin
-if Application.MessageBox('Desja sair do sistema sem Cadastrar/Alterar sua senha?', 'SENHA',MB_YESNO + MB_ICONQUESTION) = mrYes then
-Application.Terminate;
+
+ if frm_login.Tag = 99  then
+     Self.Close
+  else
+   begin
+     if Application.MessageBox('Desja sair do sistema sem Cadastrar/Alterar sua senha?', 'SENHA',MB_YESNO + MB_ICONQUESTION) = mrYes then
+     Application.Terminate;
+   end;
+
 end;
 
 procedure Tfrm_login.cxLabel4Click(Sender: TObject);
@@ -393,8 +404,10 @@ end;
 
 procedure Tfrm_login.FormShow(Sender: TObject);
 begin
-  edt_contract.SetFocus;
   cxPageControl1.Pages[1].TabVisible:=False;
+  cxPageControl1.Pages[0].TabVisible:=True;
+  cxTabSheet_1.Show;
+  edt_contract.SetFocus;
   gaugePassword.Progress:=0;
   forcaSenha:=0;
 end;

@@ -7,10 +7,6 @@ inherited frm_stock: Tfrm_stock
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
@@ -45,16 +41,8 @@ inherited frm_stock: Tfrm_stock
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -297,7 +285,7 @@ inherited frm_stock: Tfrm_stock
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
-    ReportOptions.LastChange = 43214.448877453700000000
+    ReportOptions.LastChange = 43214.459340000000000000
     Left = 167
     Datasets = <
       item
@@ -2432,16 +2420,16 @@ inherited frm_stock: Tfrm_stock
       object GroupHeader1: TfrxGroupHeader
         FillType = ftBrush
         Frame.Typ = []
-        Height = 158.740260000000000000
+        Height = 132.283550000000000000
         Top = 238.110390000000000000
         Width = 718.110700000000000000
         Condition = 'enterprise."ent_id"'
         KeepTogether = True
         object Shape1: TfrxShapeView
           Left = 1.779530000000000000
-          Top = 3.220470000000000000
+          Top = 1.220470000000000000
           Width = 714.331170000000000000
-          Height = 117.165430000000000000
+          Height = 124.724490000000000000
           Frame.Typ = []
         end
         object Memo1: TfrxMemoView
@@ -2461,9 +2449,9 @@ inherited frm_stock: Tfrm_stock
         end
         object enterpriseent_first_name1: TfrxMemoView
           IndexTag = 1
-          Left = 128.504020000000000000
+          Left = 123.504020000000000000
           Top = 36.338590000000000000
-          Width = 400.630180000000000000
+          Width = 442.205010000000000000
           Height = 18.897650000000000000
           DataField = 'ent_first_name'
           DataSet = frm_dm.frx_db_enterprise
@@ -2480,9 +2468,9 @@ inherited frm_stock: Tfrm_stock
         end
         object enterpriseent_last_name: TfrxMemoView
           IndexTag = 1
-          Left = 128.504020000000000000
-          Top = 62.795300000000000000
-          Width = 400.630180000000000000
+          Left = 123.504020000000000000
+          Top = 62.574830000000000000
+          Width = 442.205010000000000000
           Height = 18.897650000000000000
           DataField = 'ent_last_name'
           DataSet = frm_dm.frx_db_enterprise
@@ -2499,7 +2487,7 @@ inherited frm_stock: Tfrm_stock
         end
         object Memo2: TfrxMemoView
           Left = 7.559060000000000000
-          Top = 62.795300000000000000
+          Top = 62.574830000000000000
           Width = 109.606370000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -2514,7 +2502,7 @@ inherited frm_stock: Tfrm_stock
         end
         object enterpriseent_cnpj1: TfrxMemoView
           IndexTag = 1
-          Left = 128.504020000000000000
+          Left = 123.504020000000000000
           Top = 9.338590000000000000
           Width = 200.315090000000000000
           Height = 18.897650000000000000
@@ -2548,9 +2536,9 @@ inherited frm_stock: Tfrm_stock
         end
         object enterpriseent_email: TfrxMemoView
           IndexTag = 1
-          Left = 128.504020000000000000
-          Top = 90.267780000000000000
-          Width = 400.630180000000000000
+          Left = 123.504020000000000000
+          Top = 90.504020000000000000
+          Width = 442.205010000000000000
           Height = 18.897650000000000000
           DataField = 'ent_email'
           DataSet = frm_dm.frx_db_enterprise
@@ -2567,7 +2555,7 @@ inherited frm_stock: Tfrm_stock
         end
         object Memo4: TfrxMemoView
           Left = 7.559060000000000000
-          Top = 90.267780000000000000
+          Top = 90.504020000000000000
           Width = 109.606370000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -2584,16 +2572,16 @@ inherited frm_stock: Tfrm_stock
       object DetailData2: TfrxDetailData
         FillType = ftBrush
         Frame.Typ = []
-        Height = 52.913420000000000000
-        Top = 464.882190000000000000
+        Height = 26.456710000000000000
+        Top = 438.425480000000000000
         Width = 718.110700000000000000
         DataSet = frxDBD_Estoque
         DataSetName = 'Estoque'
         RowCount = 0
         object Estoquesto_name1: TfrxMemoView
           IndexTag = 1
-          Left = 11.338590000000000000
-          Top = 2.000000000000000000
+          Left = 158.519790000000000000
+          Top = 2.338590000000000000
           Width = 400.630180000000000000
           Height = 18.897650000000000000
           DataField = 'sto_name'
@@ -2603,19 +2591,70 @@ inherited frm_stock: Tfrm_stock
           Memo.UTF8W = (
             '[Estoque."sto_name"]')
         end
+        object Memo5: TfrxMemoView
+          Left = 7.559060000000000000
+          Top = 2.338590000000000000
+          Width = 143.622140000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Unidade de Estoque:')
+          ParentFont = False
+        end
+        object Estoquesto_status: TfrxMemoView
+          IndexTag = 1
+          Left = 632.401980000000000000
+          Top = 2.338590000000000000
+          Width = 56.692950000000000000
+          Height = 18.897650000000000000
+          DataField = 'sto_status'
+          DataSet = frxDBD_Estoque
+          DataSetName = 'Estoque'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Estoque."sto_status"]')
+        end
+        object Memo6: TfrxMemoView
+          Left = 566.149970000000000000
+          Top = 2.338590000000000000
+          Width = 56.692950000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Status:')
+          ParentFont = False
+        end
+        object Line2: TfrxLineView
+          Left = 2.779530000000000000
+          Top = 24.677180000000000000
+          Width = 714.331170000000000000
+          Color = clBlack
+          Frame.Typ = []
+          Diagonal = True
+        end
       end
       object MasterData1: TfrxMasterData
         FillType = ftBrush
         Frame.Typ = []
         Height = 22.677180000000000000
-        Top = 419.527830000000000000
+        Top = 393.071120000000000000
         Width = 718.110700000000000000
         DataSet = frxDBD_Estoque
         DataSetName = 'Estoque'
         RowCount = 0
         object Line1: TfrxLineView
-          Left = 3.779530000000000000
-          Top = 17.559060000000000000
+          Left = 2.779530000000000000
+          Top = 19.661410000000000000
           Width = 714.331170000000000000
           Color = clBlack
           Frame.Typ = []

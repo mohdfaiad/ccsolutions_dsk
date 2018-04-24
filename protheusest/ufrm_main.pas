@@ -80,6 +80,8 @@ type
     Action_request: TAction;
     Action_stock_out: TAction;
     dxBarButton4: TdxBarButton;
+    Action_replace_password: TAction;
+    dxBarButton6: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contratExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -102,6 +104,7 @@ type
     procedure Action_stock_transferExecute(Sender: TObject);
     procedure Action_requestExecute(Sender: TObject);
     procedure Action_stock_outExecute(Sender: TObject);
+    procedure Action_replace_passwordExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -358,6 +361,18 @@ begin
     frm_purchase_order.WindowState := wsNormal;
     frm_purchase_order.Show;
   end;
+end;
+
+procedure Tfrm_main.Action_replace_passwordExecute(Sender: TObject);
+begin
+  inherited;
+   frm_login.Tag:=99;
+   frm_login.Show;
+   frm_login.cxPageControl1.Pages[0].TabVisible:=False;
+   frm_login.cxPageControl1.Pages[1].TabVisible:=True;
+   frm_login.cxTabSheet1.Show;
+   frm_login.edt_passwordCurrent.SetFocus;
+
 end;
 
 procedure Tfrm_main.Action_reportExecute(Sender: TObject);

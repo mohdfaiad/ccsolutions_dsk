@@ -136,7 +136,7 @@ object frm_dm: Tfrm_dm
     ParamData = <
       item
         Name = 'CTR_ID'
-        DataType = ftInteger
+        DataType = ftAutoInc
         ParamType = ptInput
         Value = Null
       end
@@ -351,7 +351,6 @@ object frm_dm: Tfrm_dm
       'Password=YxKtcdl1'
       'Server=cdlaboratorio.dyndns.org'
       'DriverID=MSSQL')
-    Connected = True
     LoginPrompt = False
     Left = 264
     Top = 8

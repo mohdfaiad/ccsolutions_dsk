@@ -64,7 +64,8 @@ type
 
   public
     { Public declarations }
-
+  procedure controleAcesso(form:TForm; ctr_usr_id:Integer;ctr_usr_adm:String);
+  procedure insertControle(form:TForm;module:string);
   end;
 
 var
@@ -79,6 +80,26 @@ implementation
 uses ufrm_dm,ufrm_search_enterprise;
 
 { TForm1 }
+
+procedure Tfrm_main_default.controleAcesso(form:TForm; ctr_usr_id: Integer;
+  ctr_usr_adm: String);
+var
+i:integer;
+begin
+ with frm_dm.qry,sql do
+  begin
+
+  if ctr_usr_adm <> 'S' then
+   begin
+    for I := 0 to form.ComponentCount - 1 do
+     begin
+      if form.Components[i] is TAction then
+       if TAction(form.Components[i]).Tag <> 1 then
+        TAction(form.Components[i]).Enabled:=false;
+     end;
+   end;
+  end;
+end;
 
 procedure Tfrm_main_default.dxRibbonStatusBar1Panels3Click(Sender: TObject);
 begin
@@ -120,6 +141,55 @@ begin
     dxRibbonStatusBar1.Panels[7].Text :=FormatDateTime('dd/MM/yyyy',date);
     Timer_1.Enabled:=True;
 end;
+
+procedure Tfrm_main_default.insertControle(form:TForm;module:string);
+var
+  i: Integer;
+begin
+(*
+with frm_dm.qry,sql do
+ begin
+  Close;
+  SQL.text := 'delete from system_action';
+  Prepare;
+  ExecSQL;
+
+  Close;
+  SQL.text := 'insert into system_action(sys_act_name,sys_act_subtitle,sys_act_class) ' +
+              ' values (:sys_act_name,:sys_act_subtitle,:sys_act_class)';
+  i := 0;
+  for I := 0 to frmPrincipal.ComponentCount -1 do
+   begin
+    if Self.Components[i] is TAction then
+     begin
+      if (TAction(self.Components[i]).tag = 0) and (TAction(self.Components[i]).Caption <> '-') then
+       begin
+        Params[0].Value := TAction(Self.Components[i]).name;
+        Params[1].Value := TAction(Self.Components[i]).Hint;
+        Params[2].Value := TAction(self.Components[i]).Category;
+        Params[3].Value := 'A';
+        Prepare;
+        ExecSQL;
+       end;
+     end;
+
+    if Self.Components[i] is TMenuItem then
+     begin
+      if (TMenuItem(Self.Components[i]).tag=0) and (TMenuItem(Self.Components[i]).caption<>'-') then
+       begin
+        Params[0].Value := lowercase(TMenuItem(Self.Components[i]).name);
+        Params[1].Value := TMenuItem(Self.Components[i]).Hint;
+        Params[2].Value := TMenuItem(Self.Components[i]).Caption;
+        Params[3].Value := 'B';
+        Prepared;
+        ExecSQL;
+       end;
+     end;
+  end;
+ end;
+  *)
+end;
+
 
 procedure Tfrm_main_default.Timer_1Timer(Sender: TObject);
 var

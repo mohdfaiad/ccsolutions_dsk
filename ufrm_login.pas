@@ -70,6 +70,7 @@ type
     procedure edt_passwordNewPropertiesChange(Sender: TObject);
     procedure edt_passwordPropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
+
   private
     { Private declarations }
   forcaSenha:Integer;

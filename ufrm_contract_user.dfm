@@ -1,16 +1,27 @@
 inherited frm_contract_user: Tfrm_contract_user
   Caption = 'Manuten'#231#227'o: Usu'#225'rios'
+  ClientHeight = 673
+  ClientWidth = 805
   OnClose = FormClose
-  ExplicitLeft = -316
+  ExplicitLeft = -13
+  ExplicitWidth = 821
+  ExplicitHeight = 712
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Width = 805
+    Height = 618
+    Properties.ActivePage = cxTabSheet_2
+    ClientRectBottom = 612
+    ClientRectRight = 799
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
+        Width = 791
+        Height = 578
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           OnCustomDrawCell = cxGrid_1DBTableView1CustomDrawCell
           object cxGrid_1DBTableView1ctr_usr_id: TcxGridDBColumn
@@ -54,12 +65,19 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
+        Width = 791
+        Height = 578
+        Properties.ActivePage = cxTabSheet1
+        ClientRectBottom = 572
+        ClientRectRight = 785
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 762
           ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
+            Width = 783
+            Height = 544
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'ctr_usr_id'
             end
@@ -75,7 +93,7 @@ inherited frm_contract_user: Tfrm_contract_user
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 2
+              TabOrder = 3
               Width = 121
             end
             object cxDBTextEdit4: TcxDBTextEdit [3]
@@ -85,7 +103,7 @@ inherited frm_contract_user: Tfrm_contract_user
               DataBinding.DataSource = ds
               Properties.CharCase = ecLowerCase
               Style.HotTrack = False
-              TabOrder = 5
+              TabOrder = 6
               Width = 121
             end
             object cxDBTextEdit2: TcxDBTextEdit [4]
@@ -95,7 +113,7 @@ inherited frm_contract_user: Tfrm_contract_user
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 3
+              TabOrder = 4
               Width = 121
             end
             object cxDBDateEdit1: TcxDBDateEdit [5]
@@ -104,7 +122,7 @@ inherited frm_contract_user: Tfrm_contract_user
               DataBinding.DataField = 'ctr_usr_dt_birth'
               DataBinding.DataSource = ds
               Style.HotTrack = False
-              TabOrder = 4
+              TabOrder = 5
               Width = 121
             end
             object cxDBTextEdit3: TcxDBTextEdit [6]
@@ -114,8 +132,19 @@ inherited frm_contract_user: Tfrm_contract_user
               DataBinding.DataSource = ds
               Properties.CharCase = ecLowerCase
               Style.HotTrack = False
-              TabOrder = 6
+              TabOrder = 7
               Width = 296
+            end
+            object cxDBCheckBox1: TcxDBCheckBox [7]
+              Left = 372
+              Top = 38
+              Caption = 'Administrador'
+              DataBinding.DataField = 'ctr_usr_admin'
+              DataBinding.DataSource = ds
+              Properties.ValueChecked = 'S'
+              Properties.ValueUnchecked = 'N'
+              Style.HotTrack = False
+              TabOrder = 2
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               ItemIndex = 1
@@ -191,24 +220,38 @@ inherited frm_contract_user: Tfrm_contract_user
               ControlOptions.ShowBorder = False
               Index = 1
             end
+            object dxLayoutItem7: TdxLayoutItem
+              Parent = dxLayoutGroup1
+              CaptionOptions.Text = 'cxDBCheckBox1'
+              CaptionOptions.Visible = False
+              Control = cxDBCheckBox1
+              ControlOptions.OriginalHeight = 19
+              ControlOptions.OriginalWidth = 88
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
           end
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Controle'
           OnShow = cxTabSheet1Show
+          ExplicitWidth = 762
+          ExplicitHeight = 432
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 762
-            Height = 432
+            Width = 783
+            Height = 544
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             OnDblClick = dxLayoutControl_1DblClick
+            ExplicitWidth = 762
+            ExplicitHeight = 432
             object cxListEmps: TcxCheckListBox
               Left = 17
               Top = 38
-              Width = 480
+              Width = 729
               Height = 129
               Items = <>
               TabOrder = 0
@@ -229,8 +272,8 @@ inherited frm_contract_user: Tfrm_contract_user
               SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
               SizeOptions.SizableHorz = True
               SizeOptions.SizableVert = True
-              SizeOptions.Height = 164
-              SizeOptions.Width = 494
+              SizeOptions.Height = 98
+              SizeOptions.Width = 743
               ButtonOptions.Buttons = <>
               Index = 0
             end
@@ -246,6 +289,9 @@ inherited frm_contract_user: Tfrm_contract_user
         end
       end
     end
+  end
+  inherited dxBarDockControl_1: TdxBarDockControl
+    Width = 805
   end
   inherited PopupMenu_1: TPopupMenu
     OnPopup = PopupMenu_1Popup

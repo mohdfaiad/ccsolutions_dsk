@@ -2182,6 +2182,7 @@ object frm_main_default: Tfrm_main_default
     TabOrder = 0
     TabStop = False
     object dxRibbon1Tab_1: TdxRibbonTab
+      Active = True
       Caption = 'Cadastros'
       Groups = <
         item
@@ -2200,7 +2201,6 @@ object frm_main_default: Tfrm_main_default
       Index = 2
     end
     object dxRibbon1Tab_4: TdxRibbonTab
-      Active = True
       Caption = 'Utilit'#225'rios'
       Groups = <>
       Index = 3

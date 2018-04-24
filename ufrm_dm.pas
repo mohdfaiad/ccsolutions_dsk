@@ -58,6 +58,7 @@ type
     qry_signinctr_usr_logged: TStringField;
     qry_logged: TFDQuery;
     qry_loggedctr_usr_logged: TStringField;
+    qry_signinctr_usr_admin: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

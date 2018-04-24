@@ -86,6 +86,8 @@ type
     BloqueerUsurio1: TMenuItem;
     DesbloquearUsurio1: TMenuItem;
     qryctr_usr_admin: TStringField;
+    cxDBCheckBox1: TcxDBCheckBox;
+    dxLayoutItem7: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);

@@ -369,6 +369,7 @@ begin
    frm_login.Tag:=99;
    frm_login.Show;
    frm_login.cxPageControl1.Pages[0].TabVisible:=False;
+   frm_login.cxPageControl1.Pages[2].TabVisible:=False;
    frm_login.cxPageControl1.Pages[1].TabVisible:=True;
    frm_login.cxTabSheet1.Show;
    frm_login.edt_passwordCurrent.SetFocus;

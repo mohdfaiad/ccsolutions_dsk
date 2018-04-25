@@ -386,6 +386,7 @@ begin
     First;
     while not Eof do
      begin
+      //ShowMessage( AdvOfficeTabSet1.AdvOfficeTabs.AdvOfficeTabSet.AddTab(FieldByName('sys_act_module').AsString));
       AdvOfficeTabSet1.AdvOfficeTabs.AdvOfficeTabSet.AddTab(FieldByName('sys_act_module').AsString);
       Next;
     end;

@@ -468,6 +468,7 @@ end;
 procedure Tfrm_login.FormShow(Sender: TObject);
 begin
   cxPageControl1.Pages[1].TabVisible:=False;
+  cxPageControl1.Pages[2].TabVisible:=False;
   cxPageControl1.Pages[0].TabVisible:=True;
   cxTabSheet_1.Show;
   edt_contract.SetFocus;

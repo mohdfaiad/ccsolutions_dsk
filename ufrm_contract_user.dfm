@@ -11,7 +11,6 @@ inherited frm_contract_user: Tfrm_contract_user
   inherited cxPageControl_1: TcxPageControl
     Width = 805
     Height = 618
-    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 805
     ExplicitHeight = 618
     ClientRectBottom = 612
@@ -71,7 +70,6 @@ inherited frm_contract_user: Tfrm_contract_user
       inherited cxPageControl_2: TcxPageControl
         Width = 791
         Height = 578
-        Properties.ActivePage = cxTabSheet1
         ExplicitWidth = 791
         ExplicitHeight = 578
         ClientRectBottom = 572
@@ -430,7 +428,7 @@ inherited frm_contract_user: Tfrm_contract_user
                   TabAppearance.BackGround.ColorTo = clNone
                   TabAppearance.BackGround.Direction = gdHorizontal
                 end>
-              ActiveTabIndex = 0
+              ActiveTabIndex = 2
               ButtonSettings.CloseButtonPicture.Data = {
                 424DA20400000000000036040000280000000900000009000000010008000000
                 00006C000000C30E0000C30E00000001000000010000427B8400DEEFEF00FFFF

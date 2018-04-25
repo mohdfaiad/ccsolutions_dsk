@@ -1,6 +1,7 @@
 inherited frm_contract: Tfrm_contract
   Caption = 'Manuten'#231#227'o: Contrato'
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -220,7 +221,6 @@ inherited frm_contract: Tfrm_contract
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     IndexFieldNames = 'ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -289,5 +289,10 @@ inherited frm_contract: Tfrm_contract
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
+  end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
 end

@@ -161,6 +161,8 @@ begin
     dxRibbonStatusBar1.Panels[7].Text :=FormatDateTime('dd/MM/yyyy',date);
     Timer_1.Enabled:=True;
     controleAcesso(frm_dm.qry_signinctr_usr_id.AsInteger,frm_dm.qry_signinctr_usr_admin.AsString);
+
+   // AtualizarControle(self);
 end;
 
 procedure Tfrm_main_default.AtualizarControle(form:TForm);
@@ -175,6 +177,7 @@ for I := 0 to form.ComponentCount -1 do
     if (TAction(form.Components[i]).tag = 0) and (TAction(form.Components[i]).Caption <> '-') then
      begin
       frm_dm.qry.Close;
+      frm_dm.qry.SQL.Clear;
       frm_dm.qry.sql.Text:= 'select * from system_action ' +
                             'where sys_act_name = ' + TAction(form.Components[i]).name;
       frm_dm.qry.Prepare;
@@ -182,6 +185,7 @@ for I := 0 to form.ComponentCount -1 do
 
       if frm_dm.qry.IsEmpty then
        begin
+       frm_dm.qry.SQL.Clear;
         frm_dm.qry.sql.text := 'insert into system_action(sys_act_name,sys_act_subtitle,sys_act_class,sys_act_module) ' +
               ' values (:sys_act_name,:sys_act_subtitle,:sys_act_class,:system_act_module)';
 

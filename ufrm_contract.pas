@@ -33,7 +33,7 @@ uses
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   ACBrBase, ACBrEnterTab, cxShellComboBox, QExport4Dialog, cxBarEditItem,
-  dxBarExtItems, QImport3Wizard;
+  dxBarExtItems, QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, Vcl.StdCtrls;
 
 type
   Tfrm_contract = class(Tfrm_form_default)
@@ -63,6 +63,8 @@ type
     cxGrid_1DBTableView1ctr_dt_registration: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_dt_birth_open: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Button1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -78,11 +80,23 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_contract.Button1Click(Sender: TObject);
+begin
+  inherited;
+   ShowMessage(IntToStr(dxBarManager_1Bar3.DockedLeft));
+end;
+
 procedure Tfrm_contract.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
   frm_contract.Destroy;
   frm_contract := Nil;
+end;
+
+procedure Tfrm_contract.FormShow(Sender: TObject);
+begin
+  inherited;
+   dxBarManager_1Bar3.DockedLeft:=122;
 end;
 
 end.

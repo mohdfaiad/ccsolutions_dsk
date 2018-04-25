@@ -53,7 +53,6 @@ type
     Bevel_1: TBevel;
     cxLocalizer_1: TcxLocalizer;
     Timer_1: TTimer;
-    Button1: TButton;
 
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);

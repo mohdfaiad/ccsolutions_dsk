@@ -2368,14 +2368,6 @@ object frm_main_default: Tfrm_main_default
     Font.Name = 'Tahoma'
     Font.Style = []
   end
-  object Button1: TButton
-    Left = 8
-    Top = 246
-    Width = 25
-    Height = 25
-    Cursor = crHandPoint
-    TabOrder = 3
-  end
   object dxBarManager_1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText

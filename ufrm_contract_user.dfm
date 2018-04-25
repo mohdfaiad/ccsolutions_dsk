@@ -4,7 +4,6 @@ inherited frm_contract_user: Tfrm_contract_user
   ClientWidth = 805
   OnClose = FormClose
   OnShow = FormShow
-  ExplicitTop = -247
   ExplicitWidth = 821
   ExplicitHeight = 712
   PixelsPerInch = 96
@@ -85,8 +84,6 @@ inherited frm_contract_user: Tfrm_contract_user
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 783
             Height = 544
-            ExplicitLeft = -7
-            ExplicitTop = -152
             ExplicitWidth = 783
             ExplicitHeight = 544
             inherited dbedt_id: TcxDBTextEdit
@@ -433,7 +430,7 @@ inherited frm_contract_user: Tfrm_contract_user
                   TabAppearance.BackGround.ColorTo = clNone
                   TabAppearance.BackGround.Direction = gdHorizontal
                 end>
-              ActiveTabIndex = 1
+              ActiveTabIndex = 0
               ButtonSettings.CloseButtonPicture.Data = {
                 424DA20400000000000036040000280000000900000009000000010008000000
                 00006C000000C30E0000C30E00000001000000010000427B8400DEEFEF00FFFF

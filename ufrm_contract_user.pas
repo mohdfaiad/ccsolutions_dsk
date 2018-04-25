@@ -183,40 +183,41 @@ var
   c: Integer;
 begin
 //  subs := TStringList.Create;
-  with frm_dm do
-   begin
-    qry.close;
-    qry.SQL.Text := ' select ctr_usr_act_action_name from contract_user_action ' +
+
+ frm_dm.qry.close;
+ frm_dm.qry.SQL.Text := ' select ctr_usr_act_action_name from contract_user_action ' +
             ' where ctr_usr_act_user_id = ' +qryctr_usr_id.AsString +
             ' and ctr_usr_act_action_name = :menu';
 
-    qry2.sql.Text := ' select sys_act_subtitle,sys_Act_name from system_action ' +
+ frm_dm.qry2.sql.Text := ' select sys_act_subtitle,sys_Act_name from system_action ' +
                             ' where sys_act_module = ' + QuotedStr(AdvOfficeTabSet1.AdvOfficeTabs[AdvOfficeTabSet1.ActiveTabIndex].Caption) +
                             ' order by sys_act_name';
-    qry2.Prepared;
-    qry2.Open;
+ frm_dm.qry2.Prepared;
+ frm_dm.qry2.Open;
 
-    qry2.First;
-    cxListMenu.Items.clear;
-    listAction.Clear;
-    c:=0;
+ frm_dm.qry2.First;
+ cxListMenu.Items.clear;
+ listAction.Clear;
+ c:=0;
 //    subs.clear;
-    while not qry2.Eof do
-    begin
-     cxListMenu.AddItem(qry2.FieldByName('sys_act_subtitle').AsString);
-     listAction.Add(qry2.FieldByName('sys_Act_name').AsString);
+ while not frm_dm.qry2.Eof do
+  begin
+   cxListMenu.AddItem(frm_dm.qry2.FieldByName('sys_act_subtitle').AsString);
+   listAction.Add(frm_dm.qry2.FieldByName('sys_Act_name').AsString);
 //      subs.add((qvi2.FieldByName('menu_cod').AsString));
-     qry.ParamByName('menu').AsString := QuotedStr(qry2.FieldByName('sys_Act_name').AsString);
-     qry.Prepare;
-     qry.Open;
+   frm_dm.qry.ParamByName('menu').AsString :=QuotedStr(frm_dm.qry2.FieldByName('sys_Act_name').AsString);
+   frm_dm.qry.Prepare;
+   frm_dm.qry.Open;
+
+   if frm_dm.qry2.FieldByName('sys_Act_name').AsString = 'Action_contract_user' then
+    frm_dm.qry.SQL.SaveToFile('C:\codTemp\sql.txt');
+    ShowMessage(frm_dm.qry.FieldByName('ctr_usr_act_action_name').AsString);
      //  chk.Checked[chk.Items.Count - 1] := not qvi.Eof;
 
-     if not qry.IsEmpty then
-       TcxCheckListBoxItem(cxListMenu.Items[c]).Checked:= True;
+    TcxCheckListBoxItem(cxListMenu.Items[c]).Checked:= not frm_dm.qry.IsEmpty;
 //      qvi.close;
-      c:=c + 1;
-      qry2.Next;
-    end;
+    c:=c + 1;
+    frm_dm.qry2.Next;
   end;
 end;
 

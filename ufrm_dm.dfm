@@ -408,4 +408,32 @@ object frm_dm: Tfrm_dm
       Size = 1
     end
   end
+  object qry_action: TFDQuery
+    Connection = connCCS
+    SQL.Strings = (
+      'select sys_act_subtitle,sys_Act_name from system_action'#10
+      'where sys_act_module =:SYS_ACT_MODULE'#13#10#10
+      'order by sys_act_name')
+    Left = 344
+    Top = 104
+    ParamData = <
+      item
+        Name = 'SYS_ACT_MODULE'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qry_actionsys_act_subtitle: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sys_act_subtitle'
+      Origin = 'sys_act_subtitle'
+      Size = 100
+    end
+    object qry_actionsys_Act_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sys_Act_name'
+      Origin = 'sys_act_name'
+      Size = 80
+    end
+  end
 end

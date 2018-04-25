@@ -61,6 +61,9 @@ type
     qry_signinctr_usr_admin: TStringField;
     qry_signinctr_usr_dt_birth: TDateField;
     qry_signinctr_usr_email: TStringField;
+    qry_action: TFDQuery;
+    qry_actionsys_act_subtitle: TStringField;
+    qry_actionsys_Act_name: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

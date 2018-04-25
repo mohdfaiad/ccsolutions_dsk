@@ -184,41 +184,46 @@ var
 begin
 //  subs := TStringList.Create;
 
- frm_dm.qry.close;
- frm_dm.qry.SQL.Text := ' select ctr_usr_act_action_name from contract_user_action ' +
+ frm_dm.qry3.close;
+ frm_dm.qry3.SQL.Clear;
+ frm_dm.qry3.SQL.Text := ' select ctr_usr_act_action_name from contract_user_action ' +
             ' where ctr_usr_act_user_id = ' +qryctr_usr_id.AsString +
-            ' and ctr_usr_act_action_name = :menu';
+            ' and ctr_usr_act_action_name =:menu';
 
- frm_dm.qry2.sql.Text := ' select sys_act_subtitle,sys_Act_name from system_action ' +
+ {
+ frm_dm.qry2.Close;
+ frm_dm.qry2.SQL.Text := ' select sys_act_subtitle,sys_Act_name from system_action ' +
                             ' where sys_act_module = ' + QuotedStr(AdvOfficeTabSet1.AdvOfficeTabs[AdvOfficeTabSet1.ActiveTabIndex].Caption) +
                             ' order by sys_act_name';
- frm_dm.qry2.Prepared;
- frm_dm.qry2.Open;
+ }
 
- frm_dm.qry2.First;
- cxListMenu.Items.clear;
- listAction.Clear;
- c:=0;
-//    subs.clear;
- while not frm_dm.qry2.Eof do
-  begin
-   cxListMenu.AddItem(frm_dm.qry2.FieldByName('sys_act_subtitle').AsString);
-   listAction.Add(frm_dm.qry2.FieldByName('sys_Act_name').AsString);
-//      subs.add((qvi2.FieldByName('menu_cod').AsString));
-   frm_dm.qry.ParamByName('menu').AsString :=QuotedStr(frm_dm.qry2.FieldByName('sys_Act_name').AsString);
-   frm_dm.qry.Prepare;
-   frm_dm.qry.Open;
+  frm_dm.qry_action.Close;
+  frm_dm.qry_action.ParamByName('SYS_ACT_MODULE').Value := AdvOfficeTabSet1.AdvOfficeTabs[AdvOfficeTabSet1.ActiveTabIndex].Caption;
 
-   if frm_dm.qry2.FieldByName('sys_Act_name').AsString = 'Action_contract_user' then
-    frm_dm.qry.SQL.SaveToFile('C:\codTemp\sql.txt');
-    ShowMessage(frm_dm.qry.FieldByName('ctr_usr_act_action_name').AsString);
-     //  chk.Checked[chk.Items.Count - 1] := not qvi.Eof;
+   frm_dm.qry_action.Prepared;
+   frm_dm.qry_action.Open;
 
-    TcxCheckListBoxItem(cxListMenu.Items[c]).Checked:= not frm_dm.qry.IsEmpty;
-//      qvi.close;
-    c:=c + 1;
-    frm_dm.qry2.Next;
-  end;
+   frm_dm.qry_action.First;
+   cxListMenu.Items.clear;
+   listAction.Clear;
+   c:=0;
+  //    subs.clear;
+   while not frm_dm.qry_action.Eof do
+    begin
+     cxListMenu.AddItem(frm_dm.qry_action.FieldByName('sys_act_subtitle').AsString);
+     listAction.Add(frm_dm.qry_action.FieldByName('sys_Act_name').AsString);
+  //      subs.add((qvi2.FieldByName('menu_cod').AsString));
+     frm_dm.qry3.ParamByName('menu').AsString :=frm_dm.qry_action.FieldByName('sys_Act_name').AsString;
+     frm_dm.qry3.Prepare;
+     frm_dm.qry3.Open;
+
+      TcxCheckListBoxItem(cxListMenu.Items[c]).Checked:= not frm_dm.qry3.IsEmpty;
+  //      qvi.close;
+      c:=c + 1;
+      frm_dm.qry3.Close;
+      frm_dm.qry_action.Next;
+    end;
+
 end;
 
 
@@ -238,7 +243,11 @@ end;
 procedure Tfrm_contract_user.cxTabSheet1Show(Sender: TObject);
 begin
   inherited;
-montar_empresa;
+    montar_empresa;
+
+    AdvOfficeTabSet1.ActiveTabIndex:=1;
+    AdvOfficeTabSet1.ActiveTabIndex:=0;
+
 end;
 
 procedure Tfrm_contract_user.DesbloquearUsurio1Click(Sender: TObject);
@@ -399,29 +408,31 @@ var
 i:Integer;
 begin
 
-with frm_dm.qry,sql do
- begin
-  close;
-  text := 'select a.ent_first_name, a.ent_id,b.ctr_usr_ent_ent_id from enterprise a '+
-          'left outer join contract_user_enterprise b on a.ent_id=b.ctr_usr_ent_ent_id '+
-          'and b.ctr_usr_ent_user_id = ' + QuotedStr(qryctr_usr_id.AsString) +
-          ' order by 1';
-  Prepared;
-  Open;
-  First;
-  i:=0;
-  cxlistEmps.Items.clear;
-  listEmp.Clear;
-  while not Eof do
-  begin
-    cxlistEmps.AddItem(Fields[0].Text);
-   if trim(Fields[2].AsString) <> '' then
-    TcxCheckListBoxItem(cxlistEmps.Items[i]).Checked:=True;
-    listEmp.Add(Fields[1].AsString);
-    i:=i+1;
-    Next;
-  end;
- end;
+   with frm_dm.qry,sql do
+     begin
+      close;
+      text := 'select a.ent_first_name, a.ent_id,b.ctr_usr_ent_ent_id from enterprise a '+
+              'left outer join contract_user_enterprise b on a.ent_id=b.ctr_usr_ent_ent_id '+
+              'and b.ctr_usr_ent_user_id = ' + QuotedStr(qryctr_usr_id.AsString) +
+              ' order by 1';
+      Prepared;
+      Open;
+      First;
+      i:=0;
+      cxlistEmps.Items.clear;
+      listEmp.Clear;
+      while not Eof do
+      begin
+        cxlistEmps.AddItem(Fields[0].Text);
+       if trim(Fields[2].AsString) <> '' then
+        TcxCheckListBoxItem(cxlistEmps.Items[i]).Checked:=True;
+        listEmp.Add(Fields[1].AsString);
+        i:=i+1;
+        Next;
+      end;
+      Close;
+     end;
+
 end;
 
 

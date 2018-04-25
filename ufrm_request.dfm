@@ -8,6 +8,7 @@ inherited frm_request: Tfrm_request
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Width = 877
+    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 877
     ClientRectRight = 871
     inherited cxTabSheet_1: TcxTabSheet
@@ -629,10 +630,58 @@ inherited frm_request: Tfrm_request
     SQL.Strings = (
       
         'select e.emp_id, e.record_rec_id, e.emp_type, e.emp_status, r.re' +
-        'c_name, e.contract_ctr_id from employee as e'#10'inner join record a' +
-        's r on e.record_rec_id = r.rec_id')
+        'c_name, e.contract_ctr_id from employee as e'#10
+      'inner join record as r on e.record_rec_id = r.rec_id'
+      'where e.contract_ctr_id =:ctr_id')
     Left = 664
     Top = 88
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 1
+      end>
+    object qry_employeeemp_id: TFDAutoIncField
+      DisplayLabel = 'Cod. ID'
+      DisplayWidth = 15
+      FieldName = 'emp_id'
+      Origin = 'emp_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qry_employeerecord_rec_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'record_rec_id'
+      Origin = 'record_rec_id'
+    end
+    object qry_employeeemp_type: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_type'
+      Origin = 'emp_type'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_employeeemp_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_status'
+      Origin = 'emp_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_employeerec_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'rec_name'
+      Origin = 'rec_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 50
+    end
+    object qry_employeecontract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
+    end
   end
   object ds_employee: TDataSource [14]
     DataSet = qry_employee

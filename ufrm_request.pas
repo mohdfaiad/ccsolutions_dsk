@@ -115,6 +115,12 @@ type
     qry_stocksto_id: TFDAutoIncField;
     qry_stockcontract_ctr_id: TIntegerField;
     qry_stockenterprise_ent_id: TIntegerField;
+    qry_employeeemp_id: TFDAutoIncField;
+    qry_employeerecord_rec_id: TIntegerField;
+    qry_employeeemp_type: TStringField;
+    qry_employeeemp_status: TStringField;
+    qry_employeerec_name: TStringField;
+    qry_employeecontract_ctr_id: TIntegerField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);

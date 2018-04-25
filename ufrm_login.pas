@@ -26,7 +26,8 @@ uses
   dxStatusBar, dxRibbonStatusBar, dxSkinscxPCPainter, dxBarBuiltInMenu, cxPC,
   Vcl.Menus, Vcl.StdCtrls, cxButtons, dxGDIPlusClasses, ACBrBase, ACBrEnterTab,
   Vcl.Buttons, FireDAC.Comp.Client, ACBrMail,IdHashMessageDigest,
-  Vcl.Samples.Gauges, ACBrValidador, cxMaskEdit, cxButtonEdit;
+  Vcl.Samples.Gauges, ACBrValidador, cxMaskEdit, cxButtonEdit, Vcl.ComCtrls,
+  dxCore, cxDateUtils, cxDropDownEdit, cxCalendar;
 
 type
   Tfrm_login = class(TForm)
@@ -60,6 +61,14 @@ type
     edt_passwordCurrent: TcxButtonEdit;
     edt_passwordNew: TcxButtonEdit;
     edt_passwordConfirm: TcxButtonEdit;
+    cxTabSheet2: TcxTabSheet;
+    cxLabel9: TcxLabel;
+    cxLabel10: TcxLabel;
+    cxemail: TcxTextEdit;
+    Image3: TImage;
+    cxButton5: TcxButton;
+    cxButton6: TcxButton;
+    cxDateNasc: TcxDateEdit;
     procedure Action_cancelExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_accessExecute(Sender: TObject);
@@ -70,6 +79,7 @@ type
     procedure edt_passwordNewPropertiesChange(Sender: TObject);
     procedure edt_passwordPropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
+    procedure cxButton5Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -131,6 +141,7 @@ begin
      cxPageControl1.Pages[1].TabVisible:=True;
      cxPageControl1.ActivePageIndex:=1;
      cxPageControl1.Pages[0].TabVisible:=False;
+     cxPageControl1.Pages[2].TabVisible:=False;
      edt_passwordCurrent.SetFocus;
      exit;
     end;
@@ -225,7 +236,10 @@ if Application.MessageBox('Desja confirmar a alteração em sua senha?', 'SENHA',M
      ExecSQL;
 
      Application.MessageBox('Senha alterada com sucesso!', 'SENHA',MB_OK + MB_ICONINFORMATION);
-     Application.Terminate;
+     cxPageControl1.Pages[1].TabVisible:=False;
+     cxPageControl1.Pages[0].TabVisible:=True;
+     cxTabSheet_1.Show;
+     edt_contract.SetFocus;
     end;
    end;
 
@@ -244,28 +258,16 @@ begin
 
 end;
 
-procedure Tfrm_login.cxLabel4Click(Sender: TObject);
+procedure Tfrm_login.cxButton5Click(Sender: TObject);
 var
 msn:TMemo;
+newPassword:string;
+md5 : TIdHashMessageDigest;
 begin
-if Length(edt_contract.Text) = 0  then
- begin
-  Application.MessageBox('Contrato não informado!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
-  edt_contract.SetFocus;
-  Exit;
- end;
-
-if Length(edt_username.Text) = 0  then
- begin
-  Application.MessageBox('Usuário não informado!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
-  edt_username.SetFocus;
-  Exit;
- end;
-
  with frm_dm.qry,sql do
   begin
    close;
-   text:='select contract_ctr_id,ctr_usr_first_name,ctr_usr_password,ctr_usr_email from contract_user ' +
+   text:='select ctr_usr_dt_birth,ctr_usr_email,ctr_usr_first_name from contract_user ' +
          'where contract_ctr_id =:contrato ' +
          'and ctr_usr_username = :usuario';
    ParamByName('contrato').AsString:=edt_contract.Text;
@@ -281,6 +283,13 @@ if Length(edt_username.Text) = 0  then
      Exit;
     end;
 
+   if  cxDateNasc.Date <> FieldByName('ctr_usr_dt_birth').Value then
+    begin
+     Application.MessageBox('Data de nascimento informada é inválida!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
+     cxDateNasc.SetFocus;
+     Exit;
+    end;
+
    if Length(FieldByName('ctr_usr_email').AsString) = 0 then
     begin
      Application.MessageBox('email não encontrado para esse usuário!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
@@ -288,6 +297,26 @@ if Length(edt_username.Text) = 0  then
      Exit;
     end;
 
+   if cxemail.Text <> FieldByName('ctr_usr_email').AsString then
+    begin
+     Application.MessageBox('email informado é inválido!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
+     cxemail.SetFocus;
+     Exit;
+    end;
+
+
+
+   newPassword:=FormatFloat('00000',Random(99999));
+   md5:=TIdHashMessageDigest5.Create;
+   frm_dm.qry2.close;
+   frm_dm.qry2.sql.Text:= 'update contract_user '+
+          ' set  ctr_usr_password = '+ QuotedStr(md5.HashStringAsHex(newPassword)) +
+          ' where contract_ctr_id =:contrato ' +
+          ' and ctr_usr_username = :usuario';
+   frm_dm.qry2.ParamByName('contrato').AsString:=edt_contract.Text;
+   frm_dm.qry2.ParamByNAme('usuario').AsString:=edt_username.Text;
+   frm_dm.qry2.Prepare;
+   frm_dm.qry2.ExecSQL;
 
    msn:=TMemo.Create(Self);
    msn.Visible:=False;
@@ -296,9 +325,9 @@ if Length(edt_username.Text) = 0  then
    msn.Lines.Add('<body text="#000000" bgcolor="#FFFFFF">');
    msn.Lines.Add('<b>Olá,</b> '  + FieldByName('ctr_usr_first_name').AsString + '<br>');
    msn.Lines.Add('<br>');
-   msn.Lines.Add('Conforme solicitado, segue sua senha abaixo:<br>');
+   msn.Lines.Add('Conforme solicitado, o sistema gerou uma nova senha, segue sua senha abaixo:<br>');
    msn.Lines.Add('<br>');
-   msn.Lines.Add('<b>Senha:</b> ' + Trim(FieldByName('ctr_usr_password').AsString) + '<br>');
+   msn.Lines.Add('<b>Senha:</b> ' + Trim(newPassword) + '<br>');
    msn.Lines.Add('<br>');
    msn.Lines.Add('Atenção: para efetuar seu login corretamente, verifique as letras maiúsculas e minúsculas. Lembre-se que sua senha é pessoal e intransferível.<br>');
    msn.Lines.Add('</body></html>');
@@ -306,8 +335,42 @@ if Length(edt_username.Text) = 0  then
    ACBrMail1.Body.Assign(msn.Lines);
    ACBrMail1.Send(false);
    msn.Destroy;
+
+   Application.MessageBox('Uma nova senha foi gerado e enviada para o email cadastrado!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
+
+   cxPageControl1.Pages[1].TabVisible:=False;
+   cxPageControl1.Pages[0].TabVisible:=True;
+   cxTabSheet_1.Show;
+   edt_contract.SetFocus;
   end;
+
 end;
+
+procedure Tfrm_login.cxLabel4Click(Sender: TObject);
+begin
+if Length(edt_contract.Text) = 0  then
+ begin
+  Application.MessageBox('Contrato não informado!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
+  edt_contract.SetFocus;
+  Exit;
+ end;
+
+if Length(edt_username.Text) = 0  then
+ begin
+  Application.MessageBox('Usuário não informado!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
+  edt_username.SetFocus;
+  Exit;
+ end;
+
+
+
+    cxPageControl1.Pages[0].TabVisible:=False;
+    cxPageControl1.Pages[1].TabVisible:=False;
+    cxPageControl1.Pages[2].TabVisible:=True;
+    cxPageControl1.ActivePageIndex:=2;
+    cxDateNasc.SetFocus;
+
+ end;
 
 procedure Tfrm_login.edt_contractKeyPress(Sender: TObject; var Key: Char);
 begin

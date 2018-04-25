@@ -33,8 +33,8 @@ object frm_dm: Tfrm_dm
     SQL.Strings = (
       
         'SELECT c.ctr_id, cu.ctr_usr_id, cu.ctr_usr_first_name, cu.ctr_us' +
-        'r_username, cu.ctr_usr_password,ctr_usr_logged,ctr_usr_admin FRO' +
-        'M contract c'
+        'r_username, cu.ctr_usr_password,ctr_usr_logged,'
+      'ctr_usr_admin,ctr_usr_dt_birth,ctr_usr_email FROM contract c'
       '    INNER JOIN contract_user cu ON c.ctr_id = cu.contract_ctr_id'
       
         '    WHERE c.ctr_id = :contract AND cu.ctr_usr_username = :userna' +
@@ -106,6 +106,21 @@ object frm_dm: Tfrm_dm
       ReadOnly = True
       FixedChar = True
       Size = 1
+    end
+    object qry_signinctr_usr_dt_birth: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_usr_dt_birth'
+      Origin = 'ctr_usr_dt_birth'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object qry_signinctr_usr_email: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_usr_email'
+      Origin = 'ctr_usr_email'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 65
     end
   end
   object ds_signin: TDataSource

@@ -59,6 +59,8 @@ type
     qry_logged: TFDQuery;
     qry_loggedctr_usr_logged: TStringField;
     qry_signinctr_usr_admin: TStringField;
+    qry_signinctr_usr_dt_birth: TDateField;
+    qry_signinctr_usr_email: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

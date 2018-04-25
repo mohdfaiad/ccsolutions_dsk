@@ -65,7 +65,7 @@ type
   public
     { Public declarations }
   procedure controleAcesso(ctr_usr_id:Integer;ctr_usr_adm:String);
-  procedure AtualizarControle(form:TForm;module:string);
+  procedure AtualizarControle(form:TForm);
   end;
 
 var
@@ -161,37 +161,38 @@ begin
     controleAcesso(frm_dm.qry_signinctr_usr_id.AsInteger,frm_dm.qry_signinctr_usr_admin.AsString);
 end;
 
-procedure Tfrm_main_default.AtualizarControle(form:TForm;module:string);
+procedure Tfrm_main_default.AtualizarControle(form:TForm);
 var
-  i: Integer;
+ i: Integer;
 begin
-
-with frm_dm.qry,sql do
+i := 0;
+for I := 0 to form.ComponentCount -1 do
  begin
-  Close;
-  SQL.text := 'delete from system_action ' +
-              'where sys_act_module = ' + QuotedStr(module);
-  Prepare;
-  ExecSQL;
-
-  Close;
-  SQL.text := 'insert into system_action(sys_act_name,sys_act_subtitle,sys_act_class,sys_act_module) ' +
-              ' values (:sys_act_name,:sys_act_subtitle,:sys_act_class,:system_act_module)';
-  i := 0;
-  for I := 0 to form.ComponentCount -1 do
+  if form.Components[i] is TAction then
    begin
-    if form.Components[i] is TAction then
+    if (TAction(form.Components[i]).tag = 0) and (TAction(form.Components[i]).Caption <> '-') then
      begin
-      if (TAction(form.Components[i]).tag = 0) and (TAction(form.Components[i]).Caption <> '-') then
+      frm_dm.qry.Close;
+      frm_dm.qry.sql.Text:= 'select * from system_action ' +
+                            'where sys_act_name = ' + TAction(form.Components[i]).name;
+      frm_dm.qry.Prepare;
+      frm_dm.qry.open;
+
+      if frm_dm.qry.IsEmpty then
        begin
-        ParamByName('sys_act_name').AsString := TAction(form.Components[i]).name;
-        ParamByName('sys_act_subtitle').AsString := TAction(form.Components[i]).Hint;
-        ParamByName('system_act_module').AsString := TAction(form.Components[i]).Category;
-        ParamByName('sys_act_class').AsString := 'A';
-        Prepare;
-        ExecSQL;
-       end;
+        frm_dm.qry.sql.text := 'insert into system_action(sys_act_name,sys_act_subtitle,sys_act_class,sys_act_module) ' +
+              ' values (:sys_act_name,:sys_act_subtitle,:sys_act_class,:system_act_module)';
+
+
+        frm_dm.qry.ParamByName('sys_act_name').AsString := TAction(form.Components[i]).name;
+        frm_dm.qry.ParamByName('sys_act_subtitle').AsString := TAction(form.Components[i]).Hint;
+        frm_dm.qry.ParamByName('system_act_module').AsString := TAction(form.Components[i]).Category;
+        frm_dm.qry.ParamByName('sys_act_class').AsString := 'A';
+        frm_dm.qry.Prepare;
+        frm_dm.qry.ExecSQL;
+        end;
      end;
+   end;
 (*
     if Self.Components[i] is TMenuItem then
      begin
@@ -206,10 +207,7 @@ with frm_dm.qry,sql do
        end;
      end;    *)
   end;
- end;
-
 end;
-
 
 procedure Tfrm_main_default.Timer_1Timer(Sender: TObject);
 var

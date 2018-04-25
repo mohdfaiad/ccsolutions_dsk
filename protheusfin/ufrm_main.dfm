@@ -14,9 +14,11 @@ inherited frm_main: Tfrm_main
   end
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
+      Active = True
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
+      Active = False
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar2'
@@ -50,9 +52,6 @@ inherited frm_main: Tfrm_main
         Style.IsFontAssigned = True
       end
     end
-  end
-  inherited Button1: TButton
-    OnClick = Button1Click
   end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager1Bar2: TdxBar

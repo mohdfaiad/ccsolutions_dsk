@@ -341,7 +341,7 @@ end;
 procedure Tfrm_main.Button1Click(Sender: TObject);
 begin
   inherited;
- AtualizarControle(self,'FINANCEIRO');
+ AtualizarControle(self);
 end;
 
 procedure Tfrm_main.FormCreate(Sender: TObject);

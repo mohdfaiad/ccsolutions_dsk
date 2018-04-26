@@ -66,6 +66,8 @@ type
     dxBarButton1: TdxBarButton;
     dxBarButton3: TdxBarButton;
     dxBarLargeButton14: TdxBarLargeButton;
+    Action_Replace_Password: TAction;
+    dxBarButton4: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -81,6 +83,7 @@ type
     procedure Action_account_typeExecute(Sender: TObject);
     procedure Action_account_plan_syntheticExecute(Sender: TObject);
     procedure Action_cost_center_groupExecute(Sender: TObject);
+    procedure Action_Replace_PasswordExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -301,6 +304,20 @@ begin
     frm_receipt.WindowState := wsNormal;
     frm_receipt.Show;
   end;
+end;
+
+procedure Tfrm_main.Action_Replace_PasswordExecute(Sender: TObject);
+begin
+  inherited;
+   //Tag 99 quando for para alterar senha não finalizar a apliacação
+   frm_login.Tag:=99;
+   frm_login.Show;
+   frm_login.cxPageControl1.Pages[0].TabVisible:=False;
+   frm_login.cxPageControl1.Pages[2].TabVisible:=False;
+   frm_login.cxPageControl1.Pages[1].TabVisible:=True;
+   frm_login.cxTabSheet1.Show;
+   frm_login.edt_passwordCurrent.SetFocus;
+
 end;
 
 procedure Tfrm_main.Action_reportExecute(Sender: TObject);

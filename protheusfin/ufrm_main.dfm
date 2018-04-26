@@ -14,11 +14,9 @@ inherited frm_main: Tfrm_main
   end
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
-      Active = True
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
-      Active = False
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar2'
@@ -121,7 +119,7 @@ inherited frm_main: Tfrm_main
       WholeRow = False
     end
     object dxBarManager_1Bar3: TdxBar [4]
-      Caption = #218'ltil'
+      Caption = 'Utilit'#225'rios'
       CaptionButtons = <>
       DockedLeft = 0
       DockedTop = 0
@@ -133,6 +131,10 @@ inherited frm_main: Tfrm_main
         item
           Visible = True
           ItemName = 'dxBarLargeButton8'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton4'
         end>
       OneOnRow = True
       Row = 0
@@ -522,6 +524,10 @@ inherited frm_main: Tfrm_main
       Action = Action_cost_center_group
       Category = 0
     end
+    object dxBarButton4: TdxBarButton
+      Action = Action_Replace_Password
+      Category = 0
+    end
   end
   inherited ActionList_1: TActionList
     object Action_contract: TAction
@@ -574,7 +580,7 @@ inherited frm_main: Tfrm_main
       OnExecute = Action_receiptExecute
     end
     object Action_phonebook: TAction
-      Category = #218'til'
+      Category = 'Utilit'#225'rios'
       Caption = 'Ag'#234'nda'
       Hint = 'Manuten'#231#227'o Ag'#234'nda Telefonia'
       ImageIndex = 5
@@ -619,6 +625,11 @@ inherited frm_main: Tfrm_main
       Hint = 'Manuten'#231#227'o Custo de Grupos - Grupo'
       ImageIndex = 16
       OnExecute = Action_cost_center_groupExecute
+    end
+    object Action_Replace_Password: TAction
+      Category = 'Utilit'#225'rios'
+      Caption = 'Alterar Senha'
+      OnExecute = Action_Replace_PasswordExecute
     end
   end
   inherited cxImageList_1: TcxImageList

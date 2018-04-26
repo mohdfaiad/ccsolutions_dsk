@@ -178,6 +178,9 @@ begin
     Timer_1.Enabled:=True;
     controleAcesso(frm_dm.qry_signinctr_usr_id.AsInteger,frm_dm.qry_signinctr_usr_admin.AsString);
     AtualizarControle(self);
+
+    //Controle para sempre exibir a primeira aba de cadastro
+    dxRibbon1Tab_1.Active:=True;
 end;
 
 procedure Tfrm_main_default.AtualizarControle(form:TForm);

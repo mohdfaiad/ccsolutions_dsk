@@ -15,6 +15,7 @@ object frm_main_default: Tfrm_main_default
   Position = poDesigned
   ShowHint = True
   WindowState = wsMaximized
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDeactivate = FormDeactivate
   OnShow = FormShow

@@ -81,7 +81,6 @@ type
     procedure Action_account_typeExecute(Sender: TObject);
     procedure Action_account_plan_syntheticExecute(Sender: TObject);
     procedure Action_cost_center_groupExecute(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -338,15 +337,10 @@ begin
   end;
 end;
 
-procedure Tfrm_main.Button1Click(Sender: TObject);
-begin
-  inherited;
- AtualizarControle(self);
-end;
-
 procedure Tfrm_main.FormCreate(Sender: TObject);
 begin
   inherited;
+  modulo:='FINANCEIRO';
   frm_login := Tfrm_login.Create(Self);
   frm_login.ShowModal;
 

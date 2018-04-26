@@ -1,14 +1,14 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo ProtheusTEL - CCS Protheus.'
-  ExplicitWidth = 1024
-  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
+      Active = True
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
+      Active = False
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar4'
@@ -51,8 +51,6 @@ inherited frm_main: Tfrm_main
       True
       True)
     inherited dxBarManager_1Bar1: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
       FloatClientWidth = 87
       FloatClientHeight = 270
       ItemLinks = <

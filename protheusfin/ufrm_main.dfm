@@ -7,8 +7,8 @@ inherited frm_main: Tfrm_main
     ExplicitHeight = 391
   end
   inherited Bevel_1: TBevel
-    ExplicitLeft = 8
-    ExplicitTop = 104
+    ExplicitLeft = -16
+    ExplicitTop = -16
     ExplicitWidth = 1008
     ExplicitHeight = 418
   end

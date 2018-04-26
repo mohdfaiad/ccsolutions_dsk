@@ -236,6 +236,7 @@ end;
 procedure Tfrm_main.FormCreate(Sender: TObject);
 begin
   inherited;
+  modulo:='TELEFONIA';
   frm_login := Tfrm_login.Create(Self);
   frm_login.ShowModal;
 

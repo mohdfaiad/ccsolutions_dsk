@@ -133,7 +133,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_report, ufrm_dm;
+uses ufrm_report, ufrm_dm, ufrm_main_default;
 
 procedure Tfrm_contract_user.ACBrValidador1MsgErro(Mensagem: string);
 begin
@@ -190,15 +190,10 @@ begin
             ' where ctr_usr_act_user_id = ' +qryctr_usr_id.AsString +
             ' and ctr_usr_act_action_name =:menu';
 
- {
- frm_dm.qry2.Close;
- frm_dm.qry2.SQL.Text := ' select sys_act_subtitle,sys_Act_name from system_action ' +
-                            ' where sys_act_module = ' + QuotedStr(AdvOfficeTabSet1.AdvOfficeTabs[AdvOfficeTabSet1.ActiveTabIndex].Caption) +
-                            ' order by sys_act_name';
- }
 
   frm_dm.qry_action.Close;
-  frm_dm.qry_action.ParamByName('SYS_ACT_MODULE').Value := AdvOfficeTabSet1.AdvOfficeTabs[AdvOfficeTabSet1.ActiveTabIndex].Caption;
+  frm_dm.qry_action.ParamByName('sys_act_option').Value := AdvOfficeTabSet1.AdvOfficeTabs[AdvOfficeTabSet1.ActiveTabIndex].Caption;
+  frm_dm.qry_action.ParamByName('sys_act_module').Value := Modulo;
 
    frm_dm.qry_action.Prepared;
    frm_dm.qry_action.Open;
@@ -378,16 +373,17 @@ begin
  with frm_dm.qry,sql do
   begin
     close;
-    Text := 'SELECT distinct sys_act_module FROM system_action '+
+    Text := 'SELECT distinct sys_act_option FROM system_action '+
                 ' where sys_act_class = ''A'' '+
-                ' order by sys_act_module';
+                ' and sys_act_module = ' + QuotedStr(modulo) +
+                ' order by sys_act_option';
     Prepared;
     Open;
     First;
     while not Eof do
      begin
-      //ShowMessage( AdvOfficeTabSet1.AdvOfficeTabs.AdvOfficeTabSet.AddTab(FieldByName('sys_act_module').AsString));
-      AdvOfficeTabSet1.AdvOfficeTabs.AdvOfficeTabSet.AddTab(FieldByName('sys_act_module').AsString);
+      //ShowMessage( AdvOfficeTabSet1.AdvOfficeTabs.AdvOfficeTabSet.AddTab(FieldByName('sys_act_option').AsString));
+      AdvOfficeTabSet1.AdvOfficeTabs.AdvOfficeTabSet.AddTab(FieldByName('sys_act_option').AsString);
       Next;
     end;
 

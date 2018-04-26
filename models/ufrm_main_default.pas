@@ -59,6 +59,7 @@ type
     procedure dxRibbonStatusBar1Panels3Click(Sender: TObject);
     procedure Timer_1Timer(Sender: TObject);
     procedure FormDeactivate(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     { Private declarations }
 
@@ -71,6 +72,7 @@ type
 var
   frm_main_default: Tfrm_main_default;
   logado,bloqueado,ativa:Boolean;
+  modulo:string;
 
 implementation
 
@@ -129,6 +131,22 @@ begin
 
 end;
 
+procedure Tfrm_main_default.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+   if frm_dm.qry_signinctr_usr_logged.AsString <> 'B' then
+   with frm_dm.qry,sql do
+    begin
+      close;
+      Text:='update contract_user ' +
+            ' set ctr_usr_logged = ''N'' '+
+            ' where contract_ctr_id = ' + frm_dm.qry_signinctr_id.AsString +
+            ' and ctr_usr_username = ' + QuotedStr(frm_dm.qry_signinctr_usr_username.AsString);
+      Prepare;
+      ExecSQL;
+    end;
+end;
+
 procedure Tfrm_main_default.FormCreate(Sender: TObject);
 
 begin
@@ -153,16 +171,13 @@ end;
 
 procedure Tfrm_main_default.FormShow(Sender: TObject);
 begin
-    dxRibbon1Tab_1.Active:=True;
-
     dxRibbonStatusBar1.Panels[1].Text :=FormatFloat('0000',frm_dm.qry_signinctr_id.AsInteger);
     dxRibbonStatusBar1.Panels[3].Text := IntToStr(frm_dm.qry_enterpriseent_id.AsInteger)+' - '+frm_dm.qry_enterpriseent_last_name.AsString;
     dxRibbonStatusBar1.Panels[5].Text :=frm_dm.qry_signinctr_usr_username.AsString;
     dxRibbonStatusBar1.Panels[7].Text :=FormatDateTime('dd/MM/yyyy',date);
     Timer_1.Enabled:=True;
     controleAcesso(frm_dm.qry_signinctr_usr_id.AsInteger,frm_dm.qry_signinctr_usr_admin.AsString);
-
-   // AtualizarControle(self);
+    AtualizarControle(self);
 end;
 
 procedure Tfrm_main_default.AtualizarControle(form:TForm);
@@ -177,23 +192,25 @@ for I := 0 to form.ComponentCount -1 do
     if (TAction(form.Components[i]).tag = 0) and (TAction(form.Components[i]).Caption <> '-') then
      begin
       frm_dm.qry.Close;
-      frm_dm.qry.SQL.Clear;
       frm_dm.qry.sql.Text:= 'select * from system_action ' +
-                            'where sys_act_name = ' + TAction(form.Components[i]).name;
+                            'where sys_act_name = ' +QuotedStr(TAction(form.Components[i]).name) +
+                            ' and sys_act_module = ' + QuotedStr(modulo);
       frm_dm.qry.Prepare;
       frm_dm.qry.open;
 
       if frm_dm.qry.IsEmpty then
        begin
-       frm_dm.qry.SQL.Clear;
-        frm_dm.qry.sql.text := 'insert into system_action(sys_act_name,sys_act_subtitle,sys_act_class,sys_act_module) ' +
-              ' values (:sys_act_name,:sys_act_subtitle,:sys_act_class,:system_act_module)';
+        frm_dm.qry.sql.text := 'insert into system_action(sys_act_name, '  +
+              ' sys_act_subtitle,sys_act_class,sys_act_option,sys_act_module) ' +
+              ' values (:sys_act_name,:sys_act_subtitle,:sys_act_class, ' +
+              ' :sys_act_option,:sys_act_module)';
 
 
         frm_dm.qry.ParamByName('sys_act_name').AsString := TAction(form.Components[i]).name;
         frm_dm.qry.ParamByName('sys_act_subtitle').AsString := TAction(form.Components[i]).Hint;
-        frm_dm.qry.ParamByName('system_act_module').AsString := TAction(form.Components[i]).Category;
+        frm_dm.qry.ParamByName('sys_act_option').AsString := TAction(form.Components[i]).Category;
         frm_dm.qry.ParamByName('sys_act_class').AsString := 'A';
+        frm_dm.qry.ParamByName('sys_act_module').AsString := modulo;
         frm_dm.qry.Prepare;
         frm_dm.qry.ExecSQL;
         end;

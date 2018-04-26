@@ -412,11 +412,18 @@ object frm_dm: Tfrm_dm
     Connection = connCCS
     SQL.Strings = (
       'select sys_act_subtitle,sys_Act_name from system_action'#10
-      'where sys_act_module =:SYS_ACT_MODULE'#13#10#10
+      'where sys_act_option =:sys_Act_option'
+      'and sys_act_module = :sys_act_module '
       'order by sys_act_name')
     Left = 344
     Top = 104
     ParamData = <
+      item
+        Name = 'SYS_ACT_OPTION'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
       item
         Name = 'SYS_ACT_MODULE'
         DataType = ftString

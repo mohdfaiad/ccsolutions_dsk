@@ -17,8 +17,6 @@ inherited frm_contract_user: Tfrm_contract_user
     ClientRectBottom = 612
     ClientRectRight = 799
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 797
       ExplicitHeight = 584
       inherited cxGrid_1: TcxGrid
@@ -71,6 +69,7 @@ inherited frm_contract_user: Tfrm_contract_user
       inherited cxPageControl_2: TcxPageControl
         Width = 791
         Height = 578
+        Properties.ActivePage = cxTabSheet1
         ExplicitWidth = 791
         ExplicitHeight = 578
         ClientRectBottom = 572
@@ -266,6 +265,7 @@ inherited frm_contract_user: Tfrm_contract_user
               Top = 211
               Width = 729
               Height = 97
+              Columns = 2
               Items = <>
               TabOrder = 1
               OnClickCheck = cxListMenuClickCheck
@@ -798,7 +798,6 @@ inherited frm_contract_user: Tfrm_contract_user
     Top = 40
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'

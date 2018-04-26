@@ -317,7 +317,7 @@ begin
 
 
 
-   newPassword:=FormatFloat('00000',Random(99999));
+   newPassword:='CCS' + copy(FormatDateTime('mmm',date),1,2) +   FormatFloat('00000',Random(99999));
    md5:=TIdHashMessageDigest5.Create;
    frm_dm.qry2.close;
    frm_dm.qry2.sql.Text:= 'update contract_user '+

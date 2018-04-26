@@ -21,7 +21,10 @@ uses
   ufrm_voip_server in '..\ufrm_voip_server.pas' {frm_voip_server},
   ufrm_main in 'ufrm_main.pas' {frm_main},
   ufrm_login in '..\ufrm_login.pas' {frm_login},
-  ufrm_main_default in '..\models\ufrm_main_default.pas' {frm_main_default};
+  ufrm_main_default in '..\models\ufrm_main_default.pas' {frm_main_default},
+  uThred_logged in '..\uThred_logged.pas',
+  ufrm_search_enterprise in '..\ufrm_search_enterprise.pas',
+  ufrm_search in '..\models\ufrm_search.pas' {frm_search};
 
 {$R *.res}
 
@@ -32,5 +35,6 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
+  Application.CreateForm(Tfrm_search, frm_search);
   Application.Run;
 end.

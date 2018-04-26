@@ -80,6 +80,7 @@ type
     procedure edt_passwordPropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
     procedure cxButton5Click(Sender: TObject);
+    procedure cxTabSheet1Show(Sender: TObject);
 
   private
     { Private declarations }
@@ -236,10 +237,16 @@ if Application.MessageBox('Desja confirmar a alteração em sua senha?', 'SENHA',M
      ExecSQL;
 
      Application.MessageBox('Senha alterada com sucesso!', 'SENHA',MB_OK + MB_ICONINFORMATION);
+     if frm_login.Tag = 99  then //Tag 99 quando for para alterar senha não finalizar a apliacação
+       begin
+        Self.Close;
+        exit;
+       end;
+
      cxPageControl1.Pages[1].TabVisible:=False;
      cxPageControl1.Pages[0].TabVisible:=True;
      cxTabSheet_1.Show;
-     edt_contract.SetFocus;
+     edt_password.SetFocus;
     end;
    end;
 
@@ -248,8 +255,8 @@ end;
 procedure Tfrm_login.cxButton4Click(Sender: TObject);
 begin
 
- if frm_login.Tag = 99  then
-     Self.Close
+ if frm_login.Tag = 99  then  //Tag 99 quando for para alterar senha não finalizar a apliacação
+    Self.Close
   else
    begin
      if Application.MessageBox('Desja sair do sistema sem Cadastrar/Alterar sua senha?', 'SENHA',MB_YESNO + MB_ICONQUESTION) = mrYes then
@@ -279,6 +286,10 @@ begin
    if IsEmpty then
     begin
      Application.MessageBox('Usuário não encontrado para esse contrato!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
+     cxPageControl1.Pages[2].TabVisible:=False;
+     cxPageControl1.Pages[1].TabVisible:=False;
+     cxPageControl1.Pages[0].TabVisible:=True;
+     cxTabSheet_1.Show;
      edt_username.SetFocus;
      Exit;
     end;
@@ -371,6 +382,15 @@ if Length(edt_username.Text) = 0  then
     cxDateNasc.SetFocus;
 
  end;
+
+procedure Tfrm_login.cxTabSheet1Show(Sender: TObject);
+begin
+  edt_passwordNew.Clear;
+  edt_passwordConfirm.Clear;
+  edt_passwordCurrent.Clear;
+  edt_passwordCurrent.SetFocus;
+
+end;
 
 procedure Tfrm_login.edt_contractKeyPress(Sender: TObject; var Key: Char);
 begin

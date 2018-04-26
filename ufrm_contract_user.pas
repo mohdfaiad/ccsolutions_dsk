@@ -456,6 +456,9 @@ procedure Tfrm_contract_user.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   qryctr_usr_dt_registration.Value := Date + Time;
+  qryctr_usr_admin.AsString := 'N';
+  qry.Post;
+  qry.Edit;
 
 
 end;

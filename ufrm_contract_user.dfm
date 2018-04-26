@@ -11,12 +11,13 @@ inherited frm_contract_user: Tfrm_contract_user
   inherited cxPageControl_1: TcxPageControl
     Width = 805
     Height = 618
-    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 805
     ExplicitHeight = 618
     ClientRectBottom = 612
     ClientRectRight = 799
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 797
       ExplicitHeight = 584
       inherited cxGrid_1: TcxGrid
@@ -69,7 +70,6 @@ inherited frm_contract_user: Tfrm_contract_user
       inherited cxPageControl_2: TcxPageControl
         Width = 791
         Height = 578
-        Properties.ActivePage = cxTabSheet1
         ExplicitWidth = 791
         ExplicitHeight = 578
         ClientRectBottom = 572
@@ -788,6 +788,10 @@ inherited frm_contract_user: Tfrm_contract_user
     object DesbloquearUsurio1: TMenuItem
       Caption = 'Desbloquear Usu'#225'rio'
       OnClick = DesbloquearUsurio1Click
+    end
+    object ZeraraSenha1: TMenuItem
+      Caption = 'Zerar a Senha'
+      OnClick = ZeraraSenha1Click
     end
   end
   inherited cxImageList_1: TcxImageList

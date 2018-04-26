@@ -97,6 +97,7 @@ type
     qry_contract_user_actionctr_usr_act_id: TFDAutoIncField;
     qry_contract_user_actionctr_usr_act_user_id: TIntegerField;
     qry_contract_user_actionctr_usr_act_action_name: TStringField;
+    ZeraraSenha1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
@@ -118,6 +119,7 @@ type
     procedure AdvOfficeTabSet1Change(Sender: TObject);
     procedure cxListMenuClickCheck(Sender: TObject; AIndex: Integer; APrevState,
       ANewState: TcxCheckBoxState);
+    procedure ZeraraSenha1Click(Sender: TObject);
   private
     { Private declarations }
     listEmp,listAction:TStrings;
@@ -457,6 +459,19 @@ begin
   qry.Edit;
 
 
+end;
+
+procedure Tfrm_contract_user.ZeraraSenha1Click(Sender: TObject);
+begin
+  inherited;
+  if Application.MessageBox('Deseja Zerar a senha do usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
+  begin
+    qry.Edit;
+    qryctr_usr_password.Clear;
+    qry.Post;
+    qry.ApplyUpdates(0);
+    Application.MessageBox('Usuário desconectado com sucesso!','AVISO', MB_OK + MB_ICONWARNING)
+  end;
 end;
 
 end.

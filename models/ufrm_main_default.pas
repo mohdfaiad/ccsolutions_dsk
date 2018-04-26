@@ -58,7 +58,6 @@ type
     procedure FormShow(Sender: TObject);
     procedure dxRibbonStatusBar1Panels3Click(Sender: TObject);
     procedure Timer_1Timer(Sender: TObject);
-    procedure FormDeactivate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     { Private declarations }
@@ -134,7 +133,7 @@ end;
 procedure Tfrm_main_default.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
-   if frm_dm.qry_signinctr_usr_logged.AsString <> 'B' then
+ {  if frm_dm.qry_signinctr_usr_logged.AsString <> 'B' then
    with frm_dm.qry,sql do
     begin
       close;
@@ -144,7 +143,7 @@ begin
             ' and ctr_usr_username = ' + QuotedStr(frm_dm.qry_signinctr_usr_username.AsString);
       Prepare;
       ExecSQL;
-    end;
+    end;      }
 end;
 
 procedure Tfrm_main_default.FormCreate(Sender: TObject);
@@ -164,11 +163,6 @@ begin
   end;
 
  end;
-procedure Tfrm_main_default.FormDeactivate(Sender: TObject);
-begin
-//Timer_1.Enabled:=false;
-end;
-
 procedure Tfrm_main_default.FormShow(Sender: TObject);
 begin
     dxRibbonStatusBar1.Panels[1].Text :=FormatFloat('0000',frm_dm.qry_signinctr_id.AsInteger);

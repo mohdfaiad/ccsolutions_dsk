@@ -17,7 +17,6 @@ object frm_main_default: Tfrm_main_default
   WindowState = wsMaximized
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
-  OnDeactivate = FormDeactivate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13

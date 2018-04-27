@@ -359,13 +359,13 @@ end;
 procedure Tfrm_purchase_order.lbLiberadoClick(Sender: TObject);
 begin
   inherited;
- filter('L');
+   filter('L');
 end;
 
 procedure Tfrm_purchase_order.lbTodosClick(Sender: TObject);
 begin
   inherited;
-qry.Filtered:=False;
+  qry.Filtered:=False;
 end;
 
 procedure Tfrm_purchase_order.limpaCache(Sender: TObject);

@@ -8,7 +8,6 @@
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 487
-    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 487
     ClientRectBottom = 481
     inherited cxTabSheet_1: TcxTabSheet
@@ -3194,6 +3193,7 @@
       FieldName = 'sto_id'
       Origin = 'sto_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_stockcontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault

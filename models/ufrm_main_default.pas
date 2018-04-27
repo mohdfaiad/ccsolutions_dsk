@@ -132,8 +132,8 @@ end;
 
 procedure Tfrm_main_default.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
-begin
- {  if frm_dm.qry_signinctr_usr_logged.AsString <> 'B' then
+begin {
+     if frm_dm.qry_signinctr_usr_logged.AsString <> 'B' then
    with frm_dm.qry,sql do
     begin
       close;
@@ -143,7 +143,8 @@ begin
             ' and ctr_usr_username = ' + QuotedStr(frm_dm.qry_signinctr_usr_username.AsString);
       Prepare;
       ExecSQL;
-    end;      }
+    end;     }
+
 end;
 
 procedure Tfrm_main_default.FormCreate(Sender: TObject);

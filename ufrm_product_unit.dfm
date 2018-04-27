@@ -95,6 +95,7 @@ inherited frm_product_unit: Tfrm_product_unit
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    AfterInsert = qryAfterInsert
     AfterDelete = qryAfterDelete
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'

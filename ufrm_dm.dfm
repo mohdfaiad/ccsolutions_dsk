@@ -379,8 +379,8 @@ object frm_dm: Tfrm_dm
       'WHERE contract_ctr_id= :contract '
       'and ctr_usr_username = :username '
       'and ctr_usr_password=:password')
-    Left = 40
-    Top = 240
+    Left = 336
+    Top = 176
     ParamData = <
       item
         Name = 'CONTRACT'

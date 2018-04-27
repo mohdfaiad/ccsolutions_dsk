@@ -93,6 +93,8 @@ procedure Tfrm_product_unit.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   qrypru_dt_registration.Value := Date + Time;
+  qry.Post;
+  qry.Edit;
 end;
 
 end.

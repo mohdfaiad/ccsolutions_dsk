@@ -33,7 +33,8 @@ uses
   dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar, cxDBEdit,
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem;
+  cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket,
+  ACBrCEP, frxClass;
 
 type
   Tfrm_brand = class(Tfrm_form_default)

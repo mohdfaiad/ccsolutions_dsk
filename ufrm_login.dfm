@@ -24,7 +24,7 @@ object frm_login: Tfrm_login
     Height = 273
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet2
+    Properties.ActivePage = cxTabSheet_1
     Properties.CustomButtons.Buttons = <>
     Properties.Images = cxImageList_1
     LookAndFeel.NativeStyle = True

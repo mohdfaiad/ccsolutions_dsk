@@ -92,7 +92,7 @@ procedure Tfrm_product_class.Action_deleteExecute(Sender: TObject);
 begin
    if qry_product_class_sub.RecordCount >=1 then
      begin
-       Application.MessageBox('Não é possível deletar esta classe de produtos, pos existe sub classe ligadas a ela !','AVISO DO SISTEMA', MB_OK);
+       Application.MessageBox('Não é possível deletar esta classe de produtos, pos existe sub classe ligadas a ela !','AVISO DO SISTEMA', MB_OK+MB_ICONINFORMATION);
        Exit;
      end;
   inherited;
@@ -128,7 +128,9 @@ end;
 
 procedure Tfrm_product_class.qryAfterInsert(DataSet: TDataSet);
 begin
+
   inherited;
+
    qryprc_dt_registration.Value := Now;
    qry.Post;
    qry.Edit;

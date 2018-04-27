@@ -4,11 +4,8 @@ inherited frm_product_class: Tfrm_product_class
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prc_id: TcxGridDBColumn
@@ -31,16 +28,8 @@ inherited frm_product_class: Tfrm_product_class
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'prc_id'
@@ -148,12 +137,12 @@ inherited frm_product_class: Tfrm_product_class
       end
     end
   end
-  inherited ds: TDataSource
-    Left = 568
-    Top = 232
-  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    Left = 488
+    Top = 48
   end
   inherited qry: TFDQuery
     Active = True
@@ -170,8 +159,6 @@ inherited frm_product_class: Tfrm_product_class
     SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from product_class')
-    Left = 520
-    Top = 232
     object qryprc_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'prc_id'
@@ -233,8 +220,8 @@ inherited frm_product_class: Tfrm_product_class
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from product_class_sub')
-    Left = 528
-    Top = 296
+    Left = 592
+    Top = 96
     object qry_product_class_subprs_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'prs_id'
@@ -270,7 +257,7 @@ inherited frm_product_class: Tfrm_product_class
   end
   object ds_product_class_sub: TDataSource
     DataSet = qry_product_class_sub
-    Left = 608
-    Top = 272
+    Left = 632
+    Top = 96
   end
 end

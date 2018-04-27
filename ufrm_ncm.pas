@@ -33,11 +33,10 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  ACBrSocket, ACBrNCMs, cxMemo, cxButtonEdit;
+  ACBrSocket, ACBrNCMs, cxMemo, cxButtonEdit, ACBrCEP, frxClass;
 
 type
   Tfrm_ncm = class(Tfrm_form_default)
-    ACBrNCMs1: TACBrNCMs;
     qryncm_id: TFDAutoIncField;
     qrycontract_ctr_id: TIntegerField;
     qryncm_code: TStringField;
@@ -79,7 +78,7 @@ end;
 procedure Tfrm_ncm.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qryncm_dt_registration.Value := Date + Time;
+   qryncm_dt_registration.Value := Date + Time;
 end;
 
 end.

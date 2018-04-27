@@ -113,13 +113,6 @@ begin
   frm_dm.qry_signin.Prepare;
   frm_dm.qry_signin.Open;
 
-  frm_dm.qry_logged.Close;
-  frm_dm.qry_logged.Params.ClearValues();
-  frm_dm.qry_logged.Params[0].AsInteger := StrToInt(edt_contract.Text);
-  frm_dm.qry_logged.Params[1].AsString := edt_username.Text;
-  frm_dm.qry_logged.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
-  frm_dm.qry_logged.Prepare;
-  frm_dm.qry_logged.Open;
 
   // Select para listar as unidades de estoque que esse usuário tem acesso
    frm_dm.qry_enterprise.Close;
@@ -158,8 +151,15 @@ begin
       Prepare;
       ExecSQL;
     end;
+     frm_dm.qry_logged.Close;
+     frm_dm.qry_logged.Params.ClearValues();
+     frm_dm.qry_logged.Params[0].AsInteger := StrToInt(edt_contract.Text);
+     frm_dm.qry_logged.Params[1].AsString := edt_username.Text;
+     frm_dm.qry_logged.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
+     frm_dm.qry_logged.Prepare;
+     frm_dm.qry_logged.Open;
 
-    ModalResult := mrOk;
+     ModalResult := mrOk;
 
   end
   else

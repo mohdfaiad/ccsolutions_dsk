@@ -4,6 +4,7 @@ inherited frm_ncm: Tfrm_ncm
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -31,16 +32,8 @@ inherited frm_ncm: Tfrm_ncm
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 68
@@ -112,13 +105,14 @@ inherited frm_ncm: Tfrm_ncm
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from ncm')
     object qryncm_id: TFDAutoIncField
@@ -126,6 +120,7 @@ inherited frm_ncm: Tfrm_ncm
       FieldName = 'ncm_id'
       Origin = 'ncm_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -138,6 +133,7 @@ inherited frm_ncm: Tfrm_ncm
       DisplayLabel = 'C'#243'digo'
       FieldName = 'ncm_code'
       Origin = 'ncm_code'
+      Required = True
       Size = 10
     end
     object qryncm_description: TMemoField
@@ -145,6 +141,7 @@ inherited frm_ncm: Tfrm_ncm
       DisplayLabel = 'Descri'#231#227'o'
       FieldName = 'ncm_description'
       Origin = 'ncm_description'
+      Required = True
       BlobType = ftMemo
     end
     object qryncm_dt_registration: TDateTimeField
@@ -168,10 +165,9 @@ inherited frm_ncm: Tfrm_ncm
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
-  object ACBrNCMs1: TACBrNCMs
-    ProxyPort = '8080'
-    UrlConsulta = 'http://www4.receita.fazenda.gov.br/simulador/PesquisarNCM.jsp?'
-    Left = 522
-    Top = 99
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
 end

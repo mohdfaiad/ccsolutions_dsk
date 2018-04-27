@@ -648,6 +648,7 @@ inherited frm_request: Tfrm_request
       FieldName = 'emp_id'
       Origin = 'emp_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_employeerecord_rec_id: TIntegerField
       AutoGenerateValue = arDefault

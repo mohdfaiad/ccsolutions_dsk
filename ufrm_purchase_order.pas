@@ -94,6 +94,16 @@ type
     frxDBD_Pedido_Itens: TfrxDBDataset;
     qryFuncionário: TStringField;
     qry_purchase_order_itenProduto: TStringField;
+    cxDBLookupComboBox2: TcxDBLookupComboBox;
+    dxLayoutItem7: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    qrystock_sto_id: TIntegerField;
+    qry_stock: TFDQuery;
+    ds_stock: TDataSource;
+    qry_stocksto_name: TStringField;
+    qry_stocksto_id: TFDAutoIncField;
+    qry_stockcontract_ctr_id: TIntegerField;
+    qry_stockenterprise_ent_id: TIntegerField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
@@ -115,6 +125,9 @@ type
     procedure Action_deleteExecute(Sender: TObject);
     procedure qryAfterDelete(DataSet: TDataSet);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure cxTabSheet_2Show(Sender: TObject);
+    procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
   private
     { Private declarations }
   procedure filter(status:string);
@@ -187,6 +200,14 @@ begin
   qry_employee.Refresh;
 end;
 
+procedure Tfrm_purchase_order.cxDBLookupComboBox2PropertiesPopup(
+  Sender: TObject);
+begin
+  inherited;
+  qry_stock.Refresh;
+
+end;
+
 procedure Tfrm_purchase_order.cxGrid_1DBTableView1CustomDrawCell(
   Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
   AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
@@ -212,6 +233,16 @@ begin
       if (Valor = 'L') then
          ACanvas.Font.Color  := clGreen;
    end;
+
+end;
+
+procedure Tfrm_purchase_order.cxTabSheet_2Show(Sender: TObject);
+begin
+  inherited;
+   qry_stock.Close;
+   qry_stock.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
+   qry_stock.Prepare;
+   qry_stock.Open;
 
 end;
 
@@ -294,6 +325,17 @@ procedure Tfrm_purchase_order.FormCreate(Sender: TObject);
 begin
   inherited;
   FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+end;
+
+procedure Tfrm_purchase_order.FormShow(Sender: TObject);
+begin
+  inherited;
+  //SQL para exibir somente as Requisições da Unidade de estoque que o usuário tem acesso
+  qry.Close;
+  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
+  qry.Prepare;
+  qry.Open;
+
 end;
 
 procedure Tfrm_purchase_order.lbAbertoClick(Sender: TObject);

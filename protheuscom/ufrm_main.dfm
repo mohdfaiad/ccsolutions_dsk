@@ -1,9 +1,12 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Comercial - CCS Protheus.'
+  ExplicitWidth = 1024
+  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
+      Active = True
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
@@ -17,6 +20,7 @@ inherited frm_main: Tfrm_main
       Index = 2
     end
     inherited dxRibbon1Tab_4: TdxRibbonTab
+      Active = False
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar3'
@@ -60,7 +64,7 @@ inherited frm_main: Tfrm_main
           ItemName = 'dxBarLargeButton5'
         end>
     end
-    object dxBarManager_1Bar2: TdxBar
+    object dxBarManager_1Bar2: TdxBar [3]
       Caption = 'F'#225'brica'
       CaptionButtons = <>
       DockedLeft = 0
@@ -80,7 +84,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar3: TdxBar
+    object dxBarManager_1Bar3: TdxBar [4]
       Caption = #218'til'
       CaptionButtons = <>
       DockedLeft = 0

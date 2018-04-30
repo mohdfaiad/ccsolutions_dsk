@@ -6,10 +6,6 @@ inherited frm_contract: Tfrm_contract
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ctr_id: TcxGridDBColumn
@@ -32,28 +28,20 @@ inherited frm_contract: Tfrm_contract
             DataBinding.FieldName = 'ctr_phone1'
             Width = 100
           end
-          object cxGrid_1DBTableView1ctr_dt_registration: TcxGridDBColumn
-            DataBinding.FieldName = 'ctr_dt_registration'
-            Width = 100
-          end
           object cxGrid_1DBTableView1ctr_dt_birth_open: TcxGridDBColumn
             DataBinding.FieldName = 'ctr_dt_birth_open'
             Width = 100
+          end
+          object cxGrid_1DBTableView1ctr_dt_registration: TcxGridDBColumn
+            DataBinding.FieldName = 'ctr_dt_registration'
+            Width = 125
           end
         end
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -73,7 +61,7 @@ inherited frm_contract: Tfrm_contract
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 2
-              Width = 302
+              Width = 311
             end
             object cxDBTextEdit2: TcxDBTextEdit [3]
               Left = 63
@@ -83,7 +71,7 @@ inherited frm_contract: Tfrm_contract
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 3
-              Width = 302
+              Width = 311
             end
             object cxDBTextEdit3: TcxDBTextEdit [4]
               Left = 63
@@ -93,7 +81,7 @@ inherited frm_contract: Tfrm_contract
               Properties.CharCase = ecLowerCase
               Style.HotTrack = False
               TabOrder = 4
-              Width = 302
+              Width = 311
             end
             object cxDBDateEdit1: TcxDBDateEdit [5]
               Left = 244
@@ -102,7 +90,7 @@ inherited frm_contract: Tfrm_contract
               DataBinding.DataSource = ds
               Style.HotTrack = False
               TabOrder = 6
-              Width = 121
+              Width = 130
             end
             object cxDBTextEdit4: TcxDBTextEdit [6]
               Left = 63
@@ -221,6 +209,7 @@ inherited frm_contract: Tfrm_contract
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     IndexFieldNames = 'ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'

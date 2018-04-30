@@ -1,4 +1,4 @@
-unit uThred_logged;
+unit uthred_logged;
 
 interface
 

@@ -12,6 +12,7 @@ inherited frm_main: Tfrm_main
   end
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
+      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar1'
@@ -36,6 +37,7 @@ inherited frm_main: Tfrm_main
       Index = 2
     end
     inherited dxRibbon1Tab_4: TdxRibbonTab
+      Active = False
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar2'
@@ -1934,7 +1936,7 @@ inherited frm_main: Tfrm_main
       end>
     Ribbon = dxRibbon1
     UseOwnFont = False
-    Left = 840
-    Top = 8
+    Left = 656
+    Top = 56
   end
 end

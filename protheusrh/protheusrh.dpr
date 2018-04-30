@@ -5,7 +5,6 @@ uses
   ufrm_protheusrh in 'ufrm_protheusrh.pas' {frm_protheusrh},
   ufrm_form_default in '..\models\ufrm_form_default.pas' {frm_form_default},
   ufrm_import_default in '..\models\ufrm_import_default.pas' {frm_import_default},
-  ufrm_login_default in '..\models\ufrm_login_default.pas' {frm_login_default},
   ufrm_main_default in '..\models\ufrm_main_default.pas' {frm_main_default},
   ufrm_main in 'ufrm_main.pas' {frm_main},
   ufrm_dm in '..\ufrm_dm.pas' {frm_dm: TDataModule},
@@ -15,11 +14,13 @@ uses
   ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
   ufrm_employee in '..\ufrm_employee.pas' {frm_employee},
   ufrm_enterprise in '..\ufrm_enterprise.pas' {frm_enterprise},
-  ufrm_login in '..\ufrm_login.pas' {frm_login},
   ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
   ufrm_report in '..\ufrm_report.pas' {frm_report},
   ufrm_role in '..\ufrm_role.pas' {frm_role},
-  uclass_openform in '..\uclass_openform.pas';
+  uthred_logged in '..\uthred_logged.pas',
+  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
+  ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
+  ufrm_login in '..\ufrm_login.pas' {frm_login};
 
 {$R *.res}
 

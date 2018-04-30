@@ -72,7 +72,7 @@ type
     dxLayoutControl1: TdxLayoutControl;
     dxLayoutGroup3: TdxLayoutGroup;
     qry_contract_user_enterprise: TFDQuery;
-    ds_qry_contract_user_enterprise: TDataSource;
+    ds_contract_user_enterprise: TDataSource;
     qry_contract_user_enterprisectr_usr_ent_id: TFDAutoIncField;
     qry_contract_user_enterprisectr_usr_ent_user_id: TIntegerField;
     qry_contract_user_enterprisectr_usr_ent_ent_id: TIntegerField;

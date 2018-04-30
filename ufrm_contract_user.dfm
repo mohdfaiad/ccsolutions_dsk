@@ -16,8 +16,6 @@ inherited frm_contract_user: Tfrm_contract_user
     ClientRectBottom = 612
     ClientRectRight = 799
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 797
       ExplicitHeight = 584
       inherited cxGrid_1: TcxGrid
@@ -51,20 +49,19 @@ inherited frm_contract_user: Tfrm_contract_user
             DataBinding.FieldName = 'ctr_usr_dt_birth'
             Width = 100
           end
-          object cxGrid_1DBTableView1ctr_usr_dt_registration: TcxGridDBColumn
-            DataBinding.FieldName = 'ctr_usr_dt_registration'
-            Width = 125
-          end
           object cxGrid_1DBTableView1Column1: TcxGridDBColumn
             Caption = 'Logado'
             DataBinding.FieldName = 'ctr_usr_logged'
+            Width = 50
+          end
+          object cxGrid_1DBTableView1ctr_usr_dt_registration: TcxGridDBColumn
+            DataBinding.FieldName = 'ctr_usr_dt_registration'
+            Width = 125
           end
         end
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 797
       ExplicitHeight = 584
       inherited cxPageControl_2: TcxPageControl
@@ -75,8 +72,6 @@ inherited frm_contract_user: Tfrm_contract_user
         ClientRectBottom = 572
         ClientRectRight = 785
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
           ExplicitWidth = 783
           ExplicitHeight = 544
           inherited dxLayoutControl_1: TdxLayoutControl
@@ -120,18 +115,9 @@ inherited frm_contract_user: Tfrm_contract_user
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 4
-              Width = 121
+              Width = 130
             end
-            object cxDBDateEdit1: TcxDBDateEdit [5]
-              Left = 420
-              Top = 103
-              DataBinding.DataField = 'ctr_usr_dt_birth'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 5
-              Width = 121
-            end
-            object cxDBTextEdit3: TcxDBTextEdit [6]
+            object cxDBTextEdit3: TcxDBTextEdit [5]
               Left = 245
               Top = 130
               DataBinding.DataField = 'ctr_usr_email'
@@ -139,11 +125,12 @@ inherited frm_contract_user: Tfrm_contract_user
               Properties.CharCase = ecLowerCase
               Style.HotTrack = False
               TabOrder = 7
-              Width = 296
+              Width = 305
             end
-            object cxDBCheckBox1: TcxDBCheckBox [7]
-              Left = 372
+            object cxDBCheckBox1: TcxDBCheckBox [6]
+              Left = 381
               Top = 38
+              AutoSize = False
               Caption = 'Administrador'
               DataBinding.DataField = 'ctr_usr_admin'
               DataBinding.DataSource = ds
@@ -151,8 +138,20 @@ inherited frm_contract_user: Tfrm_contract_user
               Properties.ValueUnchecked = 'N'
               Style.HotTrack = False
               TabOrder = 2
+              Transparent = True
+              Height = 21
+              Width = 88
             end
-            inherited dxLayoutGroup2: TdxLayoutGroup
+            object cxDBDateEdit1: TcxDBDateEdit [7]
+              Left = 429
+              Top = 103
+              DataBinding.DataField = 'ctr_usr_dt_birth'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 5
+              Width = 121
+            end
+            inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
             end
             object dxLayoutItem3: TdxLayoutItem
@@ -200,9 +199,30 @@ inherited frm_contract_user: Tfrm_contract_user
               CaptionOptions.Text = 'Sobrenome'
               Control = cxDBTextEdit2
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 130
               ControlOptions.ShowBorder = False
               Index = 1
+            end
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'E-mail'
+              Control = cxDBTextEdit3
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 305
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem7: TdxLayoutItem
+              Parent = dxLayoutGroup1
+              CaptionOptions.Text = 'cxDBCheckBox1'
+              CaptionOptions.Visible = False
+              Control = cxDBCheckBox1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 88
+              ControlOptions.ShowBorder = False
+              Index = 2
             end
             object dxLayoutItem8: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup3
@@ -212,27 +232,6 @@ inherited frm_contract_user: Tfrm_contract_user
               Control = cxDBDateEdit1
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 2
-            end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'E-mail'
-              Control = cxDBTextEdit3
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 296
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutItem7: TdxLayoutItem
-              Parent = dxLayoutGroup1
-              CaptionOptions.Text = 'cxDBCheckBox1'
-              CaptionOptions.Visible = False
-              Control = cxDBCheckBox1
-              ControlOptions.OriginalHeight = 19
-              ControlOptions.OriginalWidth = 88
               ControlOptions.ShowBorder = False
               Index = 2
             end
@@ -797,11 +796,8 @@ inherited frm_contract_user: Tfrm_contract_user
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
-  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
-    Left = 512
-    Top = 40
-  end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
@@ -903,8 +899,6 @@ inherited frm_contract_user: Tfrm_contract_user
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   inherited frxReport_1: TfrxReport
-    Left = 271
-    Top = 40
     Datasets = <>
     Variables = <>
     Style = <>
@@ -914,7 +908,7 @@ inherited frm_contract_user: Tfrm_contract_user
     IgnorarChar = './-'
     OnMsgErro = ACBrValidador1MsgErro
     Left = 712
-    Top = 128
+    Top = 96
   end
   object qry_contract_user_enterprise: TFDQuery
     CachedUpdates = True
@@ -929,8 +923,8 @@ inherited frm_contract_user: Tfrm_contract_user
     SQL.Strings = (
       'select * from contract_user_enterprise'
       'where ctr_usr_ent_user_id = :ctr_usr_id')
-    Left = 575
-    Top = 146
+    Left = 648
+    Top = 96
     ParamData = <
       item
         Name = 'CTR_USR_ID'
@@ -949,10 +943,10 @@ inherited frm_contract_user: Tfrm_contract_user
       FieldName = 'ctr_usr_ent_ent_id'
     end
   end
-  object ds_qry_contract_user_enterprise: TDataSource
+  object ds_contract_user_enterprise: TDataSource
     DataSet = qry_contract_user_enterprise
-    Left = 575
-    Top = 202
+    Left = 680
+    Top = 96
   end
   object qry_contract_user_action: TFDQuery
     CachedUpdates = True
@@ -967,8 +961,8 @@ inherited frm_contract_user: Tfrm_contract_user
     SQL.Strings = (
       'select * from contract_user_action'#10
       'where ctr_usr_act_user_id = :ctr_usr_id')
-    Left = 575
-    Top = 298
+    Left = 616
+    Top = 96
     ParamData = <
       item
         Name = 'CTR_USR_ID'

@@ -4,17 +4,11 @@ inherited frm_phonebook: Tfrm_phonebook
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
-    ExplicitTop = 61
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pho_id: TcxGridDBColumn
             DataBinding.FieldName = 'pho_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
             Width = 75
           end
           object cxGrid_1DBTableView1pho_name: TcxGridDBColumn
@@ -53,17 +47,7 @@ inherited frm_phonebook: Tfrm_phonebook
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
           inherited dxLayoutControl_1: TdxLayoutControl
-            object cxDBTextEdit2: TcxDBTextEdit [0]
-              Left = 68
-              Top = 65
-              DataBinding.DataField = 'pho_phone1'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 2
-              Width = 121
-            end
-            object cxDBTextEdit1: TcxDBTextEdit [1]
+            object cxDBTextEdit1: TcxDBTextEdit [0]
               Left = 68
               Top = 38
               DataBinding.DataField = 'pho_name'
@@ -73,7 +57,7 @@ inherited frm_phonebook: Tfrm_phonebook
               TabOrder = 0
               Width = 121
             end
-            object cxDBTextEdit6: TcxDBTextEdit [2]
+            object cxDBTextEdit6: TcxDBTextEdit [1]
               Left = 239
               Top = 38
               DataBinding.DataField = 'pho_contact'
@@ -83,7 +67,7 @@ inherited frm_phonebook: Tfrm_phonebook
               TabOrder = 1
               Width = 121
             end
-            object cxDBTextEdit7: TcxDBTextEdit [3]
+            object cxDBTextEdit7: TcxDBTextEdit [2]
               Left = 68
               Top = 92
               AutoSize = False
@@ -91,11 +75,11 @@ inherited frm_phonebook: Tfrm_phonebook
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 5
+              TabOrder = 6
               Height = 21
               Width = 603
             end
-            object cxDBTextEdit3: TcxDBTextEdit [4]
+            object cxDBTextEdit3: TcxDBTextEdit [3]
               Left = 239
               Top = 65
               DataBinding.DataField = 'pho_phone2'
@@ -105,7 +89,7 @@ inherited frm_phonebook: Tfrm_phonebook
               TabOrder = 3
               Width = 121
             end
-            object cxDBTextEdit4: TcxDBTextEdit [5]
+            object cxDBTextEdit4: TcxDBTextEdit [4]
               Left = 398
               Top = 65
               DataBinding.DataField = 'pho_phone3'
@@ -115,21 +99,11 @@ inherited frm_phonebook: Tfrm_phonebook
               TabOrder = 4
               Width = 121
             end
-            object cxDBTextEdit5: TcxDBTextEdit [6]
-              Left = 68
-              Top = 119
-              DataBinding.DataField = 'pho_phone4'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 6
-              Width = 603
-            end
             inherited dbedt_id: TcxDBTextEdit
               Left = 10000
               Top = 10000
               DataBinding.DataField = 'pho_id'
-              TabOrder = 10
+              TabOrder = 7
               Visible = False
               ExplicitLeft = 10000
               ExplicitTop = 10000
@@ -138,29 +112,43 @@ inherited frm_phonebook: Tfrm_phonebook
               Left = 10000
               Top = 10000
               DataBinding.DataField = 'pho_dt_registration'
-              TabOrder = 11
+              TabOrder = 8
               Visible = False
               ExplicitLeft = 10000
               ExplicitTop = 10000
             end
+            object cxDBTextEdit2: TcxDBTextEdit [7]
+              Left = 68
+              Top = 65
+              DataBinding.DataField = 'pho_phone1'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 2
+              Width = 121
+            end
+            object cxDBTextEdit5: TcxDBTextEdit [8]
+              Left = 548
+              Top = 65
+              DataBinding.DataField = 'pho_phone4'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 5
+              Width = 121
+            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               CaptionOptions.Visible = False
             end
-            inherited dxLayoutGroup2: TdxLayoutGroup [10]
+            inherited dxLayoutGroup1: TdxLayoutGroup
+              Parent = nil
+              Index = -1
+            end
+            inherited dxLayoutGroup2: TdxLayoutGroup
+              ItemIndex = 1
               Index = 0
             end
-            object dxLayoutItem4: TdxLayoutItem [11]
-              Parent = dxLayoutAutoCreatedGroup5
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Tel. 1'
-              Control = cxDBTextEdit2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutItem3: TdxLayoutItem [12]
+            object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup4
               AlignHorz = ahLeft
               CaptionOptions.Text = 'Nome'
@@ -170,7 +158,7 @@ inherited frm_phonebook: Tfrm_phonebook
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem8: TdxLayoutItem [13]
+            object dxLayoutItem8: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup4
               AlignVert = avClient
               CaptionOptions.Text = 'Contato'
@@ -180,7 +168,7 @@ inherited frm_phonebook: Tfrm_phonebook
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup [14]
+            object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -188,7 +176,7 @@ inherited frm_phonebook: Tfrm_phonebook
               Index = 0
               AutoCreated = True
             end
-            object dxLayoutItem9: TdxLayoutItem [15]
+            object dxLayoutItem9: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup1
               AlignHorz = ahClient
               CaptionOptions.Text = 'Anota'#231#227'o'
@@ -198,14 +186,14 @@ inherited frm_phonebook: Tfrm_phonebook
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup [16]
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2
               AlignHorz = ahLeft
               AlignVert = avClient
               Index = 1
               AutoCreated = True
             end
-            object dxLayoutItem5: TdxLayoutItem [17]
+            object dxLayoutItem5: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup5
               AlignHorz = ahLeft
               AlignVert = avClient
@@ -216,14 +204,14 @@ inherited frm_phonebook: Tfrm_phonebook
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup [18]
+            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutAutoCreatedGroup1
               AlignVert = avClient
               LayoutDirection = ldHorizontal
               Index = 0
               AutoCreated = True
             end
-            object dxLayoutItem6: TdxLayoutItem [19]
+            object dxLayoutItem6: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup5
               AlignHorz = ahLeft
               AlignVert = avClient
@@ -234,35 +222,38 @@ inherited frm_phonebook: Tfrm_phonebook
               ControlOptions.ShowBorder = False
               Index = 2
             end
-            object dxLayoutItem7: TdxLayoutItem [20]
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahClient
-              AlignVert = avTop
+            object dxLayoutItem4: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Tel. 1'
+              Control = cxDBTextEdit2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem7: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              AlignHorz = ahLeft
+              AlignVert = avClient
               CaptionOptions.Text = 'Fax'
               Control = cxDBTextEdit5
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
-              Index = 2
-            end
-            inherited dxLayoutGroup1: TdxLayoutGroup [21]
-              Parent = nil
-              Index = -1
+              Index = 3
             end
           end
         end
       end
     end
   end
-  inherited dxBarManager_1: TdxBarManager
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\utilitario\agenda'
-    end
-  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     AfterDelete = qryAfterDelete
     CachedUpdates = True
@@ -360,8 +351,6 @@ inherited frm_phonebook: Tfrm_phonebook
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
     ReportOptions.LastChange = 43202.683152037000000000
-    Left = 263
-    Top = 48
     Datasets = <
       item
         DataSet = frm_dm.frx_db_enterprise
@@ -2775,7 +2764,7 @@ inherited frm_phonebook: Tfrm_phonebook
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False
-    Left = 264
+    Left = 648
     Top = 96
   end
 end

@@ -47,14 +47,12 @@ type
     ACBrEnterTab_1: TACBrEnterTab;
     cxButton1: TcxButton;
     cxButton2: TcxButton;
-    ACBrMail1: TACBrMail;
+    ACBrMail_1: TACBrMail;
     cxTabSheet1: TcxTabSheet;
     Image2: TImage;
     cxLabel5: TcxLabel;
     cxLabel6: TcxLabel;
     cxLabel7: TcxLabel;
-    cxLabel8: TcxLabel;
-    gaugePassword: TGauge;
     cxButton3: TcxButton;
     cxButton4: TcxButton;
     edt_password: TcxButtonEdit;
@@ -342,9 +340,9 @@ begin
    msn.Lines.Add('<br>');
    msn.Lines.Add('Atenção: para efetuar seu login corretamente, verifique as letras maiúsculas e minúsculas. Lembre-se que sua senha é pessoal e intransferível.<br>');
    msn.Lines.Add('</body></html>');
-   ACBrMail1.AddAddress(FieldByName('ctr_usr_email').AsString);
-   ACBrMail1.Body.Assign(msn.Lines);
-   ACBrMail1.Send(false);
+   ACBrMail_1.AddAddress(FieldByName('ctr_usr_email').AsString);
+   ACBrMail_1.Body.Assign(msn.Lines);
+   ACBrMail_1.Send(false);
    msn.Destroy;
 
    Application.MessageBox('Uma nova senha foi gerado e enviada para o email cadastrado!','RECUPERAR SENHA',MB_OK + MB_ICONINFORMATION);
@@ -419,8 +417,8 @@ const
 var
 i:Integer;
 begin
- gaugePassword.Progress:=0;
- gaugePassword.ForeColor:=clWhite;
+// gaugePassword.Progress:=0;
+// gaugePassword.ForeColor:=clWhite;
  forcaSenha:=0;
 
 begin
@@ -456,20 +454,20 @@ begin
 
 if forcaSenha <= 25 then
  begin
-    gaugePassword.ForeColor:=clRed;
+//    gaugePassword.ForeColor:=clRed;
  end;
 
  if (forcaSenha >= 25) and (forcaSenha  <= 50) then
  begin
-    gaugePassword.ForeColor:=$000080FF;
+//    gaugePassword.ForeColor:=$000080FF;
  end;
 
   if forcaSenha  >50 then
  begin
-    gaugePassword.ForeColor:=clGreen;
+//    gaugePassword.ForeColor:=clGreen;
  end;
 
- gaugePassword.Progress:=forcaSenha;
+// gaugePassword.Progress:=forcaSenha;
 
 end;
 
@@ -492,7 +490,7 @@ begin
   cxPageControl1.Pages[0].TabVisible:=True;
   cxTabSheet_1.Show;
   edt_contract.SetFocus;
-  gaugePassword.Progress:=0;
+//  gaugePassword.Progress:=0;
   forcaSenha:=0;
 end;
 

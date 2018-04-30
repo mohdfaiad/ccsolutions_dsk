@@ -4417,64 +4417,49 @@ object frm_login: Tfrm_login
         ExplicitLeft = 262
         ExplicitTop = 6
       end
-      object gaugePassword: TGauge
-        Left = 3
-        Top = 174
-        Width = 250
-        Height = 19
-        BorderStyle = bsNone
-        ForeColor = 33023
-        Progress = 30
-      end
       object cxLabel5: TcxLabel
         Left = 3
-        Top = 15
+        Top = 22
         Caption = 'Senha Atual'
         Transparent = True
       end
       object cxLabel6: TcxLabel
         Left = 3
-        Top = 59
+        Top = 72
         Caption = 'Nova Senha'
         Transparent = True
       end
       object cxLabel7: TcxLabel
         Left = 3
-        Top = 102
+        Top = 122
         Caption = 'Confirmar Senha'
-        Transparent = True
-      end
-      object cxLabel8: TcxLabel
-        Left = 3
-        Top = 152
-        Caption = 'For'#231'a da Senha'
         Transparent = True
       end
       object cxButton3: TcxButton
         Left = 3
-        Top = 216
+        Top = 208
         Width = 122
         Height = 25
         Caption = 'Alterar'
         OptionsImage.ImageIndex = 0
         OptionsImage.Images = cxImageList_1
-        TabOrder = 8
+        TabOrder = 7
         OnClick = cxButton3Click
       end
       object cxButton4: TcxButton
         Left = 131
-        Top = 216
+        Top = 208
         Width = 122
         Height = 25
-        Caption = 'Cencelar'
+        Caption = 'Cancelar'
         OptionsImage.ImageIndex = 1
         OptionsImage.Images = cxImageList_1
-        TabOrder = 4
+        TabOrder = 3
         OnClick = cxButton4Click
       end
       object edt_passwordCurrent: TcxButtonEdit
         Left = 3
-        Top = 34
+        Top = 45
         Properties.Buttons = <
           item
             Default = True
@@ -4517,12 +4502,12 @@ object frm_login: Tfrm_login
           end>
         Properties.EchoMode = eemPassword
         Properties.OnButtonClick = edt_passwordPropertiesButtonClick
-        TabOrder = 5
+        TabOrder = 4
         Width = 250
       end
       object edt_passwordNew: TcxButtonEdit
         Left = 3
-        Top = 78
+        Top = 95
         Properties.Buttons = <
           item
             Default = True
@@ -4565,12 +4550,12 @@ object frm_login: Tfrm_login
           end>
         Properties.EchoMode = eemPassword
         Properties.OnChange = edt_passwordNewPropertiesChange
-        TabOrder = 6
+        TabOrder = 5
         Width = 250
       end
       object edt_passwordConfirm: TcxButtonEdit
         Left = 3
-        Top = 121
+        Top = 145
         Properties.Buttons = <
           item
             Default = True
@@ -4612,7 +4597,7 @@ object frm_login: Tfrm_login
             Kind = bkGlyph
           end>
         Properties.EchoMode = eemPassword
-        TabOrder = 7
+        TabOrder = 6
         Width = 250
       end
     end
@@ -6752,30 +6737,30 @@ object frm_login: Tfrm_login
         ExplicitTop = 6
       end
       object cxLabel9: TcxLabel
-        Left = 4
-        Top = 30
-        Caption = 'Data de Nascimento'
+        Left = 3
+        Top = 22
+        Caption = 'Dt. Nasc.'
         Transparent = True
       end
       object cxLabel10: TcxLabel
-        Left = 4
-        Top = 80
-        Caption = 'email'
+        Left = 3
+        Top = 72
+        Caption = 'E-mail'
         Transparent = True
       end
       object cxemail: TcxTextEdit
-        Left = 4
-        Top = 103
+        Left = 3
+        Top = 95
         Properties.CharCase = ecLowerCase
         TabOrder = 2
         Width = 250
       end
       object cxButton5: TcxButton
         Left = 3
-        Top = 155
+        Top = 208
         Width = 122
         Height = 25
-        Caption = 'Alterar'
+        Caption = 'Enviar'
         OptionsImage.ImageIndex = 0
         OptionsImage.Images = cxImageList_1
         TabOrder = 3
@@ -6783,10 +6768,10 @@ object frm_login: Tfrm_login
       end
       object cxButton6: TcxButton
         Left = 131
-        Top = 155
+        Top = 208
         Width = 122
         Height = 25
-        Caption = 'Cencelar'
+        Caption = 'Cancelar'
         OptionsImage.ImageIndex = 1
         OptionsImage.Images = cxImageList_1
         TabOrder = 4
@@ -6794,7 +6779,7 @@ object frm_login: Tfrm_login
       end
       object cxDateNasc: TcxDateEdit
         Left = 3
-        Top = 53
+        Top = 45
         TabOrder = 5
         Width = 250
       end
@@ -6938,21 +6923,21 @@ object frm_login: Tfrm_login
     Left = 392
     Top = 208
   end
-  object ACBrMail1: TACBrMail
+  object ACBrMail_1: TACBrMail
     Host = 'mail.ccsbrasil.com'
     Port = '587'
-    Username = 'elizeu.souza@ccsbrasil.com'
-    Password = 'admin0910@@'
+    Username = 'no-reply@ccsbrasil.com'
+    Password = 'ccs10203040'
     SetSSL = False
     SetTLS = False
     IsHTML = True
     Attempts = 3
-    From = 'elizeu.souza@ccsbrasil.com'
-    FromName = 'Elizeu Souza'
-    Subject = 'Teste do Sistema'
+    From = 'no-reply@ccsbrasil.com'
+    FromName = 'Recover Password'
+    Subject = 'Change Password'
     DefaultCharset = UTF_8
     IDECharset = ISO_8859_1
-    Left = 452
-    Top = 49
+    Left = 360
+    Top = 208
   end
 end

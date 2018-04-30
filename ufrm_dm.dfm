@@ -1,8 +1,8 @@
 object frm_dm: Tfrm_dm
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Height = 293
-  Width = 432
+  Height = 275
+  Width = 338
   object connCCS: TFDConnection
     Params.Strings = (
       'ConnectionDef=ccs_connection')
@@ -15,8 +15,8 @@ object frm_dm: Tfrm_dm
   end
   object wait_cursor: TFDGUIxWaitCursor
     Provider = 'Forms'
-    Left = 128
-    Top = 72
+    Left = 136
+    Top = 16
   end
   object manCCS: TFDManager
     DriverDefFileName = 'C:\ccsolutions_dsk\data\ccs_connection.ini'
@@ -25,8 +25,8 @@ object frm_dm: Tfrm_dm
     FormatOptions.OwnMapRules = True
     FormatOptions.MapRules = <>
     Active = True
-    Left = 128
-    Top = 8
+    Left = 72
+    Top = 16
   end
   object qry_signin: TFDQuery
     Connection = connCCS
@@ -41,7 +41,7 @@ object frm_dm: Tfrm_dm
         'me and (cu.ctr_usr_password=:password or cu.ctr_usr_password is ' +
         'null)'#10)
     Left = 40
-    Top = 128
+    Top = 64
     ParamData = <
       item
         Name = 'CONTRACT'
@@ -125,13 +125,13 @@ object frm_dm: Tfrm_dm
   end
   object ds_signin: TDataSource
     DataSet = qry_signin
-    Left = 136
-    Top = 128
+    Left = 72
+    Top = 64
   end
   object mysql_driver: TFDPhysMySQLDriverLink
     VendorLib = 'C:\ccsolutions_dsk\bin\libmysql.dll'
-    Left = 40
-    Top = 72
+    Left = 104
+    Top = 16
   end
   object qry_enterprise: TFDQuery
     IndexFieldNames = 'contract_ctr_id'
@@ -144,8 +144,8 @@ object frm_dm: Tfrm_dm
       
         'and ent_id in (select ctr_usr_ent_ent_id  from contract_user_ent' +
         'erprise where ctr_usr_ent_user_id =:ctr_usr_id)')
-    Left = 44
-    Top = 190
+    Left = 40
+    Top = 112
     ParamData = <
       item
         Name = 'CTR_ID'
@@ -319,8 +319,8 @@ object frm_dm: Tfrm_dm
   end
   object ds_enterprise: TDataSource
     DataSet = qry_enterprise
-    Left = 144
-    Top = 184
+    Left = 72
+    Top = 112
   end
   object frx_db_enterprise: TfrxDBDataset
     UserName = 'enterprise'
@@ -354,8 +354,8 @@ object frm_dm: Tfrm_dm
       'ent_dt_registration=ent_dt_registration')
     DataSet = qry_enterprise
     BCDToCurrency = False
-    Left = 216
-    Top = 184
+    Left = 232
+    Top = 64
   end
   object connCDL: TFDConnection
     Params.Strings = (
@@ -365,12 +365,12 @@ object frm_dm: Tfrm_dm
       'Server=cdlaboratorio.dyndns.org'
       'DriverID=MSSQL')
     LoginPrompt = False
-    Left = 264
-    Top = 8
+    Left = 232
+    Top = 16
   end
   object mssql_driver: TFDPhysMSSQLDriverLink
-    Left = 344
-    Top = 8
+    Left = 264
+    Top = 16
   end
   object qry_logged: TFDQuery
     Connection = connCCS
@@ -379,8 +379,8 @@ object frm_dm: Tfrm_dm
       'WHERE contract_ctr_id= :contract '
       'and ctr_usr_username = :username '
       'and ctr_usr_password=:password')
-    Left = 336
-    Top = 176
+    Left = 40
+    Top = 208
     ParamData = <
       item
         Name = 'CONTRACT'
@@ -415,8 +415,8 @@ object frm_dm: Tfrm_dm
       'where sys_act_option =:sys_Act_option'
       'and sys_act_module = :sys_act_module '
       'order by sys_act_name')
-    Left = 344
-    Top = 104
+    Left = 40
+    Top = 160
     ParamData = <
       item
         Name = 'SYS_ACT_OPTION'

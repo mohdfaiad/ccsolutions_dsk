@@ -96,7 +96,7 @@ end;
 procedure Tfrm_contract.FormShow(Sender: TObject);
 begin
   inherited;
-   dxBarManager_1Bar3.DockedLeft := 122;
+  dxBarManager_1Bar3.DockedLeft := 122;
 end;
 
 end.

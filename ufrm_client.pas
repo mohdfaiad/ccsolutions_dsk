@@ -229,7 +229,6 @@ type
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup10: TdxLayoutAutoCreatedGroup;
     dxBarButton5: TdxBarButton;

@@ -2384,7 +2384,7 @@ object frm_main_default: Tfrm_main_default
     ImageOptions.LargeImages = cxImageList_1
     PopupMenuLinks = <>
     UseSystemFont = True
-    Left = 584
+    Left = 592
     Top = 8
     object dxBarManager1Bar1: TdxBar
       Caption = 'Quick Access Toolbar'
@@ -2445,7 +2445,7 @@ object frm_main_default: Tfrm_main_default
   object dxSkinController_1: TdxSkinController
     NativeStyle = False
     SkinName = 'Office2010Blue'
-    Left = 536
+    Left = 560
     Top = 8
   end
   object ActionList_1: TActionList
@@ -2457,16 +2457,16 @@ object frm_main_default: Tfrm_main_default
     Height = 32
     Width = 32
     FormatVersion = 1
-    DesignInfo = 672
+    DesignInfo = 524944
   end
   object cxLocalizer_1: TcxLocalizer
-    Left = 480
+    Left = 528
     Top = 8
   end
   object Timer_1: TTimer
     Enabled = False
     OnTimer = Timer_1Timer
-    Left = 444
-    Top = 7
+    Left = 496
+    Top = 8
   end
 end

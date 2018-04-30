@@ -66,7 +66,6 @@ type
     qrypho_dt_registration: TDateTimeField;
     qrypho_phone4: TStringField;
     cxGrid_1DBTableView1pho_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_name: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_contact: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_phone1: TcxGridDBColumn;
@@ -110,7 +109,7 @@ end;
 
 procedure Tfrm_phonebook.limpaCache(Sender: TObject);
 begin
-    qry.CommitUpdates();
+  qry.CommitUpdates();
 end;
 
 procedure Tfrm_phonebook.qryAfterDelete(DataSet: TDataSet);

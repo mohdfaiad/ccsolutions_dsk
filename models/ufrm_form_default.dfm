@@ -100,10 +100,6 @@ object frm_form_default: Tfrm_form_default
     end
     object cxTabSheet_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object cxPageControl_2: TcxPageControl
         AlignWithMargins = True
         Left = 3
@@ -122,10 +118,6 @@ object frm_form_default: Tfrm_form_default
         ClientRectTop = 28
         object cxTabSheet_3: TcxTabSheet
           Caption = 'Informa'#231#245'es'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl_1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -151,7 +143,7 @@ object frm_form_default: Tfrm_form_default
               Enabled = False
               Style.HotTrack = False
               TabOrder = 1
-              Width = 121
+              Width = 130
             end
             object dxLayoutControl_1Group_Root: TdxLayoutGroup
               AlignHorz = ahLeft
@@ -193,7 +185,7 @@ object frm_form_default: Tfrm_form_default
               CaptionOptions.Text = 'Dt. Reg.'
               Control = dbedt_dt_registration
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 130
               ControlOptions.ShowBorder = False
               Enabled = False
               Index = 1
@@ -741,8 +733,8 @@ object frm_form_default: Tfrm_form_default
   end
   object PopupMenu_1: TPopupMenu
     Images = cxImageList_1
-    Left = 536
-    Top = 72
+    Left = 488
+    Top = 48
     object Primeiro1: TMenuItem
       Action = Action_first
     end
@@ -1299,8 +1291,8 @@ object frm_form_default: Tfrm_form_default
       end>
   end
   object dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
-    Left = 472
-    Top = 128
+    Left = 520
+    Top = 48
     object dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
     end
   end
@@ -1360,7 +1352,7 @@ object frm_form_default: Tfrm_form_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ','
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
+    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET
@@ -1512,7 +1504,6 @@ object frm_form_default: Tfrm_form_default
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
     FieldFormats = <>
-    ErrorLog = True
     ErrorLogFileName = 'error.log'
     AddType = qatInsert
     Left = 392
@@ -1537,8 +1528,8 @@ object frm_form_default: Tfrm_form_default
       'begin'
       ''
       'end.')
-    Left = 247
-    Top = 56
+    Left = 296
+    Top = 48
     Datasets = <>
     Variables = <>
     Style = <>

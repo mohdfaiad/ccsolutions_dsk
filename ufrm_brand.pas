@@ -50,6 +50,7 @@ type
     cxGrid_1DBTableView1bra_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -63,7 +64,18 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, Casse.Funcoes;
+
+procedure Tfrm_brand.Action_saveExecute(Sender: TObject);
+
+begin
+  ActiveControl := nil;
+
+  TCampoRequequido.TrataRequired(qry);
+
+  inherited;
+
+end;
 
 procedure Tfrm_brand.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

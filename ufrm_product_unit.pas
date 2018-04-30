@@ -54,6 +54,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qryAfterDelete(DataSet: TDataSet);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -68,7 +69,17 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, Casse.Funcoes;
+
+procedure Tfrm_product_unit.Action_saveExecute(Sender: TObject);
+
+begin
+
+  TCampoRequequido.TrataRequired(qry);
+
+  inherited;
+
+end;
 
 procedure Tfrm_product_unit.FormClose(Sender: TObject;
   var Action: TCloseAction);
@@ -93,8 +104,7 @@ procedure Tfrm_product_unit.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   qrypru_dt_registration.Value := Date + Time;
-  qry.Post;
-  qry.Edit;
+
 end;
 
 end.

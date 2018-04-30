@@ -28,8 +28,16 @@ inherited frm_brand: Tfrm_brand
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'bra_id'
@@ -45,7 +53,7 @@ inherited frm_brand: Tfrm_brand
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 2
-              Width = 294
+              Width = 303
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -92,6 +100,7 @@ inherited frm_brand: Tfrm_brand
       DisplayLabel = 'Nome'
       FieldName = 'bra_name'
       Origin = 'bra_name'
+      Required = True
       Size = 50
     end
     object qrybra_dt_registration: TDateTimeField

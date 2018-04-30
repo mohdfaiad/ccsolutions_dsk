@@ -33,7 +33,8 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  ACBrSocket, ACBrNCMs, cxMemo, cxButtonEdit, ACBrCEP, frxClass;
+  ACBrSocket, ACBrNCMs, cxMemo, cxButtonEdit, ACBrCEP, frxClass, Vcl.Buttons,
+  Vcl.Grids, Vcl.DBGrids;
 
 type
   Tfrm_ncm = class(Tfrm_form_default)
@@ -51,6 +52,8 @@ type
     dxLayoutItem4: TdxLayoutItem;
     cxDBButtonEdit1: TcxDBButtonEdit;
     dxLayoutItem3: TdxLayoutItem;
+    DBGrid1: TDBGrid;
+    dxLayoutItem5: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
@@ -58,7 +61,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-function TrataRequired(Que:TDataset):Boolean;
+
 
 end;
 
@@ -70,12 +73,16 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, Casse.Funcoes;
 
 procedure Tfrm_ncm.Action_saveExecute(Sender: TObject);
+
 begin
-  TrataRequired(qry);
-  inherited;
+   ActiveControl := nil;
+
+   TCampoRequequido.Required(qry);
+
+   inherited;
 
 end;
 
@@ -90,31 +97,8 @@ procedure Tfrm_ncm.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
    qryncm_dt_registration.Value := Date + Time;
+
 end;
 
-function Tfrm_ncm.TrataRequired(Que: TDataset): Boolean;
-var j:Byte;
-    Msg:String;
-begin
-   Msg:='';
-   Result:=False;
-   with Que do
-   begin
-         for j:=0 to FieldCount -1 do
-            if  ((Fields[j].Required) and  (Fields[j].Value = '' )) then
-            begin
-                 if Msg <> '' then
-                 Msg:=Msg+' - ';
-                 Msg:=Msg+Fields[j].FieldName;
-            end;
-   end;
-   if Msg <> '' then
-   begin
-       ShowMessage('Atenção, o(s) campo(s) :'+ #13+Msg+#13+'Não pode(m)                                                               ficar sem preenchimento');
-       Abort;
-   end
-   else
-     Result:=True;
-end;
 end.
 

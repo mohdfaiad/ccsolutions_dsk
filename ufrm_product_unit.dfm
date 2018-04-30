@@ -32,8 +32,16 @@ inherited frm_product_unit: Tfrm_product_unit
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'pru_id'
@@ -49,7 +57,7 @@ inherited frm_product_unit: Tfrm_product_unit
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 2
-              Width = 294
+              Width = 303
             end
             object cxDBTextEdit2: TcxDBTextEdit [3]
               Left = 59
@@ -118,11 +126,13 @@ inherited frm_product_unit: Tfrm_product_unit
     object qrypru_name: TStringField
       DisplayLabel = 'Nome'
       FieldName = 'pru_name'
+      Required = True
       Size = 50
     end
     object qrypru_initials: TStringField
       DisplayLabel = 'Sigla'
       FieldName = 'pru_initials'
+      Required = True
       Size = 50
     end
     object qrypru_dt_registration: TDateTimeField

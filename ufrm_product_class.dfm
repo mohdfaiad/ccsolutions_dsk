@@ -6,10 +6,6 @@ inherited frm_product_class: Tfrm_product_class
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prc_id: TcxGridDBColumn
@@ -257,6 +253,7 @@ inherited frm_product_class: Tfrm_product_class
       DisplayLabel = 'Nome'
       FieldName = 'prs_name'
       Origin = 'prs_name'
+      Required = True
       Size = 50
     end
     object qry_product_class_subprs_dt_registration: TDateTimeField

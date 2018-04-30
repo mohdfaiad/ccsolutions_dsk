@@ -83,7 +83,7 @@ type
     qryctr_usr_logged: TStringField;
     cxGrid_1DBTableView1Column1: TcxGridDBColumn;
     DesconectarUsurio1: TMenuItem;
-    BloqueerUsurio1: TMenuItem;
+    BloquearUsurio1: TMenuItem;
     DesbloquearUsurio1: TMenuItem;
     qryctr_usr_admin: TStringField;
     cxDBCheckBox1: TcxDBCheckBox;
@@ -98,6 +98,7 @@ type
     qry_contract_user_actionctr_usr_act_user_id: TIntegerField;
     qry_contract_user_actionctr_usr_act_action_name: TStringField;
     ZeraraSenha1: TMenuItem;
+    N3: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
@@ -112,7 +113,7 @@ type
       ACanvas: TcxCanvas; AViewInfo: TcxGridTableDataCellViewInfo;
       var ADone: Boolean);
     procedure DesconectarUsurio1Click(Sender: TObject);
-    procedure BloqueerUsurio1Click(Sender: TObject);
+    procedure BloquearUsurio1Click(Sender: TObject);
     procedure PopupMenu_1Popup(Sender: TObject);
     procedure DesbloquearUsurio1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -224,7 +225,7 @@ begin
 end;
 
 
-procedure Tfrm_contract_user.BloqueerUsurio1Click(Sender: TObject);
+procedure Tfrm_contract_user.BloquearUsurio1Click(Sender: TObject);
 begin
   inherited;
  if Application.MessageBox('Deseja bloquer o usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
@@ -441,13 +442,13 @@ begin
   inherited;
  DesconectarUsurio1.Visible:=qryctr_usr_logged.AsString = 'S';
  DesbloquearUsurio1.Visible:=qryctr_usr_logged.AsString = 'B';
- BloqueerUsurio1.Visible:=qryctr_usr_logged.AsString <> 'B';
+ BloquearUsurio1.Visible:=qryctr_usr_logged.AsString <> 'B';
 
 
  if qryctr_usr_logged.AsString = 'B' then
-  BloqueerUsurio1.Caption:='Desbloqueer Usuário'
+  BloquearUsurio1.Caption:='Desbloquear Usuário'
   else
-  BloqueerUsurio1.Caption:='Bloqueer Usuário';
+  BloquearUsurio1.Caption:='Bloquear Usuário';
 end;
 
 procedure Tfrm_contract_user.qryAfterInsert(DataSet: TDataSet);

@@ -16,6 +16,8 @@ inherited frm_contract_user: Tfrm_contract_user
     ClientRectBottom = 612
     ClientRectRight = 799
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 797
       ExplicitHeight = 584
       inherited cxGrid_1: TcxGrid
@@ -62,6 +64,8 @@ inherited frm_contract_user: Tfrm_contract_user
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 797
       ExplicitHeight = 584
       inherited cxPageControl_2: TcxPageControl
@@ -72,6 +76,8 @@ inherited frm_contract_user: Tfrm_contract_user
         ClientRectBottom = 572
         ClientRectRight = 785
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
           ExplicitWidth = 783
           ExplicitHeight = 544
           inherited dxLayoutControl_1: TdxLayoutControl
@@ -776,21 +782,25 @@ inherited frm_contract_user: Tfrm_contract_user
   end
   inherited PopupMenu_1: TPopupMenu
     OnPopup = PopupMenu_1Popup
-    object DesconectarUsurio1: TMenuItem
-      Caption = 'Desconectar  Usu'#225'rio'
-      OnClick = DesconectarUsurio1Click
+    object N3: TMenuItem
+      Caption = '-'
+      Enabled = False
     end
-    object BloqueerUsurio1: TMenuItem
-      Caption = 'Bloqueer Usu'#225'rio'
-      OnClick = BloqueerUsurio1Click
+    object BloquearUsurio1: TMenuItem
+      Caption = 'Bloquear Usu'#225'rio'
+      OnClick = BloquearUsurio1Click
     end
     object DesbloquearUsurio1: TMenuItem
       Caption = 'Desbloquear Usu'#225'rio'
       OnClick = DesbloquearUsurio1Click
     end
     object ZeraraSenha1: TMenuItem
-      Caption = 'Zerar a Senha'
+      Caption = 'Resetar Senha'
       OnClick = ZeraraSenha1Click
+    end
+    object DesconectarUsurio1: TMenuItem
+      Caption = 'Desconectar  Usu'#225'rio'
+      OnClick = DesconectarUsurio1Click
     end
   end
   inherited cxImageList_1: TcxImageList

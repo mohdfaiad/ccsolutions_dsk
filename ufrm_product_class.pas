@@ -72,6 +72,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure qryAfterOpen(DataSet: TDataSet);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -95,6 +96,13 @@ begin
        Application.MessageBox('Não é possível deletar esta classe de produtos, pos existe sub classe ligadas a ela !','AVISO DO SISTEMA', MB_OK+MB_ICONINFORMATION);
        Exit;
      end;
+  inherited;
+
+end;
+
+procedure Tfrm_product_class.Action_saveExecute(Sender: TObject);
+begin
+  //
   inherited;
 
 end;

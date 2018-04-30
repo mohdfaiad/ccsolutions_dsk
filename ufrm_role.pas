@@ -53,11 +53,15 @@ type
     cxGrid_1DBTableView1rol_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     procedure limpaCache(Sender:TObject);
+
+   function CampoSemPreencher(Que:TFDQuery):Boolean;
+
   end;
 
 var
@@ -68,6 +72,39 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_role.Action_saveExecute(Sender: TObject);
+begin
+    CampoSemPreencher(qry);
+     inherited;
+
+end;
+
+function Tfrm_role.CampoSemPreencher(Que: TFDQuery): Boolean;
+var j:Byte;
+    Msg:String;
+begin
+   Msg:='';
+   Result:=False;
+   with Que do
+   begin
+         for j:=0 to FieldCount -1 do
+            if  ((Fields[j].Required) and  (Fields[j].AsString = '') and  (Fields[j].Tag = 0 )) then
+            begin
+                 if Msg <> '' then
+                 Msg:=Msg+' - ';
+                 Msg:=Msg+Fields[j].DisplayLabel;
+            end;
+   end;
+   if Msg <> '' then
+   begin
+       ShowMessage('Atenção, o(s) campo(s) :'+ #13+Msg+#13+'Não pode ficar sem preenchimento');
+       Abort;
+   end
+   else
+     Result:=True;
+
+end;
 
 procedure Tfrm_role.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

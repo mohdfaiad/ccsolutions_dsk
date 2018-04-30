@@ -86,8 +86,18 @@ procedure Tfrm_main_default.controleAcesso(ctr_usr_id: Integer;
 var
 i:integer;
 begin
+
 if ctr_usr_adm = 'S' then
- exit;
+begin
+ for I := 0 to Self.ComponentCount - 1 do
+  begin
+   if Self.Components[i] is TAction then
+    if TAction(Self.Components[i]).Tag <> 1 then
+     TAction(Self.Components[i]).Enabled:=True;
+  end;
+  Exit;
+
+end;
 
  for I := 0 to Self.ComponentCount - 1 do
   begin

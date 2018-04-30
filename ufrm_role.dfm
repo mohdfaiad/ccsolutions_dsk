@@ -4,7 +4,12 @@ inherited frm_role: Tfrm_role
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1rol_id: TcxGridDBColumn
@@ -31,6 +36,10 @@ inherited frm_role: Tfrm_role
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
@@ -56,7 +65,7 @@ inherited frm_role: Tfrm_role
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 2
-              Width = 294
+              Width = 303
             end
             object cxDBCurrencyEdit1: TcxDBCurrencyEdit [3]
               Left = 80
@@ -131,6 +140,7 @@ inherited frm_role: Tfrm_role
       DisplayLabel = 'Nome'
       FieldName = 'rol_name'
       Origin = 'rol_name'
+      Required = True
       Size = 50
     end
     object qryrol_base_salary: TBCDField

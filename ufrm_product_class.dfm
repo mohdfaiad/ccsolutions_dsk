@@ -30,6 +30,10 @@ inherited frm_product_class: Tfrm_product_class
     inherited cxTabSheet_2: TcxTabSheet
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'prc_id'
@@ -142,7 +146,6 @@ inherited frm_product_class: Tfrm_product_class
   end
   inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
     Left = 488
-    Top = 48
   end
   inherited qry: TFDQuery
     Active = True

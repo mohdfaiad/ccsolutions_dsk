@@ -95,7 +95,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, ufrm_main_default;
 
 procedure Tfrm_login.Action_accessExecute(Sender: TObject);
 var
@@ -110,7 +110,6 @@ begin
   frm_dm.qry_signin.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
   frm_dm.qry_signin.Prepare;
   frm_dm.qry_signin.Open;
-
 
   // Select para listar as unidades de estoque que esse usuário tem acesso
    frm_dm.qry_enterprise.Close;
@@ -157,7 +156,13 @@ begin
      frm_dm.qry_logged.Prepare;
      frm_dm.qry_logged.Open;
 
-     ModalResult := mrOk;
+     if Tag = 99 then
+      begin
+       ModalResult :=mrYes;
+       Self.Close;
+      end
+      else
+        ModalResult := mrOk;
 
   end
   else
@@ -169,12 +174,16 @@ end;
 
 procedure Tfrm_login.Action_cancelExecute(Sender: TObject);
 begin
-
-  if MessageDlg('Você não se autenticou. A aplicação será encerrada!' + #13 +
+  if frm_login.Tag = 99  then  //Tag 99 quando for para alterar senha não finalizar a apliacação
+    Self.Close
+  else
+   begin
+     if MessageDlg('Você não se autenticou. A aplicação será encerrada!' + #13 +
         'Deseja continuar?', mtConfirmation, mbYesNo, 0) = mrYes then
-     begin
-       Application.Terminate;
-     end;
+        begin
+         Application.Terminate;
+       end;
+   end;
 
 end;
 
@@ -485,6 +494,15 @@ end;
 
 procedure Tfrm_login.FormShow(Sender: TObject);
 begin
+if self.Tag = 99 then
+ begin
+   frm_login.cxTabSheet_1.Show;
+   frm_login.edt_contract.Clear;
+   frm_login.edt_username.Clear;
+   frm_login.edt_password.Clear;
+   frm_login.edt_contract.SetFocus;
+ end;
+
   cxPageControl1.Pages[1].TabVisible:=False;
   cxPageControl1.Pages[2].TabVisible:=False;
   cxPageControl1.Pages[0].TabVisible:=True;

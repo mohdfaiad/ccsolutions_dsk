@@ -53,11 +53,15 @@ type
     dxLayoutItem3: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-  end;
+function TrataRequired(Que:TDataset):Boolean;
+
+end;
+
 
 var
   frm_ncm: Tfrm_ncm;
@@ -67,6 +71,13 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_ncm.Action_saveExecute(Sender: TObject);
+begin
+  TrataRequired(qry);
+  inherited;
+
+end;
 
 procedure Tfrm_ncm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -81,4 +92,29 @@ begin
    qryncm_dt_registration.Value := Date + Time;
 end;
 
+function Tfrm_ncm.TrataRequired(Que: TDataset): Boolean;
+var j:Byte;
+    Msg:String;
+begin
+   Msg:='';
+   Result:=False;
+   with Que do
+   begin
+         for j:=0 to FieldCount -1 do
+            if  ((Fields[j].Required) and  (Fields[j].Value = '' )) then
+            begin
+                 if Msg <> '' then
+                 Msg:=Msg+' - ';
+                 Msg:=Msg+Fields[j].FieldName;
+            end;
+   end;
+   if Msg <> '' then
+   begin
+       ShowMessage('Atenção, o(s) campo(s) :'+ #13+Msg+#13+'Não pode(m)                                                               ficar sem preenchimento');
+       Abort;
+   end
+   else
+     Result:=True;
+end;
 end.
+

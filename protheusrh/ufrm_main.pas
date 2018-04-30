@@ -48,6 +48,8 @@ type
     dxBarLargeButton6: TdxBarLargeButton;
     dxBarLargeButton7: TdxBarLargeButton;
     Action_report: TAction;
+    Action_replace_user: TAction;
+    dxBarButton1: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -56,6 +58,7 @@ type
     procedure Action_employeeExecute(Sender: TObject);
     procedure Action_roleExecute(Sender: TObject);
     procedure Action_reportExecute(Sender: TObject);
+    procedure Action_replace_userExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -155,6 +158,15 @@ begin
     frm_phonebook.WindowState := wsNormal;
     frm_phonebook.Show;
   end;
+end;
+
+procedure Tfrm_main.Action_replace_userExecute(Sender: TObject);
+begin
+   inherited;
+   frm_login.Tag :=99;
+   frm_login.ShowModal;
+   Self.OnShow(self);
+
 end;
 
 procedure Tfrm_main.Action_reportExecute(Sender: TObject);

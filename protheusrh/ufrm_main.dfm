@@ -1,12 +1,9 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo RH - CCS Protheus.'
-  ExplicitWidth = 1024
-  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
-      Active = True
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
@@ -24,7 +21,6 @@ inherited frm_main: Tfrm_main
       Index = 2
     end
     inherited dxRibbon1Tab_4: TdxRibbonTab
-      Active = False
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar3'
@@ -44,6 +40,8 @@ inherited frm_main: Tfrm_main
   end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar1: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 66
       FloatClientHeight = 162
       ItemLinks = <
@@ -85,7 +83,7 @@ inherited frm_main: Tfrm_main
       WholeRow = False
     end
     object dxBarManager_1Bar3: TdxBar [4]
-      Caption = #218'til'
+      Caption = 'Utilit'#225'rio'
       CaptionButtons = <>
       DockedLeft = 0
       DockedTop = 0
@@ -97,6 +95,10 @@ inherited frm_main: Tfrm_main
         item
           Visible = True
           ItemName = 'dxBarLargeButton6'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton1'
         end>
       OneOnRow = True
       Row = 0
@@ -152,6 +154,10 @@ inherited frm_main: Tfrm_main
       Action = Action_report
       Category = 0
     end
+    object dxBarButton1: TdxBarButton
+      Action = Action_replace_user
+      Category = 0
+    end
   end
   inherited ActionList_1: TActionList
     object Action_contract: TAction
@@ -202,6 +208,12 @@ inherited frm_main: Tfrm_main
       Hint = 'F'#225'brica de Relat'#243'rios'
       ImageIndex = 4
       OnExecute = Action_reportExecute
+    end
+    object Action_replace_user: TAction
+      Tag = 1
+      Category = 'Utilit'#225'rios'
+      Caption = 'Trocar Usu'#225'rio'
+      OnExecute = Action_replace_userExecute
     end
   end
   inherited cxImageList_1: TcxImageList

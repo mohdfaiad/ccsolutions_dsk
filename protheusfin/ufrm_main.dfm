@@ -61,8 +61,6 @@ inherited frm_main: Tfrm_main
       FloatClientHeight = 22
     end
     inherited dxBarManager_1Bar1: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
       FloatClientWidth = 87
       FloatClientHeight = 270
       ItemLinks = <
@@ -2913,7 +2911,7 @@ inherited frm_main: Tfrm_main
       end>
     Ribbon = dxRibbon1
     UseOwnFont = False
-    Left = 824
-    Top = 16
+    Left = 704
+    Top = 8
   end
 end

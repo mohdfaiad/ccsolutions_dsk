@@ -4,12 +4,16 @@ inherited frm_billreceive: Tfrm_billreceive
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    ExplicitTop = 56
+    ExplicitHeight = 505
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
+      ExplicitLeft = 4
+      ExplicitTop = 25
       ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitHeight = 476
       inherited cxGrid_1: TcxGrid
+        Height = 470
+        ExplicitHeight = 470
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1brc_id: TcxGridDBColumn
             DataBinding.FieldName = 'brc_id'
@@ -67,66 +71,73 @@ inherited frm_billreceive: Tfrm_billreceive
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
+      ExplicitLeft = 4
+      ExplicitTop = 25
       ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitHeight = 476
       inherited cxPageControl_2: TcxPageControl
+        ExplicitHeight = 470
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
+          ExplicitLeft = 4
+          ExplicitTop = 25
           ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitHeight = 441
           inherited dxLayoutControl_1: TdxLayoutControl
+            Height = 441
+            ExplicitHeight = 441
             inherited dbedt_id: TcxDBTextEdit
-              Left = 76
+              Left = 52
+              Top = 28
               DataBinding.DataField = 'brc_id'
-              ExplicitLeft = 76
+              ExplicitLeft = 52
+              ExplicitTop = 28
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 261
+              Left = 237
+              Top = 28
               DataBinding.DataField = 'brc_dt_registration'
-              ExplicitLeft = 261
+              ExplicitLeft = 237
+              ExplicitTop = 28
             end
             object cxDBCurrencyEdit1: TcxDBCurrencyEdit [2]
-              Left = 76
-              Top = 222
+              Left = 52
+              Top = 223
               DataBinding.DataField = 'brc_value'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 8
-              Width = 121
-            end
-            object cxDBCurrencyEdit2: TcxDBCurrencyEdit [3]
-              Left = 438
-              Top = 222
-              DataBinding.DataField = 'brc_discount'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 10
-              Width = 121
-            end
-            object cxDBCurrencyEdit4: TcxDBCurrencyEdit [4]
-              Left = 634
-              Top = 222
-              DataBinding.DataField = 'brc_ammount_receive'
               DataBinding.DataSource = ds
               Style.HotTrack = False
               TabOrder = 11
               Width = 121
             end
+            object cxDBCurrencyEdit2: TcxDBCurrencyEdit [3]
+              Left = 423
+              Top = 223
+              DataBinding.DataField = 'brc_discount'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 13
+              Width = 121
+            end
+            object cxDBCurrencyEdit4: TcxDBCurrencyEdit [4]
+              Left = 619
+              Top = 223
+              DataBinding.DataField = 'brc_ammount_receive'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 14
+              Width = 121
+            end
             object cxDBCurrencyEdit3: TcxDBCurrencyEdit [5]
-              Left = 261
-              Top = 222
+              Left = 237
+              Top = 223
               DataBinding.DataField = 'brc_addition'
               DataBinding.DataSource = ds
               Style.HotTrack = False
-              TabOrder = 9
+              TabOrder = 12
               Width = 121
             end
             object cxDBLookupComboBox1: TcxDBLookupComboBox [6]
-              Left = 76
-              Top = 103
+              Left = 52
+              Top = 85
               DataBinding.DataField = 'client_cli_id'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -149,54 +160,89 @@ inherited frm_billreceive: Tfrm_billreceive
               TabOrder = 2
               Width = 306
             end
-            object cxDBTextEdit3: TcxDBTextEdit [7]
-              Left = 438
-              Top = 103
+            object cxDBDateEdit1: TcxDBDateEdit [7]
+              Left = 52
+              Top = 139
+              DataBinding.DataField = 'brc_dt_emission'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 7
+              Width = 121
+            end
+            object cxDBLookupComboBox2: TcxDBLookupComboBox [8]
+              Left = 52
+              Top = 112
+              Properties.DropDownListStyle = lsFixedList
+              Properties.KeyFieldNames = 'ent_id'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'ent_first_name'
+                end
+                item
+                  FieldName = 'ent_id'
+                end>
+              Properties.ListSource = ds_enterprise
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 306
+            end
+            object cxDBTextEdit1: TcxDBTextEdit [9]
+              Left = 423
+              Top = 112
+              DataBinding.DataField = 'brc_document'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 5
+              Width = 121
+            end
+            object cxDBTextEdit3: TcxDBTextEdit [10]
+              Left = 423
+              Top = 85
               DataBinding.DataField = 'brc_status'
               DataBinding.DataSource = ds
               Enabled = False
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 3
-              Width = 121
-            end
-            object cxDBTextEdit1: TcxDBTextEdit [8]
-              Left = 76
-              Top = 130
-              DataBinding.DataField = 'brc_document'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
               TabOrder = 4
               Width = 121
             end
-            object cxDBTextEdit2: TcxDBTextEdit [9]
-              Left = 76
-              Top = 157
+            object cxDBDateEdit3: TcxDBDateEdit [11]
+              Left = 619
+              Top = 112
+              DataBinding.DataField = 'brc_invoice'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 6
+              Width = 121
+            end
+            object cxDBTextEdit2: TcxDBTextEdit [12]
+              Left = 52
+              Top = 166
               DataBinding.DataField = 'brc_reference'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 7
-              Width = 483
+              TabOrder = 10
+              Width = 687
             end
-            object cxDBDateEdit1: TcxDBDateEdit [10]
-              Left = 261
-              Top = 130
-              DataBinding.DataField = 'brc_dt_emission'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 5
-              Width = 121
-            end
-            object cxDBDateEdit2: TcxDBDateEdit [11]
-              Left = 438
-              Top = 130
+            object cxDBDateEdit2: TcxDBDateEdit [13]
+              Left = 237
+              Top = 139
               DataBinding.DataField = 'brc_dt_maturity'
               DataBinding.DataSource = ds
               Properties.DateButtons = [btnClear, btnToday]
               Style.HotTrack = False
-              TabOrder = 6
+              TabOrder = 8
+              Width = 121
+            end
+            object cxDBDateEdit4: TcxDBDateEdit [14]
+              Left = 423
+              Top = 139
+              DataBinding.DataField = 'brc_installment'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 9
               Width = 121
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
@@ -266,7 +312,7 @@ inherited frm_billreceive: Tfrm_billreceive
               AutoCreated = True
             end
             object dxLayoutItem7: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
+              Parent = dxLayoutAutoCreatedGroup3
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'Cliente'
@@ -276,34 +322,12 @@ inherited frm_billreceive: Tfrm_billreceive
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem12: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignVert = avClient
-              CaptionOptions.Text = 'Status'
-              Control = cxDBTextEdit3
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Enabled = False
-              Index = 1
-            end
             object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutAutoCreatedGroup1
               AlignVert = avTop
               LayoutDirection = ldHorizontal
               Index = 0
               AutoCreated = True
-            end
-            object dxLayoutItem8: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Documento'
-              Control = cxDBTextEdit1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
             end
             object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutAutoCreatedGroup1
@@ -312,23 +336,118 @@ inherited frm_billreceive: Tfrm_billreceive
               Index = 1
               AutoCreated = True
             end
-            object dxLayoutItem9: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
-              AlignHorz = ahClient
+            object dxLayoutItem10: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup8
+              AlignHorz = ahLeft
               AlignVert = avTop
-              CaptionOptions.Text = 'Refer'#234'ncia'
-              Control = cxDBTextEdit2
+              CaptionOptions.Text = 'Dt. Emis.'
+              Control = cxDBDateEdit1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 483
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem14: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup3
+              AlignHorz = ahClient
+              CaptionOptions.Text = 'Empresa'
+              Control = cxDBLookupComboBox2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 145
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutItem10: TdxLayoutItem
+            object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignHorz = ahLeft
+              Index = 0
+              AutoCreated = True
+            end
+            object dxLayoutItem8: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup7
+              AlignHorz = ahLeft
+              AlignVert = avBottom
+              CaptionOptions.Text = 'Documento'
+              Control = cxDBTextEdit1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem12: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup6
+              AlignHorz = ahLeft
+              AlignVert = avBottom
+              CaptionOptions.Text = 'Status'
+              Control = cxDBTextEdit3
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Enabled = False
+              Index = 0
+            end
+            object dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignHorz = ahLeft
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem13: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup7
+              AlignVert = avClient
+              CaptionOptions.Text = 'NFe'
+              Control = cxDBDateEdit3
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup6
+              AlignVert = avBottom
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem9: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup4
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Refer'#234'ncia'
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              SizeOptions.Width = 744
+              Control = cxDBTextEdit2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 688
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem11: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup8
+              AlignHorz = ahLeft
+              AlignVert = avBottom
+              CaptionOptions.Text = 'Dt. Venc.'
+              Control = cxDBDateEdit2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutAutoCreatedGroup5
               AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Dt. Emis.'
-              Control = cxDBDateEdit1
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 0
+              AutoCreated = True
+            end
+            object dxLayoutItem15: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              AlignHorz = ahLeft
+              AlignVert = avBottom
+              CaptionOptions.Text = 'Parcela'
+              Control = cxDBDateEdit4
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -336,22 +455,10 @@ inherited frm_billreceive: Tfrm_billreceive
             end
             object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutAutoCreatedGroup4
-              AlignHorz = ahLeft
               AlignVert = avTop
               LayoutDirection = ldHorizontal
               Index = 0
               AutoCreated = True
-            end
-            object dxLayoutItem11: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Dt. Venc.'
-              Control = cxDBDateEdit2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 2
             end
           end
         end
@@ -465,6 +572,23 @@ inherited frm_billreceive: Tfrm_billreceive
       FieldName = 'brc_dt_registration'
       Origin = 'brc_dt_registration'
     end
+    object qrybrc_installment: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_installment'
+      Origin = 'brc_installment'
+      Size = 10
+    end
+    object qrybrc_enterprise_ent_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_enterprise_ent_id'
+      Origin = 'brc_enterprise_ent_id'
+    end
+    object qrybrc_invoice: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_invoice'
+      Origin = 'brc_invoice'
+      Size = 25
+    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -518,5 +642,22 @@ inherited frm_billreceive: Tfrm_billreceive
     DataSet = qry_seller
     Left = 616
     Top = 144
+  end
+  object ds_enterprise: TDataSource
+    DataSet = qry_enterprise
+    Left = 648
+    Top = 288
+  end
+  object qry_enterprise: TFDQuery
+    Active = True
+    IndexFieldNames = 'contract_ctr_id'
+    MasterSource = frm_dm.ds_signin
+    MasterFields = 'ctr_id'
+    DetailFields = 'contract_ctr_id'
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select * from enterprise')
+    Left = 632
+    Top = 288
   end
 end

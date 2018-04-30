@@ -167,6 +167,7 @@ uses ufrm_dm, ufrm_main, ufrm_duplicAccount;
 
 procedure Tfrm_billpay.Action_saveExecute(Sender: TObject);
 begin
+
  if qryaccount_plan_acp_id.AsInteger = 0 then
   begin
    Application.MessageBox('Conta Sintética não informada!','CONTAS A PAGAR', MB_OK + MB_ICONINFORMATION);
@@ -198,8 +199,10 @@ begin
       frm_duplicAccount.cxEditLancamento.TExt:=FormatDateTime('dd/mm/yyyy',qrybpy_dt_registration.AsDateTime);
       frm_duplicAccount.cxEditVenc.TExt:=FormatDateTime('dd/mm/yyyy', qrybpy_dt_maturity.AsDateTime);
       frm_duplicAccount.cxEditValor.TExt:=FormatFloat('0.0,00', qrybpy_value.AsFloat);
-      frm_duplicAccount.Tag:=0;
+      frm_duplicAccount.Tag:=1;
       frm_duplicAccount.Showmodal;
+      qry.Close;
+      qry.Open;
      end;
    end;
 

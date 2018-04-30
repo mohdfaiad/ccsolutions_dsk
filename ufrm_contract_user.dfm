@@ -11,6 +11,7 @@ inherited frm_contract_user: Tfrm_contract_user
   inherited cxPageControl_1: TcxPageControl
     Width = 805
     Height = 618
+    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 805
     ExplicitHeight = 618
     ClientRectBottom = 612

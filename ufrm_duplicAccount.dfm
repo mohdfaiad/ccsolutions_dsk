@@ -19,27 +19,27 @@ object frm_duplicAccount: Tfrm_duplicAccount
   TextHeight = 13
   object dxLayoutControl1: TdxLayoutControl
     Left = 0
-    Top = 27
+    Top = 28
     Width = 703
-    Height = 419
+    Height = 418
     Align = alClient
     TabOrder = 0
     LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
     ShowDesignSelectors = False
     HighlightRoot = False
     object cxEditCodigo: TcxTextEdit
-      Left = 63
-      Top = 38
+      Left = 68
+      Top = 28
       Enabled = False
       Style.Color = clBtnFace
       Style.HotTrack = False
       TabOrder = 0
       Text = 'cxEditCodigo'
-      Width = 120
+      Width = 110
     end
     object cxEditDescricao: TcxTextEdit
-      Left = 240
-      Top = 38
+      Left = 235
+      Top = 28
       Enabled = False
       Style.Color = clBtnFace
       Style.HotTrack = False
@@ -48,8 +48,8 @@ object frm_duplicAccount: Tfrm_duplicAccount
       Width = 439
     end
     object cxEditLancamento: TcxTextEdit
-      Left = 279
-      Top = 65
+      Left = 284
+      Top = 55
       Enabled = False
       Style.Color = clBtnFace
       Style.HotTrack = False
@@ -58,8 +58,8 @@ object frm_duplicAccount: Tfrm_duplicAccount
       Width = 98
     end
     object cxEditVenc: TcxTextEdit
-      Left = 443
-      Top = 65
+      Left = 448
+      Top = 55
       Enabled = False
       Style.Color = clBtnFace
       Style.HotTrack = False
@@ -68,18 +68,18 @@ object frm_duplicAccount: Tfrm_duplicAccount
       Width = 121
     end
     object cxEditValor: TcxTextEdit
-      Left = 599
-      Top = 65
+      Left = 604
+      Top = 55
       Enabled = False
       Style.Color = clBtnFace
       Style.HotTrack = False
       TabOrder = 5
       Text = 'cxEditValor'
-      Width = 80
+      Width = 70
     end
     object cxEditNumDoc: TcxTextEdit
-      Left = 63
-      Top = 65
+      Left = 68
+      Top = 55
       Enabled = False
       Style.Color = clBtnFace
       Style.HotTrack = False
@@ -88,8 +88,8 @@ object frm_duplicAccount: Tfrm_duplicAccount
       Width = 121
     end
     object cxCbTipoDuplic: TcxComboBox
-      Left = 17
-      Top = 130
+      Left = 22
+      Top = 136
       Properties.Items.Strings = (
         'DI'#193'RIO'
         'SEMANAL'
@@ -101,17 +101,17 @@ object frm_duplicAccount: Tfrm_duplicAccount
       Width = 121
     end
     object cxEditQuantidade: TcxTextEdit
-      Left = 144
-      Top = 130
+      Left = 149
+      Top = 136
       Style.HotTrack = False
       TabOrder = 7
       Text = '1'
       Width = 69
     end
     object cxGrid1: TcxGrid
-      Left = 17
-      Top = 177
-      Width = 662
+      Left = 22
+      Top = 193
+      Width = 652
       Height = 200
       TabOrder = 9
       object cxGrid1DBTableView1: TcxGridDBTableView
@@ -145,8 +145,8 @@ object frm_duplicAccount: Tfrm_duplicAccount
       end
     end
     object cxButton1: TcxButton
-      Left = 219
-      Top = 124
+      Left = 224
+      Top = 130
       Width = 82
       Height = 25
       BiDiMode = bdRightToLeftNoAlign
@@ -401,7 +401,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
     DockControlHeights = (
       0
       0
-      27
+      28
       0)
     object dxBarManager1Bar1: TdxBar
       Caption = 'barra'

@@ -4,12 +4,14 @@ inherited frm_billpay: Tfrm_billpay
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
+        Height = 470
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1bpy_id: TcxGridDBColumn
             DataBinding.FieldName = 'bpy_id'
@@ -82,19 +84,24 @@ inherited frm_billpay: Tfrm_billpay
           ExplicitWidth = 762
           ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
+            Height = 441
             inherited dbedt_id: TcxDBTextEdit
-              Left = 77
+              Left = 82
+              Top = 28
               DataBinding.DataField = 'bpy_id'
-              ExplicitLeft = 77
+              ExplicitLeft = 82
+              ExplicitTop = 28
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 257
+              Left = 262
+              Top = 28
               DataBinding.DataField = 'bpy_dt_registration'
-              ExplicitLeft = 257
+              ExplicitLeft = 262
+              ExplicitTop = 28
             end
             object cxDBCurrencyEdit1: TcxDBCurrencyEdit [2]
-              Left = 77
-              Top = 249
+              Left = 82
+              Top = 223
               DataBinding.DataField = 'bpy_value'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -102,8 +109,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 121
             end
             object cxDBCurrencyEdit5: TcxDBCurrencyEdit [3]
-              Left = 77
-              Top = 276
+              Left = 82
+              Top = 250
               DataBinding.DataField = 'bpy_amount_paid'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -111,8 +118,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 121
             end
             object cxDBCurrencyEdit2: TcxDBCurrencyEdit [4]
-              Left = 257
-              Top = 249
+              Left = 262
+              Top = 223
               DataBinding.DataField = 'bpy_addition'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -120,8 +127,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 121
             end
             object cxDBCurrencyEdit3: TcxDBCurrencyEdit [5]
-              Left = 434
-              Top = 249
+              Left = 439
+              Top = 223
               DataBinding.DataField = 'bpy_discount'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -129,8 +136,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 121
             end
             object cxDBCurrencyEdit4: TcxDBCurrencyEdit [6]
-              Left = 609
-              Top = 249
+              Left = 614
+              Top = 223
               DataBinding.DataField = 'bpy_amount_pay'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -138,8 +145,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 121
             end
             object cxDBTextEdit3: TcxDBTextEdit [7]
-              Left = 77
-              Top = 184
+              Left = 82
+              Top = 166
               DataBinding.DataField = 'bpy_reference'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -148,8 +155,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 653
             end
             object cxDBDateEdit1: TcxDBDateEdit [8]
-              Left = 77
-              Top = 157
+              Left = 82
+              Top = 139
               DataBinding.DataField = 'bpy_dt_emission'
               DataBinding.DataSource = ds
               Properties.DateButtons = [btnClear, btnToday]
@@ -158,8 +165,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 121
             end
             object cxDBDateEdit2: TcxDBDateEdit [9]
-              Left = 257
-              Top = 157
+              Left = 262
+              Top = 139
               DataBinding.DataField = 'bpy_dt_maturity'
               DataBinding.DataSource = ds
               Properties.DateButtons = [btnClear, btnToday]
@@ -168,8 +175,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 121
             end
             object cxDBTextEdit2: TcxDBTextEdit [10]
-              Left = 434
-              Top = 157
+              Left = 439
+              Top = 139
               DataBinding.DataField = 'bpy_installment'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -177,8 +184,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 121
             end
             object cxDBLookupComboBox1: TcxDBLookupComboBox [11]
-              Left = 77
-              Top = 103
+              Left = 82
+              Top = 85
               DataBinding.DataField = 'supplier_sup_id'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -204,8 +211,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 301
             end
             object cxDBLookupComboBox2: TcxDBLookupComboBox [12]
-              Left = 77
-              Top = 130
+              Left = 82
+              Top = 112
               DataBinding.DataField = 'enterprise_ent_id'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -230,8 +237,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 301
             end
             object cxDBTextEdit4: TcxDBTextEdit [13]
-              Left = 434
-              Top = 103
+              Left = 439
+              Top = 85
               DataBinding.DataField = 'bpy_status'
               DataBinding.DataSource = ds
               Enabled = False
@@ -241,8 +248,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 121
             end
             object cxDBTextEdit5: TcxDBTextEdit [14]
-              Left = 609
-              Top = 130
+              Left = 614
+              Top = 112
               DataBinding.DataField = 'bpy_invoice'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -251,8 +258,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 121
             end
             object cxDBTextEdit1: TcxDBTextEdit [15]
-              Left = 434
-              Top = 130
+              Left = 439
+              Top = 112
               DataBinding.DataField = 'bpy_document'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -457,22 +464,22 @@ inherited frm_billpay: Tfrm_billpay
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Cont'#225'bil'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitHeight = 432
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
             Width = 762
-            Height = 432
+            Height = 441
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             OnDblClick = dxLayoutControl_1DblClick
+            ExplicitHeight = 432
             object cxDBLookupComboBox9: TcxDBLookupComboBox
-              Left = 63
-              Top = 103
+              Left = 68
+              Top = 85
               DataBinding.DataField = 'cost_center_coc_id'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -497,8 +504,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 145
             end
             object cxDBLookupComboBox12: TcxDBLookupComboBox
-              Left = 63
-              Top = 38
+              Left = 68
+              Top = 28
               DataBinding.DataField = 'account_plan_acp_id'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -523,8 +530,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 145
             end
             object cxDBLookupComboBox11: TcxDBLookupComboBox
-              Left = 270
-              Top = 38
+              Left = 275
+              Top = 28
               DataBinding.DataField = 'account_plan_detail_acd_id'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -549,8 +556,8 @@ inherited frm_billpay: Tfrm_billpay
               Width = 145
             end
             object cxDBLookupComboBox10: TcxDBLookupComboBox
-              Left = 270
-              Top = 103
+              Left = 275
+              Top = 85
               DataBinding.DataField = 'cost_center_detail_cod_id'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -884,8 +891,8 @@ inherited frm_billpay: Tfrm_billpay
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from cost_center_detail')
-    Left = 432
-    Top = 272
+    Left = 232
+    Top = 96
   end
   object ds_cost_center_detail: TDataSource
     DataSet = qry_cost_center_detail
@@ -952,12 +959,12 @@ inherited frm_billpay: Tfrm_billpay
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from account_plan_detail')
-    Left = 448
-    Top = 216
+    Left = 312
+    Top = 104
   end
   object ds_account_plan_detail: TDataSource
     DataSet = qry_account_plan_detail
-    Left = 552
-    Top = 232
+    Left = 152
+    Top = 104
   end
 end

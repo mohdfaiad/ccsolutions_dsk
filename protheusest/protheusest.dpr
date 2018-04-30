@@ -38,7 +38,9 @@ uses
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   ufrm_purchase_order in '..\ufrm_purchase_order.pas' {frm_purchase_order},
   ufrm_request in '..\ufrm_request.pas' {frm_request},
-  ufrm_stock_out in '..\ufrm_stock_out.pas' {frm_stock_out};
+  ufrm_stock_out in '..\ufrm_stock_out.pas' {frm_stock_out},
+  ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
+  uThred_logged in '..\uThred_logged.pas';
 
 {$R *.res}
 
@@ -49,5 +51,6 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
+  Application.CreateForm(Tfrm_search_enterprise, frm_search_enterprise);
   Application.Run;
 end.

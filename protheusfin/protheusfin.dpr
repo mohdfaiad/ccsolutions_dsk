@@ -28,20 +28,21 @@ uses
   ufrm_login in '..\ufrm_login.pas' {frm_login},
   ufrm_account_synthetic in '..\ufrm_account_synthetic.pas' {frm_account_synthetic},
   ufrm_cost_center in '..\ufrm_cost_center.pas' {frm_cost_center},
-  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   ufrm_duplicAccount in '..\ufrm_duplicAccount.pas' {frm_duplicAccount},
   ufrm_changePassword in '..\ufrm_changePassword.pas' {frm_changePassword},
   uThred_logged in '..\uThred_logged.pas',
-  ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise};
+  ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
+  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
+  ufrm_billreceive_ticket in '..\ufrm_billreceive_ticket.pas' {frm_billreceive_ticket};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(Tfrm_dm, frm_dm);
-  Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
-  Application.CreateForm(Tfrm_dm_report, frm_dm_report);
-  Application.CreateForm(Tfrm_main, frm_main);
-  Application.Run;
+  AApplication.CreateForm(Tfrm_dm, frm_dm);
+  AApplication.CreateForm(Tfrm_dm_ds, frm_dm_ds);
+  AApplication.CreateForm(Tfrm_dm_report, frm_dm_report);
+  AApplication.CreateForm(Tfrm_main, frm_main);
+  ication.Run;
 end.

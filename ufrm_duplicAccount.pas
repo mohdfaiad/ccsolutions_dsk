@@ -30,7 +30,7 @@ uses
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, dxLayoutControlAdapters, Vcl.Menus, Vcl.StdCtrls,
   cxButtons, Vcl.ComCtrls, dxSkinsdxBarPainter, System.Actions, Vcl.ActnList,
-  System.ImageList, Vcl.ImgList, dxBar;
+  System.ImageList, Vcl.ImgList, dxBar, ufrm_billreceive;
 
 type
   Tfrm_duplicAccount = class(TForm)
@@ -107,7 +107,35 @@ i:Integer;
 begin
 qry_duplicAccount.CancelUpdates;
 
-if Self.Tag = 0 then //Se a tag do formulário for 0 será contas a pagar
+if Self.Tag = 0 then //Se a tag do formulário for 0 será contas a receber
+ begin
+  for I := 1 to StrToInt(cxEditQuantidade.Text) do
+   begin
+    qry_duplicAccount.Append;
+    qry_duplicAccountnumDoc.AsString:=frm_billreceive.qrybrc_document.AsString;
+    qry_duplicAccountparcela.AsString:=frm_billreceive.qrybrc_document.AsString + '/'+ IntToStr(i + 1);
+    qry_duplicAccountvalor.AsFloat:=frm_billreceive.qrybrc_value.AsFloat;
+
+
+    if cxCbTipoDuplic.ItemIndex = 0 then
+     qry_duplicAccountdtVenc.AsDateTime:=frm_billreceive.qrybrc_dt_maturity.AsDateTime + i;
+
+    if cxCbTipoDuplic.ItemIndex = 1 then
+     qry_duplicAccountdtVenc.AsDateTime:=frm_billreceive.qrybrc_dt_maturity.AsDateTime + 7 * i;
+
+    if cxCbTipoDuplic.ItemIndex = 2 then
+     qry_duplicAccountdtVenc.AsDateTime:=frm_billreceive.qrybrc_dt_maturity.AsDateTime + 15 * i;
+
+    if cxCbTipoDuplic.ItemIndex = 3 then
+     qry_duplicAccountdtVenc.AsDateTime:=IncMonth(frm_billreceive.qrybrc_dt_maturity.AsDateTime,i);
+
+   qry_duplicAccount.Post;
+   end;
+ end;
+
+
+
+if Self.Tag = 1 then //Se a tag do formulário for 1 será contas a pagar
  begin
   for I := 1 to StrToInt(cxEditQuantidade.Text) do
    begin
@@ -130,7 +158,7 @@ if Self.Tag = 0 then //Se a tag do formulário for 0 será contas a pagar
      qry_duplicAccountdtVenc.AsDateTime:=IncMonth(frm_billpay.qrybpy_dt_maturity.AsDateTime,i);
 
    qry_duplicAccount.Post;
- end;
+   end;
  end;
 end;
 
@@ -140,10 +168,61 @@ enterprise_ent_id,supplier_sup_id,account_plan_acp_id,account_plan_detail_acd_id
 cost_center_coc_id,cost_center_detail_cod_id:Integer;
 bpy_addition,bpy_discount,bpy_amount_pay:Double;
 bpy_reference,bpy_invoice:string;
-
-
+dataEmissao:TDate;
 begin
-if Self.Tag = 0 then //Se a tag do formulário for 0 será contas a pagar
+
+if Self.Tag = 0 then //Se a tag do formulário for 0 será contas a receber
+ begin
+  if Application.MessageBox('Deseja confirmar o lançamento das paracelas geradas ?','PARCELA',MB_YESNO + MB_ICONQUESTION) = mrYes  then
+   begin
+
+    enterprise_ent_id:= frm_billreceive.qrybrc_enterprise_ent_id.AsInteger;
+    supplier_sup_id:= frm_billreceive.qryclient_cli_id.AsInteger;
+  //  account_plan_acp_id:=frm_billpay.qryaccount_plan_acp_id.AsInteger;
+  //  account_plan_detail_acd_id:=frm_billpay.qryaccount_plan_detail_acd_id.AsInteger;
+  //  cost_center_coc_id:=frm_billpay.qrycost_center_coc_id.AsInteger;
+  //  cost_center_detail_cod_id:=frm_billpay.qrycost_center_detail_cod_id.AsInteger;
+    bpy_addition:=frm_billreceive.qrybrc_addition.AsFloat;
+  //  bpy_discount:=frm_billpay.qrybpy_discount.AsFloat;
+    bpy_amount_pay:=frm_billreceive.qrybrc_ammount_receive.AsFloat;
+    bpy_reference:=frm_billreceive.qrybrc_reference.AsString;
+    bpy_invoice:=frm_billreceive.qrybrc_invoice.AsString;
+    dataEmissao:= frm_billreceive.qrybrc_dt_emission.AsDateTime;
+
+
+    qry_duplicAccount.First;
+    while not qry_duplicAccount.Eof do
+     begin
+      frm_billreceive.qry.Append;
+      frm_billreceive.qrybrc_document.AsString:= qry_duplicAccountnumDoc.AsString;
+      frm_billreceive.qrybrc_installment.AsString:= qry_duplicAccountparcela.AsString;
+      frm_billreceive.qrybrc_dt_maturity.Value:=qry_duplicAccountdtVenc.Value;
+      frm_billreceive.qrybrc_value.AsFloat:= qry_duplicAccountvalor.AsFloat;
+      frm_billreceive.qrybrc_enterprise_ent_id.AsInteger :=enterprise_ent_id;
+      frm_billreceive.qryclient_cli_id.AsInteger:=supplier_sup_id;
+//    frm_billpay.qryaccount_plan_acp_id.AsInteger:=account_plan_acp_id;
+//    frm_billpay.qryaccount_plan_detail_acd_id.AsInteger:=account_plan_detail_acd_id;
+//    frm_billpay.qrycost_center_coc_id.AsInteger:= cost_center_coc_id;
+//    frm_billpay.qrycost_center_detail_cod_id.AsInteger:=cost_center_detail_cod_id;
+      frm_billreceive.qrybrc_addition.AsFloat:= bpy_addition;
+      frm_billreceive.qrybrc_ammount_receive.AsFloat:= bpy_discount;
+      frm_billreceive.qrybrc_ammount_receive.AsFloat:= bpy_amount_pay;
+      frm_billreceive.qrybrc_dt_emission.AsDateTime:=Now;
+      frm_billreceive.qrybrc_reference.AsString:=bpy_reference;
+      frm_billreceive.qrybrc_invoice.AsString:=bpy_invoice;
+      frm_billreceive.qrybrc_status.AsString:='A';
+      frm_billreceive.qrybrc_dt_registration.Value:=Now;
+      frm_billreceive.qry.Post;
+      qry_duplicAccount.Next;
+     end;
+    frm_billreceive.qry.ApplyUpdates(0);
+    close;
+   end;
+ end;
+
+
+
+if Self.Tag = 1 then //Se a tag do formulário for 0 será contas a pagar
  begin
   if Application.MessageBox('Deseja confirmar o lançamento das paracelas geradas ?','PARCELA',MB_YESNO + MB_ICONQUESTION) = mrYes  then
    begin
@@ -184,6 +263,7 @@ if Self.Tag = 0 then //Se a tag do formulário for 0 será contas a pagar
       frm_billpay.qry.Post;
       qry_duplicAccount.Next;
      end;
+    frm_billpay.qry.ApplyUpdates(0);
     close;
    end;
   end;

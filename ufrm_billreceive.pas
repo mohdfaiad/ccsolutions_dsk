@@ -81,7 +81,6 @@ type
     dxLayoutItem12: TdxLayoutItem;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
     cxGrid_1DBTableView1brc_id: TcxGridDBColumn;
     cxGrid_1DBTableView1client_cli_id: TcxGridDBColumn;
     cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
@@ -95,10 +94,27 @@ type
     cxGrid_1DBTableView1brc_dt_emission: TcxGridDBColumn;
     cxGrid_1DBTableView1brc_dt_maturity: TcxGridDBColumn;
     cxGrid_1DBTableView1brc_dt_registration: TcxGridDBColumn;
+    qrybrc_installment: TStringField;
+    qrybrc_enterprise_ent_id: TIntegerField;
+    qrybrc_invoice: TStringField;
+    cxDBDateEdit3: TcxDBDateEdit;
+    dxLayoutItem13: TdxLayoutItem;
+    ds_enterprise: TDataSource;
+    qry_enterprise: TFDQuery;
+    cxDBLookupComboBox2: TcxDBLookupComboBox;
+    dxLayoutItem14: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
+    cxDBDateEdit4: TcxDBDateEdit;
+    dxLayoutItem15: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -113,9 +129,49 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, ufrm_duplicAccount;
 
-procedure Tfrm_billreceive.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+procedure Tfrm_billreceive.Action_saveExecute(Sender: TObject);
+begin
+(* if qryaccount_plan_acp_id.AsInteger = 0 then
+  begin
+   Application.MessageBox('Conta Sintética não informada!','CONTAS A PAGAR', MB_OK + MB_ICONINFORMATION);
+   exit;
+  end;
+
+ if qryaccount_plan_detail_acd_id.AsInteger = 0 then
+  begin
+   Application.MessageBox('Conta Analítica não informada!','CONTAS A PAGAR', MB_OK + MB_ICONINFORMATION);
+   exit;
+  end;
+ *)
+
+  if qryclient_cli_id.AsInteger = 0 then
+  begin
+   Application.MessageBox('Cliente não informada!','CONTAS A RECEBER', MB_OK + MB_ICONINFORMATION);
+   exit;
+  end;
+
+
+    inherited;
+   if Application.MessageBox('Deseja cadastrar outras parcelas baseada nessa conta ?','CONTAS A RECEBER', MB_YESNO + MB_ICONQUESTION) = IDYES then
+     begin
+      Application.CreateForm(Tfrm_duplicAccount,frm_duplicAccount);
+      frm_duplicAccount.Caption:='Duplilcação de Contas a Receber';
+      frm_duplicAccount.cxEditCodigo.TExt:=qrybrc_id.AsString;
+      frm_duplicAccount.cxEditDescricao.TExt:=qrybrc_reference.AsString;
+      frm_duplicAccount.cxEditNumDoc.TExt:=qrybrc_document.AsString;
+      frm_duplicAccount.cxEditLancamento.TExt:=FormatDateTime('dd/mm/yyyy',qrybrc_dt_registration.AsDateTime);
+      frm_duplicAccount.cxEditVenc.TExt:=FormatDateTime('dd/mm/yyyy', qrybrc_dt_maturity.AsDateTime);
+      frm_duplicAccount.cxEditValor.TExt:=FormatFloat('0.0,00', qrybrc_value.AsFloat);
+      frm_duplicAccount.Tag:=0;
+      frm_duplicAccount.Showmodal;
+      qry.Close;
+      qry.Open;
+     end;
+end;
+
+Procedure Tfrm_billreceive.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
 begin
   inherited;
   //Comando para atualizar combobox
@@ -143,7 +199,8 @@ end;
 procedure Tfrm_billreceive.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qrybrc_dt_registration.Value := Date + Time;
+  qrybrc_dt_registration.Value := Now;
+  qrybrc_status.AsString:='A';
 end;
 
 end.

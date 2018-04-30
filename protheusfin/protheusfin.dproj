@@ -209,10 +209,6 @@
             <Form>frm_cost_center</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\models\ufrm_search.pas">
-            <Form>frm_search</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\ufrm_duplicAccount.pas">
             <Form>frm_duplicAccount</Form>
             <FormType>dfm</FormType>
@@ -224,6 +220,14 @@
         <DCCReference Include="..\uThred_logged.pas"/>
         <DCCReference Include="..\ufrm_search_enterprise.pas">
             <Form>frm_search_enterprise</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\models\ufrm_search.pas">
+            <Form>frm_search</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_billreceive_ticket.pas">
+            <Form>frm_billreceive_ticket</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

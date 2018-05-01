@@ -23,7 +23,11 @@ uses
   ufrm_consult_cnpj in '..\ufrm_consult_cnpj.pas' {frm_consult_cnpj},
   ufrm_consult_cpf in '..\ufrm_consult_cpf.pas' {frm_consult_cpf},
   ufrm_supplier in '..\ufrm_supplier.pas' {frm_supplier},
-  ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook};
+  ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
+  ufrm_ticket_type in '..\ufrm_ticket_type.pas' {frm_ticket_type},
+  ufrm_ticket_category in '..\ufrm_ticket_category.pas' {frm_ticket_category},
+  ufrm_ticket in '..\ufrm_ticket.pas' {frm_ticket},
+  ufrm_reseller in '..\ufrm_reseller.pas' {frm_reseller};
 
 {$R *.res}
 

@@ -64,14 +64,15 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, Casse.Funcoes;
+uses ufrm_dm, Casse.CamposRequerido;
 
 procedure Tfrm_brand.Action_saveExecute(Sender: TObject);
 
 begin
-  ActiveControl := nil;
-
-  TCampoRequequido.TrataRequired(qry);
+ //--Comando para tirar o focus de todos os componentes da tela-----
+   ActiveControl := nil;
+  //--Cama a função para verificar se existe campos requeridos em branco----
+  TCampoRequerido.TratarRequerido(qry);
 
   inherited;
 

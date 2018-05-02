@@ -52,8 +52,6 @@ type
     dxLayoutItem4: TdxLayoutItem;
     cxDBButtonEdit1: TcxDBButtonEdit;
     dxLayoutItem3: TdxLayoutItem;
-    DBGrid1: TDBGrid;
-    dxLayoutItem5: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
@@ -73,16 +71,17 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, Casse.Funcoes;
+uses ufrm_dm, Casse.CamposRequerido;
 
 procedure Tfrm_ncm.Action_saveExecute(Sender: TObject);
 
 begin
+ //--Comando para tirar o focus de todos os componentes da tela-----
    ActiveControl := nil;
+  //--Cama a função para verificar se existe campos requeridos em branco----
+   TCampoRequerido.TratarRequerido(qry);
 
-   TCampoRequequido.Required(qry);
-
-   inherited;
+  inherited;
 
 end;
 

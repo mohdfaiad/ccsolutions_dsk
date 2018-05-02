@@ -6,6 +6,17 @@
   ExplicitHeight = 581
   PixelsPerInch = 96
   TextHeight = 13
+  object Image1: TImage [0]
+    Left = 0
+    Top = 55
+    Width = 784
+    Height = 487
+    Align = alClient
+    ExplicitLeft = 344
+    ExplicitTop = 247
+    ExplicitWidth = 105
+    ExplicitHeight = 105
+  end
   inherited cxPageControl_1: TcxPageControl
     Height = 487
     ExplicitHeight = 487
@@ -190,6 +201,31 @@
           ParentFont = False
           Layout = tlCenter
           OnClick = lbTodosClick
+        end
+        object Button1: TButton
+          Left = 511
+          Top = 1
+          Width = 75
+          Height = 25
+          Caption = 'Button1'
+          TabOrder = 0
+          OnClick = Button1Click
+        end
+        object SpeedButton1: TSpeedButton
+          Left = 586
+          Top = 1
+          Width = 23
+          Height = 22
+          Caption = 'Sel'
+          OnClick = SpeedButton1Click
+        end
+        object SpeedButton2: TSpeedButton
+          Left = 609
+          Top = 1
+          Width = 23
+          Height = 22
+          Caption = 'ok'
+          OnClick = SpeedButton2Click
         end
       end
     end
@@ -460,6 +496,9 @@
           Visible = True
           ItemName = 'dxLiberarPed'
         end>
+    end
+    inherited cxBarEditItem_1: TcxBarEditItem
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\pedido de compra'
     end
     object dxCancelPed: TdxBarButton
       Caption = 'Cancelar Pedido'
@@ -3204,5 +3243,25 @@
     DataSet = qry_stock
     Left = 624
     Top = 144
+  end
+  object FDQuery1: TFDQuery
+    Active = True
+    CachedUpdates = True
+    Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
+    SQL.Strings = (
+      'SELECT * FROM ccs_dev.teste11')
+    Left = 648
+    Top = 328
+    object FDQuery1id: TFDAutoIncField
+      FieldName = 'id'
+    end
+    object FDQuery1report: TBlobField
+      FieldName = 'report'
+    end
+    object FDQuery1report01: TMemoField
+      FieldName = 'report01'
+      BlobType = ftMemo
+    end
   end
 end

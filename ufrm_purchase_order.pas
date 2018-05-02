@@ -34,7 +34,8 @@ uses
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxSpinEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxCurrencyEdit,
-  Vcl.StdCtrls, Vcl.ExtCtrls, frxClass, ACBrSocket, ACBrCEP, frxDBSet;
+  Vcl.StdCtrls, Vcl.ExtCtrls, frxClass, ACBrSocket, ACBrCEP, frxDBSet,
+  Vcl.Buttons;
 
 type
   Tfrm_purchase_order = class(Tfrm_form_default)
@@ -104,6 +105,14 @@ type
     qry_stocksto_id: TFDAutoIncField;
     qry_stockcontract_ctr_id: TIntegerField;
     qry_stockenterprise_ent_id: TIntegerField;
+    Button1: TButton;
+    FDQuery1: TFDQuery;
+    FDQuery1id: TFDAutoIncField;
+    FDQuery1report: TBlobField;
+    FDQuery1report01: TMemoField;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    Image1: TImage;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
@@ -128,6 +137,9 @@ type
     procedure FormShow(Sender: TObject);
     procedure cxTabSheet_2Show(Sender: TObject);
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
   private
     { Private declarations }
   procedure filter(status:string);
@@ -143,7 +155,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, Vcl.Imaging.jpeg;
 
 procedure Tfrm_purchase_order.Action_deleteExecute(Sender: TObject);
 begin
@@ -189,6 +201,31 @@ begin
      cxTabSheet_1.Show;
      Exit;
    end;
+  inherited;
+
+end;
+
+procedure Tfrm_purchase_order.Button1Click(Sender: TObject);
+
+ begin
+  {
+   FDQuery1.Insert;
+   FDQuery
+
+    m.sql.add(´UPDATE TABELA_TAL´);
+    m.sql.add(´SET campo_blob=:_nomearq´);
+    m.sql.add(´WHERE campo_chave =1´);
+    try
+    m.ParamByName(´_nomearq´).LoadFromFile(´C:\TEMP\TESTE.DOC´,ftBlob);
+    m.ExecSQL;
+    except
+    on e:exception do
+    begin
+    ShowMessage(e.message);
+    end;
+    end;
+    end;  }
+
   inherited;
 
 end;
@@ -424,6 +461,57 @@ if not (qry.State in [dsInsert,dsEdit]) then
  end;
 
 qry_purchase_order_itenpoi_dt_registration.Value:=Now;
+
+end;
+
+procedure Tfrm_purchase_order.SpeedButton1Click(Sender: TObject);
+ var
+  arq: TStream;
+  Relatorio: TFileStream;
+begin
+  inherited;
+   try
+     arq       :=FDQuery1report.ToString;
+     Relatorio := TFileStream.Create(arq);
+
+     if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
+       begin
+      // frxReport_1.LoadFromFile(TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue);
+         frxReport_1.LoadFromStream(Relatorio);
+         frxReport_1.ShowReport;
+       end;
+   finally
+     FreeAndNil(arq);
+     FreeAndNil(Relatorio);
+   end;
+
+end;
+
+procedure Tfrm_purchase_order.SpeedButton2Click(Sender: TObject);
+var
+   sFilename:string;
+   oFilestream:TFileStream;
+   oMemorystream:TStream;
+
+begin
+   try
+      sFilename:=TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue;
+      oFilestream:=TFileStream.Create(sFilename,fmOpenRead);
+      oMemorystream:=TMemoryStream.Create;
+      FDQuery1.Open;
+      FDQuery1.Append;
+
+      FDQuery1report.LoadFromStream(oFilestream);
+      FDQuery1.Post;
+      FDQuery1.ApplyUpdates(0);
+      ShowMessage('Suceeso');
+
+   finally
+      FreeAndNil(oFilestream);
+      FreeAndNil(oMemorystream);
+   end;
+
+  inherited;
 
 end;
 

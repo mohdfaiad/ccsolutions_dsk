@@ -6,6 +6,10 @@ inherited frm_ncm: Tfrm_ncm
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ncm_id: TcxGridDBColumn
@@ -79,20 +83,6 @@ inherited frm_ncm: Tfrm_ncm
               TabOrder = 2
               Width = 121
             end
-            object DBGrid1: TDBGrid [4]
-              Left = 54
-              Top = 236
-              Width = 323
-              Height = 116
-              BorderStyle = bsNone
-              DataSource = ds
-              TabOrder = 4
-              TitleFont.Charset = DEFAULT_CHARSET
-              TitleFont.Color = clWindowText
-              TitleFont.Height = -11
-              TitleFont.Name = 'Tahoma'
-              TitleFont.Style = []
-            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
             end
@@ -117,14 +107,6 @@ inherited frm_ncm: Tfrm_ncm
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 0
-            end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutControl_1Group_Root
-              CaptionOptions.Text = 'DBGrid1'
-              Control = DBGrid1
-              ControlOptions.OriginalHeight = 116
-              ControlOptions.OriginalWidth = 320
-              Index = 2
             end
           end
         end

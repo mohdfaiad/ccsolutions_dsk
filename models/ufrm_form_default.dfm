@@ -20,21 +20,19 @@ object frm_form_default: Tfrm_form_default
   TextHeight = 13
   object cxPageControl_1: TcxPageControl
     Left = 0
-    Top = 56
+    Top = 55
     Width = 784
-    Height = 505
+    Height = 506
     Align = alClient
     TabOrder = 0
     Properties.ActivePage = cxTabSheet_1
     Properties.CustomButtons.Buttons = <>
     Properties.HotImages = cxImageList_1
     Properties.Images = cxImageList_1
-    ExplicitTop = 55
-    ExplicitHeight = 506
-    ClientRectBottom = 501
-    ClientRectLeft = 4
-    ClientRectRight = 780
-    ClientRectTop = 25
+    ClientRectBottom = 500
+    ClientRectLeft = 2
+    ClientRectRight = 778
+    ClientRectTop = 28
     object cxTabSheet_1: TcxTabSheet
       Caption = 'Pesquisar'
       ExplicitLeft = 0
@@ -115,18 +113,17 @@ object frm_form_default: Tfrm_form_default
         Left = 3
         Top = 3
         Width = 770
-        Height = 470
+        Height = 466
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = cxTabSheet_3
         Properties.CustomButtons.Buttons = <>
         Properties.HotImages = cxImageList_1
         Properties.Images = cxImageList_1
-        ExplicitHeight = 466
-        ClientRectBottom = 466
-        ClientRectLeft = 4
-        ClientRectRight = 766
-        ClientRectTop = 25
+        ClientRectBottom = 460
+        ClientRectLeft = 2
+        ClientRectRight = 764
+        ClientRectTop = 28
         object cxTabSheet_3: TcxTabSheet
           Caption = 'Informa'#231#245'es'
           ExplicitLeft = 0
@@ -214,7 +211,7 @@ object frm_form_default: Tfrm_form_default
     Left = 0
     Top = 0
     Width = 784
-    Height = 56
+    Height = 55
     Align = dalTop
     BarManager = dxBarManager_1
   end
@@ -1367,7 +1364,7 @@ object frm_form_default: Tfrm_form_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ','
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
+    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET

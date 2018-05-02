@@ -7,10 +7,6 @@ inherited frm_stock: Tfrm_stock
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
@@ -74,7 +70,7 @@ inherited frm_stock: Tfrm_stock
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 5
-              Width = 294
+              Width = 303
             end
             object cxDBComboBox2: TcxDBComboBox [3]
               Left = 236
@@ -88,7 +84,7 @@ inherited frm_stock: Tfrm_stock
                 'D - DESATIVADO')
               Style.HotTrack = False
               TabOrder = 3
-              Width = 121
+              Width = 130
             end
             object cxDBComboBox1: TcxDBComboBox [4]
               Left = 63
@@ -124,7 +120,7 @@ inherited frm_stock: Tfrm_stock
               Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 4
-              Width = 294
+              Width = 303
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
@@ -179,11 +175,6 @@ inherited frm_stock: Tfrm_stock
           end
         end
       end
-    end
-  end
-  inherited dxBarManager_1: TdxBarManager
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\estoque'
     end
   end
   inherited cxImageList_1: TcxImageList

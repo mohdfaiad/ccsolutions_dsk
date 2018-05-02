@@ -6,10 +6,6 @@ inherited frm_product: Tfrm_product
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pro_id: TcxGridDBColumn
@@ -533,6 +529,10 @@ inherited frm_product: Tfrm_product
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Medidas e Pesos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -608,7 +608,6 @@ inherited frm_product: Tfrm_product
               Parent = dxLayoutControl1Group_Root
               CaptionOptions.Text = 'Medidas'
               ButtonOptions.Buttons = <>
-              ItemIndex = 2
               LayoutDirection = ldHorizontal
               Index = 0
             end
@@ -616,7 +615,6 @@ inherited frm_product: Tfrm_product
               Parent = dxLayoutControl1Group_Root
               CaptionOptions.Text = 'Pesos'
               ButtonOptions.Buttons = <>
-              ItemIndex = 1
               LayoutDirection = ldHorizontal
               Index = 1
             end
@@ -678,6 +676,10 @@ inherited frm_product: Tfrm_product
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Insumos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -768,11 +770,6 @@ inherited frm_product: Tfrm_product
           end
         end
       end
-    end
-  end
-  inherited dxBarManager_1: TdxBarManager
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\produto'
     end
   end
   inherited cxImageList_1: TcxImageList
@@ -960,7 +957,6 @@ inherited frm_product: Tfrm_product
       ''
       'end.')
     Left = 263
-    Top = 48
     Datasets = <
       item
         DataSet = frm_dm.frx_db_enterprise

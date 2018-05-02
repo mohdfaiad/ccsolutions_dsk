@@ -11,9 +11,6 @@
     ExplicitHeight = 487
     ClientRectBottom = 481
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
       ExplicitHeight = 453
       inherited cxGrid_1: TcxGrid
         Height = 447
@@ -463,9 +460,6 @@
           Visible = True
           ItemName = 'dxLiberarPed'
         end>
-    end
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\pedido de compra'
     end
     object dxCancelPed: TdxBarButton
       Caption = 'Cancelar Pedido'

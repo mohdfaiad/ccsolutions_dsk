@@ -7,10 +7,6 @@ inherited frm_stock_iten: Tfrm_stock_iten
     Properties.ActivePage = cxTabSheet_2
     OnPageChanging = cxPageControl_1PageChanging
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
@@ -170,11 +166,6 @@ inherited frm_stock_iten: Tfrm_stock_iten
           end
         end
       end
-    end
-  end
-  inherited dxBarManager_1: TdxBarManager
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\itens de estoque'
     end
   end
   inherited ActionList_1: TActionList

@@ -12,9 +12,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     ExplicitHeight = 392
     ClientRectBottom = 386
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
       ExplicitHeight = 358
       inherited cxGrid_1: TcxGrid
         Height = 352
@@ -281,6 +278,10 @@ inherited frm_stock_entry: Tfrm_stock_entry
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Produtos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -390,7 +391,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     end
     inherited cxBarEditItem_1: TcxBarEditItem
       Properties.IncrementalSearch = False
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\entrada estoque'
     end
   end
   inherited ActionList_1: TActionList

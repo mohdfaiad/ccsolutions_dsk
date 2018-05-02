@@ -6,10 +6,6 @@ inherited frm_stock_out: Tfrm_stock_out
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1req_id: TcxGridDBColumn
@@ -194,6 +190,10 @@ inherited frm_stock_out: Tfrm_stock_out
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Exames'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -317,11 +317,6 @@ inherited frm_stock_out: Tfrm_stock_out
           end
         end
       end
-    end
-  end
-  inherited dxBarManager_1: TdxBarManager
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\entrada estoque'
     end
   end
   inherited cxImageList_1: TcxImageList

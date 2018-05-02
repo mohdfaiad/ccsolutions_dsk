@@ -82,6 +82,9 @@ type
     dxBarButton4: TdxBarButton;
     Action_replace_password: TAction;
     dxBarButton6: TdxBarButton;
+    rbpopmenu_3: TdxRibbonPopupMenu;
+    dxBarButton7: TdxBarButton;
+    dxBarButton15: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contratExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);

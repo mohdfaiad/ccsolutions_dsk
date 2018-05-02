@@ -19,6 +19,7 @@
   end
   inherited cxPageControl_1: TcxPageControl
     Height = 487
+    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 487
     ClientRectBottom = 481
     inherited cxTabSheet_1: TcxTabSheet
@@ -201,31 +202,6 @@
           ParentFont = False
           Layout = tlCenter
           OnClick = lbTodosClick
-        end
-        object Button1: TButton
-          Left = 511
-          Top = 1
-          Width = 75
-          Height = 25
-          Caption = 'Button1'
-          TabOrder = 0
-          OnClick = Button1Click
-        end
-        object SpeedButton1: TSpeedButton
-          Left = 586
-          Top = 1
-          Width = 23
-          Height = 22
-          Caption = 'Sel'
-          OnClick = SpeedButton1Click
-        end
-        object SpeedButton2: TSpeedButton
-          Left = 609
-          Top = 1
-          Width = 23
-          Height = 22
-          Caption = 'ok'
-          OnClick = SpeedButton2Click
         end
       end
     end

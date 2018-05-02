@@ -19,9 +19,9 @@ object frm_search: Tfrm_search
   TextHeight = 13
   object cxGrid_1: TcxGrid
     Left = 0
-    Top = 27
+    Top = 28
     Width = 594
-    Height = 274
+    Height = 273
     Align = alClient
     BorderStyle = cxcbsNone
     TabOrder = 0
@@ -68,7 +68,7 @@ object frm_search: Tfrm_search
     Left = 0
     Top = 0
     Width = 594
-    Height = 27
+    Height = 28
     Align = dalTop
     BarManager = dxBarManager_1
   end
@@ -722,5 +722,9 @@ object frm_search: Tfrm_search
           00021B2F3E51305370903C678CB34579A5D45491C6FF4377A2D4386388B42B4D
           6B90182A3B510000000300000001000000000000000000000000}
       end>
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 335
+    Top = 72
   end
 end

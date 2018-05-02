@@ -27,7 +27,8 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxStatusBar,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
-  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Menus;
 
 type
   Tfrm_search = class(TForm)
@@ -46,6 +47,7 @@ type
     qry: TFDQuery;
     ds: TDataSource;
     cxImageList_1: TcxImageList;
+    PopupMenu1: TPopupMenu;
     procedure Action_closeExecute(Sender: TObject);
   private
     { Private declarations }

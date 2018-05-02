@@ -176,7 +176,7 @@ if Self.Tag = 0 then //Se a tag do formulário for 0 será contas a receber
   if Application.MessageBox('Deseja confirmar o lançamento das paracelas geradas ?','PARCELA',MB_YESNO + MB_ICONQUESTION) = mrYes  then
    begin
 
-    enterprise_ent_id:= frm_billreceive.qrybrc_enterprise_ent_id.AsInteger;
+    enterprise_ent_id:= frm_billreceive.qryenterprise_ent_id.AsInteger;
     supplier_sup_id:= frm_billreceive.qryclient_cli_id.AsInteger;
   //  account_plan_acp_id:=frm_billpay.qryaccount_plan_acp_id.AsInteger;
   //  account_plan_detail_acd_id:=frm_billpay.qryaccount_plan_detail_acd_id.AsInteger;
@@ -198,7 +198,7 @@ if Self.Tag = 0 then //Se a tag do formulário for 0 será contas a receber
       frm_billreceive.qrybrc_installment.AsString:= qry_duplicAccountparcela.AsString;
       frm_billreceive.qrybrc_dt_maturity.Value:=qry_duplicAccountdtVenc.Value;
       frm_billreceive.qrybrc_value.AsFloat:= qry_duplicAccountvalor.AsFloat;
-      frm_billreceive.qrybrc_enterprise_ent_id.AsInteger :=enterprise_ent_id;
+      frm_billreceive.qryenterprise_ent_id.AsInteger :=enterprise_ent_id;
       frm_billreceive.qryclient_cli_id.AsInteger:=supplier_sup_id;
 //    frm_billpay.qryaccount_plan_acp_id.AsInteger:=account_plan_acp_id;
 //    frm_billpay.qryaccount_plan_detail_acd_id.AsInteger:=account_plan_detail_acd_id;

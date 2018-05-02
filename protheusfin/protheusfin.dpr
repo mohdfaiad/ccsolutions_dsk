@@ -40,9 +40,9 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  AApplication.CreateForm(Tfrm_dm, frm_dm);
-  AApplication.CreateForm(Tfrm_dm_ds, frm_dm_ds);
-  AApplication.CreateForm(Tfrm_dm_report, frm_dm_report);
-  AApplication.CreateForm(Tfrm_main, frm_main);
-  ication.Run;
+  Application.CreateForm(Tfrm_dm, frm_dm);
+  Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
+  Application.CreateForm(Tfrm_dm_report, frm_dm_report);
+  Application.CreateForm(Tfrm_main, frm_main);
+  Application.Run;
 end.

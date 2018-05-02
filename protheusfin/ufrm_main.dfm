@@ -1,5 +1,8 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Financeiro - CCS Protheus.'
+  ExplicitLeft = -240
+  ExplicitWidth = 1024
+  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited Image_1: TImage
@@ -14,10 +17,10 @@ inherited frm_main: Tfrm_main
   end
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
-      Active = True
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
+      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar2'
@@ -61,6 +64,8 @@ inherited frm_main: Tfrm_main
       FloatClientHeight = 22
     end
     inherited dxBarManager_1Bar1: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 87
       FloatClientHeight = 270
       ItemLinks = <
@@ -159,6 +164,10 @@ inherited frm_main: Tfrm_main
         item
           Visible = True
           ItemName = 'dxBarLargeButton10'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton5'
         end>
       OneOnRow = False
       Row = 0
@@ -528,6 +537,10 @@ inherited frm_main: Tfrm_main
       Action = Action_Replace_Password
       Category = 0
     end
+    object dxBarButton5: TdxBarButton
+      Action = Action_bill_receive_ticket
+      Category = 0
+    end
   end
   inherited ActionList_1: TActionList
     object Action_contract: TAction
@@ -630,6 +643,11 @@ inherited frm_main: Tfrm_main
       Category = 'Utilit'#225'rios'
       Caption = 'Alterar Senha'
       OnExecute = Action_Replace_PasswordExecute
+    end
+    object Action_bill_receive_ticket: TAction
+      Category = 'Contas'
+      Caption = 'Action_bill_receive_ticket'
+      OnExecute = Action_bill_receive_ticketExecute
     end
   end
   inherited cxImageList_1: TcxImageList

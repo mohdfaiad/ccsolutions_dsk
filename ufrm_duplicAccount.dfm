@@ -19,14 +19,16 @@ object frm_duplicAccount: Tfrm_duplicAccount
   TextHeight = 13
   object dxLayoutControl1: TdxLayoutControl
     Left = 0
-    Top = 28
+    Top = 27
     Width = 703
-    Height = 418
+    Height = 419
     Align = alClient
     TabOrder = 0
     LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
     ShowDesignSelectors = False
     HighlightRoot = False
+    ExplicitTop = 28
+    ExplicitHeight = 418
     object cxEditCodigo: TcxTextEdit
       Left = 68
       Top = 28
@@ -401,7 +403,7 @@ object frm_duplicAccount: Tfrm_duplicAccount
     DockControlHeights = (
       0
       0
-      28
+      27
       0)
     object dxBarManager1Bar1: TdxBar
       Caption = 'barra'

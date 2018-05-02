@@ -95,7 +95,6 @@ type
     cxGrid_1DBTableView1brc_dt_maturity: TcxGridDBColumn;
     cxGrid_1DBTableView1brc_dt_registration: TcxGridDBColumn;
     qrybrc_installment: TStringField;
-    qrybrc_enterprise_ent_id: TIntegerField;
     qrybrc_invoice: TStringField;
     cxDBDateEdit3: TcxDBDateEdit;
     dxLayoutItem13: TdxLayoutItem;
@@ -110,6 +109,8 @@ type
     dxLayoutItem15: TdxLayoutItem;
     dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
+    qryform_payment_frp_id: TIntegerField;
+    qryenterprise_ent_id: TIntegerField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);

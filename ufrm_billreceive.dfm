@@ -4,16 +4,12 @@ inherited frm_billreceive: Tfrm_billreceive
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    ExplicitTop = 56
-    ExplicitHeight = 505
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 25
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 776
-      ExplicitHeight = 476
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
-        Height = 470
-        ExplicitHeight = 470
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1brc_id: TcxGridDBColumn
             DataBinding.FieldName = 'brc_id'
@@ -71,37 +67,30 @@ inherited frm_billreceive: Tfrm_billreceive
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 25
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 776
-      ExplicitHeight = 476
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
-        ExplicitHeight = 470
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 4
-          ExplicitTop = 25
+          ExplicitLeft = 2
+          ExplicitTop = 28
           ExplicitWidth = 762
-          ExplicitHeight = 441
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
-            Height = 441
-            ExplicitHeight = 441
             inherited dbedt_id: TcxDBTextEdit
-              Left = 52
-              Top = 28
+              Left = 74
               DataBinding.DataField = 'brc_id'
-              ExplicitLeft = 52
-              ExplicitTop = 28
+              ExplicitLeft = 74
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 237
-              Top = 28
+              Left = 259
               DataBinding.DataField = 'brc_dt_registration'
-              ExplicitLeft = 237
-              ExplicitTop = 28
+              ExplicitLeft = 259
             end
             object cxDBCurrencyEdit1: TcxDBCurrencyEdit [2]
-              Left = 52
-              Top = 223
+              Left = 74
+              Top = 249
               DataBinding.DataField = 'brc_value'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -109,8 +98,8 @@ inherited frm_billreceive: Tfrm_billreceive
               Width = 121
             end
             object cxDBCurrencyEdit2: TcxDBCurrencyEdit [3]
-              Left = 423
-              Top = 223
+              Left = 445
+              Top = 249
               DataBinding.DataField = 'brc_discount'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -118,8 +107,8 @@ inherited frm_billreceive: Tfrm_billreceive
               Width = 121
             end
             object cxDBCurrencyEdit4: TcxDBCurrencyEdit [4]
-              Left = 619
-              Top = 223
+              Left = 641
+              Top = 249
               DataBinding.DataField = 'brc_ammount_receive'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -127,8 +116,8 @@ inherited frm_billreceive: Tfrm_billreceive
               Width = 121
             end
             object cxDBCurrencyEdit3: TcxDBCurrencyEdit [5]
-              Left = 237
-              Top = 223
+              Left = 259
+              Top = 249
               DataBinding.DataField = 'brc_addition'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -136,8 +125,8 @@ inherited frm_billreceive: Tfrm_billreceive
               Width = 121
             end
             object cxDBLookupComboBox1: TcxDBLookupComboBox [6]
-              Left = 52
-              Top = 85
+              Left = 74
+              Top = 103
               DataBinding.DataField = 'client_cli_id'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -161,8 +150,8 @@ inherited frm_billreceive: Tfrm_billreceive
               Width = 306
             end
             object cxDBDateEdit1: TcxDBDateEdit [7]
-              Left = 52
-              Top = 139
+              Left = 74
+              Top = 157
               DataBinding.DataField = 'brc_dt_emission'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -170,8 +159,10 @@ inherited frm_billreceive: Tfrm_billreceive
               Width = 121
             end
             object cxDBLookupComboBox2: TcxDBLookupComboBox [8]
-              Left = 52
-              Top = 112
+              Left = 74
+              Top = 130
+              DataBinding.DataField = 'enterprise_ent_id'
+              DataBinding.DataSource = ds
               Properties.DropDownListStyle = lsFixedList
               Properties.KeyFieldNames = 'ent_id'
               Properties.ListColumns = <
@@ -187,8 +178,8 @@ inherited frm_billreceive: Tfrm_billreceive
               Width = 306
             end
             object cxDBTextEdit1: TcxDBTextEdit [9]
-              Left = 423
-              Top = 112
+              Left = 445
+              Top = 130
               DataBinding.DataField = 'brc_document'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -197,8 +188,8 @@ inherited frm_billreceive: Tfrm_billreceive
               Width = 121
             end
             object cxDBTextEdit3: TcxDBTextEdit [10]
-              Left = 423
-              Top = 85
+              Left = 445
+              Top = 103
               DataBinding.DataField = 'brc_status'
               DataBinding.DataSource = ds
               Enabled = False
@@ -208,8 +199,8 @@ inherited frm_billreceive: Tfrm_billreceive
               Width = 121
             end
             object cxDBDateEdit3: TcxDBDateEdit [11]
-              Left = 619
-              Top = 112
+              Left = 641
+              Top = 130
               DataBinding.DataField = 'brc_invoice'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -217,8 +208,8 @@ inherited frm_billreceive: Tfrm_billreceive
               Width = 121
             end
             object cxDBTextEdit2: TcxDBTextEdit [12]
-              Left = 52
-              Top = 166
+              Left = 74
+              Top = 184
               DataBinding.DataField = 'brc_reference'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -227,8 +218,8 @@ inherited frm_billreceive: Tfrm_billreceive
               Width = 687
             end
             object cxDBDateEdit2: TcxDBDateEdit [13]
-              Left = 237
-              Top = 139
+              Left = 259
+              Top = 157
               DataBinding.DataField = 'brc_dt_maturity'
               DataBinding.DataSource = ds
               Properties.DateButtons = [btnClear, btnToday]
@@ -237,8 +228,8 @@ inherited frm_billreceive: Tfrm_billreceive
               Width = 121
             end
             object cxDBDateEdit4: TcxDBDateEdit [14]
-              Left = 423
-              Top = 139
+              Left = 445
+              Top = 157
               DataBinding.DataField = 'brc_installment'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -419,7 +410,7 @@ inherited frm_billreceive: Tfrm_billreceive
               SizeOptions.Width = 744
               Control = cxDBTextEdit2
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 688
+              ControlOptions.OriginalWidth = 687
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -469,6 +460,7 @@ inherited frm_billreceive: Tfrm_billreceive
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
@@ -578,16 +570,21 @@ inherited frm_billreceive: Tfrm_billreceive
       Origin = 'brc_installment'
       Size = 10
     end
-    object qrybrc_enterprise_ent_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'brc_enterprise_ent_id'
-      Origin = 'brc_enterprise_ent_id'
-    end
     object qrybrc_invoice: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'brc_invoice'
       Origin = 'brc_invoice'
       Size = 25
+    end
+    object qryform_payment_frp_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'form_payment_frp_id'
+      Origin = 'form_payment_frp_id'
+    end
+    object qryenterprise_ent_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'enterprise_ent_id'
+      Origin = 'enterprise_ent_id'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -657,7 +654,7 @@ inherited frm_billreceive: Tfrm_billreceive
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from enterprise')
-    Left = 632
+    Left = 600
     Top = 288
   end
 end

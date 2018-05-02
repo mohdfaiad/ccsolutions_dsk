@@ -19,7 +19,6 @@
   end
   inherited cxPageControl_1: TcxPageControl
     Height = 487
-    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 487
     ClientRectBottom = 481
     inherited cxTabSheet_1: TcxTabSheet
@@ -202,6 +201,21 @@
           ParentFont = False
           Layout = tlCenter
           OnClick = lbTodosClick
+        end
+        object SpeedButton1: TSpeedButton
+          Left = 511
+          Top = 1
+          Width = 23
+          Height = 22
+          Caption = '....'
+        end
+        object SpeedButton2: TSpeedButton
+          Left = 534
+          Top = 1
+          Width = 23
+          Height = 22
+          Caption = 'ok'
+          OnClick = SpeedButton2Click
         end
       end
     end
@@ -3226,18 +3240,40 @@
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
-      'SELECT * FROM ccs_dev.teste11')
+      'SELECT * FROM report')
     Left = 648
     Top = 328
-    object FDQuery1id: TFDAutoIncField
-      FieldName = 'id'
+    object FDQuery1rep_id: TFDAutoIncField
+      FieldName = 'rep_id'
+      Origin = 'rep_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
-    object FDQuery1report: TBlobField
-      FieldName = 'report'
+    object FDQuery1contract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
     end
-    object FDQuery1report01: TMemoField
-      FieldName = 'report01'
-      BlobType = ftMemo
+    object FDQuery1rep_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rep_name'
+      Origin = 'rep_name'
+      Size = 25
+    end
+    object FDQuery1rep_report: TBlobField
+      AutoGenerateValue = arDefault
+      FieldName = 'rep_report'
+      Origin = 'rep_report'
+    end
+    object FDQuery1rep_edit: TShortintField
+      AutoGenerateValue = arDefault
+      FieldName = 'rep_edit'
+      Origin = 'rep_edit'
+    end
+    object FDQuery1rep_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'rep_dt_registration'
+      Origin = 'rep_dt_registration'
     end
   end
 end

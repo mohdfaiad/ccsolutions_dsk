@@ -3,7 +3,9 @@ unit Casse.CamposRequerido;
 interface
 
 uses
-   System.SysUtils, Vcl.Dialogs, Data.DB, FireDAC.Comp.DataSet;
+   System.SysUtils, Vcl.Dialogs, Data.DB, FireDAC.Comp.DataSet, Vcl.ExtCtrls,
+   System.Variants, System.Classes, Vcl.Imaging.jpeg;
+
 
  type
 
@@ -13,9 +15,9 @@ uses
 
   public
 
-//  class  function TrataRequired(const Que:TDataSet):Boolean;
-
   class function TratarRequerido(const Dataset: TDataset) :Boolean;
+
+  class procedure RefreshImage(Field : TField; Img : TImage);
 
   end;
 
@@ -23,7 +25,7 @@ uses
 implementation
 
 uses
-  ufrm_dm, System.Variants, System.Classes;
+  ufrm_dm;
 
 { TCampoRequequido }
 
@@ -72,33 +74,41 @@ begin
 
 end;
 
+ class procedure TCampoRequerido.RefreshImage(Field : TField; Img : TImage);
+var
+  vJpeg   : TJPEGImage;
+  vStream : TMemoryStream;
+begin
+  { Verifica se o campo esta vázio. }
+  if not Field.IsNull then
+  begin
+
+    { Cria objeto do tipo TJPEG, e objeto do tipo MemoryStream}
+    vJpeg   := TJPEGImage.Create;
+    vStream := TMemoryStream.Create;
+
+    { Trata o campo como do tipo BLOB e salva o seu conteudo na memória. }
+    TBlobField(Field).SaveToStream(vStream);
+
+    { Ajusta a posicao inicial de leitura da memória }
+    vStream.Position := 0;
+
+    { Carrega da memoria os dados, para uma estrutura do tipo TJPEG
+      (A partir da posicao 0)}
+    vJpeg.LoadFromStream(vStream);
+
+    { Exibe o jpg no Timage. }
+    Img.Picture.Assign(vJpeg);
+
+    { Libera a memoria utilizada pelos componentes de conversão }
+    vJpeg.Free;
+    vStream.Free;
+  end;
+end;
+
 
 //---------------------------------------------------------------------
 
-{
-class function TCampoRequerido.TrataRequired(const Que: TDataSet): Boolean;
-var j:Byte;
-    Msg:String;
-begin
-   Msg:='';
-   Result:=False;
-   with Que do
-   begin
-         for j:=0 to FieldCount -1 do
-            if  ((Fields[j].Required = True) and  (Fields[j].Value = Null)) then
-            begin
-                 if Msg <> '' then
-                 Msg:=Msg+' - ';
-                 Msg:=Msg+Fields[j].DisplayLabel;
-            end;
-   end;
-   if Msg <> '' then
-   begin
-       ShowMessage('Atenção, o(s) campo(s) :'+ #13+Msg+#13+'Não pode(m)                                                               ficar sem preenchimento');
-       Abort;
-   end
-   else
-     Result:=True;
-end;   }
+
 
 end.

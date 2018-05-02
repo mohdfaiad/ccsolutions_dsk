@@ -34,7 +34,7 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket,
-  ACBrCEP, frxClass;
+  ACBrCEP, frxClass, Vcl.ExtCtrls;
 
 type
   Tfrm_brand = class(Tfrm_form_default)
@@ -48,6 +48,7 @@ type
     cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1bra_name: TcxGridDBColumn;
     cxGrid_1DBTableView1bra_dt_registration: TcxGridDBColumn;
+    Image1: TImage;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);

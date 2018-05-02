@@ -106,10 +106,15 @@ type
     qry_stockcontract_ctr_id: TIntegerField;
     qry_stockenterprise_ent_id: TIntegerField;
     FDQuery1: TFDQuery;
-    FDQuery1id: TFDAutoIncField;
-    FDQuery1report: TBlobField;
-    FDQuery1report01: TMemoField;
     Image1: TImage;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    FDQuery1rep_id: TFDAutoIncField;
+    FDQuery1contract_ctr_id: TIntegerField;
+    FDQuery1rep_name: TStringField;
+    FDQuery1rep_report: TBlobField;
+    FDQuery1rep_edit: TShortintField;
+    FDQuery1rep_dt_registration: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
@@ -134,6 +139,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure cxTabSheet_2Show(Sender: TObject);
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
   private
     { Private declarations }
   procedure filter(status:string);
@@ -149,7 +155,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, Vcl.Imaging.jpeg;
+uses ufrm_dm, Vcl.Imaging.jpeg, Casse.CamposRequerido;
 
 procedure Tfrm_purchase_order.Action_deleteExecute(Sender: TObject);
 begin
@@ -430,6 +436,32 @@ if not (qry.State in [dsInsert,dsEdit]) then
  end;
 
 qry_purchase_order_itenpoi_dt_registration.Value:=Now;
+
+end;
+
+procedure Tfrm_purchase_order.SpeedButton2Click(Sender: TObject);
+var
+   sFilename:string;
+   oFilestream:TFileStream;
+begin
+   try
+      sFilename:=TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue;
+      oFilestream:=TFileStream.Create(sFilename,fmOpenRead);
+
+      FDQuery1.Open;
+      FDQuery1.Append;
+      FDQuery1rep_report.LoadFromStream(oFilestream);
+
+      FDQuery1.Post;
+
+      FDQuery1.ApplyUpdates(0);
+      ShowMessage('Suceeso');
+
+   finally
+      FreeAndNil(oFilestream);
+   end;
+
+inherited;
 
 end;
 

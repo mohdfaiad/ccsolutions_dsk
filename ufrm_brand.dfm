@@ -3,6 +3,12 @@ inherited frm_brand: Tfrm_brand
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
+  object Image1: TImage [0]
+    Left = 352
+    Top = 248
+    Width = 105
+    Height = 105
+  end
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet

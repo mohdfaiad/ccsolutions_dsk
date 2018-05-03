@@ -395,7 +395,7 @@ end;
 procedure Tfrm_client.cxTabSheet_addressShow(Sender: TObject);
 begin
   inherited;
- dxLayoutControl1Group_Root.ItemIndex:=0;
+  dxLayoutControl1Group_Root.ItemIndex:=0;
 end;
 
 procedure Tfrm_client.FormClose(Sender: TObject; var Action: TCloseAction);

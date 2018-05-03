@@ -29,6 +29,7 @@ object frm_dm: Tfrm_dm
     Top = 16
   end
   object qry_signin: TFDQuery
+    Active = True
     Connection = connCCS
     SQL.Strings = (
       

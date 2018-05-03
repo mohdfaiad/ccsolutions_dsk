@@ -1,6 +1,5 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Financeiro - CCS Protheus.'
-  ExplicitLeft = -240
   ExplicitWidth = 1024
   ExplicitHeight = 640
   PixelsPerInch = 96
@@ -15,12 +14,27 @@ inherited frm_main: Tfrm_main
     ExplicitWidth = 1008
     ExplicitHeight = 418
   end
+  object SpeedButton1: TSpeedButton [2]
+    Left = 864
+    Top = 456
+    Width = 73
+    Height = 22
+    Caption = 'Form Paga'
+    OnClick = SpeedButton1Click
+  end
+  object SpeedButton2: TSpeedButton [3]
+    Left = 864
+    Top = 496
+    Width = 73
+    Height = 22
+    Caption = 'Param Boleto'
+    OnClick = SpeedButton2Click
+  end
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
-      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar2'
@@ -38,7 +52,6 @@ inherited frm_main: Tfrm_main
       Index = 2
     end
     inherited dxRibbon1Tab_4: TdxRibbonTab
-      Active = False
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar3'
@@ -2916,7 +2929,7 @@ inherited frm_main: Tfrm_main
           0000000000000000000000000000000000000000000000000000}
       end>
   end
-  object rbpopmenu_1: TdxRibbonPopupMenu [10]
+  object rbpopmenu_1: TdxRibbonPopupMenu [12]
     BarManager = dxBarManager_1
     ItemLinks = <
       item

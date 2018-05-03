@@ -70,6 +70,8 @@ type
     dxBarButton4: TdxBarButton;
     Action_bill_receive_ticket: TAction;
     dxBarButton5: TdxBarButton;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -87,6 +89,8 @@ type
     procedure Action_cost_center_groupExecute(Sender: TObject);
     procedure Action_Replace_PasswordExecute(Sender: TObject);
     procedure Action_bill_receive_ticketExecute(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -103,7 +107,8 @@ implementation
 uses ufrm_login, ufrm_bank, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_receipt, ufrm_supplier, ufrm_billpay,
   ufrm_billreceive, ufrm_report, ufrm_account_type, ufrm_account_synthetic,
-  ufrm_cost_center, ufrm_dm, ufrm_billreceive_ticket;
+  ufrm_cost_center, ufrm_dm, ufrm_billreceive_ticket, ufrm_form_payment,
+  ufrm_parameter_slip;
 
 procedure Tfrm_main.Action_account_plan_syntheticExecute(Sender: TObject);
 begin
@@ -377,6 +382,44 @@ begin
       [mbOK], 0);
     Application.Terminate;
   end;
+end;
+
+procedure Tfrm_main.SpeedButton1Click(Sender: TObject);
+begin
+  inherited;
+
+  if not Assigned(frm_form_payment) then
+  begin
+    frm_form_payment := Tfrm_form_payment.Create(Self);
+    frm_form_payment.Height := Bevel_1.Height;
+    frm_form_payment.Width := Bevel_1.Width;
+   frm_form_payment.Show;
+  end
+  else
+  begin
+    frm_form_payment.WindowState := wsNormal;
+    frm_form_payment.Show;
+  end;
+
+end;
+
+procedure Tfrm_main.SpeedButton2Click(Sender: TObject);
+begin
+  inherited;
+
+   if not Assigned(frm_form_payment) then
+  begin
+    frm_parameter_slip := Tfrm_parameter_slip.Create(Self);
+    frm_parameter_slip.Height := Bevel_1.Height;
+    frm_parameter_slip.Width := Bevel_1.Width;
+   frm_parameter_slip.Show;
+  end
+  else
+  begin
+    frm_parameter_slip.WindowState := wsNormal;
+    frm_parameter_slip.Show;
+  end;
+
 end;
 
 end.

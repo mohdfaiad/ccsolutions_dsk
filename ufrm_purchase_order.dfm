@@ -202,21 +202,6 @@
           Layout = tlCenter
           OnClick = lbTodosClick
         end
-        object SpeedButton1: TSpeedButton
-          Left = 511
-          Top = 1
-          Width = 23
-          Height = 22
-          Caption = '....'
-        end
-        object SpeedButton2: TSpeedButton
-          Left = 534
-          Top = 1
-          Width = 23
-          Height = 22
-          Caption = 'ok'
-          OnClick = SpeedButton2Click
-        end
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
@@ -512,6 +497,7 @@
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
@@ -629,7 +615,7 @@
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
-    ReportOptions.LastChange = 43200.596554733800000000
+    ReportOptions.LastChange = 43223.395994050920000000
     Left = 199
     Top = 152
     Datasets = <
@@ -3129,6 +3115,7 @@
     Top = 96
   end
   object qry_employee: TFDQuery
+    Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -3235,7 +3222,6 @@
     Top = 144
   end
   object FDQuery1: TFDQuery
-    Active = True
     CachedUpdates = True
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
@@ -3247,7 +3233,6 @@
       FieldName = 'rep_id'
       Origin = 'rep_id'
       ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
     end
     object FDQuery1contract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -3260,15 +3245,18 @@
       Origin = 'rep_name'
       Size = 25
     end
-    object FDQuery1rep_report: TBlobField
+    object FDQuery1rep_report: TMemoField
       AutoGenerateValue = arDefault
       FieldName = 'rep_report'
       Origin = 'rep_report'
+      BlobType = ftMemo
     end
-    object FDQuery1rep_edit: TShortintField
+    object FDQuery1rep_edit: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'rep_edit'
       Origin = 'rep_edit'
+      FixedChar = True
+      Size = 1
     end
     object FDQuery1rep_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault

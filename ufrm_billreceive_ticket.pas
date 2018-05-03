@@ -29,13 +29,14 @@ uses
   System.Actions, Vcl.ActnList, dxBar, cxClasses, dxStatusBar, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
   cxGrid, ufrm_dm, ACBrBase, ACBrBoleto, Vcl.Menus,ACBrUtil, ACBrBoletoFCFR,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls, cxCheckBox;
 
 type
   Tfrm_billreceive_ticket = class(Tfrm_search)
     ACBrBoleto1: TACBrBoleto;
     GerarBoleto1: TMenuItem;
     ACBrBoletoFCFR1: TACBrBoletoFCFR;
+    GerarRemessa1: TMenuItem;
     qryenterprise_ent_id: TIntegerField;
     qrybrc_dt_maturity: TDateField;
     qrybrc_dt_emission: TDateField;
@@ -53,6 +54,26 @@ type
     qryent_add_bus_number: TStringField;
     qryent_add_bus_state: TStringField;
     qryent_phone1: TStringField;
+    qrybnk_agency_number: TStringField;
+    qrybnk_agency_digit: TStringField;
+    qrybnk_code_transferor: TStringField;
+    qrybnk_account_number: TStringField;
+    qrybnk_account_digit: TStringField;
+    qrybnk_code_agreement: TStringField;
+    qrycli_first_name: TStringField;
+    qrycli_cpfcnpj: TStringField;
+    qrycli_add_bil_address: TStringField;
+    qrycli_add_bil_number: TStringField;
+    qrycli_add_bil_street: TStringField;
+    qrycli_add_bil_city: TStringField;
+    qrycli_add_bil_state: TStringField;
+    qrycli_add_bil_zipcode: TStringField;
+    qrybrc_code_bar: TStringField;
+    qryprs_species_document: TStringField;
+    qryprs_species_coin: TStringField;
+    qryprs_acceptance: TStringField;
+    qryprs_wallet: TStringField;
+    qryprs_value_fine: TBCDField;
     cxGrid_1DBTableView1enterprise_ent_id: TcxGridDBColumn;
     cxGrid_1DBTableView1brc_dt_maturity: TcxGridDBColumn;
     cxGrid_1DBTableView1brc_dt_emission: TcxGridDBColumn;
@@ -70,8 +91,30 @@ type
     cxGrid_1DBTableView1ent_add_bus_number: TcxGridDBColumn;
     cxGrid_1DBTableView1ent_add_bus_state: TcxGridDBColumn;
     cxGrid_1DBTableView1ent_phone1: TcxGridDBColumn;
+    cxGrid_1DBTableView1bnk_agency_number: TcxGridDBColumn;
+    cxGrid_1DBTableView1bnk_agency_digit: TcxGridDBColumn;
+    cxGrid_1DBTableView1bnk_code_transferor: TcxGridDBColumn;
+    cxGrid_1DBTableView1bnk_account_number: TcxGridDBColumn;
+    cxGrid_1DBTableView1bnk_account_digit: TcxGridDBColumn;
+    cxGrid_1DBTableView1bnk_code_agreement: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_first_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_cpfcnpj: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_address: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_number: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_street: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_city: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_state: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_zipcode: TcxGridDBColumn;
+    cxGrid_1DBTableView1brc_code_bar: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_species_document: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_species_coin: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_acceptance: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_wallet: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_value_fine: TcxGridDBColumn;
+    cxGrid_1DBTableView1select: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
     procedure GerarBoleto1Click(Sender: TObject);
+    procedure GerarRemessa1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -98,23 +141,23 @@ end;
 procedure Tfrm_billreceive_ticket.GerarBoleto1Click(Sender: TObject);
 var
   Titulo: TACBrTitulo;
+  vBarra,vLinhaDigitavel:string;
 begin
   Titulo := ACBrBoleto1.CriarTituloNaLista;
  with ACBrBoleto1.Cedente do
   begin
-    Agencia:='XX';//Falta Pegar
-    AgenciaDigito:='CC'; //Falta Pegar
+    Agencia:=qrybnk_agency_number.AsString;
+    AgenciaDigito:=qrybnk_agency_digit.AsString;
     Bairro:= qryent_add_bus_street.AsString;
     CEP:=qryent_add_bus_zipcode.AsString;
     Cidade:=qryent_add_bus_city.AsString;
     CNPJCPF:=qryent_cnpj.AsString;
-    CodigoCedente:='XX';//Falta Pegar
+    CodigoCedente:=qrybnk_code_transferor.AsString;
     Complemento:=qryent_add_bus_complement.AsString;
-    Conta:='XX';//Falta Pegar
-    ContaDigito:='XX'; //Falta Pegar
-    Convenio:='XX'; //Falta Pegar
+    Conta:=qrybnk_account_number.AsString;
+    ContaDigito:=qrybnk_account_digit.AsString;
+    Convenio:=qrybnk_code_agreement.AsString;
     Logradouro:=qryent_add_bus_address.AsString;
-    Modalidade:='XX'; //Falta Pegar
     Nome :=qryent_first_name.AsString;
     NumeroRes:= qryent_add_bus_number.AsString;
     Telefone:=qryent_phone1.AsString;
@@ -126,20 +169,20 @@ begin
     Vencimento :=qrybrc_dt_maturity.AsDateTime;
     DataDocumento := qrybrc_dt_emission.AsDateTime;
     NumeroDocumento := qrybrc_document.AsString;
-    EspecieDoc := 'DM';
+    EspecieDoc := 'DM'; //falta pegar
     Aceite := atNao;
     DataProcessamento := Now;
     Carteira := '09' ; //Carteira com Registro
-    NossoNumero := '1';
+    NossoNumero := '1'; //Falta Pegar
     ValorDocumento := qrybrc_value.AsFloat;
-    Sacado.NomeSacado := ' ELIZEU COSTA DE SOUZA';
-    Sacado.CNPJCPF := OnlyNumber('79586937372');
-    Sacado.Logradouro := 'RUA JOSE FRANCISCO';
-    Sacado.Numero := '71';
-    Sacado.Bairro := 'TANCREDO NEVES';
-    Sacado.Cidade := 'MANAUS';
-    Sacado.UF := 'AM';
-    Sacado.CEP := OnlyNumber('69087110');
+    Sacado.NomeSacado := qrycli_first_name.AsString;
+    Sacado.CNPJCPF := OnlyNumber(qrycli_cpfcnpj.AsString);
+    Sacado.Logradouro := qrycli_add_bil_address.AsString;
+    Sacado.Numero := qrycli_add_bil_number.AsString;
+    Sacado.Bairro := qrycli_add_bil_street.AsString;
+    Sacado.Cidade := qrycli_add_bil_city.AsString;
+    Sacado.UF := qrycli_add_bil_state.AsString;
+    Sacado.CEP := OnlyNumber(qrycli_add_bil_zipcode.AsString);
     ValorAbatimento := 0;
     LocalPagamento := 'Pagar preferêncialmente nas agências do Itaú';
     ValorMoraJuros := 0;
@@ -162,9 +205,22 @@ begin
     Instrucao1 := 'TESTE';
     Instrucao2 := 'TESTE2';
     Instrucao3 := 'TESTE 3';
+    vBarra:=Titulo.ACBrBoleto.Banco.MontarCodigoBarras(Titulo);
+    vLinhaDigitavel:=Titulo.ACBrBoleto.Banco.MontarLinhaDigitavel(vBarra,Titulo);
+    qry.Edit;
+    qrybrc_code_bar.AsString:=vLinhaDigitavel;
+    qry.Post;
   end;
- ACBrBoleto1.Imprimir;
 
+ ACBrBoleto1.Imprimir;
+ Titulo.Destroy;
+
+end;
+
+procedure Tfrm_billreceive_ticket.GerarRemessa1Click(Sender: TObject);
+begin
+  inherited;
+ ACBrBoleto1.GerarRemessa(1);
 end;
 
 end.

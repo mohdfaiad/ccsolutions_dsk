@@ -1,5 +1,5 @@
 inherited frm_parameter_slip: Tfrm_parameter_slip
-  Caption = 'frm_parameter_slip'
+  Caption = 'Manuten'#231#227'o: Parametros de Boletos'
   ClientHeight = 590
   ClientWidth = 910
   OnClose = FormClose
@@ -11,12 +11,20 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
     Width = 910
     Height = 535
     Properties.ActivePage = cxTabSheet_2
+    ExplicitWidth = 910
+    ExplicitHeight = 535
     ClientRectBottom = 529
     ClientRectRight = 904
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 902
+      ExplicitHeight = 501
       inherited cxGrid_1: TcxGrid
         Width = 896
         Height = 495
+        ExplicitWidth = 896
+        ExplicitHeight = 495
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prs_id: TcxGridDBColumn
             DataBinding.FieldName = 'prs_id'
@@ -26,6 +34,13 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
           end
           object cxGrid_1DBTableView1bank_bnk_id: TcxGridDBColumn
             DataBinding.FieldName = 'bank_bnk_id'
+            PropertiesClassName = 'TcxLookupComboBoxProperties'
+            Properties.KeyFieldNames = 'bnk_id'
+            Properties.ListColumns = <
+              item
+                FieldName = 'bnk_name'
+              end>
+            Properties.ListSource = ds_bank
           end
           object cxGrid_1DBTableView1prs_species_document: TcxGridDBColumn
             DataBinding.FieldName = 'prs_species_document'
@@ -78,34 +93,34 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 902
+      ExplicitHeight = 501
       inherited cxPageControl_2: TcxPageControl
         Width = 896
         Height = 495
+        ExplicitWidth = 896
+        ExplicitHeight = 495
         ClientRectBottom = 489
         ClientRectRight = 890
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 888
+          ExplicitHeight = 461
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 888
             Height = 461
-            ExplicitLeft = 16
-            ExplicitTop = 32
-            ExplicitWidth = 971
-            ExplicitHeight = 577
+            ExplicitWidth = 888
+            ExplicitHeight = 461
             inherited dbedt_id: TcxDBTextEdit
               Left = 115
               DataBinding.DataField = 'prs_id'
               ExplicitLeft = 115
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 329
+              Left = 328
               DataBinding.DataField = 'prs_dt_registration'
-              ExplicitLeft = 329
+              ExplicitLeft = 328
             end
             object cxDBLookupComboBox1: TcxDBLookupComboBox [2]
               Left = 115
@@ -124,7 +139,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 2
-              Width = 344
+              Width = 343
             end
             object cxDBComboBox1: TcxDBComboBox [3]
               Left = 115
@@ -132,123 +147,37 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               DataBinding.DataField = 'prs_species_document'
               DataBinding.DataSource = ds
               Properties.Items.Strings = (
-                'AS   - AP'#211'LICE DE SEGURO'
-                'CH   - CHEQUE'
-                'C    - CONTRATO'
-                'CC   - CONTRIBUI'#199#195'O CONFEDERATIVA'
-                'CS   - CONTRIBUI'#199#195'O/SEGUROS '
-                'DAE  - D'#205'VIDA ATIVA DO ESTADO'
+                'AS    - AP'#211'LICE DE SEGURO'
+                'CH    - CHEQUE'
+                'C      - CONTRATO'
+                'CC    - CONTRIBUI'#199#195'O CONFEDERATIVA'
+                'CS     - CONTRIBUI'#199#195'O/SEGUROS '
+                'DAE   - D'#205'VIDA ATIVA DO ESTADO'
                 'DAM  - D'#205'VIDA ATIVA DO MUNIC'#205'PIO'
                 'DAU  - D'#205'VIDA ATIVA DA UNI'#195'O'
-                'DMI  - DUPLICATA MERCANTIL/INDICA'#199#195'O'
-                'DM   - DUPLICATA MERCANTIL'
-                'DR   - DUPLICATA RURAL '
-                'DS   - DUPLICATA DE SERVI'#199'O'
-                'DSI  - DUPLICATA DE SERVI'#199'O/INDICA'#199#195'O'
-                'F    - FATURA'
-                'LC   - LETRA DE C'#194'MBIO'
-                'ME   - MENSALIDADE ESCOLAR'
+                'DMI   - DUPLICATA MERCANTIL/INDICA'#199#195'O'
+                'DM    - DUPLICATA MERCANTIL'
+                'DR    - DUPLICATA RURAL '
+                'DS     - DUPLICATA DE SERVI'#199'O'
+                'DSI   - DUPLICATA DE SERVI'#199'O/INDICA'#199#195'O'
+                'F       - FATURA'
+                'LC     - LETRA DE C'#194'MBIO'
+                'ME    - MENSALIDADE ESCOLAR'
                 'NCC  - NOTA DE CR'#201'DITO COMERCIAL '
                 'NCE  - NOTA DE CR'#201'DITO DE EXPORTA'#199#195'O'
                 'NCI  - NOTA DE CR'#201'DITO INSDUSTRIAL '
                 'NCR  - NOTA DE CR'#201'DITO RURAL '
-                'NT   - NOTA DE D'#201'BITO'
-                'NP   - NOTA PROMISS'#211'RIA'
-                'NS   - NOTA DE SEGURO'
-                'PC   - PARCELA DE CONS'#211'RCIO'
-                'RC   - RECIBO')
+                'NT    - NOTA DE D'#201'BITO'
+                'NP    - NOTA PROMISS'#211'RIA'
+                'NS    - NOTA DE SEGURO'
+                'PC    - PARCELA DE CONS'#211'RCIO'
+                'RC    - RECIBO')
               Style.HotTrack = False
               TabOrder = 3
               Width = 121
             end
-            object cxDBDateEdit1: TcxDBDateEdit [4]
+            object cxDBCurrencyEdit3: TcxDBCurrencyEdit [4]
               Left = 115
-              Top = 238
-              DataBinding.DataField = 'prs_day_interest'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 10
-              Width = 121
-            end
-            object cxDBComboBox3: TcxDBComboBox [5]
-              Left = 115
-              Top = 157
-              DataBinding.DataField = 'prs_acceptance'
-              DataBinding.DataSource = ds
-              Properties.Items.Strings = (
-                'S - SIM'
-                'N - N'#195'O')
-              Style.HotTrack = False
-              TabOrder = 5
-              Width = 121
-            end
-            object cxDBTextEdit1: TcxDBTextEdit [6]
-              Left = 329
-              Top = 157
-              DataBinding.DataField = 'prs_wallet'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 7
-              Width = 130
-            end
-            object cxDBDateEdit2: TcxDBDateEdit [7]
-              Left = 115
-              Top = 265
-              DataBinding.DataField = 'prs_dt_discount'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 12
-              Width = 121
-            end
-            object cxDBComboBox2: TcxDBComboBox [8]
-              Left = 329
-              Top = 130
-              DataBinding.DataField = 'prs_species_coin'
-              DataBinding.DataSource = ds
-              Properties.Items.Strings = (
-                'R$   - REAL'
-                '$    - D'#211'LAR')
-              Style.HotTrack = False
-              TabOrder = 4
-              Width = 130
-            end
-            object cxDBTextEdit2: TcxDBTextEdit [9]
-              Left = 115
-              Top = 184
-              DataBinding.DataField = 'prs_our_number'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 6
-              Width = 121
-            end
-            object cxDBTextEdit3: TcxDBTextEdit [10]
-              Left = 115
-              Top = 211
-              DataBinding.DataField = 'prs_value_fine'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 8
-              Width = 121
-            end
-            object cxDBTextEdit4: TcxDBTextEdit [11]
-              Left = 329
-              Top = 211
-              DataBinding.DataField = 'prs_value_interest'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 9
-              Width = 121
-            end
-            object cxDBTextEdit5: TcxDBTextEdit [12]
-              Left = 329
-              Top = 238
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 11
-              Width = 121
-            end
-            object cxDBTextEdit6: TcxDBTextEdit [13]
-              Left = 329
               Top = 265
               DataBinding.DataField = 'prs_value_rebate'
               DataBinding.DataSource = ds
@@ -256,26 +185,71 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               TabOrder = 13
               Width = 121
             end
-            object cxDBDateEdit3: TcxDBDateEdit [14]
-              Left = 115
-              Top = 292
+            object cxDBDateEdit3: TcxDBDateEdit [5]
+              Left = 328
+              Top = 265
               DataBinding.DataField = 'prs_day_rebate'
               DataBinding.DataSource = ds
               Style.HotTrack = False
               TabOrder = 14
+              Width = 130
+            end
+            object cxDBTextEdit2: TcxDBTextEdit [6]
+              Left = 115
+              Top = 184
+              DataBinding.DataField = 'prs_our_number'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 7
               Width = 121
             end
-            object cxDBDateEdit4: TcxDBDateEdit [15]
+            object cxDBCurrencyEdit2: TcxDBCurrencyEdit [7]
               Left = 115
-              Top = 319
+              Top = 211
+              DataBinding.DataField = 'prs_value_interest'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 9
+              Width = 121
+            end
+            object cxDBCurrencyEdit1: TcxDBCurrencyEdit [8]
+              Left = 328
+              Top = 184
+              DataBinding.DataField = 'prs_value_fine'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 8
+              Width = 130
+            end
+            object cxDBDateEdit1: TcxDBDateEdit [9]
+              Left = 328
+              Top = 211
+              DataBinding.DataField = 'prs_day_interest'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 10
+              Width = 130
+            end
+            object cxDBDateEdit2: TcxDBDateEdit [10]
+              Left = 328
+              Top = 238
+              DataBinding.DataField = 'prs_dt_discount'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 12
+              Width = 130
+            end
+            object cxDBDateEdit4: TcxDBDateEdit [11]
+              Left = 328
+              Top = 292
               DataBinding.DataField = 'prs_day_protest'
               DataBinding.DataSource = ds
               Style.HotTrack = False
               TabOrder = 16
-              Width = 121
+              Width = 130
             end
-            object cxDBCurrencyEdit4: TcxDBCurrencyEdit [16]
-              Left = 329
+            object cxDBTextEdit3: TcxDBTextEdit [12]
+              Left = 115
               Top = 292
               DataBinding.DataField = 'prs_percentage_fine'
               DataBinding.DataSource = ds
@@ -283,12 +257,49 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               TabOrder = 15
               Width = 121
             end
+            object cxDBCurrencyEdit4: TcxDBCurrencyEdit [13]
+              Left = 115
+              Top = 238
+              DataBinding.DataField = 'prs_day_discount'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 11
+              Width = 121
+            end
+            object cxDBComboBox2: TcxDBComboBox [14]
+              Left = 328
+              Top = 130
+              DataBinding.DataField = 'prs_species_coin'
+              DataBinding.DataSource = ds
+              Properties.Items.Strings = (
+                'R$   - REAL'
+                '$    - D'#211'LAR')
+              Style.HotTrack = False
+              TabOrder = 5
+              Width = 130
+            end
+            object cxDBTextEdit1: TcxDBTextEdit [15]
+              Left = 328
+              Top = 157
+              DataBinding.DataField = 'prs_wallet'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 6
+              Width = 130
+            end
+            object cxDBCheckBox2: TcxDBCheckBox [16]
+              Left = 17
+              Top = 159
+              TabStop = False
+              Caption = ' Aceite'
+              DataBinding.DataField = 'prs_acceptance'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 4
+            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               CaptionOptions.Visible = False
               ItemIndex = 1
-            end
-            inherited dxLayoutGroup2: TdxLayoutGroup
-              ItemIndex = 3
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup1
@@ -297,7 +308,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               CaptionOptions.Text = 'Banco'
               Control = cxDBLookupComboBox1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 344
+              ControlOptions.OriginalWidth = 343
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -312,30 +323,181 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem11: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
               AlignHorz = ahLeft
               AlignVert = avTop
-              CaptionOptions.Text = 'Data Juros'
-              Control = cxDBDateEdit1
+              Index = 0
+              AutoCreated = True
+            end
+            object dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignHorz = ahLeft
+              AlignVert = avBottom
+              Index = 2
+              AutoCreated = True
+            end
+            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem9: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              CaptionOptions.Text = 'Valor Abatimento'
+              Control = cxDBCurrencyEdit3
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem6: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup7
+            object dxLayoutItem14: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
               AlignHorz = ahLeft
-              AlignVert = avBottom
-              CaptionOptions.Text = 'Aceite'
-              Control = cxDBComboBox3
+              AlignVert = avClient
+              CaptionOptions.Text = 'Data Abatimento'
+              Control = cxDBDateEdit3
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 130
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem8: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup10
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Nosso N'#250'mero'
+              Control = cxDBTextEdit2
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem18: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup4
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Valor Juros'
+              Control = cxDBCurrencyEdit2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutAutoCreatedGroup10: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup7
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 0
+              AutoCreated = True
+            end
+            object dxLayoutItem17: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup10
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Valor Multa'
+              Control = cxDBCurrencyEdit1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 130
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem11: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup4
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Data Juros'
+              Control = cxDBDateEdit1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 130
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup7
+              AlignHorz = ahClient
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem13: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup3
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Data Desconto'
+              Control = cxDBDateEdit2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 130
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup7
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 2
+              AutoCreated = True
+            end
+            object dxLayoutItem15: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup8
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Data Protesto'
+              Control = cxDBDateEdit4
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 130
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 2
+              AutoCreated = True
+            end
+            object dxLayoutItem12: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup8
+              CaptionOptions.Text = '% Multa'
+              Control = cxDBTextEdit3
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem16: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup3
+              CaptionOptions.Text = 'Valor Desconto'
+              Control = cxDBCurrencyEdit4
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignHorz = ahLeft
+              AlignVert = avBottom
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup11
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Esp'#233'cie Moeda'
+              Control = cxDBComboBox2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 130
               ControlOptions.ShowBorder = False
               Index = 0
             end
             object dxLayoutItem7: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup3
+              Parent = dxLayoutAutoCreatedGroup11
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'Carteira'
@@ -345,169 +507,49 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
+            object dxLayoutAutoCreatedGroup11: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup9
               AlignHorz = ahLeft
-              AlignVert = avTop
-              Index = 0
+              AlignVert = avClient
+              Index = 1
               AutoCreated = True
+            end
+            object dxLayoutItem6: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignVert = avBottom
+              CaptionOptions.Text = 'cxDBCheckBox2'
+              CaptionOptions.Visible = False
+              Control = cxDBCheckBox2
+              ControlOptions.OriginalHeight = 19
+              ControlOptions.OriginalWidth = 99
+              ControlOptions.ShowBorder = False
+              Index = 1
             end
             object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignVert = avBottom
-              LayoutDirection = ldHorizontal
-              Index = 1
-              AutoCreated = True
-            end
-            object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignVert = avBottom
-              LayoutDirection = ldHorizontal
-              Index = 2
-              AutoCreated = True
-            end
-            object dxLayoutItem13: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup6
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Data Desconto'
-              Control = cxDBDateEdit2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Esp'#233'cie Moeda'
-              Control = cxDBComboBox2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 130
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutItem8: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup7
-              AlignHorz = ahLeft
-              AlignVert = avBottom
-              CaptionOptions.Text = 'Nosso N'#250'mero'
-              Control = cxDBTextEdit2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup3
-              AlignHorz = ahLeft
-              Index = 0
-              AutoCreated = True
-            end
-            object dxLayoutItem18: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
-              AlignHorz = ahLeft
-              AlignVert = avBottom
-              CaptionOptions.Text = 'Valor Multa'
-              Control = cxDBTextEdit3
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutItem9: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
-              AlignVert = avClient
-              CaptionOptions.Text = 'Valor Juros'
-              Control = cxDBTextEdit4
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignVert = avBottom
-              LayoutDirection = ldHorizontal
-              Index = 3
-              AutoCreated = True
-            end
-            object dxLayoutItem10: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
-              AlignVert = avClient
-              CaptionOptions.Text = 'Valor Desconto'
-              Control = cxDBTextEdit5
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 1
-              AutoCreated = True
-            end
-            object dxLayoutItem12: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup6
-              AlignVert = avBottom
-              CaptionOptions.Text = 'Valor Abatimento'
-              Control = cxDBTextEdit6
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 2
-              AutoCreated = True
-            end
-            object dxLayoutItem14: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup9
               AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Data Abatimento'
-              Control = cxDBDateEdit3
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
               Index = 0
-            end
-            object dxLayoutItem15: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Data Protesto'
-              Control = cxDBDateEdit4
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 4
-            end
-            object dxLayoutItem16: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup9
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = '% Multa'
-              Control = cxDBCurrencyEdit4
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              AlignHorz = ahClient
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 3
               AutoCreated = True
             end
+          end
+          object cxDBCheckBox1: TcxDBCheckBox
+            Left = 0
+            Top = 22
+            Caption = ' Aceite'
+            DataBinding.DataField = 'prs_acceptance'
+            DataBinding.DataSource = ds
+            Properties.Alignment = taLeftJustify
+            Properties.ValueChecked = 'S'
+            Properties.ValueUnchecked = 'N'
+            Style.HotTrack = False
+            StyleDisabled.BorderColor = clWhite
+            StyleDisabled.Color = clWhite
+            StyleDisabled.TextColor = clWhite
+            StyleFocused.BorderColor = clWindow
+            StyleFocused.Color = clWhite
+            StyleFocused.TextColor = clWindowText
+            TabOrder = 1
+            Transparent = True
           end
         end
       end
@@ -515,12 +557,14 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
   end
   inherited dxBarDockControl_1: TdxBarDockControl
     Width = 910
+    ExplicitWidth = 910
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
+    AfterDelete = qryAfterDelete
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -544,6 +588,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
       FieldName = 'prs_id'
       Origin = 'prs_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -694,6 +739,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
       FieldName = 'bnk_id'
       Origin = 'bnk_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_bankcontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault

@@ -46,17 +46,13 @@ inherited frm_form_payment: Tfrm_form_payment
           ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
-              Left = 82
               DataBinding.DataField = 'frp_id'
-              ExplicitLeft = 82
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 255
               DataBinding.DataField = 'frp_dt_registration'
-              ExplicitLeft = 255
             end
             object cxDBTextEdit1: TcxDBTextEdit [2]
-              Left = 82
+              Left = 59
               Top = 130
               DataBinding.DataField = 'frp_name'
               DataBinding.DataSource = ds
@@ -65,21 +61,8 @@ inherited frm_form_payment: Tfrm_form_payment
               TabOrder = 3
               Width = 303
             end
-            object cxDBComboBox1: TcxDBComboBox [3]
-              Left = 82
-              Top = 157
-              DataBinding.DataField = 'frp_slip'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.Items.Strings = (
-                'S - SIM'
-                'N - N'#195'O')
-              Style.HotTrack = False
-              TabOrder = 4
-              Width = 121
-            end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [4]
-              Left = 82
+            object cxDBLookupComboBox1: TcxDBLookupComboBox [3]
+              Left = 59
               Top = 103
               DataBinding.DataField = 'bank_bnk_id'
               DataBinding.DataSource = ds
@@ -98,11 +81,27 @@ inherited frm_form_payment: Tfrm_form_payment
               TabOrder = 2
               Width = 303
             end
+            object cxDBCheckBox1: TcxDBCheckBox [4]
+              Left = 17
+              Top = 157
+              Caption = ' Gerar Boleto'
+              DataBinding.DataField = 'frp_slip'
+              DataBinding.DataSource = ds
+              Properties.Alignment = taLeftJustify
+              Properties.ValueChecked = 'S'
+              Properties.ValueUnchecked = 'N'
+              Style.HotTrack = False
+              TabOrder = 4
+              Transparent = True
+            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
             end
             inherited dxLayoutGroup1: TdxLayoutGroup
               ItemIndex = 1
+            end
+            inherited dxLayoutGroup2: TdxLayoutGroup
+              ItemIndex = 2
             end
             object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -114,16 +113,6 @@ inherited frm_form_payment: Tfrm_form_payment
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutItem6: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              AlignHorz = ahLeft
-              CaptionOptions.Text = 'Gerar Boleto'
-              Control = cxDBComboBox1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 2
-            end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
               CaptionOptions.Text = 'Banco'
@@ -132,6 +121,17 @@ inherited frm_form_payment: Tfrm_form_payment
               ControlOptions.OriginalWidth = 145
               ControlOptions.ShowBorder = False
               Index = 0
+            end
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
+              CaptionOptions.Text = 'Gerar Boleto'
+              CaptionOptions.Visible = False
+              Control = cxDBCheckBox1
+              ControlOptions.OriginalHeight = 19
+              ControlOptions.OriginalWidth = 85
+              ControlOptions.ShowBorder = False
+              Index = 2
             end
           end
         end

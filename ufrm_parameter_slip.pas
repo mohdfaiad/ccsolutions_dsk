@@ -33,7 +33,7 @@ uses
   cxDropDownEdit, cxCalendar, cxDBEdit, cxTextEdit, dxLayoutControl,
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, cxCurrencyEdit, cxSpinEdit;
+  cxDBLookupComboBox, cxCurrencyEdit, cxSpinEdit, cxCheckBox;
 
 type
   Tfrm_parameter_slip = class(Tfrm_form_default)
@@ -107,43 +107,48 @@ type
     dxLayoutItem4: TdxLayoutItem;
     cxDBComboBox2: TcxDBComboBox;
     dxLayoutItem5: TdxLayoutItem;
-    cxDBComboBox3: TcxDBComboBox;
-    dxLayoutItem6: TdxLayoutItem;
     cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem7: TdxLayoutItem;
     cxDBDateEdit1: TcxDBDateEdit;
     dxLayoutItem11: TdxLayoutItem;
     cxDBDateEdit2: TcxDBDateEdit;
     dxLayoutItem13: TdxLayoutItem;
-    cxDBCurrencyEdit4: TcxDBCurrencyEdit;
-    dxLayoutItem16: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     cxDBTextEdit2: TcxDBTextEdit;
     dxLayoutItem8: TdxLayoutItem;
     dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
-    cxDBTextEdit3: TcxDBTextEdit;
-    dxLayoutItem18: TdxLayoutItem;
-    cxDBTextEdit4: TcxDBTextEdit;
-    dxLayoutItem9: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
-    cxDBTextEdit5: TcxDBTextEdit;
-    dxLayoutItem10: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
-    cxDBTextEdit6: TcxDBTextEdit;
-    dxLayoutItem12: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
     cxDBDateEdit3: TcxDBDateEdit;
     dxLayoutItem14: TdxLayoutItem;
     cxDBDateEdit4: TcxDBDateEdit;
     dxLayoutItem15: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
+    cxDBCurrencyEdit1: TcxDBCurrencyEdit;
+    dxLayoutItem17: TdxLayoutItem;
+    cxDBCurrencyEdit2: TcxDBCurrencyEdit;
+    dxLayoutItem18: TdxLayoutItem;
+    cxDBCurrencyEdit3: TcxDBCurrencyEdit;
+    dxLayoutItem9: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup10: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
+    cxDBTextEdit3: TcxDBTextEdit;
+    dxLayoutItem12: TdxLayoutItem;
+    cxDBCurrencyEdit4: TcxDBCurrencyEdit;
+    dxLayoutItem16: TdxLayoutItem;
+    cxDBCheckBox1: TcxDBCheckBox;
     dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup11: TdxLayoutAutoCreatedGroup;
+    cxDBCheckBox2: TcxDBCheckBox;
+    dxLayoutItem6: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
+    procedure qryAfterDelete(DataSet: TDataSet);
+    procedure Action_deleteExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -160,15 +165,36 @@ implementation
 
 uses ufrm_dm, Casse.Field_Requested;
 
+procedure Tfrm_parameter_slip.Action_deleteExecute(Sender: TObject);
+begin
+  inherited;
+   qry.Close;
+   qry.Open;
+end;
+
 procedure Tfrm_parameter_slip.Action_saveExecute(Sender: TObject);
 begin
   //--Comando para tirar o focus de todos os componentes da tela-----
-  ActiveControl := nil;
+   ActiveControl := nil;
   //--Cama a função para verificar se existe campos requeridos em branco----
    TCampoRequerido.TratarRequerido(qry);
 
-  inherited;
-
+    with frm_dm.qry3,sql do
+     begin
+      Close;
+      Clear;
+      Text:= 'select * from parameter_slip where bank_bnk_id =:bnk_id';
+      ParamByName('bnk_id').Value:=qrybank_bnk_id.AsInteger;
+      Prepare;
+      Open;
+      if (RecordCount >0) then
+       begin
+        Application.MessageBox('Parametros do Banco Selecionado já está cadastrada !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+        Exit
+       end
+       else
+       inherited;
+     end;
 end;
 
 procedure Tfrm_parameter_slip.cxDBLookupComboBox1PropertiesPopup(
@@ -196,6 +222,12 @@ end;
 procedure Tfrm_parameter_slip.limpaCache(Sender: TObject);
 begin
   qry.CommitUpdates();
+end;
+
+procedure Tfrm_parameter_slip.qryAfterDelete(DataSet: TDataSet);
+begin
+  inherited;
+  qry.ApplyUpdates(0);
 end;
 
 procedure Tfrm_parameter_slip.qryAfterInsert(DataSet: TDataSet);

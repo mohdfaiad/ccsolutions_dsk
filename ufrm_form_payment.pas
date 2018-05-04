@@ -51,8 +51,6 @@ type
     cxGrid_1DBTableView1frp_dt_registration: TcxGridDBColumn;
     cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem4: TdxLayoutItem;
-    cxDBComboBox1: TcxDBComboBox;
-    dxLayoutItem6: TdxLayoutItem;
     qry_bank: TFDQuery;
     qry_bankbnk_id: TFDAutoIncField;
     qry_bankcontract_ctr_id: TIntegerField;
@@ -83,6 +81,8 @@ type
     ds_Bank: TDataSource;
     cxDBLookupComboBox1: TcxDBLookupComboBox;
     dxLayoutItem3: TdxLayoutItem;
+    cxDBCheckBox1: TcxDBCheckBox;
+    dxLayoutItem5: TdxLayoutItem;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);

@@ -147,7 +147,7 @@ inherited frm_contract_user: Tfrm_contract_user
               TabOrder = 2
               Transparent = True
               Height = 21
-              Width = 88
+              Width = 132
             end
             object cxDBDateEdit1: TcxDBDateEdit [7]
               Left = 429
@@ -157,9 +157,6 @@ inherited frm_contract_user: Tfrm_contract_user
               Style.HotTrack = False
               TabOrder = 5
               Width = 121
-            end
-            inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup3
@@ -227,7 +224,7 @@ inherited frm_contract_user: Tfrm_contract_user
               CaptionOptions.Visible = False
               Control = cxDBCheckBox1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 88
+              ControlOptions.OriginalWidth = 132
               ControlOptions.ShowBorder = False
               Index = 2
             end

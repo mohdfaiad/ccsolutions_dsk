@@ -11,7 +11,12 @@ inherited frm_bank: Tfrm_bank
     Caption = 'Bairro'
   end
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1bnk_id: TcxGridDBColumn
@@ -90,9 +95,16 @@ inherited frm_bank: Tfrm_bank
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet_address
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
+          ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 80
@@ -122,7 +134,7 @@ inherited frm_bank: Tfrm_bank
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 5
-              Width = 121
+              Width = 130
             end
             object cxDBTextEdit5: TcxDBTextEdit [4]
               Left = 80

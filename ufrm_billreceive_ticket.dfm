@@ -5,10 +5,16 @@ inherited frm_billreceive_ticket: Tfrm_billreceive_ticket
   TextHeight = 13
   inherited cxGrid_1: TcxGrid
     PopupMenu = PopupMenu1
-    ExplicitTop = 27
+    ExplicitTop = 33
     ExplicitHeight = 274
     inherited cxGrid_1DBTableView1: TcxGridDBTableView
       DataController.DataSource = ds
+      object cxGrid_1DBTableView1selecionado: TcxGridDBColumn
+        DataBinding.FieldName = 'selecionado'
+        PropertiesClassName = 'TcxCheckBoxProperties'
+        Properties.ValueChecked = 'S'
+        Properties.ValueUnchecked = 'N'
+      end
       object cxGrid_1DBTableView1enterprise_ent_id: TcxGridDBColumn
         DataBinding.FieldName = 'enterprise_ent_id'
       end
@@ -120,9 +126,6 @@ inherited frm_billreceive_ticket: Tfrm_billreceive_ticket
       object cxGrid_1DBTableView1prs_value_fine: TcxGridDBColumn
         DataBinding.FieldName = 'prs_value_fine'
       end
-      object cxGrid_1DBTableView1select: TcxGridDBColumn
-        DataBinding.FieldName = 'select'
-      end
     end
   end
   inherited dxBarManager_1: TdxBarManager
@@ -132,12 +135,14 @@ inherited frm_billreceive_ticket: Tfrm_billreceive_ticket
     Left = 528
   end
   inherited qry: TFDQuery
+    Active = True
     CachedUpdates = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
-        'SELECT enterprise_ent_id,brc_dt_maturity,'#10'brc_dt_emission,brc_do' +
-        'cument,'#10'brc_value,brc_discount,'#10'brc_status,ent_first_name,'
+        'SELECT '#39'N'#39' as selecionado, enterprise_ent_id,brc_dt_maturity,'#10'br' +
+        'c_dt_emission,brc_document,'#10'brc_value,brc_discount,'#10'brc_status,e' +
+        'nt_first_name,'
       
         'ent_add_bus_street,'#10#10'ent_add_bus_zipcode,ent_add_bus_city,ent_cn' +
         'pj,ent_add_bus_complement,'#10'ent_add_bus_address,ent_add_bus_numbe' +
@@ -153,23 +158,11 @@ inherited frm_billreceive_ticket: Tfrm_billreceive_ticket
         'ocument,'#10'prs_species_coin,prs_acceptance,prs_wallet,'
       'prs_value_fine'#10' FROM billreceive'#10#10
       'inner join enterprise on enterprise_ent_id = ent_id'#13#10#10
-      ''
-      ''
-      ''
-      ''
       'inner join form_payment on frp_id = form_payment_frp_id'#13#10#10
-      ''
-      ''
-      ''
-      ''
-      'inner join client on cli_id = client_cli_id '#13#10#10
-      ''
-      ''
-      ''
-      ''
+      'inner join client on cli_id = client_cli_id '
       'left join bank on bnk_id = form_payment.bank_bnk_id'#10
       'inner join parameter_slip on parameter_slip.bank_bnk_id = bnk_id'
-      'where frp_slip = '#39'S'#39' and brc_code_bar is null')
+      'where frp_slip = '#39'S'#39)
     object qryenterprise_ent_id: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'enterprise_ent_id'
@@ -450,6 +443,13 @@ inherited frm_billreceive_ticket: Tfrm_billreceive_ticket
       ProviderFlags = []
       ReadOnly = True
       Precision = 12
+    end
+    object qryselecionado: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'selecionado'
+      Origin = 'selecionado'
+      ProviderFlags = []
+      Size = 1
     end
   end
   inherited cxImageList_1: TcxImageList

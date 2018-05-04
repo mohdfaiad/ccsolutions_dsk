@@ -74,6 +74,7 @@ type
     qryprs_acceptance: TStringField;
     qryprs_wallet: TStringField;
     qryprs_value_fine: TBCDField;
+    qryselecionado: TStringField;
     cxGrid_1DBTableView1enterprise_ent_id: TcxGridDBColumn;
     cxGrid_1DBTableView1brc_dt_maturity: TcxGridDBColumn;
     cxGrid_1DBTableView1brc_dt_emission: TcxGridDBColumn;
@@ -111,7 +112,7 @@ type
     cxGrid_1DBTableView1prs_acceptance: TcxGridDBColumn;
     cxGrid_1DBTableView1prs_wallet: TcxGridDBColumn;
     cxGrid_1DBTableView1prs_value_fine: TcxGridDBColumn;
-    cxGrid_1DBTableView1select: TcxGridDBColumn;
+    cxGrid_1DBTableView1selecionado: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
     procedure GerarBoleto1Click(Sender: TObject);
     procedure GerarRemessa1Click(Sender: TObject);
@@ -142,79 +143,110 @@ procedure Tfrm_billreceive_ticket.GerarBoleto1Click(Sender: TObject);
 var
   Titulo: TACBrTitulo;
   vBarra,vLinhaDigitavel:string;
+  selecionado:Boolean;
 begin
-  Titulo := ACBrBoleto1.CriarTituloNaLista;
- with ACBrBoleto1.Cedente do
+qry.First;
+selecionado:=false;
+while not qry.Eof do
+ begin
+  if qryselecionado.AsString = 'S' then
+   begin
+    selecionado:=true;
+    Break;
+   end;
+  qry.Next;
+ end;
+
+if not selecionado then
+ begin
+  Application.MessageBox('Não existe contas a receber para geração de boletos, favor selecionar ao menos uma conta a receber',
+                         'BOLETO',MB_OK + MB_ICONEXCLAMATION);
+  Exit;
+ end;
+
+ qry.Filtered:=False;
+ qry.Filter:= ' selecionado = ''S'' ';
+ qry.Filtered:=True;
+
+with ACBrBoleto1.Cedente do
+ begin
+  Agencia:=qrybnk_agency_number.AsString;
+  AgenciaDigito:=qrybnk_agency_digit.AsString;
+  Bairro:= qryent_add_bus_street.AsString;
+  CEP:=qryent_add_bus_zipcode.AsString;
+  Cidade:=qryent_add_bus_city.AsString;
+  CNPJCPF:=qryent_cnpj.AsString;
+  CodigoCedente:=qrybnk_code_transferor.AsString;
+  Complemento:=qryent_add_bus_complement.AsString;
+  Conta:=qrybnk_account_number.AsString;
+  ContaDigito:=qrybnk_account_digit.AsString;
+  Convenio:=qrybnk_code_agreement.AsString;
+  Logradouro:=qryent_add_bus_address.AsString;
+  Nome :=qryent_first_name.AsString;
+  NumeroRes:= qryent_add_bus_number.AsString;
+  Telefone:=qryent_phone1.AsString;
+  UF:=qryent_add_bus_state.AsString;
+ end;
+
+qry.First;
+while not qry.Eof do
+ begin
+ if qryselecionado.AsString = 'S' then
   begin
-    Agencia:=qrybnk_agency_number.AsString;
-    AgenciaDigito:=qrybnk_agency_digit.AsString;
-    Bairro:= qryent_add_bus_street.AsString;
-    CEP:=qryent_add_bus_zipcode.AsString;
-    Cidade:=qryent_add_bus_city.AsString;
-    CNPJCPF:=qryent_cnpj.AsString;
-    CodigoCedente:=qrybnk_code_transferor.AsString;
-    Complemento:=qryent_add_bus_complement.AsString;
-    Conta:=qrybnk_account_number.AsString;
-    ContaDigito:=qrybnk_account_digit.AsString;
-    Convenio:=qrybnk_code_agreement.AsString;
-    Logradouro:=qryent_add_bus_address.AsString;
-    Nome :=qryent_first_name.AsString;
-    NumeroRes:= qryent_add_bus_number.AsString;
-    Telefone:=qryent_phone1.AsString;
-    UF:=qryent_add_bus_state.AsString;
+   Titulo := ACBrBoleto1.CriarTituloNaLista;
+   with Titulo do
+    begin
+     Vencimento :=qrybrc_dt_maturity.AsDateTime;
+     DataDocumento := qrybrc_dt_emission.AsDateTime;
+     NumeroDocumento := qrybrc_document.AsString;
+     EspecieDoc := 'DM'; //falta pegar
+     Aceite := atNao;
+     DataProcessamento := Now;
+     Carteira := '09' ; //Carteira com Registro
+     NossoNumero := '1'; //Falta Pegar
+     ValorDocumento := qrybrc_value.AsFloat;
+     Sacado.NomeSacado := qrycli_first_name.AsString;
+     Sacado.CNPJCPF := OnlyNumber(qrycli_cpfcnpj.AsString);
+     Sacado.Logradouro := qrycli_add_bil_address.AsString;
+     Sacado.Numero := qrycli_add_bil_number.AsString;
+     Sacado.Bairro := qrycli_add_bil_street.AsString;
+     Sacado.Cidade := qrycli_add_bil_city.AsString;
+     Sacado.UF := qrycli_add_bil_state.AsString;
+     Sacado.CEP := OnlyNumber(qrycli_add_bil_zipcode.AsString);
+     ValorAbatimento := 0;
+     LocalPagamento := 'Pagar preferêncialmente nas agências do Itaú';
+     ValorMoraJuros := 0;
+     ValorDesconto := qrybrc_discount.AsFloat;
+     ValorAbatimento := 0;
+     DataMoraJuros := 0;
+     DataDesconto := StrToDate('06/05/2018');
+     DataAbatimento := StrToDate('06/06/2018');
+     DataProtesto := StrToDate('06/05/2018');
+     PercentualMulta := 0;
+     Mensagem.Text := 'TESTE DO SISTEMA';
+     ValorAbatimento := 0;
+     DataMoraJuros := 0;
+     DataDesconto := 0;
+     DataAbatimento := StrToDate('06/06/2018');
+     DataProtesto := StrToDate('06/06/2018');
+     PercentualMulta := 0;
+     Mensagem.Text := 'Teste do sistema';
+     OcorrenciaOriginal.Tipo := toRemessaBaixar;
+     Instrucao1 := 'TESTE';
+     Instrucao2 := 'TESTE2';
+     Instrucao3 := 'TESTE 3';
+     vBarra:=Titulo.ACBrBoleto.Banco.MontarCodigoBarras(Titulo);
+     vLinhaDigitavel:=Titulo.ACBrBoleto.Banco.MontarLinhaDigitavel(vBarra,Titulo);
+     qry.Edit;
+     qrybrc_code_bar.AsString:=vLinhaDigitavel;
+     qry.Post;
+    end;
+
   end;
-
-  with Titulo do
-  begin
-    Vencimento :=qrybrc_dt_maturity.AsDateTime;
-    DataDocumento := qrybrc_dt_emission.AsDateTime;
-    NumeroDocumento := qrybrc_document.AsString;
-    EspecieDoc := 'DM'; //falta pegar
-    Aceite := atNao;
-    DataProcessamento := Now;
-    Carteira := '09' ; //Carteira com Registro
-    NossoNumero := '1'; //Falta Pegar
-    ValorDocumento := qrybrc_value.AsFloat;
-    Sacado.NomeSacado := qrycli_first_name.AsString;
-    Sacado.CNPJCPF := OnlyNumber(qrycli_cpfcnpj.AsString);
-    Sacado.Logradouro := qrycli_add_bil_address.AsString;
-    Sacado.Numero := qrycli_add_bil_number.AsString;
-    Sacado.Bairro := qrycli_add_bil_street.AsString;
-    Sacado.Cidade := qrycli_add_bil_city.AsString;
-    Sacado.UF := qrycli_add_bil_state.AsString;
-    Sacado.CEP := OnlyNumber(qrycli_add_bil_zipcode.AsString);
-    ValorAbatimento := 0;
-    LocalPagamento := 'Pagar preferêncialmente nas agências do Itaú';
-    ValorMoraJuros := 0;
-    ValorDesconto := qrybrc_discount.AsFloat;
-    ValorAbatimento := 0;
-    DataMoraJuros := 0;
-    DataDesconto := StrToDate('06/05/2018');
-    DataAbatimento := StrToDate('06/06/2018');
-    DataProtesto := StrToDate('06/05/2018');
-    PercentualMulta := 0;
-    Mensagem.Text := 'TESTE DO SISTEMA';
-    ValorAbatimento := 0;
-    DataMoraJuros := 0;
-    DataDesconto := 0;
-    DataAbatimento := StrToDate('06/06/2018');
-    DataProtesto := StrToDate('06/06/2018');
-    PercentualMulta := 0;
-    Mensagem.Text := 'Teste do sistema';
-    OcorrenciaOriginal.Tipo := toRemessaBaixar;
-    Instrucao1 := 'TESTE';
-    Instrucao2 := 'TESTE2';
-    Instrucao3 := 'TESTE 3';
-    vBarra:=Titulo.ACBrBoleto.Banco.MontarCodigoBarras(Titulo);
-    vLinhaDigitavel:=Titulo.ACBrBoleto.Banco.MontarLinhaDigitavel(vBarra,Titulo);
-    qry.Edit;
-    qrybrc_code_bar.AsString:=vLinhaDigitavel;
-    qry.Post;
+   qry.Next;
   end;
-
- ACBrBoleto1.Imprimir;
- Titulo.Destroy;
-
+  qry.ApplyUpdates(0);
+  ACBrBoleto1.Imprimir;
 end;
 
 procedure Tfrm_billreceive_ticket.GerarRemessa1Click(Sender: TObject);
@@ -222,5 +254,4 @@ begin
   inherited;
  ACBrBoleto1.GerarRemessa(1);
 end;
-
 end.

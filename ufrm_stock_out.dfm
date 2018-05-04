@@ -319,11 +319,15 @@ inherited frm_stock_out: Tfrm_stock_out
       end
     end
   end
+  inherited dxBarManager_1: TdxBarManager
+    inherited cxBarEditItem_1: TcxBarEditItem
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\itens de estoque'
+    end
+  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
@@ -2815,9 +2819,9 @@ inherited frm_stock_out: Tfrm_stock_out
     ParamData = <
       item
         Name = 'CTR_ID'
-        DataType = ftInteger
+        DataType = ftAutoInc
         ParamType = ptInput
-        Value = 1
+        Value = Null
       end
       item
         Name = 'CTR_USR_ID'
@@ -2867,7 +2871,6 @@ inherited frm_stock_out: Tfrm_stock_out
     Top = 90
   end
   object qry_lab_request_itens: TFDQuery
-    Active = True
     CachedUpdates = True
     IndexFieldNames = 'lab_request_req_id'
     MasterSource = ds

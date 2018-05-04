@@ -391,6 +391,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
     end
     inherited cxBarEditItem_1: TcxBarEditItem
       Properties.IncrementalSearch = False
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\entrada estoque'
     end
   end
   inherited ActionList_1: TActionList

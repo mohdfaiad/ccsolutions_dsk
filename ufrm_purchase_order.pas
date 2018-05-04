@@ -105,14 +105,9 @@ type
     qry_stocksto_id: TFDAutoIncField;
     qry_stockcontract_ctr_id: TIntegerField;
     qry_stockenterprise_ent_id: TIntegerField;
-    FDQuery1: TFDQuery;
     Image1: TImage;
-    FDQuery1rep_id: TFDAutoIncField;
-    FDQuery1contract_ctr_id: TIntegerField;
-    FDQuery1rep_name: TStringField;
-    FDQuery1rep_report: TMemoField;
-    FDQuery1rep_edit: TStringField;
-    FDQuery1rep_dt_registration: TDateTimeField;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
@@ -139,8 +134,6 @@ type
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
-    procedure SpeedButton3Click(Sender: TObject);
-    procedure SpeedButton4Click(Sender: TObject);
   private
     { Private declarations }
   procedure filter(status:string);
@@ -156,7 +149,8 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, Vcl.Imaging.jpeg, Casse.CamposRequerido, Class_Report;
+uses ufrm_dm, Vcl.Imaging.jpeg, Casse.CamposRequerido, Class_Report,
+  ufrm_dm_report;
 
 procedure Tfrm_purchase_order.Action_deleteExecute(Sender: TObject);
 begin
@@ -431,7 +425,7 @@ if not (qry.State in [dsInsert,dsEdit]) then
 
  if qrypco_status.AsString  <> 'A' then
  begin
-   Application.MessageBox('Só é permitido alterar uma requisição que esteja em aberto!','Requisição', MB_ICONINFORMATION + MB_OK);
+   Application.MessageBox('Só é permitido alterar uma requisição que esteja em aberto!','Requisição',MB_OK + MB_ICONINFORMATION);
    qry_purchase_order_iten.Delete;
    Exit;
  end;
@@ -441,83 +435,47 @@ qry_purchase_order_itenpoi_dt_registration.Value:=Now;
 end;
 
 procedure Tfrm_purchase_order.SpeedButton1Click(Sender: TObject);
-var
- vStream:TMemoryStream;
+
 begin
+//-----------------------------------------------------
+  inherited;
 
-  FDQuery1.Open;
-
-  vStream:=TMemoryStream.Create;
-
-  FDQuery1rep_report.SaveToStream(vStream);
-
-  vStream.Position :=0;
-
-  if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
+    if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
    begin
-     frxReport_1.LoadFromStream(vStream);
+     frxReport_1.LoadFromStream(TReport.Read_Report(cxBarEditItem_1.EditValue, 'rep_report', frm_dm_report.qry_report));
      frxReport_1.ShowReport;
    end;
 
-
-  inherited;
 
 end;
 
 procedure Tfrm_purchase_order.SpeedButton2Click(Sender: TObject);
-var
-   sArq:TStream;
-   mMem:TMemoryStream;
+ var
+  NameReport: string;
 begin
-   try
-      mMem:=TMemoryStream.Create;
-
-      sArq:= TFileStream.Create(TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue,fmOpenRead);
-      sArq.Position:=0;
-
-      mMem.LoadFromStream(sArq);
-
-      FDQuery1.Open;
-      FDQuery1.Append;
-      FDQuery1rep_report.LoadFromStream(mMem);
-
-      FDQuery1.Post;
-
-      FDQuery1.ApplyUpdates(0);
-      ShowMessage('Suceeso');
-
-   finally
-      FreeAndNil(mMem);
-      FreeAndNil(sArq);
-   end;
+  //-----------------------------------------------------------
 
 inherited;
-
-end;
-
-procedure Tfrm_purchase_order.SpeedButton3Click(Sender: TObject);
- var
-   NameReport: string;
-begin
-  NameReport :='';
-  NameReport:= TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue;
-
-   TReport.Save_Report(frm_dm.qry_signinctr_id.Value,cxBarEditItem_1.EditValue, NameReport,'rep_report',FDQuery1);
-
-  inherited;
-
-end;
-
-procedure Tfrm_purchase_order.SpeedButton4Click(Sender: TObject);
-begin
-  inherited;
-
-  if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
+ with frm_dm.qry3,sql do
    begin
-     frxReport_1.LoadFromStream(TReport.Read_Report(cxBarEditItem_1.EditValue, 'rep_report', FDQuery1));
-     frxReport_1.ShowReport;
-   end;
+    Close;
+    Clear;
+    Text:= 'select * from report where rep_name =:p_report';
+    ParamByName('p_report').Value:=cxBarEditItem_1.EditValue;
+    Prepare;
+    Open;
+    if (RecordCount >0) then
+     begin
+      Application.MessageBox('Este relatório já está cadastrada !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+      Exit
+     end
+     else
+      begin
+       NameReport :='';
+       NameReport:= TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue;
+       TReport.Save_Report(frm_dm.qry_signinctr_id.Value,cxBarEditItem_1.EditValue, NameReport,'rep_report',frm_dm_report.qry_report);
+     end;
+ end;
 
 end;
-
 end.

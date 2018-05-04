@@ -30,17 +30,17 @@ implementation
 
 class function TReport.Read_Report(const Name, Param: string; DataSet: TFDQuery): TMemoryStream;
  var
+   i :Integer;
    vStream:TMemoryStream;
 begin
-   DataSet.Close;
-   DataSet.Open;
-   DataSet.Locate(DataSet.Fields[2].FieldName,Name,[loCaseInsensitive, loPartialKey]);
 
-   vStream :=TMemoryStream.Create;
-   TBlobField(DataSet.fieldbyname(Param)).savetostream( vStream );
-
-   vStream.Position :=0;
-   Result := vStream;
+     DataSet.Close;
+     DataSet.Open;      
+     DataSet.Locate(DataSet.Fields[2].FieldName,Name,[loCaseInsensitive, loPartialKey]);
+     vStream :=TMemoryStream.Create;
+     TBlobField(DataSet.fieldbyname(Param)).savetostream( vStream );
+     vStream.Position :=0;
+     Result := vStream;
 
 end;
 
@@ -49,37 +49,36 @@ var
    i :Integer;
    sArq:TStream;
    mMem:TMemoryStream;
-begin
-  try
-      mMem:=TMemoryStream.Create;
-      sArq:= TFileStream.Create(Report,fmOpenRead);
-      sArq.Position:=0;
+begin       
+  try       
+    mMem:=TMemoryStream.Create;
+    sArq:= TFileStream.Create(Report,fmOpenRead);
+    sArq.Position:=0;
 
-      mMem.LoadFromStream(sArq);
+    mMem.LoadFromStream(sArq);
 
-      DataSet.Open;
-      DataSet.Append;
+    DataSet.Open;
+    DataSet.Append;
 
-      for i:=0 to DataSet.Fields.Count-1 do
-       begin
-        if (DataSet.Fields[i].Index = 1) then
-           (DataSet.Fields[i].Value := Contrato);
-        if (DataSet.Fields[i].Index = 2) then
-           (DataSet.Fields[i].Value := Name);
-       end;
+    for i:=0 to DataSet.Fields.Count-1 do
+     begin
+      if (DataSet.Fields[i].Index = 1) then
+         (DataSet.Fields[i].Value := Contrato);
+      if (DataSet.Fields[i].Index = 2) then
+         (DataSet.Fields[i].Value := Name); 
+     end;
 
-      TBlobField(DataSet.FieldByName(Param)).LoadFromStream(mMem);
+    TBlobField(DataSet.FieldByName(Param)).LoadFromStream(mMem);
 
-      DataSet.Post;
-      DataSet.ApplyUpdates(0);
+    DataSet.Post;
+    DataSet.ApplyUpdates(0);
 
-      ShowMessage('Relatório salvo com sucesso !');
+    ShowMessage('Relatório salvo com sucesso !');
 
    finally
-     FreeAndNil(mMem);
-     FreeAndNil(sArq);
-   end;
-
+    FreeAndNil(mMem);
+    FreeAndNil(sArq);
+   end;  
 end;
 
 end.

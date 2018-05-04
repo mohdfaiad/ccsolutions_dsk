@@ -22,6 +22,9 @@
     ExplicitHeight = 487
     ClientRectBottom = 481
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
       ExplicitHeight = 453
       inherited cxGrid_1: TcxGrid
         Height = 447
@@ -201,6 +204,22 @@
           ParentFont = False
           Layout = tlCenter
           OnClick = lbTodosClick
+        end
+        object SpeedButton1: TSpeedButton
+          Left = 511
+          Top = 1
+          Width = 46
+          Height = 22
+          Caption = 'print'
+          OnClick = SpeedButton1Click
+        end
+        object SpeedButton2: TSpeedButton
+          Left = 557
+          Top = 1
+          Width = 36
+          Height = 22
+          Caption = 'salve'
+          OnClick = SpeedButton2Click
         end
       end
     end
@@ -497,7 +516,6 @@
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
@@ -522,9 +540,9 @@
     ParamData = <
       item
         Name = 'CTR_ID'
-        DataType = ftInteger
+        DataType = ftAutoInc
         ParamType = ptInput
-        Value = 1
+        Value = Null
       end
       item
         Name = 'CTR_USR_ID'
@@ -3115,7 +3133,6 @@
     Top = 96
   end
   object qry_employee: TFDQuery
-    Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -3133,9 +3150,9 @@
     ParamData = <
       item
         Name = 'CTR_ID'
-        DataType = ftInteger
+        DataType = ftAutoInc
         ParamType = ptInput
-        Value = 1
+        Value = Null
       end>
   end
   object ds_employee: TDataSource
@@ -3220,48 +3237,5 @@
     DataSet = qry_stock
     Left = 624
     Top = 144
-  end
-  object FDQuery1: TFDQuery
-    CachedUpdates = True
-    Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
-    SQL.Strings = (
-      'SELECT * FROM report')
-    Left = 648
-    Top = 328
-    object FDQuery1rep_id: TFDAutoIncField
-      FieldName = 'rep_id'
-      Origin = 'rep_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-    end
-    object FDQuery1contract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
-    object FDQuery1rep_name: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'rep_name'
-      Origin = 'rep_name'
-      Size = 25
-    end
-    object FDQuery1rep_report: TMemoField
-      AutoGenerateValue = arDefault
-      FieldName = 'rep_report'
-      Origin = 'rep_report'
-      BlobType = ftMemo
-    end
-    object FDQuery1rep_edit: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'rep_edit'
-      Origin = 'rep_edit'
-      FixedChar = True
-      Size = 1
-    end
-    object FDQuery1rep_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      FieldName = 'rep_dt_registration'
-      Origin = 'rep_dt_registration'
-    end
   end
 end

@@ -434,6 +434,9 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   inherited dxBarManager_1: TdxBarManager
     Left = 622
     Top = 16
+    inherited cxBarEditItem_1: TcxBarEditItem
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\transferencia'
+    end
   end
   inherited ActionList_1: TActionList
     Left = 696

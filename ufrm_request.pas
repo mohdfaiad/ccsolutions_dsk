@@ -121,6 +121,8 @@ type
     qry_employeeemp_status: TStringField;
     qry_employeerec_name: TStringField;
     qry_employeecontract_ctr_id: TIntegerField;
+    SpeedButton2: TSpeedButton;
+    SpeedButton1: TSpeedButton;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
@@ -150,6 +152,8 @@ type
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure cxTabSheet_2Show(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -166,7 +170,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, Class_Report, ufrm_dm_report;
 
 procedure Tfrm_request.Action_deleteExecute(Sender: TObject);
 begin
@@ -512,5 +516,47 @@ begin
 
 end;
 
+
+procedure Tfrm_request.SpeedButton1Click(Sender: TObject);
+begin
+  inherited;
+  if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
+ begin
+   frxReport_1.LoadFromStream(TReport.Read_Report(cxBarEditItem_1.EditValue, 'rep_report', frm_dm_report.qry_report));
+   frxReport_1.ShowReport;
+ end;
+
+end;
+
+procedure Tfrm_request.SpeedButton2Click(Sender: TObject);
+ var
+  NameReport: string;
+begin
+  //-----------------------------------------------------------
+
+ inherited;
+ with frm_dm.qry3,sql do
+   begin
+    Close;
+    Clear;
+    Text:= 'select * from report where rep_name =:p_report';
+    ParamByName('p_report').Value:=cxBarEditItem_1.EditValue;
+    Prepare;
+    Open;
+    if (RecordCount >0) then
+     begin
+      Application.MessageBox('Este relatório já está cadastrada !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+      Exit
+     end
+     else
+      begin
+       NameReport :='';
+       NameReport:= TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue;
+       TReport.Save_Report(frm_dm.qry_signinctr_id.Value,cxBarEditItem_1.EditValue, NameReport,'rep_report',frm_dm_report.qry_report);
+     end;
+ end;
+
+
+end;
 
 end.

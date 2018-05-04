@@ -168,6 +168,11 @@ inherited frm_stock_iten: Tfrm_stock_iten
       end
     end
   end
+  inherited dxBarManager_1: TdxBarManager
+    inherited cxBarEditItem_1: TcxBarEditItem
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\itens de estoque'
+    end
+  end
   inherited ActionList_1: TActionList
     inherited Action_delete: TAction
       Enabled = False

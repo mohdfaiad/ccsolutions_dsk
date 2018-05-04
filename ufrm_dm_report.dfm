@@ -127,4 +127,41 @@ object frm_dm_report: Tfrm_dm_report
     Left = 24
     Top = 120
   end
+  object qry_report: TFDQuery
+    Active = True
+    AfterPost = qry_reportAfterPost
+    AfterDelete = qry_reportAfterDelete
+    CachedUpdates = True
+    IndexFieldNames = 'contract_ctr_id'
+    MasterSource = frm_dm.ds_signin
+    MasterFields = 'ctr_id'
+    DetailFields = 'contract_ctr_id'
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'SELECT * FROM report')
+    Left = 200
+    Top = 176
+    object qry_reportrep_id: TFDAutoIncField
+      FieldName = 'rep_id'
+    end
+    object qry_reportcontract_ctr_id: TIntegerField
+      FieldName = 'contract_ctr_id'
+    end
+    object qry_reportrep_name: TStringField
+      FieldName = 'rep_name'
+      Size = 25
+    end
+    object qry_reportrep_report: TMemoField
+      FieldName = 'rep_report'
+      BlobType = ftMemo
+    end
+    object qry_reportrep_edit: TStringField
+      FieldName = 'rep_edit'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_reportrep_dt_registration: TDateTimeField
+      FieldName = 'rep_dt_registration'
+    end
+  end
 end

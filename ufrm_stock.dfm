@@ -177,6 +177,11 @@ inherited frm_stock: Tfrm_stock
       end
     end
   end
+  inherited dxBarManager_1: TdxBarManager
+    inherited cxBarEditItem_1: TcxBarEditItem
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\estoque'
+    end
+  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end

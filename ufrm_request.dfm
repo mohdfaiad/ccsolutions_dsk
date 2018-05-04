@@ -8,11 +8,13 @@ inherited frm_request: Tfrm_request
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Width = 877
-    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 877
     ClientRectRight = 871
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 869
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         Width = 863
         ExplicitWidth = 863
@@ -198,6 +200,22 @@ inherited frm_request: Tfrm_request
           ParentFont = False
           Layout = tlCenter
           OnClick = lbTodosClick
+        end
+        object SpeedButton2: TSpeedButton
+          Left = 511
+          Top = 1
+          Width = 35
+          Height = 22
+          Caption = 'salve'
+          OnClick = SpeedButton2Click
+        end
+        object SpeedButton1: TSpeedButton
+          Left = 546
+          Top = 1
+          Width = 40
+          Height = 22
+          Caption = 'print'
+          OnClick = SpeedButton1Click
         end
       end
     end
@@ -477,6 +495,7 @@ inherited frm_request: Tfrm_request
     inherited cxBarEditItem_1: TcxBarEditItem
       Properties.DropDownWidth = 250
       Properties.IncrementalSearch = False
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\requesicao'
     end
     object dxCancelReq: TdxBarButton
       Caption = 'Cancelar Requisi'#231#227'o'

@@ -38,7 +38,6 @@ uses
 type
   Tfrm_bank = class(Tfrm_form_default)
     qrybnk_id: TFDAutoIncField;
-    cxTabSheet_contact: TcxTabSheet;
     cxTabSheet_address: TcxTabSheet;
     cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
@@ -67,7 +66,6 @@ type
     cxDBTextEdit29: TcxDBTextEdit;
     dxLayoutControl1Group_Root: TdxLayoutGroup;
     dxLayoutGroup6: TdxLayoutGroup;
-    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
     dxLayoutItem24: TdxLayoutItem;
     dxLayoutItem26: TdxLayoutItem;
     dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
@@ -78,19 +76,9 @@ type
     dxLayoutItem25: TdxLayoutItem;
     dxLayoutAutoCreatedGroup11: TdxLayoutAutoCreatedGroup;
     dxLayoutItem36: TdxLayoutItem;
-    dxLayoutControl2: TdxLayoutControl;
-    cxDBTextEdit13: TcxDBTextEdit;
-    cxDBTextEdit14: TcxDBTextEdit;
-    cxDBTextEdit16: TcxDBTextEdit;
-    dxLayoutGroup4: TdxLayoutGroup;
-    dxLayoutGroup8: TdxLayoutGroup;
-    dxLayoutItem20: TdxLayoutItem;
-    dxLayoutItem21: TdxLayoutItem;
-    dxLayoutItem23: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     Label1: TLabel;
     qrycontract_ctr_id: TIntegerField;
     qrybnk_name: TStringField;
@@ -116,7 +104,6 @@ type
     qrybnk_dt_registration: TDateTimeField;
     qrybnk_add_bus_zipcode: TStringField;
     cxGrid_1DBTableView1bnk_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1bnk_name: TcxGridDBColumn;
     cxGrid_1DBTableView1bnk_code: TcxGridDBColumn;
     cxGrid_1DBTableView1bnk_agency_number: TcxGridDBColumn;
@@ -139,6 +126,19 @@ type
     cxGrid_1DBTableView1bnk_phone4: TcxGridDBColumn;
     cxGrid_1DBTableView1bnk_contact: TcxGridDBColumn;
     cxGrid_1DBTableView1bnk_dt_registration: TcxGridDBColumn;
+    dxLayoutGroup3: TdxLayoutGroup;
+    cxDBTextEdit9: TcxDBTextEdit;
+    dxLayoutItem11: TdxLayoutItem;
+    cxDBTextEdit10: TcxDBTextEdit;
+    dxLayoutItem12: TdxLayoutItem;
+    cxDBTextEdit11: TcxDBTextEdit;
+    dxLayoutItem13: TdxLayoutItem;
+    cxDBTextEdit12: TcxDBTextEdit;
+    dxLayoutItem14: TdxLayoutItem;
+    cxDBTextEdit13: TcxDBTextEdit;
+    dxLayoutItem15: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;

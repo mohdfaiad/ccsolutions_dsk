@@ -15,10 +15,6 @@ inherited frm_cost_center: Tfrm_cost_center
             DataBinding.FieldName = 'coc_id'
             Width = 75
           end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
-            Width = 75
-          end
           object cxGrid_1DBTableView1coc_name: TcxGridDBColumn
             DataBinding.FieldName = 'coc_name'
             Width = 250
@@ -122,7 +118,7 @@ inherited frm_cost_center: Tfrm_cost_center
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 3
-              Width = 294
+              Width = 303
             end
             object cxDBComboBox1: TcxDBComboBox [4]
               Left = 59
@@ -167,7 +163,7 @@ inherited frm_cost_center: Tfrm_cost_center
               CaptionOptions.Text = 'Nome'
               Control = cxDBTextEdit1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 294
+              ControlOptions.OriginalWidth = 303
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -190,6 +186,7 @@ inherited frm_cost_center: Tfrm_cost_center
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
@@ -255,6 +252,7 @@ inherited frm_cost_center: Tfrm_cost_center
     Style = <>
   end
   object qry_cost_center_detail: TFDQuery
+    Active = True
     AfterInsert = qry_cost_center_detailAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'cost_center_coc_id'

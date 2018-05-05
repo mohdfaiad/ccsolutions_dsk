@@ -43,7 +43,6 @@ type
     qrycoc_status: TStringField;
     qrycod_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1coc_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1coc_name: TcxGridDBColumn;
     cxGrid_1DBTableView1coc_status: TcxGridDBColumn;
     cxGrid_1DBTableView1cod_dt_registration: TcxGridDBColumn;

@@ -43,7 +43,6 @@ type
     qryact_movement: TStringField;
     qryact_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1act_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1act_name: TcxGridDBColumn;
     cxGrid_1DBTableView1act_movement: TcxGridDBColumn;
     cxGrid_1DBTableView1act_dt_registration: TcxGridDBColumn;

@@ -20,10 +20,6 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
             DataBinding.FieldName = 'acp_id'
             Width = 75
           end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
-            Width = 75
-          end
           object cxGrid_1DBTableView1account_type_act_id: TcxGridDBColumn
             DataBinding.FieldName = 'account_type_act_id'
             Width = 75
@@ -132,7 +128,7 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
                   DataBinding.FieldName = 'acd_name'
                   PropertiesClassName = 'TcxTextEditProperties'
                   Properties.CharCase = ecUpperCase
-                  Width = 200
+                  Width = 250
                 end
                 object cxGrid1DBTableView1acd_status: TcxGridDBColumn
                   DataBinding.FieldName = 'acd_status'
@@ -162,7 +158,7 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 4
-              Width = 294
+              Width = 303
             end
             object cxDBComboBox1: TcxDBComboBox [5]
               Left = 232
@@ -177,11 +173,11 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
                 'D - DESATIVADO')
               Style.HotTrack = False
               TabOrder = 3
-              Width = 121
+              Width = 130
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               CaptionOptions.Visible = False
-              ItemIndex = 1
+              ItemIndex = 2
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               LayoutDirection = ldHorizontal
@@ -223,7 +219,7 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
               CaptionOptions.Text = 'Nome'
               Control = cxDBTextEdit1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 294
+              ControlOptions.OriginalWidth = 303
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -240,7 +236,7 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
               CaptionOptions.Text = 'Status'
               Control = cxDBComboBox1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 130
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -267,6 +263,7 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     CachedUpdates = True
@@ -339,6 +336,7 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     Style = <>
   end
   object qry_account_type: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -346,8 +344,8 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from account_type')
-    Left = 672
-    Top = 136
+    Left = 584
+    Top = 96
   end
   object ds_account_type: TDataSource
     DataSet = qry_account_type
@@ -355,6 +353,7 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     Top = 96
   end
   object qry_account_account_detail: TFDQuery
+    Active = True
     AfterInsert = qry_account_account_detailAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'account_plan_acp_id'
@@ -368,16 +367,17 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     SQL.Strings = (
       'select * from account_plan_detail'#10
       'where account_plan_acp_id =:acp_id')
-    Left = 552
-    Top = 208
+    Left = 584
+    Top = 144
     ParamData = <
       item
         Name = 'ACP_ID'
-        DataType = ftInteger
+        DataType = ftAutoInc
         ParamType = ptInput
         Value = Null
       end>
     object qry_account_account_detailacd_id: TFDAutoIncField
+      DisplayLabel = 'C'#243'd. ID'
       FieldName = 'acd_id'
       Origin = 'acd_id'
       ProviderFlags = [pfInWhere, pfInKey]
@@ -385,22 +385,26 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     end
     object qry_account_account_detailcontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Contrato ID'
       FieldName = 'contract_ctr_id'
       Origin = 'contract_ctr_id'
     end
     object qry_account_account_detailaccount_plan_acp_id: TIntegerField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Plano de Conta ID'
       FieldName = 'account_plan_acp_id'
       Origin = 'account_plan_acp_id'
     end
     object qry_account_account_detailacd_name: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
       FieldName = 'acd_name'
       Origin = 'acd_name'
       Size = 50
     end
     object qry_account_account_detailacd_status: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
       FieldName = 'acd_status'
       Origin = 'acd_status'
       FixedChar = True
@@ -408,13 +412,14 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     end
     object qry_account_account_detailacd_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
       FieldName = 'acd_dt_registration'
       Origin = 'acd_dt_registration'
     end
   end
   object ds_account_account_detail: TDataSource
     DataSet = qry_account_account_detail
-    Left = 656
-    Top = 184
+    Left = 616
+    Top = 144
   end
 end

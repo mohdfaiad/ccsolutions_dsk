@@ -15,17 +15,13 @@ inherited frm_account_type: Tfrm_account_type
             DataBinding.FieldName = 'act_id'
             Width = 75
           end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
-            Width = 75
-          end
           object cxGrid_1DBTableView1act_name: TcxGridDBColumn
             DataBinding.FieldName = 'act_name'
             Width = 200
           end
           object cxGrid_1DBTableView1act_movement: TcxGridDBColumn
             DataBinding.FieldName = 'act_movement'
-            Width = 100
+            Width = 75
           end
           object cxGrid_1DBTableView1act_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'act_dt_registration'
@@ -58,17 +54,17 @@ inherited frm_account_type: Tfrm_account_type
             end
             object cxDBTextEdit1: TcxDBTextEdit [2]
               Left = 74
-              Top = 103
+              Top = 130
               DataBinding.DataField = 'act_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 2
-              Width = 294
+              TabOrder = 3
+              Width = 303
             end
             object cxDBComboBox1: TcxDBComboBox [3]
               Left = 74
-              Top = 130
+              Top = 103
               DataBinding.DataField = 'act_movement'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -77,29 +73,38 @@ inherited frm_account_type: Tfrm_account_type
                 'E - ENTRADA'
                 'S - SAIDA')
               Style.HotTrack = False
-              TabOrder = 3
-              Width = 294
+              TabOrder = 2
+              Width = 121
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
             end
+            inherited dxLayoutGroup2: TdxLayoutGroup
+              AlignHorz = ahClient
+              AlignVert = avTop
+              ItemIndex = 1
+            end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
+              AlignVert = avTop
               CaptionOptions.Text = 'Nome'
               Control = cxDBTextEdit1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 303
               ControlOptions.ShowBorder = False
-              Index = 0
+              Index = 1
             end
             object dxLayoutItem5: TdxLayoutItem
               Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
+              AlignVert = avTop
               CaptionOptions.Text = 'Movimento'
               Control = cxDBComboBox1
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
-              Index = 1
+              Index = 0
             end
           end
         end
@@ -110,6 +115,7 @@ inherited frm_account_type: Tfrm_account_type
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin

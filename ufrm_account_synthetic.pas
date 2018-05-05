@@ -45,7 +45,6 @@ type
     qryacp_name: TStringField;
     qryacp_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1acp_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1account_type_act_id: TcxGridDBColumn;
     cxGrid_1DBTableView1acp_name: TcxGridDBColumn;
     cxGrid_1DBTableView1acp_dt_registration: TcxGridDBColumn;

@@ -491,9 +491,6 @@
           ItemName = 'dxLiberarPed'
         end>
     end
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\pedido de compra'
-    end
     object dxCancelPed: TdxBarButton
       Caption = 'Cancelar Pedido'
       Category = 0

@@ -51,7 +51,6 @@ type
     dxLayoutItem7: TdxLayoutItem;
     cxDBLookupComboBox2: TcxDBLookupComboBox;
     dxLayoutItem8: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     qry_enterprise: TFDQuery;
     ds_enterprise: TDataSource;
@@ -67,17 +66,16 @@ type
     qryrec_dt_registration: TDateTimeField;
     qryrec_title: TStringField;
     cxGrid_1DBTableView1rec_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1enterprise_ent_id: TcxGridDBColumn;
     cxGrid_1DBTableView1client_cli_id: TcxGridDBColumn;
     cxGrid_1DBTableView1rec_title: TcxGridDBColumn;
     cxGrid_1DBTableView1rec_value: TcxGridDBColumn;
-    cxGrid_1DBTableView1rec_description: TcxGridDBColumn;
     cxGrid_1DBTableView1rec_dt_emission: TcxGridDBColumn;
     cxGrid_1DBTableView1rec_dt_registration: TcxGridDBColumn;
     frx_db_recibo: TfrxDBDataset;
     frx_db_recibo_cliente: TfrxDBDataset;
     ACBrExtenso1: TACBrExtenso;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_printExecute(Sender: TObject);

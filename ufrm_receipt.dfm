@@ -13,30 +13,31 @@ inherited frm_receipt: Tfrm_receipt
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1rec_id: TcxGridDBColumn
             DataBinding.FieldName = 'rec_id'
-          end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
+            Width = 75
           end
           object cxGrid_1DBTableView1enterprise_ent_id: TcxGridDBColumn
             DataBinding.FieldName = 'enterprise_ent_id'
+            Width = 75
           end
           object cxGrid_1DBTableView1client_cli_id: TcxGridDBColumn
             DataBinding.FieldName = 'client_cli_id'
+            Width = 75
           end
           object cxGrid_1DBTableView1rec_title: TcxGridDBColumn
             DataBinding.FieldName = 'rec_title'
+            Width = 250
           end
           object cxGrid_1DBTableView1rec_value: TcxGridDBColumn
             DataBinding.FieldName = 'rec_value'
-          end
-          object cxGrid_1DBTableView1rec_description: TcxGridDBColumn
-            DataBinding.FieldName = 'rec_description'
+            Width = 100
           end
           object cxGrid_1DBTableView1rec_dt_emission: TcxGridDBColumn
             DataBinding.FieldName = 'rec_dt_emission'
+            Width = 100
           end
           object cxGrid_1DBTableView1rec_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'rec_dt_registration'
+            Width = 125
           end
         end
       end
@@ -59,13 +60,13 @@ inherited frm_receipt: Tfrm_receipt
               ExplicitLeft = 68
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 256
+              Left = 241
               DataBinding.DataField = 'rec_dt_registration'
-              ExplicitLeft = 256
+              ExplicitLeft = 241
             end
             object cxDBMemo1: TcxDBMemo [2]
               Left = 68
-              Top = 211
+              Top = 184
               DataBinding.DataField = 'rec_description'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -73,18 +74,9 @@ inherited frm_receipt: Tfrm_receipt
               Style.HotTrack = False
               TabOrder = 7
               Height = 89
-              Width = 309
+              Width = 677
             end
-            object cxDBDateEdit1: TcxDBDateEdit [3]
-              Left = 256
-              Top = 184
-              DataBinding.DataField = 'rec_dt_emission'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 6
-              Width = 121
-            end
-            object cxDBTextEdit1: TcxDBTextEdit [4]
+            object cxDBTextEdit1: TcxDBTextEdit [3]
               Left = 68
               Top = 157
               DataBinding.DataField = 'rec_title'
@@ -92,15 +84,16 @@ inherited frm_receipt: Tfrm_receipt
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 4
-              Width = 309
+              Width = 303
             end
-            object cxDBLookupComboBox2: TcxDBLookupComboBox [5]
+            object cxDBLookupComboBox2: TcxDBLookupComboBox [4]
               Left = 68
               Top = 103
               DataBinding.DataField = 'enterprise_ent_id'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
               Properties.KeyFieldNames = 'ent_id'
               Properties.ListColumns = <
                 item
@@ -117,15 +110,16 @@ inherited frm_receipt: Tfrm_receipt
               Properties.OnPopup = cxDBLookupComboBox2PropertiesPopup
               Style.HotTrack = False
               TabOrder = 2
-              Width = 309
+              Width = 303
             end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [6]
+            object cxDBLookupComboBox1: TcxDBLookupComboBox [5]
               Left = 68
               Top = 130
               DataBinding.DataField = 'client_cli_id'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
               Properties.KeyFieldNames = 'cli_id'
               Properties.ListColumns = <
                 item
@@ -142,22 +136,36 @@ inherited frm_receipt: Tfrm_receipt
               Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 3
-              Width = 309
+              Width = 303
             end
-            object cxDBCurrencyEdit1: TcxDBCurrencyEdit [7]
-              Left = 68
-              Top = 184
+            object cxDBCurrencyEdit1: TcxDBCurrencyEdit [6]
+              Left = 406
+              Top = 157
               DataBinding.DataField = 'rec_value'
               DataBinding.DataSource = ds
               Style.HotTrack = False
               TabOrder = 5
-              Width = 121
+              Width = 142
+            end
+            object cxDBDateEdit1: TcxDBDateEdit [7]
+              Left = 615
+              Top = 157
+              DataBinding.DataField = 'rec_dt_emission'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 6
+              Width = 130
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
               ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
-              ItemIndex = 2
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              SizeOptions.Width = 742
+              ItemIndex = 1
             end
             object dxLayoutItem6: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -166,34 +174,18 @@ inherited frm_receipt: Tfrm_receipt
               ControlOptions.OriginalHeight = 89
               ControlOptions.OriginalWidth = 185
               ControlOptions.ShowBorder = False
-              Index = 3
-            end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignVert = avClient
-              CaptionOptions.Text = 'Dt. Emiss'#227'o'
-              Control = cxDBDateEdit1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              LayoutDirection = ldHorizontal
               Index = 2
-              AutoCreated = True
             end
             object dxLayoutItem3: TdxLayoutItem
-              Parent = dxLayoutGroup2
+              Parent = dxLayoutAutoCreatedGroup2
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'Titulo'
               Control = cxDBTextEdit1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 309
+              ControlOptions.OriginalWidth = 303
               ControlOptions.ShowBorder = False
-              Index = 1
+              Index = 0
             end
             object dxLayoutItem8: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup3
@@ -202,7 +194,7 @@ inherited frm_receipt: Tfrm_receipt
               CaptionOptions.Text = 'Empresa'
               Control = cxDBLookupComboBox2
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 309
+              ControlOptions.OriginalWidth = 303
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -225,30 +217,44 @@ inherited frm_receipt: Tfrm_receipt
               AutoCreated = True
             end
             object dxLayoutItem4: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
+              Parent = dxLayoutAutoCreatedGroup2
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Valor'
               Control = cxDBCurrencyEdit1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 142
               ControlOptions.ShowBorder = False
-              Index = 0
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Dt. Emiss'#227'o'
+              Control = cxDBDateEdit1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 130
+              ControlOptions.ShowBorder = False
+              Index = 2
             end
           end
         end
       end
     end
   end
-  inherited dxBarManager_1: TdxBarManager
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\financial'
-    end
-  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
@@ -335,8 +341,6 @@ inherited frm_receipt: Tfrm_receipt
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43196.672751666700000000
     ReportOptions.LastChange = 43201.429792824080000000
-    Left = 415
-    Top = 122
     Datasets = <
       item
         DataSet = frm_dm.frx_db_enterprise
@@ -2646,17 +2650,17 @@ inherited frm_receipt: Tfrm_receipt
     SQL.Strings = (
       'select * from enterprise')
     Left = 583
-    Top = 90
+    Top = 98
   end
   object ds_enterprise: TDataSource
     DataSet = qry_enterprise
     Left = 615
-    Top = 90
+    Top = 98
   end
   object ds_client: TDataSource
     DataSet = qry_client
     Left = 615
-    Top = 138
+    Top = 146
   end
   object qry_client: TFDQuery
     Active = True
@@ -2668,30 +2672,30 @@ inherited frm_receipt: Tfrm_receipt
     SQL.Strings = (
       'select * from client')
     Left = 583
-    Top = 138
+    Top = 146
   end
   object frx_db_recibo: TfrxDBDataset
     UserName = 'frx_db_recibo'
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False
-    Left = 495
-    Top = 122
+    Left = 711
+    Top = 98
   end
   object frx_db_recibo_cliente: TfrxDBDataset
     UserName = 'frx_db_recibo_cliente'
     CloseDataSource = False
     DataSet = qry_client
     BCDToCurrency = False
-    Left = 495
-    Top = 178
+    Left = 711
+    Top = 146
   end
   object ACBrExtenso1: TACBrExtenso
     StrMoeda = 'Real'
     StrMoedas = 'Reais'
     StrCentavo = 'Centavo'
     StrCentavos = 'Centavos'
-    Left = 626
-    Top = 211
+    Left = 714
+    Top = 195
   end
 end

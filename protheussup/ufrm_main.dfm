@@ -6,7 +6,6 @@ inherited frm_main: Tfrm_main
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
-      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar1'
@@ -31,7 +30,6 @@ inherited frm_main: Tfrm_main
       Index = 2
     end
     inherited dxRibbon1Tab_4: TdxRibbonTab
-      Active = False
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar2'
@@ -74,7 +72,7 @@ inherited frm_main: Tfrm_main
           Visible = True
           ItemName = 'dxBarLargeButton5'
         end>
-      Row = 1
+      OneOnRow = False
     end
     object dxBarManager_1Bar2: TdxBar [3]
       Caption = #218'lti'
@@ -150,7 +148,7 @@ inherited frm_main: Tfrm_main
           Visible = True
           ItemName = 'dxBarLargeButton9'
         end>
-      OneOnRow = True
+      OneOnRow = False
       Row = 0
       UseOwnFont = False
       Visible = True

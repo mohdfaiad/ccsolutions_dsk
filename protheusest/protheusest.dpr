@@ -41,7 +41,8 @@ uses
   ufrm_stock_out in '..\ufrm_stock_out.pas' {frm_stock_out},
   ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
   uThred_logged in '..\uThred_logged.pas',
-  Casse.Funcoes in '..\Casse.Funcoes.pas';
+  Casse.CamposRequerido in '..\Casse.CamposRequerido.pas',
+  Class_Report in '..\Class_Report.pas';
 
 {$R *.res}
 

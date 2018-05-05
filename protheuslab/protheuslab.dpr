@@ -25,7 +25,7 @@ uses
   ufrm_insurance in '..\ufrm_insurance.pas' {frm_insurance},
   ufrm_department in '..\ufrm_department.pas' {frm_department},
   ufrm_medicine in '..\ufrm_medicine.pas' {frm_medicine},
-  ufrm_request_type in '..\ufrm_request_type.pas' {frm_request_type},
+  ufrm_requisition_type in '..\ufrm_requisition_type.pas' {frm_requisition_type},
   uthred_logged in '..\uthred_logged.pas',
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise};

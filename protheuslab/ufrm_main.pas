@@ -60,7 +60,11 @@ type
     Action_medicine: TAction;
     dxBarLargeButton12: TdxBarLargeButton;
     dxBarButton1: TdxBarButton;
-    Action_request_type: TAction;
+    Action_requisition_type: TAction;
+    dxBarLargeButton11: TdxBarLargeButton;
+    rbpopmenu_2: TdxRibbonPopupMenu;
+    dxBarButton4: TdxBarButton;
+    dxBarButton5: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -74,7 +78,7 @@ type
     procedure Action_insuranceExecute(Sender: TObject);
     procedure Action_departmentExecute(Sender: TObject);
     procedure Action_medicineExecute(Sender: TObject);
-    procedure Action_request_typeExecute(Sender: TObject);
+    procedure Action_requisition_typeExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -91,7 +95,7 @@ implementation
 uses ufrm_login, ufrm_contract, ufrm_contract_user, ufrm_enterprise,
   ufrm_phonebook, ufrm_receipt, ufrm_supplier, ufrm_client,
   ufrm_exam, ufrm_material, ufrm_report, ufrm_insurance, ufrm_department,
-  ufrm_medicine, ufrm_request_type;
+  ufrm_medicine, ufrm_requisition_type;
 
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin
@@ -280,20 +284,20 @@ begin
   end;
 end;
 
-procedure Tfrm_main.Action_request_typeExecute(Sender: TObject);
+procedure Tfrm_main.Action_requisition_typeExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_request_type) then
+  if not Assigned(frm_requisition_type) then
   begin
-    frm_request_type := Tfrm_request_type.Create(Self);
-    frm_request_type.Height := Bevel_1.Height;
-    frm_request_type.Width := Bevel_1.Width;
-    frm_request_type.Show;
+    frm_requisition_type := Tfrm_requisition_type.Create(Self);
+    frm_requisition_type.Height := Bevel_1.Height;
+    frm_requisition_type.Width := Bevel_1.Width;
+    frm_requisition_type.Show;
   end
   else
   begin
-    frm_request_type.WindowState := wsNormal;
-    frm_request_type.Show;
+    frm_requisition_type.WindowState := wsNormal;
+    frm_requisition_type.Show;
   end;
 end;
 

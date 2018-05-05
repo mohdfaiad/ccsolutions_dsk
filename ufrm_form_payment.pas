@@ -44,7 +44,6 @@ type
     qryfrp_slip: TStringField;
     qryfrp_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1frp_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1bank_bnk_id: TcxGridDBColumn;
     cxGrid_1DBTableView1frp_name: TcxGridDBColumn;
     cxGrid_1DBTableView1frp_slip: TcxGridDBColumn;
@@ -78,11 +77,15 @@ type
     qry_bankbnk_code_transferor: TStringField;
     qry_bankbnk_code_agreement: TStringField;
     qry_bankbnk_dt_registration: TDateTimeField;
-    ds_Bank: TDataSource;
+    ds_bank: TDataSource;
     cxDBLookupComboBox1: TcxDBLookupComboBox;
     dxLayoutItem3: TdxLayoutItem;
-    cxDBCheckBox1: TcxDBCheckBox;
-    dxLayoutItem5: TdxLayoutItem;
+    cxTabSheet1: TcxTabSheet;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutGroup3: TdxLayoutGroup;
+    cxDBCheckBox2: TcxDBCheckBox;
+    dxLayoutItem6: TdxLayoutItem;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);

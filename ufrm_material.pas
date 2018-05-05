@@ -33,7 +33,8 @@ uses
   dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar, cxDBEdit,
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem;
+  cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket,
+  ACBrCEP, frxClass;
 
 type
   Tfrm_material = class(Tfrm_form_default)
@@ -44,7 +45,6 @@ type
     cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
     cxGrid_1DBTableView1mat_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1mat_name: TcxGridDBColumn;
     cxGrid_1DBTableView1mat_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

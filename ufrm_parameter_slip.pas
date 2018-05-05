@@ -33,46 +33,10 @@ uses
   cxDropDownEdit, cxCalendar, cxDBEdit, cxTextEdit, dxLayoutControl,
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, cxCurrencyEdit, cxSpinEdit, cxCheckBox;
+  cxDBLookupComboBox, cxCurrencyEdit, cxSpinEdit, cxCheckBox, cxMemo;
 
 type
   Tfrm_parameter_slip = class(Tfrm_form_default)
-    qryprs_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
-    qrybank_bnk_id: TIntegerField;
-    qryprs_species_document: TStringField;
-    qryprs_species_coin: TStringField;
-    qryprs_acceptance: TStringField;
-    qryprs_wallet: TStringField;
-    qryprs_our_number: TIntegerField;
-    qryprs_value_fine: TBCDField;
-    qryprs_value_interest: TBCDField;
-    qryprs_day_interest: TDateField;
-    qryprs_day_discount: TIntegerField;
-    qryprs_dt_discount: TDateField;
-    qryprs_value_rebate: TBCDField;
-    qryprs_day_rebate: TIntegerField;
-    qryprs_percentage_fine: TBCDField;
-    qryprs_day_protest: TIntegerField;
-    qryprs_dt_registration: TDateTimeField;
-    cxGrid_1DBTableView1prs_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1bank_bnk_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_species_document: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_species_coin: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_acceptance: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_wallet: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_our_number: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_value_fine: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_value_interest: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_day_interest: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_day_discount: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_dt_discount: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_value_rebate: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_day_rebate: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_percentage_fine: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_day_protest: TcxGridDBColumn;
-    cxGrid_1DBTableView1prs_dt_registration: TcxGridDBColumn;
     cxDBLookupComboBox1: TcxDBLookupComboBox;
     dxLayoutItem3: TdxLayoutItem;
     qry_bank: TFDQuery;
@@ -103,45 +67,77 @@ type
     qry_bankbnk_code_transferor: TStringField;
     qry_bankbnk_code_agreement: TStringField;
     qry_bankbnk_dt_registration: TDateTimeField;
-    cxDBComboBox1: TcxDBComboBox;
-    dxLayoutItem4: TdxLayoutItem;
-    cxDBComboBox2: TcxDBComboBox;
-    dxLayoutItem5: TdxLayoutItem;
     cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem7: TdxLayoutItem;
-    cxDBDateEdit1: TcxDBDateEdit;
-    dxLayoutItem11: TdxLayoutItem;
-    cxDBDateEdit2: TcxDBDateEdit;
-    dxLayoutItem13: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     cxDBTextEdit2: TcxDBTextEdit;
     dxLayoutItem8: TdxLayoutItem;
     dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
-    cxDBDateEdit3: TcxDBDateEdit;
-    dxLayoutItem14: TdxLayoutItem;
-    cxDBDateEdit4: TcxDBDateEdit;
-    dxLayoutItem15: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
     cxDBCurrencyEdit1: TcxDBCurrencyEdit;
     dxLayoutItem17: TdxLayoutItem;
     cxDBCurrencyEdit2: TcxDBCurrencyEdit;
     dxLayoutItem18: TdxLayoutItem;
-    cxDBCurrencyEdit3: TcxDBCurrencyEdit;
-    dxLayoutItem9: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup10: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
-    cxDBTextEdit3: TcxDBTextEdit;
-    dxLayoutItem12: TdxLayoutItem;
     cxDBCurrencyEdit4: TcxDBCurrencyEdit;
     dxLayoutItem16: TdxLayoutItem;
-    cxDBCheckBox1: TcxDBCheckBox;
     dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup11: TdxLayoutAutoCreatedGroup;
-    cxDBCheckBox2: TcxDBCheckBox;
+    qryprs_id: TFDAutoIncField;
+    qrycontract_ctr_id: TIntegerField;
+    qrybank_bnk_id: TIntegerField;
+    qryprs_species_document: TStringField;
+    qryprs_species_coin: TStringField;
+    qryprs_acceptance: TStringField;
+    qryprs_wallet: TStringField;
+    qryprs_our_number: TIntegerField;
+    qryprs_value_fine: TBCDField;
+    qryprs_value_interest: TBCDField;
+    qryprs_value_discount: TBCDField;
+    qryprs_day_interest: TIntegerField;
+    qryprs_day_discount: TIntegerField;
+    qryprs_day_protest: TIntegerField;
+    qryprs_dt_registration: TDateTimeField;
+    cxGrid_1DBTableView1prs_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1bank_bnk_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_species_document: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_species_coin: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_acceptance: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_wallet: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_our_number: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_value_fine: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_value_interest: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_value_discount: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_day_interest: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_day_discount: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_day_protest: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_dt_registration: TcxGridDBColumn;
+    qryprs_instruction1: TStringField;
+    qryprs_instruction2: TStringField;
+    qryprs_instruction3: TStringField;
+    qryprs_description: TStringField;
+    cxDBSpinEdit1: TcxDBSpinEdit;
     dxLayoutItem6: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    cxDBSpinEdit2: TcxDBSpinEdit;
+    dxLayoutItem9: TdxLayoutItem;
+    cxDBSpinEdit3: TcxDBSpinEdit;
+    dxLayoutItem10: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
+    cxDBTextEdit3: TcxDBTextEdit;
+    dxLayoutItem4: TdxLayoutItem;
+    cxDBTextEdit4: TcxDBTextEdit;
+    dxLayoutItem5: TdxLayoutItem;
+    cxDBTextEdit5: TcxDBTextEdit;
+    dxLayoutItem11: TdxLayoutItem;
+    cxDBTextEdit6: TcxDBTextEdit;
+    dxLayoutItem12: TdxLayoutItem;
+    cxDBTextEdit7: TcxDBTextEdit;
+    dxLayoutItem13: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
+    cxDBMemo1: TcxDBMemo;
+    dxLayoutItem14: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
+    cxDBComboBox1: TcxDBComboBox;
+    dxLayoutItem15: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure qryAfterInsert(DataSet: TDataSet);
@@ -168,31 +164,30 @@ uses ufrm_dm, Casse.Field_Requested;
 procedure Tfrm_parameter_slip.Action_deleteExecute(Sender: TObject);
 begin
   inherited;
-   qry.Close;
-   qry.Open;
+  qry.Close;
+  qry.Open;
 end;
 
 procedure Tfrm_parameter_slip.Action_saveExecute(Sender: TObject);
 begin
   //--Comando para tirar o focus de todos os componentes da tela-----
-   ActiveControl := nil;
+  ActiveControl := nil;
   //--Cama a função para verificar se existe campos requeridos em branco----
-   TCampoRequerido.TratarRequerido(qry);
+  TCampoRequerido.TratarRequerido(qry);
 
-    with frm_dm.qry3,sql do
-     begin
+  with frm_dm.qry3,sql do
+    begin
       Close;
       Clear;
-      Text:= 'select * from parameter_slip where bank_bnk_id =:bnk_id';
-      ParamByName('bnk_id').Value:=qrybank_bnk_id.AsInteger;
+      Text := 'select * from parameter_slip where bank_bnk_id =:bnk_id';
+      ParamByName('bnk_id').Value := qrybank_bnk_id.AsInteger;
       Prepare;
       Open;
-      if (RecordCount >0) then
-       begin
-        Application.MessageBox('Parametros do Banco Selecionado já está cadastrada !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+      if (RecordCount > 0) then
+      begin
+        Application.MessageBox('Parametros do Banco Selecionado já está cadastrada !','AVISO DO SISTEMA', MB_OK+MB_ICONINFORMATION);
         Exit
-       end
-       else
+       end else
        inherited;
      end;
 end;
@@ -202,21 +197,21 @@ procedure Tfrm_parameter_slip.cxDBLookupComboBox1PropertiesPopup(
 begin
   inherited;
   //Comando para atualização do combobox
-   qry_bank.Refresh;
+  qry_bank.Refresh;
 end;
 
 procedure Tfrm_parameter_slip.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
-   frm_parameter_slip.Destroy;
-   frm_parameter_slip := Nil;
+  frm_parameter_slip.Destroy;
+  frm_parameter_slip := Nil;
 end;
 
 procedure Tfrm_parameter_slip.FormCreate(Sender: TObject);
 begin
   inherited;
-  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+  FDSchemaAdapter_1.AfterApplyUpdate := limpaCache;
 end;
 
 procedure Tfrm_parameter_slip.limpaCache(Sender: TObject);

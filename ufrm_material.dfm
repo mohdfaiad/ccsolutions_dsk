@@ -5,19 +5,23 @@ inherited frm_material: Tfrm_material
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1mat_id: TcxGridDBColumn
             DataBinding.FieldName = 'mat_id'
-          end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
+            Width = 75
           end
           object cxGrid_1DBTableView1mat_name: TcxGridDBColumn
             DataBinding.FieldName = 'mat_name'
+            Width = 250
           end
           object cxGrid_1DBTableView1mat_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'mat_dt_registration'
+            Width = 125
           end
         end
       end
@@ -48,7 +52,7 @@ inherited frm_material: Tfrm_material
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 2
-              Width = 294
+              Width = 303
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -68,7 +72,6 @@ inherited frm_material: Tfrm_material
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -117,5 +120,10 @@ inherited frm_material: Tfrm_material
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
+  end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
 end

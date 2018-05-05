@@ -1,10 +1,9 @@
 inherited frm_form_payment: Tfrm_form_payment
-  Caption = 'Manuten'#231#227'o: Boletos'
+  Caption = 'Manuten'#231#227'o: Formas de Pagamentos'
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -14,21 +13,23 @@ inherited frm_form_payment: Tfrm_form_payment
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1frp_id: TcxGridDBColumn
             DataBinding.FieldName = 'frp_id'
-          end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
+            Width = 75
           end
           object cxGrid_1DBTableView1bank_bnk_id: TcxGridDBColumn
             DataBinding.FieldName = 'bank_bnk_id'
+            Width = 75
           end
           object cxGrid_1DBTableView1frp_name: TcxGridDBColumn
             DataBinding.FieldName = 'frp_name'
+            Width = 250
           end
           object cxGrid_1DBTableView1frp_slip: TcxGridDBColumn
             DataBinding.FieldName = 'frp_slip'
+            Width = 50
           end
           object cxGrid_1DBTableView1frp_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'frp_dt_registration'
+            Width = 125
           end
         end
       end
@@ -51,48 +52,39 @@ inherited frm_form_payment: Tfrm_form_payment
             inherited dbedt_dt_registration: TcxDBDateEdit
               DataBinding.DataField = 'frp_dt_registration'
             end
-            object cxDBTextEdit1: TcxDBTextEdit [2]
+            object cxDBLookupComboBox1: TcxDBLookupComboBox [2]
               Left = 59
               Top = 130
-              DataBinding.DataField = 'frp_name'
+              DataBinding.DataField = 'bank_bnk_id'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
+              Properties.KeyFieldNames = 'bnk_id'
+              Properties.ListColumns = <
+                item
+                  Width = 350
+                  FieldName = 'bnk_name'
+                end
+                item
+                  Width = 75
+                  FieldName = 'bnk_id'
+                end>
+              Properties.ListSource = ds_bank
+              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 3
               Width = 303
             end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [3]
+            object cxDBTextEdit1: TcxDBTextEdit [3]
               Left = 59
               Top = 103
-              DataBinding.DataField = 'bank_bnk_id'
+              DataBinding.DataField = 'frp_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
-              Properties.KeyFieldNames = 'bnk_id'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'bnk_name'
-                end
-                item
-                  FieldName = 'bnk_id'
-                end>
-              Properties.ListSource = ds_Bank
-              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
               Style.HotTrack = False
               TabOrder = 2
               Width = 303
-            end
-            object cxDBCheckBox1: TcxDBCheckBox [4]
-              Left = 17
-              Top = 157
-              Caption = ' Gerar Boleto'
-              DataBinding.DataField = 'frp_slip'
-              DataBinding.DataSource = ds
-              Properties.Alignment = taLeftJustify
-              Properties.ValueChecked = 'S'
-              Properties.ValueUnchecked = 'N'
-              Style.HotTrack = False
-              TabOrder = 4
-              Transparent = True
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
@@ -100,38 +92,73 @@ inherited frm_form_payment: Tfrm_form_payment
             inherited dxLayoutGroup1: TdxLayoutGroup
               ItemIndex = 1
             end
-            inherited dxLayoutGroup2: TdxLayoutGroup
-              ItemIndex = 2
-            end
-            object dxLayoutItem4: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              AlignHorz = ahClient
-              CaptionOptions.Text = 'Nome'
-              Control = cxDBTextEdit1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
               CaptionOptions.Text = 'Banco'
               Control = cxDBLookupComboBox1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 145
+              ControlOptions.OriginalWidth = 303
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem4: TdxLayoutItem
+              Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
+              CaptionOptions.Text = 'Nome'
+              Control = cxDBTextEdit1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 303
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutGroup2
+          end
+        end
+        object cxTabSheet1: TcxTabSheet
+          Caption = 'Boletos'
+          object dxLayoutControl1: TdxLayoutControl
+            Left = 0
+            Top = 0
+            Width = 762
+            Height = 432
+            Align = alClient
+            TabOrder = 0
+            LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            object cxDBCheckBox2: TcxDBCheckBox
+              Left = 17
+              Top = 38
+              Caption = 'Boleto'
+              DataBinding.DataField = 'frp_slip'
+              DataBinding.DataSource = ds
+              Properties.ValueChecked = 'S'
+              Properties.ValueUnchecked = 'N'
+              Style.HotTrack = False
+              TabOrder = 0
+              Transparent = True
+            end
+            object dxLayoutControl1Group_Root: TdxLayoutGroup
               AlignHorz = ahLeft
-              CaptionOptions.Text = 'Gerar Boleto'
+              AlignVert = avTop
+              ButtonOptions.Buttons = <>
+              Hidden = True
+              ShowBorder = False
+              Index = -1
+            end
+            object dxLayoutGroup3: TdxLayoutGroup
+              Parent = dxLayoutControl1Group_Root
+              CaptionOptions.Text = 'Par'#226'metros'
+              ButtonOptions.Buttons = <>
+              Index = 0
+            end
+            object dxLayoutItem6: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              CaptionOptions.Text = 'cxDBCheckBox2'
               CaptionOptions.Visible = False
-              Control = cxDBCheckBox1
+              Control = cxDBCheckBox2
               ControlOptions.OriginalHeight = 19
-              ControlOptions.OriginalWidth = 85
+              ControlOptions.OriginalWidth = 99
               ControlOptions.ShowBorder = False
-              Index = 2
+              Index = 0
             end
           end
         end
@@ -217,6 +244,7 @@ inherited frm_form_payment: Tfrm_form_payment
     Style = <>
   end
   object qry_bank: TFDQuery
+    Active = True
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -226,8 +254,8 @@ inherited frm_form_payment: Tfrm_form_payment
     SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from bank')
-    Left = 592
-    Top = 120
+    Left = 584
+    Top = 96
     object qry_bankbnk_id: TFDAutoIncField
       DisplayLabel = 'Cod. ID'
       DisplayWidth = 15
@@ -387,9 +415,9 @@ inherited frm_form_payment: Tfrm_form_payment
       Origin = 'bnk_dt_registration'
     end
   end
-  object ds_Bank: TDataSource
+  object ds_bank: TDataSource
     DataSet = qry_bank
-    Left = 632
-    Top = 120
+    Left = 616
+    Top = 96
   end
 end

@@ -70,8 +70,19 @@ type
     dxBarButton4: TdxBarButton;
     Action_bill_receive_ticket: TAction;
     dxBarButton5: TdxBarButton;
-    SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
+    rbpopmenu_2: TdxRibbonPopupMenu;
+    dxBarButton6: TdxBarButton;
+    Action_alter_password: TAction;
+    dxBarButton7: TdxBarButton;
+    dxBarLargeButton15: TdxBarLargeButton;
+    Action_form_payment: TAction;
+    dxBarLargeButton16: TdxBarLargeButton;
+    Action_slip: TAction;
+    rbpopmenu_3: TdxRibbonPopupMenu;
+    Action_parameter_slip: TAction;
+    dxBarButton8: TdxBarButton;
+    dxBarButton9: TdxBarButton;
+    dxBarManager_1Bar6: TdxBar;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -87,10 +98,9 @@ type
     procedure Action_account_typeExecute(Sender: TObject);
     procedure Action_account_plan_syntheticExecute(Sender: TObject);
     procedure Action_cost_center_groupExecute(Sender: TObject);
-    procedure Action_Replace_PasswordExecute(Sender: TObject);
-    procedure Action_bill_receive_ticketExecute(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
-    procedure SpeedButton2Click(Sender: TObject);
+    procedure Action_alter_passwordExecute(Sender: TObject);
+    procedure Action_form_paymentExecute(Sender: TObject);
+    procedure Action_parameter_slipExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -119,9 +129,7 @@ begin
     frm_account_synthetic.Height := Bevel_1.Height;
     frm_account_synthetic.Width := Bevel_1.Width;
     frm_account_synthetic.Show;
-  end
-  else
-  begin
+  end else begin
     frm_account_synthetic.WindowState := wsNormal;
     frm_account_synthetic.Show;
   end;
@@ -136,12 +144,22 @@ begin
     frm_account_type.Height := Bevel_1.Height;
     frm_account_type.Width := Bevel_1.Width;
     frm_account_type.Show;
-  end
-  else
-  begin
+  end else begin
     frm_account_type.WindowState := wsNormal;
     frm_account_type.Show;
   end;
+end;
+
+procedure Tfrm_main.Action_alter_passwordExecute(Sender: TObject);
+begin
+  inherited;
+  frm_login.Tag := 99;
+  frm_login.Show;
+  frm_login.cxPageControl1.Pages[0].TabVisible := False;
+  frm_login.cxPageControl1.Pages[2].TabVisible := False;
+  frm_login.cxPageControl1.Pages[1].TabVisible := True;
+  frm_login.cxTabSheet1.Show;
+  frm_login.edt_passwordCurrent.SetFocus;
 end;
 
 procedure Tfrm_main.Action_bankExecute(Sender: TObject);
@@ -153,9 +171,7 @@ begin
     frm_bank.Height := Bevel_1.Height;
     frm_bank.Width := Bevel_1.Width;
     frm_bank.Show;
-  end
-  else
-  begin
+  end else begin
     frm_bank.WindowState := wsNormal;
     frm_bank.Show;
   end;
@@ -170,9 +186,7 @@ begin
     frm_billpay.Height := Bevel_1.Height;
     frm_billpay.Width := Bevel_1.Width;
     frm_billpay.Show;
-  end
-  else
-  begin
+  end else begin
     frm_billpay.WindowState := wsNormal;
     frm_billpay.Show;
   end;
@@ -187,19 +201,10 @@ begin
     frm_billreceive.Height := Bevel_1.Height;
     frm_billreceive.Width := Bevel_1.Width;
     frm_billreceive.Show;
-  end
-  else
-  begin
+  end else begin
     frm_billreceive.WindowState := wsNormal;
     frm_billreceive.Show;
   end;
-end;
-
-procedure Tfrm_main.Action_bill_receive_ticketExecute(Sender: TObject);
-begin
-  inherited;
- Application.CreateForm(Tfrm_billreceive_ticket,frm_billreceive_ticket);
- frm_billreceive_ticket.Showmodal;
 end;
 
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
@@ -211,9 +216,7 @@ begin
     frm_client.Height := Bevel_1.Height;
     frm_client.Width := Bevel_1.Width;
     frm_client.Show;
-  end
-  else
-  begin
+  end else begin
     frm_client.WindowState := wsNormal;
     frm_client.Show;
   end;
@@ -228,9 +231,7 @@ begin
     frm_contract.Height := Bevel_1.Height;
     frm_contract.Width := Bevel_1.Width;
     frm_contract.Show;
-  end
-  else
-  begin
+  end else begin
     frm_contract.WindowState := wsNormal;
     frm_contract.Show;
   end;
@@ -245,9 +246,7 @@ begin
     frm_contract_user.Height := Bevel_1.Height;
     frm_contract_user.Width := Bevel_1.Width;
     frm_contract_user.Show;
-  end
-  else
-  begin
+  end else begin
     frm_contract_user.WindowState := wsNormal;
     frm_contract_user.Show;
   end;
@@ -262,9 +261,7 @@ begin
     frm_cost_center.Height := Bevel_1.Height;
     frm_cost_center.Width := Bevel_1.Width;
     frm_cost_center.Show;
-  end
-  else
-  begin
+  end else begin
     frm_cost_center.WindowState := wsNormal;
     frm_cost_center.Show;
   end;
@@ -279,11 +276,39 @@ begin
     frm_enterprise.Height := Bevel_1.Height;
     frm_enterprise.Width := Bevel_1.Width;
     frm_enterprise.Show;
-  end
-  else
-  begin
+  end else begin
     frm_enterprise.WindowState := wsNormal;
     frm_enterprise.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_form_paymentExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_form_payment) then
+  begin
+    frm_form_payment := Tfrm_form_payment.Create(Self);
+    frm_form_payment.Height := Bevel_1.Height;
+    frm_form_payment.Width := Bevel_1.Width;
+    frm_form_payment.Show;
+  end else begin
+    frm_form_payment.WindowState := wsNormal;
+    frm_form_payment.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_parameter_slipExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_parameter_slip) then
+  begin
+    frm_parameter_slip := Tfrm_parameter_slip.Create(Self);
+    frm_parameter_slip.Height := Bevel_1.Height;
+    frm_parameter_slip.Width := Bevel_1.Width;
+    frm_parameter_slip.Show;
+  end else begin
+    frm_parameter_slip.WindowState := wsNormal;
+    frm_parameter_slip.Show;
   end;
 end;
 
@@ -296,9 +321,7 @@ begin
     frm_phonebook.Height := Bevel_1.Height;
     frm_phonebook.Width := Bevel_1.Width;
     frm_phonebook.Show;
-  end
-  else
-  begin
+  end else begin
     frm_phonebook.WindowState := wsNormal;
     frm_phonebook.Show;
   end;
@@ -313,26 +336,10 @@ begin
     frm_receipt.Height := Bevel_1.Height;
     frm_receipt.Width := Bevel_1.Width;
     frm_receipt.Show;
-  end
-  else
-  begin
+  end else begin
     frm_receipt.WindowState := wsNormal;
     frm_receipt.Show;
   end;
-end;
-
-procedure Tfrm_main.Action_Replace_PasswordExecute(Sender: TObject);
-begin
-  inherited;
-   //Tag 99 quando for para alterar senha não finalizar a apliacação
-   frm_login.Tag:=99;
-   frm_login.Show;
-   frm_login.cxPageControl1.Pages[0].TabVisible:=False;
-   frm_login.cxPageControl1.Pages[2].TabVisible:=False;
-   frm_login.cxPageControl1.Pages[1].TabVisible:=True;
-   frm_login.cxTabSheet1.Show;
-   frm_login.edt_passwordCurrent.SetFocus;
-
 end;
 
 procedure Tfrm_main.Action_reportExecute(Sender: TObject);
@@ -344,9 +351,7 @@ begin
     frm_report.Height := Bevel_1.Height;
     frm_report.Width := Bevel_1.Width;
     frm_report.Show;
-  end
-  else
-  begin
+  end else begin
     frm_report.WindowState := wsNormal;
     frm_report.Show;
   end;
@@ -361,9 +366,7 @@ begin
     frm_supplier.Height := Bevel_1.Height;
     frm_supplier.Width := Bevel_1.Width;
     frm_supplier.Show;
-  end
-  else
-  begin
+  end else begin
     frm_supplier.WindowState := wsNormal;
     frm_supplier.Show;
   end;
@@ -382,44 +385,6 @@ begin
       [mbOK], 0);
     Application.Terminate;
   end;
-end;
-
-procedure Tfrm_main.SpeedButton1Click(Sender: TObject);
-begin
-  inherited;
-
-  if not Assigned(frm_form_payment) then
-  begin
-    frm_form_payment := Tfrm_form_payment.Create(Self);
-    frm_form_payment.Height := Bevel_1.Height;
-    frm_form_payment.Width := Bevel_1.Width;
-   frm_form_payment.Show;
-  end
-  else
-  begin
-    frm_form_payment.WindowState := wsNormal;
-    frm_form_payment.Show;
-  end;
-
-end;
-
-procedure Tfrm_main.SpeedButton2Click(Sender: TObject);
-begin
-  inherited;
-
-   if not Assigned(frm_form_payment) then
-  begin
-    frm_parameter_slip := Tfrm_parameter_slip.Create(Self);
-    frm_parameter_slip.Height := Bevel_1.Height;
-    frm_parameter_slip.Width := Bevel_1.Width;
-   frm_parameter_slip.Show;
-  end
-  else
-  begin
-    frm_parameter_slip.WindowState := wsNormal;
-    frm_parameter_slip.Show;
-  end;
-
 end;
 
 end.

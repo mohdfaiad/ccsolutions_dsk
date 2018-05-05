@@ -33,7 +33,10 @@ uses
   uThred_logged in '..\uThred_logged.pas',
   ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
-  ufrm_billreceive_ticket in '..\ufrm_billreceive_ticket.pas' {frm_billreceive_ticket};
+  ufrm_billreceive_ticket in '..\ufrm_billreceive_ticket.pas' {frm_billreceive_ticket},
+  ufrm_parameter_slip in '..\ufrm_parameter_slip.pas' {frm_parameter_slip},
+  ufrm_form_payment in '..\ufrm_form_payment.pas' {frm_form_payment},
+  Casse.Field_Requested in '..\Casse.Field_Requested.pas';
 
 {$R *.res}
 

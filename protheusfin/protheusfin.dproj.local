@@ -100,6 +100,13 @@
     <File Path="..\ufrm_search_enterprise.pas"/>
     <File Path="..\ufrm_search_enterprise.dfm"/>
     <File Path="..\uThred_logged.pas"/>
+    <File Path="..\ufrm_billreceive_ticket.pas"/>
+    <File Path="..\ufrm_billreceive_ticket.dfm"/>
+    <File Path="..\ufrm_parameter_slip.pas"/>
+    <File Path="..\ufrm_parameter_slip.dfm"/>
+    <File Path="..\ufrm_form_payment.pas"/>
+    <File Path="..\ufrm_form_payment.dfm"/>
+    <File Path="..\Casse.Field_Requested.pas"/>
     <File Path="ufrm_main.pas"/>
     <File Path="ufrm_main.dfm"/>
     <File Path="ufrm_protheusfin.pas"/>

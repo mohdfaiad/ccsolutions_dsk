@@ -1,9 +1,14 @@
 inherited frm_ticket_category: Tfrm_ticket_category
   Caption = 'Manuten'#231#227'o: Ticket Categoria'
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1tkc_id: TcxGridDBColumn
@@ -68,6 +73,7 @@ inherited frm_ticket_category: Tfrm_ticket_category
   end
   inherited qry: TFDQuery
     Active = True
+    AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -80,6 +86,7 @@ inherited frm_ticket_category: Tfrm_ticket_category
       FieldName = 'tkc_id'
       Origin = 'tkc_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault

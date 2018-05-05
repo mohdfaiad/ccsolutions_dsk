@@ -45,6 +45,8 @@ type
     cxGrid_1DBTableView1tkc_dt_registration: TcxGridDBColumn;
     cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure qryAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -57,5 +59,19 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Tfrm_ticket_category.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  frm_ticket_category.Destroy;
+  frm_ticket_category := Nil;
+end;
+
+procedure Tfrm_ticket_category.qryAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+  qrytkc_dt_registration.Value := Date + Time;
+end;
 
 end.

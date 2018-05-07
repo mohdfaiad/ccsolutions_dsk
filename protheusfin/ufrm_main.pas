@@ -83,6 +83,8 @@ type
     dxBarButton8: TdxBarButton;
     dxBarButton9: TdxBarButton;
     dxBarManager_1Bar6: TdxBar;
+    acBoleto: TAction;
+    dxBarButton10: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -101,6 +103,7 @@ type
     procedure Action_alter_passwordExecute(Sender: TObject);
     procedure Action_form_paymentExecute(Sender: TObject);
     procedure Action_parameter_slipExecute(Sender: TObject);
+    procedure acBoletoExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -118,7 +121,22 @@ uses ufrm_login, ufrm_bank, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_receipt, ufrm_supplier, ufrm_billpay,
   ufrm_billreceive, ufrm_report, ufrm_account_type, ufrm_account_synthetic,
   ufrm_cost_center, ufrm_dm, ufrm_billreceive_ticket, ufrm_form_payment,
-  ufrm_parameter_slip;
+  ufrm_parameter_slip, ufrm_billreceive_slip, ufrm_shipping_file;
+
+procedure Tfrm_main.acBoletoExecute(Sender: TObject);
+begin
+  inherited;
+ if not Assigned(frm_shipping_file) then
+  begin
+    frm_shipping_file := Tfrm_shipping_file.Create(Self);
+    frm_shipping_file.Height := Bevel_1.Height;
+    frm_shipping_file.Width := Bevel_1.Width;
+    frm_shipping_file.Show;
+  end else begin
+    frm_shipping_file.WindowState := wsNormal;
+    frm_shipping_file.Show;
+  end;
+end;
 
 procedure Tfrm_main.Action_account_plan_syntheticExecute(Sender: TObject);
 begin

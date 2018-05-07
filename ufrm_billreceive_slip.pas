@@ -249,6 +249,8 @@ if not selecionado then
 
  case tipoCobraca of
   237 :  ACBrBoleto1.Banco.TipoCobranca := cobBradesco;
+  394 :  ACBrBoleto1.Banco.TipoCobranca := cobBradescoSICOOB;
+  003 :  ACBrBoleto1.Banco.TipoCobranca := cobBancoDaAmazonia;
   001 :  ACBrBoleto1.Banco.TipoCobranca := cobBancoDoBrasil;
   004 :  ACBrBoleto1.Banco.TipoCobranca := cobBancoDoNordeste;
   021 :  ACBrBoleto1.Banco.TipoCobranca := cobBanestes;
@@ -258,11 +260,16 @@ if not selecionado then
   041 :  ACBrBoleto1.Banco.TipoCobranca := cobBanrisul;
   070 :  ACBrBoleto1.Banco.TipoCobranca := cobBRB;
   104 :  ACBrBoleto1.Banco.TipoCobranca := cobCaixaEconomica;
+  473 :  ACBrBoleto1.Banco.TipoCobranca := cobCaixaSicob;
+  320 :  ACBrBoleto1.Banco.TipoCobranca := cobBicBanco;
+  422 :  ACBrBoleto1.Banco.TipoCobranca := cobBancoSafra;
   341 :  ACBrBoleto1.Banco.TipoCobranca := cobItau;
   389 :  ACBrBoleto1.Banco.TipoCobranca := cobBancoMercantil;
   748 :  ACBrBoleto1.Banco.TipoCobranca := cobSicred;
   756 :  ACBrBoleto1.Banco.TipoCobranca := cobBancoob;
   399 :  ACBrBoleto1.Banco.TipoCobranca := cobHSBC;
+  091 :  ACBrBoleto1.Banco.TipoCobranca := cobUnicredRS;
+  085 :  ACBrBoleto1.Banco.TipoCobranca := cobBancoCECRED;
  end;
 
 with ACBrBoleto1.Cedente do

@@ -1,10 +1,16 @@
 inherited frm_insurance: Tfrm_insurance
   Caption = 'Manuten'#231#227'o: Conv'#234'nios'
   OnClose = FormClose
+  ExplicitTop = -287
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ins_id: TcxGridDBColumn
@@ -134,32 +140,32 @@ inherited frm_insurance: Tfrm_insurance
             end
             object cxDBTextEdit3: TcxDBTextEdit [2]
               Left = 63
-              Top = 184
+              Top = 211
               DataBinding.DataField = 'ins_email'
               DataBinding.DataSource = ds
               Properties.CharCase = ecLowerCase
               Style.HotTrack = False
-              TabOrder = 6
-              Width = 298
+              TabOrder = 7
+              Width = 307
             end
             object cxDBTextEdit4: TcxDBTextEdit [3]
               Left = 63
-              Top = 249
+              Top = 276
               DataBinding.DataField = 'ins_cnpj'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 7
+              TabOrder = 8
               Width = 121
             end
             object cxDBTextEdit5: TcxDBTextEdit [4]
               Left = 240
-              Top = 249
+              Top = 276
               DataBinding.DataField = 'ins_im'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 8
+              TabOrder = 9
               Width = 121
             end
             object cxDBDateEdit2: TcxDBDateEdit [5]
@@ -173,23 +179,23 @@ inherited frm_insurance: Tfrm_insurance
             end
             object cxDBTextEdit2: TcxDBTextEdit [6]
               Left = 63
-              Top = 157
+              Top = 184
               DataBinding.DataField = 'ins_last_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 5
-              Width = 298
+              TabOrder = 6
+              Width = 307
             end
             object cxDBTextEdit1: TcxDBTextEdit [7]
               Left = 63
-              Top = 130
+              Top = 157
               DataBinding.DataField = 'ins_first_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 4
-              Width = 298
+              TabOrder = 5
+              Width = 307
             end
             object cxDBComboBox1: TcxDBComboBox [8]
               Left = 63
@@ -205,7 +211,25 @@ inherited frm_insurance: Tfrm_insurance
               TabOrder = 2
               Width = 121
             end
+            object cxDBLookupComboBox1: TcxDBLookupComboBox [9]
+              Left = 63
+              Top = 130
+              DataBinding.DataField = 'table_price_tbp_id'
+              DataBinding.DataSource = ds
+              Properties.KeyFieldNames = 'tbp_id'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'tbp_name'
+                end>
+              Properties.ListSource = ds_table_price
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 307
+            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
+              ItemIndex = 1
+            end
+            inherited dxLayoutGroup2: TdxLayoutGroup
               ItemIndex = 1
             end
             object dxLayoutItem5: TdxLayoutItem
@@ -215,7 +239,7 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
-              Index = 3
+              Index = 4
             end
             object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutControl_1Group_Root
@@ -266,7 +290,7 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
-              Index = 2
+              Index = 3
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -276,7 +300,7 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
-              Index = 1
+              Index = 2
             end
             object dxLayoutItem25: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup1
@@ -295,6 +319,15 @@ inherited frm_insurance: Tfrm_insurance
               Index = 0
               AutoCreated = True
             end
+            object dxLayoutItem23: TdxLayoutItem
+              Parent = dxLayoutGroup2
+              CaptionOptions.Text = 'Tabela'
+              Control = cxDBLookupComboBox1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 145
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
           end
         end
         object cxTabSheet1: TcxTabSheet
@@ -307,10 +340,6 @@ inherited frm_insurance: Tfrm_insurance
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitLeft = 264
-            ExplicitTop = 152
-            ExplicitWidth = 300
-            ExplicitHeight = 250
             object cxDBButtonEdit1: TcxDBButtonEdit
               Left = 61
               Top = 38
@@ -446,7 +475,6 @@ inherited frm_insurance: Tfrm_insurance
               Parent = dxLayoutControl1Group_Root
               CaptionOptions.Text = 'Endere'#231'o'
               ButtonOptions.Buttons = <>
-              ItemIndex = 1
               Index = 0
             end
             object dxLayoutGroup5: TdxLayoutGroup
@@ -636,10 +664,6 @@ inherited frm_insurance: Tfrm_insurance
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitLeft = 344
-            ExplicitTop = 168
-            ExplicitWidth = 300
-            ExplicitHeight = 250
             object cxDBDateEdit1: TcxDBDateEdit
               Left = 128
               Top = 38
@@ -663,7 +687,6 @@ inherited frm_insurance: Tfrm_insurance
               AlignVert = avTop
               ButtonOptions.Buttons = <>
               Hidden = True
-              ItemIndex = 1
               ShowBorder = False
               Index = -1
             end
@@ -706,7 +729,6 @@ inherited frm_insurance: Tfrm_insurance
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -720,6 +742,7 @@ inherited frm_insurance: Tfrm_insurance
       FieldName = 'ins_id'
       Origin = 'ins_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -886,6 +909,11 @@ inherited frm_insurance: Tfrm_insurance
       FieldName = 'ins_dt_registration'
       Origin = 'ins_dt_registration'
     end
+    object qrytable_price_tbp_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'table_price_tbp_id'
+      Origin = 'table_price_tbp_id'
+    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -900,5 +928,51 @@ inherited frm_insurance: Tfrm_insurance
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
+  end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
+  object qry_table_price: TFDQuery
+    Active = True
+    IndexFieldNames = 'contract_ctr_id'
+    MasterSource = frm_dm.ds_signin
+    MasterFields = 'ctr_id'
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select tbp_id,tbp_name,contract_ctr_id from table_price'
+      'where contract_ctr_id = :ctr_id'
+      'order by tbp_name')
+    Left = 239
+    Top = 450
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftAutoInc
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qry_table_pricetbp_id: TFDAutoIncField
+      FieldName = 'tbp_id'
+      Origin = 'tbp_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qry_table_pricetbp_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tbp_name'
+      Origin = 'tbp_name'
+      Size = 25
+    end
+    object qry_table_pricecontract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
+    end
+  end
+  object ds_table_price: TDataSource
+    DataSet = qry_table_price
+    Left = 311
+    Top = 458
   end
 end

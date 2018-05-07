@@ -33,7 +33,8 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  cxButtonEdit, cxSpinEdit;
+  cxButtonEdit, cxSpinEdit, ACBrSocket, ACBrCEP, frxClass, cxLookupEdit,
+  cxDBLookupEdit, cxDBLookupComboBox;
 
 type
   Tfrm_insurance = class(Tfrm_form_default)
@@ -147,6 +148,14 @@ type
     dxLayoutItem25: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     cxGrid_1DBTableView1ins_status: TcxGridDBColumn;
+    qrytable_price_tbp_id: TIntegerField;
+    qry_table_price: TFDQuery;
+    ds_table_price: TDataSource;
+    qry_table_pricetbp_id: TFDAutoIncField;
+    qry_table_pricetbp_name: TStringField;
+    qry_table_pricecontract_ctr_id: TIntegerField;
+    cxDBLookupComboBox1: TcxDBLookupComboBox;
+    dxLayoutItem23: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
   private

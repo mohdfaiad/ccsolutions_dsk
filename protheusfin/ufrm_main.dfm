@@ -1,5 +1,6 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Financeiro - CCS Protheus.'
+  ExplicitLeft = -401
   ExplicitWidth = 1024
   ExplicitHeight = 640
   PixelsPerInch = 96
@@ -16,9 +17,11 @@ inherited frm_main: Tfrm_main
   end
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
+      Active = False
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
+      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar2'
@@ -64,6 +67,8 @@ inherited frm_main: Tfrm_main
       FloatClientHeight = 22
     end
     inherited dxBarManager_1Bar1: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 87
       FloatClientHeight = 270
       ItemLinks = <
@@ -158,6 +163,10 @@ inherited frm_main: Tfrm_main
         item
           Visible = True
           ItemName = 'dxBarLargeButton10'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton10'
         end>
       OneOnRow = False
       Row = 0
@@ -188,7 +197,7 @@ inherited frm_main: Tfrm_main
     object dxBarManager_1Bar6: TdxBar [7]
       Caption = 'Cont'#225'bil'
       CaptionButtons = <>
-      DockedLeft = 364
+      DockedLeft = 406
       DockedTop = 0
       FloatLeft = 1042
       FloatTop = 8
@@ -719,6 +728,10 @@ inherited frm_main: Tfrm_main
       Action = Action_slip
       Category = 0
     end
+    object dxBarButton10: TdxBarButton
+      Action = acBoleto
+      Category = 0
+    end
   end
   inherited ActionList_1: TActionList
     object Action_contract: TAction
@@ -848,6 +861,10 @@ inherited frm_main: Tfrm_main
       Caption = 'Par'#226'metros'
       Hint = 'Manuten'#231#227'o Par'#226'metros Boletos'
       OnExecute = Action_parameter_slipExecute
+    end
+    object acBoleto: TAction
+      Caption = 'Boleto'
+      OnExecute = acBoletoExecute
     end
   end
   inherited cxImageList_1: TcxImageList
@@ -3394,7 +3411,7 @@ inherited frm_main: Tfrm_main
       end>
     Ribbon = dxRibbon1
     UseOwnFont = False
-    Left = 624
+    Left = 616
     Top = 56
   end
   object rbpopmenu_2: TdxRibbonPopupMenu

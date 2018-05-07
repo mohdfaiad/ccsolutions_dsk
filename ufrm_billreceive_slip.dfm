@@ -1,17 +1,21 @@
 inherited frm_billreceive_slip: Tfrm_billreceive_slip
   Caption = 'frm_billreceive_slip'
   ClientHeight = 577
-  ExplicitLeft = -214
   ExplicitHeight = 616
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 522
-    Properties.ActivePage = cxTabSheet_2
+    ExplicitHeight = 522
     ClientRectBottom = 516
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 488
       inherited cxGrid_1: TcxGrid
         Height = 482
+        ExplicitHeight = 482
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           DataController.Options = [dcoAssignMasterDetailKeys, dcoSaveExpanding]
           OptionsData.Deleting = False
@@ -144,14 +148,22 @@ inherited frm_billreceive_slip: Tfrm_billreceive_slip
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 776
+      ExplicitHeight = 488
       inherited cxPageControl_2: TcxPageControl
         Height = 482
-        ExplicitLeft = -85
-        ExplicitTop = -13
+        ExplicitHeight = 482
         ClientRectBottom = 476
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 762
+          ExplicitHeight = 448
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 448
+            ExplicitHeight = 448
             object cxGrid1: TcxGrid [0]
               Left = 17
               Top = 103
@@ -345,9 +357,11 @@ inherited frm_billreceive_slip: Tfrm_billreceive_slip
               CaptionOptions.Visible = False
               ItemIndex = 2
             end
-            inherited dxLayoutGroup2: TdxLayoutGroup [10]
+            inherited dxLayoutGroup1: TdxLayoutGroup
+              AlignHorz = ahClient
+              ItemIndex = 1
             end
-            object dxLayoutItem3: TdxLayoutItem [11]
+            object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
               Control = cxGrid1
               ControlOptions.OriginalHeight = 200
@@ -355,7 +369,7 @@ inherited frm_billreceive_slip: Tfrm_billreceive_slip
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutGroup3: TdxLayoutGroup [12]
+            object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutControl_1Group_Root
               AlignHorz = ahClient
               AlignVert = avTop
@@ -364,7 +378,7 @@ inherited frm_billreceive_slip: Tfrm_billreceive_slip
               ItemIndex = 1
               Index = 2
             end
-            object dxLayoutItem4: TdxLayoutItem [13]
+            object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup2
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -374,10 +388,6 @@ inherited frm_billreceive_slip: Tfrm_billreceive_slip
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 0
-            end
-            inherited dxLayoutGroup1: TdxLayoutGroup [14]
-              AlignHorz = ahClient
-              ItemIndex = 1
             end
             object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup3
@@ -395,7 +405,7 @@ inherited frm_billreceive_slip: Tfrm_billreceive_slip
               SizeOptions.SizableHorz = True
               Control = editInstrucao1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 444
+              ControlOptions.OriginalWidth = 495
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -647,6 +657,7 @@ inherited frm_billreceive_slip: Tfrm_billreceive_slip
       FieldName = 'brc_id'
       Origin = 'brc_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrybrc_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
@@ -765,6 +776,7 @@ inherited frm_billreceive_slip: Tfrm_billreceive_slip
       FieldName = 'prs_id'
       Origin = 'prs_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_parameter_slipprs_our_number: TIntegerField
       AutoGenerateValue = arDefault
@@ -800,6 +812,7 @@ inherited frm_billreceive_slip: Tfrm_billreceive_slip
       FieldName = 'ent_id'
       Origin = 'ent_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_enterpriseent_first_name: TStringField
       AutoGenerateValue = arDefault
@@ -887,6 +900,7 @@ inherited frm_billreceive_slip: Tfrm_billreceive_slip
       FieldName = 'cli_id'
       Origin = 'cli_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_clientcli_first_name: TStringField
       AutoGenerateValue = arDefault

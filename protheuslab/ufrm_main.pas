@@ -65,6 +65,8 @@ type
     rbpopmenu_2: TdxRibbonPopupMenu;
     dxBarButton4: TdxBarButton;
     dxBarButton5: TdxBarButton;
+    acTable: TAction;
+    dxBarButton6: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -79,6 +81,7 @@ type
     procedure Action_departmentExecute(Sender: TObject);
     procedure Action_medicineExecute(Sender: TObject);
     procedure Action_requisition_typeExecute(Sender: TObject);
+    procedure acTableExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -95,7 +98,23 @@ implementation
 uses ufrm_login, ufrm_contract, ufrm_contract_user, ufrm_enterprise,
   ufrm_phonebook, ufrm_receipt, ufrm_supplier, ufrm_client,
   ufrm_exam, ufrm_material, ufrm_report, ufrm_insurance, ufrm_department,
-  ufrm_medicine, ufrm_requisition_type;
+  ufrm_medicine, ufrm_requisition_type, ufrm_table_price;
+
+procedure Tfrm_main.acTableExecute(Sender: TObject);
+begin
+if not Assigned(frm_table_price) then
+begin
+frm_table_price := Tfrm_table_price.Create(Self);
+frm_table_price.Height := Bevel_1.Height;
+frm_table_price.Width := Bevel_1.Width;
+frm_table_price.Show;
+end
+else
+begin
+frm_table_price.WindowState := wsNormal;
+frm_table_price.Show;
+end;
+end;
 
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin

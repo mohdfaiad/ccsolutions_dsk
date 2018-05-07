@@ -1,5 +1,8 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo ProtheusLAB - CCS Protheus.'
+  ExplicitLeft = -105
+  ExplicitWidth = 1024
+  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited Image_1: TImage
@@ -160,6 +163,10 @@ inherited frm_main: Tfrm_main
       FloatClientWidth = 0
       FloatClientHeight = 0
       ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton6'
+        end
         item
           Visible = True
           ItemName = 'dxBarLargeButton7'
@@ -511,6 +518,10 @@ inherited frm_main: Tfrm_main
       Action = Action_material
       Category = 0
     end
+    object dxBarButton6: TdxBarButton
+      Action = acTable
+      Category = 0
+    end
   end
   inherited ActionList_1: TActionList
     object Action_contract: TAction
@@ -600,6 +611,10 @@ inherited frm_main: Tfrm_main
       Caption = 'Tipos de Requisi'#231#245'es'
       Hint = 'Manuten'#231#227'o Tipos de Requisi'#231#245'es'
       OnExecute = Action_requisition_typeExecute
+    end
+    object acTable: TAction
+      Caption = 'acTable'
+      OnExecute = acTableExecute
     end
   end
   inherited cxImageList_1: TcxImageList

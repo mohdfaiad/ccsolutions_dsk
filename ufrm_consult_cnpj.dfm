@@ -516,8 +516,8 @@ object frm_consult_cnpj: Tfrm_consult_cnpj
     Top = 96
   end
   object dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
-    Left = 208
-    Top = 96
+    Left = 272
+    Top = 40
     object dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
     end
   end

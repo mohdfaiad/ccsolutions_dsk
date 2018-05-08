@@ -19,9 +19,9 @@ object frm_search: Tfrm_search
   TextHeight = 13
   object cxGrid_1: TcxGrid
     Left = 0
-    Top = 28
+    Top = 27
     Width = 594
-    Height = 273
+    Height = 274
     Align = alClient
     BorderStyle = cxcbsNone
     TabOrder = 0
@@ -68,7 +68,7 @@ object frm_search: Tfrm_search
     Left = 0
     Top = 0
     Width = 594
-    Height = 28
+    Height = 27
     Align = dalTop
     BarManager = dxBarManager_1
   end

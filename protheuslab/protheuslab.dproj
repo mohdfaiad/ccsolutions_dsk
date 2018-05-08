@@ -203,16 +203,20 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\uthred_logged.pas"/>
-        <DCCReference Include="..\models\ufrm_search.pas">
-            <Form>frm_search</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\ufrm_search_enterprise.pas">
             <Form>frm_search_enterprise</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_table_price.pas">
             <Form>frm_table_price</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\models\ufrm_search.pas">
+            <Form>frm_search</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_changePrice.pas">
+            <Form>frm_changePrice</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

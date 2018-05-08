@@ -67,6 +67,8 @@ type
     dxBarButton5: TdxBarButton;
     acTable: TAction;
     dxBarButton6: TdxBarButton;
+    acAlterarPreco: TAction;
+    dxBarButton7: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -82,6 +84,7 @@ type
     procedure Action_medicineExecute(Sender: TObject);
     procedure Action_requisition_typeExecute(Sender: TObject);
     procedure acTableExecute(Sender: TObject);
+    procedure acAlterarPrecoExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -98,7 +101,7 @@ implementation
 uses ufrm_login, ufrm_contract, ufrm_contract_user, ufrm_enterprise,
   ufrm_phonebook, ufrm_receipt, ufrm_supplier, ufrm_client,
   ufrm_exam, ufrm_material, ufrm_report, ufrm_insurance, ufrm_department,
-  ufrm_medicine, ufrm_requisition_type, ufrm_table_price;
+  ufrm_medicine, ufrm_requisition_type, ufrm_table_price, ufrm_changePrice;
 
 procedure Tfrm_main.acTableExecute(Sender: TObject);
 begin
@@ -114,6 +117,23 @@ begin
 frm_table_price.WindowState := wsNormal;
 frm_table_price.Show;
 end;
+end;
+
+procedure Tfrm_main.acAlterarPrecoExecute(Sender: TObject);
+begin
+if not Assigned(frm_changePrice) then
+begin
+frm_changePrice := Tfrm_changePrice(Self);
+frm_changePrice.Height := Bevel_1.Height;
+frm_changePrice.Width := Bevel_1.Width;
+frm_changePrice.Show;
+end
+else
+begin
+frm_changePrice.WindowState := wsNormal;
+frm_changePrice.Show;
+end;
+
 end;
 
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);

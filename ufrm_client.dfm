@@ -4,6 +4,7 @@ inherited frm_client: Tfrm_client
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -187,6 +188,7 @@ inherited frm_client: Tfrm_client
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = cxTabSheet_address
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -293,7 +295,7 @@ inherited frm_client: Tfrm_client
               DataBinding.DataField = 'cli_image'
               DataBinding.DataSource = ds
               Properties.FitMode = ifmProportionalStretch
-              Properties.GraphicClassName = 'TJPEGImage'
+              Properties.GraphicClassName = 'TdxPNGImage'
               Style.HotTrack = False
               TabOrder = 2
               Height = 102
@@ -308,9 +310,6 @@ inherited frm_client: Tfrm_client
               Style.HotTrack = False
               TabOrder = 11
               Width = 121
-            end
-            inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
             end
             inherited dxLayoutGroup1: TdxLayoutGroup
               ItemIndex = 1
@@ -1287,7 +1286,7 @@ inherited frm_client: Tfrm_client
             end
           end
         end
-        object cxTabSheet3: TcxTabSheet
+        object tabTelefonia: TcxTabSheet
           Caption = 'Telefonia'
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
@@ -1334,6 +1333,115 @@ inherited frm_client: Tfrm_client
             end
           end
         end
+        object tabLaboratorio: TcxTabSheet
+          Caption = 'Laborat'#243'rio'
+          object dxLayoutControl5: TdxLayoutControl
+            Left = 0
+            Top = 0
+            Width = 762
+            Height = 432
+            Align = alClient
+            TabOrder = 0
+            LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            object cxGrid1: TcxGrid
+              Left = 17
+              Top = 38
+              Width = 724
+              Height = 200
+              TabOrder = 0
+              object cxGrid1DBTableView1: TcxGridDBTableView
+                Navigator.Buttons.CustomButtons = <>
+                Navigator.Buttons.Images = cxImageList_1
+                Navigator.Buttons.First.ImageIndex = 0
+                Navigator.Buttons.PriorPage.Visible = False
+                Navigator.Buttons.Prior.ImageIndex = 1
+                Navigator.Buttons.Next.ImageIndex = 2
+                Navigator.Buttons.NextPage.Visible = False
+                Navigator.Buttons.Last.ImageIndex = 3
+                Navigator.Buttons.Insert.ImageIndex = 4
+                Navigator.Buttons.Append.Visible = False
+                Navigator.Buttons.Delete.ImageIndex = 7
+                Navigator.Buttons.Edit.ImageIndex = 5
+                Navigator.Buttons.Post.ImageIndex = 6
+                Navigator.Buttons.Cancel.ImageIndex = 8
+                Navigator.Buttons.Refresh.ImageIndex = 9
+                Navigator.Buttons.SaveBookmark.Visible = False
+                Navigator.Buttons.GotoBookmark.Visible = False
+                Navigator.Buttons.Filter.ImageIndex = 10
+                Navigator.Visible = True
+                DataController.DataSource = ds_client_insirance
+                DataController.Summary.DefaultGroupSummaryItems = <>
+                DataController.Summary.FooterSummaryItems = <>
+                DataController.Summary.SummaryGroups = <>
+                object cxGrid1DBTableView1cin_id: TcxGridDBColumn
+                  Caption = 'C'#243'd. ID'
+                  DataBinding.FieldName = 'cin_id'
+                  MinWidth = 15
+                  Width = 50
+                end
+                object cxGrid1DBTableView1client_cli_id: TcxGridDBColumn
+                  Caption = 'Cliente'
+                  DataBinding.FieldName = 'client_cli_id'
+                  Width = 50
+                end
+                object cxGrid1DBTableView1insurance_ins_id: TcxGridDBColumn
+                  Caption = 'Conv'#234'nio'
+                  DataBinding.FieldName = 'insurance_ins_id'
+                  PropertiesClassName = 'TcxLookupComboBoxProperties'
+                  Properties.KeyFieldNames = 'ins_id'
+                  Properties.ListColumns = <
+                    item
+                      Caption = 'Nome'
+                      Width = 200
+                      FieldName = 'ins_first_name'
+                    end
+                    item
+                      Caption = 'C'#243'digo'
+                      FieldName = 'ins_id'
+                    end>
+                  Properties.ListSource = ds_insurance
+                  Width = 200
+                end
+                object cxGrid1DBTableView1cin_dt_registration: TcxGridDBColumn
+                  Caption = 'Registro'
+                  DataBinding.FieldName = 'cin_dt_registration'
+                  Width = 120
+                end
+              end
+              object cxGrid1Level1: TcxGridLevel
+                GridView = cxGrid1DBTableView1
+              end
+            end
+            object dxLayoutControl5Group_Root: TdxLayoutGroup
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Visible = False
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              ButtonOptions.Buttons = <>
+              Hidden = True
+              ShowBorder = False
+              Index = -1
+            end
+            object dxLayoutGroup12: TdxLayoutGroup
+              Parent = dxLayoutControl5Group_Root
+              CaptionOptions.Text = 'Conv'#234'nios'
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              SizeOptions.Width = 738
+              ButtonOptions.Buttons = <>
+              Index = 0
+            end
+            object dxLayoutItem43: TdxLayoutItem
+              Parent = dxLayoutGroup12
+              Control = cxGrid1
+              ControlOptions.OriginalHeight = 200
+              ControlOptions.OriginalWidth = 250
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+          end
+        end
       end
     end
   end
@@ -1374,13 +1482,14 @@ inherited frm_client: Tfrm_client
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from client')
     object qrycli_id: TFDAutoIncField
@@ -1657,13 +1766,111 @@ inherited frm_client: Tfrm_client
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
+    Top = 24
+  end
+  inherited FDSchemaAdapter_1: TFDSchemaAdapter
+    Top = 16
   end
   inherited frxReport_1: TfrxReport
+    Top = 24
     Datasets = <>
     Variables = <>
     Style = <>
   end
   inherited ACBrCEP_1: TACBrCEP
     OnBuscaEfetuada = ACBrCEP_1BuscaEfetuada
+    Top = 16
+  end
+  object qry_insurance: TFDQuery
+    Active = True
+    IndexFieldNames = 'contract_ctr_id'
+    MasterSource = frm_dm.ds_signin
+    MasterFields = 'ctr_id'
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select ins_id,contract_ctr_id,ins_first_name from insurance'
+      'where contract_ctr_id = :ctr_id'
+      'order by ins_first_name')
+    Left = 503
+    Top = 186
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftAutoInc
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qry_insuranceins_id: TFDAutoIncField
+      FieldName = 'ins_id'
+      Origin = 'ins_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object qry_insurancecontract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
+    end
+    object qry_insuranceins_first_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ins_first_name'
+      Origin = 'ins_first_name'
+      Size = 50
+    end
+  end
+  object qry_client_insirance: TFDQuery
+    AfterInsert = qry_client_insiranceAfterInsert
+    CachedUpdates = True
+    IndexFieldNames = 'client_cli_id'
+    MasterSource = ds
+    MasterFields = 'cli_id'
+    DetailFields = 'client_cli_id'
+    Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      'select * from client_insurance'#10
+      'where client_cli_id = :cli_id')
+    Left = 303
+    Top = 242
+    ParamData = <
+      item
+        Name = 'CLI_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qry_client_insirancecin_id: TFDAutoIncField
+      FieldName = 'cin_id'
+      Origin = 'cin_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object qry_client_insiranceclient_cli_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'client_cli_id'
+      Origin = 'client_cli_id'
+    end
+    object qry_client_insiranceinsurance_ins_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'insurance_ins_id'
+      Origin = 'insurance_ins_id'
+    end
+    object qry_client_insirancecin_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'cin_dt_registration'
+      Origin = 'cin_dt_registration'
+    end
+  end
+  object ds_client_insirance: TDataSource
+    DataSet = qry_client_insirance
+    Left = 407
+    Top = 242
+  end
+  object ds_insurance: TDataSource
+    DataSet = qry_insurance
+    Left = 583
+    Top = 186
   end
 end

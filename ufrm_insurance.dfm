@@ -1,16 +1,12 @@
 inherited frm_insurance: Tfrm_insurance
   Caption = 'Manuten'#231#227'o: Conv'#234'nios'
   OnClose = FormClose
-  ExplicitTop = -287
+  ExplicitTop = -291
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ins_id: TcxGridDBColumn
@@ -944,8 +940,8 @@ inherited frm_insurance: Tfrm_insurance
       'select tbp_id,tbp_name,contract_ctr_id from table_price'
       'where contract_ctr_id = :ctr_id'
       'order by tbp_name')
-    Left = 239
-    Top = 450
+    Left = 247
+    Top = 458
     ParamData = <
       item
         Name = 'CTR_ID'
@@ -957,6 +953,7 @@ inherited frm_insurance: Tfrm_insurance
       FieldName = 'tbp_id'
       Origin = 'tbp_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_table_pricetbp_name: TStringField
       AutoGenerateValue = arDefault

@@ -27,18 +27,22 @@ uses
   ufrm_medicine in '..\ufrm_medicine.pas' {frm_medicine},
   ufrm_requisition_type in '..\ufrm_requisition_type.pas' {frm_requisition_type},
   uthred_logged in '..\uthred_logged.pas',
-  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
-  ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price};
+  ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
+  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
+  ufrm_changePrice in '..\ufrm_changePrice.pas' {frm_changePrice};
 
 {$R *.res}
 
 begin
   Application.Initialize;
+  modulo:='LABORATORIO';
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfrm_dm, frm_dm);
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
+  Application.CreateForm(Tfrm_search, frm_search);
+  Application.CreateForm(Tfrm_changePrice, frm_changePrice);
   Application.Run;
 end.

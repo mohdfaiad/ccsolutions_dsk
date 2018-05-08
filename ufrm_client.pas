@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxImage, cxShellComboBox, QExport4Dialog, cxBarEditItem,
   dxBarExtItems, QImport3Wizard, Vcl.StdCtrls, frxClass, ACBrSocket, ACBrCEP,
-  dxLayoutControlAdapters, cxButtons;
+  dxLayoutControlAdapters, cxButtons, cxDBLookupComboBox, ufrm_main_default;
 
 type
   Tfrm_client = class(Tfrm_form_default)
@@ -235,7 +235,7 @@ type
     Action_consult_cpf: TAction;
     Action_consult_cnpj: TAction;
     dxBarButton1: TdxBarButton;
-    cxTabSheet3: TcxTabSheet;
+    tabTelefonia: TcxTabSheet;
     Label1: TLabel;
     dxLayoutControl4Group_Root: TdxLayoutGroup;
     dxLayoutControl4: TdxLayoutControl;
@@ -244,6 +244,29 @@ type
     dxLayoutItem42: TdxLayoutItem;
     qrycli_status: TStringField;
     qrycli_account_code_sippulse: TStringField;
+    qry_insurance: TFDQuery;
+    qry_insuranceins_id: TFDAutoIncField;
+    qry_insurancecontract_ctr_id: TIntegerField;
+    qry_insuranceins_first_name: TStringField;
+    tabLaboratorio: TcxTabSheet;
+    dxLayoutControl5Group_Root: TdxLayoutGroup;
+    dxLayoutControl5: TdxLayoutControl;
+    dxLayoutGroup12: TdxLayoutGroup;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    dxLayoutItem43: TdxLayoutItem;
+    qry_client_insirance: TFDQuery;
+    qry_client_insirancecin_id: TFDAutoIncField;
+    qry_client_insiranceclient_cli_id: TIntegerField;
+    qry_client_insiranceinsurance_ins_id: TIntegerField;
+    qry_client_insirancecin_dt_registration: TDateTimeField;
+    ds_client_insirance: TDataSource;
+    cxGrid1DBTableView1cin_id: TcxGridDBColumn;
+    cxGrid1DBTableView1client_cli_id: TcxGridDBColumn;
+    cxGrid1DBTableView1insurance_ins_id: TcxGridDBColumn;
+    cxGrid1DBTableView1cin_dt_registration: TcxGridDBColumn;
+    ds_insurance: TDataSource;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);
@@ -258,9 +281,12 @@ type
     procedure cxDBButtonEdit3PropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
     procedure cxTabSheet_addressShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure qry_client_insiranceAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
     cep:Integer;
+    procedure limpaCache(Sender:TObject);
   public
     { Public declarations }
   end;
@@ -405,10 +431,30 @@ begin
   frm_client := Nil;
 end;
 
+procedure Tfrm_client.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+  tabLaboratorio.TabVisible:=modulo = 'LABORATORIO';
+  tabTelefonia.TabVisible:=modulo = 'TELEFONIA';
+end;
+
+Procedure Tfrm_client.limpaCache(Sender: TObject);
+begin
+ qry.CommitUpdates();
+ qry_client_insirance.ApplyUpdates(0);
+end;
+
 procedure Tfrm_client.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   qrycli_dt_registration.Value := Date + Time;
+end;
+procedure Tfrm_client.qry_client_insiranceAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+ qry_client_insirancecin_dt_registration.AsDateTime:=Now;
+
 end;
 
 end.

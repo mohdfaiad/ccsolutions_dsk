@@ -1,4 +1,4 @@
-unit Casse.CamposRequerido;
+unit class_required_field;
 
 interface
 
@@ -15,7 +15,7 @@ uses
 
   public
 
-  class function TratarRequerido(const Dataset: TDataset) :Boolean;
+  class function TratarRequerido(const Dataset: TDataset):Boolean;
 
   class procedure RefreshImage(Field : TField; Img : TImage);
 
@@ -34,7 +34,7 @@ uses
 
 
  class function TCampoRequerido.TratarRequerido(
-  const Dataset: TDataset): Boolean;
+  const Dataset: TDataset):Boolean;
 var
   i :Integer;
   Campos :TStrings;
@@ -45,24 +45,15 @@ begin
     Campos := TStringList.Create;
 
     for i:=0 to Dataset.Fields.Count-1 do
-
     begin
-
       if (Dataset.Fields[i].Required) and (Dataset.Fields[i].AsString=EmptyStr) then
           Campos.Add(' - ' + Dataset.Fields[i].DisplayName);
+     end;
 
-      if (Campos.Text<>EmptyStr) then
-       begin
-         Campos.Insert(0, EmptyStr);
-         result := false;
-       end
-       else
-       result := true;
 
-    end;
-    if Result = false then
+    if Trim(Campos.Text) <> '' then
      begin
-        ShowMessage('Atenção, o(s) campo(s) : ' + Campos.Text + ' São de preenchimento obrigatório ! ');
+        ShowMessage('Atenção, o(s) campo(s) : '+#13 + Campos.Text + 'São de preenchimento obrigatório ! ');
         Abort
      end;
 

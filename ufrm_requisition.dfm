@@ -11,17 +11,19 @@
     Width = 928
     Height = 590
     Properties.ActivePage = cxTabSheet_2
+    ExplicitWidth = 928
     ExplicitHeight = 590
     ClientRectBottom = 584
     ClientRectRight = 922
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
+      ExplicitWidth = 920
       ExplicitHeight = 556
       inherited cxGrid_1: TcxGrid
         Width = 914
         Height = 550
+        ExplicitWidth = 914
         ExplicitHeight = 550
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1req_id: TcxGridDBColumn
@@ -61,22 +63,24 @@
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
+      ExplicitWidth = 920
       ExplicitHeight = 556
       inherited cxPageControl_2: TcxPageControl
         Width = 914
         Height = 550
+        ExplicitWidth = 914
         ExplicitHeight = 550
         ClientRectBottom = 544
         ClientRectRight = 908
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
+          ExplicitWidth = 906
           ExplicitHeight = 516
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 906
             Height = 516
+            ExplicitWidth = 906
             ExplicitHeight = 516
             inherited dbedt_id: TcxDBTextEdit
               Left = 81
@@ -182,6 +186,7 @@
               Top = 103
               DataBinding.DataField = 'client_cli_id'
               DataBinding.DataSource = ds
+              Properties.GridMode = True
               Properties.KeyFieldNames = 'cli_id'
               Properties.ListColumns = <
                 item
@@ -239,7 +244,7 @@
               CaptionOptions.Text = 'Conv'#234'nio'
               Control = cxDBLookupComboBox3
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 288
+              ControlOptions.OriginalWidth = 456
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -281,6 +286,7 @@
   end
   inherited dxBarDockControl_1: TdxBarDockControl
     Width = 928
+    ExplicitWidth = 928
   end
   inherited dxBarManager_1: TdxBarManager
     inherited cxBarEditItem_1: TcxBarEditItem

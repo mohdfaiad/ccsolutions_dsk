@@ -97,14 +97,15 @@ type
     Action_print: TAction;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryBeforePost(DataSet: TDataSet);
-    procedure Action_importExecute(Sender: TObject);
     procedure QImport3Wizard_1AfterImport(Sender: TObject);
     procedure Action_printExecute(Sender: TObject);
-    procedure qryAfterPost(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
+    procedure Action_importExecute(Sender: TObject);
+
   private
     { Private declarations }
-    rec,recPost:Integer;
+    codigoCliente:Integer;
+
   public
     { Public declarations }
   end;
@@ -120,8 +121,7 @@ uses ufrm_dm;
 
 procedure Tfrm_import_sippulse.Action_importExecute(Sender: TObject);
 begin
-rec:=0;
-recPost:=0;
+ codigoCliente:=-1;
   inherited;
 
 end;
@@ -158,26 +158,46 @@ qry.Open;
 end;
 
 procedure Tfrm_import_sippulse.QImport3Wizard_1AfterImport(Sender: TObject);
+
 begin
   inherited;
- ShowMessage('-------------------------------------------------------' +#13+
-             '        A V I S O S   D A   I M P O R T A Ç Ã O '+#13+
-             '-------------------------------------------------------'+#13+#13+
-             '          Quantidade de registros no arquivo = ' + FormatFloat('000',QImport3Wizard_1.ImportRecCount) + #13+#13+
-             '-------------------------------------------------------');
+  (*
+qry.First;
+ with frm_dm.qry,sql do
+  begin
+   close;
+   text:=' select cli_id from client ' +
+         ' where cli_account_code_sippulse = :cliente';
+   ParamByName('cliente').AsString:=qrycli_account_code_sippulse.AsString;
+   prepare;
+   open;
+   codigoCliente:=FieldByName('cli_id').AsInteger;
+  end;
+
+
+   qry.First;
+   qry.Tag:=1;
+   while not qry.Eof do
+    begin
+     qry.Edit;
+     qryclient_cli_id.AsInteger:=codigoCliente;
+     qry.Post;
+     qry.Next;
+    end;
+  *)
 end;
 
-procedure Tfrm_import_sippulse.qryAfterPost(DataSet: TDataSet);
-begin
-  inherited;
-    recPost:=recPost + 1;
- end;
 
 procedure Tfrm_import_sippulse.qryBeforePost(DataSet: TDataSet);
 Var
-  intSegundos: Integer;
+  intSegundos:Integer;
   wdHoras, wdMinutos, wdSegundos: Word;
 begin
+ if qry.Tag = 1 then
+  exit;
+
+
+
   wdHoras := 0;
   wdMinutos := 0;
   wdSegundos := 0;
@@ -213,38 +233,22 @@ begin
   if qryimp_type.AsString = 'FIXO_LDN' then
     qryimp_type.AsString := 'Fixo DDD';
 
-with frm_dm.qry,sql do
- begin
-  close;
-  text:=' select cli_id from client ' +
-        ' where cli_account_code_sippulse = :cliente';
-  ParamByName('cliente').AsString:=qrycli_account_code_sippulse.AsString;
-  prepare;
-  open;
 
-  qryclient_cli_id.AsInteger:=FieldByName('cli_id').AsInteger;
+  if codigoCliente = -1  then
+   begin
+    with frm_dm.qry,sql do
+     begin
+      close;
+      text:=' select cli_id from client ' +
+            ' where cli_account_code_sippulse = :cliente';
+       ParamByName('cliente').AsString:=qrycli_account_code_sippulse.AsString;
+       prepare;
+       open;
+       codigoCliente:=frm_dm.qry.FieldByName('cli_id').AsInteger;
+     end;
+   end;
 
-   Close;
-   Text:=' select  count(*) from import_call_log ' +
-         ' WHERE imp_type = :imp_type ' +
-         ' and imp_from = :imp_from  ' +
-         ' and imp_to = :imp_to '+
-         ' and imp_date =:imp_date ';
-   ParamByName('imp_type').AsString:=qryimp_type.AsString;
-   ParamByName('imp_from').AsString:=qryimp_from.AsString;
-   ParamByName('imp_to').AsString:=qryimp_to.AsString;;
-   ParamByName('imp_date').AsString:=FormatDateTime('yyyy-MM-dd hh:mm:ss',qryimp_date.AsDateTime);
-   Prepare;
-   open;
-
-   if Fields[0].AsInteger > 0  then
-    begin
-    rec:=rec + 1;
-    qry.Delete;
-    end;
- end;
-
+ qryclient_cli_id.AsInteger:=codigoCliente;
 end;
-
 
 end.

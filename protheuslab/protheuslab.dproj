@@ -215,10 +215,6 @@
             <Form>frm_search</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\ufrm_changePrice.pas">
-            <Form>frm_changePrice</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

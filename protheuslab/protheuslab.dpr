@@ -29,8 +29,7 @@ uses
   uthred_logged in '..\uthred_logged.pas',
   ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
   ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
-  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
-  ufrm_changePrice in '..\ufrm_changePrice.pas' {frm_changePrice};
+  ufrm_search in '..\models\ufrm_search.pas' {frm_search};
 
 {$R *.res}
 
@@ -43,6 +42,5 @@ begin
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
   Application.CreateForm(Tfrm_search, frm_search);
-  Application.CreateForm(Tfrm_changePrice, frm_changePrice);
   Application.Run;
 end.

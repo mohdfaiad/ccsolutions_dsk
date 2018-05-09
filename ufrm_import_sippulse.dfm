@@ -275,8 +275,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     Left = 480
   end
   inherited qry: TFDQuery
+    Active = True
     BeforePost = qryBeforePost
-    AfterPost = qryAfterPost
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -597,7 +597,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       object connect: TfrxFDDatabase
         ConnectionDefName = 'ccs_connection'
         DriverName = 'MySQL'
-        DatabaseName = 'ccs'
+        DatabaseName = 'ccs_dev'
         Params.Strings = (
           'ConnectionDef=ccs_connection')
         LoginPrompt = False

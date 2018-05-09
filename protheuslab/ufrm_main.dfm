@@ -1,6 +1,5 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo ProtheusLAB - CCS Protheus.'
-  ExplicitLeft = -258
   ExplicitWidth = 1024
   ExplicitHeight = 640
   PixelsPerInch = 96
@@ -626,7 +625,6 @@ inherited frm_main: Tfrm_main
     end
     object acAlterarPreco: TAction
       Caption = 'Alterar Preco'
-      OnExecute = acAlterarPrecoExecute
     end
   end
   inherited cxImageList_1: TcxImageList

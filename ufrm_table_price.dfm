@@ -1,16 +1,22 @@
 inherited frm_table_price: Tfrm_table_price
   Caption = 'Cadastro de Tabela de pre'#231'o'
-  ExplicitTop = -291
+  ClientHeight = 559
+  ExplicitLeft = 1
+  ExplicitTop = -289
+  ExplicitHeight = 598
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Height = 504
     Properties.ActivePage = cxTabSheet_2
+    ClientRectBottom = 498
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
+        Height = 464
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1tbp_id: TcxGridDBColumn
             Caption = 'C'#243'd. ID'
@@ -41,13 +47,16 @@ inherited frm_table_price: Tfrm_table_price
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet1
+        Height = 464
+        Properties.ActivePage = cxTabAlterarPreco
+        ClientRectBottom = 458
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 762
           ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
+            Height = 430
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'tbp_id'
             end
@@ -78,23 +87,25 @@ inherited frm_table_price: Tfrm_table_price
             end
           end
         end
-        object cxTabSheet1: TcxTabSheet
+        object cxTabExames: TcxTabSheet
           Caption = 'Exames da  Tabela'
+          ExplicitHeight = 432
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
             Width = 762
-            Height = 432
+            Height = 430
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            ExplicitHeight = 432
             object cxGrid1: TcxGrid
               Left = 17
-              Top = 488
+              Top = 638
               Width = 672
               Height = 200
               Images = cxImageList_1
-              TabOrder = 1
+              TabOrder = 6
               object cxGrid1DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
                 Navigator.Buttons.Images = cxImageList_1
@@ -166,52 +177,6 @@ inherited frm_table_price: Tfrm_table_price
               Height = 444
               TabOrder = 0
               LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-              object cxRadioDesconto: TcxRadioButton
-                Left = 17
-                Top = 309
-                Width = 191
-                Height = 17
-                Caption = 'Desconto (-)'
-                Color = clWhite
-                ParentColor = False
-                TabOrder = 2
-                ParentBackground = False
-              end
-              object cxEditPercentual: TcxTextEdit
-                Left = 87
-                Top = 282
-                Style.HotTrack = False
-                TabOrder = 1
-                Text = '0'
-                Width = 121
-              end
-              object cxRadioAcrescimo: TcxRadioButton
-                Left = 214
-                Top = 309
-                Width = 159
-                Height = 17
-                Caption = 'Acr'#233'scimo (+)'
-                Color = clWhite
-                ParentColor = False
-                TabOrder = 4
-                ParentBackground = False
-              end
-              object cxEditValor: TcxTextEdit
-                Left = 252
-                Top = 282
-                Style.HotTrack = False
-                TabOrder = 3
-                Width = 121
-              end
-              object cxButton1: TcxButton
-                Left = 379
-                Top = 282
-                Width = 70
-                Height = 44
-                Caption = 'Confirmar'
-                TabOrder = 5
-                OnClick = cxButton1Click
-              end
               object cxGrid2: TcxGrid
                 Left = 17
                 Top = 38
@@ -242,22 +207,29 @@ inherited frm_table_price: Tfrm_table_price
                   DataController.Summary.FooterSummaryItems = <>
                   DataController.Summary.SummaryGroups = <>
                   object cxGrid2DBTableView1tpp_id: TcxGridDBColumn
+                    Caption = 'C'#243'd. ID'
                     DataBinding.FieldName = 'tpp_id'
+                    Width = 65
                   end
                   object cxGrid2DBTableView1table_price_tbp_id: TcxGridDBColumn
+                    Caption = 'C'#243'd. Tabela'
                     DataBinding.FieldName = 'table_price_tbp_id'
+                    Width = 65
                   end
                   object cxGrid2DBTableView1product_pro_id: TcxGridDBColumn
+                    Caption = 'Exame'
                     DataBinding.FieldName = 'product_pro_id'
+                    Width = 250
                   end
                   object cxGrid2DBTableView1tpp_value: TcxGridDBColumn
+                    Caption = 'Valor'
                     DataBinding.FieldName = 'tpp_value'
+                    Width = 112
                   end
                   object cxGrid2DBTableView1tpp_dt_registration: TcxGridDBColumn
+                    Caption = 'Dt. Reg.'
                     DataBinding.FieldName = 'tpp_dt_registration'
-                  end
-                  object cxGrid2DBTableView1vlrAntigo: TcxGridDBColumn
-                    DataBinding.FieldName = 'vlrAntigo'
+                    Width = 125
                   end
                 end
                 object cxGrid2Level1: TcxGridLevel
@@ -281,78 +253,6 @@ inherited frm_table_price: Tfrm_table_price
                 ButtonOptions.Buttons = <>
                 Index = 0
               end
-              object dxLayoutGroup7: TdxLayoutGroup
-                Parent = dxLayoutGroup4
-                CaptionOptions.Text = 'Op'#231#227'o para altera'#231#227'o de Pre'#231'os'
-                ButtonOptions.Buttons = <>
-                ItemIndex = 1
-                LayoutDirection = ldHorizontal
-                Index = 1
-              end
-              object dxLayoutItem7: TdxLayoutItem
-                Parent = dxLayoutAutoCreatedGroup1
-                CaptionOptions.Text = 'cxRadioButton1'
-                CaptionOptions.Visible = False
-                Control = cxRadioDesconto
-                ControlOptions.AutoColor = True
-                ControlOptions.OriginalHeight = 17
-                ControlOptions.OriginalWidth = 113
-                ControlOptions.ShowBorder = False
-                Index = 1
-              end
-              object dxLayoutItem8: TdxLayoutItem
-                Parent = dxLayoutAutoCreatedGroup1
-                AlignHorz = ahClient
-                AlignVert = avTop
-                CaptionOptions.Text = 'Percentual %'
-                Control = cxEditPercentual
-                ControlOptions.OriginalHeight = 21
-                ControlOptions.OriginalWidth = 121
-                ControlOptions.ShowBorder = False
-                Index = 0
-              end
-              object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
-                Parent = dxLayoutGroup7
-                Index = 0
-                AutoCreated = True
-              end
-              object dxLayoutItem9: TdxLayoutItem
-                Parent = dxLayoutAutoCreatedGroup2
-                CaptionOptions.Text = 'cxRadioButton2'
-                CaptionOptions.Visible = False
-                Control = cxRadioAcrescimo
-                ControlOptions.AutoColor = True
-                ControlOptions.OriginalHeight = 17
-                ControlOptions.OriginalWidth = 113
-                ControlOptions.ShowBorder = False
-                Index = 1
-              end
-              object dxLayoutItem10: TdxLayoutItem
-                Parent = dxLayoutAutoCreatedGroup2
-                AlignHorz = ahClient
-                AlignVert = avTop
-                CaptionOptions.Text = 'Valor $'
-                Control = cxEditValor
-                ControlOptions.OriginalHeight = 21
-                ControlOptions.OriginalWidth = 121
-                ControlOptions.ShowBorder = False
-                Index = 0
-              end
-              object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
-                Parent = dxLayoutGroup7
-                Index = 1
-                AutoCreated = True
-              end
-              object dxLayoutItem11: TdxLayoutItem
-                Parent = dxLayoutGroup7
-                CaptionOptions.Text = 'cxButton1'
-                CaptionOptions.Visible = False
-                Control = cxButton1
-                ControlOptions.OriginalHeight = 44
-                ControlOptions.OriginalWidth = 70
-                ControlOptions.ShowBorder = False
-                Index = 2
-              end
               object dxLayoutItem6: TdxLayoutItem
                 Parent = dxLayoutGroup6
                 Control = cxGrid2
@@ -361,6 +261,52 @@ inherited frm_table_price: Tfrm_table_price
                 ControlOptions.ShowBorder = False
                 Index = 0
               end
+            end
+            object cxEditPercentual: TcxTextEdit
+              Left = 95
+              Top = 583
+              Style.HotTrack = False
+              TabOrder = 5
+              Text = '0'
+              Width = 601
+            end
+            object cxRadioDesconto: TcxRadioButton
+              Left = 10
+              Top = 560
+              Width = 686
+              Height = 17
+              Caption = 'Desconto (-)'
+              Color = clWhite
+              ParentColor = False
+              TabOrder = 4
+              ParentBackground = False
+            end
+            object cxEditValor: TcxTextEdit
+              Left = 95
+              Top = 533
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 601
+            end
+            object cxRadioAcrescimo: TcxRadioButton
+              Left = 10
+              Top = 510
+              Width = 686
+              Height = 17
+              Caption = 'Acr'#233'scimo (+)'
+              Color = clWhite
+              ParentColor = False
+              TabOrder = 2
+              ParentBackground = False
+            end
+            object cxButton1: TcxButton
+              Left = 10
+              Top = 460
+              Width = 686
+              Height = 44
+              Caption = 'Confirmar'
+              TabOrder = 1
+              OnClick = cxButton1Click
             end
             object dxLayoutControl1Group_Root: TdxLayoutGroup
               AlignHorz = ahLeft
@@ -379,7 +325,7 @@ inherited frm_table_price: Tfrm_table_price
               SizeOptions.SizableHorz = True
               SizeOptions.Width = 686
               ButtonOptions.Buttons = <>
-              Index = 1
+              Index = 6
             end
             object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutGroup3
@@ -397,9 +343,334 @@ inherited frm_table_price: Tfrm_table_price
               ControlOptions.ShowBorder = False
               Index = 0
             end
+            object dxLayoutItem19: TdxLayoutItem
+              Parent = dxLayoutControl1Group_Root
+              CaptionOptions.Text = 'cxEditPercentual'
+              Control = cxEditPercentual
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 5
+            end
+            object dxLayoutItem8: TdxLayoutItem
+              Parent = dxLayoutControl1Group_Root
+              CaptionOptions.Text = 'cxRadioDesconto'
+              CaptionOptions.Visible = False
+              Control = cxRadioDesconto
+              ControlOptions.OriginalHeight = 17
+              ControlOptions.OriginalWidth = 191
+              ControlOptions.ShowBorder = False
+              Index = 4
+            end
+            object dxLayoutItem7: TdxLayoutItem
+              Parent = dxLayoutControl1Group_Root
+              CaptionOptions.Text = 'cxEditValor'
+              Control = cxEditValor
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 3
+            end
+            object dxLayoutItem10: TdxLayoutItem
+              Parent = dxLayoutControl1Group_Root
+              CaptionOptions.Text = 'cxRadioAcrescimo'
+              CaptionOptions.Visible = False
+              Control = cxRadioAcrescimo
+              ControlOptions.OriginalHeight = 17
+              ControlOptions.OriginalWidth = 159
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
+            object dxLayoutItem9: TdxLayoutItem
+              Parent = dxLayoutControl1Group_Root
+              CaptionOptions.Text = 'cxButton1'
+              CaptionOptions.Visible = False
+              Control = cxButton1
+              ControlOptions.OriginalHeight = 44
+              ControlOptions.OriginalWidth = 70
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+          end
+        end
+        object cxTabAlterarPreco: TcxTabSheet
+          Caption = 'Alterar Pre'#231'o dos Exames'
+          OnShow = cxTabAlterarPrecoShow
+          ExplicitHeight = 432
+          object dxLayoutControl3: TdxLayoutControl
+            Left = 0
+            Top = 0
+            Width = 762
+            Height = 430
+            Align = alClient
+            TabOrder = 0
+            LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            ExplicitLeft = 168
+            ExplicitTop = 56
+            ExplicitWidth = 300
+            ExplicitHeight = 250
+            object dxLayoutControl4: TdxLayoutControl
+              Left = 10
+              Top = -24
+              Width = 686
+              Height = 444
+              TabOrder = 0
+              LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+              object cxRadioButton1: TcxRadioButton
+                Left = 17
+                Top = 309
+                Width = 191
+                Height = 17
+                Caption = 'Desconto (-)'
+                Color = clWhite
+                ParentColor = False
+                TabOrder = 2
+                ParentBackground = False
+              end
+              object cxEditPercential: TcxTextEdit
+                Left = 87
+                Top = 282
+                Style.HotTrack = False
+                TabOrder = 1
+                Text = '0'
+                Width = 121
+              end
+              object cxRadioButton2: TcxRadioButton
+                Left = 214
+                Top = 309
+                Width = 159
+                Height = 17
+                Caption = 'Acr'#233'scimo (+)'
+                Color = clWhite
+                ParentColor = False
+                TabOrder = 4
+                ParentBackground = False
+              end
+              object cxTextEdit2: TcxTextEdit
+                Left = 252
+                Top = 282
+                Style.HotTrack = False
+                TabOrder = 3
+                Width = 121
+              end
+              object cxButtonConfirma: TcxButton
+                Left = 379
+                Top = 282
+                Width = 70
+                Height = 44
+                Caption = 'Confirmar'
+                TabOrder = 5
+                OnClick = cxButton1Click
+              end
+              object cxGrid3: TcxGrid
+                Left = 17
+                Top = 38
+                Width = 720
+                Height = 200
+                TabOrder = 0
+                object cxGridDBTableView1: TcxGridDBTableView
+                  Navigator.Buttons.CustomButtons = <>
+                  Navigator.Buttons.Images = cxImageList_1
+                  Navigator.Buttons.First.ImageIndex = 0
+                  Navigator.Buttons.PriorPage.Visible = False
+                  Navigator.Buttons.Prior.ImageIndex = 1
+                  Navigator.Buttons.Next.ImageIndex = 2
+                  Navigator.Buttons.NextPage.Visible = False
+                  Navigator.Buttons.Last.ImageIndex = 3
+                  Navigator.Buttons.Insert.ImageIndex = 4
+                  Navigator.Buttons.Delete.ImageIndex = 7
+                  Navigator.Buttons.Edit.ImageIndex = 5
+                  Navigator.Buttons.Post.ImageIndex = 6
+                  Navigator.Buttons.Cancel.ImageIndex = 8
+                  Navigator.Buttons.Refresh.ImageIndex = 9
+                  Navigator.Buttons.SaveBookmark.Visible = False
+                  Navigator.Buttons.GotoBookmark.Visible = False
+                  Navigator.Buttons.Filter.ImageIndex = 10
+                  DataController.DataSource = ds_table_price_product
+                  DataController.Summary.DefaultGroupSummaryItems = <>
+                  DataController.Summary.FooterSummaryItems = <>
+                  DataController.Summary.SummaryGroups = <>
+                  OptionsData.CancelOnExit = False
+                  OptionsData.Deleting = False
+                  OptionsData.DeletingConfirmation = False
+                  OptionsData.Editing = False
+                  OptionsData.Inserting = False
+                  object cxGridDBTableView1tpp_id: TcxGridDBColumn
+                    Caption = 'C'#243'd. ID'
+                    DataBinding.FieldName = 'tpp_id'
+                    Width = 65
+                  end
+                  object cxGridDBTableView1table_price_tbp_id: TcxGridDBColumn
+                    Caption = 'C'#243'd. Tabela'
+                    DataBinding.FieldName = 'table_price_tbp_id'
+                    Width = 65
+                  end
+                  object cxGridDBTableView1product_pro_id: TcxGridDBColumn
+                    Caption = 'Exame'
+                    DataBinding.FieldName = 'product_pro_id'
+                    PropertiesClassName = 'TcxLookupComboBoxProperties'
+                    Properties.KeyFieldNames = 'pro_id'
+                    Properties.ListColumns = <
+                      item
+                        FieldName = 'pro_name'
+                      end>
+                    Properties.ListSource = ds_product
+                    Width = 250
+                  end
+                  object cxGridDBTableView1vlrAntigo: TcxGridDBColumn
+                    Caption = 'Vlr. Original'
+                    DataBinding.FieldName = 'vlrAntigo'
+                    Width = 100
+                  end
+                  object cxGridDBTableView1tpp_value: TcxGridDBColumn
+                    Caption = 'Vlr. Alterado'
+                    DataBinding.FieldName = 'tpp_value'
+                    Width = 100
+                  end
+                  object cxGridDBTableView1tpp_dt_registration: TcxGridDBColumn
+                    Caption = 'Dt. Reg.'
+                    DataBinding.FieldName = 'tpp_dt_registration'
+                    Width = 125
+                  end
+                end
+                object cxGridLevel1: TcxGridLevel
+                  GridView = cxGridDBTableView1
+                end
+              end
+              object dxLayoutGroup5: TdxLayoutGroup
+                AlignHorz = ahLeft
+                AlignVert = avTop
+                ButtonOptions.Buttons = <>
+                Hidden = True
+                ItemIndex = 1
+                ShowBorder = False
+                Index = -1
+              end
+              object dxLayoutGroup8: TdxLayoutGroup
+                Parent = dxLayoutGroup5
+                CaptionOptions.Text = 'Exames da tabela'
+                SizeOptions.AssignedValues = [sovSizableHorz]
+                SizeOptions.SizableHorz = True
+                SizeOptions.Width = 734
+                ButtonOptions.Buttons = <>
+                Index = 0
+              end
+              object dxLayoutGroup9: TdxLayoutGroup
+                Parent = dxLayoutGroup5
+                CaptionOptions.Text = 'Op'#231#227'o para altera'#231#227'o de Pre'#231'os'
+                ButtonOptions.Buttons = <>
+                ItemIndex = 1
+                LayoutDirection = ldHorizontal
+                Index = 1
+              end
+              object dxLayoutItem13: TdxLayoutItem
+                Parent = dxLayoutAutoCreatedGroup3
+                CaptionOptions.Text = 'cxRadioButton1'
+                CaptionOptions.Visible = False
+                Control = cxRadioButton1
+                ControlOptions.AutoColor = True
+                ControlOptions.OriginalHeight = 17
+                ControlOptions.OriginalWidth = 113
+                ControlOptions.ShowBorder = False
+                Index = 1
+              end
+              object dxLayoutItem14: TdxLayoutItem
+                Parent = dxLayoutAutoCreatedGroup3
+                AlignHorz = ahClient
+                AlignVert = avTop
+                CaptionOptions.Text = 'Percentual %'
+                Control = cxEditPercential
+                ControlOptions.OriginalHeight = 21
+                ControlOptions.OriginalWidth = 121
+                ControlOptions.ShowBorder = False
+                Index = 0
+              end
+              object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
+                Parent = dxLayoutGroup9
+                Index = 0
+                AutoCreated = True
+              end
+              object dxLayoutItem15: TdxLayoutItem
+                Parent = dxLayoutAutoCreatedGroup4
+                CaptionOptions.Text = 'cxRadioButton2'
+                CaptionOptions.Visible = False
+                Control = cxRadioButton2
+                ControlOptions.AutoColor = True
+                ControlOptions.OriginalHeight = 17
+                ControlOptions.OriginalWidth = 113
+                ControlOptions.ShowBorder = False
+                Index = 1
+              end
+              object dxLayoutItem16: TdxLayoutItem
+                Parent = dxLayoutAutoCreatedGroup4
+                AlignHorz = ahClient
+                AlignVert = avTop
+                CaptionOptions.Text = 'Valor $'
+                Control = cxTextEdit2
+                ControlOptions.OriginalHeight = 21
+                ControlOptions.OriginalWidth = 121
+                ControlOptions.ShowBorder = False
+                Index = 0
+              end
+              object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
+                Parent = dxLayoutGroup9
+                Index = 1
+                AutoCreated = True
+              end
+              object dxLayoutItem17: TdxLayoutItem
+                Parent = dxLayoutGroup9
+                CaptionOptions.Text = 'cxButton1'
+                CaptionOptions.Visible = False
+                Control = cxButtonConfirma
+                ControlOptions.OriginalHeight = 44
+                ControlOptions.OriginalWidth = 70
+                ControlOptions.ShowBorder = False
+                Index = 2
+              end
+              object dxLayoutItem18: TdxLayoutItem
+                Parent = dxLayoutGroup8
+                Control = cxGrid3
+                ControlOptions.OriginalHeight = 200
+                ControlOptions.OriginalWidth = 250
+                ControlOptions.ShowBorder = False
+                Index = 0
+              end
+            end
+            object dxLayoutControl3Group_Root: TdxLayoutGroup
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              ButtonOptions.Buttons = <>
+              Hidden = True
+              ShowBorder = False
+              Index = -1
+            end
+            object dxLayoutItem12: TdxLayoutItem
+              Parent = dxLayoutControl3Group_Root
+              Control = dxLayoutControl4
+              ControlOptions.OriginalHeight = 444
+              ControlOptions.OriginalWidth = 686
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
           end
         end
       end
+    end
+  end
+  inherited dxBarManager_1: TdxBarManager
+    inherited dxBarManager_1Bar6: TdxBar
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'butonAlterarPreco'
+        end>
+    end
+    object butonAlterarPreco: TdxBarButton
+      Caption = 'Alterar Pre'#231'o'
+      Category = 0
+      Hint = 'Alterar Pre'#231'o'
+      Visible = ivAlways
+      OnClick = butonAlterarPrecoClick
     end
   end
   inherited cxImageList_1: TcxImageList

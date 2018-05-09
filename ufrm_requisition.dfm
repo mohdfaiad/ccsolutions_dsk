@@ -1,37 +1,58 @@
-inherited frm_requisition: Tfrm_requisition
+﻿inherited frm_requisition: Tfrm_requisition
   Caption = 'Manuten'#231#227'o: Requisi'#231#245'es'
   ClientHeight = 645
+  ClientWidth = 928
+  OnClose = FormClose
+  ExplicitWidth = 944
   ExplicitHeight = 684
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Width = 928
     Height = 590
     Properties.ActivePage = cxTabSheet_2
+    ExplicitHeight = 590
     ClientRectBottom = 584
+    ClientRectRight = 922
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitHeight = 556
       inherited cxGrid_1: TcxGrid
+        Width = 914
         Height = 550
+        ExplicitHeight = 550
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1req_id: TcxGridDBColumn
+            Caption = 'C'#243'd. ID'
             DataBinding.FieldName = 'req_id'
           end
           object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
+            Caption = 'Contrato ID'
             DataBinding.FieldName = 'contract_ctr_id'
           end
-          object cxGrid_1DBTableView1client_cli_id: TcxGridDBColumn
-            DataBinding.FieldName = 'client_cli_id'
-          end
           object cxGrid_1DBTableView1enterprise_ent_id: TcxGridDBColumn
+            Caption = 'Empresa ID'
             DataBinding.FieldName = 'enterprise_ent_id'
           end
+          object cxGrid_1DBTableView1client_cli_id: TcxGridDBColumn
+            Caption = 'Cliente ID'
+            DataBinding.FieldName = 'client_cli_id'
+          end
+          object cxGrid_1DBTableView1Cliente: TcxGridDBColumn
+            DataBinding.FieldName = 'Cliente'
+          end
+          object cxGrid_1DBTableView1insurance_ins_id: TcxGridDBColumn
+            Caption = 'Conv'#234'nio ID'
+            DataBinding.FieldName = 'insurance_ins_id'
+          end
           object cxGrid_1DBTableView1requisition_type_ret_id: TcxGridDBColumn
+            Caption = 'Tipo ID'
             DataBinding.FieldName = 'requisition_type_ret_id'
           end
           object cxGrid_1DBTableView1req_dt_registration: TcxGridDBColumn
+            Caption = 'Dt. Reg.'
             DataBinding.FieldName = 'req_dt_registration'
           end
         end
@@ -41,63 +62,33 @@ inherited frm_requisition: Tfrm_requisition
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitHeight = 556
       inherited cxPageControl_2: TcxPageControl
+        Width = 914
         Height = 550
+        ExplicitHeight = 550
         ClientRectBottom = 544
+        ClientRectRight = 908
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitHeight = 516
           inherited dxLayoutControl_1: TdxLayoutControl
+            Width = 906
             Height = 516
+            ExplicitHeight = 516
             inherited dbedt_id: TcxDBTextEdit
               Left = 81
-              DataBinding.DataField = 'client_cli_id'
+              DataBinding.DataField = 'req_id'
               ExplicitLeft = 81
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
               Left = 254
+              DataBinding.DataField = 'req_dt_registration'
               ExplicitLeft = 254
             end
-            object cxDBLookupComboBox2: TcxDBLookupComboBox [2]
-              Left = 81
-              Top = 103
-              DataBinding.DataField = 'client_cli_id'
-              DataBinding.DataSource = ds
-              Properties.KeyFieldNames = 'cli_id'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'cli_first_name'
-                end
-                item
-                  FieldName = 'cli_id'
-                end>
-              Properties.ListSource = ds_client
-              Style.HotTrack = False
-              TabOrder = 2
-              Width = 314
-            end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [3]
-              Left = 81
-              Top = 157
-              DataBinding.DataField = 'requisition_type_ret_id'
-              DataBinding.DataSource = ds
-              Properties.KeyFieldNames = 'ret_id'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'ret_name'
-                end
-                item
-                  FieldName = 'ret_id'
-                end>
-              Properties.ListSource = ds_requisition_type
-              Style.HotTrack = False
-              TabOrder = 4
-              Width = 314
-            end
-            object cxDBLookupComboBox3: TcxDBLookupComboBox [4]
+            object cxDBLookupComboBox3: TcxDBLookupComboBox [2]
               Left = 81
               Top = 130
               DataBinding.DataField = 'insurance_ins_id'
@@ -115,23 +106,27 @@ inherited frm_requisition: Tfrm_requisition
               Style.HotTrack = False
               TabOrder = 3
               OnEnter = cxDBLookupComboBox3Enter
-              Width = 314
+              Width = 456
             end
-            object cxGrid1: TcxGrid [5]
+            object cxGrid1: TcxGrid [3]
               Left = 17
               Top = 222
-              Width = 378
+              Width = 520
               Height = 200
               TabOrder = 5
               object cxGrid1DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
                 Navigator.Buttons.Images = cxImageList_1
-                Navigator.Buttons.First.Visible = False
+                Navigator.Buttons.First.ImageIndex = 0
+                Navigator.Buttons.First.Visible = True
                 Navigator.Buttons.PriorPage.Visible = False
-                Navigator.Buttons.Prior.Visible = False
-                Navigator.Buttons.Next.Visible = False
+                Navigator.Buttons.Prior.ImageIndex = 1
+                Navigator.Buttons.Prior.Visible = True
+                Navigator.Buttons.Next.ImageIndex = 2
+                Navigator.Buttons.Next.Visible = True
                 Navigator.Buttons.NextPage.Visible = False
-                Navigator.Buttons.Last.Visible = False
+                Navigator.Buttons.Last.ImageIndex = 3
+                Navigator.Buttons.Last.Visible = True
                 Navigator.Buttons.Insert.ImageIndex = 4
                 Navigator.Buttons.Insert.Visible = True
                 Navigator.Buttons.Append.Visible = False
@@ -142,55 +137,87 @@ inherited frm_requisition: Tfrm_requisition
                 Navigator.Buttons.Refresh.ImageIndex = 9
                 Navigator.Buttons.SaveBookmark.Visible = False
                 Navigator.Buttons.GotoBookmark.Visible = False
-                Navigator.Buttons.Filter.Visible = False
+                Navigator.Buttons.Filter.ImageIndex = 10
+                Navigator.Buttons.Filter.Visible = True
                 Navigator.Visible = True
                 DataController.DataSource = ds_requisition_iten
                 DataController.Summary.DefaultGroupSummaryItems = <>
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
                 object cxGrid1DBTableView1rei_in: TcxGridDBColumn
+                  Caption = 'C'#243'd. ID'
                   DataBinding.FieldName = 'rei_in'
-                  Width = 70
                 end
                 object cxGrid1DBTableView1requisition_req_id: TcxGridDBColumn
+                  Caption = 'Req. ID'
                   DataBinding.FieldName = 'requisition_req_id'
-                  Width = 70
                 end
                 object cxGrid1DBTableView1product_pro_id: TcxGridDBColumn
+                  Caption = 'Exeme'
                   DataBinding.FieldName = 'product_pro_id'
                   PropertiesClassName = 'TcxLookupComboBoxProperties'
+                  Properties.GridMode = True
                   Properties.KeyFieldNames = 'product_pro_id'
                   Properties.ListColumns = <
                     item
-                      Caption = 'Nome'
                       FieldName = 'pro_name'
                     end
                     item
-                      Caption = 'C'#243'd. ID'
-                      FieldName = 'product_pro_id'
+                      FieldName = 'tpp_value'
                     end>
                   Properties.ListSource = ds_price_product
-                  Width = 220
+                  Width = 300
+                end
+                object cxGrid1DBTableView1product_value: TcxGridDBColumn
+                  Caption = 'Valor'
+                  DataBinding.FieldName = 'product_value'
                 end
               end
               object cxGrid1Level1: TcxGridLevel
                 GridView = cxGrid1DBTableView1
               end
             end
+            object cxDBLookupComboBox2: TcxDBLookupComboBox [4]
+              Left = 81
+              Top = 103
+              DataBinding.DataField = 'client_cli_id'
+              DataBinding.DataSource = ds
+              Properties.KeyFieldNames = 'cli_id'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'cli_first_name'
+                end
+                item
+                  FieldName = 'cli_id'
+                end>
+              Properties.ListSource = ds_client
+              Style.HotTrack = False
+              TabOrder = 2
+              Width = 456
+            end
+            object cxDBLookupComboBox1: TcxDBLookupComboBox [5]
+              Left = 81
+              Top = 157
+              DataBinding.DataField = 'requisition_type_ret_id'
+              DataBinding.DataSource = ds
+              Properties.KeyFieldNames = 'ret_id'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'ret_name'
+                end
+                item
+                  FieldName = 'ret_id'
+                end>
+              Properties.ListSource = ds_requisition_type
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 184
+            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 2
+              ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               LayoutDirection = ldHorizontal
-            end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              CaptionOptions.Text = 'Cod. Cliente'
-              Control = cxDBLookupComboBox2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 240
-              ControlOptions.ShowBorder = False
-              Index = 0
             end
             object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutControl_1Group_Root
@@ -205,22 +232,14 @@ inherited frm_requisition: Tfrm_requisition
               Index = 0
               AutoCreated = True
             end
-            object dxLayoutItem3: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              CaptionOptions.Text = 'Tipo'
-              Control = cxDBLookupComboBox1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 314
-              ControlOptions.ShowBorder = False
-              Index = 2
-            end
             object dxLayoutItem7: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup1
+              AlignHorz = ahClient
+              AlignVert = avTop
               CaptionOptions.Text = 'Conv'#234'nio'
               Control = cxDBLookupComboBox3
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 145
+              ControlOptions.OriginalWidth = 288
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -234,16 +253,50 @@ inherited frm_requisition: Tfrm_requisition
               ControlOptions.ShowBorder = False
               Index = 0
             end
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignHorz = ahLeft
+              CaptionOptions.Text = 'Cod. Cliente'
+              Control = cxDBLookupComboBox2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 456
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem3: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Tipo'
+              Control = cxDBLookupComboBox1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 184
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
           end
         end
       end
+    end
+  end
+  inherited dxBarDockControl_1: TdxBarDockControl
+    Width = 928
+  end
+  inherited dxBarManager_1: TdxBarManager
+    inherited cxBarEditItem_1: TcxBarEditItem
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\laboratorio\requisi'#231#227'o'
     end
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
+    AfterInsert = qryAfterInsert
     CachedUpdates = True
+    IndexFieldNames = 'contract_ctr_id'
+    MasterSource = frm_dm.ds_signin
+    MasterFields = 'ctr_id'
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
@@ -252,6 +305,7 @@ inherited frm_requisition: Tfrm_requisition
       FieldName = 'req_id'
       Origin = 'req_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrycontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -283,6 +337,36 @@ inherited frm_requisition: Tfrm_requisition
       FieldName = 'req_dt_registration'
       Origin = 'req_dt_registration'
     end
+    object qryCliente: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Cliente'
+      LookupDataSet = qry_client
+      LookupKeyFields = 'cli_id'
+      LookupResultField = 'cli_first_name'
+      KeyFields = 'client_cli_id'
+      Size = 80
+      Lookup = True
+    end
+    object qryConvênio: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Conv'#234'nio'
+      LookupDataSet = qry_insurance
+      LookupKeyFields = 'insurance_ins_id'
+      LookupResultField = 'ins_first_name'
+      KeyFields = 'insurance_ins_id'
+      Size = 60
+      Lookup = True
+    end
+    object qryTipoexame: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Tipo exame'
+      LookupDataSet = qry_requisition_type
+      LookupKeyFields = 'ret_id'
+      LookupResultField = 'ret_name'
+      KeyFields = 'requisition_type_ret_id'
+      Size = 50
+      Lookup = True
+    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -299,11 +383,463 @@ inherited frm_requisition: Tfrm_requisition
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   inherited frxReport_1: TfrxReport
-    Datasets = <>
+    ReportOptions.CreateDate = 43193.605400104200000000
+    ReportOptions.LastChange = 43229.685769837960000000
+    Datasets = <
+      item
+        DataSet = frm_dm.frx_db_enterprise
+        DataSetName = 'enterprise'
+      end
+      item
+        DataSet = frxDB_Requisition
+        DataSetName = 'frxDB_Requisition'
+      end
+      item
+        DataSet = frxDBD_Requisition_iten
+        DataSetName = 'frxDBD_Requisition_iten'
+      end>
     Variables = <>
     Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = []
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+        Height = 86.929190000000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object enterpriseent_first_name: TfrxMemoView
+          Left = 126.622140000000000000
+          Top = 9.559060000000000000
+          Width = 578.268090000000000000
+          Height = 22.677180000000000000
+          DataField = 'ent_first_name'
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -21
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[enterprise."ent_first_name"]')
+          ParentFont = False
+        end
+        object enterpriseent_cnpj: TfrxMemoView
+          Left = 126.622140000000000000
+          Top = 36.795300000000000000
+          Width = 578.268090000000000000
+          Height = 18.897650000000000000
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            
+              'CNPJ: [enterprise."ent_cnpj"] Insc. Estad.: [enterprise."ent_ie"' +
+              ']')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end>
+        end
+        object enterpriseent_add_bus_address: TfrxMemoView
+          Left = 126.622140000000000000
+          Top = 61.252010000000000000
+          Width = 578.268090000000000000
+          Height = 18.897650000000000000
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            
+              'Endere'#231'o: [enterprise."ent_add_bus_address"], n'#186' [enterprise."en' +
+              't_add_bus_number"] - [enterprise."ent_add_bus_street"]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+        object Picture1: TfrxPictureView
+          Left = 8.559060000000000000
+          Top = 8.559059999999999000
+          Width = 113.385900000000000000
+          Height = 71.811070000000000000
+          DataField = 'ent_image'
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
+          Frame.Typ = []
+          HightQuality = False
+          Transparent = False
+          TransparentColor = clWhite
+        end
+      end
+      object PageHeader1: TfrxPageHeader
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 162.519790000000000000
+        Top = 128.504020000000000000
+        Width = 718.110700000000000000
+        object Shape1: TfrxShapeView
+          Left = 1.559060000000000000
+          Top = 107.929190000000000000
+          Width = 714.331170000000000000
+          Height = 37.795300000000000000
+          Frame.Typ = []
+        end
+        object frxDB_RequisitionCliente: TfrxMemoView
+          IndexTag = 1
+          Left = 107.842610000000000000
+          Top = 57.228355000000000000
+          Width = 400.630180000000000000
+          Height = 18.897650000000000000
+          DataField = 'Cliente'
+          DataSet = frxDB_Requisition
+          DataSetName = 'frxDB_Requisition'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDB_Requisition."Cliente"]')
+        end
+        object Memo1: TfrxMemoView
+          Left = 4.677180000000000000
+          Top = 59.118120000000000000
+          Width = 83.149660000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Paciente:')
+          ParentFont = False
+        end
+        object frxDB_RequisitionConvnio: TfrxMemoView
+          IndexTag = 1
+          Left = 107.842610000000000000
+          Top = 81.023655000000000000
+          Width = 400.630180000000000000
+          Height = 18.897650000000000000
+          DataField = 'Conv'#234'nio'
+          DataSet = frxDB_Requisition
+          DataSetName = 'frxDB_Requisition'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDB_Requisition."Conv'#234'nio"]')
+        end
+        object Memo2: TfrxMemoView
+          Left = 4.677180000000000000
+          Top = 82.913420000000000000
+          Width = 83.149660000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Conv'#234'nio:')
+          ParentFont = False
+        end
+        object frxDB_Requisitionreq_dt_registration: TfrxMemoView
+          IndexTag = 1
+          Left = 107.842610000000000000
+          Top = 33.338590000000000000
+          Width = 143.622140000000000000
+          Height = 18.897650000000000000
+          DataField = 'req_dt_registration'
+          DataSet = frxDB_Requisition
+          DataSetName = 'frxDB_Requisition'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDB_Requisition."req_dt_registration"]')
+          ParentFont = False
+        end
+        object Memo3: TfrxMemoView
+          Left = 4.677180000000000000
+          Top = 33.338590000000000000
+          Width = 98.267780000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Data Solicita'#231#227'o:')
+          ParentFont = False
+        end
+        object frxDB_RequisitionTipoexame: TfrxMemoView
+          IndexTag = 1
+          Left = 82.149660000000000000
+          Top = 119.047310000000000000
+          Width = 400.630180000000000000
+          Height = 18.897650000000000000
+          DataField = 'Tipo exame'
+          DataSet = frxDB_Requisition
+          DataSetName = 'frxDB_Requisition'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDB_Requisition."Tipo exame"]')
+          ParentFont = False
+        end
+        object Memo4: TfrxMemoView
+          Left = 4.677180000000000000
+          Top = 119.047310000000000000
+          Width = 68.031540000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Exame:')
+          ParentFont = False
+        end
+        object frxDB_Requisitionreq_id: TfrxMemoView
+          IndexTag = 1
+          Left = 645.181510000000000000
+          Top = 111.929190000000000000
+          Width = 64.252010000000000000
+          Height = 18.897650000000000000
+          DataField = 'req_id'
+          DataSet = frxDB_Requisition
+          DataSetName = 'frxDB_Requisition'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDB_Requisition."req_id"]')
+          ParentFont = False
+        end
+        object Memo5: TfrxMemoView
+          Left = 574.031850000000000000
+          Top = 111.929190000000000000
+          Width = 68.031540000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'N'#186' Exame:')
+          ParentFont = False
+        end
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 30.236240000000000000
+        Top = 351.496290000000000000
+        Width = 718.110700000000000000
+        DataSet = frxDBD_Requisition_iten
+        DataSetName = 'frxDBD_Requisition_iten'
+        RowCount = 0
+        object Line1: TfrxLineView
+          Left = 1.559060000000000000
+          Top = 25.677180000000000000
+          Width = 714.331170000000000000
+          Color = clBlack
+          Frame.Typ = []
+          Diagonal = True
+        end
+        object Memo8: TfrxMemoView
+          Left = 11.338590000000000000
+          Top = 3.779530000000020000
+          Width = 75.590600000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'C'#243'digo')
+          ParentFont = False
+        end
+        object Memo9: TfrxMemoView
+          Left = 102.047310000000000000
+          Top = 3.779530000000020000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Nome')
+          ParentFont = False
+        end
+        object Memo10: TfrxMemoView
+          Left = 480.000310000000000000
+          Top = 3.779530000000020000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Valor')
+          ParentFont = False
+        end
+      end
+      object DetailData1: TfrxDetailData
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 34.015770000000010000
+        Top = 404.409710000000000000
+        Width = 718.110700000000000000
+        DataSet = frxDBD_Requisition_iten
+        DataSetName = 'frxDBD_Requisition_iten'
+        RowCount = 0
+        object frxDBD_Requisition_itenproduct_pro_id: TfrxMemoView
+          IndexTag = 1
+          Left = 11.338590000000000000
+          Top = 5.559059999999990000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          DataField = 'product_pro_id'
+          DataSet = frxDBD_Requisition_iten
+          DataSetName = 'frxDBD_Requisition_iten'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBD_Requisition_iten."product_pro_id"]')
+        end
+        object frxDBD_Requisition_itenExame: TfrxMemoView
+          IndexTag = 1
+          Left = 102.047310000000000000
+          Top = 5.559059999999990000
+          Width = 343.937230000000000000
+          Height = 18.897650000000000000
+          DataField = 'Exame'
+          DataSet = frxDBD_Requisition_iten
+          DataSetName = 'frxDBD_Requisition_iten'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBD_Requisition_iten."Exame"]')
+        end
+        object frxDBD_Requisition_itenproduct_value: TfrxMemoView
+          IndexTag = 1
+          Left = 480.000310000000000000
+          Top = 5.559059999999988000
+          Width = 105.826840000000000000
+          Height = 18.897650000000000000
+          DataField = 'product_value'
+          DataSet = frxDBD_Requisition_iten
+          DataSetName = 'frxDBD_Requisition_iten'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBD_Requisition_iten."product_value"]')
+        end
+      end
+      object ColumnFooter1: TfrxColumnFooter
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 34.015770000000000000
+        Top = 540.472790000000000000
+        Width = 718.110700000000000000
+        object Memo7: TfrxMemoView
+          Left = 364.141930000000000000
+          Top = 6.000000000000000000
+          Width = 98.267780000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Valor Total :')
+          ParentFont = False
+        end
+        object Memo6: TfrxMemoView
+          Left = 480.000310000000000000
+          Top = 6.000000000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          DisplayFormat.FormatStr = '%2.2n'
+          DisplayFormat.Kind = fkNumeric
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[SUM(<frxDBD_Requisition_iten."product_value">,DetailData1)]')
+        end
+      end
+      object Footer1: TfrxFooter
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 18.897650000000000000
+        Top = 461.102660000000000000
+        Width = 718.110700000000000000
+        object Line2: TfrxLineView
+          Left = 1.559060000000000000
+          Top = 3.779530000000020000
+          Width = 714.331170000000000000
+          Color = clBlack
+          Frame.Typ = []
+          Diagonal = True
+        end
+      end
+    end
   end
   object qry_client: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -313,7 +849,7 @@ inherited frm_requisition: Tfrm_requisition
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from client')
-    Left = 552
+    Left = 592
     Top = 96
     object qry_clientcli_id: TFDAutoIncField
       DisplayLabel = 'Cod. ID'
@@ -596,10 +1132,11 @@ inherited frm_requisition: Tfrm_requisition
   end
   object ds_client: TDataSource
     DataSet = qry_client
-    Left = 585
+    Left = 625
     Top = 96
   end
   object qry_insurance: TFDQuery
+    Active = True
     IndexFieldNames = 'client_cli_id'
     MasterSource = ds_client
     MasterFields = 'cli_id'
@@ -624,7 +1161,7 @@ inherited frm_requisition: Tfrm_requisition
     ParamData = <
       item
         Name = 'CLI_ID'
-        DataType = ftInteger
+        DataType = ftAutoInc
         ParamType = ptInput
         Value = Null
       end>
@@ -634,6 +1171,7 @@ inherited frm_requisition: Tfrm_requisition
       FieldName = 'cin_id'
       Origin = 'cin_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_insurancecontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -699,6 +1237,7 @@ inherited frm_requisition: Tfrm_requisition
     Top = 96
   end
   object qry_price_product: TFDQuery
+    Active = True
     CachedUpdates = True
     IndexFieldNames = 'table_price_tbp_id'
     MasterSource = ds_insurance
@@ -720,8 +1259,8 @@ inherited frm_requisition: Tfrm_requisition
         'where pr.tbp_id = pc.table_price_tbp_id and pc.product_pro_id = ' +
         'prod.pro_id'
       'and pc.table_price_tbp_id =:table_price_tbp_id')
-    Left = 704
-    Top = 216
+    Left = 784
+    Top = 96
     ParamData = <
       item
         Name = 'TABLE_PRICE_TBP_ID'
@@ -733,6 +1272,7 @@ inherited frm_requisition: Tfrm_requisition
       FieldName = 'tpp_id'
       Origin = 'tpp_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_price_producttable_price_tbp_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -772,26 +1312,35 @@ inherited frm_requisition: Tfrm_requisition
       AutoGenerateValue = arDefault
       FieldName = 'tpp_value'
       Origin = 'tpp_value'
+      DisplayFormat = '###,###,###.#0'
       Precision = 12
     end
   end
   object ds_price_product: TDataSource
     DataSet = qry_price_product
-    Left = 728
-    Top = 152
+    Left = 816
+    Top = 96
   end
   object qry_requisition_iten: TFDQuery
+    Active = True
     CachedUpdates = True
+    IndexFieldNames = 'requisition_req_id'
+    MasterSource = ds
+    MasterFields = 'req_id'
+    DetailFields = 'requisition_req_id'
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       'SELECT * FROM requisition_iten')
-    Left = 551
-    Top = 146
+    Left = 847
+    Top = 96
     object qry_requisition_itenrei_in: TFDAutoIncField
       FieldName = 'rei_in'
       Origin = 'rei_in'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_requisition_itenrequisition_req_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -802,14 +1351,33 @@ inherited frm_requisition: Tfrm_requisition
       AutoGenerateValue = arDefault
       FieldName = 'product_pro_id'
       Origin = 'product_pro_id'
+      OnValidate = qry_requisition_itenproduct_pro_idValidate
+    end
+    object qry_requisition_itenproduct_value: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_value'
+      Origin = 'product_value'
+      DisplayFormat = '###,###,###.#0'
+      Precision = 12
+    end
+    object qry_requisition_itenExame: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Exame'
+      LookupDataSet = qry_price_product
+      LookupKeyFields = 'product_pro_id'
+      LookupResultField = 'pro_name'
+      KeyFields = 'product_pro_id'
+      Size = 40
+      Lookup = True
     end
   end
   object ds_requisition_iten: TDataSource
     DataSet = qry_requisition_iten
-    Left = 584
-    Top = 145
+    Left = 880
+    Top = 95
   end
   object qry_requisition_type: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -817,14 +1385,15 @@ inherited frm_requisition: Tfrm_requisition
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'SELECT * FROM requisition_type')
-    Left = 560
-    Top = 192
+    Left = 720
+    Top = 96
     object qry_requisition_typeret_id: TFDAutoIncField
       DisplayLabel = 'Cod. ID'
       DisplayWidth = 10
       FieldName = 'ret_id'
       Origin = 'ret_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_requisition_typecontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -846,7 +1415,23 @@ inherited frm_requisition: Tfrm_requisition
   end
   object ds_requisition_type: TDataSource
     DataSet = qry_requisition_type
-    Left = 600
-    Top = 192
+    Left = 752
+    Top = 96
+  end
+  object frxDB_Requisition: TfrxDBDataset
+    UserName = 'frxDB_Requisition'
+    CloseDataSource = False
+    DataSet = qry
+    BCDToCurrency = False
+    Left = 240
+    Top = 88
+  end
+  object frxDBD_Requisition_iten: TfrxDBDataset
+    UserName = 'frxDBD_Requisition_iten'
+    CloseDataSource = False
+    DataSet = qry_requisition_iten
+    BCDToCurrency = False
+    Left = 272
+    Top = 88
   end
 end

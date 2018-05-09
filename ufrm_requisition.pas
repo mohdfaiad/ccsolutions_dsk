@@ -23,7 +23,7 @@ uses
   cxGridCustomPopupMenu, cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar, cxBarEditItem, cxClasses,
   dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar, cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC, cxLookupEdit,
-  cxDBLookupEdit, cxDBLookupComboBox, Vcl.Grids, Vcl.DBGrids;
+  cxDBLookupEdit, cxDBLookupComboBox, Vcl.Grids, Vcl.DBGrids, frxDBSet;
 
 type
   Tfrm_requisition = class(Tfrm_form_default)
@@ -131,14 +131,30 @@ type
     qryrequisition_type_ret_id: TIntegerField;
     qryinsurance_ins_id: TIntegerField;
     qryreq_dt_registration: TDateTimeField;
+    qry_requisition_itenproduct_value: TBCDField;
     cxGrid1DBTableView1rei_in: TcxGridDBColumn;
     cxGrid1DBTableView1requisition_req_id: TcxGridDBColumn;
     cxGrid1DBTableView1product_pro_id: TcxGridDBColumn;
+    cxGrid1DBTableView1product_value: TcxGridDBColumn;
+    qryCliente: TStringField;
+    cxGrid_1DBTableView1insurance_ins_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1Cliente: TcxGridDBColumn;
+    frxDB_Requisition: TfrxDBDataset;
+    frxDBD_Requisition_iten: TfrxDBDataset;
+    qryConvênio: TStringField;
+    qryTipoexame: TStringField;
+    qry_requisition_itenExame: TStringField;
     procedure cxDBLookupComboBox3Enter(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure qryAfterInsert(DataSet: TDataSet);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure qry_requisition_itenproduct_pro_idValidate(Sender: TField);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure limpaCache(Sender:TObject);
   end;
 
 var
@@ -148,12 +164,64 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, class_required_field;
+
+procedure Tfrm_requisition.Action_saveExecute(Sender: TObject);
+begin
+
+    if qry_requisition_iten.IsEmpty then
+   begin
+     Application.MessageBox('Não é possível salvar, falta incluir os exemes na requisição !','AVISO DO SISTEMA',MB_OK + MB_ICONQUESTION);
+      Exit;
+   end;
+
+  //Para salvar os intens da requisição caso u usuário não faça
+  if (qry_requisition_iten.State in [dsEdit,dsInsert]) then
+   begin
+     qry_requisition_iten.Post;
+   end;
+
+  inherited;
+end;
 
 procedure Tfrm_requisition.cxDBLookupComboBox3Enter(Sender: TObject);
 begin
   inherited;
   qry_client.Locate('cli_id',qryclient_cli_id.AsInteger,[loCaseInsensitive, loPartialKey]);
+end;
+
+procedure Tfrm_requisition.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+    frm_requisition.Destroy;
+    frm_requisition := Nil;
+end;
+
+procedure Tfrm_requisition.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+end;
+
+procedure Tfrm_requisition.limpaCache(Sender: TObject);
+begin
+  qry.CommitUpdates();
+  qry_requisition_iten.CommitUpdates();
+end;
+
+procedure Tfrm_requisition.qryAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+  qryreq_dt_registration.AsDateTime := now;
+  qryenterprise_ent_id.AsInteger    := frm_dm.qry_enterpriseent_id.AsInteger;
+  qry.Post;
+  qry.Edit;
+end;
+
+procedure Tfrm_requisition.qry_requisition_itenproduct_pro_idValidate(Sender: TField);
+begin
+  inherited;
+   qry_requisition_itenproduct_value.AsFloat:=qry_price_producttpp_value.AsFloat;
 end;
 
 end.

@@ -95,9 +95,21 @@ type
     qry_duracao: TLargeintField;
     dxBarButton3: TdxBarButton;
     Action_print: TAction;
+    qryConsultla: TFDQuery;
+    qryConsultlaimp_id: TFDAutoIncField;
+    qryConsultlacontract_ctr_id: TIntegerField;
+    qryConsultlaclient_cli_id: TIntegerField;
+    qryConsultlaimp_from: TStringField;
+    qryConsultlaimp_to: TStringField;
+    qryConsultlaimp_duration: TTimeField;
+    qryConsultlaimp_date: TDateTimeField;
+    qryConsultlaimp_type: TStringField;
+    qryConsultlaimp_rate: TFMTBCDField;
+    qryConsultlaimp_total: TFMTBCDField;
+    qryConsultlaimp_file_name: TStringField;
+    qryConsultlacli_account_code_sippulse: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryBeforePost(DataSet: TDataSet);
-    procedure QImport3Wizard_1AfterImport(Sender: TObject);
     procedure Action_printExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Action_importExecute(Sender: TObject);
@@ -151,52 +163,17 @@ procedure Tfrm_import_sippulse.FormCreate(Sender: TObject);
 begin
   inherited;
 qry.Close;
-qry.ParamByName('ini').AsDate:= StartOfTheMonth(now);
+qry.ParamByName('ini').AsDate:= StartOfTheMonth(now) - 30;
 qry.ParamByName('fin').AsDate:= EndOfTheMonth(now);
 qry.Prepare;
 qry.Open;
 end;
-
-procedure Tfrm_import_sippulse.QImport3Wizard_1AfterImport(Sender: TObject);
-
-begin
-  inherited;
-  (*
-qry.First;
- with frm_dm.qry,sql do
-  begin
-   close;
-   text:=' select cli_id from client ' +
-         ' where cli_account_code_sippulse = :cliente';
-   ParamByName('cliente').AsString:=qrycli_account_code_sippulse.AsString;
-   prepare;
-   open;
-   codigoCliente:=FieldByName('cli_id').AsInteger;
-  end;
-
-
-   qry.First;
-   qry.Tag:=1;
-   while not qry.Eof do
-    begin
-     qry.Edit;
-     qryclient_cli_id.AsInteger:=codigoCliente;
-     qry.Post;
-     qry.Next;
-    end;
-  *)
-end;
-
 
 procedure Tfrm_import_sippulse.qryBeforePost(DataSet: TDataSet);
 Var
   intSegundos:Integer;
   wdHoras, wdMinutos, wdSegundos: Word;
 begin
- if qry.Tag = 1 then
-  exit;
-
-
 
   wdHoras := 0;
   wdMinutos := 0;
@@ -247,8 +224,31 @@ begin
        codigoCliente:=frm_dm.qry.FieldByName('cli_id').AsInteger;
      end;
    end;
-
  qryclient_cli_id.AsInteger:=codigoCliente;
+
+if qryConsultla.Locate('imp_type;imp_from;imp_to',VarArrayOf([qryimp_type.AsString, qryimp_from.AsString,qryimp_to.AsString]),[]) then
+ begin
+
+  with frm_dm.qry,sql do
+   begin
+    Close;
+    Text:=' select  count(*) from import_call_log ' +
+        ' WHERE imp_type = :imp_type ' +
+          ' and imp_from = :imp_from  ' +
+          ' and imp_to = :imp_to '+
+          ' and imp_date =:imp_date ';
+    ParamByName('imp_type').AsString:=qryConsultlaimp_type.AsString;
+    ParamByName('imp_from').AsString:=qryConsultlaimp_from.AsString;
+    ParamByName('imp_to').AsString:=qryConsultlaimp_to.AsString;;
+    ParamByName('imp_date').AsString:=FormatDateTime('yyyy-MM-dd hh:mm:ss',qryConsultlaimp_date.AsDateTime);
+    Prepare;
+    open;
+
+    if Fields[0].AsInteger > 0  then
+     qry.Delete;
+   end;
+ end;
 end;
+
 
 end.

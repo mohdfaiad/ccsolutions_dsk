@@ -1,7 +1,6 @@
 inherited frm_insurance: Tfrm_insurance
   Caption = 'Manuten'#231#227'o: Conv'#234'nios'
   OnClose = FormClose
-  ExplicitTop = -291
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl

@@ -48,13 +48,6 @@ type
     dbedit_nome: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
     cxTabExames: TcxTabSheet;
-    dxLayoutControl1Group_Root: TdxLayoutGroup;
-    dxLayoutControl1: TdxLayoutControl;
-    dxLayoutGroup3: TdxLayoutGroup;
-    cxGrid1DBTableView1: TcxGridDBTableView;
-    cxGrid1Level1: TcxGridLevel;
-    cxGrid1: TcxGrid;
-    dxLayoutItem4: TdxLayoutItem;
     qry_table_price_product: TFDQuery;
     ds_table_price_product: TDataSource;
     qry_table_price_producttpp_id: TFDAutoIncField;
@@ -66,17 +59,7 @@ type
     ds_product: TDataSource;
     qry_productpro_id: TFDAutoIncField;
     qry_productpro_name: TStringField;
-    cxGrid1DBTableView1tpp_id: TcxGridDBColumn;
-    cxGrid1DBTableView1table_price_tbp_id: TcxGridDBColumn;
-    cxGrid1DBTableView1product_pro_id: TcxGridDBColumn;
-    cxGrid1DBTableView1tpp_value: TcxGridDBColumn;
-    cxGrid1DBTableView1tpp_dt_registration: TcxGridDBColumn;
-    dxLayoutItem5: TdxLayoutItem;
     dxLayoutControl2: TdxLayoutControl;
-    cxRadioDesconto: TcxRadioButton;
-    cxRadioAcrescimo: TcxRadioButton;
-    cxEditValor: TcxTextEdit;
-    cxButton1: TcxButton;
     dxLayoutGroup4: TdxLayoutGroup;
     dxLayoutGroup6: TdxLayoutGroup;
     qry_table_price_productvlrAntigo: TBCDField;
@@ -90,14 +73,11 @@ type
     cxGrid2DBTableView1tpp_value: TcxGridDBColumn;
     cxGrid2DBTableView1tpp_dt_registration: TcxGridDBColumn;
     cxTabAlterarPreco: TcxTabSheet;
-    dxLayoutControl3Group_Root: TdxLayoutGroup;
-    dxLayoutControl3: TdxLayoutControl;
-    dxLayoutItem12: TdxLayoutItem;
     dxLayoutControl4: TdxLayoutControl;
     cxRadioButton1: TcxRadioButton;
     cxEditPercential: TcxTextEdit;
     cxRadioButton2: TcxRadioButton;
-    cxTextEdit2: TcxTextEdit;
+    cxEditValor: TcxTextEdit;
     cxButtonConfirma: TcxButton;
     cxGrid3: TcxGrid;
     cxGridDBTableView1: TcxGridDBTableView;
@@ -113,11 +93,6 @@ type
     dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
     dxLayoutItem17: TdxLayoutItem;
     dxLayoutItem18: TdxLayoutItem;
-    dxLayoutItem19: TdxLayoutItem;
-    dxLayoutItem8: TdxLayoutItem;
-    dxLayoutItem7: TdxLayoutItem;
-    dxLayoutItem10: TdxLayoutItem;
-    dxLayoutItem9: TdxLayoutItem;
     cxGridDBTableView1tpp_id: TcxGridDBColumn;
     cxGridDBTableView1table_price_tbp_id: TcxGridDBColumn;
     cxGridDBTableView1product_pro_id: TcxGridDBColumn;
@@ -163,24 +138,48 @@ end;
 
 procedure Tfrm_table_price.cxButton1Click(Sender: TObject);
 begin
-if cxButtonConfirma.Caption = 'Confirmar' then
- begin
+ if cxButtonConfirma.Caption = 'Confirmar' then
+  begin
+   if cxEditPercential.Text <> ''  then
+    begin
+     qry.First;
+      while not qry.Eof do
+       begin
+        qry.Edit;
+        qry_table_price_producttpp_value.AsFloat:=qry_table_price_productvlrAntigo.AsFloat * (1-(StrToFloat(cxEditPercentual.Text) / 100));
+        qry.Post;
+        qry.Next;
+       end;
+     cxButtonConfirma.Caption:='Desfazer';
+    end;
 
+   if cxEditValor.Text <> ''  then
+    begin
+     qry.First;
+     while not qry.Eof do
+       begin
+        qry.Edit;
+        qry_table_price_producttpp_value.AsFloat:=StrToFloat(cxEditValor.Text);
+        qry.Post;
+        qry.Next;
+       end;
+     cxButtonConfirma.Caption:='Desfazer';
+    end;
+  end;
 
-  qry.First;
-  while not qry.Eof do
-   begin
-    qry.Edit;
-  //  qry_table_price_producttpp_value.AsFloat:=qry_table_price_productvlrAntigo.AsFloat * (1-(StrToFloat(cxEditPercentual.Text) / 100));
-    qry.Post;
-    qry.Next;
-   end;
-   cxButtonConfirma.Caption:='Desfazer';
+ if cxButtonConfirma.Caption = 'Confirmar' then
+  begin
+   qry.First;
+   while not qry.Eof do
+    begin
+     qry.Edit;
+     qry_table_price_producttpp_value.AsFloat:=StrToFloat(cxEditValor.Text);
+     qry.Post;
+     qry.Next;
+    end;
+  end;
+
  end;
-
-
-
-end;
 
 procedure Tfrm_table_price.cxTabAlterarPrecoShow(Sender: TObject);
 begin

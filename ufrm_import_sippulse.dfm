@@ -271,11 +271,9 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     Formats.ShortTimeFormat = 'hh:mm:ss'
     Formats.LongTimeFormat = 'hh:mm:ss'
     CloseAfterImport = True
-    OnAfterImport = QImport3Wizard_1AfterImport
     Left = 480
   end
   inherited qry: TFDQuery
-    Active = True
     BeforePost = qryBeforePost
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -7055,5 +7053,93 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     BCDToCurrency = False
     Left = 408
     Top = 48
+  end
+  object qryConsultla: TFDQuery
+    Active = True
+    IndexFieldNames = 'contract_ctr_id'
+    MasterSource = frm_dm.ds_signin
+    MasterFields = 'ctr_id'
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select * from import_call_log'
+      'where contract_ctr_id =:ctr_id')
+    Left = 448
+    Top = 288
+    ParamData = <
+      item
+        Name = 'CTR_ID'
+        DataType = ftAutoInc
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qryConsultlaimp_id: TFDAutoIncField
+      FieldName = 'imp_id'
+      Origin = 'imp_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qryConsultlacontract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
+    end
+    object qryConsultlaclient_cli_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'client_cli_id'
+      Origin = 'client_cli_id'
+    end
+    object qryConsultlaimp_from: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_from'
+      Origin = 'imp_from'
+      Size = 50
+    end
+    object qryConsultlaimp_to: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_to'
+      Origin = 'imp_to'
+      Size = 50
+    end
+    object qryConsultlaimp_duration: TTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_duration'
+      Origin = 'imp_duration'
+    end
+    object qryConsultlaimp_date: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_date'
+      Origin = 'imp_date'
+    end
+    object qryConsultlaimp_type: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_type'
+      Origin = 'imp_type'
+      Size = 50
+    end
+    object qryConsultlaimp_rate: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_rate'
+      Origin = 'imp_rate'
+      Precision = 12
+      Size = 5
+    end
+    object qryConsultlaimp_total: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_total'
+      Origin = 'imp_total'
+      Precision = 12
+      Size = 5
+    end
+    object qryConsultlaimp_file_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_file_name'
+      Origin = 'imp_file_name'
+      Size = 50
+    end
+    object qryConsultlacli_account_code_sippulse: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_account_code_sippulse'
+      Origin = 'cli_account_code_sippulse'
+      Size = 50
+    end
   end
 end

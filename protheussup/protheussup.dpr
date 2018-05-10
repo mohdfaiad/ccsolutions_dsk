@@ -28,7 +28,9 @@ uses
   ufrm_ticket_category in '..\ufrm_ticket_category.pas' {frm_ticket_category},
   ufrm_ticket in '..\ufrm_ticket.pas' {frm_ticket},
   ufrm_reseller in '..\ufrm_reseller.pas' {frm_reseller},
-  ufrm_ticket_priority in '..\ufrm_ticket_priority.pas' {frm_ticket_priority};
+  ufrm_ticket_priority in '..\ufrm_ticket_priority.pas' {frm_ticket_priority},
+  ufrm_ticket_interaction in '..\ufrm_ticket_interaction.pas' {frm_ticket_interaction},
+  uclass_thread_ticket_interation in '..\uclass_thread_ticket_interation.pas';
 
 {$R *.res}
 

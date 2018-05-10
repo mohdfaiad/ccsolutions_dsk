@@ -3,7 +3,7 @@ unit uthred_logged;
 interface
 
 uses
-  System.Classes,Vcl.Forms,Winapi.Windows;
+  System.Classes, Vcl.Forms, Winapi.Windows;
 
 type
   TLogado = class(TThread)

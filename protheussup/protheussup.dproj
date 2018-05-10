@@ -211,6 +211,11 @@
             <Form>frm_ticket_priority</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\ufrm_ticket_interaction.pas">
+            <Form>frm_ticket_interaction</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\uclass_thread_ticket_interation.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

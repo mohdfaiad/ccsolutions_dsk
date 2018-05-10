@@ -29,16 +29,12 @@ object frm_form_default: Tfrm_form_default
     Properties.CustomButtons.Buttons = <>
     Properties.HotImages = cxImageList_1
     Properties.Images = cxImageList_1
-    ExplicitWidth = 784
-    ExplicitHeight = 506
     ClientRectBottom = 540
     ClientRectLeft = 2
     ClientRectRight = 1002
     ClientRectTop = 28
     object cxTabSheet_1: TcxTabSheet
       Caption = 'Pesquisar'
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       object cxGrid_1: TcxGrid
         AlignWithMargins = True
         Left = 3
@@ -50,8 +46,6 @@ object frm_form_default: Tfrm_form_default
         PopupMenu = PopupMenu_1
         TabOrder = 0
         LockedStateImageOptions.Text = 'Aguarde por favor...'
-        ExplicitWidth = 770
-        ExplicitHeight = 466
         object cxGrid_1DBTableView1: TcxGridDBTableView
           PopupMenu = PopupMenu_1
           OnDblClick = cxGrid_1DBTableView1DblClick
@@ -114,17 +108,19 @@ object frm_form_default: Tfrm_form_default
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 770
-        Height = 466
+        Width = 994
+        Height = 506
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = cxTabSheet_3
         Properties.CustomButtons.Buttons = <>
         Properties.HotImages = cxImageList_1
         Properties.Images = cxImageList_1
-        ClientRectBottom = 460
+        ExplicitWidth = 770
+        ExplicitHeight = 466
+        ClientRectBottom = 500
         ClientRectLeft = 2
-        ClientRectRight = 764
+        ClientRectRight = 988
         ClientRectTop = 28
         object cxTabSheet_3: TcxTabSheet
           Caption = 'Informa'#231#245'es'
@@ -216,7 +212,6 @@ object frm_form_default: Tfrm_form_default
     Height = 55
     Align = dalTop
     BarManager = dxBarManager_1
-    ExplicitWidth = 784
   end
   object dxBarManager_1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
@@ -328,7 +323,7 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 262
+      DockedLeft = 260
       DockedTop = 0
       FloatLeft = 818
       FloatTop = 8

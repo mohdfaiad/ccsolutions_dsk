@@ -27,7 +27,7 @@ uses
   dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
   dxRibbon, dxGDIPlusClasses, ufrm_login, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_client, ufrm_supplier, ufrm_phonebook, ufrm_report,
-  ufrm_ticket_category, ufrm_ticket_type, ufrm_ticket, ufrm_reseller, ufrm_ticket_priority;
+  ufrm_ticket_category, ufrm_ticket_type, ufrm_ticket, ufrm_reseller, ufrm_ticket_priority, ufrm_ticket_interaction;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -52,7 +52,6 @@ type
     rbpopupmenu_1: TdxRibbonPopupMenu;
     Action_ticket_type: TAction;
     Action_ticket_category: TAction;
-    dxBarSubItem1: TdxBarSubItem;
     dxBarButton1: TdxBarButton;
     dxBarButton3: TdxBarButton;
     dxBarButton4: TdxBarButton;
@@ -62,6 +61,9 @@ type
     dxBarLargeButton9: TdxBarLargeButton;
     Action_ticket_priority: TAction;
     dxBarButton5: TdxBarButton;
+    dxBarSubItem2: TdxBarSubItem;
+    dxBarButton6: TdxBarButton;
+    Action_ticket_interaction: TAction;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -75,6 +77,7 @@ type
     procedure Action_ticketExecute(Sender: TObject);
     procedure Action_resellerExecute(Sender: TObject);
     procedure Action_ticket_priorityExecute(Sender: TObject);
+    procedure Action_ticket_interactionExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -225,6 +228,20 @@ begin
   end else begin
     frm_ticket_category.WindowState := wsNormal;
     frm_ticket_category.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_ticket_interactionExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_ticket_interaction) then begin
+    frm_ticket_interaction := Tfrm_ticket_interaction.Create(Self);
+    frm_ticket_interaction.Height := Bevel_1.Height;
+    frm_ticket_interaction.Width := Bevel_1.Width;
+    frm_ticket_interaction.Show;
+  end else begin
+    frm_ticket_interaction.WindowState := wsNormal;
+    frm_ticket_interaction.Show;
   end;
 end;
 

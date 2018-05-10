@@ -111,23 +111,36 @@ type
     dxLayoutItem13: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     cxDBLookupComboBox2: TcxDBLookupComboBox;
     dxLayoutItem14: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
     cxDBLookupComboBox3: TcxDBLookupComboBox;
     dxLayoutItem15: TdxLayoutItem;
     cxDBLookupComboBox4: TcxDBLookupComboBox;
     dxLayoutItem16: TdxLayoutItem;
     cxDBLookupComboBox5: TcxDBLookupComboBox;
     dxLayoutItem17: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
     dxLayoutControl3Group_Root: TdxLayoutGroup;
     dxLayoutControl3: TdxLayoutControl;
     cxDBLookupComboBox6: TcxDBLookupComboBox;
     dxLayoutItem18: TdxLayoutItem;
     cxDBLookupComboBox7: TcxDBLookupComboBox;
     dxLayoutItem19: TdxLayoutItem;
+    ds_enterprise: TDataSource;
+    qry_enterprise: TFDQuery;
+    dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
+    qrycontract_user_ctr_usr_id: TIntegerField;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    cxDBLookupComboBox8: TcxDBLookupComboBox;
+    dxLayoutItem12: TdxLayoutItem;
+    qry_contract_user: TFDQuery;
+    ds_contract_user: TDataSource;
+    cxGrid_1DBTableView1contract_user_ctr_usr_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1tkt_phone1: TcxGridDBColumn;
+    cxGrid_1DBTableView1tkt_phone2: TcxGridDBColumn;
+    cxGrid_1DBTableView1tkt_contact: TcxGridDBColumn;
+    cxGrid_1DBTableView1ticket_category_sub_tks_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1ticket_priority_tkp_id: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
   private
@@ -155,6 +168,7 @@ begin
   inherited;
   qrytkt_dt_registration.Value := Date + Time;
   qrytkt_dt_open.Value := Date + Time;
+  qrycontract_user_ctr_usr_id.Value := frm_dm.qry_signinctr_usr_id.Value;
 end;
 
 end.

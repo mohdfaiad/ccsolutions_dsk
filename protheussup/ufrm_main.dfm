@@ -321,12 +321,6 @@ inherited frm_main: Tfrm_main
         889C000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000}
     end
-    object dxBarSubItem1: TdxBarSubItem
-      Caption = 'New SubItem'
-      Category = 0
-      Visible = ivAlways
-      ItemLinks = <>
-    end
     object dxBarButton1: TdxBarButton
       Action = Action_ticket_type
       Category = 0
@@ -345,6 +339,16 @@ inherited frm_main: Tfrm_main
     end
     object dxBarButton5: TdxBarButton
       Action = Action_ticket_priority
+      Category = 0
+    end
+    object dxBarSubItem2: TdxBarSubItem
+      Caption = 'Tickets'
+      Category = 0
+      Visible = ivAlways
+      ItemLinks = <>
+    end
+    object dxBarButton6: TdxBarButton
+      Action = Action_ticket_interaction
       Category = 0
     end
   end
@@ -411,7 +415,7 @@ inherited frm_main: Tfrm_main
     end
     object Action_ticket: TAction
       Category = 'Ticket'
-      Caption = 'Ticket'
+      Caption = 'Tickets'
       Hint = 'Manuten'#231#227'o Tickets'
       OnExecute = Action_ticketExecute
     end
@@ -427,6 +431,12 @@ inherited frm_main: Tfrm_main
       Caption = 'Prioridades'
       Hint = 'Manuten'#231#227'o Prioridades dos Tickets'
       OnExecute = Action_ticket_priorityExecute
+    end
+    object Action_ticket_interaction: TAction
+      Category = 'Ticket'
+      Caption = 'Intera'#231#245'es'
+      Hint = 'Manuten'#231#227'o Intera'#231#245'es dos Tickets'
+      OnExecute = Action_ticket_interactionExecute
     end
   end
   inherited cxImageList_1: TcxImageList
@@ -1648,6 +1658,10 @@ inherited frm_main: Tfrm_main
       item
         Visible = True
         ItemName = 'dxBarButton4'
+      end
+      item
+        Visible = True
+        ItemName = 'dxBarButton6'
       end>
     Ribbon = dxRibbon1
     UseOwnFont = False

@@ -74,9 +74,9 @@ type
     cxGrid2DBTableView1tpp_dt_registration: TcxGridDBColumn;
     cxTabAlterarPreco: TcxTabSheet;
     dxLayoutControl4: TdxLayoutControl;
-    cxRadioButton1: TcxRadioButton;
-    cxEditPercential: TcxTextEdit;
-    cxRadioButton2: TcxRadioButton;
+    cxRadioDesconto: TcxRadioButton;
+    cxEditPercentual: TcxTextEdit;
+    cxRadioAcrescimo: TcxRadioButton;
     cxEditValor: TcxTextEdit;
     cxButtonConfirma: TcxButton;
     cxGrid3: TcxGrid;
@@ -134,51 +134,102 @@ begin
  cxTabSheet_3.TabVisible:=False;
  cxTabExames.TabVisible:=False;
  cxTabAlterarPreco.TabVisible:=True;
+ cxTabAlterarPreco.Show;
 end;
 
 procedure Tfrm_table_price.cxButton1Click(Sender: TObject);
+var
+x:Double;
 begin
+if (not(cxRadioDesconto.Checked)) and (not(cxRadioAcrescimo.Checked)) then
+ begin
+   Application.MessageBox('Informe se a alteração do preço é um desconto ou um acréscimo!','AVISO', MB_OK + MB_ICONWARNING);
+   Exit
+ end;
+
+ if Trim(cxEditPercentual.Text) <> '' then
+ begin
+ try
+  x:= StrToFloat(cxEditPercentual.Text);
+ finally
+  begin
+    Application.MessageBox('Valor do desconto informado é inválido!','AVISO', MB_OK + MB_ICONWARNING);
+    cxEditPercentual.SetFocus;
+  end;
+ end;
+ end;
+
+ if Trim(cxEditValor.Text) <> '' then
+ begin
+ try
+  x:= StrToFloat(cxEditValor.Text);
+ finally
+  begin
+    Application.MessageBox('Valor informado é inválido!','AVISO', MB_OK + MB_ICONWARNING);
+    cxEditValor.SetFocus;
+    Exit
+  end;
+ end;
+ end;
+
+
+if (trim(cxEditPercentual.Text) = '' ) and (trim(cxEditValor.Text) = '' ) then
+ begin
+   Application.MessageBox('Desconto ou Valor não!','AVISO', MB_OK + MB_ICONWARNING);
+   Exit
+ end;
+
+
+
+
+
  if cxButtonConfirma.Caption = 'Confirmar' then
   begin
-   if cxEditPercential.Text <> ''  then
+   if cxEditPercentual.Text <> ''  then
     begin
-     qry.First;
-      while not qry.Eof do
+     qry_table_price_product.First;
+      while not qry_table_price_product.Eof do
        begin
-        qry.Edit;
-        qry_table_price_producttpp_value.AsFloat:=qry_table_price_productvlrAntigo.AsFloat * (1-(StrToFloat(cxEditPercentual.Text) / 100));
-        qry.Post;
-        qry.Next;
+        qry_table_price_product.Edit;
+        if cxRadioDesconto.Checked then
+         qry_table_price_producttpp_value.AsFloat:=qry_table_price_productvlrAntigo.AsFloat * (1-(StrToFloat(cxEditPercentual.Text) / 100))
+        else
+        qry_table_price_producttpp_value.AsFloat:=qry_table_price_productvlrAntigo.AsFloat * (1+(StrToFloat(cxEditPercentual.Text) / 100));
+        qry_table_price_product.Post;
+        qry_table_price_product.Next;
        end;
      cxButtonConfirma.Caption:='Desfazer';
+     cxEditValor.Clear;
+     Exit;
     end;
 
    if cxEditValor.Text <> ''  then
     begin
-     qry.First;
+     qry_table_price_product.First;
      while not qry.Eof do
        begin
-        qry.Edit;
+        qry_table_price_product.Edit;
         qry_table_price_producttpp_value.AsFloat:=StrToFloat(cxEditValor.Text);
-        qry.Post;
-        qry.Next;
+        qry_table_price_product.Post;
+        qry_table_price_product.Next;
        end;
      cxButtonConfirma.Caption:='Desfazer';
+     Exit;
     end;
   end;
 
- if cxButtonConfirma.Caption = 'Confirmar' then
+ if cxButtonConfirma.Caption = 'Desfazer' then
   begin
-   qry.First;
-   while not qry.Eof do
+   qry_table_price_product.First;
+   while not qry_table_price_product.Eof do
     begin
-     qry.Edit;
+     qry_table_price_product.Edit;
      qry_table_price_producttpp_value.AsFloat:=StrToFloat(cxEditValor.Text);
-     qry.Post;
-     qry.Next;
+     qry_table_price_product.Post;
+     qry_table_price_product.Next;
     end;
+   cxButtonConfirma.Caption:='Confirmar';
   end;
-
  end;
 
 procedure Tfrm_table_price.cxTabAlterarPrecoShow(Sender: TObject);
@@ -214,7 +265,7 @@ procedure Tfrm_table_price.qry_table_price_productAfterInsert(
   DataSet: TDataSet);
 begin
   inherited;
-qry_table_price_producttpp_dt_registration.AsDateTime:=Now;
+ qry_table_price_producttpp_dt_registration.AsDateTime:=Now;
 end;
 
 end.

@@ -26,7 +26,8 @@ uses
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   QImport3Wizard, ACBrBase, ACBrEnterTab, System.ImageList, Vcl.ImgList,
   cxGraphics, System.Actions, Vcl.ActnList, dxBar, cxClasses, Vcl.Grids,
-  Vcl.DBGrids, frxClass, frxDBSet, frxDCtrl, frxChart, dxBarExtItems,DateUtils;
+  Vcl.DBGrids, frxClass, frxDBSet, frxDCtrl, frxChart, dxBarExtItems,DateUtils,
+  Vcl.ComCtrls;
 
 type
   Tfrm_import_sippulse = class(Tfrm_import_default)
@@ -108,15 +109,19 @@ type
     qryConsultlaimp_total: TFMTBCDField;
     qryConsultlaimp_file_name: TStringField;
     qryConsultlacli_account_code_sippulse: TStringField;
+    OpenDialog1: TOpenDialog;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure Action_printExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Action_importExecute(Sender: TObject);
 
+
   private
     { Private declarations }
     codigoCliente:Integer;
+    dtInicial,dtFinal:TDateTime;
+    procedure pegarIntervaloDaDataDoArquivo(PathArquivo:string);
 
   public
     { Public declarations }
@@ -131,10 +136,41 @@ implementation
 
 uses ufrm_dm;
 
-procedure Tfrm_import_sippulse.Action_importExecute(Sender: TObject);
+function StringToDateTime(const Value: String): TDateTime;
+var
+  FormatSettings: TFormatSettings;
 begin
+  GetLocaleFormatSettings(LOCALE_USER_DEFAULT, FormatSettings);
+  FormatSettings.DateSeparator := '-';
+  FormatSettings.ShortDateFormat := 'yyyy/MM/dd';
+  Result := StrToDateTime(Value, FormatSettings);
+end;
+
+
+procedure Tfrm_import_sippulse.Action_importExecute(Sender: TObject);
+var
+arq: TStringList;
+begin
+if OpenDialog1.Execute then
+ begin
+  arq:=TStringList.Create;
+  arq.LoadFromFile(QImport3Wizard_1.TemplateFileName);
+  arq[2]:='FileName=' + OpenDialog1.FileName;
+  arq.SaveToFile(QImport3Wizard_1.TemplateFileName);
+  arq.Destroy;
+ end;
+
+ pegarIntervaloDaDataDoArquivo(OpenDialog1.FileName);
+ qry.Close;
+ qry.ParamByName('ini').Value:= StrToDateTime(FormatDateTime('dd/MM/yyyy hh:mm:ss',dtInicial) + ' 00:00:00');
+ qry.ParamByName('fin').Value:= StrToDateTime(FormatDateTime('dd/MM/yyyy hh:mm:ss',dtFinal) + ' 23:59:59');
+
+ qry.Prepare;
+ qry.Open;
+
  codigoCliente:=-1;
-  inherited;
+
+ inherited;
 
 end;
 
@@ -163,10 +199,73 @@ procedure Tfrm_import_sippulse.FormCreate(Sender: TObject);
 begin
   inherited;
 qry.Close;
-qry.ParamByName('ini').AsDate:= StartOfTheMonth(now) - 30;
+qry.ParamByName('ini').AsDate:= StartOfTheMonth(now);
 qry.ParamByName('fin').AsDate:= EndOfTheMonth(now);
 qry.Prepare;
 qry.Open;
+end;
+
+
+
+procedure Tfrm_import_sippulse.pegarIntervaloDaDataDoArquivo(PathArquivo:string);
+var
+arquivo: TStrings;
+i,ini,fin,coluna:Integer;
+begin
+arquivo:=TStringList.Create;
+arquivo.LoadFromFile(PathArquivo);
+
+i:=Length(arquivo[0]);
+coluna:=0;
+ini:=0;
+fin:=0;
+for I := 0 to Length(arquivo[0]) do
+begin
+ if copy(arquivo[0],i,1) = ';' then
+  coluna:=coluna + 1;
+
+ if coluna = 3 then
+  begin
+   ini:= i;
+   coluna:=4;
+  end;
+
+
+ if coluna = 5 then
+  begin
+  fin:= i;
+  Break;
+  end;
+end;
+
+dtInicial:=StringToDateTime(Copy(arquivo[0],ini + 1,(fin - ini-1)));
+
+
+i:=Length(arquivo[arquivo.Count -1]);
+coluna:=0;
+ini:=0;
+fin:=0;
+for I := 0 to Length(arquivo[arquivo.Count -1]) do
+begin
+ if copy(arquivo[arquivo.Count -1],i,1) = ';' then
+  coluna:=coluna + 1;
+
+ if coluna = 3 then
+  begin
+   ini:= i;
+   coluna:=4;
+  end;
+
+
+ if coluna = 5 then
+  begin
+  fin:= i;
+  Break;
+  end;
+end;
+
+
+dtFinal:=StringToDateTime(Copy(arquivo[arquivo.Count -1],ini + 1,(fin - ini-1)));
 end;
 
 procedure Tfrm_import_sippulse.qryBeforePost(DataSet: TDataSet);
@@ -225,29 +324,6 @@ begin
      end;
    end;
  qryclient_cli_id.AsInteger:=codigoCliente;
-
-if qryConsultla.Locate('imp_type;imp_from;imp_to',VarArrayOf([qryimp_type.AsString, qryimp_from.AsString,qryimp_to.AsString]),[]) then
- begin
-
-  with frm_dm.qry,sql do
-   begin
-    Close;
-    Text:=' select  count(*) from import_call_log ' +
-        ' WHERE imp_type = :imp_type ' +
-          ' and imp_from = :imp_from  ' +
-          ' and imp_to = :imp_to '+
-          ' and imp_date =:imp_date ';
-    ParamByName('imp_type').AsString:=qryConsultlaimp_type.AsString;
-    ParamByName('imp_from').AsString:=qryConsultlaimp_from.AsString;
-    ParamByName('imp_to').AsString:=qryConsultlaimp_to.AsString;;
-    ParamByName('imp_date').AsString:=FormatDateTime('yyyy-MM-dd hh:mm:ss',qryConsultlaimp_date.AsDateTime);
-    Prepare;
-    open;
-
-    if Fields[0].AsInteger > 0  then
-     qry.Delete;
-   end;
- end;
 end;
 
 

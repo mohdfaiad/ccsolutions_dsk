@@ -270,7 +270,16 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     Formats.LongDateFormat = 'yyyy-MM-dd hh:mm:ss'
     Formats.ShortTimeFormat = 'hh:mm:ss'
     Formats.LongTimeFormat = 'hh:mm:ss'
+    ImportEmptyRows = False
+    SkipInvisibleColumns = True
     CloseAfterImport = True
+    TemplateFileName = 'C:\ccsolutions_dsk\import\Import_sippulse.imp'
+    AutoLoadTemplate = True
+    ImportMode = qimInsertNew
+    KeyColumns.Strings = (
+      'imp_from'
+      'imp_to'
+      'imp_date')
     Left = 480
   end
   inherited qry: TFDQuery
@@ -288,7 +297,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     ParamData = <
       item
         Name = 'INI'
-        DataType = ftDate
+        DataType = ftDateTime
         ParamType = ptInput
         Value = Null
       end
@@ -296,6 +305,10 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         Name = 'FIN'
         DataType = ftDate
         ParamType = ptInput
+        Value = Null
+      end>
+    MacroData = <
+      item
         Value = Null
       end>
     object qryimp_id: TFDAutoIncField
@@ -7063,8 +7076,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     SQL.Strings = (
       'select * from import_call_log'
       'where contract_ctr_id =:ctr_id')
-    Left = 448
-    Top = 288
+    Left = 552
+    Top = 264
     ParamData = <
       item
         Name = 'CTR_ID'
@@ -7076,6 +7089,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       FieldName = 'imp_id'
       Origin = 'imp_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qryConsultlacontract_ctr_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -7141,5 +7155,10 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       Origin = 'cli_account_code_sippulse'
       Size = 50
     end
+  end
+  object OpenDialog1: TOpenDialog
+    Filter = 'Arquivo CSV|*.csv'
+    Left = 568
+    Top = 128
   end
 end

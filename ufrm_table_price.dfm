@@ -111,9 +111,6 @@ inherited frm_table_price: Tfrm_table_price
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitTop = 22
-            ExplicitWidth = 686
-            ExplicitHeight = 444
             object cxGrid2: TcxGrid
               Left = 17
               Top = 38
@@ -211,10 +208,7 @@ inherited frm_table_price: Tfrm_table_price
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitTop = 22
-            ExplicitWidth = 686
-            ExplicitHeight = 444
-            object cxRadioButton1: TcxRadioButton
+            object cxRadioDesconto: TcxRadioButton
               Left = 17
               Top = 309
               Width = 191
@@ -225,15 +219,14 @@ inherited frm_table_price: Tfrm_table_price
               TabOrder = 2
               ParentBackground = False
             end
-            object cxEditPercential: TcxTextEdit
+            object cxEditPercentual: TcxTextEdit
               Left = 87
               Top = 282
               Style.HotTrack = False
               TabOrder = 1
-              Text = '0'
               Width = 121
             end
-            object cxRadioButton2: TcxRadioButton
+            object cxRadioAcrescimo: TcxRadioButton
               Left = 214
               Top = 309
               Width = 159
@@ -365,7 +358,7 @@ inherited frm_table_price: Tfrm_table_price
               Parent = dxLayoutAutoCreatedGroup3
               CaptionOptions.Text = 'cxRadioButton1'
               CaptionOptions.Visible = False
-              Control = cxRadioButton1
+              Control = cxRadioDesconto
               ControlOptions.AutoColor = True
               ControlOptions.OriginalHeight = 17
               ControlOptions.OriginalWidth = 113
@@ -377,7 +370,7 @@ inherited frm_table_price: Tfrm_table_price
               AlignHorz = ahClient
               AlignVert = avTop
               CaptionOptions.Text = 'Percentual %'
-              Control = cxEditPercential
+              Control = cxEditPercentual
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -392,7 +385,7 @@ inherited frm_table_price: Tfrm_table_price
               Parent = dxLayoutAutoCreatedGroup4
               CaptionOptions.Text = 'cxRadioButton2'
               CaptionOptions.Visible = False
-              Control = cxRadioButton2
+              Control = cxRadioAcrescimo
               ControlOptions.AutoColor = True
               ControlOptions.OriginalHeight = 17
               ControlOptions.OriginalWidth = 113

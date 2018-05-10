@@ -39,7 +39,6 @@
             DataBinding.FieldName = 'enterprise_ent_id'
           end
           object cxGrid_1DBTableView1client_cli_id: TcxGridDBColumn
-            Caption = 'Cliente ID'
             DataBinding.FieldName = 'client_cli_id'
           end
           object cxGrid_1DBTableView1Cliente: TcxGridDBColumn
@@ -50,7 +49,6 @@
             DataBinding.FieldName = 'insurance_ins_id'
           end
           object cxGrid_1DBTableView1requisition_type_ret_id: TcxGridDBColumn
-            Caption = 'Tipo ID'
             DataBinding.FieldName = 'requisition_type_ret_id'
           end
           object cxGrid_1DBTableView1req_dt_registration: TcxGridDBColumn
@@ -92,13 +90,13 @@
               DataBinding.DataField = 'req_dt_registration'
               ExplicitLeft = 254
             end
-            object cxDBLookupComboBox3: TcxDBLookupComboBox [2]
+            object cxDBLookupCombConvenio: TcxDBLookupComboBox [2]
               Left = 81
               Top = 130
               DataBinding.DataField = 'insurance_ins_id'
               DataBinding.DataSource = ds
               Properties.GridMode = True
-              Properties.KeyFieldNames = 'client_cli_id'
+              Properties.KeyFieldNames = 'cin_id'
               Properties.ListColumns = <
                 item
                   FieldName = 'ins_first_name'
@@ -109,7 +107,7 @@
               Properties.ListSource = ds_insurance
               Style.HotTrack = False
               TabOrder = 3
-              OnEnter = cxDBLookupComboBox3Enter
+              OnEnter = cxDBLookupCombConvenioEnter
               Width = 456
             end
             object cxGrid1: TcxGrid [3]
@@ -219,7 +217,7 @@
               Width = 184
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
+              ItemIndex = 2
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               LayoutDirection = ldHorizontal
@@ -242,7 +240,7 @@
               AlignHorz = ahClient
               AlignVert = avTop
               CaptionOptions.Text = 'Conv'#234'nio'
-              Control = cxDBLookupComboBox3
+              Control = cxDBLookupCombConvenio
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 456
               ControlOptions.ShowBorder = False
@@ -320,6 +318,7 @@
     end
     object qryclient_cli_id: TIntegerField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Cliente ID'
       FieldName = 'client_cli_id'
       Origin = 'client_cli_id'
     end
@@ -330,11 +329,13 @@
     end
     object qryrequisition_type_ret_id: TIntegerField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Tipo ID'
       FieldName = 'requisition_type_ret_id'
       Origin = 'requisition_type_ret_id'
     end
     object qryinsurance_ins_id: TIntegerField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Convenio ID'
       FieldName = 'insurance_ins_id'
       Origin = 'insurance_ins_id'
     end
@@ -1146,7 +1147,7 @@
     IndexFieldNames = 'client_cli_id'
     MasterSource = ds_client
     MasterFields = 'cli_id'
-    DetailFields = 'client_cli_id'
+    DetailFields = 'cin_id'
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
@@ -1329,6 +1330,7 @@
   end
   object qry_requisition_iten: TFDQuery
     Active = True
+    AfterInsert = qry_requisition_itenAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'requisition_req_id'
     MasterSource = ds

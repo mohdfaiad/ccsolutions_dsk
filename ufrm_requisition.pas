@@ -23,7 +23,8 @@ uses
   cxGridCustomPopupMenu, cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar, cxBarEditItem, cxClasses,
   dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar, cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC, cxLookupEdit,
-  cxDBLookupEdit, cxDBLookupComboBox, Vcl.Grids, Vcl.DBGrids, frxDBSet;
+  cxDBLookupEdit, cxDBLookupComboBox, Vcl.Grids, Vcl.DBGrids, frxDBSet, cxCheckBox, dxLayoutControlAdapters,
+  Vcl.StdCtrls, Vcl.Buttons;
 
 type
   Tfrm_requisition = class(Tfrm_form_default)
@@ -122,7 +123,7 @@ type
     qry_requisition_typecontract_ctr_id: TIntegerField;
     qry_requisition_typeret_name: TStringField;
     qry_requisition_typeret_dt_registration: TDateTimeField;
-    cxDBLookupComboBox3: TcxDBLookupComboBox;
+    cxDBLookupCombConvenio: TcxDBLookupComboBox;
     dxLayoutItem7: TdxLayoutItem;
     qryreq_id: TFDAutoIncField;
     qrycontract_ctr_id: TIntegerField;
@@ -144,17 +145,19 @@ type
     qryConvênio: TStringField;
     qryTipoexame: TStringField;
     qry_requisition_itenExame: TStringField;
-    procedure cxDBLookupComboBox3Enter(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
     procedure qry_requisition_itenproduct_pro_idValidate(Sender: TField);
+    procedure cxDBLookupCombConvenioEnter(Sender: TObject);
+    procedure qry_requisition_itenAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
   public
     { Public declarations }
     procedure limpaCache(Sender:TObject);
+
   end;
 
 var
@@ -168,14 +171,19 @@ uses ufrm_dm, class_required_field;
 
 procedure Tfrm_requisition.Action_saveExecute(Sender: TObject);
 begin
+  //--Comando para tirar o focus de todos os componentes da tela-----
+   ActiveControl := nil;
+   //----Função para validar os campos obrigatorios-----------------
+   TCampoRequerido.ValidarCampos(qry,qry_requisition_iten);
 
+   //----Condição para deixar salvar a requisição sem os itens (sem os exames)--
     if qry_requisition_iten.IsEmpty then
    begin
-     Application.MessageBox('Não é possível salvar, falta incluir os exemes na requisição !','AVISO DO SISTEMA',MB_OK + MB_ICONQUESTION);
+     Application.MessageBox('Não é possível salvar, falta incluir os exemes na requisição !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
       Exit;
    end;
 
-  //Para salvar os intens da requisição caso u usuário não faça
+  //Para salvar os intens da requisição caso o usuário não faça
   if (qry_requisition_iten.State in [dsEdit,dsInsert]) then
    begin
      qry_requisition_iten.Post;
@@ -184,7 +192,7 @@ begin
   inherited;
 end;
 
-procedure Tfrm_requisition.cxDBLookupComboBox3Enter(Sender: TObject);
+procedure Tfrm_requisition.cxDBLookupCombConvenioEnter(Sender: TObject);
 begin
   inherited;
   qry_client.Locate('cli_id',qryclient_cli_id.AsInteger,[loCaseInsensitive, loPartialKey]);
@@ -216,6 +224,13 @@ begin
   qryenterprise_ent_id.AsInteger    := frm_dm.qry_enterpriseent_id.AsInteger;
   qry.Post;
   qry.Edit;
+end;
+
+procedure Tfrm_requisition.qry_requisition_itenAfterInsert(DataSet: TDataSet);
+ begin
+ //--Cama função para validar os campos da requisiçao não permite inserir itens
+ // caso os campos do cabeçalho não estejam preenchido------
+   TCampoRequerido.ValidarCampos(qry,qry_requisition_iten);
 end;
 
 procedure Tfrm_requisition.qry_requisition_itenproduct_pro_idValidate(Sender: TField);

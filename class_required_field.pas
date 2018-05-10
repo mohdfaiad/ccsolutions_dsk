@@ -17,6 +17,8 @@ uses
 
   class function TratarRequerido(const Dataset: TDataset):Boolean;
 
+  class function ValidarCampos(const Dataset, DataSet2: TDataset):Boolean;
+
   class procedure RefreshImage(Field : TField; Img : TImage);
 
   end;
@@ -65,7 +67,37 @@ begin
 
 end;
 
- class procedure TCampoRequerido.RefreshImage(Field : TField; Img : TImage);
+ class function TCampoRequerido.ValidarCampos(const Dataset, DataSet2: TDataset): Boolean;
+var
+  i :Integer;
+  Campos :TStrings;
+begin
+
+  try
+    Campos := TStringList.Create;
+
+    for i:=0 to Dataset.Fields.Count-1 do
+    begin
+      if ((Dataset.Fields[i].FieldKind = fkData) and (Dataset.Fields[i].AsString=EmptyStr)) then
+          Campos.Add(' - ' + Dataset.Fields[i].DisplayName);
+     end;
+
+    if Trim(Campos.Text) <> '' then
+     begin
+        ShowMessage('Atenção, o(s) campo(s) : '+#13 + Campos.Text + 'São de preenchimento obrigatório ! ');
+        DataSet2.Cancel;
+        Abort
+     end;
+
+    finally
+
+      Campos.Free;
+
+    end;
+
+end;
+
+class procedure TCampoRequerido.RefreshImage(Field : TField; Img : TImage);
 var
   vJpeg   : TJPEGImage;
   vStream : TMemoryStream;

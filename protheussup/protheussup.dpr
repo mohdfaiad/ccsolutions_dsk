@@ -27,7 +27,8 @@ uses
   ufrm_ticket_type in '..\ufrm_ticket_type.pas' {frm_ticket_type},
   ufrm_ticket_category in '..\ufrm_ticket_category.pas' {frm_ticket_category},
   ufrm_ticket in '..\ufrm_ticket.pas' {frm_ticket},
-  ufrm_reseller in '..\ufrm_reseller.pas' {frm_reseller};
+  ufrm_reseller in '..\ufrm_reseller.pas' {frm_reseller},
+  ufrm_ticket_priority in '..\ufrm_ticket_priority.pas' {frm_ticket_priority};
 
 {$R *.res}
 

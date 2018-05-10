@@ -27,7 +27,7 @@ uses
   dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
   dxRibbon, dxGDIPlusClasses, ufrm_login, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_client, ufrm_supplier, ufrm_phonebook, ufrm_report,
-  ufrm_ticket_category, ufrm_ticket_type, ufrm_ticket, ufrm_reseller;
+  ufrm_ticket_category, ufrm_ticket_type, ufrm_ticket, ufrm_reseller, ufrm_ticket_priority;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -60,6 +60,8 @@ type
     dxBarManager_1Bar5: TdxBar;
     Action_reseller: TAction;
     dxBarLargeButton9: TdxBarLargeButton;
+    Action_ticket_priority: TAction;
+    dxBarButton5: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -72,6 +74,7 @@ type
     procedure Action_ticket_categoryExecute(Sender: TObject);
     procedure Action_ticketExecute(Sender: TObject);
     procedure Action_resellerExecute(Sender: TObject);
+    procedure Action_ticket_priorityExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -88,15 +91,12 @@ implementation
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_client) then
-  begin
+  if not Assigned(frm_client) then begin
     frm_client := Tfrm_client.Create(Self);
     frm_client.Height := Bevel_1.Height;
     frm_client.Width := Bevel_1.Width;
     frm_client.Show;
-  end
-  else
-  begin
+  end else begin
     frm_client.WindowState := wsNormal;
     frm_client.Show;
   end;
@@ -105,15 +105,12 @@ end;
 procedure Tfrm_main.Action_contractExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_contract) then
-  begin
+  if not Assigned(frm_contract) then begin
     frm_contract := Tfrm_contract.Create(Self);
     frm_contract.Height := Bevel_1.Height;
     frm_contract.Width := Bevel_1.Width;
     frm_contract.Show;
-  end
-  else
-  begin
+  end else begin
     frm_contract.WindowState := wsNormal;
     frm_contract.Show;
   end;
@@ -122,15 +119,12 @@ end;
 procedure Tfrm_main.Action_contract_userExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_contract_user) then
-  begin
+  if not Assigned(frm_contract_user) then begin
     frm_contract_user := Tfrm_contract_user.Create(Self);
     frm_contract_user.Height := Bevel_1.Height;
     frm_contract_user.Width := Bevel_1.Width;
     frm_contract_user.Show;
-  end
-  else
-  begin
+  end else begin
     frm_contract_user.WindowState := wsNormal;
     frm_contract_user.Show;
   end;
@@ -139,15 +133,12 @@ end;
 procedure Tfrm_main.Action_enterpriseExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_enterprise) then
-  begin
+  if not Assigned(frm_enterprise) then begin
     frm_enterprise := Tfrm_enterprise.Create(Self);
     frm_enterprise.Height := Bevel_1.Height;
     frm_enterprise.Width := Bevel_1.Width;
     frm_enterprise.Show;
-  end
-  else
-  begin
+  end else begin
     frm_enterprise.WindowState := wsNormal;
     frm_enterprise.Show;
   end;
@@ -156,15 +147,12 @@ end;
 procedure Tfrm_main.Action_phonebookExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_phonebook) then
-  begin
+  if not Assigned(frm_phonebook) then begin
     frm_phonebook := Tfrm_phonebook.Create(Self);
     frm_phonebook.Height := Bevel_1.Height;
     frm_phonebook.Width := Bevel_1.Width;
     frm_phonebook.Show;
-  end
-  else
-  begin
+  end else begin
     frm_phonebook.WindowState := wsNormal;
     frm_phonebook.Show;
   end;
@@ -173,15 +161,12 @@ end;
 procedure Tfrm_main.Action_reportExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_report) then
-  begin
+  if not Assigned(frm_report) then begin
     frm_report := Tfrm_report.Create(Self);
     frm_report.Height := Bevel_1.Height;
     frm_report.Width := Bevel_1.Width;
     frm_report.Show;
-  end
-  else
-  begin
+  end else begin
     frm_report.WindowState := wsNormal;
     frm_report.Show;
   end;
@@ -190,15 +175,12 @@ end;
 procedure Tfrm_main.Action_resellerExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_reseller) then
-  begin
+  if not Assigned(frm_reseller) then begin
     frm_reseller := Tfrm_reseller.Create(Self);
     frm_reseller.Height := Bevel_1.Height;
     frm_reseller.Width := Bevel_1.Width;
     frm_reseller.Show;
-  end
-  else
-  begin
+  end else begin
     frm_reseller.WindowState := wsNormal;
     frm_reseller.Show;
   end;
@@ -207,15 +189,12 @@ end;
 procedure Tfrm_main.Action_supplierExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_supplier) then
-  begin
+  if not Assigned(frm_supplier) then begin
     frm_supplier := Tfrm_supplier.Create(Self);
     frm_supplier.Height := Bevel_1.Height;
     frm_supplier.Width := Bevel_1.Width;
     frm_supplier.Show;
-  end
-  else
-  begin
+  end else begin
     frm_supplier.WindowState := wsNormal;
     frm_supplier.Show;
   end;
@@ -224,15 +203,12 @@ end;
 procedure Tfrm_main.Action_ticketExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_ticket) then
-  begin
+  if not Assigned(frm_ticket) then begin
     frm_ticket := Tfrm_ticket.Create(Self);
     frm_ticket.Height := Bevel_1.Height;
     frm_ticket.Width := Bevel_1.Width;
     frm_ticket.Show;
-  end
-  else
-  begin
+  end else begin
     frm_ticket.WindowState := wsNormal;
     frm_ticket.Show;
   end;
@@ -241,32 +217,40 @@ end;
 procedure Tfrm_main.Action_ticket_categoryExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_ticket_category) then
-  begin
+  if not Assigned(frm_ticket_category) then begin
     frm_ticket_category := Tfrm_ticket_category.Create(Self);
     frm_ticket_category.Height := Bevel_1.Height;
     frm_ticket_category.Width := Bevel_1.Width;
     frm_ticket_category.Show;
-  end
-  else
-  begin
+  end else begin
     frm_ticket_category.WindowState := wsNormal;
     frm_ticket_category.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_ticket_priorityExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_ticket_priority) then begin
+    frm_ticket_priority := Tfrm_ticket_priority.Create(Self);
+    frm_ticket_priority.Height := Bevel_1.Height;
+    frm_ticket_priority.Width := Bevel_1.Width;
+    frm_ticket_priority.Show;
+  end else begin
+    frm_ticket_priority.WindowState := wsNormal;
+    frm_ticket_priority.Show;
   end;
 end;
 
 procedure Tfrm_main.Action_ticket_typeExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_ticket_type) then
-  begin
+  if not Assigned(frm_ticket_type) then begin
     frm_ticket_type := Tfrm_ticket_type.Create(Self);
     frm_ticket_type.Height := Bevel_1.Height;
     frm_ticket_type.Width := Bevel_1.Width;
     frm_ticket_type.Show;
-  end
-  else
-  begin
+  end else begin
     frm_ticket_type.WindowState := wsNormal;
     frm_ticket_type.Show;
   end;

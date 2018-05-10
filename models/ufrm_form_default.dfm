@@ -2,8 +2,8 @@ object frm_form_default: Tfrm_form_default
   Left = 0
   Top = 0
   Caption = 'Form Default'
-  ClientHeight = 561
-  ClientWidth = 784
+  ClientHeight = 601
+  ClientWidth = 1008
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,31 +21,37 @@ object frm_form_default: Tfrm_form_default
   object cxPageControl_1: TcxPageControl
     Left = 0
     Top = 55
-    Width = 784
-    Height = 506
+    Width = 1008
+    Height = 546
     Align = alClient
     TabOrder = 0
     Properties.ActivePage = cxTabSheet_1
     Properties.CustomButtons.Buttons = <>
     Properties.HotImages = cxImageList_1
     Properties.Images = cxImageList_1
-    ClientRectBottom = 500
+    ExplicitWidth = 784
+    ExplicitHeight = 506
+    ClientRectBottom = 540
     ClientRectLeft = 2
-    ClientRectRight = 778
+    ClientRectRight = 1002
     ClientRectTop = 28
     object cxTabSheet_1: TcxTabSheet
       Caption = 'Pesquisar'
+      ExplicitWidth = 776
+      ExplicitHeight = 472
       object cxGrid_1: TcxGrid
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 770
-        Height = 466
+        Width = 994
+        Height = 506
         Align = alClient
         Images = cxImageList_1
         PopupMenu = PopupMenu_1
         TabOrder = 0
         LockedStateImageOptions.Text = 'Aguarde por favor...'
+        ExplicitWidth = 770
+        ExplicitHeight = 466
         object cxGrid_1DBTableView1: TcxGridDBTableView
           PopupMenu = PopupMenu_1
           OnDblClick = cxGrid_1DBTableView1DblClick
@@ -206,10 +212,11 @@ object frm_form_default: Tfrm_form_default
   object dxBarDockControl_1: TdxBarDockControl
     Left = 0
     Top = 0
-    Width = 784
+    Width = 1008
     Height = 55
     Align = dalTop
     BarManager = dxBarManager_1
+    ExplicitWidth = 784
   end
   object dxBarManager_1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET

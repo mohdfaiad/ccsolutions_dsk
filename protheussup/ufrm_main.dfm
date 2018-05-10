@@ -343,6 +343,10 @@ inherited frm_main: Tfrm_main
       Action = Action_reseller
       Category = 0
     end
+    object dxBarButton5: TdxBarButton
+      Action = Action_ticket_priority
+      Category = 0
+    end
   end
   inherited ActionList_1: TActionList
     object Action_contract: TAction
@@ -395,14 +399,14 @@ inherited frm_main: Tfrm_main
     end
     object Action_ticket_type: TAction
       Category = 'Ticket'
-      Caption = 'Ticket Tipo'
+      Caption = 'Tipos'
       Hint = 'Manuten'#231#227'o Tipos de Tickets'
       OnExecute = Action_ticket_typeExecute
     end
     object Action_ticket_category: TAction
       Category = 'Ticket'
-      Caption = 'Ticket Categoria'
-      Hint = 'Manuten'#231#227'o Categorias de Tickets'
+      Caption = 'Categoria e Subcategoria'
+      Hint = 'Manuten'#231#227'o Categorias e Subcategorias de Tickets'
       OnExecute = Action_ticket_categoryExecute
     end
     object Action_ticket: TAction
@@ -417,6 +421,12 @@ inherited frm_main: Tfrm_main
       Hint = 'Manuten'#231#227'o Revendas'
       ImageIndex = 8
       OnExecute = Action_resellerExecute
+    end
+    object Action_ticket_priority: TAction
+      Category = 'Ticket'
+      Caption = 'Prioridades'
+      Hint = 'Manuten'#231#227'o Prioridades dos Tickets'
+      OnExecute = Action_ticket_priorityExecute
     end
   end
   inherited cxImageList_1: TcxImageList
@@ -1626,6 +1636,10 @@ inherited frm_main: Tfrm_main
       item
         Visible = True
         ItemName = 'dxBarButton1'
+      end
+      item
+        Visible = True
+        ItemName = 'dxBarButton5'
       end
       item
         Visible = True

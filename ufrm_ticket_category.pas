@@ -45,8 +45,23 @@ type
     cxGrid_1DBTableView1tkc_dt_registration: TcxGridDBColumn;
     cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
+    dxLayoutGroup3: TdxLayoutGroup;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    dxLayoutItem4: TdxLayoutItem;
+    qry_ticket_category_sub: TFDQuery;
+    ds_ticket_category_sub: TDataSource;
+    qry_ticket_category_subtks_id: TFDAutoIncField;
+    qry_ticket_category_subticket_category_tkc_id: TIntegerField;
+    qry_ticket_category_subtks_name: TStringField;
+    qry_ticket_category_subtks_dt_registration: TDateTimeField;
+    cxGrid1DBTableView1tks_id: TcxGridDBColumn;
+    cxGrid1DBTableView1tks_name: TcxGridDBColumn;
+    cxGrid1DBTableView1tks_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure qry_ticket_category_subAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -72,6 +87,12 @@ procedure Tfrm_ticket_category.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   qrytkc_dt_registration.Value := Date + Time;
+end;
+
+procedure Tfrm_ticket_category.qry_ticket_category_subAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+  qry_ticket_category_subtks_dt_registration.Value := Date + Time;
 end;
 
 end.

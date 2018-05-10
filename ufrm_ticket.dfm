@@ -5,10 +5,6 @@ inherited frm_ticket: Tfrm_ticket
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1tkt_id: TcxGridDBColumn
@@ -64,400 +60,562 @@ inherited frm_ticket: Tfrm_ticket
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
+        Width = 994
+        Height = 506
+        ClientRectBottom = 500
+        ClientRectRight = 988
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 762
           ExplicitHeight = 432
           inherited dxLayoutControl_1: TdxLayoutControl
+            Width = 986
+            Height = 472
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'tkt_id'
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 238
               DataBinding.DataField = 'tkt_dt_registration'
-              ExplicitLeft = 238
             end
-            object cxDBDateEdit1: TcxDBDateEdit [2]
-              Left = 238
-              Top = 103
-              DataBinding.DataField = 'tkt_dt_open'
-              DataBinding.DataSource = ds
-              Properties.Kind = ckDateTime
-              Style.HotTrack = False
-              TabOrder = 3
-              Width = 130
-            end
-            object cxDBDateEdit3: TcxDBDateEdit [3]
-              Left = 424
-              Top = 103
-              DataBinding.DataField = 'tkt_dt_maturity'
-              DataBinding.DataSource = ds
-              Properties.Kind = ckDateTime
-              Style.HotTrack = False
-              TabOrder = 4
-              Width = 130
-            end
-            object cxDBDateEdit2: TcxDBDateEdit [4]
-              Left = 604
-              Top = 103
-              DataBinding.DataField = 'tkt_dt_close'
-              DataBinding.DataSource = ds
-              Properties.Kind = ckDateTime
-              Style.HotTrack = False
-              TabOrder = 5
-              Width = 130
-            end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [5]
-              Left = 59
-              Top = 130
-              DataBinding.DataField = 'client_cli_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'cli_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Raz'#227'o'
-                  Width = 350
-                  FieldName = 'cli_first_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'cli_id'
-                end>
-              Properties.ListSource = ds_client
-              Style.HotTrack = False
-              TabOrder = 6
-              Width = 309
-            end
-            object cxDBLookupComboBox4: TcxDBLookupComboBox [6]
-              Left = 59
-              Top = 157
-              DataBinding.DataField = 'ticket_type_tky_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'tky_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Nome'
-                  FieldName = 'tky_name'
-                end>
-              Properties.ListSource = ds_ticket_type
-              Style.HotTrack = False
-              TabOrder = 8
-              Width = 121
-            end
-            object cxDBLookupComboBox3: TcxDBLookupComboBox [7]
-              Left = 424
-              Top = 130
-              DataBinding.DataField = 'reseller_res_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'res_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Raz'#227'o'
-                  Width = 350
-                  FieldName = 'res_first_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'res_id'
-                end>
-              Properties.ListSource = ds_reseller
-              Style.HotTrack = False
-              TabOrder = 7
-              Width = 310
-            end
-            object cxDBLookupComboBox2: TcxDBLookupComboBox [8]
-              Left = 238
-              Top = 157
-              DataBinding.DataField = 'ticket_category_tkc_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'tkc_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Nome'
-                  FieldName = 'tkc_name'
-                end>
-              Properties.ListSource = ds_ticket_category
-              Style.HotTrack = False
-              TabOrder = 9
-              Width = 130
-            end
-            object cxDBComboBox1: TcxDBComboBox [9]
-              Left = 59
-              Top = 103
-              DataBinding.DataField = 'tkt_status'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.Items.Strings = (
-                'A - ABERTO'
-                'F - FECHADO'
-                'C - CANCELADO')
-              Style.HotTrack = False
-              TabOrder = 2
-              Width = 121
-            end
-            object cxDBMemo1: TcxDBMemo [10]
+            object cxPageControl1: TcxPageControl [2]
               Left = 17
-              Top = 222
+              Top = 103
+              Width = 952
+              Height = 193
+              Color = clWhite
+              ParentBackground = False
+              ParentColor = False
+              TabOrder = 2
+              Properties.ActivePage = cxTabSheet2
+              Properties.CustomButtons.Buttons = <>
+              ClientRectBottom = 187
+              ClientRectLeft = 2
+              ClientRectRight = 946
+              ClientRectTop = 27
+              object cxTabSheet2: TcxTabSheet
+                Caption = 'Ticket'
+                ImageIndex = 0
+                object dxLayoutControl2: TdxLayoutControl
+                  Left = 0
+                  Top = 0
+                  Width = 944
+                  Height = 160
+                  Align = alClient
+                  TabOrder = 0
+                  LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+                  ExplicitLeft = 464
+                  ExplicitTop = 18
+                  ExplicitWidth = 300
+                  ExplicitHeight = 250
+                  object cxDBComboBox1: TcxDBComboBox
+                    Left = 60
+                    Top = 10
+                    DataBinding.DataField = 'tkt_status'
+                    DataBinding.DataSource = ds
+                    Properties.CharCase = ecUpperCase
+                    Properties.DropDownListStyle = lsFixedList
+                    Properties.Items.Strings = (
+                      'A - ABERTO'
+                      'F- FECHADO'
+                      'C - CANCELADO')
+                    Style.HotTrack = False
+                    TabOrder = 0
+                    Width = 135
+                  end
+                  object cxDBLookupComboBox1: TcxDBLookupComboBox
+                    Left = 60
+                    Top = 64
+                    DataBinding.DataField = 'client_cli_id'
+                    DataBinding.DataSource = ds
+                    Properties.CharCase = ecUpperCase
+                    Properties.DropDownListStyle = lsFixedList
+                    Properties.DropDownWidth = 350
+                    Properties.KeyFieldNames = 'cli_id'
+                    Properties.ListColumns = <
+                      item
+                        Caption = 'Nome'
+                        Width = 350
+                        FieldName = 'cli_first_name'
+                      end
+                      item
+                        Caption = 'C'#243'd. ID'
+                        Width = 75
+                        FieldName = 'cli_id'
+                      end>
+                    Properties.ListSource = ds_client
+                    Style.HotTrack = False
+                    TabOrder = 6
+                    Width = 329
+                  end
+                  object cxDBDateEdit3: TcxDBDateEdit
+                    Left = 463
+                    Top = 37
+                    DataBinding.DataField = 'tkt_dt_maturity'
+                    DataBinding.DataSource = ds
+                    Style.HotTrack = False
+                    TabOrder = 5
+                    Width = 135
+                  end
+                  object cxDBTextEdit3: TcxDBTextEdit
+                    Left = 463
+                    Top = 64
+                    DataBinding.DataField = 'tkt_contact'
+                    DataBinding.DataSource = ds
+                    Style.HotTrack = False
+                    TabOrder = 7
+                    Width = 135
+                  end
+                  object cxDBTextEdit1: TcxDBTextEdit
+                    Left = 636
+                    Top = 64
+                    DataBinding.DataField = 'tkt_phone1'
+                    DataBinding.DataSource = ds
+                    Style.HotTrack = False
+                    TabOrder = 8
+                    Width = 107
+                  end
+                  object cxDBTextEdit2: TcxDBTextEdit
+                    Left = 781
+                    Top = 64
+                    DataBinding.DataField = 'tkt_phone2'
+                    DataBinding.DataSource = ds
+                    Style.HotTrack = False
+                    TabOrder = 9
+                    Width = 107
+                  end
+                  object cxDBLookupComboBox2: TcxDBLookupComboBox
+                    Left = 254
+                    Top = 10
+                    DataBinding.DataField = 'ticket_priority_tkp_id'
+                    DataBinding.DataSource = ds
+                    Properties.CharCase = ecUpperCase
+                    Properties.DropDownListStyle = lsFixedList
+                    Properties.DropDownWidth = 350
+                    Properties.KeyFieldNames = 'tkp_id'
+                    Properties.ListColumns = <
+                      item
+                        Caption = 'Nome'
+                        Width = 250
+                        FieldName = 'tkp_name'
+                      end
+                      item
+                        Caption = 'C'#243'd. ID'
+                        Width = 75
+                        FieldName = 'tkp_id'
+                      end>
+                    Properties.ListSource = ds_ticket_priority
+                    Style.HotTrack = False
+                    TabOrder = 1
+                    Width = 135
+                  end
+                  object cxDBDateEdit1: TcxDBDateEdit
+                    Left = 60
+                    Top = 37
+                    DataBinding.DataField = 'tkt_dt_open'
+                    DataBinding.DataSource = ds
+                    Style.HotTrack = False
+                    TabOrder = 3
+                    Width = 135
+                  end
+                  object cxDBDateEdit2: TcxDBDateEdit
+                    Left = 254
+                    Top = 37
+                    DataBinding.DataField = 'tkt_dt_close'
+                    DataBinding.DataSource = ds
+                    Style.HotTrack = False
+                    TabOrder = 4
+                    Width = 135
+                  end
+                  object cxDBLookupComboBox3: TcxDBLookupComboBox
+                    Left = 60
+                    Top = 91
+                    DataBinding.DataField = 'ticket_type_tky_id'
+                    DataBinding.DataSource = ds
+                    Properties.CharCase = ecUpperCase
+                    Properties.DropDownListStyle = lsFixedList
+                    Properties.DropDownWidth = 350
+                    Properties.KeyFieldNames = 'tky_id'
+                    Properties.ListColumns = <
+                      item
+                        Caption = 'Nome'
+                        Width = 200
+                        FieldName = 'tky_name'
+                      end
+                      item
+                        Caption = 'C'#243'd. ID'
+                        Width = 75
+                        FieldName = 'tky_id'
+                      end>
+                    Properties.ListSource = ds_ticket_type
+                    Style.HotTrack = False
+                    TabOrder = 10
+                    Width = 135
+                  end
+                  object cxDBLookupComboBox5: TcxDBLookupComboBox
+                    Left = 463
+                    Top = 91
+                    DataBinding.DataField = 'ticket_category_sub_tks_id'
+                    DataBinding.DataSource = ds
+                    Properties.CharCase = ecUpperCase
+                    Properties.DropDownListStyle = lsFixedList
+                    Properties.DropDownWidth = 350
+                    Properties.KeyFieldNames = 'tks_id'
+                    Properties.ListColumns = <
+                      item
+                        Caption = 'Nome'
+                        Width = 200
+                        FieldName = 'tks_name'
+                      end
+                      item
+                        Caption = 'C'#243'd. ID'
+                        Width = 75
+                        FieldName = 'tks_id'
+                      end>
+                    Properties.ListSource = ds_ticket_category_sub
+                    Style.HotTrack = False
+                    TabOrder = 12
+                    Width = 135
+                  end
+                  object cxDBLookupComboBox4: TcxDBLookupComboBox
+                    Left = 254
+                    Top = 91
+                    DataBinding.DataField = 'ticket_category_tkc_id'
+                    DataBinding.DataSource = ds
+                    Properties.CharCase = ecUpperCase
+                    Properties.DropDownListStyle = lsFixedList
+                    Properties.DropDownWidth = 350
+                    Properties.KeyFieldNames = 'tkc_id'
+                    Properties.ListColumns = <
+                      item
+                        Caption = 'Nome'
+                        Width = 200
+                        FieldName = 'tkc_name'
+                      end
+                      item
+                        Caption = 'C'#243'd. ID'
+                        Width = 75
+                        FieldName = 'tkc_id'
+                      end>
+                    Properties.ListOptions.SyncMode = True
+                    Properties.ListSource = ds_ticket_category
+                    Style.HotTrack = False
+                    TabOrder = 11
+                    Width = 135
+                  end
+                  object cxDBLookupComboBox7: TcxDBLookupComboBox
+                    Left = 463
+                    Top = 10
+                    DataBinding.DataField = 'enterprise_ent_id'
+                    DataBinding.DataSource = ds
+                    Properties.CharCase = ecUpperCase
+                    Properties.DropDownListStyle = lsFixedList
+                    Properties.DropDownWidth = 350
+                    Properties.KeyFieldNames = 'ent_id'
+                    Properties.ListColumns = <
+                      item
+                        Caption = 'Nome'
+                        Width = 250
+                        FieldName = 'ent_first_name'
+                      end
+                      item
+                        Width = 75
+                        FieldName = 'ent_id'
+                      end>
+                    Properties.ListSource = frm_dm.ds_enterprise
+                    Style.HotTrack = False
+                    TabOrder = 2
+                    Width = 280
+                  end
+                  object dxLayoutControl2Group_Root: TdxLayoutGroup
+                    AlignHorz = ahLeft
+                    AlignVert = avTop
+                    ButtonOptions.Buttons = <>
+                    Hidden = True
+                    ShowBorder = False
+                    Index = -1
+                  end
+                  object dxLayoutItem11: TdxLayoutItem
+                    Parent = dxLayoutAutoCreatedGroup4
+                    AlignHorz = ahLeft
+                    AlignVert = avTop
+                    CaptionOptions.Text = 'Status'
+                    Control = cxDBComboBox1
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 135
+                    ControlOptions.ShowBorder = False
+                    Index = 0
+                  end
+                  object dxLayoutItem13: TdxLayoutItem
+                    Parent = dxLayoutAutoCreatedGroup2
+                    AlignHorz = ahLeft
+                    CaptionOptions.Text = 'Cliente'
+                    Control = cxDBLookupComboBox1
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 329
+                    ControlOptions.ShowBorder = False
+                    Index = 0
+                  end
+                  object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+                    Parent = dxLayoutControl2Group_Root
+                    AlignHorz = ahLeft
+                    AlignVert = avTop
+                    Index = 1
+                    AutoCreated = True
+                  end
+                  object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
+                    Parent = dxLayoutAutoCreatedGroup1
+                    AlignVert = avClient
+                    LayoutDirection = ldHorizontal
+                    Index = 0
+                    AutoCreated = True
+                  end
+                  object dxLayoutItem7: TdxLayoutItem
+                    Parent = dxLayoutAutoCreatedGroup3
+                    AlignVert = avClient
+                    CaptionOptions.Text = 'Dt. Venc.'
+                    Control = cxDBDateEdit3
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 135
+                    ControlOptions.ShowBorder = False
+                    Index = 2
+                  end
+                  object dxLayoutItem10: TdxLayoutItem
+                    Parent = dxLayoutAutoCreatedGroup2
+                    AlignVert = avClient
+                    CaptionOptions.Text = 'Contato'
+                    Control = cxDBTextEdit3
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 135
+                    ControlOptions.ShowBorder = False
+                    Index = 1
+                  end
+                  object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
+                    Parent = dxLayoutAutoCreatedGroup1
+                    LayoutDirection = ldHorizontal
+                    Index = 1
+                    AutoCreated = True
+                  end
+                  object dxLayoutItem8: TdxLayoutItem
+                    Parent = dxLayoutAutoCreatedGroup2
+                    AlignVert = avClient
+                    CaptionOptions.Text = 'Tel. 1'
+                    Control = cxDBTextEdit1
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 107
+                    ControlOptions.ShowBorder = False
+                    Index = 2
+                  end
+                  object dxLayoutItem9: TdxLayoutItem
+                    Parent = dxLayoutAutoCreatedGroup2
+                    AlignHorz = ahLeft
+                    AlignVert = avClient
+                    CaptionOptions.Text = 'Tel. 2'
+                    Control = cxDBTextEdit2
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 107
+                    ControlOptions.ShowBorder = False
+                    Index = 3
+                  end
+                  object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
+                    Parent = dxLayoutControl2Group_Root
+                    AlignVert = avTop
+                    LayoutDirection = ldHorizontal
+                    Index = 0
+                    AutoCreated = True
+                  end
+                  object dxLayoutItem14: TdxLayoutItem
+                    Parent = dxLayoutAutoCreatedGroup4
+                    AlignVert = avClient
+                    CaptionOptions.Text = 'Prioridade'
+                    Control = cxDBLookupComboBox2
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 135
+                    ControlOptions.ShowBorder = False
+                    Index = 1
+                  end
+                  object dxLayoutItem4: TdxLayoutItem
+                    Parent = dxLayoutAutoCreatedGroup3
+                    AlignHorz = ahLeft
+                    AlignVert = avClient
+                    CaptionOptions.Text = 'Dt. Aber.'
+                    Control = cxDBDateEdit1
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 135
+                    ControlOptions.ShowBorder = False
+                    Index = 0
+                  end
+                  object dxLayoutItem6: TdxLayoutItem
+                    Parent = dxLayoutAutoCreatedGroup3
+                    AlignVert = avClient
+                    CaptionOptions.Text = 'Dt. Fec.'
+                    Control = cxDBDateEdit2
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 135
+                    ControlOptions.ShowBorder = False
+                    Index = 1
+                  end
+                  object dxLayoutItem15: TdxLayoutItem
+                    Parent = dxLayoutAutoCreatedGroup5
+                    AlignVert = avClient
+                    CaptionOptions.Text = 'Tipo'
+                    Control = cxDBLookupComboBox3
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 135
+                    ControlOptions.ShowBorder = False
+                    Index = 0
+                  end
+                  object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
+                    Parent = dxLayoutControl2Group_Root
+                    AlignVert = avTop
+                    LayoutDirection = ldHorizontal
+                    Index = 2
+                    AutoCreated = True
+                  end
+                  object dxLayoutItem17: TdxLayoutItem
+                    Parent = dxLayoutAutoCreatedGroup5
+                    AlignHorz = ahLeft
+                    AlignVert = avClient
+                    CaptionOptions.Text = 'Subcategoria'
+                    Control = cxDBLookupComboBox5
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 135
+                    ControlOptions.ShowBorder = False
+                    Index = 2
+                  end
+                  object dxLayoutItem16: TdxLayoutItem
+                    Parent = dxLayoutAutoCreatedGroup5
+                    AlignHorz = ahLeft
+                    AlignVert = avClient
+                    CaptionOptions.Text = 'Categoria'
+                    Control = cxDBLookupComboBox4
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 135
+                    ControlOptions.ShowBorder = False
+                    Index = 1
+                  end
+                  object dxLayoutItem19: TdxLayoutItem
+                    Parent = dxLayoutAutoCreatedGroup4
+                    AlignVert = avClient
+                    CaptionOptions.Text = 'Empresa'
+                    Control = cxDBLookupComboBox7
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 280
+                    ControlOptions.ShowBorder = False
+                    Index = 2
+                  end
+                end
+              end
+              object cxTabSheet3: TcxTabSheet
+                Caption = 'Revenda'
+                ImageIndex = 1
+                object dxLayoutControl3: TdxLayoutControl
+                  Left = 0
+                  Top = 0
+                  Width = 944
+                  Height = 160
+                  Align = alClient
+                  TabOrder = 0
+                  LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+                  ExplicitLeft = 432
+                  ExplicitTop = 64
+                  ExplicitWidth = 300
+                  ExplicitHeight = 250
+                  object cxDBLookupComboBox6: TcxDBLookupComboBox
+                    Left = 58
+                    Top = 10
+                    DataBinding.DataField = 'reseller_res_id'
+                    DataBinding.DataSource = ds
+                    Properties.CharCase = ecUpperCase
+                    Properties.DropDownListStyle = lsFixedList
+                    Properties.DropDownWidth = 350
+                    Properties.KeyFieldNames = 'res_id'
+                    Properties.ListColumns = <
+                      item
+                        Caption = 'Nome'
+                        Width = 250
+                        FieldName = 'res_first_name'
+                      end
+                      item
+                        Caption = 'C'#243'd. ID'
+                        Width = 75
+                        FieldName = 'res_id'
+                      end>
+                    Properties.ListSource = ds_reseller
+                    Style.HotTrack = False
+                    TabOrder = 0
+                    Width = 285
+                  end
+                  object dxLayoutControl3Group_Root: TdxLayoutGroup
+                    AlignHorz = ahLeft
+                    AlignVert = avTop
+                    ButtonOptions.Buttons = <>
+                    Hidden = True
+                    ShowBorder = False
+                    Index = -1
+                  end
+                  object dxLayoutItem18: TdxLayoutItem
+                    Parent = dxLayoutControl3Group_Root
+                    CaptionOptions.Text = 'Revenda'
+                    Control = cxDBLookupComboBox6
+                    ControlOptions.OriginalHeight = 21
+                    ControlOptions.OriginalWidth = 285
+                    ControlOptions.ShowBorder = False
+                    Index = 0
+                  end
+                end
+              end
+            end
+            object cxDBMemo1: TcxDBMemo [3]
+              Left = 24
+              Top = 330
               DataBinding.DataField = 'tkt_reason'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Properties.ScrollBars = ssVertical
               Style.HotTrack = False
-              TabOrder = 10
-              Height = 100
-              Width = 717
+              TabOrder = 3
+              Height = 112
+              Width = 938
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
+              CaptionOptions.Visible = False
               ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
-              LayoutDirection = ldHorizontal
+              SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
+              SizeOptions.SizableHorz = True
+              SizeOptions.SizableVert = True
+              SizeOptions.Height = 387
+              SizeOptions.Width = 966
+              ItemIndex = 1
             end
-            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+            object dxLayoutItem5: TdxLayoutItem
               Parent = dxLayoutGroup2
               AlignHorz = ahLeft
-              Index = 0
-              AutoCreated = True
-            end
-            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignVert = avClient
-              LayoutDirection = ldHorizontal
-              Index = 0
-              AutoCreated = True
-            end
-            object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup5
-              AlignHorz = ahLeft
               AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 0
-              AutoCreated = True
-            end
-            object dxLayoutItem3: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Dt. Aber.'
-              Control = cxDBDateEdit1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 130
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutItem6: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Dt. Venc.'
-              Control = cxDBDateEdit3
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 130
-              ControlOptions.ShowBorder = False
-              Index = 2
-            end
-            object dxLayoutItem4: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Dt. Fec.'
-              Control = cxDBDateEdit2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 130
-              ControlOptions.ShowBorder = False
-              Index = 3
-            end
-            object dxLayoutItem7: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup6
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Cliente'
-              Control = cxDBLookupComboBox1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 309
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              Index = 1
-              AutoCreated = True
-            end
-            object dxLayoutItem10: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup3
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Tipo'
-              Control = cxDBLookupComboBox4
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutItem9: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup6
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Revenda'
-              Control = cxDBLookupComboBox3
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 310
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignHorz = ahClient
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 0
-              AutoCreated = True
-            end
-            object dxLayoutItem8: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup3
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Categoria'
-              Control = cxDBLookupComboBox2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 130
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 1
-              AutoCreated = True
-            end
-            object dxLayoutItem11: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
-              AlignVert = avClient
-              CaptionOptions.Text = 'Status'
-              Control = cxDBComboBox1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              Control = cxPageControl1
+              ControlOptions.AutoColor = True
+              ControlOptions.OriginalHeight = 193
+              ControlOptions.OriginalWidth = 952
               ControlOptions.ShowBorder = False
               Index = 0
             end
             object dxLayoutGroup3: TdxLayoutGroup
-              Parent = dxLayoutControl_1Group_Root
+              Parent = dxLayoutGroup2
               CaptionOptions.Text = 'Motivo'
+              SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
+              SizeOptions.SizableHorz = True
+              SizeOptions.SizableVert = True
+              SizeOptions.Height = 150
               ButtonOptions.Buttons = <>
-              Index = 2
+              Index = 1
             end
-            object dxLayoutItem5: TdxLayoutItem
+            object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup3
               Control = cxDBMemo1
-              ControlOptions.OriginalHeight = 100
+              ControlOptions.OriginalHeight = 112
               ControlOptions.OriginalWidth = 185
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-          end
-        end
-        object cxTabSheet1: TcxTabSheet
-          Caption = 'Intera'#231#245'es'
-          object dxLayoutControl1: TdxLayoutControl
-            Left = 0
-            Top = 0
-            Width = 762
-            Height = 432
-            Align = alClient
-            TabOrder = 0
-            LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitLeft = 336
-            ExplicitTop = 128
-            ExplicitWidth = 300
-            ExplicitHeight = 250
-            object cxGrid1: TcxGrid
-              Left = 10
-              Top = 10
-              Width = 742
-              Height = 412
-              Align = alClient
-              TabOrder = 0
-              object cxGrid1DBTableView1: TcxGridDBTableView
-                Navigator.Buttons.ConfirmDelete = True
-                Navigator.Buttons.CustomButtons = <>
-                Navigator.Buttons.Images = cxImageList_1
-                Navigator.Buttons.First.ImageIndex = 0
-                Navigator.Buttons.PriorPage.Visible = False
-                Navigator.Buttons.Prior.ImageIndex = 1
-                Navigator.Buttons.Next.ImageIndex = 2
-                Navigator.Buttons.NextPage.Visible = False
-                Navigator.Buttons.Last.ImageIndex = 3
-                Navigator.Buttons.Insert.ImageIndex = 4
-                Navigator.Buttons.Delete.ImageIndex = 8
-                Navigator.Buttons.Delete.Visible = False
-                Navigator.Buttons.Edit.ImageIndex = 5
-                Navigator.Buttons.Post.ImageIndex = 6
-                Navigator.Buttons.Cancel.ImageIndex = 7
-                Navigator.Buttons.Refresh.ImageIndex = 9
-                Navigator.Buttons.SaveBookmark.Visible = False
-                Navigator.Buttons.GotoBookmark.Visible = False
-                Navigator.Buttons.Filter.ImageIndex = 10
-                Navigator.Visible = True
-                DataController.DataSource = ds_ticket_interaction
-                DataController.Summary.DefaultGroupSummaryItems = <>
-                DataController.Summary.FooterSummaryItems = <>
-                DataController.Summary.SummaryGroups = <>
-                Images = cxImageList_1
-                object cxGrid1DBTableView1tki_id: TcxGridDBColumn
-                  DataBinding.FieldName = 'tki_id'
-                  Options.Editing = False
-                  Width = 75
-                end
-                object cxGrid1DBTableView1tki_reason: TcxGridDBColumn
-                  DataBinding.FieldName = 'tki_reason'
-                  PropertiesClassName = 'TcxMemoProperties'
-                  Properties.CharCase = ecUpperCase
-                  Properties.ScrollBars = ssVertical
-                  Width = 540
-                end
-                object cxGrid1DBTableView1tki_dt_registration: TcxGridDBColumn
-                  DataBinding.FieldName = 'tki_dt_registration'
-                  PropertiesClassName = 'TcxDateEditProperties'
-                  Properties.Kind = ckDateTime
-                  Width = 125
-                end
-              end
-              object cxGrid1Level1: TcxGridLevel
-                GridView = cxGrid1DBTableView1
-              end
-            end
-            object dxLayoutControl1Group_Root: TdxLayoutGroup
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              ButtonOptions.Buttons = <>
-              Hidden = True
-              ShowBorder = False
-              Index = -1
-            end
-            object dxLayoutItem12: TdxLayoutItem
-              Parent = dxLayoutControl1Group_Root
-              Control = cxGrid1
-              ControlOptions.OriginalHeight = 412
-              ControlOptions.OriginalWidth = 742
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -522,6 +680,18 @@ inherited frm_ticket: Tfrm_ticket
       FieldName = 'ticket_category_tkc_id'
       Origin = 'ticket_category_tkc_id'
     end
+    object qryticket_category_sub_tks_id: TIntegerField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Subcategoria ID'
+      FieldName = 'ticket_category_sub_tks_id'
+      Origin = 'ticket_category_sub_tks_id'
+    end
+    object qryticket_priority_tkp_id: TIntegerField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Prioridade ID'
+      FieldName = 'ticket_priority_tkp_id'
+      Origin = 'ticket_priority_tkp_id'
+    end
     object qrytkt_dt_open: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Aber.'
@@ -554,6 +724,27 @@ inherited frm_ticket: Tfrm_ticket
       Origin = 'tkt_status'
       FixedChar = True
       Size = 1
+    end
+    object qrytkt_phone1: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 1'
+      FieldName = 'tkt_phone1'
+      Origin = 'tkt_phone1'
+      Size = 15
+    end
+    object qrytkt_phone2: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 2'
+      FieldName = 'tkt_phone2'
+      Origin = 'tkt_phone2'
+      Size = 15
+    end
+    object qrytkt_contact: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Contato'
+      FieldName = 'tkt_contact'
+      Origin = 'tkt_contact'
+      Size = 15
     end
     object qrytkt_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
@@ -663,13 +854,14 @@ inherited frm_ticket: Tfrm_ticket
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from ticket_interaction')
-    Left = 584
-    Top = 192
+    Left = 520
+    Top = 96
     object qry_ticket_interactiontki_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'tki_id'
       Origin = 'tki_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qry_ticket_interactionticket_tkt_id: TIntegerField
       AutoGenerateValue = arDefault
@@ -693,7 +885,43 @@ inherited frm_ticket: Tfrm_ticket
   end
   object ds_ticket_interaction: TDataSource
     DataSet = qry_ticket_interaction
-    Left = 616
-    Top = 192
+    Left = 552
+    Top = 96
+  end
+  object qry_ticket_priority: TFDQuery
+    Active = True
+    AfterInsert = qryAfterInsert
+    IndexFieldNames = 'contract_ctr_id'
+    MasterSource = frm_dm.ds_signin
+    MasterFields = 'ctr_id'
+    DetailFields = 'contract_ctr_id'
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select * from ticket_priority')
+    Left = 520
+    Top = 144
+  end
+  object ds_ticket_priority: TDataSource
+    DataSet = qry_ticket_priority
+    Left = 552
+    Top = 144
+  end
+  object qry_ticket_category_sub: TFDQuery
+    Active = True
+    AfterInsert = qryAfterInsert
+    IndexFieldNames = 'ticket_category_tkc_id'
+    MasterSource = ds_ticket_category
+    MasterFields = 'tkc_id'
+    DetailFields = 'ticket_category_tkc_id'
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select * from ticket_category_sub')
+    Left = 456
+    Top = 144
+  end
+  object ds_ticket_category_sub: TDataSource
+    DataSet = qry_ticket_category_sub
+    Left = 488
+    Top = 144
   end
 end

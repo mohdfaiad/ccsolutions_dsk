@@ -14,12 +14,12 @@ uses
   private
 
   public
-
+   //--Função para validar os campos Requeridos--------
   class function TratarRequerido(const Dataset: TDataset):Boolean;
-
+  //--Função para validar os campos que não foi possivel por requerido---
+  //--No entanto é necessário ser inseridos para não ocorrer erros nos item filhos
   class function ValidarCampos(const Dataset, DataSet2: TDataset):Boolean;
 
-  class procedure RefreshImage(Field : TField; Img : TImage);
 
   end;
 
@@ -34,7 +34,7 @@ uses
 
 { TCampoRequequido }
 
-
+   //--Função para validar os campos Requeridos--------
  class function TCampoRequerido.TratarRequerido(
   const Dataset: TDataset):Boolean;
 var
@@ -67,6 +67,8 @@ begin
 
 end;
 
+  //--Função para validar os campos que não foi possivel por requerido---
+  //--No entanto é necessário ser inseridos para não ocorrer erros nos item filhos
  class function TCampoRequerido.ValidarCampos(const Dataset, DataSet2: TDataset): Boolean;
 var
   i :Integer;
@@ -96,42 +98,5 @@ begin
     end;
 
 end;
-
-class procedure TCampoRequerido.RefreshImage(Field : TField; Img : TImage);
-var
-  vJpeg   : TJPEGImage;
-  vStream : TMemoryStream;
-begin
-  { Verifica se o campo esta vázio. }
-  if not Field.IsNull then
-  begin
-
-    { Cria objeto do tipo TJPEG, e objeto do tipo MemoryStream}
-    vJpeg   := TJPEGImage.Create;
-    vStream := TMemoryStream.Create;
-
-    { Trata o campo como do tipo BLOB e salva o seu conteudo na memória. }
-    TBlobField(Field).SaveToStream(vStream);
-
-    { Ajusta a posicao inicial de leitura da memória }
-    vStream.Position := 0;
-
-    { Carrega da memoria os dados, para uma estrutura do tipo TJPEG
-      (A partir da posicao 0)}
-    vJpeg.LoadFromStream(vStream);
-
-    { Exibe o jpg no Timage. }
-    Img.Picture.Assign(vJpeg);
-
-    { Libera a memoria utilizada pelos componentes de conversão }
-    vJpeg.Free;
-    vStream.Free;
-  end;
-end;
-
-
-//---------------------------------------------------------------------
-
-
 
 end.

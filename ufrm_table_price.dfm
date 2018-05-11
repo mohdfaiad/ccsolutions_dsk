@@ -1,27 +1,17 @@
 inherited frm_table_price: Tfrm_table_price
   Caption = 'Cadastro de Tabela de pre'#231'o'
-  ClientHeight = 559
-  ClientWidth = 1132
-  ExplicitWidth = 1148
-  ExplicitHeight = 598
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Width = 1132
-    Height = 504
     Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 1132
     ExplicitHeight = 504
-    ClientRectBottom = 498
-    ClientRectRight = 1126
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1124
       ExplicitHeight = 470
       inherited cxGrid_1: TcxGrid
-        Width = 1118
-        Height = 464
         ExplicitWidth = 1118
         ExplicitHeight = 464
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -54,21 +44,18 @@ inherited frm_table_price: Tfrm_table_price
       ExplicitWidth = 1124
       ExplicitHeight = 470
       inherited cxPageControl_2: TcxPageControl
-        Width = 1118
-        Height = 464
         Properties.ActivePage = cxTabExames
+        ExplicitTop = -45
         ExplicitWidth = 1118
         ExplicitHeight = 464
-        ClientRectBottom = 458
-        ClientRectRight = 1112
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 1110
           ExplicitHeight = 430
           inherited dxLayoutControl_1: TdxLayoutControl
-            Width = 1110
-            Height = 430
+            Width = 986
+            Height = 472
             ExplicitWidth = 1110
             ExplicitHeight = 430
             inherited dbedt_id: TcxDBTextEdit
@@ -103,19 +90,28 @@ inherited frm_table_price: Tfrm_table_price
         end
         object cxTabExames: TcxTabSheet
           Caption = 'Exames da  Tabela'
+          OnShow = cxTabExamesShow
+          ExplicitWidth = 1110
+          ExplicitHeight = 430
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 1110
-            Height = 430
+            Width = 986
+            Height = 472
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            ExplicitWidth = 1110
+            ExplicitHeight = 430
+            DesignSize = (
+              986
+              472)
             object cxGrid2: TcxGrid
               Left = 17
               Top = 38
               Width = 720
-              Height = 200
+              Height = 243
+              Anchors = [akLeft, akTop, akBottom]
               TabOrder = 0
               object cxGrid2DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
@@ -180,6 +176,8 @@ inherited frm_table_price: Tfrm_table_price
             object dxLayoutGroup4: TdxLayoutGroup
               AlignHorz = ahLeft
               AlignVert = avTop
+              SizeOptions.AssignedValues = [sovSizableVert]
+              SizeOptions.SizableVert = True
               ButtonOptions.Buttons = <>
               Hidden = True
               ShowBorder = False
@@ -188,8 +186,7 @@ inherited frm_table_price: Tfrm_table_price
             object dxLayoutGroup6: TdxLayoutGroup
               Parent = dxLayoutGroup4
               CaptionOptions.Text = 'Exames da tabela'
-              SizeOptions.AssignedValues = [sovSizableHorz]
-              SizeOptions.SizableHorz = True
+              SizeOptions.Height = 378
               SizeOptions.Width = 734
               ButtonOptions.Buttons = <>
               Index = 0
@@ -197,7 +194,7 @@ inherited frm_table_price: Tfrm_table_price
             object dxLayoutItem6: TdxLayoutItem
               Parent = dxLayoutGroup6
               Control = cxGrid2
-              ControlOptions.OriginalHeight = 200
+              ControlOptions.OriginalHeight = 243
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
               Index = 0
@@ -207,14 +204,18 @@ inherited frm_table_price: Tfrm_table_price
         object cxTabAlterarPreco: TcxTabSheet
           Caption = 'Alterar Pre'#231'o dos Exames'
           OnShow = cxTabAlterarPrecoShow
+          ExplicitWidth = 1110
+          ExplicitHeight = 430
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 1110
-            Height = 430
+            Width = 986
+            Height = 472
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            ExplicitWidth = 1110
+            ExplicitHeight = 430
             object cxRadioDesconto: TcxRadioButton
               Left = 17
               Top = 309
@@ -340,7 +341,6 @@ inherited frm_table_price: Tfrm_table_price
               AlignVert = avTop
               ButtonOptions.Buttons = <>
               Hidden = True
-              ItemIndex = 1
               ShowBorder = False
               Index = -1
             end
@@ -439,7 +439,6 @@ inherited frm_table_price: Tfrm_table_price
     end
   end
   inherited dxBarDockControl_1: TdxBarDockControl
-    Width = 1132
     ExplicitWidth = 1132
   end
   inherited dxBarManager_1: TdxBarManager
@@ -569,6 +568,7 @@ inherited frm_table_price: Tfrm_table_price
       AutoGenerateValue = arDefault
       FieldName = 'tpp_value'
       Origin = 'tpp_value'
+      DisplayFormat = ',0.00'
       Precision = 12
     end
     object qry_table_price_producttpp_dt_registration: TDateTimeField
@@ -581,6 +581,7 @@ inherited frm_table_price: Tfrm_table_price
       FieldName = 'vlrAntigo'
       Origin = 'tpp_value'
       ProviderFlags = []
+      DisplayFormat = ',0.00'
       Precision = 12
     end
   end

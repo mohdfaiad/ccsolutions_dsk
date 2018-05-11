@@ -33,7 +33,8 @@ uses
   cxDropDownEdit, cxCalendar, cxDBEdit, cxTextEdit, dxLayoutControl,
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, ufrm_dm, cxDBLookupComboBox,
-  dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons, cxRadioGroup;
+  dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons, cxRadioGroup, cxCurrencyEdit,
+  Vcl.ExtCtrls, cxListBox, cxCheckListBox;
 
 type
   Tfrm_table_price = class(Tfrm_form_default)
@@ -107,8 +108,9 @@ type
     procedure butonAlterarPrecoClick(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
     procedure cxTabAlterarPrecoShow(Sender: TObject);
+    procedure cxTabExamesShow(Sender: TObject);
   private
-    { Private declarations }
+
   procedure limpaCache(Sender:TObject);
   public
     { Public declarations }
@@ -124,7 +126,10 @@ implementation
 procedure Tfrm_table_price.Action_saveExecute(Sender: TObject);
 begin
   inherited;
+ cxTabSheet_3.TabVisible:=True;
+ cxTabExames.TabVisible:=True;
  cxTabAlterarPreco.TabVisible:=False;
+
 end;
 
 procedure Tfrm_table_price.butonAlterarPrecoClick(Sender: TObject);
@@ -134,6 +139,11 @@ begin
  cxTabSheet_3.TabVisible:=False;
  cxTabExames.TabVisible:=False;
  cxTabAlterarPreco.TabVisible:=True;
+ cxEditValor.Clear;
+ cxEditPercentual.Clear;
+ cxButtonConfirma.Caption:='Confirmar';
+ cxRadioDesconto.Checked:=false;
+ cxRadioAcrescimo.Checked:=false;
  cxTabAlterarPreco.Show;
 end;
 
@@ -151,7 +161,7 @@ if (not(cxRadioDesconto.Checked)) and (not(cxRadioAcrescimo.Checked)) then
  begin
  try
   x:= StrToFloat(cxEditPercentual.Text);
- finally
+ Except
   begin
     Application.MessageBox('Valor do desconto informado é inválido!','AVISO', MB_OK + MB_ICONWARNING);
     cxEditPercentual.SetFocus;
@@ -163,7 +173,7 @@ if (not(cxRadioDesconto.Checked)) and (not(cxRadioAcrescimo.Checked)) then
  begin
  try
   x:= StrToFloat(cxEditValor.Text);
- finally
+ Except
   begin
     Application.MessageBox('Valor informado é inválido!','AVISO', MB_OK + MB_ICONWARNING);
     cxEditValor.SetFocus;
@@ -205,7 +215,7 @@ if (trim(cxEditPercentual.Text) = '' ) and (trim(cxEditValor.Text) = '' ) then
    if cxEditValor.Text <> ''  then
     begin
      qry_table_price_product.First;
-     while not qry.Eof do
+     while not qry_table_price_product.Eof do
        begin
         qry_table_price_product.Edit;
         qry_table_price_producttpp_value.AsFloat:=StrToFloat(cxEditValor.Text);
@@ -223,7 +233,7 @@ if (trim(cxEditPercentual.Text) = '' ) and (trim(cxEditValor.Text) = '' ) then
    while not qry_table_price_product.Eof do
     begin
      qry_table_price_product.Edit;
-     qry_table_price_producttpp_value.AsFloat:=StrToFloat(cxEditValor.Text);
+     qry_table_price_producttpp_value.AsFloat:=qry_table_price_productvlrAntigo.AsFloat;
      qry_table_price_product.Post;
      qry_table_price_product.Next;
     end;
@@ -237,12 +247,18 @@ begin
  dxLayoutGroup8.CaptionOptions.Text:='Exames da tabela '+ qrytbp_name.AsString;
 end;
 
+procedure Tfrm_table_price.cxTabExamesShow(Sender: TObject);
+begin
+  inherited;
+cxGrid2.Top:=0;
+cxGrid2.Height:=dxLayoutControl2.Height - 60;
+end;
+
 procedure Tfrm_table_price.FormCreate(Sender: TObject);
 begin
   inherited;
 FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
 cxTabAlterarPreco.TabVisible:=false;
-
 end;
 
 procedure Tfrm_table_price.limpaCache(Sender: TObject);

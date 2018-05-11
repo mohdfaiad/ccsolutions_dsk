@@ -29,7 +29,7 @@ uses
   Vcl.DBGrids, frxClass, frxDBSet, frxDCtrl, frxChart, dxBarExtItems,DateUtils,
   Vcl.ComCtrls, cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxContainer,
   cxEdit, dxLayoutcxEditAdapters, dxLayoutContainer, cxTextEdit, cxMaskEdit,
-  cxButtonEdit, dxLayoutLookAndFeels, dxLayoutControl;
+  cxButtonEdit, dxLayoutLookAndFeels, dxLayoutControl, Vcl.ExtCtrls;
 
 type
   Tfrm_import_sippulse = class(Tfrm_import_default)
@@ -112,13 +112,10 @@ type
     qryConsultlaimp_file_name: TStringField;
     qryConsultlacli_account_code_sippulse: TStringField;
     OpenDialog1: TOpenDialog;
-    dxLayoutControl1Group_Root: TdxLayoutGroup;
-    dxLayoutControl1: TdxLayoutControl;
     dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList;
     dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel;
-    dxLayoutGroup1: TdxLayoutGroup;
-    cxButtonEdit1: TcxButtonEdit;
-    dxLayoutItem1: TdxLayoutItem;
+    qryimp_file_name: TStringField;
+    qryimp_comp: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure Action_printExecute(Sender: TObject);
@@ -129,8 +126,10 @@ type
   private
     { Private declarations }
     codigoCliente:Integer;
+    competencia,clienteSippulse:string;
     dtInicial,dtFinal:TDateTime;
-    procedure pegarIntervaloDaDataDoArquivo(PathArquivo:string);
+
+    procedure pegarCompetencia(PathArquivo:string);
 
   public
     { Public declarations }
@@ -148,11 +147,13 @@ uses ufrm_dm;
 function StringToDateTime(const Value: String): TDateTime;
 var
   FormatSettings: TFormatSettings;
+
 begin
   GetLocaleFormatSettings(LOCALE_USER_DEFAULT, FormatSettings);
   FormatSettings.DateSeparator := '-';
   FormatSettings.ShortDateFormat := 'yyyy/mm/dd hh:nn';
   Result := StrToDateTime(Value, FormatSettings);
+
 end;
 
 
@@ -169,30 +170,33 @@ if OpenDialog1.Execute then
   arq.Destroy;
  end;
 
- pegarIntervaloDaDataDoArquivo(OpenDialog1.FileName);
+ pegarCompetencia(OpenDialog1.FileName);
+
 
  With frm_dm.qry,sql do
   begin
     close;
     Text:='delete from import_call_log '+
-           ' where imp_date between :ini and :fin ' +
-           ' and contract_ctr_id = :contrato';
-    ParamByName('ini').AsDateTime:= StrToDateTime(FormatDateTime('dd/MM/yyyy hh:mm:ss',dtInicial) + ' 00:00:00');
-    ParamByName('fin').AsDateTime:= StrToDateTime(FormatDateTime('dd/MM/yyyy hh:mm:ss',dtFinal) + ' 23:59:59');
+           ' where imp_comp =:comp ' +
+           ' and contract_ctr_id = :contrato ' +
+           ' and cli_account_code_sippulse =:cli_account_code_sippulse';
+    ParamByName('comp').AsString:= competencia;
     ParamByName('contrato').AsInteger:= frm_dm.qry_signinctr_id.AsInteger;
+    ParamByName('cli_account_code_sippulse').AsString:= clienteSippulse;
+
     Prepare;
     ExecSQL;
-  end;
+   end;
+
 
  qry.Close;
- qry.ParamByName('ini').Value:= StrToDateTime(FormatDateTime('dd/MM/yyyy hh:mm:ss',dtInicial) + ' 00:00:00');
- qry.ParamByName('fin').Value:= StrToDateTime(FormatDateTime('dd/MM/yyyy hh:mm:ss',dtFinal) + ' 23:59:59');
-
+ qry.ParamByName('comp').AsString:= competencia;
+ qry.ParamByName('ctr_id').AsInteger:= frm_dm.qry_signinctr_id.AsInteger;
+ qry.ParamByName('cient').AsString:= clienteSippulse;
  qry.Prepare;
  qry.Open;
 
  codigoCliente:=-1;
-
  inherited;
 
 end;
@@ -219,21 +223,24 @@ begin
 end;
 
 procedure Tfrm_import_sippulse.FormCreate(Sender: TObject);
+var
+x:TFormatSettings;
 begin
   inherited;
+x.ShortDateFormat := 'dd/mm/yyyy';
 qry.Close;
-qry.ParamByName('ini').AsDate:= StartOfTheMonth(now);
-qry.ParamByName('fin').AsDate:= EndOfTheMonth(now);
+qry.ParamByName('comp').AsString:= competencia;
+qry.ParamByName('ctr_id').AsInteger:= frm_dm.qry_signinctr_id.AsInteger;
+qry.ParamByName('cient').AsString:= clienteSippulse;
 qry.Prepare;
 qry.Open;
 end;
 
-
-
-procedure Tfrm_import_sippulse.pegarIntervaloDaDataDoArquivo(PathArquivo:string);
+procedure Tfrm_import_sippulse.pegarCompetencia(PathArquivo:string);
 var
 arquivo: TStrings;
 i,ini,fin,coluna:Integer;
+data,ano,mes,dia:string;
 begin
 arquivo:=TStringList.Create;
 arquivo.LoadFromFile(PathArquivo);
@@ -261,34 +268,41 @@ begin
   end;
 end;
 
-dtInicial:=StringToDateTime(Copy(arquivo[0],ini + 1,(fin - ini-1)));
+data :=Copy(arquivo[0],ini + 1,(fin - ini-1));
+if Copy(data,5,1) = '-' then
+ begin
+    ano:=Copy(data,1,4);
+    mes:= Copy(data,6,2);
+    dia:= Copy(data,9,2);
+ end;
+dtInicial:=StrToDate(mes+'/'+ dia+'/'+ano);
+competencia:=mes + '/' + ano;
 
-
-i:=Length(arquivo[arquivo.Count -1]);
+i:=Length(arquivo[0]);
 coluna:=0;
 ini:=0;
 fin:=0;
-for I := 0 to Length(arquivo[arquivo.Count -1]) do
+for I := 0 to Length(arquivo[0]) do
 begin
- if copy(arquivo[arquivo.Count -1],i,1) = ';' then
+ if copy(arquivo[0],i,1) = ';' then
   coluna:=coluna + 1;
 
- if coluna = 3 then
+ if coluna = 10 then
   begin
    ini:= i;
-   coluna:=4;
+   coluna:=11;
   end;
 
 
- if coluna = 5 then
+ if coluna = 12 then
   begin
-  fin:= i;
-  Break;
+   fin:= i;
+   Break;
   end;
 end;
 
+ clienteSippulse:= Copy(arquivo[0],ini + 1,(fin - ini-1));
 
-dtFinal:=StringToDateTime(Copy(arquivo[arquivo.Count -1],ini + 1,(fin - ini-1)));
 end;
 
 procedure Tfrm_import_sippulse.qryBeforePost(DataSet: TDataSet);
@@ -347,6 +361,7 @@ begin
      end;
    end;
  qryclient_cli_id.AsInteger:=codigoCliente;
+ qryimp_comp.AsString:= competencia;
 end;
 
 end.

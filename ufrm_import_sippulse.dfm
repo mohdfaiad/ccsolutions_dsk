@@ -68,55 +68,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         Visible = True
       end>
   end
-  object dxLayoutControl1: TdxLayoutControl [2]
-    Left = 656
-    Top = 376
-    Width = 300
-    Height = 250
-    TabOrder = 6
-    Visible = False
-    LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-    object cxButtonEdit1: TcxButtonEdit
-      Left = 81
-      Top = 38
-      Properties.Buttons = <
-        item
-          Default = True
-          Kind = bkEllipsis
-        end>
-      Style.HotTrack = False
-      TabOrder = 0
-      Text = 'cxButtonEdit1'
-      Width = 475
-    end
-    object dxLayoutControl1Group_Root: TdxLayoutGroup
-      AlignHorz = ahLeft
-      AlignVert = avTop
-      ButtonOptions.Buttons = <>
-      Hidden = True
-      ShowBorder = False
-      Index = -1
-    end
-    object dxLayoutGroup1: TdxLayoutGroup
-      Parent = dxLayoutControl1Group_Root
-      CaptionOptions.Text = 'New Group'
-      ButtonOptions.Buttons = <>
-      Index = 0
-    end
-    object dxLayoutItem1: TdxLayoutItem
-      Parent = dxLayoutGroup1
-      CaptionOptions.Text = 'Arquivo CSV'
-      SizeOptions.AssignedValues = [sovSizableHorz]
-      SizeOptions.SizableHorz = True
-      SizeOptions.Width = 539
-      Control = cxButtonEdit1
-      ControlOptions.OriginalHeight = 21
-      ControlOptions.OriginalWidth = 121
-      ControlOptions.ShowBorder = False
-      Index = 0
-    end
-  end
-  inherited ActionList_1: TActionList [3]
+  inherited ActionList_1: TActionList [2]
     Left = 720
     Top = 72
     object Action_print: TAction
@@ -126,7 +78,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       OnExecute = Action_printExecute
     end
   end
-  inherited cxImageList_1: TcxImageList [4]
+  inherited cxImageList_1: TcxImageList [3]
     FormatVersion = 1
     DesignInfo = 4194993
     ImageInfo = <
@@ -280,11 +232,11 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           4BFFB4824BFFB4824BFFB4824CFFB5844FFF7F5F3BB000000000}
       end>
   end
-  inherited ACBrEnterTab_1: TACBrEnterTab [5]
+  inherited ACBrEnterTab_1: TACBrEnterTab [4]
     Left = 608
     Top = 40
   end
-  inherited dxBarManager_1: TdxBarManager [6]
+  inherited dxBarManager_1: TdxBarManager [5]
     Top = 40
     inherited dxBarManager_1Bar1: TdxBar
       Images = cxImageList_1
@@ -328,6 +280,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     ImportEmptyRows = False
     SkipInvisibleColumns = True
     TemplateFileName = 'C:\ccsolutions_dsk\import\Import_sippulse.imp'
+    AutoLoadTemplate = True
     ImportMode = qimInsertNew
     KeyColumns.Strings = (
       'imp_from'
@@ -343,22 +296,28 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
+      'select import_call_log.*,0 as _duracao from import_call_log'
       
-        'select import_call_log.*,0 as _duracao,contract_ctr_id from impo' +
-        'rt_call_log'
-      'where imp_date between :ini and :fin')
+        'where imp_comp =:comp and contract_ctr_id =:ctr_id and cli_accou' +
+        'nt_code_sippulse =:cient')
     Left = 544
     Top = 40
     ParamData = <
       item
-        Name = 'INI'
-        DataType = ftDateTime
+        Name = 'COMP'
+        DataType = ftString
         ParamType = ptInput
         Value = Null
       end
       item
-        Name = 'FIN'
-        DataType = ftDate
+        Name = 'CTR_ID'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'CIENT'
+        DataType = ftString
         ParamType = ptInput
         Value = Null
       end>
@@ -440,6 +399,18 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       AutoGenerateValue = arDefault
       FieldName = '_duracao'
       Origin = '_duracao'
+    end
+    object qryimp_file_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_file_name'
+      Origin = 'imp_file_name'
+      Size = 50
+    end
+    object qryimp_comp: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_comp'
+      Origin = 'imp_comp'
+      Size = 10
     end
   end
   inherited ds: TDataSource
@@ -7119,7 +7090,6 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     Top = 48
   end
   object qryConsultla: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'

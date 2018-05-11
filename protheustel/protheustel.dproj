@@ -105,93 +105,73 @@
         </DelphiCompile>
         <DCCReference Include="ufrm_protheustel.pas">
             <Form>frm_protheustel</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\models\ufrm_form_default.pas">
             <Form>frm_form_default</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_dm.pas">
             <Form>frm_dm</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\ufrm_dm_ds.pas">
             <Form>frm_dm_ds</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\ufrm_dm_report.pas">
             <Form>frm_dm_report</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\ufrm_client.pas">
             <Form>frm_client</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_contract.pas">
             <Form>frm_contract</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_contract_user.pas">
             <Form>frm_contract_user</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_enterprise.pas">
             <Form>frm_enterprise</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_phonebook.pas">
             <Form>frm_phonebook</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_report.pas">
             <Form>frm_report</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_supplier.pas">
             <Form>frm_supplier</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\models\ufrm_import_default.pas">
             <Form>frm_import_default</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_import_sippulse.pas">
             <Form>frm_import_sippulse</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_consult_cnpj.pas">
             <Form>frm_consult_cnpj</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_consult_cpf.pas">
             <Form>frm_consult_cpf</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_voip_server.pas">
             <Form>frm_voip_server</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="ufrm_main.pas">
             <Form>frm_main</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_login.pas">
             <Form>frm_login</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\models\ufrm_main_default.pas">
             <Form>frm_main_default</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\uThred_logged.pas"/>
         <DCCReference Include="..\ufrm_search_enterprise.pas"/>
         <DCCReference Include="..\models\ufrm_search.pas">
             <Form>frm_search</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
+        <None Include="ModelSupport_protheustel\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -221,6 +201,12 @@
                 <DeployFile LocalName="C:\ccsolutions_dsk\protheustel\protheustel.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>protheustel.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="ModelSupport_protheustel\default.txaPackage" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -644,6 +630,7 @@
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>
+            <ModelSupport>True</ModelSupport>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>

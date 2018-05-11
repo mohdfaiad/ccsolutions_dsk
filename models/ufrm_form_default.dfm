@@ -100,10 +100,6 @@ object frm_form_default: Tfrm_form_default
     end
     object cxTabSheet_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object cxPageControl_2: TcxPageControl
         AlignWithMargins = True
         Left = 3
@@ -116,23 +112,17 @@ object frm_form_default: Tfrm_form_default
         Properties.CustomButtons.Buttons = <>
         Properties.HotImages = cxImageList_1
         Properties.Images = cxImageList_1
-        ExplicitWidth = 770
-        ExplicitHeight = 466
         ClientRectBottom = 500
         ClientRectLeft = 2
         ClientRectRight = 988
         ClientRectTop = 28
         object cxTabSheet_3: TcxTabSheet
           Caption = 'Informa'#231#245'es'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl_1: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 762
-            Height = 432
+            Width = 986
+            Height = 472
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
@@ -1307,6 +1297,8 @@ object frm_form_default: Tfrm_form_default
     end
   end
   object qry: TFDQuery
+    CachedUpdates = True
+    SchemaAdapter = FDSchemaAdapter_1
     Left = 584
     Top = 48
   end

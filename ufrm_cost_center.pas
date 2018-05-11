@@ -71,6 +71,8 @@ type
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_cost_center_detailAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure qry_cost_center_detailAfterPost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -85,7 +87,32 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, class_required_field;
+
+procedure Tfrm_cost_center.Action_saveExecute(Sender: TObject);
+begin
+   //--Comando para tirar o focus de todos os componentes da tela-----
+   ActiveControl := nil;
+   //----Função para validar os campos obrigatorios-----------------
+   TCampoRequerido.ValidarCampos(qry,qry_cost_center_detail);
+
+    //----Condição para não deixar salvar a o Grupo sem os itens (sem os Sub-grupos)--
+    if qry_cost_center_detail.IsEmpty then
+   begin
+     Application.MessageBox('Não é possível salvar, falta incluir os Sub-Gruos !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
+      Exit;
+   end;
+
+  //Para salvar os intens os Sub - Grupos caso o usuário não faça
+  if (qry_cost_center_detail.State in [dsEdit,dsInsert]) then
+   begin
+     qry_cost_center_detail.Post;
+   end;
+
+   inherited;
+
+
+end;
 
 procedure Tfrm_cost_center.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -103,18 +130,32 @@ end;
 procedure Tfrm_cost_center.limpaCache(Sender: TObject);
 begin
   qry.CommitUpdates();
+  qry_cost_center_detail.CommitUpdates();
 end;
 
 procedure Tfrm_cost_center.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qrycod_dt_registration.Value := Date + Time;
+  qrycod_dt_registration.AsDateTime := Now;
+  qry.Post;
+  qry.Edit;
 end;
 
 procedure Tfrm_cost_center.qry_cost_center_detailAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qry_cost_center_detailcod_dt_registration.Value := Now;
+   qry_cost_center_detailcontract_ctr_id.AsInteger  := frm_dm.qry_signinctr_id.AsInteger;
+   qry_cost_center_detailcod_dt_registration.AsDateTime := Now;
+
+  //--Cama função para validar os campos da requisiçao não permite inserir itens
+ // caso os campos do cabeçalho não estejam preenchido------
+   TCampoRequerido.ValidarCampos(qry,qry_cost_center_detail);
+end;
+
+procedure Tfrm_cost_center.qry_cost_center_detailAfterPost(DataSet: TDataSet);
+begin
+  inherited;
+   ShowMessage('Vamor do campo    '+ IntToStr(qry_cost_center_detailcost_center_coc_id.AsInteger));
 end;
 
 end.

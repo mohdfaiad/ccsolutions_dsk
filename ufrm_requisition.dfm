@@ -1410,7 +1410,7 @@
     end
     object qry_requisition_typeret_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
+      DisplayLabel = 'Tipo'
       FieldName = 'ret_name'
       Origin = 'ret_name'
       Size = 25

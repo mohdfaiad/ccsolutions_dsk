@@ -152,6 +152,7 @@ type
     procedure qry_requisition_itenproduct_pro_idValidate(Sender: TField);
     procedure cxDBLookupCombConvenioEnter(Sender: TObject);
     procedure qry_requisition_itenAfterInsert(DataSet: TDataSet);
+    procedure Action_deleteExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -169,6 +170,18 @@ implementation
 
 uses ufrm_dm, class_required_field;
 
+procedure Tfrm_requisition.Action_deleteExecute(Sender: TObject);
+begin
+  if qry_requisition_iten.RecordCount >0 then
+    begin
+      Application.MessageBox('Não é possível excluir esta requisição ( Existe exames inclusos nela ) !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
+      Exit;
+    end;
+
+  inherited;
+
+end;
+
 procedure Tfrm_requisition.Action_saveExecute(Sender: TObject);
 begin
   //--Comando para tirar o focus de todos os componentes da tela-----
@@ -176,7 +189,7 @@ begin
    //----Função para validar os campos obrigatorios-----------------
    TCampoRequerido.ValidarCampos(qry,qry_requisition_iten);
 
-   //----Condição para deixar salvar a requisição sem os itens (sem os exames)--
+   //----Condição para não deixar salvar a requisição sem os itens (sem os exames)--
     if qry_requisition_iten.IsEmpty then
    begin
      Application.MessageBox('Não é possível salvar, falta incluir os exemes na requisição !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);

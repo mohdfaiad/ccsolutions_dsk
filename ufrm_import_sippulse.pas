@@ -27,7 +27,9 @@ uses
   QImport3Wizard, ACBrBase, ACBrEnterTab, System.ImageList, Vcl.ImgList,
   cxGraphics, System.Actions, Vcl.ActnList, dxBar, cxClasses, Vcl.Grids,
   Vcl.DBGrids, frxClass, frxDBSet, frxDCtrl, frxChart, dxBarExtItems,DateUtils,
-  Vcl.ComCtrls;
+  Vcl.ComCtrls, cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxContainer,
+  cxEdit, dxLayoutcxEditAdapters, dxLayoutContainer, cxTextEdit, cxMaskEdit,
+  cxButtonEdit, dxLayoutLookAndFeels, dxLayoutControl;
 
 type
   Tfrm_import_sippulse = class(Tfrm_import_default)
@@ -110,6 +112,13 @@ type
     qryConsultlaimp_file_name: TStringField;
     qryConsultlacli_account_code_sippulse: TStringField;
     OpenDialog1: TOpenDialog;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList;
+    dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel;
+    dxLayoutGroup1: TdxLayoutGroup;
+    cxButtonEdit1: TcxButtonEdit;
+    dxLayoutItem1: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure Action_printExecute(Sender: TObject);
@@ -142,7 +151,7 @@ var
 begin
   GetLocaleFormatSettings(LOCALE_USER_DEFAULT, FormatSettings);
   FormatSettings.DateSeparator := '-';
-  FormatSettings.ShortDateFormat := 'yyyy/MM/dd';
+  FormatSettings.ShortDateFormat := 'yyyy/mm/dd hh:nn';
   Result := StrToDateTime(Value, FormatSettings);
 end;
 
@@ -161,6 +170,20 @@ if OpenDialog1.Execute then
  end;
 
  pegarIntervaloDaDataDoArquivo(OpenDialog1.FileName);
+
+ With frm_dm.qry,sql do
+  begin
+    close;
+    Text:='delete from import_call_log '+
+           ' where imp_date between :ini and :fin ' +
+           ' and contract_ctr_id = :contrato';
+    ParamByName('ini').AsDateTime:= StrToDateTime(FormatDateTime('dd/MM/yyyy hh:mm:ss',dtInicial) + ' 00:00:00');
+    ParamByName('fin').AsDateTime:= StrToDateTime(FormatDateTime('dd/MM/yyyy hh:mm:ss',dtFinal) + ' 23:59:59');
+    ParamByName('contrato').AsInteger:= frm_dm.qry_signinctr_id.AsInteger;
+    Prepare;
+    ExecSQL;
+  end;
+
  qry.Close;
  qry.ParamByName('ini').Value:= StrToDateTime(FormatDateTime('dd/MM/yyyy hh:mm:ss',dtInicial) + ' 00:00:00');
  qry.ParamByName('fin').Value:= StrToDateTime(FormatDateTime('dd/MM/yyyy hh:mm:ss',dtFinal) + ' 23:59:59');
@@ -325,6 +348,5 @@ begin
    end;
  qryclient_cli_id.AsInteger:=codigoCliente;
 end;
-
 
 end.

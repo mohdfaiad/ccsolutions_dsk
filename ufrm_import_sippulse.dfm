@@ -1,10 +1,17 @@
 inherited frm_import_sippulse: Tfrm_import_sippulse
   Caption = 'Importar: SIPPulse - Relat'#243'rios.'
+  ClientHeight = 685
   OnClose = FormClose
   OnCreate = FormCreate
+  ExplicitHeight = 724
   PixelsPerInch = 96
   TextHeight = 13
   inherited DBGrid_1: TDBGrid
+    AlignWithMargins = True
+    Left = 3
+    Top = 30
+    Width = 778
+    Height = 652
     TabOrder = 0
     Columns = <
       item
@@ -61,7 +68,55 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         Visible = True
       end>
   end
-  inherited ActionList_1: TActionList [2]
+  object dxLayoutControl1: TdxLayoutControl [2]
+    Left = 656
+    Top = 376
+    Width = 300
+    Height = 250
+    TabOrder = 6
+    Visible = False
+    LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+    object cxButtonEdit1: TcxButtonEdit
+      Left = 81
+      Top = 38
+      Properties.Buttons = <
+        item
+          Default = True
+          Kind = bkEllipsis
+        end>
+      Style.HotTrack = False
+      TabOrder = 0
+      Text = 'cxButtonEdit1'
+      Width = 475
+    end
+    object dxLayoutControl1Group_Root: TdxLayoutGroup
+      AlignHorz = ahLeft
+      AlignVert = avTop
+      ButtonOptions.Buttons = <>
+      Hidden = True
+      ShowBorder = False
+      Index = -1
+    end
+    object dxLayoutGroup1: TdxLayoutGroup
+      Parent = dxLayoutControl1Group_Root
+      CaptionOptions.Text = 'New Group'
+      ButtonOptions.Buttons = <>
+      Index = 0
+    end
+    object dxLayoutItem1: TdxLayoutItem
+      Parent = dxLayoutGroup1
+      CaptionOptions.Text = 'Arquivo CSV'
+      SizeOptions.AssignedValues = [sovSizableHorz]
+      SizeOptions.SizableHorz = True
+      SizeOptions.Width = 539
+      Control = cxButtonEdit1
+      ControlOptions.OriginalHeight = 21
+      ControlOptions.OriginalWidth = 121
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+  end
+  inherited ActionList_1: TActionList [3]
     Left = 720
     Top = 72
     object Action_print: TAction
@@ -71,7 +126,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       OnExecute = Action_printExecute
     end
   end
-  inherited cxImageList_1: TcxImageList [3]
+  inherited cxImageList_1: TcxImageList [4]
     FormatVersion = 1
     DesignInfo = 4194993
     ImageInfo = <
@@ -225,11 +280,11 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           4BFFB4824BFFB4824BFFB4824CFFB5844FFF7F5F3BB000000000}
       end>
   end
-  inherited ACBrEnterTab_1: TACBrEnterTab [4]
+  inherited ACBrEnterTab_1: TACBrEnterTab [5]
     Left = 608
     Top = 40
   end
-  inherited dxBarManager_1: TdxBarManager [5]
+  inherited dxBarManager_1: TdxBarManager [6]
     Top = 40
     inherited dxBarManager_1Bar1: TdxBar
       Images = cxImageList_1
@@ -272,9 +327,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     Formats.LongTimeFormat = 'hh:mm:ss'
     ImportEmptyRows = False
     SkipInvisibleColumns = True
-    CloseAfterImport = True
     TemplateFileName = 'C:\ccsolutions_dsk\import\Import_sippulse.imp'
-    AutoLoadTemplate = True
     ImportMode = qimInsertNew
     KeyColumns.Strings = (
       'imp_from'
@@ -290,7 +343,9 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select import_call_log.*,0 as _duracao from import_call_log'
+      
+        'select import_call_log.*,0 as _duracao,contract_ctr_id from impo' +
+        'rt_call_log'
       'where imp_date between :ini and :fin')
     Left = 544
     Top = 40
@@ -305,10 +360,6 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         Name = 'FIN'
         DataType = ftDate
         ParamType = ptInput
-        Value = Null
-      end>
-    MacroData = <
-      item
         Value = Null
       end>
     object qryimp_id: TFDAutoIncField
@@ -7160,5 +7211,11 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     Filter = 'Arquivo CSV|*.csv'
     Left = 568
     Top = 128
+  end
+  object dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    Left = 520
+    Top = 48
+    object dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+    end
   end
 end

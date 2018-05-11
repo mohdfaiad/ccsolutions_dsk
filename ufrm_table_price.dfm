@@ -56,7 +56,7 @@ inherited frm_table_price: Tfrm_table_price
       inherited cxPageControl_2: TcxPageControl
         Width = 1118
         Height = 464
-        Properties.ActivePage = cxTabAlterarPreco
+        Properties.ActivePage = cxTabExames
         ExplicitWidth = 1118
         ExplicitHeight = 464
         ClientRectBottom = 458
@@ -153,6 +153,13 @@ inherited frm_table_price: Tfrm_table_price
                 object cxGrid2DBTableView1product_pro_id: TcxGridDBColumn
                   Caption = 'Exame'
                   DataBinding.FieldName = 'product_pro_id'
+                  PropertiesClassName = 'TcxLookupComboBoxProperties'
+                  Properties.KeyFieldNames = 'pro_id'
+                  Properties.ListColumns = <
+                    item
+                      FieldName = 'pro_name'
+                    end>
+                  Properties.ListSource = ds_product
                   Width = 250
                 end
                 object cxGrid2DBTableView1tpp_value: TcxGridDBColumn
@@ -583,7 +590,6 @@ inherited frm_table_price: Tfrm_table_price
     Top = 130
   end
   object qry_product: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select pro_id,pro_name from product'

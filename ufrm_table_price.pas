@@ -167,7 +167,6 @@ if (not(cxRadioDesconto.Checked)) and (not(cxRadioAcrescimo.Checked)) then
   begin
     Application.MessageBox('Valor informado é inválido!','AVISO', MB_OK + MB_ICONWARNING);
     cxEditValor.SetFocus;
-    Exit
   end;
  end;
  end;
@@ -176,7 +175,7 @@ if (not(cxRadioDesconto.Checked)) and (not(cxRadioAcrescimo.Checked)) then
 if (trim(cxEditPercentual.Text) = '' ) and (trim(cxEditValor.Text) = '' ) then
  begin
    Application.MessageBox('Desconto ou Valor não!','AVISO', MB_OK + MB_ICONWARNING);
-   Exit
+   Exit;
  end;
 
 

@@ -4,16 +4,12 @@ inherited frm_table_price: Tfrm_table_price
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
-    ExplicitWidth = 1132
-    ExplicitHeight = 504
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 1124
-      ExplicitHeight = 470
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
-        ExplicitWidth = 1118
-        ExplicitHeight = 464
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1tbp_id: TcxGridDBColumn
             Caption = 'C'#243'd. ID'
@@ -41,23 +37,16 @@ inherited frm_table_price: Tfrm_table_price
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 1124
-      ExplicitHeight = 470
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabExames
-        ExplicitTop = -45
-        ExplicitWidth = 1118
-        ExplicitHeight = 464
+        Properties.ActivePage = cxTabAlterarPreco
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 1110
-          ExplicitHeight = 430
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
-            Width = 986
-            Height = 472
-            ExplicitWidth = 1110
-            ExplicitHeight = 430
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'tbp_id'
             end
@@ -91,8 +80,6 @@ inherited frm_table_price: Tfrm_table_price
         object cxTabExames: TcxTabSheet
           Caption = 'Exames da  Tabela'
           OnShow = cxTabExamesShow
-          ExplicitWidth = 1110
-          ExplicitHeight = 430
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -101,8 +88,6 @@ inherited frm_table_price: Tfrm_table_price
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitWidth = 1110
-            ExplicitHeight = 430
             DesignSize = (
               986
               472)
@@ -204,8 +189,6 @@ inherited frm_table_price: Tfrm_table_price
         object cxTabAlterarPreco: TcxTabSheet
           Caption = 'Alterar Pre'#231'o dos Exames'
           OnShow = cxTabAlterarPrecoShow
-          ExplicitWidth = 1110
-          ExplicitHeight = 430
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
@@ -214,8 +197,6 @@ inherited frm_table_price: Tfrm_table_price
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitWidth = 1110
-            ExplicitHeight = 430
             object cxRadioDesconto: TcxRadioButton
               Left = 17
               Top = 309
@@ -438,9 +419,6 @@ inherited frm_table_price: Tfrm_table_price
       end
     end
   end
-  inherited dxBarDockControl_1: TdxBarDockControl
-    ExplicitWidth = 1132
-  end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar6: TdxBar
       ItemLinks = <
@@ -462,13 +440,11 @@ inherited frm_table_price: Tfrm_table_price
   end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (

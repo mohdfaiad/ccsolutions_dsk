@@ -160,6 +160,7 @@ end;
 procedure Tfrm_main_default.FormCreate(Sender: TObject);
 
 begin
+  ReportMemoryLeaksOnShutdown:=True;// Procedimento para saber se está ficando algum objeto na memória
   DisableAero := True;
   logado:=true;
   bloqueado:=false;

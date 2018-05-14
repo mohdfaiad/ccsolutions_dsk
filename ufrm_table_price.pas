@@ -189,9 +189,6 @@ if (trim(cxEditPercentual.Text) = '' ) and (trim(cxEditValor.Text) = '' ) then
  end;
 
 
-
-
-
  if cxButtonConfirma.Caption = 'Confirmar' then
   begin
    if cxEditPercentual.Text <> ''  then

@@ -15,7 +15,6 @@ object frm_form_default: Tfrm_form_default
   Position = poDesigned
   ShowHint = True
   Visible = True
-  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13

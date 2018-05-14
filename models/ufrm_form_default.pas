@@ -141,7 +141,6 @@ type
     procedure Action_importExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Action_printExecute(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -305,11 +304,6 @@ end;
 procedure Tfrm_form_default.dxLayoutControl_1DblClick(Sender: TObject);
 begin
   dxLayoutControl_1.Customization := True;
-end;
-
-procedure Tfrm_form_default.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-   FreeAndNil(Self);
 end;
 
 procedure Tfrm_form_default.FormCreate(Sender: TObject);

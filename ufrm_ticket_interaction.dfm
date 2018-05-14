@@ -212,7 +212,7 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
               Left = 10000
               Top = 10000
               DataBinding.DataField = 'tkt_id'
-              TabOrder = 14
+              TabOrder = 13
               Visible = False
               ExplicitLeft = 10000
               ExplicitTop = 10000
@@ -457,8 +457,8 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
               SizeOptions.Height = 241
               SizeOptions.Width = 400
               Control = cxGrid1
-              ControlOptions.OriginalHeight = 200
-              ControlOptions.OriginalWidth = 250
+              ControlOptions.OriginalHeight = 241
+              ControlOptions.OriginalWidth = 400
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -469,7 +469,7 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
               SizeOptions.Width = 546
               Control = dbmem_reason
               ControlOptions.OriginalHeight = 89
-              ControlOptions.OriginalWidth = 185
+              ControlOptions.OriginalWidth = 546
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -903,7 +903,6 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
     Top = 448
   end
   object Timer1: TTimer
-    Enabled = False
     Interval = 10000
     OnTimer = Timer1Timer
     Left = 690

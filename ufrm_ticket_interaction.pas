@@ -153,9 +153,13 @@ end;
 procedure Tfrm_ticket_interaction.Timer1Timer(Sender: TObject);
 begin
   inherited;
-  TThread.Queue(Nil, procedure begin
+  if ds.State in [dsEdit, dsInsert]  then begin
+    Null;
+  end else begin
+    TThread.Queue(Nil, procedure begin
     qry.Refresh;
-  end);
+    end);
   end;
+end;
 
 end.

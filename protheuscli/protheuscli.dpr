@@ -13,8 +13,19 @@ uses
   ufrm_dm_report in '..\ufrm_dm_report.pas' {frm_dm_report: TDataModule},
   ufrm_login in '..\ufrm_login.pas' {frm_login},
   ufrm_main in 'ufrm_main.pas' {frm_main},
+  ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
+  ufrm_client in '..\ufrm_client.pas' {frm_client},
+  ufrm_consult_cnpj in '..\ufrm_consult_cnpj.pas' {frm_consult_cnpj},
+  ufrm_consult_cpf in '..\ufrm_consult_cpf.pas' {frm_consult_cpf},
+  ufrm_contract in '..\ufrm_contract.pas' {frm_contract},
+  ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
+  ufrm_enterprise in '..\ufrm_enterprise.pas' {frm_enterprise},
   uthred_logged in '..\uthred_logged.pas',
-  ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise};
+  ufrm_report in '..\ufrm_report.pas' {frm_report},
+  ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
+  ufrm_insurance in '..\ufrm_insurance.pas' {frm_insurance},
+  ufrm_exam in '..\ufrm_exam.pas' {frm_exam},
+  ufrm_material in '..\ufrm_material.pas' {frm_material};
 
 {$R *.res}
 
@@ -25,6 +36,5 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
-  Application.CreateForm(Tfrm_search_enterprise, frm_search_enterprise);
   Application.Run;
 end.

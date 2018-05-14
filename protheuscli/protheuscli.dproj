@@ -150,9 +150,53 @@
             <Form>frm_main</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\uthred_logged.pas"/>
         <DCCReference Include="..\ufrm_search_enterprise.pas">
             <Form>frm_search_enterprise</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_client.pas">
+            <Form>frm_client</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_consult_cnpj.pas">
+            <Form>frm_consult_cnpj</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_consult_cpf.pas">
+            <Form>frm_consult_cpf</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_contract.pas">
+            <Form>frm_contract</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_contract_user.pas">
+            <Form>frm_contract_user</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_enterprise.pas">
+            <Form>frm_enterprise</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\uthred_logged.pas"/>
+        <DCCReference Include="..\ufrm_report.pas">
+            <Form>frm_report</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_phonebook.pas">
+            <Form>frm_phonebook</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_insurance.pas">
+            <Form>frm_insurance</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_exam.pas">
+            <Form>frm_exam</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_material.pas">
+            <Form>frm_material</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -181,7 +225,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="Win32\Debug\protheuscli.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\ccsolutions_dsk\protheuscli\protheuscli.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>protheuscli.exe</RemoteName>
                         <Overwrite>true</Overwrite>

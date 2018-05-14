@@ -1,6 +1,5 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Financeiro - CCS Protheus.'
-  ExplicitLeft = -401
   ExplicitWidth = 1024
   ExplicitHeight = 640
   PixelsPerInch = 96

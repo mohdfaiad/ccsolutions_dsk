@@ -65,6 +65,7 @@ type
     qry_actionsys_act_subtitle: TStringField;
     qry_actionsys_Act_name: TStringField;
     procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
   public
@@ -95,6 +96,11 @@ begin
   qry3.Connection:=connCCS;
 
 
+end;
+
+procedure Tfrm_dm.DataModuleDestroy(Sender: TObject);
+begin
+  Self.Free;
 end;
 
 end.

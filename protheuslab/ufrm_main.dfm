@@ -55,6 +55,15 @@ inherited frm_main: Tfrm_main
       end
     end
   end
+  object Button1: TButton [5]
+    Left = 832
+    Top = 224
+    Width = 75
+    Height = 25
+    Caption = 'Requisicao'
+    TabOrder = 3
+    OnClick = Button1Click
+  end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar1: TdxBar
       FloatClientWidth = 87
@@ -619,7 +628,6 @@ inherited frm_main: Tfrm_main
     end
     object acTable: TAction
       Caption = 'acTable'
-      OnExecute = acTableExecute
     end
     object acAlterarPreco: TAction
       Caption = 'Alterar Preco'

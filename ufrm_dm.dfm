@@ -1,6 +1,7 @@
 object frm_dm: Tfrm_dm
   OldCreateOrder = False
   OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   Height = 275
   Width = 338
   object connCCS: TFDConnection
@@ -134,6 +135,7 @@ object frm_dm: Tfrm_dm
     Top = 16
   end
   object qry_enterprise: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = ds_signin
     MasterFields = 'ctr_id'
@@ -319,8 +321,8 @@ object frm_dm: Tfrm_dm
   end
   object ds_enterprise: TDataSource
     DataSet = qry_enterprise
-    Left = 72
-    Top = 112
+    Left = 144
+    Top = 128
   end
   object frx_db_enterprise: TfrxDBDataset
     UserName = 'enterprise'
@@ -364,6 +366,7 @@ object frm_dm: Tfrm_dm
       'Password=YxKtcdl1'
       'Server=cdlaboratorio.dyndns.org'
       'DriverID=MSSQL')
+    Connected = True
     LoginPrompt = False
     Left = 232
     Top = 16
@@ -415,7 +418,7 @@ object frm_dm: Tfrm_dm
       'where sys_act_option =:sys_Act_option'
       'and sys_act_module = :sys_act_module '
       'order by sys_act_name')
-    Left = 40
+    Left = 64
     Top = 160
     ParamData = <
       item

@@ -2,7 +2,6 @@
   Caption = 'Manuten'#231#227'o: Requisi'#231#245'es'
   ClientHeight = 645
   ClientWidth = 928
-  OnClose = FormClose
   ExplicitWidth = 944
   ExplicitHeight = 684
   PixelsPerInch = 96
@@ -11,6 +10,8 @@
     Width = 928
     Height = 590
     Properties.ActivePage = cxTabSheet_2
+    ExplicitLeft = 8
+    ExplicitTop = 61
     ExplicitWidth = 928
     ExplicitHeight = 590
     ClientRectBottom = 584
@@ -286,23 +287,16 @@
     Width = 928
     ExplicitWidth = 928
   end
-  inherited dxBarManager_1: TdxBarManager
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\laboratorio\requisi'#231#227'o'
-    end
-  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
   inherited qry: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from requisition')
     object qryreq_id: TFDAutoIncField
@@ -1170,7 +1164,7 @@
         Name = 'CLI_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = Null
+        Value = 1
       end>
     object qry_insurancecin_id: TFDAutoIncField
       DisplayLabel = 'Cod. ID'

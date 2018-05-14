@@ -26,7 +26,8 @@ uses
   System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList, dxSkinsForm,
   dxBar, dxStatusBar, dxRibbonStatusBar, cxLabel, dxGalleryControl,
   dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
-  dxRibbon, dxGDIPlusClasses, Vcl.ExtCtrls, dxBevel, cxLocalization, Vcl.StdCtrls;
+  dxRibbon, dxGDIPlusClasses, Vcl.ExtCtrls, dxBevel, cxLocalization, Vcl.StdCtrls,
+  ufrm_table_price;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -85,6 +86,7 @@ type
     procedure Action_medicineExecute(Sender: TObject);
     procedure Action_requisition_typeExecute(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure acTableExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -102,6 +104,23 @@ uses ufrm_login, ufrm_contract, ufrm_contract_user, ufrm_enterprise,
   ufrm_phonebook, ufrm_receipt, ufrm_supplier, ufrm_client,
   ufrm_exam, ufrm_material, ufrm_report, ufrm_insurance, ufrm_department,
   ufrm_medicine, ufrm_requisition_type, ufrm_requisition, ufrm_dm, class_check_enterprise;
+
+procedure Tfrm_main.acTableExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_table_price) then
+  begin
+    frm_table_price := Tfrm_table_price.Create(Self);
+    frm_table_price.Height := Bevel_1.Height;
+    frm_table_price.Width := Bevel_1.Width;
+    frm_table_price.Show;
+  end
+  else
+  begin
+    frm_table_price.WindowState := wsNormal;
+    frm_table_price.Show;
+  end;
+end;
 
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin

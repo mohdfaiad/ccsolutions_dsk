@@ -40,7 +40,7 @@ inherited frm_table_price: Tfrm_table_price
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabAlterarPreco
+        Properties.ActivePage = cxTabExames
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -545,6 +545,7 @@ inherited frm_table_price: Tfrm_table_price
       FieldName = 'tpp_value'
       Origin = 'tpp_value'
       DisplayFormat = ',0.00'
+      currency = True
       Precision = 12
     end
     object qry_table_price_producttpp_dt_registration: TDateTimeField
@@ -558,6 +559,7 @@ inherited frm_table_price: Tfrm_table_price
       Origin = 'tpp_value'
       ProviderFlags = []
       DisplayFormat = ',0.00'
+      currency = True
       Precision = 12
     end
   end

@@ -9,7 +9,7 @@
   object Image1: TImage [0]
     Left = 0
     Top = 55
-    Width = 784
+    Width = 1008
     Height = 487
     Align = alClient
     ExplicitLeft = 344
@@ -236,7 +236,7 @@
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
+          ExplicitWidth = 986
           ExplicitHeight = 413
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 413
@@ -516,13 +516,11 @@
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from purchase_order '#10
       

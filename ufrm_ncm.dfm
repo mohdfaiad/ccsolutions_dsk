@@ -119,13 +119,11 @@ inherited frm_ncm: Tfrm_ncm
   inherited qry: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from ncm')
     object qryncm_id: TFDAutoIncField

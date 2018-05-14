@@ -232,9 +232,9 @@ begin
       Exit;
    end;
 
-   if (ds_purchase_order_iten.State in [dsEdit,dsInsert]) then
+   if (qry_purchase_order_iten.State in [dsEdit,dsInsert]) then
    begin
-     ds_purchase_order_iten.DataSet.Post;
+     qry_purchase_order_iten.Post;
    end;
 
   inherited;

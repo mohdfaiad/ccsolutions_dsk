@@ -4,12 +4,17 @@ inherited frm_exam: Tfrm_exam
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
+    ExplicitWidth = 1008
+    ExplicitHeight = 546
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
+        ExplicitWidth = 994
+        ExplicitHeight = 506
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pro_id: TcxGridDBColumn
             DataBinding.FieldName = 'pro_id'
@@ -39,17 +44,24 @@ inherited frm_exam: Tfrm_exam
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      OnShow = cxTabSheet_2Show
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
+        ExplicitWidth = 994
+        ExplicitHeight = 506
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
+            Width = 986
+            Height = 472
+            ExplicitWidth = 986
+            ExplicitHeight = 472
             inherited dbedt_id: TcxDBTextEdit
               Left = 68
               DataBinding.DataField = 'pro_id'
@@ -70,7 +82,7 @@ inherited frm_exam: Tfrm_exam
               TabOrder = 9
               Width = 450
             end
-            object cxDBComboBox2: TcxDBComboBox [3]
+            object cxDBCombTipo: TcxDBComboBox [3]
               Left = 68
               Top = 103
               DataBinding.DataField = 'pro_type'
@@ -101,7 +113,7 @@ inherited frm_exam: Tfrm_exam
               TabOrder = 4
               Width = 121
             end
-            object cxDBTextEdit1: TcxDBTextEdit [5]
+            object cxDBTextNome: TcxDBTextEdit [5]
               Left = 68
               Top = 130
               DataBinding.DataField = 'pro_name'
@@ -111,17 +123,7 @@ inherited frm_exam: Tfrm_exam
               TabOrder = 5
               Width = 296
             end
-            object cxDBTextEdit5: TcxDBTextEdit [6]
-              Left = 241
-              Top = 103
-              DataBinding.DataField = 'pro_status'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 3
-              Width = 121
-            end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [7]
+            object cxDBLookupComboBox1: TcxDBLookupComboBox [6]
               Left = 68
               Top = 157
               DataBinding.DataField = 'material_mat_id'
@@ -146,7 +148,7 @@ inherited frm_exam: Tfrm_exam
               TabOrder = 7
               Width = 121
             end
-            object cxDBTextEdit4: TcxDBTextEdit [8]
+            object cxDBTextEdit4: TcxDBTextEdit [7]
               Left = 397
               Top = 130
               DataBinding.DataField = 'pro_initials'
@@ -156,7 +158,7 @@ inherited frm_exam: Tfrm_exam
               TabOrder = 6
               Width = 121
             end
-            object cxDBTextEdit3: TcxDBTextEdit [9]
+            object cxDBTextEdit3: TcxDBTextEdit [8]
               Left = 241
               Top = 157
               DataBinding.DataField = 'pro_tag'
@@ -166,11 +168,20 @@ inherited frm_exam: Tfrm_exam
               TabOrder = 8
               Width = 277
             end
+            object cxDBCombStatus: TcxDBComboBox [9]
+              Left = 241
+              Top = 103
+              DataBinding.DataField = 'pro_status'
+              DataBinding.DataSource = ds
+              Properties.Items.Strings = (
+                'A - ATIVO'
+                'D - DESATIVADO')
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 121
+            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
-            end
-            inherited dxLayoutGroup2: TdxLayoutGroup
-              ItemIndex = 2
             end
             object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -185,7 +196,7 @@ inherited frm_exam: Tfrm_exam
               Parent = dxLayoutAutoCreatedGroup1
               AlignHorz = ahLeft
               CaptionOptions.Text = 'Tipo'
-              Control = cxDBComboBox2
+              Control = cxDBCombTipo
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -212,21 +223,11 @@ inherited frm_exam: Tfrm_exam
               AlignHorz = ahClient
               AlignVert = avTop
               CaptionOptions.Text = 'Nome'
-              Control = cxDBTextEdit1
+              Control = cxDBTextNome
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 0
-            end
-            object dxLayoutItem9: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignVert = avClient
-              CaptionOptions.Text = 'Status'
-              Control = cxDBTextEdit5
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
             end
             object dxLayoutItem6: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup2
@@ -274,19 +275,25 @@ inherited frm_exam: Tfrm_exam
               Index = 2
               AutoCreated = True
             end
+            object dxLayoutItem12: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignVert = avBottom
+              CaptionOptions.Text = 'Status'
+              Control = cxDBCombStatus
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
           end
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Anota'#231#245'es'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 762
-            Height = 432
+            Width = 986
+            Height = 472
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
@@ -301,7 +308,7 @@ inherited frm_exam: Tfrm_exam
               Style.HotTrack = False
               TabOrder = 0
               Height = 89
-              Width = 728
+              Width = 952
             end
             object dxLayoutGroup3: TdxLayoutGroup
               AlignHorz = ahClient
@@ -362,12 +369,14 @@ inherited frm_exam: Tfrm_exam
       DisplayLabel = 'Material ID'
       FieldName = 'material_mat_id'
       Origin = 'material_mat_id'
+      Required = True
     end
     object qrypro_type: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Tipo'
       FieldName = 'pro_type'
       Origin = 'pro_type'
+      Required = True
       FixedChar = True
       Size = 1
     end
@@ -376,6 +385,7 @@ inherited frm_exam: Tfrm_exam
       DisplayLabel = 'Nome'
       FieldName = 'pro_name'
       Origin = 'pro_name'
+      Required = True
       Size = 50
     end
     object qrypro_description: TStringField
@@ -383,6 +393,7 @@ inherited frm_exam: Tfrm_exam
       DisplayLabel = 'Descri'#231#227'o'
       FieldName = 'pro_description'
       Origin = 'pro_description'
+      Required = True
       Size = 255
     end
     object qrypro_tag: TStringField
@@ -390,6 +401,7 @@ inherited frm_exam: Tfrm_exam
       DisplayLabel = 'Tags'
       FieldName = 'pro_tag'
       Origin = 'pro_tag'
+      Required = True
       Size = 255
     end
     object qrypro_gender: TStringField
@@ -411,6 +423,7 @@ inherited frm_exam: Tfrm_exam
       DisplayLabel = 'Sigla'
       FieldName = 'pro_initials'
       Origin = 'pro_initials'
+      Required = True
       Size = 50
     end
     object qrypro_annotation: TMemoField
@@ -425,6 +438,7 @@ inherited frm_exam: Tfrm_exam
       DisplayLabel = 'Status'
       FieldName = 'pro_status'
       Origin = 'pro_status'
+      Required = True
       FixedChar = True
       Size = 1
     end
@@ -442,6 +456,11 @@ inherited frm_exam: Tfrm_exam
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
+  end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
   object qry_material: TFDQuery
     Active = True

@@ -8,6 +8,7 @@ inherited frm_request: Tfrm_request
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Width = 877
+    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 877
     ClientRectRight = 871
     inherited cxTabSheet_1: TcxTabSheet
@@ -276,6 +277,7 @@ inherited frm_request: Tfrm_request
                 Navigator.Buttons.SaveBookmark.Visible = False
                 Navigator.Buttons.GotoBookmark.Visible = False
                 Navigator.Buttons.Filter.ImageIndex = 10
+                Navigator.Buttons.Filter.Visible = True
                 Navigator.Visible = True
                 DataController.DataSource = ds_purchase_order_iten
                 DataController.Summary.DefaultGroupSummaryItems = <>
@@ -785,8 +787,8 @@ inherited frm_request: Tfrm_request
   end
   object ds_purchase_order_iten: TDataSource [17]
     DataSet = qry_purchase_order_iten
-    Left = 379
-    Top = 367
+    Left = 443
+    Top = 343
   end
   object ds_product: TDataSource [18]
     DataSet = qry_product

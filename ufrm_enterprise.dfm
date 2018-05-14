@@ -121,7 +121,7 @@ inherited frm_enterprise: Tfrm_enterprise
       ExplicitWidth = 776
       ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet_address
+        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -722,7 +722,7 @@ inherited frm_enterprise: Tfrm_enterprise
               DataBinding.DataField = 'ent_image'
               DataBinding.DataSource = ds
               Properties.FitMode = ifmProportionalStretch
-              Properties.GraphicClassName = 'TJPEGImage'
+              Properties.GraphicClassName = 'TdxPNGImage'
               Style.HotTrack = False
               TabOrder = 0
               Height = 100

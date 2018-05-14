@@ -124,6 +124,7 @@ type
     qry_parameter_slipprs_species_coin: TStringField;
     dxBarButton1: TdxBarButton;
     procedure dxBarButton1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -245,6 +246,13 @@ while not qry.Eof do
 
   ACBrBoleto1.GerarRemessa(1);
 
+end;
+
+procedure Tfrm_shipping_file.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_shipping_file.Free;
+  frm_shipping_file:= nil;
 end;
 
 end.

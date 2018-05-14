@@ -1,14 +1,10 @@
 inherited frm_shipping_file: Tfrm_shipping_file
   Caption = 'frm_shipping_file'
-  ExplicitLeft = -177
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1selecionado: TcxGridDBColumn
@@ -110,8 +106,8 @@ inherited frm_shipping_file: Tfrm_shipping_file
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
         end
       end
     end
@@ -297,6 +293,7 @@ inherited frm_shipping_file: Tfrm_shipping_file
       FieldName = 'brc_id'
       Origin = 'brc_id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrybrc_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
@@ -388,7 +385,7 @@ inherited frm_shipping_file: Tfrm_shipping_file
         Name = 'ENTERPRISE_ENT_ID'
         DataType = ftInteger
         ParamType = ptInput
-        Value = 1
+        Value = Null
       end>
     object qry_enterpriseent_id: TFDAutoIncField
       FieldName = 'ent_id'

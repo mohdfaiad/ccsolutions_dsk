@@ -34,7 +34,7 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxMemo, cxShellComboBox,
-  QImport3Wizard, QExport4Dialog, cxBarEditItem;
+  QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket, ACBrCEP, frxClass;
 
 type
   Tfrm_exam = class(Tfrm_form_default)
@@ -54,7 +54,7 @@ type
     cxGrid_1DBTableView1pro_tag: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_gender: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_dt_registration: TcxGridDBColumn;
-    cxDBTextEdit1: TcxDBTextEdit;
+    cxDBTextNome: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
     cxDBTextEdit2: TcxDBTextEdit;
     dxLayoutItem4: TdxLayoutItem;
@@ -62,7 +62,7 @@ type
     dxLayoutItem5: TdxLayoutItem;
     cxDBComboBox1: TcxDBComboBox;
     dxLayoutItem7: TdxLayoutItem;
-    cxDBComboBox2: TcxDBComboBox;
+    cxDBCombTipo: TcxDBComboBox;
     dxLayoutItem8: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     qrymaterial_mat_id: TIntegerField;
@@ -73,8 +73,6 @@ type
     qrypro_initials: TStringField;
     qrypro_annotation: TMemoField;
     qrypro_status: TStringField;
-    cxDBTextEdit5: TcxDBTextEdit;
-    dxLayoutItem9: TdxLayoutItem;
     cxDBTextEdit4: TcxDBTextEdit;
     dxLayoutItem10: TdxLayoutItem;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
@@ -85,8 +83,12 @@ type
     dxLayoutGroup5: TdxLayoutGroup;
     cxDBMemo1: TcxDBMemo;
     dxLayoutItem11: TdxLayoutItem;
+    cxDBCombStatus: TcxDBComboBox;
+    dxLayoutItem12: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure cxTabSheet_2Show(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -100,7 +102,29 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, class_required_field;
+
+procedure Tfrm_exam.Action_saveExecute(Sender: TObject);
+begin
+
+   //--Comando para tirar o focus de todos os componentes da tela-----
+   ActiveControl := nil;
+  //--Cama a função para verificar se existe campos requeridos em branco----
+   TCampoRequerido.TratarRequerido(qry);
+  inherited;
+end;
+
+procedure Tfrm_exam.cxTabSheet_2Show(Sender: TObject);
+begin
+  inherited;
+  //--Setar os referidos valores por padrão--
+  cxDBCombTipo.ItemIndex   :=1;
+  cxDBCombStatus.ItemIndex :=0;
+  //--Necessário atribuir os valores dos comboBox na Qry por motivo da validação dos campos Requido--
+  qrypro_status.AsString   := cxDBCombStatus.Text;
+  qrypro_type.AsString     := cxDBCombTipo.Text;
+  cxDBTextNome.SetFocus;
+end;
 
 procedure Tfrm_exam.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -112,7 +136,7 @@ end;
 procedure Tfrm_exam.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qrypro_dt_registration.Value := Date + Time;
+  qrypro_dt_registration.Value := now;
 end;
 
 end.

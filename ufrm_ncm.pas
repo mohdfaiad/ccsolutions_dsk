@@ -71,7 +71,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, Casse.CamposRequerido;
+uses ufrm_dm, class_required_field;
 
 procedure Tfrm_ncm.Action_saveExecute(Sender: TObject);
 

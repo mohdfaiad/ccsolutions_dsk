@@ -86,7 +86,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, Casse.CamposRequerido;
+uses ufrm_dm, class_required_field;
 
 procedure Tfrm_product_class.Action_deleteExecute(Sender: TObject);
 begin

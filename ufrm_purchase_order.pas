@@ -149,8 +149,8 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, Vcl.Imaging.jpeg, Casse.CamposRequerido, Class_Report,
-  ufrm_dm_report;
+uses ufrm_dm, Vcl.Imaging.jpeg, Class_Report,
+  ufrm_dm_report, class_required_field;
 
 procedure Tfrm_purchase_order.Action_deleteExecute(Sender: TObject);
 begin

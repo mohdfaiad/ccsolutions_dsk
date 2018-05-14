@@ -71,8 +71,8 @@ Procedure Tfrm_account_type.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
-  frm_account_type.Destroy;
-  frm_account_type := Nil;
+   frm_account_type.Free;
+   frm_account_type := nil;
 end;
 
 procedure Tfrm_account_type.qryAfterInsert(DataSet: TDataSet);

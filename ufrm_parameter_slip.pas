@@ -159,7 +159,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, Casse.Field_Requested;
+uses ufrm_dm, class_required_field;
 
 procedure Tfrm_parameter_slip.Action_deleteExecute(Sender: TObject);
 begin
@@ -204,7 +204,7 @@ procedure Tfrm_parameter_slip.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
-  frm_parameter_slip.Destroy;
+  frm_parameter_slip.Free;
   frm_parameter_slip := Nil;
 end;
 

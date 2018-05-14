@@ -57,17 +57,17 @@ type
     qry_seller: TFDQuery;
     ds_seller: TDataSource;
     dxLayoutGroup3: TdxLayoutGroup;
-    cxDBCurrencyEdit1: TcxDBCurrencyEdit;
+    cxDBedtParcela: TcxDBCurrencyEdit;
     dxLayoutItem3: TdxLayoutItem;
-    cxDBCurrencyEdit2: TcxDBCurrencyEdit;
+    cxDBedtDesconto: TcxDBCurrencyEdit;
     dxLayoutItem4: TdxLayoutItem;
-    cxDBCurrencyEdit3: TcxDBCurrencyEdit;
+    cxDBedtAcrescimo: TcxDBCurrencyEdit;
     dxLayoutItem5: TdxLayoutItem;
-    cxDBCurrencyEdit4: TcxDBCurrencyEdit;
+    cxDBedt_Val_Receber: TcxDBCurrencyEdit;
     dxLayoutItem6: TdxLayoutItem;
     cxDBLookupComboBox1: TcxDBLookupComboBox;
     dxLayoutItem7: TdxLayoutItem;
-    cxDBTextEdit1: TcxDBTextEdit;
+    cxDBedtDocumento: TcxDBTextEdit;
     dxLayoutItem8: TdxLayoutItem;
     cxDBTextEdit2: TcxDBTextEdit;
     dxLayoutItem9: TdxLayoutItem;
@@ -96,31 +96,62 @@ type
     cxGrid_1DBTableView1brc_dt_registration: TcxGridDBColumn;
     qrybrc_installment: TStringField;
     qrybrc_invoice: TStringField;
-    cxDBDateEdit3: TcxDBDateEdit;
-    dxLayoutItem13: TdxLayoutItem;
     ds_enterprise: TDataSource;
     qry_enterprise: TFDQuery;
     cxDBLookupComboBox2: TcxDBLookupComboBox;
     dxLayoutItem14: TdxLayoutItem;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
-    cxDBDateEdit4: TcxDBDateEdit;
-    dxLayoutItem15: TdxLayoutItem;
     dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
     qryform_payment_frp_id: TIntegerField;
     qryenterprise_ent_id: TIntegerField;
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    cxDBTextEdit4: TcxDBTextEdit;
+    dxLayoutItem16: TdxLayoutItem;
+    cxDBedtN_Parcela: TcxDBTextEdit;
+    dxLayoutItem13: TdxLayoutItem;
+    qry_enterpriseent_id: TFDAutoIncField;
+    qry_enterprisecontract_ctr_id: TIntegerField;
+    qry_enterpriseent_type: TStringField;
+    qry_enterpriseent_first_name: TStringField;
+    qry_enterpriseent_last_name: TStringField;
+    qry_enterpriseent_email: TStringField;
+    qry_enterpriseent_cnpj: TStringField;
+    qry_enterpriseent_ie: TStringField;
+    qry_enterpriseent_im: TStringField;
+    qry_enterpriseent_suframa: TStringField;
+    qry_enterpriseent_add_bus_zipcode: TStringField;
+    qry_enterpriseent_add_bus_address: TStringField;
+    qry_enterpriseent_add_bus_number: TStringField;
+    qry_enterpriseent_add_bus_street: TStringField;
+    qry_enterpriseent_add_bus_complement: TStringField;
+    qry_enterpriseent_add_bus_city: TStringField;
+    qry_enterpriseent_add_bus_state: TStringField;
+    qry_enterpriseent_add_bus_country: TStringField;
+    qry_enterpriseent_phone1: TStringField;
+    qry_enterpriseent_phone2: TStringField;
+    qry_enterpriseent_phone3: TStringField;
+    qry_enterpriseent_phone4: TStringField;
+    qry_enterpriseent_contact: TStringField;
+    qry_enterpriseent_dt_open: TDateField;
+    qry_enterpriseent_image: TBlobField;
+    qry_enterpriseent_dt_registration: TDateTimeField;
+    cxGrid_1DBTableView1brc_installment: TcxGridDBColumn;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
+    procedure cxDBedtAcrescimoPropertiesChange(Sender: TObject);
+    procedure cxDBedtDescontoPropertiesChange(Sender: TObject);
+    procedure cxDBedt_Val_ReceberPropertiesChange(Sender: TObject);
+    procedure cxDBedtParcelaPropertiesChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
     { Public declarations }
      procedure limpaCache(Sender:TObject);
+     function CalculaParcela(const Parcela, Acrescimo, Desconto: Double): Double ;
   end;
 
 var
@@ -152,9 +183,10 @@ begin
    Application.MessageBox('Cliente não informada!','CONTAS A RECEBER', MB_OK + MB_ICONINFORMATION);
    exit;
   end;
+    qrybrc_installment.AsString := cxDBedtDocumento.Text +'/'+ cxDBedtN_Parcela.Text;
 
+   inherited;
 
-    inherited;
    if Application.MessageBox('Deseja cadastrar outras parcelas baseada nessa conta ?','CONTAS A RECEBER', MB_YESNO + MB_ICONQUESTION) = IDYES then
      begin
       Application.CreateForm(Tfrm_duplicAccount,frm_duplicAccount);
@@ -166,13 +198,48 @@ begin
       frm_duplicAccount.cxEditVenc.TExt:=FormatDateTime('dd/mm/yyyy', qrybrc_dt_maturity.AsDateTime);
       frm_duplicAccount.cxEditValor.TExt:=FormatFloat('0.0,00', qrybrc_value.AsFloat);
       frm_duplicAccount.Tag:=0;
+
+
       frm_duplicAccount.Showmodal;
-      qry.Close;
-      qry.Open;
+    // qry.Close;
+   //  qry.Open;
+      FDSchemaAdapter_1.CommitUpdates;
      end;
+
+
+
 end;
 
-Procedure Tfrm_billreceive.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+function Tfrm_billreceive.CalculaParcela(const Parcela, Acrescimo, Desconto: Double): Double;
+begin
+  Result := Parcela + Acrescimo - Desconto;
+end;
+
+procedure Tfrm_billreceive.cxDBedtAcrescimoPropertiesChange(Sender: TObject);
+begin
+  inherited;
+  qrybrc_ammount_receive.AsFloat := CalculaParcela(cxDBedtParcela.Value,cxDBedtAcrescimo.Value,cxDBedtDesconto.Value);
+end;
+
+procedure Tfrm_billreceive.cxDBedtDescontoPropertiesChange(Sender: TObject);
+begin
+  inherited;
+    qrybrc_ammount_receive.AsFloat := CalculaParcela(cxDBedtParcela.Value,cxDBedtAcrescimo.Value,cxDBedtDesconto.Value);
+end;
+
+procedure Tfrm_billreceive.cxDBedtParcelaPropertiesChange(Sender: TObject);
+begin
+  inherited;
+  qrybrc_ammount_receive.AsFloat := CalculaParcela(cxDBedtParcela.Value,cxDBedtAcrescimo.Value,cxDBedtDesconto.Value);
+end;
+
+procedure Tfrm_billreceive.cxDBedt_Val_ReceberPropertiesChange(Sender: TObject);
+begin
+  inherited;
+  qrybrc_ammount_receive.AsFloat := CalculaParcela(cxDBedtParcela.Value,cxDBedtAcrescimo.Value,cxDBedtDesconto.Value);
+end;
+
+procedure Tfrm_billreceive.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
 begin
   inherited;
   //Comando para atualizar combobox
@@ -182,8 +249,8 @@ end;
 procedure Tfrm_billreceive.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-  frm_billreceive.Destroy;
-  frm_billreceive := Nil;
+  frm_billreceive.Free;
+  frm_billreceive := nil;
 end;
 
 procedure Tfrm_billreceive.FormCreate(Sender: TObject);

@@ -1,20 +1,16 @@
 inherited frm_account_synthetic: Tfrm_account_synthetic
   Caption = 'Manuten'#231#227'o: Planos de Contas'
-  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Height = 487
-    ExplicitHeight = 487
-    ClientRectBottom = 481
+    Height = 527
+    ExplicitHeight = 527
+    ClientRectBottom = 521
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 453
+      ExplicitHeight = 493
       inherited cxGrid_1: TcxGrid
-        Height = 447
-        ExplicitHeight = 447
+        Height = 487
+        ExplicitHeight = 487
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1acp_id: TcxGridDBColumn
             DataBinding.FieldName = 'acp_id'
@@ -45,16 +41,16 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
       ExplicitWidth = 776
       ExplicitHeight = 453
       inherited cxPageControl_2: TcxPageControl
-        Height = 447
+        Height = 487
         ExplicitHeight = 447
-        ClientRectBottom = 441
+        ClientRectBottom = 481
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
+          ExplicitWidth = 986
           ExplicitHeight = 413
           inherited dxLayoutControl_1: TdxLayoutControl
-            Height = 413
+            Height = 453
             ExplicitHeight = 413
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'acp_id'
@@ -254,8 +250,8 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
   end
   object StatusBar1: TStatusBar [2]
     Left = 0
-    Top = 542
-    Width = 784
+    Top = 582
+    Width = 1008
     Height = 19
     Panels = <>
   end
@@ -266,13 +262,11 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
     Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from account_plan')
     object qryacp_id: TFDAutoIncField
@@ -374,7 +368,7 @@ inherited frm_account_synthetic: Tfrm_account_synthetic
         Name = 'ACP_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = Null
+        Value = 1
       end>
     object qry_account_account_detailacd_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'

@@ -117,7 +117,7 @@ end;
 procedure Tfrm_cost_center.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-  frm_cost_center.Destroy;
+  frm_cost_center.Free;
   frm_cost_center := Nil;
 end;
 

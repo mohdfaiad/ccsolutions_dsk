@@ -78,13 +78,13 @@ type
     qry_account_account_detailacd_name: TStringField;
     qry_account_account_detailacd_status: TStringField;
     qry_account_account_detailacd_dt_registration: TDateTimeField;
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qry_account_account_detailAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -120,12 +120,11 @@ begin
   qry_account_type.Refresh;
 end;
 
-procedure Tfrm_account_synthetic.FormClose(Sender: TObject;
-  var Action: TCloseAction);
+procedure Tfrm_account_synthetic.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  inherited;
-  frm_account_synthetic.Destroy;
-  frm_account_synthetic := Nil;
+   inherited;
+   frm_account_synthetic.Free;
+   frm_account_synthetic := nil;
 end;
 
 procedure Tfrm_account_synthetic.FormCreate(Sender: TObject);

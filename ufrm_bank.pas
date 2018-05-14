@@ -186,8 +186,8 @@ end;
 procedure Tfrm_bank.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-  frm_bank.Destroy;
-  frm_bank := Nil;
+   frm_bank.Free;
+   frm_bank := nil;
 end;
 
 procedure Tfrm_bank.qryAfterInsert(DataSet: TDataSet);

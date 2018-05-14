@@ -1,6 +1,5 @@
 inherited frm_bank: Tfrm_bank
   Caption = 'Manuten'#231#227'o: Bancos'
-  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel [0]
@@ -12,10 +11,6 @@ inherited frm_bank: Tfrm_bank
   end
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1bnk_id: TcxGridDBColumn
@@ -122,8 +117,8 @@ inherited frm_bank: Tfrm_bank
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 80
@@ -331,6 +326,10 @@ inherited frm_bank: Tfrm_bank
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -475,7 +474,6 @@ inherited frm_bank: Tfrm_bank
               AlignVert = avTop
               ButtonOptions.Buttons = <>
               Hidden = True
-              ItemIndex = 1
               ShowBorder = False
               Index = -1
             end
@@ -483,7 +481,6 @@ inherited frm_bank: Tfrm_bank
               Parent = dxLayoutControl1Group_Root
               CaptionOptions.Text = 'Endere'#231'o'
               ButtonOptions.Buttons = <>
-              ItemIndex = 1
               Index = 0
             end
             object dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup

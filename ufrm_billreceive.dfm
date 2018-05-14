@@ -4,12 +4,7 @@ inherited frm_billreceive: Tfrm_billreceive
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1brc_id: TcxGridDBColumn
@@ -52,6 +47,9 @@ inherited frm_billreceive: Tfrm_billreceive
             DataBinding.FieldName = 'brc_document'
             Width = 150
           end
+          object cxGrid_1DBTableView1brc_installment: TcxGridDBColumn
+            DataBinding.FieldName = 'brc_installment'
+          end
           object cxGrid_1DBTableView1brc_dt_emission: TcxGridDBColumn
             DataBinding.FieldName = 'brc_dt_emission'
             Width = 75
@@ -68,16 +66,12 @@ inherited frm_billreceive: Tfrm_billreceive
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 74
@@ -89,38 +83,48 @@ inherited frm_billreceive: Tfrm_billreceive
               DataBinding.DataField = 'brc_dt_registration'
               ExplicitLeft = 259
             end
-            object cxDBCurrencyEdit1: TcxDBCurrencyEdit [2]
+            object cxDBedtParcela: TcxDBCurrencyEdit [2]
               Left = 74
               Top = 249
               DataBinding.DataField = 'brc_value'
               DataBinding.DataSource = ds
+              Properties.Nullable = False
+              Properties.OnChange = cxDBedtParcelaPropertiesChange
               Style.HotTrack = False
               TabOrder = 11
               Width = 121
             end
-            object cxDBCurrencyEdit2: TcxDBCurrencyEdit [3]
+            object cxDBedtDesconto: TcxDBCurrencyEdit [3]
               Left = 445
               Top = 249
               DataBinding.DataField = 'brc_discount'
               DataBinding.DataSource = ds
+              Properties.AssignedValues.EditFormat = True
+              Properties.Nullable = False
+              Properties.ReadOnly = False
+              Properties.OnChange = cxDBedtDescontoPropertiesChange
               Style.HotTrack = False
               TabOrder = 13
               Width = 121
             end
-            object cxDBCurrencyEdit4: TcxDBCurrencyEdit [4]
+            object cxDBedt_Val_Receber: TcxDBCurrencyEdit [4]
               Left = 641
               Top = 249
               DataBinding.DataField = 'brc_ammount_receive'
               DataBinding.DataSource = ds
+              Properties.Nullable = False
+              Properties.OnChange = cxDBedt_Val_ReceberPropertiesChange
               Style.HotTrack = False
               TabOrder = 14
               Width = 121
             end
-            object cxDBCurrencyEdit3: TcxDBCurrencyEdit [5]
+            object cxDBedtAcrescimo: TcxDBCurrencyEdit [5]
               Left = 259
               Top = 249
               DataBinding.DataField = 'brc_addition'
               DataBinding.DataSource = ds
+              Properties.Nullable = False
+              Properties.OnChange = cxDBedtAcrescimoPropertiesChange
               Style.HotTrack = False
               TabOrder = 12
               Width = 121
@@ -178,7 +182,7 @@ inherited frm_billreceive: Tfrm_billreceive
               TabOrder = 3
               Width = 306
             end
-            object cxDBTextEdit1: TcxDBTextEdit [9]
+            object cxDBedtDocumento: TcxDBTextEdit [9]
               Left = 445
               Top = 130
               DataBinding.DataField = 'brc_document'
@@ -199,16 +203,7 @@ inherited frm_billreceive: Tfrm_billreceive
               TabOrder = 4
               Width = 121
             end
-            object cxDBDateEdit3: TcxDBDateEdit [11]
-              Left = 641
-              Top = 130
-              DataBinding.DataField = 'brc_invoice'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 6
-              Width = 121
-            end
-            object cxDBTextEdit2: TcxDBTextEdit [12]
+            object cxDBTextEdit2: TcxDBTextEdit [11]
               Left = 74
               Top = 184
               DataBinding.DataField = 'brc_reference'
@@ -218,7 +213,7 @@ inherited frm_billreceive: Tfrm_billreceive
               TabOrder = 10
               Width = 687
             end
-            object cxDBDateEdit2: TcxDBDateEdit [13]
+            object cxDBDateEdit2: TcxDBDateEdit [12]
               Left = 259
               Top = 157
               DataBinding.DataField = 'brc_dt_maturity'
@@ -228,7 +223,17 @@ inherited frm_billreceive: Tfrm_billreceive
               TabOrder = 8
               Width = 121
             end
-            object cxDBDateEdit4: TcxDBDateEdit [14]
+            object cxDBTextEdit4: TcxDBTextEdit [13]
+              Left = 641
+              Top = 130
+              DataBinding.DataField = 'brc_invoice'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 6
+              Width = 121
+            end
+            object cxDBedtN_Parcela: TcxDBTextEdit [14]
               Left = 445
               Top = 157
               DataBinding.DataField = 'brc_installment'
@@ -238,7 +243,7 @@ inherited frm_billreceive: Tfrm_billreceive
               Width = 121
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
+              ItemIndex = 2
             end
             inherited dxLayoutGroup1: TdxLayoutGroup
               ItemIndex = 1
@@ -259,7 +264,7 @@ inherited frm_billreceive: Tfrm_billreceive
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'Vl.'
-              Control = cxDBCurrencyEdit1
+              Control = cxDBedtParcela
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -270,7 +275,7 @@ inherited frm_billreceive: Tfrm_billreceive
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Desconto'
-              Control = cxDBCurrencyEdit2
+              Control = cxDBedtDesconto
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -280,7 +285,7 @@ inherited frm_billreceive: Tfrm_billreceive
               Parent = dxLayoutGroup3
               AlignVert = avClient
               CaptionOptions.Text = 'Vl. a Receber'
-              Control = cxDBCurrencyEdit4
+              Control = cxDBedt_Val_Receber
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -291,7 +296,7 @@ inherited frm_billreceive: Tfrm_billreceive
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Acr'#233'scimos'
-              Control = cxDBCurrencyEdit3
+              Control = cxDBedtAcrescimo
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -356,15 +361,15 @@ inherited frm_billreceive: Tfrm_billreceive
               AutoCreated = True
             end
             object dxLayoutItem8: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup7
+              Parent = dxLayoutAutoCreatedGroup6
               AlignHorz = ahLeft
               AlignVert = avBottom
               CaptionOptions.Text = 'Documento'
-              Control = cxDBTextEdit1
+              Control = cxDBedtDocumento
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
-              Index = 0
+              Index = 1
             end
             object dxLayoutItem12: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup6
@@ -381,23 +386,6 @@ inherited frm_billreceive: Tfrm_billreceive
             object dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutAutoCreatedGroup2
               AlignHorz = ahLeft
-              Index = 1
-              AutoCreated = True
-            end
-            object dxLayoutItem13: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup7
-              AlignVert = avClient
-              CaptionOptions.Text = 'NFe'
-              Control = cxDBDateEdit3
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup6
-              AlignVert = avBottom
-              LayoutDirection = ldHorizontal
               Index = 1
               AutoCreated = True
             end
@@ -434,23 +422,31 @@ inherited frm_billreceive: Tfrm_billreceive
               Index = 0
               AutoCreated = True
             end
-            object dxLayoutItem15: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
-              AlignHorz = ahLeft
-              AlignVert = avBottom
-              CaptionOptions.Text = 'Parcela'
-              Control = cxDBDateEdit4
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
             object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutAutoCreatedGroup4
               AlignVert = avTop
               LayoutDirection = ldHorizontal
               Index = 0
               AutoCreated = True
+            end
+            object dxLayoutItem16: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignVert = avBottom
+              CaptionOptions.Text = 'NFe'
+              Control = cxDBTextEdit4
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
+            object dxLayoutItem13: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              CaptionOptions.Text = 'Parcela'
+              Control = cxDBedtN_Parcela
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
             end
           end
         end
@@ -463,13 +459,11 @@ inherited frm_billreceive: Tfrm_billreceive
   inherited qry: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from billreceive')
     object qrybrc_id: TFDAutoIncField
@@ -567,6 +561,7 @@ inherited frm_billreceive: Tfrm_billreceive
     end
     object qrybrc_installment: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'N'#186'. Parcela'
       FieldName = 'brc_installment'
       Origin = 'brc_installment'
       Size = 10
@@ -608,7 +603,6 @@ inherited frm_billreceive: Tfrm_billreceive
     Style = <>
   end
   object qry_client: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -625,7 +619,6 @@ inherited frm_billreceive: Tfrm_billreceive
     Top = 96
   end
   object qry_seller: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -643,11 +636,10 @@ inherited frm_billreceive: Tfrm_billreceive
   end
   object ds_enterprise: TDataSource
     DataSet = qry_enterprise
-    Left = 648
-    Top = 288
+    Left = 696
+    Top = 144
   end
   object qry_enterprise: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -655,7 +647,163 @@ inherited frm_billreceive: Tfrm_billreceive
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from enterprise')
-    Left = 600
-    Top = 288
+    Left = 656
+    Top = 144
+    object qry_enterpriseent_id: TFDAutoIncField
+      DisplayLabel = 'C'#243'd. ID'
+      FieldName = 'ent_id'
+      Origin = 'ent_id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object qry_enterprisecontract_ctr_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_id'
+      Origin = 'contract_ctr_id'
+    end
+    object qry_enterpriseent_type: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_type'
+      Origin = 'ent_type'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_enterpriseent_first_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Empresa'
+      FieldName = 'ent_first_name'
+      Origin = 'ent_first_name'
+      Size = 75
+    end
+    object qry_enterpriseent_last_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_last_name'
+      Origin = 'ent_last_name'
+      Size = 75
+    end
+    object qry_enterpriseent_email: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_email'
+      Origin = 'ent_email'
+      Size = 65
+    end
+    object qry_enterpriseent_cnpj: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_cnpj'
+      Origin = 'ent_cnpj'
+      Size = 25
+    end
+    object qry_enterpriseent_ie: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_ie'
+      Origin = 'ent_ie'
+      Size = 25
+    end
+    object qry_enterpriseent_im: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_im'
+      Origin = 'ent_im'
+      Size = 25
+    end
+    object qry_enterpriseent_suframa: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_suframa'
+      Origin = 'ent_suframa'
+      Size = 25
+    end
+    object qry_enterpriseent_add_bus_zipcode: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_zipcode'
+      Origin = 'ent_add_bus_zipcode'
+      Size = 9
+    end
+    object qry_enterpriseent_add_bus_address: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_address'
+      Origin = 'ent_add_bus_address'
+      Size = 50
+    end
+    object qry_enterpriseent_add_bus_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_number'
+      Origin = 'ent_add_bus_number'
+      Size = 5
+    end
+    object qry_enterpriseent_add_bus_street: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_street'
+      Origin = 'ent_add_bus_street'
+      Size = 45
+    end
+    object qry_enterpriseent_add_bus_complement: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_complement'
+      Origin = 'ent_add_bus_complement'
+      Size = 50
+    end
+    object qry_enterpriseent_add_bus_city: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_city'
+      Origin = 'ent_add_bus_city'
+      Size = 35
+    end
+    object qry_enterpriseent_add_bus_state: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_state'
+      Origin = 'ent_add_bus_state'
+      FixedChar = True
+      Size = 3
+    end
+    object qry_enterpriseent_add_bus_country: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_country'
+      Origin = 'ent_add_bus_country'
+      Size = 25
+    end
+    object qry_enterpriseent_phone1: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_phone1'
+      Origin = 'ent_phone1'
+      Size = 15
+    end
+    object qry_enterpriseent_phone2: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_phone2'
+      Origin = 'ent_phone2'
+      Size = 15
+    end
+    object qry_enterpriseent_phone3: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_phone3'
+      Origin = 'ent_phone3'
+      Size = 15
+    end
+    object qry_enterpriseent_phone4: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_phone4'
+      Origin = 'ent_phone4'
+      Size = 15
+    end
+    object qry_enterpriseent_contact: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_contact'
+      Origin = 'ent_contact'
+      Size = 25
+    end
+    object qry_enterpriseent_dt_open: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_dt_open'
+      Origin = 'ent_dt_open'
+    end
+    object qry_enterpriseent_image: TBlobField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_image'
+      Origin = 'ent_image'
+    end
+    object qry_enterpriseent_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_dt_registration'
+      Origin = 'ent_dt_registration'
+    end
   end
 end

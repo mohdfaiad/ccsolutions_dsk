@@ -4,11 +4,8 @@ inherited frm_form_payment: Tfrm_form_payment
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1frp_id: TcxGridDBColumn
@@ -37,14 +34,14 @@ inherited frm_form_payment: Tfrm_form_payment
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'frp_id'
@@ -116,6 +113,10 @@ inherited frm_form_payment: Tfrm_form_payment
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Boletos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -155,7 +156,7 @@ inherited frm_form_payment: Tfrm_form_payment
               CaptionOptions.Text = 'cxDBCheckBox2'
               CaptionOptions.Visible = False
               Control = cxDBCheckBox2
-              ControlOptions.OriginalHeight = 19
+              ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 99
               ControlOptions.ShowBorder = False
               Index = 0
@@ -171,13 +172,11 @@ inherited frm_form_payment: Tfrm_form_payment
   inherited qry: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'Select * from form_payment ')
     object qryfrp_id: TFDAutoIncField

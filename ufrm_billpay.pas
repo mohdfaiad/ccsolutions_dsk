@@ -251,7 +251,7 @@ end;
 procedure Tfrm_billpay.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-  frm_billpay.Destroy;
+  frm_billpay.Free;
   frm_billpay := Nil;
 end;
 

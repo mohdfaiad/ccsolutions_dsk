@@ -129,7 +129,8 @@ if Self.Tag = 0 then //Se a tag do formulário for 0 será contas a receber
     if cxCbTipoDuplic.ItemIndex = 3 then
      qry_duplicAccountdtVenc.AsDateTime:=IncMonth(frm_billreceive.qrybrc_dt_maturity.AsDateTime,i);
 
-   qry_duplicAccount.Post;
+     qry_duplicAccount.Post;
+
    end;
  end;
 
@@ -170,6 +171,7 @@ bpy_addition,bpy_discount,bpy_amount_pay:Double;
 bpy_reference,bpy_invoice:string;
 dataEmissao:TDate;
 begin
+
 
 if Self.Tag = 0 then //Se a tag do formulário for 0 será contas a receber
  begin
@@ -216,7 +218,7 @@ if Self.Tag = 0 then //Se a tag do formulário for 0 será contas a receber
       qry_duplicAccount.Next;
      end;
     frm_billreceive.qry.ApplyUpdates(0);
-    close;
+    Self.close;
    end;
  end;
 
@@ -264,7 +266,7 @@ if Self.Tag = 1 then //Se a tag do formulário for 0 será contas a pagar
       qry_duplicAccount.Next;
      end;
     frm_billpay.qry.ApplyUpdates(0);
-    close;
+    SElf.close;
    end;
   end;
 end;

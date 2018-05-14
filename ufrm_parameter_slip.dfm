@@ -10,13 +10,12 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
   inherited cxPageControl_1: TcxPageControl
     Width = 910
     Height = 535
+    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 910
     ExplicitHeight = 535
     ClientRectBottom = 529
     ClientRectRight = 904
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 902
       ExplicitHeight = 501
       inherited cxGrid_1: TcxGrid
@@ -538,13 +537,11 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
     Active = True
     AfterInsert = qryAfterInsert
     AfterDelete = qryAfterDelete
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from parameter_slip'#10
       'where contract_ctr_id =:ctr_id'#13#10#10

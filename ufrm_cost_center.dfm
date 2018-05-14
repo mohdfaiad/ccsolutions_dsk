@@ -6,10 +6,6 @@ inherited frm_cost_center: Tfrm_cost_center
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1coc_id: TcxGridDBColumn
@@ -271,7 +267,7 @@ inherited frm_cost_center: Tfrm_cost_center
         Name = 'COC_ID'
         DataType = ftAutoInc
         ParamType = ptInput
-        Value = Null
+        Value = 17
       end>
     object qry_cost_center_detailcod_id: TFDAutoIncField
       DisplayLabel = 'C'#243'd. ID'

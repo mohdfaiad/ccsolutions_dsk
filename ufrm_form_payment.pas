@@ -105,7 +105,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, Casse.Field_Requested;
+uses ufrm_dm, class_required_field;
 
 procedure Tfrm_form_payment.Action_saveExecute(Sender: TObject);
 begin
@@ -129,8 +129,8 @@ procedure Tfrm_form_payment.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
-    frm_form_payment.Destroy;
-    frm_form_payment := Nil;
+   frm_form_payment.Free;
+   frm_form_payment := nil;
 end;
 
 procedure Tfrm_form_payment.FormCreate(Sender: TObject);

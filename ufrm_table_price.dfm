@@ -5,10 +5,6 @@ inherited frm_table_price: Tfrm_table_price
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1tbp_id: TcxGridDBColumn
@@ -501,6 +497,7 @@ inherited frm_table_price: Tfrm_table_price
   end
   object qry_table_price_product: TFDQuery
     AfterInsert = qry_table_price_productAfterInsert
+    BeforePost = qry_table_price_productBeforePost
     CachedUpdates = True
     IndexFieldNames = 'table_price_tbp_id'
     MasterSource = ds

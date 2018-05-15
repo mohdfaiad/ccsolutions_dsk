@@ -34,7 +34,7 @@ uses
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, ufrm_dm, cxDBLookupComboBox,
   dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons, cxRadioGroup, cxCurrencyEdit,
-  Vcl.ExtCtrls, cxListBox, cxCheckListBox;
+  Vcl.ExtCtrls, cxListBox, cxCheckListBox,class_table_price;
 
 type
   Tfrm_table_price = class(Tfrm_form_default)
@@ -109,8 +109,9 @@ type
     procedure Action_saveExecute(Sender: TObject);
     procedure cxTabAlterarPrecoShow(Sender: TObject);
     procedure cxTabExamesShow(Sender: TObject);
+    procedure qry_table_price_productBeforePost(DataSet: TDataSet);
   private
-
+    FTable_price:TTable_price;
   procedure limpaCache(Sender:TObject);
   public
     { Public declarations }
@@ -254,6 +255,11 @@ end;
 procedure Tfrm_table_price.FormCreate(Sender: TObject);
 begin
   inherited;
+if not Assigned(FTable_price) then
+ FTable_price := TTable_price.Create;
+
+
+
 FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
 cxTabAlterarPreco.TabVisible:=false;
 end;
@@ -278,6 +284,13 @@ procedure Tfrm_table_price.qry_table_price_productAfterInsert(
 begin
   inherited;
  qry_table_price_producttpp_dt_registration.AsDateTime:=Now;
+end;
+
+procedure Tfrm_table_price.qry_table_price_productBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+ if qry_table_price_product.Locate('product_pro_id',qry_table_price_productproduct_pro_id.AsString,[]) then
+  qry_table_price_product.Delete;
 end;
 
 end.

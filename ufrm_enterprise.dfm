@@ -8,15 +8,19 @@ inherited frm_enterprise: Tfrm_enterprise
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
+        ExplicitLeft = -125
+        ExplicitTop = -13
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ent_id: TcxGridDBColumn
+            Caption = 'C'#243'd. ID'
             DataBinding.FieldName = 'ent_id'
             Width = 75
           end
           object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
+            Caption = 'Contrato'
             DataBinding.FieldName = 'contract_ctr_id'
             Width = 75
           end
@@ -118,15 +122,14 @@ inherited frm_enterprise: Tfrm_enterprise
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -366,8 +369,8 @@ inherited frm_enterprise: Tfrm_enterprise
           object dxLayoutControl_address: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 762
-            Height = 432
+            Width = 986
+            Height = 472
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
@@ -706,52 +709,6 @@ inherited frm_enterprise: Tfrm_enterprise
             end
           end
         end
-        object cxTabSheet1: TcxTabSheet
-          Caption = 'Imagens'
-          object dxLayoutControl1: TdxLayoutControl
-            Left = 0
-            Top = 0
-            Width = 762
-            Height = 432
-            Align = alClient
-            TabOrder = 0
-            LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            object cxDBImage1: TcxDBImage
-              Left = 17
-              Top = 38
-              DataBinding.DataField = 'ent_image'
-              DataBinding.DataSource = ds
-              Properties.FitMode = ifmProportionalStretch
-              Properties.GraphicClassName = 'TdxPNGImage'
-              Style.HotTrack = False
-              TabOrder = 0
-              Height = 100
-              Width = 140
-            end
-            object dxLayoutControl1Group_Root: TdxLayoutGroup
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              ButtonOptions.Buttons = <>
-              Hidden = True
-              ShowBorder = False
-              Index = -1
-            end
-            object dxLayoutGroup4: TdxLayoutGroup
-              Parent = dxLayoutControl1Group_Root
-              CaptionOptions.Text = 'Logos'
-              ButtonOptions.Buttons = <>
-              Index = 0
-            end
-            object dxLayoutItem11: TdxLayoutItem
-              Parent = dxLayoutGroup4
-              Control = cxDBImage1
-              ControlOptions.OriginalHeight = 100
-              ControlOptions.OriginalWidth = 140
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-          end
-        end
       end
     end
   end
@@ -771,27 +728,15 @@ inherited frm_enterprise: Tfrm_enterprise
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from enterprise')
-    object qryent_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'ent_id'
-      Origin = 'ent_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
     object qryent_type: TStringField
       DisplayLabel = 'Tipo'
       FieldName = 'ent_type'
@@ -854,7 +799,7 @@ inherited frm_enterprise: Tfrm_enterprise
       DisplayLabel = 'CEP'
       FieldName = 'ent_add_bus_zipcode'
       Origin = 'ent_add_bus_zipcode'
-      Size = 9
+      Size = 6
     end
     object qryent_add_bus_address: TStringField
       AutoGenerateValue = arDefault
@@ -936,17 +881,32 @@ inherited frm_enterprise: Tfrm_enterprise
       Origin = 'ent_contact'
       Size = 25
     end
-    object qryent_image: TBlobField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Imagem'
-      FieldName = 'ent_image'
-      Origin = 'ent_image'
-    end
     object qryent_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'ent_dt_registration'
       Origin = 'ent_dt_registration'
+    end
+    object qryent_cod: TBytesField
+      FieldName = 'ent_cod'
+      Origin = 'ent_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qryent_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_deleted_at'
+      Origin = 'ent_deleted_at'
+    end
+    object qryent_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_id'
+      Origin = 'ent_id'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

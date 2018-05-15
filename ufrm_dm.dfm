@@ -152,9 +152,6 @@ object frm_dm: Tfrm_dm
   end
   object qry_enterprise: TFDQuery
     Active = True
-    IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = ds_signin
-    MasterFields = 'ctr_cod'
     Connection = connCCS
     SQL.Strings = (
       'select * from enterprise'
@@ -170,6 +167,7 @@ object frm_dm: Tfrm_dm
         DataType = ftBytes
         ParamType = ptInput
         Size = 16
+        Value = Null
       end
       item
         Name = 'CTR_USR_ID'

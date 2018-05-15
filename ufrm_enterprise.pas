@@ -39,7 +39,6 @@ uses
 
 type
   Tfrm_enterprise = class(Tfrm_form_default)
-    qryent_id: TFDAutoIncField;
     qryent_type: TStringField;
     qryent_first_name: TStringField;
     qryent_last_name: TStringField;
@@ -94,7 +93,6 @@ type
     dxLayoutItem9: TdxLayoutItem;
     cxDBTextEdit7: TcxDBTextEdit;
     dxLayoutItem10: TdxLayoutItem;
-    qrycontract_ctr_id: TIntegerField;
     qryent_cnpj: TStringField;
     qryent_dt_registration: TDateTimeField;
     qryent_add_bus_zipcode: TStringField;
@@ -152,13 +150,10 @@ type
     Action_delete_image: TAction;
     Inserir2: TMenuItem;
     Deletar1: TMenuItem;
-    qryent_image: TBlobField;
-    cxTabSheet1: TcxTabSheet;
-    dxLayoutControl1Group_Root: TdxLayoutGroup;
-    dxLayoutControl1: TdxLayoutControl;
-    dxLayoutGroup4: TdxLayoutGroup;
-    cxDBImage1: TcxDBImage;
-    dxLayoutItem11: TdxLayoutItem;
+    qryent_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryent_deleted_at: TDateTimeField;
+    qryent_id: TLongWordField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_insert_imageExecute(Sender: TObject);
     procedure Action_delete_imageExecute(Sender: TObject);
@@ -166,6 +161,7 @@ type
     procedure dbbtnedt_cepPropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
     procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
     //imgObj: TCompress_image;
@@ -212,6 +208,29 @@ begin
 //  imgObj.imgCompress(DBImage1, OpenPictureDialog1);
 end;
 
+procedure Tfrm_enterprise.Action_saveExecute(Sender: TObject);
+
+begin
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= '  select case when max(ent_id) is null then 1 '+
+          '  else (max(ent_id) + 1) end as maxID from enterprise ' +
+          ' where contract_ctr_cod = (select ctr_cod from contract '+
+          'where ctr_id =:ctr_id)';
+   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   Open;
+   if not (qry.State in [dsInsert,dsEdit])  then
+    qry.Edit;
+
+    if qryent_id.AsInteger = 0 then
+    qryent_id.AsInteger:=Fields[0].AsInteger;
+ end;
+
+  inherited;
+end;
+
 procedure Tfrm_enterprise.dbbtnedt_cepPropertiesButtonClick(Sender: TObject;
   AButtonIndex: Integer);
 begin
@@ -229,6 +248,23 @@ end;
 procedure Tfrm_enterprise.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
+ With frm_dm.qry,sql do
+  begin
+   Close;
+   Text:=' insert into enterprise (ent_cod,ent_id,contract_ctr_cod) ' +
+         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
+          ' where ctr_id = :contrato)';
+   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   ExecSQL;
+  end;
+   qry.Close;
+   qry.sql.text:= ' select * from enterprise ' +
+                  ' where ent_id = 0 ';
+   qry.Prepare;
+   qry.open;
+
+  qry.Edit;
   qryent_dt_registration.Value := Date + Time;
 end;
 

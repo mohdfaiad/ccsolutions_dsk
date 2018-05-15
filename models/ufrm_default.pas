@@ -16,11 +16,11 @@ uses
   dxRibbonStatusBar, dxBarBuiltInMenu, cxPC, Vcl.ExtCtrls, Vcl.Menus, ACBrBase, ACBrEnterTab, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, QExport4Dialog,
   QImport3Wizard, FireDAC.Comp.Client, Data.DB, FireDAC.Comp.DataSet, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator,
-  cxDBData, cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxShellComboBox, cxBarEditItem;
+  cxDBData, cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxShellComboBox, cxBarEditItem,
+  cxContainer, cxGroupBox, cxTextEdit, cxLabel, dxSkinsdxStatusBarPainter, dxSkinsForm;
 
 type
   Tfrm_default = class(TForm)
-    stsbar_1: TdxRibbonStatusBar;
     actlist_1: TActionList;
     bardck_1: TdxBarDockControl;
     barman_1: TdxBarManager;
@@ -31,7 +31,6 @@ type
     barman_bar_report: TdxBar;
     barman_bar_manager: TdxBar;
     barman_bar_form: TdxBar;
-    Panel1: TPanel;
     popmenu_1: TPopupMenu;
     acbr_enter_1: TACBrEnterTab;
     qry: TFDQuery;
@@ -52,8 +51,6 @@ type
     bnt_prior: TdxBarButton;
     pgctrl_3: TcxPageControl;
     tbsht_5: TcxTabSheet;
-    pgctrl_4: TcxPageControl;
-    tbsht_6: TcxTabSheet;
     imglist_1: TcxImageList;
     Action_first: TAction;
     Action_prior: TAction;
@@ -79,7 +76,6 @@ type
     Action_print_preview: TAction;
     Action_print: TAction;
     bnt_print_preview: TdxBarButton;
-    dxBarButton13: TdxBarButton;
     bnt_print: TdxBarButton;
     bnt_import: TdxBarButton;
     bnt_export: TdxBarButton;
@@ -109,6 +105,13 @@ type
     grid_1: TcxGrid;
     cxGridDBTableView1: TcxGridDBTableView;
     cxGridLevel1: TcxGridLevel;
+    cxGroupBox1: TcxGroupBox;
+    cxLabel1: TcxLabel;
+    edt_codid: TcxTextEdit;
+    cxLabel2: TcxLabel;
+    edt_dt_registration: TcxTextEdit;
+    cxGroupBox2: TcxGroupBox;
+    dxStatusBar1: TdxStatusBar;
   private
     { Private declarations }
   public

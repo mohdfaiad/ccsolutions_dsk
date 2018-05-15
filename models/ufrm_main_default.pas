@@ -182,7 +182,7 @@ begin
     dxRibbonStatusBar1.Panels[5].Text :=frm_dm.qry_signinctr_usr_username.AsString;
     dxRibbonStatusBar1.Panels[7].Text :=FormatDateTime('dd/MM/yyyy',date);
     Timer_1.Enabled:=True;
-    controleAcesso(frm_dm.qry_signinctr_usr_id.AsInteger,frm_dm.qry_signinctr_usr_admin.AsString);
+ //   controleAcesso(frm_dm.qry_signinctr_usr_id.AsInteger,frm_dm.qry_signinctr_usr_admin.AsString);
     AtualizarControle(self);
 
     //Controle para sempre exibir a primeira aba de cadastro

@@ -1,4 +1,4 @@
-unit ufrm_dm;
+ unit ufrm_dm;
 
 interface
 
@@ -18,14 +18,20 @@ type
     manCCS: TFDManager;
     qry_signin: TFDQuery;
     ds_signin: TDataSource;
-    qry_signinctr_id: TFDAutoIncField;
-    qry_signinctr_usr_first_name: TStringField;
-    qry_signinctr_usr_username: TStringField;
-    qry_signinctr_usr_password: TStringField;
     mysql_driver: TFDPhysMySQLDriverLink;
     qry_enterprise: TFDQuery;
-    qry_enterpriseent_id: TFDAutoIncField;
-    qry_enterprisecontract_ctr_id: TIntegerField;
+    ds_enterprise: TDataSource;
+    frx_db_enterprise: TfrxDBDataset;
+    connCDL: TFDConnection;
+    mssql_driver: TFDPhysMSSQLDriverLink;
+    qry_logged: TFDQuery;
+    qry_loggedctr_usr_logged: TStringField;
+    qry_action: TFDQuery;
+    qry_actionsys_act_subtitle: TStringField;
+    qry_actionsys_Act_name: TStringField;
+    qry_enterpriseent_cod: TBytesField;
+    qry_enterprisecontract_ctr_cod: TBytesField;
+    qry_enterpriseent_id: TLongWordField;
     qry_enterpriseent_type: TStringField;
     qry_enterpriseent_first_name: TStringField;
     qry_enterpriseent_last_name: TStringField;
@@ -48,22 +54,18 @@ type
     qry_enterpriseent_phone4: TStringField;
     qry_enterpriseent_contact: TStringField;
     qry_enterpriseent_dt_open: TDateField;
-    qry_enterpriseent_image: TBlobField;
+    qry_enterpriseent_deleted_at: TDateTimeField;
     qry_enterpriseent_dt_registration: TDateTimeField;
-    ds_enterprise: TDataSource;
-    frx_db_enterprise: TfrxDBDataset;
-    connCDL: TFDConnection;
-    mssql_driver: TFDPhysMSSQLDriverLink;
-    qry_signinctr_usr_id: TIntegerField;
+    qry_signinctr_cod: TBytesField;
+    qry_signinctr_id: TLongWordField;
+    qry_signinctr_usr_cod: TBytesField;
+    qry_signinctr_usr_first_name: TStringField;
+    qry_signinctr_usr_username: TStringField;
+    qry_signinctr_usr_password: TStringField;
     qry_signinctr_usr_logged: TStringField;
-    qry_logged: TFDQuery;
-    qry_loggedctr_usr_logged: TStringField;
     qry_signinctr_usr_admin: TStringField;
     qry_signinctr_usr_dt_birth: TDateField;
     qry_signinctr_usr_email: TStringField;
-    qry_action: TFDQuery;
-    qry_actionsys_act_subtitle: TStringField;
-    qry_actionsys_Act_name: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

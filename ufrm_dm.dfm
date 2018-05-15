@@ -30,17 +30,19 @@ object frm_dm: Tfrm_dm
     Top = 16
   end
   object qry_signin: TFDQuery
+    Active = True
     Connection = connCCS
     SQL.Strings = (
       
-        'SELECT c.ctr_id, cu.ctr_usr_id, cu.ctr_usr_first_name, cu.ctr_us' +
-        'r_username, cu.ctr_usr_password,ctr_usr_logged,'
-      'ctr_usr_admin,ctr_usr_dt_birth,ctr_usr_email FROM contract c'
-      '    INNER JOIN contract_user cu ON c.ctr_id = cu.contract_ctr_id'
+        'SELECT c.ctr_cod, c.ctr_id, cu.ctr_usr_cod, cu.ctr_usr_first_nam' +
+        'e, cu.ctr_usr_username, cu.ctr_usr_password,ctr_usr_logged,'#10'ctr_' +
+        'usr_admin,ctr_usr_dt_birth,'
+      'ctr_usr_email FROM contract c'
+      'INNER JOIN contract_user cu ON c.ctr_cod = cu.contract_ctr_cod'
       
-        '    WHERE c.ctr_id = :contract AND cu.ctr_usr_username = :userna' +
-        'me and (cu.ctr_usr_password=:password or cu.ctr_usr_password is ' +
-        'null)'#10)
+        'WHERE c.ctr_id = :contract AND cu.ctr_usr_username = :username a' +
+        'nd (cu.ctr_usr_password=:password or cu.ctr_usr_password is null' +
+        ')'#10#10)
     Left = 40
     Top = 64
     ParamData = <
@@ -62,33 +64,47 @@ object frm_dm: Tfrm_dm
         ParamType = ptInput
         Value = Null
       end>
-    object qry_signinctr_id: TFDAutoIncField
+    object qry_signinctr_cod: TBytesField
+      FieldName = 'ctr_cod'
+      Origin = 'ctr_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_signinctr_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'ctr_id'
       Origin = 'ctr_id'
-      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qry_signinctr_usr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_usr_cod'
+      Origin = 'ctr_usr_cod'
+      ProviderFlags = []
       ReadOnly = True
     end
     object qry_signinctr_usr_first_name: TStringField
+      AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_first_name'
       Origin = 'ctr_usr_first_name'
-      Size = 50
-    end
-    object qry_signinctr_usr_username: TStringField
-      FieldName = 'ctr_usr_username'
-      Origin = 'ctr_usr_username'
-      Size = 25
-    end
-    object qry_signinctr_usr_password: TStringField
-      FieldName = 'ctr_usr_password'
-      Origin = 'ctr_usr_password'
-      Size = 25
-    end
-    object qry_signinctr_usr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'ctr_usr_id'
-      Origin = 'ctr_usr_id'
       ProviderFlags = []
       ReadOnly = True
+      Size = 85
+    end
+    object qry_signinctr_usr_username: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_usr_username'
+      Origin = 'ctr_usr_username'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 65
+    end
+    object qry_signinctr_usr_password: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_usr_password'
+      Origin = 'ctr_usr_password'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 65
     end
     object qry_signinctr_usr_logged: TStringField
       AutoGenerateValue = arDefault
@@ -136,43 +152,46 @@ object frm_dm: Tfrm_dm
   end
   object qry_enterprise: TFDQuery
     Active = True
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = ds_signin
-    MasterFields = 'ctr_id'
+    MasterFields = 'ctr_cod'
     Connection = connCCS
     SQL.Strings = (
       'select * from enterprise'
-      'where contract_ctr_id =:ctr_id'
+      'where contract_ctr_cod =:ctr_cod'
       
-        'and ent_id in (select ctr_usr_ent_ent_id  from contract_user_ent' +
-        'erprise where ctr_usr_ent_user_id =:ctr_usr_id)')
+        'and ent_cod in (select ctr_usr_ent_ent_cod  from contract_user_e' +
+        'nterprise where ctr_usr_ent_user_cod =:ctr_usr_id)'#10#10#10)
     Left = 40
     Top = 112
     ParamData = <
       item
-        Name = 'CTR_ID'
-        DataType = ftAutoInc
+        Name = 'CTR_COD'
+        DataType = ftBytes
         ParamType = ptInput
-        Value = Null
+        Size = 16
       end
       item
         Name = 'CTR_USR_ID'
         DataType = ftInteger
         ParamType = ptInput
-        Value = 4
+        Value = Null
       end>
-    object qry_enterpriseent_id: TFDAutoIncField
-      DisplayLabel = 'Cod. ID'
-      DisplayWidth = 15
+    object qry_enterpriseent_cod: TBytesField
+      FieldName = 'ent_cod'
+      Origin = 'ent_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_enterprisecontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_enterpriseent_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'ent_id'
       Origin = 'ent_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qry_enterprisecontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
     end
     object qry_enterpriseent_type: TStringField
       AutoGenerateValue = arDefault
@@ -185,14 +204,13 @@ object frm_dm: Tfrm_dm
       AutoGenerateValue = arDefault
       FieldName = 'ent_first_name'
       Origin = 'ent_first_name'
-      Size = 50
+      Size = 85
     end
     object qry_enterpriseent_last_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
       FieldName = 'ent_last_name'
       Origin = 'ent_last_name'
-      Size = 50
+      Size = 85
     end
     object qry_enterpriseent_email: TStringField
       AutoGenerateValue = arDefault
@@ -228,7 +246,7 @@ object frm_dm: Tfrm_dm
       AutoGenerateValue = arDefault
       FieldName = 'ent_add_bus_zipcode'
       Origin = 'ent_add_bus_zipcode'
-      Size = 9
+      Size = 6
     end
     object qry_enterpriseent_add_bus_address: TStringField
       AutoGenerateValue = arDefault
@@ -308,10 +326,10 @@ object frm_dm: Tfrm_dm
       FieldName = 'ent_dt_open'
       Origin = 'ent_dt_open'
     end
-    object qry_enterpriseent_image: TBlobField
+    object qry_enterpriseent_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
-      FieldName = 'ent_image'
-      Origin = 'ent_image'
+      FieldName = 'ent_deleted_at'
+      Origin = 'ent_deleted_at'
     end
     object qry_enterpriseent_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
@@ -379,7 +397,7 @@ object frm_dm: Tfrm_dm
     Connection = connCCS
     SQL.Strings = (
       'SELECT ctr_usr_logged FROM contract_user'
-      'WHERE contract_ctr_id= :contract '
+      'WHERE contract_ctr_cod= :contract '
       'and ctr_usr_username = :username '
       'and ctr_usr_password=:password')
     Left = 40
@@ -418,8 +436,8 @@ object frm_dm: Tfrm_dm
       'where sys_act_option =:sys_Act_option'
       'and sys_act_module = :sys_act_module '
       'order by sys_act_name')
-    Left = 64
-    Top = 160
+    Left = 120
+    Top = 208
     ParamData = <
       item
         Name = 'SYS_ACT_OPTION'

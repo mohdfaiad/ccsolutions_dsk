@@ -111,12 +111,13 @@ begin
   frm_dm.qry_signin.Prepare;
   frm_dm.qry_signin.Open;
 
+  (*
   // Select para listar as unidades de estoque que esse usuário tem acesso
    frm_dm.qry_enterprise.Close;
-   frm_dm.qry_enterprise.ParamByName('CTR_USR_ID').Value :=frm_dm.qry_signinctr_usr_id.Value;
+   frm_dm.qry_enterprise.ParamByName('CTR_USR_ID').Value:=frm_dm.qry_signinctr_usr_cod.Value;
    frm_dm.qry_enterprise.Prepare;
    frm_dm.qry_enterprise.Open;
-
+*)
  if frm_dm.qry_loggedctr_usr_logged.AsString = 'B' then
   begin
   Application.MessageBox('Usuário foi bloaqueado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
@@ -142,7 +143,8 @@ begin
       close;
       Text:='update contract_user ' +
             ' set ctr_usr_logged = ''S'' '+
-            ' where contract_ctr_id = ' + edt_contract.Text +
+            ' where contract_ctr_cod = (select ctr_cod from contract ' +
+                      ' where ctr_id = ' + QuotedStr(edt_contract.Text) + ')' +
             ' and ctr_usr_password = '+ QuotedStr(md5.HashStringAsHex(edt_password.Text)) +
             ' and ctr_usr_username = ' + QuotedStr(edt_username.Text);
       Prepare;
@@ -214,7 +216,7 @@ if Application.MessageBox('Desja confirmar a alteração em sua senha?', 'SENHA',M
     begin
      close;
      text:= 'select ctr_usr_password from contract_user ' +
-            'where contract_ctr_id = :contrato ' +
+            'where contract_ctr_cod = (select ctr_cod from contract where ctr_id = :contrato) ' +
             'and ctr_usr_username = :nome '+
             'and (ctr_usr_password = :senha or ctr_usr_password is null)';
      ParamByName('contrato').AsString:= edt_contract.Text;
@@ -232,7 +234,7 @@ if Application.MessageBox('Desja confirmar a alteração em sua senha?', 'SENHA',M
      close;
      text:= ' update contract_user ' +
             ' set  ctr_usr_password = :senhaAtual '+
-            'where contract_ctr_id = :contrato ' +
+            'where contract_ctr_cod= (select ctr_cod from contract where ctr_id = :contrato) ' +
             'and ctr_usr_username = :nome '+
             'and (ctr_usr_password = :senha or ctr_usr_password is null)';
      ParamByName('contrato').AsString:= edt_contract.Text;

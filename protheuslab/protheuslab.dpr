@@ -32,7 +32,8 @@ uses
   ufrm_requisition in '..\ufrm_requisition.pas' {frm_requisition},
   class_required_field in '..\class_required_field.pas',
   class_check_enterprise in '..\class_check_enterprise.pas',
-  ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price};
+  ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
+  class_table_price in '..\class_table_price.pas';
 
 {$R *.res}
 

@@ -11,6 +11,11 @@ inherited frm_bank: Tfrm_bank
   end
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      OnShow = cxTabSheet_1Show
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1bnk_id: TcxGridDBColumn
@@ -111,8 +116,8 @@ inherited frm_bank: Tfrm_bank
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
@@ -326,15 +331,11 @@ inherited frm_bank: Tfrm_bank
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 762
-            Height = 432
+            Width = 986
+            Height = 472
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
@@ -671,34 +672,20 @@ inherited frm_bank: Tfrm_bank
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from bank')
-    object qrybnk_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'bnk_id'
-      Origin = 'bnk_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
     object qrybnk_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Nome'
       FieldName = 'bnk_name'
       Origin = 'bnk_name'
-      Size = 50
+      Size = 35
     end
     object qrybnk_code: TStringField
       AutoGenerateValue = arDefault
@@ -754,7 +741,7 @@ inherited frm_bank: Tfrm_bank
       DisplayLabel = 'CEP'
       FieldName = 'bnk_add_bus_zipcode'
       Origin = 'bnk_add_bus_zipcode'
-      Size = 9
+      Size = 6
     end
     object qrybnk_add_bus_address: TStringField
       AutoGenerateValue = arDefault
@@ -846,6 +833,46 @@ inherited frm_bank: Tfrm_bank
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'bnk_dt_registration'
       Origin = 'bnk_dt_registration'
+    end
+    object qrybnk_cod: TBytesField
+      FieldName = 'bnk_cod'
+      Origin = 'bnk_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qrybnk_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'bnk_id'
+      Origin = 'bnk_id'
+    end
+    object qrybnk_code_transferor: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'bnk_code_transferor'
+      Origin = 'bnk_code_transferor'
+      Size = 25
+    end
+    object qrybnk_code_agreement: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'bnk_code_agreement'
+      Origin = 'bnk_code_agreement'
+      Size = 10
+    end
+    object qrybnk_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'bnk_status'
+      Origin = 'bnk_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qrybnk_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'bnk_deleted_at'
+      Origin = 'bnk_deleted_at'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

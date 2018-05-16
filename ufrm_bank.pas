@@ -37,7 +37,6 @@ uses
 
 type
   Tfrm_bank = class(Tfrm_form_default)
-    qrybnk_id: TFDAutoIncField;
     cxTabSheet_address: TcxTabSheet;
     cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
@@ -80,7 +79,6 @@ type
     dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     Label1: TLabel;
-    qrycontract_ctr_id: TIntegerField;
     qrybnk_name: TStringField;
     qrybnk_code: TStringField;
     qrybnk_agency_number: TStringField;
@@ -139,11 +137,21 @@ type
     dxLayoutItem15: TdxLayoutItem;
     dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    qrybnk_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qrybnk_id: TLongWordField;
+    qrybnk_code_transferor: TStringField;
+    qrybnk_code_agreement: TStringField;
+    qrybnk_status: TStringField;
+    qrybnk_deleted_at: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
     procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure cxTabSheet_1Show(Sender: TObject);
   private
     { Private declarations }
   public
@@ -176,11 +184,62 @@ begin
 end;
 end;
 
+procedure Tfrm_bank.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+ if (qrybnk_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+  with frm_dm.qry,sql do
+   begin
+    Close;
+    Text:= ' delete from bank ' +
+           ' where contract_ctr_cod =:contract ' +
+           ' and bnk_id = 0';
+    ParamByName('contract').Value:=frm_dm.qry_signinctr_cod.Value;
+    Prepare;
+    ExecSQL;
+   end;
+
+end;
+
+procedure Tfrm_bank.Action_saveExecute(Sender: TObject);
+begin
+ with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(bnk_id) is null then 1 ' +
+          '      else (max(bnk_id) + 1) end as maxID from bank '+
+          ' where contract_ctr_cod = (select ctr_cod from contract ' +
+          ' where ctr_id =:ctr_id)';
+   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   Open;
+   if not (qry.State in [dsInsert,dsEdit])  then
+    qry.Edit;
+
+   if qrybnk_id.AsInteger = 0 then
+    qrybnk_id.AsInteger:=Fields[0].AsInteger;
+
+  inherited;
+
+end;
+end;
+
 procedure Tfrm_bank.cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
   AButtonIndex: Integer);
 begin
   inherited;
   ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit2.Text);
+
+end;
+
+procedure Tfrm_bank.cxTabSheet_1Show(Sender: TObject);
+begin
+  inherited;
+   qry.Close;
+   qry.sql.text:= ' select * from bank ';
+   qry.Prepare;
+   qry.open;
+
 end;
 
 procedure Tfrm_bank.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -193,6 +252,24 @@ end;
 procedure Tfrm_bank.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
+   With frm_dm.qry,sql do
+  begin
+   Close;
+   Text:='insert into bank (bnk_cod, bnk_id, contract_ctr_cod) ' +
+         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
+         ' where ctr_id = :contrato)';
+   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   ExecSQL;
+  end;
+   qry.Close;
+   qry.sql.text:= ' select * from bank ' +
+                  ' where bnk_id = 0 ';
+   qry.Prepare;
+   qry.open;
+
+  qry.Edit;
+
   qrybnk_dt_registration.Value:= Date + Time;
 end;
 

@@ -37,8 +37,6 @@ uses
 
 type
   Tfrm_product_class = class(Tfrm_form_default)
-    qryprc_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
     qryprc_name: TStringField;
     qryprc_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1prc_id: TcxGridDBColumn;
@@ -62,6 +60,11 @@ type
     cxGrid1DBTableView1prs_id: TcxGridDBColumn;
     cxGrid1DBTableView1prs_name: TcxGridDBColumn;
     cxGrid1DBTableView1prs_dt_registration: TcxGridDBColumn;
+    qryprc_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryprc_id: TLongWordField;
+    qryprc_status: TStringField;
+    qryprc_deleted_at: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_product_class_subAfterInsert(DataSet: TDataSet);
@@ -72,6 +75,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure qryAfterOpen(DataSet: TDataSet);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure cxTabSheet_1Show(Sender: TObject);
   private
     { Private declarations }
   public
@@ -88,6 +94,22 @@ implementation
 
 uses ufrm_dm, class_required_field;
 
+procedure Tfrm_product_class.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+ if (qryprc_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ with frm_dm.qry,sql do
+ begin
+  Close;
+  Text:= ' delete from product_class ' +
+         ' where contract_ctr_cod =:contract ' +
+         ' and prc_id = 0';
+  ParamByName('contract').Value:=frm_dm.qry_signinctr_cod.Value;
+  Prepare;
+  ExecSQL;
+end;
+end;
+
 procedure Tfrm_product_class.Action_deleteExecute(Sender: TObject);
 begin
    if qry_product_class_sub.RecordCount >=1 then
@@ -97,6 +119,37 @@ begin
      end;
   inherited;
 
+end;
+
+procedure Tfrm_product_class.Action_saveExecute(Sender: TObject);
+begin
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(prc_id) is null then 1 ' +
+          '      else (max(prc_id) + 1) end as maxID from product_class '+
+          ' where contract_ctr_cod = (select ctr_cod from contract ' +
+          ' where ctr_id =:ctr_id)';
+   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   Open;
+   if not (qry.State in [dsInsert,dsEdit])  then
+    qry.Edit;
+
+   if qryprc_id.AsInteger = 0 then
+    qryprc_id.AsInteger:=Fields[0].AsInteger;
+ end;
+  inherited;
+
+end;
+
+procedure Tfrm_product_class.cxTabSheet_1Show(Sender: TObject);
+begin
+  inherited;
+   qry.Close;
+   qry.sql.text:= ' select * from product_class';
+   qry.Prepare;
+   qry.open;
 end;
 
 procedure Tfrm_product_class.FormClose(Sender: TObject;
@@ -128,8 +181,26 @@ end;
 
 procedure Tfrm_product_class.qryAfterInsert(DataSet: TDataSet);
 begin
+ inherited;
+ With frm_dm.qry,sql do
+  begin
+   Close;
+   Text:='insert into product_class (prc_cod,prc_id,contract_ctr_cod) ' +
+         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
+         ' where ctr_id = :contrato)';
+   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   ExecSQL;
+  end;
+   qry.Close;
+   qry.sql.text:= ' select * from product_class ' +
+                  ' where prc_id = 0 ';
+   qry.Prepare;
+   qry.open;
 
-  inherited;
+  qry.Edit;
+
+
 
    qryprc_dt_registration.Value := Now;
    qry.Post;

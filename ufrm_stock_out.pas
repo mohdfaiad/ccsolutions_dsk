@@ -207,7 +207,7 @@ begin
   inherited;
   //SQL para exibir somente as empresas que o usuário tem acesso
   qry_enterprise.Close;
-  qry_enterprise.ParamByName('CTR_USR_ID').Value :=frm_dm.qry_signinctr_usr_id.Value;
+  qry_enterprise.ParamByName('CTR_USR_ID').Value :=frm_dm.qry_signinctr_usr_cod.Value;
   qry_enterprise.Prepare;
   qry_enterprise.Open;
 end;

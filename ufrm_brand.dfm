@@ -10,8 +10,8 @@ inherited frm_brand: Tfrm_brand
     Height = 105
   end
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      OnShow = cxTabSheet_1Show
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1bra_id: TcxGridDBColumn
@@ -36,8 +36,8 @@ inherited frm_brand: Tfrm_brand
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
@@ -75,42 +75,82 @@ inherited frm_brand: Tfrm_brand
       end
     end
   end
+  inherited dxBarDockControl_1: TdxBarDockControl
+    ExplicitLeft = -192
+  end
+  inherited dxBarManager_1: TdxBarManager
+    inherited dxBarManager_1Bar2: TdxBar
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton_report_edit'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton_report_preview'
+        end>
+    end
+    inherited dxBarManager_1Bar4: TdxBar
+      DockedLeft = 76
+    end
+    inherited dxBarManager_1Bar5: TdxBar
+      DockedLeft = 225
+    end
+    inherited dxBarManager_1Bar6: TdxBar
+      DockedLeft = 371
+    end
+  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from brand')
-    object qrybra_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
+    object qrybra_cod: TBytesField
+      FieldName = 'bra_cod'
+      Origin = 'bra_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qrybra_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'bra_id'
       Origin = 'bra_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
     end
     object qrybra_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
       FieldName = 'bra_name'
       Origin = 'bra_name'
-      Required = True
-      Size = 50
+      Size = 35
+    end
+    object qrybra_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'bra_status'
+      Origin = 'bra_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qrybra_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'bra_deleted_at'
+      Origin = 'bra_deleted_at'
     end
     object qrybra_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
       FieldName = 'bra_dt_registration'
       Origin = 'bra_dt_registration'
     end

@@ -4,12 +4,12 @@ inherited frm_ncm: Tfrm_ncm
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      OnShow = cxTabSheet_1Show
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ncm_id: TcxGridDBColumn
@@ -38,14 +38,14 @@ inherited frm_ncm: Tfrm_ncm
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 68
@@ -119,26 +119,22 @@ inherited frm_ncm: Tfrm_ncm
   inherited qry: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
+    MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from ncm')
-    object qryncm_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'ncm_id'
-      Origin = 'ncm_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
+      'select * from ncm'
+      'where contract_ctr_cod = :ctr_cod')
+    ParamData = <
+      item
+        Name = 'CTR_COD'
+        DataType = ftBytes
+        ParamType = ptInput
+        Size = 16
+        Value = Null
+      end>
     object qryncm_code: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'digo'
@@ -161,6 +157,34 @@ inherited frm_ncm: Tfrm_ncm
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'ncm_dt_registration'
       Origin = 'ncm_dt_registration'
+    end
+    object qryncm_cod: TBytesField
+      FieldName = 'ncm_cod'
+      Origin = 'ncm_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qryncm_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'ncm_id'
+      Origin = 'ncm_id'
+    end
+    object qryncm_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ncm_status'
+      Origin = 'ncm_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qryncm_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'ncm_deleted_at'
+      Origin = 'ncm_deleted_at'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

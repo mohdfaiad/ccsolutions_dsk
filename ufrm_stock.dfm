@@ -49,8 +49,8 @@ inherited frm_stock: Tfrm_stock
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -177,11 +177,6 @@ inherited frm_stock: Tfrm_stock
       end
     end
   end
-  inherited dxBarManager_1: TdxBarManager
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\estoque'
-    end
-  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
@@ -190,15 +185,12 @@ inherited frm_stock: Tfrm_stock
     Top = 104
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from stock '#10'where contract_ctr_id =:ctr_id'#13#10#10
       'and enterprise_ent_id in '
@@ -208,7 +200,7 @@ inherited frm_stock: Tfrm_stock
     ParamData = <
       item
         Name = 'CTR_ID'
-        DataType = ftAutoInc
+        DataType = ftLongWord
         ParamType = ptInput
         Value = Null
       end

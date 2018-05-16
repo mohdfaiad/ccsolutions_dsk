@@ -38,8 +38,6 @@ uses
 
 type
   Tfrm_ncm = class(Tfrm_form_default)
-    qryncm_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
     qryncm_code: TStringField;
     qryncm_description: TMemoField;
     qryncm_dt_registration: TDateTimeField;
@@ -52,9 +50,16 @@ type
     dxLayoutItem4: TdxLayoutItem;
     cxDBButtonEdit1: TcxDBButtonEdit;
     dxLayoutItem3: TdxLayoutItem;
+    qryncm_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryncm_id: TLongWordField;
+    qryncm_status: TStringField;
+    qryncm_deleted_at: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure cxTabSheet_1Show(Sender: TObject);
   private
     { Private declarations }
   public
@@ -73,9 +78,43 @@ implementation
 
 uses ufrm_dm, class_required_field;
 
+procedure Tfrm_ncm.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+ if (qryncm_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ with frm_dm.qry,sql do
+ begin
+  Close;
+  Text:= ' delete from ncm ' +
+         ' where contract_ctr_cod =:contract ' +
+         ' and ncm_id = 0';
+  ParamByName('contract').Value:=frm_dm.qry_signinctr_cod.Value;
+  Prepare;
+  ExecSQL;
+end;
+end;
+
 procedure Tfrm_ncm.Action_saveExecute(Sender: TObject);
 
 begin
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(ncm_id) is null then 1 ' +
+          '      else (max(ncm_id) + 1) end as maxID from ncm '+
+          ' where contract_ctr_cod = (select ctr_cod from contract ' +
+          ' where ctr_id =:ctr_id)';
+   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   Open;
+   if not (qry.State in [dsInsert,dsEdit])  then
+    qry.Edit;
+
+   if qryncm_id.AsInteger = 0 then
+    qryncm_id.AsInteger:=Fields[0].AsInteger;
+ end;
+
+
  //--Comando para tirar o focus de todos os componentes da tela-----
    ActiveControl := nil;
   //--Cama a função para verificar se existe campos requeridos em branco----
@@ -83,6 +122,15 @@ begin
 
   inherited;
 
+end;
+
+procedure Tfrm_ncm.cxTabSheet_1Show(Sender: TObject);
+begin
+  inherited;
+   qry.Close;
+   qry.sql.text:= ' select * from ncm ';
+   qry.Prepare;
+   qry.open;
 end;
 
 procedure Tfrm_ncm.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -95,7 +143,24 @@ end;
 procedure Tfrm_ncm.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-   qryncm_dt_registration.Value := Date + Time;
+ With frm_dm.qry,sql do
+  begin
+   Close;
+   Text:='insert into ncm (ncm_cod,ncm_id,contract_ctr_cod) ' +
+         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
+         ' where ctr_id = :contrato)';
+   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   ExecSQL;
+  end;
+   qry.Close;
+   qry.sql.text:= ' select * from ncm ' +
+                  ' where ncm_id = 0 ';
+   qry.Prepare;
+   qry.open;
+
+  qry.Edit;
+  qryncm_dt_registration.Value := Date + Time;
 
 end;
 

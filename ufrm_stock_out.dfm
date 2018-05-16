@@ -70,8 +70,8 @@ inherited frm_stock_out: Tfrm_stock_out
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -329,13 +329,11 @@ inherited frm_stock_out: Tfrm_stock_out
   end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from lab_request')
     object qryreq_id: TFDAutoIncField
@@ -2798,7 +2796,6 @@ inherited frm_stock_out: Tfrm_stock_out
     Top = 136
   end
   object qry_enterprise: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
@@ -2819,7 +2816,7 @@ inherited frm_stock_out: Tfrm_stock_out
     ParamData = <
       item
         Name = 'CTR_ID'
-        DataType = ftAutoInc
+        DataType = ftLongWord
         ParamType = ptInput
         Value = Null
       end
@@ -2857,7 +2854,6 @@ inherited frm_stock_out: Tfrm_stock_out
     end
   end
   object qry_client: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select cli_id,cli_first_name,contract_ctr_id from client'

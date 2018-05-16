@@ -305,7 +305,7 @@ procedure Tfrm_request.cxTabSheet_2Show(Sender: TObject);
 begin
   inherited;
    qry_stock.Close;
-   qry_stock.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
+   qry_stock.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_cod.Value;
    qry_stock.Prepare;
    qry_stock.Open;
 end;
@@ -406,7 +406,7 @@ begin
   inherited;
   //SQL para exibir somente as Requisições da Unidade de estoque que o usuário tem acesso
   qry.Close;
-  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
+  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_cod.Value;
   qry.Prepare;
   qry.Open;
  //---------------------------------------------------------------------------

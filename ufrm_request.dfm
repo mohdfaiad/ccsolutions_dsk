@@ -234,7 +234,7 @@ inherited frm_request: Tfrm_request
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 855
-          ExplicitHeight = 432
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 855
             ExplicitWidth = 855
@@ -524,13 +524,11 @@ inherited frm_request: Tfrm_request
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
     AfterDelete = qryAfterDelete
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from purchase_order '#10'where pco_type = '#39'R'#39#13#10#10
       ''

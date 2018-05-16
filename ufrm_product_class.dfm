@@ -4,12 +4,12 @@ inherited frm_product_class: Tfrm_product_class
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      OnShow = cxTabSheet_1Show
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prc_id: TcxGridDBColumn
@@ -34,8 +34,8 @@ inherited frm_product_class: Tfrm_product_class
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
@@ -156,31 +156,17 @@ inherited frm_product_class: Tfrm_product_class
     Left = 488
   end
   inherited qry: TFDQuery
-    Active = True
     AfterOpen = qryAfterOpen
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from product_class')
-    object qryprc_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'prc_id'
-      Origin = 'prc_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
     object qryprc_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Nome'
@@ -193,6 +179,34 @@ inherited frm_product_class: Tfrm_product_class
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'prc_dt_registration'
       Origin = 'prc_dt_registration'
+    end
+    object qryprc_cod: TBytesField
+      FieldName = 'prc_cod'
+      Origin = 'prc_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qryprc_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'prc_id'
+      Origin = 'prc_id'
+    end
+    object qryprc_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'prc_status'
+      Origin = 'prc_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qryprc_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'prc_deleted_at'
+      Origin = 'prc_deleted_at'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

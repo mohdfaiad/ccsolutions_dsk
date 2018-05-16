@@ -4,12 +4,12 @@ inherited frm_product_unit: Tfrm_product_unit
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      OnShow = cxTabSheet_1Show
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pru_id: TcxGridDBColumn
@@ -38,8 +38,8 @@ inherited frm_product_unit: Tfrm_product_unit
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
@@ -107,25 +107,17 @@ inherited frm_product_unit: Tfrm_product_unit
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     AfterDelete = qryAfterDelete
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from product_unit')
-    object qrypru_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'pru_id'
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-    end
     object qrypru_name: TStringField
       DisplayLabel = 'Nome'
       FieldName = 'pru_name'
@@ -141,6 +133,34 @@ inherited frm_product_unit: Tfrm_product_unit
     object qrypru_dt_registration: TDateTimeField
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'pru_dt_registration'
+    end
+    object qrypru_cod: TBytesField
+      FieldName = 'pru_cod'
+      Origin = 'pru_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qrypru_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_id'
+      Origin = 'pru_id'
+    end
+    object qrypru_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_status'
+      Origin = 'pru_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qrypru_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_deleted_at'
+      Origin = 'pru_deleted_at'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

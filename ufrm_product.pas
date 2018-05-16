@@ -45,14 +45,6 @@ type
     dxLayoutItem6: TdxLayoutItem;
     cxDBMemo1: TcxDBMemo;
     dxLayoutItem5: TdxLayoutItem;
-    qrypro_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
-    qrypro_name: TStringField;
-    qrypro_tag: TStringField;
-    qrypro_description: TStringField;
-    qrypro_status: TStringField;
-    qrypro_dt_registration: TDateTimeField;
-    qrypro_type: TStringField;
     cxGrid_1DBTableView1pro_id: TcxGridDBColumn;
     cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_type: TcxGridDBColumn;
@@ -74,15 +66,6 @@ type
     ds_product_class_sub: TDataSource;
     cxDBLookupComboBox1: TcxDBLookupComboBox;
     dxLayoutItem4: TdxLayoutItem;
-    qrysupplier_sup_id: TIntegerField;
-    qryproduct_class_prc_id: TIntegerField;
-    qryproduct_class_sub_prs_id: TIntegerField;
-    qrymanufacturer_man_id: TIntegerField;
-    qrybrand_bra_id: TIntegerField;
-    qrypro_barcod: TStringField;
-    qrypro_barcod_manufacturer: TStringField;
-    qryncm_ncm_id: TIntegerField;
-    qryproduct_unit_pru_id: TIntegerField;
     cxDBLookupComboBox2: TcxDBLookupComboBox;
     dxLayoutItem7: TdxLayoutItem;
     cxDBLookupComboBox3: TcxDBLookupComboBox;
@@ -110,11 +93,6 @@ type
     dxLayoutControl1: TdxLayoutControl;
     dxLayoutControl1Group_Root: TdxLayoutGroup;
     dxLayoutGroup3: TdxLayoutGroup;
-    qrypro_height: TBCDField;
-    qrypro_width: TBCDField;
-    qrypro_length: TBCDField;
-    qrypro_weight: TBCDField;
-    qrypro_liter: TBCDField;
     dxLayoutGroup4: TdxLayoutGroup;
     cxDBCurrencyEdit1: TcxDBCurrencyEdit;
     dxLayoutItem15: TdxLayoutItem;
@@ -156,11 +134,41 @@ type
     cxGrid1DBTableView1product_pro_id_input: TcxGridDBColumn;
     cxGrid1DBTableView1pri_dt_registration: TcxGridDBColumn;
     qry_product_list_input: TFDQuery;
-    qry_product_list_inputpro_id: TFDAutoIncField;
     qry_product_list_inputpro_name: TStringField;
     ds_product_list_input: TDataSource;
     frxDBD_Produto: TfrxDBDataset;
     frxReport1: TfrxReport;
+    qry_product_list_inputpro_id: TLongWordField;
+    qrypro_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qrymaterial_mat_cod: TBytesField;
+    qrysupplier_sup_cod: TBytesField;
+    qryproduct_class_prc_cod: TBytesField;
+    qryproduct_class_sub_prs_cod: TBytesField;
+    qrymanufacturer_man_cod: TBytesField;
+    qrybrand_bra_cod: TBytesField;
+    qryncm_ncm_cod: TBytesField;
+    qryproduct_unit_pru_cod: TBytesField;
+    qrypro_id: TLongWordField;
+    qrypro_type: TStringField;
+    qrypro_name: TStringField;
+    qrypro_initials: TStringField;
+    qrypro_tag: TStringField;
+    qrypro_description: TMemoField;
+    qrypro_gender: TStringField;
+    qrypro_annotation: TMemoField;
+    qrypro_barcod: TStringField;
+    qrypro_barcod_manufacturer: TStringField;
+    qrypro_height: TBCDField;
+    qrypro_width: TBCDField;
+    qrypro_length: TBCDField;
+    qrypro_weight: TBCDField;
+    qrypro_liter: TBCDField;
+    qrypro_status: TStringField;
+    qrypro_deleted_at: TDateTimeField;
+    qrypro_dt_registration: TDateTimeField;
+    cxDBTextEdit4: TcxDBTextEdit;
+    dxLayoutItem21: TdxLayoutItem;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
@@ -176,6 +184,8 @@ type
     procedure cxDBLookupComboBox6PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox7PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure cxTabSheet_1Show(Sender: TObject);
   private
     { Private declarations }
   public
@@ -191,6 +201,22 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_product.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+ if (qrypro_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ with frm_dm.qry,sql do
+ begin
+  Close;
+  Text:= ' delete from product ' +
+         ' where contract_ctr_cod =:contract ' +
+         ' and pro_id = 0';
+  ParamByName('contract').Value:=frm_dm.qry_signinctr_cod.Value;
+  Prepare;
+  ExecSQL;
+end;
+end;
+
 procedure Tfrm_product.Action_saveExecute(Sender: TObject);
 begin
   if (Trim(cxDBLookupComboBox7.Text)='') OR (Trim(cxDBTextEdit1.Text)='')  then
@@ -198,6 +224,25 @@ begin
      Application.MessageBox('Por favor imformar a unidade de medida do produto !','AVISO CADASTRO DE PRODUTO',MB_OK+MB_ICONINFORMATION);
      Exit;
    end;
+
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(pro_id) is null then 1 ' +
+          '      else (max(pro_id) + 1) end as maxID from ncm '+
+          ' where contract_ctr_cod = (select ctr_cod from contract ' +
+          ' where ctr_id =:ctr_id)';
+   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   Open;
+   if not (qry.State in [dsInsert,dsEdit])  then
+    qry.Edit;
+
+   if qrypro_id.AsInteger = 0 then
+    qrypro_id.AsInteger:=Fields[0].AsInteger;
+ end;
+
+
 
   inherited;
 
@@ -251,7 +296,7 @@ end;
 procedure Tfrm_product.cxDBLookupComboBox6Enter(Sender: TObject);
 begin
   inherited;
-   qry_product_class.Locate('prc_id',qryproduct_class_prc_id.AsInteger,[loCaseInsensitive, loPartialKey]);
+//   qry_product_class.Locate('prc_id',qryproduct_class_prc_id.AsInteger,[loCaseInsensitive, loPartialKey]);
 end;
 
 procedure Tfrm_product.cxDBLookupComboBox6PropertiesPopup(Sender: TObject);
@@ -274,7 +319,16 @@ begin
    qry_product_unit.Refresh;
 end;
 
-Procedure Tfrm_product.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure Tfrm_product.cxTabSheet_1Show(Sender: TObject);
+begin
+  inherited;
+   qry.Close;
+   qry.sql.text:= ' select * from product ';
+   qry.Prepare;
+   qry.open;
+end;
+
+procedure Tfrm_product.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
   frm_product.Destroy;
@@ -284,6 +338,23 @@ end;
 procedure Tfrm_product.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
+ With frm_dm.qry,sql do
+  begin
+   Close;
+   Text:='insert into product(pro_cod,pro_id,contract_ctr_cod) ' +
+         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
+         ' where ctr_id = :contrato)';
+   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   ExecSQL;
+  end;
+   qry.Close;
+   qry.sql.text:= ' select * from product ' +
+                  ' where pro_id = 0 ';
+   qry.Prepare;
+   qry.open;
+
+  qry.Edit;
   qrypro_dt_registration.Value := Date + Time;
 end;
 

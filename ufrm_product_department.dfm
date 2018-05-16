@@ -5,10 +5,11 @@ inherited frm_product_department: Tfrm_product_department
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      OnShow = cxTabSheet_1Show
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prd_id: TcxGridDBColumn
@@ -32,14 +33,14 @@ inherited frm_product_department: Tfrm_product_department
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'prd_id'
@@ -148,43 +149,52 @@ inherited frm_product_department: Tfrm_product_department
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
-    CachedUpdates = True
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from product_department')
-    object qryprd_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'prd_id'
-      Origin = 'prd_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
     object qryprd_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Nome'
       FieldName = 'prd_name'
       Origin = 'prd_name'
-      Size = 45
+      Size = 35
     end
     object qryprd_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'prd_dt_registration'
       Origin = 'prd_dt_registration'
+    end
+    object qryprd_cod: TBytesField
+      FieldName = 'prd_cod'
+      Origin = 'prd_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qryprd_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'prd_id'
+      Origin = 'prd_id'
+    end
+    object qryprd_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'prd_deleted_at'
+      Origin = 'prd_deleted_at'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -207,12 +217,13 @@ inherited frm_product_department: Tfrm_product_department
     Style = <>
   end
   object qry_product_sector: TFDQuery
+    Active = True
     AfterInsert = qry_product_sectorAfterInsert
     CachedUpdates = True
-    IndexFieldNames = 'product_department_prd_id'
+    IndexFieldNames = 'product_department_prd_cod'
     MasterSource = ds
-    MasterFields = 'prd_id'
-    DetailFields = 'product_department_prd_id'
+    MasterFields = 'prd_cod'
+    DetailFields = 'product_department_prd_cod'
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
     FetchOptions.AssignedValues = [evDetailCascade]
@@ -221,29 +232,35 @@ inherited frm_product_department: Tfrm_product_department
       'select * from product_sector')
     Left = 584
     Top = 96
-    object qry_product_sectorprs_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
+    object qry_product_sectorprs_cod: TBytesField
+      FieldName = 'prs_cod'
+      Origin = 'prs_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_product_sectorproduct_department_prd_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_department_prd_cod'
+      Origin = 'product_department_prd_cod'
+    end
+    object qry_product_sectorprs_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'prs_id'
       Origin = 'prs_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qry_product_sectorproduct_department_prd_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Departamento ID'
-      FieldName = 'product_department_prd_id'
-      Origin = 'product_department_prd_id'
     end
     object qry_product_sectorprs_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
       FieldName = 'prs_name'
       Origin = 'prs_name'
-      Size = 45
+      Size = 35
+    end
+    object qry_product_sectorprs_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'prs_deleted_at'
+      Origin = 'prs_deleted_at'
     end
     object qry_product_sectorprs_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
       FieldName = 'prs_dt_registration'
       Origin = 'prs_dt_registration'
     end

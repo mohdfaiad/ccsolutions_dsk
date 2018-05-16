@@ -24,7 +24,7 @@
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
+      ExplicitWidth = 1000
       ExplicitHeight = 453
       inherited cxGrid_1: TcxGrid
         Height = 447
@@ -227,7 +227,7 @@
       OnShow = cxTabSheet_2Show
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
+      ExplicitWidth = 1000
       ExplicitHeight = 453
       inherited cxPageControl_2: TcxPageControl
         Height = 447
@@ -3172,60 +3172,62 @@
     Top = 264
   end
   object qry_stock: TFDQuery
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
-        'select sto_name,sto_id,contract_ctr_id,enterprise_ent_id from st' +
-        'ock'#13#10#10
-      ''
-      'where sto_status = '#39'A'#39' and contract_ctr_id =:ctr_id'
-      'and enterprise_ent_id in '
+        'select st.sto_name,st.sto_id,st.contract_ctr_cod,en.ent_id from ' +
+        'stock st'#10
+      'left join contract co on co.ctr_cod = st.contract_ctr_cod'#10
+      'left join enterprise en on en.ent_cod = st.enterprise_ent_cod'
+      'where st.sto_status = '#39'A'#39' '#10
       
-        '(select ctr_usr_ent_ent_id  from contract_user_enterprise where ' +
-        'ctr_usr_ent_user_id =:ctr_usr_id)')
+        'and st.contract_ctr_cod in (select ctr_cod from contract a where' +
+        ' a.ctr_id =:ctr_cod)'#10
+      
+        'and enterprise_ent_cod in '#10'(select ctr_usr_ent_ent_cod from cont' +
+        'ract_user_enterprise '#10'where ctr_usr_ent_user_cod =:ctr_usr_id)')
     Left = 592
     Top = 144
     ParamData = <
       item
-        Name = 'CTR_ID'
-        DataType = ftInteger
+        Name = 'CTR_COD'
+        DataType = ftBytes
         ParamType = ptInput
-        Value = 1
+        Size = 16
+        Value = Null
       end
       item
         Name = 'CTR_USR_ID'
-        DataType = ftInteger
+        DataType = ftByte
         ParamType = ptInput
-        Value = 2
+        Value = Null
       end>
     object qry_stocksto_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
       FieldName = 'sto_name'
       Origin = 'sto_name'
-      Size = 50
+      Size = 35
     end
-    object qry_stocksto_id: TFDAutoIncField
-      DisplayLabel = 'Cod. ID'
-      DisplayWidth = 15
+    object qry_stocksto_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'sto_id'
       Origin = 'sto_id'
-      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qry_stockcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_stockent_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_id'
+      Origin = 'ent_id'
+      ProviderFlags = []
       ReadOnly = True
-    end
-    object qry_stockcontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
-    object qry_stockenterprise_ent_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'enterprise_ent_id'
-      Origin = 'enterprise_ent_id'
     end
   end
   object ds_stock: TDataSource

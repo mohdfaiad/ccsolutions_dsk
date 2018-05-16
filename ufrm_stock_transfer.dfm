@@ -72,7 +72,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
+          ExplicitWidth = 986
           ExplicitHeight = 401
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 401
@@ -475,13 +475,11 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'SELECT * FROM product_transfer'#13#10#10
       

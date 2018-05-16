@@ -72,7 +72,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
           OnShow = cxTabSheet_3Show
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
+          ExplicitWidth = 986
           ExplicitHeight = 318
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 318
@@ -279,6 +279,10 @@ inherited frm_stock_entry: Tfrm_stock_entry
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Produtos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -429,13 +433,11 @@ inherited frm_stock_entry: Tfrm_stock_entry
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     BeforeDelete = qryBeforeDelete
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'SELECT * FROM product_entry'#13#10#10
       ''
@@ -3355,7 +3357,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Top = 96
   end
   object qry_product: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     BeforeDelete = qryBeforeDelete
     IndexFieldNames = 'contract_ctr_id'

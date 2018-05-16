@@ -101,13 +101,13 @@ type
     qrystock_sto_id: TIntegerField;
     qry_stock: TFDQuery;
     ds_stock: TDataSource;
-    qry_stocksto_name: TStringField;
-    qry_stocksto_id: TFDAutoIncField;
-    qry_stockcontract_ctr_id: TIntegerField;
-    qry_stockenterprise_ent_id: TIntegerField;
     Image1: TImage;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
+    qry_stocksto_name: TStringField;
+    qry_stocksto_id: TLongWordField;
+    qry_stockcontract_ctr_cod: TBytesField;
+    qry_stockent_id: TLongWordField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
@@ -246,10 +246,10 @@ end;
 procedure Tfrm_purchase_order.cxTabSheet_2Show(Sender: TObject);
 begin
   inherited;
-   qry_stock.Close;
-   qry_stock.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
-   qry_stock.Prepare;
-   qry_stock.Open;
+//   qry_stock.Close;
+//   qry_stock.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
+//   qry_stock.Prepare;
+//   qry_stock.Open;
 
 end;
 
@@ -339,7 +339,7 @@ begin
   inherited;
   //SQL para exibir somente as Requisições da Unidade de estoque que o usuário tem acesso
   qry.Close;
-  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_id.Value;
+  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_cod.Value;
   qry.Prepare;
   qry.Open;
 

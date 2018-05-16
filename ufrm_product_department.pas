@@ -37,8 +37,6 @@ uses
 
 type
   Tfrm_product_department = class(Tfrm_form_default)
-    qryprd_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
     qryprd_name: TStringField;
     qryprd_dt_registration: TDateTimeField;
     qry_product_sector: TFDQuery;
@@ -54,13 +52,19 @@ type
     cxGrid1Level1: TcxGridLevel;
     cxGrid1: TcxGrid;
     dxLayoutItem4: TdxLayoutItem;
-    qry_product_sectorprs_id: TFDAutoIncField;
-    qry_product_sectorproduct_department_prd_id: TIntegerField;
-    qry_product_sectorprs_name: TStringField;
-    qry_product_sectorprs_dt_registration: TDateTimeField;
     cxGrid1DBTableView1prs_id: TcxGridDBColumn;
     cxGrid1DBTableView1prs_name: TcxGridDBColumn;
     cxGrid1DBTableView1prs_dt_registration: TcxGridDBColumn;
+    qryprd_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryprd_id: TLongWordField;
+    qryprd_deleted_at: TDateTimeField;
+    qry_product_sectorprs_cod: TBytesField;
+    qry_product_sectorproduct_department_prd_cod: TBytesField;
+    qry_product_sectorprs_id: TLongWordField;
+    qry_product_sectorprs_name: TStringField;
+    qry_product_sectorprs_deleted_at: TDateTimeField;
+    qry_product_sectorprs_dt_registration: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_product_sectorAfterInsert(DataSet: TDataSet);
@@ -68,6 +72,9 @@ type
     procedure qryBeforePost(DataSet: TDataSet);
     procedure Action_deleteExecute(Sender: TObject);
     procedure qryAfterDelete(DataSet: TDataSet);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure cxTabSheet_1Show(Sender: TObject);
   private
     { Private declarations }
   public
@@ -84,6 +91,22 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_product_department.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+ if (qryprd_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ with frm_dm.qry,sql do
+ begin
+  Close;
+  Text:= ' delete from product_department ' +
+         ' where contract_ctr_cod =:contract ' +
+         ' and prd_id = 0';
+  ParamByName('contract').Value:=frm_dm.qry_signinctr_cod.Value;
+  Prepare;
+  ExecSQL;
+end;
+end;
+
 procedure Tfrm_product_department.Action_deleteExecute(Sender: TObject);
 begin
    if qry_product_sector.RecordCount >=1 then
@@ -93,6 +116,37 @@ begin
      end;
   inherited;
 
+end;
+
+procedure Tfrm_product_department.Action_saveExecute(Sender: TObject);
+begin
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(prd_id) is null then 1 ' +
+          '      else (max(prd_id) + 1) end as maxID from product_department '+
+          ' where contract_ctr_cod = (select ctr_cod from contract ' +
+          ' where ctr_id =:ctr_id)';
+   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   Open;
+   if not (qry.State in [dsInsert,dsEdit])  then
+    qry.Edit;
+
+   if qryprd_id.AsInteger = 0 then
+    qryprd_id.AsInteger:=Fields[0].AsInteger;
+ end;
+  inherited;
+
+end;
+
+procedure Tfrm_product_department.cxTabSheet_1Show(Sender: TObject);
+begin
+  inherited;
+   qry.Close;
+   qry.sql.text:= ' select * from product_department';
+   qry.Prepare;
+   qry.open;
 end;
 
 procedure Tfrm_product_department.FormClose(Sender: TObject;
@@ -125,8 +179,23 @@ end;
 procedure Tfrm_product_department.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
+ With frm_dm.qry,sql do
+  begin
+   Close;
+   Text:='insert into product_department (prd_cod,prd_id,contract_ctr_cod) ' +
+         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
+         ' where ctr_id = :contrato)';
+   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   ExecSQL;
+  end;
+   qry.Close;
+   qry.sql.text:= ' select * from product_department ' +
+                  ' where prd_id = 0 ';
+   qry.Prepare;
+   qry.open;
+   qry.Edit;
    qryprd_dt_registration.Value := Date + Time;
-   qry.Post;
    qry.Edit;
 end;
 

@@ -11,7 +11,7 @@ object frm_default: Tfrm_default
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poOwnerFormCenter
   ShowHint = True
   PixelsPerInch = 96
   TextHeight = 13
@@ -19,63 +19,52 @@ object frm_default: Tfrm_default
     Left = 0
     Top = 0
     Width = 1008
-    Height = 55
+    Height = 56
     Align = dalTop
     BarManager = barman_1
   end
   object pgctrl_1: TcxPageControl
     Left = 0
-    Top = 55
+    Top = 56
     Width = 1008
-    Height = 571
+    Height = 570
     Align = alClient
     TabOrder = 1
     Properties.ActivePage = tbsht_1
     Properties.CustomButtons.Buttons = <>
     LookAndFeel.NativeStyle = False
-    ExplicitHeight = 533
-    ClientRectBottom = 565
-    ClientRectLeft = 2
-    ClientRectRight = 1002
-    ClientRectTop = 27
+    ClientRectBottom = 570
+    ClientRectRight = 1008
+    ClientRectTop = 24
     object tbsht_1: TcxTabSheet
       Caption = 'Registros'
       ImageIndex = 0
-      ExplicitHeight = 500
       object pgctrl_2: TcxPageControl
         Left = 0
         Top = 0
-        Width = 1000
-        Height = 538
+        Width = 1008
+        Height = 546
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = tbsht_3
         Properties.CustomButtons.Buttons = <>
-        ExplicitLeft = 112
-        ExplicitTop = 104
-        ExplicitHeight = 500
-        ClientRectBottom = 532
-        ClientRectLeft = 2
-        ClientRectRight = 994
-        ClientRectTop = 27
+        ClientRectBottom = 542
+        ClientRectLeft = 4
+        ClientRectRight = 1004
+        ClientRectTop = 24
         object tbsht_3: TcxTabSheet
           Caption = 'Registros Ativos'
           ImageIndex = 0
-          ExplicitHeight = 467
           object grid_1: TcxGrid
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 986
-            Height = 499
+            Width = 994
+            Height = 512
             Align = alClient
             Images = imglist_1
             PopupMenu = popmenu_1
             TabOrder = 0
-            ExplicitLeft = 160
-            ExplicitTop = 56
-            ExplicitWidth = 992
-            ExplicitHeight = 467
             object cxGridDBTableView1: TcxGridDBTableView
               Navigator.Buttons.ConfirmDelete = True
               Navigator.Buttons.CustomButtons = <>
@@ -126,21 +115,16 @@ object frm_default: Tfrm_default
         object tbsht_4: TcxTabSheet
           Caption = 'Registros Deletados'
           ImageIndex = 1
-          ExplicitHeight = 467
           object grid_2: TcxGrid
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 986
-            Height = 499
+            Width = 994
+            Height = 512
             Align = alClient
             Images = imglist_1
             PopupMenu = popmenu_2
             TabOrder = 0
-            ExplicitLeft = -2
-            ExplicitTop = 6
-            ExplicitWidth = 992
-            ExplicitHeight = 467
             object cxGridDBTableView2: TcxGridDBTableView
               Navigator.Buttons.ConfirmDelete = True
               Navigator.Buttons.CustomButtons = <>
@@ -193,39 +177,32 @@ object frm_default: Tfrm_default
     object tbsht_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
-      ExplicitHeight = 500
       object pgctrl_3: TcxPageControl
         Left = 0
         Top = 0
-        Width = 1000
-        Height = 538
+        Width = 1008
+        Height = 546
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = tbsht_5
         Properties.CustomButtons.Buttons = <>
-        ExplicitLeft = 64
-        ExplicitTop = 50
-        ExplicitHeight = 500
-        ClientRectBottom = 532
-        ClientRectLeft = 2
-        ClientRectRight = 994
-        ClientRectTop = 27
+        ClientRectBottom = 542
+        ClientRectLeft = 4
+        ClientRectRight = 1004
+        ClientRectTop = 24
         object tbsht_5: TcxTabSheet
           Caption = 'Informa'#231#245'es'
           ImageIndex = 0
-          ExplicitLeft = 3
-          ExplicitTop = 30
-          ExplicitHeight = 467
           DesignSize = (
-            992
-            505)
+            1000
+            518)
           object cxGroupBox1: TcxGroupBox
             Left = 3
             Top = 3
             Anchors = [akLeft, akTop, akRight]
             TabOrder = 0
             Height = 46
-            Width = 986
+            Width = 994
             object cxLabel1: TcxLabel
               Left = 3
               Top = 3
@@ -258,9 +235,8 @@ object frm_default: Tfrm_default
             Top = 55
             Anchors = [akLeft, akTop, akRight, akBottom]
             TabOrder = 1
-            ExplicitHeight = 424
-            Height = 447
-            Width = 986
+            Height = 460
+            Width = 994
           end
         end
       end
@@ -278,7 +254,6 @@ object frm_default: Tfrm_default
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
-    ExplicitTop = 611
   end
   object actlist_1: TActionList
     Images = imglist_1
@@ -524,7 +499,7 @@ object frm_default: Tfrm_default
       CaptionButtons = <>
       DockControl = bardck_1
       DockedDockControl = bardck_1
-      DockedLeft = 260
+      DockedLeft = 262
       DockedTop = 0
       FloatLeft = 1042
       FloatTop = 8

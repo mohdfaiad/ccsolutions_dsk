@@ -5,14 +5,19 @@ inherited frm_department: Tfrm_department
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      OnShow = cxTabSheet_1Show
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1dep_id: TcxGridDBColumn
-            DataBinding.FieldName = 'dep_id'
+            DataBinding.FieldName = 'dep_cod'
             Width = 75
           end
           object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
+            DataBinding.FieldName = 'contract_ctr_cod'
             Width = 75
           end
           object cxGrid_1DBTableView1dep_name: TcxGridDBColumn
@@ -29,14 +34,14 @@ inherited frm_department: Tfrm_department
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'dep_id'
@@ -87,6 +92,9 @@ inherited frm_department: Tfrm_department
                   DataBinding.FieldName = 'sec_dt_registration'
                   Width = 125
                 end
+                object cxGrid1DBTableView1Column1: TcxGridDBColumn
+                  DataBinding.FieldName = 'department_dep_cod'
+                end
               end
               object cxGrid1Level1: TcxGridLevel
                 GridView = cxGrid1DBTableView1
@@ -103,7 +111,7 @@ inherited frm_department: Tfrm_department
               Width = 294
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
+              ItemIndex = 2
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahClient
@@ -148,37 +156,55 @@ inherited frm_department: Tfrm_department
   inherited qry: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from department')
-    object qrydep_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'dep_id'
-      Origin = 'dep_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
     object qrydep_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Nome'
       FieldName = 'dep_name'
       Origin = 'dep_name'
-      Size = 45
+      Size = 35
     end
     object qrydep_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'dep_dt_registration'
       Origin = 'dep_dt_registration'
+    end
+    object qrydep_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'dep_status'
+      Origin = 'dep_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qrydep_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'dep_deleted_at'
+      Origin = 'dep_deleted_at'
+    end
+    object qrydep_cod: TBytesField
+      FieldName = 'dep_cod'
+      Origin = 'dep_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qrydep_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'dep_id'
+      Origin = 'dep_id'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -195,42 +221,64 @@ inherited frm_department: Tfrm_department
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
+  inherited frxReport_1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
   object qry_sector: TFDQuery
-    Active = True
     AfterInsert = qry_sectorAfterInsert
-    IndexFieldNames = 'department_dep_id'
+    CachedUpdates = True
+    IndexFieldNames = 'department_dep_cod'
     MasterSource = ds
-    MasterFields = 'dep_id'
-    DetailFields = 'department_dep_id'
+    MasterFields = 'dep_cod'
+    DetailFields = 'department_dep_cod'
     Connection = frm_dm.connCCS
+    SchemaAdapter = FDSchemaAdapter_1
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from sector')
-    Left = 584
+    Left = 592
     Top = 96
-    object qry_sectorsec_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
+    object qry_sectorsec_cod: TBytesField
+      FieldName = 'sec_cod'
+      Origin = 'sec_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_sectorsec_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'sec_id'
       Origin = 'sec_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-    end
-    object qry_sectordepartment_dep_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Departamento ID'
-      FieldName = 'department_dep_id'
-      Origin = 'department_dep_id'
     end
     object qry_sectorsec_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
       FieldName = 'sec_name'
       Origin = 'sec_name'
-      Size = 45
+      Size = 35
+    end
+    object qry_sectorsec_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sec_status'
+      Origin = 'sec_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_sectorsec_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'sec_deleted_at'
+      Origin = 'sec_deleted_at'
     end
     object qry_sectorsec_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
       FieldName = 'sec_dt_registration'
       Origin = 'sec_dt_registration'
+    end
+    object qry_sectordepartment_dep_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'department_dep_cod'
+      Origin = 'sec_id'
     end
   end
   object ds_sector: TDataSource

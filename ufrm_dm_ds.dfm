@@ -3,7 +3,6 @@ object frm_dm_ds: Tfrm_dm_ds
   Height = 297
   Width = 458
   object qry_client: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -11,11 +10,10 @@ object frm_dm_ds: Tfrm_dm_ds
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from client')
-    Left = 32
-    Top = 24
+    Left = 56
+    Top = 32
   end
   object qry_enterprise: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
@@ -27,7 +25,6 @@ object frm_dm_ds: Tfrm_dm_ds
     Top = 72
   end
   object qry_stock: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'

@@ -110,7 +110,7 @@ end;
   begin
    Close;
    Text := ' select ctr_usr_act_action_name from contract_user_action '+
-           ' where ctr_usr_act_user_id = ' + IntToStr(ctr_usr_id);
+           ' where ctr_usr_act_user_cod = ' + frm_dm.qry_signinuserCod.AsString;
    Prepare;
    Open;
    DisableControls;
@@ -143,16 +143,18 @@ end;
 procedure Tfrm_main_default.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
-     if frm_dm.qry_signinctr_usr_logged.AsString <> 'B' then
+ if frm_dm.qry_signinctr_usr_logged.AsString <> 'B' then
    with frm_dm.qry,sql do
     begin
       close;
       Text:='update contract_user ' +
             ' set ctr_usr_logged = ''N'' '+
-            ' where contract_ctr_id = ' + frm_dm.qry_signinctr_id.AsString +
+            ' where contract_ctr_cod = ' +  frm_dm.qry_signincontractCod.AsString +
             ' and ctr_usr_username = ' + QuotedStr(frm_dm.qry_signinctr_usr_username.AsString);
       Prepare;
       ExecSQL;
+
+      SaveToFile('C:\codTemp\sql.txt');
     end;
 
 end;
@@ -210,11 +212,9 @@ for I := 0 to form.ComponentCount -1 do
       if frm_dm.qry.IsEmpty then
        begin
         frm_dm.qry.sql.text := 'insert into system_action(sys_act_name, '  +
-              ' sys_act_subtitle,sys_act_class,sys_act_option,sys_act_module) ' +
+              ' sys_act_subtitle,sys_act_class,sys_act_option,sys_act_module,sys_act_cod) ' +
               ' values (:sys_act_name,:sys_act_subtitle,:sys_act_class, ' +
-              ' :sys_act_option,:sys_act_module)';
-
-
+              ' :sys_act_option,:sys_act_module,unhex(replace(uuid(), ''-'','''')))';
         frm_dm.qry.ParamByName('sys_act_name').AsString := TAction(form.Components[i]).name;
         frm_dm.qry.ParamByName('sys_act_subtitle').AsString := TAction(form.Components[i]).Hint;
         frm_dm.qry.ParamByName('sys_act_option').AsString := TAction(form.Components[i]).Category;

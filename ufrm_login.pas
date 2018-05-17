@@ -111,13 +111,13 @@ begin
   frm_dm.qry_signin.Prepare;
   frm_dm.qry_signin.Open;
 
-  (*
+
   // Select para listar as unidades de estoque que esse usuário tem acesso
    frm_dm.qry_enterprise.Close;
-   frm_dm.qry_enterprise.ParamByName('CTR_USR_ID').Value:=frm_dm.qry_signinctr_usr_cod.Value;
+   frm_dm.qry_enterprise.ParamByName('CTR_USR_ID').Value:=frm_dm.qry_signinuserCod.Value;
    frm_dm.qry_enterprise.Prepare;
    frm_dm.qry_enterprise.Open;
-*)
+
  if frm_dm.qry_loggedctr_usr_logged.AsString = 'B' then
   begin
   Application.MessageBox('Usuário foi bloaqueado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);

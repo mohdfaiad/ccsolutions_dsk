@@ -30,13 +30,15 @@ object frm_dm: Tfrm_dm
     Top = 16
   end
   object qry_signin: TFDQuery
-    Active = True
     Connection = connCCS
     SQL.Strings = (
       
-        'SELECT c.ctr_cod, c.ctr_id, cu.ctr_usr_cod, cu.ctr_usr_first_nam' +
-        'e, cu.ctr_usr_username, cu.ctr_usr_password,ctr_usr_logged,'#10'ctr_' +
-        'usr_admin,ctr_usr_dt_birth,'
+        'SELECT concat('#39'0x'#39',hex(ctr_cod)) as contractCod,concat('#39'0x'#39',hex(' +
+        'cu.ctr_usr_cod)) as userCod,'
+      
+        'c.ctr_cod, c.ctr_id, cu.ctr_usr_cod, cu.ctr_usr_first_name, cu.c' +
+        'tr_usr_username, cu.ctr_usr_password,ctr_usr_logged,'#10'ctr_usr_adm' +
+        'in,ctr_usr_dt_birth,'
       'ctr_usr_email FROM contract c'
       'INNER JOIN contract_user cu ON c.ctr_cod = cu.contract_ctr_cod'
       
@@ -139,6 +141,22 @@ object frm_dm: Tfrm_dm
       ReadOnly = True
       Size = 65
     end
+    object qry_signincontractCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'contractCod'
+      Origin = 'contractCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
+    object qry_signinuserCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'userCod'
+      Origin = 'userCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
   end
   object ds_signin: TDataSource
     DataSet = qry_signin
@@ -151,7 +169,9 @@ object frm_dm: Tfrm_dm
     Top = 16
   end
   object qry_enterprise: TFDQuery
-    Active = True
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = ds_signin
+    MasterFields = 'ctr_cod'
     Connection = connCCS
     SQL.Strings = (
       'select * from enterprise'
@@ -171,7 +191,7 @@ object frm_dm: Tfrm_dm
       end
       item
         Name = 'CTR_USR_ID'
-        DataType = ftInteger
+        DataType = ftBytes
         ParamType = ptInput
         Value = Null
       end>

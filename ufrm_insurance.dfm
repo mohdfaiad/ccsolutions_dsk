@@ -4,8 +4,8 @@ inherited frm_insurance: Tfrm_insurance
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      OnShow = cxTabSheet_1Show
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ins_id: TcxGridDBColumn
@@ -112,21 +112,9 @@ inherited frm_insurance: Tfrm_insurance
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
-            Width = 986
-            Height = 472
-            ExplicitWidth = 986
-            ExplicitHeight = 472
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
               DataBinding.DataField = 'ins_id'
@@ -728,27 +716,17 @@ inherited frm_insurance: Tfrm_insurance
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from insurance')
-    object qryins_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'ins_id'
-      Origin = 'ins_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
     object qryins_first_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Raz'#227'o'
@@ -789,7 +767,7 @@ inherited frm_insurance: Tfrm_insurance
       DisplayLabel = 'CEP'
       FieldName = 'ins_add_bus_zipcode'
       Origin = 'ins_add_bus_zipcode'
-      Size = 9
+      Size = 6
     end
     object qryins_add_bus_address: TStringField
       AutoGenerateValue = arDefault
@@ -874,7 +852,7 @@ inherited frm_insurance: Tfrm_insurance
       DisplayLabel = 'Contato'
       FieldName = 'ins_contact'
       Origin = 'ins_contact'
-      Size = 25
+      Size = 15
     end
     object qryins_dt_maturity_contract: TDateField
       AutoGenerateValue = arDefault
@@ -908,10 +886,31 @@ inherited frm_insurance: Tfrm_insurance
       FieldName = 'ins_dt_registration'
       Origin = 'ins_dt_registration'
     end
-    object qrytable_price_tbp_id: TIntegerField
+    object qryins_cod: TBytesField
+      FieldName = 'ins_cod'
+      Origin = 'ins_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
       AutoGenerateValue = arDefault
-      FieldName = 'table_price_tbp_id'
-      Origin = 'table_price_tbp_id'
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qrytable_price_tbp_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'table_price_tbp_cod'
+      Origin = 'table_price_tbp_cod'
+    end
+    object qryins_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'ins_id'
+      Origin = 'ins_id'
+    end
+    object qryins_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'ins_deleted_at'
+      Origin = 'ins_deleted_at'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -934,45 +933,49 @@ inherited frm_insurance: Tfrm_insurance
     Style = <>
   end
   object qry_table_price: TFDQuery
-    Active = True
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
+    MasterFields = 'ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select tbp_id,tbp_name,contract_ctr_id from table_price'
-      'where contract_ctr_id = :ctr_id'
+      'select tbp_id,tbp_name,contract_ctr_cod from table_price'
+      'where contract_ctr_cod = :ctr_cod'
       'order by tbp_name')
     Left = 247
     Top = 458
     ParamData = <
       item
-        Name = 'CTR_ID'
-        DataType = ftAutoInc
+        Name = 'CTR_COD'
+        DataType = ftBytes
         ParamType = ptInput
+        Size = 16
         Value = Null
       end>
-    object qry_table_pricetbp_id: TFDAutoIncField
+    object qry_table_pricetbp_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'tbp_id'
       Origin = 'tbp_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
     end
     object qry_table_pricetbp_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'tbp_name'
       Origin = 'tbp_name'
-      Size = 25
+      Size = 35
     end
-    object qry_table_pricecontract_ctr_id: TIntegerField
+    object qry_table_pricecontract_ctr_cod: TBytesField
       AutoGenerateValue = arDefault
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
     end
   end
   object ds_table_price: TDataSource
     DataSet = qry_table_price
     Left = 311
     Top = 458
+  end
+  object FDQuery1: TFDQuery
+    Connection = frm_dm.connCCS
+    Left = 314
+    Top = 275
   end
 end

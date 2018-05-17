@@ -38,8 +38,6 @@ uses
 
 type
   Tfrm_insurance = class(Tfrm_form_default)
-    qryins_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
     qryins_first_name: TStringField;
     qryins_last_name: TStringField;
     qryins_email: TStringField;
@@ -148,16 +146,24 @@ type
     dxLayoutItem25: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     cxGrid_1DBTableView1ins_status: TcxGridDBColumn;
-    qrytable_price_tbp_id: TIntegerField;
     qry_table_price: TFDQuery;
     ds_table_price: TDataSource;
-    qry_table_pricetbp_id: TFDAutoIncField;
-    qry_table_pricetbp_name: TStringField;
-    qry_table_pricecontract_ctr_id: TIntegerField;
     cxDBLookupComboBox1: TcxDBLookupComboBox;
     dxLayoutItem23: TdxLayoutItem;
+    qryins_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qrytable_price_tbp_cod: TBytesField;
+    qryins_id: TLongWordField;
+    qryins_deleted_at: TDateTimeField;
+    qry_table_pricetbp_id: TLongWordField;
+    qry_table_pricetbp_name: TStringField;
+    qry_table_pricecontract_ctr_cod: TBytesField;
+    FDQuery1: TFDQuery;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure cxTabSheet_1Show(Sender: TObject);
   private
     { Private declarations }
   public
@@ -173,6 +179,62 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_insurance.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+
+if (qryINS_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+begin
+ if (qryins_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ begin
+ with frm_dm.qry,sql do
+ begin
+  Close;
+  Text:= ' delete from insurance ' +
+         ' where contract_ctr_cod = ' + frm_dm.qry_signincontractCod.Value +
+         ' and ins_id = 0';
+  Prepare;
+  ExecSQL;
+ end;
+ qry.Refresh;
+ end;
+
+end;
+end;
+
+procedure Tfrm_insurance.Action_saveExecute(Sender: TObject);
+begin
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(ins_id) is null then 1 ' +
+          '      else (max(ins_id) + 1) end as maxID from insurance '+
+          ' where contract_ctr_cod = (select ctr_cod from contract ' +
+          ' where ctr_id =:ctr_id)';
+   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   Open;
+   if not (qry.State in [dsInsert,dsEdit])  then
+    qry.Edit;
+
+   if qryins_id.AsInteger = 0 then
+    qryins_id.AsInteger:=Fields[0].AsInteger;
+ end;
+
+  inherited;
+
+end;
+
+procedure Tfrm_insurance.cxTabSheet_1Show(Sender: TObject);
+begin
+  inherited;
+   qry.Close;
+   qry.sql.text:= ' select * from insurance ';
+   qry.Prepare;
+   qry.open;
+   qry.Refresh;
+end;
+
 procedure Tfrm_insurance.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -183,7 +245,26 @@ end;
 procedure Tfrm_insurance.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qryins_dt_registration.Value := Date + Time;
+  With frm_dm.qry,sql do
+  begin
+   Close;
+   Text:='insert into insurance (ins_cod,ins_id,contract_ctr_cod) ' +
+         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
+         ' where ctr_id = :contrato)';
+   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Prepare;
+   ExecSQL;
+  end;
+
+
+   qry.Close;
+   qry.sql.text:= ' select * from insurance ' +
+                  ' where ins_id = 0 ';
+   qry.Prepare;
+   qry.open;
+
+  qry.Edit;
+  qryins_dt_registration.AsDateTime := Now;
 end;
 
 end.

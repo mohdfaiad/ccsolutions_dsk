@@ -128,7 +128,6 @@ object frm_dm_report: Tfrm_dm_report
     Top = 120
   end
   object qry_report: TFDQuery
-    Active = True
     AfterPost = qry_reportAfterPost
     AfterDelete = qry_reportAfterDelete
     CachedUpdates = True
@@ -139,10 +138,11 @@ object frm_dm_report: Tfrm_dm_report
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'SELECT * FROM report')
-    Left = 200
-    Top = 176
+    Left = 224
+    Top = 160
     object qry_reportrep_id: TFDAutoIncField
       FieldName = 'rep_id'
+      ReadOnly = True
     end
     object qry_reportcontract_ctr_id: TIntegerField
       FieldName = 'contract_ctr_id'

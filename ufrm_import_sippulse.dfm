@@ -3,6 +3,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
   ClientHeight = 685
   OnClose = FormClose
   OnCreate = FormCreate
+  ExplicitLeft = -66
   ExplicitHeight = 724
   PixelsPerInch = 96
   TextHeight = 13
@@ -299,6 +300,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
   end
   inherited qry: TFDQuery
     BeforePost = qryBeforePost
+    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
@@ -334,7 +336,6 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       FieldName = 'imp_cod'
       Origin = 'imp_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object qrycontract_ctr_cod: TBytesField
       AutoGenerateValue = arDefault
@@ -7137,5 +7138,11 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     Top = 48
     object dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
     end
+  end
+  object procTeste: TFDStoredProc
+    Connection = frm_dm.connCCS
+    StoredProcName = 'ccs.import_call_log_create'
+    Left = 336
+    Top = 200
   end
 end

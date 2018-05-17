@@ -33,7 +33,8 @@ uses
   class_required_field in '..\class_required_field.pas',
   class_check_enterprise in '..\class_check_enterprise.pas',
   ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
-  class_table_price in '..\class_table_price.pas';
+  class_table_price in '..\class_table_price.pas',
+  ufrm_default in '..\models\ufrm_default.pas' {frm_default};
 
 {$R *.res}
 

@@ -125,6 +125,7 @@ type
     qryimp_comp: TStringField;
     qryimp_deleted_at: TDateTimeField;
     qry_duracao: TLargeintField;
+    procTeste: TFDStoredProc;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure Action_printExecute(Sender: TObject);
@@ -267,7 +268,6 @@ begin
    coluna:=4;
   end;
 
-
  if coluna = 5 then
   begin
   fin:= i;
@@ -317,6 +317,11 @@ Var
   intSegundos:Integer;
   wdHoras, wdMinutos, wdSegundos: Word;
 begin
+procTeste.Prepare;
+procTeste.ExecProc;
+procTeste.Unprepare;
+
+(*
 
   wdHoras := 0;
   wdMinutos := 0;
@@ -359,16 +364,17 @@ begin
     with frm_dm.qry,sql do
      begin
       close;
-      text:=' select cli_cod from client ' +
+      text:=' select concat(''0x'', hex(cli_cod)) from client ' +
             ' where cli_account_code_sippulse = :cliente';
        ParamByName('cliente').AsString:=qrycli_account_code_sippulse.AsString;
        prepare;
        open;
-       codigoCliente:=frm_dm.qry.FieldByName('cli_id').Value;
+       codigoCliente:=frm_dm.qry.Fields[0].AsString;
      end;
    end;
- qryclient_cli_cod.Value:=codigoCliente;
+ qryclient_cli_cod.AsString:=codigoCliente;
  qryimp_comp.AsString:= competencia;
+ *)
 end;
 
 end.

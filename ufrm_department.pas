@@ -187,8 +187,10 @@ begin
 With frm_dm.qry,sql do
   begin
    Close;
-   Text:='insert into department (dep_cod,dep_id,contract_ctr_cod) ' +
-         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
+   Text:=' insert into import_call_log (imp_cod,imp_id,contract_ctr_cod) '+
+   ' select unhex(replace(uuid(),''-'','''')), '  +
+   '(select case when max(imp_id) is null then 1 when max(imp_id) > 0 then (max(imp_id) + 1) end from import_call_log),(select ctr_cod from contract ' +
+   'where ctr_id = :contrato),(select ctr_cod from contract ' +
          ' where ctr_id = :contrato)';
    ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
    Prepare;
@@ -196,10 +198,11 @@ With frm_dm.qry,sql do
   end;
    qry.Close;
    qry.sql.text:= ' select * from department ' +
-                  ' where dep_id = 0 ';
-  qry.Prepare;
-  qry.open;
-  qry.Edit;
+                  ' where dep_id = (select max(imp_id) from import_call_log where ctr_id = :contrato) ';
+   qry.ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   qry.Prepare;
+   qry.open;
+   qry.Edit;
 
   qrydep_dt_registration.Value := Date + Time;
 end;

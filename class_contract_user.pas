@@ -2,16 +2,13 @@ unit class_contract_user;
 
 interface
  uses
-   FireDAC.Comp.Client, ufrm_dm;
+    class_Conexao, FireDAC.Comp.Client, System.SysUtils;
  type
    TContract_user = class
    private
-   FConexao : Tfrm_dm;
-
-   FDStoredProc: TFDStoredProc;
-
+     FConexao: TConexao;
     private
-    Fcontract_ctr_cod: string;
+    Fctr_id: Int64;
     Fctr_usr_first_name: string;
     Fctr_usr_last_name: string;
     Fctr_usr_username: string;
@@ -19,12 +16,12 @@ interface
     Fctr_usr_dt_birth: TDateTime;
     Fctr_usr_admin: string;
 
-     public
+    public
 
-    constructor Create;
-    destructor Destroy; override;
+     constructor Create;
+     destructor Destroy; override;
 
-     property contract_ctr_cod: string read Fcontract_ctr_cod write Fcontract_ctr_cod;
+     property ctr_id: Int64 read Fctr_id write Fctr_id;
      property ctr_usr_first_name: string read Fctr_usr_first_name write Fctr_usr_first_name;
      property ctr_usr_last_name: string read Fctr_usr_last_name write Fctr_usr_last_name;
      property ctr_usr_username: string read Fctr_usr_username write Fctr_usr_username;
@@ -32,7 +29,8 @@ interface
      property ctr_usr_dt_birth: TDateTime read Fctr_usr_dt_birth write Fctr_usr_dt_birth;
      property ctr_usr_admin: string read Fctr_usr_admin write Fctr_usr_admin;
 
-     procedure CreateContract_user(Contract_user: TContract_user);
+     procedure CreateContract_User22(Contract_user: TContract_user);
+     procedure ReadContract_User;
 
    end;
 
@@ -41,43 +39,82 @@ implementation
 { TContract_user }
 
 
-procedure TContract_user.CreateContract_user(Contract_user: TContract_user);
- var
-  StoredProc: TFDStoredProc;
-begin
- if not Assigned(StoredProc) then
-  begin
-   StoredProc:=FDStoredProc.Create;
-   StoredProc.StoredProcName := 'contract_user_create';
-    try
-     StoredProc.ParamByName('p_contract_ctr_cod').ToString := Contract_user.contract_ctr_cod;
-     StoredProc.ParamByName('p_ctr_usr_first_name').ToString := Contract_user.ctr_usr_first_name;
-     StoredProc.ParamByName('p_ctr_usr_last_name').ToString := Contract_user.ctr_usr_last_name;
-     StoredProc.ParamByName('p_ctr_usr_username').ToString := Contract_user.ctr_usr_username;
-     StoredProc.ParamByName('p_ctr_usr_email').ToString := Contract_user.ctr_usr_email;
-     StoredProc.ParamByName('p_ctr_usr_dt_birth').ToString := Contract_user.ctr_usr_dt_birth;
-     StoredProc.ParamByName('p_ctr_usr_admin').ToString := Contract_user.ctr_usr_admin;
-     StoredProc.Prepare;
-     StoredProc.ExecProc;
+//procedure TContract_user.CreateContract_User(Contract_user: TContract_user);
+// var
+//  FDStoredProc : TFDStoredProc;
+//begin
+// if not Assigned(FDStoredProc) then
+//  begin
+//   FDStoredProc := TFDStoredProc.Create(nil);
+//   FDStoredProc.Connection :=frm_dm.connCCS;
+//   try
+//    with FDStoredProc do       begin
+//
+//     StoredProcName := 'ccs.contract_user_create';
+//     Prepare;
+//
+//     ParamByName('p_ctr_id').Value                := Contract_user.ctr_id;
+//     ParamByName('p_ctr_usr_first_name').AsString := Contract_user.ctr_usr_first_name;
+//     ParamByName('p_ctr_usr_last_name').AsString  := Contract_user.ctr_usr_last_name;
+//     ParamByName('p_ctr_usr_username').AsString   := Contract_user.ctr_usr_username;
+//     ParamByName('p_ctr_usr_email').AsString      := Contract_user.ctr_usr_email;
+//     ParamByName('p_ctr_usr_dt_birth').Value      := Contract_user.ctr_usr_dt_birth;
+//     ParamByName('p_ctr_usr_admin').AsString      := Contract_user.ctr_usr_admin;
+//     ExecProc;
+//
+//    end;
+//   finally
+//     FDStoredProc.Free;
+//   end;
+//  end;
+//
+//end;
 
-    finally
-     StoredProc.Free;
+procedure TContract_user.CreateContract_User22(Contract_user: TContract_user);
+var
+  FDStoredProc : TFDStoredProc;
+begin
+ if not Assigned(FDStoredProc) then
+  begin
+   FDStoredProc := FConexao.CriarStoredProc();
+   try
+    with FDStoredProc do
+    begin
+     StoredProcName := 'ccs.contract_user_create';
+
+     Prepare;
+     ParamByName('p_ctr_id').Value                := Contract_user.ctr_id;
+     ParamByName('p_ctr_usr_first_name').AsString := Contract_user.ctr_usr_first_name;
+     ParamByName('p_ctr_usr_last_name').AsString  := Contract_user.ctr_usr_last_name;
+     ParamByName('p_ctr_usr_username').AsString   := Contract_user.ctr_usr_username;
+     ParamByName('p_ctr_usr_email').AsString      := Contract_user.ctr_usr_email;
+     ParamByName('p_ctr_usr_dt_birth').Value      := Contract_user.ctr_usr_dt_birth;
+     ParamByName('p_ctr_usr_admin').AsString      := Contract_user.ctr_usr_admin;
+     ExecProc;
+
     end;
+   finally
+     FDStoredProc.Free;
+   end;
   end;
+
 
 end;
 
 destructor TContract_user.Destroy;
 begin
-  FConexao.Free;
   inherited;
+end;
+
+procedure TContract_user.ReadContract_User;
+begin
+
 end;
 
 { TContract_user }
 
 constructor TContract_user.Create;
 begin
-  FDStoredProc.Connection := FConexao.connCCS;
 
 end;
 

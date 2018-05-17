@@ -1,7 +1,8 @@
-inherited frm_contract_user: Tfrm_contract_user
+inherited frm_contract_userOld: Tfrm_contract_userOld
   Caption = 'Manuten'#231#227'o: Usu'#225'rios'
   ClientHeight = 673
   ClientWidth = 805
+  Menu = MainMenu1
   OnClose = FormClose
   OnShow = FormShow
   ExplicitWidth = 821
@@ -806,15 +807,12 @@ inherited frm_contract_user: Tfrm_contract_user
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
-    CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from contract_user')
     object qryctr_usr_id: TFDAutoIncField
@@ -991,5 +989,64 @@ inherited frm_contract_user: Tfrm_contract_user
       FieldName = 'ctr_usr_act_action_name'
       Size = 80
     end
+  end
+  object MainMenu1: TMainMenu
+    Left = 632
+    Top = 120
+  end
+  object FDStoredProc1: TFDStoredProc
+    Connection = frm_dm.connCCS
+    StoredProcName = 'ccs.contract_user_create'
+    Left = 319
+    Top = 194
+    ParamData = <
+      item
+        Position = 1
+        Name = 'p_contract_ctr_cod'
+        DataType = ftVarBytes
+        ParamType = ptInput
+        Size = 16
+      end
+      item
+        Position = 2
+        Name = 'p_ctr_usr_first_name'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 100
+      end
+      item
+        Position = 3
+        Name = 'p_ctr_usr_last_name'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 100
+      end
+      item
+        Position = 4
+        Name = 'p_ctr_usr_username'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 65
+      end
+      item
+        Position = 5
+        Name = 'p_ctr_usr_email'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 65
+      end
+      item
+        Position = 6
+        Name = 'p_ctr_usr_dt_birth'
+        DataType = ftDate
+        ParamType = ptInput
+      end
+      item
+        Position = 7
+        Name = 'p_ctr_usr_admin'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 1
+      end>
   end
 end

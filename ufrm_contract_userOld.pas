@@ -1,4 +1,4 @@
-unit ufrm_contract_user;
+unit ufrm_contract_userOld;
 
 interface
 
@@ -38,7 +38,7 @@ uses
   cxDBCheckListBox, cxCheckBox, AdvTabSet, AdvOfficeTabSet;
 
 type
-  Tfrm_contract_user = class(Tfrm_form_default)
+  Tfrm_contract_userOld = class(Tfrm_form_default)
     qryctr_usr_id: TFDAutoIncField;
     qryctr_usr_first_name: TStringField;
     qryctr_usr_last_name: TStringField;
@@ -99,6 +99,8 @@ type
     qry_contract_user_actionctr_usr_act_action_name: TStringField;
     ZeraraSenha1: TMenuItem;
     N3: TMenuItem;
+    MainMenu1: TMainMenu;
+    FDStoredProc1: TFDStoredProc;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
@@ -130,7 +132,7 @@ type
   end;
 
 var
-  frm_contract_user: Tfrm_contract_user;
+  frm_contract_userOld: Tfrm_contract_userOld;
 
 implementation
 
@@ -138,13 +140,13 @@ implementation
 
 uses ufrm_report, ufrm_dm, ufrm_main_default;
 
-procedure Tfrm_contract_user.ACBrValidador1MsgErro(Mensagem: string);
+procedure Tfrm_contract_userOld.ACBrValidador1MsgErro(Mensagem: string);
 begin
   inherited;
    Application.MessageBox('E-mail não informado ou está inváido ! ','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
 end;
 
-procedure Tfrm_contract_user.Action_saveExecute(Sender: TObject);
+procedure Tfrm_contract_userOld.Action_saveExecute(Sender: TObject);
 begin
   //Condição para não permitir salvar o mesmo nome de usuário
   //Que utilize o mesmo número de contrato
@@ -181,7 +183,7 @@ begin
   //
 end;
 
-procedure Tfrm_contract_user.AdvOfficeTabSet1Change(Sender: TObject);
+procedure Tfrm_contract_userOld.AdvOfficeTabSet1Change(Sender: TObject);
 var
   c: Integer;
 begin
@@ -225,7 +227,7 @@ begin
 end;
 
 
-procedure Tfrm_contract_user.BloquearUsurio1Click(Sender: TObject);
+procedure Tfrm_contract_userOld.BloquearUsurio1Click(Sender: TObject);
 begin
   inherited;
  if Application.MessageBox('Deseja bloquer o usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
@@ -238,7 +240,7 @@ begin
   end;
 end;
 
-procedure Tfrm_contract_user.cxTabSheet1Show(Sender: TObject);
+procedure Tfrm_contract_userOld.cxTabSheet1Show(Sender: TObject);
 begin
   inherited;
     montar_empresa;
@@ -248,7 +250,7 @@ begin
 
 end;
 
-procedure Tfrm_contract_user.DesbloquearUsurio1Click(Sender: TObject);
+procedure Tfrm_contract_userOld.DesbloquearUsurio1Click(Sender: TObject);
 begin
   inherited;
  if Application.MessageBox('Deseja desbloquer o usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
@@ -261,7 +263,7 @@ begin
   end;
 end;
 
-procedure Tfrm_contract_user.DesconectarUsurio1Click(Sender: TObject);
+procedure Tfrm_contract_userOld.DesconectarUsurio1Click(Sender: TObject);
 begin
   inherited;
  if Application.MessageBox('Deseja desconectar o usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
@@ -275,7 +277,7 @@ begin
 
 end;
 
-procedure Tfrm_contract_user.cxGrid_1DBTableView1CustomDrawCell(
+procedure Tfrm_contract_userOld.cxGrid_1DBTableView1CustomDrawCell(
   Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
   AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
 
@@ -297,7 +299,7 @@ begin
    end;
 end;
 
-procedure Tfrm_contract_user.cxListEmpsClick(Sender: TObject);
+procedure Tfrm_contract_userOld.cxListEmpsClick(Sender: TObject);
 begin
   inherited;
  qry_contract_user_enterprise.Locate('ctr_usr_ent_ent_id',
@@ -305,7 +307,7 @@ begin
 
 end;
 
-procedure Tfrm_contract_user.cxListEmpsClickCheck(Sender: TObject;
+procedure Tfrm_contract_userOld.cxListEmpsClickCheck(Sender: TObject;
   AIndex: Integer; APrevState, ANewState: TcxCheckBoxState);
  var
 cdusu,cdemp:string;
@@ -332,7 +334,7 @@ begin
 
 end;
 
-procedure Tfrm_contract_user.cxListMenuClickCheck(Sender: TObject;
+procedure Tfrm_contract_userOld.cxListMenuClickCheck(Sender: TObject;
   AIndex: Integer; APrevState, ANewState: TcxCheckBoxState);
 begin
   inherited;
@@ -351,15 +353,15 @@ if not TcxCheckListBoxItem(cxListMenu.Items[cxListMenu.ItemIndex]).Checked then
  end;
 end;
 
-procedure Tfrm_contract_user.FormClose(Sender: TObject;
+procedure Tfrm_contract_userOld.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
-  frm_contract_user.Destroy;
-  frm_contract_user := Nil;
+//  frm_contract_user.Destroy;
+//  frm_contract_user := Nil;
 end;
 
-procedure Tfrm_contract_user.FormCreate(Sender: TObject);
+procedure Tfrm_contract_userOld.FormCreate(Sender: TObject);
 begin
   inherited;
  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
@@ -367,7 +369,7 @@ begin
  listAction:=TStringList.Create;
 end;
 
-procedure Tfrm_contract_user.FormShow(Sender: TObject);
+procedure Tfrm_contract_userOld.FormShow(Sender: TObject);
 var
   c: Integer;
 begin
@@ -396,14 +398,14 @@ end;
 end;
 
 
-procedure Tfrm_contract_user.limpaCache(Sender: TObject);
+procedure Tfrm_contract_userOld.limpaCache(Sender: TObject);
 begin
   qry.CommitUpdates();
   qry_contract_user_enterprise.CommitUpdates();
   qry_contract_user_action.CommitUpdates()
 end;
 
-procedure Tfrm_contract_user.montar_empresa;
+procedure Tfrm_contract_userOld.montar_empresa;
 var
 i:Integer;
 begin
@@ -437,7 +439,7 @@ end;
 
 
 
-procedure Tfrm_contract_user.PopupMenu_1Popup(Sender: TObject);
+procedure Tfrm_contract_userOld.PopupMenu_1Popup(Sender: TObject);
 begin
   inherited;
  DesconectarUsurio1.Visible:=qryctr_usr_logged.AsString = 'S';
@@ -451,7 +453,7 @@ begin
   BloquearUsurio1.Caption:='Bloquear Usuário';
 end;
 
-procedure Tfrm_contract_user.qryAfterInsert(DataSet: TDataSet);
+procedure Tfrm_contract_userOld.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   qryctr_usr_dt_registration.Value := Date + Time;
@@ -462,7 +464,7 @@ begin
 
 end;
 
-procedure Tfrm_contract_user.ZeraraSenha1Click(Sender: TObject);
+procedure Tfrm_contract_userOld.ZeraraSenha1Click(Sender: TObject);
 begin
   inherited;
   if Application.MessageBox('Deseja Zerar a senha do usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then

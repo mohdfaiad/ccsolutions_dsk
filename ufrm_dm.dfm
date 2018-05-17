@@ -66,13 +66,29 @@ object frm_dm: Tfrm_dm
         ParamType = ptInput
         Value = Null
       end>
+    object qry_signincontractCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'contractCod'
+      Origin = 'contractCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
+    object qry_signinuserCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'userCod'
+      Origin = 'userCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
     object qry_signinctr_cod: TBytesField
       FieldName = 'ctr_cod'
       Origin = 'ctr_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object qry_signinctr_id: TLongWordField
+    object qry_signinctr_id: TLargeintField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_id'
       Origin = 'ctr_id'
@@ -140,22 +156,6 @@ object frm_dm: Tfrm_dm
       ProviderFlags = []
       ReadOnly = True
       Size = 65
-    end
-    object qry_signincontractCod: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'contractCod'
-      Origin = 'contractCod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 34
-    end
-    object qry_signinuserCod: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'userCod'
-      Origin = 'userCod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 34
     end
   end
   object ds_signin: TDataSource

@@ -162,8 +162,8 @@
             <Form>frm_contract</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\ufrm_contract_user.pas">
-            <Form>frm_contract_user</Form>
+        <DCCReference Include="..\ufrm_contract_userOld.pas">
+            <Form>frm_contract_userOld</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_enterprise.pas">
@@ -249,6 +249,14 @@
         <DCCReference Include="..\uThred_logged.pas"/>
         <DCCReference Include="..\Class_Report.pas"/>
         <DCCReference Include="..\class_required_field.pas"/>
+        <DCCReference Include="..\models\ufrm_default.pas">
+            <Form>frm_default</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_contract_user.pas">
+            <Form>frm_contract_user</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

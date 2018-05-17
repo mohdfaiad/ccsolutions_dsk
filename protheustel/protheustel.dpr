@@ -25,7 +25,8 @@ uses
   ufrm_main_default in '..\models\ufrm_main_default.pas' {frm_main_default},
   uThred_logged in '..\uThred_logged.pas',
   ufrm_search_enterprise in '..\ufrm_search_enterprise.pas',
-  ufrm_search in '..\models\ufrm_search.pas' {frm_search};
+  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
+  ufrm_default in '..\models\ufrm_default.pas' {frm_default};
 
 {$R *.res}
 

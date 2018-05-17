@@ -17,23 +17,28 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       item
         Expanded = False
         FieldName = 'imp_id'
+        Title.Caption = 'C'#243'd. ID'
         Width = 75
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'cli_account_code_sippulse'
+        Title.Caption = 'Cliente'
+        Width = 120
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'imp_from'
+        Title.Caption = 'Origem'
         Width = 100
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'imp_to'
+        Title.Caption = 'Destino'
         Width = 100
         Visible = True
       end
@@ -46,24 +51,28 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       item
         Expanded = False
         FieldName = 'imp_date'
+        Title.Caption = 'Data'
         Width = 100
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'imp_type'
+        Title.Caption = 'Tipo'
         Width = 100
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'imp_rate'
+        Title.Caption = 'Custo'
         Width = 100
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'imp_total'
+        Title.Caption = 'Total'
         Width = 100
         Visible = True
       end>
@@ -290,16 +299,16 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
   end
   inherited qry: TFDQuery
     BeforePost = qryBeforePost
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select import_call_log.*,0 as _duracao from import_call_log'
+      'select  import_call_log.*,0 as _duracao from import_call_log'
       
-        'where imp_comp =:comp and contract_ctr_id =:ctr_id and cli_accou' +
-        'nt_code_sippulse =:cient')
+        'where imp_comp =:comp and contract_ctr_cod =:ctr_cod and cli_acc' +
+        'ount_code_sippulse =:cient')
     Left = 544
     Top = 40
     ParamData = <
@@ -310,8 +319,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         Value = Null
       end
       item
-        Name = 'CTR_ID'
-        DataType = ftString
+        Name = 'CTR_COD'
+        DataType = ftBytes
         ParamType = ptInput
         Value = Null
       end
@@ -321,84 +330,66 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         ParamType = ptInput
         Value = Null
       end>
-    object qryimp_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
+    object qryimp_cod: TBytesField
+      FieldName = 'imp_cod'
+      Origin = 'imp_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qryclient_cli_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'client_cli_cod'
+      Origin = 'client_cli_cod'
+    end
+    object qryimp_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'imp_id'
       Origin = 'imp_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
     end
     object qryimp_from: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Origem'
       FieldName = 'imp_from'
       Origin = 'imp_from'
       Size = 50
     end
     object qryimp_to: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Destino'
       FieldName = 'imp_to'
       Origin = 'imp_to'
       Size = 50
     end
     object qryimp_duration: TTimeField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Dura'#231#227'o'
       FieldName = 'imp_duration'
       Origin = 'imp_duration'
     end
+    object qryimp_date: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_date'
+      Origin = 'imp_date'
+    end
     object qryimp_type: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Tipo'
       FieldName = 'imp_type'
       Origin = 'imp_type'
       Size = 50
     end
-    object qryimp_rate: TFMTBCDField
+    object qryimp_rate: TBCDField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Custo'
       FieldName = 'imp_rate'
       Origin = 'imp_rate'
       Precision = 12
-      Size = 5
     end
-    object qryimp_total: TFMTBCDField
+    object qryimp_total: TBCDField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Total'
       FieldName = 'imp_total'
       Origin = 'imp_total'
       Precision = 12
-      Size = 5
-    end
-    object qrycli_account_code_sippulse: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Cliente'
-      FieldName = 'cli_account_code_sippulse'
-      Origin = 'cli_account_code_sippulse'
-      Size = 50
-    end
-    object qryclient_cli_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'client_cli_id'
-      Origin = 'client_cli_id'
-    end
-    object qryimp_date: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Data'
-      FieldName = 'imp_date'
-      Origin = 'imp_date'
-    end
-    object qry_duracao: TLargeintField
-      AutoGenerateValue = arDefault
-      FieldName = '_duracao'
-      Origin = '_duracao'
     end
     object qryimp_file_name: TStringField
       AutoGenerateValue = arDefault
@@ -406,11 +397,34 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       Origin = 'imp_file_name'
       Size = 50
     end
+    object qrycli_account_code_sippulse: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_account_code_sippulse'
+      Origin = 'cli_account_code_sippulse'
+      Size = 50
+    end
+    object qryimport_call_logcol: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'import_call_logcol'
+      Origin = 'import_call_logcol'
+      Size = 45
+    end
     object qryimp_comp: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'imp_comp'
       Origin = 'imp_comp'
       Size = 10
+    end
+    object qryimp_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_deleted_at'
+      Origin = 'imp_deleted_at'
+    end
+    object qry_duracao: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = '_duracao'
+      Origin = '_duracao'
+      ProviderFlags = []
     end
   end
   inherited ds: TDataSource
@@ -630,7 +644,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       object connect: TfrxFDDatabase
         ConnectionDefName = 'ccs_connection'
         DriverName = 'MySQL'
-        DatabaseName = 'ccs_dev'
+        DatabaseName = 'ccs'
         Params.Strings = (
           'ConnectionDef=ccs_connection')
         LoginPrompt = False
@@ -6810,275 +6824,191 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         Size = 50
         Value = 'client9@sip.logicpro.com.br'
       end>
-    object qry_clientcli_id: TFDAutoIncField
-      FieldName = 'cli_id'
-      Origin = 'cli_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
+    object qry_clientcli_cod: TBytesField
+      FieldName = 'cli_cod'
+      Required = True
     end
-    object qry_clientcontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
+    object qry_clientcontract_ctr_cod: TBytesField
+      FieldName = 'contract_ctr_cod'
+    end
+    object qry_clienttable_price_tbp_cod: TBytesField
+      FieldName = 'table_price_tbp_cod'
+    end
+    object qry_clientcli_id: TLongWordField
+      FieldName = 'cli_id'
     end
     object qry_clientcli_type: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_type'
-      Origin = 'cli_type'
       FixedChar = True
       Size = 2
     end
     object qry_clientcli_first_name: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_first_name'
-      Origin = 'cli_first_name'
-      Size = 50
+      Size = 85
     end
     object qry_clientcli_last_name: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_last_name'
-      Origin = 'cli_last_name'
-      Size = 50
+      Size = 85
     end
     object qry_clientcli_email: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_email'
-      Origin = 'cli_email'
       Size = 65
     end
     object qry_clientcli_phone1: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_phone1'
-      Origin = 'cli_phone1'
       Size = 15
     end
     object qry_clientcli_phone2: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_phone2'
-      Origin = 'cli_phone2'
       Size = 15
     end
     object qry_clientcli_phone3: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_phone3'
-      Origin = 'cli_phone3'
       Size = 15
     end
     object qry_clientcli_phone4: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_phone4'
-      Origin = 'cli_phone4'
       Size = 15
     end
     object qry_clientcli_contact: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_contact'
-      Origin = 'cli_contact'
       Size = 25
     end
     object qry_clientcli_cpfcnpj: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_cpfcnpj'
-      Origin = 'cli_cpfcnpj'
       Size = 25
     end
     object qry_clientcli_rgie: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_rgie'
-      Origin = 'cli_rgie'
       Size = 25
     end
     object qry_clientcli_im: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_im'
-      Origin = 'cli_im'
       Size = 25
     end
     object qry_clientcli_suframa: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_suframa'
-      Origin = 'cli_suframa'
       Size = 25
     end
     object qry_clientcli_add_bus_zipcode: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bus_zipcode'
-      Origin = 'cli_add_bus_zipcode'
-      Size = 9
+      Size = 6
     end
     object qry_clientcli_add_bus_address: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bus_address'
-      Origin = 'cli_add_bus_address'
       Size = 50
     end
     object qry_clientcli_add_bus_number: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bus_number'
-      Origin = 'cli_add_bus_number'
       Size = 5
     end
     object qry_clientcli_add_bus_street: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bus_street'
-      Origin = 'cli_add_bus_street'
       Size = 45
     end
     object qry_clientcli_add_bus_complement: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bus_complement'
-      Origin = 'cli_add_bus_complement'
       Size = 50
     end
     object qry_clientcli_add_bus_city: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bus_city'
-      Origin = 'cli_add_bus_city'
       Size = 35
     end
     object qry_clientcli_add_bus_state: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bus_state'
-      Origin = 'cli_add_bus_state'
       FixedChar = True
       Size = 3
     end
     object qry_clientcli_add_bus_country: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bus_country'
-      Origin = 'cli_add_bus_country'
       Size = 25
     end
     object qry_clientcli_add_bil_zipcode: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bil_zipcode'
-      Origin = 'cli_add_bil_zipcode'
-      Size = 9
+      Size = 6
     end
     object qry_clientcli_add_bil_address: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bil_address'
-      Origin = 'cli_add_bil_address'
       Size = 50
     end
     object qry_clientcli_add_bil_number: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bil_number'
-      Origin = 'cli_add_bil_number'
       Size = 5
     end
     object qry_clientcli_add_bil_street: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bil_street'
-      Origin = 'cli_add_bil_street'
       Size = 45
     end
     object qry_clientcli_add_bil_complement: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bil_complement'
-      Origin = 'cli_add_bil_complement'
       Size = 50
     end
     object qry_clientcli_add_bil_city: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bil_city'
-      Origin = 'cli_add_bil_city'
       Size = 35
     end
     object qry_clientcli_add_bil_state: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bil_state'
-      Origin = 'cli_add_bil_state'
       FixedChar = True
       Size = 3
     end
     object qry_clientcli_add_bil_country: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_bil_country'
-      Origin = 'cli_add_bil_country'
       Size = 25
     end
     object qry_clientcli_add_del_zipcode: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_del_zipcode'
-      Origin = 'cli_add_del_zipcode'
-      Size = 9
+      Size = 6
     end
     object qry_clientcli_add_del_address: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_del_address'
-      Origin = 'cli_add_del_address'
       Size = 50
     end
     object qry_clientcli_add_del_number: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_del_number'
-      Origin = 'cli_add_del_number'
       Size = 5
     end
     object qry_clientcli_add_del_street: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_del_street'
-      Origin = 'cli_add_del_street'
       Size = 45
     end
     object qry_clientcli_add_del_complement: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_del_complement'
-      Origin = 'cli_add_del_complement'
       Size = 50
     end
     object qry_clientcli_add_del_city: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_del_city'
-      Origin = 'cli_add_del_city'
       Size = 35
     end
     object qry_clientcli_add_del_state: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_del_state'
-      Origin = 'cli_add_del_state'
       FixedChar = True
       Size = 3
     end
     object qry_clientcli_add_del_country: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_add_del_country'
-      Origin = 'cli_add_del_country'
       Size = 25
     end
-    object qry_clientcli_image: TBlobField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_image'
-      Origin = 'cli_image'
-    end
     object qry_clientcli_day_maturity: TIntegerField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_day_maturity'
-      Origin = 'cli_day_maturity'
+    end
+    object qry_clientcli_dt_birthopen: TDateField
+      FieldName = 'cli_dt_birthopen'
+    end
+    object qry_clientcli_account_code_sippulse: TStringField
+      FieldName = 'cli_account_code_sippulse'
+      Size = 65
     end
     object qry_clientcli_status: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_status'
-      Origin = 'cli_status'
       FixedChar = True
       Size = 1
     end
-    object qry_clientcli_dt_birthopen: TDateField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_dt_birthopen'
-      Origin = 'cli_dt_birthopen'
-    end
-    object qry_clientcli_account_code_sippulse: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_account_code_sippulse'
-      Origin = 'cli_account_code_sippulse'
-      Size = 50
+    object qry_clientcli_deleted_at: TDateTimeField
+      FieldName = 'cli_deleted_at'
     end
     object qry_clientcli_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
       FieldName = 'cli_dt_registration'
-      Origin = 'cli_dt_registration'
     end
   end
   object frx_dataset_qry_client: TfrxDBDataset
@@ -7090,37 +7020,42 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     Top = 48
   end
   object qryConsultla: TFDQuery
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
+    MasterFields = 'ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from import_call_log'
-      'where contract_ctr_id =:ctr_id')
+      'where contract_ctr_cod =:ctr_cod')
     Left = 552
     Top = 264
     ParamData = <
       item
-        Name = 'CTR_ID'
-        DataType = ftAutoInc
+        Name = 'CTR_COD'
+        DataType = ftBytes
         ParamType = ptInput
         Value = Null
       end>
-    object qryConsultlaimp_id: TFDAutoIncField
+    object qryConsultlaimp_cod: TBytesField
+      FieldName = 'imp_cod'
+      Origin = 'imp_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryConsultlacontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qryConsultlaclient_cli_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'client_cli_cod'
+      Origin = 'client_cli_cod'
+    end
+    object qryConsultlaimp_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'imp_id'
       Origin = 'imp_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qryConsultlacontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
-    object qryConsultlaclient_cli_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'client_cli_id'
-      Origin = 'client_cli_id'
     end
     object qryConsultlaimp_from: TStringField
       AutoGenerateValue = arDefault
@@ -7150,19 +7085,17 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       Origin = 'imp_type'
       Size = 50
     end
-    object qryConsultlaimp_rate: TFMTBCDField
+    object qryConsultlaimp_rate: TBCDField
       AutoGenerateValue = arDefault
       FieldName = 'imp_rate'
       Origin = 'imp_rate'
       Precision = 12
-      Size = 5
     end
-    object qryConsultlaimp_total: TFMTBCDField
+    object qryConsultlaimp_total: TBCDField
       AutoGenerateValue = arDefault
       FieldName = 'imp_total'
       Origin = 'imp_total'
       Precision = 12
-      Size = 5
     end
     object qryConsultlaimp_file_name: TStringField
       AutoGenerateValue = arDefault
@@ -7175,6 +7108,23 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       FieldName = 'cli_account_code_sippulse'
       Origin = 'cli_account_code_sippulse'
       Size = 50
+    end
+    object qryConsultlaimport_call_logcol: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'import_call_logcol'
+      Origin = 'import_call_logcol'
+      Size = 45
+    end
+    object qryConsultlaimp_comp: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_comp'
+      Origin = 'imp_comp'
+      Size = 10
+    end
+    object qryConsultlaimp_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'imp_deleted_at'
+      Origin = 'imp_deleted_at'
     end
   end
   object OpenDialog1: TOpenDialog

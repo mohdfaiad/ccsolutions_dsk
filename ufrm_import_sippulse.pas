@@ -33,22 +33,22 @@ uses
 
 type
   Tfrm_import_sippulse = class(Tfrm_import_default)
-    qryimp_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
-    qryimp_from: TStringField;
-    qryimp_to: TStringField;
-    qryimp_duration: TTimeField;
-    qryimp_type: TStringField;
-    qryimp_rate: TFMTBCDField;
-    qryimp_total: TFMTBCDField;
     dxBarButton1: TdxBarButton;
-    qrycli_account_code_sippulse: TStringField;
     frxDbLigacoes: TfrxReport;
     frxDBDataset1: TfrxDBDataset;
     frxDialogControls1: TfrxDialogControls;
     qry_client: TFDQuery;
-    qry_clientcli_id: TFDAutoIncField;
-    qry_clientcontract_ctr_id: TIntegerField;
+    frx_dataset_qry_client: TfrxDBDataset;
+    dxBarButton3: TdxBarButton;
+    Action_print: TAction;
+    qryConsultla: TFDQuery;
+    OpenDialog1: TOpenDialog;
+    dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList;
+    dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel;
+    qry_clientcli_cod: TBytesField;
+    qry_clientcontract_ctr_cod: TBytesField;
+    qry_clienttable_price_tbp_cod: TBytesField;
+    qry_clientcli_id: TLongWordField;
     qry_clientcli_type: TStringField;
     qry_clientcli_first_name: TStringField;
     qry_clientcli_last_name: TStringField;
@@ -86,36 +86,45 @@ type
     qry_clientcli_add_del_city: TStringField;
     qry_clientcli_add_del_state: TStringField;
     qry_clientcli_add_del_country: TStringField;
-    qry_clientcli_image: TBlobField;
     qry_clientcli_day_maturity: TIntegerField;
-    qry_clientcli_status: TStringField;
     qry_clientcli_dt_birthopen: TDateField;
     qry_clientcli_account_code_sippulse: TStringField;
+    qry_clientcli_status: TStringField;
+    qry_clientcli_deleted_at: TDateTimeField;
     qry_clientcli_dt_registration: TDateTimeField;
-    frx_dataset_qry_client: TfrxDBDataset;
-    qryclient_cli_id: TIntegerField;
-    qryimp_date: TDateTimeField;
-    qry_duracao: TLargeintField;
-    dxBarButton3: TdxBarButton;
-    Action_print: TAction;
-    qryConsultla: TFDQuery;
-    qryConsultlaimp_id: TFDAutoIncField;
-    qryConsultlacontract_ctr_id: TIntegerField;
-    qryConsultlaclient_cli_id: TIntegerField;
+    qryConsultlaimp_cod: TBytesField;
+    qryConsultlacontract_ctr_cod: TBytesField;
+    qryConsultlaclient_cli_cod: TBytesField;
+    qryConsultlaimp_id: TLongWordField;
     qryConsultlaimp_from: TStringField;
     qryConsultlaimp_to: TStringField;
     qryConsultlaimp_duration: TTimeField;
     qryConsultlaimp_date: TDateTimeField;
     qryConsultlaimp_type: TStringField;
-    qryConsultlaimp_rate: TFMTBCDField;
-    qryConsultlaimp_total: TFMTBCDField;
+    qryConsultlaimp_rate: TBCDField;
+    qryConsultlaimp_total: TBCDField;
     qryConsultlaimp_file_name: TStringField;
     qryConsultlacli_account_code_sippulse: TStringField;
-    OpenDialog1: TOpenDialog;
-    dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList;
-    dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel;
+    qryConsultlaimport_call_logcol: TStringField;
+    qryConsultlaimp_comp: TStringField;
+    qryConsultlaimp_deleted_at: TDateTimeField;
+    qryimp_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryclient_cli_cod: TBytesField;
+    qryimp_id: TLongWordField;
+    qryimp_from: TStringField;
+    qryimp_to: TStringField;
+    qryimp_duration: TTimeField;
+    qryimp_date: TDateTimeField;
+    qryimp_type: TStringField;
+    qryimp_rate: TBCDField;
+    qryimp_total: TBCDField;
     qryimp_file_name: TStringField;
+    qrycli_account_code_sippulse: TStringField;
+    qryimport_call_logcol: TStringField;
     qryimp_comp: TStringField;
+    qryimp_deleted_at: TDateTimeField;
+    qry_duracao: TLargeintField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure Action_printExecute(Sender: TObject);
@@ -125,7 +134,7 @@ type
 
   private
     { Private declarations }
-    codigoCliente:Integer;
+    codigoCliente:string;
     competencia,clienteSippulse:string;
     dtInicial,dtFinal:TDateTime;
 
@@ -178,10 +187,9 @@ if OpenDialog1.Execute then
     close;
     Text:='delete from import_call_log '+
            ' where imp_comp =:comp ' +
-           ' and contract_ctr_id = :contrato ' +
+           ' and contract_ctr_cod = ' + frm_dm.qry_signincontractCod.AsString +
            ' and cli_account_code_sippulse =:cli_account_code_sippulse';
     ParamByName('comp').AsString:= competencia;
-    ParamByName('contrato').AsInteger:= frm_dm.qry_signinctr_id.AsInteger;
     ParamByName('cli_account_code_sippulse').AsString:= clienteSippulse;
 
     Prepare;
@@ -191,12 +199,12 @@ if OpenDialog1.Execute then
 
  qry.Close;
  qry.ParamByName('comp').AsString:= competencia;
- qry.ParamByName('ctr_id').AsInteger:= frm_dm.qry_signinctr_id.AsInteger;
+ qry.ParamByName('ctr_cod').Value:= frm_dm.qry_signincontractCod.Value;
  qry.ParamByName('cient').AsString:= clienteSippulse;
  qry.Prepare;
  qry.Open;
 
- codigoCliente:=-1;
+ codigoCliente:='-1';
  inherited;
 
 end;
@@ -211,7 +219,6 @@ if Application.MessageBox('Deseja visualizar o relatório da conta de consumo?', 
    frxDbLigacoes.LoadFromFile('c:\ccsolutions_dsk\reports\rep_relatorio_ligacoes.fr3');
    frxDbLigacoes.ShowReport;
  end;
-
 end;
 
 procedure Tfrm_import_sippulse.FormClose(Sender: TObject;
@@ -230,7 +237,7 @@ begin
 x.ShortDateFormat := 'dd/mm/yyyy';
 qry.Close;
 qry.ParamByName('comp').AsString:= competencia;
-qry.ParamByName('ctr_id').AsInteger:= frm_dm.qry_signinctr_id.AsInteger;
+qry.ParamByName('ctr_cod').Value:= frm_dm.qry_signincontractCod.Value;
 qry.ParamByName('cient').AsString:= clienteSippulse;
 qry.Prepare;
 qry.Open;
@@ -347,20 +354,20 @@ begin
     qryimp_type.AsString := 'Fixo DDD';
 
 
-  if codigoCliente = -1  then
+  if codigoCliente = '-1'  then
    begin
     with frm_dm.qry,sql do
      begin
       close;
-      text:=' select cli_id from client ' +
+      text:=' select cli_cod from client ' +
             ' where cli_account_code_sippulse = :cliente';
        ParamByName('cliente').AsString:=qrycli_account_code_sippulse.AsString;
        prepare;
        open;
-       codigoCliente:=frm_dm.qry.FieldByName('cli_id').AsInteger;
+       codigoCliente:=frm_dm.qry.FieldByName('cli_id').Value;
      end;
    end;
- qryclient_cli_id.AsInteger:=codigoCliente;
+ qryclient_cli_cod.Value:=codigoCliente;
  qryimp_comp.AsString:= competencia;
 end;
 

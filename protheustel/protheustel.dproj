@@ -171,6 +171,10 @@
         <DCCReference Include="..\models\ufrm_search.pas">
             <Form>frm_search</Form>
         </DCCReference>
+        <DCCReference Include="..\models\ufrm_default.pas">
+            <Form>frm_default</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="ModelSupport_protheustel\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

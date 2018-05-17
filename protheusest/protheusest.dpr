@@ -16,7 +16,7 @@ uses
   ufrm_consult_cnpj in '..\ufrm_consult_cnpj.pas' {frm_consult_cnpj},
   ufrm_consult_cpf in '..\ufrm_consult_cpf.pas' {frm_consult_cpf},
   ufrm_contract in '..\ufrm_contract.pas' {frm_contract},
-  ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
+  ufrm_contract_userOld in '..\ufrm_contract_userOld.pas' {frm_contract_userOld},
   ufrm_enterprise in '..\ufrm_enterprise.pas' {frm_enterprise},
   ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
   ufrm_product in '..\ufrm_product.pas' {frm_product},
@@ -42,7 +42,9 @@ uses
   ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
   uThred_logged in '..\uThred_logged.pas',
   Class_Report in '..\Class_Report.pas',
-  class_required_field in '..\class_required_field.pas';
+  class_required_field in '..\class_required_field.pas',
+  ufrm_default in '..\models\ufrm_default.pas' {frm_default},
+  ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user};
 
 {$R *.res}
 

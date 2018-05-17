@@ -29,18 +29,6 @@ type
     qry_action: TFDQuery;
     qry_actionsys_act_subtitle: TStringField;
     qry_actionsys_Act_name: TStringField;
-    qry_signinctr_cod: TBytesField;
-    qry_signinctr_id: TLongWordField;
-    qry_signinctr_usr_cod: TBytesField;
-    qry_signinctr_usr_first_name: TStringField;
-    qry_signinctr_usr_username: TStringField;
-    qry_signinctr_usr_password: TStringField;
-    qry_signinctr_usr_logged: TStringField;
-    qry_signinctr_usr_admin: TStringField;
-    qry_signinctr_usr_dt_birth: TDateField;
-    qry_signinctr_usr_email: TStringField;
-    qry_signincontractCod: TStringField;
-    qry_signinuserCod: TStringField;
     qry_enterpriseent_cod: TBytesField;
     qry_enterprisecontract_ctr_cod: TBytesField;
     qry_enterpriseent_id: TLongWordField;
@@ -68,6 +56,18 @@ type
     qry_enterpriseent_dt_open: TDateField;
     qry_enterpriseent_deleted_at: TDateTimeField;
     qry_enterpriseent_dt_registration: TDateTimeField;
+    qry_signincontractCod: TStringField;
+    qry_signinuserCod: TStringField;
+    qry_signinctr_cod: TBytesField;
+    qry_signinctr_id: TLargeintField;
+    qry_signinctr_usr_cod: TBytesField;
+    qry_signinctr_usr_first_name: TStringField;
+    qry_signinctr_usr_username: TStringField;
+    qry_signinctr_usr_password: TStringField;
+    qry_signinctr_usr_logged: TStringField;
+    qry_signinctr_usr_admin: TStringField;
+    qry_signinctr_usr_dt_birth: TDateField;
+    qry_signinctr_usr_email: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

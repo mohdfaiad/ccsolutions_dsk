@@ -5,6 +5,7 @@ inherited frm_contract: Tfrm_contract
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -209,7 +210,6 @@ inherited frm_contract: Tfrm_contract
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     IndexFieldNames = 'ctr_id'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'

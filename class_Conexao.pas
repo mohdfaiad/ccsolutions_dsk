@@ -11,12 +11,23 @@ interface
 
    public
    function CriarStoredProc: TFDStoredProc;
+   function CriarQuery: TFDQuery;
 
    end;
 
 implementation
 
 { TConexao }
+
+function TConexao.CriarQuery: TFDQuery;
+var
+  Query : TFDQuery;
+begin
+     Query := TFDQuery.Create(nil);
+     Query.Connection :=frm_dm.connCCS;
+     Result := Query;
+
+end;
 
 function TConexao.CriarStoredProc: TFDStoredProc;
 var

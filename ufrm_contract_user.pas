@@ -31,24 +31,10 @@ uses
   System.Actions, Vcl.ActnList, dxStatusBar, cxTextEdit, cxLabel, cxGroupBox,
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, ufrm_dm, Vcl.ComCtrls, dxCore, cxDateUtils, cxMaskEdit, cxDropDownEdit, cxCalendar,
-  cxCheckBox;
+  cxCheckBox, class_contract_user, Vcl.StdCtrls;
 
 type
   Tfrm_contract_user = class(Tfrm_default)
-    qryctr_usr_cod: TBytesField;
-    qrycontract_ctr_cod: TBytesField;
-    qryctr_usr_id: TLongWordField;
-    qryctr_usr_first_name: TStringField;
-    qryctr_usr_last_name: TStringField;
-    qryctr_usr_username: TStringField;
-    qryctr_usr_password: TStringField;
-    qryctr_usr_email: TStringField;
-    qryctr_usr_dt_birth: TDateField;
-    qryctr_usr_logged: TStringField;
-    qryctr_usr_admin: TStringField;
-    qryctr_usr_status: TStringField;
-    qryctr_deleted_at: TDateTimeField;
-    qryctr_usr_dt_registration: TDateTimeField;
     edtNome: TcxTextEdit;
     edtSobrenome: TcxTextEdit;
     edtUsuario: TcxTextEdit;
@@ -58,30 +44,27 @@ type
     cxLabel5: TcxLabel;
     cxLabel6: TcxLabel;
     cxLabel7: TcxLabel;
-    cxGridDBTableView1ctr_usr_cod: TcxGridDBColumn;
-    cxGridDBTableView1contract_ctr_cod: TcxGridDBColumn;
-    cxGridDBTableView1ctr_usr_id: TcxGridDBColumn;
-    cxGridDBTableView1ctr_usr_first_name: TcxGridDBColumn;
-    cxGridDBTableView1ctr_usr_last_name: TcxGridDBColumn;
-    cxGridDBTableView1ctr_usr_username: TcxGridDBColumn;
-    cxGridDBTableView1ctr_usr_password: TcxGridDBColumn;
-    cxGridDBTableView1ctr_usr_email: TcxGridDBColumn;
-    cxGridDBTableView1ctr_usr_dt_birth: TcxGridDBColumn;
-    cxGridDBTableView1ctr_usr_logged: TcxGridDBColumn;
-    cxGridDBTableView1ctr_usr_admin: TcxGridDBColumn;
-    cxGridDBTableView1ctr_usr_status: TcxGridDBColumn;
-    cxGridDBTableView1ctr_deleted_at: TcxGridDBColumn;
-    cxGridDBTableView1ctr_usr_dt_registration: TcxGridDBColumn;
     edtDtNasc: TcxDateEdit;
     CheckBoxAdm: TcxCheckBox;
+    Button1: TButton;
+    cxGridDBTableView1Column1: TcxGridDBColumn;
+    cxGridDBTableView1Column2: TcxGridDBColumn;
+    cxGridDBTableView1Column3: TcxGridDBColumn;
+    cxGridDBTableView1Column4: TcxGridDBColumn;
     procedure Action_saveExecute(Sender: TObject);
+    procedure Action_insertExecute(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
 
-    procedure LimaCampos;
+    procedure LimpaCampos;
+    procedure PreecherCampos;
+    procedure ExibirGrid;
 
   end;
 
@@ -92,9 +75,33 @@ implementation
 
 {$R *.dfm}
 
-uses class_contract_user;
 
 { Tfrm_contract_user }
+
+procedure Tfrm_contract_user.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+    tbsht_1.Show;
+    ExibirGrid;
+end;
+
+procedure Tfrm_contract_user.Action_editExecute(Sender: TObject);
+begin
+  inherited;
+  //Se tag = a 2 é para alterar
+   Self.Tag := 2;
+   tbsht_2.Show;
+   PreecherCampos;
+end;
+
+procedure Tfrm_contract_user.Action_insertExecute(Sender: TObject);
+begin
+  inherited;
+  //Se tag = a 1 é para inserir
+    Self.Tag := 1;
+    tbsht_2.Show;
+    LimpaCampos;
+end;
 
 procedure Tfrm_contract_user.Action_saveExecute(Sender: TObject);
  var
@@ -102,49 +109,124 @@ procedure Tfrm_contract_user.Action_saveExecute(Sender: TObject);
 begin
   inherited;
 
-  if not Assigned(Contract_User) then
-   begin
      Contract_User:= TContract_user.Create;
-     try
-       Contract_User.ctr_id             := frm_dm.qry_signinctr_id.AsInteger;
-       Contract_User.ctr_usr_first_name := edtNome.Text;
-       Contract_User.ctr_usr_last_name  := edtSobrenome.Text;
-       Contract_User.ctr_usr_dt_birth   := edtDtNasc.Date;
-       Contract_User.ctr_usr_username   := edtUsuario.Text;
-       Contract_User.ctr_usr_email      := edtEmail.Text;
-       if CheckBoxAdm.Checked then
-       Contract_User.ctr_usr_admin      := 'S'
-       else Contract_User.ctr_usr_admin := 'N';
 
-       Contract_User.CreateContract_User22(Contract_User);
-       ShowMessage('Salvo com Sucesso !');
-       LimaCampos;
-       qry.Close;
-       qry.Open;
+     try
+      if Self.Tag = 1 then
+       begin
+         Contract_User.ctr_id             := frm_dm.qry_signinctr_id.AsInteger;
+         Contract_User.ctr_usr_first_name := edtNome.Text;
+         Contract_User.ctr_usr_last_name  := edtSobrenome.Text;
+         Contract_User.ctr_usr_dt_birth   := edtDtNasc.Date;
+         Contract_User.ctr_usr_username   := edtUsuario.Text;
+         Contract_User.ctr_usr_email      := edtEmail.Text;
+         if CheckBoxAdm.Checked then
+         Contract_User.ctr_usr_admin      := 'S'
+         else Contract_User.ctr_usr_admin := 'N';
+
+         Contract_User.Contract_User_Create(Contract_User);
+       end
+       else if Self.Tag = 2 then
+       begin
+//         Contract_User.ctr_usr_id         := FDMemTablectr_usr_id.AsInteger;
+         Contract_User.ctr_usr_first_name := edtNome.Text;
+         Contract_User.ctr_usr_last_name  := edtSobrenome.Text;
+         Contract_User.ctr_usr_dt_birth   := edtDtNasc.Date;
+         Contract_User.ctr_usr_username   := edtUsuario.Text;
+         Contract_User.ctr_usr_email      := edtEmail.Text;
+         if CheckBoxAdm.Checked then
+         Contract_User.ctr_usr_admin      := 'S'
+         else Contract_User.ctr_usr_admin := 'N';
+
+         Contract_User.Contract_User_Update(Contract_User);
+       end;
+       
      finally
+       LimpaCampos;
        Contract_User.Free;
+       tbsht_1.Show;
+       ExibirGrid;
      end;
+end;
+
+procedure Tfrm_contract_user.Button1Click(Sender: TObject);
+var
+  conn : TContract_user;
+
+begin
+  inherited;
+  conn := TContract_user.Create;
+  ds.DataSet := conn.QryRead;
+
+end;
+
+procedure Tfrm_contract_user.ExibirGrid;
+var
+  VQry:          TFDQuery;
+  ContractUser : TContract_user;
+begin
+   ContractUser := TContract_user.Create;
+//   FDMemTable.Close;
+   VQry := ContractUser.Consultar;
+   try
+    VQry.FetchAll;
+//     FDMemTable.Data := VQry.Data;
+   finally
+    VQry.Close;
+    VQry.Free;
    end;
+
 
 end;
 
 procedure Tfrm_contract_user.FormShow(Sender: TObject);
 begin
   inherited;
-  qry.Close;
-  qry.Open;
+  ExibirGrid;
 end;
 
-procedure Tfrm_contract_user.LimaCampos;
+procedure Tfrm_contract_user.LimpaCampos;
  var
   i: Integer;
 begin
 
    for i := 0 to ComponentCount -1 do
+    begin
     if Components[i] is TcxTextEdit then
-     begin
-      TcxTextEdit(Components[i]).Text := '';
+      TcxTextEdit(Components[i]).Clear;
+
+    if Components[i] is TcxDateEdit then
+      TcxTextEdit(Components[i]).Clear;
     end;
+
+   edtNome.SetFocus;
+
+end;
+
+procedure Tfrm_contract_user.PreecherCampos;
+begin
+//   edtNome.Text       := qryctr_usr_first_name.AsString;
+//   edtSobrenome.Text  := qryctr_usr_last_name.AsString;
+//   edtDtNasc.Date     := qryctr_usr_dt_birth.AsDateTime;
+//   edtUsuario.Text    := qryctr_usr_username.AsString;
+//   edtEmail.Text      := qryctr_usr_email.AsString;
+//   if qryctr_usr_admin.AsString = 'S' then
+//      CheckBoxAdm.Checked   := True
+//   else CheckBoxAdm.Checked := False;
+
+//    edt_codid.Text    := IntToStr(FDMemTablectr_usr_id.AsInteger);
+//    edt_dt_registration.Text := DateToStr(FDMemTablectr_usr_dt_registration.AsDateTime);
+//    edtNome.Text      := FDMemTablectr_usr_first_name.AsString;
+//   edtSobrenome.Text  := FDMemTablectr_usr_last_name.AsString;
+//   edtDtNasc.Date     := FDMemTablectr_usr_dt_birth.AsDateTime;
+//   edtUsuario.Text    := FDMemTablectr_usr_username.AsString;
+//   edtEmail.Text      := FDMemTablectr_usr_email.AsString;
+//   if FDMemTablectr_usr_admin.AsString = 'S' then
+//      CheckBoxAdm.Checked   := True
+//   else CheckBoxAdm.Checked := False;
+//
+//   edtNome.SetFocus;
+
 end;
 
 end.

@@ -318,45 +318,18 @@ Var
   wdHoras, wdMinutos, wdSegundos: Word;
 begin
 procTeste.Prepare;
+procTeste.ParamByName('p_ctr_id').AsLargeInt:=frm_dm.qry_signinctr_id.AsLargeInt;
+procTeste.ParamByName('p_cli_account_code_sippulse').AsString:=qrycli_account_code_sippulse.AsString;
+procTeste.ParamByName('p_imp_from').AsString:=qryimp_from.AsString;
+procTeste.ParamByName('p_imp_to').AsString:=qryimp_to.AsString;
+procTeste.ParamByName('p_imp_duration').AsInteger:=qry_duracao.AsInteger;
+procTeste.ParamByName('p_imp_date').AsDateTime:=qryimp_date.AsDateTime;
+procTeste.ParamByName('p_imp_type').AsString:=qryimp_type.AsString;
+procTeste.ParamByName('p_imp_rate').AsBCD:=qryimp_rate.AsFloat;
+procTeste.ParamByName('p_imp_total').AsBCD:=qryimp_total.AsFloat;
 procTeste.ExecProc;
-procTeste.Unprepare;
 
 (*
-
-  wdHoras := 0;
-  wdMinutos := 0;
-  wdSegundos := 0;
-
-  intSegundos := qry_duracao.AsInteger; // Informe aqui o número de segundos
-
-  While intSegundos >= 3600 Do // Capturando as horas
-  Begin
-    wdHoras := wdHoras + 1;
-    intSegundos := intSegundos - 3600;
-  End;
-
-  While (intSegundos >= 60) Do // Capturando os Minutos
-  Begin
-    wdMinutos := wdMinutos + 1;
-    intSegundos := intSegundos - 60;
-  End;
-
-  wdSegundos := intSegundos; // Capturando os Segundos
-
-  qryimp_duration.AsString := FormatDateTime('hh:mm:ss',
-    StrToTime(IntToStr(wdHoras) + ':' + IntToStr(wdMinutos) + ':' +
-    IntToStr(wdSegundos)));
-  if qryimp_type.AsString = 'VC1' then
-    qryimp_type.AsString := 'Movel Local';
-
-  if qryimp_type.AsString = 'VC3' then
-    qryimp_type.AsString := 'Movel DDD';
-
-  if qryimp_type.AsString = 'FIXO_LOCAL' then
-    qryimp_type.AsString := 'Fixo Local';
-
-  if qryimp_type.AsString = 'FIXO_LDN' then
-    qryimp_type.AsString := 'Fixo DDD';
 
 
   if codigoCliente = '-1'  then
@@ -375,6 +348,7 @@ procTeste.Unprepare;
  qryclient_cli_cod.AsString:=codigoCliente;
  qryimp_comp.AsString:= competencia;
  *)
+
 end;
 
 end.

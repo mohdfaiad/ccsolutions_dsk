@@ -3,7 +3,6 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
   ClientHeight = 685
   OnClose = FormClose
   OnCreate = FormCreate
-  ExplicitLeft = -66
   ExplicitHeight = 724
   PixelsPerInch = 96
   TextHeight = 13
@@ -7144,5 +7143,68 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     StoredProcName = 'ccs.import_call_log_create'
     Left = 336
     Top = 200
+    ParamData = <
+      item
+        Position = 1
+        Name = 'p_ctr_id'
+        DataType = ftLargeint
+        ParamType = ptInput
+      end
+      item
+        Position = 2
+        Name = 'p_cli_account_code_sippulse'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 65
+      end
+      item
+        Position = 3
+        Name = 'p_imp_from'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+      end
+      item
+        Position = 4
+        Name = 'p_imp_to'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+      end
+      item
+        Position = 5
+        Name = 'p_imp_duration'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Position = 6
+        Name = 'p_imp_date'
+        DataType = ftDateTime
+        ParamType = ptInput
+      end
+      item
+        Position = 7
+        Name = 'p_imp_type'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+      end
+      item
+        Position = 8
+        Name = 'p_imp_rate'
+        DataType = ftBCD
+        Precision = 12
+        NumericScale = 4
+        ParamType = ptInput
+      end
+      item
+        Position = 9
+        Name = 'p_imp_total'
+        DataType = ftBCD
+        Precision = 12
+        NumericScale = 4
+        ParamType = ptInput
+      end>
   end
 end

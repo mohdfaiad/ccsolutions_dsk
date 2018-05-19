@@ -26,7 +26,9 @@ uses
   uThred_logged in '..\uThred_logged.pas',
   ufrm_search_enterprise in '..\ufrm_search_enterprise.pas',
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
-  ufrm_default in '..\models\ufrm_default.pas' {frm_default};
+  ufrm_default in '..\models\ufrm_default.pas' {frm_default},
+  class_contract_user in '..\class_contract_user.pas',
+  class_Conexao in '..\class_Conexao.pas';
 
 {$R *.res}
 

@@ -175,6 +175,8 @@
             <Form>frm_default</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\class_contract_user.pas"/>
+        <DCCReference Include="..\class_Conexao.pas"/>
         <None Include="ModelSupport_protheustel\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

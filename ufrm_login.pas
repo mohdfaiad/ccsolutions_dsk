@@ -100,63 +100,82 @@ uses ufrm_dm, ufrm_main_default;
 procedure Tfrm_login.Action_accessExecute(Sender: TObject);
 var
 md5 : TIdHashMessageDigest;
+SQL:string;
 begin
-  md5:=TIdHashMessageDigest5.Create;
 
-  frm_dm.qry_signin.Close;
-  frm_dm.qry_signin.Params.ClearValues();
-  frm_dm.qry_signin.Params[0].AsInteger := StrToInt(edt_contract.Text);
-  frm_dm.qry_signin.Params[1].AsString := edt_username.Text;
-  frm_dm.qry_signin.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
-  frm_dm.qry_signin.Prepare;
-  frm_dm.qry_signin.Open;
+//
+//
+//  md5:=TIdHashMessageDigest5.Create;
+//
+//  frm_dm.qry_signin.Close;
+//  frm_dm.qry_signin.Params.ClearValues();
+//  frm_dm.qry_signin.Params[0].AsInteger := StrToInt(edt_contract.Text);
+//  frm_dm.qry_signin.Params[1].AsString := edt_username.Text;
+//  frm_dm.qry_signin.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
+//  frm_dm.qry_signin.Prepare;
+//  frm_dm.qry_signin.Open;
+//
+//
+//  // Select para listar as unidades de estoque que esse usuário tem acesso
+//   frm_dm.qry_enterprise.Close;
+//   frm_dm.qry_enterprise.ParamByName('CTR_USR_ID').Value:=frm_dm.qry_signinuserCod.Value;
+//   frm_dm.qry_enterprise.Prepare;
+//   frm_dm.qry_enterprise.Open;
+//
+// if frm_dm.qry_loggedctr_usr_logged.AsString = 'B' then
+//  begin
+//  Application.MessageBox('Usuário foi bloaqueado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
+//   Application.Terminate
+//  end;
+//
+//
+//  if frm_dm.qry_signin.RecordCount = 1 then
+//  begin
+//   if Length(frm_dm.qry_signinctr_usr_password.AsString) = 0  then
+//    begin
+//     Application.MessageBox('Usuário sem senha definida favor informar sua senha!', 'LOGIN',MB_OK + MB_ICONINFORMATION);
+//     cxPageControl1.Pages[1].TabVisible:=True;
+//     cxPageControl1.ActivePageIndex:=1;
+//     cxPageControl1.Pages[0].TabVisible:=False;
+//     cxPageControl1.Pages[2].TabVisible:=False;
+//     edt_passwordCurrent.SetFocus;
+//     exit;
+//    end;
+//  if frm_dm.qry_signinctr_usr_logged.AsString <> 'B' then
+//   with frm_dm.qry,sql do
+//    begin
+//      close;
+//      Text:='update contract_user ' +
+//            ' set ctr_usr_logged = ''S'' '+
+//            ' where contract_ctr_cod = (select ctr_cod from contract ' +
+//                      ' where ctr_id = ' + QuotedStr(edt_contract.Text) + ')' +
+//            ' and ctr_usr_password = '+ QuotedStr(md5.HashStringAsHex(edt_password.Text)) +
+//            ' and ctr_usr_username = ' + QuotedStr(edt_username.Text);
+//      Prepare;
+//      ExecSQL;
+//    end;
+//     frm_dm.qry_logged.Close;
+//     frm_dm.qry_logged.Params.ClearValues();
+//     frm_dm.qry_logged.Params[0].AsInteger := StrToInt(edt_contract.Text);
+//     frm_dm.qry_logged.Params[1].AsString := edt_username.Text;
+//     frm_dm.qry_logged.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
+//     frm_dm.qry_logged.Prepare;
+//     frm_dm.qry_logged.Open;
+     SQL := 'select func_access_signin(' +
+     edt_contract.Text + ', ' +
+     QuotedStr(edt_username.Text) + ', ' +
+     QuotedStr(edt_password.Text) + ')';
+
+     frm_dm.qry_signin.Close;
+     frm_dm.qry_signin.SQL.Clear;
+     frm_dm.qry_signin.SQL.Text:=SQL;
+     ShowMessage(SQL);
+
+     frm_dm.qry_signin.Open;
 
 
-  // Select para listar as unidades de estoque que esse usuário tem acesso
-   frm_dm.qry_enterprise.Close;
-   frm_dm.qry_enterprise.ParamByName('CTR_USR_ID').Value:=frm_dm.qry_signinuserCod.Value;
-   frm_dm.qry_enterprise.Prepare;
-   frm_dm.qry_enterprise.Open;
 
- if frm_dm.qry_loggedctr_usr_logged.AsString = 'B' then
-  begin
-  Application.MessageBox('Usuário foi bloaqueado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
-   Application.Terminate
-  end;
-
-
-  if frm_dm.qry_signin.RecordCount = 1 then
-  begin
-   if Length(frm_dm.qry_signinctr_usr_password.AsString) = 0  then
-    begin
-     Application.MessageBox('Usuário sem senha definida favor informar sua senha!', 'LOGIN',MB_OK + MB_ICONINFORMATION);
-     cxPageControl1.Pages[1].TabVisible:=True;
-     cxPageControl1.ActivePageIndex:=1;
-     cxPageControl1.Pages[0].TabVisible:=False;
-     cxPageControl1.Pages[2].TabVisible:=False;
-     edt_passwordCurrent.SetFocus;
-     exit;
-    end;
-  if frm_dm.qry_signinctr_usr_logged.AsString <> 'B' then
-   with frm_dm.qry,sql do
-    begin
-      close;
-      Text:='update contract_user ' +
-            ' set ctr_usr_logged = ''S'' '+
-            ' where contract_ctr_cod = (select ctr_cod from contract ' +
-                      ' where ctr_id = ' + QuotedStr(edt_contract.Text) + ')' +
-            ' and ctr_usr_password = '+ QuotedStr(md5.HashStringAsHex(edt_password.Text)) +
-            ' and ctr_usr_username = ' + QuotedStr(edt_username.Text);
-      Prepare;
-      ExecSQL;
-    end;
-     frm_dm.qry_logged.Close;
-     frm_dm.qry_logged.Params.ClearValues();
-     frm_dm.qry_logged.Params[0].AsInteger := StrToInt(edt_contract.Text);
-     frm_dm.qry_logged.Params[1].AsString := edt_username.Text;
-     frm_dm.qry_logged.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
-     frm_dm.qry_logged.Prepare;
-     frm_dm.qry_logged.Open;
+  ShowMessage(BoolToStr(frm_dm.qry_signin.IsEmpty));
 
      if Tag = 99 then
       begin
@@ -166,12 +185,12 @@ begin
       else
         ModalResult := mrOk;
 
-  end
-  else
-  begin
-    MessageDlg('Usuário ou Senha inválida!', mtInformation, [mbOK], 0);
-    edt_contract.SetFocus;
-  end;
+//  end
+//  else
+//  begin
+//    MessageDlg('Usuário ou Senha inválida!', mtInformation, [mbOK], 0);
+//    edt_contract.SetFocus;
+//  end;
 end;
 
 procedure Tfrm_login.Action_cancelExecute(Sender: TObject);

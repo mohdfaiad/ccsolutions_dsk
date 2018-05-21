@@ -11,56 +11,66 @@ object frm_default: Tfrm_default
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poOwnerFormCenter
+  Position = poMainFormCenter
   ShowHint = True
+  Visible = True
   PixelsPerInch = 96
   TextHeight = 13
   object bardck_1: TdxBarDockControl
     Left = 0
     Top = 0
     Width = 1008
-    Height = 56
+    Height = 55
     Align = dalTop
     BarManager = barman_1
   end
   object pgctrl_1: TcxPageControl
     Left = 0
-    Top = 56
+    Top = 55
     Width = 1008
-    Height = 570
+    Height = 571
     Align = alClient
     TabOrder = 1
     Properties.ActivePage = tbsht_1
     Properties.CustomButtons.Buttons = <>
     LookAndFeel.NativeStyle = False
-    ClientRectBottom = 570
-    ClientRectRight = 1008
-    ClientRectTop = 24
+    ClientRectBottom = 565
+    ClientRectLeft = 2
+    ClientRectRight = 1002
+    ClientRectTop = 27
     object tbsht_1: TcxTabSheet
       Caption = 'Registros'
       ImageIndex = 0
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pgctrl_2: TcxPageControl
         Left = 0
         Top = 0
-        Width = 1008
-        Height = 546
+        Width = 1000
+        Height = 538
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = tbsht_3
         Properties.CustomButtons.Buttons = <>
-        ClientRectBottom = 542
-        ClientRectLeft = 4
-        ClientRectRight = 1004
-        ClientRectTop = 24
+        ClientRectBottom = 532
+        ClientRectLeft = 2
+        ClientRectRight = 994
+        ClientRectTop = 27
         object tbsht_3: TcxTabSheet
-          Caption = 'Registros Ativos'
+          Caption = 'Registros'
           ImageIndex = 0
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object grid_1: TcxGrid
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 994
-            Height = 512
+            Width = 986
+            Height = 499
             Align = alClient
             Images = imglist_1
             PopupMenu = popmenu_1
@@ -112,97 +122,41 @@ object frm_default: Tfrm_default
             end
           end
         end
-        object tbsht_4: TcxTabSheet
-          Caption = 'Registros Deletados'
-          ImageIndex = 1
-          object grid_2: TcxGrid
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 994
-            Height = 512
-            Align = alClient
-            Images = imglist_1
-            PopupMenu = popmenu_2
-            TabOrder = 0
-            object cxGridDBTableView2: TcxGridDBTableView
-              Navigator.Buttons.ConfirmDelete = True
-              Navigator.Buttons.CustomButtons = <>
-              Navigator.Buttons.Images = imglist_1
-              Navigator.Buttons.First.ImageIndex = 0
-              Navigator.Buttons.First.Visible = False
-              Navigator.Buttons.PriorPage.Visible = False
-              Navigator.Buttons.Prior.ImageIndex = 1
-              Navigator.Buttons.Prior.Visible = False
-              Navigator.Buttons.Next.ImageIndex = 2
-              Navigator.Buttons.Next.Visible = False
-              Navigator.Buttons.NextPage.Visible = False
-              Navigator.Buttons.Last.ImageIndex = 3
-              Navigator.Buttons.Last.Visible = False
-              Navigator.Buttons.Insert.ImageIndex = 4
-              Navigator.Buttons.Insert.Visible = False
-              Navigator.Buttons.Delete.ImageIndex = 8
-              Navigator.Buttons.Delete.Visible = False
-              Navigator.Buttons.Edit.ImageIndex = 5
-              Navigator.Buttons.Edit.Visible = False
-              Navigator.Buttons.Post.ImageIndex = 6
-              Navigator.Buttons.Post.Visible = False
-              Navigator.Buttons.Cancel.ImageIndex = 7
-              Navigator.Buttons.Cancel.Visible = False
-              Navigator.Buttons.Refresh.ImageIndex = 9
-              Navigator.Buttons.Refresh.Visible = False
-              Navigator.Buttons.SaveBookmark.Visible = False
-              Navigator.Buttons.GotoBookmark.Visible = False
-              Navigator.Buttons.Filter.ImageIndex = 11
-              Navigator.InfoPanel.DisplayMask = '[RecordIndex] de [RecordCount]'
-              Navigator.InfoPanel.Visible = True
-              Navigator.Visible = True
-              FindPanel.InfoText = 'Valor para pequisa...'
-              DataController.DataSource = ds
-              DataController.Summary.DefaultGroupSummaryItems = <>
-              DataController.Summary.FooterSummaryItems = <>
-              DataController.Summary.SummaryGroups = <>
-              Images = imglist_1
-              NewItemRow.InfoText = 'Adicione uma nova linha clicando aqui...'
-              OptionsView.NoDataToDisplayInfoText = 'Registro(s) n'#227'o encontrado(s).'
-              OptionsView.Indicator = True
-            end
-            object cxGridLevel2: TcxGridLevel
-              GridView = cxGridDBTableView2
-            end
-          end
-        end
       end
     end
     object tbsht_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pgctrl_3: TcxPageControl
         Left = 0
         Top = 0
-        Width = 1008
-        Height = 546
+        Width = 1000
+        Height = 538
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = tbsht_5
         Properties.CustomButtons.Buttons = <>
-        ClientRectBottom = 542
-        ClientRectLeft = 4
-        ClientRectRight = 1004
-        ClientRectTop = 24
+        ClientRectBottom = 532
+        ClientRectLeft = 2
+        ClientRectRight = 994
+        ClientRectTop = 27
         object tbsht_5: TcxTabSheet
           Caption = 'Informa'#231#245'es'
           ImageIndex = 0
           DesignSize = (
-            1000
-            518)
+            992
+            505)
           object cxGroupBox1: TcxGroupBox
             Left = 3
             Top = 3
             Anchors = [akLeft, akTop, akRight]
             TabOrder = 0
             Height = 46
-            Width = 994
+            Width = 986
             object cxLabel1: TcxLabel
               Left = 3
               Top = 3
@@ -235,25 +189,45 @@ object frm_default: Tfrm_default
             Top = 55
             Anchors = [akLeft, akTop, akRight, akBottom]
             TabOrder = 1
-            Height = 460
-            Width = 994
+            Height = 447
+            Width = 986
           end
         end
       end
     end
   end
-  object dxStatusBar1: TdxStatusBar
+  object stsbar_1: TdxStatusBar
     Left = 0
     Top = 626
     Width = 1008
     Height = 35
-    Panels = <>
+    Panels = <
+      item
+        PanelStyleClassName = 'TdxStatusBarContainerPanelStyle'
+        PanelStyle.Container = stsbar_deleted_at
+        Bevel = dxpbNone
+      end>
     PaintStyle = stpsUseLookAndFeel
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+    object stsbar_deleted_at: TdxStatusBarContainerControl
+      Left = 1
+      Top = 2
+      Width = 972
+      Height = 32
+      object chkbox_1: TcxCheckBox
+        Left = 0
+        Top = 0
+        Align = alClient
+        Caption = 'Registro Deletados'
+        Properties.Alignment = taLeftJustify
+        TabOrder = 0
+        Transparent = True
+      end
+    end
   end
   object actlist_1: TActionList
     Images = imglist_1
@@ -336,34 +310,27 @@ object frm_default: Tfrm_default
       Caption = 'Fechar'
       Hint = 'Fechar Formul'#225'rio'
       ImageIndex = 10
+      OnExecute = Action_closeExecute
     end
     object Action_import: TAction
       Category = 'Import and Export'
       Caption = 'Importar'
       Hint = 'Importar Registro'
       ImageIndex = 14
+      OnExecute = Action_importExecute
     end
     object Action_export: TAction
       Category = 'Import and Export'
       Caption = 'Exportar'
       Hint = 'Exportar Registros'
       ImageIndex = 15
+      OnExecute = Action_exportExecute
     end
     object Action_print_preview: TAction
       Category = 'Print'
       Caption = 'Visualizar'
       Hint = 'Visualizar Relat'#243'rio'
       ImageIndex = 13
-    end
-    object Action_restore: TAction
-      Category = 'Deleted'
-      Caption = 'Restaurar'
-      Hint = 'Restaurar Registro'
-    end
-    object Action_active: TAction
-      Category = 'Deleted'
-      Caption = 'Registros Ativos'
-      Hint = 'Visualizar registros ativos'
     end
     object Action_deleted: TAction
       Category = 'Form'
@@ -424,11 +391,11 @@ object frm_default: Tfrm_default
         end
         item
           Visible = True
-          ItemName = 'bnt_print_preview'
+          ItemName = 'btn_print_preview'
         end
         item
           Visible = True
-          ItemName = 'bnt_print'
+          ItemName = 'btn_print'
         end>
       OneOnRow = False
       Row = 1
@@ -450,43 +417,43 @@ object frm_default: Tfrm_default
       ItemLinks = <
         item
           Visible = True
-          ItemName = 'bnt_first'
+          ItemName = 'btn_first'
         end
         item
           Visible = True
-          ItemName = 'bnt_prior'
+          ItemName = 'btn_prior'
         end
         item
           Visible = True
-          ItemName = 'bnt_next'
+          ItemName = 'btn_next'
         end
         item
           Visible = True
-          ItemName = 'bnt_last'
+          ItemName = 'btn_last'
         end
         item
           Visible = True
-          ItemName = 'bnt_insert'
+          ItemName = 'btn_insert'
         end
         item
           Visible = True
-          ItemName = 'bnt_edit'
+          ItemName = 'btn_edit'
         end
         item
           Visible = True
-          ItemName = 'bnt_cancel'
+          ItemName = 'btn_cancel'
         end
         item
           Visible = True
-          ItemName = 'bnt_save'
+          ItemName = 'btn_save'
         end
         item
           Visible = True
-          ItemName = 'bnt_delete'
+          ItemName = 'btn_delete'
         end
         item
           Visible = True
-          ItemName = 'bnt_refresh'
+          ItemName = 'btn_refresh'
         end>
       OneOnRow = False
       Row = 0
@@ -499,7 +466,7 @@ object frm_default: Tfrm_default
       CaptionButtons = <>
       DockControl = bardck_1
       DockedDockControl = bardck_1
-      DockedLeft = 262
+      DockedLeft = 260
       DockedTop = 0
       FloatLeft = 1042
       FloatTop = 8
@@ -508,7 +475,7 @@ object frm_default: Tfrm_default
       ItemLinks = <
         item
           Visible = True
-          ItemName = 'bnt_close'
+          ItemName = 'btn_close'
         end>
       OneOnRow = False
       Row = 0
@@ -530,11 +497,11 @@ object frm_default: Tfrm_default
       ItemLinks = <
         item
           Visible = True
-          ItemName = 'bnt_import'
+          ItemName = 'btn_import'
         end
         item
           Visible = True
-          ItemName = 'bnt_export'
+          ItemName = 'btn_export'
         end>
       OneOnRow = False
       Row = 1
@@ -542,63 +509,63 @@ object frm_default: Tfrm_default
       Visible = True
       WholeRow = False
     end
-    object bnt_first: TdxBarButton
+    object btn_first: TdxBarButton
       Action = Action_first
       Category = 0
     end
-    object bnt_last: TdxBarButton
+    object btn_last: TdxBarButton
       Action = Action_last
       Category = 0
     end
-    object bnt_next: TdxBarButton
+    object btn_next: TdxBarButton
       Action = Action_next
       Category = 0
     end
-    object bnt_prior: TdxBarButton
+    object btn_prior: TdxBarButton
       Action = Action_prior
       Category = 0
     end
-    object bnt_close: TdxBarButton
+    object btn_close: TdxBarButton
       Action = Action_close
       Category = 0
     end
-    object bnt_insert: TdxBarButton
+    object btn_insert: TdxBarButton
       Action = Action_insert
       Category = 0
     end
-    object bnt_edit: TdxBarButton
+    object btn_edit: TdxBarButton
       Action = Action_edit
       Category = 0
     end
-    object bnt_cancel: TdxBarButton
+    object btn_cancel: TdxBarButton
       Action = Action_cancel
       Category = 0
     end
-    object bnt_save: TdxBarButton
+    object btn_save: TdxBarButton
       Action = Action_save
       Category = 0
     end
-    object bnt_delete: TdxBarButton
+    object btn_delete: TdxBarButton
       Action = Action_delete
       Category = 0
     end
-    object bnt_refresh: TdxBarButton
+    object btn_refresh: TdxBarButton
       Action = Action_refresh
       Category = 0
     end
-    object bnt_print_preview: TdxBarButton
+    object btn_print_preview: TdxBarButton
       Action = Action_print_preview
       Category = 0
     end
-    object bnt_print: TdxBarButton
+    object btn_print: TdxBarButton
       Action = Action_print
       Category = 0
     end
-    object bnt_import: TdxBarButton
+    object btn_import: TdxBarButton
       Action = Action_import
       Category = 0
     end
-    object bnt_export: TdxBarButton
+    object btn_export: TdxBarButton
       Action = Action_export
       Category = 0
     end
@@ -658,28 +625,14 @@ object frm_default: Tfrm_default
     object Fechar1: TMenuItem
       Action = Action_close
     end
-    object N4: TMenuItem
-      Caption = '-'
-    end
-    object RegistrosDeletados1: TMenuItem
-      Action = Action_deleted
-    end
   end
   object acbr_enter_1: TACBrEnterTab
     Left = 752
     Top = 8
   end
-  object qry: TFDQuery
-    Left = 688
-    Top = 8
-  end
   object ds: TDataSource
-    DataSet = qry
+    OnStateChange = dsStateChange
     Left = 720
-    Top = 8
-  end
-  object schadp_1: TFDSchemaAdapter
-    Left = 656
     Top = 8
   end
   object impw_1: TQImport3Wizard
@@ -889,13 +842,8 @@ object frm_default: Tfrm_default
     Left = 816
     Top = 8
     object Restaurar1: TMenuItem
-      Action = Action_restore
-    end
-    object N5: TMenuItem
-      Caption = '-'
-    end
-    object RegistrosAtivos1: TMenuItem
-      Action = Action_active
+      Caption = 'Restaurar'
+      Hint = 'Restaurar Registro'
     end
   end
   object imglist_1: TcxImageList
@@ -1507,5 +1455,69 @@ object frm_default: Tfrm_default
           000080030000800300008003000000030000000300000003000080030000C7FF
           0000}
       end>
+  end
+  object frxReport_1: TfrxReport
+    Version = '6.0.4'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Padr'#227'o'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 43238.498741539360000000
+    ReportOptions.LastChange = 43238.498741539360000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 560
+    Top = 8
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
+  object frxPDFExport_1: TfrxPDFExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    OpenAfterExport = False
+    PrintOptimized = False
+    Outline = False
+    Background = False
+    HTMLTags = True
+    Quality = 95
+    Transparency = False
+    Author = 'Report - CCS'
+    Subject = 'Report Export - CCS'
+    ProtectionFlags = [ePrint, eModify, eCopy, eAnnot]
+    HideToolbar = False
+    HideMenubar = False
+    HideWindowUI = False
+    FitWindow = False
+    CenterWindow = False
+    PrintScaling = False
+    PdfA = False
+    Left = 496
+    Top = 8
+  end
+  object frxDOCXExport_1: TfrxDOCXExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    OpenAfterExport = False
+    PictureType = gpPNG
+    Left = 528
+    Top = 8
+  end
+  object qry: TFDQuery
+    Left = 688
+    Top = 8
+  end
+  object schadp: TFDSchemaAdapter
+    Left = 656
+    Top = 8
   end
 end

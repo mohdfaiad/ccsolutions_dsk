@@ -63,11 +63,12 @@ type
     qry_signinctr_usr_cod: TBytesField;
     qry_signinctr_usr_first_name: TStringField;
     qry_signinctr_usr_username: TStringField;
-    qry_signinctr_usr_password: TStringField;
     qry_signinctr_usr_logged: TStringField;
     qry_signinctr_usr_admin: TStringField;
     qry_signinctr_usr_dt_birth: TDateField;
     qry_signinctr_usr_email: TStringField;
+    qry_signinNew: TFDQuery;
+    qry_signinctr_usr_password: TBytesField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

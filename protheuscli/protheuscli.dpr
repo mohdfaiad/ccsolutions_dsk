@@ -25,7 +25,12 @@ uses
   ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
   ufrm_insurance in '..\ufrm_insurance.pas' {frm_insurance},
   ufrm_exam in '..\ufrm_exam.pas' {frm_exam},
-  ufrm_material in '..\ufrm_material.pas' {frm_material};
+  ufrm_material in '..\ufrm_material.pas' {frm_material},
+  ufrm_default in '..\models\ufrm_default.pas' {frm_default},
+  class_Conexao in '..\class_Conexao.pas',
+  class_contract_user in '..\class_contract_user.pas',
+  class_required_field in '..\class_required_field.pas',
+  ufrm_scheduling in '..\ufrm_scheduling.pas' {frm_scheduling};
 
 {$R *.res}
 
@@ -36,5 +41,7 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
+  Application.CreateForm(Tfrm_default, frm_default);
+  Application.CreateForm(Tfrm_scheduling, frm_scheduling);
   Application.Run;
 end.

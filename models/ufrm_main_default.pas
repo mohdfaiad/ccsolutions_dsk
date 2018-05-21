@@ -143,19 +143,19 @@ end;
 procedure Tfrm_main_default.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
- if frm_dm.qry_signinctr_usr_logged.AsString <> 'B' then
-   with frm_dm.qry,sql do
-    begin
-      close;
-      Text:='update contract_user ' +
-            ' set ctr_usr_logged = ''N'' '+
-            ' where contract_ctr_cod = ' +  frm_dm.qry_signincontractCod.AsString +
-            ' and ctr_usr_username = ' + QuotedStr(frm_dm.qry_signinctr_usr_username.AsString);
-      Prepare;
-      ExecSQL;
-
-      SaveToFile('C:\codTemp\sql.txt');
-    end;
+//#FaltaFazer
+// if frm_dm.qry_signinctr_usr_logged.AsString <> 'B' then
+//   with frm_dm.qry,sql do
+//    begin
+//      close;
+//      Text:='update contract_user ' +
+//            ' set ctr_usr_logged = ''N'' '+
+//            ' where contract_ctr_cod = ' +  frm_dm.qry_signincontractCod.AsString +
+//            ' and ctr_usr_username = ' + QuotedStr(frm_dm.qry_signinctr_usr_username.AsString);
+//      Prepare;
+//      ExecSQL;
+//
+//    end;
 
 end;
 

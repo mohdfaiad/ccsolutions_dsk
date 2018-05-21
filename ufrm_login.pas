@@ -103,30 +103,28 @@ md5 : TIdHashMessageDigest;
 SQL:string;
 begin
 
-//
-//
-//  md5:=TIdHashMessageDigest5.Create;
-//
-//  frm_dm.qry_signin.Close;
-//  frm_dm.qry_signin.Params.ClearValues();
-//  frm_dm.qry_signin.Params[0].AsInteger := StrToInt(edt_contract.Text);
-//  frm_dm.qry_signin.Params[1].AsString := edt_username.Text;
-//  frm_dm.qry_signin.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
-//  frm_dm.qry_signin.Prepare;
-//  frm_dm.qry_signin.Open;
-//
-//
-//  // Select para listar as unidades de estoque que esse usuário tem acesso
-//   frm_dm.qry_enterprise.Close;
-//   frm_dm.qry_enterprise.ParamByName('CTR_USR_ID').Value:=frm_dm.qry_signinuserCod.Value;
-//   frm_dm.qry_enterprise.Prepare;
-//   frm_dm.qry_enterprise.Open;
-//
-// if frm_dm.qry_loggedctr_usr_logged.AsString = 'B' then
-//  begin
-//  Application.MessageBox('Usuário foi bloaqueado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
-//   Application.Terminate
-//  end;
+  md5:=TIdHashMessageDigest5.Create;
+
+  frm_dm.qry_signin.Close;
+  frm_dm.qry_signin.Params.ClearValues();
+  frm_dm.qry_signin.Params[0].AsInteger := StrToInt(edt_contract.Text);
+  frm_dm.qry_signin.Params[1].AsString := edt_username.Text;
+  frm_dm.qry_signin.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
+  frm_dm.qry_signin.Prepare;
+  frm_dm.qry_signin.Open;
+
+
+  // Select para listar as unidades de estoque que esse usuário tem acesso
+   frm_dm.qry_enterprise.Close;
+   frm_dm.qry_enterprise.ParamByName('CTR_USR_ID').Value:=frm_dm.qry_signinuserCod.Value;
+   frm_dm.qry_enterprise.Prepare;
+   frm_dm.qry_enterprise.Open;
+
+ if frm_dm.qry_loggedctr_usr_logged.AsString = 'B' then
+  begin
+  Application.MessageBox('Usuário foi bloaqueado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
+   Application.Terminate
+  end;
 //
 //
 //  if frm_dm.qry_signin.RecordCount = 1 then
@@ -166,17 +164,19 @@ begin
      QuotedStr(edt_username.Text) + ', ' +
      QuotedStr(edt_password.Text) + ')';
 
-     frm_dm.qry_signin.Close;
-     frm_dm.qry_signin.SQL.Clear;
-     frm_dm.qry_signin.SQL.Text:=SQL;
+     frm_dm.qry_signinNew.Close;
+     frm_dm.qry_signinNew.SQL.Clear;
+     frm_dm.qry_signinNew.SQL.Text:=SQL;
      ShowMessage(SQL);
 
-     frm_dm.qry_signin.Open;
+     frm_dm.qry_signinNew.Open;
 
 
 
-  ShowMessage(BoolToStr(frm_dm.qry_signin.IsEmpty));
+  ShowMessage(BoolToStr(frm_dm.qry_signinNew.IsEmpty));
 
+  if frm_dm.qry_signinNew.Fields[0].AsBoolean then
+   begin
      if Tag = 99 then
       begin
        ModalResult :=mrYes;
@@ -184,13 +184,12 @@ begin
       end
       else
         ModalResult := mrOk;
-
-//  end
-//  else
-//  begin
-//    MessageDlg('Usuário ou Senha inválida!', mtInformation, [mbOK], 0);
-//    edt_contract.SetFocus;
-//  end;
+  end
+  else
+  begin
+    MessageDlg('Usuário ou Senha inválida!', mtInformation, [mbOK], 0);
+    edt_contract.SetFocus;
+  end;
 end;
 
 procedure Tfrm_login.Action_cancelExecute(Sender: TObject);

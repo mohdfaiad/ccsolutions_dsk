@@ -46,7 +46,7 @@ object frm_dm: Tfrm_dm
         'nd (cu.ctr_usr_password=:password or cu.ctr_usr_password is null' +
         ')'#10#10)
     Left = 40
-    Top = 64
+    Top = 88
     ParamData = <
       item
         Name = 'CONTRACT'
@@ -116,14 +116,6 @@ object frm_dm: Tfrm_dm
       ReadOnly = True
       Size = 65
     end
-    object qry_signinctr_usr_password: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'ctr_usr_password'
-      Origin = 'ctr_usr_password'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 65
-    end
     object qry_signinctr_usr_logged: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_logged'
@@ -157,11 +149,18 @@ object frm_dm: Tfrm_dm
       ReadOnly = True
       Size = 65
     end
+    object qry_signinctr_usr_password: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_usr_password'
+      Origin = 'ctr_usr_password'
+      ProviderFlags = []
+      ReadOnly = True
+    end
   end
   object ds_signin: TDataSource
     DataSet = qry_signin
-    Left = 72
-    Top = 64
+    Left = 128
+    Top = 56
   end
   object mysql_driver: TFDPhysMySQLDriverLink
     VendorLib = 'C:\ccsolutions_dsk\bin\libmysql.dll'
@@ -180,7 +179,7 @@ object frm_dm: Tfrm_dm
         'and ent_cod in (select ctr_usr_ent_ent_cod  from contract_user_e' +
         'nterprise where ctr_usr_ent_user_cod =:ctr_usr_id)'#10#10#10)
     Left = 40
-    Top = 112
+    Top = 152
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -481,5 +480,10 @@ object frm_dm: Tfrm_dm
       Origin = 'sys_act_name'
       Size = 80
     end
+  end
+  object qry_signinNew: TFDQuery
+    Connection = connCCS
+    Left = 248
+    Top = 168
   end
 end

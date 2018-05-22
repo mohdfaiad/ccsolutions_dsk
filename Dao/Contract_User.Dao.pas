@@ -40,13 +40,14 @@ begin
     try
     with FDStoredProc do
      begin
-      StoredProcName := 'contract_user_create';
+      StoredProcName := 'proc_contract_user_create';
 
       Prepare;
       ParamByName('p_ctr_id').Value                := Contract_user.ctr_id;
       ParamByName('p_ctr_usr_first_name').AsString := Contract_user.ctr_usr_first_name;
       ParamByName('p_ctr_usr_last_name').AsString  := Contract_user.ctr_usr_last_name;
       ParamByName('p_ctr_usr_username').AsString   := Contract_user.ctr_usr_username;
+      ParamByName('p_ctr_usr_password').AsString   := Contract_user.ctr_usr_password;
       ParamByName('p_ctr_usr_email').AsString      := Contract_user.ctr_usr_email;
       ParamByName('p_ctr_usr_dt_birth').Value      := Contract_user.ctr_usr_dt_birth;
       ParamByName('p_ctr_usr_admin').AsString      := Contract_user.ctr_usr_admin;
@@ -65,6 +66,7 @@ begin
 
 end;
 
+
 procedure TContract_User_Dao.Contract_User_Update(Contract_user: TContract_user_Model);
 var
   FDStoredProc : TFDStoredProc;
@@ -77,13 +79,14 @@ begin
 
     with FDStoredProc do
      begin
-     StoredProcName := 'contract_user_update';
+     StoredProcName := 'proc_contract_user_update';
 
      Prepare;
-     ParamByName('p_ctr_usr_id').Value            := Contract_user.ctr_usr_id;
+     ParamByName('p_ctr_usr_id').AsInteger        := Contract_user.ctr_usr_id;
      ParamByName('p_ctr_usr_first_name').AsString := Contract_user.ctr_usr_first_name;
      ParamByName('p_ctr_usr_last_name').AsString  := Contract_user.ctr_usr_last_name;
      ParamByName('p_ctr_usr_username').AsString   := Contract_user.ctr_usr_username;
+     ParamByName('p_ctr_usr_password').AsString   := Contract_user.ctr_usr_password;
      ParamByName('p_ctr_usr_email').AsString      := Contract_user.ctr_usr_email;
      ParamByName('p_ctr_usr_dt_birth').Value      := Contract_user.ctr_usr_dt_birth;
      ParamByName('p_ctr_usr_admin').AsString      := Contract_user.ctr_usr_admin;

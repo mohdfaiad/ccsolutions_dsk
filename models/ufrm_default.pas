@@ -123,11 +123,29 @@ type
     chkbox_1: TcxCheckBox;
     qry: TFDQuery;
     schadp: TFDSchemaAdapter;
+    memTable: TFDMemTable;
     procedure dsStateChange(Sender: TObject);
     procedure Action_closeExecute(Sender: TObject);
     procedure Action_importExecute(Sender: TObject);
     procedure Action_exportExecute(Sender: TObject);
-    procedure actionButton;
+    procedure actionButton(Status : BOOL);
+    procedure FormShow(Sender: TObject);
+    procedure btn_insertClick(Sender: TObject);
+    procedure btn_saveClick(Sender: TObject);
+    procedure Action_insertExecute(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure cxGridDBTableView1CellDblClick(Sender: TcxCustomGridTableView;
+      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
+    procedure cxGridDBTableView1KeyPress(Sender: TObject; var Key: Char);
+    procedure Action_firstExecute(Sender: TObject);
+    procedure Action_priorExecute(Sender: TObject);
+    procedure Action_nextExecute(Sender: TObject);
+    procedure Action_lastExecute(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
+    procedure Action_refreshExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -143,19 +161,27 @@ implementation
 
 { Tfrm_default }
 
-procedure Tfrm_default.actionButton;
+procedure Tfrm_default.actionButton(Status : BOOL);
 begin
-  Action_first.Enabled := False;
-  Action_prior.Enabled := False;
-  Action_next.Enabled := False;
-  Action_last.Enabled := False;
-  Action_insert.Enabled := False;
-  Action_edit.Enabled := False;
-  Action_save.Enabled := True;
-  Action_cancel.Enabled := True;
-  Action_delete.Enabled := False;
-  Action_refresh.Enabled := False;
-  Action_close.Enabled := False;action
+
+  Action_first.Enabled   := Status;
+  Action_prior.Enabled   := Status;
+  Action_next.Enabled    := Status;
+  Action_last.Enabled    := Status;
+  Action_insert.Enabled  := Status;
+  Action_edit.Enabled    := Status;
+  Action_save.Enabled    := not Status;
+  Action_cancel.Enabled  := not Status;
+  Action_delete.Enabled  := Status;
+  Action_refresh.Enabled := Status;
+  Action_close.Enabled   := Status;
+
+end;
+
+procedure Tfrm_default.Action_cancelExecute(Sender: TObject);
+begin
+  actionButton(True);
+  tbsht_1.Show;
 end;
 
 procedure Tfrm_default.Action_closeExecute(Sender: TObject);
@@ -163,14 +189,87 @@ begin
   Self.Close;
 end;
 
+procedure Tfrm_default.Action_deleteExecute(Sender: TObject);
+begin
+  actionButton(True);
+end;
+
+procedure Tfrm_default.Action_editExecute(Sender: TObject);
+begin
+  actionButton(False);
+  tbsht_2.Show;
+end;
+
 procedure Tfrm_default.Action_exportExecute(Sender: TObject);
 begin
   expw_1.Execute;
 end;
 
+procedure Tfrm_default.Action_firstExecute(Sender: TObject);
+begin
+  memTable.First;
+end;
+
 procedure Tfrm_default.Action_importExecute(Sender: TObject);
 begin
   impw_1.Execute;
+end;
+
+procedure Tfrm_default.Action_insertExecute(Sender: TObject);
+begin
+   actionButton(False);
+   tbsht_2.Show;
+
+end;
+
+procedure Tfrm_default.Action_lastExecute(Sender: TObject);
+begin
+   memTable.Last;;
+end;
+
+procedure Tfrm_default.Action_nextExecute(Sender: TObject);
+begin
+  memTable.Next;
+end;
+
+procedure Tfrm_default.Action_priorExecute(Sender: TObject);
+begin
+  memTable.Prior;
+end;
+
+procedure Tfrm_default.Action_refreshExecute(Sender: TObject);
+begin
+  actionButton(True);
+end;
+
+procedure Tfrm_default.Action_saveExecute(Sender: TObject);
+begin
+  actionButton(True);
+   tbsht_1.Show;
+end;
+
+procedure Tfrm_default.btn_insertClick(Sender: TObject);
+begin
+  Action_save.Enabled := True;
+  tbsht_2.Show;
+end;
+
+procedure Tfrm_default.btn_saveClick(Sender: TObject);
+begin
+  Action_insert.Enabled := True;
+  tbsht_1.Show;
+end;
+
+procedure Tfrm_default.cxGridDBTableView1CellDblClick(Sender: TcxCustomGridTableView;
+  ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
+begin
+  Action_edit.Execute;
+end;
+
+procedure Tfrm_default.cxGridDBTableView1KeyPress(Sender: TObject; var Key: Char);
+begin
+  if key =#13 then
+     Action_edit.Execute;
 end;
 
 procedure Tfrm_default.dsStateChange(Sender: TObject);
@@ -190,6 +289,18 @@ begin
     dsInternalCalc: ;
     dsOpening: ;
   end;
+end;
+
+procedure Tfrm_default.FormCreate(Sender: TObject);
+begin
+  tbsht_1.TabVisible := False;
+  tbsht_2.TabVisible := False;
+end;
+
+procedure Tfrm_default.FormShow(Sender: TObject);
+begin
+  tbsht_1.Show;
+  actionButton(True);
 end;
 
 end.

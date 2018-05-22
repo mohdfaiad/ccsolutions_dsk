@@ -3,7 +3,7 @@ object frm_default: Tfrm_default
   Top = 0
   Caption = 'Formul'#225'rio Default'
   ClientHeight = 661
-  ClientWidth = 1008
+  ClientWidth = 962
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,71 +11,72 @@ object frm_default: Tfrm_default
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poMainFormCenter
+  Position = poScreenCenter
   ShowHint = True
   Visible = True
+  OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bardck_1: TdxBarDockControl
     Left = 0
     Top = 0
-    Width = 1008
+    Width = 962
     Height = 55
     Align = dalTop
     BarManager = barman_1
+    ExplicitWidth = 1008
   end
   object pgctrl_1: TcxPageControl
     Left = 0
     Top = 55
-    Width = 1008
+    Width = 962
     Height = 571
     Align = alClient
     TabOrder = 1
-    Properties.ActivePage = tbsht_1
+    Properties.ActivePage = tbsht_2
     Properties.CustomButtons.Buttons = <>
     LookAndFeel.NativeStyle = False
+    ExplicitWidth = 1008
     ClientRectBottom = 565
     ClientRectLeft = 2
-    ClientRectRight = 1002
+    ClientRectRight = 956
     ClientRectTop = 27
     object tbsht_1: TcxTabSheet
       Caption = 'Registros'
       ImageIndex = 0
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
+      ExplicitWidth = 1000
       object pgctrl_2: TcxPageControl
         Left = 0
         Top = 0
-        Width = 1000
+        Width = 954
         Height = 538
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = tbsht_3
         Properties.CustomButtons.Buttons = <>
+        ExplicitWidth = 1000
         ClientRectBottom = 532
         ClientRectLeft = 2
-        ClientRectRight = 994
+        ClientRectRight = 948
         ClientRectTop = 27
         object tbsht_3: TcxTabSheet
           Caption = 'Registros'
           ImageIndex = 0
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
+          ExplicitWidth = 992
           object grid_1: TcxGrid
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 986
+            Width = 940
             Height = 499
             Align = alClient
             Images = imglist_1
             PopupMenu = popmenu_1
             TabOrder = 0
+            ExplicitWidth = 986
             object cxGridDBTableView1: TcxGridDBTableView
+              OnKeyPress = cxGridDBTableView1KeyPress
               Navigator.Buttons.ConfirmDelete = True
               Navigator.Buttons.CustomButtons = <>
               Navigator.Buttons.Images = imglist_1
@@ -108,12 +109,14 @@ object frm_default: Tfrm_default
               Navigator.InfoPanel.Visible = True
               Navigator.Visible = True
               FindPanel.InfoText = 'Valor para pequisa...'
+              OnCellDblClick = cxGridDBTableView1CellDblClick
               DataController.DataSource = ds
               DataController.Summary.DefaultGroupSummaryItems = <>
               DataController.Summary.FooterSummaryItems = <>
               DataController.Summary.SummaryGroups = <>
               Images = imglist_1
               NewItemRow.InfoText = 'Adicione uma nova linha clicando aqui...'
+              OptionsData.Editing = False
               OptionsView.NoDataToDisplayInfoText = 'Registro(s) n'#227'o encontrado(s).'
               OptionsView.Indicator = True
             end
@@ -127,36 +130,36 @@ object frm_default: Tfrm_default
     object tbsht_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
+      ExplicitWidth = 1000
       object pgctrl_3: TcxPageControl
         Left = 0
         Top = 0
-        Width = 1000
+        Width = 954
         Height = 538
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = tbsht_5
         Properties.CustomButtons.Buttons = <>
+        ExplicitWidth = 1000
         ClientRectBottom = 532
         ClientRectLeft = 2
-        ClientRectRight = 994
+        ClientRectRight = 948
         ClientRectTop = 27
         object tbsht_5: TcxTabSheet
           Caption = 'Informa'#231#245'es'
           ImageIndex = 0
+          ExplicitWidth = 992
           DesignSize = (
-            992
+            946
             505)
           object cxGroupBox1: TcxGroupBox
             Left = 3
             Top = 3
             Anchors = [akLeft, akTop, akRight]
             TabOrder = 0
+            ExplicitWidth = 986
             Height = 46
-            Width = 986
+            Width = 940
             object cxLabel1: TcxLabel
               Left = 3
               Top = 3
@@ -189,8 +192,9 @@ object frm_default: Tfrm_default
             Top = 55
             Anchors = [akLeft, akTop, akRight, akBottom]
             TabOrder = 1
+            ExplicitWidth = 986
             Height = 447
-            Width = 986
+            Width = 940
           end
         end
       end
@@ -199,7 +203,7 @@ object frm_default: Tfrm_default
   object stsbar_1: TdxStatusBar
     Left = 0
     Top = 626
-    Width = 1008
+    Width = 962
     Height = 35
     Panels = <
       item
@@ -213,10 +217,11 @@ object frm_default: Tfrm_default
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+    ExplicitWidth = 1008
     object stsbar_deleted_at: TdxStatusBarContainerControl
       Left = 1
       Top = 2
-      Width = 972
+      Width = 926
       Height = 32
       object chkbox_1: TcxCheckBox
         Left = 0
@@ -226,6 +231,7 @@ object frm_default: Tfrm_default
         Properties.Alignment = taLeftJustify
         TabOrder = 0
         Transparent = True
+        ExplicitWidth = 972
       end
     end
   end
@@ -244,24 +250,28 @@ object frm_default: Tfrm_default
       Caption = 'Primeiro'
       Hint = 'Registro Primeiro'
       ImageIndex = 0
+      OnExecute = Action_firstExecute
     end
     object Action_prior: TAction
       Category = 'Manager'
       Caption = 'Anterior'
       Hint = 'Registro Anterior'
       ImageIndex = 1
+      OnExecute = Action_priorExecute
     end
     object Action_next: TAction
       Category = 'Manager'
       Caption = 'Pr'#243'ximo'
       Hint = 'Pr'#243'ximo Registro'
       ImageIndex = 2
+      OnExecute = Action_nextExecute
     end
     object Action_last: TAction
       Category = 'Manager'
       Caption = #218'ltimo'
       Hint = #218'ltimo Registro'
       ImageIndex = 3
+      OnExecute = Action_lastExecute
     end
     object Action_insert: TAction
       Category = 'Manager'
@@ -269,6 +279,7 @@ object frm_default: Tfrm_default
       Hint = 'Inserir Registro'
       ImageIndex = 4
       ShortCut = 16457
+      OnExecute = Action_insertExecute
     end
     object Action_edit: TAction
       Category = 'Manager'
@@ -276,6 +287,7 @@ object frm_default: Tfrm_default
       Hint = 'Editar Registro'
       ImageIndex = 5
       ShortCut = 16453
+      OnExecute = Action_editExecute
     end
     object Action_cancel: TAction
       Category = 'Manager'
@@ -283,6 +295,7 @@ object frm_default: Tfrm_default
       Hint = 'Cancelar Altera'#231#245'es'
       ImageIndex = 7
       ShortCut = 16462
+      OnExecute = Action_cancelExecute
     end
     object Action_save: TAction
       Category = 'Manager'
@@ -290,6 +303,7 @@ object frm_default: Tfrm_default
       Hint = 'Salvar Altera'#231#245'es'
       ImageIndex = 6
       ShortCut = 16467
+      OnExecute = Action_saveExecute
     end
     object Action_delete: TAction
       Category = 'Manager'
@@ -297,6 +311,7 @@ object frm_default: Tfrm_default
       Hint = 'Excluir Registro'
       ImageIndex = 8
       ShortCut = 16452
+      OnExecute = Action_deleteExecute
     end
     object Action_refresh: TAction
       Category = 'Manager'
@@ -304,6 +319,7 @@ object frm_default: Tfrm_default
       Hint = 'Atualizar Informa'#231#245'es'
       ImageIndex = 9
       ShortCut = 16500
+      OnExecute = Action_refreshExecute
     end
     object Action_close: TAction
       Category = 'Form'
@@ -631,9 +647,10 @@ object frm_default: Tfrm_default
     Top = 8
   end
   object ds: TDataSource
+    DataSet = memTable
     OnStateChange = dsStateChange
-    Left = 720
-    Top = 8
+    Left = 832
+    Top = 120
   end
   object impw_1: TQImport3Wizard
     Formats.DecimalSeparator = ','
@@ -702,7 +719,7 @@ object frm_default: Tfrm_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ';'
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
+    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET
@@ -1519,5 +1536,16 @@ object frm_default: Tfrm_default
   object schadp: TFDSchemaAdapter
     Left = 656
     Top = 8
+  end
+  object memTable: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 792
+    Top = 120
   end
 end

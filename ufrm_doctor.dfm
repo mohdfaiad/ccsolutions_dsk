@@ -4,45 +4,31 @@ inherited frm_doctor: Tfrm_doctor
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
     Properties.ActivePage = tbsht_2
-    inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
-      ExplicitWidth = 1000
-      ExplicitHeight = 538
-      inherited pgctrl_2: TcxPageControl
-        inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
-          ExplicitWidth = 992
-          ExplicitHeight = 505
-        end
-      end
-    end
     inherited tbsht_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
-      ExplicitWidth = 1000
-      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         inherited tbsht_5: TcxTabSheet
           inherited cxGroupBox2: TcxGroupBox
             object cxDBLookupComb_Doctor: TcxDBLookupComboBox
-              Left = 24
+              Left = 3
               Top = 32
+              DataBinding.DataField = 'employee_emp_cod'
+              DataBinding.DataSource = ds
               Properties.ListColumns = <>
               TabOrder = 0
               Width = 321
             end
             object DBComBox_Status: TDBComboBox
-              Left = 368
+              Left = 347
               Top = 32
               Width = 145
               Height = 21
+              DataField = 'emp_status'
+              DataSource = ds
               TabOrder = 1
             end
             object cxGroupBox3: TcxGroupBox
-              Left = 24
-              Top = 72
+              Left = 3
+              Top = 80
               Caption = 'Especialidades do Proficional'
               TabOrder = 2
               Height = 273
@@ -54,12 +40,36 @@ inherited frm_doctor: Tfrm_doctor
                 Height = 251
                 Align = alClient
                 TabOrder = 0
-                ExplicitLeft = -16
-                ExplicitTop = 20
-                ExplicitWidth = 505
-                ExplicitHeight = 249
                 object cxGrid1DBTableView1: TcxGridDBTableView
+                  Navigator.Buttons.ConfirmDelete = True
                   Navigator.Buttons.CustomButtons = <>
+                  Navigator.Buttons.Images = imglist_1
+                  Navigator.Buttons.First.ImageIndex = 0
+                  Navigator.Buttons.First.Visible = True
+                  Navigator.Buttons.PriorPage.Visible = False
+                  Navigator.Buttons.Prior.ImageIndex = 1
+                  Navigator.Buttons.Prior.Visible = True
+                  Navigator.Buttons.Next.ImageIndex = 2
+                  Navigator.Buttons.Next.Visible = True
+                  Navigator.Buttons.NextPage.ImageIndex = 3
+                  Navigator.Buttons.NextPage.Visible = False
+                  Navigator.Buttons.Last.ImageIndex = 3
+                  Navigator.Buttons.Last.Visible = True
+                  Navigator.Buttons.Insert.Visible = False
+                  Navigator.Buttons.Append.ImageIndex = 4
+                  Navigator.Buttons.Append.Visible = True
+                  Navigator.Buttons.Delete.ImageIndex = 8
+                  Navigator.Buttons.Delete.Visible = True
+                  Navigator.Buttons.Edit.ImageIndex = 5
+                  Navigator.Buttons.Edit.Visible = True
+                  Navigator.Buttons.Post.ImageIndex = 6
+                  Navigator.Buttons.Post.Visible = True
+                  Navigator.Buttons.Cancel.ImageIndex = 6
+                  Navigator.Buttons.Refresh.ImageIndex = 9
+                  Navigator.Buttons.Refresh.Visible = True
+                  Navigator.Buttons.SaveBookmark.Visible = False
+                  Navigator.Buttons.Filter.ImageIndex = 11
+                  Navigator.Visible = True
                   DataController.DataSource = ds_role_employee
                   DataController.Summary.DefaultGroupSummaryItems = <>
                   DataController.Summary.FooterSummaryItems = <>
@@ -93,18 +103,33 @@ inherited frm_doctor: Tfrm_doctor
                 end
               end
             end
+            object cxLabel3: TcxLabel
+              Left = 3
+              Top = 12
+              Caption = 'Proficional'
+              Transparent = True
+            end
+            object cxLabel4: TcxLabel
+              Left = 347
+              Top = 12
+              Caption = 'Status'
+              Transparent = True
+            end
           end
         end
       end
     end
   end
-  inherited stsbar_1: TdxStatusBar
-    inherited stsbar_deleted_at: TdxStatusBarContainerControl
-      inherited chkbox_1: TcxCheckBox
-        ExplicitWidth = 972
-        ExplicitHeight = 32
-      end
+  inherited barman_1: TdxBarManager
+    object dxBarButton1: TdxBarButton
+      Caption = 'Doctor'
+      Category = 0
+      Hint = 'Doctor'
+      Visible = ivAlways
     end
+  end
+  inherited ds: TDataSource
+    DataSet = qry
   end
   inherited impw_1: TQImport3Wizard
     Formats.ShortDateFormat = 'dd/MM/yyyy'
@@ -129,7 +154,9 @@ inherited frm_doctor: Tfrm_doctor
     Style = <>
   end
   inherited qry: TFDQuery
+    CachedUpdates = True
     Connection = frm_dm.connCCS
+    SchemaAdapter = schadp
     SQL.Strings = (
       
         'select d.doc_cod, d.contract_ctr_cod, d.employee_emp_cod, d.role' +
@@ -214,7 +241,7 @@ inherited frm_doctor: Tfrm_doctor
       Size = 1
     end
   end
-  object qry_doctor: TFDQuery
+  object qry_doctor: TFDQuery [17]
     CachedUpdates = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
@@ -225,13 +252,68 @@ inherited frm_doctor: Tfrm_doctor
       'inner join record as r on e.record_rec_cod = r.rec_cod')
     Left = 784
     Top = 176
+    object qry_doctoremp_cod: TBytesField
+      FieldName = 'emp_cod'
+      Origin = 'emp_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_doctorcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_doctoremp_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_id'
+      Origin = 'emp_id'
+    end
+    object qry_doctorrec_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_name'
+      Origin = 'rec_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object qry_doctorrec_nickname: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_nickname'
+      Origin = 'rec_nickname'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
+    object qry_doctorrec_sex: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_sex'
+      Origin = 'rec_sex'
+      ProviderFlags = []
+      ReadOnly = True
+      FixedChar = True
+      Size = 1
+    end
+    object qry_doctoremp_type: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_type'
+      Origin = 'emp_type'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_doctoremp_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_status'
+      Origin = 'emp_status'
+      FixedChar = True
+      Size = 1
+    end
   end
-  object ds_Doctor: TDataSource
+  object ds_Doctor: TDataSource [18]
     DataSet = qry_doctor
     Left = 840
     Top = 176
   end
-  object qry_role_employee: TFDQuery
+  object qry_role_employee: TFDQuery [19]
     Connection = frm_dm.connCCS
     SQL.Strings = (
       ' select * from role_employee'#10' where roe_cod =:role_rol_cod')
@@ -281,7 +363,7 @@ inherited frm_doctor: Tfrm_doctor
       Origin = 'roe_dt_registration'
     end
   end
-  object ds_role_employee: TDataSource
+  object ds_role_employee: TDataSource [20]
     DataSet = qry_role_employee
     Left = 672
     Top = 336

@@ -7,8 +7,8 @@ inherited frm_employee: Tfrm_employee
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1rec_id: TcxGridDBColumn
@@ -170,8 +170,8 @@ inherited frm_employee: Tfrm_employee
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             ShowDesignSelectors = False
             HighlightRoot = False
@@ -458,6 +458,10 @@ inherited frm_employee: Tfrm_employee
         end
         object cxTabSheet3: TcxTabSheet
           Caption = 'Documentos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl3: TdxLayoutControl
             Left = 0
             Top = 0
@@ -831,6 +835,10 @@ inherited frm_employee: Tfrm_employee
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -967,7 +975,6 @@ inherited frm_employee: Tfrm_employee
               AlignVert = avTop
               ButtonOptions.Buttons = <>
               Hidden = True
-              ItemIndex = 1
               ShowBorder = False
               Index = -1
             end
@@ -977,7 +984,6 @@ inherited frm_employee: Tfrm_employee
               AlignVert = avTop
               CaptionOptions.Text = 'Endere'#231'o'
               ButtonOptions.Buttons = <>
-              ItemIndex = 1
               Index = 0
             end
             object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
@@ -1175,11 +1181,8 @@ inherited frm_employee: Tfrm_employee
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
-    CachedUpdates = True
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
       'select * from record')
     object qryrec_id: TFDAutoIncField

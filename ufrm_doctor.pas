@@ -60,6 +60,17 @@ type
     cxGrid1DBTableView1roe_id: TcxGridDBColumn;
     cxGrid1DBTableView1roe_deleted_at: TcxGridDBColumn;
     cxGrid1DBTableView1roe_dt_registration: TcxGridDBColumn;
+    cxLabel3: TcxLabel;
+    cxLabel4: TcxLabel;
+    qry_doctoremp_cod: TBytesField;
+    qry_doctorcontract_ctr_cod: TBytesField;
+    qry_doctoremp_id: TLongWordField;
+    qry_doctorrec_name: TStringField;
+    qry_doctorrec_nickname: TStringField;
+    qry_doctorrec_sex: TStringField;
+    qry_doctoremp_type: TStringField;
+    qry_doctoremp_status: TStringField;
+    dxBarButton1: TdxBarButton;
   private
     { Private declarations }
   public

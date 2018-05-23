@@ -19,8 +19,6 @@ inherited frm_employee_: Tfrm_employee_
     ClientRectBottom = 629
     ClientRectRight = 964
     inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 962
       ExplicitHeight = 602
       inherited pgctrl_2: TcxPageControl
@@ -31,8 +29,6 @@ inherited frm_employee_: Tfrm_employee_
         ClientRectBottom = 596
         ClientRectRight = 956
         inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
           ExplicitWidth = 954
           ExplicitHeight = 569
           inherited grid_1: TcxGrid
@@ -170,8 +166,6 @@ inherited frm_employee_: Tfrm_employee_
       end
     end
     inherited tbsht_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 962
       ExplicitHeight = 602
       inherited pgctrl_3: TcxPageControl
@@ -196,68 +190,77 @@ inherited frm_employee_: Tfrm_employee_
             object edtNome: TcxTextEdit
               Left = 3
               Top = 29
+              Properties.CharCase = ecUpperCase
               TabOrder = 0
               Width = 342
             end
             object edtApelido: TcxTextEdit
               Left = 3
               Top = 71
+              Properties.CharCase = ecUpperCase
               TabOrder = 1
               Width = 173
             end
             object edtPai: TcxTextEdit
               Left = 3
               Top = 197
-              TabOrder = 2
+              Properties.CharCase = ecUpperCase
+              TabOrder = 7
               Width = 342
             end
             object edtDataNasc: TcxDateEdit
               Left = 185
               Top = 71
-              TabOrder = 3
+              TabOrder = 2
               Width = 160
             end
             object cxCombxSexo: TcxComboBox
               Left = 3
               Top = 113
+              Properties.CharCase = ecUpperCase
               Properties.Items.Strings = (
                 'M - MASCULINO'
                 'F  - FEMININO')
-              TabOrder = 4
+              TabOrder = 3
               Width = 173
             end
             object cxComboxEstadoCivil: TcxComboBox
               Left = 185
               Top = 113
+              Properties.CharCase = ecUpperCase
               Properties.Items.Strings = (
                 'S - SOLTEIRO '
                 'C - CASADO'
                 'D - DIVORCIADO')
-              TabOrder = 5
+              TabOrder = 4
               Width = 160
             end
             object edtMae: TcxTextEdit
               Left = 3
               Top = 239
-              TabOrder = 6
+              Properties.CharCase = ecUpperCase
+              TabOrder = 8
               Width = 342
             end
             object edtNacionalidade: TcxTextEdit
               Left = 3
               Top = 281
-              TabOrder = 7
+              Properties.CharCase = ecUpperCase
+              TabOrder = 9
               Width = 173
             end
             object edtNaturCidade: TcxTextEdit
               Left = 185
               Top = 281
-              TabOrder = 8
+              Properties.CharCase = ecUpperCase
+              TabOrder = 10
               Width = 160
             end
             object edtNaturUF: TcxTextEdit
               Left = 3
               Top = 323
-              TabOrder = 9
+              Properties.CharCase = ecUpperCase
+              TabOrder = 11
               Width = 173
             end
             object cxLabel3: TcxLabel
@@ -323,19 +326,21 @@ inherited frm_employee_: Tfrm_employee_
             object cxComboxTipo: TcxComboBox
               Left = 3
               Top = 155
+              Properties.CharCase = ecUpperCase
               Properties.Items.Strings = (
                 'F - FUNCIONARIO'
                 'T - TERCEIRIZADO')
-              TabOrder = 20
+              TabOrder = 5
               Width = 173
             end
             object cxComboxStatus: TcxComboBox
               Left = 185
               Top = 155
+              Properties.CharCase = ecUpperCase
               Properties.Items.Strings = (
-                'S - SIM'
-                'N - N'#195'O')
-              TabOrder = 21
+                'A - ATIVO'
+                'D - DESATIVADO')
+              TabOrder = 6
               Width = 160
             end
             object cxLabel40: TcxLabel
@@ -374,7 +379,7 @@ inherited frm_employee_: Tfrm_employee_
             object edtCNH_Numero: TcxTextEdit
               Left = 7
               Top = 118
-              TabOrder = 1
+              TabOrder = 6
               Width = 150
             end
             object cxLabel14: TcxLabel
@@ -386,7 +391,7 @@ inherited frm_employee_: Tfrm_employee_
             object edtRG: TcxTextEdit
               Left = 165
               Top = 34
-              TabOrder = 3
+              TabOrder = 1
               Width = 150
             end
             object cxLabel15: TcxLabel
@@ -398,7 +403,7 @@ inherited frm_employee_: Tfrm_employee_
             object edtCart_Trabalho_Numero: TcxTextEdit
               Left = 323
               Top = 34
-              TabOrder = 5
+              TabOrder = 2
               Width = 150
             end
             object cxLabel17: TcxLabel
@@ -410,13 +415,13 @@ inherited frm_employee_: Tfrm_employee_
             object edtSecao_Eleitoral: TcxTextEdit
               Left = 7
               Top = 202
-              TabOrder = 7
+              TabOrder = 12
               Width = 150
             end
             object edtCPF: TcxMaskEdit
               Left = 7
               Top = 34
-              TabOrder = 8
+              TabOrder = 0
               Width = 150
             end
             object cxLabel20: TcxLabel
@@ -428,7 +433,7 @@ inherited frm_employee_: Tfrm_employee_
             object edtCart_Trabalho_Serie: TcxTextEdit
               Left = 7
               Top = 76
-              TabOrder = 10
+              TabOrder = 3
               Width = 150
             end
             object cxLabel16: TcxLabel
@@ -446,7 +451,7 @@ inherited frm_employee_: Tfrm_employee_
             object edtCart_Trabalho_EstadoUF: TcxTextEdit
               Left = 323
               Top = 76
-              TabOrder = 13
+              TabOrder = 5
               Width = 150
             end
             object cxLabel19: TcxLabel
@@ -458,13 +463,13 @@ inherited frm_employee_: Tfrm_employee_
             object edtCNH_Categoria: TcxTextEdit
               Left = 165
               Top = 118
-              TabOrder = 15
+              TabOrder = 7
               Width = 150
             end
             object edtTitulo_Eleitor: TcxTextEdit
               Left = 165
               Top = 160
-              TabOrder = 16
+              TabOrder = 10
               Width = 150
             end
             object cxLabel21: TcxLabel
@@ -476,7 +481,7 @@ inherited frm_employee_: Tfrm_employee_
             object edtCAM_Numero: TcxTextEdit
               Left = 7
               Top = 160
-              TabOrder = 18
+              TabOrder = 9
               Width = 150
             end
             object cxLabel22: TcxLabel
@@ -488,7 +493,7 @@ inherited frm_employee_: Tfrm_employee_
             object edtZona_Eleitoral: TcxTextEdit
               Left = 323
               Top = 160
-              TabOrder = 20
+              TabOrder = 11
               Width = 150
             end
             object cxLabel23: TcxLabel
@@ -500,13 +505,13 @@ inherited frm_employee_: Tfrm_employee_
             object edtCart_Trabalho_Dt_Emissao: TcxDateEdit
               Left = 165
               Top = 76
-              TabOrder = 22
+              TabOrder = 4
               Width = 150
             end
             object edtCNH_Dt_Exp: TcxDateEdit
               Left = 323
               Top = 118
-              TabOrder = 23
+              TabOrder = 8
               Width = 150
             end
             object cxLabel24: TcxLabel
@@ -530,7 +535,7 @@ inherited frm_employee_: Tfrm_employee_
             object edtCRM_Numero: TcxTextEdit
               Left = 165
               Top = 202
-              TabOrder = 27
+              TabOrder = 13
               Width = 150
             end
           end
@@ -563,7 +568,8 @@ inherited frm_employee_: Tfrm_employee_
             object edtRua: TcxTextEdit
               Left = 10
               Top = 75
-              TabOrder = 2
+              Properties.CharCase = ecUpperCase
+              TabOrder = 1
               Width = 273
             end
             object cxLabel33: TcxLabel
@@ -575,7 +581,8 @@ inherited frm_employee_: Tfrm_employee_
             object edtBairro: TcxTextEdit
               Left = 382
               Top = 75
-              TabOrder = 4
+              Properties.CharCase = ecUpperCase
+              TabOrder = 3
               Width = 190
             end
             object btnEditCEP: TcxButtonEdit
@@ -586,25 +593,29 @@ inherited frm_employee_: Tfrm_employee_
                   Default = True
                   Kind = bkEllipsis
                 end>
-              TabOrder = 5
+              Properties.OnButtonClick = btnEditCEPPropertiesButtonClick
+              TabOrder = 0
               Width = 150
             end
             object edtComplemento: TcxTextEdit
               Left = 8
               Top = 117
-              TabOrder = 6
+              Properties.CharCase = ecUpperCase
+              TabOrder = 4
               Width = 150
             end
             object edtCidade: TcxTextEdit
               Left = 167
               Top = 117
-              TabOrder = 7
+              Properties.CharCase = ecUpperCase
+              TabOrder = 5
               Width = 207
             end
             object edtUF_End: TcxTextEdit
               Left = 382
               Top = 117
-              TabOrder = 8
+              Properties.CharCase = ecUpperCase
+              TabOrder = 6
               Width = 68
             end
             object cxLabel27: TcxLabel
@@ -634,7 +645,8 @@ inherited frm_employee_: Tfrm_employee_
             object edtPais_End: TcxTextEdit
               Left = 459
               Top = 117
-              TabOrder = 13
+              Properties.CharCase = ecUpperCase
+              TabOrder = 7
               Width = 116
             end
             object cxLabel36: TcxLabel
@@ -646,7 +658,7 @@ inherited frm_employee_: Tfrm_employee_
             object edtNumero_Casa: TcxTextEdit
               Left = 289
               Top = 75
-              TabOrder = 15
+              TabOrder = 2
               Width = 85
             end
           end
@@ -660,7 +672,7 @@ inherited frm_employee_: Tfrm_employee_
             object edtContato_Tel: TcxTextEdit
               Left = 8
               Top = 110
-              TabOrder = 0
+              TabOrder = 4
               Width = 309
             end
             object cxLabel29: TcxLabel
@@ -679,7 +691,7 @@ inherited frm_employee_: Tfrm_employee_
               Left = 8
               Top = 26
               Properties.EditMask = '!\(99\)00000-0000;0;_'
-              TabOrder = 3
+              TabOrder = 0
               Text = '           '
               Width = 150
             end
@@ -693,7 +705,7 @@ inherited frm_employee_: Tfrm_employee_
               Left = 167
               Top = 26
               Properties.EditMask = '!\(99\)00000-0000;0;_'
-              TabOrder = 5
+              TabOrder = 1
               Text = '           '
               Width = 150
             end
@@ -701,7 +713,7 @@ inherited frm_employee_: Tfrm_employee_
               Left = 167
               Top = 68
               Properties.EditMask = '!\(99\)00000-0000;0;_'
-              TabOrder = 6
+              TabOrder = 3
               Text = '           '
               Width = 150
             end
@@ -709,7 +721,7 @@ inherited frm_employee_: Tfrm_employee_
               Left = 8
               Top = 68
               Properties.EditMask = '!\(99\)00000-0000;0;_'
-              TabOrder = 7
+              TabOrder = 2
               Text = '           '
               Width = 150
             end
@@ -740,7 +752,6 @@ inherited frm_employee_: Tfrm_employee_
       ExplicitWidth = 934
       inherited chkbox_1: TcxCheckBox
         ExplicitWidth = 934
-        ExplicitHeight = 32
       end
     end
   end
@@ -1523,5 +1534,9 @@ inherited frm_employee_: Tfrm_employee_
       ProviderFlags = []
       ReadOnly = True
     end
+  end
+  inherited ACBrCEP1: TACBrCEP
+    WebService = wsRepublicaVirtual
+    OnBuscaEfetuada = ACBrCEP_1BuscaEfetuada
   end
 end

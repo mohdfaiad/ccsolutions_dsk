@@ -79,6 +79,7 @@ begin
 
     with FDStoredProc do
      begin
+
      StoredProcName := 'proc_contract_user_update';
 
      Prepare;

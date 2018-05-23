@@ -22,7 +22,7 @@ uses
   ACBrEnterTab, Vcl.Menus, dxBar, cxBarEditItem, cxClasses, System.Actions, Vcl.ActnList, cxCheckBox, dxStatusBar,
   cxTextEdit, cxLabel, cxGroupBox, cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, Vcl.ComCtrls, dxCore, cxDateUtils, Vcl.ExtCtrls, cxDropDownEdit, cxMaskEdit,
-  cxCalendar, cxButtonEdit, Employee.Model, Employee.Dao;
+  cxCalendar, cxButtonEdit, ACBrSocket, ACBrCEP;
 type
   Tfrm_employee_ = class(Tfrm_default)
     tbsht_documentos: TcxTabSheet;
@@ -254,10 +254,15 @@ type
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
+    procedure btnEditCEPPropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
+
+     procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+
+
      procedure ExibirRegistros;
      procedure LimpaCampos;
      procedure PreecherCampos;
@@ -271,9 +276,26 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, Employee.Dao, Employee.Model;
 
 { Tfrm_default1 }
+
+procedure Tfrm_employee_.ACBrCEP_1BuscaEfetuada(Sender: TObject);
+ var
+  i:Integer;
+begin
+  inherited;
+  for I := 0 to ACBrCEP1.Enderecos.Count -1 do
+    begiN
+     edtRua.Text            := ACBrCEP1.Enderecos[i].Logradouro;
+     edtBairro.Text         := ACBrCEP1.Enderecos[i].Bairro;
+     edtComplemento.Text    := ACBrCEP1.Enderecos[i].Complemento;
+     edtCidade.Text    	    := ACBrCEP1.Enderecos[i].Municipio;
+     edtUF_End.Text         := ACBrCEP1.Enderecos[i].UF;
+     edtPais_End.Text       := 'BRASIL';
+     edtNumero_Casa.SetFocus;
+    end;
+end;
 
 procedure Tfrm_employee_.Action_editExecute(Sender: TObject);
 begin
@@ -294,25 +316,22 @@ end;
 procedure Tfrm_employee_.Action_saveExecute(Sender: TObject);
  var
   Employee: TEmployeeModel;
-  Dao     : TEmployee_Dao;
+  Dao : TEmployee_Dao;
 begin
 
-     Employee := TEmployeeModel.Create;
-     Dao      := TEmployee_Dao.Create;
+     Employee    := TEmployeeModel.Create;
+     Dao         := TEmployee_Dao.Create;
 
      try
-         //Tag = 1 para Inserir
-     if Self.Tag = 1 then
-      begin
 
        Employee.ctr_id                := 1;      //#Falta pegar ID do Contrato
        Employee.rec_name              := edtNome.Text;
        Employee.rec_nickname          := edtApelido.Text;
        Employee.rec_dt_birth          := edtDataNasc.Date;
-       Employee.rec_sex               := cxCombxSexo.Text;
+       Employee.rec_sex               := Copy(cxCombxSexo.Text,0,1);
        Employee.rec_status_marital    := cxComboxEstadoCivil.Text;
-       Employee.emp_type              := cxComboxTipo.Text;
-       Employee.emp_status            := cxComboxStatus.Text;
+       Employee.emp_type              :=Copy(cxComboxTipo.Text,0,1);
+       Employee.emp_status            := Copy(cxComboxStatus.Text,0,1);
        Employee.rec_father_name       := edtPai.Text;
        Employee.rec_mother_name       := edtMae.Text;
        Employee.rec_nationality       := edtNacionalidade.Text;
@@ -346,6 +365,10 @@ begin
        Employee.rec_phone4            := edtTel_4.Text;
        Employee.rec_contact           := edtContato_Tel.Text;
 
+                    //Tag = 1 para Inserir
+    if Self.Tag = 1 then
+      begin
+
        Dao.Employee_Create(Employee);
 
       end       //Tag = 2 para Alterar
@@ -353,46 +376,6 @@ begin
         begin
            Employee.rec_id  := memTablerec_id.AsInteger;
            Employee.emp_id  := memTableemp_id.AsInteger;
-
-           Employee.rec_name              := edtNome.Text;
-           Employee.rec_nickname          := edtApelido.Text;
-           Employee.rec_dt_birth          := edtDataNasc.Date;
-           Employee.rec_sex               := cxCombxSexo.Text;
-           Employee.rec_status_marital    := cxComboxEstadoCivil.Text;
-           Employee.emp_type              := cxComboxTipo.Text;
-           Employee.emp_status            := cxComboxStatus.Text;
-           Employee.rec_father_name       := edtPai.Text;
-           Employee.rec_mother_name       := edtMae.Text;
-           Employee.rec_nationality       := edtNacionalidade.Text;
-           Employee.rec_naturalness_city  := edtNaturCidade.Text;
-           Employee.rec_naturalness_uf    := edtNaturUF.Text;
-           Employee.rec_cpf_number        := edtCPF.Text;
-           Employee.rec_rg_number         := edtRG.Text;
-           Employee.rec_ctps_number       := edtCart_Trabalho_Numero.Text;
-           Employee.rec_ctps_serial       := edtCart_Trabalho_Serie.Text;
-           Employee.rec_ctps_date         := edtCart_Trabalho_Dt_Emissao.Date;
-           Employee.rec_ctps_state        := edtCart_Trabalho_EstadoUF.Text;
-           Employee.rec_cnh_number        := edtCNH_Numero.Text;
-           Employee.rec_chn_category      := edtCNH_Categoria.Text;
-           Employee.rec_cnh_dt_expiration := edtCNH_Dt_Exp.Date;
-           Employee.rec_cam_number        := edtCAM_Numero.Text;
-           Employee.rec_te_number         := edtTitulo_Eleitor.Text;
-           Employee.rec_te_zone           := edtZona_Eleitoral.Text;
-           Employee.rec_te_section        := edtSecao_Eleitoral.Text;
-           Employee.rec_crm_number        := edtCRM_Numero.Text;
-           Employee.rec_add_zipcode       := btnEditCEP.Text;
-           Employee.rec_add_address       := edtRua.Text;
-           Employee.rec_add_number        := edtNumero_Casa.Text;
-           Employee.rec_add_street        := edtBairro.Text;
-           Employee.rec_add_complement    := edtComplemento.Text;
-           Employee.rec_add_city          := edtCidade.Text;
-           Employee.rec_add_state         := edtUF_End.Text;
-           Employee.rec_add_country       := edtPais_End.Text;
-           Employee.rec_phone1            := edtTel_1.Text;
-           Employee.rec_phone2            := edtTel_2.Text;
-           Employee.rec_phone3            := edtTel_3.Text;
-           Employee.rec_phone4            := edtTel_4.Text;
-           Employee.rec_contact           := edtContato_Tel.Text;
 
            Dao.Employee_Update(Employee);
 
@@ -404,6 +387,13 @@ begin
      end;
   inherited;
 
+end;
+
+procedure Tfrm_employee_.btnEditCEPPropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
+
+begin
+  inherited;
+     ACBrCEP1.BuscarPorCEP(btnEditCEP.Text);
 end;
 
 procedure Tfrm_employee_.ExibirRegistros;
@@ -499,6 +489,7 @@ begin
       edtTel_3.Text                     := memTablerec_phone3.AsString;
       edtTel_4.Text                     := memTablerec_phone4.AsString;
       edtContato_Tel.Text               := memTablerec_contact.AsString;
+      edtNome.SetFocus;
 
 end;
 

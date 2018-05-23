@@ -10,10 +10,10 @@ object frm_default: Tfrm_default
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
   Position = poScreenCenter
   ShowHint = True
-  Visible = True
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -25,7 +25,6 @@ object frm_default: Tfrm_default
     Height = 55
     Align = dalTop
     BarManager = barman_1
-    ExplicitWidth = 1008
   end
   object pgctrl_1: TcxPageControl
     Left = 0
@@ -37,7 +36,6 @@ object frm_default: Tfrm_default
     Properties.ActivePage = tbsht_2
     Properties.CustomButtons.Buttons = <>
     LookAndFeel.NativeStyle = False
-    ExplicitWidth = 1008
     ClientRectBottom = 565
     ClientRectLeft = 2
     ClientRectRight = 956
@@ -45,7 +43,6 @@ object frm_default: Tfrm_default
     object tbsht_1: TcxTabSheet
       Caption = 'Registros'
       ImageIndex = 0
-      ExplicitWidth = 1000
       object pgctrl_2: TcxPageControl
         Left = 0
         Top = 0
@@ -55,7 +52,6 @@ object frm_default: Tfrm_default
         TabOrder = 0
         Properties.ActivePage = tbsht_3
         Properties.CustomButtons.Buttons = <>
-        ExplicitWidth = 1000
         ClientRectBottom = 532
         ClientRectLeft = 2
         ClientRectRight = 948
@@ -63,7 +59,6 @@ object frm_default: Tfrm_default
         object tbsht_3: TcxTabSheet
           Caption = 'Registros'
           ImageIndex = 0
-          ExplicitWidth = 992
           object grid_1: TcxGrid
             AlignWithMargins = True
             Left = 3
@@ -74,7 +69,6 @@ object frm_default: Tfrm_default
             Images = imglist_1
             PopupMenu = popmenu_1
             TabOrder = 0
-            ExplicitWidth = 986
             object cxGridDBTableView1: TcxGridDBTableView
               OnKeyPress = cxGridDBTableView1KeyPress
               Navigator.Buttons.ConfirmDelete = True
@@ -130,7 +124,6 @@ object frm_default: Tfrm_default
     object tbsht_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
-      ExplicitWidth = 1000
       object pgctrl_3: TcxPageControl
         Left = 0
         Top = 0
@@ -140,7 +133,6 @@ object frm_default: Tfrm_default
         TabOrder = 0
         Properties.ActivePage = tbsht_5
         Properties.CustomButtons.Buttons = <>
-        ExplicitWidth = 1000
         ClientRectBottom = 532
         ClientRectLeft = 2
         ClientRectRight = 948
@@ -148,7 +140,6 @@ object frm_default: Tfrm_default
         object tbsht_5: TcxTabSheet
           Caption = 'Informa'#231#245'es'
           ImageIndex = 0
-          ExplicitWidth = 992
           DesignSize = (
             946
             505)
@@ -157,7 +148,6 @@ object frm_default: Tfrm_default
             Top = 3
             Anchors = [akLeft, akTop, akRight]
             TabOrder = 0
-            ExplicitWidth = 986
             Height = 46
             Width = 940
             object cxLabel1: TcxLabel
@@ -192,7 +182,6 @@ object frm_default: Tfrm_default
             Top = 55
             Anchors = [akLeft, akTop, akRight, akBottom]
             TabOrder = 1
-            ExplicitWidth = 986
             Height = 447
             Width = 940
           end
@@ -217,7 +206,6 @@ object frm_default: Tfrm_default
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
-    ExplicitWidth = 1008
     object stsbar_deleted_at: TdxStatusBarContainerControl
       Left = 1
       Top = 2
@@ -231,7 +219,6 @@ object frm_default: Tfrm_default
         Properties.Alignment = taLeftJustify
         TabOrder = 0
         Transparent = True
-        ExplicitWidth = 972
       end
     end
   end
@@ -647,10 +634,10 @@ object frm_default: Tfrm_default
     Top = 8
   end
   object ds: TDataSource
-    DataSet = memTable
+    DataSet = mem
     OnStateChange = dsStateChange
-    Left = 832
-    Top = 120
+    Left = 720
+    Top = 8
   end
   object impw_1: TQImport3Wizard
     Formats.DecimalSeparator = ','
@@ -670,7 +657,7 @@ object frm_default: Tfrm_default
     FieldFormats = <>
     ErrorLogFileName = 'error.log'
     AddType = qatInsert
-    Left = 624
+    Left = 592
     Top = 8
   end
   object expw_1: TQExport4Dialog
@@ -719,7 +706,7 @@ object frm_default: Tfrm_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ';'
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
+    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET
@@ -851,7 +838,7 @@ object frm_default: Tfrm_default
     DocxOptions.FooterStyle.Font.Name = 'Calibri'
     DocxOptions.FooterStyle.Font.Style = []
     AccessOptions.TableName = 'EXPORT_TABLE'
-    Left = 592
+    Left = 560
     Top = 8
   end
   object popmenu_2: TPopupMenu
@@ -1488,7 +1475,7 @@ object frm_default: Tfrm_default
       'begin'
       ''
       'end.')
-    Left = 560
+    Left = 528
     Top = 8
     Datasets = <>
     Variables = <>
@@ -1516,7 +1503,7 @@ object frm_default: Tfrm_default
     CenterWindow = False
     PrintScaling = False
     PdfA = False
-    Left = 496
+    Left = 464
     Top = 8
   end
   object frxDOCXExport_1: TfrxDOCXExport
@@ -1526,7 +1513,7 @@ object frm_default: Tfrm_default
     DataOnly = False
     OpenAfterExport = False
     PictureType = gpPNG
-    Left = 528
+    Left = 496
     Top = 8
   end
   object qry: TFDQuery
@@ -1537,7 +1524,7 @@ object frm_default: Tfrm_default
     Left = 656
     Top = 8
   end
-  object memTable: TFDMemTable
+  object mem: TFDMemTable
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -1545,7 +1532,7 @@ object frm_default: Tfrm_default
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 792
-    Top = 120
+    Left = 624
+    Top = 8
   end
 end

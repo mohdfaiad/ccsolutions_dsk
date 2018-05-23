@@ -123,7 +123,7 @@ type
     chkbox_1: TcxCheckBox;
     qry: TFDQuery;
     schadp: TFDSchemaAdapter;
-    memTable: TFDMemTable;
+    mem: TFDMemTable;
     procedure dsStateChange(Sender: TObject);
     procedure Action_closeExecute(Sender: TObject);
     procedure Action_importExecute(Sender: TObject);

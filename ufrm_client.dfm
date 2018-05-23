@@ -457,6 +457,10 @@ inherited frm_client: Tfrm_client
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
           OnShow = cxTabSheet_addressShow
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1085,6 +1089,10 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Contatos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1226,6 +1234,10 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1335,6 +1347,10 @@ inherited frm_client: Tfrm_client
         end
         object tabLaboratorio: TcxTabSheet
           Caption = 'Laborat'#243'rio'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl5: TdxLayoutControl
             Left = 0
             Top = 0

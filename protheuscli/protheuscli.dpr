@@ -30,10 +30,19 @@ uses
   class_Conexao in '..\class_Conexao.pas',
   class_contract_user in '..\class_contract_user.pas',
   class_required_field in '..\class_required_field.pas',
+  Contract_user.Model in '..\Model\Contract_user.Model.pas',
+  Contract_User.Dao in '..\Dao\Contract_User.Dao.pas',
+  Conexao in '..\Dao\Conexao.pas',
+  ufrm_doctor in '..\ufrm_doctor.pas' {frm_doctor},
+  ufrm_employee in '..\ufrm_employee.pas' {frm_employee},
+  ufrm_employeee in '..\ufrm_employeee.pas' {frm_employee_},
+  Employee.Dao in '..\Dao\Employee.Dao.pas',
+  Employee.Model in '..\Model\Employee.Model.pas',
   ufrm_scheduling in '..\ufrm_scheduling.pas' {frm_scheduling};
 
 {$R *.res}
-
+var
+v_contract_ctr_cod: string;
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
@@ -41,7 +50,5 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
-  Application.CreateForm(Tfrm_default, frm_default);
-  Application.CreateForm(Tfrm_scheduling, frm_scheduling);
   Application.Run;
 end.

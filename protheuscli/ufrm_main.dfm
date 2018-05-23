@@ -45,6 +45,15 @@ inherited frm_main: Tfrm_main
       end
     end
   end
+  object Button1: TButton [5]
+    Left = 216
+    Top = 272
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 7
+    OnClick = Button1Click
+  end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar1: TdxBar
       FloatClientWidth = 74

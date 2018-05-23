@@ -159,23 +159,22 @@ begin
 //     frm_dm.qry_logged.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
 //     frm_dm.qry_logged.Prepare;
 //     frm_dm.qry_logged.Open;
-     SQL := 'select func_access_signin(' +
-     edt_contract.Text + ', ' +
-     QuotedStr(edt_username.Text) + ', ' +
-     QuotedStr(edt_password.Text) + ')';
 
+     SQL := 'set @po_valid_user = 0;' +
+         'set @po_contract_ctr_cod = 0;' +
+         'call proc_access_signin('+ edt_contract.Text +', '+
+         QuotedStr(edt_username.Text) +', '+
+         QuotedStr(edt_password.Text) +
+         ', @po_valid_user, @po_contract_ctr_cod);' +
+         'select @po_valid_user, hex(@po_contract_ctr_cod);';
      frm_dm.qry_signinNew.Close;
      frm_dm.qry_signinNew.SQL.Clear;
      frm_dm.qry_signinNew.SQL.Text:=SQL;
-     ShowMessage(SQL);
-
      frm_dm.qry_signinNew.Open;
 
+     v_contract_ctr_cod := frm_dm.qry_signinNew.FieldByName('hex(@po_contract_ctr_cod)').Value;
 
-
-  ShowMessage(BoolToStr(frm_dm.qry_signinNew.IsEmpty));
-
-  if frm_dm.qry_signinNew.Fields[0].AsBoolean then
+  if frm_dm.qry_signinNew.Fields[0].AsInteger = 1 then
    begin
      if Tag = 99 then
       begin

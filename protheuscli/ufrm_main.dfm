@@ -123,6 +123,14 @@ inherited frm_main: Tfrm_main
         item
           Visible = True
           ItemName = 'dxBarLargeButton7'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton2'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton6'
         end>
       OneOnRow = False
       Row = 0
@@ -149,6 +157,9 @@ inherited frm_main: Tfrm_main
       UseOwnFont = False
       Visible = True
       WholeRow = False
+    end
+    inherited dxBarButton2: TdxBarButton
+      Action = action_doctor
     end
     object dxBarLargeButton1: TdxBarLargeButton
       Action = Action_contract
@@ -322,10 +333,8 @@ inherited frm_main: Tfrm_main
       Category = 0
     end
     object dxBarLargeButton8: TdxBarLargeButton
-      Caption = 'Exames'
+      Action = Action_exam
       Category = 0
-      Hint = 'Exames'
-      Visible = ivAlways
       ButtonStyle = bsDropDown
       DropDownMenu = rbpopmenu2
       HotGlyph.Data = {
@@ -468,6 +477,10 @@ inherited frm_main: Tfrm_main
       Action = Action_material
       Category = 0
     end
+    object dxBarButton6: TdxBarButton
+      Action = Action_employee
+      Category = 0
+    end
   end
   inherited ActionList_1: TActionList
     object Action_contract: TAction
@@ -534,7 +547,16 @@ inherited frm_main: Tfrm_main
       Category = 'Modulo'
       Caption = 'Material'
       Hint = 'Manuten'#231#227'o Material'
-      OnExecute = Action_materialExecute
+    end
+    object action_doctor: TAction
+      Category = 'Cadastros'
+      Caption = 'Doctor'
+      OnExecute = action_doctorExecute
+    end
+    object Action_employee: TAction
+      Category = 'Cadastros'
+      Caption = 'Funcion'#225'rio'
+      OnExecute = Action_employeeExecute
     end
   end
   inherited cxImageList_1: TcxImageList

@@ -125,7 +125,7 @@ end;
 procedure Tfrm_contract_user.Action_editExecute(Sender: TObject);
 begin
   inherited;
-  //Se tag = a 2 é para alterar
+  //Se tag = 2 é para alterar
    Self.Tag := 2;
    PreecherCampos;
 end;
@@ -133,7 +133,7 @@ end;
 procedure Tfrm_contract_user.Action_insertExecute(Sender: TObject);
 begin
   inherited;
-  //Se tag = a 1 é para inserir
+  //Se tag = 1 é para inserir
     Self.Tag := 1;
     LimpaCampos;
 end;
@@ -187,7 +187,6 @@ begin
        end;
 
      finally
-       LimpaCampos;
        Contract_User.Free;
        Dao.Free;
        ExibirGrid;

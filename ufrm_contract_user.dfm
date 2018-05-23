@@ -88,7 +88,10 @@ inherited frm_contract_user: Tfrm_contract_user
     end
     inherited tbsht_2: TcxTabSheet
       OnShow = tbsht_2Show
+      ExplicitLeft = 2
+      ExplicitTop = 27
       ExplicitWidth = 1121
+      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         Width = 1121
         ExplicitWidth = 1121
@@ -216,6 +219,7 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitWidth = 1093
       inherited chkbox_1: TcxCheckBox
         ExplicitWidth = 1093
+        ExplicitHeight = 32
       end
     end
   end

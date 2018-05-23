@@ -25,8 +25,9 @@ uses
   cxLocalization, System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList,
   dxSkinsForm, dxBar, dxStatusBar, dxRibbonStatusBar, cxLabel, dxGalleryControl,
   dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
-  dxRibbon, dxGDIPlusClasses, ufrm_login, ufrm_client, ufrm_contract, ufrm_contract_user, ufrm_enterprise, ufrm_phonebook, ufrm_report, ufrm_insurance,
-  ufrm_exam, ufrm_material;
+  dxRibbon, dxGDIPlusClasses, ufrm_login, ufrm_client, ufrm_contract, ufrm_contract_user,
+   ufrm_enterprise, ufrm_phonebook, ufrm_report, ufrm_insurance,
+  ufrm_exam, ufrm_material, Vcl.StdCtrls, Vcl.Buttons;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -58,17 +59,21 @@ type
     Action_material: TAction;
     dxBarButton4: TdxBarButton;
     dxBarButton5: TdxBarButton;
-    procedure FormCreate(Sender: TObject);
+    action_doctor: TAction;
+    Action_employee: TAction;
+    dxBarButton6: TdxBarButton;
     procedure Action_contract_userExecute(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
-    procedure Action_enterpriseExecute(Sender: TObject);
     procedure Action_clientExecute(Sender: TObject);
     procedure Action_contract_user_passwordExecute(Sender: TObject);
-    procedure Action_phonebookExecute(Sender: TObject);
-    procedure Action_reportExecute(Sender: TObject);
-    procedure Action_insuranceExecute(Sender: TObject);
+    procedure action_doctorExecute(Sender: TObject);
+    procedure Action_employeeExecute(Sender: TObject);
+    procedure Action_enterpriseExecute(Sender: TObject);
     procedure Action_examExecute(Sender: TObject);
-    procedure Action_materialExecute(Sender: TObject);
+    procedure Action_insuranceExecute(Sender: TObject);
+    procedure Action_reportExecute(Sender: TObject);
+    procedure Action_phonebookExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -81,6 +86,8 @@ var
 implementation
 
 {$R *.dfm}
+
+ uses  ufrm_doctor, ufrm_employeee;
 
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin
@@ -115,8 +122,6 @@ begin
   inherited;
   if not Assigned(frm_contract_user) then begin
     frm_contract_user := Tfrm_contract_user.Create(Self);
-    frm_contract_user.Height := Bevel_1.Height;
-    frm_contract_user.Width := Bevel_1.Width;
     frm_contract_user.Show;
   end else begin
     frm_contract_user.WindowState := wsNormal;
@@ -136,10 +141,34 @@ begin
   frm_login.edt_passwordCurrent.SetFocus;
 end;
 
+procedure Tfrm_main.action_doctorExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_doctor) then begin
+    frm_doctor := Tfrm_doctor.Create(Self);
+    frm_doctor.Show;
+  end else begin
+    frm_doctor.WindowState := wsNormal;
+    frm_doctor.Show;
+  end;
+
+end;
+
+procedure Tfrm_main.Action_employeeExecute(Sender: TObject);
+begin
+  inherited;
+   if not Assigned(frm_employee_) then begin
+     frm_employee_ := Tfrm_employee_.Create(Self);
+     frm_employee_.Show;
+  end else begin
+    frm_employee_.WindowState := wsNormal;
+    frm_employee_.Show;
+end;
+end;
 procedure Tfrm_main.Action_enterpriseExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_enterprise) then begin
+   if not Assigned(frm_enterprise) then begin
     frm_enterprise := Tfrm_enterprise.Create(Self);
     frm_enterprise.Height := Bevel_1.Height;
     frm_enterprise.Width := Bevel_1.Width;
@@ -153,7 +182,7 @@ end;
 procedure Tfrm_main.Action_examExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_exam) then begin
+   if not Assigned(frm_exam) then begin
     frm_exam := Tfrm_exam.Create(Self);
     frm_exam.Height := Bevel_1.Height;
     frm_exam.Width := Bevel_1.Width;
@@ -167,7 +196,7 @@ end;
 procedure Tfrm_main.Action_insuranceExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_insurance) then begin
+   if not Assigned(frm_insurance) then begin
     frm_insurance := Tfrm_insurance.Create(Self);
     frm_insurance.Height := Bevel_1.Height;
     frm_insurance.Width := Bevel_1.Width;
@@ -178,24 +207,10 @@ begin
   end;
 end;
 
-procedure Tfrm_main.Action_materialExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_material) then begin
-    frm_material := Tfrm_material.Create(Self);
-    frm_material.Height := Bevel_1.Height;
-    frm_material.Width := Bevel_1.Width;
-    frm_material.Show;
-  end else begin
-    frm_material.WindowState := wsNormal;
-    frm_material.Show;
-  end;
-end;
-
 procedure Tfrm_main.Action_phonebookExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_phonebook) then begin
+   if not Assigned(frm_phonebook) then begin
     frm_phonebook := Tfrm_phonebook.Create(Self);
     frm_phonebook.Height := Bevel_1.Height;
     frm_phonebook.Width := Bevel_1.Width;
@@ -209,7 +224,7 @@ end;
 procedure Tfrm_main.Action_reportExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_report) then begin
+   if not Assigned(frm_report) then begin
     frm_report := Tfrm_report.Create(Self);
     frm_report.Height := Bevel_1.Height;
     frm_report.Width := Bevel_1.Width;

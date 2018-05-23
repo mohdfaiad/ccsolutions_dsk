@@ -9,45 +9,38 @@ inherited frm_employee_: Tfrm_employee_
   TextHeight = 13
   inherited bardck_1: TdxBarDockControl
     Width = 970
+    ExplicitWidth = 970
   end
   inherited pgctrl_1: TcxPageControl
     Width = 970
     Height = 635
-    Properties.ActivePage = tbsht_1
-    ExplicitWidth = 962
-    ExplicitHeight = 866
+    ExplicitWidth = 970
+    ExplicitHeight = 635
     ClientRectBottom = 629
     ClientRectRight = 964
     inherited tbsht_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 27
-      ExplicitWidth = 954
-      ExplicitHeight = 538
+      ExplicitWidth = 962
+      ExplicitHeight = 602
       inherited pgctrl_2: TcxPageControl
         Width = 962
         Height = 602
-        ExplicitWidth = 954
+        ExplicitWidth = 962
+        ExplicitHeight = 602
         ClientRectBottom = 596
         ClientRectRight = 956
         inherited tbsht_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 27
-          ExplicitWidth = 946
-          ExplicitHeight = 505
+          ExplicitWidth = 954
+          ExplicitHeight = 569
           inherited grid_1: TcxGrid
             Width = 948
             Height = 563
-            ExplicitWidth = 940
+            ExplicitWidth = 948
+            ExplicitHeight = 563
             inherited cxGridDBTableView1: TcxGridDBTableView
-              object cxGridDBTableView1emp_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'emp_cod'
-              end
-              object cxGridDBTableView1contract_ctr_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'contract_ctr_cod'
-              end
-              object cxGridDBTableView1record_rec_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'record_rec_cod'
-              end
               object cxGridDBTableView1emp_id: TcxGridDBColumn
                 DataBinding.FieldName = 'emp_id'
               end
@@ -56,15 +49,6 @@ inherited frm_employee_: Tfrm_employee_
               end
               object cxGridDBTableView1emp_status: TcxGridDBColumn
                 DataBinding.FieldName = 'emp_status'
-              end
-              object cxGridDBTableView1emp_deleted_at: TcxGridDBColumn
-                DataBinding.FieldName = 'emp_deleted_at'
-              end
-              object cxGridDBTableView1emp_dt_registration: TcxGridDBColumn
-                DataBinding.FieldName = 'emp_dt_registration'
-              end
-              object cxGridDBTableView1rec_id: TcxGridDBColumn
-                DataBinding.FieldName = 'rec_id'
               end
               object cxGridDBTableView1rec_name: TcxGridDBColumn
                 DataBinding.FieldName = 'rec_name'
@@ -180,9 +164,6 @@ inherited frm_employee_: Tfrm_employee_
               object cxGridDBTableView1rec_deleted_at: TcxGridDBColumn
                 DataBinding.FieldName = 'rec_deleted_at'
               end
-              object cxGridDBTableView1rec_dt_registration: TcxGridDBColumn
-                DataBinding.FieldName = 'rec_dt_registration'
-              end
             end
           end
         end
@@ -191,20 +172,25 @@ inherited frm_employee_: Tfrm_employee_
     inherited tbsht_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 27
-      ExplicitWidth = 954
-      ExplicitHeight = 833
+      ExplicitWidth = 962
+      ExplicitHeight = 602
       inherited pgctrl_3: TcxPageControl
         Width = 962
         Height = 602
-        ExplicitWidth = 954
-        ExplicitHeight = 833
+        ExplicitWidth = 962
+        ExplicitHeight = 602
         ClientRectBottom = 596
         ClientRectRight = 956
         inherited tbsht_5: TcxTabSheet
+          ExplicitWidth = 954
+          ExplicitHeight = 569
           inherited cxGroupBox1: TcxGroupBox
+            ExplicitWidth = 948
             Width = 948
           end
           inherited cxGroupBox2: TcxGroupBox
+            ExplicitWidth = 948
+            ExplicitHeight = 511
             Height = 511
             Width = 948
             object edtNome: TcxTextEdit
@@ -369,8 +355,6 @@ inherited frm_employee_: Tfrm_employee_
         object tbsht_documentos: TcxTabSheet
           Caption = 'Documentos'
           ImageIndex = 1
-          ExplicitWidth = 946
-          ExplicitHeight = 800
           DesignSize = (
             954
             569)
@@ -387,7 +371,7 @@ inherited frm_employee_: Tfrm_employee_
               Caption = 'CPF'
               Transparent = True
             end
-            object edtCNH: TcxTextEdit
+            object edtCNH_Numero: TcxTextEdit
               Left = 7
               Top = 118
               TabOrder = 1
@@ -411,7 +395,7 @@ inherited frm_employee_: Tfrm_employee_
               Caption = 'N'#186' Cart. Trabalho'
               Transparent = True
             end
-            object edtCart_Trabalho: TcxTextEdit
+            object edtCart_Trabalho_Numero: TcxTextEdit
               Left = 323
               Top = 34
               TabOrder = 5
@@ -441,7 +425,7 @@ inherited frm_employee_: Tfrm_employee_
               Caption = 'CNH'
               Transparent = True
             end
-            object edtSerie_Cart_Trabalho: TcxTextEdit
+            object edtCart_Trabalho_Serie: TcxTextEdit
               Left = 7
               Top = 76
               TabOrder = 10
@@ -459,7 +443,7 @@ inherited frm_employee_: Tfrm_employee_
               Caption = 'Estado UF'
               Transparent = True
             end
-            object edtEstadoUF: TcxTextEdit
+            object edtCart_Trabalho_EstadoUF: TcxTextEdit
               Left = 323
               Top = 76
               TabOrder = 13
@@ -471,7 +455,7 @@ inherited frm_employee_: Tfrm_employee_
               Caption = 'Categoria CNH'
               Transparent = True
             end
-            object edtCat_CNH: TcxTextEdit
+            object edtCNH_Categoria: TcxTextEdit
               Left = 165
               Top = 118
               TabOrder = 15
@@ -489,7 +473,7 @@ inherited frm_employee_: Tfrm_employee_
               Caption = 'Dt. Exp. CNH'
               Transparent = True
             end
-            object edt_N_CAM: TcxTextEdit
+            object edtCAM_Numero: TcxTextEdit
               Left = 7
               Top = 160
               TabOrder = 18
@@ -513,13 +497,13 @@ inherited frm_employee_: Tfrm_employee_
               Caption = 'Zona Eleitoral'
               Transparent = True
             end
-            object edtDt_Emissao: TcxDateEdit
+            object edtCart_Trabalho_Dt_Emissao: TcxDateEdit
               Left = 165
               Top = 76
               TabOrder = 22
               Width = 150
             end
-            object edtDt_Exp_CNH: TcxDateEdit
+            object edtCNH_Dt_Exp: TcxDateEdit
               Left = 323
               Top = 118
               TabOrder = 23
@@ -543,7 +527,7 @@ inherited frm_employee_: Tfrm_employee_
               Caption = 'N'#186' CRM'
               Transparent = True
             end
-            object edt_N_CRM: TcxTextEdit
+            object edtCRM_Numero: TcxTextEdit
               Left = 165
               Top = 202
               TabOrder = 27
@@ -647,7 +631,7 @@ inherited frm_employee_: Tfrm_employee_
               Caption = 'Estado UF'
               Transparent = True
             end
-            object edtPais: TcxTextEdit
+            object edtPais_End: TcxTextEdit
               Left = 459
               Top = 117
               TabOrder = 13
@@ -659,7 +643,7 @@ inherited frm_employee_: Tfrm_employee_
               Caption = 'Pa'#237's'
               Transparent = True
             end
-            object edtN_Casa: TcxTextEdit
+            object edtNumero_Casa: TcxTextEdit
               Left = 289
               Top = 75
               TabOrder = 15
@@ -673,7 +657,7 @@ inherited frm_employee_: Tfrm_employee_
             TabOrder = 1
             Height = 407
             Width = 948
-            object edtContato: TcxTextEdit
+            object edtContato_Tel: TcxTextEdit
               Left = 8
               Top = 110
               TabOrder = 0
@@ -749,12 +733,13 @@ inherited frm_employee_: Tfrm_employee_
   inherited stsbar_1: TdxStatusBar
     Top = 690
     Width = 970
-    ExplicitWidth = 962
+    ExplicitTop = 690
+    ExplicitWidth = 970
     inherited stsbar_deleted_at: TdxStatusBarContainerControl
       Width = 934
       ExplicitWidth = 934
       inherited chkbox_1: TcxCheckBox
-        ExplicitWidth = 926
+        ExplicitWidth = 934
         ExplicitHeight = 32
       end
     end

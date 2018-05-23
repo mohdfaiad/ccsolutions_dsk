@@ -1535,4 +1535,10 @@ object frm_default: Tfrm_default
     Left = 624
     Top = 8
   end
+  object ACBrCEP1: TACBrCEP
+    ProxyPort = '8080'
+    PesquisarIBGE = True
+    Left = 464
+    Top = 8
+  end
 end

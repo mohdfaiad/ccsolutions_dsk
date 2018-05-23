@@ -33,7 +33,7 @@ uses
   cxDBData, cxGridLevel, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, cxShellComboBox, cxBarEditItem,
   cxContainer, cxGroupBox, cxTextEdit, cxLabel, dxSkinsdxStatusBarPainter,
-  dxSkinsForm, frxClass, frxExportDOCX, frxExportBaseDialog, frxExportPDF, cxCheckBox;
+  dxSkinsForm, frxClass, frxExportDOCX, frxExportBaseDialog, frxExportPDF, cxCheckBox, ACBrSocket, ACBrCEP;
 
 type
   Tfrm_default = class(TForm)
@@ -124,14 +124,13 @@ type
     qry: TFDQuery;
     schadp: TFDSchemaAdapter;
     mem: TFDMemTable;
-    procedure dsStateChange(Sender: TObject);
+    ACBrCEP1: TACBrCEP;
+     procedure dsStateChange(Sender: TObject);
     procedure Action_closeExecute(Sender: TObject);
     procedure Action_importExecute(Sender: TObject);
     procedure Action_exportExecute(Sender: TObject);
     procedure actionButton(Status : BOOL);
     procedure FormShow(Sender: TObject);
-    procedure btn_insertClick(Sender: TObject);
-    procedure btn_saveClick(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
@@ -197,7 +196,7 @@ end;
 procedure Tfrm_default.Action_editExecute(Sender: TObject);
 begin
   actionButton(False);
-  tbsht_2.Show;
+  tbsht_5.Show;
 end;
 
 procedure Tfrm_default.Action_exportExecute(Sender: TObject);
@@ -218,7 +217,7 @@ end;
 procedure Tfrm_default.Action_insertExecute(Sender: TObject);
 begin
    actionButton(False);
-   tbsht_2.Show;
+   tbsht_5.Show;
 
 end;
 
@@ -246,18 +245,6 @@ procedure Tfrm_default.Action_saveExecute(Sender: TObject);
 begin
   actionButton(True);
    tbsht_1.Show;
-end;
-
-procedure Tfrm_default.btn_insertClick(Sender: TObject);
-begin
-  Action_save.Enabled := True;
-  tbsht_2.Show;
-end;
-
-procedure Tfrm_default.btn_saveClick(Sender: TObject);
-begin
-  Action_insert.Enabled := True;
-  tbsht_1.Show;
 end;
 
 procedure Tfrm_default.cxGridDBTableView1CellDblClick(Sender: TcxCustomGridTableView;

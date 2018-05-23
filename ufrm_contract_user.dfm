@@ -11,22 +11,17 @@ inherited frm_contract_user: Tfrm_contract_user
   end
   inherited pgctrl_1: TcxPageControl
     Width = 1129
+    Properties.ActivePage = tbsht_2
     ExplicitWidth = 1129
     ClientRectRight = 1123
     inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 1121
-      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
         Width = 1121
         ExplicitWidth = 1121
         ClientRectRight = 1115
         inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
           ExplicitWidth = 1113
-          ExplicitHeight = 505
           inherited grid_1: TcxGrid
             Width = 1107
             ExplicitWidth = 1107
@@ -88,10 +83,7 @@ inherited frm_contract_user: Tfrm_contract_user
     end
     inherited tbsht_2: TcxTabSheet
       OnShow = tbsht_2Show
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 1121
-      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         Width = 1121
         ExplicitWidth = 1121
@@ -219,7 +211,6 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitWidth = 1093
       inherited chkbox_1: TcxCheckBox
         ExplicitWidth = 1093
-        ExplicitHeight = 32
       end
     end
   end
@@ -335,84 +326,84 @@ inherited frm_contract_user: Tfrm_contract_user
       Origin = 'ctr_usr_dt_registration'
     end
   end
-  inherited memTable: TFDMemTable
-    object memTablectr_usr_cod: TBytesField
+  inherited mem: TFDMemTable
+    object memctr_usr_cod: TBytesField
       FieldName = 'ctr_usr_cod'
       Origin = 'ctr_usr_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object memTablecontract_ctr_cod: TBytesField
+    object memcontract_ctr_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'contract_ctr_cod'
       Origin = 'contract_ctr_cod'
     end
-    object memTablectr_usr_id: TLongWordField
+    object memctr_usr_id: TLongWordField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_id'
       Origin = 'ctr_usr_id'
     end
-    object memTablectr_usr_first_name: TStringField
+    object memctr_usr_first_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_first_name'
       Origin = 'ctr_usr_first_name'
       Size = 85
     end
-    object memTablectr_usr_last_name: TStringField
+    object memctr_usr_last_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_last_name'
       Origin = 'ctr_usr_last_name'
       Size = 85
     end
-    object memTablectr_usr_username: TStringField
+    object memctr_usr_username: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_username'
       Origin = 'ctr_usr_username'
       Size = 65
     end
-    object memTablectr_usr_password: TBytesField
+    object memctr_usr_password: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_password'
       Origin = 'ctr_usr_password'
     end
-    object memTablectr_usr_email: TStringField
+    object memctr_usr_email: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_email'
       Origin = 'ctr_usr_email'
       Size = 65
     end
-    object memTablectr_usr_dt_birth: TDateField
+    object memctr_usr_dt_birth: TDateField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_dt_birth'
       Origin = 'ctr_usr_dt_birth'
     end
-    object memTablectr_usr_logged: TStringField
+    object memctr_usr_logged: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_logged'
       Origin = 'ctr_usr_logged'
       FixedChar = True
       Size = 1
     end
-    object memTablectr_usr_admin: TStringField
+    object memctr_usr_admin: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_admin'
       Origin = 'ctr_usr_admin'
       FixedChar = True
       Size = 1
     end
-    object memTablectr_usr_status: TStringField
+    object memctr_usr_status: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_status'
       Origin = 'ctr_usr_status'
       FixedChar = True
       Size = 1
     end
-    object memTablectr_usr_deleted_at: TDateTimeField
+    object memctr_usr_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_deleted_at'
       Origin = 'ctr_usr_deleted_at'
     end
-    object memTablectr_usr_dt_registration: TDateTimeField
+    object memctr_usr_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_dt_registration'
       Origin = 'ctr_usr_dt_registration'

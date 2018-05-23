@@ -41,7 +41,7 @@ uses
   cxSchedulerWeekView, cxSchedulerYearView, cxSchedulerGanttView,
   cxSchedulerRecurrence, cxSchedulerTreeListBrowser,
   cxSchedulerRibbonStyleEventEditor, dxSkinscxSchedulerPainter,
-  cxSchedulerDBStorage, cxSpinEdit, cxTimeEdit;
+  cxSchedulerDBStorage, cxSpinEdit, cxTimeEdit, ACBrSocket, ACBrCEP;
 
 type
   Tfrm_scheduling = class(Tfrm_default)
@@ -92,6 +92,10 @@ type
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure cxTimePropertiesEditValueChanged(Sender: TObject);
+    procedure cxGridDBTableView1CellDblClick(Sender: TcxCustomGridTableView;
+      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+      AShift: TShiftState; var AHandled: Boolean);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   procedure limpaCache(Sender:TObject);
@@ -106,6 +110,19 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Tfrm_scheduling.cxGridDBTableView1CellDblClick(
+  Sender: TcxCustomGridTableView; ACellViewInfo: TcxGridTableDataCellViewInfo;
+  AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
+begin
+  inherited;
+ edt_codid.Text:=qry_schedulingsch_id.AsString;
+ edt_dt_registration.Text:=qry_schedulingsch_dt_registration.AsString;
+ cxDate.Date:=StrToDate(FormatDateTime('MM/dd/yyyy',qrysch_datetime.AsDateTime));
+ cxTime.Time:=qrysch_datetime.AsDateTime;
+ cxMemoDescricao.Text:=qrysch_description.AsString;
+
+end;
 
 procedure Tfrm_scheduling.cxTimePropertiesEditValueChanged(Sender: TObject);
 begin
@@ -134,6 +151,8 @@ if Trim(cxMemoDescricao.Text) = '' then
    Exit;
  end;
 
+if not (qry.state in [dsEdit,dsInsert]) then
+ qry.Edit;
 
 qrysch_description.AsString:=cxMemoDescricao.Text;
 qrysch_datetime.AsDateTime:=cxDate.Date + cxTime.Time;
@@ -155,6 +174,13 @@ begin
   inherited;
 qry.Insert;
 pgctrl_1.ActivePage:=tbsht_2;
+end;
+
+procedure Tfrm_scheduling.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_scheduling.Destroy;
+  frm_scheduling := Nil;
 end;
 
 procedure Tfrm_scheduling.FormCreate(Sender: TObject);

@@ -1,23 +1,15 @@
 inherited frm_scheduling: Tfrm_scheduling
   Caption = 'frm_scheduling'
+  OnClose = FormClose
+  ExplicitLeft = 8
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
-    ExplicitWidth = 962
+    Properties.ActivePage = tbsht_2
     inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
-      ExplicitWidth = 954
-      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
-        ExplicitWidth = 954
         inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
-          ExplicitWidth = 946
-          ExplicitHeight = 505
           inherited grid_1: TcxGrid
-            ExplicitWidth = 940
             inherited cxGridDBTableView1: TcxGridDBTableView
               object cxGridDBTableView1sch_cod: TcxGridDBColumn
                 DataBinding.FieldName = 'sch_cod'
@@ -46,12 +38,7 @@ inherited frm_scheduling: Tfrm_scheduling
       end
     end
     inherited tbsht_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
-      ExplicitWidth = 954
-      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
-        ExplicitWidth = 954
         inherited tbsht_5: TcxTabSheet
           OnShow = tbsht_5Show
           inherited cxGroupBox2: TcxGroupBox
@@ -154,15 +141,6 @@ inherited frm_scheduling: Tfrm_scheduling
             end
           end
         end
-      end
-    end
-  end
-  inherited stsbar_1: TdxStatusBar
-    ExplicitWidth = 962
-    inherited stsbar_deleted_at: TdxStatusBarContainerControl
-      inherited chkbox_1: TcxCheckBox
-        ExplicitWidth = 926
-        ExplicitHeight = 32
       end
     end
   end

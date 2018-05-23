@@ -12,8 +12,9 @@ object frm_default: Tfrm_default
   Font.Style = []
   FormStyle = fsMDIChild
   OldCreateOrder = False
-  Position = poScreenCenter
+  Position = poDesigned
   ShowHint = True
+  Visible = True
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -33,7 +34,7 @@ object frm_default: Tfrm_default
     Height = 571
     Align = alClient
     TabOrder = 1
-    Properties.ActivePage = tbsht_2
+    Properties.ActivePage = tbsht_1
     Properties.CustomButtons.Buttons = <>
     LookAndFeel.NativeStyle = False
     ClientRectBottom = 565
@@ -706,7 +707,7 @@ object frm_default: Tfrm_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ';'
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
+    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET

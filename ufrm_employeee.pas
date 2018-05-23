@@ -400,14 +400,13 @@ procedure Tfrm_employee_.ExibirRegistros;
 var
   Dao : TEmployee_Dao;
 begin
-   memTable.Close;
+   mem.Close;
    Dao :=TEmployee_Dao.Create;
    try
-     memTable.Data := Dao.Employee_read;
+     mem.Data := Dao.Employee_read;
    finally
      Dao.Free;
    end;
-
 end;
 
 procedure Tfrm_employee_.FormClose(Sender: TObject; var Action: TCloseAction);

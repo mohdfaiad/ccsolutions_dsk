@@ -206,7 +206,7 @@ end;
 
 procedure Tfrm_default.Action_firstExecute(Sender: TObject);
 begin
-  memTable.First;
+  mem.First;
 end;
 
 procedure Tfrm_default.Action_importExecute(Sender: TObject);
@@ -223,17 +223,17 @@ end;
 
 procedure Tfrm_default.Action_lastExecute(Sender: TObject);
 begin
-   memTable.Last;;
+   mem.Last;;
 end;
 
 procedure Tfrm_default.Action_nextExecute(Sender: TObject);
 begin
-  memTable.Next;
+  mem.Next;
 end;
 
 procedure Tfrm_default.Action_priorExecute(Sender: TObject);
 begin
-  memTable.Prior;
+  mem.Prior;
 end;
 
 procedure Tfrm_default.Action_refreshExecute(Sender: TObject);

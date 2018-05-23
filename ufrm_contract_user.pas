@@ -32,7 +32,7 @@ uses
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, ufrm_dm, Vcl.ComCtrls, dxCore, cxDateUtils, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxCheckBox, Vcl.StdCtrls, frxExportDOCX, frxClass, frxExportBaseDialog, frxExportPDF,
-  Contract_User.Model, Contract_User.Dao;
+  Contract_User.Model, Contract_User.Dao, ACBrSocket, ACBrCEP;
 
 type
   Tfrm_contract_user = class(Tfrm_default)
@@ -71,24 +71,24 @@ type
     qryctr_usr_status: TStringField;
     qryctr_usr_deleted_at: TDateTimeField;
     qryctr_usr_dt_registration: TDateTimeField;
-    memTablectr_usr_cod: TBytesField;
-    memTablecontract_ctr_cod: TBytesField;
-    memTablectr_usr_id: TLongWordField;
-    memTablectr_usr_first_name: TStringField;
-    memTablectr_usr_last_name: TStringField;
-    memTablectr_usr_username: TStringField;
-    memTablectr_usr_password: TBytesField;
-    memTablectr_usr_email: TStringField;
-    memTablectr_usr_dt_birth: TDateField;
-    memTablectr_usr_logged: TStringField;
-    memTablectr_usr_admin: TStringField;
-    memTablectr_usr_status: TStringField;
-    memTablectr_usr_deleted_at: TDateTimeField;
-    memTablectr_usr_dt_registration: TDateTimeField;
     edtSenha: TcxTextEdit;
     edtConf_Senha: TcxTextEdit;
     cxLabel8: TcxLabel;
     cxLabel9: TcxLabel;
+    memctr_usr_cod: TBytesField;
+    memcontract_ctr_cod: TBytesField;
+    memctr_usr_id: TLongWordField;
+    memctr_usr_first_name: TStringField;
+    memctr_usr_last_name: TStringField;
+    memctr_usr_username: TStringField;
+    memctr_usr_password: TBytesField;
+    memctr_usr_email: TStringField;
+    memctr_usr_dt_birth: TDateField;
+    memctr_usr_logged: TStringField;
+    memctr_usr_admin: TStringField;
+    memctr_usr_status: TStringField;
+    memctr_usr_deleted_at: TDateTimeField;
+    memctr_usr_dt_registration: TDateTimeField;
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
@@ -168,7 +168,7 @@ begin
          end       //Tag = 2 para Alterar
          else if Self.Tag = 2 then
          begin
-           Contract_User.ctr_usr_id         := memTablectr_usr_id.AsInteger;
+           Contract_User.ctr_usr_id         := memctr_usr_id.AsInteger;
            Contract_User.ctr_usr_first_name := edtNome.Text;
            Contract_User.ctr_usr_last_name  := edtSobrenome.Text;
            Contract_User.ctr_usr_dt_birth   := edtDtNasc.Date;
@@ -199,10 +199,10 @@ procedure Tfrm_contract_user.ExibirGrid;
 var
   Dao : TContract_User_Dao;
 begin
-   memTable.Close;
+   mem.Close;
    Dao :=TContract_User_Dao.Create;
    try
-     memTable.Data := Dao.QryRead;
+     mem.Data := Dao.QryRead;
    finally
      Dao.Free;
    end;
@@ -242,15 +242,15 @@ end;
 procedure Tfrm_contract_user.PreecherCampos;
 begin
 
-   edt_codid.Text           := IntToStr(memTablectr_usr_id.AsInteger);
-   edt_dt_registration.Text := DateToStr(memTablectr_usr_dt_registration.AsDateTime);
-   edtNome.Text             := memTablectr_usr_first_name.AsString;
-   edtSobrenome.Text        := memTablectr_usr_last_name.AsString;
-   edtDtNasc.Date           := memTablectr_usr_dt_birth.AsDateTime;
-   edtUsuario.Text          := memTablectr_usr_username.AsString;
-   edtEmail.Text            := memTablectr_usr_email.AsString;
+   edt_codid.Text           := IntToStr(memctr_usr_id.AsInteger);
+   edt_dt_registration.Text := DateToStr(memctr_usr_dt_registration.AsDateTime);
+   edtNome.Text             := memctr_usr_first_name.AsString;
+   edtSobrenome.Text        := memctr_usr_last_name.AsString;
+   edtDtNasc.Date           := memctr_usr_dt_birth.AsDateTime;
+   edtUsuario.Text          := memctr_usr_username.AsString;
+   edtEmail.Text            := memctr_usr_email.AsString;
 
-    if memTablectr_usr_admin.AsString = 'S' then
+    if memctr_usr_admin.AsString = 'S' then
        CheckBoxAdm.Checked   := True
     else CheckBoxAdm.Checked := False;
 

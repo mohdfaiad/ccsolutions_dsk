@@ -240,8 +240,16 @@ end;
 procedure Tfrm_main.Button1Click(Sender: TObject);
 begin
   inherited;
- Application.CreateForm(Tfrm_scheduling,frm_scheduling);
- frm_scheduling.Show;
+   if not Assigned(frm_scheduling) then begin
+    frm_scheduling := Tfrm_scheduling.Create(Self);
+    frm_scheduling.Height := Bevel_1.Height;
+    frm_scheduling.Width := Bevel_1.Width;
+    frm_scheduling.Show;
+  end else begin
+    frm_scheduling.WindowState := wsNormal;
+    frm_scheduling.Show;
+  end;
+
 end;
 
 procedure Tfrm_main.FormCreate(Sender: TObject);

@@ -147,8 +147,10 @@ type
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+
   public
     { Public declarations }
+    delete:Boolean;
   end;
 
 var
@@ -190,6 +192,11 @@ end;
 
 procedure Tfrm_default.Action_deleteExecute(Sender: TObject);
 begin
+  if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
+    = IDYES then
+    delete:=true
+    else
+    delete:=false;
   actionButton(True);
 end;
 

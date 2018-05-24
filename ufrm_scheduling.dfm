@@ -11,26 +11,24 @@ inherited frm_scheduling: Tfrm_scheduling
         inherited tbsht_3: TcxTabSheet
           inherited grid_1: TcxGrid
             inherited cxGridDBTableView1: TcxGridDBTableView
-              object cxGridDBTableView1sch_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'sch_cod'
-              end
-              object cxGridDBTableView1contract_ctr_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'contract_ctr_cod'
-              end
-              object cxGridDBTableView1employee_emp_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'employee_emp_cod'
-              end
               object cxGridDBTableView1sch_id: TcxGridDBColumn
+                Caption = 'C'#243'd. ID'
                 DataBinding.FieldName = 'sch_id'
               end
               object cxGridDBTableView1sch_datetime: TcxGridDBColumn
+                Caption = 'Agendamento'
                 DataBinding.FieldName = 'sch_datetime'
+                Width = 120
               end
               object cxGridDBTableView1sch_description: TcxGridDBColumn
+                Caption = 'Descri'#231#227'o'
                 DataBinding.FieldName = 'sch_description'
+                Width = 600
               end
               object cxGridDBTableView1sch_dt_registration: TcxGridDBColumn
+                Caption = 'Dt. Reg.'
                 DataBinding.FieldName = 'sch_dt_registration'
+                Width = 120
               end
             end
           end
@@ -77,32 +75,25 @@ inherited frm_scheduling: Tfrm_scheduling
               Height = 13
               Caption = 'labelHora'
             end
-            object cxLCFuncionario: TcxLookupComboBox
-              Left = 3
-              Top = 35
-              Properties.ListColumns = <>
-              TabOrder = 0
-              Width = 256
-            end
             object cxMemoDescricao: TcxMemo
               Left = 3
-              Top = 88
-              TabOrder = 1
+              Top = 81
+              TabOrder = 0
               Height = 273
               Width = 518
             end
             object cxDate: TcxDateEdit
               Left = 265
               Top = 35
-              TabOrder = 2
+              TabOrder = 1
               Width = 125
             end
             object cxGrid1: TcxGrid
               Left = 536
               Top = 35
               Width = 402
-              Height = 326
-              TabOrder = 3
+              Height = 319
+              TabOrder = 2
               object cxGrid1DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
                 DataController.DataSource = ds_qry_scheduling
@@ -136,8 +127,15 @@ inherited frm_scheduling: Tfrm_scheduling
               Left = 396
               Top = 35
               Properties.OnEditValueChanged = cxTimePropertiesEditValueChanged
-              TabOrder = 4
+              TabOrder = 3
               Width = 125
+            end
+            object comboboxEmployee: TcxComboBox
+              Left = 3
+              Top = 35
+              TabOrder = 4
+              Text = 'comboboxEmployee'
+              Width = 256
             end
           end
         end
@@ -161,7 +159,6 @@ inherited frm_scheduling: Tfrm_scheduling
       Category = 0
       Hint = 'salvar'
       Visible = ivAlways
-      OnClick = dxBarButton1Click
     end
     object dxBarButton2: TdxBarButton
       Caption = 'Novo'
@@ -258,7 +255,7 @@ inherited frm_scheduling: Tfrm_scheduling
     ParamData = <
       item
         Name = 'DATETIME'
-        DataType = ftDate
+        DataType = ftDateTime
         ParamType = ptInput
         Value = Null
       end>

@@ -46,7 +46,6 @@ uses
 type
   Tfrm_scheduling = class(Tfrm_default)
     labelFuncionario: TLabel;
-    cxLCFuncionario: TcxLookupComboBox;
     labelDescricao: TLabel;
     cxMemoDescricao: TcxMemo;
     dxBarButton1: TdxBarButton;
@@ -60,9 +59,6 @@ type
     qrysch_datetime: TDateTimeField;
     qrysch_description: TStringField;
     qrysch_dt_registration: TDateTimeField;
-    cxGridDBTableView1sch_cod: TcxGridDBColumn;
-    cxGridDBTableView1contract_ctr_cod: TcxGridDBColumn;
-    cxGridDBTableView1employee_emp_cod: TcxGridDBColumn;
     cxGridDBTableView1sch_id: TcxGridDBColumn;
     cxGridDBTableView1sch_datetime: TcxGridDBColumn;
     cxGridDBTableView1sch_description: TcxGridDBColumn;
@@ -86,8 +82,7 @@ type
     qry_schedulingsch_datetime: TDateTimeField;
     qry_schedulingsch_description: TStringField;
     qry_schedulingsch_dt_registration: TDateTimeField;
-    procedure tbsht_5Show(Sender: TObject);
-    procedure dxBarButton1Click(Sender: TObject);
+    comboboxEmployee: TcxComboBox;
     procedure dxBarButton2Click(Sender: TObject);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
@@ -96,10 +91,19 @@ type
       ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
       AShift: TShiftState; var AHandled: Boolean);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Action_editExecute(Sender: TObject);
+    procedure Action_insertExecute(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
+    procedure tbsht_5Show(Sender: TObject);
   private
     { Private declarations }
+  listaCodFunc:TStrings;
+  sch_cod:string;
   procedure limpaCache(Sender:TObject);
-  procedure limpaEdits;
+  procedure clearField;
+  procedure fillFields;
+
   public
     { Public declarations }
   end;
@@ -133,10 +137,78 @@ begin
  qry_scheduling.Open;
 end;
 
-procedure Tfrm_scheduling.dxBarButton1Click(Sender: TObject);
+procedure Tfrm_scheduling.dxBarButton2Click(Sender: TObject);
 begin
   inherited;
-if not qry_scheduling.IsEmpty then
+qry.Insert;
+pgctrl_1.ActivePage:=tbsht_2;
+end;
+
+procedure Tfrm_scheduling.fillFields;
+begin
+  edt_codid.Text:=qrysch_id.AsString;
+  edt_dt_registration.Text:=FormatDateTime('dd/mm/yyyy',qrysch_dt_registration.AsDateTime);
+  cxMemoDescricao.Text:=qrysch_description.AsString;
+  cxDate.Date:=StrToDate(FormatDateTime('dd/MM/yyyy', qrysch_datetime.AsDateTime));
+  cxTime.Time:=StrToDate(FormatDateTime('hh/mm/ss', qrysch_datetime.AsDateTime));
+  comboboxEmployee.SetFocus;
+end;
+
+procedure Tfrm_scheduling.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_scheduling.Destroy;
+  frm_scheduling := Nil;
+end;
+
+procedure Tfrm_scheduling.FormCreate(Sender: TObject);
+begin
+  inherited;
+schadp.AfterApplyUpdate:=limpaCache;
+listaCodFunc:=TStringList.Create;
+end;
+
+procedure Tfrm_scheduling.limpaCache(Sender: TObject);
+begin
+qry.ApplyUpdates(0);
+qry_scheduling.ApplyUpdates(0);
+
+end;
+
+procedure Tfrm_scheduling.Action_deleteExecute(Sender: TObject);
+begin
+  inherited;
+if delete then
+ begin
+
+ end;
+end;
+
+procedure Tfrm_scheduling.Action_editExecute(Sender: TObject);
+begin
+  inherited;
+  //Se tag = 2 é para alterar
+   Self.Tag := 2;
+   fillFields;
+end;
+
+procedure Tfrm_scheduling.Action_insertExecute(Sender: TObject);
+begin
+  inherited;
+  //Se tag = 1 é para inserir
+    Self.Tag := 1;
+    clearField;
+    cxDate.Date:=Date;
+    cxTime.Time:=Time;
+    qry.Insert;
+    pgctrl_1.ActivePage:=tbsht_2;
+end;
+
+procedure Tfrm_scheduling.Action_saveExecute(Sender: TObject);
+begin
+  inherited;
+
+if (not qry_scheduling.IsEmpty) and (Self.Tag = 1) then  //Tag 1 quando for inserir
  begin
    Application.MessageBox('Existe um compromiso agendado para essa data e hoja, '+
       'favor ajustar sua agenda!', 'AVISO',MB_OK + MB_ICONWARNING);
@@ -154,49 +226,33 @@ if Trim(cxMemoDescricao.Text) = '' then
 if not (qry.state in [dsEdit,dsInsert]) then
  qry.Edit;
 
+
 qrysch_description.AsString:=cxMemoDescricao.Text;
 qrysch_datetime.AsDateTime:=cxDate.Date + cxTime.Time;
+//qryemployee_emp_cod.AsString:= listaCodFunc[comboboxEmployee.ItemIndex];
 
 qry.Post;
 schadp.ApplyUpdates(0);
 
+with frm_dm.qry,sql do
+ begin
+   close;
+   text:=' update scheduling '+
+         ' set employee_emp_cod =' + listaCodFunc[comboboxEmployee.ItemIndex] +
+         ' where sch_cod =' + sch_cod;
+   prepare;
+   ExecSQL;
+ end;
 ShowMessage('Dados salvo com sucesso!');
 
 pgctrl_1.ActivePage:=tbsht_1;
 qry.Close;
 qry.open;
 qry.Refresh;
-limpaEdits;
+clearField;
 end;
 
-procedure Tfrm_scheduling.dxBarButton2Click(Sender: TObject);
-begin
-  inherited;
-qry.Insert;
-pgctrl_1.ActivePage:=tbsht_2;
-end;
-
-procedure Tfrm_scheduling.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  inherited;
-  frm_scheduling.Destroy;
-  frm_scheduling := Nil;
-end;
-
-procedure Tfrm_scheduling.FormCreate(Sender: TObject);
-begin
-  inherited;
-schadp.AfterApplyUpdate:=limpaCache;
-end;
-
-procedure Tfrm_scheduling.limpaCache(Sender: TObject);
-begin
-qry.ApplyUpdates(0);
-qry_scheduling.ApplyUpdates(0);
-
-end;
-
-procedure Tfrm_scheduling.limpaEdits;
+procedure Tfrm_scheduling.clearField;
 var
 i:Integer;
 begin
@@ -210,13 +266,15 @@ for i := 0 to Self.ComponentCount -1 do
 
    if Self.Components[i] is TcxLookupComboBox then
     TcxLookupComboBox(Self.Components[i]).Clear;
+  end;
 
- end;
 end;
 
 procedure Tfrm_scheduling.qryAfterInsert(DataSet: TDataSet);
+var
+x:string;
 begin
-  inherited;
+inherited;
  With frm_dm.qry,sql do
   begin
    Close;
@@ -226,6 +284,13 @@ begin
    ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
    Prepare;
    ExecSQL;
+
+   Close;
+   text:= ' select concat(''0x'', hex(sch_cod)) from scheduling ' +
+          ' where sch_id = 0 ';
+   Prepare;
+   open;
+   sch_cod:=Fields[0].AsString;
   end;
    qry.Close;
    qry.sql.text:= ' select * from scheduling ' +
@@ -240,11 +305,26 @@ end;
 procedure Tfrm_scheduling.tbsht_5Show(Sender: TObject);
 begin
   inherited;
-  edt_codid.Text:=qrysch_id.AsString;
-  edt_dt_registration.Text:=FormatDateTime('dd/mm/yyyy',qrysch_dt_registration.AsDateTime);
-  cxMemoDescricao.Text:=qrysch_description.AsString;
-  cxDate.Date:=Date;
-  cxTime.Time:=Time;
+  with frm_dm.qry,sql do
+   begin
+    clear;
+    text:=' select emp_id,concat(''0x'', hex(emp_cod)) as emp_cod,rec_name from employee ' +
+          ' inner join record on rec_cod = record_rec_cod ' +
+          ' where emp_status <> ''D'' ' +
+          ' and employee.contract_ctr_cod = '+ frm_dm.v_contract_ctr_cod;
+    prepare;
+    open;
+    first;
+    comboboxEmployee.Clear;
+    listaCodFunc.Clear;
+    while not Eof do
+     begin
+      comboboxEmployee.Properties.Items.Add(
+      FormatFloat('000000',FieldByName('emp_id').AsInteger) + ' - ' +  FieldByName('rec_name').AsString);
+      listaCodFunc.Add(FieldByName('emp_cod').AsString);
+      Next;
+     end;
+   end;
 end;
 
 end.

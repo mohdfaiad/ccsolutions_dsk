@@ -2,6 +2,7 @@ inherited frm_contract_user: Tfrm_contract_user
   Caption = 'Cadastro de Usu'#225'rio'
   ClientWidth = 1129
   OnClose = FormClose
+  ExplicitLeft = 8
   ExplicitWidth = 1145
   PixelsPerInch = 96
   TextHeight = 13
@@ -11,7 +12,6 @@ inherited frm_contract_user: Tfrm_contract_user
   end
   inherited pgctrl_1: TcxPageControl
     Width = 1129
-    Properties.ActivePage = tbsht_2
     ExplicitWidth = 1129
     ClientRectRight = 1123
     inherited tbsht_1: TcxTabSheet

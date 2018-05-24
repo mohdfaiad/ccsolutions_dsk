@@ -46,6 +46,7 @@ object frm_form_default: Tfrm_form_default
         PopupMenu = PopupMenu_1
         TabOrder = 0
         LockedStateImageOptions.Text = 'Aguarde por favor...'
+        ExplicitLeft = -205
         object cxGrid_1DBTableView1: TcxGridDBTableView
           PopupMenu = PopupMenu_1
           OnDblClick = cxGrid_1DBTableView1DblClick

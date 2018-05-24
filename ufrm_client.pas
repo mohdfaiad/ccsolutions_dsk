@@ -39,7 +39,6 @@ uses
 
 type
   Tfrm_client = class(Tfrm_form_default)
-    qrycli_id: TFDAutoIncField;
     qrycli_first_name: TStringField;
     qrycli_last_name: TStringField;
     qrycli_email: TStringField;
@@ -127,7 +126,6 @@ type
     qrycli_phone3: TStringField;
     qrycli_rgie: TStringField;
     qrycli_dt_birthopen: TDateField;
-    qrycontract_ctr_id: TIntegerField;
     qrycli_phone4: TStringField;
     qrycli_dt_registration: TDateTimeField;
     qrycli_type: TStringField;
@@ -172,8 +170,6 @@ type
     qrycli_add_del_state: TStringField;
     qrycli_add_del_country: TStringField;
     qrycli_day_maturity: TIntegerField;
-    cxGrid_1DBTableView1cli_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1cli_type: TcxGridDBColumn;
     cxGrid_1DBTableView1cli_first_name: TcxGridDBColumn;
     cxGrid_1DBTableView1cli_last_name: TcxGridDBColumn;
@@ -222,9 +218,6 @@ type
     dxLayoutGroup9: TdxLayoutGroup;
     dxLayoutGroup10: TdxLayoutGroup;
     dxLayoutItem45: TdxLayoutItem;
-    cxDBImage1: TcxDBImage;
-    dxLayoutItem41: TdxLayoutItem;
-    qrycli_image: TBlobField;
     dxLayoutAutoCreatedGroup14: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
@@ -245,8 +238,6 @@ type
     qrycli_status: TStringField;
     qrycli_account_code_sippulse: TStringField;
     qry_insurance: TFDQuery;
-    qry_insuranceins_id: TFDAutoIncField;
-    qry_insurancecontract_ctr_id: TIntegerField;
     qry_insuranceins_first_name: TStringField;
     tabLaboratorio: TcxTabSheet;
     dxLayoutControl5Group_Root: TdxLayoutGroup;
@@ -257,16 +248,25 @@ type
     cxGrid1: TcxGrid;
     dxLayoutItem43: TdxLayoutItem;
     qry_client_insirance: TFDQuery;
-    qry_client_insirancecin_id: TFDAutoIncField;
-    qry_client_insiranceclient_cli_id: TIntegerField;
-    qry_client_insiranceinsurance_ins_id: TIntegerField;
-    qry_client_insirancecin_dt_registration: TDateTimeField;
     ds_client_insirance: TDataSource;
     cxGrid1DBTableView1cin_id: TcxGridDBColumn;
     cxGrid1DBTableView1client_cli_id: TcxGridDBColumn;
     cxGrid1DBTableView1insurance_ins_id: TcxGridDBColumn;
     cxGrid1DBTableView1cin_dt_registration: TcxGridDBColumn;
     ds_insurance: TDataSource;
+    qrycli_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qrytable_price_tbp_cod: TBytesField;
+    qrycli_id: TLongWordField;
+    qrycli_deleted_at: TDateTimeField;
+    qry_insuranceins_id: TLongWordField;
+    qry_insurancecontract_ctr_cod: TBytesField;
+    qry_client_insirancecin_cod: TBytesField;
+    qry_client_insiranceclient_cli_id: TBytesField;
+    qry_client_insiranceinsurance_ins_id: TBytesField;
+    qry_client_insirancecin_id: TLongWordField;
+    qry_client_insirancecin_deleted_at: TDateTimeField;
+    qry_client_insirancecin_dt_registration: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);
@@ -283,6 +283,7 @@ type
     procedure cxTabSheet_addressShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure qry_client_insiranceAfterInsert(DataSet: TDataSet);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
     cep:Integer;
@@ -362,6 +363,29 @@ begin
   inherited;
   frm_consult_cpf := Tfrm_consult_cpf.Create(Self);
   frm_consult_cpf.Show;
+end;
+
+procedure Tfrm_client.Action_saveExecute(Sender: TObject);
+begin
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(cli_id) is null then 1 ' +
+          '      else (max(cli_id) + 1) end as maxID from client '+
+          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+   Prepare;
+   Open;
+   if not (qry.State in [dsInsert,dsEdit])  then
+    qry.Edit;
+
+   if qrycli_id.AsInteger = 0 then
+    qrycli_id.AsInteger:=Fields[0].AsInteger;
+    Self.Tag:=0; // para voltar a fazer o qryAfterInsert
+
+  end;
+
+  inherited;
+
 end;
 
 procedure Tfrm_client.changeType;
@@ -449,6 +473,9 @@ end;
 procedure Tfrm_client.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
+ if Self.Tag = 1 then //tag = 1 apenas para resolver um loop que estava acontecendo ao editar o registro
+  exit;
+
  With frm_dm.qry,sql do
   begin
    Close;
@@ -458,27 +485,32 @@ begin
    ExecSQL;
 
    Close;
-   text:= ' select concat(''0x'', hex(sch_cod)) from client ' +
+   text:= ' select concat(''0x'', hex(cli_cod)) from client ' +
           ' where cli_id = 0 ';
    Prepare;
    open;
    cli_cod:=Fields[0].AsString;
   end;
 
+
+   qry.Unprepare;
    qry.Close;
    qry.sql.text:= ' select * from client ' +
                   ' where cli_cod = ' + cli_cod;
    qry.Prepare;
    qry.open;
+   Self.Tag:=1;
 
    qry.Edit;
    qrycli_dt_registration.AsDateTime:=Now;
+
+
 
 end;
 procedure Tfrm_client.qry_client_insiranceAfterInsert(DataSet: TDataSet);
 begin
   inherited;
- qry_client_insirancecin_dt_registration.AsDateTime:=Now;
+// qry_client_insirancecin_dt_registration.AsDateTime:=Now;
 
 end;
 

@@ -1,20 +1,14 @@
 inherited frm_client: Tfrm_client
   Caption = 'Manuten'#231#227'o: Clientes'
   OnClose = FormClose
+  ExplicitLeft = -224
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
+        ExplicitLeft = -93
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
-          object cxGrid_1DBTableView1cli_id: TcxGridDBColumn
-            DataBinding.FieldName = 'cli_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
-            Width = 75
-          end
           object cxGrid_1DBTableView1cli_type: TcxGridDBColumn
             DataBinding.FieldName = 'cli_type'
             Width = 50
@@ -178,16 +172,8 @@ inherited frm_client: Tfrm_client
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 76
@@ -206,7 +192,7 @@ inherited frm_client: Tfrm_client
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 8
+              TabOrder = 7
               Width = 121
             end
             object cxDBTextEdit20: TcxDBTextEdit [3]
@@ -216,7 +202,7 @@ inherited frm_client: Tfrm_client
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 9
+              TabOrder = 8
               Width = 130
             end
             object cxDBTextEdit28: TcxDBTextEdit [4]
@@ -226,7 +212,7 @@ inherited frm_client: Tfrm_client
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 10
+              TabOrder = 9
               Width = 121
             end
             object cxDBTextEdit3: TcxDBTextEdit [5]
@@ -236,7 +222,7 @@ inherited frm_client: Tfrm_client
               DataBinding.DataSource = ds
               Properties.CharCase = ecLowerCase
               Style.HotTrack = False
-              TabOrder = 7
+              TabOrder = 6
               Width = 307
             end
             object cxDBTextEdit1: TcxDBTextEdit [6]
@@ -246,7 +232,7 @@ inherited frm_client: Tfrm_client
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 5
+              TabOrder = 4
               Width = 307
             end
             object cxDBTextEdit2: TcxDBTextEdit [7]
@@ -256,7 +242,7 @@ inherited frm_client: Tfrm_client
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 6
+              TabOrder = 5
               Width = 307
             end
             object cxDBDateEdit1: TcxDBDateEdit [8]
@@ -265,7 +251,7 @@ inherited frm_client: Tfrm_client
               DataBinding.DataField = 'cli_dt_birthopen'
               DataBinding.DataSource = ds
               Style.HotTrack = False
-              TabOrder = 4
+              TabOrder = 3
               Width = 130
             end
             object cxDBComboBox1: TcxDBComboBox [9]
@@ -280,29 +266,17 @@ inherited frm_client: Tfrm_client
                 'PJ - PESSOA JURIDICA')
               Properties.OnChange = cxDBComboBox1PropertiesChange
               Style.HotTrack = False
-              TabOrder = 3
-              Width = 121
-            end
-            object cxDBImage1: TcxDBImage [10]
-              Left = 578
-              Top = 103
-              DataBinding.DataField = 'cli_image'
-              DataBinding.DataSource = ds
-              Properties.FitMode = ifmProportionalStretch
-              Properties.GraphicClassName = 'TdxPNGImage'
-              Style.HotTrack = False
               TabOrder = 2
-              Height = 102
               Width = 121
             end
-            object cxDBTextEdit29: TcxDBTextEdit [11]
+            object cxDBTextEdit29: TcxDBTextEdit [10]
               Left = 578
               Top = 249
               DataBinding.DataField = 'cli_suframa'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 11
+              TabOrder = 10
               Width = 121
             end
             inherited dxLayoutGroup1: TdxLayoutGroup
@@ -311,7 +285,6 @@ inherited frm_client: Tfrm_client
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahClient
               AlignVert = avTop
-              ItemIndex = 1
               LayoutDirection = ldHorizontal
             end
             object dxLayoutGroup6: TdxLayoutGroup
@@ -361,7 +334,7 @@ inherited frm_client: Tfrm_client
               Parent = dxLayoutGroup2
               AlignHorz = ahLeft
               AlignVert = avClient
-              Index = 1
+              Index = 0
               AutoCreated = True
             end
             object dxLayoutItem5: TdxLayoutItem
@@ -421,16 +394,6 @@ inherited frm_client: Tfrm_client
               CaptionOptions.Text = 'Tipo'
               Control = cxDBComboBox1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutItem41: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              AlignHorz = ahRight
-              AlignVert = avClient
-              Control = cxDBImage1
-              ControlOptions.OriginalHeight = 100
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 0
@@ -1476,26 +1439,14 @@ inherited frm_client: Tfrm_client
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    MasterFields = 'ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from client')
-    object qrycli_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'cli_id'
-      Origin = 'cli_id'
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
     object qrycli_type: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Tipo'
@@ -1725,12 +1676,6 @@ inherited frm_client: Tfrm_client
       FieldName = 'cli_day_maturity'
       Origin = 'cli_day_maturity'
     end
-    object qrycli_image: TBlobField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Imagem'
-      FieldName = 'cli_image'
-      Origin = 'cli_image'
-    end
     object qrycli_status: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'cli_status'
@@ -1743,6 +1688,32 @@ inherited frm_client: Tfrm_client
       FieldName = 'cli_account_code_sippulse'
       Origin = 'cli_account_code_sippulse'
       Size = 50
+    end
+    object qrycli_cod: TBytesField
+      FieldName = 'cli_cod'
+      Origin = 'cli_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qrytable_price_tbp_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'table_price_tbp_cod'
+      Origin = 'table_price_tbp_cod'
+    end
+    object qrycli_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_id'
+      Origin = 'cli_id'
+    end
+    object qrycli_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_deleted_at'
+      Origin = 'cli_deleted_at'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -1774,47 +1745,48 @@ inherited frm_client: Tfrm_client
     Top = 16
   end
   object qry_insurance: TFDQuery
-    IndexFieldNames = 'contract_ctr_id'
+    Active = True
+    IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
+    MasterFields = 'ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select ins_id,contract_ctr_id,ins_first_name from insurance'
-      'where contract_ctr_id = :ctr_id'
+      'select ins_id,contract_ctr_cod,ins_first_name from insurance'
+      'where contract_ctr_cod = :ctr_cod'
       'order by ins_first_name')
     Left = 503
     Top = 186
     ParamData = <
       item
-        Name = 'CTR_ID'
-        DataType = ftAutoInc
+        Name = 'CTR_COD'
+        DataType = ftBytes
         ParamType = ptInput
         Value = Null
       end>
-    object qry_insuranceins_id: TFDAutoIncField
-      FieldName = 'ins_id'
-      Origin = 'ins_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qry_insurancecontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
     object qry_insuranceins_first_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ins_first_name'
       Origin = 'ins_first_name'
       Size = 50
     end
+    object qry_insuranceins_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'ins_id'
+      Origin = 'ins_id'
+    end
+    object qry_insurancecontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
   end
   object qry_client_insirance: TFDQuery
+    Active = True
     AfterInsert = qry_client_insiranceAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'client_cli_id'
     MasterSource = ds
-    MasterFields = 'cli_id'
+    MasterFields = 'cli_cod'
     DetailFields = 'client_cli_id'
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
@@ -1828,25 +1800,35 @@ inherited frm_client: Tfrm_client
     ParamData = <
       item
         Name = 'CLI_ID'
-        DataType = ftInteger
+        DataType = ftBytes
         ParamType = ptInput
         Value = Null
       end>
-    object qry_client_insirancecin_id: TFDAutoIncField
-      FieldName = 'cin_id'
-      Origin = 'cin_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
+    object qry_client_insirancecin_cod: TBytesField
+      FieldName = 'cin_cod'
+      Origin = 'cin_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
-    object qry_client_insiranceclient_cli_id: TIntegerField
+    object qry_client_insiranceclient_cli_id: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'client_cli_id'
       Origin = 'client_cli_id'
     end
-    object qry_client_insiranceinsurance_ins_id: TIntegerField
+    object qry_client_insiranceinsurance_ins_id: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'insurance_ins_id'
       Origin = 'insurance_ins_id'
+    end
+    object qry_client_insirancecin_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'cin_id'
+      Origin = 'cin_id'
+    end
+    object qry_client_insirancecin_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'cin_deleted_at'
+      Origin = 'cin_deleted_at'
     end
     object qry_client_insirancecin_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault

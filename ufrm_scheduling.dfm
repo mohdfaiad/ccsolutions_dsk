@@ -1,7 +1,6 @@
 inherited frm_scheduling: Tfrm_scheduling
   Caption = 'frm_scheduling'
   OnClose = FormClose
-  ExplicitLeft = 8
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl

@@ -147,11 +147,22 @@ end;
 procedure Tfrm_scheduling.fillFields;
 begin
   edt_codid.Text:=qrysch_id.AsString;
-  edt_dt_registration.Text:=FormatDateTime('dd/mm/yyyy',qrysch_dt_registration.AsDateTime);
+  edt_dt_registration.Text:=FormatDateTime('MM/dd/yyyy',qrysch_dt_registration.AsDateTime);
   cxMemoDescricao.Text:=qrysch_description.AsString;
-  cxDate.Date:=StrToDate(FormatDateTime('dd/MM/yyyy', qrysch_datetime.AsDateTime));
-  cxTime.Time:=StrToDate(FormatDateTime('hh/mm/ss', qrysch_datetime.AsDateTime));
+  cxDate.Date:=StrToDate(FormatDateTime('MM/dd/yyyy', qrysch_datetime.AsDateTime));
+  cxTime.Time:=StrToTime(FormatDateTime('h:mm:ss', qrysch_datetime.AsDateTime));
   comboboxEmployee.SetFocus;
+  with frm_dm.qry,sql do
+  begin
+   Close;
+   text:= ' select concat(''0x'', hex(sch_cod)) from scheduling ' +
+          ' where sch_id = ' + qrysch_id.AsString;
+   Prepare;
+   open;
+   sch_cod:=Fields[0].AsString;
+  end;
+
+
 end;
 
 procedure Tfrm_scheduling.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -202,6 +213,8 @@ begin
     cxTime.Time:=Time;
     qry.Insert;
     pgctrl_1.ActivePage:=tbsht_2;
+    edt_codid.Text:=qrysch_id.AsString;
+    edt_dt_registration.Text:= qrysch_dt_registration.AsString;
 end;
 
 procedure Tfrm_scheduling.Action_saveExecute(Sender: TObject);
@@ -223,6 +236,22 @@ if Trim(cxMemoDescricao.Text) = '' then
    Exit;
  end;
 
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(sch_id) is null then 1 ' +
+          '      else (max(sch_id) + 1) end as maxID from scheduling '+
+          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+   Prepare;
+   Open;
+   if not (qry.State in [dsInsert,dsEdit])  then
+    qry.Edit;
+
+   if qrysch_id.AsInteger = 0 then
+    qrysch_id.AsInteger:=Fields[0].AsInteger;
+  end;
+
+
 if not (qry.state in [dsEdit,dsInsert]) then
  qry.Edit;
 
@@ -243,6 +272,12 @@ with frm_dm.qry,sql do
    prepare;
    ExecSQL;
  end;
+
+   qry.Close;
+   qry.sql.text:= ' select * from scheduling ';
+   qry.Prepare;
+   qry.open;
+
 ShowMessage('Dados salvo com sucesso!');
 
 pgctrl_1.ActivePage:=tbsht_1;
@@ -271,17 +306,13 @@ for i := 0 to Self.ComponentCount -1 do
 end;
 
 procedure Tfrm_scheduling.qryAfterInsert(DataSet: TDataSet);
-var
-x:string;
 begin
 inherited;
  With frm_dm.qry,sql do
   begin
    Close;
    Text:='insert into scheduling (sch_cod,sch_id,contract_ctr_cod) ' +
-         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
-         ' where ctr_id = :contrato)';
-   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+         ' select unhex(replace(uuid(),''-'','''')),0,'+ frm_dm.v_contract_ctr_cod;
    Prepare;
    ExecSQL;
 
@@ -292,14 +323,15 @@ inherited;
    open;
    sch_cod:=Fields[0].AsString;
   end;
+
    qry.Close;
    qry.sql.text:= ' select * from scheduling ' +
-                  ' where sch_id = 0 ';
+                  ' where sch_cod = ' + sch_cod;
    qry.Prepare;
    qry.open;
 
-  qry.Edit;
-  qrysch_dt_registration.AsDateTime:=Now;
+   qry.Edit;
+   qrysch_dt_registration.AsDateTime:=Now;
 end;
 
 procedure Tfrm_scheduling.tbsht_5Show(Sender: TObject);

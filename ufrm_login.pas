@@ -203,7 +203,6 @@ begin
          Application.Terminate;
        end;
    end;
-
 end;
 
 procedure Tfrm_login.cxButton3Click(Sender: TObject);

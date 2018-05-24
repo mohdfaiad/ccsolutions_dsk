@@ -172,7 +172,7 @@ begin
      frm_dm.qry_signinNew.SQL.Text:=SQL;
      frm_dm.qry_signinNew.Open;
 
-     v_contract_ctr_cod := frm_dm.qry_signinNew.FieldByName('hex(@po_contract_ctr_cod)').Value;
+     frm_dm.v_contract_ctr_cod := frm_dm.qry_signinNew.FieldByName('hex(@po_contract_ctr_cod)').Value;
 
   if frm_dm.qry_signinNew.Fields[0].AsInteger = 1 then
    begin

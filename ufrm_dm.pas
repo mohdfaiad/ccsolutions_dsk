@@ -77,6 +77,7 @@ type
     { Public declarations }
     qry,qry2,qry3:TFDQuery;
     Acao: Integer;
+    v_contract_ctr_cod: string;
 
   end;
 

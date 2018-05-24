@@ -12,7 +12,7 @@ object frm_dm: Tfrm_dm
     Connected = True
     LoginPrompt = False
     Left = 40
-    Top = 24
+    Top = 16
   end
   object wait_cursor: TFDGUIxWaitCursor
     Provider = 'Forms'

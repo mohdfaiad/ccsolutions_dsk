@@ -286,6 +286,7 @@ type
   private
     { Private declarations }
     cep:Integer;
+    cli_cod:string;
     procedure limpaCache(Sender:TObject);
   public
     { Public declarations }
@@ -448,7 +449,31 @@ end;
 procedure Tfrm_client.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qrycli_dt_registration.Value := Date + Time;
+ With frm_dm.qry,sql do
+  begin
+   Close;
+   Text:='insert into client (cli_cod,cli_id,contract_ctr_cod) ' +
+         ' select unhex(replace(uuid(),''-'','''')),0,'+ frm_dm.v_contract_ctr_cod;
+   Prepare;
+   ExecSQL;
+
+   Close;
+   text:= ' select concat(''0x'', hex(sch_cod)) from client ' +
+          ' where cli_id = 0 ';
+   Prepare;
+   open;
+   cli_cod:=Fields[0].AsString;
+  end;
+
+   qry.Close;
+   qry.sql.text:= ' select * from client ' +
+                  ' where cli_cod = ' + cli_cod;
+   qry.Prepare;
+   qry.open;
+
+   qry.Edit;
+   qrycli_dt_registration.AsDateTime:=Now;
+
 end;
 procedure Tfrm_client.qry_client_insiranceAfterInsert(DataSet: TDataSet);
 begin

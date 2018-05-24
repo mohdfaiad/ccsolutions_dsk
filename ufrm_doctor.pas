@@ -21,11 +21,11 @@ uses
   FireDAC.Comp.DataSet, ACBrBase, ACBrEnterTab, Vcl.Menus, dxBar, cxBarEditItem, cxClasses, System.Actions,
   Vcl.ActnList, dxStatusBar, cxTextEdit, cxLabel, cxGroupBox, cxGridLevel, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, cxPC, Vcl.StdCtrls, Vcl.DBCtrls, cxMaskEdit, cxDropDownEdit, cxLookupEdit,
-  cxDBLookupEdit, cxDBLookupComboBox, frxExportDOCX, frxClass, frxExportBaseDialog, frxExportPDF, cxCheckBox;
+  cxDBLookupEdit, cxDBLookupComboBox, frxExportDOCX, frxClass, frxExportBaseDialog, frxExportPDF, cxCheckBox,
+  ACBrSocket, ACBrCEP, cxDBEdit;
 
 type
   Tfrm_doctor = class(Tfrm_default)
-    cxDBLookupComb_Doctor: TcxDBLookupComboBox;
     DBComBox_Status: TDBComboBox;
     qry_doctor: TFDQuery;
     ds_Doctor: TDataSource;
@@ -42,17 +42,6 @@ type
     qry_role_employeeroe_id: TLongWordField;
     qry_role_employeeroe_deleted_at: TDateTimeField;
     qry_role_employeeroe_dt_registration: TDateTimeField;
-    qrydoc_cod: TBytesField;
-    qrycontract_ctr_cod: TBytesField;
-    qryemployee_emp_cod: TBytesField;
-    qryrole_rol_cod: TBytesField;
-    qrydoc_id: TLongWordField;
-    qryemp_type: TStringField;
-    qryemp_status: TStringField;
-    qrydoc_dt_registration: TDateTimeField;
-    qryrec_name: TStringField;
-    qryrec_nickname: TStringField;
-    qryrec_sex: TStringField;
     cxGrid1DBTableView1roe_cod: TcxGridDBColumn;
     cxGrid1DBTableView1contract_ctr_cod: TcxGridDBColumn;
     cxGrid1DBTableView1employee_emp_cod: TcxGridDBColumn;
@@ -62,6 +51,7 @@ type
     cxGrid1DBTableView1roe_dt_registration: TcxGridDBColumn;
     cxLabel3: TcxLabel;
     cxLabel4: TcxLabel;
+    dxBarButton1: TdxBarButton;
     qry_doctoremp_cod: TBytesField;
     qry_doctorcontract_ctr_cod: TBytesField;
     qry_doctoremp_id: TLongWordField;
@@ -70,11 +60,30 @@ type
     qry_doctorrec_sex: TStringField;
     qry_doctoremp_type: TStringField;
     qry_doctoremp_status: TStringField;
-    dxBarButton1: TdxBarButton;
+    qryrec_cod: TBytesField;
+    qryemp_cod: TBytesField;
+    qrydoc_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryemployee_emp_cod: TBytesField;
+    qrydoc_id: TLongWordField;
+    qrydoc_status: TStringField;
+    qryemp_type: TStringField;
+    qryemp_status: TStringField;
+    qrydoc_dt_registration: TDateTimeField;
+    qryrec_name: TStringField;
+    qryrec_nickname: TStringField;
+    qryrec_sex: TStringField;
+    cxDBLookupDoctor: TcxDBLookupComboBox;
+    cxDBComboBox1: TcxDBComboBox;
+    DBLookupComboBox1: TDBLookupComboBox;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
+    procedure tbsht_2Show(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure ExibirRegistros;
   end;
 
 var
@@ -85,5 +94,30 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_doctor.ExibirRegistros;
+begin
+   qry.Close;
+   qry.Open;
+end;
+
+procedure Tfrm_doctor.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  FreeAndNil(frm_doctor);
+end;
+
+procedure Tfrm_doctor.FormShow(Sender: TObject);
+begin
+  inherited;
+  ExibirRegistros;
+end;
+
+procedure Tfrm_doctor.tbsht_2Show(Sender: TObject);
+begin
+  inherited;
+  qry_doctor.Close;
+  qry_doctor.Open;
+end;
 
 end.

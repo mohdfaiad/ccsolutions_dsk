@@ -14,11 +14,14 @@ inherited frm_employee_: Tfrm_employee_
   inherited pgctrl_1: TcxPageControl
     Width = 970
     Height = 635
+    Properties.ActivePage = tbsht_2
     ExplicitWidth = 970
     ExplicitHeight = 635
     ClientRectBottom = 629
     ClientRectRight = 964
     inherited tbsht_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
       ExplicitWidth = 962
       ExplicitHeight = 602
       inherited pgctrl_2: TcxPageControl
@@ -29,6 +32,8 @@ inherited frm_employee_: Tfrm_employee_
         ClientRectBottom = 596
         ClientRectRight = 956
         inherited tbsht_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 27
           ExplicitWidth = 954
           ExplicitHeight = 569
           inherited grid_1: TcxGrid
@@ -166,11 +171,14 @@ inherited frm_employee_: Tfrm_employee_
       end
     end
     inherited tbsht_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
       ExplicitWidth = 962
       ExplicitHeight = 602
       inherited pgctrl_3: TcxPageControl
         Width = 962
         Height = 602
+        Properties.ActivePage = cxTabSheet1
         ExplicitWidth = 962
         ExplicitHeight = 602
         ClientRectBottom = 596
@@ -665,9 +673,8 @@ inherited frm_employee_: Tfrm_employee_
           object cxGroupBox5: TcxGroupBox
             Left = 3
             Top = 158
-            Anchors = [akLeft, akTop, akRight]
             TabOrder = 1
-            Height = 407
+            Height = 408
             Width = 948
             object edtContato_Tel: TcxTextEdit
               Left = 8
@@ -752,6 +759,7 @@ inherited frm_employee_: Tfrm_employee_
       ExplicitWidth = 934
       inherited chkbox_1: TcxCheckBox
         ExplicitWidth = 934
+        ExplicitHeight = 32
       end
     end
   end
@@ -778,6 +786,7 @@ inherited frm_employee_: Tfrm_employee_
     Style = <>
   end
   inherited qry: TFDQuery
+    Connection = frm_dm.connCCS
     object qryemp_cod: TBytesField
       FieldName = 'emp_cod'
       Origin = 'emp_cod'
@@ -1149,6 +1158,378 @@ inherited frm_employee_: Tfrm_employee_
       ReadOnly = True
     end
     object qryrec_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_dt_registration'
+      Origin = 'rec_dt_registration'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+  end
+  inherited mem: TFDMemTable
+    object mememp_cod: TBytesField
+      FieldName = 'emp_cod'
+      Origin = 'emp_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object memcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object memrecord_rec_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'record_rec_cod'
+      Origin = 'record_rec_cod'
+    end
+    object mememp_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_id'
+      Origin = 'emp_id'
+    end
+    object mememp_type: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_type'
+      Origin = 'emp_type'
+      FixedChar = True
+      Size = 1
+    end
+    object mememp_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_status'
+      Origin = 'emp_status'
+      FixedChar = True
+      Size = 1
+    end
+    object mememp_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_deleted_at'
+      Origin = 'emp_deleted_at'
+    end
+    object mememp_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_dt_registration'
+      Origin = 'emp_dt_registration'
+    end
+    object memrec_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_cod'
+      Origin = 'rec_cod'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object memrec_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_id'
+      Origin = 'rec_id'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object memrec_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_name'
+      Origin = 'rec_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object memrec_nickname: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_nickname'
+      Origin = 'rec_nickname'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
+    object memrec_sex: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_sex'
+      Origin = 'rec_sex'
+      ProviderFlags = []
+      ReadOnly = True
+      FixedChar = True
+      Size = 1
+    end
+    object memrec_dt_birth: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_dt_birth'
+      Origin = 'rec_dt_birth'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object memrec_cpf_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_cpf_number'
+      Origin = 'rec_cpf_number'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_rg_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_rg_number'
+      Origin = 'rec_rg_number'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_ctps_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_ctps_number'
+      Origin = 'rec_ctps_number'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_ctps_serial: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_ctps_serial'
+      Origin = 'rec_ctps_serial'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_ctps_state: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_ctps_state'
+      Origin = 'rec_ctps_state'
+      ProviderFlags = []
+      ReadOnly = True
+      FixedChar = True
+      Size = 3
+    end
+    object memrec_ctps_date: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_ctps_date'
+      Origin = 'rec_ctps_date'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object memrec_cam_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_cam_number'
+      Origin = 'rec_cam_number'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_cnh_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_cnh_number'
+      Origin = 'rec_cnh_number'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_chn_category: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_chn_category'
+      Origin = 'rec_chn_category'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_cnh_dt_expiration: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_cnh_dt_expiration'
+      Origin = 'rec_cnh_dt_expiration'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object memrec_te_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_te_number'
+      Origin = 'rec_te_number'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_te_zone: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_te_zone'
+      Origin = 'rec_te_zone'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_te_section: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_te_section'
+      Origin = 'rec_te_section'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_crm_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_crm_number'
+      Origin = 'rec_crm_number'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_status_marital: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_status_marital'
+      Origin = 'rec_status_marital'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_nationality: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_nationality'
+      Origin = 'rec_nationality'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_naturalness_uf: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_naturalness_uf'
+      Origin = 'rec_naturalness_uf'
+      ProviderFlags = []
+      ReadOnly = True
+      FixedChar = True
+      Size = 3
+    end
+    object memrec_naturalness_city: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_naturalness_city'
+      Origin = 'rec_naturalness_city'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
+    object memrec_father_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_father_name'
+      Origin = 'rec_father_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object memrec_mother_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_mother_name'
+      Origin = 'rec_mother_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object memrec_add_zipcode: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_add_zipcode'
+      Origin = 'rec_add_zipcode'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 6
+    end
+    object memrec_add_address: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_add_address'
+      Origin = 'rec_add_address'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 50
+    end
+    object memrec_add_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_add_number'
+      Origin = 'rec_add_number'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 5
+    end
+    object memrec_add_street: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_add_street'
+      Origin = 'rec_add_street'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 45
+    end
+    object memrec_add_complement: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_add_complement'
+      Origin = 'rec_add_complement'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 50
+    end
+    object memrec_add_city: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_add_city'
+      Origin = 'rec_add_city'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
+    object memrec_add_state: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_add_state'
+      Origin = 'rec_add_state'
+      ProviderFlags = []
+      ReadOnly = True
+      FixedChar = True
+      Size = 3
+    end
+    object memrec_add_country: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_add_country'
+      Origin = 'rec_add_country'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_phone1: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_phone1'
+      Origin = 'rec_phone1'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 15
+    end
+    object memrec_phone2: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_phone2'
+      Origin = 'rec_phone2'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 15
+    end
+    object memrec_phone3: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_phone3'
+      Origin = 'rec_phone3'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 15
+    end
+    object memrec_phone4: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_phone4'
+      Origin = 'rec_phone4'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 15
+    end
+    object memrec_contact: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_contact'
+      Origin = 'rec_contact'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object memrec_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_deleted_at'
+      Origin = 'rec_deleted_at'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object memrec_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       FieldName = 'rec_dt_registration'
       Origin = 'rec_dt_registration'

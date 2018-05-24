@@ -1,36 +1,43 @@
 inherited frm_doctor: Tfrm_doctor
   Caption = 'frm_doctor'
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
     Properties.ActivePage = tbsht_2
+    inherited tbsht_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
+      ExplicitWidth = 954
+      ExplicitHeight = 538
+      inherited pgctrl_2: TcxPageControl
+        inherited tbsht_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 27
+          ExplicitWidth = 946
+          ExplicitHeight = 505
+        end
+      end
+    end
     inherited tbsht_2: TcxTabSheet
+      OnShow = tbsht_2Show
       inherited pgctrl_3: TcxPageControl
         inherited tbsht_5: TcxTabSheet
           inherited cxGroupBox2: TcxGroupBox
-            object cxDBLookupComb_Doctor: TcxDBLookupComboBox
-              Left = 3
-              Top = 32
-              DataBinding.DataField = 'employee_emp_cod'
-              DataBinding.DataSource = ds
-              Properties.ListColumns = <>
-              TabOrder = 0
-              Width = 321
-            end
             object DBComBox_Status: TDBComboBox
-              Left = 347
-              Top = 32
+              Left = 515
+              Top = 35
               Width = 145
               Height = 21
               DataField = 'emp_status'
               DataSource = ds
-              TabOrder = 1
+              TabOrder = 0
             end
             object cxGroupBox3: TcxGroupBox
               Left = 3
               Top = 80
               Caption = 'Especialidades do Proficional'
-              TabOrder = 2
+              TabOrder = 1
               Height = 273
               Width = 489
               object cxGrid1: TcxGrid
@@ -115,6 +122,39 @@ inherited frm_doctor: Tfrm_doctor
               Caption = 'Status'
               Transparent = True
             end
+            object cxDBLookupDoctor: TcxDBLookupComboBox
+              Left = 3
+              Top = 35
+              DataBinding.DataField = 'emp_cod'
+              DataBinding.DataSource = ds
+              Properties.KeyFieldNames = 'emp_cod'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'rec_name'
+                end
+                item
+                  FieldName = 'emp_id'
+                end>
+              Properties.ListSource = ds_Doctor
+              TabOrder = 4
+              Width = 291
+            end
+            object cxDBComboBox1: TcxDBComboBox
+              Left = 347
+              Top = 35
+              TabOrder = 5
+              Width = 145
+            end
+            object DBLookupComboBox1: TDBLookupComboBox
+              Left = 528
+              Top = 88
+              Width = 305
+              Height = 21
+              KeyField = 'emp_cod'
+              ListField = 'rec_name;emp_id'
+              ListSource = ds_Doctor
+              TabOrder = 6
+            end
           end
         end
       end
@@ -159,38 +199,64 @@ inherited frm_doctor: Tfrm_doctor
     SchemaAdapter = schadp
     SQL.Strings = (
       
-        'select d.doc_cod, d.contract_ctr_cod, d.employee_emp_cod, d.role' +
-        '_rol_cod, d.doc_id,'#10' e.emp_type, e.emp_status, '
+        'select r.rec_cod, e.emp_cod, d.doc_cod, d.contract_ctr_cod, d.em' +
+        'ployee_emp_cod, d.doc_id, '
       
-        'd.doc_dt_registration, r.rec_name, r.rec_nickname, r.rec_sex fro' +
-        'm doctor as d'#10' '
-      'inner join employee as e on d.employee_emp_cod = e.emp_cod'#10' '
-      'inner join record as r on e.record_rec_cod = r.rec_cod')
-    object qrydoc_cod: TBytesField
-      FieldName = 'doc_cod'
-      Origin = 'doc_cod'
+        'd.doc_status,'#10' e.emp_type, e.emp_status, d.doc_dt_registration, ' +
+        'r.rec_name, r.rec_nickname, r.rec_sex from record as r '#13#10#10
+      'inner join employee as e on r.rec_cod = e.record_rec_cod '
+      
+        ' '#10'inner join doctor as d on e.record_rec_cod = d.employee_emp_co' +
+        'd'#10' and d.doc_deleted_at is null'#10)
+    object qryrec_cod: TBytesField
+      FieldName = 'rec_cod'
+      Origin = 'rec_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
+    end
+    object qryemp_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_cod'
+      Origin = 'emp_cod'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object qrydoc_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'doc_cod'
+      Origin = 'doc_cod'
+      ProviderFlags = []
+      ReadOnly = True
     end
     object qrycontract_ctr_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'contract_ctr_cod'
       Origin = 'contract_ctr_cod'
+      ProviderFlags = []
+      ReadOnly = True
     end
     object qryemployee_emp_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'employee_emp_cod'
       Origin = 'employee_emp_cod'
-    end
-    object qryrole_rol_cod: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'role_rol_cod'
-      Origin = 'role_rol_cod'
+      ProviderFlags = []
+      ReadOnly = True
     end
     object qrydoc_id: TLongWordField
       AutoGenerateValue = arDefault
       FieldName = 'doc_id'
       Origin = 'doc_id'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object qrydoc_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'doc_status'
+      Origin = 'doc_status'
+      ProviderFlags = []
+      ReadOnly = True
+      FixedChar = True
+      Size = 1
     end
     object qryemp_type: TStringField
       AutoGenerateValue = arDefault
@@ -214,48 +280,46 @@ inherited frm_doctor: Tfrm_doctor
       AutoGenerateValue = arDefault
       FieldName = 'doc_dt_registration'
       Origin = 'doc_dt_registration'
+      ProviderFlags = []
+      ReadOnly = True
     end
     object qryrec_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'rec_name'
       Origin = 'rec_name'
-      ProviderFlags = []
-      ReadOnly = True
       Size = 85
     end
     object qryrec_nickname: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'rec_nickname'
       Origin = 'rec_nickname'
-      ProviderFlags = []
-      ReadOnly = True
       Size = 35
     end
     object qryrec_sex: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'rec_sex'
       Origin = 'rec_sex'
-      ProviderFlags = []
-      ReadOnly = True
       FixedChar = True
       Size = 1
     end
   end
   object qry_doctor: TFDQuery [17]
+    Active = True
     CachedUpdates = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
         'select e.emp_cod, e.contract_ctr_cod, e.emp_id, r.rec_name, r.re' +
-        'c_nickname, '#13#10#10
-      'r.rec_sex, e.emp_type, e.emp_status from employee as e'#13#10#10
-      'inner join record as r on e.record_rec_cod = r.rec_cod')
+        'c_nickname, '#10'r.rec_sex, e.emp_type, e.emp_status from record as ' +
+        'r'#10
+      
+        'inner join employee as e on r.rec_cod = e.record_rec_cod'#10'and e.e' +
+        'mp_deleted_at is null')
     Left = 784
     Top = 176
     object qry_doctoremp_cod: TBytesField
       FieldName = 'emp_cod'
       Origin = 'emp_cod'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object qry_doctorcontract_ctr_cod: TBytesField
@@ -265,31 +329,29 @@ inherited frm_doctor: Tfrm_doctor
     end
     object qry_doctoremp_id: TLongWordField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'digo ID'
+      DisplayWidth = 12
       FieldName = 'emp_id'
       Origin = 'emp_id'
     end
     object qry_doctorrec_name: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      DisplayWidth = 100
       FieldName = 'rec_name'
       Origin = 'rec_name'
-      ProviderFlags = []
-      ReadOnly = True
       Size = 85
     end
     object qry_doctorrec_nickname: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'rec_nickname'
       Origin = 'rec_nickname'
-      ProviderFlags = []
-      ReadOnly = True
       Size = 35
     end
     object qry_doctorrec_sex: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'rec_sex'
       Origin = 'rec_sex'
-      ProviderFlags = []
-      ReadOnly = True
       FixedChar = True
       Size = 1
     end
@@ -314,6 +376,7 @@ inherited frm_doctor: Tfrm_doctor
     Top = 176
   end
   object qry_role_employee: TFDQuery [19]
+    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       ' select * from role_employee'#10' where roe_cod =:role_rol_cod')

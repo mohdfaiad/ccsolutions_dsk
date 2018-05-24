@@ -40,7 +40,7 @@ begin
       StoredProcName := 'proc_employee_create';
 
       Prepare;
-      ParamByName('p_ctr_id').AsInteger              := Employee.ctr_id;
+      ParamByName('p_contract_ctr_cod').AsString     := Employee.ctr_cod;
       ParamByName('p_emp_type').AsString             := Employee.emp_type;
       ParamByName('p_emp_status').AsString           := Employee.emp_status;
       ParamByName('p_rec_name').AsString             := Employee.rec_name;
@@ -102,8 +102,9 @@ begin
   inherited;
   qry := FConexao.CriarQuery();
   qry.Close;
-  qry.SQL.Add(' select * from employee as e inner join record as r on e.record_rec_cod = r.rec_cod ' +
-	            ' where e.emp_deleted_at is null ');
+  qry.SQL.Add(' select * from record inner  join employee on record_rec_cod = rec_cod '  +
+              ' where rec_cod in (select record_rec_cod from employee) ' +
+              ' and emp_deleted_at is null ');
   qry.Open;
   Result := qry;
 

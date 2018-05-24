@@ -5,7 +5,7 @@ interface
   TEmployeeModel = class
 
   private
-    Fctr_id : Int64;
+    Fctr_cod : string;
     Femp_id: Integer;
     Frec_id: Integer;
     Femp_type: string;
@@ -52,7 +52,7 @@ interface
      constructor Create;
      destructor Destroy; override;
 
-    property ctr_id: Int64 read Fctr_id write Fctr_id;
+    property ctr_cod: string read Fctr_cod write Fctr_cod;
     property emp_id: Integer read Femp_id write Femp_id;
     property rec_id: Integer read Frec_id write Frec_id;
     property emp_type: string read Femp_type write Femp_type;

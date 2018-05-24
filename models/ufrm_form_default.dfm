@@ -100,10 +100,6 @@ object frm_form_default: Tfrm_form_default
     end
     object cxTabSheet_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object cxPageControl_2: TcxPageControl
         AlignWithMargins = True
         Left = 3
@@ -122,10 +118,6 @@ object frm_form_default: Tfrm_form_default
         ClientRectTop = 28
         object cxTabSheet_3: TcxTabSheet
           Caption = 'Informa'#231#245'es'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl_1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1362,7 +1354,7 @@ object frm_form_default: Tfrm_form_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ','
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
+    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET

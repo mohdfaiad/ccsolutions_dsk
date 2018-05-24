@@ -71,7 +71,7 @@ type
 var
   frm_main_default: Tfrm_main_default;
   logado,bloqueado,ativa:Boolean;
-  modulo,v_contract_ctr_cod: string;
+  modulo: string;
 
 implementation
 

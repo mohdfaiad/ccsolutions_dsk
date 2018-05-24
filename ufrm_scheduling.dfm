@@ -4,7 +4,6 @@ inherited frm_scheduling: Tfrm_scheduling
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
-    Properties.ActivePage = tbsht_2
     inherited tbsht_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 27
@@ -12,6 +11,7 @@ inherited frm_scheduling: Tfrm_scheduling
       ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
         inherited tbsht_3: TcxTabSheet
+          OnShow = tbsht_3Show
           ExplicitLeft = 2
           ExplicitTop = 27
           ExplicitWidth = 946
@@ -96,6 +96,7 @@ inherited frm_scheduling: Tfrm_scheduling
             object cxDate: TcxDateEdit
               Left = 265
               Top = 35
+              EditValue = 43449.6394097222d
               TabOrder = 1
               Width = 125
             end
@@ -111,6 +112,15 @@ inherited frm_scheduling: Tfrm_scheduling
                 DataController.Summary.DefaultGroupSummaryItems = <>
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
+                object cxGrid1DBTableView1sch_cod: TcxGridDBColumn
+                  DataBinding.FieldName = 'sch_cod'
+                end
+                object cxGrid1DBTableView1contract_ctr_cod: TcxGridDBColumn
+                  DataBinding.FieldName = 'contract_ctr_cod'
+                end
+                object cxGrid1DBTableView1employee_emp_cod: TcxGridDBColumn
+                  DataBinding.FieldName = 'employee_emp_cod'
+                end
                 object cxGrid1DBTableView1sch_id: TcxGridDBColumn
                   Caption = 'C'#243'd. ID'
                   DataBinding.FieldName = 'sch_id'
@@ -216,13 +226,15 @@ inherited frm_scheduling: Tfrm_scheduling
     Style = <>
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     CachedUpdates = True
     Connection = frm_dm.connCCS
     SchemaAdapter = schadp
     SQL.Strings = (
-      'select * from scheduling')
+      
+        'select scheduling.*,rec_name from scheduling'#10'inner join employee' +
+        '  on emp_cod = employee_emp_cod'#10'inner join record  on rec_cod = ' +
+        ' record_rec_cod')
     Left = 696
     object qrysch_cod: TBytesField
       FieldName = 'sch_cod'
@@ -235,20 +247,10 @@ inherited frm_scheduling: Tfrm_scheduling
       FieldName = 'contract_ctr_cod'
       Origin = 'contract_ctr_cod'
     end
-    object qryemployee_emp_cod: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'employee_emp_cod'
-      Origin = 'employee_emp_cod'
-    end
     object qrysch_id: TLongWordField
       AutoGenerateValue = arDefault
       FieldName = 'sch_id'
       Origin = 'sch_id'
-    end
-    object qrysch_datetime: TDateTimeField
-      AutoGenerateValue = arDefault
-      FieldName = 'sch_datetime'
-      Origin = 'sch_datetime'
     end
     object qrysch_description: TStringField
       AutoGenerateValue = arDefault
@@ -256,21 +258,39 @@ inherited frm_scheduling: Tfrm_scheduling
       Origin = 'sch_description'
       Size = 500
     end
+    object qrysch_datetime: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'sch_datetime'
+      Origin = 'sch_datetime'
+    end
     object qrysch_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       FieldName = 'sch_dt_registration'
       Origin = 'sch_dt_registration'
     end
+    object qryemployee_emp_cod: TBytesField
+      FieldName = 'employee_emp_cod'
+      Origin = 'employee_emp_cod'
+      ProviderFlags = []
+    end
+    object qryrec_name: TStringField
+      FieldName = 'rec_name'
+      Origin = 'rec_name'
+      ProviderFlags = []
+      Size = 85
+      Transliterate = False
+    end
   end
   object qry_scheduling: TFDQuery
+    Active = True
     CachedUpdates = True
     Connection = frm_dm.connCCS
     SchemaAdapter = schadp
     SQL.Strings = (
       'select * from scheduling'
       'where sch_datetime =:dateTime')
-    Left = 489
-    Top = 309
+    Left = 633
+    Top = 269
     ParamData = <
       item
         Name = 'DATETIME'
@@ -318,7 +338,7 @@ inherited frm_scheduling: Tfrm_scheduling
   end
   object ds_qry_scheduling: TDataSource
     DataSet = qry_scheduling
-    Left = 588
-    Top = 309
+    Left = 724
+    Top = 269
   end
 end

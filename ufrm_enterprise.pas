@@ -162,9 +162,11 @@ type
       AButtonIndex: Integer);
     procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
   private
     { Private declarations }
-    //imgObj: TCompress_image;
+   ent_cod:string;
   public
     { Public declarations }
   end;
@@ -201,6 +203,44 @@ begin
   ds.DataSet.FieldByName('ent_image').Value := Null;
 end;
 
+procedure Tfrm_enterprise.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+ if (qryent_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ with frm_dm.qry,sql do
+ begin
+  Close;
+  Text:= ' delete from enterprise ' +
+         ' where ent_cod = ' + ent_cod;
+  Prepare;
+  ExecSQL;
+end;
+       qry.Close;
+       qry.sql.text:= ' select * from enterprise ' +
+                      ' where ent_deleted_at is null';
+       qry.Prepare;
+       qry.open;
+end;
+
+procedure Tfrm_enterprise.Action_deleteExecute(Sender: TObject);
+begin
+   if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
+    = IDYES then
+    begin
+     qry.Edit;
+     qryent_deleted_at.AsDateTime:=Now;
+     qry.Post;
+     qry.ApplyUpdates(0);
+
+     qry.Close;
+     qry.sql.text:= ' select * from enterprise ' +
+                    ' where ent_deleted_at is null ';
+     qry.Prepare;
+     qry.open;
+    end;
+
+end;
+
 procedure Tfrm_enterprise.Action_insert_imageExecute(Sender: TObject);
 begin
   inherited;
@@ -209,26 +249,29 @@ begin
 end;
 
 procedure Tfrm_enterprise.Action_saveExecute(Sender: TObject);
-
-begin
+begin
 with frm_dm.qry,sql do
  begin
    close;
-   Text:= '  select case when max(ent_id) is null then 1 '+
-          '  else (max(ent_id) + 1) end as maxID from enterprise ' +
-          ' where contract_ctr_cod = (select ctr_cod from contract '+
-          'where ctr_id =:ctr_id)';
-   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Text:= ' select case when max(ent_id) is null then 1 ' +
+          '      else (max(ent_id) + 1) end as maxID from enterprise '+
+          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
    Prepare;
    Open;
    if not (qry.State in [dsInsert,dsEdit])  then
     qry.Edit;
 
-    if qryent_id.AsInteger = 0 then
+   if qryent_id.AsInteger = 0 then
     qryent_id.AsInteger:=Fields[0].AsInteger;
- end;
+
+  end;
 
   inherited;
+       qry.Close;
+       qry.sql.text:= ' select * from enterprise ' +
+                      ' where ent_deleted_at is null ';
+       qry.Prepare;
+       qry.open;
 end;
 
 procedure Tfrm_enterprise.dbbtnedt_cepPropertiesButtonClick(Sender: TObject;
@@ -250,22 +293,30 @@ begin
   inherited;
  With frm_dm.qry,sql do
   begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   ent_cod:=Fields[0].AsString;
+
    Close;
-   Text:=' insert into enterprise (ent_cod,ent_id,contract_ctr_cod) ' +
-         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
-          ' where ctr_id = :contrato)';
-   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Text:='insert into enterprise (ent_id,ent_cod,contract_ctr_cod) ' +
+         ' select 0,'+ ent_cod + ',' +  frm_dm.v_contract_ctr_cod;
    Prepare;
    ExecSQL;
   end;
+
+
+   qry.Unprepare;
    qry.Close;
    qry.sql.text:= ' select * from enterprise ' +
-                  ' where ent_id = 0 ';
+                  ' where ent_cod = ' + ent_cod +
+                  ' and ent_deleted_at is null ';
    qry.Prepare;
    qry.open;
-
-  qry.Edit;
-  qryent_dt_registration.Value := Date + Time;
+   qry.Edit;
+   qryent_dt_registration.AsDateTime:=Now;
 end;
 
 end.

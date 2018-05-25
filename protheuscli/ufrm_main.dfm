@@ -4,7 +4,6 @@ inherited frm_main: Tfrm_main
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
-      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar1'
@@ -22,7 +21,6 @@ inherited frm_main: Tfrm_main
       Index = 1
     end
     inherited dxRibbon1Tab_3: TdxRibbonTab
-      Active = False
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar3'
@@ -46,15 +44,6 @@ inherited frm_main: Tfrm_main
         Style.IsFontAssigned = True
       end
     end
-  end
-  object Button1: TButton [5]
-    Left = 216
-    Top = 272
-    Width = 75
-    Height = 25
-    Caption = 'Button1'
-    TabOrder = 3
-    OnClick = Button1Click
   end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar1: TdxBar

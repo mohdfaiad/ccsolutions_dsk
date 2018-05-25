@@ -134,7 +134,8 @@ procedure Tfrm_scheduling.cxTimePropertiesEditValueChanged(Sender: TObject);
 begin
   inherited;
  qry_scheduling.Close;
- qry_scheduling.ParamByName('dateTime').AsDateTime:=cxDate.Date  + cxTime.Time;
+ qry_scheduling.ParamByName('dateTime').AsDateTime:=
+ StrToDateTime(FormatDateTime('mm/dd/yyyy hh:mm:ss', cxDate.Date + StrToTime(' 00:00:00')));
  qry_scheduling.Prepare;
  qry_scheduling.Open;
 end;
@@ -334,18 +335,18 @@ begin
 inherited;
  With frm_dm.qry,sql do
   begin
-   Close;
-   Text:='insert into scheduling (sch_cod,sch_id,contract_ctr_cod) ' +
-         ' select unhex(replace(uuid(),''-'','''')),0,'+ frm_dm.v_contract_ctr_cod;
-   Prepare;
-   ExecSQL;
+   close;
+   text:='select concat(''0x'',unhex(replace(uuid(),''-'','''')))';
+   prepare;
+   open;
+
+   sch_cod:=Fields[0].AsString;
 
    Close;
-   text:= ' select concat(''0x'', hex(sch_cod)) from scheduling ' +
-          ' where sch_id = 0 ';
+   Text:='insert into scheduling (sch_id,sch_cod,contract_ctr_cod) ' +
+         ' select 0,'+ sch_cod + ',' +  frm_dm.v_contract_ctr_cod;
    Prepare;
-   open;
-   sch_cod:=Fields[0].AsString;
+   ExecSQL;
   end;
 
    qry.Unprepare;

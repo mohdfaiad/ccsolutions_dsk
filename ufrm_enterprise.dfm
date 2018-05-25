@@ -1,9 +1,12 @@
 inherited frm_enterprise: Tfrm_enterprise
   Caption = 'Manuten'#231#227'o: Empresas'
   OnClose = FormClose
+  ExplicitLeft = -282
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    ExplicitLeft = 8
+    ExplicitTop = 61
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -115,6 +118,10 @@ inherited frm_enterprise: Tfrm_enterprise
     inherited cxTabSheet_2: TcxTabSheet
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -713,15 +720,15 @@ inherited frm_enterprise: Tfrm_enterprise
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from enterprise')
+      'select * from enterprise'
+      'where ent_deleted_at is null')
     object qryent_type: TStringField
       DisplayLabel = 'Tipo'
       FieldName = 'ent_type'

@@ -2,7 +2,7 @@ object frm_dm: Tfrm_dm
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Height = 275
+  Height = 405
   Width = 338
   object connCCS: TFDConnection
     Params.Strings = (
@@ -486,5 +486,31 @@ object frm_dm: Tfrm_dm
     Connection = connCCS
     Left = 248
     Top = 168
+  end
+  object qry_contract: TFDQuery
+    Connection = connCCS
+    SQL.Strings = (
+      'select ctr_cod from contract'
+      'where ctr_cod =:ctr_cod')
+    Left = 96
+    Top = 320
+    ParamData = <
+      item
+        Name = 'CTR_COD'
+        DataType = ftBytes
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qry_contractctr_cod: TBytesField
+      FieldName = 'ctr_cod'
+      Origin = 'ctr_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+  end
+  object ds_contract: TDataSource
+    DataSet = qry_contract
+    Left = 160
+    Top = 320
   end
 end

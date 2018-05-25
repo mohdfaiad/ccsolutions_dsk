@@ -69,6 +69,9 @@ type
     qry_signinctr_usr_email: TStringField;
     qry_signinNew: TFDQuery;
     qry_signinctr_usr_password: TBytesField;
+    qry_contract: TFDQuery;
+    qry_contractctr_cod: TBytesField;
+    ds_contract: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

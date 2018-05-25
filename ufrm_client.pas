@@ -284,6 +284,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure qry_client_insiranceAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
   private
     { Private declarations }
     cep:Integer;
@@ -351,6 +353,25 @@ begin
 
  end;
 
+procedure Tfrm_client.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+ if (qrycli_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ with frm_dm.qry,sql do
+ begin
+  Close;
+  Text:= ' delete from client ' +
+         ' where cli_cod = ' + cli_cod;
+  Prepare;
+  ExecSQL;
+end;
+       qry.Close;
+       qry.sql.text:= ' select * from client ' +
+                      ' where cli_deleted_at is null';
+       qry.Prepare;
+       qry.open;
+end;
+
 procedure Tfrm_client.Action_consult_cnpjExecute(Sender: TObject);
 begin
   inherited;
@@ -364,6 +385,24 @@ begin
   frm_consult_cpf := Tfrm_consult_cpf.Create(Self);
   frm_consult_cpf.Show;
 end;
+
+procedure Tfrm_client.Action_deleteExecute(Sender: TObject);
+begin
+   if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
+    = IDYES then
+    begin
+     qry.Edit;
+     qrycli_deleted_at.AsDateTime:=Now;
+     qry.Post;
+     qry.ApplyUpdates(0);
+
+     qry.Close;
+     qry.sql.text:= ' select * from client ' +
+                    ' where cli_deleted_at is null ';
+     qry.Prepare;
+     qry.open;
+    end;
+ end;
 
 procedure Tfrm_client.Action_saveExecute(Sender: TObject);
 begin
@@ -380,11 +419,15 @@ with frm_dm.qry,sql do
 
    if qrycli_id.AsInteger = 0 then
     qrycli_id.AsInteger:=Fields[0].AsInteger;
-    Self.Tag:=0; // para voltar a fazer o qryAfterInsert
 
   end;
 
   inherited;
+       qry.Close;
+       qry.sql.text:= ' select * from client ' +
+                      ' where cli_deleted_at is null ';
+       qry.Prepare;
+       qry.open;
 
 end;
 
@@ -473,40 +516,32 @@ end;
 procedure Tfrm_client.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
- if Self.Tag = 1 then //tag = 1 apenas para resolver um loop que estava acontecendo ao editar o registro
-  exit;
-
  With frm_dm.qry,sql do
   begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   cli_cod:=Fields[0].AsString;
+
    Close;
-   Text:='insert into client (cli_cod,cli_id,contract_ctr_cod) ' +
-         ' select unhex(replace(uuid(),''-'','''')),0,'+ frm_dm.v_contract_ctr_cod;
+   Text:='insert into client (cli_id,cli_cod,contract_ctr_cod) ' +
+         ' select 0,'+ cli_cod + ',' +  frm_dm.v_contract_ctr_cod;
    Prepare;
    ExecSQL;
-
-   Close;
-   text:= ' select concat(''0x'', hex(cli_cod)) from client ' +
-          ' where cli_id = 0 ';
-   Prepare;
-   open;
-   cli_cod:=Fields[0].AsString;
   end;
 
-
-   qry.Unprepare;
    qry.Close;
    qry.sql.text:= ' select * from client ' +
-                  ' where cli_cod = ' + cli_cod;
+                  ' where cli_cod = ' + cli_cod +
+                  ' and cli_deleted_at is null';
    qry.Prepare;
    qry.open;
-   Self.Tag:=1;
-
    qry.Edit;
    qrycli_dt_registration.AsDateTime:=Now;
-
-
-
 end;
+
 procedure Tfrm_client.qry_client_insiranceAfterInsert(DataSet: TDataSet);
 begin
   inherited;

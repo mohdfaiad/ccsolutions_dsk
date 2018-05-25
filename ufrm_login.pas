@@ -99,21 +99,8 @@ uses ufrm_dm, ufrm_main_default;
 
 procedure Tfrm_login.Action_accessExecute(Sender: TObject);
 var
-md5 : TIdHashMessageDigest;
 SQL:string;
 begin
-
-  md5:=TIdHashMessageDigest5.Create;
-
-  frm_dm.qry_signin.Close;
-  frm_dm.qry_signin.Params.ClearValues();
-  frm_dm.qry_signin.Params[0].AsInteger := StrToInt(edt_contract.Text);
-  frm_dm.qry_signin.Params[1].AsString := edt_username.Text;
-  frm_dm.qry_signin.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
-  frm_dm.qry_signin.Prepare;
-  frm_dm.qry_signin.Open;
-
-
   // Select para listar as unidades de estoque que esse usuário tem acesso
    frm_dm.qry_enterprise.Close;
    frm_dm.qry_enterprise.ParamByName('CTR_USR_ID').Value:=frm_dm.qry_signinuserCod.Value;
@@ -173,6 +160,13 @@ begin
      frm_dm.qry_signinNew.Open;
 
      frm_dm.v_contract_ctr_cod := '0x' +  frm_dm.qry_signinNew.FieldByName('hex(@po_contract_ctr_cod)').Value;
+
+  frm_dm.qry_contract.Close;
+  frm_dm.qry_contract.sql.Text:='select ctr_cod from contract '+
+     ' where ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+  frm_dm.qry_contract.Prepare;
+  frm_dm.qry_contract.Open;
+
 
   if frm_dm.qry_signinNew.Fields[0].AsInteger = 1 then
    begin

@@ -38,7 +38,9 @@ uses
   ufrm_employeee in '..\ufrm_employeee.pas' {frm_employee_},
   Employee.Dao in '..\Dao\Employee.Dao.pas',
   Employee.Model in '..\Model\Employee.Model.pas',
-  ufrm_scheduling in '..\ufrm_scheduling.pas' {frm_scheduling};
+  ufrm_scheduling in '..\ufrm_scheduling.pas' {frm_scheduling},
+  ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
+  class_table_price in '..\class_table_price.pas';
 
 {$R *.res}
 var

@@ -34,7 +34,14 @@ uses
   class_check_enterprise in '..\class_check_enterprise.pas',
   ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
   class_table_price in '..\class_table_price.pas',
-  ufrm_default in '..\models\ufrm_default.pas' {frm_default};
+  ufrm_default in '..\models\ufrm_default.pas' {frm_default},
+  Client.Dao in '..\Dao\Client.Dao.pas',
+  Conexao in '..\Dao\Conexao.pas',
+  Contract_User.Dao in '..\Dao\Contract_User.Dao.pas',
+  Employee.Dao in '..\Dao\Employee.Dao.pas',
+  Contract_user.Model in '..\Model\Contract_user.Model.pas',
+  Employee.Model in '..\Model\Employee.Model.pas',
+  Employee_Model in '..\Model\Employee_Model.pas';
 
 {$R *.res}
 

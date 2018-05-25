@@ -1,11 +1,17 @@
 inherited frm_table_price: Tfrm_table_price
   Caption = 'Cadastro de Tabela de pre'#231'o'
+  ExplicitLeft = -55
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
+        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1tbp_id: TcxGridDBColumn
             Caption = 'C'#243'd. ID'
@@ -36,7 +42,6 @@ inherited frm_table_price: Tfrm_table_price
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabExames
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -436,34 +441,16 @@ inherited frm_table_price: Tfrm_table_price
   end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from table_price'
-      'where contract_ctr_id = :ctr_id')
-    ParamData = <
-      item
-        Name = 'CTR_ID'
-        DataType = ftInteger
-        ParamType = ptInput
-        Value = Null
-      end>
-    object qrytbp_id: TFDAutoIncField
-      FieldName = 'tbp_id'
-      Origin = 'tbp_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
+      'where tbp_deleted_at is null')
     object qrytbp_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'tbp_name'
@@ -474,6 +461,34 @@ inherited frm_table_price: Tfrm_table_price
       AutoGenerateValue = arDefault
       FieldName = 'tbp_dt_registration'
       Origin = 'tbp_dt_registration'
+    end
+    object qrytbp_cod: TBytesField
+      FieldName = 'tbp_cod'
+      Origin = 'tbp_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qrytbp_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tbp_status'
+      Origin = 'tbp_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qrytbp_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'tbp_deleted_at'
+      Origin = 'tbp_deleted_at'
+    end
+    object qrytbp_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'tbp_id'
+      Origin = 'tbp_id'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -496,13 +511,14 @@ inherited frm_table_price: Tfrm_table_price
     Style = <>
   end
   object qry_table_price_product: TFDQuery
+    Active = True
     AfterInsert = qry_table_price_productAfterInsert
     BeforePost = qry_table_price_productBeforePost
     CachedUpdates = True
-    IndexFieldNames = 'table_price_tbp_id'
+    IndexFieldNames = 'table_price_tbp_cod'
     MasterSource = ds
-    MasterFields = 'tbp_id'
-    DetailFields = 'table_price_tbp_id'
+    MasterFields = 'tbp_cod'
+    DetailFields = 'table_price_tbp_cod'
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
     FetchOptions.AssignedValues = [evDetailCascade]
@@ -511,32 +527,17 @@ inherited frm_table_price: Tfrm_table_price
       
         'select table_price_product.*,tpp_value as vlrAntigo  from table_' +
         'price_product'
-      'where table_price_tbp_id = :tbp_id')
+      'where table_price_tbp_cod = :tbp_cod')
     Left = 439
     Top = 130
     ParamData = <
       item
-        Name = 'TBP_ID'
-        DataType = ftInteger
+        Name = 'TBP_COD'
+        DataType = ftBytes
         ParamType = ptInput
+        Size = 16
         Value = Null
       end>
-    object qry_table_price_producttpp_id: TFDAutoIncField
-      FieldName = 'tpp_id'
-      Origin = 'tpp_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qry_table_price_producttable_price_tbp_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'table_price_tbp_id'
-      Origin = 'table_price_tbp_id'
-    end
-    object qry_table_price_productproduct_pro_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'product_pro_id'
-      Origin = 'product_pro_id'
-    end
     object qry_table_price_producttpp_value: TBCDField
       AutoGenerateValue = arDefault
       FieldName = 'tpp_value'
@@ -559,6 +560,32 @@ inherited frm_table_price: Tfrm_table_price
       currency = True
       Precision = 12
     end
+    object qry_table_price_producttpp_cod: TBytesField
+      FieldName = 'tpp_cod'
+      Origin = 'tpp_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_table_price_producttable_price_tbp_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'table_price_tbp_cod'
+      Origin = 'table_price_tbp_cod'
+    end
+    object qry_table_price_productproduct_pro_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_pro_cod'
+      Origin = 'product_pro_cod'
+    end
+    object qry_table_price_producttpp_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'tpp_deleted_at'
+      Origin = 'tpp_deleted_at'
+    end
+    object qry_table_price_producttpp_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'tpp_id'
+      Origin = 'tpp_id'
+    end
   end
   object ds_table_price_product: TDataSource
     DataSet = qry_table_price_product
@@ -573,17 +600,14 @@ inherited frm_table_price: Tfrm_table_price
       'order by pro_name')
     Left = 407
     Top = 218
-    object qry_productpro_id: TFDAutoIncField
-      FieldName = 'pro_id'
-      Origin = 'pro_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
     object qry_productpro_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'pro_name'
       Origin = 'pro_name'
       Size = 50
+    end
+    object qry_productpro_id: TLongWordField
+      FieldName = 'pro_id'
     end
   end
   object ds_product: TDataSource

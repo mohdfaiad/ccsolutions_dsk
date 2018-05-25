@@ -38,11 +38,8 @@ uses
 
 type
   Tfrm_exam = class(Tfrm_form_default)
-    qrypro_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
     qrypro_type: TStringField;
     qrypro_name: TStringField;
-    qrypro_description: TStringField;
     qrypro_tag: TStringField;
     qrypro_gender: TStringField;
     qrypro_dt_registration: TDateTimeField;
@@ -65,7 +62,6 @@ type
     cxDBCombTipo: TcxDBComboBox;
     dxLayoutItem8: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    qrymaterial_mat_id: TIntegerField;
     cxDBLookupComboBox1: TcxDBLookupComboBox;
     dxLayoutItem6: TdxLayoutItem;
     qry_material: TFDQuery;
@@ -85,12 +81,35 @@ type
     dxLayoutItem11: TdxLayoutItem;
     cxDBCombStatus: TcxDBComboBox;
     dxLayoutItem12: TdxLayoutItem;
+    qrypro_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qrymaterial_mat_cod: TBytesField;
+    qrysupplier_sup_cod: TBytesField;
+    qryproduct_class_prc_cod: TBytesField;
+    qryproduct_class_sub_prs_cod: TBytesField;
+    qrymanufacturer_man_cod: TBytesField;
+    qrybrand_bra_cod: TBytesField;
+    qryncm_ncm_cod: TBytesField;
+    qryproduct_unit_pru_cod: TBytesField;
+    qrypro_id: TLongWordField;
+    qrypro_barcod: TStringField;
+    qrypro_barcod_manufacturer: TStringField;
+    qrypro_height: TBCDField;
+    qrypro_width: TBCDField;
+    qrypro_length: TBCDField;
+    qrypro_weight: TBCDField;
+    qrypro_liter: TBCDField;
+    qrypro_deleted_at: TDateTimeField;
+    qrypro_description: TMemoField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure cxTabSheet_2Show(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
   private
     { Private declarations }
+    pro_cod:string;
   public
     { Public declarations }
   end;
@@ -104,14 +123,68 @@ implementation
 
 uses ufrm_dm, class_required_field;
 
+procedure Tfrm_exam.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+ if (qrypro_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ with frm_dm.qry,sql do
+ begin
+  Close;
+  Text:= ' delete from product ' +
+         ' where pro_cod = ' + pro_cod;
+  Prepare;
+  ExecSQL;
+
+       qry.Close;
+       qry.sql.text:= ' select * from product ' +
+                      ' where pro_deleted_at is null';
+       qry.Prepare;
+       qry.open;
+end;
+end;
+
+procedure Tfrm_exam.Action_deleteExecute(Sender: TObject);
+begin
+ if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
+    = IDYES then
+    begin
+     qry.Edit;
+     qrypro_deleted_at.AsDateTime:=Now;
+     qry.Post;
+     qry.ApplyUpdates(0);
+
+     qry.Close;
+     qry.sql.text:= ' select * from product ' +
+                    ' where pro_deleted_at is null ';
+     qry.Prepare;
+     qry.open;
+    end;
+end;
+
 procedure Tfrm_exam.Action_saveExecute(Sender: TObject);
 begin
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(pro_id) is null then 1 ' +
+          '      else (max(pro_id) + 1) end as maxID from product '+
+          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+   Prepare;
+   Open;
+   if not (qry.State in [dsInsert,dsEdit])  then
+    qry.Edit;
 
-   //--Comando para tirar o focus de todos os componentes da tela-----
-   ActiveControl := nil;
-  //--Cama a função para verificar se existe campos requeridos em branco----
-   TCampoRequerido.TratarRequerido(qry);
+   if qrypro_id.AsInteger = 0 then
+    qrypro_id.AsInteger:=Fields[0].AsInteger;
+
+  end;
+
   inherited;
+       qry.Close;
+       qry.sql.text:= ' select * from product ' +
+                      ' where pro_deleted_at is null ';
+       qry.Prepare;
+       qry.open;
 end;
 
 procedure Tfrm_exam.cxTabSheet_2Show(Sender: TObject);
@@ -136,7 +209,30 @@ end;
 procedure Tfrm_exam.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qrypro_dt_registration.Value := now;
+With frm_dm.qry,sql do
+  begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   pro_cod:=Fields[0].AsString;
+
+   Close;
+   Text:='insert into product (pro_id,pro_cod,contract_ctr_cod) ' +
+         ' select 0,'+ pro_cod + ',' +  frm_dm.v_contract_ctr_cod;
+   Prepare;
+   ExecSQL;
+  end;
+
+   qry.Close;
+   qry.sql.text:= ' select * from product ' +
+                  ' where pro_cod = ' + pro_cod +
+                  ' and pro_deleted_at is null';
+   qry.Prepare;
+   qry.open;
+   qry.Edit;
+   qrypro_dt_registration.AsDateTime:=Now;
 end;
 
 end.

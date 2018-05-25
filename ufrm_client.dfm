@@ -1,6 +1,7 @@
 inherited frm_client: Tfrm_client
   Caption = 'Manuten'#231#227'o: Clientes'
   OnClose = FormClose
+  ExplicitLeft = -307
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl

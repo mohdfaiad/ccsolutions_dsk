@@ -492,8 +492,8 @@ object frm_dm: Tfrm_dm
     SQL.Strings = (
       'select ctr_cod from contract'
       'where ctr_cod =:ctr_cod')
-    Left = 96
-    Top = 320
+    Left = 152
+    Top = 312
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -510,7 +510,7 @@ object frm_dm: Tfrm_dm
   end
   object ds_contract: TDataSource
     DataSet = qry_contract
-    Left = 160
-    Top = 320
+    Left = 240
+    Top = 304
   end
 end

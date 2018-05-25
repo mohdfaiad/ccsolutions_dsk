@@ -1,4 +1,4 @@
-unit ufrm_ncm;
+unit ufrm_client;
 
 interface
 
@@ -24,145 +24,388 @@ uses
   dxSkinXmas2008Blue, dxSkinscxPCPainter, dxBarBuiltInMenu, cxStyles,
   cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, Data.DB,
   cxDBData, cxContainer, dxLayoutcxEditAdapters, dxSkinsdxBarPainter,
-  cxShellComboBox, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
-  FireDAC.Stan.Async, FireDAC.DApt, QImport3Wizard, QExport4Dialog, ACBrBase,
-  ACBrEnterTab, FireDAC.Comp.DataSet, FireDAC.Comp.Client, dxLayoutLookAndFeels,
+  FireDAC.Stan.Async, FireDAC.DApt, ACBrBase, ACBrEnterTab,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, dxLayoutLookAndFeels,
   System.ImageList, Vcl.ImgList, Vcl.Menus, cxGridCustomPopupMenu,
-  cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar, cxBarEditItem,
-  cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
-  cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
+  cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar, cxClasses,
+  dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar, cxDBEdit,
+  cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  ACBrSocket, ACBrNCMs, cxMemo, cxButtonEdit, ACBrCEP, frxClass, Vcl.Buttons,
-  Vcl.Grids, Vcl.DBGrids;
+  cxButtonEdit, cxImage, cxShellComboBox, QExport4Dialog, cxBarEditItem,
+  dxBarExtItems, QImport3Wizard, Vcl.StdCtrls, frxClass, ACBrSocket, ACBrCEP,
+  dxLayoutControlAdapters, cxButtons, cxDBLookupComboBox, ufrm_main_default;
 
 type
-  Tfrm_ncm = class(Tfrm_form_default)
-    qryncm_code: TStringField;
-    qryncm_description: TMemoField;
-    qryncm_dt_registration: TDateTimeField;
-    cxGrid_1DBTableView1ncm_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1ncm_code: TcxGridDBColumn;
-    cxGrid_1DBTableView1ncm_description: TcxGridDBColumn;
-    cxGrid_1DBTableView1ncm_dt_registration: TcxGridDBColumn;
-    cxDBMemo1: TcxDBMemo;
-    dxLayoutItem4: TdxLayoutItem;
-    cxDBButtonEdit1: TcxDBButtonEdit;
+  Tfrm_client = class(Tfrm_form_default)
+    qrycli_first_name: TStringField;
+    qrycli_last_name: TStringField;
+    qrycli_email: TStringField;
+    cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
-    qryncm_cod: TBytesField;
+    cxDBTextEdit2: TcxDBTextEdit;
+    dxLayoutItem4: TdxLayoutItem;
+    cxDBTextEdit3: TcxDBTextEdit;
+    dxLayoutItem5: TdxLayoutItem;
+    cxDBDateEdit1: TcxDBDateEdit;
+    dxLayoutItem6: TdxLayoutItem;
+    cxTabSheet_address: TcxTabSheet;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutGroup3: TdxLayoutGroup;
+    dxLayoutGroup4: TdxLayoutGroup;
+    dxLayoutGroup5: TdxLayoutGroup;
+    cxDBTextEdit5: TcxDBTextEdit;
+    dxLayoutItem8: TdxLayoutItem;
+    cxDBTextEdit6: TcxDBTextEdit;
+    dxLayoutItem9: TdxLayoutItem;
+    cxDBTextEdit7: TcxDBTextEdit;
+    dxLayoutItem10: TdxLayoutItem;
+    cxDBTextEdit8: TcxDBTextEdit;
+    dxLayoutItem11: TdxLayoutItem;
+    cxDBTextEdit9: TcxDBTextEdit;
+    dxLayoutItem12: TdxLayoutItem;
+    cxDBTextEdit10: TcxDBTextEdit;
+    dxLayoutItem13: TdxLayoutItem;
+    cxDBTextEdit11: TcxDBTextEdit;
+    dxLayoutItem14: TdxLayoutItem;
+    cxDBTextEdit13: TcxDBTextEdit;
+    dxLayoutItem16: TdxLayoutItem;
+    cxDBTextEdit14: TcxDBTextEdit;
+    dxLayoutItem17: TdxLayoutItem;
+    cxDBTextEdit15: TcxDBTextEdit;
+    dxLayoutItem18: TdxLayoutItem;
+    cxDBTextEdit16: TcxDBTextEdit;
+    dxLayoutItem19: TdxLayoutItem;
+    cxDBTextEdit17: TcxDBTextEdit;
+    dxLayoutItem20: TdxLayoutItem;
+    cxDBTextEdit18: TcxDBTextEdit;
+    dxLayoutItem21: TdxLayoutItem;
+    cxDBTextEdit19: TcxDBTextEdit;
+    dxLayoutItem22: TdxLayoutItem;
+    cxDBTextEdit21: TcxDBTextEdit;
+    dxLayoutItem24: TdxLayoutItem;
+    cxDBTextEdit22: TcxDBTextEdit;
+    dxLayoutItem25: TdxLayoutItem;
+    cxDBTextEdit23: TcxDBTextEdit;
+    dxLayoutItem26: TdxLayoutItem;
+    cxDBTextEdit24: TcxDBTextEdit;
+    dxLayoutItem27: TdxLayoutItem;
+    cxDBTextEdit25: TcxDBTextEdit;
+    dxLayoutItem28: TdxLayoutItem;
+    cxDBTextEdit26: TcxDBTextEdit;
+    dxLayoutItem29: TdxLayoutItem;
+    cxDBTextEdit27: TcxDBTextEdit;
+    dxLayoutItem30: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup13: TdxLayoutAutoCreatedGroup;
+    cxDBButtonEdit1: TcxDBButtonEdit;
+    dxLayoutItem31: TdxLayoutItem;
+    cxDBButtonEdit2: TcxDBButtonEdit;
+    dxLayoutItem15: TdxLayoutItem;
+    cxDBButtonEdit3: TcxDBButtonEdit;
+    dxLayoutItem23: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
+    dxLayoutGroup6: TdxLayoutGroup;
+    qrycli_cpfcnpj: TStringField;
+    qrycli_im: TStringField;
+    qrycli_suframa: TStringField;
+    cxDBTextEdit12: TcxDBTextEdit;
+    dxLayoutItem32: TdxLayoutItem;
+    cxDBTextEdit20: TcxDBTextEdit;
+    dxLayoutItem33: TdxLayoutItem;
+    cxDBTextEdit28: TcxDBTextEdit;
+    dxLayoutItem34: TdxLayoutItem;
+    cxDBTextEdit29: TcxDBTextEdit;
+    dxLayoutItem35: TdxLayoutItem;
+    cxDBComboBox1: TcxDBComboBox;
+    dxLayoutItem36: TdxLayoutItem;
+    qrycli_phone1: TStringField;
+    qrycli_phone2: TStringField;
+    qrycli_phone3: TStringField;
+    qrycli_rgie: TStringField;
+    qrycli_dt_birthopen: TDateField;
+    qrycli_phone4: TStringField;
+    qrycli_dt_registration: TDateTimeField;
+    qrycli_type: TStringField;
+    cxTabSheet1: TcxTabSheet;
+    dxLayoutControl2: TdxLayoutControl;
+    cxDBTextEdit4: TcxDBTextEdit;
+    cxDBTextEdit30: TcxDBTextEdit;
+    cxDBTextEdit31: TcxDBTextEdit;
+    cxDBTextEdit32: TcxDBTextEdit;
+    cxDBTextEdit33: TcxDBTextEdit;
+    dxLayoutGroup7: TdxLayoutGroup;
+    dxLayoutGroup8: TdxLayoutGroup;
+    dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
+    dxLayoutItem7: TdxLayoutItem;
+    dxLayoutItem37: TdxLayoutItem;
+    dxLayoutItem38: TdxLayoutItem;
+    dxLayoutItem39: TdxLayoutItem;
+    dxLayoutItem40: TdxLayoutItem;
+    qrycli_contact: TStringField;
+    qrycli_add_bus_zipcode: TStringField;
+    qrycli_add_bus_address: TStringField;
+    qrycli_add_bus_number: TStringField;
+    qrycli_add_bus_street: TStringField;
+    qrycli_add_bus_complement: TStringField;
+    qrycli_add_bus_city: TStringField;
+    qrycli_add_bus_state: TStringField;
+    qrycli_add_bus_country: TStringField;
+    qrycli_add_bil_zipcode: TStringField;
+    qrycli_add_bil_address: TStringField;
+    qrycli_add_bil_number: TStringField;
+    qrycli_add_bil_street: TStringField;
+    qrycli_add_bil_complement: TStringField;
+    qrycli_add_bil_city: TStringField;
+    qrycli_add_bil_state: TStringField;
+    qrycli_add_bil_country: TStringField;
+    qrycli_add_del_zipcode: TStringField;
+    qrycli_add_del_address: TStringField;
+    qrycli_add_del_number: TStringField;
+    qrycli_add_del_street: TStringField;
+    qrycli_add_del_complement: TStringField;
+    qrycli_add_del_city: TStringField;
+    qrycli_add_del_state: TStringField;
+    qrycli_add_del_country: TStringField;
+    qrycli_day_maturity: TIntegerField;
+    cxGrid_1DBTableView1cli_type: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_first_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_last_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_email: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_cpfcnpj: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_rgie: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_im: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_suframa: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bus_zipcode: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bus_address: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bus_number: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bus_street: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bus_complement: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bus_city: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bus_state: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bus_country: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_zipcode: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_address: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_number: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_street: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_complement: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_city: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_state: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_bil_country: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_del_zipcode: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_del_address: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_del_number: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_del_street: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_del_complement: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_del_city: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_del_state: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_add_del_country: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_phone1: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_phone2: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_phone3: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_phone4: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_contact: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_dt_birthopen: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_dt_registration: TcxGridDBColumn;
+    cxGrid_1DBTableView1cli_day_maturity: TcxGridDBColumn;
+    dxLayoutAutoCreatedGroup11: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup15: TdxLayoutAutoCreatedGroup;
+    cxTabSheet2: TcxTabSheet;
+    dxLayoutControl3: TdxLayoutControl;
+    cxDBTextEdit38: TcxDBTextEdit;
+    dxLayoutGroup9: TdxLayoutGroup;
+    dxLayoutGroup10: TdxLayoutGroup;
+    dxLayoutItem45: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup14: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup10: TdxLayoutAutoCreatedGroup;
+    dxBarButton5: TdxBarButton;
+    Action_consult_cpf: TAction;
+    Action_consult_cnpj: TAction;
+    dxBarButton1: TdxBarButton;
+    tabTelefonia: TcxTabSheet;
+    Label1: TLabel;
+    dxLayoutControl4Group_Root: TdxLayoutGroup;
+    dxLayoutControl4: TdxLayoutControl;
+    dxLayoutGroup11: TdxLayoutGroup;
+    cxDBTextEdit34: TcxDBTextEdit;
+    dxLayoutItem42: TdxLayoutItem;
+    qrycli_status: TStringField;
+    qrycli_account_code_sippulse: TStringField;
+    qry_insurance: TFDQuery;
+    qry_insuranceins_first_name: TStringField;
+    tabLaboratorio: TcxTabSheet;
+    dxLayoutControl5Group_Root: TdxLayoutGroup;
+    dxLayoutControl5: TdxLayoutControl;
+    dxLayoutGroup12: TdxLayoutGroup;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    dxLayoutItem43: TdxLayoutItem;
+    qry_client_insirance: TFDQuery;
+    ds_client_insirance: TDataSource;
+    cxGrid1DBTableView1cin_id: TcxGridDBColumn;
+    cxGrid1DBTableView1client_cli_id: TcxGridDBColumn;
+    cxGrid1DBTableView1insurance_ins_id: TcxGridDBColumn;
+    cxGrid1DBTableView1cin_dt_registration: TcxGridDBColumn;
+    ds_insurance: TDataSource;
+    qrycli_cod: TBytesField;
     qrycontract_ctr_cod: TBytesField;
-    qryncm_id: TLongWordField;
-    qryncm_status: TStringField;
-    qryncm_deleted_at: TDateTimeField;
+    qrytable_price_tbp_cod: TBytesField;
+    qrycli_id: TLongWordField;
+    qrycli_deleted_at: TDateTimeField;
+    qry_insuranceins_id: TLongWordField;
+    qry_insurancecontract_ctr_cod: TBytesField;
+    qry_client_insirancecin_cod: TBytesField;
+    qry_client_insiranceclient_cli_id: TBytesField;
+    qry_client_insiranceinsurance_ins_id: TBytesField;
+    qry_client_insirancecin_id: TLongWordField;
+    qry_client_insirancecin_deleted_at: TDateTimeField;
+    qry_client_insirancecin_dt_registration: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure Action_consult_cnpjExecute(Sender: TObject);
+    procedure Action_consult_cpfExecute(Sender: TObject);
+    procedure changeType;
+    procedure cxDBComboBox1PropertiesChange(Sender: TObject);
+    procedure cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
+    procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
+    procedure cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
+    procedure cxDBButtonEdit3PropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
+    procedure cxTabSheet_addressShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure qry_client_insiranceAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
-    procedure cxTabSheet_1Show(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
   private
     { Private declarations }
+    cep:Integer;
+    cli_cod:string;
+    procedure limpaCache(Sender:TObject);
   public
     { Public declarations }
-
-
-end;
-
+  end;
 
 var
-  frm_ncm: Tfrm_ncm;
+  frm_client: Tfrm_client;
 
 implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, class_required_field;
+uses ufrm_dm, ufrm_consult_cnpj, ufrm_consult_cpf;
 
-procedure Tfrm_ncm.Action_cancelExecute(Sender: TObject);
+
+procedure Tfrm_client.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qryncm_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ if (qrycli_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
  with frm_dm.qry,sql do
  begin
   Close;
-  Text:= ' delete from ncm ' +
-         ' where contract_ctr_cod =:contract ' +
-         ' and ncm_id = 0';
-  ParamByName('contract').Value:=frm_dm.qry_signinctr_cod.Value;
+  Text:= ' delete from client ' +
+         ' where cli_cod = ' + cli_cod;
   Prepare;
   ExecSQL;
 end;
+       qry.Close;
+       qry.sql.text:= ' select * from client ' +
+                      ' where cli_deleted_at is null';
+       qry.Prepare;
+       qry.open;
 end;
 
-procedure Tfrm_ncm.Action_saveExecute(Sender: TObject);
 
+procedure Tfrm_client.Action_deleteExecute(Sender: TObject);
+begin
+   if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
+    = IDYES then
+    begin
+     qry.Edit;
+     qrycli_deleted_at.AsDateTime:=Now;
+     qry.Post;
+     qry.ApplyUpdates(0);
+
+     qry.Close;
+     qry.sql.text:= ' select * from client ' +
+                    ' where cli_deleted_at is null ';
+     qry.Prepare;
+     qry.open;
+    end;
+ end;
+
+procedure Tfrm_client.Action_saveExecute(Sender: TObject);
 begin
 with frm_dm.qry,sql do
  begin
    close;
-   Text:= ' select case when max(ncm_id) is null then 1 ' +
-          '      else (max(ncm_id) + 1) end as maxID from ncm '+
-          ' where contract_ctr_cod = (select ctr_cod from contract ' +
-          ' where ctr_id =:ctr_id)';
-   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Text:= ' select case when max(cli_id) is null then 1 ' +
+          '      else (max(cli_id) + 1) end as maxID from client '+
+          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
    Prepare;
    Open;
    if not (qry.State in [dsInsert,dsEdit])  then
     qry.Edit;
 
-   if qryncm_id.AsInteger = 0 then
-    qryncm_id.AsInteger:=Fields[0].AsInteger;
- end;
+   if qrycli_id.AsInteger = 0 then
+    qrycli_id.AsInteger:=Fields[0].AsInteger;
 
-
- //--Comando para tirar o focus de todos os componentes da tela-----
-   ActiveControl := nil;
-  //--Cama a função para verificar se existe campos requeridos em branco----
-   TCampoRequerido.TratarRequerido(qry);
+  end;
 
   inherited;
+       qry.Close;
+       qry.sql.text:= ' select * from client ' +
+                      ' where cli_deleted_at is null ';
+       qry.Prepare;
+       qry.open;
 
 end;
 
-procedure Tfrm_ncm.cxTabSheet_1Show(Sender: TObject);
-begin
-  inherited;
-   qry.Close;
-   qry.sql.text:= ' select * from ncm ';
-   qry.Prepare;
-   qry.open;
-end;
 
-procedure Tfrm_ncm.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  inherited;
-  frm_ncm.Destroy;
-  frm_ncm := Nil;
-end;
 
-procedure Tfrm_ncm.qryAfterInsert(DataSet: TDataSet);
+procedure Tfrm_client.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
  With frm_dm.qry,sql do
   begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   cli_cod:=Fields[0].AsString;
+
    Close;
-   Text:='insert into ncm (ncm_cod,ncm_id,contract_ctr_cod) ' +
-         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
-         ' where ctr_id = :contrato)';
-   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Text:='insert into client (cli_id,cli_cod,contract_ctr_cod) ' +
+         ' select 0,'+ cli_cod + ',' +  frm_dm.v_contract_ctr_cod;
    Prepare;
    ExecSQL;
   end;
+
    qry.Close;
-   qry.sql.text:= ' select * from ncm ' +
-                  ' where ncm_id = 0 ';
+   qry.sql.text:= ' select * from client ' +
+                  ' where cli_cod = ' + cli_cod +
+                  ' and cli_deleted_at is null';
    qry.Prepare;
    qry.open;
+   qry.Edit;
+   qrycli_dt_registration.AsDateTime:=Now;
+end;
 
-  qry.Edit;
-  qryncm_dt_registration.Value := Date + Time;
+procedure Tfrm_client.qry_client_insiranceAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+// qry_client_insirancecin_dt_registration.AsDateTime:=Now;
 
 end;
 
 end.
-

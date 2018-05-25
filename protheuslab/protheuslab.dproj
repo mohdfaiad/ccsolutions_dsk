@@ -226,6 +226,13 @@
             <Form>frm_default</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Dao\Client.Dao.pas"/>
+        <DCCReference Include="..\Dao\Conexao.pas"/>
+        <DCCReference Include="..\Dao\Contract_User.Dao.pas"/>
+        <DCCReference Include="..\Dao\Employee.Dao.pas"/>
+        <DCCReference Include="..\Model\Contract_user.Model.pas"/>
+        <DCCReference Include="..\Model\Employee.Model.pas"/>
+        <DCCReference Include="..\Model\Employee_Model.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

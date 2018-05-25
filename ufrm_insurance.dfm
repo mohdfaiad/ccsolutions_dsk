@@ -730,17 +730,17 @@ inherited frm_insurance: Tfrm_insurance
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from insurance')
+      'select * from insurance'#13#10#10
+      'where ins_deleted_at is null')
     object qryins_first_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Raz'#227'o'
@@ -949,7 +949,7 @@ inherited frm_insurance: Tfrm_insurance
   object qry_table_price: TFDQuery
     Active = True
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
@@ -987,10 +987,5 @@ inherited frm_insurance: Tfrm_insurance
     DataSet = qry_table_price
     Left = 311
     Top = 458
-  end
-  object FDQuery1: TFDQuery
-    Connection = frm_dm.connCCS
-    Left = 314
-    Top = 275
   end
 end

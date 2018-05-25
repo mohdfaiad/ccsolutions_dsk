@@ -38,8 +38,6 @@ uses
 
 type
   Tfrm_table_price = class(Tfrm_form_default)
-    qrytbp_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
     qrytbp_name: TStringField;
     qrytbp_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1tbp_id: TcxGridDBColumn;
@@ -51,14 +49,10 @@ type
     cxTabExames: TcxTabSheet;
     qry_table_price_product: TFDQuery;
     ds_table_price_product: TDataSource;
-    qry_table_price_producttpp_id: TFDAutoIncField;
-    qry_table_price_producttable_price_tbp_id: TIntegerField;
-    qry_table_price_productproduct_pro_id: TIntegerField;
     qry_table_price_producttpp_value: TBCDField;
     qry_table_price_producttpp_dt_registration: TDateTimeField;
     qry_product: TFDQuery;
     ds_product: TDataSource;
-    qry_productpro_id: TFDAutoIncField;
     qry_productpro_name: TStringField;
     dxLayoutControl2: TdxLayoutControl;
     dxLayoutGroup4: TdxLayoutGroup;
@@ -101,6 +95,17 @@ type
     cxGridDBTableView1tpp_dt_registration: TcxGridDBColumn;
     cxGridDBTableView1vlrAntigo: TcxGridDBColumn;
     butonAlterarPreco: TdxBarButton;
+    qrytbp_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qrytbp_status: TStringField;
+    qrytbp_deleted_at: TDateTimeField;
+    qry_table_price_producttpp_cod: TBytesField;
+    qry_table_price_producttable_price_tbp_cod: TBytesField;
+    qry_table_price_productproduct_pro_cod: TBytesField;
+    qry_table_price_producttpp_deleted_at: TDateTimeField;
+    qrytbp_id: TLongWordField;
+    qry_table_price_producttpp_id: TLongWordField;
+    qry_productpro_id: TLongWordField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure qry_table_price_productAfterInsert(DataSet: TDataSet);
@@ -110,8 +115,11 @@ type
     procedure cxTabAlterarPrecoShow(Sender: TObject);
     procedure cxTabExamesShow(Sender: TObject);
     procedure qry_table_price_productBeforePost(DataSet: TDataSet);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
   private
     FTable_price:TTable_price;
+    tbp_cod:string;
   procedure limpaCache(Sender:TObject);
   public
     { Public declarations }
@@ -124,14 +132,68 @@ implementation
 
 {$R *.dfm}
 
-procedure Tfrm_table_price.Action_saveExecute(Sender: TObject);
+procedure Tfrm_table_price.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- cxTabSheet_3.TabVisible:=True;
- cxTabExames.TabVisible:=True;
- cxTabAlterarPreco.TabVisible:=False;
-
+if (qrytbp_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ with frm_dm.qry,sql do
+ begin
+  Close;
+  Text:= ' delete from table_price ' +
+         ' where tbp_cod = ' + tbp_cod;
+  Prepare;
+  ExecSQL;
 end;
+       qry.Close;
+       qry.sql.text:= ' select * from table_price ' +
+                      ' where tbp_deleted_at is null';
+       qry.Prepare;
+       qry.open;
+end;
+
+procedure Tfrm_table_price.Action_deleteExecute(Sender: TObject);
+begin
+   if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
+    = IDYES then
+    begin
+     qry.Edit;
+     qrytbp_deleted_at.AsDateTime:=Now;
+     qry.Post;
+     qry.ApplyUpdates(0);
+
+     qry.Close;
+     qry.sql.text:= ' select * from table_price ' +
+                    ' where tbp_deleted_at is null ';
+     qry.Prepare;
+     qry.open;
+    end;
+end;
+
+procedure Tfrm_table_price.Action_saveExecute(Sender: TObject);
+begin
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(tbp_id) is null then 1 ' +
+          '      else (max(tbp_id) + 1) end as maxID from table_price '+
+          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+   Prepare;
+   Open;
+   if not (qry.State in [dsInsert,dsEdit])  then
+    qry.Edit;
+
+   if qrytbp_id.AsInteger = 0 then
+    qrytbp_id.AsInteger:=Fields[0].AsInteger;
+  end;
+
+  inherited;
+       qry.Close;
+       qry.sql.text:= ' select * from table_price ' +
+                      ' where tbp_deleted_at is null ';
+       qry.Prepare;
+       qry.open;
+  end;
+
 
 procedure Tfrm_table_price.butonAlterarPrecoClick(Sender: TObject);
 begin
@@ -273,9 +335,30 @@ end;
 procedure Tfrm_table_price.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-qrytbp_dt_registration.AsDateTime:=Date;
-qry.Post;
-qry.Edit;
+ With frm_dm.qry,sql do
+  begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   tbp_cod:=Fields[0].AsString;
+
+   Close;
+   Text:='insert into table_price (tbp_id,tbp_cod,contract_ctr_cod) ' +
+         ' select 0,'+ tbp_cod + ',' +  frm_dm.v_contract_ctr_cod;
+   Prepare;
+   ExecSQL;
+  end;
+
+   qry.Close;
+   qry.sql.text:= ' select * from table_price ' +
+                  ' where tbp_cod = ' + tbp_cod +
+                  ' and tbp_deleted_at is null';
+   qry.Prepare;
+   qry.open;
+   qry.Edit;
+   qrytbp_dt_registration.AsDateTime:=Now;
 
 end;
 
@@ -289,8 +372,8 @@ end;
 procedure Tfrm_table_price.qry_table_price_productBeforePost(DataSet: TDataSet);
 begin
   inherited;
- if qry_table_price_product.Locate('product_pro_id',qry_table_price_productproduct_pro_id.AsString,[]) then
-  qry_table_price_product.Delete;
+// if qry_table_price_product.Locate('product_pro_id',qry_table_price_productproduct_pro_id.AsString,[]) then
+//  qry_table_price_product.Delete;
 end;
 
 end.

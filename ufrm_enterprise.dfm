@@ -1,14 +1,17 @@
 inherited frm_enterprise: Tfrm_enterprise
   Caption = 'Manuten'#231#227'o: Empresas'
   OnClose = FormClose
-  ExplicitLeft = -282
+  ExplicitLeft = -290
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    ExplicitLeft = 8
-    ExplicitTop = 61
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
+        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ent_id: TcxGridDBColumn
             Caption = 'C'#243'd. ID'
@@ -116,6 +119,10 @@ inherited frm_enterprise: Tfrm_enterprise
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2

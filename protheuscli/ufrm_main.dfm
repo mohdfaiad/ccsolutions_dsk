@@ -124,11 +124,11 @@ inherited frm_main: Tfrm_main
         end
         item
           Visible = True
-          ItemName = 'dxBarButton2'
+          ItemName = 'dxBarLargeButton10'
         end
         item
           Visible = True
-          ItemName = 'dxBarButton6'
+          ItemName = 'dxBarLargeButton11'
         end>
       OneOnRow = False
       Row = 0
@@ -149,6 +149,10 @@ inherited frm_main: Tfrm_main
         item
           Visible = True
           ItemName = 'dxBarLargeButton8'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButton9'
         end>
       OneOnRow = True
       Row = 0
@@ -479,6 +483,18 @@ inherited frm_main: Tfrm_main
       Action = Action_employee
       Category = 0
     end
+    object dxBarLargeButton9: TdxBarLargeButton
+      Action = Action_AgendaProficional
+      Category = 0
+    end
+    object dxBarLargeButton10: TdxBarLargeButton
+      Action = action_doctor
+      Category = 0
+    end
+    object dxBarLargeButton11: TdxBarLargeButton
+      Action = Action_employee
+      Category = 0
+    end
   end
   inherited ActionList_1: TActionList
     object Action_contract: TAction
@@ -555,6 +571,11 @@ inherited frm_main: Tfrm_main
       Category = 'Cadastros'
       Caption = 'Funcion'#225'rio'
       OnExecute = Action_employeeExecute
+    end
+    object Action_AgendaProficional: TAction
+      Category = 'Modulo'
+      Caption = 'Agenda'
+      OnExecute = Action_AgendaProficionalExecute
     end
   end
   inherited cxImageList_1: TcxImageList

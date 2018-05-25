@@ -1,5 +1,5 @@
 inherited frm_scheduling: Tfrm_scheduling
-  Caption = 'Agenda'
+  Caption = 'frm_scheduling'
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13

@@ -26,7 +26,6 @@ uses
 
 type
   Tfrm_doctor = class(Tfrm_default)
-    DBComBox_Status: TDBComboBox;
     qry_doctor: TFDQuery;
     ds_Doctor: TDataSource;
     cxGroupBox3: TcxGroupBox;
@@ -75,7 +74,14 @@ type
     qryrec_sex: TStringField;
     cxDBLookupDoctor: TcxDBLookupComboBox;
     cxDBComboBox1: TcxDBComboBox;
-    DBLookupComboBox1: TDBLookupComboBox;
+    cxGridDBTableView1doc_id: TcxGridDBColumn;
+    cxGridDBTableView1doc_status: TcxGridDBColumn;
+    cxGridDBTableView1emp_type: TcxGridDBColumn;
+    cxGridDBTableView1emp_status: TcxGridDBColumn;
+    cxGridDBTableView1doc_dt_registration: TcxGridDBColumn;
+    cxGridDBTableView1rec_name: TcxGridDBColumn;
+    cxGridDBTableView1rec_nickname: TcxGridDBColumn;
+    cxGridDBTableView1rec_sex: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure tbsht_2Show(Sender: TObject);

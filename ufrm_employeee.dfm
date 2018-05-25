@@ -551,16 +551,15 @@ inherited frm_employee_: Tfrm_employee_
         object cxTabSheet1: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
           ImageIndex = 2
-          DesignSize = (
-            954
-            569)
           object cxGroupBox4: TcxGroupBox
-            Left = 3
-            Top = 4
-            Anchors = [akLeft, akTop, akRight]
+            Left = 0
+            Top = 0
+            Align = alTop
             TabOrder = 0
+            ExplicitLeft = 3
+            ExplicitTop = 3
             Height = 149
-            Width = 948
+            Width = 954
             object cxLabel31: TcxLabel
               Left = 8
               Top = 16
@@ -671,11 +670,13 @@ inherited frm_employee_: Tfrm_employee_
             end
           end
           object cxGroupBox5: TcxGroupBox
-            Left = 3
-            Top = 158
+            Left = 0
+            Top = 149
+            Align = alClient
             TabOrder = 1
-            Height = 408
-            Width = 948
+            ExplicitWidth = 10
+            Height = 420
+            Width = 954
             object edtContato_Tel: TcxTextEdit
               Left = 8
               Top = 110

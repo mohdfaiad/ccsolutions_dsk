@@ -4,7 +4,6 @@ inherited frm_doctor: Tfrm_doctor
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
-    Properties.ActivePage = tbsht_2
     inherited tbsht_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 27
@@ -16,28 +15,51 @@ inherited frm_doctor: Tfrm_doctor
           ExplicitTop = 27
           ExplicitWidth = 946
           ExplicitHeight = 505
+          inherited grid_1: TcxGrid
+            inherited cxGridDBTableView1: TcxGridDBTableView
+              object cxGridDBTableView1doc_id: TcxGridDBColumn
+                DataBinding.FieldName = 'doc_id'
+              end
+              object cxGridDBTableView1rec_name: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_name'
+              end
+              object cxGridDBTableView1rec_nickname: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_nickname'
+              end
+              object cxGridDBTableView1rec_sex: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_sex'
+              end
+              object cxGridDBTableView1doc_status: TcxGridDBColumn
+                DataBinding.FieldName = 'doc_status'
+              end
+              object cxGridDBTableView1emp_type: TcxGridDBColumn
+                DataBinding.FieldName = 'emp_type'
+              end
+              object cxGridDBTableView1emp_status: TcxGridDBColumn
+                DataBinding.FieldName = 'emp_status'
+              end
+              object cxGridDBTableView1doc_dt_registration: TcxGridDBColumn
+                DataBinding.FieldName = 'doc_dt_registration'
+              end
+            end
+          end
         end
       end
     end
     inherited tbsht_2: TcxTabSheet
       OnShow = tbsht_2Show
+      ExplicitLeft = 2
+      ExplicitTop = 27
+      ExplicitWidth = 954
+      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         inherited tbsht_5: TcxTabSheet
           inherited cxGroupBox2: TcxGroupBox
-            object DBComBox_Status: TDBComboBox
-              Left = 515
-              Top = 35
-              Width = 145
-              Height = 21
-              DataField = 'emp_status'
-              DataSource = ds
-              TabOrder = 0
-            end
             object cxGroupBox3: TcxGroupBox
               Left = 3
               Top = 80
               Caption = 'Especialidades do Proficional'
-              TabOrder = 1
+              TabOrder = 0
               Height = 273
               Width = 489
               object cxGrid1: TcxGrid
@@ -136,27 +158,25 @@ inherited frm_doctor: Tfrm_doctor
                   FieldName = 'emp_id'
                 end>
               Properties.ListSource = ds_Doctor
-              TabOrder = 4
+              TabOrder = 3
               Width = 291
             end
             object cxDBComboBox1: TcxDBComboBox
               Left = 347
               Top = 35
-              TabOrder = 5
+              TabOrder = 4
               Width = 145
-            end
-            object DBLookupComboBox1: TDBLookupComboBox
-              Left = 528
-              Top = 88
-              Width = 305
-              Height = 21
-              KeyField = 'emp_cod'
-              ListField = 'rec_name;emp_id'
-              ListSource = ds_Doctor
-              TabOrder = 6
             end
           end
         end
+      end
+    end
+  end
+  inherited stsbar_1: TdxStatusBar
+    inherited stsbar_deleted_at: TdxStatusBarContainerControl
+      inherited chkbox_1: TcxCheckBox
+        ExplicitWidth = 926
+        ExplicitHeight = 32
       end
     end
   end

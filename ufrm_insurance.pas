@@ -183,23 +183,23 @@ procedure Tfrm_insurance.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
 
-if (qryINS_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
-begin
- if (qryins_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
- begin
- with frm_dm.qry,sql do
- begin
-  Close;
-  Text:= ' delete from insurance ' +
-         ' where contract_ctr_cod = ' + frm_dm.qry_signincontractCod.Value +
-         ' and ins_id = 0';
-  Prepare;
-  ExecSQL;
- end;
- qry.Refresh;
- end;
+  if (qryINS_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+  begin
+   if (qryins_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+   begin
+   with frm_dm.qry,sql do
+   begin
+    Close;
+    Text:= ' delete from insurance ' +
+           ' where contract_ctr_cod = ' + frm_dm.qry_signincontractCod.Value +
+           ' and ins_id = 0';
+    Prepare;
+    ExecSQL;
+   end;
+   qry.Refresh;
+   end;
 
-end;
+  end;
 end;
 
 procedure Tfrm_insurance.Action_saveExecute(Sender: TObject);
@@ -219,6 +219,8 @@ with frm_dm.qry,sql do
 
    if qryins_id.AsInteger = 0 then
     qryins_id.AsInteger:=Fields[0].AsInteger;
+
+    qrycontract_ctr_cod.AsString := frm_dm.v_contract_ctr_cod;
  end;
 
   inherited;

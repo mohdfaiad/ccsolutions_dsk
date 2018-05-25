@@ -62,15 +62,7 @@ type
     action_doctor: TAction;
     Action_employee: TAction;
     dxBarButton6: TdxBarButton;
-<<<<<<< .mine
-    Action_AgendaProficional: TAction;
-    dxBarLargeButton9: TdxBarLargeButton;
-    dxBarLargeButton10: TdxBarLargeButton;
-    dxBarLargeButton11: TdxBarLargeButton;
-||||||| .r289
     Button1: TButton;
-=======
->>>>>>> .r290
     procedure Action_contract_userExecute(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_clientExecute(Sender: TObject);
@@ -83,12 +75,7 @@ type
     procedure Action_reportExecute(Sender: TObject);
     procedure Action_phonebookExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-<<<<<<< .mine
-    procedure Action_AgendaProficionalExecute(Sender: TObject);
-||||||| .r289
     procedure Button1Click(Sender: TObject);
-=======
->>>>>>> .r290
   private
     { Private declarations }
   public
@@ -103,20 +90,6 @@ implementation
 {$R *.dfm}
 
  uses  ufrm_doctor, ufrm_employeee, ufrm_scheduling;
-
-procedure Tfrm_main.Action_AgendaProficionalExecute(Sender: TObject);
-begin
-  inherited;
-   if not Assigned(frm_scheduling) then begin
-    frm_scheduling := Tfrm_scheduling.Create(Self);
-    frm_scheduling.Height := Bevel_1.Height;
-    frm_scheduling.Width := Bevel_1.Width;
-    frm_scheduling.Show;
-  end else begin
-    frm_scheduling.WindowState := wsNormal;
-    frm_scheduling.Show;
-  end;
-end;
 
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin
@@ -190,8 +163,6 @@ begin
   inherited;
    if not Assigned(frm_employee_) then begin
      frm_employee_ := Tfrm_employee_.Create(Self);
-     frm_employee_.Height := Bevel_1.Height;
-     frm_employee_.Width := Bevel_1.Width;
      frm_employee_.Show;
   end else begin
     frm_employee_.WindowState := wsNormal;
@@ -266,6 +237,21 @@ begin
     frm_report.WindowState := wsNormal;
     frm_report.Show;
   end;
+end;
+
+procedure Tfrm_main.Button1Click(Sender: TObject);
+begin
+  inherited;
+   if not Assigned(frm_scheduling) then begin
+    frm_scheduling := Tfrm_scheduling.Create(Self);
+    frm_scheduling.Height := Bevel_1.Height;
+    frm_scheduling.Width := Bevel_1.Width;
+    frm_scheduling.Show;
+  end else begin
+    frm_scheduling.WindowState := wsNormal;
+    frm_scheduling.Show;
+  end;
+
 end;
 
 procedure Tfrm_main.FormCreate(Sender: TObject);

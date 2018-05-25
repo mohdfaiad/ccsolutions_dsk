@@ -4,9 +4,15 @@ inherited frm_insurance: Tfrm_insurance
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       OnShow = cxTabSheet_1Show
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
+        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ins_id: TcxGridDBColumn
             DataBinding.FieldName = 'ins_id'
@@ -112,8 +118,16 @@ inherited frm_insurance: Tfrm_insurance
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -933,6 +947,7 @@ inherited frm_insurance: Tfrm_insurance
     Style = <>
   end
   object qry_table_price: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'

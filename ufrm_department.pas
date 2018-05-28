@@ -33,7 +33,7 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  ACBrSocket, ACBrCEP, frxClass;
+  ACBrSocket, ACBrCEP, frxClass, Vcl.Grids, Vcl.DBGrids;
 
 type
   Tfrm_department = class(Tfrm_form_default)
@@ -42,7 +42,6 @@ type
     qry_sector: TFDQuery;
     ds_sector: TDataSource;
     cxGrid_1DBTableView1dep_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1dep_name: TcxGridDBColumn;
     cxGrid_1DBTableView1dep_dt_registration: TcxGridDBColumn;
     cxDBTextEdit1: TcxDBTextEdit;
@@ -67,16 +66,19 @@ type
     qrycontract_ctr_cod: TBytesField;
     qrydep_id: TLongWordField;
     qry_sectordepartment_dep_cod: TBytesField;
-    cxGrid1DBTableView1Column1: TcxGridDBColumn;
+    qryconcat0xhexdep_cod: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_sectorAfterInsert(DataSet: TDataSet);
     procedure Action_cancelExecute(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
-    procedure cxTabSheet_1Show(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
+    procedure qry_sectorBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
+    dep_cod,sec_cod:string;
   public
     { Public declarations }
      procedure limpaCache(Sender:TObject);
@@ -94,52 +96,58 @@ uses ufrm_dm;
 procedure Tfrm_department.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
-if (qrydep_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ if (qrydep_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
  with frm_dm.qry,sql do
  begin
   Close;
   Text:= ' delete from department ' +
-         ' where contract_ctr_cod =:contract ' +
-         ' and dep_id = 0';
-  ParamByName('contract').Value:=frm_dm.qry_signinctr_cod.Value;
+         ' where dep_cod = ' + dep_cod;
   Prepare;
   ExecSQL;
+
+  qry.Close;
+  qry.sql.text:= ' select department.*,concat(''0x'',hex(dep_cod)) from department ' +
+                 ' where dep_deleted_at is null';
+  qry.Prepare;
+  qry.open;
 end;
 end;
 
+procedure Tfrm_department.Action_deleteExecute(Sender: TObject);
+begin
+ if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
+    = IDYES then
+   begin
+    qry.Edit;
+    qrydep_deleted_at.AsDateTime:=Now;
+    qry.Post;
+    qry.ApplyUpdates(0);
+
+    qry.Close;
+    qry.sql.text:= ' select department.*,concat(''0x'',hex(dep_cod)) from department '  +
+                    ' where dep_deleted_at is null ';
+    qry.Prepare;
+    qry.open;
+    end;
+
+end;
+
+procedure Tfrm_department.Action_editExecute(Sender: TObject);
+begin
+  inherited;
+ dep_cod:=qryconcat0xhexdep_cod.AsString;
+end;
+
 procedure Tfrm_department.Action_saveExecute(Sender: TObject);
-var
+VAR
 max:Integer;
 begin
 with frm_dm.qry,sql do
  begin
-  close;
-  Text:= ' select case when max(sec_id) is null then 1 ' +
-          '      else (max(sec_id) + 1) end as maxID from sector '+
-          ' where contract_ctr_cod = (select ctr_cod from contract ' +
-          ' where ctr_id =:ctr_id)';
-   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
-   Prepare;
-   Open;
-
-   max:=Fields[0].AsInteger;
-
-   qry_sector.First;
-   while not qry_sector.Eof do
-    begin
-     qry_sector.Edit;
-     qry_sectorsec_id.AsInteger:=max;
-     qry_sector.Post;
-     qry_sector.Next;
-     max:= max + 1;
-    end;
-
    close;
    Text:= ' select case when max(dep_id) is null then 1 ' +
           '      else (max(dep_id) + 1) end as maxID from department '+
-          ' where contract_ctr_cod = (select ctr_cod from contract ' +
-          ' where ctr_id =:ctr_id)';
-   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
    Prepare;
    Open;
    if not (qry.State in [dsInsert,dsEdit])  then
@@ -147,20 +155,17 @@ with frm_dm.qry,sql do
 
    if qrydep_id.AsInteger = 0 then
     qrydep_id.AsInteger:=Fields[0].AsInteger;
- end;
 
+  end;
 
   inherited;
+       qry.Close;
+       qry.sql.text:= ' select department.*,concat(''0x'',hex(dep_cod)) from department ' +
+                      ' where dep_deleted_at is null ';
+       qry.Prepare;
+       qry.open;
 end;
 
-procedure Tfrm_department.cxTabSheet_1Show(Sender: TObject);
-begin
-  inherited;
-   qry.Close;
-   qry.sql.text:= ' select * from department ';
-   qry.Prepare;
-   qry.open;
-end;
 
 procedure Tfrm_department.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -178,33 +183,35 @@ end;
 procedure Tfrm_department.limpaCache(Sender: TObject);
 begin
  qry.CommitUpdates();
- qry_sector.CommitUpdates();
 end;
 
 procedure Tfrm_department.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-With frm_dm.qry,sql do
+ With frm_dm.qry,sql do
   begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   dep_cod:=Fields[0].AsString;
+
    Close;
-   Text:=' insert into import_call_log (imp_cod,imp_id,contract_ctr_cod) '+
-   ' select unhex(replace(uuid(),''-'','''')), '  +
-   '(select case when max(imp_id) is null then 1 when max(imp_id) > 0 then (max(imp_id) + 1) end from import_call_log),(select ctr_cod from contract ' +
-   'where ctr_id = :contrato),(select ctr_cod from contract ' +
-         ' where ctr_id = :contrato)';
-   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Text:='insert into department (dep_id,dep_cod,contract_ctr_cod) ' +
+         ' select 0,'+ dep_cod + ',' +  frm_dm.v_contract_ctr_cod;
    Prepare;
    ExecSQL;
   end;
+
    qry.Close;
-   qry.sql.text:= ' select * from department ' +
-                  ' where dep_id = (select max(imp_id) from import_call_log where ctr_id = :contrato) ';
-   qry.ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   qry.sql.text:= ' select department.*,concat(''0x'',hex(dep_cod)) from department ' +
+                  ' where dep_cod = ' + dep_cod +
+                  ' and dep_deleted_at is null';
    qry.Prepare;
    qry.open;
    qry.Edit;
-
-  qrydep_dt_registration.Value := Date + Time;
+   qrydep_dt_registration.AsDateTime:=Now;
 end;
 
 procedure Tfrm_department.qry_sectorAfterInsert(DataSet: TDataSet);
@@ -212,20 +219,48 @@ begin
   inherited;
  With frm_dm.qry,sql do
   begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   sec_cod:=Fields[0].AsString;
+
    Close;
-   Text:='insert into sector (sec_cod,sec_id) ' +
-         ' select unhex(replace(uuid(),''-'','''')),0';
+   Text:='insert into sector (sec_id,sec_cod,department_dep_cod) ' +
+         ' select 0,'+ sec_cod + ',' + dep_cod;
    Prepare;
    ExecSQL;
   end;
-//   qry_sector.Close;
-//   qry_sector.sql.text:= ' select * from sector ' +
-//                  ' where sec_id = 0 ';
-//  qry_sector.Prepare;
-//  qry_sector.open;
-//  qry_sector.Edit;
-  qry_sectorsec_dt_registration.AsDateTime := Now;
 
+   qry_sector.Close;
+   qry_sector.sql.text:= ' select * from sector ' +
+                  ' where sec_deleted_at is null ' +
+                  ' and department_dep_cod = ' + dep_cod;
+   qry_sector.Prepare;
+   qry_sector.open;
+   qry_sector.Edit;
+   qry_sectorsec_dt_registration.AsDateTime:=Now;
+
+end;
+
+procedure Tfrm_department.qry_sectorBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(sec_id) is null then 1 ' +
+          '      else (max(sec_id) + 1) end as maxID from sector '+
+          ' where department_dep_cod = ' + dep_cod;
+   Prepare;
+   Open;
+   if not (qry_sector.State in [dsInsert,dsEdit])  then
+    qry.Edit;
+
+   if qry_sectorsec_id.AsInteger = 0 then
+    qry_sectorsec_id.AsInteger:=Fields[0].AsInteger;
+  end;
 end;
 
 end.

@@ -119,7 +119,7 @@ type
     procedure Action_deleteExecute(Sender: TObject);
   private
     FTable_price:TTable_price;
-    tbp_cod:string;
+    tbp_cod,tpp_cod:string;
   procedure limpaCache(Sender:TObject);
   public
     { Public declarations }
@@ -143,12 +143,13 @@ if (qrytbp_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
          ' where tbp_cod = ' + tbp_cod;
   Prepare;
   ExecSQL;
-end;
-       qry.Close;
-       qry.sql.text:= ' select * from table_price ' +
-                      ' where tbp_deleted_at is null';
-       qry.Prepare;
-       qry.open;
+
+  qry.Close;
+  qry.sql.text:= ' select * from table_price ' +
+                 ' where tbp_deleted_at is null';
+  qry.Prepare;
+  qry.open;
+ end;
 end;
 
 procedure Tfrm_table_price.Action_deleteExecute(Sender: TObject);
@@ -329,7 +330,6 @@ end;
 procedure Tfrm_table_price.limpaCache(Sender: TObject);
 begin
 qry.CommitUpdates();
-qry_table_price_product.CommitUpdates();
 end;
 
 procedure Tfrm_table_price.qryAfterInsert(DataSet: TDataSet);
@@ -366,14 +366,50 @@ procedure Tfrm_table_price.qry_table_price_productAfterInsert(
   DataSet: TDataSet);
 begin
   inherited;
- qry_table_price_producttpp_dt_registration.AsDateTime:=Now;
+ With frm_dm.qry,sql do
+  begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   tpp_cod:=Fields[0].AsString;
+
+   Close;
+   Text:='insert into table_price_product(tpp_id,tpp_cod,table_price_tbp_cod) ' +
+         ' select 0,'+ tpp_cod + ',' + tbp_cod;
+   Prepare;
+   ExecSQL;
+  end;
+
+   qry_table_price_product.Close;
+   qry_table_price_product.sql.text:= ' select table_price_product.*,tpp_value as vlrAntigo  from table_price_product' +
+          ' where sec_deleted_at is null ' +
+          ' and table_price_tbp_cod = ' + tbp_cod;
+   qry_table_price_product.Prepare;
+   qry_table_price_product.open;
+   qry_table_price_product.Edit;
+   qry_table_price_producttpp_dt_registration.AsDateTime:=Now;
 end;
 
 procedure Tfrm_table_price.qry_table_price_productBeforePost(DataSet: TDataSet);
 begin
   inherited;
-// if qry_table_price_product.Locate('product_pro_id',qry_table_price_productproduct_pro_id.AsString,[]) then
-//  qry_table_price_product.Delete;
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(tpp_id) is null then 1 ' +
+          '      else (max(tpp_id) + 1) end as maxID from table_price_product '+
+          ' where table_price_tbp_cod = ' + tbp_cod;
+   Prepare;
+   Open;
+
+   if not (qry_table_price_product.State in [dsInsert,dsEdit])  then
+    qry.Edit;
+
+   if qry_table_price_producttpp_id.AsInteger = 0 then
+    qry_table_price_producttpp_id.AsInteger:=Fields[0].AsInteger;
+  end;
 end;
 
 end.

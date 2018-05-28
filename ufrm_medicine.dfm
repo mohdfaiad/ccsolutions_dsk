@@ -1,12 +1,9 @@
 inherited frm_medicine: Tfrm_medicine
   Caption = 'Manuten'#231#227'o: Medicamentos'
   OnClose = FormClose
-  ExplicitLeft = -307
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    ExplicitLeft = -8
-    ExplicitTop = 61
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28

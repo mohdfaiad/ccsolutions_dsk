@@ -4,8 +4,14 @@ inherited frm_requisition_type: Tfrm_requisition_type
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
+        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ret_id: TcxGridDBColumn
             DataBinding.FieldName = 'ret_id'
@@ -23,8 +29,16 @@ inherited frm_requisition_type: Tfrm_requisition_type
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'ret_id'
@@ -60,27 +74,16 @@ inherited frm_requisition_type: Tfrm_requisition_type
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from requisition_type')
-    object qryret_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'ret_id'
-      Origin = 'ret_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
+      'select * from requisition_type'#10'where ret_deleted_at is null')
     object qryret_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Nome'
@@ -93,6 +96,34 @@ inherited frm_requisition_type: Tfrm_requisition_type
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'ret_dt_registration'
       Origin = 'ret_dt_registration'
+    end
+    object qryret_cod: TBytesField
+      FieldName = 'ret_cod'
+      Origin = 'ret_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qryret_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'ret_id'
+      Origin = 'ret_id'
+    end
+    object qryret_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ret_status'
+      Origin = 'ret_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qryret_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'ret_deleted_at'
+      Origin = 'ret_deleted_at'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

@@ -39,17 +39,24 @@ type
   Tfrm_requisition_type = class(Tfrm_form_default)
     cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
-    qryret_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
     qryret_name: TStringField;
     qryret_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1ret_id: TcxGridDBColumn;
     cxGrid_1DBTableView1ret_name: TcxGridDBColumn;
     cxGrid_1DBTableView1ret_dt_registration: TcxGridDBColumn;
+    qryret_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryret_id: TLongWordField;
+    qryret_status: TStringField;
+    qryret_deleted_at: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
+    ret_cod:string;
   public
     { Public declarations }
   end;
@@ -63,6 +70,70 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_requisition_type.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+ if (qryret_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ with frm_dm.qry,sql do
+ begin
+  Close;
+  Text:= ' delete from requisition_type ' +
+         ' where ret_cod = ' + ret_cod;
+  Prepare;
+  ExecSQL;
+
+  qry.Close;
+  qry.sql.text:= ' select * from requisition_type ' +
+                 ' where ret_deleted_at is null';
+  qry.Prepare;
+  qry.open;
+ end;
+end;
+
+procedure Tfrm_requisition_type.Action_deleteExecute(Sender: TObject);
+begin
+   if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
+    = IDYES then
+    begin
+     qry.Edit;
+     qryret_deleted_at.AsDateTime:=Now;
+     qry.Post;
+     qry.ApplyUpdates(0);
+
+     qry.Close;
+     qry.sql.text:= ' select * from requisition_type ' +
+                    ' where ret_deleted_at is null ';
+     qry.Prepare;
+     qry.open;
+    end;
+end;
+
+procedure Tfrm_requisition_type.Action_saveExecute(Sender: TObject);
+begin
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(ret_id) is null then 1 ' +
+          '      else (max(ret_id) + 1) end as maxID from requisition_type '+
+          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+   Prepare;
+   Open;
+   if not (qry.State in [dsInsert,dsEdit])  then
+    qry.Edit;
+
+   if qryret_id.AsInteger = 0 then
+    qryret_id.AsInteger:=Fields[0].AsInteger;
+
+  end;
+
+  inherited;
+       qry.Close;
+       qry.sql.text:= ' select * from requisition_type ' +
+                      ' where ret_deleted_at is null ';
+       qry.Prepare;
+       qry.open;
+end;
+
 procedure Tfrm_requisition_type.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -74,7 +145,30 @@ end;
 procedure Tfrm_requisition_type.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qryret_dt_registration.Value := Date + Time;
+ With frm_dm.qry,sql do
+  begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   ret_cod:=Fields[0].AsString;
+
+   Close;
+   Text:='insert into requisition_type (ret_id,ret_cod,contract_ctr_cod) ' +
+         ' select 0,'+ ret_cod + ',' +  frm_dm.v_contract_ctr_cod;
+   Prepare;
+   ExecSQL;
+  end;
+
+   qry.Close;
+   qry.sql.text:= ' select * from requisition_type ' +
+                  ' where ret_cod = ' + ret_cod +
+                  ' and ret_deleted_at is null';
+   qry.Prepare;
+   qry.open;
+   qry.Edit;
+   qryret_dt_registration.AsDateTime:=Now;
 end;
 
 end.

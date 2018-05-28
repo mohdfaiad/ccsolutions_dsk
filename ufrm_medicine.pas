@@ -82,12 +82,13 @@ begin
          ' where med_cod = ' + med_cod;
   Prepare;
   ExecSQL;
-end;
-       qry.Close;
-       qry.sql.text:= ' select * from medicine ' +
-                      ' where med_deleted_at is null';
-       qry.Prepare;
-       qry.open;
+
+  qry.Close;
+  qry.sql.text:= ' select * from medicine ' +
+                 ' where med_deleted_at is null';
+  qry.Prepare;
+  qry.open;
+ end;
 end;
 
 procedure Tfrm_medicine.Action_deleteExecute(Sender: TObject);

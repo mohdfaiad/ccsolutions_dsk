@@ -34,7 +34,8 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxMemo, cxShellComboBox,
-  QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket, ACBrCEP, frxClass;
+  QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket, ACBrCEP, frxClass,
+  Vcl.DBCtrls;
 
 type
   Tfrm_exam = class(Tfrm_form_default)
@@ -53,8 +54,6 @@ type
     cxGrid_1DBTableView1pro_dt_registration: TcxGridDBColumn;
     cxDBTextNome: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
-    cxDBTextEdit2: TcxDBTextEdit;
-    dxLayoutItem4: TdxLayoutItem;
     cxDBTextEdit3: TcxDBTextEdit;
     dxLayoutItem5: TdxLayoutItem;
     cxDBComboBox1: TcxDBComboBox;
@@ -62,8 +61,6 @@ type
     cxDBCombTipo: TcxDBComboBox;
     dxLayoutItem8: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    cxDBLookupComboBox1: TcxDBLookupComboBox;
-    dxLayoutItem6: TdxLayoutItem;
     qry_material: TFDQuery;
     ds_material: TDataSource;
     qrypro_initials: TStringField;
@@ -72,7 +69,6 @@ type
     cxDBTextEdit4: TcxDBTextEdit;
     dxLayoutItem10: TdxLayoutItem;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     cxTabSheet1: TcxTabSheet;
     dxLayoutControl1: TdxLayoutControl;
     dxLayoutGroup3: TdxLayoutGroup;
@@ -101,12 +97,23 @@ type
     qrypro_liter: TBCDField;
     qrypro_deleted_at: TDateTimeField;
     qrypro_description: TMemoField;
+    qry_materialmat_id: TLongWordField;
+    qry_materialmat_name: TStringField;
+    qry_materialcontract_ctr_cod: TBytesField;
+    qry_materialmat_cod: TBytesField;
+    lookupComboBoxMaterial: TcxLookupComboBox;
+    dxLayoutItem16: TdxLayoutItem;
+    qrycodMaterial: TStringField;
+    qry_materialcodMaterial: TStringField;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure cxTabSheet_2Show(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
+    procedure cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
+    procedure lookupComboBoxMaterialPropertiesPopup(Sender: TObject);
   private
     { Private declarations }
     pro_cod:string;
@@ -135,11 +142,11 @@ begin
   Prepare;
   ExecSQL;
 
-       qry.Close;
-       qry.sql.text:= ' select * from product ' +
-                      ' where pro_deleted_at is null';
-       qry.Prepare;
-       qry.open;
+  qry.Close;
+  qry.sql.text:= ' select product.*,concat(''0x'',hex(material_mat_cod)) as codMaterial from product ' +
+                 ' where pro_deleted_at is null';
+  qry.Prepare;
+  qry.open;
 end;
 end;
 
@@ -154,7 +161,7 @@ begin
      qry.ApplyUpdates(0);
 
      qry.Close;
-     qry.sql.text:= ' select * from product ' +
+     qry.sql.text:= ' select product.*,concat(''0x'',hex(material_mat_cod)) as codMaterial from product ' +
                     ' where pro_deleted_at is null ';
      qry.Prepare;
      qry.open;
@@ -181,15 +188,24 @@ with frm_dm.qry,sql do
 
   inherited;
        qry.Close;
-       qry.sql.text:= ' select * from product ' +
+       qry.sql.text:= ' select product.*,concat(''0x'',hex(material_mat_cod)) as codMaterial from product ' +
                       ' where pro_deleted_at is null ';
        qry.Prepare;
        qry.open;
 end;
 
+procedure Tfrm_exam.cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+  qry_material.Locate('mat_name',lookupComboBoxMaterial.Text,[]);
+  qrymaterial_mat_cod.Value:=qry_materialmat_cod.Value;
+end;
+
 procedure Tfrm_exam.cxTabSheet_2Show(Sender: TObject);
 begin
   inherited;
+   qry_material.Locate('codMaterial',  qrycodMaterial.AsString,[]);
+   lookupComboBoxMaterial.Text:=qry_materialmat_name.AsString;
   //--Setar os referidos valores por padrão--
   cxDBCombTipo.ItemIndex   :=1;
   cxDBCombStatus.ItemIndex :=0;
@@ -197,6 +213,7 @@ begin
   qrypro_status.AsString   := cxDBCombStatus.Text;
   qrypro_type.AsString     := cxDBCombTipo.Text;
   cxDBTextNome.SetFocus;
+
 end;
 
 procedure Tfrm_exam.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -204,6 +221,14 @@ begin
   inherited;
   frm_exam.Destroy;
   frm_exam := Nil;
+end;
+
+procedure Tfrm_exam.lookupComboBoxMaterialPropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  qry_material.Close;
+  qry_material.Prepare;
+  qry_material.Open;
 end;
 
 procedure Tfrm_exam.qryAfterInsert(DataSet: TDataSet);
@@ -226,7 +251,7 @@ With frm_dm.qry,sql do
   end;
 
    qry.Close;
-   qry.sql.text:= ' select * from product ' +
+   qry.sql.text:= ' select product.*,concat(''0x'',hex(material_mat_cod)) as codMaterial from product ' +
                   ' where pro_cod = ' + pro_cod +
                   ' and pro_deleted_at is null';
    qry.Prepare;

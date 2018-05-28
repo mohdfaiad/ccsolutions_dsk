@@ -4,20 +4,18 @@ inherited frm_department: Tfrm_department
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      OnShow = cxTabSheet_1Show
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
+        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1dep_id: TcxGridDBColumn
-            DataBinding.FieldName = 'dep_cod'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_cod'
+            Caption = 'C'#243'd. ID'
+            DataBinding.FieldName = 'dep_id'
             Width = 75
           end
           object cxGrid_1DBTableView1dep_name: TcxGridDBColumn
@@ -92,9 +90,6 @@ inherited frm_department: Tfrm_department
                   DataBinding.FieldName = 'sec_dt_registration'
                   Width = 125
                 end
-                object cxGrid1DBTableView1Column1: TcxGridDBColumn
-                  DataBinding.FieldName = 'department_dep_cod'
-                end
               end
               object cxGrid1Level1: TcxGridLevel
                 GridView = cxGrid1DBTableView1
@@ -154,17 +149,17 @@ inherited frm_department: Tfrm_department
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from department')
+      'select department.*,concat('#39'0x'#39',hex(dep_cod)) from department'
+      'where dep_deleted_at is null')
     object qrydep_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Nome'
@@ -206,6 +201,14 @@ inherited frm_department: Tfrm_department
       FieldName = 'dep_id'
       Origin = 'dep_id'
     end
+    object qryconcat0xhexdep_cod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'concat('#39'0x'#39',hex(dep_cod))'
+      Origin = '`concat('#39'0x'#39',hex(dep_cod))`'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -228,17 +231,17 @@ inherited frm_department: Tfrm_department
   end
   object qry_sector: TFDQuery
     AfterInsert = qry_sectorAfterInsert
-    CachedUpdates = True
+    BeforePost = qry_sectorBeforePost
     IndexFieldNames = 'department_dep_cod'
     MasterSource = ds
     MasterFields = 'dep_cod'
     DetailFields = 'department_dep_cod'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from sector')
+      'select * from sector'
+      'where sec_deleted_at is null')
     Left = 592
     Top = 96
     object qry_sectorsec_cod: TBytesField
@@ -284,6 +287,6 @@ inherited frm_department: Tfrm_department
   object ds_sector: TDataSource
     DataSet = qry_sector
     Left = 616
-    Top = 96
+    Top = 104
   end
 end

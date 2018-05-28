@@ -12,7 +12,6 @@ inherited frm_main: Tfrm_main
   end
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
-      Active = False
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar1'
@@ -23,7 +22,6 @@ inherited frm_main: Tfrm_main
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
-      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar3'

@@ -118,6 +118,7 @@ inherited frm_insurance: Tfrm_insurance
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      OnShow = cxTabSheet_2Show
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
@@ -176,7 +177,7 @@ inherited frm_insurance: Tfrm_insurance
               DataBinding.DataSource = ds
               Style.HotTrack = False
               TabOrder = 3
-              Width = 121
+              Width = 130
             end
             object cxDBTextEdit2: TcxDBTextEdit [6]
               Left = 63
@@ -212,17 +213,16 @@ inherited frm_insurance: Tfrm_insurance
               TabOrder = 2
               Width = 121
             end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [9]
+            object lookupComboBoxTable: TcxLookupComboBox [9]
               Left = 63
               Top = 130
-              DataBinding.DataField = 'table_price_tbp_id'
-              DataBinding.DataSource = ds
-              Properties.KeyFieldNames = 'tbp_id'
+              Properties.KeyFieldNames = 'codTabela'
               Properties.ListColumns = <
                 item
                   FieldName = 'tbp_name'
                 end>
               Properties.ListSource = ds_table_price
+              Properties.OnCloseUp = lookupComboBoxTablePropertiesCloseUp
               Style.HotTrack = False
               TabOrder = 4
               Width = 307
@@ -279,7 +279,7 @@ inherited frm_insurance: Tfrm_insurance
               CaptionOptions.Text = 'Dt. Aber.'
               Control = cxDBDateEdit2
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 130
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -320,12 +320,13 @@ inherited frm_insurance: Tfrm_insurance
               Index = 0
               AutoCreated = True
             end
-            object dxLayoutItem23: TdxLayoutItem
+            object dxLayoutItem26: TdxLayoutItem
               Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
               CaptionOptions.Text = 'Tabela'
-              Control = cxDBLookupComboBox1
+              Control = lookupComboBoxTable
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 145
+              ControlOptions.OriginalWidth = 307
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -739,7 +740,9 @@ inherited frm_insurance: Tfrm_insurance
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from insurance'#13#10#10
+      
+        'select insurance.*,concat('#39'0x'#39',hex(table_price_tbp_cod)) as codT' +
+        'abela from insurance'
       'where ins_deleted_at is null')
     object qryins_first_name: TStringField
       AutoGenerateValue = arDefault
@@ -926,6 +929,14 @@ inherited frm_insurance: Tfrm_insurance
       FieldName = 'ins_deleted_at'
       Origin = 'ins_deleted_at'
     end
+    object qrycodTabela: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codTabela'
+      Origin = 'codTabela'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -947,17 +958,18 @@ inherited frm_insurance: Tfrm_insurance
     Style = <>
   end
   object qry_table_price: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select tbp_id,tbp_name,contract_ctr_cod from table_price'
+      'select tbp_id,tbp_name,contract_ctr_cod,tbp_cod,'
+      'concat('#39'0x'#39',hex(TBP_cod)) as codTabela from table_price'
       'where contract_ctr_cod = :ctr_cod'
       'order by tbp_name')
-    Left = 247
-    Top = 458
+    Left = 463
+    Top = 266
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -982,10 +994,24 @@ inherited frm_insurance: Tfrm_insurance
       FieldName = 'contract_ctr_cod'
       Origin = 'contract_ctr_cod'
     end
+    object qry_table_pricecodTabela: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codTabela'
+      Origin = 'codTabela'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
+    object qry_table_pricetbp_cod: TBytesField
+      FieldName = 'tbp_cod'
+      Origin = 'tbp_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
   end
   object ds_table_price: TDataSource
     DataSet = qry_table_price
-    Left = 311
-    Top = 458
+    Left = 527
+    Top = 266
   end
 end

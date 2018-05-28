@@ -316,12 +316,13 @@ begin
          ' where cli_cod = ' + cli_cod;
   Prepare;
   ExecSQL;
+
+  qry.Close;
+  qry.sql.text:= ' select * from client ' +
+                 ' where cli_deleted_at is null';
+  qry.Prepare;
+  qry.open;
 end;
-       qry.Close;
-       qry.sql.text:= ' select * from client ' +
-                      ' where cli_deleted_at is null';
-       qry.Prepare;
-       qry.open;
 end;
 
 

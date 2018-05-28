@@ -82,12 +82,13 @@ begin
          ' where mat_cod = ' + mat_cod;
   Prepare;
   ExecSQL;
-end;
-       qry.Close;
-       qry.sql.text:= ' select * from material ' +
-                      ' where mat_deleted_at is null';
-       qry.Prepare;
-       qry.open;
+
+  qry.Close;
+  qry.sql.text:= ' select * from material ' +
+                 ' where mat_deleted_at is null';
+  qry.Prepare;
+  qry.open;
+ end;
 end;
 
 procedure Tfrm_material.Action_deleteExecute(Sender: TObject);

@@ -1,6 +1,5 @@
 inherited frm_table_price: Tfrm_table_price
   Caption = 'Cadastro de Tabela de pre'#231'o'
-  ExplicitLeft = -55
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -42,6 +41,7 @@ inherited frm_table_price: Tfrm_table_price
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = cxTabExames
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -514,7 +514,6 @@ inherited frm_table_price: Tfrm_table_price
     Active = True
     AfterInsert = qry_table_price_productAfterInsert
     BeforePost = qry_table_price_productBeforePost
-    CachedUpdates = True
     IndexFieldNames = 'table_price_tbp_cod'
     MasterSource = ds
     MasterFields = 'tbp_cod'

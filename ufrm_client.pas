@@ -286,6 +286,7 @@ type
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
+    procedure cxDBTextEdit12Exit(Sender: TObject);
   private
     { Private declarations }
     cep:Integer;
@@ -364,12 +365,13 @@ begin
          ' where cli_cod = ' + cli_cod;
   Prepare;
   ExecSQL;
-end;
-       qry.Close;
-       qry.sql.text:= ' select * from client ' +
-                      ' where cli_deleted_at is null';
-       qry.Prepare;
-       qry.open;
+
+  qry.Close;
+  qry.sql.text:= ' select * from client ' +
+                 ' where cli_deleted_at is null';
+  qry.Prepare;
+  qry.open;
+ end;
 end;
 
 procedure Tfrm_client.Action_consult_cnpjExecute(Sender: TObject);
@@ -484,6 +486,43 @@ procedure Tfrm_client.cxDBComboBox1PropertiesChange(Sender: TObject);
 begin
   inherited;
   changeType;
+end;
+
+procedure Tfrm_client.cxDBTextEdit12Exit(Sender: TObject);
+var
+x:string;
+begin
+  inherited;
+ with frm_dm.qry,sql do
+  begin
+   close;
+   text:=' select * from client '+
+         ' where cli_cpfcnpj = ' + qrycli_cpfcnpj.AsString;
+   prepare;
+   open;
+
+   if not IsEmpty then
+    begin
+     Application.MessageBox('Já existe um cliente com esse CPF/CNPJ cadastrado no sistema!','CLIENTE',MB_OK + MB_ICONWARNING);
+     x:=qrycli_cpfcnpj.AsString;
+
+     if qrycli_id.AsInteger = 0 then
+      begin
+       Close;
+       Text:= ' delete from client ' +
+              ' where cli_cod = ' + cli_cod;
+       Prepare;
+       ExecSQL;
+
+       qry.Cancel;
+       qry.sql.Text:=' select * from client ' +
+                     ' where cli_cpfcnpj = ' + x;
+       qry.Prepare;
+       qry.Open;
+       qry.Edit;
+      end;
+    end;
+  end;
 end;
 
 procedure Tfrm_client.cxTabSheet_addressShow(Sender: TObject);

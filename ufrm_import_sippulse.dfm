@@ -301,7 +301,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     BeforePost = qryBeforePost
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -323,6 +323,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         Name = 'CTR_COD'
         DataType = ftBytes
         ParamType = ptInput
+        Size = 16
         Value = Null
       end
       item
@@ -7140,7 +7141,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
   end
   object procTeste: TFDStoredProc
     Connection = frm_dm.connCCS
-    StoredProcName = 'ccs.import_call_log_create'
+    StoredProcName = 'ccs.proc_import_call_log_create'
     Left = 336
     Top = 200
     ParamData = <

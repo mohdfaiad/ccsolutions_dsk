@@ -106,7 +106,7 @@ inherited frm_department: Tfrm_department
               Width = 294
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 2
+              ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahClient

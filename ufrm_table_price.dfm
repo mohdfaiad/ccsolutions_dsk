@@ -1,5 +1,6 @@
 inherited frm_table_price: Tfrm_table_price
   Caption = 'Cadastro de Tabela de pre'#231'o'
+  ExplicitTop = -22
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -134,14 +135,15 @@ inherited frm_table_price: Tfrm_table_price
                 end
                 object cxGrid2DBTableView1product_pro_id: TcxGridDBColumn
                   Caption = 'Exame'
-                  DataBinding.FieldName = 'product_pro_id'
+                  DataBinding.FieldName = 'pro_cod'
                   PropertiesClassName = 'TcxLookupComboBoxProperties'
-                  Properties.KeyFieldNames = 'pro_id'
+                  Properties.KeyFieldNames = 'pro_cod'
                   Properties.ListColumns = <
                     item
                       FieldName = 'pro_name'
                     end>
                   Properties.ListSource = ds_product
+                  Properties.OnCloseUp = cxGrid2DBTableView1product_pro_idPropertiesCloseUp
                   Width = 250
                 end
                 object cxGrid2DBTableView1tpp_value: TcxGridDBColumn
@@ -159,6 +161,50 @@ inherited frm_table_price: Tfrm_table_price
                 GridView = cxGrid2DBTableView1
               end
             end
+            object cxGrid1: TcxGrid
+              Left = 51
+              Top = 297
+              Width = 693
+              Height = 200
+              TabOrder = 1
+              object cxGrid1DBTableView1: TcxGridDBTableView
+                Navigator.Buttons.CustomButtons = <>
+                DataController.DataSource = ds_table_price_product
+                DataController.Summary.DefaultGroupSummaryItems = <>
+                DataController.Summary.FooterSummaryItems = <>
+                DataController.Summary.SummaryGroups = <>
+                object cxGrid1DBTableView1tpp_value: TcxGridDBColumn
+                  DataBinding.FieldName = 'tpp_value'
+                end
+                object cxGrid1DBTableView1tpp_dt_registration: TcxGridDBColumn
+                  DataBinding.FieldName = 'tpp_dt_registration'
+                end
+                object cxGrid1DBTableView1vlrAntigo: TcxGridDBColumn
+                  DataBinding.FieldName = 'vlrAntigo'
+                end
+                object cxGrid1DBTableView1tpp_cod: TcxGridDBColumn
+                  DataBinding.FieldName = 'tpp_cod'
+                end
+                object cxGrid1DBTableView1table_price_tbp_cod: TcxGridDBColumn
+                  DataBinding.FieldName = 'table_price_tbp_cod'
+                end
+                object cxGrid1DBTableView1product_pro_cod: TcxGridDBColumn
+                  DataBinding.FieldName = 'product_pro_cod'
+                end
+                object cxGrid1DBTableView1tpp_deleted_at: TcxGridDBColumn
+                  DataBinding.FieldName = 'tpp_deleted_at'
+                end
+                object cxGrid1DBTableView1tpp_id: TcxGridDBColumn
+                  DataBinding.FieldName = 'tpp_id'
+                end
+                object cxGrid1DBTableView1pro_cod: TcxGridDBColumn
+                  DataBinding.FieldName = 'pro_cod'
+                end
+              end
+              object cxGrid1Level1: TcxGridLevel
+                GridView = cxGrid1DBTableView1
+              end
+            end
             object dxLayoutGroup4: TdxLayoutGroup
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -172,7 +218,9 @@ inherited frm_table_price: Tfrm_table_price
             object dxLayoutGroup6: TdxLayoutGroup
               Parent = dxLayoutGroup4
               CaptionOptions.Text = 'Exames da tabela'
-              SizeOptions.Height = 378
+              SizeOptions.AssignedValues = [sovSizableVert]
+              SizeOptions.SizableVert = True
+              SizeOptions.Height = 273
               SizeOptions.Width = 734
               ButtonOptions.Buttons = <>
               Index = 0
@@ -184,6 +232,15 @@ inherited frm_table_price: Tfrm_table_price
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
               Index = 0
+            end
+            object dxLayoutItem4: TdxLayoutItem
+              Parent = dxLayoutGroup4
+              CaptionOptions.Text = 'cxGrid1'
+              Control = cxGrid1
+              ControlOptions.OriginalHeight = 200
+              ControlOptions.OriginalWidth = 250
+              ControlOptions.ShowBorder = False
+              Index = 1
             end
           end
         end
@@ -449,8 +506,10 @@ inherited frm_table_price: Tfrm_table_price
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from table_price'
-      'where tbp_deleted_at is null')
+      'select table_price.*,concat('#39'0x'#39',hex(tbp_cod)) from table_price'
+      'where tbp_deleted_at is null'
+      ''
+      '')
     object qrytbp_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'tbp_name'
@@ -490,6 +549,14 @@ inherited frm_table_price: Tfrm_table_price
       FieldName = 'tbp_id'
       Origin = 'tbp_id'
     end
+    object qryconcat0xhextbp_cod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'concat('#39'0x'#39',hex(tbp_cod))'
+      Origin = '`concat('#39'0x'#39',hex(tbp_cod))`'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -511,7 +578,6 @@ inherited frm_table_price: Tfrm_table_price
     Style = <>
   end
   object qry_table_price_product: TFDQuery
-    Active = True
     AfterInsert = qry_table_price_productAfterInsert
     BeforePost = qry_table_price_productBeforePost
     IndexFieldNames = 'table_price_tbp_cod'
@@ -519,15 +585,15 @@ inherited frm_table_price: Tfrm_table_price
     MasterFields = 'tbp_cod'
     DetailFields = 'table_price_tbp_cod'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
+      'select table_price_product.*,tpp_value as vlrAntigo,'
       
-        'select table_price_product.*,tpp_value as vlrAntigo  from table_' +
-        'price_product'
+        'concat('#39'0x'#39',hex(product_pro_cod)) as pro_cod  from table_price_p' +
+        'roduct'
       'where table_price_tbp_cod = :tbp_cod')
-    Left = 439
+    Left = 415
     Top = 130
     ParamData = <
       item
@@ -585,6 +651,14 @@ inherited frm_table_price: Tfrm_table_price
       FieldName = 'tpp_id'
       Origin = 'tpp_id'
     end
+    object qry_table_price_productpro_cod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_cod'
+      Origin = 'pro_cod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
   end
   object ds_table_price_product: TDataSource
     DataSet = qry_table_price_product
@@ -593,8 +667,12 @@ inherited frm_table_price: Tfrm_table_price
   end
   object qry_product: TFDQuery
     Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select pro_id,pro_name from product'
+      
+        'select concat('#39'0x'#39',hex(pro_cod)) as pro_cod ,pro_name,pro_cod fr' +
+        'om product'
       'where pro_type = '#39'S'#39
       'order by pro_name')
     Left = 407
@@ -605,8 +683,18 @@ inherited frm_table_price: Tfrm_table_price
       Origin = 'pro_name'
       Size = 50
     end
-    object qry_productpro_id: TLongWordField
-      FieldName = 'pro_id'
+    object qry_productpro_cod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_cod'
+      Origin = 'pro_cod'
+      ProviderFlags = [pfInKey]
+      ReadOnly = True
+      Size = 34
+    end
+    object qry_productpro_cod_1: TBytesField
+      FieldName = 'pro_cod_1'
+      Origin = 'pro_cod'
+      Required = True
     end
   end
   object ds_product: TDataSource

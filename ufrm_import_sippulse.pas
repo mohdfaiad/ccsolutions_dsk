@@ -188,7 +188,7 @@ if OpenDialog1.Execute then
     close;
     Text:='delete from import_call_log '+
            ' where imp_comp =:comp ' +
-           ' and contract_ctr_cod = ' + frm_dm.qry_signincontractCod.AsString +
+           ' and contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod +
            ' and cli_account_code_sippulse =:cli_account_code_sippulse';
     ParamByName('comp').AsString:= competencia;
     ParamByName('cli_account_code_sippulse').AsString:= clienteSippulse;
@@ -289,6 +289,7 @@ i:=Length(arquivo[0]);
 coluna:=0;
 ini:=0;
 fin:=0;
+
 for I := 0 to Length(arquivo[0]) do
 begin
  if copy(arquivo[0],i,1) = ';' then

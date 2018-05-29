@@ -402,11 +402,4 @@ begin
    qrycli_dt_registration.AsDateTime:=Now;
 end;
 
-procedure Tfrm_client.qry_client_insiranceAfterInsert(DataSet: TDataSet);
-begin
-  inherited;
-// qry_client_insirancecin_dt_registration.AsDateTime:=Now;
-
-end;
-
 end.

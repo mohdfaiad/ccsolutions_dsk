@@ -1,10 +1,11 @@
 inherited frm_client: Tfrm_client
   Caption = 'Manuten'#231#227'o: Clientes'
   OnClose = FormClose
-  ExplicitLeft = -307
+  ExplicitTop = -242
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -181,7 +182,6 @@ inherited frm_client: Tfrm_client
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = tabLaboratorio
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -206,6 +206,7 @@ inherited frm_client: Tfrm_client
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 7
+              OnExit = cxDBTextEdit12Exit
               Width = 121
             end
             object cxDBTextEdit20: TcxDBTextEdit [3]

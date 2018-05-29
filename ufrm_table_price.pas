@@ -105,7 +105,23 @@ type
     qry_table_price_producttpp_deleted_at: TDateTimeField;
     qrytbp_id: TLongWordField;
     qry_table_price_producttpp_id: TLongWordField;
-    qry_productpro_id: TLongWordField;
+    qryconcat0xhextbp_cod: TStringField;
+    qry_table_price_productpro_cod: TStringField;
+    qry_productpro_cod: TStringField;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    dxLayoutItem4: TdxLayoutItem;
+    cxGrid1DBTableView1tpp_value: TcxGridDBColumn;
+    cxGrid1DBTableView1tpp_dt_registration: TcxGridDBColumn;
+    cxGrid1DBTableView1vlrAntigo: TcxGridDBColumn;
+    cxGrid1DBTableView1tpp_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1table_price_tbp_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1product_pro_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1tpp_deleted_at: TcxGridDBColumn;
+    cxGrid1DBTableView1tpp_id: TcxGridDBColumn;
+    cxGrid1DBTableView1pro_cod: TcxGridDBColumn;
+    qry_productpro_cod_1: TBytesField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure qry_table_price_productAfterInsert(DataSet: TDataSet);
@@ -117,6 +133,9 @@ type
     procedure qry_table_price_productBeforePost(DataSet: TDataSet);
     procedure Action_cancelExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
+    procedure cxGrid2DBTableView1product_pro_idPropertiesCloseUp(
+      Sender: TObject);
   private
     FTable_price:TTable_price;
     tbp_cod,tpp_cod:string;
@@ -145,7 +164,7 @@ if (qrytbp_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
   ExecSQL;
 
   qry.Close;
-  qry.sql.text:= ' select * from table_price ' +
+  qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price' +
                  ' where tbp_deleted_at is null';
   qry.Prepare;
   qry.open;
@@ -163,11 +182,17 @@ begin
      qry.ApplyUpdates(0);
 
      qry.Close;
-     qry.sql.text:= ' select * from table_price ' +
+     qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price ' +
                     ' where tbp_deleted_at is null ';
      qry.Prepare;
      qry.open;
     end;
+end;
+
+procedure Tfrm_table_price.Action_editExecute(Sender: TObject);
+begin
+  inherited;
+ tbp_cod:=qryconcat0xhextbp_cod.AsString;
 end;
 
 procedure Tfrm_table_price.Action_saveExecute(Sender: TObject);
@@ -189,7 +214,7 @@ with frm_dm.qry,sql do
 
   inherited;
        qry.Close;
-       qry.sql.text:= ' select * from table_price ' +
+       qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price ' +
                       ' where tbp_deleted_at is null ';
        qry.Prepare;
        qry.open;
@@ -302,6 +327,15 @@ if (trim(cxEditPercentual.Text) = '' ) and (trim(cxEditValor.Text) = '' ) then
   end;
  end;
 
+procedure Tfrm_table_price.cxGrid2DBTableView1product_pro_idPropertiesCloseUp(
+  Sender: TObject);
+var
+i:integer;
+begin
+  inherited;
+
+end;
+
 procedure Tfrm_table_price.cxTabAlterarPrecoShow(Sender: TObject);
 begin
   inherited;
@@ -352,7 +386,7 @@ begin
   end;
 
    qry.Close;
-   qry.sql.text:= ' select * from table_price ' +
+   qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price ' +
                   ' where tbp_cod = ' + tbp_cod +
                   ' and tbp_deleted_at is null';
    qry.Prepare;
@@ -384,7 +418,7 @@ begin
 
    qry_table_price_product.Close;
    qry_table_price_product.sql.text:= ' select table_price_product.*,tpp_value as vlrAntigo  from table_price_product' +
-          ' where sec_deleted_at is null ' +
+          ' where tpp_deleted_at is null ' +
           ' and table_price_tbp_cod = ' + tbp_cod;
    qry_table_price_product.Prepare;
    qry_table_price_product.open;

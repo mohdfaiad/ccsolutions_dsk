@@ -214,12 +214,13 @@ begin
          ' where ent_cod = ' + ent_cod;
   Prepare;
   ExecSQL;
-end;
-       qry.Close;
-       qry.sql.text:= ' select * from enterprise ' +
-                      ' where ent_deleted_at is null';
-       qry.Prepare;
-       qry.open;
+
+  qry.Close;
+  qry.sql.text:= ' select * from enterprise ' +
+                 ' where ent_deleted_at is null';
+  qry.Prepare;
+  qry.open;
+ end;
 end;
 
 procedure Tfrm_enterprise.Action_deleteExecute(Sender: TObject);

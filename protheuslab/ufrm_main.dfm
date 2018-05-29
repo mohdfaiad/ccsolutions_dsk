@@ -177,10 +177,6 @@ inherited frm_main: Tfrm_main
         end
         item
           Visible = True
-          ItemName = 'dxBarButton7'
-        end
-        item
-          Visible = True
           ItemName = 'dxBarLargeButton7'
         end
         item

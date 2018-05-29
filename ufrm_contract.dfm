@@ -7,7 +7,12 @@ inherited frm_contract: Tfrm_contract
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
+        ExplicitLeft = 19
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ctr_id: TcxGridDBColumn
             DataBinding.FieldName = 'ctr_id'
@@ -41,6 +46,10 @@ inherited frm_contract: Tfrm_contract
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
@@ -54,9 +63,9 @@ inherited frm_contract: Tfrm_contract
               ExplicitLeft = 63
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 244
+              Left = 236
               DataBinding.DataField = 'ctr_dt_registration'
-              ExplicitLeft = 244
+              ExplicitLeft = 236
             end
             object cxDBTextEdit1: TcxDBTextEdit [2]
               Left = 63
@@ -66,7 +75,7 @@ inherited frm_contract: Tfrm_contract
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 2
-              Width = 311
+              Width = 303
             end
             object cxDBTextEdit2: TcxDBTextEdit [3]
               Left = 63
@@ -76,7 +85,7 @@ inherited frm_contract: Tfrm_contract
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 3
-              Width = 311
+              Width = 303
             end
             object cxDBTextEdit3: TcxDBTextEdit [4]
               Left = 63
@@ -86,18 +95,9 @@ inherited frm_contract: Tfrm_contract
               Properties.CharCase = ecLowerCase
               Style.HotTrack = False
               TabOrder = 4
-              Width = 311
+              Width = 303
             end
-            object cxDBDateEdit1: TcxDBDateEdit [5]
-              Left = 244
-              Top = 184
-              DataBinding.DataField = 'ctr_dt_birth_open'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 6
-              Width = 130
-            end
-            object cxDBTextEdit4: TcxDBTextEdit [6]
+            object cxDBTextEdit4: TcxDBTextEdit [5]
               Left = 63
               Top = 184
               DataBinding.DataField = 'ctr_phone1'
@@ -107,8 +107,14 @@ inherited frm_contract: Tfrm_contract
               TabOrder = 5
               Width = 121
             end
+            inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
+              ItemIndex = 1
+            end
             inherited dxLayoutGroup1: TdxLayoutGroup
               ItemIndex = 1
+            end
+            inherited dxLayoutGroup2: TdxLayoutGroup
+              ItemIndex = 3
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -139,31 +145,16 @@ inherited frm_contract: Tfrm_contract
               ControlOptions.ShowBorder = False
               Index = 2
             end
-            object dxLayoutItem7: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignHorz = ahClient
-              CaptionOptions.Text = 'Dt. Abert.'
-              Control = cxDBDateEdit1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
             object dxLayoutItem6: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignVert = avClient
+              Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
+              AlignVert = avTop
               CaptionOptions.Text = 'Tel. 1'
               Control = cxDBTextEdit4
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              LayoutDirection = ldHorizontal
               Index = 3
-              AutoCreated = True
             end
           end
         end
@@ -214,20 +205,14 @@ inherited frm_contract: Tfrm_contract
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    IndexFieldNames = 'ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'ctr_id'
+    Active = True
+    IndexFieldNames = 'ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from contract')
-    object qryctr_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'ctr_id'
-      Origin = 'ctr_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
     object qryctr_first_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Raz'#227'o'
@@ -262,11 +247,28 @@ inherited frm_contract: Tfrm_contract
       FieldName = 'ctr_dt_registration'
       Origin = 'ctr_dt_registration'
     end
-    object qryctr_dt_birth_open: TDateField
+    object qryctr_cod: TBytesField
+      FieldName = 'ctr_cod'
+      Required = True
+    end
+    object qryctr_dt_birth: TDateField
+      FieldName = 'ctr_dt_birth'
+    end
+    object qryctr_user_license: TWordField
+      FieldName = 'ctr_user_license'
+    end
+    object qryctr_status: TStringField
+      FieldName = 'ctr_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qryctr_deleted_at: TDateTimeField
+      FieldName = 'ctr_deleted_at'
+    end
+    object qryctr_id: TLargeintField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Abert.'
-      FieldName = 'ctr_dt_birth_open'
-      Origin = 'ctr_dt_birth_open'
+      FieldName = 'ctr_id'
+      Origin = 'ctr_id'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

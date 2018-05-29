@@ -1,15 +1,17 @@
 inherited frm_supplier: Tfrm_supplier
   Caption = 'Manuten'#231#227'o: Fornecedores'
   OnClose = FormClose
+  ExplicitLeft = -290
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
+        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sup_id: TcxGridDBColumn
             DataBinding.FieldName = 'sup_id'
@@ -113,14 +115,14 @@ inherited frm_supplier: Tfrm_supplier
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 67
@@ -322,15 +324,11 @@ inherited frm_supplier: Tfrm_supplier
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 762
-            Height = 432
+            Width = 986
+            Height = 472
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
@@ -672,26 +670,14 @@ inherited frm_supplier: Tfrm_supplier
   end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from supplier')
-    object qrysup_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'sup_id'
-      Origin = 'sup_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
+      'select * from supplier'#10
+      'where sup_deleted_at is null')
     object qrysup_first_name: TStringField
       DisplayLabel = 'Raz'#227'o'
       DisplayWidth = 75
@@ -834,6 +820,34 @@ inherited frm_supplier: Tfrm_supplier
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'sup_dt_registration'
       Origin = 'sup_dt_registration'
+    end
+    object qrysup_cod: TBytesField
+      FieldName = 'sup_cod'
+      Origin = 'sup_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qrysup_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_id'
+      Origin = 'sup_id'
+    end
+    object qrysup_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_status'
+      Origin = 'sup_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qrysup_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_deleted_at'
+      Origin = 'sup_deleted_at'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

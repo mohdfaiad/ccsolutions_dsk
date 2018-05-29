@@ -1,7 +1,7 @@
 inherited frm_enterprise: Tfrm_enterprise
   Caption = 'Manuten'#231#227'o: Empresas'
   OnClose = FormClose
-  ExplicitLeft = -290
+  ExplicitLeft = -307
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl

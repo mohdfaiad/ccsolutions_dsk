@@ -28,7 +28,14 @@ uses
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   ufrm_default in '..\models\ufrm_default.pas' {frm_default},
   class_contract_user in '..\class_contract_user.pas',
-  class_Conexao in '..\class_Conexao.pas';
+  class_Conexao in '..\class_Conexao.pas',
+  Client.Dao in '..\Dao\Client.Dao.pas',
+  Conexao in '..\Dao\Conexao.pas',
+  Contract_User.Dao in '..\Dao\Contract_User.Dao.pas',
+  Employee.Dao in '..\Dao\Employee.Dao.pas',
+  Contract_user.Model in '..\Model\Contract_user.Model.pas',
+  Employee.Model in '..\Model\Employee.Model.pas',
+  Employee_Model in '..\Model\Employee_Model.pas';
 
 {$R *.res}
 

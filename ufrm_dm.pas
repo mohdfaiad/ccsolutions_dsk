@@ -72,6 +72,7 @@ type
     qry_contract: TFDQuery;
     qry_contractctr_cod: TBytesField;
     ds_contract: TDataSource;
+    qry_contractctr_id: TLargeintField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

@@ -169,6 +169,7 @@ object frm_dm: Tfrm_dm
     Top = 16
   end
   object qry_enterprise: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = ds_signin
     MasterFields = 'ctr_cod'
@@ -490,7 +491,7 @@ object frm_dm: Tfrm_dm
   object qry_contract: TFDQuery
     Connection = connCCS
     SQL.Strings = (
-      'select ctr_cod from contract'
+      'select ctr_cod,ctr_id from contract'
       'where ctr_cod =:ctr_cod')
     Left = 152
     Top = 312
@@ -506,6 +507,11 @@ object frm_dm: Tfrm_dm
       Origin = 'ctr_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
+    end
+    object qry_contractctr_id: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_id'
+      Origin = 'ctr_id'
     end
   end
   object ds_contract: TDataSource

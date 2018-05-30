@@ -512,7 +512,7 @@ object frm_consult_cnpj: Tfrm_consult_cnpj
     Enabled = False
     Interval = 100
     OnTimer = Timer1Timer
-    Left = 176
+    Left = 216
     Top = 96
   end
   object dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList

@@ -162,7 +162,7 @@ begin
      frm_dm.v_contract_ctr_cod := '0x' +  frm_dm.qry_signinNew.FieldByName('hex(@po_contract_ctr_cod)').Value;
 
   frm_dm.qry_contract.Close;
-  frm_dm.qry_contract.sql.Text:='select ctr_cod from contract '+
+  frm_dm.qry_contract.sql.Text:='select ctr_cod,ctr_id from contract '+
      ' where ctr_cod = ' + frm_dm.v_contract_ctr_cod;
   frm_dm.qry_contract.Prepare;
   frm_dm.qry_contract.Open;

@@ -404,12 +404,6 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       Origin = 'cli_account_code_sippulse'
       Size = 50
     end
-    object qryimport_call_logcol: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'import_call_logcol'
-      Origin = 'import_call_logcol'
-      Size = 45
-    end
     object qryimp_comp: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'imp_comp'
@@ -441,7 +435,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     PrintOptions.Printer = 'Padr'#227'o'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43147.480269664400000000
-    ReportOptions.LastChange = 43208.544573009260000000
+    ReportOptions.LastChange = 43250.683631608800000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -469,10 +463,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       'begin'
       '  date_inicial.Date:=date - 30;'
       '  date_final.DAte:=date;'
-      
-        ' //Adicionar dados do cliente no combobox                       ' +
-        '                                                                ' +
-        '                    '
+      ' //Adicionar dados do cliente no combobox'
       '  cbCli.Items.Clear;'
       '  cbCodCli.Items.Clear;'
       '  qry_cli.First;'
@@ -488,7 +479,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       '   cbCodCli.itemIndex:=cbCli.ItemIndex;'
       ''
       ''
-      ' //Adicionar dados da empresa no combobox  '
+      ' //Adicionar dados da empresa no combobox'
       '  cbEmpCod.Items.Clear;'
       '  cbEmpNome.Items.Clear;'
       '  qry_enterprise.First;'
@@ -515,10 +506,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       ''
       'procedure date_inicialOnChange(Sender: TfrxComponent);'
       'begin'
-      
-        '//Refaz a consulta da tabela de cliente                         ' +
-        '                                                                ' +
-        '            '
+      '//Refaz a consulta da tabela de cliente'
       'qry_cli.close;'
       'qry_cli.open;'
       ''
@@ -535,10 +523,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       '   cbCodCli.ItemIndex:=cbCli.ItemIndex;'
       ''
       ''
-      
-        '//Refaz a consulta da tabela da empresa                         ' +
-        '                                                                ' +
-        '            '
+      '//Refaz a consulta da tabela da empresa'
       'qry_enterprise.close;'
       'qry_enterprise.open;'
       ''
@@ -553,9 +538,9 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       '   end;'
       '   cbEmpCod.ItemIndex:=0;'
       '   cbEmpNome.ItemIndex:=cbCli.ItemIndex;'
-      '  '
       ''
-      '     '
+      ''
+      ''
       'end;'
       ''
       'procedure cbCodCliOnChange(Sender: TfrxComponent);'
@@ -575,12 +560,12 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
       ''
       'procedure cbEmpCodOnChange(Sender: TfrxComponent);'
       'begin'
-      '   cbEmpNome.ItemIndex:=cbEmpCod.ItemIndex;  '
+      '   cbEmpNome.ItemIndex:=cbEmpCod.ItemIndex;'
       'end;'
       ''
       'procedure cbEmpNomeOnChange(Sender: TfrxComponent);'
       'begin'
-      '   cbEmpCod.ItemIndex:=cbEmpNome.ItemIndex;  '
+      '   cbEmpCod.ItemIndex:=cbEmpNome.ItemIndex;'
       'end;'
       ''
       'begin'
@@ -682,20 +667,28 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         SQL.Strings = (
           
             'select ent_first_name,ent_cnpj,import_call_log.*,cli_id,cli_firs' +
-            't_name,cli_cpfcnpj,cli_add_bus_zipcode,cli_add_bus_address,cli_a' +
-            'dd_bus_number,cli_add_bus_complement,cli_add_bus_city,cli_add_bu' +
-            's_state,'
+            't_name,cli_cpfcnpj,cli_add_bus_zipcode,'
+          
+            'cli_add_bus_address,cli_add_bus_number,cli_add_bus_complement,cl' +
+            'i_add_bus_city,cli_add_bus_state,'
           'cli_add_bus_street  from import_call_log'
           
-            'left join client on client.cli_account_code_sippulse = import_ca' +
-            'll_log.cli_account_code_sippulse'
+            'left join client on client.cli_cod in (select cli_cod from clien' +
+            't_sippulse'
           
-            'inner join enterprise on enterprise.contract_ctr_id in (select c' +
-            'tr_id from contract where ctr_id = import_call_log.contract_ctr_' +
-            'id) and ent_id = :codEmpresa                                    ' +
-            '         '
+            '          where cls_account_sippulse = import_call_log.cli_accou' +
+            'nt_code_sippulse)'
+          '  '
+          'inner join enterprise on enterprise.contract_ctr_cod in'
+          
+            '(select ctr_cod from contract where ctr_cod = import_call_log.co' +
+            'ntract_ctr_cod) and ent_id = :codEmpresa                        ' +
+            '                  '
           'where imp_date between :dt_ini and :dt_fin'
-          'and client_cli_id =:cli                                   '
+          'and client_cli_cod in'
+          
+            '(select cli_cod from client where cli_id = :cli)                ' +
+            '                   '
           'order by imp_from,imp_type')
         Database = frxDbLigacoes.connect
         pLeft = 80
@@ -800,12 +793,13 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
             '_log where imp_date between :dt_ini and :dt_fin) as percentual'
           'from import_call_log  '
           'where imp_date between :dt_ini and :dt_fin'
-          'and client_cli_id =:cli    '
+          'and client_cli_cod in'
+          '(select cli_cod from client where cli_id = :cli)       '
           'group by imp_type'
           'having sum(imp_total) > 0'
           'order by sum(imp_total) desc    ')
         Database = frxDbLigacoes.connect
-        pLeft = 80
+        pLeft = 76
         pTop = 184
         Parameters = <
           item
@@ -860,7 +854,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
             'select count(*),sum(imp_total),sum(imp_duration) div 100 from im' +
             'port_call_log  '
           'where imp_date between :dt_ini and :dt_fin'
-          'and client_cli_id =:cli    ')
+          'and client_cli_cod in'
+          '(select cli_cod from client where cli_id = :cli)          ')
         Database = frxDbLigacoes.connect
         pLeft = 164
         pTop = 176
@@ -903,13 +898,14 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
             Expression = 'cbCodCli.Text'
           end>
         SQL.Strings = (
-          'select cast(imp_date as date),'
+          'select day(imp_date),'
           'sum(imp_duration) div 100 from import_call_log'
           'where imp_date between :dt_ini and :dt_fin'
-          'and client_cli_id =:cli               '
+          'and client_cli_cod in'
           
-            'group by cast(imp_date as date)                                 ' +
-            '      ')
+            '(select cli_cod from client where cli_id = :cli)                ' +
+            '  '
+          'group by day(imp_date)                                          ')
         Database = frxDbLigacoes.connect
         pLeft = 112
         pTop = 276
@@ -948,11 +944,12 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           end>
         SQL.Strings = (
           'select cli_id,cli_first_name from client'
-          'where cli_id in (select client_cli_id from import_call_log a  '
+          'where cli_cod in (select cli_cod from client_sippulse x'
           
-            'where a.cli_account_code_sippulse = client.cli_account_code_sipp' +
-            'ulse '
-          '   and imp_date between :dt_ini and :dt_fin)'
+            ' where x.cli_cod in (select client_cli_cod from import_call_log ' +
+            'a  '
+          'where a.cli_account_code_sippulse = x.cls_account_sippulse  '
+          '   and imp_date between :dt_ini and :dt_fin))'
           'order by cli_first_name  ')
         Database = frxDbLigacoes.connect
         pLeft = 180
@@ -988,8 +985,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         SQL.Strings = (
           'select ent_first_name,ent_id,ent_email,ent_cnpj from enterprise'
           
-            'where contract_ctr_id in (select  distinct contract_ctr_id from ' +
-            'import_call_log'
+            'where contract_ctr_cod in (select  distinct contract_ctr_cod fro' +
+            'm import_call_log'
           
             '                          where imp_date between :dt_ini and :dt' +
             '_fin)'
@@ -1031,7 +1028,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         FillType = ftBrush
         Frame.Typ = []
         Height = 192.756030000000000000
-        Top = 16.000000000000000000
+        Top = 18.897650000000000000
         Width = 718.110700000000000000
         object Shape1: TfrxShapeView
           Width = 718.110700000000000000
@@ -1126,6 +1123,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Top = 113.220547500000000000
           Width = 68.031540000000000000
           Height = 15.118120000000000000
+          DisplayFormat.FormatStr = 'dd/mm/yyyy'
+          DisplayFormat.Kind = fkDateTime
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -1157,6 +1156,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Top = 113.220547500000000000
           Width = 68.031540000000000000
           Height = 15.118120000000000000
+          DisplayFormat.FormatStr = 'dd/mm/yyyy'
+          DisplayFormat.Kind = fkDateTime
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -3233,6 +3234,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Height = 15.118120000000000000
           DataSet = frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
+          DisplayFormat.FormatStr = 'dd/mm/yyyy hh:mm:ss'
+          DisplayFormat.Kind = fkDateTime
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -3479,7 +3482,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         FillType = ftBrush
         Frame.Typ = [ftTop]
         Height = 22.677180000000000000
-        Top = 420.000000000000000000
+        Top = 514.016080000000000000
         Width = 718.110700000000000000
         object Memo1: TfrxMemoView
           Left = 574.488560000000000000
@@ -3507,7 +3510,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         FillType = ftBrush
         Frame.Typ = []
         Height = 15.118110236220500000
-        Top = 264.000000000000000000
+        Top = 313.700990000000000000
         Width = 718.110700000000000000
         OnAfterPrint = 'MasterData1OnAfterPrint'
         DataSet = frxDbLigacoes.qry_import_call_log
@@ -3545,6 +3548,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Left = 170.078850000000000000
           Width = 109.606370000000000000
           Height = 11.338590000000000000
+          DisplayFormat.FormatStr = 'dd/mm/yyyy hh:mm:ss'
+          DisplayFormat.Kind = fkDateTime
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -8
@@ -3573,6 +3578,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Left = 396.850650000000000000
           Width = 90.708720000000000000
           Height = 11.338590000000000000
+          DisplayFormat.FormatStr = 'hh:mm:ss'
+          DisplayFormat.Kind = fkDateTime
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -8
@@ -3622,7 +3629,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         FillType = ftBrush
         Frame.Typ = [ftTop]
         Height = 60.472480000000000000
-        Top = 340.000000000000000000
+        Top = 430.866420000000000000
         Width = 718.110700000000000000
         object Memo19: TfrxMemoView
           Left = 549.795610000000000000
@@ -3693,7 +3700,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         FillType = ftBrush
         Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
         Height = 17.007876460000000000
-        Top = 228.000000000000000000
+        Top = 272.126160000000000000
         Width = 718.110700000000000000
         Condition = 'qry_importLocal."imp_from"'
         object Memo2: TfrxMemoView
@@ -3743,7 +3750,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           ParentFont = False
         end
         object Memo7: TfrxMemoView
-          Left = 85.795275590551190000
+          Left = 85.795275590551200000
           Top = 2.000000000000000000
           Width = 56.692950000000000000
           Height = 13.984254410000000000
@@ -3758,7 +3765,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           ParentFont = False
         end
         object Memo8: TfrxMemoView
-          Left = 170.078740157480000000
+          Left = 170.078740160000000000
           Top = 2.000000000000000000
           Width = 94.488188980000000000
           Height = 13.984254410000000000
@@ -3769,7 +3776,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            'Data')
+            'Data/Hora')
           ParentFont = False
         end
         object Memo9: TfrxMemoView
@@ -3808,7 +3815,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         Frame.ShadowWidth = 90.000000000000000000
         Frame.Typ = [ftTop]
         Height = 18.897650000000000000
-        Top = 300.000000000000000000
+        Top = 351.496290000000000000
         Width = 718.110700000000000000
         object Memo23: TfrxMemoView
           Left = 381.732530000000000000
@@ -6156,6 +6163,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Top = 128.559137500000000000
           Width = 68.031540000000000000
           Height = 15.118120000000000000
+          DisplayFormat.FormatStr = 'dd/mm/yyyy'
+          DisplayFormat.Kind = fkDateTime
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -6187,6 +6196,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Top = 128.559137500000000000
           Width = 68.031540000000000000
           Height = 15.118120000000000000
+          DisplayFormat.FormatStr = 'dd/mm/yyyy'
+          DisplayFormat.Kind = fkDateTime
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -6220,6 +6231,8 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Height = 15.118120000000000000
           DataSet = frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
+          DisplayFormat.FormatStr = 'dd/mm/yyyy hh:mm:ss'
+          DisplayFormat.Kind = fkDateTime
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -6506,11 +6519,11 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
             DataSet = frxDbLigacoes.qry_grafico2
             DataSetName = 'qry_grafico2'
             SortOrder = soNone
-            TopN = 0
-            XType = xtDate
-            Source1 = 'qry_grafico2."cast(imp_date as date)"'
+            TopN = -1
+            XType = xtNumber
+            Source1 = 'qry_grafico2."day(imp_date)"'
             Source2 = 'qry_grafico2."sum(imp_duration) div 100"'
-            XSource = 'qry_grafico2."cast(imp_date as date)"'
+            XSource = 'qry_grafico2."day(imp_date)"'
             YSource = 'qry_grafico2."sum(imp_duration) div 100"'
           end>
       end
@@ -7141,7 +7154,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
   end
   object procTeste: TFDStoredProc
     Connection = frm_dm.connCCS
-    StoredProcName = 'ccs.proc_import_call_log_create'
+    StoredProcName = 'ccs.proc_import_call_log_sippulse'
     Left = 336
     Top = 200
     ParamData = <
@@ -7206,6 +7219,13 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         Precision = 12
         NumericScale = 4
         ParamType = ptInput
+      end
+      item
+        Position = 10
+        Name = 'p_imp_comp'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 10
       end>
   end
 end

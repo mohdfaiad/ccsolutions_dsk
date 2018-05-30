@@ -121,7 +121,6 @@ type
     qryimp_total: TBCDField;
     qryimp_file_name: TStringField;
     qrycli_account_code_sippulse: TStringField;
-    qryimport_call_logcol: TStringField;
     qryimp_comp: TStringField;
     qryimp_deleted_at: TDateTimeField;
     qry_duracao: TLargeintField;
@@ -319,7 +318,7 @@ Var
   wdHoras, wdMinutos, wdSegundos: Word;
 begin
 procTeste.Prepare;
-procTeste.ParamByName('p_ctr_id').AsLargeInt:=frm_dm.qry_signinctr_id.AsLargeInt;
+procTeste.ParamByName('p_ctr_id').AsLargeInt:=frm_dm.qry_contractctr_id.AsLargeInt;
 procTeste.ParamByName('p_cli_account_code_sippulse').AsString:=qrycli_account_code_sippulse.AsString;
 procTeste.ParamByName('p_imp_from').AsString:=qryimp_from.AsString;
 procTeste.ParamByName('p_imp_to').AsString:=qryimp_to.AsString;
@@ -328,27 +327,8 @@ procTeste.ParamByName('p_imp_date').AsDateTime:=qryimp_date.AsDateTime;
 procTeste.ParamByName('p_imp_type').AsString:=qryimp_type.AsString;
 procTeste.ParamByName('p_imp_rate').AsBCD:=qryimp_rate.AsFloat;
 procTeste.ParamByName('p_imp_total').AsBCD:=qryimp_total.AsFloat;
+procTeste.ParamByName('p_imp_comp').AsString:=competencia;
 procTeste.ExecProc;
-
-(*
-
-
-  if codigoCliente = '-1'  then
-   begin
-    with frm_dm.qry,sql do
-     begin
-      close;
-      text:=' select concat(''0x'', hex(cli_cod)) from client ' +
-            ' where cli_account_code_sippulse = :cliente';
-       ParamByName('cliente').AsString:=qrycli_account_code_sippulse.AsString;
-       prepare;
-       open;
-       codigoCliente:=frm_dm.qry.Fields[0].AsString;
-     end;
-   end;
- qryclient_cli_cod.AsString:=codigoCliente;
- qryimp_comp.AsString:= competencia;
- *)
 
 end;
 

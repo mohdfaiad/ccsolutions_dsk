@@ -139,11 +139,11 @@ var
   ImgArq: String;
 {$ENDIF}
 begin
-{$IFNDEF SUPPORT_PNG}
-  ShowMessage
-    ('Atenção: Seu Delphi não dá suporte nativo a imagens PNG. Queira verificar o código fonte deste exemplo para saber como proceder.');
-  Exit;
-{$ENDIF}
+//{$IFNDEF SUPPORT_PNG}
+//  ShowMessage
+//    ('Atenção: Seu Delphi não dá suporte nativo a imagens PNG. Queira verificar o código fonte deste exemplo para saber como proceder.');
+//  Exit;
+//{$ENDIF}
   Stream := TMemoryStream.Create;
   try
     ACBrConsultaCNPJ1.Captcha(Stream);

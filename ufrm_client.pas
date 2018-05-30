@@ -233,8 +233,6 @@ type
     dxLayoutControl4Group_Root: TdxLayoutGroup;
     dxLayoutControl4: TdxLayoutControl;
     dxLayoutGroup11: TdxLayoutGroup;
-    cxDBTextEdit34: TcxDBTextEdit;
-    dxLayoutItem42: TdxLayoutItem;
     qrycli_status: TStringField;
     qrycli_account_code_sippulse: TStringField;
     qry_insurance: TFDQuery;
@@ -267,6 +265,23 @@ type
     qry_client_insirancecin_id: TLongWordField;
     qry_client_insirancecin_deleted_at: TDateTimeField;
     qry_client_insirancecin_dt_registration: TDateTimeField;
+    qry_client_sippulse: TFDQuery;
+    qry_client_sippulsecls_cod: TBytesField;
+    qry_client_sippulsecli_cod: TBytesField;
+    qry_client_sippulsecls_account_sippulse: TStringField;
+    qry_client_sippulsecls_deleted_at: TDateTimeField;
+    qry_client_sippulsecls_dt_registration: TDateTimeField;
+    dxLayoutGroup13: TdxLayoutGroup;
+    cxGrid2DBTableView1: TcxGridDBTableView;
+    cxGrid2Level1: TcxGridLevel;
+    cxGrid2: TcxGrid;
+    dxLayoutItem41: TdxLayoutItem;
+    ds_client_sippulse: TDataSource;
+    cxGrid2DBTableView1cls_account_sippulse: TcxGridDBColumn;
+    cxGrid2DBTableView1cls_dt_registration: TcxGridDBColumn;
+    cxEditCodsippulse: TcxTextEdit;
+    dxLayoutItem42: TdxLayoutItem;
+    qryconcat0xhexcli_cod: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);
@@ -287,10 +302,13 @@ type
     procedure Action_cancelExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
     procedure cxDBTextEdit12Exit(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
+    procedure cxEditCodsippulseKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     cep:Integer;
-    cli_cod:string;
+    cli_cod,cls_cod:string;
     procedure limpaCache(Sender:TObject);
   public
     { Public declarations }
@@ -367,7 +385,7 @@ begin
   ExecSQL;
 
   qry.Close;
-  qry.sql.text:= ' select * from client ' +
+  qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
                  ' where cli_deleted_at is null';
   qry.Prepare;
   qry.open;
@@ -399,12 +417,18 @@ begin
      qry.ApplyUpdates(0);
 
      qry.Close;
-     qry.sql.text:= ' select * from client ' +
+     qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
                     ' where cli_deleted_at is null ';
      qry.Prepare;
      qry.open;
     end;
  end;
+
+procedure Tfrm_client.Action_editExecute(Sender: TObject);
+begin
+  inherited;
+ cli_cod:=qryconcat0xhexcli_cod.AsString;
+end;
 
 procedure Tfrm_client.Action_saveExecute(Sender: TObject);
 begin
@@ -426,7 +450,7 @@ with frm_dm.qry,sql do
 
   inherited;
        qry.Close;
-       qry.sql.text:= ' select * from client ' +
+       qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client' +
                       ' where cli_deleted_at is null ';
        qry.Prepare;
        qry.open;
@@ -515,7 +539,7 @@ begin
        ExecSQL;
 
        qry.Cancel;
-       qry.sql.Text:=' select * from client ' +
+       qry.sql.Text:=' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
                      ' where cli_cpfcnpj = ' + x;
        qry.Prepare;
        qry.Open;
@@ -523,6 +547,38 @@ begin
       end;
     end;
   end;
+end;
+
+procedure Tfrm_client.cxEditCodsippulseKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+ if key = 13 then
+if Application.MessageBox('Deseja associar esse código sippulse para este cliente?',
+'CLIENTE', MB_YESNO + MB_ICONQUESTION) = mrYes       then
+ begin
+ With frm_dm.qry,sql do
+  begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   cls_cod:=Fields[0].AsString;
+
+   Close;
+   Text:='insert into client_sippulse (cls_cod,cli_cod,cls_account_sippulse,cls_dt_registration) ' +
+         ' select '+ cls_cod + ',' +  cli_cod + ',' +  QuotedStr(cxEditCodsippulse.Text) + ', now()' ;
+   Prepare;
+   ExecSQL;
+  end;
+
+  qry_client_sippulse.Close;
+  qry_client_sippulse.Prepare;
+  qry_client_sippulse.Open;
+  cxEditCodsippulse.Clear;
+  cxEditCodsippulse.SetFocus;
+end;
 end;
 
 procedure Tfrm_client.cxTabSheet_addressShow(Sender: TObject);
@@ -572,7 +628,7 @@ begin
   end;
 
    qry.Close;
-   qry.sql.text:= ' select * from client ' +
+   qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
                   ' where cli_cod = ' + cli_cod +
                   ' and cli_deleted_at is null';
    qry.Prepare;

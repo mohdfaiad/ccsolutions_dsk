@@ -223,6 +223,7 @@ inherited frm_insurance: Tfrm_insurance
                 end>
               Properties.ListSource = ds_table_price
               Properties.OnCloseUp = lookupComboBoxTablePropertiesCloseUp
+              Properties.OnPopup = lookupComboBoxTablePropertiesPopup
               Style.HotTrack = False
               TabOrder = 4
               Width = 307

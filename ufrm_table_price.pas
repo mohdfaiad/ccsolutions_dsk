@@ -34,7 +34,8 @@ uses
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, ufrm_dm, cxDBLookupComboBox,
   dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons, cxRadioGroup, cxCurrencyEdit,
-  Vcl.ExtCtrls, cxListBox, cxCheckListBox,class_table_price;
+  Vcl.ExtCtrls, cxListBox, cxCheckListBox,class_table_price, cxLookupEdit,
+  cxDBLookupEdit, cxLabel;
 
 type
   Tfrm_table_price = class(Tfrm_form_default)
@@ -53,7 +54,6 @@ type
     qry_table_price_producttpp_dt_registration: TDateTimeField;
     qry_product: TFDQuery;
     ds_product: TDataSource;
-    qry_productpro_name: TStringField;
     dxLayoutControl2: TdxLayoutControl;
     dxLayoutGroup4: TdxLayoutGroup;
     dxLayoutGroup6: TdxLayoutGroup;
@@ -107,21 +107,16 @@ type
     qry_table_price_producttpp_id: TLongWordField;
     qryconcat0xhextbp_cod: TStringField;
     qry_table_price_productpro_cod: TStringField;
-    qry_productpro_cod: TStringField;
-    cxGrid1DBTableView1: TcxGridDBTableView;
-    cxGrid1Level1: TcxGridLevel;
-    cxGrid1: TcxGrid;
+    dxLayoutGroup3: TdxLayoutGroup;
+    cxTextEditValor: TcxTextEdit;
     dxLayoutItem4: TdxLayoutItem;
-    cxGrid1DBTableView1tpp_value: TcxGridDBColumn;
-    cxGrid1DBTableView1tpp_dt_registration: TcxGridDBColumn;
-    cxGrid1DBTableView1vlrAntigo: TcxGridDBColumn;
-    cxGrid1DBTableView1tpp_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1table_price_tbp_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1product_pro_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1tpp_deleted_at: TcxGridDBColumn;
-    cxGrid1DBTableView1tpp_id: TcxGridDBColumn;
-    cxGrid1DBTableView1pro_cod: TcxGridDBColumn;
-    qry_productpro_cod_1: TBytesField;
+    cxLookupComboBoxExame: TcxLookupComboBox;
+    dxLayoutItem5: TdxLayoutItem;
+    qry_productproCod: TStringField;
+    qry_productpro_name: TStringField;
+    qry_productpro_cod: TBytesField;
+    qry_table_price_productpro_name: TStringField;
+    qry_table_price_producttppCod: TStringField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure qry_table_price_productAfterInsert(DataSet: TDataSet);
@@ -136,6 +131,9 @@ type
     procedure Action_editExecute(Sender: TObject);
     procedure cxGrid2DBTableView1product_pro_idPropertiesCloseUp(
       Sender: TObject);
+    procedure cxLookupComboBoxExamePropertiesCloseUp(Sender: TObject);
+    procedure cxLookupComboBoxExamePropertiesPopup(Sender: TObject);
+    procedure qry_table_price_productAfterPost(DataSet: TDataSet);
   private
     FTable_price:TTable_price;
     tbp_cod,tpp_cod:string;
@@ -336,6 +334,27 @@ begin
 
 end;
 
+procedure Tfrm_table_price.cxLookupComboBoxExamePropertiesCloseUp(
+  Sender: TObject);
+begin
+  inherited;
+  if not (qry_table_price_product.State in [dsEdit]) then
+   qry_table_price_product.Edit;
+
+   qry_product.Locate('pro_name',cxLookupComboBoxExame.Text,[]);
+
+
+end;
+
+procedure Tfrm_table_price.cxLookupComboBoxExamePropertiesPopup(
+  Sender: TObject);
+begin
+  inherited;
+  qry_product.Close;
+  qry_product.Prepare;
+  qry_product.Open;
+end;
+
 procedure Tfrm_table_price.cxTabAlterarPrecoShow(Sender: TObject);
 begin
   inherited;
@@ -417,13 +436,26 @@ begin
   end;
 
    qry_table_price_product.Close;
-   qry_table_price_product.sql.text:= ' select table_price_product.*,tpp_value as vlrAntigo  from table_price_product' +
-          ' where tpp_deleted_at is null ' +
-          ' and table_price_tbp_cod = ' + tbp_cod;
+   qry_table_price_product.sql.text:= 'select table_price_product.*,tpp_value as vlrAntigo, ' +
+       ' concat(''0x'',hex(product_pro_cod)) as pro_cod,pro_name,  ' +
+       ' concat(''0x'',hex(tpp_cod)) as tppCod from table_price_product ' +
+       ' left join product on pro_cod = product_pro_cod ' +
+       ' where tpp_deleted_at is null ' +
+       ' and table_price_tbp_cod = ' + tbp_cod;
    qry_table_price_product.Prepare;
    qry_table_price_product.open;
+
+   qry_table_price_product.Locate('tppCod',tpp_cod,[]);
    qry_table_price_product.Edit;
    qry_table_price_producttpp_dt_registration.AsDateTime:=Now;
+end;
+
+procedure Tfrm_table_price.qry_table_price_productAfterPost(DataSet: TDataSet);
+begin
+  inherited;
+qry_table_price_product.Refresh;
+cxLookupComboBoxExame.Text:='' ;
+cxTextEditValor.Clear;
 end;
 
 procedure Tfrm_table_price.qry_table_price_productBeforePost(DataSet: TDataSet);
@@ -443,6 +475,8 @@ with frm_dm.qry,sql do
 
    if qry_table_price_producttpp_id.AsInteger = 0 then
     qry_table_price_producttpp_id.AsInteger:=Fields[0].AsInteger;
+    qry_table_price_productproduct_pro_cod.Value:=qry_productpro_cod.Value;
+    qry_table_price_producttpp_value.AsFloat:=StrToFloat(cxTextEditValor.Text);
   end;
 end;
 

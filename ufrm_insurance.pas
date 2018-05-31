@@ -168,6 +168,7 @@ type
     procedure cxTabSheet_1Show(Sender: TObject);
     procedure lookupComboBoxTablePropertiesCloseUp(Sender: TObject);
     procedure cxTabSheet_2Show(Sender: TObject);
+    procedure lookupComboBoxTablePropertiesPopup(Sender: TObject);
   private
     { Private declarations }
     ins_cod:string;
@@ -262,6 +263,14 @@ begin
   inherited;
   qry_table_price.Locate('tbp_name',lookupComboBoxTable.Text,[]);
   qrytable_price_tbp_cod.Value:=qry_table_pricetbp_cod.Value;
+end;
+
+procedure Tfrm_insurance.lookupComboBoxTablePropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  qry_table_price.Close;
+  qry_table_price.Prepare;
+  qry_table_price.Open;
 end;
 
 procedure Tfrm_insurance.qryAfterInsert(DataSet: TDataSet);

@@ -1,6 +1,7 @@
 inherited frm_exam: Tfrm_exam
   Caption = 'Manuten'#231#227'o: Exames'
   OnClose = FormClose
+  ExplicitLeft = -4
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -53,7 +54,6 @@ inherited frm_exam: Tfrm_exam
           ExplicitWidth = 986
           ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
-            ExplicitLeft = 3
             inherited dbedt_id: TcxDBTextEdit
               Left = 60
               DataBinding.DataField = 'pro_id'

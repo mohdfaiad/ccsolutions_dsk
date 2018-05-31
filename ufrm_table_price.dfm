@@ -1,6 +1,6 @@
 inherited frm_table_price: Tfrm_table_price
   Caption = 'Cadastro de Tabela de pre'#231'o'
-  ExplicitTop = -22
+  ExplicitTop = -207
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -135,15 +135,8 @@ inherited frm_table_price: Tfrm_table_price
                 end
                 object cxGrid2DBTableView1product_pro_id: TcxGridDBColumn
                   Caption = 'Exame'
-                  DataBinding.FieldName = 'pro_cod'
-                  PropertiesClassName = 'TcxLookupComboBoxProperties'
-                  Properties.KeyFieldNames = 'pro_cod'
-                  Properties.ListColumns = <
-                    item
-                      FieldName = 'pro_name'
-                    end>
-                  Properties.ListSource = ds_product
-                  Properties.OnCloseUp = cxGrid2DBTableView1product_pro_idPropertiesCloseUp
+                  DataBinding.FieldName = 'pro_name'
+                  PropertiesClassName = 'TcxLabelProperties'
                   Width = 250
                 end
                 object cxGrid2DBTableView1tpp_value: TcxGridDBColumn
@@ -161,49 +154,27 @@ inherited frm_table_price: Tfrm_table_price
                 GridView = cxGrid2DBTableView1
               end
             end
-            object cxGrid1: TcxGrid
-              Left = 51
-              Top = 297
-              Width = 693
-              Height = 200
+            object cxTextEditValor: TcxTextEdit
+              Left = 444
+              Top = 325
+              Style.HotTrack = False
+              TabOrder = 2
+              Width = 121
+            end
+            object cxLookupComboBoxExame: TcxLookupComboBox
+              Left = 54
+              Top = 325
+              Properties.KeyFieldNames = 'proCod'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'pro_name'
+                end>
+              Properties.ListSource = ds_product
+              Properties.OnCloseUp = cxLookupComboBoxExamePropertiesCloseUp
+              Properties.OnPopup = cxLookupComboBoxExamePropertiesPopup
+              Style.HotTrack = False
               TabOrder = 1
-              object cxGrid1DBTableView1: TcxGridDBTableView
-                Navigator.Buttons.CustomButtons = <>
-                DataController.DataSource = ds_table_price_product
-                DataController.Summary.DefaultGroupSummaryItems = <>
-                DataController.Summary.FooterSummaryItems = <>
-                DataController.Summary.SummaryGroups = <>
-                object cxGrid1DBTableView1tpp_value: TcxGridDBColumn
-                  DataBinding.FieldName = 'tpp_value'
-                end
-                object cxGrid1DBTableView1tpp_dt_registration: TcxGridDBColumn
-                  DataBinding.FieldName = 'tpp_dt_registration'
-                end
-                object cxGrid1DBTableView1vlrAntigo: TcxGridDBColumn
-                  DataBinding.FieldName = 'vlrAntigo'
-                end
-                object cxGrid1DBTableView1tpp_cod: TcxGridDBColumn
-                  DataBinding.FieldName = 'tpp_cod'
-                end
-                object cxGrid1DBTableView1table_price_tbp_cod: TcxGridDBColumn
-                  DataBinding.FieldName = 'table_price_tbp_cod'
-                end
-                object cxGrid1DBTableView1product_pro_cod: TcxGridDBColumn
-                  DataBinding.FieldName = 'product_pro_cod'
-                end
-                object cxGrid1DBTableView1tpp_deleted_at: TcxGridDBColumn
-                  DataBinding.FieldName = 'tpp_deleted_at'
-                end
-                object cxGrid1DBTableView1tpp_id: TcxGridDBColumn
-                  DataBinding.FieldName = 'tpp_id'
-                end
-                object cxGrid1DBTableView1pro_cod: TcxGridDBColumn
-                  DataBinding.FieldName = 'pro_cod'
-                end
-              end
-              object cxGrid1Level1: TcxGridLevel
-                GridView = cxGrid1DBTableView1
-              end
+              Width = 355
             end
             object dxLayoutGroup4: TdxLayoutGroup
               AlignHorz = ahLeft
@@ -212,6 +183,7 @@ inherited frm_table_price: Tfrm_table_price
               SizeOptions.SizableVert = True
               ButtonOptions.Buttons = <>
               Hidden = True
+              ItemIndex = 1
               ShowBorder = False
               Index = -1
             end
@@ -233,14 +205,38 @@ inherited frm_table_price: Tfrm_table_price
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem4: TdxLayoutItem
+            object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutGroup4
-              CaptionOptions.Text = 'cxGrid1'
-              Control = cxGrid1
-              ControlOptions.OriginalHeight = 200
-              ControlOptions.OriginalWidth = 250
+              AlignHorz = ahLeft
+              CaptionOptions.Text = 'Manuten'#231#227'o dos Exames da tabela'
+              ButtonOptions.Buttons = <>
+              LayoutDirection = ldHorizontal
+              Index = 1
+            end
+            object dxLayoutItem4: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Valor'
+              Control = cxTextEditValor
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 1
+            end
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Exame'
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              SizeOptions.Width = 392
+              Control = cxLookupComboBoxExame
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 145
+              ControlOptions.ShowBorder = False
+              Index = 0
             end
           end
         end
@@ -497,6 +493,7 @@ inherited frm_table_price: Tfrm_table_price
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -553,7 +550,6 @@ inherited frm_table_price: Tfrm_table_price
       AutoGenerateValue = arDefault
       FieldName = 'concat('#39'0x'#39',hex(tbp_cod))'
       Origin = '`concat('#39'0x'#39',hex(tbp_cod))`'
-      ProviderFlags = []
       ReadOnly = True
       Size = 34
     end
@@ -580,6 +576,7 @@ inherited frm_table_price: Tfrm_table_price
   object qry_table_price_product: TFDQuery
     AfterInsert = qry_table_price_productAfterInsert
     BeforePost = qry_table_price_productBeforePost
+    AfterPost = qry_table_price_productAfterPost
     IndexFieldNames = 'table_price_tbp_cod'
     MasterSource = ds
     MasterFields = 'tbp_cod'
@@ -589,19 +586,18 @@ inherited frm_table_price: Tfrm_table_price
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select table_price_product.*,tpp_value as vlrAntigo,'
-      
-        'concat('#39'0x'#39',hex(product_pro_cod)) as pro_cod  from table_price_p' +
-        'roduct'
+      'concat('#39'0x'#39',hex(product_pro_cod)) as pro_cod,pro_name,'
+      'concat('#39'0x'#39',hex(tpp_cod)) as tppCod  from table_price_product'
+      'left join product on pro_cod = product_pro_cod'
       'where table_price_tbp_cod = :tbp_cod')
-    Left = 415
-    Top = 130
+    Left = 175
+    Top = 298
     ParamData = <
       item
         Name = 'TBP_COD'
         DataType = ftBytes
         ParamType = ptInput
         Size = 16
-        Value = Null
       end>
     object qry_table_price_producttpp_value: TBCDField
       AutoGenerateValue = arDefault
@@ -659,47 +655,65 @@ inherited frm_table_price: Tfrm_table_price
       ReadOnly = True
       Size = 34
     end
+    object qry_table_price_productpro_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_name'
+      Origin = 'pro_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object qry_table_price_producttppCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tppCod'
+      Origin = 'tppCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
   end
   object ds_table_price_product: TDataSource
     DataSet = qry_table_price_product
-    Left = 543
-    Top = 130
+    Left = 303
+    Top = 298
   end
   object qry_product: TFDQuery
+    Active = True
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       
-        'select concat('#39'0x'#39',hex(pro_cod)) as pro_cod ,pro_name,pro_cod fr' +
-        'om product'
+        'select concat('#39'0x'#39',hex(pro_cod)) as proCod ,pro_name,pro_cod fro' +
+        'm product'
       'where pro_type = '#39'S'#39
       'order by pro_name')
-    Left = 407
-    Top = 218
+    Left = 591
+    Top = 322
+    object qry_productproCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'proCod'
+      Origin = 'proCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
     object qry_productpro_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'pro_name'
       Origin = 'pro_name'
-      Size = 50
+      Size = 85
     end
-    object qry_productpro_cod: TStringField
-      AutoGenerateValue = arDefault
+    object qry_productpro_cod: TBytesField
       FieldName = 'pro_cod'
       Origin = 'pro_cod'
-      ProviderFlags = [pfInKey]
-      ReadOnly = True
-      Size = 34
-    end
-    object qry_productpro_cod_1: TBytesField
-      FieldName = 'pro_cod_1'
-      Origin = 'pro_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
   end
   object ds_product: TDataSource
     DataSet = qry_product
-    Left = 472
-    Top = 216
+    Left = 656
+    Top = 320
   end
 end

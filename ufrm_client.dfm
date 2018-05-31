@@ -1,7 +1,6 @@
 inherited frm_client: Tfrm_client
   Caption = 'Manuten'#231#227'o: Clientes'
   OnClose = FormClose
-  ExplicitTop = -40
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -1268,8 +1267,6 @@ inherited frm_client: Tfrm_client
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitLeft = -16
-            ExplicitTop = 3
             object cxGrid2: TcxGrid
               Left = 17
               Top = 103

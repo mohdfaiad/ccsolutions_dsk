@@ -1,16 +1,17 @@
-﻿inherited frm_purchase_order: Tfrm_purchase_order
+inherited frm_purchase_order: Tfrm_purchase_order
   Caption = 'Manuten'#231#227'o: Pedidos de Compra'
-  ClientHeight = 542
+  ClientHeight = 669
+  ClientWidth = 1080
   OnClose = FormClose
-  OnShow = FormShow
-  ExplicitHeight = 581
+  ExplicitWidth = 1096
+  ExplicitHeight = 708
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage [0]
     Left = 0
     Top = 55
-    Width = 1008
-    Height = 487
+    Width = 1080
+    Height = 614
     Align = alClient
     ExplicitLeft = 344
     ExplicitTop = 247
@@ -18,48 +19,48 @@
     ExplicitHeight = 105
   end
   inherited cxPageControl_1: TcxPageControl
-    Height = 487
-    ExplicitHeight = 487
-    ClientRectBottom = 481
+    Width = 1080
+    Height = 614
+    Properties.ActivePage = cxTabSheet_2
+    ExplicitWidth = 1080
+    ExplicitHeight = 614
+    ClientRectBottom = 608
+    ClientRectRight = 1074
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 453
+      ExplicitWidth = 1072
+      ExplicitHeight = 580
       inherited cxGrid_1: TcxGrid
-        Height = 447
-        ExplicitHeight = 447
+        Width = 1066
+        Height = 574
+        ExplicitWidth = 1066
+        ExplicitHeight = 574
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           OnCustomDrawCell = cxGrid_1DBTableView1CustomDrawCell
           object cxGrid_1DBTableView1pco_id: TcxGridDBColumn
             DataBinding.FieldName = 'pco_id'
             Width = 75
           end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1employee_emp_id: TcxGridDBColumn
-            DataBinding.FieldName = 'employee_emp_id'
-            Width = 75
-          end
           object cxGrid_1DBTableView1pco_status: TcxGridDBColumn
             DataBinding.FieldName = 'pco_status'
             Width = 50
           end
-          object cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn
-            DataBinding.FieldName = 'poc_status_reason'
-            Width = 250
+          object cxGrid_1DBTableView1sto_name: TcxGridDBColumn
+            DataBinding.FieldName = 'sto_name'
+            Width = 200
           end
           object cxGrid_1DBTableView1pco_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'pco_dt_registration'
             Width = 125
           end
+          object cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn
+            DataBinding.FieldName = 'poc_status_reason'
+            Width = 250
+          end
         end
       end
       object FlowPanel1: TFlowPanel
         Left = 3
-        Top = 399
+        Top = 526
         Width = 662
         Height = 26
         Alignment = taLeftJustify
@@ -224,32 +225,33 @@
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      OnShow = cxTabSheet_2Show
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 453
+      ExplicitWidth = 1072
+      ExplicitHeight = 580
       inherited cxPageControl_2: TcxPageControl
-        Height = 447
-        ExplicitHeight = 447
-        ClientRectBottom = 441
+        Width = 1066
+        Height = 574
+        ExplicitWidth = 1066
+        ExplicitHeight = 574
+        ClientRectBottom = 568
+        ClientRectRight = 1060
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 413
+          OnShow = cxTabSheet_3Show
+          ExplicitWidth = 1058
+          ExplicitHeight = 540
           inherited dxLayoutControl_1: TdxLayoutControl
-            Height = 413
-            ExplicitHeight = 413
+            Width = 1058
+            Height = 540
+            ExplicitWidth = 1058
+            ExplicitHeight = 540
             inherited dbedt_id: TcxDBTextEdit
-              Left = 77
+              Left = 97
               DataBinding.DataField = 'pco_id'
-              ExplicitLeft = 77
+              ExplicitLeft = 97
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 250
+              Left = 270
               DataBinding.DataField = 'pco_dt_registration'
-              ExplicitLeft = 250
+              ExplicitLeft = 270
             end
             object cxGrid1: TcxGrid [2]
               Left = 17
@@ -278,36 +280,24 @@
                 Navigator.Buttons.Filter.ImageIndex = 10
                 Navigator.Visible = True
                 DataController.DataSource = ds_purchase_order_iten
+                DataController.Options = [dcoAssignGroupingValues, dcoAssignMasterDetailKeys]
                 DataController.Summary.DefaultGroupSummaryItems = <>
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
                 Images = cxImageList_1
                 object cxGrid1DBTableView1poi_id: TcxGridDBColumn
+                  Caption = 'Itens ID'
                   DataBinding.FieldName = 'poi_id'
                   Options.Editing = False
                   Width = 75
                 end
-                object cxGrid1DBTableView1Column1: TcxGridDBColumn
-                  DataBinding.FieldName = 'product_pro_id'
-                  PropertiesClassName = 'TcxLookupComboBoxProperties'
-                  Properties.CharCase = ecUpperCase
-                  Properties.DropDownListStyle = lsFixedList
-                  Properties.DropDownWidth = 350
-                  Properties.KeyFieldNames = 'pro_id'
-                  Properties.ListColumns = <
-                    item
-                      Caption = 'Nome'
-                      Width = 250
-                      FieldName = 'pro_name'
-                    end
-                    item
-                      Caption = 'C'#243'd. ID'
-                      FieldName = 'pro_id'
-                    end>
-                  Properties.ListSource = ds_product
+                object cxGrid1DBTableView1pro_name: TcxGridDBColumn
+                  Caption = 'Produto'
+                  DataBinding.FieldName = 'pro_name'
                   Width = 200
                 end
                 object cxGrid1DBTableView1poi_product_quant: TcxGridDBColumn
+                  Caption = 'Quantidade'
                   DataBinding.FieldName = 'poi_product_quant'
                   PropertiesClassName = 'TcxCurrencyEditProperties'
                   Properties.DecimalPlaces = 4
@@ -315,6 +305,7 @@
                   Width = 75
                 end
                 object cxGrid1DBTableView1poi_dt_registration: TcxGridDBColumn
+                  Caption = 'Dt. Reg.'
                   DataBinding.FieldName = 'poi_dt_registration'
                   Options.Editing = False
                   Width = 125
@@ -324,9 +315,24 @@
                 GridView = cxGrid1DBTableView1
               end
             end
-            object cxDBComboBox1: TcxDBComboBox [3]
-              Left = 413
-              Top = 103
+            object lookupComboxItens_Pedido: TcxLookupComboBox [3]
+              Left = 97
+              Top = 464
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'proCod'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'pro_name'
+                end>
+              Properties.ListSource = ds_product
+              Properties.OnPopup = cxLookupComboBox1PropertiesPopup
+              Style.HotTrack = False
+              TabOrder = 7
+              Width = 325
+            end
+            object cxDBComboBox1: TcxDBComboBox [4]
+              Left = 420
+              Top = 131
               DataBinding.DataField = 'pco_status'
               DataBinding.DataSource = ds
               Enabled = False
@@ -340,54 +346,9 @@
               TabOrder = 4
               Width = 52
             end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [4]
-              Left = 77
-              Top = 103
-              DataBinding.DataField = 'employee_emp_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'emp_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Nome'
-                  Width = 250
-                  FieldName = 'rec_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'emp_id'
-                end>
-              Properties.ListSource = ds_employee
-              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
-              Style.HotTrack = False
-              TabOrder = 2
-              Width = 294
-            end
-            object cxDBLookupComboBox2: TcxDBLookupComboBox [5]
-              Left = 77
-              Top = 130
-              DataBinding.DataField = 'stock_sto_id'
-              DataBinding.DataSource = ds
-              Properties.KeyFieldNames = 'sto_id'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'sto_name'
-                end
-                item
-                  FieldName = 'sto_id'
-                end>
-              Properties.ListSource = ds_stock
-              Properties.OnPopup = cxDBLookupComboBox2PropertiesPopup
-              Style.HotTrack = False
-              TabOrder = 3
-              Width = 294
-            end
-            object cxDBTextEdit2: TcxDBTextEdit [6]
-              Left = 508
-              Top = 103
+            object cxDBTextEdit2: TcxDBTextEdit [5]
+              Left = 515
+              Top = 131
               DataBinding.DataField = 'poc_status_reason'
               DataBinding.DataSource = ds
               Enabled = False
@@ -396,12 +357,48 @@
               TabOrder = 5
               Width = 168
             end
-            inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
+            object lookupComboxEmployee: TcxLookupComboBox [6]
+              Left = 84
+              Top = 131
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'codEmployee'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'rec_name'
+                end>
+              Properties.ListSource = ds_employee
+              Properties.OnPopup = cxLookupComboBox2PropertiesPopup
+              Style.HotTrack = False
+              TabOrder = 2
+              Width = 294
+            end
+            object lookupComboxStock: TcxLookupComboBox [7]
+              Left = 84
+              Top = 158
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'codStock'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'sto_name'
+                end>
+              Properties.ListSource = ds_stock
+              Properties.OnPopup = lookupComboxStockPropertiesPopup
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 294
+            end
+            object cxTextEditQTD: TcxTextEdit [8]
+              Left = 489
+              Top = 464
+              Style.HotTrack = False
+              TabOrder = 8
+              Width = 121
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
+              Parent = dxLayoutGroup3
               AlignHorz = ahClient
               LayoutDirection = ldHorizontal
+              Index = 0
             end
             object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutControl_1Group_Root
@@ -413,7 +410,7 @@
               SizeOptions.Height = 150
               SizeOptions.Width = 742
               ButtonOptions.Buttons = <>
-              Index = 2
+              Index = 1
             end
             object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutGroup3
@@ -421,7 +418,32 @@
               ControlOptions.OriginalHeight = 225
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutGroup4: TdxLayoutGroup
+              Parent = dxLayoutControl_1Group_Root
+              CaptionOptions.Text = 'Manuten'#231#227'o dos Pedidos de Compra'
+              ButtonOptions.Buttons = <>
+              ItemIndex = 1
+              LayoutDirection = ldHorizontal
+              Index = 2
+            end
+            object dxLayoutItem8: TdxLayoutItem
+              Parent = dxLayoutGroup4
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Itens do Pedido'
+              Control = lookupComboxItens_Pedido
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 325
+              ControlOptions.ShowBorder = False
               Index = 0
+            end
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
+              Index = 0
+              AutoCreated = True
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -435,33 +457,6 @@
               Enabled = False
               Index = 1
             end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Funcion'#225'rio'
-              Control = cxDBLookupComboBox1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 294
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutItem7: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              CaptionOptions.Text = 'Estoque'
-              Control = cxDBLookupComboBox2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 294
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              AlignHorz = ahLeft
-              Index = 0
-              AutoCreated = True
-            end
             object dxLayoutItem6: TdxLayoutItem
               Parent = dxLayoutGroup2
               AlignHorz = ahLeft
@@ -474,10 +469,42 @@
               Enabled = False
               Index = 2
             end
+            object dxLayoutItem10: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignHorz = ahLeft
+              CaptionOptions.Text = 'Funcion'#225'rio'
+              Control = lookupComboxEmployee
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 294
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              CaptionOptions.Text = 'Estoque'
+              Control = lookupComboxStock
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 145
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem9: TdxLayoutItem
+              Parent = dxLayoutGroup4
+              CaptionOptions.Text = 'Quantidade'
+              Control = cxTextEditQTD
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
           end
         end
       end
     end
+  end
+  inherited dxBarDockControl_1: TdxBarDockControl
+    Width = 1080
+    ExplicitWidth = 1080
   end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar6: TdxBar
@@ -516,74 +543,60 @@
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    CachedUpdates = False
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from purchase_order '#10
       
-        'where pco_type = '#39'C'#39' and stock_sto_id in '#10'(select sto_id from st' +
-        'ock '#10'where contract_ctr_id =:ctr_id'#13#10#10
+        'select sto_name, purchase_order.*,concat('#39'0x'#39',hex(pco_cod))as Co' +
+        'dPCO from purchase_order '
       
-        'and enterprise_ent_id in '#10'(select ctr_usr_ent_ent_id from contra' +
-        'ct_user_enterprise '
-      'where ctr_usr_ent_user_id =:ctr_usr_id))'
-      ''
-      '')
+        'left join stock on stock_sto_cod = sto_cod '#10'where pco_type = '#39'C'#39 +
+        ' '#10
+      
+        'and stock_sto_cod in (select sto_cod from stock'#10' where contract_' +
+        'ctr_cod =:ctr_cod) and pco_deleted_at is null')
     ParamData = <
       item
-        Name = 'CTR_ID'
-        DataType = ftAutoInc
+        Name = 'CTR_COD'
+        DataType = ftBytes
         ParamType = ptInput
         Value = Null
-      end
-      item
-        Name = 'CTR_USR_ID'
-        DataType = ftInteger
-        ParamType = ptInput
-        Value = 4
       end>
-    object qrypco_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
+    object qrypco_cod: TBytesField
+      FieldName = 'pco_cod'
+      Origin = 'pco_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qrystock_sto_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'stock_sto_cod'
+      Origin = 'stock_sto_cod'
+    end
+    object qryemployee_emp_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'employee_emp_cod'
+      Origin = 'employee_emp_cod'
+    end
+    object qrypco_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'pco_id'
       Origin = 'pco_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
     end
-    object qrycontract_ctr_id: TIntegerField
+    object qrysto_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
-    object qryemployee_emp_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Funcion'#225'rio ID'
-      FieldName = 'employee_emp_id'
-      Origin = 'employee_emp_id'
-    end
-    object qrypco_status: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Status'
-      FieldName = 'pco_status'
-      Origin = 'pco_status'
-      FixedChar = True
-      Size = 1
-    end
-    object qrypoc_status_reason: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Motivo'
-      FieldName = 'poc_status_reason'
-      Origin = 'poc_status_reason'
-      Size = 45
-    end
-    object qrypco_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'pco_dt_registration'
-      Origin = 'pco_dt_registration'
+      FieldName = 'sto_name'
+      Origin = 'sto_name'
+      Size = 35
     end
     object qrypco_type: TStringField
       AutoGenerateValue = arDefault
@@ -592,20 +605,44 @@
       FixedChar = True
       Size = 1
     end
-    object qryFuncionário: TStringField
+    object qrypoc_status_reason: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'poc_status_reason'
+      Origin = 'poc_status_reason'
+      Size = 45
+    end
+    object qrypco_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pco_status'
+      Origin = 'pco_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qrypco_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'pco_deleted_at'
+      Origin = 'pco_deleted_at'
+    end
+    object qrypco_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'pco_dt_registration'
+      Origin = 'pco_dt_registration'
+    end
+    object qryFuncionario: TStringField
       FieldKind = fkLookup
-      FieldName = 'Funcion'#225'rio'
+      FieldName = 'Funcionario'
       LookupDataSet = qry_employee
-      LookupKeyFields = 'emp_id'
+      LookupKeyFields = 'emp_cod'
       LookupResultField = 'rec_name'
-      KeyFields = 'employee_emp_id'
+      KeyFields = 'employee_emp_cod'
       Size = 60
       Lookup = True
     end
-    object qrystock_sto_id: TIntegerField
+    object qryCodPCO: TStringField
       AutoGenerateValue = arDefault
-      FieldName = 'stock_sto_id'
-      Origin = 'stock_sto_id'
+      FieldName = 'CodPCO'
+      Origin = 'CodPCO'
+      Size = 34
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -3039,70 +3076,105 @@
     end
   end
   object qry_purchase_order_iten: TFDQuery
+    Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
     AfterEdit = qry_purchase_order_itenAfterEdit
-    CachedUpdates = True
-    IndexFieldNames = 'purchase_order_pco_id'
+    BeforePost = qry_purchase_order_itenBeforePost
+    AfterPost = qry_purchase_order_itenAfterPost
+    IndexFieldNames = 'purchase_order_pco_cod'
     MasterSource = ds
-    MasterFields = 'pco_id'
-    DetailFields = 'purchase_order_pco_id'
+    MasterFields = 'pco_cod'
+    DetailFields = 'purchase_order_pco_cod'
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from purchase_order_iten'
-      'where purchase_order_pco_id = :pco_id')
-    Left = 592
-    Top = 96
+      
+        'select purchase_order_iten.*, concat('#39'0x'#39',hex(product_pro_cod)) ' +
+        'as pro_cod,'#13#10#10
+      
+        'pro_name, concat('#39'0x'#39',hex(poi_cod)) as iten_Cod  from purchase_o' +
+        'rder_iten'#13#10#10
+      
+        'left join product on pro_cod = product_pro_cod'#10'where purchase_or' +
+        'der_pco_cod = :pco_cod')
+    Left = 504
+    Top = 104
     ParamData = <
       item
-        Name = 'PCO_ID'
-        DataType = ftInteger
+        Name = 'PCO_COD'
+        DataType = ftBytes
         ParamType = ptInput
-        Value = 24
+        Size = 16
+        Value = Null
       end>
-    object qry_purchase_order_itenpoi_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
+    object qry_purchase_order_iteniten_Cod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'iten_Cod'
+      Origin = 'iten_Cod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
+    object qry_purchase_order_itenpoi_cod: TBytesField
+      FieldName = 'poi_cod'
+      Origin = 'poi_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_purchase_order_itenpro_cod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_cod'
+      Origin = 'pro_cod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
+    object qry_purchase_order_itenpurchase_order_pco_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'purchase_order_pco_cod'
+      Origin = 'purchase_order_pco_cod'
+    end
+    object qry_purchase_order_itenproduct_pro_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_pro_cod'
+      Origin = 'product_pro_cod'
+    end
+    object qry_purchase_order_itenpoi_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'poi_id'
       Origin = 'poi_id'
-      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qry_purchase_order_itenpro_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_name'
+      Origin = 'pro_name'
+      ProviderFlags = []
       ReadOnly = True
-    end
-    object qry_purchase_order_itenpurchase_order_pco_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Pedido de Compra'
-      FieldName = 'purchase_order_pco_id'
-      Origin = 'purchase_order_pco_id'
-    end
-    object qry_purchase_order_itenproduct_pro_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Produto ID'
-      FieldName = 'product_pro_id'
-      Origin = 'product_pro_id'
+      Size = 85
     end
     object qry_purchase_order_itenpoi_product_quant: TBCDField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Quant.'
       FieldName = 'poi_product_quant'
       Origin = 'poi_product_quant'
       Precision = 12
     end
+    object qry_purchase_order_itenpoi_product_quant_served: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'poi_product_quant_served'
+      Origin = 'poi_product_quant_served'
+      Precision = 12
+    end
+    object qry_purchase_order_itenpoi_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'poi_deleted_at'
+      Origin = 'poi_deleted_at'
+    end
     object qry_purchase_order_itenpoi_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
       FieldName = 'poi_dt_registration'
       Origin = 'poi_dt_registration'
-    end
-    object qry_purchase_order_itenProduto: TStringField
-      FieldKind = fkLookup
-      FieldName = 'Produto'
-      LookupDataSet = qry_product
-      LookupKeyFields = 'pro_id'
-      LookupResultField = 'pro_name'
-      KeyFields = 'product_pro_id'
-      Size = 50
-      Lookup = True
     end
   end
   object ds_purchase_order_iten: TDataSource
@@ -3112,15 +3184,48 @@
   end
   object qry_product: TFDQuery
     AfterInsert = qry_purchase_order_itenAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from product')
-    Left = 664
-    Top = 96
+      
+        '  select concat('#39'0x'#39',hex(pro_cod)) as proCod ,pro_name,pro_cod, ' +
+        'contract_ctr_cod, pro_id from product'#10' '
+      ' where pro_type = '#39'S'#39'  order by pro_name')
+    Left = 800
+    Top = 104
+    object qry_productproCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'proCod'
+      Origin = 'proCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
+    object qry_productpro_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_name'
+      Origin = 'pro_name'
+      Size = 85
+    end
+    object qry_productpro_cod: TBytesField
+      FieldName = 'pro_cod'
+      Origin = 'pro_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_productpro_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_id'
+      Origin = 'pro_id'
+    end
+    object qry_productcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
   end
   object ds_product: TDataSource
     DataSet = qry_product
@@ -3128,27 +3233,81 @@
     Top = 96
   end
   object qry_employee: TFDQuery
+    Active = True
     AfterInsert = qry_purchase_order_itenAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
-        'select e.emp_id, e.record_rec_id, e.emp_type, e.emp_status, r.re' +
-        'c_name, e.contract_ctr_id from employee as '
-      'e'#10'inner join record as r on e.record_rec_id = r.rec_id'
-      'where e.contract_ctr_id =:ctr_id')
+        'select e.emp_cod, e.emp_id, e.record_rec_cod, e.emp_type, e.emp_' +
+        'status, r.rec_name, e.contract_ctr_cod,'
+      'concat('#39'0x'#39',hex(e.emp_cod)) as codEmployee from employee as e'#10
+      
+        'inner join record as r on e.record_rec_cod = r.rec_cod'#10'where e.c' +
+        'ontract_ctr_cod =:ctr_cod')
     Left = 672
     Top = 144
     ParamData = <
       item
-        Name = 'CTR_ID'
-        DataType = ftAutoInc
+        Name = 'CTR_COD'
+        DataType = ftBytes
         ParamType = ptInput
         Value = Null
       end>
+    object qry_employeeemp_cod: TBytesField
+      FieldName = 'emp_cod'
+      Origin = 'emp_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_employeeemp_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_id'
+      Origin = 'emp_id'
+    end
+    object qry_employeerecord_rec_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'record_rec_cod'
+      Origin = 'record_rec_cod'
+    end
+    object qry_employeeemp_type: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_type'
+      Origin = 'emp_type'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_employeeemp_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_status'
+      Origin = 'emp_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_employeerec_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_name'
+      Origin = 'rec_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object qry_employeecontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_employeecodEmployee: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codEmployee'
+      Origin = 'codEmployee'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
   end
   object ds_employee: TDataSource
     DataSet = qry_employee
@@ -3160,8 +3319,8 @@
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False
-    Left = 208
-    Top = 216
+    Left = 328
+    Top = 152
   end
   object frxDBD_Pedido_Itens: TfrxDBDataset
     UserName = 'purchase_Itens'
@@ -3173,23 +3332,22 @@
   end
   object qry_stock: TFDQuery
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
-        'select st.sto_name,st.sto_id,st.contract_ctr_cod,en.ent_id from ' +
-        'stock st'#10
-      'left join contract co on co.ctr_cod = st.contract_ctr_cod'#10
-      'left join enterprise en on en.ent_cod = st.enterprise_ent_cod'
-      'where st.sto_status = '#39'A'#39' '#10
+        'select st.sto_name, st.sto_cod, st.sto_id,st.contract_ctr_cod,st' +
+        '.enterprise_ent_cod, concat('#39'0x'#39',hex(st.sto_cod)) as codStock  f' +
+        'rom stock st'#13#10#10
+      'left join contract co on co.ctr_cod = st.contract_ctr_cod'#13#10#10
       
-        'and st.contract_ctr_cod in (select ctr_cod from contract a where' +
-        ' a.ctr_id =:ctr_cod)'#10
+        'left join enterprise en on en.ent_cod = st.enterprise_ent_cod '#13#10 +
+        #10
       
-        'and enterprise_ent_cod in '#10'(select ctr_usr_ent_ent_cod from cont' +
-        'ract_user_enterprise '#10'where ctr_usr_ent_user_cod =:ctr_usr_id)')
+        'where st.sto_status = '#39'A'#39' '#10'and st.contract_ctr_cod in (select ct' +
+        'r_cod from contract a where a.ctr_cod =:ctr_cod)')
     Left = 592
     Top = 144
     ParamData = <
@@ -3199,18 +3357,17 @@
         ParamType = ptInput
         Size = 16
         Value = Null
-      end
-      item
-        Name = 'CTR_USR_ID'
-        DataType = ftByte
-        ParamType = ptInput
-        Value = Null
       end>
-    object qry_stocksto_name: TStringField
+    object qry_stocksto_cod: TBytesField
+      FieldName = 'sto_cod'
+      Origin = 'sto_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_stockenterprise_ent_cod: TBytesField
       AutoGenerateValue = arDefault
-      FieldName = 'sto_name'
-      Origin = 'sto_name'
-      Size = 35
+      FieldName = 'enterprise_ent_cod'
+      Origin = 'enterprise_ent_cod'
     end
     object qry_stocksto_id: TLongWordField
       AutoGenerateValue = arDefault
@@ -3222,12 +3379,19 @@
       FieldName = 'contract_ctr_cod'
       Origin = 'contract_ctr_cod'
     end
-    object qry_stockent_id: TLongWordField
+    object qry_stocksto_name: TStringField
       AutoGenerateValue = arDefault
-      FieldName = 'ent_id'
-      Origin = 'ent_id'
+      FieldName = 'sto_name'
+      Origin = 'sto_name'
+      Size = 35
+    end
+    object qry_stockcodStock: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codStock'
+      Origin = 'codStock'
       ProviderFlags = []
       ReadOnly = True
+      Size = 34
     end
   end
   object ds_stock: TDataSource

@@ -81,47 +81,47 @@ uses ufrm_dm, class_required_field;
 procedure Tfrm_ncm.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qrycli_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
- with frm_dm.qry,sql do
- begin
-  Close;
-  Text:= ' delete from client ' +
-         ' where cli_cod = ' + cli_cod;
-  Prepare;
-  ExecSQL;
-
-  qry.Close;
-  qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
-                 ' where cli_deleted_at is null';
-  qry.Prepare;
-  qry.open;
- end;
+// if (qrycli_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+// with frm_dm.qry,sql do
+// begin
+//  Close;
+//  Text:= ' delete from client ' +
+//         ' where cli_cod = ' + cli_cod;
+//  Prepare;
+//  ExecSQL;
+//
+//  qry.Close;
+//  qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
+//                 ' where cli_deleted_at is null';
+//  qry.Prepare;
+//  qry.open;
+// end;
 end;
 
 procedure Tfrm_ncm.Action_saveExecute(Sender: TObject);
 begin
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(cli_id) is null then 1 ' +
-          '      else (max(cli_id) + 1) end as maxID from client '+
-          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
-   Prepare;
-   Open;
-   if not (qry.State in [dsInsert,dsEdit])  then
-    qry.Edit;
-
-   if qrycli_id.AsInteger = 0 then
-    qrycli_id.AsInteger:=Fields[0].AsInteger;
-
-  end;
-
-  inherited;
-       qry.Close;
-       qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client' +
-                      ' where cli_deleted_at is null ';
-       qry.Prepare;
-       qry.open;
+//with frm_dm.qry,sql do
+// begin
+//   close;
+//   Text:= ' select case when max(cli_id) is null then 1 ' +
+//          '      else (max(cli_id) + 1) end as maxID from client '+
+//          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+//   Prepare;
+//   Open;
+//   if not (qry.State in [dsInsert,dsEdit])  then
+//    qry.Edit;
+//
+//   if qrycli_id.AsInteger = 0 then
+//    qrycli_id.AsInteger:=Fields[0].AsInteger;
+//
+//  end;
+//
+//  inherited;
+//       qry.Close;
+//       qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client' +
+//                      ' where cli_deleted_at is null ';
+//       qry.Prepare;
+//       qry.open;
 
 end;
 

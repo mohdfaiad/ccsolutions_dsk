@@ -99,7 +99,7 @@ type
     procedure tbsht_5Show(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
-    procedure cxDatePropertiesChange(Sender: TObject);
+    procedure cxDatePropertiesCloseUp(Sender: TObject);
   private
     { Private declarations }
       listaCodFunc:TStrings;
@@ -121,7 +121,7 @@ implementation
 
 {$R *.dfm}
 
-procedure Tfrm_scheduling.cxDatePropertiesChange(Sender: TObject);
+procedure Tfrm_scheduling.cxDatePropertiesCloseUp(Sender: TObject);
 begin
   inherited;
   //Para Exibir os agendamentos do dia
@@ -153,9 +153,10 @@ end;
 
 procedure Tfrm_scheduling.ExibirAgendamento;
 begin
+     ShowMessage(DateToStr(cxDate.Date) + ' 00:00:00');
      qry_scheduling.Close;
-     qry_scheduling.ParamByName('DATAINCIO').AsDateTime:= StrToDateTime(DateToStr(cxDate.Date) + '00:00:00');
-     qry_scheduling.ParamByName('DATAFIM').AsDateTime:= StrToDateTime(DateToStr(cxDate.Date) + '23:59:59');
+     qry_scheduling.ParamByName('DATAINCIO').AsDateTime:= StrToDateTime(DateToStr(cxDate.Date) + ' 00:00:00');
+     qry_scheduling.ParamByName('DATAFIM').AsDateTime:= StrToDateTime(DateToStr(cxDate.Date) + ' 23:59:59');
      qry_scheduling.Prepare;
      qry_scheduling.Open;
 end;
@@ -261,9 +262,40 @@ end;
 
 procedure Tfrm_scheduling.Action_saveExecute(Sender: TObject);
 begin
-  if Trim(comboboxEmployee.Text) <>'' then
-   begin
+with frm_dm.qry,sql do
+ begin
+  close;
+  text:='select sch_datetime from scheduling ' +
+        'where sch_datetime between :ini and :fin';
+  ParamByName('ini').AsDateTime:=StrToDateTime(DateToStr(cxDate.Date) + '00:00:00');
+  ParamByName('fin').AsDateTime:=StrToDateTime(DateToStr(cxDate.Date) + FormatDateTime('hh',cxTime.Time));
+  Prepare;
+  open;
 
+  if not IsEmpty then
+   begin
+    if Application.MessageBox('Existe um compromisso para a hora selecionada, deseja reamente agendar esse compromisso? ',
+                              'Agendamento',MB_YESNO + MB_ICONQUESTION) = mrNo  then
+       Exit;
+   end;
+
+<<<<<<< .mine
+  if Trim(cxMemoDescricao.Text) = '' then
+   begin
+    Application.MessageBox('Para agendamento é necessario informar uma descrição!','AVISO',MB_OK + MB_ICONWARNING);
+    cxMemoDescricao.SetFocus;
+    Exit;
+   end;
+||||||| .r299
+    //  if (not qry_scheduling.IsEmpty) and (Self.Tag = 1) then  //Tag 1 quando for inserir
+    qry_scheduling.First;
+    while not qry_scheduling.Eof do
+     begin
+       if cxTime.Time = StrToDateTime(FormatDateTime('hh:mm:ss',qry_schedulingsch_datetime.AsDateTime))then
+        begin
+          ShowMessage('Achou');
+        end;
+=======
     //  if (not qry_scheduling.IsEmpty) and (Self.Tag = 1) then  //Tag 1 quando for inserir
 
      if (qry_scheduling.RecordCount >0 ) and (Self.Tag = 1) then  //Tag 1 quando for inserir
@@ -280,7 +312,18 @@ begin
        cxMemoDescricao.SetFocus;
        Exit;
      end;
+>>>>>>> .r305
 
+<<<<<<< .mine
+   if Trim(comboboxEmployee.Text) = '' then
+    begin
+     Application.MessageBox('Por favor informar o funcionário !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+     Exit;
+    end;
+||||||| .r299
+       qry_scheduling.Next;
+     end;
+=======
     with frm_dm.qry,sql do
      begin
        close;
@@ -317,7 +360,95 @@ begin
        prepare;
        ExecSQL;
      end;
+>>>>>>> .r305
 
+<<<<<<< .mine
+  with frm_dm.qry,sql do
+   begin
+    close;
+    Text:= ' select case when max(sch_id) is null then 1 ' +
+           '      else (max(sch_id) + 1) end as maxID from scheduling '+
+           ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+    Prepare;
+    Open;
+||||||| .r299
+    //   Locate.qry_scheduling(´sch_datetime´, cxTime.Time, [loCaseInsensitive, loPartialKey]);
+//
+//     if (cxTime.Time = ) and (Self.Tag = 1) then  //Tag 1 quando for inserir
+//       begin
+//         Application.MessageBox('Existe um compromiso agendado para essa data e hoja, '+
+//            'favor ajustar sua agenda!', 'AVISO',MB_OK + MB_ICONWARNING);
+//         cxDate.SetFocus;
+//         Exit;
+//       end;
+//
+//    if Trim(cxMemoDescricao.Text) = '' then
+//     begin
+//       Application.MessageBox('Para agendamento é necessario informar uma descrição!','AVISO',MB_OK + MB_ICONWARNING);
+//       cxMemoDescricao.SetFocus;
+//       Exit;
+//     end;
+//
+//    with frm_dm.qry,sql do
+//     begin
+//       close;
+//       Text:= ' select case when max(sch_id) is null then 1 ' +
+//              '      else (max(sch_id) + 1) end as maxID from scheduling '+
+//              ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+//       Prepare;
+//       Open;
+//       if not (qry.State in [dsInsert,dsEdit])  then
+//        qry.Edit;
+//
+//       if qrysch_id.AsInteger = 0 then
+//        qrysch_id.AsInteger:=Fields[0].AsInteger;
+//      end;
+//
+//
+//    if not (qry.state in [dsEdit,dsInsert]) then
+//     qry.Edit;
+//
+//
+//    qrysch_description.AsString:=cxMemoDescricao.Text;
+//    qrysch_datetime.AsDateTime:=cxDate.Date + cxTime.Time;
+//    //qryemployee_emp_cod.AsString:= listaCodFunc[comboboxEmployee.ItemIndex];
+//
+//    qry.Post;
+//    schadp.ApplyUpdates(0);
+//
+//    with frm_dm.qry,sql do
+//     begin
+//       close;
+//       text:=' update scheduling '+
+//             ' set employee_emp_cod =' + listaCodFunc[comboboxEmployee.ItemIndex] +
+//             ' where sch_cod =' + sch_cod;
+//       prepare;
+//       ExecSQL;
+//     end;
+//
+//       qry.Close;
+//       qry.sql.text:= ' select s.sch_cod, s.contract_ctr_cod, s.employee_emp_cod, s.sch_id, s.sch_datetime, ' +
+//                      ' s.sch_description, s.sch_dt_registration, r.rec_name from record as r               ' +
+//                      ' inner join employee as e on r.rec_cod = e.record_rec_cod                            ' +
+//                      ' inner join scheduling as s on e.emp_cod = s.employee_emp_cod  ';
+//
+//       qry.Prepare;
+//       qry.open;
+//
+//      ShowMessage('Dados salvo com sucesso!');
+//
+//      pgctrl_1.ActivePage:=tbsht_1;
+//      qry.Close;
+//      qry.open;
+//      qry.Refresh;
+//      clearField;
+//
+//     inherited;
+//
+//   end else begin
+//     Application.MessageBox('Por favor informar o funcionário !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+//   end;
+=======
        qry.Close;
        qry.sql.text:= ' select s.sch_cod, s.contract_ctr_cod, s.employee_emp_cod, s.sch_id, s.sch_datetime, ' +
                       ' s.sch_description, s.sch_dt_registration, r.rec_name from record as r               ' +
@@ -326,21 +457,75 @@ begin
 
        qry.Prepare;
        qry.open;
+>>>>>>> .r305
 
+<<<<<<< .mine
+    if not (qry.State in [dsInsert,dsEdit])  then
+     qry.Edit;
+||||||| .r299
+=======
       ShowMessage('Dados salvo com sucesso!');
+>>>>>>> .r305
 
+<<<<<<< .mine
+    if qrysch_id.AsInteger = 0 then
+     qrysch_id.AsInteger:=Fields[0].AsInteger;
+   end;
+||||||| .r299
+   end;
+=======
       pgctrl_1.ActivePage:=tbsht_1;
       qry.Close;
       qry.open;
       qry.Refresh;
       clearField;
+>>>>>>> .r305
 
+<<<<<<< .mine
+  if not (qry.state in [dsEdit,dsInsert]) then
+   qry.Edit;
+
+  qrysch_description.AsString:=cxMemoDescricao.Text;
+  qrysch_datetime.AsDateTime:=cxDate.Date + cxTime.Time;
+  //qryemployee_emp_cod.AsString:= listaCodFunc[comboboxEmployee.ItemIndex];
+  qry.Post;
+  schadp.ApplyUpdates(0);
+
+  with frm_dm.qry,sql do
+   begin
+    close;
+    text:=' update scheduling '+
+          ' set employee_emp_cod =' + listaCodFunc[comboboxEmployee.ItemIndex] +
+          ' where sch_cod =' + sch_cod;
+    prepare;
+    ExecSQL;
+   end;
+
+  qry.Close;
+  qry.sql.text:= ' select s.sch_cod, s.contract_ctr_cod, s.employee_emp_cod, s.sch_id, s.sch_datetime, ' +
+                 ' s.sch_description, s.sch_dt_registration, r.rec_name from record as r               ' +
+                 ' inner join employee as e on r.rec_cod = e.record_rec_cod                            ' +
+                 ' inner join scheduling as s on e.emp_cod = s.employee_emp_cod  ';
+  qry.Prepare;
+  qry.open;
+
+  ShowMessage('Dados salvo com sucesso!');
+  pgctrl_1.ActivePage:=tbsht_1;
+  qry.Close;
+  qry.open;
+  qry.Refresh;
+  clearField;
+  inherited;
+ end;
+||||||| .r299
+=======
      inherited;
 
    end else begin
      Application.MessageBox('Por favor informar o funcionário !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
     end;
 
+>>>>>>> .r305
 end;
 
 procedure Tfrm_scheduling.clearField;

@@ -44,7 +44,10 @@ uses
   Class_Report in '..\Class_Report.pas',
   class_required_field in '..\class_required_field.pas',
   ufrm_default in '..\models\ufrm_default.pas' {frm_default},
-  ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user};
+  ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
+  Contract_User.Dao in '..\Dao\Contract_User.Dao.pas',
+  Contract_user.Model in '..\Model\Contract_user.Model.pas',
+  Conexao in '..\Dao\Conexao.pas';
 
 {$R *.res}
 

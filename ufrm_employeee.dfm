@@ -178,7 +178,6 @@ inherited frm_employee_: Tfrm_employee_
       inherited pgctrl_3: TcxPageControl
         Width = 962
         Height = 602
-        Properties.ActivePage = cxTabSheet1
         ExplicitWidth = 962
         ExplicitHeight = 602
         ClientRectBottom = 596
@@ -556,8 +555,6 @@ inherited frm_employee_: Tfrm_employee_
             Top = 0
             Align = alTop
             TabOrder = 0
-            ExplicitLeft = 3
-            ExplicitTop = 3
             Height = 149
             Width = 954
             object cxLabel31: TcxLabel
@@ -674,7 +671,6 @@ inherited frm_employee_: Tfrm_employee_
             Top = 149
             Align = alClient
             TabOrder = 1
-            ExplicitWidth = 10
             Height = 420
             Width = 954
             object edtContato_Tel: TcxTextEdit

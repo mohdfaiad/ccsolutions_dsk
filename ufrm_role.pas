@@ -41,21 +41,28 @@ type
     dxLayoutItem3: TdxLayoutItem;
     cxDBCurrencyEdit1: TcxDBCurrencyEdit;
     dxLayoutItem4: TdxLayoutItem;
-    qryrol_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
-    qryrol_name: TStringField;
-    qryrol_dt_registration: TDateTimeField;
-    qryrol_base_salary: TBCDField;
     cxGrid_1DBTableView1rol_id: TcxGridDBColumn;
     cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1rol_name: TcxGridDBColumn;
     cxGrid_1DBTableView1rol_base_salary: TcxGridDBColumn;
     cxGrid_1DBTableView1rol_dt_registration: TcxGridDBColumn;
+    qryrol_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryrol_id: TLongWordField;
+    qryrol_name: TStringField;
+    qryrol_base_salary: TBCDField;
+    qryrol_status: TStringField;
+    qryrol_deleted_at: TDateTimeField;
+    qryrol_dt_registration: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure qry_sql(sql:string);
+    procedure Action_deleteExecute(Sender: TObject);
   private
     { Private declarations }
+    rol_cod:string;
   public
     { Public declarations }
     procedure limpaCache(Sender:TObject);
@@ -73,11 +80,57 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_role.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+ if (qryrol_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ with frm_dm.qry,sql do
+ begin
+  Close;
+  Text:= ' delete from role ' +
+         ' where rol_cod = ' + rol_cod;
+  Prepare;
+  ExecSQL;
+
+  qry_sql('todos');
+ end;
+end;
+
+procedure Tfrm_role.Action_deleteExecute(Sender: TObject);
+begin
+   if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
+    = IDYES then
+    begin
+     qry.Edit;
+     qryrol_deleted_at.AsDateTime:=Now;
+     qry.Post;
+     qry.ApplyUpdates(0);
+
+     qry_sql('todos');
+
+    end;
+end;
+
 procedure Tfrm_role.Action_saveExecute(Sender: TObject);
 begin
-    CampoSemPreencher(qry);
-     inherited;
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(rol_id) is null then 1 ' +
+          '      else (max(rol_id) + 1) end as maxID from role '+
+          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+   Prepare;
+   Open;
+   if not (qry.State in [dsInsert,dsEdit])  then
+    qry.Edit;
 
+   if qryrol_id.AsInteger = 0 then
+    qryrol_id.AsInteger:=Fields[0].AsInteger;
+
+  end;
+
+  inherited;
+    qry_sql('todos');
 end;
 
 function Tfrm_role.CampoSemPreencher(Que: TFDQuery): Boolean;
@@ -121,7 +174,43 @@ end;
 procedure Tfrm_role.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
+ With frm_dm.qry,sql do
+  begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   rol_cod:=Fields[0].AsString;
+
+   Close;
+   Text:='insert into role (rol_id,rol_cod,contract_ctr_cod) ' +
+         ' select 0,'+ rol_cod + ',' +  frm_dm.v_contract_ctr_cod;
+   Prepare;
+   ExecSQL;
+  end;
+
+   qry_sql('insert');
+   qry.Edit;
+   qryrol_dt_registration.AsDateTime:=Now;
+
+
   qryrol_dt_registration.Value:= Date + Time;
+end;
+
+procedure Tfrm_role.qry_sql(sql: string);
+begin
+  qry.Close;
+  if sql = 'todos' then
+   qry.sql.text:= ' select * from role ' +
+           ' where rol_deleted_at is null';
+
+  if sql = 'insert' then
+   qry.sql.text:= ' select * from role ' +
+                  ' where rol_cod = ' + rol_cod +
+                  ' and rol_deleted_at is null';
+   qry.Prepare;
+   qry.open;
 end;
 
 end.

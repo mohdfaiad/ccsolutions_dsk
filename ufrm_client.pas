@@ -446,6 +446,8 @@ with frm_dm.qry,sql do
    if qrycli_id.AsInteger = 0 then
     qrycli_id.AsInteger:=Fields[0].AsInteger;
 
+
+
   end;
 
   inherited;

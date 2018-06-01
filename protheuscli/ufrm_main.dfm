@@ -138,6 +138,14 @@ inherited frm_main: Tfrm_main
         item
           Visible = True
           ItemName = 'dxBarButton6'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton7'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton8'
         end>
       OneOnRow = False
       Row = 0
@@ -487,6 +495,20 @@ inherited frm_main: Tfrm_main
     object dxBarButton6: TdxBarButton
       Action = Action_employee
       Category = 0
+    end
+    object dxBarButton7: TdxBarButton
+      Caption = 'scheduling_clinical'
+      Category = 0
+      Hint = 'scheduling_clinical'
+      Visible = ivAlways
+      OnClick = dxBarButton7Click
+    end
+    object dxBarButton8: TdxBarButton
+      Caption = 'role'
+      Category = 0
+      Hint = 'role'
+      Visible = ivAlways
+      OnClick = dxBarButton8Click
     end
   end
   inherited ActionList_1: TActionList

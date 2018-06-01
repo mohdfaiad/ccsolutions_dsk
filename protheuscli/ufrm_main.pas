@@ -63,6 +63,8 @@ type
     Action_employee: TAction;
     dxBarButton6: TdxBarButton;
     Button1: TButton;
+    dxBarButton7: TdxBarButton;
+    dxBarButton8: TdxBarButton;
     procedure Action_contract_userExecute(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_clientExecute(Sender: TObject);
@@ -76,6 +78,8 @@ type
     procedure Action_phonebookExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure dxBarButton7Click(Sender: TObject);
+    procedure dxBarButton8Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -89,7 +93,8 @@ implementation
 
 {$R *.dfm}
 
- uses  ufrm_doctor, ufrm_employeee, ufrm_scheduling;
+ uses  ufrm_doctor, ufrm_employeee, ufrm_scheduling, ufrm_scheduling_clinical,
+  ufrm_role;
 
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin
@@ -252,6 +257,36 @@ begin
     frm_scheduling.Show;
   end;
 
+end;
+
+procedure Tfrm_main.dxBarButton7Click(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_scheduling_clinical) then begin
+    frm_scheduling_clinical := Tfrm_scheduling_clinical.Create(Self);
+    frm_scheduling_clinical.Height := Bevel_1.Height;
+    frm_scheduling_clinical.Width := Bevel_1.Width;
+    frm_scheduling_clinical.Show;
+  end else begin
+    frm_scheduling_clinical.WindowState := wsNormal;
+    frm_scheduling_clinical.Show;
+  end;
+
+end;
+
+procedure Tfrm_main.dxBarButton8Click(Sender: TObject);
+begin
+ inherited;
+  if not Assigned(frm_role) then
+   begin
+    frm_role := Tfrm_role.Create(Self);
+    frm_role.Show;
+   end
+    else
+     begin
+      frm_role.WindowState := wsNormal;
+      frm_role.Show;
+  end;
 end;
 
 procedure Tfrm_main.FormCreate(Sender: TObject);

@@ -5,16 +5,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   inherited pgctrl_1: TcxPageControl
     Properties.ActivePage = tbsht_2
     inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
-      ExplicitWidth = 954
-      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
         inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
-          ExplicitWidth = 946
-          ExplicitHeight = 505
           inherited grid_1: TcxGrid
             inherited cxGridDBTableView1: TcxGridDBTableView
               object cxGridDBTableView1scc_cod: TcxGridDBColumn
@@ -47,13 +39,11 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       end
     end
     inherited tbsht_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
-      ExplicitWidth = 954
-      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         inherited tbsht_5: TcxTabSheet
           inherited cxGroupBox1: TcxGroupBox
+            ExplicitHeight = 57
+            Height = 57
             inherited cxLabel2: TcxLabel
               Left = 260
               ExplicitLeft = 260
@@ -64,6 +54,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
             end
           end
           inherited cxGroupBox2: TcxGroupBox
+            Top = 66
+            ExplicitTop = 66
             object cxLookupComboBoxCliente: TcxLookupComboBox
               Left = 3
               Top = 33
@@ -82,16 +74,26 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               Top = 16
               Caption = 'Cliente'
             end
+            object cxLabelDoctor: TcxLabel
+              Left = 3
+              Top = 60
+              Caption = 'Doutor'
+            end
+            object cxLookupComboBoxDoctor: TcxLookupComboBox
+              Left = 3
+              Top = 76
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'docCod'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'rec_name'
+                end>
+              Properties.ListSource = ds_qry_doctor
+              TabOrder = 3
+              Width = 382
+            end
           end
         end
-      end
-    end
-  end
-  inherited stsbar_1: TdxStatusBar
-    inherited stsbar_deleted_at: TdxStatusBarContainerControl
-      inherited chkbox_1: TcxCheckBox
-        ExplicitWidth = 926
-        ExplicitHeight = 32
       end
     end
   end
@@ -121,18 +123,11 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Style = <>
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from scheduling_clinical'
-      'where contract_ctr_cod = :ctr_cod')
-    ParamData = <
-      item
-        Name = 'CTR_COD'
-        DataType = ftBytes
-        ParamType = ptInput
-        Value = Null
-      end>
+      'select * from scheduling_clinical')
     object qryscc_cod: TBytesField
       FieldName = 'scc_cod'
       Origin = 'scc_cod'
@@ -178,6 +173,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     end
   end
   object qry_client: TFDQuery
+    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
@@ -216,5 +212,111 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     DataSet = qry_client
     Left = 695
     Top = 220
+  end
+  object qry_doctor: TFDQuery
+    Active = True
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
+    Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      'select d.doc_cod,d.contract_ctr_cod,r.rec_name,'
+      'concat('#39'0x'#39',hex(d.doc_cod)) as docCod,e.emp_cod from doctor d'#13#10#10
+      ''
+      'left join employee e on e.emp_cod = d.employee_emp_cod'#13#10#10
+      ''
+      
+        'left join record r on r.rec_cod = e.record_rec_cod'#10'order by r.re' +
+        'c_name;'#10)
+    Left = 631
+    Top = 284
+    object qry_doctordoc_cod: TBytesField
+      FieldName = 'doc_cod'
+      Origin = 'doc_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_doctorcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_doctorrec_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_name'
+      Origin = 'rec_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object qry_doctordocCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'docCod'
+      Origin = 'docCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
+    object qry_doctoremp_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_cod'
+      Origin = 'emp_cod'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+  end
+  object ds_qry_doctor: TDataSource
+    DataSet = qry_doctor
+    Left = 703
+    Top = 282
+  end
+  object qry_scheduling: TFDQuery
+    Active = True
+    AfterInsert = qry_schedulingAfterInsert
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select * from scheduling')
+    Left = 639
+    Top = 351
+    object qry_schedulingsch_cod: TBytesField
+      FieldName = 'sch_cod'
+      Origin = 'sch_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_schedulingcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_schedulingemployee_emp_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'employee_emp_cod'
+      Origin = 'employee_emp_cod'
+    end
+    object qry_schedulingsch_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'sch_id'
+      Origin = 'sch_id'
+    end
+    object qry_schedulingsch_datetime: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'sch_datetime'
+      Origin = 'sch_datetime'
+    end
+    object qry_schedulingsch_description: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sch_description'
+      Origin = 'sch_description'
+      Size = 500
+    end
+    object qry_schedulingsch_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'sch_dt_registration'
+      Origin = 'sch_dt_registration'
+    end
   end
 end

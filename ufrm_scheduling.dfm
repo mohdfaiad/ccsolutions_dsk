@@ -6,16 +6,8 @@ inherited frm_scheduling: Tfrm_scheduling
   inherited pgctrl_1: TcxPageControl
     Properties.ActivePage = tbsht_2
     inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
-      ExplicitWidth = 954
-      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
         inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
-          ExplicitWidth = 946
-          ExplicitHeight = 505
           inherited grid_1: TcxGrid
             inherited cxGridDBTableView1: TcxGridDBTableView
               object cxGridDBTableView1sch_id: TcxGridDBColumn
@@ -46,10 +38,6 @@ inherited frm_scheduling: Tfrm_scheduling
       end
     end
     inherited tbsht_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
-      ExplicitWidth = 954
-      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         inherited tbsht_5: TcxTabSheet
           OnShow = tbsht_5Show
@@ -156,14 +144,6 @@ inherited frm_scheduling: Tfrm_scheduling
             end
           end
         end
-      end
-    end
-  end
-  inherited stsbar_1: TdxStatusBar
-    inherited stsbar_deleted_at: TdxStatusBarContainerControl
-      inherited chkbox_1: TcxCheckBox
-        ExplicitWidth = 926
-        ExplicitHeight = 32
       end
     end
   end

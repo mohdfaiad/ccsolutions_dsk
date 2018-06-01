@@ -279,14 +279,14 @@ with frm_dm.qry,sql do
        Exit;
    end;
 
-<<<<<<< .mine
+
   if Trim(cxMemoDescricao.Text) = '' then
    begin
     Application.MessageBox('Para agendamento é necessario informar uma descrição!','AVISO',MB_OK + MB_ICONWARNING);
     cxMemoDescricao.SetFocus;
     Exit;
    end;
-||||||| .r299
+
     //  if (not qry_scheduling.IsEmpty) and (Self.Tag = 1) then  //Tag 1 quando for inserir
     qry_scheduling.First;
     while not qry_scheduling.Eof do
@@ -295,7 +295,7 @@ with frm_dm.qry,sql do
         begin
           ShowMessage('Achou');
         end;
-=======
+
     //  if (not qry_scheduling.IsEmpty) and (Self.Tag = 1) then  //Tag 1 quando for inserir
 
      if (qry_scheduling.RecordCount >0 ) and (Self.Tag = 1) then  //Tag 1 quando for inserir
@@ -312,18 +312,16 @@ with frm_dm.qry,sql do
        cxMemoDescricao.SetFocus;
        Exit;
      end;
->>>>>>> .r305
 
-<<<<<<< .mine
    if Trim(comboboxEmployee.Text) = '' then
     begin
      Application.MessageBox('Por favor informar o funcionário !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
      Exit;
     end;
-||||||| .r299
+
        qry_scheduling.Next;
      end;
-=======
+
     with frm_dm.qry,sql do
      begin
        close;
@@ -360,9 +358,7 @@ with frm_dm.qry,sql do
        prepare;
        ExecSQL;
      end;
->>>>>>> .r305
 
-<<<<<<< .mine
   with frm_dm.qry,sql do
    begin
     close;
@@ -371,7 +367,7 @@ with frm_dm.qry,sql do
            ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
     Prepare;
     Open;
-||||||| .r299
+
     //   Locate.qry_scheduling(´sch_datetime´, cxTime.Time, [loCaseInsensitive, loPartialKey]);
 //
 //     if (cxTime.Time = ) and (Self.Tag = 1) then  //Tag 1 quando for inserir
@@ -448,7 +444,7 @@ with frm_dm.qry,sql do
 //   end else begin
 //     Application.MessageBox('Por favor informar o funcionário !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
 //   end;
-=======
+
        qry.Close;
        qry.sql.text:= ' select s.sch_cod, s.contract_ctr_cod, s.employee_emp_cod, s.sch_id, s.sch_datetime, ' +
                       ' s.sch_description, s.sch_dt_registration, r.rec_name from record as r               ' +
@@ -457,31 +453,24 @@ with frm_dm.qry,sql do
 
        qry.Prepare;
        qry.open;
->>>>>>> .r305
 
-<<<<<<< .mine
     if not (qry.State in [dsInsert,dsEdit])  then
      qry.Edit;
-||||||| .r299
-=======
-      ShowMessage('Dados salvo com sucesso!');
->>>>>>> .r305
 
-<<<<<<< .mine
+      ShowMessage('Dados salvo com sucesso!');
+
     if qrysch_id.AsInteger = 0 then
      qrysch_id.AsInteger:=Fields[0].AsInteger;
    end;
-||||||| .r299
+
    end;
-=======
+
       pgctrl_1.ActivePage:=tbsht_1;
       qry.Close;
       qry.open;
       qry.Refresh;
       clearField;
->>>>>>> .r305
 
-<<<<<<< .mine
   if not (qry.state in [dsEdit,dsInsert]) then
    qry.Edit;
 
@@ -517,16 +506,7 @@ with frm_dm.qry,sql do
   clearField;
   inherited;
  end;
-||||||| .r299
-=======
-     inherited;
 
-   end else begin
-     Application.MessageBox('Por favor informar o funcionário !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
-    end;
-
->>>>>>> .r305
-end;
 
 procedure Tfrm_scheduling.clearField;
  var

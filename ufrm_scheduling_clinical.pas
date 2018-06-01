@@ -60,13 +60,32 @@ type
     qry_clientcli_first_name: TStringField;
     qry_clientcliCod: TStringField;
     ds_qry_client: TDataSource;
+    cxLabelDoctor: TcxLabel;
+    cxLookupComboBoxDoctor: TcxLookupComboBox;
+    qry_doctor: TFDQuery;
+    ds_qry_doctor: TDataSource;
+    qry_doctordoc_cod: TBytesField;
+    qry_doctorcontract_ctr_cod: TBytesField;
+    qry_doctorrec_name: TStringField;
+    qry_doctordocCod: TStringField;
+    qry_scheduling: TFDQuery;
+    qry_schedulingsch_cod: TBytesField;
+    qry_schedulingcontract_ctr_cod: TBytesField;
+    qry_schedulingemployee_emp_cod: TBytesField;
+    qry_schedulingsch_id: TLongWordField;
+    qry_schedulingsch_datetime: TDateTimeField;
+    qry_schedulingsch_description: TStringField;
+    qry_schedulingsch_dt_registration: TDateTimeField;
+    qry_doctoremp_cod: TBytesField;
     procedure Action_cancelExecute(Sender: TObject);
     procedure qry_sql(sql:string);
     procedure Action_saveExecute(Sender: TObject);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure Action_insertExecute(Sender: TObject);
+    procedure qry_schedulingAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
-    scc_cod:string;
+    scc_cod,sch_cod:string;
   public
     { Public declarations }
   end;
@@ -94,6 +113,12 @@ begin
  end;
 end;
 
+procedure Tfrm_scheduling_clinical.Action_insertExecute(Sender: TObject);
+begin
+  inherited;
+qry.Insert;
+end;
+
 procedure Tfrm_scheduling_clinical.Action_saveExecute(Sender: TObject);
 begin
 with frm_dm.qry,sql do
@@ -109,6 +134,27 @@ with frm_dm.qry,sql do
 
    if qryscc_id.AsInteger = 0 then
     qryscc_id.AsInteger:=Fields[0].AsInteger;
+
+    qryclient_cli_cod.Value:=qry_clientcli_cod.Value;
+    qrydoctor_doc_cod.Value:=qry_doctordoc_cod.Value;
+    qry.Post;
+
+    qry_scheduling.Insert;
+
+    close;
+    Text:= ' select case when max(sch_id) is null then 1 ' +
+           '      else (max(sch_id) + 1) end as maxID from scheduling '+
+           ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+    Prepare;
+    Open;
+    qry_schedulingsch_id.AsInteger:=Fields[0].AsInteger;
+    qry_schedulingemployee_emp_cod.Value:=qry_doctoremp_cod.Value;
+    qry_schedulingsch_datetime.AsDateTime:=Now;
+    qry_schedulingsch_description.AsString:= 'AGENDAMENTO DO PACIENTE ' + cxLookupComboBoxCliente.Text;
+    qry_scheduling.Post;
+
+
+
  end;
 
  inherited;
@@ -138,6 +184,38 @@ begin
    qry_sql('insert');
    qry.Edit;
    qryscc_dt_registration.AsDateTime:=Now;
+   edt_codid.Text:=qryscc_id.AsString;
+   edt_dt_registration.Text:=qryscc_dt_registration.AsString;
+end;
+
+procedure Tfrm_scheduling_clinical.qry_schedulingAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+ With frm_dm.qry,sql do
+  begin
+   Close;
+   Text:='insert into scheduling (sch_cod,sch_id,contract_ctr_cod) ' +
+         ' select unhex(replace(uuid(),''-'','''')),0,'+ frm_dm.v_contract_ctr_cod;
+   Prepare;
+   ExecSQL;
+
+   Close;
+   text:= ' select concat(''0x'', hex(sch_cod)) from scheduling ' +
+          ' where sch_id = 0 ';
+   Prepare;
+   open;
+   sch_cod:=Fields[0].AsString;
+  end;
+
+   qry_scheduling.Unprepare;
+   qry_scheduling.Close;
+   qry_scheduling.sql.text:= 'select * from scheduling ' +
+                  ' where sch_cod = ' + sch_cod ;
+   qry_scheduling.Prepare;
+   qry_scheduling.open;
+
+   qry_scheduling.Edit;
+   qry_schedulingsch_dt_registration. AsDateTime:=Now;
 end;
 
 procedure Tfrm_scheduling_clinical.qry_sql(sql: string);

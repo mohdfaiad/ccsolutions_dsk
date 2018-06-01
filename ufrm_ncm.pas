@@ -81,46 +81,47 @@ uses ufrm_dm, class_required_field;
 procedure Tfrm_ncm.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qryncm_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ if (qrycli_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
  with frm_dm.qry,sql do
  begin
   Close;
-  Text:= ' delete from ncm ' +
-         ' where contract_ctr_cod =:contract ' +
-         ' and ncm_id = 0';
-  ParamByName('contract').Value:=frm_dm.qry_signinctr_cod.Value;
+  Text:= ' delete from client ' +
+         ' where cli_cod = ' + cli_cod;
   Prepare;
   ExecSQL;
-end;
+
+  qry.Close;
+  qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
+                 ' where cli_deleted_at is null';
+  qry.Prepare;
+  qry.open;
+ end;
 end;
 
 procedure Tfrm_ncm.Action_saveExecute(Sender: TObject);
-
 begin
 with frm_dm.qry,sql do
  begin
    close;
-   Text:= ' select case when max(ncm_id) is null then 1 ' +
-          '      else (max(ncm_id) + 1) end as maxID from ncm '+
-          ' where contract_ctr_cod = (select ctr_cod from contract ' +
-          ' where ctr_id =:ctr_id)';
-   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   Text:= ' select case when max(cli_id) is null then 1 ' +
+          '      else (max(cli_id) + 1) end as maxID from client '+
+          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
    Prepare;
    Open;
    if not (qry.State in [dsInsert,dsEdit])  then
     qry.Edit;
 
-   if qryncm_id.AsInteger = 0 then
-    qryncm_id.AsInteger:=Fields[0].AsInteger;
- end;
+   if qrycli_id.AsInteger = 0 then
+    qrycli_id.AsInteger:=Fields[0].AsInteger;
 
-
- //--Comando para tirar o focus de todos os componentes da tela-----
-   ActiveControl := nil;
-  //--Cama a função para verificar se existe campos requeridos em branco----
-   TCampoRequerido.TratarRequerido(qry);
+  end;
 
   inherited;
+       qry.Close;
+       qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client' +
+                      ' where cli_deleted_at is null ';
+       qry.Prepare;
+       qry.open;
 
 end;
 

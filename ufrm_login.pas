@@ -152,14 +152,15 @@ begin
          'call proc_access_signin('+ edt_contract.Text +', '+
          QuotedStr(edt_username.Text) +', '+
          QuotedStr(edt_password.Text) +
-         ', @po_valid_user, @po_contract_ctr_cod);' +
-         'select @po_valid_user, hex(@po_contract_ctr_cod);';
+         ', @po_valid_user, @po_contract_ctr_cod,@pro_ctr_usr_cod);' +
+         'select @po_valid_user, hex(@po_contract_ctr_cod),hex(@pro_ctr_usr_cod) ;';
      frm_dm.qry_signinNew.Close;
      frm_dm.qry_signinNew.SQL.Clear;
      frm_dm.qry_signinNew.SQL.Text:=SQL;
      frm_dm.qry_signinNew.Open;
 
      frm_dm.v_contract_ctr_cod := '0x' +  frm_dm.qry_signinNew.FieldByName('hex(@po_contract_ctr_cod)').Value;
+     frm_dm.v_ctr_usr_cod := '0x' +  frm_dm.qry_signinNew.FieldByName('hex(@pro_ctr_usr_cod)').Value;
 
   frm_dm.qry_contract.Close;
   frm_dm.qry_contract.sql.Text:='select ctr_cod,ctr_id from contract '+

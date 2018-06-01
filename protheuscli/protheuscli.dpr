@@ -40,7 +40,8 @@ uses
   Employee.Model in '..\Model\Employee.Model.pas',
   ufrm_scheduling in '..\ufrm_scheduling.pas' {frm_scheduling},
   ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
-  class_table_price in '..\class_table_price.pas';
+  class_table_price in '..\class_table_price.pas',
+  ufrm_scheduling_clinical in '..\ufrm_scheduling_clinical.pas' {frm_scheduling_clinical};
 
 {$R *.res}
 var
@@ -52,5 +53,6 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
+  Application.CreateForm(Tfrm_scheduling_clinical, frm_scheduling_clinical);
   Application.Run;
 end.

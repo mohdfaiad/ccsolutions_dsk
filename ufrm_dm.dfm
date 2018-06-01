@@ -9,7 +9,6 @@ object frm_dm: Tfrm_dm
       'ConnectionDef=ccs_connection')
     ResourceOptions.AssignedValues = [rvAutoReconnect]
     ResourceOptions.AutoReconnect = True
-    Connected = True
     LoginPrompt = False
     Left = 40
     Top = 16
@@ -30,7 +29,6 @@ object frm_dm: Tfrm_dm
     Top = 16
   end
   object qry_signin: TFDQuery
-    Active = True
     Connection = connCCS
     SQL.Strings = (
       
@@ -169,7 +167,6 @@ object frm_dm: Tfrm_dm
     Top = 16
   end
   object qry_enterprise: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = ds_signin
     MasterFields = 'ctr_cod'

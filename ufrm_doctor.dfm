@@ -4,6 +4,7 @@ inherited frm_doctor: Tfrm_doctor
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
+    Properties.ActivePage = tbsht_2
     inherited tbsht_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 27
@@ -146,7 +147,7 @@ inherited frm_doctor: Tfrm_doctor
             end
             object cxDBLookupDoctor: TcxDBLookupComboBox
               Left = 3
-              Top = 35
+              Top = 31
               DataBinding.DataField = 'emp_cod'
               DataBinding.DataSource = ds
               Properties.KeyFieldNames = 'emp_cod'
@@ -163,7 +164,7 @@ inherited frm_doctor: Tfrm_doctor
             end
             object cxDBComboBox1: TcxDBComboBox
               Left = 347
-              Top = 35
+              Top = 31
               TabOrder = 4
               Width = 145
             end

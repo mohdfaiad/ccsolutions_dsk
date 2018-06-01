@@ -101,7 +101,7 @@ inherited frm_scheduling: Tfrm_scheduling
               Top = 35
               EditValue = 43449.6394097222d
               Properties.ShowTime = False
-              Properties.OnChange = cxDatePropertiesChange
+              Properties.OnCloseUp = cxDatePropertiesCloseUp
               TabOrder = 1
               Width = 125
             end

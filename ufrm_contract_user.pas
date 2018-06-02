@@ -32,7 +32,7 @@ uses
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, ufrm_dm, Vcl.ComCtrls, dxCore, cxDateUtils, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxCheckBox, Vcl.StdCtrls, frxExportDOCX, frxClass, frxExportBaseDialog, frxExportPDF,
-  Contract_User.Model, Contract_User.Dao, ACBrSocket, ACBrCEP;
+  Contract_User.Model, Contract_User.Dao, ACBrSocket, ACBrCEP, cxCheckListBox, AdvOfficeTabSet;
 
 type
   Tfrm_contract_user = class(Tfrm_default)
@@ -57,20 +57,6 @@ type
     cxGridDBTable_ctr_usr_logged: TcxGridDBColumn;
     cxGridDBTable_ctr_usr_dt_registration: TcxGridDBColumn;
     cxGridDBTable_ctr_usr_dt_birth: TcxGridDBColumn;
-    qryctr_usr_cod: TBytesField;
-    qrycontract_ctr_cod: TBytesField;
-    qryctr_usr_id: TLongWordField;
-    qryctr_usr_first_name: TStringField;
-    qryctr_usr_last_name: TStringField;
-    qryctr_usr_username: TStringField;
-    qryctr_usr_password: TBytesField;
-    qryctr_usr_email: TStringField;
-    qryctr_usr_dt_birth: TDateField;
-    qryctr_usr_logged: TStringField;
-    qryctr_usr_admin: TStringField;
-    qryctr_usr_status: TStringField;
-    qryctr_usr_deleted_at: TDateTimeField;
-    qryctr_usr_dt_registration: TDateTimeField;
     edtSenha: TcxTextEdit;
     edtConf_Senha: TcxTextEdit;
     cxLabel8: TcxLabel;
@@ -89,6 +75,19 @@ type
     memctr_usr_status: TStringField;
     memctr_usr_deleted_at: TDateTimeField;
     memctr_usr_dt_registration: TDateTimeField;
+    tbsht_6: TcxTabSheet;
+    cxGroupBox3: TcxGroupBox;
+    cxGroupBox4: TcxGroupBox;
+    AdvOfficeTabSet1: TAdvOfficeTabSet;
+    cxListMenu: TcxCheckListBox;
+    cxListEmps: TcxCheckListBox;
+    memContract_User_Enterprise: TFDMemTable;
+    memContract_User_Enterprisecte_usr_ent_cod: TBytesField;
+    memContract_User_Enterprisecontract_user_ctr_usr_cod: TBytesField;
+    memContract_User_Enterpriseenterprise_ent_cod: TBytesField;
+    memContract_User_Enterprisecte_usr_ent_id: TLongWordField;
+    memContract_User_Enterprisecte_deleted_at: TDateTimeField;
+    memContract_User_Enterprisecte_dt_registration: TDateTimeField;
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
@@ -96,8 +95,15 @@ type
     procedure FormShow(Sender: TObject);
     procedure tbsht_2Show(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure tbsht_6Show(Sender: TObject);
+    procedure montar_empresa;
+    procedure AdvOfficeTabSet1Change(Sender: TObject);
+    procedure cxListEmpsClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure cxListEmpsClickCheck(Sender: TObject; AIndex: Integer; APrevState, ANewState: TcxCheckBoxState);
   private
     { Private declarations }
+      listEmp,listAction:TStrings;
   public
     { Public declarations }
 
@@ -109,10 +115,13 @@ type
 
 var
   frm_contract_user: Tfrm_contract_user;
+  modulo: string;
 
 implementation
 
 {$R *.dfm}
+
+uses Contract_User_Enterprise.Dao, Contract_User_Enterprise.Model;
 
 { Tfrm_contract_user }
 
@@ -195,6 +204,95 @@ begin
    inherited;
 end;
 
+procedure Tfrm_contract_user.AdvOfficeTabSet1Change(Sender: TObject);
+var
+  c: Integer;
+begin
+//  subs := TStringList.Create;
+
+ frm_dm.qry3.close;
+ frm_dm.qry3.SQL.Clear;
+ frm_dm.qry3.SQL.Text := ' select ctr_usr_act_action_name from contract_user_action ' +
+            ' where ctr_usr_act_user_cod = ' +frm_dm.v_ctr_usr_cod +
+            ' and ctr_usr_act_action_name =:menu';
+
+
+  frm_dm.qry_action.Close;
+  frm_dm.qry_action.ParamByName('sys_act_option').Value := AdvOfficeTabSet1.AdvOfficeTabs[AdvOfficeTabSet1.ActiveTabIndex].Caption;
+  frm_dm.qry_action.ParamByName('sys_act_module').Value := Modulo;
+
+   frm_dm.qry_action.Prepared;
+   frm_dm.qry_action.Open;
+
+   frm_dm.qry_action.First;
+   cxListMenu.Items.clear;
+   listAction.Clear;
+   c:=0;
+  //    subs.clear;
+   while not frm_dm.qry_action.Eof do
+    begin
+     cxListMenu.AddItem(frm_dm.qry_action.FieldByName('sys_act_subtitle').AsString);
+     listAction.Add(frm_dm.qry_action.FieldByName('sys_Act_name').AsString);
+  //      subs.add((qvi2.FieldByName('menu_cod').AsString));
+     frm_dm.qry3.ParamByName('menu').AsString :=frm_dm.qry_action.FieldByName('sys_Act_name').AsString;
+     frm_dm.qry3.Prepare;
+     frm_dm.qry3.Open;
+
+      TcxCheckListBoxItem(cxListMenu.Items[c]).Checked:= not frm_dm.qry3.IsEmpty;
+  //      qvi.close;
+      c:=c + 1;
+      frm_dm.qry3.Close;
+      frm_dm.qry_action.Next;
+    end;
+
+end;
+
+procedure Tfrm_contract_user.cxListEmpsClick(Sender: TObject);
+begin
+  inherited;
+    memContract_User_Enterprise.Locate('enterprise_ent_cod',
+    listEmp[cxListEmps.ItemIndex],[]);
+end;
+
+procedure Tfrm_contract_user.cxListEmpsClickCheck(Sender: TObject; AIndex: Integer; APrevState,
+  ANewState: TcxCheckBoxState);
+ var
+  cdusu,cdemp:string;
+  User_Enterprise : TContract_User_Enterprise_Model;
+  Dao             : TContract_User_Enterprise_Dao;
+begin
+  if TcxCheckListBoxItem(cxListEmps.Items[cxListEmps.ItemIndex]).Checked then
+   begin
+    if not  memContract_User_Enterprise.Locate('enterprise_ent_cod',
+     listEmp[cxListEmps.ItemIndex],[]) then
+      begin
+//       qry_contract_user_enterprise.Insert;
+//       qry_contract_user_enterprisectr_usr_ent_ent_id.AsString:=listEmp[cxListEmps.ItemIndex];
+//       qry_contract_user_enterprise.Post;
+        try
+          User_Enterprise := TContract_User_Enterprise_Model.Create;
+          Dao             := TContract_User_Enterprise_Dao.Create;
+
+          User_Enterprise.contract_user_ctr_usr_cod := frm_dm.p_ctr_usr_cod;
+        //  User_Enterprise.enterprise_ent_cod        := ;
+
+        finally
+        end;
+
+
+      end;
+   end;
+
+  if not TcxCheckListBoxItem(cxListEmps.Items[cxListEmps.ItemIndex]).Checked then
+   begin
+     memContract_User_Enterprise.Locate('enterprise_ent_cod',
+     listEmp[cxListEmps.ItemIndex],[]);
+   // qry_contract_user_enterprise.delete;
+   end;
+
+
+end;
+
 procedure Tfrm_contract_user.ExibirGrid;
 var
   Dao : TContract_User_Dao;
@@ -213,6 +311,13 @@ procedure Tfrm_contract_user.FormClose(Sender: TObject; var Action: TCloseAction
 begin
   inherited;
    FreeAndNil(frm_contract_user);
+end;
+
+procedure Tfrm_contract_user.FormCreate(Sender: TObject);
+begin
+  inherited;
+   listEmp:=TStringList.Create;
+   listAction:=TStringList.Create;
 end;
 
 procedure Tfrm_contract_user.FormShow(Sender: TObject);
@@ -239,6 +344,38 @@ begin
 
 end;
 
+procedure Tfrm_contract_user.montar_empresa;
+var
+i:Integer;
+begin
+
+   with frm_dm.qry,sql do
+     begin
+      close;
+      text := ' select a.ent_cod, a.ent_first_name, a.ent_id, b.enterprise_ent_cod, b.contract_user_ctr_usr_cod from enterprise a ' +
+              ' left join contract_user_enterprise b on a.ent_cod=b.enterprise_ent_cod                            ' +
+              ' and b.contract_user_ctr_usr_cod = ' +frm_dm.v_ctr_usr_cod+
+              ' order by 1  ';
+      Prepared;
+      Open;
+      First;
+      i:=0;
+      cxlistEmps.Items.clear;
+      listEmp.Clear;
+      while not Eof do
+      begin
+        cxlistEmps.AddItem(Fields[1].Text);
+       if trim(Fields[3].AsString) <> '' then
+        TcxCheckListBoxItem(cxlistEmps.Items[i]).Checked:=True;
+        listEmp.Add(Fields[2].AsString);
+        i:=i+1;
+        Next;
+      end;
+      Close;
+     end;
+
+end;
+
 procedure Tfrm_contract_user.PreecherCampos;
 begin
 
@@ -262,6 +399,16 @@ procedure Tfrm_contract_user.tbsht_2Show(Sender: TObject);
 begin
   inherited;
   PreecherCampos;
+end;
+
+procedure Tfrm_contract_user.tbsht_6Show(Sender: TObject);
+begin
+  inherited;
+
+     montar_empresa;
+
+     AdvOfficeTabSet1.ActiveTabIndex:=1;
+     AdvOfficeTabSet1.ActiveTabIndex:=0;
 end;
 
 end.

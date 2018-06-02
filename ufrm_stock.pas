@@ -34,21 +34,15 @@ uses
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxSpinEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, frxClass,
-  ACBrSocket, ACBrCEP, frxDBSet;
+  ACBrSocket, ACBrCEP, frxDBSet, Conexao;
 
 type
   Tfrm_stock = class(Tfrm_form_default)
-    qrysto_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
-    qryenterprise_ent_id: TIntegerField;
     qrysto_type: TStringField;
     qrysto_status: TStringField;
     qrysto_dt_registration: TDateTimeField;
     cxDBTextEdit3: TcxDBTextEdit;
     dxLayoutItem8: TdxLayoutItem;
-    cxGrid_1DBTableView1sto_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1enterprise_ent_id: TcxGridDBColumn;
     cxGrid_1DBTableView1sto_type: TcxGridDBColumn;
     cxGrid_1DBTableView1sto_status: TcxGridDBColumn;
     cxGrid_1DBTableView1sto_dt_registration: TcxGridDBColumn;
@@ -63,16 +57,28 @@ type
     cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
     frxDBD_Estoque: TfrxDBDataset;
     qryEmpresa: TStringField;
+    qrysto_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryenterprise_ent_cod: TBytesField;
+    qrysto_id: TLongWordField;
+    qrysto_deleled_at: TDateTimeField;
+    cxGrid_1DBTableView1sto_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1Empresa: TcxGridDBColumn;
+    cxGrid_1DBTableView1sto_cod: TcxGridDBColumn;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure Action_insertExecute(Sender: TObject);
   private
+    FConexao : TConexao;
     { Private declarations }
+     stock_cod:string;
   public
     { Public declarations }
+    function ExibirStock_Em_Insert: TFDQuery;
   end;
 
 var
@@ -117,6 +123,12 @@ begin
 
 end;
 
+procedure Tfrm_stock.Action_insertExecute(Sender: TObject);
+begin
+  inherited;
+  //
+end;
+
 procedure Tfrm_stock.Action_saveExecute(Sender: TObject);
 begin
    inherited;
@@ -128,6 +140,23 @@ begin
   inherited;
   //Para atualizar combobox
    frm_dm.qry_enterprise.Refresh;
+end;
+
+function Tfrm_stock.ExibirStock_Em_Insert: TFDQuery;
+  var
+    qry : TFDQuery;
+begin
+   qry := FConexao.CriarQuery;
+
+   qry.Unprepare;
+   qry.Close;
+   qry.sql.text:= ' select * from enterprise ' +
+                  ' where ent_cod = ' + stock_cod +
+                  ' and ent_deleted_at is null ';
+   qry.Prepare;
+   qry.open;
+
+
 end;
 
 Procedure Tfrm_stock.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -142,7 +171,7 @@ begin
   inherited;
   //SQL para exibir somente as unidade de estoque que o usuário tem acesso
   qry.Close;
-  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_cod.Value;
+  qry.ParamByName('CTR_USR_COD').Value := frm_dm.v_ctr_usr_cod;
   qry.Prepare;
   qry.Open;
 
@@ -152,7 +181,32 @@ end;
 procedure Tfrm_stock.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qrysto_dt_registration.Value := Now;
+
+   With frm_dm.qry,sql do
+  begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   stock_cod:=Fields[0].AsString;
+
+   Close;
+   Text:='insert into stock (sto_id,sto_cod,contract_ctr_cod,sto_dt_registration) ' +
+         ' select 0,'+ stock_cod + ',' + frm_dm.v_contract_ctr_cod + ' now() ';
+   Prepare;
+   ExecSQL;
+  end;
+
+
+   qry.Unprepare;
+   qry.Close;
+   qry.sql.text:= ' select * from enterprise ' +
+                  ' where ent_cod = ' + stock_cod +
+                  ' and ent_deleted_at is null ';
+   qry.Prepare;
+   qry.open;
+   qry.Edit;
 end;
 
 end.

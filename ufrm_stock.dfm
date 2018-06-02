@@ -11,23 +11,20 @@ inherited frm_stock: Tfrm_stock
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
             DataBinding.FieldName = 'sto_id'
-            Width = 75
           end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
-            Width = 75
+          object cxGrid_1DBTableView1sto_cod: TcxGridDBColumn
+            DataBinding.FieldName = 'sto_cod'
           end
-          object cxGrid_1DBTableView1enterprise_ent_id: TcxGridDBColumn
-            DataBinding.FieldName = 'enterprise_ent_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1sto_type: TcxGridDBColumn
-            DataBinding.FieldName = 'sto_type'
-            Width = 50
+          object cxGrid_1DBTableView1Empresa: TcxGridDBColumn
+            DataBinding.FieldName = 'Empresa'
           end
           object cxGrid_1DBTableView1sto_name: TcxGridDBColumn
             DataBinding.FieldName = 'sto_name'
             Width = 250
+          end
+          object cxGrid_1DBTableView1sto_type: TcxGridDBColumn
+            DataBinding.FieldName = 'sto_type'
+            Width = 50
           end
           object cxGrid_1DBTableView1sto_status: TcxGridDBColumn
             DataBinding.FieldName = 'sto_status'
@@ -43,8 +40,8 @@ inherited frm_stock: Tfrm_stock
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
@@ -108,7 +105,7 @@ inherited frm_stock: Tfrm_stock
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
               Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'ent_id'
+              Properties.KeyFieldNames = 'ent_cod'
               Properties.ListColumns = <
                 item
                   FieldName = 'ent_last_name'
@@ -186,48 +183,44 @@ inherited frm_stock: Tfrm_stock
   end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from stock '#10'where contract_ctr_id =:ctr_id'#13#10#10
-      'and enterprise_ent_id in '
+      'select * from stock '#10'where contract_ctr_cod =:ctr_cod'
+      'and enterprise_ent_cod in '
       
-        '(select ctr_usr_ent_ent_id from contract_user_enterprise where c' +
-        'tr_usr_ent_user_id =:ctr_usr_id)')
+        '(select ctr_usr_ent_ent_cod from contract_user_enterprise where ' +
+        'ctr_usr_ent_user_cod =:ctr_usr_cod)')
     ParamData = <
       item
-        Name = 'CTR_ID'
-        DataType = ftLongWord
+        Name = 'CTR_COD'
+        DataType = ftBytes
         ParamType = ptInput
         Value = Null
       end
       item
-        Name = 'CTR_USR_ID'
-        DataType = ftInteger
+        Name = 'CTR_USR_COD'
+        DataType = ftBytes
         ParamType = ptInput
-        Value = 4
+        Value = Null
       end>
-    object qrysto_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
+    object qryenterprise_ent_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'enterprise_ent_cod'
+      Origin = 'enterprise_ent_cod'
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qrysto_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'sto_id'
       Origin = 'sto_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
-    object qryenterprise_ent_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Empresa ID'
-      FieldName = 'enterprise_ent_id'
-      Origin = 'enterprise_ent_id'
     end
     object qrysto_type: TStringField
       AutoGenerateValue = arDefault
@@ -262,11 +255,22 @@ inherited frm_stock: Tfrm_stock
       FieldKind = fkLookup
       FieldName = 'Empresa'
       LookupDataSet = frm_dm.qry_enterprise
-      LookupKeyFields = 'ent_id'
+      LookupKeyFields = 'ent_cod'
       LookupResultField = 'ent_first_name'
-      KeyFields = 'enterprise_ent_id'
+      KeyFields = 'enterprise_ent_cod'
       Size = 60
       Lookup = True
+    end
+    object qrysto_cod: TBytesField
+      FieldName = 'sto_cod'
+      Origin = 'sto_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrysto_deleled_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_deleled_at'
+      Origin = 'sto_deleled_at'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

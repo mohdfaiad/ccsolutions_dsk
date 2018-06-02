@@ -47,7 +47,12 @@ uses
   ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
   Contract_User.Dao in '..\Dao\Contract_User.Dao.pas',
   Contract_user.Model in '..\Model\Contract_user.Model.pas',
-  Conexao in '..\Dao\Conexao.pas';
+  Conexao in '..\Dao\Conexao.pas',
+  Contract_User_Enterprise.Model in '..\Model\Contract_User_Enterprise.Model.pas',
+  Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
+  ufrm_employeee in '..\ufrm_employeee.pas' {frm_employee_},
+  Employee.Model in '..\Model\Employee.Model.pas',
+  Employee.Dao in '..\Dao\Employee.Dao.pas';
 
 {$R *.res}
 

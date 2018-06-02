@@ -168,7 +168,6 @@ object frm_dm: Tfrm_dm
     Top = 16
   end
   object qry_enterprise: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = ds_contract
     MasterFields = 'ctr_cod'
@@ -177,8 +176,8 @@ object frm_dm: Tfrm_dm
       'select * from enterprise'
       'where contract_ctr_cod =:ctr_cod'
       
-        'and ent_cod in (select ctr_usr_ent_ent_cod  from contract_user_e' +
-        'nterprise where ctr_usr_ent_user_cod =:ctr_usr_id)'#10#10#10)
+        'and ent_cod in (select enterprise_ent_cod  from contract_user_en' +
+        'terprise where contract_user_ctr_usr_cod =:ctr_usr_id)'#10#10#10)
     Left = 40
     Top = 152
     ParamData = <

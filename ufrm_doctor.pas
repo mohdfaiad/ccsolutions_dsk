@@ -277,11 +277,11 @@ procedure Tfrm_doctor.qry_sql(sql: string);
 begin
   qry.Close;
   if sql = 'todos' then
-   qry.sql.text:= ' select * from doctor ' +
+   qry.sql.text:= ' select doctor.*,concat(''0x'',hex(employee_emp_cod)) from doctor ' +
            ' where doc_deleted_at is null';
 
   if sql = 'insert' then
-   qry.sql.text:= ' select * from doctor ' +
+   qry.sql.text:= ' select doctor.*,concat(''0x'',hex(employee_emp_cod)) from doctor' +
                   ' where doc_cod = ' + doc_cod +
                   ' and doc_deleted_at is null';
    qry.Prepare;

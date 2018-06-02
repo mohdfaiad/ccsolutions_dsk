@@ -36,14 +36,6 @@ uses
 
 type
   Tfrm_scheduling_clinical = class(Tfrm_default)
-    qryscc_cod: TBytesField;
-    qrycontract_ctr_cod: TBytesField;
-    qryclient_cli_cod: TBytesField;
-    qrydoctor_doc_cod: TBytesField;
-    qryrole_rol_cod: TBytesField;
-    qryscc_id: TLongWordField;
-    qryscc_status: TStringField;
-    qryscc_dt_registration: TDateTimeField;
     cxGridDBTableView1scc_cod: TcxGridDBColumn;
     cxGridDBTableView1contract_ctr_cod: TcxGridDBColumn;
     cxGridDBTableView1client_cli_cod: TcxGridDBColumn;
@@ -64,10 +56,6 @@ type
     cxLookupComboBoxDoctor: TcxLookupComboBox;
     qry_doctor: TFDQuery;
     ds_qry_doctor: TDataSource;
-    qry_doctordoc_cod: TBytesField;
-    qry_doctorcontract_ctr_cod: TBytesField;
-    qry_doctorrec_name: TStringField;
-    qry_doctordocCod: TStringField;
     qry_scheduling: TFDQuery;
     qry_schedulingsch_cod: TBytesField;
     qry_schedulingcontract_ctr_cod: TBytesField;
@@ -76,16 +64,72 @@ type
     qry_schedulingsch_datetime: TDateTimeField;
     qry_schedulingsch_description: TStringField;
     qry_schedulingsch_dt_registration: TDateTimeField;
-    qry_doctoremp_cod: TBytesField;
+    qryreq_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryclient_cli_cod: TBytesField;
+    qryenterprise_ent_cod: TBytesField;
+    qryrequisition_type_ret_cod: TBytesField;
+    qryinsurance_ins_cod: TBytesField;
+    qryrole_rol_cod: TBytesField;
+    qrydoctor_doc_cod: TBytesField;
+    qryreq_id: TLongWordField;
+    qryreq_status: TStringField;
+    qryreq_deleted_at: TDateTimeField;
+    qryreq_dt_registration: TDateTimeField;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    qry_requisition_sheduling: TFDQuery;
+    ds_requisition_sheduling: TDataSource;
+    cxGrid1DBTableView1rsh_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1contract_ctr_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1requisition_req_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1scheduling_sch_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1rolte_rol_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1doctor_doc_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1rsh_id: TcxGridDBColumn;
+    cxGrid1DBTableView1rsh_status: TcxGridDBColumn;
+    cxGrid1DBTableView1rsh_deleted_at: TcxGridDBColumn;
+    cxGrid1DBTableView1rsh_dt_registration: TcxGridDBColumn;
+    qryhexreq_cod: TStringField;
+    qry_role: TFDQuery;
+    qry_rolerol_name: TStringField;
+    qry_rolerol_cod: TBytesField;
+    ds_qry_role: TDataSource;
+    qry_requisition_shedulingrsh_cod: TBytesField;
+    qry_requisition_shedulingcontract_ctr_cod: TBytesField;
+    qry_requisition_shedulingrequisition_req_cod: TBytesField;
+    qry_requisition_shedulingscheduling_sch_cod: TBytesField;
+    qry_requisition_shedulingrole_rol_cod: TBytesField;
+    qry_requisition_shedulingdoctor_doc_cod: TBytesField;
+    qry_requisition_shedulingrsh_id: TLongWordField;
+    qry_requisition_shedulingrsh_status: TStringField;
+    qry_requisition_shedulingrsh_deleted_at: TDateTimeField;
+    qry_requisition_shedulingrsh_dt_registration: TDateTimeField;
+    qry_requisition_shedulingrshCod: TStringField;
+    qry_requisition_shedulingrol_name: TStringField;
+    qry_requisition_shedulingrolCod: TStringField;
+    qry_rolerolCod: TStringField;
+    qry_doctorrec_name: TStringField;
+    qry_doctorrol_name: TStringField;
+    qry_doctorrolCod: TStringField;
+    qry_requisition_shedulingrec_name: TStringField;
+    qry_doctorcontract_ctr_cod: TBytesField;
     procedure Action_cancelExecute(Sender: TObject);
     procedure qry_sql(sql:string);
     procedure Action_saveExecute(Sender: TObject);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_insertExecute(Sender: TObject);
     procedure qry_schedulingAfterInsert(DataSet: TDataSet);
+    procedure qry_requisition_shedulingAfterInsert(DataSet: TDataSet);
+    procedure Action_editExecute(Sender: TObject);
+    procedure cxGrid1DBTableView1rolte_rol_codPropertiesCloseUp(
+      Sender: TObject);
+    procedure qry_requisition_shedulingBeforePost(DataSet: TDataSet);
+    procedure qry_requisition_shedulingAfterPost(DataSet: TDataSet);
   private
     { Private declarations }
-    scc_cod,sch_cod:string;
+    req_cod,sch_cod,rsh_cod:string;
   public
     { Public declarations }
   end;
@@ -100,17 +144,23 @@ implementation
 procedure Tfrm_scheduling_clinical.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qryscc_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ if (qryreq_id.AsInteger = 0) then
  with frm_dm.qry,sql do
  begin
   Close;
-  Text:= ' delete from scheduling_clinical ' +
-         ' where scc_cod = ' + scc_cod;
+  Text:= ' delete from requisition ' +
+         ' where req_cod = ' + req_cod;
   Prepare;
   ExecSQL;
 
   qry_sql('todos');
  end;
+end;
+
+procedure Tfrm_scheduling_clinical.Action_editExecute(Sender: TObject);
+begin
+  inherited;
+ req_cod:=qryhexreq_cod.AsString;
 end;
 
 procedure Tfrm_scheduling_clinical.Action_insertExecute(Sender: TObject);
@@ -124,19 +174,19 @@ begin
 with frm_dm.qry,sql do
  begin
    close;
-   Text:= ' select case when max(scc_id) is null then 1 ' +
-          '      else (max(scc_id) + 1) end as maxID from scheduling_clinical '+
+   Text:= ' select case when max(req_id) is null then 1 ' +
+          '      else (max(req_id) + 1) end as maxID from requisition '+
           ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
    Prepare;
    Open;
    if not (qry.State in [dsInsert,dsEdit])  then
     qry.Edit;
 
-   if qryscc_id.AsInteger = 0 then
-    qryscc_id.AsInteger:=Fields[0].AsInteger;
+   if qryreq_id.AsInteger = 0 then
+    qryreq_id.AsInteger:=Fields[0].AsInteger;
 
     qryclient_cli_cod.Value:=qry_clientcli_cod.Value;
-    qrydoctor_doc_cod.Value:=qry_doctordoc_cod.Value;
+  //  qrydoctor_doc_cod.Value:=qry_doctordoc_cod.Value;
     qry.Post;
 
     qry_scheduling.Insert;
@@ -148,17 +198,30 @@ with frm_dm.qry,sql do
     Prepare;
     Open;
     qry_schedulingsch_id.AsInteger:=Fields[0].AsInteger;
-    qry_schedulingemployee_emp_cod.Value:=qry_doctoremp_cod.Value;
+  //  qry_schedulingemployee_emp_cod.Value:=qry_doctoremp_cod.Value;
     qry_schedulingsch_datetime.AsDateTime:=Now;
     qry_schedulingsch_description.AsString:= 'AGENDAMENTO DO PACIENTE ' + cxLookupComboBoxCliente.Text;
     qry_scheduling.Post;
-
-
-
  end;
 
  inherited;
   qry_sql('todos');
+
+end;
+
+procedure Tfrm_scheduling_clinical.cxGrid1DBTableView1rolte_rol_codPropertiesCloseUp(
+  Sender: TObject);
+begin
+  inherited;
+  if not (qry_requisition_sheduling.State in[dsEdit]) then
+   qry_requisition_sheduling.Edit;
+   qry_requisition_shedulingrole_rol_cod.Value:=qry_rolerol_cod.Value;
+   qry_requisition_sheduling.Post;
+
+   qry_requisition_sheduling.Refresh;
+
+   qry_doctor.Filter:='rolCod = ' + rsh_cod;
+   qry_doctor.Filtered:=True;
 
 end;
 
@@ -168,24 +231,85 @@ begin
  With frm_dm.qry,sql do
   begin
    close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   text:='select hex(uuid_to_bin(uuid()))';
    prepare;
    open;
 
-   scc_cod:=Fields[0].AsString;
+   req_cod:=Fields[0].AsString;
 
    Close;
-   Text:='insert into scheduling_clinical (scc_id,scc_cod,contract_ctr_cod) ' +
-         ' select 0,'+ scc_cod + ',' +  frm_dm.v_contract_ctr_cod;
+   Text:='insert into requisition (req_id,req_cod,contract_ctr_cod) ' +
+         ' select 0,unhex('+ QuotedStr(req_cod) + '),' +  frm_dm.v_contract_ctr_cod;
    Prepare;
    ExecSQL;
   end;
 
    qry_sql('insert');
    qry.Edit;
-   qryscc_dt_registration.AsDateTime:=Now;
-   edt_codid.Text:=qryscc_id.AsString;
-   edt_dt_registration.Text:=qryscc_dt_registration.AsString;
+   qryreq_dt_registration.AsDateTime:=Now;
+   edt_codid.Text:=qryreq_id.AsString;
+   edt_dt_registration.Text:=qryreq_dt_registration.AsString;
+end;
+
+procedure Tfrm_scheduling_clinical.qry_requisition_shedulingAfterInsert(
+  DataSet: TDataSet);
+begin
+  inherited;
+ With frm_dm.qry,sql do
+  begin
+   close;
+   text:='select hex(uuid_to_bin(uuid()))';
+   prepare;
+   open;
+
+   rsh_cod:=Fields[0].AsString;
+
+   Close;
+   Text:='insert into requisition_sheduling (rsh_id,rsh_cod,requisition_req_cod,contract_ctr_cod) ' +
+         ' select 0, unhex('+ QuotedStr(rsh_cod) + '),unhex('  + QuotedStr(req_cod) + '),' +   frm_dm.v_contract_ctr_cod;
+   Prepare;
+   ExecSQL;
+  end;
+
+   qry_requisition_sheduling.close;
+   qry_requisition_sheduling.SQL.Text:=' select requisition_sheduling.*,hex(rsh_cod) as rshCod,rol_name, ' +
+                                       ' hex(role_rol_cod) as rolCod from requisition_sheduling ' +
+                                       ' left join role on rol_cod = role_rol_cod';
+   qry_requisition_sheduling.Prepare;
+   qry_requisition_sheduling.open;
+
+   qry_requisition_sheduling.Locate('rshCod',rsh_cod,[]);
+
+   qry_requisition_sheduling.Edit;
+   qry_requisition_shedulingrsh_dt_registration.AsDateTime:=Now;
+end;
+
+procedure Tfrm_scheduling_clinical.qry_requisition_shedulingAfterPost(
+  DataSet: TDataSet);
+begin
+  inherited;
+qry_requisition_sheduling.Locate('rolCod',qry_rolerolCod.AsString,[]);
+end;
+
+procedure Tfrm_scheduling_clinical.qry_requisition_shedulingBeforePost(
+  DataSet: TDataSet);
+begin
+  inherited;
+with frm_dm.qry,sql do
+ begin
+   close;
+   Text:= ' select case when max(rsh_id) is null then 1 ' +
+          '      else (max(rsh_id) + 1) end as maxID from requisition_sheduling '+
+          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+   Prepare;
+   Open;
+   if not (qry_requisition_sheduling.State in [dsInsert,dsEdit])  then
+    qry_requisition_sheduling.Edit;
+
+   if qry_requisition_shedulingrsh_id.AsInteger = 0 then
+    qry_requisition_shedulingrsh_id.AsInteger:=Fields[0].AsInteger;
+
+end;
 end;
 
 procedure Tfrm_scheduling_clinical.qry_schedulingAfterInsert(DataSet: TDataSet);
@@ -222,15 +346,13 @@ procedure Tfrm_scheduling_clinical.qry_sql(sql: string);
 begin
   qry.Close;
   if sql = 'todos' then
-   qry.sql.text:= ' select * from scheduling_clinical';
+   qry.sql.text:= ' select requisition.*,hex(req_cod) from requisition';
 
   if sql = 'insert' then
-   qry.sql.text:= ' select * from scheduling_clinical ' +
-                  ' where scc_cod = ' + scc_cod;
-
+   qry.sql.text:= ' select requisition.*,hex(req_cod) from requisition ' +
+                  ' where req_cod = unhex(' + QuotedStr(req_cod) + ')';
    qry.Prepare;
    qry.open;
-
 end;
 
 end.

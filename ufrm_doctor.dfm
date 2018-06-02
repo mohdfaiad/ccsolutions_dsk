@@ -2,21 +2,23 @@ inherited frm_doctor: Tfrm_doctor
   Caption = 'frm_doctor'
   ClientHeight = 678
   OnClose = FormClose
-  ExplicitTop = 7
   ExplicitHeight = 717
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
     Height = 588
     Properties.ActivePage = tbsht_2
+    ExplicitHeight = 588
     ClientRectBottom = 582
     inherited tbsht_1: TcxTabSheet
       inherited pgctrl_2: TcxPageControl
         Height = 555
+        ExplicitHeight = 555
         ClientRectBottom = 549
         inherited tbsht_3: TcxTabSheet
           inherited grid_1: TcxGrid
             Height = 516
+            ExplicitHeight = 516
             inherited cxGridDBTableView1: TcxGridDBTableView
               object cxGridDBTableView1doc_id: TcxGridDBColumn
                 DataBinding.FieldName = 'doc_id'
@@ -51,8 +53,10 @@ inherited frm_doctor: Tfrm_doctor
       OnShow = tbsht_2Show
       inherited pgctrl_3: TcxPageControl
         Height = 555
+        ExplicitHeight = 555
         ClientRectBottom = 549
         inherited tbsht_5: TcxTabSheet
+          ExplicitHeight = 522
           inherited cxGroupBox1: TcxGroupBox
             inherited cxLabel2: TcxLabel
               Left = 168
@@ -66,6 +70,7 @@ inherited frm_doctor: Tfrm_doctor
           inherited cxGroupBox2: TcxGroupBox
             Top = 79
             ExplicitTop = 79
+            ExplicitHeight = 464
             Height = 464
             object cxGroupBox3: TcxGroupBox
               Left = 3
@@ -81,7 +86,6 @@ inherited frm_doctor: Tfrm_doctor
                 Height = 323
                 Align = alClient
                 TabOrder = 0
-                ExplicitHeight = 251
                 object cxGrid1DBTableView1: TcxGridDBTableView
                   Navigator.Buttons.ConfirmDelete = True
                   Navigator.Buttons.CustomButtons = <>
@@ -195,6 +199,7 @@ inherited frm_doctor: Tfrm_doctor
   end
   inherited stsbar_1: TdxStatusBar
     Top = 643
+    ExplicitTop = 643
   end
   inherited barman_1: TdxBarManager
     object dxBarButton1: TdxBarButton

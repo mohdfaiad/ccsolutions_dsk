@@ -6,8 +6,8 @@ interface
 
   private
     Fctr_cod : string;
-    Femp_id: Integer;
-    Frec_id: Integer;
+    Femp_cod: string;
+    Frec_cod: string;
     Femp_type: string;
     Femp_status: string;
     Frec_name: string;
@@ -53,8 +53,8 @@ interface
      destructor Destroy; override;
 
     property ctr_cod: string read Fctr_cod write Fctr_cod;
-    property emp_id: Integer read Femp_id write Femp_id;
-    property rec_id: Integer read Frec_id write Frec_id;
+    property emp_cod: string read Femp_cod write Femp_cod;
+    property rec_cod: string read Frec_cod write Frec_cod;
     property emp_type: string read Femp_type write Femp_type;
     property emp_status: string read Femp_status write Femp_status;
     property rec_name: string read Frec_name write Frec_name;

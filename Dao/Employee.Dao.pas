@@ -102,7 +102,7 @@ begin
   inherited;
   qry := FConexao.CriarQuery();
   qry.Close;
-  qry.SQL.Add(' select * from record inner  join employee on record_rec_cod = rec_cod '  +
+  qry.SQL.Add(' select employee.*, record.*,hex(rec_cod) as recCod, hex(emp_cod) as empCod from employee inner  join record on record_rec_cod = rec_cod '  +
               ' where rec_cod in (select record_rec_cod from employee) ' +
               ' and emp_deleted_at is null ');
   qry.Open;
@@ -123,8 +123,8 @@ begin
       FDStoredProc.StoredProcName := 'proc_employee_update';
 
       FDStoredProc.Prepare;
-      FDStoredProc.ParamByName('p_rec_id').AsInteger              := Employee.rec_id;
-      FDStoredProc.ParamByName('p_emp_id').AsInteger              := Employee.emp_id;
+      FDStoredProc.ParamByName('p_rec_cod').AsString              := Employee.rec_cod;
+      FDStoredProc.ParamByName('p_emp_cod').AsString              := Employee.emp_cod;
       FDStoredProc.ParamByName('p_emp_type').AsString             := Employee.emp_type;
       FDStoredProc.ParamByName('p_emp_status').AsString           := Employee.emp_status;
       FDStoredProc.ParamByName('p_rec_name').AsString             := Employee.rec_name;

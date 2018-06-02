@@ -14,7 +14,6 @@ inherited frm_employee_: Tfrm_employee_
   inherited pgctrl_1: TcxPageControl
     Width = 970
     Height = 635
-    Properties.ActivePage = tbsht_2
     ExplicitWidth = 970
     ExplicitHeight = 635
     ClientRectBottom = 629
@@ -45,14 +44,14 @@ inherited frm_employee_: Tfrm_employee_
               object cxGridDBTableView1emp_id: TcxGridDBColumn
                 DataBinding.FieldName = 'emp_id'
               end
+              object cxGridDBTableView1rec_name: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_name'
+              end
               object cxGridDBTableView1emp_type: TcxGridDBColumn
                 DataBinding.FieldName = 'emp_type'
               end
               object cxGridDBTableView1emp_status: TcxGridDBColumn
                 DataBinding.FieldName = 'emp_status'
-              end
-              object cxGridDBTableView1rec_name: TcxGridDBColumn
-                DataBinding.FieldName = 'rec_name'
               end
               object cxGridDBTableView1rec_nickname: TcxGridDBColumn
                 DataBinding.FieldName = 'rec_nickname'
@@ -162,8 +161,8 @@ inherited frm_employee_: Tfrm_employee_
               object cxGridDBTableView1rec_contact: TcxGridDBColumn
                 DataBinding.FieldName = 'rec_contact'
               end
-              object cxGridDBTableView1rec_deleted_at: TcxGridDBColumn
-                DataBinding.FieldName = 'rec_deleted_at'
+              object cxGridDBTableView1emp_dt_registration: TcxGridDBColumn
+                DataBinding.FieldName = 'emp_dt_registration'
               end
             end
           end
@@ -784,6 +783,11 @@ inherited frm_employee_: Tfrm_employee_
   end
   inherited qry: TFDQuery
     Connection = frm_dm.connCCS
+    SQL.Strings = (
+      
+        'select employee.*, record.*,hex(rec_cod) as recCod, hex(emp_cod)' +
+        ' as empCod from employee inner  join record on record_rec_cod = ' +
+        'rec_cod')
     object qryemp_cod: TBytesField
       FieldName = 'emp_cod'
       Origin = 'emp_cod'
@@ -1048,7 +1052,7 @@ inherited frm_employee_: Tfrm_employee_
       Origin = 'rec_add_zipcode'
       ProviderFlags = []
       ReadOnly = True
-      Size = 6
+      Size = 9
     end
     object qryrec_add_address: TStringField
       AutoGenerateValue = arDefault
@@ -1161,6 +1165,22 @@ inherited frm_employee_: Tfrm_employee_
       ProviderFlags = []
       ReadOnly = True
     end
+    object qryrecCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'recCod'
+      Origin = 'recCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qryempCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'empCod'
+      Origin = 'empCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
   inherited mem: TFDMemTable
     object mememp_cod: TBytesField
@@ -1212,6 +1232,13 @@ inherited frm_employee_: Tfrm_employee_
       AutoGenerateValue = arDefault
       FieldName = 'rec_cod'
       Origin = 'rec_cod'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object memcontract_ctr_cod_1: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod_1'
+      Origin = 'contract_ctr_cod'
       ProviderFlags = []
       ReadOnly = True
     end
@@ -1420,7 +1447,7 @@ inherited frm_employee_: Tfrm_employee_
       Origin = 'rec_add_zipcode'
       ProviderFlags = []
       ReadOnly = True
-      Size = 6
+      Size = 9
     end
     object memrec_add_address: TStringField
       AutoGenerateValue = arDefault
@@ -1532,6 +1559,22 @@ inherited frm_employee_: Tfrm_employee_
       Origin = 'rec_dt_registration'
       ProviderFlags = []
       ReadOnly = True
+    end
+    object memrecCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'recCod'
+      Origin = 'recCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object memempCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'empCod'
+      Origin = 'empCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
     end
   end
   inherited ACBrCEP1: TACBrCEP

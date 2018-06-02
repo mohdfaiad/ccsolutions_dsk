@@ -159,8 +159,13 @@ begin
      frm_dm.qry_signinNew.SQL.Text:=SQL;
      frm_dm.qry_signinNew.Open;
 
+
      frm_dm.v_contract_ctr_cod := '0x' +  frm_dm.qry_signinNew.FieldByName('hex(@po_contract_ctr_cod)').Value;
      frm_dm.v_ctr_usr_cod := '0x' +  frm_dm.qry_signinNew.FieldByName('hex(@po_ctr_usr_cod)').Value;
+     //Sem contact
+
+     frm_dm.p_contract_ctr_cod := frm_dm.qry_signinNew.FieldByName('hex(@po_contract_ctr_cod)').Value;
+     frm_dm.p_ctr_usr_cod      := frm_dm.qry_signinNew.FieldByName('hex(@po_ctr_usr_cod)').Value;
 
   frm_dm.qry_contract.Close;
   frm_dm.qry_contract.sql.Text:='select ctr_cod,ctr_id from contract '+

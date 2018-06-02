@@ -108,7 +108,58 @@ type
     cxComboxStatus: TcxComboBox;
     cxLabel40: TcxLabel;
     cxLabel41: TcxLabel;
-
+    qryemp_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryrecord_rec_cod: TBytesField;
+    qryemp_id: TLongWordField;
+    qryemp_type: TStringField;
+    qryemp_status: TStringField;
+    qryemp_deleted_at: TDateTimeField;
+    qryemp_dt_registration: TDateTimeField;
+    qryrec_cod: TBytesField;
+    qrycontract_ctr_cod_1: TBytesField;
+    qryrec_id: TLongWordField;
+    qryrec_name: TStringField;
+    qryrec_nickname: TStringField;
+    qryrec_sex: TStringField;
+    qryrec_dt_birth: TDateField;
+    qryrec_cpf_number: TStringField;
+    qryrec_rg_number: TStringField;
+    qryrec_ctps_number: TStringField;
+    qryrec_ctps_serial: TStringField;
+    qryrec_ctps_state: TStringField;
+    qryrec_ctps_date: TDateField;
+    qryrec_cam_number: TStringField;
+    qryrec_cnh_number: TStringField;
+    qryrec_chn_category: TStringField;
+    qryrec_cnh_dt_expiration: TDateField;
+    qryrec_te_number: TStringField;
+    qryrec_te_zone: TStringField;
+    qryrec_te_section: TStringField;
+    qryrec_crm_number: TStringField;
+    qryrec_status_marital: TStringField;
+    qryrec_nationality: TStringField;
+    qryrec_naturalness_uf: TStringField;
+    qryrec_naturalness_city: TStringField;
+    qryrec_father_name: TStringField;
+    qryrec_mother_name: TStringField;
+    qryrec_add_zipcode: TStringField;
+    qryrec_add_address: TStringField;
+    qryrec_add_number: TStringField;
+    qryrec_add_street: TStringField;
+    qryrec_add_complement: TStringField;
+    qryrec_add_city: TStringField;
+    qryrec_add_state: TStringField;
+    qryrec_add_country: TStringField;
+    qryrec_phone1: TStringField;
+    qryrec_phone2: TStringField;
+    qryrec_phone3: TStringField;
+    qryrec_phone4: TStringField;
+    qryrec_contact: TStringField;
+    qryrec_deleted_at: TDateTimeField;
+    qryrec_dt_registration: TDateTimeField;
+    qryrecCod: TStringField;
+    qryempCod: TStringField;
     mememp_cod: TBytesField;
     memcontract_ctr_cod: TBytesField;
     memrecord_rec_cod: TBytesField;
@@ -118,6 +169,7 @@ type
     mememp_deleted_at: TDateTimeField;
     mememp_dt_registration: TDateTimeField;
     memrec_cod: TBytesField;
+    memcontract_ctr_cod_1: TBytesField;
     memrec_id: TLongWordField;
     memrec_name: TStringField;
     memrec_nickname: TStringField;
@@ -158,9 +210,12 @@ type
     memrec_contact: TStringField;
     memrec_deleted_at: TDateTimeField;
     memrec_dt_registration: TDateTimeField;
+    memrecCod: TStringField;
+    memempCod: TStringField;
     cxGridDBTableView1emp_id: TcxGridDBColumn;
     cxGridDBTableView1emp_type: TcxGridDBColumn;
     cxGridDBTableView1emp_status: TcxGridDBColumn;
+    cxGridDBTableView1emp_dt_registration: TcxGridDBColumn;
     cxGridDBTableView1rec_name: TcxGridDBColumn;
     cxGridDBTableView1rec_nickname: TcxGridDBColumn;
     cxGridDBTableView1rec_sex: TcxGridDBColumn;
@@ -191,14 +246,13 @@ type
     cxGridDBTableView1rec_add_street: TcxGridDBColumn;
     cxGridDBTableView1rec_add_complement: TcxGridDBColumn;
     cxGridDBTableView1rec_add_city: TcxGridDBColumn;
-     cxGridDBTableView1rec_add_state: TcxGridDBColumn;
+    cxGridDBTableView1rec_add_state: TcxGridDBColumn;
     cxGridDBTableView1rec_add_country: TcxGridDBColumn;
     cxGridDBTableView1rec_phone1: TcxGridDBColumn;
     cxGridDBTableView1rec_phone2: TcxGridDBColumn;
     cxGridDBTableView1rec_phone3: TcxGridDBColumn;
     cxGridDBTableView1rec_phone4: TcxGridDBColumn;
     cxGridDBTableView1rec_contact: TcxGridDBColumn;
-    cxGridDBTableView1rec_deleted_at: TcxGridDBColumn;
 
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -275,7 +329,7 @@ begin
 
      try
 
-       Employee.ctr_cod               := frm_dm.v_contract_ctr_cod;
+       Employee.ctr_cod               := frm_dm.p_contract_ctr_cod;
        Employee.rec_name              := edtNome.Text;
        Employee.rec_nickname          := edtApelido.Text;
        Employee.rec_dt_birth          := edtDataNasc.Date;
@@ -325,8 +379,8 @@ begin
       end       //Tag = 2 para Alterar
        else if Self.Tag = 2 then
         begin
-           Employee.rec_id  := memrec_id.AsInteger;
-           Employee.emp_id  := mememp_id.AsInteger;
+           Employee.rec_cod  := memrecCod.AsString;
+           Employee.emp_cod  := memempCod.AsString;
 
            Dao.Employee_Update(Employee);
 

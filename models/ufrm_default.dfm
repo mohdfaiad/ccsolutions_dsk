@@ -70,8 +70,8 @@ object frm_default: Tfrm_default
             Images = imglist_1
             PopupMenu = popmenu_1
             TabOrder = 0
-            object cxGridDBTableView1: TcxGridDBTableView
-              OnKeyPress = cxGridDBTableView1KeyPress
+            object grid_1DBTableView1: TcxGridDBTableView
+              OnKeyPress = grid_1DBTableView1KeyPress
               Navigator.Buttons.ConfirmDelete = True
               Navigator.Buttons.CustomButtons = <>
               Navigator.Buttons.Images = imglist_1
@@ -104,7 +104,7 @@ object frm_default: Tfrm_default
               Navigator.InfoPanel.Visible = True
               Navigator.Visible = True
               FindPanel.InfoText = 'Valor para pequisa...'
-              OnCellDblClick = cxGridDBTableView1CellDblClick
+              OnCellDblClick = grid_1DBTableView1CellDblClick
               DataController.DataSource = ds
               DataController.Summary.DefaultGroupSummaryItems = <>
               DataController.Summary.FooterSummaryItems = <>
@@ -115,8 +115,8 @@ object frm_default: Tfrm_default
               OptionsView.NoDataToDisplayInfoText = 'Registro(s) n'#227'o encontrado(s).'
               OptionsView.Indicator = True
             end
-            object cxGridLevel1: TcxGridLevel
-              GridView = cxGridDBTableView1
+            object grid_1Level1: TcxGridLevel
+              GridView = grid_1DBTableView1
             end
           end
         end
@@ -144,14 +144,14 @@ object frm_default: Tfrm_default
           DesignSize = (
             946
             505)
-          object cxGroupBox1: TcxGroupBox
+          object grb_top: TcxGroupBox
             Left = 3
             Top = 3
             Anchors = [akLeft, akTop, akRight]
             TabOrder = 0
-            Height = 46
+            Height = 54
             Width = 940
-            object cxLabel1: TcxLabel
+            object lbl_cod_id: TcxLabel
               Left = 3
               Top = 3
               Caption = 'C'#243'd. ID'
@@ -159,12 +159,12 @@ object frm_default: Tfrm_default
             end
             object edt_codid: TcxTextEdit
               Left = 3
-              Top = 22
+              Top = 26
               Enabled = False
               TabOrder = 1
               Width = 125
             end
-            object cxLabel2: TcxLabel
+            object lbl_dt_registration: TcxLabel
               Left = 134
               Top = 3
               Caption = 'Dt. Cad.'
@@ -172,18 +172,18 @@ object frm_default: Tfrm_default
             end
             object edt_dt_registration: TcxTextEdit
               Left = 134
-              Top = 22
+              Top = 26
               Enabled = False
               TabOrder = 3
               Width = 125
             end
           end
-          object cxGroupBox2: TcxGroupBox
+          object grb_bottton: TcxGroupBox
             Left = 3
-            Top = 55
+            Top = 63
             Anchors = [akLeft, akTop, akRight, akBottom]
             TabOrder = 1
-            Height = 447
+            Height = 439
             Width = 940
           end
         end
@@ -707,7 +707,7 @@ object frm_default: Tfrm_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ';'
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
+    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET

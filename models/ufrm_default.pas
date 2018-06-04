@@ -107,14 +107,14 @@ type
     Restaurar1: TMenuItem;
     Action_deleted: TAction;
     grid_1: TcxGrid;
-    cxGridDBTableView1: TcxGridDBTableView;
-    cxGridLevel1: TcxGridLevel;
-    cxGroupBox1: TcxGroupBox;
-    cxLabel1: TcxLabel;
+    grid_1DBTableView1: TcxGridDBTableView;
+    grid_1Level1: TcxGridLevel;
+    grb_top: TcxGroupBox;
+    lbl_cod_id: TcxLabel;
     edt_codid: TcxTextEdit;
-    cxLabel2: TcxLabel;
+    lbl_dt_registration: TcxLabel;
     edt_dt_registration: TcxTextEdit;
-    cxGroupBox2: TcxGroupBox;
+    grb_bottton: TcxGroupBox;
     stsbar_1: TdxStatusBar;
     frxReport_1: TfrxReport;
     frxPDFExport_1: TfrxPDFExport;
@@ -135,9 +135,9 @@ type
     procedure Action_editExecute(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
-    procedure cxGridDBTableView1CellDblClick(Sender: TcxCustomGridTableView;
+    procedure grid_1DBTableView1CellDblClick(Sender: TcxCustomGridTableView;
       ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
-    procedure cxGridDBTableView1KeyPress(Sender: TObject; var Key: Char);
+    procedure grid_1DBTableView1KeyPress(Sender: TObject; var Key: Char);
     procedure Action_firstExecute(Sender: TObject);
     procedure Action_priorExecute(Sender: TObject);
     procedure Action_nextExecute(Sender: TObject);
@@ -254,13 +254,13 @@ begin
    tbsht_1.Show;
 end;
 
-procedure Tfrm_default.cxGridDBTableView1CellDblClick(Sender: TcxCustomGridTableView;
+procedure Tfrm_default.grid_1DBTableView1CellDblClick(Sender: TcxCustomGridTableView;
   ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
 begin
   Action_edit.Execute;
 end;
 
-procedure Tfrm_default.cxGridDBTableView1KeyPress(Sender: TObject; var Key: Char);
+procedure Tfrm_default.grid_1DBTableView1KeyPress(Sender: TObject; var Key: Char);
 begin
   if key =#13 then
      Action_edit.Execute;

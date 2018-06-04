@@ -11,27 +11,56 @@ inherited frm_contract_user: Tfrm_contract_user
   end
   inherited pgctrl_1: TcxPageControl
     Width = 1129
-    Properties.ActivePage = tbsht_2
     ExplicitWidth = 1129
     ClientRectRight = 1123
     inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 1121
-      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
         Width = 1121
         ExplicitWidth = 1121
         ClientRectRight = 1115
         inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
           ExplicitWidth = 1113
-          ExplicitHeight = 505
           inherited grid_1: TcxGrid
             Width = 1107
             ExplicitWidth = 1107
-            inherited cxGridDBTableView1: TcxGridDBTableView
+            inherited grid_1DBTableView1: TcxGridDBTableView
+              object grid_1DBTableView1ctr_usr_id: TcxGridDBColumn
+                DataBinding.FieldName = 'ctr_usr_id'
+              end
+              object grid_1DBTableView1ctr_usr_first_name: TcxGridDBColumn
+                DataBinding.FieldName = 'ctr_usr_first_name'
+              end
+              object grid_1DBTableView1ctr_usr_last_name: TcxGridDBColumn
+                DataBinding.FieldName = 'ctr_usr_last_name'
+              end
+              object grid_1DBTableView1ctr_usr_username: TcxGridDBColumn
+                DataBinding.FieldName = 'ctr_usr_username'
+              end
+              object grid_1DBTableView1ctr_usr_email: TcxGridDBColumn
+                DataBinding.FieldName = 'ctr_usr_email'
+              end
+              object grid_1DBTableView1ctr_usr_dt_birth: TcxGridDBColumn
+                DataBinding.FieldName = 'ctr_usr_dt_birth'
+              end
+              object grid_1DBTableView1ctr_usr_logged: TcxGridDBColumn
+                DataBinding.FieldName = 'ctr_usr_logged'
+              end
+              object grid_1DBTableView1ctr_usr_admin: TcxGridDBColumn
+                DataBinding.FieldName = 'ctr_usr_admin'
+              end
+              object grid_1DBTableView1ctr_usr_status: TcxGridDBColumn
+                DataBinding.FieldName = 'ctr_usr_status'
+              end
+              object grid_1DBTableView1ctr_usr_dt_registration: TcxGridDBColumn
+                DataBinding.FieldName = 'ctr_usr_dt_registration'
+              end
+            end
+            object cxGridDBTableView1: TcxGridDBTableView [1]
+              Navigator.Buttons.CustomButtons = <>
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <>
+              DataController.Summary.SummaryGroups = <>
               object cxGridDBTable_ctr_usr_id: TcxGridDBColumn
                 Caption = 'C'#243'digo ID'
                 DataBinding.FieldName = 'ctr_usr_id'
@@ -89,10 +118,7 @@ inherited frm_contract_user: Tfrm_contract_user
     end
     inherited tbsht_2: TcxTabSheet
       OnShow = tbsht_2Show
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 1121
-      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         Width = 1121
         Properties.ActivePage = tbsht_6
@@ -100,114 +126,110 @@ inherited frm_contract_user: Tfrm_contract_user
         ClientRectRight = 1115
         inherited tbsht_5: TcxTabSheet
           ExplicitWidth = 1113
-          inherited cxGroupBox1: TcxGroupBox
+          inherited grb_top: TcxGroupBox
             ExplicitWidth = 1107
             Width = 1107
           end
-          inherited cxGroupBox2: TcxGroupBox
-            Top = 52
-            ExplicitTop = 52
+          inherited grb_bottton: TcxGroupBox
             ExplicitWidth = 1107
-            ExplicitHeight = 450
-            Height = 450
             Width = 1107
+            object cxLabel3: TcxLabel
+              Left = 3
+              Top = 11
+              Caption = 'Nome'
+              Transparent = True
+            end
             object edtNome: TcxTextEdit
               Left = 3
-              Top = 20
-              Properties.CharCase = ecUpperCase
-              TabOrder = 0
-              Width = 125
-            end
-            object edtSobrenome: TcxTextEdit
-              Left = 134
-              Top = 20
+              Top = 28
               Properties.CharCase = ecUpperCase
               TabOrder = 1
               Width = 125
             end
-            object edtUsuario: TcxTextEdit
-              Left = 3
-              Top = 64
-              TabOrder = 3
+            object edtSobrenome: TcxTextEdit
+              Left = 134
+              Top = 28
+              Properties.CharCase = ecUpperCase
+              TabOrder = 2
               Width = 125
             end
-            object edtEmail: TcxTextEdit
-              Left = 134
-              Top = 64
-              TabOrder = 4
-              Width = 256
-            end
-            object cxLabel3: TcxLabel
-              Left = 3
-              Top = 3
-              Caption = 'Nome'
-              Transparent = True
-            end
-            object cxLabel4: TcxLabel
-              Left = 134
-              Top = 3
-              Caption = 'Sobrenome'
-              Transparent = True
-            end
             object cxLabel5: TcxLabel
-              Left = 265
-              Top = 3
+              Left = 267
+              Top = 11
               Caption = 'Dt. Nasc'
-              Transparent = True
-            end
-            object cxLabel6: TcxLabel
-              Left = 3
-              Top = 47
-              Caption = 'Usu'#225'rio'
-              Transparent = True
-            end
-            object cxLabel7: TcxLabel
-              Left = 134
-              Top = 47
-              Caption = 'E-mail'
               Transparent = True
             end
             object edtDtNasc: TcxDateEdit
               Left = 267
-              Top = 20
-              TabOrder = 2
+              Top = 28
+              TabOrder = 4
               Width = 123
+            end
+            object cxLabel6: TcxLabel
+              Left = 3
+              Top = 55
+              Caption = 'Usu'#225'rio'
+              Transparent = True
+            end
+            object edtUsuario: TcxTextEdit
+              Left = 3
+              Top = 72
+              TabOrder = 6
+              Width = 125
+            end
+            object cxLabel7: TcxLabel
+              Left = 134
+              Top = 55
+              Caption = 'E-mail'
+              Transparent = True
+            end
+            object edtEmail: TcxTextEdit
+              Left = 134
+              Top = 72
+              TabOrder = 8
+              Width = 256
+            end
+            object cxLabel8: TcxLabel
+              Left = 3
+              Top = 103
+              Caption = 'Senha'
+              Transparent = True
+            end
+            object edtSenha: TcxTextEdit
+              Left = 3
+              Top = 120
+              Properties.PasswordChar = '*'
+              TabOrder = 10
+              Width = 125
+            end
+            object cxLabel9: TcxLabel
+              Left = 134
+              Top = 103
+              Caption = 'Confirmar Senha'
+              Transparent = True
+            end
+            object edtConf_Senha: TcxTextEdit
+              Left = 134
+              Top = 120
+              ParentShowHint = False
+              Properties.PasswordChar = '*'
+              ShowHint = True
+              TabOrder = 12
+              Width = 125
             end
             object CheckBoxAdm: TcxCheckBox
               Left = 302
-              Top = 114
+              Top = 122
               Caption = 'Administrador'
               Properties.ValueChecked = 'S'
               Properties.ValueUnchecked = 'N'
               State = cbsGrayed
-              TabOrder = 7
+              TabOrder = 13
             end
-            object edtSenha: TcxTextEdit
-              Left = 3
-              Top = 112
-              Properties.PasswordChar = '*'
-              TabOrder = 5
-              Width = 125
-            end
-            object edtConf_Senha: TcxTextEdit
+            object cxLabel4: TcxLabel
               Left = 134
-              Top = 112
-              ParentShowHint = False
-              Properties.PasswordChar = '*'
-              ShowHint = True
-              TabOrder = 6
-              Width = 125
-            end
-            object cxLabel8: TcxLabel
-              Left = 3
-              Top = 94
-              Caption = 'Senha'
-              Transparent = True
-            end
-            object cxLabel9: TcxLabel
-              Left = 134
-              Top = 94
-              Caption = 'Confirmar Senha'
+              Top = 11
+              Caption = 'Sobrenome'
               Transparent = True
             end
           end
@@ -234,6 +256,51 @@ inherited frm_contract_user: Tfrm_contract_user
               TabOrder = 0
               OnClick = cxListEmpsClick
               OnClickCheck = cxListEmpsClickCheck
+              ExplicitTop = 12
+            end
+            object DBGrid1: TDBGrid
+              Left = 640
+              Top = 88
+              Width = 450
+              Height = 120
+              DataSource = dts_Contract_User_Enterprise
+              TabOrder = 1
+              TitleFont.Charset = DEFAULT_CHARSET
+              TitleFont.Color = clWindowText
+              TitleFont.Height = -11
+              TitleFont.Name = 'Tahoma'
+              TitleFont.Style = []
+              Columns = <
+                item
+                  Expanded = False
+                  FieldName = 'CodEmp'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'ent_cod'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'ent_first_name'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'cte_usr_ent_id'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'enterprise_ent_cod'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'contract_user_ctr_usr_cod'
+                  Visible = True
+                end>
             end
           end
           object cxGroupBox4: TcxGroupBox
@@ -714,7 +781,6 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitWidth = 1093
       inherited chkbox_1: TcxCheckBox
         ExplicitWidth = 1093
-        ExplicitHeight = 32
       end
     end
   end
@@ -746,8 +812,55 @@ inherited frm_contract_user: Tfrm_contract_user
   inherited qry: TFDQuery
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      '')
+      
+        'select hex(a.ent_cod)as CodEmp, a.ent_cod, a.ent_first_name, b.c' +
+        'te_usr_ent_id, b.enterprise_ent_cod,'#10'b.contract_user_ctr_usr_cod' +
+        ' from enterprise a '#10
+      
+        'left join contract_user_enterprise b on a.ent_cod=b.enterprise_e' +
+        'nt_cod')
     Left = 696
+    object qryCodEmp: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodEmp'
+      Origin = 'CodEmp'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qryent_cod: TBytesField
+      FieldName = 'ent_cod'
+      Origin = 'ent_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryent_first_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_first_name'
+      Origin = 'ent_first_name'
+      Size = 85
+    end
+    object qrycte_usr_ent_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'cte_usr_ent_id'
+      Origin = 'cte_usr_ent_id'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object qryenterprise_ent_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'enterprise_ent_cod'
+      Origin = 'enterprise_ent_cod'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object qrycontract_user_ctr_usr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_user_ctr_usr_cod'
+      Origin = 'contract_user_ctr_usr_cod'
+      ProviderFlags = []
+      ReadOnly = True
+    end
   end
   inherited mem: TFDMemTable
     object memctr_usr_cod: TBytesField
@@ -832,7 +945,12 @@ inherited frm_contract_user: Tfrm_contract_user
       Origin = 'ctr_usr_dt_registration'
     end
   end
-  object memContract_User_Enterprise: TFDMemTable
+  object dts_Contract_User_Enterprise: TDataSource
+    DataSet = memEnterprise_User
+    Left = 984
+    Top = 128
+  end
+  object memEnterprise_User: TFDMemTable
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -840,38 +958,48 @@ inherited frm_contract_user: Tfrm_contract_user
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 944
+    Left = 792
     Top = 144
-    object memContract_User_Enterprisecte_usr_ent_cod: TBytesField
-      FieldName = 'cte_usr_ent_cod'
-      Origin = 'cte_usr_ent_cod'
+    object memEnterprise_UserCodEmp: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodEmp'
+      Origin = 'CodEmp'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object memEnterprise_Userent_cod: TBytesField
+      FieldName = 'ent_cod'
+      Origin = 'ent_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object memContract_User_Enterprisecontract_user_ctr_usr_cod: TBytesField
+    object memEnterprise_Userent_first_name: TStringField
       AutoGenerateValue = arDefault
-      FieldName = 'contract_user_ctr_usr_cod'
-      Origin = 'contract_user_ctr_usr_cod'
+      FieldName = 'ent_first_name'
+      Origin = 'ent_first_name'
+      Size = 85
     end
-    object memContract_User_Enterpriseenterprise_ent_cod: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'enterprise_ent_cod'
-      Origin = 'enterprise_ent_cod'
-    end
-    object memContract_User_Enterprisecte_usr_ent_id: TLongWordField
+    object memEnterprise_Usercte_usr_ent_id: TLongWordField
       AutoGenerateValue = arDefault
       FieldName = 'cte_usr_ent_id'
       Origin = 'cte_usr_ent_id'
+      ProviderFlags = []
+      ReadOnly = True
     end
-    object memContract_User_Enterprisecte_deleted_at: TDateTimeField
+    object memEnterprise_Userenterprise_ent_cod: TBytesField
       AutoGenerateValue = arDefault
-      FieldName = 'cte_deleted_at'
-      Origin = 'cte_deleted_at'
+      FieldName = 'enterprise_ent_cod'
+      Origin = 'enterprise_ent_cod'
+      ProviderFlags = []
+      ReadOnly = True
     end
-    object memContract_User_Enterprisecte_dt_registration: TDateTimeField
+    object memEnterprise_Usercontract_user_ctr_usr_cod: TBytesField
       AutoGenerateValue = arDefault
-      FieldName = 'cte_dt_registration'
-      Origin = 'cte_dt_registration'
+      FieldName = 'contract_user_ctr_usr_cod'
+      Origin = 'contract_user_ctr_usr_cod'
+      ProviderFlags = []
+      ReadOnly = True
     end
   end
 end

@@ -32,21 +32,10 @@ uses
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, ufrm_dm, Vcl.ComCtrls, dxCore, cxDateUtils, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxCheckBox, Vcl.StdCtrls, frxExportDOCX, frxClass, frxExportBaseDialog, frxExportPDF,
-  Contract_User.Model, Contract_User.Dao, ACBrSocket, ACBrCEP, cxCheckListBox, AdvOfficeTabSet;
+  Contract_User.Model, Contract_User.Dao, ACBrSocket, ACBrCEP, cxCheckListBox, AdvOfficeTabSet, Vcl.Grids, Vcl.DBGrids;
 
 type
   Tfrm_contract_user = class(Tfrm_default)
-    edtNome: TcxTextEdit;
-    edtSobrenome: TcxTextEdit;
-    edtUsuario: TcxTextEdit;
-    edtEmail: TcxTextEdit;
-    cxLabel3: TcxLabel;
-    cxLabel4: TcxLabel;
-    cxLabel5: TcxLabel;
-    cxLabel6: TcxLabel;
-    cxLabel7: TcxLabel;
-    edtDtNasc: TcxDateEdit;
-    CheckBoxAdm: TcxCheckBox;
     cxGridDBTable_ctr_usr_id: TcxGridDBColumn;
     cxGridDBTable_ctr_usr_first_name: TcxGridDBColumn;
     cxGridDBTable_ctr_usr_last_name: TcxGridDBColumn;
@@ -57,10 +46,6 @@ type
     cxGridDBTable_ctr_usr_logged: TcxGridDBColumn;
     cxGridDBTable_ctr_usr_dt_registration: TcxGridDBColumn;
     cxGridDBTable_ctr_usr_dt_birth: TcxGridDBColumn;
-    edtSenha: TcxTextEdit;
-    edtConf_Senha: TcxTextEdit;
-    cxLabel8: TcxLabel;
-    cxLabel9: TcxLabel;
     memctr_usr_cod: TBytesField;
     memcontract_ctr_cod: TBytesField;
     memctr_usr_id: TLongWordField;
@@ -81,13 +66,46 @@ type
     AdvOfficeTabSet1: TAdvOfficeTabSet;
     cxListMenu: TcxCheckListBox;
     cxListEmps: TcxCheckListBox;
-    memContract_User_Enterprise: TFDMemTable;
-    memContract_User_Enterprisecte_usr_ent_cod: TBytesField;
-    memContract_User_Enterprisecontract_user_ctr_usr_cod: TBytesField;
-    memContract_User_Enterpriseenterprise_ent_cod: TBytesField;
-    memContract_User_Enterprisecte_usr_ent_id: TLongWordField;
-    memContract_User_Enterprisecte_deleted_at: TDateTimeField;
-    memContract_User_Enterprisecte_dt_registration: TDateTimeField;
+    cxLabel3: TcxLabel;
+    edtNome: TcxTextEdit;
+    edtSobrenome: TcxTextEdit;
+    cxLabel5: TcxLabel;
+    edtDtNasc: TcxDateEdit;
+    cxLabel6: TcxLabel;
+    edtUsuario: TcxTextEdit;
+    cxLabel7: TcxLabel;
+    edtEmail: TcxTextEdit;
+    cxLabel8: TcxLabel;
+    edtSenha: TcxTextEdit;
+    cxLabel9: TcxLabel;
+    edtConf_Senha: TcxTextEdit;
+    CheckBoxAdm: TcxCheckBox;
+    cxLabel4: TcxLabel;
+    grid_1DBTableView1ctr_usr_id: TcxGridDBColumn;
+    grid_1DBTableView1ctr_usr_first_name: TcxGridDBColumn;
+    grid_1DBTableView1ctr_usr_last_name: TcxGridDBColumn;
+    grid_1DBTableView1ctr_usr_username: TcxGridDBColumn;
+    grid_1DBTableView1ctr_usr_email: TcxGridDBColumn;
+    grid_1DBTableView1ctr_usr_dt_birth: TcxGridDBColumn;
+    grid_1DBTableView1ctr_usr_logged: TcxGridDBColumn;
+    grid_1DBTableView1ctr_usr_admin: TcxGridDBColumn;
+    grid_1DBTableView1ctr_usr_status: TcxGridDBColumn;
+    grid_1DBTableView1ctr_usr_dt_registration: TcxGridDBColumn;
+    dts_Contract_User_Enterprise: TDataSource;
+    memEnterprise_User: TFDMemTable;
+    qryCodEmp: TStringField;
+    qryent_cod: TBytesField;
+    qryent_first_name: TStringField;
+    qrycte_usr_ent_id: TLongWordField;
+    qryenterprise_ent_cod: TBytesField;
+    qrycontract_user_ctr_usr_cod: TBytesField;
+    memEnterprise_UserCodEmp: TStringField;
+    memEnterprise_Userent_cod: TBytesField;
+    memEnterprise_Userent_first_name: TStringField;
+    memEnterprise_Usercte_usr_ent_id: TLongWordField;
+    memEnterprise_Userenterprise_ent_cod: TBytesField;
+    memEnterprise_Usercontract_user_ctr_usr_cod: TBytesField;
+    DBGrid1: TDBGrid;
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
@@ -104,6 +122,7 @@ type
   private
     { Private declarations }
       listEmp,listAction:TStrings;
+      modulo: string;
   public
     { Public declarations }
 
@@ -115,7 +134,6 @@ type
 
 var
   frm_contract_user: Tfrm_contract_user;
-  modulo: string;
 
 implementation
 
@@ -250,8 +268,9 @@ end;
 procedure Tfrm_contract_user.cxListEmpsClick(Sender: TObject);
 begin
   inherited;
-    memContract_User_Enterprise.Locate('enterprise_ent_cod',
-    listEmp[cxListEmps.ItemIndex],[]);
+    memEnterprise_User.Open;
+    memEnterprise_User.Locate('CodEmp',QuotedStr(listEmp[cxListEmps.ItemIndex]),[]);
+    ShowMessage(memEnterprise_Userent_first_name.AsString);
 end;
 
 procedure Tfrm_contract_user.cxListEmpsClickCheck(Sender: TObject; AIndex: Integer; APrevState,
@@ -263,7 +282,7 @@ procedure Tfrm_contract_user.cxListEmpsClickCheck(Sender: TObject; AIndex: Integ
 begin
   if TcxCheckListBoxItem(cxListEmps.Items[cxListEmps.ItemIndex]).Checked then
    begin
-    if not  memContract_User_Enterprise.Locate('enterprise_ent_cod',
+    if not  memEnterprise_User.Locate('enterprise_ent_cod',
      listEmp[cxListEmps.ItemIndex],[]) then
       begin
 //       qry_contract_user_enterprise.Insert;
@@ -274,7 +293,7 @@ begin
           Dao             := TContract_User_Enterprise_Dao.Create;
 
           User_Enterprise.contract_user_ctr_usr_cod := frm_dm.p_ctr_usr_cod;
-        //  User_Enterprise.enterprise_ent_cod        := ;
+          User_Enterprise.enterprise_ent_cod        := listEmp[cxListEmps.ItemIndex];
 
         finally
         end;
@@ -285,7 +304,7 @@ begin
 
   if not TcxCheckListBoxItem(cxListEmps.Items[cxListEmps.ItemIndex]).Checked then
    begin
-     memContract_User_Enterprise.Locate('enterprise_ent_cod',
+     memEnterprise_User.Locate('enterprise_ent_cod',
      listEmp[cxListEmps.ItemIndex],[]);
    // qry_contract_user_enterprise.delete;
    end;
@@ -347,32 +366,48 @@ end;
 procedure Tfrm_contract_user.montar_empresa;
 var
 i:Integer;
+// User_Contract: TContract_User_Enterprise_Model;
+// Dao          : TContract_User_Enterprise_Dao;
 begin
+//     User_Contract := TContract_User_Enterprise_Model.Create;
+//     Dao           := TContract_User_Enterprise_Dao.Create;
+//    try
+//      memEnterprise_User.Close;
+//      User_Contract.contract_user_ctr_usr_cod := frm_dm.p_ctr_usr_cod;
+//      memEnterprise_User.Data:=Dao.ListarEmpresasDeUserAcesso(User_Contract);
+//      dts_Contract_User_Enterprise.DataSet := Dao.ListarEmpresasDeUserAcesso(User_Contract);
 
-   with frm_dm.qry,sql do
+      with frm_dm.qry,sql do
      begin
       close;
-      text := ' select a.ent_cod, a.ent_first_name, a.ent_id, b.enterprise_ent_cod, b.contract_user_ctr_usr_cod from enterprise a ' +
-              ' left join contract_user_enterprise b on a.ent_cod=b.enterprise_ent_cod                            ' +
-              ' and b.contract_user_ctr_usr_cod = ' +frm_dm.v_ctr_usr_cod+
-              ' order by 1  ';
+      text := ' select hex(a.ent_cod)as CodEmp, a.ent_cod, a.ent_first_name, b.cte_usr_ent_id, b.enterprise_ent_cod, ' +
+              ' b.contract_user_ctr_usr_cod from enterprise a ' +
+              ' left join contract_user_enterprise b on a.ent_cod=b.enterprise_ent_cod  '    +
+              ' and b.contract_user_ctr_usr_cod = '+frm_dm.p_ctr_usr_cod +
+              ' order by 1 ';
       Prepared;
       Open;
       First;
+
       i:=0;
       cxlistEmps.Items.clear;
       listEmp.Clear;
       while not Eof do
       begin
-        cxlistEmps.AddItem(Fields[1].Text);
+        cxlistEmps.AddItem(Fields[2].Text);
        if trim(Fields[3].AsString) <> '' then
         TcxCheckListBoxItem(cxlistEmps.Items[i]).Checked:=True;
-        listEmp.Add(Fields[2].AsString);
+        listEmp.Add(Fields[0].AsString);
         i:=i+1;
         Next;
       end;
       Close;
-     end;
+      end;
+
+//    finally
+//      User_Contract.Free;
+//      Dao.Free;
+//    end;
 
 end;
 

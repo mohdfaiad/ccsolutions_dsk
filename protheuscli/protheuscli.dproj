@@ -154,9 +154,6 @@
         <DCCReference Include="..\ufrm_contract.pas">
             <Form>frm_contract</Form>
         </DCCReference>
-        <DCCReference Include="..\ufrm_contract_user.pas">
-            <Form>frm_contract_user</Form>
-        </DCCReference>
         <DCCReference Include="..\ufrm_enterprise.pas">
             <Form>frm_enterprise</Form>
         </DCCReference>
@@ -182,7 +179,6 @@
         <DCCReference Include="..\class_Conexao.pas"/>
         <DCCReference Include="..\class_contract_user.pas"/>
         <DCCReference Include="..\class_required_field.pas"/>
-        <DCCReference Include="..\Model\Contract_user.Model.pas"/>
         <DCCReference Include="..\Dao\Contract_User.Dao.pas"/>
         <DCCReference Include="..\Dao\Conexao.pas"/>
         <DCCReference Include="..\ufrm_doctor.pas">
@@ -195,7 +191,6 @@
             <Form>frm_employee_</Form>
         </DCCReference>
         <DCCReference Include="..\Dao\Employee.Dao.pas"/>
-        <DCCReference Include="..\Model\Employee.Model.pas"/>
         <DCCReference Include="..\ufrm_scheduling.pas">
             <Form>frm_scheduling</Form>
         </DCCReference>
@@ -212,6 +207,15 @@
             <Form>frm_role</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\ufrm_contract_user.pas">
+            <Form>frm_contract_user</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Model\Contract_user.Model.pas"/>
+        <DCCReference Include="..\Model\Contract_User_Enterprise.Model.pas"/>
+        <DCCReference Include="..\Model\Employee.Model.pas"/>
+        <DCCReference Include="..\Model\Employee_Model.pas"/>
+        <DCCReference Include="..\Dao\Contract_User_Enterprise.Dao.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

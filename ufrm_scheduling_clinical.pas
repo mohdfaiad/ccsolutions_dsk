@@ -32,7 +32,8 @@ uses
   System.Actions, Vcl.ActnList, cxCheckBox, dxStatusBar, cxTextEdit, cxLabel,
   cxGroupBox, cxGridLevel, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, cxPC, ufrm_dm, cxMaskEdit,
-  cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox;
+  cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
+  dxDateTimeWheelPicker;
 
 type
   Tfrm_scheduling_clinical = class(Tfrm_default)
@@ -44,16 +45,12 @@ type
     cxGridDBTableView1scc_id: TcxGridDBColumn;
     cxGridDBTableView1scc_status: TcxGridDBColumn;
     cxGridDBTableView1scc_dt_registration: TcxGridDBColumn;
-    cxLookupComboBoxCliente: TcxLookupComboBox;
-    cxLabelClient: TcxLabel;
     qry_client: TFDQuery;
     qry_clientcli_cod: TBytesField;
     qry_clientcontract_ctr_cod: TBytesField;
     qry_clientcli_first_name: TStringField;
     qry_clientcliCod: TStringField;
     ds_qry_client: TDataSource;
-    cxLabelDoctor: TcxLabel;
-    cxLookupComboBoxDoctor: TcxLookupComboBox;
     qry_doctor: TFDQuery;
     ds_qry_doctor: TDataSource;
     qry_scheduling: TFDQuery;
@@ -76,21 +73,8 @@ type
     qryreq_status: TStringField;
     qryreq_deleted_at: TDateTimeField;
     qryreq_dt_registration: TDateTimeField;
-    cxGrid1DBTableView1: TcxGridDBTableView;
-    cxGrid1Level1: TcxGridLevel;
-    cxGrid1: TcxGrid;
     qry_requisition_sheduling: TFDQuery;
     ds_requisition_sheduling: TDataSource;
-    cxGrid1DBTableView1rsh_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1contract_ctr_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1requisition_req_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1scheduling_sch_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1rolte_rol_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1doctor_doc_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1rsh_id: TcxGridDBColumn;
-    cxGrid1DBTableView1rsh_status: TcxGridDBColumn;
-    cxGrid1DBTableView1rsh_deleted_at: TcxGridDBColumn;
-    cxGrid1DBTableView1rsh_dt_registration: TcxGridDBColumn;
     qryhexreq_cod: TStringField;
     qry_role: TFDQuery;
     qry_rolerol_name: TStringField;
@@ -115,6 +99,33 @@ type
     qry_doctorrolCod: TStringField;
     qry_requisition_shedulingrec_name: TStringField;
     qry_doctorcontract_ctr_cod: TBytesField;
+    cxLabelClient: TcxLabel;
+    cxLookupComboBoxCliente: TcxLookupComboBox;
+    cxGrid1: TcxGrid;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1DBTableView1rolte_rol_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1doctor_doc_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1rsh_id: TcxGridDBColumn;
+    cxGrid1DBTableView1rsh_status: TcxGridDBColumn;
+    cxGrid1DBTableView1rsh_deleted_at: TcxGridDBColumn;
+    cxGrid1DBTableView1rsh_dt_registration: TcxGridDBColumn;
+    cxGrid1Level1: TcxGridLevel;
+    grid_1DBTableView1req_cod: TcxGridDBColumn;
+    grid_1DBTableView1contract_ctr_cod: TcxGridDBColumn;
+    grid_1DBTableView1client_cli_cod: TcxGridDBColumn;
+    grid_1DBTableView1enterprise_ent_cod: TcxGridDBColumn;
+    grid_1DBTableView1requisition_type_ret_cod: TcxGridDBColumn;
+    grid_1DBTableView1insurance_ins_cod: TcxGridDBColumn;
+    grid_1DBTableView1role_rol_cod: TcxGridDBColumn;
+    grid_1DBTableView1doctor_doc_cod: TcxGridDBColumn;
+    grid_1DBTableView1req_id: TcxGridDBColumn;
+    grid_1DBTableView1req_status: TcxGridDBColumn;
+    grid_1DBTableView1req_deleted_at: TcxGridDBColumn;
+    grid_1DBTableView1req_dt_registration: TcxGridDBColumn;
+    grid_1DBTableView1hexreq_cod: TcxGridDBColumn;
+    qry_requisition_shedulingdateTime: TStringField;
+    cxGrid1DBTableView1Column1: TcxGridDBColumn;
+    qry_doctordoc_cod: TBytesField;
     procedure Action_cancelExecute(Sender: TObject);
     procedure qry_sql(sql:string);
     procedure Action_saveExecute(Sender: TObject);
@@ -127,6 +138,8 @@ type
       Sender: TObject);
     procedure qry_requisition_shedulingBeforePost(DataSet: TDataSet);
     procedure qry_requisition_shedulingAfterPost(DataSet: TDataSet);
+    procedure cxGrid1DBTableView1doctor_doc_codPropertiesCloseUp(
+      Sender: TObject);
   private
     { Private declarations }
     req_cod,sch_cod,rsh_cod:string;
@@ -209,6 +222,16 @@ with frm_dm.qry,sql do
 
 end;
 
+procedure Tfrm_scheduling_clinical.cxGrid1DBTableView1doctor_doc_codPropertiesCloseUp(
+  Sender: TObject);
+begin
+  inherited;
+  if not (qry_requisition_sheduling.State in[dsEdit]) then
+   qry_requisition_sheduling.Edit;
+   qry_requisition_shedulingdoctor_doc_cod.Value:=qry_doctordoc_cod.Value;
+   qry_requisition_sheduling.Post;
+end;
+
 procedure Tfrm_scheduling_clinical.cxGrid1DBTableView1rolte_rol_codPropertiesCloseUp(
   Sender: TObject);
 begin
@@ -220,7 +243,7 @@ begin
 
    qry_requisition_sheduling.Refresh;
 
-   qry_doctor.Filter:='rolCod = ' + rsh_cod;
+   qry_doctor.Filter:='rolCod = ' + QuotedStr(qry_requisition_shedulingrolCod.AsString);
    qry_doctor.Filtered:=True;
 
 end;
@@ -272,9 +295,12 @@ begin
   end;
 
    qry_requisition_sheduling.close;
-   qry_requisition_sheduling.SQL.Text:=' select requisition_sheduling.*,hex(rsh_cod) as rshCod,rol_name, ' +
-                                       ' hex(role_rol_cod) as rolCod from requisition_sheduling ' +
-                                       ' left join role on rol_cod = role_rol_cod';
+   qry_requisition_sheduling.SQL.Text:=' select requisition_sheduling.*,hex(rsh_cod) as rshCod,rol_name,rec_name, ' +
+              ' hex(requisition_sheduling.role_rol_cod) as rolCod from requisition_sheduling '+
+              ' left join role on rol_cod = role_rol_cod ' +
+              ' left join record on  rec_cod in (select record_rec_cod from employee ' +
+                             ' where emp_cod in (select employee_emp_cod from role_employee ' +
+                             ' where role_rol_cod = rol_cod) and emp_cod in (select employee_emp_cod from doctor)) ';
    qry_requisition_sheduling.Prepare;
    qry_requisition_sheduling.open;
 

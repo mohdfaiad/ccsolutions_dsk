@@ -32,8 +32,10 @@ uses
   Client.Dao in '..\Dao\Client.Dao.pas',
   Conexao in '..\Dao\Conexao.pas',
   Contract_User.Dao in '..\Dao\Contract_User.Dao.pas',
+  Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
   Employee.Dao in '..\Dao\Employee.Dao.pas',
   Contract_user.Model in '..\Model\Contract_user.Model.pas',
+  Contract_User_Enterprise.Model in '..\Model\Contract_User_Enterprise.Model.pas',
   Employee.Model in '..\Model\Employee.Model.pas',
   Employee_Model in '..\Model\Employee_Model.pas';
 

@@ -1,22 +1,81 @@
 inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   Caption = 'frm_scheduling_clinical'
+  ClientWidth = 1166
+  ExplicitWidth = 1182
   PixelsPerInch = 96
   TextHeight = 13
+  inherited bardck_1: TdxBarDockControl
+    Width = 1166
+    ExplicitWidth = 1166
+  end
   inherited pgctrl_1: TcxPageControl
+    Width = 1166
     Properties.ActivePage = tbsht_2
+    ExplicitWidth = 1166
+    ClientRectRight = 1160
     inherited tbsht_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 27
-      ExplicitWidth = 954
+      ExplicitWidth = 1158
       ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
+        Width = 1158
+        ExplicitWidth = 1158
+        ClientRectRight = 1152
         inherited tbsht_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 27
-          ExplicitWidth = 946
+          ExplicitWidth = 1150
           ExplicitHeight = 505
           inherited grid_1: TcxGrid
-            inherited cxGridDBTableView1: TcxGridDBTableView
+            Width = 1144
+            ExplicitWidth = 1144
+            inherited grid_1DBTableView1: TcxGridDBTableView
+              object grid_1DBTableView1req_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'req_cod'
+              end
+              object grid_1DBTableView1contract_ctr_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'contract_ctr_cod'
+              end
+              object grid_1DBTableView1client_cli_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'client_cli_cod'
+              end
+              object grid_1DBTableView1enterprise_ent_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'enterprise_ent_cod'
+              end
+              object grid_1DBTableView1requisition_type_ret_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'requisition_type_ret_cod'
+              end
+              object grid_1DBTableView1insurance_ins_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'insurance_ins_cod'
+              end
+              object grid_1DBTableView1role_rol_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'role_rol_cod'
+              end
+              object grid_1DBTableView1doctor_doc_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'doctor_doc_cod'
+              end
+              object grid_1DBTableView1req_id: TcxGridDBColumn
+                DataBinding.FieldName = 'req_id'
+              end
+              object grid_1DBTableView1req_status: TcxGridDBColumn
+                DataBinding.FieldName = 'req_status'
+              end
+              object grid_1DBTableView1req_deleted_at: TcxGridDBColumn
+                DataBinding.FieldName = 'req_deleted_at'
+              end
+              object grid_1DBTableView1req_dt_registration: TcxGridDBColumn
+                DataBinding.FieldName = 'req_dt_registration'
+              end
+              object grid_1DBTableView1hexreq_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'hex(req_cod)'
+              end
+            end
+            object cxGridDBTableView1: TcxGridDBTableView [1]
+              Navigator.Buttons.CustomButtons = <>
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <>
+              DataController.Summary.SummaryGroups = <>
               object cxGridDBTableView1scc_cod: TcxGridDBColumn
                 DataBinding.FieldName = 'scc_cod'
               end
@@ -49,27 +108,30 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     inherited tbsht_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 27
-      ExplicitWidth = 954
+      ExplicitWidth = 1158
       ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
+        Width = 1158
+        ExplicitWidth = 1158
+        ClientRectRight = 1152
         inherited tbsht_5: TcxTabSheet
-          ExplicitLeft = -2
-          ExplicitTop = 30
-          inherited cxGroupBox1: TcxGroupBox
-            ExplicitHeight = 57
-            Height = 57
-            inherited cxLabel2: TcxLabel
-              Left = 260
-              ExplicitLeft = 260
-            end
+          ExplicitWidth = 1150
+          inherited grb_top: TcxGroupBox
+            ExplicitWidth = 1144
+            Width = 1144
             inherited edt_dt_registration: TcxTextEdit
               Left = 260
               ExplicitLeft = 260
             end
           end
-          inherited cxGroupBox2: TcxGroupBox
-            Top = 66
-            ExplicitTop = 66
+          inherited grb_bottton: TcxGroupBox
+            ExplicitWidth = 1144
+            Width = 1144
+            object cxLabelClient: TcxLabel
+              Left = 3
+              Top = 16
+              Caption = 'Cliente'
+            end
             object cxLookupComboBoxCliente: TcxLookupComboBox
               Left = 3
               Top = 33
@@ -80,38 +142,15 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                   FieldName = 'cli_first_name'
                 end>
               Properties.ListSource = ds_qry_client
-              TabOrder = 0
-              Width = 382
-            end
-            object cxLabelClient: TcxLabel
-              Left = 3
-              Top = 16
-              Caption = 'Cliente'
-            end
-            object cxLabelDoctor: TcxLabel
-              Left = 451
-              Top = 388
-              Caption = 'Doutor'
-            end
-            object cxLookupComboBoxDoctor: TcxLookupComboBox
-              Left = 451
-              Top = 404
-              Properties.GridMode = True
-              Properties.KeyFieldNames = 'docCod'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'rec_name'
-                end>
-              Properties.ListSource = ds_qry_doctor
-              TabOrder = 3
+              TabOrder = 1
               Width = 382
             end
             object cxGrid1: TcxGrid
               Left = 3
               Top = 69
-              Width = 774
+              Width = 1038
               Height = 297
-              TabOrder = 4
+              TabOrder = 2
               object cxGrid1DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
                 Navigator.Buttons.Images = imglist_1
@@ -136,18 +175,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                 DataController.Summary.DefaultGroupSummaryItems = <>
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
-                object cxGrid1DBTableView1rsh_cod: TcxGridDBColumn
-                  DataBinding.FieldName = 'rsh_cod'
-                end
-                object cxGrid1DBTableView1contract_ctr_cod: TcxGridDBColumn
-                  DataBinding.FieldName = 'contract_ctr_cod'
-                end
-                object cxGrid1DBTableView1requisition_req_cod: TcxGridDBColumn
-                  DataBinding.FieldName = 'requisition_req_cod'
-                end
-                object cxGrid1DBTableView1scheduling_sch_cod: TcxGridDBColumn
-                  DataBinding.FieldName = 'scheduling_sch_cod'
-                end
                 object cxGrid1DBTableView1rolte_rol_cod: TcxGridDBColumn
                   DataBinding.FieldName = 'rol_name'
                   PropertiesClassName = 'TcxLookupComboBoxProperties'
@@ -169,6 +196,12 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                       FieldName = 'rec_name'
                     end>
                   Properties.ListSource = ds_qry_doctor
+                  Properties.OnCloseUp = cxGrid1DBTableView1doctor_doc_codPropertiesCloseUp
+                end
+                object cxGrid1DBTableView1Column1: TcxGridDBColumn
+                  DataBinding.FieldName = 'dateTime'
+                  PropertiesClassName = 'TdxDateTimeWheelPickerProperties'
+                  Width = 108
                 end
                 object cxGrid1DBTableView1rsh_id: TcxGridDBColumn
                   DataBinding.FieldName = 'rsh_id'
@@ -193,9 +226,13 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     end
   end
   inherited stsbar_1: TdxStatusBar
+    Width = 1166
+    ExplicitWidth = 1166
     inherited stsbar_deleted_at: TdxStatusBarContainerControl
+      Width = 1130
+      ExplicitWidth = 1130
       inherited chkbox_1: TcxCheckBox
-        ExplicitWidth = 926
+        ExplicitWidth = 1130
         ExplicitHeight = 32
       end
     end
@@ -357,13 +394,19 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     SQL.Strings = (
       
         'select rec_name,rol_name,hex(rol_cod) as rolCod,record'#10'.contract' +
-        '_ctr_cod from record'#10
+        '_ctr_cod,doc_cod from record'#10
+      
+        'left join doctor on employee_emp_cod in (select emp_cod from emp' +
+        'loyee '#10'        '
+      'where record_rec_cod = rec_cod)'
       
         'left join role on rol_cod in (select role_rol_cod from role_empl' +
-        'oyee'#10'                      where employee_emp_cod in (select emp' +
-        'loyee_emp_cod from doctor))'#10'where rec_cod in (select record_rec_' +
-        'cod from employee'#10'                 where emp_cod in (select empl' +
-        'oyee_emp_cod from doctor))')
+        'oyee'#10'                      '
+      
+        'where employee_emp_cod in (select employee_emp_cod from doctor))' +
+        #10'where rec_cod in (select record_rec_cod from employee'#10'         ' +
+        '        '
+      'where emp_cod in (select employee_emp_cod from doctor))')
     Left = 623
     Top = 300
     object qry_doctorrec_name: TStringField
@@ -393,11 +436,18 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       FieldName = 'contract_ctr_cod'
       Origin = 'contract_ctr_cod'
     end
+    object qry_doctordoc_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'doc_cod'
+      Origin = 'doc_cod'
+      ProviderFlags = []
+      ReadOnly = True
+    end
   end
   object ds_qry_doctor: TDataSource
     DataSet = qry_doctor
     Left = 703
-    Top = 282
+    Top = 394
   end
   object qry_scheduling: TFDQuery
     Active = True
@@ -405,8 +455,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from scheduling')
-    Left = 783
-    Top = 263
+    Left = 831
+    Top = 359
     object qry_schedulingsch_cod: TBytesField
       FieldName = 'sch_cod'
       Origin = 'sch_cod'
@@ -460,7 +510,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     SQL.Strings = (
       
         'select requisition_sheduling.*,hex(rsh_cod) as rshCod,rol_name,r' +
-        'ec_name,'#10'hex(role_rol_cod) as rolCod from requisition_sheduling'#10
+        'ec_name,'#10'hex(requisition_sheduling.role_rol_cod) as rolCod,'#39#39' as' +
+        ' dateTime from requisition_sheduling'#10
       'left join role on rol_cod = role_rol_cod'#10
       
         'left join record on  rec_cod in (select record_rec_cod from empl' +
@@ -557,6 +608,14 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ProviderFlags = []
       ReadOnly = True
       Size = 85
+    end
+    object qry_requisition_shedulingdateTime: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'dateTime'
+      Origin = '`dateTime`'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 0
     end
   end
   object ds_requisition_sheduling: TDataSource

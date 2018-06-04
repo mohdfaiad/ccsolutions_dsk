@@ -18,7 +18,6 @@ uses
   ufrm_consult_cnpj in '..\ufrm_consult_cnpj.pas' {frm_consult_cnpj},
   ufrm_consult_cpf in '..\ufrm_consult_cpf.pas' {frm_consult_cpf},
   ufrm_contract in '..\ufrm_contract.pas' {frm_contract},
-  ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
   ufrm_enterprise in '..\ufrm_enterprise.pas' {frm_enterprise},
   uthred_logged in '..\uthred_logged.pas',
   ufrm_report in '..\ufrm_report.pas' {frm_report},
@@ -30,19 +29,23 @@ uses
   class_Conexao in '..\class_Conexao.pas',
   class_contract_user in '..\class_contract_user.pas',
   class_required_field in '..\class_required_field.pas',
-  Contract_user.Model in '..\Model\Contract_user.Model.pas',
   Contract_User.Dao in '..\Dao\Contract_User.Dao.pas',
   Conexao in '..\Dao\Conexao.pas',
   ufrm_doctor in '..\ufrm_doctor.pas' {frm_doctor},
   ufrm_employee in '..\ufrm_employee.pas' {frm_employee},
   ufrm_employeee in '..\ufrm_employeee.pas' {frm_employee_},
   Employee.Dao in '..\Dao\Employee.Dao.pas',
-  Employee.Model in '..\Model\Employee.Model.pas',
   ufrm_scheduling in '..\ufrm_scheduling.pas' {frm_scheduling},
   ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
   class_table_price in '..\class_table_price.pas',
   ufrm_scheduling_clinical in '..\ufrm_scheduling_clinical.pas' {frm_scheduling_clinical},
-  ufrm_role in '..\ufrm_role.pas' {frm_role};
+  ufrm_role in '..\ufrm_role.pas' {frm_role},
+  ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
+  Contract_user.Model in '..\Model\Contract_user.Model.pas',
+  Contract_User_Enterprise.Model in '..\Model\Contract_User_Enterprise.Model.pas',
+  Employee.Model in '..\Model\Employee.Model.pas',
+  Employee_Model in '..\Model\Employee_Model.pas',
+  Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas';
 
 {$R *.res}
 var

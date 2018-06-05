@@ -52,7 +52,8 @@ uses
   Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
   ufrm_employeee in '..\ufrm_employeee.pas' {frm_employee_},
   Employee.Model in '..\Model\Employee.Model.pas',
-  Employee.Dao in '..\Dao\Employee.Dao.pas';
+  Employee.Dao in '..\Dao\Employee.Dao.pas',
+  Contract_User_Action.Dao in '..\Dao\Contract_User_Action.Dao.pas';
 
 {$R *.res}
 

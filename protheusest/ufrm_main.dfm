@@ -1,7 +1,5 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Estoque - CCS Protheus.'
-  ExplicitWidth = 1024
-  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited Bevel_1: TBevel
@@ -12,9 +10,11 @@ inherited frm_main: Tfrm_main
   end
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
+      Active = False
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
+      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar3'
@@ -938,6 +938,7 @@ inherited frm_main: Tfrm_main
     object Action_stock_out: TAction
       Category = 'M'#243'dulo'
       Caption = 'Sa'#237'da do Estoque'
+      Hint = 'Sa'#237'da do Estoque'
       OnExecute = Action_stock_outExecute
     end
   end

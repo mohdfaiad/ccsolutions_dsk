@@ -91,21 +91,27 @@ type
     grid_1DBTableView1ctr_usr_admin: TcxGridDBColumn;
     grid_1DBTableView1ctr_usr_status: TcxGridDBColumn;
     grid_1DBTableView1ctr_usr_dt_registration: TcxGridDBColumn;
-    dts_Contract_User_Enterprise: TDataSource;
-    memEnterprise_User: TFDMemTable;
-    qryCodEmp: TStringField;
-    qryent_cod: TBytesField;
-    qryent_first_name: TStringField;
-    qrycte_usr_ent_id: TLongWordField;
-    qryenterprise_ent_cod: TBytesField;
-    qrycontract_user_ctr_usr_cod: TBytesField;
-    memEnterprise_UserCodEmp: TStringField;
-    memEnterprise_Userent_cod: TBytesField;
-    memEnterprise_Userent_first_name: TStringField;
-    memEnterprise_Usercte_usr_ent_id: TLongWordField;
-    memEnterprise_Userenterprise_ent_cod: TBytesField;
-    memEnterprise_Usercontract_user_ctr_usr_cod: TBytesField;
-    DBGrid1: TDBGrid;
+    memEnterprise: TFDMemTable;
+    memcodUser: TStringField;
+    memEnterpriseCodEmp: TStringField;
+    memEnterpriseent_cod: TBytesField;
+    memEnterpriseent_first_name: TStringField;
+    memEnterprisecte_usr_ent_id: TLongWordField;
+    memEnterpriseenterprise_ent_cod: TBytesField;
+    memEnterprisecodUserEmpresa: TStringField;
+    memEnterprisecontract_user_ctr_usr_cod: TBytesField;
+    memEnterprisecte_usr_ent_cod: TBytesField;
+    memEnterpriseCodContracUser: TStringField;
+    memSystem_Action: TFDMemTable;
+    memSystem_Actionsys_act_subtitle: TStringField;
+    memSystem_Actionsys_Act_name: TStringField;
+    memAction: TFDMemTable;
+    memActioncta_cod: TBytesField;
+    memActioncontract_user_ctr_usr_cod: TBytesField;
+    memActioncta_action_name: TStringField;
+    memActioncta_deleted_at: TDateTimeField;
+    memActioncta_dt_registration: TDateTimeField;
+    memActionCodAction: TStringField;
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
@@ -119,6 +125,7 @@ type
     procedure cxListEmpsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure cxListEmpsClickCheck(Sender: TObject; AIndex: Integer; APrevState, ANewState: TcxCheckBoxState);
+    procedure cxListMenuClickCheck(Sender: TObject; AIndex: Integer; APrevState, ANewState: TcxCheckBoxState);
   private
     { Private declarations }
       listEmp,listAction:TStrings;
@@ -139,7 +146,7 @@ implementation
 
 {$R *.dfm}
 
-uses Contract_User_Enterprise.Dao, Contract_User_Enterprise.Model;
+uses Contract_User_Enterprise.Dao, Contract_User_Enterprise.Model, Contract_User_Action.Dao;
 
 { Tfrm_contract_user }
 
@@ -225,52 +232,56 @@ end;
 procedure Tfrm_contract_user.AdvOfficeTabSet1Change(Sender: TObject);
 var
   c: Integer;
+  Dao : TContract_User_Action_Dao;
 begin
 //  subs := TStringList.Create;
 
- frm_dm.qry3.close;
- frm_dm.qry3.SQL.Clear;
- frm_dm.qry3.SQL.Text := ' select ctr_usr_act_action_name from contract_user_action ' +
-            ' where ctr_usr_act_user_cod = ' +frm_dm.v_ctr_usr_cod +
-            ' and ctr_usr_act_action_name =:menu';
+   Dao := TContract_User_Action_Dao.Create;
+   try
 
+     memSystem_Action.Close;
+     memSystem_Action.Data:= Dao.ExibirActionMudulo(AdvOfficeTabSet1.AdvOfficeTabs[AdvOfficeTabSet1.ActiveTabIndex].Caption,modulo);
 
-  frm_dm.qry_action.Close;
-  frm_dm.qry_action.ParamByName('sys_act_option').Value := AdvOfficeTabSet1.AdvOfficeTabs[AdvOfficeTabSet1.ActiveTabIndex].Caption;
-  frm_dm.qry_action.ParamByName('sys_act_module').Value := Modulo;
+     memSystem_Action.First;
+     cxListMenu.Items.clear;
+     listAction.Clear;
+     c:=0;
+    //    subs.clear;
+     while not memSystem_Action.Eof do
+      begin
+       cxListMenu.AddItem(memSystem_Action.FieldByName('sys_act_subtitle').AsString);
+       listAction.Add(memSystem_Action.FieldByName('sys_Act_name').AsString);
+    //      subs.add((qvi2.FieldByName('menu_cod').AsString));
+        memAction.Close;
+        memAction.Data := Dao.listaMudulo(memcodUser.AsString,memSystem_Actionsys_Act_name.AsString);
 
-   frm_dm.qry_action.Prepared;
-   frm_dm.qry_action.Open;
-
-   frm_dm.qry_action.First;
-   cxListMenu.Items.clear;
-   listAction.Clear;
-   c:=0;
-  //    subs.clear;
-   while not frm_dm.qry_action.Eof do
-    begin
-     cxListMenu.AddItem(frm_dm.qry_action.FieldByName('sys_act_subtitle').AsString);
-     listAction.Add(frm_dm.qry_action.FieldByName('sys_Act_name').AsString);
-  //      subs.add((qvi2.FieldByName('menu_cod').AsString));
-     frm_dm.qry3.ParamByName('menu').AsString :=frm_dm.qry_action.FieldByName('sys_Act_name').AsString;
-     frm_dm.qry3.Prepare;
-     frm_dm.qry3.Open;
-
-      TcxCheckListBoxItem(cxListMenu.Items[c]).Checked:= not frm_dm.qry3.IsEmpty;
-  //      qvi.close;
-      c:=c + 1;
-      frm_dm.qry3.Close;
-      frm_dm.qry_action.Next;
-    end;
+        TcxCheckListBoxItem(cxListMenu.Items[c]).Checked:= not memAction.IsEmpty;
+    //      qvi.close;
+        c:=c + 1;
+        memAction.Close;
+        memSystem_Action.Next;
+      end;
+   finally
+     Dao.Free;
+   end;
 
 end;
 
 procedure Tfrm_contract_user.cxListEmpsClick(Sender: TObject);
+ var
+   Dao : TContract_User_Enterprise_Dao;
 begin
   inherited;
-    memEnterprise_User.Open;
-    memEnterprise_User.Locate('CodEmp',QuotedStr(listEmp[cxListEmps.ItemIndex]),[]);
-    ShowMessage(memEnterprise_Userent_first_name.AsString);
+     Dao := TContract_User_Enterprise_Dao.Create;
+    try
+    // Memtable recebe sql para localizar a empresa selecionada Verifica se usuário tem acesso aos dados
+      memEnterprise.Close;
+      memEnterprise.Data := Dao.ListarEmpresasDeUserAcesso(memcodUser.AsString);
+      memEnterprise.Locate('codUserEmpresa',listEmp[cxListEmps.ItemIndex],[]);
+    finally
+      Dao.Free;
+    end;
+
 end;
 
 procedure Tfrm_contract_user.cxListEmpsClickCheck(Sender: TObject; AIndex: Integer; APrevState,
@@ -280,35 +291,64 @@ procedure Tfrm_contract_user.cxListEmpsClickCheck(Sender: TObject; AIndex: Integ
   User_Enterprise : TContract_User_Enterprise_Model;
   Dao             : TContract_User_Enterprise_Dao;
 begin
+
+  User_Enterprise := TContract_User_Enterprise_Model.Create;
+  Dao             := TContract_User_Enterprise_Dao.Create;
+  try
+
   if TcxCheckListBoxItem(cxListEmps.Items[cxListEmps.ItemIndex]).Checked then
    begin
-    if not  memEnterprise_User.Locate('enterprise_ent_cod',
-     listEmp[cxListEmps.ItemIndex],[]) then
+    if not  memEnterprise.Locate('codUserEmpresa', listEmp[cxListEmps.ItemIndex],[]) then
       begin
-//       qry_contract_user_enterprise.Insert;
-//       qry_contract_user_enterprisectr_usr_ent_ent_id.AsString:=listEmp[cxListEmps.ItemIndex];
-//       qry_contract_user_enterprise.Post;
-        try
-          User_Enterprise := TContract_User_Enterprise_Model.Create;
-          Dao             := TContract_User_Enterprise_Dao.Create;
-
-          User_Enterprise.contract_user_ctr_usr_cod := frm_dm.p_ctr_usr_cod;
-          User_Enterprise.enterprise_ent_cod        := listEmp[cxListEmps.ItemIndex];
-
-        finally
-        end;
-
+       //Ao click caso não esteja checked SQL para Inserir na tabela "contract_user_enterprise"
+         User_Enterprise.contract_user_ctr_usr_cod := memcodUser.AsString;
+         User_Enterprise.enterprise_ent_cod        := listEmp[cxListEmps.ItemIndex];
+         Dao.Contract_User_Enterprise_Create(User_Enterprise);
 
       end;
    end;
 
   if not TcxCheckListBoxItem(cxListEmps.Items[cxListEmps.ItemIndex]).Checked then
    begin
-     memEnterprise_User.Locate('enterprise_ent_cod',
-     listEmp[cxListEmps.ItemIndex],[]);
-   // qry_contract_user_enterprise.delete;
+     //Localiza os dados para updade de cte_usr_ent_deleted_at "Delete"
+      memEnterprise.Locate('codUserEmpresa', listEmp[cxListEmps.ItemIndex],[]);
+    //Ao click se checked SQL para Delete na tabela "contract_user_enterprise"
+      User_Enterprise.cte_usr_ent_cod        := memEnterpriseCodContracUser.AsString;
+      Dao.Contract_User_Enterprise_Delete(User_Enterprise);
+
    end;
 
+   finally
+     User_Enterprise.Free;
+     Dao.Free;
+   end;
+
+end;
+
+procedure Tfrm_contract_user.cxListMenuClickCheck(Sender: TObject; AIndex: Integer; APrevState,
+  ANewState: TcxCheckBoxState);
+  var
+    Dao : TContract_User_Action_Dao;
+begin
+  inherited;
+  Dao := TContract_User_Action_Dao.Create;
+  try
+    if TcxCheckListBoxItem(cxListMenu.Items[cxListMenu.ItemIndex]).Checked then
+    begin
+    // Iseri na tebelas contract_user_action "Onde delega permicionamento ao usuário"
+      Dao.Contract_User_Action_Create(memcodUser.AsString,listAction[cxListMenu.ItemIndex]);
+    end;
+
+   if not TcxCheckListBoxItem(cxListMenu.Items[cxListMenu.ItemIndex]).Checked then
+    begin
+     // Updades na tebelas contract_user_action "Onde informa cta_deleted_at Negando permicionamento"
+       memAction.Close;
+       memAction.Data:= Dao.LocalizarAction(listAction[cxListMenu.ItemIndex]);
+       Dao.Contract_User_Action_Delete(memActionCodAction.AsString);
+    end;
+   finally
+    Dao.Free;
+   end;
 
 end;
 
@@ -340,9 +380,33 @@ begin
 end;
 
 procedure Tfrm_contract_user.FormShow(Sender: TObject);
+var
+  c: Integer;
 begin
-  inherited;
+
+  AdvOfficeTabSet1.AdvOfficeTabs.Clear;
+
+  with frm_dm.qry,sql do
+  begin
+    close;
+    Text := 'SELECT distinct sys_act_option FROM system_action '+
+                ' where sys_act_class = ''A'' '+
+                ' and sys_act_module = ' + QuotedStr(modulo) +
+                ' order by sys_act_option';
+    Prepared;
+    Open;
+    First;
+    while not Eof do
+     begin
+      //ShowMessage( AdvOfficeTabSet1.AdvOfficeTabs.AdvOfficeTabSet.AddTab(FieldByName('sys_act_option').AsString));
+      AdvOfficeTabSet1.AdvOfficeTabs.AdvOfficeTabSet.AddTab(FieldByName('sys_act_option').AsString);
+      Next;
+    end;
+  end;
+
   ExibirGrid;
+
+ inherited;
 end;
 
 procedure Tfrm_contract_user.LimpaCampos;
@@ -366,34 +430,25 @@ end;
 procedure Tfrm_contract_user.montar_empresa;
 var
 i:Integer;
-// User_Contract: TContract_User_Enterprise_Model;
-// Dao          : TContract_User_Enterprise_Dao;
+  Dao : TContract_User_Enterprise_Dao;
 begin
-//     User_Contract := TContract_User_Enterprise_Model.Create;
-//     Dao           := TContract_User_Enterprise_Dao.Create;
-//    try
-//      memEnterprise_User.Close;
-//      User_Contract.contract_user_ctr_usr_cod := frm_dm.p_ctr_usr_cod;
-//      memEnterprise_User.Data:=Dao.ListarEmpresasDeUserAcesso(User_Contract);
-//      dts_Contract_User_Enterprise.DataSet := Dao.ListarEmpresasDeUserAcesso(User_Contract);
 
-      with frm_dm.qry,sql do
+    Dao := TContract_User_Enterprise_Dao.Create;
+ try
+  //MemTable recebe o sql para exibir nomes das empresas
+    memEnterprise.Close;
+    memEnterprise.Data := Dao.ListarEmpresasDeUserAcesso(memcodUser.AsString);
+   with memEnterprise do
+   begin
+    while not Eof do
      begin
-      close;
-      text := ' select hex(a.ent_cod)as CodEmp, a.ent_cod, a.ent_first_name, b.cte_usr_ent_id, b.enterprise_ent_cod, ' +
-              ' b.contract_user_ctr_usr_cod from enterprise a ' +
-              ' left join contract_user_enterprise b on a.ent_cod=b.enterprise_ent_cod  '    +
-              ' and b.contract_user_ctr_usr_cod = '+frm_dm.p_ctr_usr_cod +
-              ' order by 1 ';
-      Prepared;
-      Open;
       First;
-
       i:=0;
       cxlistEmps.Items.clear;
       listEmp.Clear;
       while not Eof do
       begin
+      // Varrendo a Memtable para variavel do tipo TStrings receber os valores na posiçao do Fields
         cxlistEmps.AddItem(Fields[2].Text);
        if trim(Fields[3].AsString) <> '' then
         TcxCheckListBoxItem(cxlistEmps.Items[i]).Checked:=True;
@@ -401,13 +456,11 @@ begin
         i:=i+1;
         Next;
       end;
-      Close;
-      end;
-
-//    finally
-//      User_Contract.Free;
-//      Dao.Free;
-//    end;
+    end;
+   end;
+  finally
+   Dao.Free;
+ end;
 
 end;
 
@@ -439,7 +492,7 @@ end;
 procedure Tfrm_contract_user.tbsht_6Show(Sender: TObject);
 begin
   inherited;
-
+  //Exibe a lista das empresas do contrato
      montar_empresa;
 
      AdvOfficeTabSet1.ActiveTabIndex:=1;

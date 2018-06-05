@@ -14,13 +14,19 @@ inherited frm_contract_user: Tfrm_contract_user
     ExplicitWidth = 1129
     ClientRectRight = 1123
     inherited tbsht_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
       ExplicitWidth = 1121
+      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
         Width = 1121
         ExplicitWidth = 1121
         ClientRectRight = 1115
         inherited tbsht_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 27
           ExplicitWidth = 1113
+          ExplicitHeight = 505
           inherited grid_1: TcxGrid
             Width = 1107
             ExplicitWidth = 1107
@@ -118,7 +124,10 @@ inherited frm_contract_user: Tfrm_contract_user
     end
     inherited tbsht_2: TcxTabSheet
       OnShow = tbsht_2Show
+      ExplicitLeft = 2
+      ExplicitTop = 27
       ExplicitWidth = 1121
+      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         Width = 1121
         Properties.ActivePage = tbsht_6
@@ -244,6 +253,7 @@ inherited frm_contract_user: Tfrm_contract_user
             Align = alTop
             Caption = 'Lista de Empresas'
             TabOrder = 0
+            ExplicitTop = -6
             Height = 249
             Width = 1113
             object cxListEmps: TcxCheckListBox
@@ -258,50 +268,6 @@ inherited frm_contract_user: Tfrm_contract_user
               OnClickCheck = cxListEmpsClickCheck
               ExplicitTop = 12
             end
-            object DBGrid1: TDBGrid
-              Left = 640
-              Top = 88
-              Width = 450
-              Height = 120
-              DataSource = dts_Contract_User_Enterprise
-              TabOrder = 1
-              TitleFont.Charset = DEFAULT_CHARSET
-              TitleFont.Color = clWindowText
-              TitleFont.Height = -11
-              TitleFont.Name = 'Tahoma'
-              TitleFont.Style = []
-              Columns = <
-                item
-                  Expanded = False
-                  FieldName = 'CodEmp'
-                  Visible = True
-                end
-                item
-                  Expanded = False
-                  FieldName = 'ent_cod'
-                  Visible = True
-                end
-                item
-                  Expanded = False
-                  FieldName = 'ent_first_name'
-                  Visible = True
-                end
-                item
-                  Expanded = False
-                  FieldName = 'cte_usr_ent_id'
-                  Visible = True
-                end
-                item
-                  Expanded = False
-                  FieldName = 'enterprise_ent_cod'
-                  Visible = True
-                end
-                item
-                  Expanded = False
-                  FieldName = 'contract_user_ctr_usr_cod'
-                  Visible = True
-                end>
-            end
           end
           object cxGroupBox4: TcxGroupBox
             Left = 0
@@ -310,7 +276,8 @@ inherited frm_contract_user: Tfrm_contract_user
             Caption = 'Acesso ao Sistema'
             Style.Edges = [bLeft, bTop, bRight, bBottom]
             TabOrder = 1
-            ExplicitTop = 252
+            ExplicitLeft = -56
+            ExplicitTop = 142
             Height = 256
             Width = 1113
             object AdvOfficeTabSet1: TAdvOfficeTabSet
@@ -473,7 +440,7 @@ inherited frm_contract_user: Tfrm_contract_user
                   TabAppearance.BackGround.Direction = gdHorizontal
                 end>
               Align = alBottom
-              ActiveTabIndex = 0
+              ActiveTabIndex = 1
               ButtonSettings.CloseButtonPicture.Data = {
                 424DA20400000000000036040000280000000900000009000000010008000000
                 00006C000000C30E0000C30E00000001000000010000427B8400DEEFEF00FFFF
@@ -767,6 +734,9 @@ inherited frm_contract_user: Tfrm_contract_user
               Align = alLeft
               Items = <>
               TabOrder = 1
+              OnClickCheck = cxListMenuClickCheck
+              ExplicitLeft = 0
+              ExplicitTop = 23
             end
           end
         end
@@ -781,6 +751,7 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitWidth = 1093
       inherited chkbox_1: TcxCheckBox
         ExplicitWidth = 1093
+        ExplicitHeight = 32
       end
     end
   end
@@ -812,57 +783,96 @@ inherited frm_contract_user: Tfrm_contract_user
   inherited qry: TFDQuery
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      
-        'select hex(a.ent_cod)as CodEmp, a.ent_cod, a.ent_first_name, b.c' +
-        'te_usr_ent_id, b.enterprise_ent_cod,'#10'b.contract_user_ctr_usr_cod' +
-        ' from enterprise a '#10
-      
-        'left join contract_user_enterprise b on a.ent_cod=b.enterprise_e' +
-        'nt_cod')
+      '')
     Left = 696
-    object qryCodEmp: TStringField
+  end
+  inherited mem: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'ctr_usr_cod'
+        Attributes = [faRequired, faFixed]
+        DataType = ftBytes
+        Size = 16
+      end
+      item
+        Name = 'contract_ctr_cod'
+        Attributes = [faFixed]
+        DataType = ftBytes
+        Size = 16
+      end
+      item
+        Name = 'ctr_usr_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'ctr_usr_first_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'ctr_usr_last_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'ctr_usr_username'
+        DataType = ftString
+        Size = 65
+      end
+      item
+        Name = 'ctr_usr_password'
+        Attributes = [faFixed]
+        DataType = ftBytes
+        Size = 16
+      end
+      item
+        Name = 'ctr_usr_email'
+        DataType = ftString
+        Size = 65
+      end
+      item
+        Name = 'ctr_usr_dt_birth'
+        DataType = ftDate
+      end
+      item
+        Name = 'ctr_usr_logged'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'ctr_usr_admin'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'ctr_usr_status'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'ctr_usr_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'ctr_usr_dt_registration'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'codUser'
+        Attributes = [faReadonly]
+        DataType = ftString
+        Size = 32
+      end>
+    StoreDefs = True
+    object memcodUser: TStringField
       AutoGenerateValue = arDefault
-      FieldName = 'CodEmp'
-      Origin = 'CodEmp'
+      FieldName = 'codUser'
+      Origin = 'codUser'
       ProviderFlags = []
       ReadOnly = True
       Size = 32
     end
-    object qryent_cod: TBytesField
-      FieldName = 'ent_cod'
-      Origin = 'ent_cod'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object qryent_first_name: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'ent_first_name'
-      Origin = 'ent_first_name'
-      Size = 85
-    end
-    object qrycte_usr_ent_id: TLongWordField
-      AutoGenerateValue = arDefault
-      FieldName = 'cte_usr_ent_id'
-      Origin = 'cte_usr_ent_id'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-    object qryenterprise_ent_cod: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'enterprise_ent_cod'
-      Origin = 'enterprise_ent_cod'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-    object qrycontract_user_ctr_usr_cod: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'contract_user_ctr_usr_cod'
-      Origin = 'contract_user_ctr_usr_cod'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-  end
-  inherited mem: TFDMemTable
     object memctr_usr_cod: TBytesField
       FieldName = 'ctr_usr_cod'
       Origin = 'ctr_usr_cod'
@@ -945,12 +955,9 @@ inherited frm_contract_user: Tfrm_contract_user
       Origin = 'ctr_usr_dt_registration'
     end
   end
-  object dts_Contract_User_Enterprise: TDataSource
-    DataSet = memEnterprise_User
-    Left = 984
-    Top = 128
-  end
-  object memEnterprise_User: TFDMemTable
+  object memEnterprise: TFDMemTable
+    FieldDefs = <>
+    IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -958,9 +965,10 @@ inherited frm_contract_user: Tfrm_contract_user
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 792
-    Top = 144
-    object memEnterprise_UserCodEmp: TStringField
+    StoreDefs = True
+    Left = 816
+    Top = 56
+    object memEnterpriseCodEmp: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'CodEmp'
       Origin = 'CodEmp'
@@ -968,38 +976,135 @@ inherited frm_contract_user: Tfrm_contract_user
       ReadOnly = True
       Size = 32
     end
-    object memEnterprise_Userent_cod: TBytesField
+    object memEnterpriseent_cod: TBytesField
       FieldName = 'ent_cod'
       Origin = 'ent_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object memEnterprise_Userent_first_name: TStringField
+    object memEnterpriseent_first_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ent_first_name'
       Origin = 'ent_first_name'
       Size = 85
     end
-    object memEnterprise_Usercte_usr_ent_id: TLongWordField
+    object memEnterprisecte_usr_ent_id: TLongWordField
       AutoGenerateValue = arDefault
       FieldName = 'cte_usr_ent_id'
       Origin = 'cte_usr_ent_id'
       ProviderFlags = []
       ReadOnly = True
     end
-    object memEnterprise_Userenterprise_ent_cod: TBytesField
+    object memEnterpriseenterprise_ent_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'enterprise_ent_cod'
       Origin = 'enterprise_ent_cod'
       ProviderFlags = []
       ReadOnly = True
     end
-    object memEnterprise_Usercontract_user_ctr_usr_cod: TBytesField
+    object memEnterprisecodUserEmpresa: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codUserEmpresa'
+      Origin = 'codUserEmpresa'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object memEnterprisecontract_user_ctr_usr_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'contract_user_ctr_usr_cod'
       Origin = 'contract_user_ctr_usr_cod'
       ProviderFlags = []
       ReadOnly = True
+    end
+    object memEnterprisecte_usr_ent_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'cte_usr_ent_cod'
+      Origin = 'cte_usr_ent_cod'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object memEnterpriseCodContracUser: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodContracUser'
+      Origin = 'CodContracUser'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+  end
+  object memSystem_Action: TFDMemTable
+    FieldDefs = <>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 848
+    Top = 56
+    object memSystem_Actionsys_act_subtitle: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sys_act_subtitle'
+      Origin = 'sys_act_subtitle'
+      Size = 100
+    end
+    object memSystem_Actionsys_Act_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sys_Act_name'
+      Origin = 'sys_act_name'
+      Size = 80
+    end
+  end
+  object memAction: TFDMemTable
+    FieldDefs = <>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 880
+    Top = 56
+    object memActioncta_cod: TBytesField
+      FieldName = 'cta_cod'
+      Origin = 'cta_cod'
+      Required = True
+    end
+    object memActioncontract_user_ctr_usr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_user_ctr_usr_cod'
+      Origin = 'contract_user_ctr_usr_cod'
+    end
+    object memActioncta_action_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cta_action_name'
+      Origin = 'cta_action_name'
+      Size = 50
+    end
+    object memActioncta_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'cta_deleted_at'
+      Origin = 'cta_deleted_at'
+    end
+    object memActioncta_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'cta_dt_registration'
+      Origin = 'cta_dt_registration'
+    end
+    object memActionCodAction: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodAction'
+      Origin = 'CodAction'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
     end
   end
 end

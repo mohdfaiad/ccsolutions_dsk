@@ -1,14 +1,16 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo ProtheusTEL - CCS Protheus.'
+  ExplicitWidth = 1024
+  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
     inherited dxRibbon1Tab_1: TdxRibbonTab
-      Active = True
+      Active = False
       Index = 0
     end
     inherited dxRibbon1Tab_2: TdxRibbonTab
-      Active = False
+      Active = True
       Groups = <
         item
           ToolbarName = 'dxBarManager_1Bar4'
@@ -51,6 +53,8 @@ inherited frm_main: Tfrm_main
       True
       True)
     inherited dxBarManager_1Bar1: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 87
       FloatClientHeight = 270
       ItemLinks = <
@@ -723,6 +727,13 @@ inherited frm_main: Tfrm_main
       Hint = 'SIPPulse - Relat'#243'rio'
       Visible = ivAlways
       OnClick = dxBarButton1Click
+    end
+    object dxBarButton3: TdxBarButton
+      Caption = 'SIPPulse - AsTpp'
+      Category = 1
+      Hint = 'SIPPulse - AsTpp'
+      Visible = ivAlways
+      OnClick = dxBarButton3Click
     end
   end
   inherited ActionList_1: TActionList
@@ -2123,6 +2134,10 @@ inherited frm_main: Tfrm_main
       item
         Visible = True
         ItemName = 'dxBarButton1'
+      end
+      item
+        Visible = True
+        ItemName = 'dxBarButton3'
       end>
     Ribbon = dxRibbon1
     UseOwnFont = False

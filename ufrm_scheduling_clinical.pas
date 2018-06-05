@@ -33,7 +33,7 @@ uses
   cxGroupBox, cxGridLevel, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, cxPC, ufrm_dm, cxMaskEdit,
   cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
-  dxDateTimeWheelPicker;
+  dxDateTimeWheelPicker, cxCalendar, ufrm_main, ufrm_scheduling;
 
 type
   Tfrm_scheduling_clinical = class(Tfrm_default)
@@ -104,7 +104,6 @@ type
     cxGrid1: TcxGrid;
     cxGrid1DBTableView1: TcxGridDBTableView;
     cxGrid1DBTableView1rolte_rol_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1doctor_doc_cod: TcxGridDBColumn;
     cxGrid1DBTableView1rsh_id: TcxGridDBColumn;
     cxGrid1DBTableView1rsh_status: TcxGridDBColumn;
     cxGrid1DBTableView1rsh_deleted_at: TcxGridDBColumn;
@@ -123,9 +122,11 @@ type
     grid_1DBTableView1req_deleted_at: TcxGridDBColumn;
     grid_1DBTableView1req_dt_registration: TcxGridDBColumn;
     grid_1DBTableView1hexreq_cod: TcxGridDBColumn;
-    qry_requisition_shedulingdateTime: TStringField;
-    cxGrid1DBTableView1Column1: TcxGridDBColumn;
     qry_doctordoc_cod: TBytesField;
+    cxGrid1DBTableView1Column1: TcxGridDBColumn;
+    qry_requisition_shedulingschCod: TStringField;
+    qry_doctordoc_id: TLongWordField;
+    qry_doctordocCod: TStringField;
     procedure Action_cancelExecute(Sender: TObject);
     procedure qry_sql(sql:string);
     procedure Action_saveExecute(Sender: TObject);
@@ -138,8 +139,6 @@ type
       Sender: TObject);
     procedure qry_requisition_shedulingBeforePost(DataSet: TDataSet);
     procedure qry_requisition_shedulingAfterPost(DataSet: TDataSet);
-    procedure cxGrid1DBTableView1doctor_doc_codPropertiesCloseUp(
-      Sender: TObject);
   private
     { Private declarations }
     req_cod,sch_cod,rsh_cod:string;
@@ -153,6 +152,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses ufrm_scheduling_clinical2;
 
 procedure Tfrm_scheduling_clinical.Action_cancelExecute(Sender: TObject);
 begin
@@ -217,19 +218,21 @@ with frm_dm.qry,sql do
     qry_scheduling.Post;
  end;
 
+ qry_requisition_sheduling.First;
+ while not qry_requisition_sheduling.Eof do
+  begin
+   if Length(qry_requisition_shedulingschCod.AsString) = 0  then
+    begin
+      Application.MessageBox('Existe agendamento sem horário marcado, favor confirmar um horário livre!', 'AGENDAMENTO', MB_OK + MB_ICONEXCLAMATION);
+      Exit;;
+    end;
+   qry_requisition_sheduling.Next;
+  end;
+
+
  inherited;
   qry_sql('todos');
 
-end;
-
-procedure Tfrm_scheduling_clinical.cxGrid1DBTableView1doctor_doc_codPropertiesCloseUp(
-  Sender: TObject);
-begin
-  inherited;
-  if not (qry_requisition_sheduling.State in[dsEdit]) then
-   qry_requisition_sheduling.Edit;
-   qry_requisition_shedulingdoctor_doc_cod.Value:=qry_doctordoc_cod.Value;
-   qry_requisition_sheduling.Post;
 end;
 
 procedure Tfrm_scheduling_clinical.cxGrid1DBTableView1rolte_rol_codPropertiesCloseUp(
@@ -245,6 +248,29 @@ begin
 
    qry_doctor.Filter:='rolCod = ' + QuotedStr(qry_requisition_shedulingrolCod.AsString);
    qry_doctor.Filtered:=True;
+
+
+//   Application.CreateForm(Tfrm_scheduling_clinical2,frm_scheduling_clinical2);
+//   frm_scheduling_clinical2.cxTextEditDoctor.Text:=FormatFloat('00000', qry_doctordoc_id.AsInteger) + ' - ' +  qry_requisition_shedulingrec_name.AsString;
+//   frm_scheduling_clinical2.qry.Insert;
+//   frm_scheduling_clinical2.ShowModal;
+   if not Assigned(frm_scheduling) then begin
+    frm_scheduling := Tfrm_scheduling.Create(Self);
+    frm_scheduling.Height :=frm_main.Bevel_1.Height;
+    frm_scheduling.Width := frm_main.Bevel_1.Width;
+    frm_scheduling.Tag:=1;
+    frm_scheduling.doctor_name:=qry_requisition_shedulingrec_name.AsString;
+    frm_scheduling.Action_insertExecute(sender);
+    frm_scheduling.qry.Insert;
+    frm_scheduling.cxMemoDescricao.Text:= 'AGENDAMENTO DO PASCIENTE ' + cxLookupComboBoxCliente.Text + ' - ' +
+         ' EXAME ' + qry_requisition_shedulingrol_name.AsString;
+    frm_scheduling.cxMemoDescricao.Enabled:=False;
+    frm_scheduling.Show;
+  end else begin
+    frm_scheduling.WindowState := wsNormal;
+    frm_scheduling.Show;
+  end;
+
 
 end;
 
@@ -296,8 +322,9 @@ begin
 
    qry_requisition_sheduling.close;
    qry_requisition_sheduling.SQL.Text:=' select requisition_sheduling.*,hex(rsh_cod) as rshCod,rol_name,rec_name, ' +
-              ' hex(requisition_sheduling.role_rol_cod) as rolCod from requisition_sheduling '+
+              ' hex(requisition_sheduling.role_rol_cod) as rolCod,hex(sch_cod) as schCod from requisition_sheduling '+
               ' left join role on rol_cod = role_rol_cod ' +
+              ' left join scheduling on sch_cod = scheduling_sch_cod ' +
               ' left join record on  rec_cod in (select record_rec_cod from employee ' +
                              ' where emp_cod in (select employee_emp_cod from role_employee ' +
                              ' where role_rol_cod = rol_cod) and emp_cod in (select employee_emp_cod from doctor)) ';

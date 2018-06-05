@@ -16,7 +16,7 @@ uses
   ufrm_report in '..\ufrm_report.pas' {frm_report},
   ufrm_supplier in '..\ufrm_supplier.pas' {frm_supplier},
   ufrm_import_default in '..\models\ufrm_import_default.pas' {frm_import_default},
-  ufrm_import_sippulse in '..\ufrm_import_sippulse.pas' {frm_import_sippulse},
+  ufrm_import_astpp in '..\ufrm_import_astpp.pas' {frm_import_astpp},
   ufrm_consult_cnpj in '..\ufrm_consult_cnpj.pas' {frm_consult_cnpj},
   ufrm_consult_cpf in '..\ufrm_consult_cpf.pas' {frm_consult_cpf},
   ufrm_voip_server in '..\ufrm_voip_server.pas' {frm_voip_server},
@@ -37,7 +37,8 @@ uses
   Contract_user.Model in '..\Model\Contract_user.Model.pas',
   Contract_User_Enterprise.Model in '..\Model\Contract_User_Enterprise.Model.pas',
   Employee.Model in '..\Model\Employee.Model.pas',
-  Employee_Model in '..\Model\Employee_Model.pas';
+  Employee_Model in '..\Model\Employee_Model.pas',
+  ufrm_import_sippulse in '..\ufrm_import_sippulse.pas' {frm_import_sippulse};
 
 {$R *.res}
 
@@ -50,6 +51,5 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
-  Application.CreateForm(Tfrm_search, frm_search);
   Application.Run;
 end.

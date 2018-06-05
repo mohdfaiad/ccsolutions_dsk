@@ -1,16 +1,21 @@
 inherited frm_client: Tfrm_client
   Caption = 'Manuten'#231#227'o: Clientes'
+  ClientHeight = 691
   OnClose = FormClose
+  ExplicitHeight = 730
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Height = 636
     Properties.ActivePage = cxTabSheet_2
+    ClientRectBottom = 630
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
+        Height = 596
         ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1cli_type: TcxGridDBColumn
@@ -181,12 +186,16 @@ inherited frm_client: Tfrm_client
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
+        Height = 596
+        Properties.ActivePage = tabTelefonia
+        ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 986
           ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
+            Height = 562
             inherited dbedt_id: TcxDBTextEdit
               Left = 76
               DataBinding.DataField = 'cli_id'
@@ -427,14 +436,16 @@ inherited frm_client: Tfrm_client
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
           OnShow = cxTabSheet_addressShow
+          ExplicitHeight = 472
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
             Width = 986
-            Height = 472
+            Height = 562
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            ExplicitHeight = 472
             object cxDBTextEdit9: TcxDBTextEdit
               Left = 55
               Top = 330
@@ -1055,15 +1066,17 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Contatos'
+          ExplicitHeight = 472
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
             Width = 986
-            Height = 472
+            Height = 562
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             OnDblClick = dxLayoutControl_1DblClick
+            ExplicitHeight = 472
             object cxDBTextEdit4: TcxDBTextEdit
               Left = 220
               Top = 38
@@ -1196,6 +1209,7 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
+          ExplicitHeight = 472
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1209,11 +1223,12 @@ inherited frm_client: Tfrm_client
             Left = 0
             Top = 0
             Width = 986
-            Height = 472
+            Height = 562
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             OnDblClick = dxLayoutControl_1DblClick
+            ExplicitHeight = 472
             object cxDBTextEdit38: TcxDBTextEdit
               Left = 67
               Top = 38
@@ -1258,14 +1273,16 @@ inherited frm_client: Tfrm_client
         end
         object tabTelefonia: TcxTabSheet
           Caption = 'Telefonia'
+          ExplicitHeight = 472
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
             Width = 986
-            Height = 472
+            Height = 562
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            ExplicitHeight = 472
             object cxGrid2: TcxGrid
               Left = 17
               Top = 103
@@ -1301,6 +1318,41 @@ inherited frm_client: Tfrm_client
               OnKeyDown = cxEditCodsippulseKeyDown
               Width = 433
             end
+            object cxEditCodastpp: TcxTextEdit
+              Left = 87
+              Top = 347
+              Style.HotTrack = False
+              TabOrder = 2
+              OnKeyDown = cxEditCodastppKeyDown
+              Width = 433
+            end
+            object cxGrid3: TcxGrid
+              Left = 17
+              Top = 412
+              Width = 503
+              Height = 200
+              TabOrder = 3
+              object cxGrid3DBTableView1: TcxGridDBTableView
+                Navigator.Buttons.CustomButtons = <>
+                DataController.DataSource = ds_client_astpp
+                DataController.Summary.DefaultGroupSummaryItems = <>
+                DataController.Summary.FooterSummaryItems = <>
+                DataController.Summary.SummaryGroups = <>
+                object cxGrid3DBTableView1cla_account_astpp: TcxGridDBColumn
+                  Caption = 'C'#243'd. Astpp'
+                  DataBinding.FieldName = 'cla_account_astpp'
+                  Width = 300
+                end
+                object cxGrid3DBTableView1cla_dt_registration: TcxGridDBColumn
+                  Caption = 'Dt. Registro'
+                  DataBinding.FieldName = 'cla_dt_registration'
+                  Width = 180
+                end
+              end
+              object cxGrid3Level1: TcxGridLevel
+                GridView = cxGrid3DBTableView1
+              end
+            end
             object dxLayoutControl4Group_Root: TdxLayoutGroup
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -1317,7 +1369,7 @@ inherited frm_client: Tfrm_client
             end
             object dxLayoutGroup13: TdxLayoutGroup
               Parent = dxLayoutControl4Group_Root
-              CaptionOptions.Text = 'New Group'
+              CaptionOptions.Text = 'C'#243'd. Sippulse'
               SizeOptions.AssignedValues = [sovSizableHorz]
               SizeOptions.SizableHorz = True
               SizeOptions.Width = 517
@@ -1341,18 +1393,49 @@ inherited frm_client: Tfrm_client
               ControlOptions.ShowBorder = False
               Index = 0
             end
+            object dxLayoutGroup14: TdxLayoutGroup
+              Parent = dxLayoutControl4Group_Root
+              CaptionOptions.Text = 'Par'#226'metro Astpp'
+              ButtonOptions.Buttons = <>
+              Index = 2
+            end
+            object dxLayoutItem44: TdxLayoutItem
+              Parent = dxLayoutGroup14
+              CaptionOptions.Text = 'C'#243'd. Astpp'
+              Control = cxEditCodastpp
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutGroup15: TdxLayoutGroup
+              Parent = dxLayoutControl4Group_Root
+              CaptionOptions.Text = 'New Group'
+              ButtonOptions.Buttons = <>
+              Index = 3
+            end
+            object dxLayoutItem46: TdxLayoutItem
+              Parent = dxLayoutGroup15
+              Control = cxGrid3
+              ControlOptions.OriginalHeight = 200
+              ControlOptions.OriginalWidth = 250
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
           end
         end
         object tabLaboratorio: TcxTabSheet
           Caption = 'Laborat'#243'rio'
+          ExplicitHeight = 472
           object dxLayoutControl5: TdxLayoutControl
             Left = 0
             Top = 0
             Width = 986
-            Height = 472
+            Height = 562
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            ExplicitHeight = 472
             object cxGrid1: TcxGrid
               Left = 17
               Top = 38
@@ -1736,12 +1819,6 @@ inherited frm_client: Tfrm_client
       FixedChar = True
       Size = 1
     end
-    object qrycli_account_code_sippulse: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_account_code_sippulse'
-      Origin = 'cli_account_code_sippulse'
-      Size = 50
-    end
     object qrycli_cod: TBytesField
       FieldName = 'cli_cod'
       Origin = 'cli_cod'
@@ -1828,7 +1905,6 @@ inherited frm_client: Tfrm_client
     Top = 16
   end
   object qry_insurance: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
@@ -1865,7 +1941,6 @@ inherited frm_client: Tfrm_client
     end
   end
   object qry_client_insirance: TFDQuery
-    Active = True
     AfterInsert = qry_client_insiranceAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'client_cli_id'
@@ -1931,14 +2006,14 @@ inherited frm_client: Tfrm_client
     Top = 186
   end
   object qry_client_sippulse: TFDQuery
-    IndexFieldNames = 'cli_cod'
+    IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'
-    DetailFields = 'cli_cod'
+    DetailFields = 'client_cli_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from client_sippulse'
-      'where cli_cod = :cli_cod')
+      'where client_cli_cod = :cli_cod')
     Left = 225
     Top = 283
     ParamData = <
@@ -1946,18 +2021,13 @@ inherited frm_client: Tfrm_client
         Name = 'CLI_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Value = Null
+        Size = 16
       end>
     object qry_client_sippulsecls_cod: TBytesField
       FieldName = 'cls_cod'
       Origin = 'cls_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
-    end
-    object qry_client_sippulsecli_cod: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_cod'
-      Origin = 'cli_cod'
     end
     object qry_client_sippulsecls_account_sippulse: TStringField
       AutoGenerateValue = arDefault
@@ -1976,10 +2046,66 @@ inherited frm_client: Tfrm_client
       Origin = 'cls_dt_registration'
       ReadOnly = True
     end
+    object qry_client_sippulseclient_cli_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'client_cli_cod'
+      Origin = 'client_cli_cod'
+    end
   end
   object ds_client_sippulse: TDataSource
     DataSet = qry_client_sippulse
     Left = 127
     Top = 298
+  end
+  object ds_client_astpp: TDataSource
+    DataSet = qry_client_astpp
+    Left = 615
+    Top = 546
+  end
+  object qry_client_astpp: TFDQuery
+    IndexFieldNames = 'client_cli_cod'
+    MasterSource = ds
+    MasterFields = 'cli_cod'
+    DetailFields = 'client_cli_cod'
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select * from client_astpp'
+      'where  client_cli_cod = :cli_cod')
+    Left = 713
+    Top = 531
+    ParamData = <
+      item
+        Name = 'CLI_COD'
+        DataType = ftBytes
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qry_client_astppcla_cod: TBytesField
+      FieldName = 'cla_cod'
+      Origin = 'cla_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_client_astppcla_account_astpp: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cla_account_astpp'
+      Origin = 'cla_account_astpp'
+      Size = 65
+    end
+    object qry_client_astppcla_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'cla_deleted_at'
+      Origin = 'cla_deleted_at'
+    end
+    object qry_client_astppcla_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'cla_dt_registration'
+      Origin = 'cla_dt_registration'
+    end
+    object qry_client_astppclient_cli_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'client_cli_cod'
+      Origin = 'client_cli_cod'
+    end
   end
 end

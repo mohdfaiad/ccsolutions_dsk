@@ -118,9 +118,6 @@
         <DCCReference Include="..\models\ufrm_main_default_2.pas">
             <Form>frm_main_default_2</Form>
         </DCCReference>
-        <DCCReference Include="..\models\ufrm_search.pas">
-            <Form>frm_search</Form>
-        </DCCReference>
         <DCCReference Include="..\ufrm_dm.pas">
             <Form>frm_dm</Form>
             <DesignClass>TDataModule</DesignClass>
@@ -216,6 +213,14 @@
         <DCCReference Include="..\Model\Employee.Model.pas"/>
         <DCCReference Include="..\Model\Employee_Model.pas"/>
         <DCCReference Include="..\Dao\Contract_User_Enterprise.Dao.pas"/>
+        <DCCReference Include="..\models\ufrm_search.pas">
+            <Form>frm_search</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_scheduling_clinical2.pas">
+            <Form>frm_scheduling_clinical2</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

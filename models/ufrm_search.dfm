@@ -4,8 +4,8 @@ object frm_search: Tfrm_search
   BorderIcons = []
   BorderStyle = bsSingle
   Caption = 'Formul'#225'rio de Pesquisa'
-  ClientHeight = 321
-  ClientWidth = 594
+  ClientHeight = 353
+  ClientWidth = 641
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,11 +20,13 @@ object frm_search: Tfrm_search
   object cxGrid_1: TcxGrid
     Left = 0
     Top = 27
-    Width = 594
-    Height = 274
+    Width = 641
+    Height = 306
     Align = alClient
     BorderStyle = cxcbsNone
     TabOrder = 0
+    ExplicitWidth = 594
+    ExplicitHeight = 274
     object cxGrid_1DBTableView1: TcxGridDBTableView
       Navigator.Buttons.ConfirmDelete = True
       Navigator.Buttons.CustomButtons = <>
@@ -67,15 +69,16 @@ object frm_search: Tfrm_search
   object dxBarDockControl1: TdxBarDockControl
     Left = 0
     Top = 0
-    Width = 594
+    Width = 641
     Height = 27
     Align = dalTop
     BarManager = dxBarManager_1
+    ExplicitWidth = 594
   end
   object dxStatusBar_1: TdxStatusBar
     Left = 0
-    Top = 301
-    Width = 594
+    Top = 333
+    Width = 641
     Height = 20
     Panels = <>
     PaintStyle = stpsUseLookAndFeel
@@ -84,6 +87,8 @@ object frm_search: Tfrm_search
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+    ExplicitTop = 301
+    ExplicitWidth = 594
   end
   object dxBarManager_1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET

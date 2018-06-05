@@ -45,7 +45,7 @@ object frm_dm: Tfrm_dm
         'WHERE c.ctr_id = :contract AND cu.ctr_usr_username = :username a' +
         'nd (cu.ctr_usr_password=:password or cu.ctr_usr_password is null' +
         ')'#10#10)
-    Left = 40
+    Left = 48
     Top = 88
     ParamData = <
       item

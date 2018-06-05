@@ -145,8 +145,8 @@
         <DCCReference Include="..\models\ufrm_import_default.pas">
             <Form>frm_import_default</Form>
         </DCCReference>
-        <DCCReference Include="..\ufrm_import_sippulse.pas">
-            <Form>frm_import_sippulse</Form>
+        <DCCReference Include="..\ufrm_import_astpp.pas">
+            <Form>frm_import_astpp</Form>
         </DCCReference>
         <DCCReference Include="..\ufrm_consult_cnpj.pas">
             <Form>frm_consult_cnpj</Form>
@@ -186,6 +186,10 @@
         <DCCReference Include="..\Model\Contract_User_Enterprise.Model.pas"/>
         <DCCReference Include="..\Model\Employee.Model.pas"/>
         <DCCReference Include="..\Model\Employee_Model.pas"/>
+        <DCCReference Include="..\ufrm_import_sippulse.pas">
+            <Form>frm_import_sippulse</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="ModelSupport_protheustel\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

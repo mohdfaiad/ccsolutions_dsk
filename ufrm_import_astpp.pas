@@ -1,4 +1,4 @@
-unit ufrm_import_sippulse;
+unit ufrm_import_astpp;
 
 interface
 
@@ -32,7 +32,7 @@ uses
   cxButtonEdit, dxLayoutLookAndFeels, dxLayoutControl, Vcl.ExtCtrls;
 
 type
-  Tfrm_import_sippulse = class(Tfrm_import_default)
+  Tfrm_import_astpp = class(Tfrm_import_default)
     dxBarButton1: TdxBarButton;
     frxDbLigacoes: TfrxReport;
     frxDBDataset1: TfrxDBDataset;
@@ -108,6 +108,7 @@ type
     qryConsultlaimport_call_logcol: TStringField;
     qryConsultlaimp_comp: TStringField;
     qryConsultlaimp_deleted_at: TDateTimeField;
+    procTeste: TFDStoredProc;
     qryimp_cod: TBytesField;
     qrycontract_ctr_cod: TBytesField;
     qryclient_cli_cod: TBytesField;
@@ -121,15 +122,17 @@ type
     qryimp_total: TBCDField;
     qryimp_file_name: TStringField;
     qrycli_account_code_sippulse: TStringField;
+    qrycli_account_code_astpp: TStringField;
     qryimp_comp: TStringField;
+    qryimp_tariff: TStringField;
     qryimp_deleted_at: TDateTimeField;
     qry_duracao: TLargeintField;
-    procTeste: TFDStoredProc;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure Action_printExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Action_importExecute(Sender: TObject);
+    procedure qryAfterInsert(DataSet: TDataSet);
 
 
   private
@@ -145,7 +148,7 @@ type
   end;
 
 var
-  frm_import_sippulse: Tfrm_import_sippulse;
+  frm_import_astpp: Tfrm_import_astpp;
 
 implementation
 
@@ -166,7 +169,7 @@ begin
 end;
 
 
-procedure Tfrm_import_sippulse.Action_importExecute(Sender: TObject);
+procedure Tfrm_import_astpp.Action_importExecute(Sender: TObject);
 var
 arq: TStringList;
 begin
@@ -179,7 +182,7 @@ if OpenDialog1.Execute then
   arq.Destroy;
  end;
 
- pegarCompetencia(OpenDialog1.FileName);
+ //pegarCompetencia(OpenDialog1.FileName);
 
 
  With frm_dm.qry,sql do
@@ -200,7 +203,7 @@ if OpenDialog1.Execute then
  qry.Close;
  qry.ParamByName('comp').AsString:= competencia;
  qry.ParamByName('ctr_cod').Value:= frm_dm.qry_signincontractCod.Value;
- qry.ParamByName('cient').AsString:= clienteSippulse;
+ //qry.ParamByName('cient').AsString:= clienteSippulse;
  qry.Prepare;
  qry.Open;
 
@@ -209,7 +212,7 @@ if OpenDialog1.Execute then
 
 end;
 
-procedure Tfrm_import_sippulse.Action_printExecute(Sender: TObject);
+procedure Tfrm_import_astpp.Action_printExecute(Sender: TObject);
 begin
   inherited;
 if Application.MessageBox('Deseja visualizar o relatório da conta de consumo?', 'CONSUMO',
@@ -221,15 +224,15 @@ if Application.MessageBox('Deseja visualizar o relatório da conta de consumo?', 
  end;
 end;
 
-procedure Tfrm_import_sippulse.FormClose(Sender: TObject;
+procedure Tfrm_import_astpp.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
-  frm_import_sippulse.Destroy;
-  frm_import_sippulse := Nil;
+  frm_import_astpp.Destroy;
+  frm_import_astpp := Nil;
 end;
 
-procedure Tfrm_import_sippulse.FormCreate(Sender: TObject);
+procedure Tfrm_import_astpp.FormCreate(Sender: TObject);
 var
 x:TFormatSettings;
 begin
@@ -238,12 +241,12 @@ x.ShortDateFormat := 'dd/mm/yyyy';
 qry.Close;
 qry.ParamByName('comp').AsString:= competencia;
 qry.ParamByName('ctr_cod').Value:= frm_dm.qry_signincontractCod.Value;
-qry.ParamByName('cient').AsString:= clienteSippulse;
+//qry.ParamByName('cient').AsString:= clienteSippulse;
 qry.Prepare;
 qry.Open;
 end;
 
-procedure Tfrm_import_sippulse.pegarCompetencia(PathArquivo:string);
+procedure Tfrm_import_astpp.pegarCompetencia(PathArquivo:string);
 var
 arquivo: TStrings;
 i,ini,fin,coluna:Integer;
@@ -312,14 +315,21 @@ end;
 
 end;
 
-procedure Tfrm_import_sippulse.qryBeforePost(DataSet: TDataSet);
+procedure Tfrm_import_astpp.qryAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+ShowMessage('TESTE');
+end;
+
+procedure Tfrm_import_astpp.qryBeforePost(DataSet: TDataSet);
 Var
   intSegundos:Integer;
   wdHoras, wdMinutos, wdSegundos: Word;
 begin
 procTeste.Prepare;
-procTeste.ParamByName('p_ctr_id').AsLargeInt:=frm_dm.qry_contractctr_id.AsLargeInt;
-procTeste.ParamByName('p_cli_account_code_sippulse').AsString:=qrycli_account_code_sippulse.AsString;
+procTeste.ParamByName('p_ctr_id').AsLargeInt:=1;//frm_dm.qry_contractctr_id.AsLargeInt;
+procTeste.ParamByName('p_cli_account_code_astpp').AsString:='Alexandre  (1864734903)';//qrycli_account_code_sippulse.AsString;
+(**
 procTeste.ParamByName('p_imp_from').AsString:=qryimp_from.AsString;
 procTeste.ParamByName('p_imp_to').AsString:=qryimp_to.AsString;
 procTeste.ParamByName('p_imp_duration').AsInteger:=qry_duracao.AsInteger;
@@ -328,6 +338,7 @@ procTeste.ParamByName('p_imp_type').AsString:=qryimp_type.AsString;
 procTeste.ParamByName('p_imp_rate').AsBCD:=qryimp_rate.AsFloat;
 procTeste.ParamByName('p_imp_total').AsBCD:=qryimp_total.AsFloat;
 procTeste.ParamByName('p_imp_comp').AsString:=competencia;
+*)
 procTeste.ExecProc;
 
 end;

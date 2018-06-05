@@ -7,7 +7,6 @@ uses
   ufrm_import_default in '..\models\ufrm_import_default.pas' {frm_import_default},
   ufrm_main_default in '..\models\ufrm_main_default.pas' {frm_main_default},
   ufrm_main_default_2 in '..\models\ufrm_main_default_2.pas' {frm_main_default_2},
-  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   ufrm_dm in '..\ufrm_dm.pas' {frm_dm: TDataModule},
   ufrm_dm_ds in '..\ufrm_dm_ds.pas' {frm_dm_ds: TDataModule},
   ufrm_dm_report in '..\ufrm_dm_report.pas' {frm_dm_report: TDataModule},
@@ -45,7 +44,9 @@ uses
   Contract_User_Enterprise.Model in '..\Model\Contract_User_Enterprise.Model.pas',
   Employee.Model in '..\Model\Employee.Model.pas',
   Employee_Model in '..\Model\Employee_Model.pas',
-  Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas';
+  Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
+  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
+  ufrm_scheduling_clinical2 in '..\ufrm_scheduling_clinical2.pas' {frm_scheduling_clinical2};
 
 {$R *.res}
 var
@@ -57,5 +58,7 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
+  Application.CreateForm(Tfrm_search, frm_search);
+  Application.CreateForm(Tfrm_scheduling_clinical2, frm_scheduling_clinical2);
   Application.Run;
 end.

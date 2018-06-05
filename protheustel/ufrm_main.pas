@@ -54,6 +54,7 @@ type
     dxBarButton1: TdxBarButton;
     Action_voip_server: TAction;
     dxBarLargeButton10: TdxBarLargeButton;
+    dxBarButton3: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -64,6 +65,7 @@ type
     procedure Action_reportExecute(Sender: TObject);
     procedure dxBarButton1Click(Sender: TObject);
     procedure Action_voip_serverExecute(Sender: TObject);
+    procedure dxBarButton3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -79,7 +81,7 @@ implementation
 
 uses ufrm_login, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_report, ufrm_supplier,
-  ufrm_import_sippulse, ufrm_voip_server;
+  ufrm_import_sippulse, ufrm_voip_server, ufrm_import_astpp;
 
 procedure Tfrm_main.Action_phonebookExecute(Sender: TObject);
 begin
@@ -231,6 +233,23 @@ begin
   begin
     frm_import_sippulse.WindowState := wsNormal;
     frm_import_sippulse.Show;
+  end;
+end;
+
+procedure Tfrm_main.dxBarButton3Click(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_import_astpp) then
+  begin
+    frm_import_astpp := Tfrm_import_astpp.Create(Self);
+    frm_import_astpp.Height := Bevel_1.Height;
+    frm_import_astpp.Width := Bevel_1.Width;
+    frm_import_astpp.Show;
+  end
+  else
+  begin
+    frm_import_astpp.WindowState := wsNormal;
+    frm_import_astpp.Show;
   end;
 end;
 

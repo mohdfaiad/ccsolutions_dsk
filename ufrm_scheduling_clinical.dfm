@@ -10,23 +10,16 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   inherited pgctrl_1: TcxPageControl
     Width = 1166
-    Properties.ActivePage = tbsht_2
     ExplicitWidth = 1166
     ClientRectRight = 1160
     inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 1158
-      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
         Width = 1158
         ExplicitWidth = 1158
         ClientRectRight = 1152
         inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
           ExplicitWidth = 1150
-          ExplicitHeight = 505
           inherited grid_1: TcxGrid
             Width = 1144
             ExplicitWidth = 1144
@@ -106,10 +99,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       end
     end
     inherited tbsht_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 1158
-      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         Width = 1158
         ExplicitWidth = 1158
@@ -148,7 +138,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
             object cxGrid1: TcxGrid
               Left = 3
               Top = 69
-              Width = 1038
+              Width = 1142
               Height = 297
               TabOrder = 2
               object cxGrid1DBTableView1: TcxGridDBTableView
@@ -187,22 +177,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                   Properties.ListSource = ds_qry_role
                   Properties.OnCloseUp = cxGrid1DBTableView1rolte_rol_codPropertiesCloseUp
                 end
-                object cxGrid1DBTableView1doctor_doc_cod: TcxGridDBColumn
-                  DataBinding.FieldName = 'rec_name'
-                  PropertiesClassName = 'TcxLookupComboBoxProperties'
-                  Properties.KeyFieldNames = 'rec_name'
-                  Properties.ListColumns = <
-                    item
-                      FieldName = 'rec_name'
-                    end>
-                  Properties.ListSource = ds_qry_doctor
-                  Properties.OnCloseUp = cxGrid1DBTableView1doctor_doc_codPropertiesCloseUp
-                end
-                object cxGrid1DBTableView1Column1: TcxGridDBColumn
-                  DataBinding.FieldName = 'dateTime'
-                  PropertiesClassName = 'TdxDateTimeWheelPickerProperties'
-                  Width = 108
-                end
                 object cxGrid1DBTableView1rsh_id: TcxGridDBColumn
                   DataBinding.FieldName = 'rsh_id'
                 end
@@ -214,6 +188,11 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                 end
                 object cxGrid1DBTableView1rsh_dt_registration: TcxGridDBColumn
                   DataBinding.FieldName = 'rsh_dt_registration'
+                end
+                object cxGrid1DBTableView1Column1: TcxGridDBColumn
+                  DataBinding.FieldName = 'sch_datetime'
+                  PropertiesClassName = 'TdxDateTimeWheelPickerProperties'
+                  Properties.Wheels = [pwYear, pwMonth, pwDay, pwHour, pwMinute]
                 end
               end
               object cxGrid1Level1: TcxGridLevel
@@ -233,7 +212,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ExplicitWidth = 1130
       inherited chkbox_1: TcxCheckBox
         ExplicitWidth = 1130
-        ExplicitHeight = 32
       end
     end
   end
@@ -394,7 +372,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     SQL.Strings = (
       
         'select rec_name,rol_name,hex(rol_cod) as rolCod,record'#10'.contract' +
-        '_ctr_cod,doc_cod from record'#10
+        '_ctr_cod,doc_cod,doc_id,hex(doc_cod) as docCod from record'#10
       
         'left join doctor on employee_emp_cod in (select emp_cod from emp' +
         'loyee '#10'        '
@@ -442,6 +420,21 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       Origin = 'doc_cod'
       ProviderFlags = []
       ReadOnly = True
+    end
+    object qry_doctordoc_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'doc_id'
+      Origin = 'doc_id'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object qry_doctordocCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'docCod'
+      Origin = 'docCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
     end
   end
   object ds_qry_doctor: TDataSource
@@ -510,9 +503,10 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     SQL.Strings = (
       
         'select requisition_sheduling.*,hex(rsh_cod) as rshCod,rol_name,r' +
-        'ec_name,'#10'hex(requisition_sheduling.role_rol_cod) as rolCod,'#39#39' as' +
-        ' dateTime from requisition_sheduling'#10
+        'ec_name,'#10'hex(requisition_sheduling.role_rol_cod) as rolCod,hex(s' +
+        'ch_cod) as schCod from requisition_sheduling'#10
       'left join role on rol_cod = role_rol_cod'#10
+      'left join scheduling on sch_cod = scheduling_sch_cod '
       
         'left join record on  rec_cod in (select record_rec_cod from empl' +
         'oyee'#10'                 '
@@ -609,13 +603,13 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ReadOnly = True
       Size = 85
     end
-    object qry_requisition_shedulingdateTime: TStringField
+    object qry_requisition_shedulingschCod: TStringField
       AutoGenerateValue = arDefault
-      FieldName = 'dateTime'
-      Origin = '`dateTime`'
+      FieldName = 'schCod'
+      Origin = 'schCod'
       ProviderFlags = []
       ReadOnly = True
-      Size = 0
+      Size = 32
     end
   end
   object ds_requisition_sheduling: TDataSource

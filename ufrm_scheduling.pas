@@ -45,13 +45,8 @@ uses
 
 type
   Tfrm_scheduling = class(Tfrm_default)
-    labelFuncionario: TLabel;
-    labelDescricao: TLabel;
-    cxMemoDescricao: TcxMemo;
     dxBarButton1: TdxBarButton;
     dxBarButton2: TdxBarButton;
-    labelDataAgendamento: TLabel;
-    cxDate: TcxDateEdit;
     qrysch_cod: TBytesField;
     qrycontract_ctr_cod: TBytesField;
     qrysch_id: TLongWordField;
@@ -60,18 +55,8 @@ type
     cxGridDBTableView1sch_datetime: TcxGridDBColumn;
     cxGridDBTableView1sch_description: TcxGridDBColumn;
     cxGridDBTableView1sch_dt_registration: TcxGridDBColumn;
-    labelListaAgenda: TLabel;
-    cxGrid1DBTableView1: TcxGridDBTableView;
-    cxGrid1Level1: TcxGridLevel;
-    cxGrid1: TcxGrid;
     qry_scheduling: TFDQuery;
     ds_qry_scheduling: TDataSource;
-    cxGrid1DBTableView1sch_id: TcxGridDBColumn;
-    cxGrid1DBTableView1sch_datetime: TcxGridDBColumn;
-    cxGrid1DBTableView1sch_description: TcxGridDBColumn;
-    cxGrid1DBTableView1sch_dt_registration: TcxGridDBColumn;
-    labelHora: TLabel;
-    cxTime: TcxTimeEdit;
     qry_schedulingsch_cod: TBytesField;
     qry_schedulingcontract_ctr_cod: TBytesField;
     qry_schedulingemployee_emp_cod: TBytesField;
@@ -79,12 +64,35 @@ type
     qry_schedulingsch_datetime: TDateTimeField;
     qry_schedulingsch_description: TStringField;
     qry_schedulingsch_dt_registration: TDateTimeField;
-    comboboxEmployee: TcxComboBox;
     qrysch_dt_registration: TDateTimeField;
     qrysch_datetime: TDateTimeField;
     qryemployee_emp_cod: TBytesField;
     qryrec_name: TStringField;
     cxGridDBTableView1rec_name: TcxGridDBColumn;
+    labelFuncionario: TLabel;
+    comboboxEmployee: TcxComboBox;
+    cxDate: TcxDateEdit;
+    labelDataAgendamento: TLabel;
+    labelHora: TLabel;
+    cxTime: TcxTimeEdit;
+    labelListaAgenda: TLabel;
+    labelDescricao: TLabel;
+    cxMemoDescricao: TcxMemo;
+    cxGrid1: TcxGrid;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1DBTableView1sch_id: TcxGridDBColumn;
+    cxGrid1DBTableView1sch_datetime: TcxGridDBColumn;
+    cxGrid1DBTableView1sch_description: TcxGridDBColumn;
+    cxGrid1DBTableView1sch_dt_registration: TcxGridDBColumn;
+    cxGrid1Level1: TcxGridLevel;
+    grid_1DBTableView1sch_cod: TcxGridDBColumn;
+    grid_1DBTableView1contract_ctr_cod: TcxGridDBColumn;
+    grid_1DBTableView1sch_id: TcxGridDBColumn;
+    grid_1DBTableView1sch_description: TcxGridDBColumn;
+    grid_1DBTableView1sch_datetime: TcxGridDBColumn;
+    grid_1DBTableView1sch_dt_registration: TcxGridDBColumn;
+    grid_1DBTableView1employee_emp_cod: TcxGridDBColumn;
+    grid_1DBTableView1rec_name: TcxGridDBColumn;
     procedure dxBarButton2Click(Sender: TObject);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
@@ -112,6 +120,7 @@ type
 
   public
     { Public declarations }
+    doctor_name:string;
   end;
 
 var
@@ -120,6 +129,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses ufrm_scheduling_clinical;
 
 procedure Tfrm_scheduling.cxDatePropertiesCloseUp(Sender: TObject);
 begin
@@ -560,12 +571,18 @@ inherited;
 
    qry.Edit;
    qrysch_dt_registration.AsDateTime:=Now;
+   if Self.Tag = 1 then //chamado pelo agendamento da clinica
+    begin
+
+    end;
 
 end;
 
 procedure Tfrm_scheduling.tbsht_5Show(Sender: TObject);
 begin
   inherited;
+ if Self.Tag <> 1 then
+  begin
   with frm_dm.qry,sql do
    begin
     clear;
@@ -586,7 +603,30 @@ begin
       Next;
      end;
    end;
+  end;
 
+
+
+    comboboxEmployee.Clear;
+    listaCodFunc.Clear;
+  with frm_scheduling_clinical.qry_doctor do
+   begin
+    while not frm_scheduling_clinical.qry_doctor.Eof do
+     begin
+      comboboxEmployee.Properties.Items.Add(
+      FormatFloat('000000',  FieldByName('doc_id').AsInteger) + ' - ' +  FieldByName('rec_name').AsString);
+      listaCodFunc.Add(FieldByName('docCod').AsString);
+      Next;
+     end;
+   end;
 end;
+
+//   if Self.Tag = 1 then //chamado pelo agendamento da clinica
+//    begin
+//     comboboxEmployee.ItemIndex:=comboboxEmployee.Properties.Items.IndexOf(doctor_name);
+//     comboboxEmployee.Enabled:=False;
+//    end;
+
+
 
 end.

@@ -234,7 +234,6 @@ type
     dxLayoutControl4: TdxLayoutControl;
     dxLayoutGroup11: TdxLayoutGroup;
     qrycli_status: TStringField;
-    qrycli_account_code_sippulse: TStringField;
     qry_insurance: TFDQuery;
     qry_insuranceins_first_name: TStringField;
     tabLaboratorio: TcxTabSheet;
@@ -267,7 +266,6 @@ type
     qry_client_insirancecin_dt_registration: TDateTimeField;
     qry_client_sippulse: TFDQuery;
     qry_client_sippulsecls_cod: TBytesField;
-    qry_client_sippulsecli_cod: TBytesField;
     qry_client_sippulsecls_account_sippulse: TStringField;
     qry_client_sippulsecls_deleted_at: TDateTimeField;
     qry_client_sippulsecls_dt_registration: TDateTimeField;
@@ -282,6 +280,24 @@ type
     cxEditCodsippulse: TcxTextEdit;
     dxLayoutItem42: TdxLayoutItem;
     qryconcat0xhexcli_cod: TStringField;
+    dxLayoutGroup14: TdxLayoutGroup;
+    cxEditCodastpp: TcxTextEdit;
+    dxLayoutItem44: TdxLayoutItem;
+    ds_client_astpp: TDataSource;
+    qry_client_astpp: TFDQuery;
+    qry_client_astppcla_cod: TBytesField;
+    qry_client_astppcla_account_astpp: TStringField;
+    qry_client_astppcla_deleted_at: TDateTimeField;
+    qry_client_astppcla_dt_registration: TDateTimeField;
+    dxLayoutGroup15: TdxLayoutGroup;
+    cxGrid3DBTableView1: TcxGridDBTableView;
+    cxGrid3Level1: TcxGridLevel;
+    cxGrid3: TcxGrid;
+    dxLayoutItem46: TdxLayoutItem;
+    qry_client_sippulseclient_cli_cod: TBytesField;
+    cxGrid3DBTableView1cla_account_astpp: TcxGridDBColumn;
+    cxGrid3DBTableView1cla_dt_registration: TcxGridDBColumn;
+    qry_client_astppclient_cli_cod: TBytesField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);
@@ -304,6 +320,8 @@ type
     procedure cxDBTextEdit12Exit(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
     procedure cxEditCodsippulseKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cxEditCodastppKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
   private
     { Private declarations }
@@ -551,6 +569,38 @@ begin
   end;
 end;
 
+procedure Tfrm_client.cxEditCodastppKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+ if key = 13 then
+if Application.MessageBox('Deseja associar esse código Astpp para este cliente?',
+'CLIENTE', MB_YESNO + MB_ICONQUESTION) = mrYes       then
+ begin
+ With frm_dm.qry,sql do
+  begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   cls_cod:=Fields[0].AsString;
+
+   Close;
+   Text:='insert into client_astpp (cla_cod,client_cli_code,cla_account_astpp,cla_dt_registration) ' +
+         ' select '+ cls_cod + ',' +  cli_cod + ',' +  QuotedStr(cxEditCodastpp.Text) + ', now()' ;
+   Prepare;
+   ExecSQL;
+  end;
+
+  qry_client_astpp.Close;
+  qry_client_astpp.Prepare;
+  qry_client_astpp.Open;
+  cxEditCodastpp.Clear;
+  cxEditCodastpp.SetFocus;
+end;
+end;
+
 procedure Tfrm_client.cxEditCodsippulseKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -569,7 +619,7 @@ if Application.MessageBox('Deseja associar esse código sippulse para este client
    cls_cod:=Fields[0].AsString;
 
    Close;
-   Text:='insert into client_sippulse (cls_cod,cli_cod,cls_account_sippulse,cls_dt_registration) ' +
+   Text:='insert into client_sippulse (cls_cod,client_cli_cod,cls_account_sippulse,cls_dt_registration) ' +
          ' select '+ cls_cod + ',' +  cli_cod + ',' +  QuotedStr(cxEditCodsippulse.Text) + ', now()' ;
    Prepare;
    ExecSQL;
@@ -578,7 +628,7 @@ if Application.MessageBox('Deseja associar esse código sippulse para este client
   qry_client_sippulse.Close;
   qry_client_sippulse.Prepare;
   qry_client_sippulse.Open;
-  cxEditCodsippulse.Clear;
+  cxEditCodastpp.Clear;
   cxEditCodsippulse.SetFocus;
 end;
 end;

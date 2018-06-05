@@ -11,5 +11,6 @@
     <Transaction>2018/02/16 07:20:46.000.371,C:\development\ccsolutions\mod_dsk\models\ufrm_import_default.pas=C:\development\ccsolutions\mod_dsk\protheustel\Unit1.pas</Transaction>
     <Transaction>2018/02/16 07:20:46.000.371,C:\development\ccsolutions\mod_dsk\models\ufrm_import_default.dfm=C:\development\ccsolutions\mod_dsk\protheustel\Unit1.dfm</Transaction>
     <Transaction>2018/02/16 09:13:33.000.812,C:\development\ccsolutions\mod_dsk\protheustel\Unit1.dfm=C:\development\ccsolutions\mod_dsk\ufrm_import_sippulse.dfm</Transaction>
+    <Transaction>2018/06/05 14:20:46.546,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_import_astpp.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_import_sippulse.dfm</Transaction>
   </Transactions>
 </BorlandProject>

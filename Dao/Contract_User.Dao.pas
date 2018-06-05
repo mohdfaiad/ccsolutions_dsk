@@ -113,7 +113,7 @@ begin
   inherited;
   qry := FConexao.CriarQuery();
   qry.Close;
-  qry.SQL.Add('select * from contract_user');
+  qry.SQL.Add('select contract_user.*, hex(ctr_usr_cod) as codUser from contract_user');
   qry.Open;
   Result := qry;
 end;

@@ -129,6 +129,8 @@ begin
   inherited;
   if not Assigned(frm_contract_user) then begin
     frm_contract_user := Tfrm_contract_user.Create(Self);
+    frm_contract_user.Height := Bevel_1.Height;
+    frm_contract_user.Width := Bevel_1.Width;
     frm_contract_user.Show;
   end else begin
     frm_contract_user.WindowState := wsNormal;
@@ -145,7 +147,6 @@ begin
   frm_login.cxPageControl1.Pages[2].TabVisible := False;
   frm_login.cxPageControl1.Pages[1].TabVisible := True;
   frm_login.cxTabSheet1.Show;
-  frm_login.edt_passwordCurrent.SetFocus;
 end;
 
 procedure Tfrm_main.action_doctorExecute(Sender: TObject);

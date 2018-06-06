@@ -46,11 +46,10 @@ uses
   Employee_Model in '..\Model\Employee_Model.pas',
   Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
-  ufrm_scheduling_clinical2 in '..\ufrm_scheduling_clinical2.pas' {frm_scheduling_clinical2};
+  ufrm_scheduling_clinical2 in '..\ufrm_scheduling_clinical2.pas' {frm_scheduling_clinical2},
+  Contract_User_Action.Dao in '..\Dao\Contract_User_Action.Dao.pas';
 
 {$R *.res}
-var
-v_contract_ctr_cod: string;
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;

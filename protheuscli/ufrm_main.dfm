@@ -135,19 +135,23 @@ inherited frm_main: Tfrm_main
         end
         item
           Visible = True
-          ItemName = 'dxBarButton2'
+          ItemName = 'dxBarLargeButton9'
         end
         item
           Visible = True
-          ItemName = 'dxBarButton6'
+          ItemName = 'dxBarLargeButton10'
         end
         item
           Visible = True
-          ItemName = 'dxBarButton7'
+          ItemName = 'dxBarLargeButton11'
         end
         item
           Visible = True
-          ItemName = 'dxBarButton8'
+          ItemName = 'dxBarLargeButton12'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButton13'
         end>
       OneOnRow = False
       Row = 0
@@ -503,14 +507,47 @@ inherited frm_main: Tfrm_main
       Category = 0
       Hint = 'scheduling_clinical'
       Visible = ivAlways
-      OnClick = dxBarButton7Click
     end
     object dxBarButton8: TdxBarButton
       Caption = 'role'
       Category = 0
       Hint = 'role'
       Visible = ivAlways
-      OnClick = dxBarButton8Click
+    end
+    object dxBarLargeButton9: TdxBarLargeButton
+      Caption = 'Doutor'
+      Category = 0
+      Hint = 'Doutor'
+      Visible = ivAlways
+      OnClick = dxBarLargeButton9Click
+    end
+    object dxBarLargeButton10: TdxBarLargeButton
+      Caption = 'Agendamento Clinical'
+      Category = 0
+      Hint = 'Agendamento Clinical'
+      Visible = ivAlways
+      OnClick = dxBarLargeButton10Click
+    end
+    object dxBarLargeButton11: TdxBarLargeButton
+      Caption = 'Funcion'#225'rio'
+      Category = 0
+      Hint = 'Funcion'#225'rio'
+      Visible = ivAlways
+      OnClick = dxBarLargeButton11Click
+    end
+    object dxBarLargeButton12: TdxBarLargeButton
+      Caption = 'Fun'#231#245'es'
+      Category = 0
+      Hint = 'Fun'#231#245'es'
+      Visible = ivAlways
+      OnClick = dxBarLargeButton12Click
+    end
+    object dxBarLargeButton13: TdxBarLargeButton
+      Caption = 'Tebela de Pre'#231'o'
+      Category = 0
+      Hint = 'Tebela de Pre'#231'o'
+      Visible = ivAlways
+      OnClick = dxBarLargeButton13Click
     end
   end
   inherited ActionList_1: TActionList
@@ -578,16 +615,15 @@ inherited frm_main: Tfrm_main
       Category = 'Modulo'
       Caption = 'Material'
       Hint = 'Manuten'#231#227'o Material'
+      OnExecute = Action_materialExecute
     end
     object action_doctor: TAction
       Category = 'Cadastros'
       Caption = 'Doctor'
-      OnExecute = action_doctorExecute
     end
     object Action_employee: TAction
       Category = 'Cadastros'
       Caption = 'Funcion'#225'rio'
-      OnExecute = Action_employeeExecute
     end
   end
   inherited cxImageList_1: TcxImageList

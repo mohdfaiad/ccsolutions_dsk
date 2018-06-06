@@ -65,12 +65,15 @@ type
     Button1: TButton;
     dxBarButton7: TdxBarButton;
     dxBarButton8: TdxBarButton;
+    dxBarLargeButton9: TdxBarLargeButton;
+    dxBarLargeButton10: TdxBarLargeButton;
+    dxBarLargeButton11: TdxBarLargeButton;
+    dxBarLargeButton12: TdxBarLargeButton;
+    dxBarLargeButton13: TdxBarLargeButton;
     procedure Action_contract_userExecute(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_clientExecute(Sender: TObject);
     procedure Action_contract_user_passwordExecute(Sender: TObject);
-    procedure action_doctorExecute(Sender: TObject);
-    procedure Action_employeeExecute(Sender: TObject);
     procedure Action_enterpriseExecute(Sender: TObject);
     procedure Action_examExecute(Sender: TObject);
     procedure Action_insuranceExecute(Sender: TObject);
@@ -78,8 +81,12 @@ type
     procedure Action_phonebookExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
-    procedure dxBarButton7Click(Sender: TObject);
-    procedure dxBarButton8Click(Sender: TObject);
+    procedure dxBarLargeButton9Click(Sender: TObject);
+    procedure dxBarLargeButton11Click(Sender: TObject);
+    procedure dxBarLargeButton10Click(Sender: TObject);
+    procedure dxBarLargeButton12Click(Sender: TObject);
+    procedure dxBarLargeButton13Click(Sender: TObject);
+    procedure Action_materialExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -94,7 +101,7 @@ implementation
 {$R *.dfm}
 
  uses  ufrm_doctor, ufrm_employeee, ufrm_scheduling, ufrm_scheduling_clinical,
-  ufrm_role;
+  ufrm_role, ufrm_table_price;
 
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin
@@ -149,32 +156,34 @@ begin
   frm_login.cxTabSheet1.Show;
 end;
 
-procedure Tfrm_main.action_doctorExecute(Sender: TObject);
+procedure Tfrm_main.dxBarLargeButton12Click(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_doctor) then begin
-    frm_doctor := Tfrm_doctor.Create(Self);
-    frm_doctor.Height := Bevel_1.Height;
-    frm_doctor.Width := Bevel_1.Width;
-    frm_doctor.Show;
+     if not Assigned(frm_role) then
+   begin
+    frm_role := Tfrm_role.Create(Self);
+    frm_role.Show;
+   end
+    else
+     begin
+      frm_role.WindowState := wsNormal;
+      frm_role.Show;
+     end;
+end;
+procedure Tfrm_main.dxBarLargeButton13Click(Sender: TObject);
+begin
+  inherited;
+   if not Assigned(frm_table_price) then begin
+    frm_table_price := Tfrm_table_price.Create(Self);
+    frm_table_price.Height := Bevel_1.Height;
+    frm_table_price.Width := Bevel_1.Width;
+    frm_table_price.Show;
   end else begin
-    frm_doctor.WindowState := wsNormal;
-    frm_doctor.Show;
+    frm_table_price.WindowState := wsNormal;
+    frm_table_price.Show;
   end;
-
 end;
 
-procedure Tfrm_main.Action_employeeExecute(Sender: TObject);
-begin
-  inherited;
-   if not Assigned(frm_employee_) then begin
-     frm_employee_ := Tfrm_employee_.Create(Self);
-     frm_employee_.Show;
-  end else begin
-    frm_employee_.WindowState := wsNormal;
-    frm_employee_.Show;
-end;
-end;
 procedure Tfrm_main.Action_enterpriseExecute(Sender: TObject);
 begin
   inherited;
@@ -214,6 +223,20 @@ begin
   end else begin
     frm_insurance.WindowState := wsNormal;
     frm_insurance.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_materialExecute(Sender: TObject);
+begin
+  inherited;
+    if not Assigned(frm_material) then begin
+   frm_material := Tfrm_material.Create(Self);
+   frm_material.Height := Bevel_1.Height;
+   frm_material.Width := Bevel_1.Width;
+   frm_material.Show;
+  end else begin
+   frm_material.WindowState := wsNormal;
+   frm_material.Show;
   end;
 end;
 
@@ -260,33 +283,45 @@ begin
 
 end;
 
-procedure Tfrm_main.dxBarButton7Click(Sender: TObject);
+procedure Tfrm_main.dxBarLargeButton10Click(Sender: TObject);
 begin
   inherited;
   if not Assigned(frm_scheduling_clinical) then begin
-    frm_scheduling_clinical := Tfrm_scheduling_clinical.Create(Self);
-    frm_scheduling_clinical.Height := Bevel_1.Height;
-    frm_scheduling_clinical.Width := Bevel_1.Width;
-    frm_scheduling_clinical.Show;
+   frm_scheduling_clinical := Tfrm_scheduling_clinical.Create(Self);
+   frm_scheduling_clinical.Height := Bevel_1.Height;
+   frm_scheduling_clinical.Width := Bevel_1.Width;
+   frm_scheduling_clinical.Show;
   end else begin
-    frm_scheduling_clinical.WindowState := wsNormal;
-    frm_scheduling_clinical.Show;
+   frm_scheduling_clinical.WindowState := wsNormal;
+   frm_scheduling_clinical.Show;
   end;
-
 end;
 
-procedure Tfrm_main.dxBarButton8Click(Sender: TObject);
+procedure Tfrm_main.dxBarLargeButton11Click(Sender: TObject);
 begin
- inherited;
-  if not Assigned(frm_role) then
-   begin
-    frm_role := Tfrm_role.Create(Self);
-    frm_role.Show;
-   end
-    else
-     begin
-      frm_role.WindowState := wsNormal;
-      frm_role.Show;
+  inherited;
+   if not Assigned(frm_employee_) then begin
+    frm_employee_ := Tfrm_employee_.Create(Self);
+    frm_employee_.Height := Bevel_1.Height;
+    frm_employee_.Width := Bevel_1.Width;
+    frm_employee_.Show;
+  end else begin
+   frm_employee_.WindowState := wsNormal;
+   frm_employee_.Show;
+end;
+end;
+
+procedure Tfrm_main.dxBarLargeButton9Click(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_doctor) then begin
+   frm_doctor := Tfrm_doctor.Create(Self);
+   frm_doctor.Height := Bevel_1.Height;
+   frm_doctor.Width := Bevel_1.Width;
+   frm_doctor.Show;
+  end else begin
+   frm_doctor.WindowState := wsNormal;
+   frm_doctor.Show;
   end;
 end;
 

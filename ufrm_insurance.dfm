@@ -124,6 +124,7 @@ inherited frm_insurance: Tfrm_insurance
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -343,7 +344,7 @@ inherited frm_insurance: Tfrm_insurance
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            object cxDBButtonEdit1: TcxDBButtonEdit
+            object btnEditCEP: TcxDBButtonEdit
               Left = 61
               Top = 38
               DataBinding.DataField = 'ins_add_bus_zipcode'
@@ -353,11 +354,12 @@ inherited frm_insurance: Tfrm_insurance
                   Default = True
                   Kind = bkEllipsis
                 end>
+              Properties.OnButtonClick = cxDBButtonEdit1PropertiesButtonClick
               Style.HotTrack = False
               TabOrder = 0
               Width = 121
             end
-            object cxDBTextEdit12: TcxDBTextEdit
+            object edtPais_End: TcxDBTextEdit
               Left = 386
               Top = 92
               DataBinding.DataField = 'ins_add_bus_country'
@@ -366,7 +368,7 @@ inherited frm_insurance: Tfrm_insurance
               TabOrder = 7
               Width = 121
             end
-            object cxDBTextEdit8: TcxDBTextEdit
+            object edtBairro: TcxDBTextEdit
               Left = 386
               Top = 65
               DataBinding.DataField = 'ins_add_bus_street'
@@ -393,7 +395,7 @@ inherited frm_insurance: Tfrm_insurance
               TabOrder = 9
               Width = 121
             end
-            object cxDBTextEdit6: TcxDBTextEdit
+            object edtRua: TcxDBTextEdit
               Left = 61
               Top = 65
               DataBinding.DataField = 'ins_add_bus_address'
@@ -402,7 +404,7 @@ inherited frm_insurance: Tfrm_insurance
               TabOrder = 1
               Width = 121
             end
-            object cxDBTextEdit7: TcxDBTextEdit
+            object edtNumero_Casa: TcxDBTextEdit
               Left = 226
               Top = 65
               DataBinding.DataField = 'ins_add_bus_number'
@@ -429,7 +431,7 @@ inherited frm_insurance: Tfrm_insurance
               TabOrder = 8
               Width = 121
             end
-            object cxDBTextEdit10: TcxDBTextEdit
+            object edtCidade: TcxDBTextEdit
               Left = 61
               Top = 92
               DataBinding.DataField = 'ins_add_bus_city'
@@ -438,7 +440,7 @@ inherited frm_insurance: Tfrm_insurance
               TabOrder = 5
               Width = 121
             end
-            object cxDBTextEdit11: TcxDBTextEdit
+            object edtUF_End: TcxDBTextEdit
               Left = 226
               Top = 92
               DataBinding.DataField = 'ins_add_bus_state'
@@ -456,7 +458,7 @@ inherited frm_insurance: Tfrm_insurance
               TabOrder = 10
               Width = 121
             end
-            object cxDBTextEdit9: TcxDBTextEdit
+            object edtComplemento: TcxDBTextEdit
               Left = 551
               Top = 65
               DataBinding.DataField = 'ins_add_bus_complement'
@@ -492,7 +494,7 @@ inherited frm_insurance: Tfrm_insurance
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'CEP'
-              Control = cxDBButtonEdit1
+              Control = btnEditCEP
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -517,7 +519,7 @@ inherited frm_insurance: Tfrm_insurance
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Pa'#237's'
-              Control = cxDBTextEdit12
+              Control = edtPais_End
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -527,7 +529,7 @@ inherited frm_insurance: Tfrm_insurance
               Parent = dxLayoutAutoCreatedGroup3
               AlignVert = avClient
               CaptionOptions.Text = 'Bairro'
-              Control = cxDBTextEdit8
+              Control = edtBairro
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -574,7 +576,7 @@ inherited frm_insurance: Tfrm_insurance
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Rua'
-              Control = cxDBTextEdit6
+              Control = edtRua
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -584,7 +586,7 @@ inherited frm_insurance: Tfrm_insurance
               Parent = dxLayoutAutoCreatedGroup3
               AlignVert = avClient
               CaptionOptions.Text = 'N'#250'm.'
-              Control = cxDBTextEdit7
+              Control = edtNumero_Casa
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -617,7 +619,7 @@ inherited frm_insurance: Tfrm_insurance
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Cidade'
-              Control = cxDBTextEdit10
+              Control = edtCidade
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -628,7 +630,7 @@ inherited frm_insurance: Tfrm_insurance
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Estado'
-              Control = cxDBTextEdit11
+              Control = edtUF_End
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -649,7 +651,7 @@ inherited frm_insurance: Tfrm_insurance
               Parent = dxLayoutAutoCreatedGroup3
               AlignVert = avClient
               CaptionOptions.Text = 'Compl.'
-              Control = cxDBTextEdit9
+              Control = edtComplemento
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -783,9 +785,10 @@ inherited frm_insurance: Tfrm_insurance
     object qryins_add_bus_zipcode: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'CEP'
+      DisplayWidth = 6
       FieldName = 'ins_add_bus_zipcode'
       Origin = 'ins_add_bus_zipcode'
-      Size = 6
+      Size = 9
     end
     object qryins_add_bus_address: TStringField
       AutoGenerateValue = arDefault
@@ -957,6 +960,9 @@ inherited frm_insurance: Tfrm_insurance
     Datasets = <>
     Variables = <>
     Style = <>
+  end
+  inherited ACBrCEP_1: TACBrCEP
+    OnBuscaEfetuada = ACBrCEP_1BuscaEfetuada
   end
   object qry_table_price: TFDQuery
     IndexFieldNames = 'contract_ctr_cod'

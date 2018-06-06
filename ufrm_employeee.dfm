@@ -350,6 +350,7 @@ inherited frm_employee_: Tfrm_employee_
       inherited pgctrl_3: TcxPageControl
         Width = 962
         Height = 602
+        Properties.ActivePage = cxTabSheet1
         ExplicitWidth = 962
         ExplicitHeight = 602
         ClientRectBottom = 596

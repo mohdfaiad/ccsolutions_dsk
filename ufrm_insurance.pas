@@ -100,21 +100,21 @@ type
     dxLayoutControl1: TdxLayoutControl;
     dxLayoutGroup4: TdxLayoutGroup;
     dxLayoutGroup5: TdxLayoutGroup;
-    cxDBButtonEdit1: TcxDBButtonEdit;
+    btnEditCEP: TcxDBButtonEdit;
     dxLayoutItem8: TdxLayoutItem;
-    cxDBTextEdit6: TcxDBTextEdit;
+    edtRua: TcxDBTextEdit;
     dxLayoutItem9: TdxLayoutItem;
-    cxDBTextEdit7: TcxDBTextEdit;
+    edtNumero_Casa: TcxDBTextEdit;
     dxLayoutItem10: TdxLayoutItem;
-    cxDBTextEdit8: TcxDBTextEdit;
+    edtBairro: TcxDBTextEdit;
     dxLayoutItem11: TdxLayoutItem;
-    cxDBTextEdit9: TcxDBTextEdit;
+    edtComplemento: TcxDBTextEdit;
     dxLayoutItem12: TdxLayoutItem;
-    cxDBTextEdit10: TcxDBTextEdit;
+    edtCidade: TcxDBTextEdit;
     dxLayoutItem13: TdxLayoutItem;
-    cxDBTextEdit11: TcxDBTextEdit;
+    edtUF_End: TcxDBTextEdit;
     dxLayoutItem14: TdxLayoutItem;
-    cxDBTextEdit12: TcxDBTextEdit;
+    edtPais_End: TcxDBTextEdit;
     dxLayoutItem15: TdxLayoutItem;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
@@ -169,11 +169,14 @@ type
     procedure lookupComboBoxTablePropertiesCloseUp(Sender: TObject);
     procedure cxTabSheet_2Show(Sender: TObject);
     procedure lookupComboBoxTablePropertiesPopup(Sender: TObject);
+    procedure cxDBButtonEdit1PropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
+    procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
   private
     { Private declarations }
     ins_cod:string;
   public
     { Public declarations }
+
   end;
 
 var
@@ -184,6 +187,24 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_insurance.ACBrCEP_1BuscaEfetuada(Sender: TObject);
+ var
+  i:Integer;
+begin
+  inherited;
+  for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+    begiN
+     edtRua.Text            := ACBrCEP_1.Enderecos[i].Logradouro;
+     edtBairro.Text         := ACBrCEP_1.Enderecos[i].Bairro;
+     edtComplemento.Text    := ACBrCEP_1.Enderecos[i].Complemento;
+     edtCidade.Text    	    := ACBrCEP_1.Enderecos[i].Municipio;
+     edtUF_End.Text         := ACBrCEP_1.Enderecos[i].UF;
+     edtPais_End.Text       := 'BRASIL';
+     edtNumero_Casa.SetFocus;
+    end;
+
+end;
 
 procedure Tfrm_insurance.Action_cancelExecute(Sender: TObject);
 begin
@@ -232,6 +253,12 @@ with frm_dm.qry,sql do
        qry.Prepare;
        qry.open;
 
+end;
+
+procedure Tfrm_insurance.cxDBButtonEdit1PropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
+begin
+  inherited;
+    ACBrCEP_1.BuscarPorCEP(btnEditCEP.Text);
 end;
 
 procedure Tfrm_insurance.cxTabSheet_1Show(Sender: TObject);

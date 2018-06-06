@@ -41,7 +41,7 @@ begin
       StoredProcName := 'proc_contract_user_create';
 
       Prepare;
-      ParamByName('p_contract_ctr_cod').AsString   := Contract_user.contract_ctr_cod;
+      ParamByName('p_ctr_id').Value                := Contract_user.ctr_id;
       ParamByName('p_ctr_usr_first_name').AsString := Contract_user.ctr_usr_first_name;
       ParamByName('p_ctr_usr_last_name').AsString  := Contract_user.ctr_usr_last_name;
       ParamByName('p_ctr_usr_username').AsString   := Contract_user.ctr_usr_username;

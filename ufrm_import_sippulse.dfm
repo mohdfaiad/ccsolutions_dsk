@@ -1,22 +1,35 @@
-inherited frm_import_astpp: Tfrm_import_astpp
+inherited frm_import_sippulse: Tfrm_import_sippulse
   Caption = 'Importar: SIPPulse - Relat'#243'rios.'
   ClientHeight = 685
+  ClientWidth = 1070
   OnClose = FormClose
   OnCreate = FormCreate
+  ExplicitWidth = 1086
   ExplicitHeight = 724
   PixelsPerInch = 96
   TextHeight = 13
+  inherited dxBarDockControl_1: TdxBarDockControl
+    Width = 1070
+    ExplicitWidth = 1070
+  end
   inherited DBGrid_1: TDBGrid
     AlignWithMargins = True
     Left = 3
     Top = 30
-    Width = 778
+    Width = 1064
     Height = 652
     TabOrder = 0
     Columns = <
       item
         Expanded = False
-        FieldName = 'cli_account_code_astpp'
+        FieldName = 'imp_id'
+        Title.Caption = 'C'#243'd. ID'
+        Width = 75
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cli_account_code_sippulse'
         Title.Caption = 'Cliente'
         Width = 120
         Visible = True
@@ -37,7 +50,7 @@ inherited frm_import_astpp: Tfrm_import_astpp
       end
       item
         Expanded = False
-        FieldName = 'imp_duration'
+        FieldName = '_duracao'
         Title.Caption = 'Dura'#231#227'o'
         Visible = True
       end
@@ -277,24 +290,17 @@ inherited frm_import_astpp: Tfrm_import_astpp
     Formats.DateSeparator = '-'
     Formats.ShortDateFormat = 'yyyy-MM-dd hh:mm:ss'
     Formats.LongDateFormat = 'yyyy-MM-dd hh:mm:ss'
-    Formats.ShortTimeFormat = 'HH:MM:SS'
-    Formats.LongTimeFormat = 'HH:MM:SS'
-    FieldFormats = <
-      item
-        FieldName = 'imp_duration'
-        Replacements = <>
-        Functions = ifNone
-      end>
+    Formats.ShortTimeFormat = 'hh:mm:ss'
+    Formats.LongTimeFormat = 'hh:mm:ss'
     ImportEmptyRows = False
     SkipInvisibleColumns = True
-    TemplateFileName = 'C:\ccsolutions_dsk\import\Import_astpp.imp'
+    TemplateFileName = 'C:\ccsolutions_dsk\import\Import_sippulse.imp'
     AutoLoadTemplate = True
     ImportMode = qimInsertNew
     KeyColumns.Strings = (
       'imp_from'
       'imp_to'
       'imp_date')
-    OnImportRecord = QImport3Wizard_1ImportRecord
     Left = 480
   end
   inherited qry: TFDQuery
@@ -306,7 +312,7 @@ inherited frm_import_astpp: Tfrm_import_astpp
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from import_call_log'
+      'select  import_call_log.*,0 as _duracao from import_call_log'
       
         'where imp_comp =:comp and contract_ctr_cod =:ctr_cod and cli_acc' +
         'ount_code_sippulse =:cient')
@@ -368,7 +374,6 @@ inherited frm_import_astpp: Tfrm_import_astpp
       AutoGenerateValue = arDefault
       FieldName = 'imp_duration'
       Origin = 'imp_duration'
-      EditMask = '!90:00:00;1;_'
     end
     object qryimp_date: TDateTimeField
       AutoGenerateValue = arDefault
@@ -403,13 +408,7 @@ inherited frm_import_astpp: Tfrm_import_astpp
       AutoGenerateValue = arDefault
       FieldName = 'cli_account_code_sippulse'
       Origin = 'cli_account_code_sippulse'
-      Size = 65
-    end
-    object qrycli_account_code_astpp: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_account_code_astpp'
-      Origin = 'cli_account_code_astpp'
-      Size = 65
+      Size = 50
     end
     object qryimp_comp: TStringField
       AutoGenerateValue = arDefault
@@ -417,16 +416,16 @@ inherited frm_import_astpp: Tfrm_import_astpp
       Origin = 'imp_comp'
       Size = 10
     end
-    object qryimp_tariff: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'imp_tariff'
-      Origin = 'imp_tariff'
-      Size = 15
-    end
     object qryimp_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
       FieldName = 'imp_deleted_at'
       Origin = 'imp_deleted_at'
+    end
+    object qry_duracao: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = '_duracao'
+      Origin = '_duracao'
+      ProviderFlags = []
     end
   end
   inherited ds: TDataSource
@@ -6892,12 +6891,23 @@ inherited frm_import_astpp: Tfrm_import_astpp
     Top = 48
   end
   object qry_client: TFDQuery
+    IndexFieldNames = 'cli_account_code_sippulse'
     MasterSource = ds
+    MasterFields = 'cli_account_code_sippulse'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from client')
+      'select * from client'
+      'where cli_account_code_sippulse =:cli_account_code_sippulse')
     Left = 440
     Top = 128
+    ParamData = <
+      item
+        Name = 'CLI_ACCOUNT_CODE_SIPPULSE'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+        Value = 'client9@sip.logicpro.com.br'
+      end>
     object qry_clientcli_cod: TBytesField
       FieldName = 'cli_cod'
       Required = True
@@ -7215,7 +7225,7 @@ inherited frm_import_astpp: Tfrm_import_astpp
   end
   object procTeste: TFDStoredProc
     Connection = frm_dm.connCCS
-    StoredProcName = 'ccs.proc_import_call_log_astpp'
+    StoredProcName = 'ccs.proc_import_call_log_sippulse'
     Left = 336
     Top = 200
     ParamData = <
@@ -7227,7 +7237,7 @@ inherited frm_import_astpp: Tfrm_import_astpp
       end
       item
         Position = 2
-        Name = 'p_cli_account_code_astpp'
+        Name = 'p_cli_account_code_sippulse'
         DataType = ftString
         ParamType = ptInput
         Size = 65
@@ -7249,7 +7259,7 @@ inherited frm_import_astpp: Tfrm_import_astpp
       item
         Position = 5
         Name = 'p_imp_duration'
-        DataType = ftTime
+        DataType = ftInteger
         ParamType = ptInput
       end
       item

@@ -587,7 +587,7 @@ if Application.MessageBox('Deseja associar esse código Astpp para este cliente?'
    cls_cod:=Fields[0].AsString;
 
    Close;
-   Text:='insert into client_astpp (cla_cod,client_cli_code,cla_account_astpp,cla_dt_registration) ' +
+   Text:='insert into client_astpp (cla_cod,client_cli_cod,cla_account_astpp,cla_dt_registration) ' +
          ' select '+ cls_cod + ',' +  cli_cod + ',' +  QuotedStr(cxEditCodastpp.Text) + ', now()' ;
    Prepare;
    ExecSQL;

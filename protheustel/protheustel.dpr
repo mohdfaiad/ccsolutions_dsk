@@ -29,16 +29,17 @@ uses
   ufrm_default in '..\models\ufrm_default.pas' {frm_default},
   class_contract_user in '..\class_contract_user.pas',
   class_Conexao in '..\class_Conexao.pas',
-  Client.Dao in '..\Dao\Client.Dao.pas',
-  Conexao in '..\Dao\Conexao.pas',
-  Contract_User.Dao in '..\Dao\Contract_User.Dao.pas',
-  Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
-  Employee.Dao in '..\Dao\Employee.Dao.pas',
   Contract_user.Model in '..\Model\Contract_user.Model.pas',
   Contract_User_Enterprise.Model in '..\Model\Contract_User_Enterprise.Model.pas',
   Employee.Model in '..\Model\Employee.Model.pas',
   Employee_Model in '..\Model\Employee_Model.pas',
-  ufrm_import_sippulse in '..\ufrm_import_sippulse.pas' {frm_import_sippulse};
+  ufrm_import_sippulse in '..\ufrm_import_sippulse.pas' {frm_import_sippulse},
+  Client.Dao in '..\Dao\Client.Dao.pas',
+  Conexao in '..\Dao\Conexao.pas',
+  Contract_User.Dao in '..\Dao\Contract_User.Dao.pas',
+  Contract_User_Action.Dao in '..\Dao\Contract_User_Action.Dao.pas',
+  Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
+  Employee.Dao in '..\Dao\Employee.Dao.pas';
 
 {$R *.res}
 

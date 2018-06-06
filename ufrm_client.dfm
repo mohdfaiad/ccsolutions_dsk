@@ -2,6 +2,7 @@ inherited frm_client: Tfrm_client
   Caption = 'Manuten'#231#227'o: Clientes'
   ClientHeight = 691
   OnClose = FormClose
+  ExplicitTop = -179
   ExplicitHeight = 730
   PixelsPerInch = 96
   TextHeight = 13
@@ -2000,6 +2001,7 @@ inherited frm_client: Tfrm_client
     Top = 186
   end
   object qry_client_sippulse: TFDQuery
+    Active = True
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'
@@ -2057,6 +2059,7 @@ inherited frm_client: Tfrm_client
     Top = 546
   end
   object qry_client_astpp: TFDQuery
+    Active = True
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'

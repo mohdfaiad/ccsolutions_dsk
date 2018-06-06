@@ -191,8 +191,8 @@ begin
        begin
 
         if Self.Tag = 1 then
-         begin                         //#Falta pegar ID do Contrato
-           Contract_User.contract_ctr_cod   := frm_dm.p_contract_ctr_cod;
+         begin
+           Contract_User.ctr_id             := frm_dm.qry_contractctr_id.Value;
            Contract_User.ctr_usr_first_name := edtNome.Text;
            Contract_User.ctr_usr_last_name  := edtSobrenome.Text;
            Contract_User.ctr_usr_dt_birth   := edtDtNasc.Date;

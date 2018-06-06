@@ -6,7 +6,7 @@ interface
    TContract_user_Model = class
 
     private
-    Fcontract_ctr_cod: string;
+    Fctr_id: Int64;
     Fctr_usr_id: Integer;
     Fctr_usr_cod: string;
     Fctr_usr_first_name: string;
@@ -26,7 +26,7 @@ interface
      constructor Create;
      destructor Destroy; override;
 
-     property contract_ctr_cod: string read Fcontract_ctr_cod write Fcontract_ctr_cod;
+     property ctr_id: Int64 read Fctr_id write Fctr_id;
      property ctr_usr_id: Integer read Fctr_usr_id write Fctr_usr_id;
      property ctr_usr_cod: string read Fctr_usr_cod write Fctr_usr_cod;
      property ctr_usr_first_name: string read Fctr_usr_first_name write Fctr_usr_first_name;

@@ -32,7 +32,8 @@ uses
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, ufrm_dm, Vcl.ComCtrls, dxCore, cxDateUtils, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxCheckBox, Vcl.StdCtrls, frxExportDOCX, frxClass, frxExportBaseDialog, frxExportPDF,
-  Contract_User.Model, Contract_User.Dao, ACBrSocket, ACBrCEP, cxCheckListBox, AdvOfficeTabSet, Vcl.Grids, Vcl.DBGrids;
+  Contract_User.Model, Contract_User.Dao, ACBrSocket, ACBrCEP, cxCheckListBox, AdvOfficeTabSet, Vcl.Grids, Vcl.DBGrids,
+  cxButtonEdit;
 
 type
   Tfrm_contract_user = class(Tfrm_default)
@@ -76,9 +77,7 @@ type
     cxLabel7: TcxLabel;
     edtEmail: TcxTextEdit;
     cxLabel8: TcxLabel;
-    edtSenha: TcxTextEdit;
     cxLabel9: TcxLabel;
-    edtConf_Senha: TcxTextEdit;
     CheckBoxAdm: TcxCheckBox;
     cxLabel4: TcxLabel;
     grid_1DBTableView1ctr_usr_id: TcxGridDBColumn;
@@ -112,6 +111,10 @@ type
     memActioncta_deleted_at: TDateTimeField;
     memActioncta_dt_registration: TDateTimeField;
     memActionCodAction: TStringField;
+    edt_password: TcxButtonEdit;
+    edt_password_confirmar: TcxButtonEdit;
+    comboxStatus: TcxComboBox;
+    cxLabel1: TcxLabel;
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
@@ -126,6 +129,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure cxListEmpsClickCheck(Sender: TObject; AIndex: Integer; APrevState, ANewState: TcxCheckBoxState);
     procedure cxListMenuClickCheck(Sender: TObject; AIndex: Integer; APrevState, ANewState: TcxCheckBoxState);
+    procedure edt_passwordPropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
+    procedure edt_password_confirmarPropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
   private
     { Private declarations }
       listEmp,listAction:TStrings;
@@ -182,18 +187,18 @@ begin
      Dao          := TContract_User_Dao.Create;
 
      try  //Tag = 1 para Inserir
-      if (Trim(edtSenha.Text)= Trim(edtConf_Senha.Text)) then
+      if (Trim(edt_password.Text)= Trim(edt_password_confirmar.Text)) then
        begin
 
         if Self.Tag = 1 then
          begin                         //#Falta pegar ID do Contrato
-           Contract_User.ctr_id             := 1;
+           Contract_User.contract_ctr_cod   := frm_dm.p_contract_ctr_cod;
            Contract_User.ctr_usr_first_name := edtNome.Text;
            Contract_User.ctr_usr_last_name  := edtSobrenome.Text;
            Contract_User.ctr_usr_dt_birth   := edtDtNasc.Date;
            Contract_User.ctr_usr_username   := edtUsuario.Text;
            Contract_User.ctr_usr_email      := edtEmail.Text;
-           Contract_User.ctr_usr_password   := edtSenha.Text;
+           Contract_User.ctr_usr_password   := edt_password.Text;
            if CheckBoxAdm.Checked then
            Contract_User.ctr_usr_admin      := 'S'
            else Contract_User.ctr_usr_admin := 'N';
@@ -202,13 +207,14 @@ begin
          end       //Tag = 2 para Alterar
          else if Self.Tag = 2 then
          begin
-           Contract_User.ctr_usr_id         := memctr_usr_id.AsInteger;
+           Contract_User.ctr_usr_cod        := memcodUser.AsString;
            Contract_User.ctr_usr_first_name := edtNome.Text;
            Contract_User.ctr_usr_last_name  := edtSobrenome.Text;
            Contract_User.ctr_usr_dt_birth   := edtDtNasc.Date;
            Contract_User.ctr_usr_username   := edtUsuario.Text;
-           Contract_User.ctr_usr_password   := edtSenha.Text;
+           Contract_User.ctr_usr_password   := edt_password.Text;
            Contract_User.ctr_usr_email      := edtEmail.Text;
+           Contract_User.ctr_usr_status     := copy(comboxStatus.Text,0,1) ;
            if CheckBoxAdm.Checked then
            Contract_User.ctr_usr_admin      := 'S'
            else Contract_User.ctr_usr_admin := 'N';
@@ -352,6 +358,25 @@ begin
 
 end;
 
+procedure Tfrm_contract_user.edt_passwordPropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
+begin
+  inherited;
+   if TcxButtonEdit(Sender).Properties.EchoMode <> eemPassword then
+      TcxButtonEdit(Sender).Properties.EchoMode := eemPassword
+
+  else
+    TcxButtonEdit(Sender).Properties.EchoMode := eemNormal;
+end;
+
+procedure Tfrm_contract_user.edt_password_confirmarPropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
+begin
+  inherited;
+   if TcxButtonEdit(Sender).Properties.EchoMode <> eemPassword then
+      TcxButtonEdit(Sender).Properties.EchoMode := eemPassword
+  else
+    TcxButtonEdit(Sender).Properties.EchoMode := eemNormal;
+end;
+
 procedure Tfrm_contract_user.ExibirGrid;
 var
   Dao : TContract_User_Dao;
@@ -421,9 +446,19 @@ begin
 
     if Components[i] is TcxDateEdit then
       TcxTextEdit(Components[i]).Clear;
+
+    if Components[i] is TcxButtonEdit then
+      TcxButtonEdit(Components[i]).Clear;
+
+    if Components[i] is TcxComboBox then
+      TcxComboBox(Components[i]).Clear;
+
     end;
 
+
    edtNome.SetFocus;
+   comboxStatus.ItemIndex := 0;
+   comboxStatus.Enabled := False;
 
 end;
 
@@ -467,17 +502,23 @@ end;
 procedure Tfrm_contract_user.PreecherCampos;
 begin
 
-   edt_codid.Text           := IntToStr(memctr_usr_id.AsInteger);
-   edt_dt_registration.Text := DateToStr(memctr_usr_dt_registration.AsDateTime);
-   edtNome.Text             := memctr_usr_first_name.AsString;
-   edtSobrenome.Text        := memctr_usr_last_name.AsString;
-   edtDtNasc.Date           := memctr_usr_dt_birth.AsDateTime;
-   edtUsuario.Text          := memctr_usr_username.AsString;
-   edtEmail.Text            := memctr_usr_email.AsString;
+   edt_codid.Text              := IntToStr(memctr_usr_id.AsInteger);
+   edt_dt_registration.Text    := DateToStr(memctr_usr_dt_registration.AsDateTime);
+   edtNome.Text                := memctr_usr_first_name.AsString;
+   edtSobrenome.Text           := memctr_usr_last_name.AsString;
+   edtDtNasc.Date              := memctr_usr_dt_birth.AsDateTime;
+   edtUsuario.Text             := memctr_usr_username.AsString;
+   edtEmail.Text               := memctr_usr_email.AsString;
+   edt_password.Text           := memctr_usr_password.AsString;
+   edt_password_confirmar.Text := memctr_usr_password.AsString;
+   comboxStatus.Enabled := True;
+   if (memctr_usr_status.AsString = 'A') then
+       comboxStatus.ItemIndex := 0
+   else comboxStatus.ItemIndex := 1;
 
-    if memctr_usr_admin.AsString = 'S' then
-       CheckBoxAdm.Checked   := True
-    else CheckBoxAdm.Checked := False;
+   if memctr_usr_admin.AsString = 'S' then
+      CheckBoxAdm.Checked   := True
+   else CheckBoxAdm.Checked := False;
 
    edtNome.SetFocus;
 

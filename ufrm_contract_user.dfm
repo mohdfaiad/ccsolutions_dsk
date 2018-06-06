@@ -130,7 +130,6 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         Width = 1121
-        Properties.ActivePage = tbsht_6
         ExplicitWidth = 1121
         ClientRectRight = 1115
         inherited tbsht_5: TcxTabSheet
@@ -182,7 +181,7 @@ inherited frm_contract_user: Tfrm_contract_user
             end
             object edtUsuario: TcxTextEdit
               Left = 3
-              Top = 72
+              Top = 71
               TabOrder = 6
               Width = 125
             end
@@ -200,45 +199,140 @@ inherited frm_contract_user: Tfrm_contract_user
             end
             object cxLabel8: TcxLabel
               Left = 3
-              Top = 103
+              Top = 143
               Caption = 'Senha'
               Transparent = True
             end
-            object edtSenha: TcxTextEdit
-              Left = 3
-              Top = 120
-              Properties.PasswordChar = '*'
-              TabOrder = 10
-              Width = 125
-            end
             object cxLabel9: TcxLabel
               Left = 134
-              Top = 103
+              Top = 143
               Caption = 'Confirmar Senha'
               Transparent = True
             end
-            object edtConf_Senha: TcxTextEdit
-              Left = 134
-              Top = 120
-              ParentShowHint = False
-              Properties.PasswordChar = '*'
-              ShowHint = True
-              TabOrder = 12
-              Width = 125
-            end
             object CheckBoxAdm: TcxCheckBox
-              Left = 302
-              Top = 122
+              Left = 134
+              Top = 117
               Caption = 'Administrador'
               Properties.ValueChecked = 'S'
               Properties.ValueUnchecked = 'N'
               State = cbsGrayed
-              TabOrder = 13
+              TabOrder = 11
             end
             object cxLabel4: TcxLabel
               Left = 134
               Top = 11
               Caption = 'Sobrenome'
+              Transparent = True
+            end
+            object edt_password: TcxButtonEdit
+              Left = 3
+              Top = 160
+              Properties.Buttons = <
+                item
+                  Default = True
+                  Glyph.Data = {
+                    36040000424D3604000000000000360000002800000010000000100000000100
+                    2000000000000004000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    000000000000000000040000000A000000100000001300000015000000140000
+                    00110000000C0000000500000001000000000000000000000000000000000000
+                    00030000000C070404263F271F836E4235CA7A4839DE915644FF774436DE693C
+                    30CE3A2019870704032B00000010000000040000000000000000000000030000
+                    0011442C2486976253F5BE998EFFD9C5BEFFE0CFCAFFEFE6E3FFDDCAC4FFD3BC
+                    B5FFB48B7FFF895140F540231B92000000180000000500000001010204145536
+                    2D9CC5A398FFF2E9E7FFF5EFEDFFBCAEA8FF71574CFF593A2DFF755B4EFFBEAE
+                    A7FFEBE2DEFFE5D8D3FFB79085FF4E2A21A90101021A000000032F23246BB58D
+                    80FFF9F5F4FFF7F3F2FFC1B3ADFF826555FFB19A85FFC2AC97FFB09783FF7F62
+                    51FFC0B0A9FFECE3DFFFECE2DFFFA37467FF28191A750000000A5E4F60E1BCB1
+                    ACFFF6F3F3FFF8F4F3FF7A5E50FFBEA995FF857162FF3F2A22FF746053FFB8A3
+                    8FFF806658FFEEE5E2FFECE2DFFFB1A29CFF503F50E40000000D182C4D885C63
+                    72FFB2B0B0FFF1EEEDFF725242FFDDD1B9FF806D5EFF493229FF493228FFCFC0
+                    A9FF745545FFEBE3E1FFABA6A3FF505566FF142A55AA0000000A05080F21395F
+                    9DFA697F9AFF626160FF55443CFFB2A894FFE4E0C1FF584135FF847466FFA498
+                    87FF58483FFF5F5C5CFF4E6586FF2F5191FF050B173C00000004000000031221
+                    3B685A7FB7FFA6C5E3FF7990ABFF444D59FF3E4248FF2B2A25FF3C4148FF3E48
+                    56FF627D9EFF789DC9FF3C609FFD0B172E630000000600000000000000000000
+                    00030F1B3159315593ED6F91C1FF9BB9DCFFB0CDE9FFCBE8FCFFA7C7E6FF87AA
+                    D3FF5A7EB3FF284B8BF10A152958000000060000000100000000000000000000
+                    0000000000020204071112223E6F1C3765B0213F76D0274C91FC1E3C74D01933
+                    62B40F1F3D750204081700000003000000000000000000000000000000000000
+                    0000000000000000000000000002000000030000000400000005000000050000
+                    0004000000020000000100000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000}
+                  Kind = bkGlyph
+                end>
+              Properties.EchoMode = eemPassword
+              Properties.OnButtonClick = edt_passwordPropertiesButtonClick
+              TabOrder = 13
+              Width = 125
+            end
+            object edt_password_confirmar: TcxButtonEdit
+              Left = 134
+              Top = 160
+              Properties.Buttons = <
+                item
+                  Default = True
+                  Glyph.Data = {
+                    36040000424D3604000000000000360000002800000010000000100000000100
+                    2000000000000004000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    000000000000000000040000000A000000100000001300000015000000140000
+                    00110000000C0000000500000001000000000000000000000000000000000000
+                    00030000000C070404263F271F836E4235CA7A4839DE915644FF774436DE693C
+                    30CE3A2019870704032B00000010000000040000000000000000000000030000
+                    0011442C2486976253F5BE998EFFD9C5BEFFE0CFCAFFEFE6E3FFDDCAC4FFD3BC
+                    B5FFB48B7FFF895140F540231B92000000180000000500000001010204145536
+                    2D9CC5A398FFF2E9E7FFF5EFEDFFBCAEA8FF71574CFF593A2DFF755B4EFFBEAE
+                    A7FFEBE2DEFFE5D8D3FFB79085FF4E2A21A90101021A000000032F23246BB58D
+                    80FFF9F5F4FFF7F3F2FFC1B3ADFF826555FFB19A85FFC2AC97FFB09783FF7F62
+                    51FFC0B0A9FFECE3DFFFECE2DFFFA37467FF28191A750000000A5E4F60E1BCB1
+                    ACFFF6F3F3FFF8F4F3FF7A5E50FFBEA995FF857162FF3F2A22FF746053FFB8A3
+                    8FFF806658FFEEE5E2FFECE2DFFFB1A29CFF503F50E40000000D182C4D885C63
+                    72FFB2B0B0FFF1EEEDFF725242FFDDD1B9FF806D5EFF493229FF493228FFCFC0
+                    A9FF745545FFEBE3E1FFABA6A3FF505566FF142A55AA0000000A05080F21395F
+                    9DFA697F9AFF626160FF55443CFFB2A894FFE4E0C1FF584135FF847466FFA498
+                    87FF58483FFF5F5C5CFF4E6586FF2F5191FF050B173C00000004000000031221
+                    3B685A7FB7FFA6C5E3FF7990ABFF444D59FF3E4248FF2B2A25FF3C4148FF3E48
+                    56FF627D9EFF789DC9FF3C609FFD0B172E630000000600000000000000000000
+                    00030F1B3159315593ED6F91C1FF9BB9DCFFB0CDE9FFCBE8FCFFA7C7E6FF87AA
+                    D3FF5A7EB3FF284B8BF10A152958000000060000000100000000000000000000
+                    0000000000020204071112223E6F1C3765B0213F76D0274C91FC1E3C74D01933
+                    62B40F1F3D750204081700000003000000000000000000000000000000000000
+                    0000000000000000000000000002000000030000000400000005000000050000
+                    0004000000020000000100000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000}
+                  Kind = bkGlyph
+                end>
+              Properties.EchoMode = eemPassword
+              Properties.OnButtonClick = edt_password_confirmarPropertiesButtonClick
+              TabOrder = 14
+              Width = 125
+            end
+            object comboxStatus: TcxComboBox
+              Left = 3
+              Top = 116
+              Properties.Items.Strings = (
+                'A - ATIVO'
+                'D - DESATIVADO')
+              TabOrder = 15
+              Width = 125
+            end
+            object cxLabel1: TcxLabel
+              Left = 3
+              Top = 98
+              Caption = 'Status'
               Transparent = True
             end
           end
@@ -253,7 +347,6 @@ inherited frm_contract_user: Tfrm_contract_user
             Align = alTop
             Caption = 'Lista de Empresas'
             TabOrder = 0
-            ExplicitTop = -6
             Height = 249
             Width = 1113
             object cxListEmps: TcxCheckListBox
@@ -266,7 +359,6 @@ inherited frm_contract_user: Tfrm_contract_user
               TabOrder = 0
               OnClick = cxListEmpsClick
               OnClickCheck = cxListEmpsClickCheck
-              ExplicitTop = 12
             end
           end
           object cxGroupBox4: TcxGroupBox
@@ -276,8 +368,6 @@ inherited frm_contract_user: Tfrm_contract_user
             Caption = 'Acesso ao Sistema'
             Style.Edges = [bLeft, bTop, bRight, bBottom]
             TabOrder = 1
-            ExplicitLeft = -56
-            ExplicitTop = 142
             Height = 256
             Width = 1113
             object AdvOfficeTabSet1: TAdvOfficeTabSet
@@ -735,8 +825,6 @@ inherited frm_contract_user: Tfrm_contract_user
               Items = <>
               TabOrder = 1
               OnClickCheck = cxListMenuClickCheck
-              ExplicitLeft = 0
-              ExplicitTop = 23
             end
           end
         end

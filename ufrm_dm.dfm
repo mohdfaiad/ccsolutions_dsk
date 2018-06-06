@@ -514,7 +514,7 @@ object frm_dm: Tfrm_dm
   end
   object ds_contract: TDataSource
     DataSet = qry_contract
-    Left = 216
-    Top = 320
+    Left = 192
+    Top = 312
   end
 end

@@ -25,7 +25,7 @@ object frm_login: Tfrm_login
     Height = 273
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet_1
+    Properties.ActivePage = cxTabSheet1
     Properties.CustomButtons.Buttons = <>
     Properties.Images = cxImageList_1
     LookAndFeel.NativeStyle = True
@@ -2286,6 +2286,8 @@ object frm_login: Tfrm_login
       Caption = 'Alterar Senha'
       ImageIndex = 2
       OnShow = cxTabSheet1Show
+      ExplicitLeft = 5
+      ExplicitTop = 26
       object Image2: TImage
         AlignWithMargins = True
         Left = 259
@@ -4420,19 +4422,19 @@ object frm_login: Tfrm_login
       end
       object cxLabel5: TcxLabel
         Left = 3
-        Top = 22
+        Top = 52
         Caption = 'Senha Atual'
         Transparent = True
       end
       object cxLabel6: TcxLabel
         Left = 3
-        Top = 72
+        Top = 95
         Caption = 'Nova Senha'
         Transparent = True
       end
       object cxLabel7: TcxLabel
         Left = 3
-        Top = 122
+        Top = 138
         Caption = 'Confirmar Senha'
         Transparent = True
       end
@@ -4444,7 +4446,7 @@ object frm_login: Tfrm_login
         Caption = 'Alterar'
         OptionsImage.ImageIndex = 0
         OptionsImage.Images = cxImageList_1
-        TabOrder = 7
+        TabOrder = 8
         OnClick = cxButton3Click
       end
       object cxButton4: TcxButton
@@ -4455,12 +4457,12 @@ object frm_login: Tfrm_login
         Caption = 'Cancelar'
         OptionsImage.ImageIndex = 1
         OptionsImage.Images = cxImageList_1
-        TabOrder = 3
+        TabOrder = 9
         OnClick = cxButton4Click
       end
       object edt_passwordCurrent: TcxButtonEdit
         Left = 3
-        Top = 45
+        Top = 70
         Properties.Buttons = <
           item
             Default = True
@@ -4503,12 +4505,12 @@ object frm_login: Tfrm_login
           end>
         Properties.EchoMode = eemPassword
         Properties.OnButtonClick = edt_passwordPropertiesButtonClick
-        TabOrder = 4
+        TabOrder = 5
         Width = 250
       end
       object edt_passwordNew: TcxButtonEdit
         Left = 3
-        Top = 95
+        Top = 112
         Properties.Buttons = <
           item
             Default = True
@@ -4551,12 +4553,12 @@ object frm_login: Tfrm_login
           end>
         Properties.EchoMode = eemPassword
         Properties.OnChange = edt_passwordNewPropertiesChange
-        TabOrder = 5
+        TabOrder = 6
         Width = 250
       end
       object edt_passwordConfirm: TcxButtonEdit
         Left = 3
-        Top = 145
+        Top = 157
         Properties.Buttons = <
           item
             Default = True
@@ -4598,13 +4600,27 @@ object frm_login: Tfrm_login
             Kind = bkGlyph
           end>
         Properties.EchoMode = eemPassword
-        TabOrder = 6
+        TabOrder = 7
         Width = 250
+      end
+      object edt_UsuarioElter: TcxTextEdit
+        Left = 3
+        Top = 27
+        TabOrder = 4
+        Width = 250
+      end
+      object cxLabel8: TcxLabel
+        Left = 3
+        Top = 9
+        Caption = 'Usu'#225'rio Atual'
+        Transparent = True
       end
     end
     object cxTabSheet2: TcxTabSheet
       Caption = 'Recuperar Senha '
       ImageIndex = 2
+      ExplicitLeft = 5
+      ExplicitTop = 26
       object Image3: TImage
         AlignWithMargins = True
         Left = 259

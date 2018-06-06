@@ -67,6 +67,8 @@ type
     cxButton5: TcxButton;
     cxButton6: TcxButton;
     cxDateNasc: TcxDateEdit;
+    edt_UsuarioElter: TcxTextEdit;
+    cxLabel8: TcxLabel;
     procedure Action_cancelExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_accessExecute(Sender: TObject);
@@ -207,7 +209,7 @@ end;
 
 procedure Tfrm_login.cxButton3Click(Sender: TObject);
 var
-md5 : TIdHashMessageDigest;
+ CodUsuario : string;
 begin
    if edt_passwordConfirm.Text <> edt_passwordNew.Text then
    begin
@@ -226,21 +228,19 @@ begin
 
 if Application.MessageBox('Desja confirmar a alteração em sua senha?', 'SENHA',MB_YESNO + MB_ICONQUESTION) = mrYes then
  begin
-   md5:=TIdHashMessageDigest5.Create;
-
    with frm_dm.qry,sql do
     begin
      close;
-     text:= 'select ctr_usr_password from contract_user ' +
-            'where contract_ctr_cod = (select ctr_cod from contract where ctr_id = :contrato) ' +
-            'and ctr_usr_username = :nome '+
-            'and (ctr_usr_password = :senha or ctr_usr_password is null)';
-     ParamByName('contrato').AsString:= edt_contract.Text;
-     ParamByName('nome').AsString:=edt_username.Text;
-     ParamByName('senha').AsString:=md5.HashStringAsHex(edt_passwordCurrent.Text);
+     text:= ' select hex(ctr_usr_cod) as CodUser, ctr_usr_password from contract_user     ' +
+            ' where contract_ctr_cod = unhex(:CodContrato)                                ' +
+            ' and ctr_usr_username =:Usuario and ctr_usr_password =  unhex(md5(:Senha)) ';
+     ParamByName('CodContrato').AsString :=  frm_dm.p_contract_ctr_cod;
+     ParamByName('Usuario').AsString     :=  edt_UsuarioElter.Text;
+     ParamByName('Senha').AsString       :=  edt_passwordCurrent.Text;
      prepare;
      open;
-
+     //Vaviavel recebe o Cod_Usuario
+     CodUsuario := frm_dm.qry.FieldByName('CodUser').AsString;
      if IsEmpty then
       begin
        Application.MessageBox('A senha informada não confere para o usuário selecionado!', 'SENHA',MB_OK + MB_ICONERROR);
@@ -248,16 +248,10 @@ if Application.MessageBox('Desja confirmar a alteração em sua senha?', 'SENHA',M
       end;
 
      close;
-     text:= ' update contract_user ' +
-            ' set  ctr_usr_password = :senhaAtual '+
-            'where contract_ctr_cod= (select ctr_cod from contract where ctr_id = :contrato) ' +
-            'and ctr_usr_username = :nome '+
-            'and (ctr_usr_password = :senha or ctr_usr_password is null)';
-     ParamByName('contrato').AsString:= edt_contract.Text;
-     ParamByName('nome').AsString:=edt_username.Text;
-     ParamByName('senha').AsString:=md5.HashStringAsHex(edt_passwordCurrent.Text);
-     ParamByName('contrato').AsString:= edt_contract.Text;
-     ParamByName('senhaAtual').AsString:=md5.HashStringAsHex(edt_passwordNew.Text);
+     text:= ' update contract_user set ctr_usr_password = unhex(md5(:senha))   ' +
+            ' where ctr_usr_cod = unhex(:CodUsuario) ';
+     ParamByName('CodUsuario').AsString := CodUsuario;
+     ParamByName('senha').AsString := edt_passwordNew.Text;
      prepare;
      ExecSQL;
 
@@ -410,10 +404,11 @@ if Length(edt_username.Text) = 0  then
 
 procedure Tfrm_login.cxTabSheet1Show(Sender: TObject);
 begin
+  edt_UsuarioElter.Clear;
   edt_passwordNew.Clear;
   edt_passwordConfirm.Clear;
   edt_passwordCurrent.Clear;
-  edt_passwordCurrent.SetFocus;
+  edt_UsuarioElter.SetFocus;
 
 end;
 

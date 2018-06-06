@@ -130,6 +130,7 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         Width = 1121
+        Properties.ActivePage = tbsht_6
         ExplicitWidth = 1121
         ClientRectRight = 1115
         inherited tbsht_5: TcxTabSheet

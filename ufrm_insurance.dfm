@@ -969,8 +969,8 @@ inherited frm_insurance: Tfrm_insurance
       'concat('#39'0x'#39',hex(TBP_cod)) as codTabela from table_price'
       'where contract_ctr_cod = :ctr_cod'
       'order by tbp_name')
-    Left = 463
-    Top = 266
+    Left = 519
+    Top = 242
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -1012,7 +1012,7 @@ inherited frm_insurance: Tfrm_insurance
   end
   object ds_table_price: TDataSource
     DataSet = qry_table_price
-    Left = 527
-    Top = 266
+    Left = 639
+    Top = 226
   end
 end

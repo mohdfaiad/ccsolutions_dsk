@@ -7,19 +7,57 @@ inherited frm_doctor: Tfrm_doctor
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
     Height = 588
-    Properties.ActivePage = tbsht_2
     ExplicitHeight = 588
     ClientRectBottom = 582
     inherited tbsht_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
+      ExplicitWidth = 954
+      ExplicitHeight = 555
       inherited pgctrl_2: TcxPageControl
         Height = 555
         ExplicitHeight = 555
         ClientRectBottom = 549
         inherited tbsht_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 27
+          ExplicitWidth = 946
+          ExplicitHeight = 522
           inherited grid_1: TcxGrid
             Height = 516
+            ExplicitTop = 12
             ExplicitHeight = 516
-            inherited cxGridDBTableView1: TcxGridDBTableView
+            inherited grid_1DBTableView1: TcxGridDBTableView
+              object grid_1DBTableView1doc_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'doc_cod'
+              end
+              object grid_1DBTableView1contract_ctr_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'contract_ctr_cod'
+              end
+              object grid_1DBTableView1employee_emp_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'employee_emp_cod'
+              end
+              object grid_1DBTableView1doc_id: TcxGridDBColumn
+                DataBinding.FieldName = 'doc_id'
+              end
+              object grid_1DBTableView1doc_status: TcxGridDBColumn
+                DataBinding.FieldName = 'doc_status'
+              end
+              object grid_1DBTableView1doc_deleted_at: TcxGridDBColumn
+                DataBinding.FieldName = 'doc_deleted_at'
+              end
+              object grid_1DBTableView1doc_dt_registration: TcxGridDBColumn
+                DataBinding.FieldName = 'doc_dt_registration'
+              end
+              object grid_1DBTableView1concat0xhexemployee_emp_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'concat('#39'0x'#39',hex(employee_emp_cod))'
+              end
+            end
+            object cxGridDBTableView1: TcxGridDBTableView [1]
+              Navigator.Buttons.CustomButtons = <>
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <>
+              DataController.Summary.SummaryGroups = <>
               object cxGridDBTableView1doc_id: TcxGridDBColumn
                 DataBinding.FieldName = 'doc_id'
               end
@@ -51,32 +89,62 @@ inherited frm_doctor: Tfrm_doctor
     end
     inherited tbsht_2: TcxTabSheet
       OnShow = tbsht_2Show
+      ExplicitLeft = 2
+      ExplicitTop = 27
+      ExplicitWidth = 954
+      ExplicitHeight = 555
       inherited pgctrl_3: TcxPageControl
         Height = 555
         ExplicitHeight = 555
         ClientRectBottom = 549
         inherited tbsht_5: TcxTabSheet
           ExplicitHeight = 522
-          inherited cxGroupBox1: TcxGroupBox
-            inherited cxLabel2: TcxLabel
-              Left = 168
-              ExplicitLeft = 168
-            end
+          inherited grb_top: TcxGroupBox
             inherited edt_dt_registration: TcxTextEdit
               Left = 168
               ExplicitLeft = 168
             end
           end
-          inherited cxGroupBox2: TcxGroupBox
-            Top = 79
-            ExplicitTop = 79
-            ExplicitHeight = 464
-            Height = 464
+          inherited grb_bottton: TcxGroupBox
+            object cxLabel3: TcxLabel
+              Left = 3
+              Top = 12
+              Caption = 'Proficional'
+              Transparent = True
+            end
+            object cxLookupComboBoxProfissional: TcxLookupComboBox
+              Left = 3
+              Top = 31
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'empCod'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'rec_name'
+                end>
+              Properties.ListSource = ds_Doctor
+              TabOrder = 1
+              Width = 290
+            end
+            object cxLabel4: TcxLabel
+              Left = 344
+              Top = 12
+              Caption = 'Status'
+              Transparent = True
+            end
+            object cxComboBoxStatus: TcxComboBox
+              Left = 344
+              Top = 31
+              Properties.Items.Strings = (
+                'A - ATIVO'
+                'D - DESATIVADO')
+              TabOrder = 3
+              Width = 145
+            end
             object cxGroupBox3: TcxGroupBox
               Left = 3
               Top = 80
               Caption = 'Especialidades do Proficional'
-              TabOrder = 0
+              TabOrder = 4
               Height = 345
               Width = 489
               object cxGrid1: TcxGrid
@@ -86,6 +154,10 @@ inherited frm_doctor: Tfrm_doctor
                 Height = 323
                 Align = alClient
                 TabOrder = 0
+                ExplicitLeft = 2
+                ExplicitTop = 1
+                ExplicitWidth = 485
+                ExplicitHeight = 342
                 object cxGrid1DBTableView1: TcxGridDBTableView
                   Navigator.Buttons.ConfirmDelete = True
                   Navigator.Buttons.CustomButtons = <>
@@ -158,40 +230,6 @@ inherited frm_doctor: Tfrm_doctor
                 end
               end
             end
-            object cxLabel3: TcxLabel
-              Left = 3
-              Top = 12
-              Caption = 'Proficional'
-              Transparent = True
-            end
-            object cxLabel4: TcxLabel
-              Left = 344
-              Top = 12
-              Caption = 'Status'
-              Transparent = True
-            end
-            object cxLookupComboBoxProfissional: TcxLookupComboBox
-              Left = 3
-              Top = 31
-              Properties.GridMode = True
-              Properties.KeyFieldNames = 'empCod'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'rec_name'
-                end>
-              Properties.ListSource = ds_Doctor
-              TabOrder = 3
-              Width = 290
-            end
-            object cxComboBoxStatus: TcxComboBox
-              Left = 344
-              Top = 31
-              Properties.Items.Strings = (
-                'A - ATIVO'
-                'D - DESATIVADO')
-              TabOrder = 4
-              Width = 145
-            end
           end
         end
       end
@@ -200,6 +238,12 @@ inherited frm_doctor: Tfrm_doctor
   inherited stsbar_1: TdxStatusBar
     Top = 643
     ExplicitTop = 643
+    inherited stsbar_deleted_at: TdxStatusBarContainerControl
+      inherited chkbox_1: TcxCheckBox
+        ExplicitWidth = 926
+        ExplicitHeight = 32
+      end
+    end
   end
   inherited barman_1: TdxBarManager
     object dxBarButton1: TdxBarButton
@@ -296,7 +340,6 @@ inherited frm_doctor: Tfrm_doctor
     end
   end
   object qry_doctor: TFDQuery [17]
-    Active = True
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -312,7 +355,7 @@ inherited frm_doctor: Tfrm_doctor
       '                   where emp_status = '#39'A'#39')'#10#10
       'and r.contract_ctr_cod = :ctr_cod'#10
       'order by r.rec_name'#10)
-    Left = 784
+    Left = 800
     Top = 176
     ParamData = <
       item
@@ -375,8 +418,8 @@ inherited frm_doctor: Tfrm_doctor
         ','
       ' concat('#39'0x'#39',hex(roe_cod)) as roeCod,rol_name from role_employee'
       ' left join role on rol_cod = role_rol_cod ')
-    Left = 600
-    Top = 272
+    Left = 664
+    Top = 256
     object qry_role_employeeroe_cod: TBytesField
       FieldName = 'roe_cod'
       Origin = 'roe_cod'
@@ -440,11 +483,10 @@ inherited frm_doctor: Tfrm_doctor
   end
   object ds_role_employee: TDataSource [20]
     DataSet = qry_role_employee
-    Left = 672
-    Top = 280
+    Left = 704
+    Top = 256
   end
   object qry_role: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'

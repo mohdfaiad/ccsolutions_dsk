@@ -1,7 +1,6 @@
 inherited frm_exam: Tfrm_exam
   Caption = 'Manuten'#231#227'o: Exames'
   OnClose = FormClose
-  ExplicitLeft = -4
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl

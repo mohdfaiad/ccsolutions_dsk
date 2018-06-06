@@ -40,7 +40,180 @@ inherited frm_employee_: Tfrm_employee_
             Height = 563
             ExplicitWidth = 948
             ExplicitHeight = 563
-            inherited cxGridDBTableView1: TcxGridDBTableView
+            inherited grid_1DBTableView1: TcxGridDBTableView
+              object grid_1DBTableView1emp_cod: TcxGridDBColumn
+                DataBinding.FieldName = 'emp_cod'
+              end
+              object grid_1DBTableView1emp_id: TcxGridDBColumn
+                Caption = 'C'#243'digo ID'
+                DataBinding.FieldName = 'emp_id'
+                Width = 65
+              end
+              object grid_1DBTableView1rec_name: TcxGridDBColumn
+                Caption = 'Nome'
+                DataBinding.FieldName = 'rec_name'
+                Width = 250
+              end
+              object grid_1DBTableView1rec_nickname: TcxGridDBColumn
+                Caption = 'Apelido'
+                DataBinding.FieldName = 'rec_nickname'
+                Width = 140
+              end
+              object grid_1DBTableView1rec_sex: TcxGridDBColumn
+                Caption = 'Sexo'
+                DataBinding.FieldName = 'rec_sex'
+                Width = 50
+              end
+              object grid_1DBTableView1rec_dt_birth: TcxGridDBColumn
+                Caption = 'Nascimento'
+                DataBinding.FieldName = 'rec_dt_birth'
+                Width = 100
+              end
+              object grid_1DBTableView1emp_type: TcxGridDBColumn
+                Caption = 'Tipo'
+                DataBinding.FieldName = 'emp_type'
+                Width = 50
+              end
+              object grid_1DBTableView1emp_status: TcxGridDBColumn
+                Caption = 'Status'
+                DataBinding.FieldName = 'emp_status'
+                Width = 50
+              end
+              object grid_1DBTableView1rec_cpf_number: TcxGridDBColumn
+                Caption = 'CPF'
+                DataBinding.FieldName = 'rec_cpf_number'
+                Width = 100
+              end
+              object grid_1DBTableView1rec_rg_number: TcxGridDBColumn
+                Caption = 'RG'
+                DataBinding.FieldName = 'rec_rg_number'
+                Width = 100
+              end
+              object grid_1DBTableView1rec_ctps_number: TcxGridDBColumn
+                Caption = 'N'#186' CTPS'
+                DataBinding.FieldName = 'rec_ctps_number'
+                Width = 100
+              end
+              object grid_1DBTableView1rec_ctps_serial: TcxGridDBColumn
+                Caption = 'N'#186' S'#233'rie'
+                DataBinding.FieldName = 'rec_ctps_serial'
+                Width = 100
+              end
+              object grid_1DBTableView1rec_ctps_state: TcxGridDBColumn
+                Caption = 'CTPS UF'
+                DataBinding.FieldName = 'rec_ctps_state'
+                Width = 50
+              end
+              object grid_1DBTableView1rec_ctps_date: TcxGridDBColumn
+                Caption = 'Dt. Emiss'#227'o'
+                DataBinding.FieldName = 'rec_ctps_date'
+                Width = 100
+              end
+              object grid_1DBTableView1rec_cam_number: TcxGridDBColumn
+                Caption = 'N'#186' CAM'
+                DataBinding.FieldName = 'rec_cam_number'
+                Width = 100
+              end
+              object grid_1DBTableView1rec_cnh_number: TcxGridDBColumn
+                Caption = 'CNH'
+                DataBinding.FieldName = 'rec_cnh_number'
+                Width = 100
+              end
+              object grid_1DBTableView1rec_chn_category: TcxGridDBColumn
+                Caption = 'Categoria CNH'
+                DataBinding.FieldName = 'rec_chn_category'
+                Width = 100
+              end
+              object grid_1DBTableView1rec_cnh_dt_expiration: TcxGridDBColumn
+                Caption = 'CNH Renova'#231#227'o'
+                DataBinding.FieldName = 'rec_cnh_dt_expiration'
+                Width = 100
+              end
+              object grid_1DBTableView1rec_te_number: TcxGridDBColumn
+                Caption = 'T'#237'tulo Eleitor'
+                DataBinding.FieldName = 'rec_te_number'
+                Width = 100
+              end
+              object grid_1DBTableView1rec_te_zone: TcxGridDBColumn
+                Caption = 'Zona'
+                DataBinding.FieldName = 'rec_te_zone'
+                Width = 100
+              end
+              object grid_1DBTableView1rec_te_section: TcxGridDBColumn
+                Caption = 'Se'#231#227'o'
+                DataBinding.FieldName = 'rec_te_section'
+              end
+              object grid_1DBTableView1rec_crm_number: TcxGridDBColumn
+                Caption = 'N'#186' CRM'
+                DataBinding.FieldName = 'rec_crm_number'
+                Width = 100
+              end
+              object grid_1DBTableView1rec_status_marital: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_status_marital'
+              end
+              object grid_1DBTableView1rec_nationality: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_nationality'
+              end
+              object grid_1DBTableView1rec_naturalness_uf: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_naturalness_uf'
+              end
+              object grid_1DBTableView1rec_naturalness_city: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_naturalness_city'
+              end
+              object grid_1DBTableView1rec_father_name: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_father_name'
+              end
+              object grid_1DBTableView1rec_mother_name: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_mother_name'
+              end
+              object grid_1DBTableView1rec_add_zipcode: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_add_zipcode'
+              end
+              object grid_1DBTableView1rec_add_address: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_add_address'
+              end
+              object grid_1DBTableView1rec_add_number: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_add_number'
+              end
+              object grid_1DBTableView1rec_add_street: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_add_street'
+              end
+              object grid_1DBTableView1rec_add_complement: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_add_complement'
+              end
+              object grid_1DBTableView1rec_add_city: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_add_city'
+              end
+              object grid_1DBTableView1rec_add_state: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_add_state'
+              end
+              object grid_1DBTableView1rec_add_country: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_add_country'
+              end
+              object grid_1DBTableView1rec_phone1: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_phone1'
+              end
+              object grid_1DBTableView1rec_phone2: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_phone2'
+              end
+              object grid_1DBTableView1rec_phone3: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_phone3'
+              end
+              object grid_1DBTableView1rec_phone4: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_phone4'
+              end
+              object grid_1DBTableView1rec_contact: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_contact'
+              end
+              object grid_1DBTableView1emp_dt_registration: TcxGridDBColumn
+                DataBinding.FieldName = 'emp_dt_registration'
+              end
+            end
+            object cxGridDBTableView1: TcxGridDBTableView [1]
+              Navigator.Buttons.CustomButtons = <>
+              DataController.Summary.DefaultGroupSummaryItems = <>
+              DataController.Summary.FooterSummaryItems = <>
+              DataController.Summary.SummaryGroups = <>
               object cxGridDBTableView1emp_id: TcxGridDBColumn
                 DataBinding.FieldName = 'emp_id'
               end
@@ -184,51 +357,111 @@ inherited frm_employee_: Tfrm_employee_
         inherited tbsht_5: TcxTabSheet
           ExplicitWidth = 954
           ExplicitHeight = 569
-          inherited cxGroupBox1: TcxGroupBox
+          inherited grb_top: TcxGroupBox
             ExplicitWidth = 948
             Width = 948
           end
-          inherited cxGroupBox2: TcxGroupBox
+          inherited grb_bottton: TcxGroupBox
             ExplicitWidth = 948
-            ExplicitHeight = 511
-            Height = 511
+            ExplicitHeight = 503
+            Height = 503
             Width = 948
-            object edtNome: TcxTextEdit
+            object edtNaturUF: TcxTextEdit
               Left = 3
-              Top = 29
+              Top = 323
               Properties.CharCase = ecUpperCase
               TabOrder = 0
+              Width = 173
+            end
+            object cxLabel12: TcxLabel
+              Left = 3
+              Top = 305
+              Caption = 'Natur. UF'
+              Transparent = True
+            end
+            object edtNacionalidade: TcxTextEdit
+              Left = 3
+              Top = 281
+              Properties.CharCase = ecUpperCase
+              TabOrder = 2
+              Width = 173
+            end
+            object edtNaturCidade: TcxTextEdit
+              Left = 185
+              Top = 281
+              Properties.CharCase = ecUpperCase
+              TabOrder = 3
+              Width = 160
+            end
+            object cxLabel11: TcxLabel
+              Left = 185
+              Top = 263
+              Caption = 'Natur. Cidade'
+              Transparent = True
+            end
+            object cxLabel10: TcxLabel
+              Left = 3
+              Top = 263
+              Caption = 'Nacionalidade'
+              Transparent = True
+            end
+            object edtMae: TcxTextEdit
+              Left = 3
+              Top = 239
+              Properties.CharCase = ecUpperCase
+              TabOrder = 6
               Width = 342
             end
-            object edtApelido: TcxTextEdit
+            object cxLabel9: TcxLabel
               Left = 3
-              Top = 71
-              Properties.CharCase = ecUpperCase
-              TabOrder = 1
-              Width = 173
+              Top = 221
+              Caption = 'M'#227'e'
+              Transparent = True
             end
             object edtPai: TcxTextEdit
               Left = 3
               Top = 197
               Properties.CharCase = ecUpperCase
-              TabOrder = 7
+              TabOrder = 8
               Width = 342
             end
-            object edtDataNasc: TcxDateEdit
-              Left = 185
-              Top = 71
-              TabOrder = 2
-              Width = 160
-            end
-            object cxCombxSexo: TcxComboBox
+            object cxLabel8: TcxLabel
               Left = 3
-              Top = 113
+              Top = 180
+              Caption = 'Pai'
+              Transparent = True
+            end
+            object cxComboxStatus: TcxComboBox
+              Left = 185
+              Top = 155
               Properties.CharCase = ecUpperCase
               Properties.Items.Strings = (
-                'M - MASCULINO'
-                'F  - FEMININO')
-              TabOrder = 3
+                'A - ATIVO'
+                'D - DESATIVADO')
+              TabOrder = 10
+              Width = 160
+            end
+            object cxComboxTipo: TcxComboBox
+              Left = 3
+              Top = 155
+              Properties.CharCase = ecUpperCase
+              Properties.Items.Strings = (
+                'F - FUNCIONARIO'
+                'T - TERCEIRIZADO')
+              TabOrder = 11
               Width = 173
+            end
+            object cxLabel41: TcxLabel
+              Left = 185
+              Top = 138
+              Caption = 'Status'
+              Transparent = True
+            end
+            object cxLabel40: TcxLabel
+              Left = 3
+              Top = 138
+              Caption = 'Tipo Proficional'
+              Transparent = True
             end
             object cxComboxEstadoCivil: TcxComboBox
               Left = 185
@@ -238,60 +471,8 @@ inherited frm_employee_: Tfrm_employee_
                 'S - SOLTEIRO '
                 'C - CASADO'
                 'D - DIVORCIADO')
-              TabOrder = 4
+              TabOrder = 14
               Width = 160
-            end
-            object edtMae: TcxTextEdit
-              Left = 3
-              Top = 239
-              Properties.CharCase = ecUpperCase
-              TabOrder = 8
-              Width = 342
-            end
-            object edtNacionalidade: TcxTextEdit
-              Left = 3
-              Top = 281
-              Properties.CharCase = ecUpperCase
-              TabOrder = 9
-              Width = 173
-            end
-            object edtNaturCidade: TcxTextEdit
-              Left = 185
-              Top = 281
-              Properties.CharCase = ecUpperCase
-              TabOrder = 10
-              Width = 160
-            end
-            object edtNaturUF: TcxTextEdit
-              Left = 3
-              Top = 323
-              Properties.CharCase = ecUpperCase
-              TabOrder = 11
-              Width = 173
-            end
-            object cxLabel3: TcxLabel
-              Left = 3
-              Top = 11
-              Caption = 'Nome'
-              Transparent = True
-            end
-            object cxLabel4: TcxLabel
-              Left = 3
-              Top = 53
-              Caption = 'Apelido'
-              Transparent = True
-            end
-            object cxLabel5: TcxLabel
-              Left = 185
-              Top = 53
-              Caption = 'Dt.Nasc.'
-              Transparent = True
-            end
-            object cxLabel6: TcxLabel
-              Left = 3
-              Top = 95
-              Caption = 'Sexo'
-              Transparent = True
             end
             object cxLabel7: TcxLabel
               Left = 185
@@ -299,66 +480,58 @@ inherited frm_employee_: Tfrm_employee_
               Caption = 'Estado Civil'
               Transparent = True
             end
-            object cxLabel8: TcxLabel
+            object cxCombxSexo: TcxComboBox
               Left = 3
-              Top = 180
-              Caption = 'Pai'
-              Transparent = True
-            end
-            object cxLabel9: TcxLabel
-              Left = 3
-              Top = 221
-              Caption = 'M'#227'e'
-              Transparent = True
-            end
-            object cxLabel10: TcxLabel
-              Left = 3
-              Top = 263
-              Caption = 'Nacionalidade'
-              Transparent = True
-            end
-            object cxLabel11: TcxLabel
-              Left = 185
-              Top = 263
-              Caption = 'Natur. Cidade'
-              Transparent = True
-            end
-            object cxLabel12: TcxLabel
-              Left = 3
-              Top = 305
-              Caption = 'Natur. UF'
-              Transparent = True
-            end
-            object cxComboxTipo: TcxComboBox
-              Left = 3
-              Top = 155
+              Top = 113
               Properties.CharCase = ecUpperCase
               Properties.Items.Strings = (
-                'F - FUNCIONARIO'
-                'T - TERCEIRIZADO')
-              TabOrder = 5
+                'M - MASCULINO'
+                'F  - FEMININO')
+              TabOrder = 16
               Width = 173
             end
-            object cxComboxStatus: TcxComboBox
-              Left = 185
-              Top = 155
-              Properties.CharCase = ecUpperCase
-              Properties.Items.Strings = (
-                'A - ATIVO'
-                'D - DESATIVADO')
-              TabOrder = 6
-              Width = 160
-            end
-            object cxLabel40: TcxLabel
+            object cxLabel6: TcxLabel
               Left = 3
-              Top = 138
-              Caption = 'Tipo Proficional'
+              Top = 95
+              Caption = 'Sexo'
               Transparent = True
             end
-            object cxLabel41: TcxLabel
+            object edtDataNasc: TcxDateEdit
               Left = 185
-              Top = 138
-              Caption = 'Status'
+              Top = 71
+              TabOrder = 18
+              Width = 160
+            end
+            object cxLabel5: TcxLabel
+              Left = 185
+              Top = 53
+              Caption = 'Dt.Nasc.'
+              Transparent = True
+            end
+            object edtApelido: TcxTextEdit
+              Left = 3
+              Top = 71
+              Properties.CharCase = ecUpperCase
+              TabOrder = 20
+              Width = 173
+            end
+            object cxLabel4: TcxLabel
+              Left = 3
+              Top = 53
+              Caption = 'Apelido'
+              Transparent = True
+            end
+            object edtNome: TcxTextEdit
+              Left = 3
+              Top = 29
+              Properties.CharCase = ecUpperCase
+              TabOrder = 22
+              Width = 342
+            end
+            object cxLabel3: TcxLabel
+              Left = 3
+              Top = 11
+              Caption = 'Nome'
               Transparent = True
             end
           end
@@ -366,16 +539,14 @@ inherited frm_employee_: Tfrm_employee_
         object tbsht_documentos: TcxTabSheet
           Caption = 'Documentos'
           ImageIndex = 1
-          DesignSize = (
-            954
-            569)
           object cxGroupBox3: TcxGroupBox
-            Left = 3
-            Top = 3
-            Anchors = [akLeft, akTop, akRight, akBottom]
+            Left = 0
+            Top = 0
+            Align = alClient
+            Caption = 'Documentos'
             TabOrder = 0
-            Height = 559
-            Width = 948
+            Height = 569
+            Width = 954
             object cxLabel13: TcxLabel
               Left = 7
               Top = 17
@@ -553,6 +724,7 @@ inherited frm_employee_: Tfrm_employee_
             Left = 0
             Top = 0
             Align = alTop
+            Caption = 'Endere'#231'o'
             TabOrder = 0
             Height = 149
             Width = 954
@@ -669,6 +841,7 @@ inherited frm_employee_: Tfrm_employee_
             Left = 0
             Top = 149
             Align = alClient
+            Caption = 'Contatos'
             TabOrder = 1
             Height = 420
             Width = 954

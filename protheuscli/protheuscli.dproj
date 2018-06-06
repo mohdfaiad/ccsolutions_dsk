@@ -167,9 +167,6 @@
         <DCCReference Include="..\ufrm_exam.pas">
             <Form>frm_exam</Form>
         </DCCReference>
-        <DCCReference Include="..\ufrm_material.pas">
-            <Form>frm_material</Form>
-        </DCCReference>
         <DCCReference Include="..\models\ufrm_default.pas">
             <Form>frm_default</Form>
         </DCCReference>
@@ -190,10 +187,6 @@
         <DCCReference Include="..\Dao\Employee.Dao.pas"/>
         <DCCReference Include="..\ufrm_scheduling.pas">
             <Form>frm_scheduling</Form>
-        </DCCReference>
-        <DCCReference Include="..\ufrm_table_price.pas">
-            <Form>frm_table_price</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\class_table_price.pas"/>
         <DCCReference Include="..\ufrm_scheduling_clinical.pas">
@@ -222,6 +215,14 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Dao\Contract_User_Action.Dao.pas"/>
+        <DCCReference Include="..\ufrm_table_price.pas">
+            <Form>frm_table_price</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_material.pas">
+            <Form>frm_material</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

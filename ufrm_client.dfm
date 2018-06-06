@@ -8,15 +8,17 @@ inherited frm_client: Tfrm_client
   inherited cxPageControl_1: TcxPageControl
     Height = 636
     Properties.ActivePage = cxTabSheet_2
+    ExplicitHeight = 636
     ClientRectBottom = 630
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
-      ExplicitHeight = 512
+      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         Height = 596
         ExplicitLeft = 3
+        ExplicitHeight = 596
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1cli_type: TcxGridDBColumn
             DataBinding.FieldName = 'cli_type'
@@ -184,18 +186,20 @@ inherited frm_client: Tfrm_client
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
-      ExplicitHeight = 512
+      ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         Height = 596
         Properties.ActivePage = tabTelefonia
+        ExplicitHeight = 596
         ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 986
-          ExplicitHeight = 472
+          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 562
+            ExplicitHeight = 562
             inherited dbedt_id: TcxDBTextEdit
               Left = 76
               DataBinding.DataField = 'cli_id'
@@ -436,7 +440,6 @@ inherited frm_client: Tfrm_client
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
           OnShow = cxTabSheet_addressShow
-          ExplicitHeight = 472
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -445,7 +448,6 @@ inherited frm_client: Tfrm_client
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitHeight = 472
             object cxDBTextEdit9: TcxDBTextEdit
               Left = 55
               Top = 330
@@ -1066,7 +1068,6 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Contatos'
-          ExplicitHeight = 472
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1076,7 +1077,6 @@ inherited frm_client: Tfrm_client
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             OnDblClick = dxLayoutControl_1DblClick
-            ExplicitHeight = 472
             object cxDBTextEdit4: TcxDBTextEdit
               Left = 220
               Top = 38
@@ -1209,7 +1209,6 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
-          ExplicitHeight = 472
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1228,7 +1227,6 @@ inherited frm_client: Tfrm_client
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             OnDblClick = dxLayoutControl_1DblClick
-            ExplicitHeight = 472
             object cxDBTextEdit38: TcxDBTextEdit
               Left = 67
               Top = 38
@@ -1273,7 +1271,6 @@ inherited frm_client: Tfrm_client
         end
         object tabTelefonia: TcxTabSheet
           Caption = 'Telefonia'
-          ExplicitHeight = 472
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1282,7 +1279,6 @@ inherited frm_client: Tfrm_client
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitHeight = 472
             object cxGrid2: TcxGrid
               Left = 17
               Top = 103
@@ -1426,7 +1422,6 @@ inherited frm_client: Tfrm_client
         end
         object tabLaboratorio: TcxTabSheet
           Caption = 'Laborat'#243'rio'
-          ExplicitHeight = 472
           object dxLayoutControl5: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1435,7 +1430,6 @@ inherited frm_client: Tfrm_client
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitHeight = 472
             object cxGrid1: TcxGrid
               Left = 17
               Top = 38

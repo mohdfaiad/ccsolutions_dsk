@@ -1,16 +1,25 @@
 inherited frm_table_price: Tfrm_table_price
   Caption = 'Cadastro de Tabela de pre'#231'o'
-  ExplicitTop = -207
+  ClientHeight = 681
+  ClientWidth = 1105
+  ExplicitWidth = 1121
+  ExplicitHeight = 720
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Width = 1105
+    Height = 626
     Properties.ActivePage = cxTabSheet_2
+    ClientRectBottom = 620
+    ClientRectRight = 1099
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
+        Width = 1091
+        Height = 586
         ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1tbp_id: TcxGridDBColumn
@@ -42,13 +51,19 @@ inherited frm_table_price: Tfrm_table_price
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
+        Width = 1091
+        Height = 586
         Properties.ActivePage = cxTabExames
+        ClientRectBottom = 580
+        ClientRectRight = 1085
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 986
           ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
+            Width = 1083
+            Height = 552
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'tbp_id'
             end
@@ -81,24 +96,24 @@ inherited frm_table_price: Tfrm_table_price
         end
         object cxTabExames: TcxTabSheet
           Caption = 'Exames da  Tabela'
-          OnShow = cxTabExamesShow
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 986
-            Height = 472
+            Width = 1083
+            Height = 552
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            DesignSize = (
-              986
-              472)
+            ExplicitWidth = 986
+            ExplicitHeight = 472
             object cxGrid2: TcxGrid
               Left = 17
               Top = 38
               Width = 720
-              Height = 243
-              Anchors = [akLeft, akTop, akBottom]
+              Height = 251
+              Align = alClient
               TabOrder = 0
               object cxGrid2DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
@@ -154,16 +169,9 @@ inherited frm_table_price: Tfrm_table_price
                 GridView = cxGrid2DBTableView1
               end
             end
-            object cxTextEditValor: TcxTextEdit
-              Left = 444
-              Top = 325
-              Style.HotTrack = False
-              TabOrder = 2
-              Width = 121
-            end
             object cxLookupComboBoxExame: TcxLookupComboBox
               Left = 54
-              Top = 325
+              Top = 333
               Properties.KeyFieldNames = 'proCod'
               Properties.ListColumns = <
                 item
@@ -176,6 +184,13 @@ inherited frm_table_price: Tfrm_table_price
               TabOrder = 1
               Width = 355
             end
+            object cxTextEditValor: TcxTextEdit
+              Left = 444
+              Top = 333
+              Style.HotTrack = False
+              TabOrder = 2
+              Width = 121
+            end
             object dxLayoutGroup4: TdxLayoutGroup
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -183,16 +198,16 @@ inherited frm_table_price: Tfrm_table_price
               SizeOptions.SizableVert = True
               ButtonOptions.Buttons = <>
               Hidden = True
-              ItemIndex = 1
               ShowBorder = False
               Index = -1
             end
             object dxLayoutGroup6: TdxLayoutGroup
               Parent = dxLayoutGroup4
+              AlignHorz = ahLeft
               CaptionOptions.Text = 'Exames da tabela'
               SizeOptions.AssignedValues = [sovSizableVert]
               SizeOptions.SizableVert = True
-              SizeOptions.Height = 273
+              SizeOptions.Height = 215
               SizeOptions.Width = 734
               ButtonOptions.Buttons = <>
               Index = 0
@@ -200,28 +215,17 @@ inherited frm_table_price: Tfrm_table_price
             object dxLayoutItem6: TdxLayoutItem
               Parent = dxLayoutGroup6
               Control = cxGrid2
-              ControlOptions.OriginalHeight = 243
+              ControlOptions.OriginalHeight = 251
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
               Index = 0
             end
             object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutGroup4
-              AlignHorz = ahLeft
+              AlignHorz = ahClient
               CaptionOptions.Text = 'Manuten'#231#227'o dos Exames da tabela'
               ButtonOptions.Buttons = <>
               LayoutDirection = ldHorizontal
-              Index = 1
-            end
-            object dxLayoutItem4: TdxLayoutItem
-              Parent = dxLayoutGroup3
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Valor'
-              Control = cxTextEditValor
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
               Index = 1
             end
             object dxLayoutItem5: TdxLayoutItem
@@ -234,23 +238,38 @@ inherited frm_table_price: Tfrm_table_price
               SizeOptions.Width = 392
               Control = cxLookupComboBoxExame
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 145
+              ControlOptions.OriginalWidth = 355
               ControlOptions.ShowBorder = False
               Index = 0
+            end
+            object dxLayoutItem4: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Valor'
+              Control = cxTextEditValor
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
             end
           end
         end
         object cxTabAlterarPreco: TcxTabSheet
           Caption = 'Alterar Pre'#231'o dos Exames'
           OnShow = cxTabAlterarPrecoShow
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 986
-            Height = 472
+            Width = 1083
+            Height = 552
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            ExplicitWidth = 986
+            ExplicitHeight = 472
             object cxRadioDesconto: TcxRadioButton
               Left = 17
               Top = 309
@@ -473,6 +492,9 @@ inherited frm_table_price: Tfrm_table_price
       end
     end
   end
+  inherited dxBarDockControl_1: TdxBarDockControl
+    Width = 1105
+  end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar6: TdxBar
       ItemLinks = <
@@ -674,7 +696,7 @@ inherited frm_table_price: Tfrm_table_price
   end
   object ds_table_price_product: TDataSource
     DataSet = qry_table_price_product
-    Left = 303
+    Left = 207
     Top = 298
   end
   object qry_product: TFDQuery
@@ -688,8 +710,8 @@ inherited frm_table_price: Tfrm_table_price
         'm product'
       'where pro_type = '#39'S'#39
       'order by pro_name')
-    Left = 591
-    Top = 322
+    Left = 359
+    Top = 378
     object qry_productproCod: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'proCod'
@@ -713,7 +735,7 @@ inherited frm_table_price: Tfrm_table_price
   end
   object ds_product: TDataSource
     DataSet = qry_product
-    Left = 656
-    Top = 320
+    Left = 392
+    Top = 376
   end
 end

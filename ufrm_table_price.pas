@@ -124,7 +124,6 @@ type
     procedure butonAlterarPrecoClick(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
     procedure cxTabAlterarPrecoShow(Sender: TObject);
-    procedure cxTabExamesShow(Sender: TObject);
     procedure qry_table_price_productBeforePost(DataSet: TDataSet);
     procedure Action_cancelExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
@@ -359,13 +358,6 @@ procedure Tfrm_table_price.cxTabAlterarPrecoShow(Sender: TObject);
 begin
   inherited;
  dxLayoutGroup8.CaptionOptions.Text:='Exames da tabela '+ qrytbp_name.AsString;
-end;
-
-procedure Tfrm_table_price.cxTabExamesShow(Sender: TObject);
-begin
-  inherited;
-cxGrid2.Top:=0;
-cxGrid2.Height:=dxLayoutControl2.Height - 60;
 end;
 
 procedure Tfrm_table_price.FormCreate(Sender: TObject);

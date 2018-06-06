@@ -23,7 +23,6 @@ uses
   ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
   ufrm_insurance in '..\ufrm_insurance.pas' {frm_insurance},
   ufrm_exam in '..\ufrm_exam.pas' {frm_exam},
-  ufrm_material in '..\ufrm_material.pas' {frm_material},
   ufrm_default in '..\models\ufrm_default.pas' {frm_default},
   class_Conexao in '..\class_Conexao.pas',
   class_contract_user in '..\class_contract_user.pas',
@@ -35,7 +34,6 @@ uses
   ufrm_employeee in '..\ufrm_employeee.pas' {frm_employee_},
   Employee.Dao in '..\Dao\Employee.Dao.pas',
   ufrm_scheduling in '..\ufrm_scheduling.pas' {frm_scheduling},
-  ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
   class_table_price in '..\class_table_price.pas',
   ufrm_scheduling_clinical in '..\ufrm_scheduling_clinical.pas' {frm_scheduling_clinical},
   ufrm_role in '..\ufrm_role.pas' {frm_role},
@@ -47,7 +45,9 @@ uses
   Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   ufrm_scheduling_clinical2 in '..\ufrm_scheduling_clinical2.pas' {frm_scheduling_clinical2},
-  Contract_User_Action.Dao in '..\Dao\Contract_User_Action.Dao.pas';
+  Contract_User_Action.Dao in '..\Dao\Contract_User_Action.Dao.pas',
+  ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
+  ufrm_material in '..\ufrm_material.pas' {frm_material};
 
 {$R *.res}
 begin
@@ -57,7 +57,5 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
-  Application.CreateForm(Tfrm_search, frm_search);
-  Application.CreateForm(Tfrm_scheduling_clinical2, frm_scheduling_clinical2);
   Application.Run;
 end.

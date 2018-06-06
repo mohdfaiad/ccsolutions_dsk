@@ -162,6 +162,8 @@ begin
      if not Assigned(frm_role) then
    begin
     frm_role := Tfrm_role.Create(Self);
+    frm_role.Height := Bevel_1.Height;
+    frm_role.Width := Bevel_1.Width;
     frm_role.Show;
    end
     else

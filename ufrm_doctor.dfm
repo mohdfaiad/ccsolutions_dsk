@@ -7,6 +7,9 @@ inherited frm_doctor: Tfrm_doctor
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
     Height = 588
+    Properties.ActivePage = tbsht_1
+    ExplicitLeft = 1
+    ExplicitTop = 51
     ExplicitHeight = 588
     ClientRectBottom = 582
     inherited tbsht_1: TcxTabSheet
@@ -25,32 +28,26 @@ inherited frm_doctor: Tfrm_doctor
           ExplicitHeight = 522
           inherited grid_1: TcxGrid
             Height = 516
-            ExplicitTop = 12
             ExplicitHeight = 516
             inherited grid_1DBTableView1: TcxGridDBTableView
+              OnDblClick = grid_1DBTableView1DblClick
+              object grid_1DBTableView1empCod_Doctor: TcxGridDBColumn
+                DataBinding.FieldName = 'empCod_Doctor'
+              end
               object grid_1DBTableView1doc_cod: TcxGridDBColumn
                 DataBinding.FieldName = 'doc_cod'
-              end
-              object grid_1DBTableView1contract_ctr_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'contract_ctr_cod'
-              end
-              object grid_1DBTableView1employee_emp_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'employee_emp_cod'
               end
               object grid_1DBTableView1doc_id: TcxGridDBColumn
                 DataBinding.FieldName = 'doc_id'
               end
+              object grid_1DBTableView1rec_name: TcxGridDBColumn
+                DataBinding.FieldName = 'rec_name'
+              end
               object grid_1DBTableView1doc_status: TcxGridDBColumn
                 DataBinding.FieldName = 'doc_status'
               end
-              object grid_1DBTableView1doc_deleted_at: TcxGridDBColumn
-                DataBinding.FieldName = 'doc_deleted_at'
-              end
               object grid_1DBTableView1doc_dt_registration: TcxGridDBColumn
                 DataBinding.FieldName = 'doc_dt_registration'
-              end
-              object grid_1DBTableView1concat0xhexemployee_emp_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'concat('#39'0x'#39',hex(employee_emp_cod))'
               end
             end
             object cxGridDBTableView1: TcxGridDBTableView [1]
@@ -98,6 +95,7 @@ inherited frm_doctor: Tfrm_doctor
         ExplicitHeight = 555
         ClientRectBottom = 549
         inherited tbsht_5: TcxTabSheet
+          OnShow = tbsht_5Show
           ExplicitHeight = 522
           inherited grb_top: TcxGroupBox
             inherited edt_dt_registration: TcxTextEdit
@@ -108,15 +106,15 @@ inherited frm_doctor: Tfrm_doctor
           inherited grb_bottton: TcxGroupBox
             object cxLabel3: TcxLabel
               Left = 3
-              Top = 12
+              Top = 15
               Caption = 'Proficional'
               Transparent = True
             end
             object cxLookupComboBoxProfissional: TcxLookupComboBox
               Left = 3
-              Top = 31
+              Top = 34
               Properties.GridMode = True
-              Properties.KeyFieldNames = 'empCod'
+              Properties.KeyFieldNames = 'rec_name'
               Properties.ListColumns = <
                 item
                   FieldName = 'rec_name'
@@ -127,13 +125,13 @@ inherited frm_doctor: Tfrm_doctor
             end
             object cxLabel4: TcxLabel
               Left = 344
-              Top = 12
+              Top = 15
               Caption = 'Status'
               Transparent = True
             end
             object cxComboBoxStatus: TcxComboBox
               Left = 344
-              Top = 31
+              Top = 34
               Properties.Items.Strings = (
                 'A - ATIVO'
                 'D - DESATIVADO')
@@ -154,10 +152,6 @@ inherited frm_doctor: Tfrm_doctor
                 Height = 323
                 Align = alClient
                 TabOrder = 0
-                ExplicitLeft = 2
-                ExplicitTop = 1
-                ExplicitWidth = 485
-                ExplicitHeight = 342
                 object cxGrid1DBTableView1: TcxGridDBTableView
                   Navigator.Buttons.ConfirmDelete = True
                   Navigator.Buttons.CustomButtons = <>
@@ -230,6 +224,15 @@ inherited frm_doctor: Tfrm_doctor
                 end
               end
             end
+            object Button1: TButton
+              Left = 592
+              Top = 216
+              Width = 75
+              Height = 25
+              Caption = 'Button1'
+              TabOrder = 5
+              OnClick = Button1Click
+            end
           end
         end
       end
@@ -279,6 +282,7 @@ inherited frm_doctor: Tfrm_doctor
     Style = <>
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_cod'
@@ -290,8 +294,14 @@ inherited frm_doctor: Tfrm_doctor
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select doctor.*,concat('#39'0x'#39',hex(employee_emp_cod)) from doctor'
-      'where doc_deleted_at is null')
+      
+        'select doctor.*, rec_name, concat('#39'0x'#39',hex(employee_emp_cod))as ' +
+        'empCod_Doctor from doctor'
+      'left join employee on employee_emp_cod = emp_cod'#13#10#10
+      ''
+      
+        'left join record on record_rec_cod = rec_cod '#10'where doc_deleted_' +
+        'at is null')
     object qrydoc_cod: TBytesField
       FieldName = 'doc_cod'
       Origin = 'doc_cod'
@@ -330,16 +340,25 @@ inherited frm_doctor: Tfrm_doctor
       FieldName = 'doc_dt_registration'
       Origin = 'doc_dt_registration'
     end
-    object qryconcat0xhexemployee_emp_cod: TStringField
+    object qryrec_name: TStringField
       AutoGenerateValue = arDefault
-      FieldName = 'concat('#39'0x'#39',hex(employee_emp_cod))'
-      Origin = '`concat('#39'0x'#39',hex(employee_emp_cod))`'
+      FieldName = 'rec_name'
+      Origin = 'rec_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object qryempCod_Doctor: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'empCod_Doctor'
+      Origin = 'empCod_Doctor'
       ProviderFlags = []
       ReadOnly = True
       Size = 34
     end
   end
   object qry_doctor: TFDQuery [17]
+    Active = True
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -350,12 +369,11 @@ inherited frm_doctor: Tfrm_doctor
       'select r.rec_name,r.rec_cod,r.contract_ctr_cod,e.emp_cod,'
       'concat('#39'0x'#39', hex(e.emp_cod)) as empCod  from record r'
       'left join employee e on e.record_rec_cod =  r.rec_cod'#13#10#10
-      #13#10#10
       'where r.rec_cod in (select record_rec_cod from employee'#10
       '                   where emp_status = '#39'A'#39')'#10#10
       'and r.contract_ctr_cod = :ctr_cod'#10
       'order by r.rec_name'#10)
-    Left = 800
+    Left = 768
     Top = 176
     ParamData = <
       item
@@ -405,6 +423,7 @@ inherited frm_doctor: Tfrm_doctor
   object qry_role_employee: TFDQuery [19]
     Active = True
     AfterInsert = qry_role_employeeAfterInsert
+    BeforePost = qry_role_employeeBeforePost
     IndexFieldNames = 'employee_emp_cod'
     MasterSource = ds
     MasterFields = 'employee_emp_cod'
@@ -418,8 +437,8 @@ inherited frm_doctor: Tfrm_doctor
         ','
       ' concat('#39'0x'#39',hex(roe_cod)) as roeCod,rol_name from role_employee'
       ' left join role on rol_cod = role_rol_cod ')
-    Left = 664
-    Top = 256
+    Left = 624
+    Top = 208
     object qry_role_employeeroe_cod: TBytesField
       FieldName = 'roe_cod'
       Origin = 'roe_cod'
@@ -483,10 +502,11 @@ inherited frm_doctor: Tfrm_doctor
   end
   object ds_role_employee: TDataSource [20]
     DataSet = qry_role_employee
-    Left = 704
+    Left = 696
     Top = 256
   end
   object qry_role: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'

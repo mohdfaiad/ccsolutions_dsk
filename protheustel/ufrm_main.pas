@@ -55,6 +55,7 @@ type
     Action_voip_server: TAction;
     dxBarLargeButton10: TdxBarLargeButton;
     dxBarButton3: TdxBarButton;
+    Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -66,6 +67,7 @@ type
     procedure dxBarButton1Click(Sender: TObject);
     procedure Action_voip_serverExecute(Sender: TObject);
     procedure dxBarButton3Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -81,7 +83,8 @@ implementation
 
 uses ufrm_login, ufrm_client, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_phonebook, ufrm_report, ufrm_supplier,
-  ufrm_import_sippulse, ufrm_voip_server, ufrm_import_astpp;
+  ufrm_import_sippulse, ufrm_voip_server, ufrm_import_astpp,
+  ufrm_telephony_report;
 
 procedure Tfrm_main.Action_phonebookExecute(Sender: TObject);
 begin
@@ -216,6 +219,23 @@ begin
   begin
     frm_voip_server.WindowState := wsNormal;
     frm_voip_server.Show;
+  end;
+end;
+
+procedure Tfrm_main.Button1Click(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_telephony_report) then
+  begin
+    frm_telephony_report := Tfrm_telephony_report.Create(Self);
+    frm_telephony_report.Height := Bevel_1.Height;
+    frm_telephony_report.Width := Bevel_1.Width;
+    frm_telephony_report.Show;
+  end
+  else
+  begin
+    frm_telephony_report.WindowState := wsNormal;
+    frm_telephony_report.Show;
   end;
 end;
 

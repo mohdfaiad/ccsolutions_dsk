@@ -39,7 +39,8 @@ uses
   Contract_User.Dao in '..\Dao\Contract_User.Dao.pas',
   Contract_User_Action.Dao in '..\Dao\Contract_User_Action.Dao.pas',
   Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
-  Employee.Dao in '..\Dao\Employee.Dao.pas';
+  Employee.Dao in '..\Dao\Employee.Dao.pas',
+  ufrm_telephony_report in '..\ufrm_telephony_report.pas' {frm_telephony_report};
 
 {$R *.res}
 
@@ -52,5 +53,6 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
+  Application.CreateForm(Tfrm_telephony_report, frm_telephony_report);
   Application.Run;
 end.

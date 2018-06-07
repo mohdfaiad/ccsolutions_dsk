@@ -191,6 +191,10 @@
         <DCCReference Include="..\Dao\Contract_User_Action.Dao.pas"/>
         <DCCReference Include="..\Dao\Contract_User_Enterprise.Dao.pas"/>
         <DCCReference Include="..\Dao\Employee.Dao.pas"/>
+        <DCCReference Include="..\ufrm_telephony_report.pas">
+            <Form>frm_telephony_report</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="ModelSupport_protheustel\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

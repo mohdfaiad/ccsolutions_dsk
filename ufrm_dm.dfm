@@ -487,6 +487,7 @@ object frm_dm: Tfrm_dm
     Top = 168
   end
   object qry_contract: TFDQuery
+    Active = True
     Connection = connCCS
     SQL.Strings = (
       'select ctr_cod,ctr_id from contract'

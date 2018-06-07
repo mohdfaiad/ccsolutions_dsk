@@ -4,7 +4,6 @@ inherited frm_insurance: Tfrm_insurance
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       OnShow = cxTabSheet_1Show
       ExplicitLeft = 2
@@ -124,7 +123,6 @@ inherited frm_insurance: Tfrm_insurance
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -480,6 +478,7 @@ inherited frm_insurance: Tfrm_insurance
               Parent = dxLayoutControl1Group_Root
               CaptionOptions.Text = 'Endere'#231'o'
               ButtonOptions.Buttons = <>
+              ItemIndex = 1
               Index = 0
             end
             object dxLayoutGroup5: TdxLayoutGroup
@@ -734,6 +733,7 @@ inherited frm_insurance: Tfrm_insurance
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -747,6 +747,35 @@ inherited frm_insurance: Tfrm_insurance
         'select insurance.*,concat('#39'0x'#39',hex(table_price_tbp_cod)) as codT' +
         'abela from insurance'
       'where ins_deleted_at is null')
+    object qryins_cod: TBytesField
+      FieldName = 'ins_cod'
+      Origin = 'ins_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qrytable_price_tbp_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'table_price_tbp_cod'
+      Origin = 'table_price_tbp_cod'
+    end
+    object qryins_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'ins_id'
+      Origin = 'ins_id'
+    end
+    object qrycodTabela: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codTabela'
+      Origin = 'codTabela'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
     object qryins_first_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Raz'#227'o'
@@ -761,12 +790,19 @@ inherited frm_insurance: Tfrm_insurance
       Origin = 'ins_last_name'
       Size = 50
     end
-    object qryins_email: TStringField
+    object qryins_nickname: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'E-mail'
-      FieldName = 'ins_email'
-      Origin = 'ins_email'
-      Size = 65
+      FieldName = 'ins_nickname'
+      Origin = 'ins_nickname'
+      Size = 85
+    end
+    object qryins_status: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'ins_status'
+      Origin = 'ins_status'
+      FixedChar = True
+      Size = 1
     end
     object qryins_cnpj: TStringField
       AutoGenerateValue = arDefault
@@ -777,10 +813,21 @@ inherited frm_insurance: Tfrm_insurance
     end
     object qryins_im: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'IM'
       FieldName = 'ins_im'
       Origin = 'ins_im'
       Size = 25
+    end
+    object qryins_contact: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Contato'
+      FieldName = 'ins_contact'
+      Origin = 'ins_contact'
+      Size = 15
+    end
+    object qryins_dt_open: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'ins_dt_open'
+      Origin = 'ins_dt_open'
     end
     object qryins_add_bus_zipcode: TStringField
       AutoGenerateValue = arDefault
@@ -847,6 +894,13 @@ inherited frm_insurance: Tfrm_insurance
       Origin = 'ins_phone1'
       Size = 15
     end
+    object qryins_email: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'E-mail'
+      FieldName = 'ins_email'
+      Origin = 'ins_email'
+      Size = 65
+    end
     object qryins_phone2: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Tel. 2'
@@ -868,78 +922,25 @@ inherited frm_insurance: Tfrm_insurance
       Origin = 'ins_phone4'
       Size = 15
     end
-    object qryins_contact: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contato'
-      FieldName = 'ins_contact'
-      Origin = 'ins_contact'
-      Size = 15
-    end
     object qryins_dt_maturity_contract: TDateField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Venc. do Contrato'
       FieldName = 'ins_dt_maturity_contract'
       Origin = 'ins_dt_maturity_contract'
     end
-    object qryins_dt_day_maturity: TIntegerField
+    object qryins_day_maturity: TByteField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Dia Venc.'
-      FieldName = 'ins_dt_day_maturity'
-      Origin = 'ins_dt_day_maturity'
-    end
-    object qryins_status: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Status'
-      FieldName = 'ins_status'
-      Origin = 'ins_status'
-      FixedChar = True
-      Size = 1
-    end
-    object qryins_dt_open: TDateField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Aber.'
-      FieldName = 'ins_dt_open'
-      Origin = 'ins_dt_open'
-    end
-    object qryins_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'ins_dt_registration'
-      Origin = 'ins_dt_registration'
-    end
-    object qryins_cod: TBytesField
-      FieldName = 'ins_cod'
-      Origin = 'ins_cod'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object qrycontract_ctr_cod: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'contract_ctr_cod'
-      Origin = 'contract_ctr_cod'
-    end
-    object qrytable_price_tbp_cod: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'table_price_tbp_cod'
-      Origin = 'table_price_tbp_cod'
-    end
-    object qryins_id: TLongWordField
-      AutoGenerateValue = arDefault
-      FieldName = 'ins_id'
-      Origin = 'ins_id'
+      FieldName = 'ins_day_maturity'
+      Origin = 'ins_day_maturity'
     end
     object qryins_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
       FieldName = 'ins_deleted_at'
       Origin = 'ins_deleted_at'
     end
-    object qrycodTabela: TStringField
+    object qryins_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
-      FieldName = 'codTabela'
-      Origin = 'codTabela'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 34
+      FieldName = 'ins_dt_registration'
+      Origin = 'ins_dt_registration'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -965,6 +966,7 @@ inherited frm_insurance: Tfrm_insurance
     OnBuscaEfetuada = ACBrCEP_1BuscaEfetuada
   end
   object qry_table_price: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -975,8 +977,8 @@ inherited frm_insurance: Tfrm_insurance
       'concat('#39'0x'#39',hex(TBP_cod)) as codTabela from table_price'
       'where contract_ctr_cod = :ctr_cod'
       'order by tbp_name')
-    Left = 519
-    Top = 242
+    Left = 703
+    Top = 122
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -1018,7 +1020,7 @@ inherited frm_insurance: Tfrm_insurance
   end
   object ds_table_price: TDataSource
     DataSet = qry_table_price
-    Left = 639
-    Top = 226
+    Left = 735
+    Top = 122
   end
 end

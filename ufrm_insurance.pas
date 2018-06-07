@@ -42,7 +42,6 @@ type
     qryins_last_name: TStringField;
     qryins_email: TStringField;
     qryins_cnpj: TStringField;
-    qryins_im: TStringField;
     qryins_add_bus_zipcode: TStringField;
     qryins_add_bus_address: TStringField;
     qryins_add_bus_number: TStringField;
@@ -56,10 +55,6 @@ type
     qryins_phone3: TStringField;
     qryins_phone4: TStringField;
     qryins_contact: TStringField;
-    qryins_dt_maturity_contract: TDateField;
-    qryins_dt_day_maturity: TIntegerField;
-    qryins_dt_open: TDateField;
-    qryins_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1ins_id: TcxGridDBColumn;
     cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_first_name: TcxGridDBColumn;
@@ -148,11 +143,6 @@ type
     cxGrid_1DBTableView1ins_status: TcxGridDBColumn;
     qry_table_price: TFDQuery;
     ds_table_price: TDataSource;
-    qryins_cod: TBytesField;
-    qrycontract_ctr_cod: TBytesField;
-    qrytable_price_tbp_cod: TBytesField;
-    qryins_id: TLongWordField;
-    qryins_deleted_at: TDateTimeField;
     qry_table_pricetbp_id: TLongWordField;
     qry_table_pricetbp_name: TStringField;
     qry_table_pricecontract_ctr_cod: TBytesField;
@@ -161,6 +151,17 @@ type
     dxLayoutItem26: TdxLayoutItem;
     qry_table_pricetbp_cod: TBytesField;
     qrycodTabela: TStringField;
+    qryins_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qrytable_price_tbp_cod: TBytesField;
+    qryins_id: TLongWordField;
+    qryins_nickname: TStringField;
+    qryins_im: TStringField;
+    qryins_dt_maturity_contract: TDateField;
+    qryins_day_maturity: TByteField;
+    qryins_dt_open: TDateField;
+    qryins_deleted_at: TDateTimeField;
+    qryins_dt_registration: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_cancelExecute(Sender: TObject);

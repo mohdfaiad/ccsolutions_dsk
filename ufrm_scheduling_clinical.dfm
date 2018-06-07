@@ -13,13 +13,19 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     ExplicitWidth = 1166
     ClientRectRight = 1160
     inherited tbsht_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
       ExplicitWidth = 1158
+      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
         Width = 1158
         ExplicitWidth = 1158
         ClientRectRight = 1152
         inherited tbsht_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 27
           ExplicitWidth = 1150
+          ExplicitHeight = 505
           inherited grid_1: TcxGrid
             Width = 1144
             ExplicitWidth = 1144
@@ -32,6 +38,9 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               end
               object grid_1DBTableView1client_cli_cod: TcxGridDBColumn
                 DataBinding.FieldName = 'client_cli_cod'
+              end
+              object grid_1DBTableView1Cliente: TcxGridDBColumn
+                DataBinding.FieldName = 'Cliente'
               end
               object grid_1DBTableView1enterprise_ent_cod: TcxGridDBColumn
                 DataBinding.FieldName = 'enterprise_ent_cod'
@@ -59,9 +68,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               end
               object grid_1DBTableView1req_dt_registration: TcxGridDBColumn
                 DataBinding.FieldName = 'req_dt_registration'
-              end
-              object grid_1DBTableView1hexreq_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'hex(req_cod)'
               end
             end
             object cxGridDBTableView1: TcxGridDBTableView [1]
@@ -99,19 +105,33 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       end
     end
     inherited tbsht_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
       ExplicitWidth = 1158
+      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         Width = 1158
         ExplicitWidth = 1158
         ClientRectRight = 1152
         inherited tbsht_5: TcxTabSheet
+          OnShow = tbsht_5Show
           ExplicitWidth = 1150
           inherited grb_top: TcxGroupBox
             ExplicitWidth = 1144
             Width = 1144
+            inherited lbl_cod_id: TcxLabel
+              Top = 5
+              ExplicitTop = 5
+            end
+            inherited lbl_dt_registration: TcxLabel
+              Left = 148
+              Top = 5
+              ExplicitLeft = 148
+              ExplicitTop = 5
+            end
             inherited edt_dt_registration: TcxTextEdit
-              Left = 260
-              ExplicitLeft = 260
+              Left = 148
+              ExplicitLeft = 148
             end
           end
           inherited grb_bottton: TcxGroupBox
@@ -137,7 +157,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
             end
             object cxGrid1: TcxGrid
               Left = 3
-              Top = 69
+              Top = 60
               Width = 1142
               Height = 297
               TabOrder = 2
@@ -212,6 +232,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ExplicitWidth = 1130
       inherited chkbox_1: TcxCheckBox
         ExplicitWidth = 1130
+        ExplicitHeight = 32
       end
     end
   end
@@ -245,7 +266,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     AfterInsert = qryAfterInsert
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select requisition.*,hex(req_cod) from requisition'
+      'select requisition.*, hex(req_cod) from requisition'
       '')
     object qryreq_cod: TBytesField
       FieldName = 'req_cod'
@@ -318,6 +339,16 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ReadOnly = True
       Size = 32
     end
+    object qryCliente: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Cliente'
+      LookupDataSet = qry_client
+      LookupKeyFields = 'cli_cod'
+      LookupResultField = 'cli_first_name'
+      KeyFields = 'client_cli_cod'
+      Size = 85
+      Lookup = True
+    end
   end
   object qry_client: TFDQuery
     Active = True
@@ -327,8 +358,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
         'select cli_cod,contract_ctr_cod,cli_first_name,concat('#39'0x'#39',hex(c' +
         'li_cod)) as cliCod from client'
       'order by cli_first_name')
-    Left = 159
-    Top = 316
+    Left = 407
+    Top = 196
     object qry_clientcli_cod: TBytesField
       FieldName = 'cli_cod'
       Origin = 'cli_cod'
@@ -357,8 +388,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   object ds_qry_client: TDataSource
     DataSet = qry_client
-    Left = 695
-    Top = 220
+    Left = 455
+    Top = 196
   end
   object qry_doctor: TFDQuery
     Active = True

@@ -120,13 +120,14 @@ type
     grid_1DBTableView1req_id: TcxGridDBColumn;
     grid_1DBTableView1req_status: TcxGridDBColumn;
     grid_1DBTableView1req_deleted_at: TcxGridDBColumn;
-    grid_1DBTableView1req_dt_registration: TcxGridDBColumn;
-    grid_1DBTableView1hexreq_cod: TcxGridDBColumn;
     qry_doctordoc_cod: TBytesField;
     cxGrid1DBTableView1Column1: TcxGridDBColumn;
     qry_requisition_shedulingschCod: TStringField;
     qry_doctordoc_id: TLongWordField;
     qry_doctordocCod: TStringField;
+    qryCliente: TStringField;
+    grid_1DBTableView1req_dt_registration: TcxGridDBColumn;
+    grid_1DBTableView1Cliente: TcxGridDBColumn;
     procedure Action_cancelExecute(Sender: TObject);
     procedure qry_sql(sql:string);
     procedure Action_saveExecute(Sender: TObject);
@@ -139,11 +140,13 @@ type
       Sender: TObject);
     procedure qry_requisition_shedulingBeforePost(DataSet: TDataSet);
     procedure qry_requisition_shedulingAfterPost(DataSet: TDataSet);
+    procedure tbsht_5Show(Sender: TObject);
   private
     { Private declarations }
     req_cod,sch_cod,rsh_cod:string;
   public
     { Public declarations }
+
   end;
 
 var
@@ -174,7 +177,7 @@ end;
 procedure Tfrm_scheduling_clinical.Action_editExecute(Sender: TObject);
 begin
   inherited;
- req_cod:=qryhexreq_cod.AsString;
+   req_cod:=qryhexreq_cod.AsString;
 end;
 
 procedure Tfrm_scheduling_clinical.Action_insertExecute(Sender: TObject);
@@ -273,6 +276,7 @@ begin
 
 
 end;
+
 
 procedure Tfrm_scheduling_clinical.qryAfterInsert(DataSet: TDataSet);
 begin
@@ -406,6 +410,14 @@ begin
                   ' where req_cod = unhex(' + QuotedStr(req_cod) + ')';
    qry.Prepare;
    qry.open;
+end;
+
+procedure Tfrm_scheduling_clinical.tbsht_5Show(Sender: TObject);
+begin
+  inherited;
+    edt_codid.Text               := IntToStr(qryreq_id.AsInteger);
+    edt_dt_registration.Text     := DateToStr(qryreq_dt_registration.AsDateTime);
+    cxLookupComboBoxCliente.Text := qryCliente.AsString;
 end;
 
 end.

@@ -68,11 +68,8 @@ type
     cxGrid1: TcxGrid;
     cxGrid1DBTableView1: TcxGridDBTableView;
     cxGrid1DBTableView1roe_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1contract_ctr_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1employee_emp_cod: TcxGridDBColumn;
     cxGrid1DBTableView1role_rol_cod: TcxGridDBColumn;
     cxGrid1DBTableView1roe_id: TcxGridDBColumn;
-    cxGrid1DBTableView1roe_deleted_at: TcxGridDBColumn;
     cxGrid1DBTableView1roe_dt_registration: TcxGridDBColumn;
     cxGrid1Level1: TcxGridLevel;
     qrydoc_cod: TBytesField;
@@ -84,13 +81,13 @@ type
     qrydoc_dt_registration: TDateTimeField;
     qryrec_name: TStringField;
     qryempCod_Doctor: TStringField;
-    grid_1DBTableView1doc_cod: TcxGridDBColumn;
+    qry_doctorCodEmployee: TStringField;
+    qryemp_cod: TBytesField;
+    grid_1DBTableView1employee_emp_cod: TcxGridDBColumn;
     grid_1DBTableView1doc_id: TcxGridDBColumn;
     grid_1DBTableView1doc_status: TcxGridDBColumn;
     grid_1DBTableView1doc_dt_registration: TcxGridDBColumn;
     grid_1DBTableView1rec_name: TcxGridDBColumn;
-    grid_1DBTableView1empCod_Doctor: TcxGridDBColumn;
-    Button1: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure tbsht_2Show(Sender: TObject);
@@ -103,10 +100,9 @@ type
     procedure cxGrid1DBTableView1role_rol_codPropertiesCloseUp(Sender: TObject);
     procedure qry_role_employeeAfterInsert(DataSet: TDataSet);
     procedure Action_editExecute(Sender: TObject);
-    procedure tbsht_5Show(Sender: TObject);
     procedure qry_role_employeeBeforePost(DataSet: TDataSet);
-    procedure Button1Click(Sender: TObject);
     procedure grid_1DBTableView1DblClick(Sender: TObject);
+    procedure cxLookupComboBoxProfissionalPropertiesPopup(Sender: TObject);
   private
     { Private declarations }
     doc_cod,roe_cod,emp_cod:string;
@@ -128,42 +124,84 @@ procedure Tfrm_doctor.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
  if (qrydoc_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
- with frm_dm.qry,sql do
  begin
-  Close;
-  Text:= ' delete from doctor ' +
-         ' where doc_cod = ' + doc_cod;
-  Prepare;
-  ExecSQL;
+  with frm_dm.qry,sql do
+   begin
+    Close;
+    Text:= ' delete from doctor ' +
+           ' where doc_cod = ' + doc_cod;
+    Prepare;
+    ExecSQL;
+     end;
+
+   if emp_cod <>'' then
+    begin
+     with frm_dm.qry2,sql do
+      begin
+       Close;
+       Text:= ' delete from role_employee ' +
+             ' where employee_emp_cod = ' + emp_cod ;
+       Prepare;
+       ExecSQL;
+      end;
+    end;                              //   unhex(p_cte_usr_ent_cod);
 
   qry_sql('todos');
- end;
+  end;
 end;
 
 procedure Tfrm_doctor.Action_deleteExecute(Sender: TObject);
 begin
-  inherited;
+//  inherited;
+  emp_cod := qryempCod_Doctor.AsString;
    if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
     = IDYES then
     begin
      qry.Edit;
      qrydoc_deleted_at.AsDateTime:=Now;
      qry.Post;
-     qry.ApplyUpdates(0);
-     qry_sql('todos');
+
+        with frm_dm.qry2,sql do
+       begin
+        Close;
+        Text:= ' update role_employee set roe_deleted_at = now()' +
+               ' where employee_emp_cod = ' + emp_cod;
+        Prepare;
+        ExecSQL;
+        end;
+
+       qry.ApplyUpdates(0);
+       qry_sql('todos');
     end;
 end;
 
 procedure Tfrm_doctor.Action_editExecute(Sender: TObject);
 begin
   inherited;
+     Self.Tag := 2; // para dizer que é uma alteração
+
+    qry_doctor.Close;
+    qry_doctor.Open;
+  //---------------------------
+    qry_role_employee.Close;
+    qry_role_employee.Open;
+
      emp_cod:=qryempCod_Doctor.AsString;
+
+    edt_codid.Text                    := IntToStr(qrydoc_id.AsInteger);
+    edt_dt_registration.Text          := DateToStr(qrydoc_dt_registration.AsDateTime);
+    cxComboBoxStatus.Text             := qrydoc_status.AsString;
+    cxLookupComboBoxProfissional.Text := qryrec_name.AsString;
+    cxComboBoxStatus.Text := qrydoc_status.AsString;
 end;
 
 procedure Tfrm_doctor.Action_insertExecute(Sender: TObject);
 begin
   inherited;
+  Self.Tag := 1; // para dizer que é uma inserção
   qry.Insert;
+  qry_role_employee.Close;
+  cxComboBoxStatus.ItemIndex := 0;
 end;
 
 procedure Tfrm_doctor.Action_saveExecute(Sender: TObject);
@@ -186,18 +224,15 @@ with frm_dm.qry,sql do
     qry.Post;
     qry.ApplyUpdates(0);
 
+   if Self.Tag = 1 then
+     Application.MessageBox('Registros inseridos com secesso !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+   if Self.Tag = 2 then
+     Application.MessageBox('Registros alterados com secesso !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
 
   end;
 
   inherited;
     qry_sql('todos');
-end;
-
-procedure Tfrm_doctor.Button1Click(Sender: TObject);
-begin
-  inherited;
-
-  cxLookupComboBoxProfissional.Text := qryrec_name.AsString;
 end;
 
 procedure Tfrm_doctor.cxGrid1DBTableView1role_rol_codPropertiesCloseUp(
@@ -213,6 +248,12 @@ if not (qry_role_employee.State in [dsEdit]) then
  qry_role_employee.Prepare;
  qry_role_employee.open;
 
+end;
+
+procedure Tfrm_doctor.cxLookupComboBoxProfissionalPropertiesPopup(Sender: TObject);
+begin
+  inherited;
+  qry_role_employee.Open;
 end;
 
 procedure Tfrm_doctor.ExibirRegistros;
@@ -263,7 +304,7 @@ begin
    qrydoc_dt_registration.AsDateTime:=Now;
    edt_codid.Text:=qrydoc_id.AsString;
    edt_dt_registration.Text:=qrydoc_dt_registration.AsString;
-
+   qry.Post;
 end;
 
 procedure Tfrm_doctor.qry_role_employeeAfterInsert(DataSet: TDataSet);
@@ -276,26 +317,29 @@ begin
    prepare;
    open;
 
-   roe_cod:=Fields[0].AsString;
+   roe_cod :=Fields[0].AsString;
+   emp_cod := qry_doctorempCod.AsString;
 
    Close;
-   Text:='insert into role_employee (roe_id,roe_cod,employee_emp_cod,contract_ctr_cod) ' +
-         ' select 0,'+ roe_cod + ',' + emp_cod + ',' +  frm_dm.v_contract_ctr_cod;
+   Text:='insert into role_employee (roe_id,roe_cod,employee_emp_cod,contract_ctr_cod,roe_dt_registration) ' +
+         ' select 0,'+ roe_cod + ',' + emp_cod + ',' +  frm_dm.v_contract_ctr_cod +',now()'  ;
    Prepare;
    ExecSQL;
   end;
 
    qry_role_employee.close;
-   qry_role_employee.SQL.Text:=' select role_employee.*,concat(''0x'',hex(role_rol_cod)) as rolCod, ' +
-                ' concat(''0x'',hex(roe_cod)) as roeCod,rol_name from role_employee ' +
-                ' left join role on rol_cod = role_rol_cod ';
-   qry_role_employee.Prepare;
    qry_role_employee.open;
+//   qry_role_employee.SQL.Text:=' select role_employee.*,concat(''0x'',hex(role_rol_cod)) as rolCod, ' +
+//                ' concat(''0x'',hex(roe_cod)) as roeCod,rol_name from role_employee ' +
+//                ' left join role on rol_cod = role_rol_cod where employee_emp_cod = ' +emp_cod;
+//   qry_role_employee.Prepare;
 
-   qry_role_employee.Locate('roeCod',roe_cod,[]);
 
-   qry_role_employee.Edit;
-   qry_role_employeeroe_dt_registration.AsDateTime:=Now;
+ //  qry_role_employee.Locate('roeCod',roe_cod,[]);
+
+//
+//   qry_role_employee.Edit;
+//   qry_role_employeeroe_dt_registration.AsDateTime:=Now;
 end;
 
 procedure Tfrm_doctor.qry_role_employeeBeforePost(DataSet: TDataSet);
@@ -322,13 +366,13 @@ procedure Tfrm_doctor.qry_sql(sql: string);
 begin
   qry.Close;
   if sql = 'todos' then
-   qry.sql.text:= ' select doctor.*, rec_name, concat(''0x'',hex(employee_emp_cod))as empCod_Doctor from doctor  ' +
+   qry.sql.text:= ' select doctor.*, rec_name,emp_cod, hex(employee_emp_cod)as empCod_Doctor from doctor  ' +
                   ' left join employee on employee_emp_cod = emp_cod    ' +
                   ' left join record on record_rec_cod = rec_cod        ' +
                   ' where doc_deleted_at is null   ';
 
   if sql = 'insert' then
-   qry.sql.text:= ' select doctor.*, rec_name, concat(''0x'',hex(employee_emp_cod))as empCod_Doctor from doctor' +
+   qry.sql.text:= ' select doctor.*, rec_name,emp_cod,hex(employee_emp_cod)as empCod_Doctor from doctor' +
                   ' left join employee on employee_emp_cod = emp_cod    ' +
                   ' left join record on record_rec_cod = rec_cod        ' +
                   ' where doc_cod = ' + doc_cod +
@@ -342,17 +386,6 @@ begin
   inherited;
   qry_doctor.Close;
   qry_doctor.Open;
-end;
-
-procedure Tfrm_doctor.tbsht_5Show(Sender: TObject);
-begin
-  inherited;
-
-  edt_codid.Text                    := IntToStr(qrydoc_id.AsInteger);
-  edt_dt_registration.Text          := DateToStr(qrydoc_dt_registration.AsDateTime);
-  cxLookupComboBoxProfissional.Text := qryrec_name.AsString;
-  cxComboBoxStatus.Text := qrydoc_status.AsString;
-
 end;
 
 end.

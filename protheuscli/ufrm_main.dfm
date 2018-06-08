@@ -1,7 +1,5 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Cl'#237'nica - CCS Protheus.'
-  ExplicitWidth = 1024
-  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
@@ -46,15 +44,6 @@ inherited frm_main: Tfrm_main
         Style.IsFontAssigned = True
       end
     end
-  end
-  object Button1: TButton [5]
-    Left = 216
-    Top = 272
-    Width = 75
-    Height = 25
-    Caption = 'Button1'
-    TabOrder = 3
-    OnClick = Button1Click
   end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar1: TdxBar
@@ -140,6 +129,10 @@ inherited frm_main: Tfrm_main
         item
           Visible = True
           ItemName = 'dxBarLargeButton10'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButton14'
         end
         item
           Visible = True
@@ -522,9 +515,9 @@ inherited frm_main: Tfrm_main
       OnClick = dxBarLargeButton9Click
     end
     object dxBarLargeButton10: TdxBarLargeButton
-      Caption = 'Agendamento Clinical'
+      Caption = 'Agendamento Clinico Recep'#231#227'o'
       Category = 0
-      Hint = 'Agendamento Clinical'
+      Hint = 'Agendamento Clinico Recep'#231#227'o'
       Visible = ivAlways
       OnClick = dxBarLargeButton10Click
     end
@@ -548,6 +541,13 @@ inherited frm_main: Tfrm_main
       Hint = 'Tebela de Pre'#231'o'
       Visible = ivAlways
       OnClick = dxBarLargeButton13Click
+    end
+    object dxBarLargeButton14: TdxBarLargeButton
+      Caption = 'Agendamento Proficional'
+      Category = 0
+      Hint = 'Agendamento Proficional'
+      Visible = ivAlways
+      OnClick = dxBarLargeButton14Click
     end
   end
   inherited ActionList_1: TActionList

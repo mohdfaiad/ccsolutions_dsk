@@ -153,7 +153,7 @@ end;
 procedure Tfrm_doctor.Action_deleteExecute(Sender: TObject);
 begin
 //  inherited;
-  emp_cod := qryempCod_Doctor.AsString;
+   emp_cod := qryempCod_Doctor.AsString;
    if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
     = IDYES then
     begin
@@ -179,7 +179,9 @@ procedure Tfrm_doctor.Action_editExecute(Sender: TObject);
 begin
   inherited;
      Self.Tag := 2; // para dizer que é uma alteração
-
+    qry_role.Close;
+    qry_role.Open;
+    //--------------------------
     qry_doctor.Close;
     qry_doctor.Open;
   //---------------------------
@@ -206,47 +208,88 @@ end;
 
 procedure Tfrm_doctor.Action_saveExecute(Sender: TObject);
 begin
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(doc_id) is null then 1 ' +
-          '      else (max(doc_id) + 1) end as maxID from doctor '+
-          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
-   Prepare;
-   Open;
-   if not (qry.State in [dsInsert,dsEdit])  then
-    qry.Edit;
+  if Self.Tag = 1 then
+   begin
+    with frm_dm.qry3,sql do
+     begin
+       close;
+       Text :=' select * from doctor where employee_emp_cod = '+qry_doctorempCod.AsString;
+       Prepare;
+       Open;
 
-   if qrydoc_id.AsInteger = 0 then
-    qrydoc_id.AsInteger:=Fields[0].AsInteger;
-    qryemployee_emp_cod.Value:=qry_doctoremp_cod.Value;
-    qrydoc_status.AsString:=Copy(cxComboBoxStatus.Text,1,1);
-    qry.Post;
-    qry.ApplyUpdates(0);
+       if RecordCount >0 then
+        begin
+          Application.MessageBox('O proficional selecionado já está cadastrado !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+          Abort;
+        end;
 
-   if Self.Tag = 1 then
-     Application.MessageBox('Registros inseridos com secesso !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
-   if Self.Tag = 2 then
-     Application.MessageBox('Registros alterados com secesso !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+     end;
+   end;
 
-  end;
+        with frm_dm.qry,sql do
+        begin
+         close;
+         Text:= ' select case when max(doc_id) is null then 1 ' +
+                '      else (max(doc_id) + 1) end as maxID from doctor '+
+                ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+         Prepare;
+         Open;
+         if not (qry.State in [dsInsert,dsEdit])  then
+          qry.Edit;
 
-  inherited;
+         if qrydoc_id.AsInteger = 0 then
+          qrydoc_id.AsInteger:=Fields[0].AsInteger;
+          qryemployee_emp_cod.Value:=qry_doctoremp_cod.Value;
+          qrydoc_status.AsString:=Copy(cxComboBoxStatus.Text,1,1);
+          qry.Post;
+          qry.ApplyUpdates(0);
+        end;
+
+
+      Application.MessageBox('Registros processados com secesso !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+
+    inherited;
     qry_sql('todos');
+
 end;
 
 procedure Tfrm_doctor.cxGrid1DBTableView1role_rol_codPropertiesCloseUp(
   Sender: TObject);
 begin
   inherited;
-if not (qry_role_employee.State in [dsEdit]) then
- qry_role_employee.Edit;
- qry_role_employeerole_rol_cod.Value:=qry_rolerol_cod.Value;
- qry_role_employee.Post;
 
- qry_role_employee.Close;
- qry_role_employee.Prepare;
- qry_role_employee.open;
+  with frm_dm.qry3,sql do
+     begin
+       close;
+       Text :=' select * from role_employee where employee_emp_cod =' +qry_doctorempCod.AsString+ ' and role_rol_cod = '+qry_rolerolCod.AsString;
+       Prepare;
+       Open;
+
+       if RecordCount >0 then
+        begin
+          Application.MessageBox('A especialidade selecionada já existe para este proficional !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+
+           with frm_dm.qry,sql do
+           begin
+            Close;
+            Text:= ' delete from role_employee ' +
+                   ' where roe_cod = ' + roe_cod;
+            Prepare;
+            ExecSQL;
+           end;
+        end else
+        begin
+          if not (qry_role_employee.State in [dsEdit]) then
+           qry_role_employee.Edit;
+           qry_role_employeerole_rol_cod.Value:=qry_rolerol_cod.Value;
+           qry_role_employee.Post;
+        end;
+
+     end;
+    //--------------------------------------
+    qry_role_employee.Close;
+    qry_role_employee.Prepare;
+    qry_role_employee.open;
 
 end;
 
@@ -283,6 +326,10 @@ end;
 procedure Tfrm_doctor.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
+  //inicializar as variaveis vazias
+  emp_cod := '';
+  doc_cod := '';
+  //------------------------------
  With frm_dm.qry,sql do
   begin
    close;
@@ -329,17 +376,7 @@ begin
 
    qry_role_employee.close;
    qry_role_employee.open;
-//   qry_role_employee.SQL.Text:=' select role_employee.*,concat(''0x'',hex(role_rol_cod)) as rolCod, ' +
-//                ' concat(''0x'',hex(roe_cod)) as roeCod,rol_name from role_employee ' +
-//                ' left join role on rol_cod = role_rol_cod where employee_emp_cod = ' +emp_cod;
-//   qry_role_employee.Prepare;
 
-
- //  qry_role_employee.Locate('roeCod',roe_cod,[]);
-
-//
-//   qry_role_employee.Edit;
-//   qry_role_employeeroe_dt_registration.AsDateTime:=Now;
 end;
 
 procedure Tfrm_doctor.qry_role_employeeBeforePost(DataSet: TDataSet);
@@ -355,10 +392,11 @@ begin
      Open;
 
     if not (qry_role_employee.State in [dsInsert,dsEdit])  then
-     qry.Edit;
+     qry_role_employee.Edit;
 
     if qry_role_employeeroe_id.AsInteger = 0 then
-      qry_role_employeeroe_id.AsInteger  := Fields[0].AsInteger;
+       qry_role_employeeroe_id.AsInteger  := Fields[0].AsInteger;
+
    end;
 end;
 

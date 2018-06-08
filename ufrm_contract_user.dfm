@@ -14,19 +14,13 @@ inherited frm_contract_user: Tfrm_contract_user
     ExplicitWidth = 1129
     ClientRectRight = 1123
     inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 1121
-      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
         Width = 1121
         ExplicitWidth = 1121
         ClientRectRight = 1115
         inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
           ExplicitWidth = 1113
-          ExplicitHeight = 505
           inherited grid_1: TcxGrid
             Width = 1107
             ExplicitWidth = 1107
@@ -124,10 +118,7 @@ inherited frm_contract_user: Tfrm_contract_user
     end
     inherited tbsht_2: TcxTabSheet
       OnShow = tbsht_2Show
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 1121
-      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         Width = 1121
         Properties.ActivePage = tbsht_6
@@ -531,7 +522,7 @@ inherited frm_contract_user: Tfrm_contract_user
                   TabAppearance.BackGround.Direction = gdHorizontal
                 end>
               Align = alBottom
-              ActiveTabIndex = 1
+              ActiveTabIndex = 0
               ButtonSettings.CloseButtonPicture.Data = {
                 424DA20400000000000036040000280000000900000009000000010008000000
                 00006C000000C30E0000C30E00000001000000010000427B8400DEEFEF00FFFF
@@ -826,6 +817,7 @@ inherited frm_contract_user: Tfrm_contract_user
               Items = <>
               TabOrder = 1
               OnClickCheck = cxListMenuClickCheck
+              ExplicitTop = 9
             end
           end
         end
@@ -840,7 +832,6 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitWidth = 1093
       inherited chkbox_1: TcxCheckBox
         ExplicitWidth = 1093
-        ExplicitHeight = 32
       end
     end
   end

@@ -153,7 +153,7 @@ object frm_default: Tfrm_default
             Width = 940
             object lbl_cod_id: TcxLabel
               Left = 3
-              Top = 3
+              Top = 7
               Caption = 'C'#243'd. ID'
               Transparent = True
             end
@@ -166,7 +166,7 @@ object frm_default: Tfrm_default
             end
             object lbl_dt_registration: TcxLabel
               Left = 134
-              Top = 3
+              Top = 7
               Caption = 'Dt. Cad.'
               Transparent = True
             end

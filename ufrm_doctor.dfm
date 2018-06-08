@@ -7,7 +7,6 @@ inherited frm_doctor: Tfrm_doctor
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
     Height = 588
-    Properties.ActivePage = tbsht_1
     ExplicitHeight = 588
     ClientRectBottom = 582
     inherited tbsht_1: TcxTabSheet
@@ -148,7 +147,6 @@ inherited frm_doctor: Tfrm_doctor
                 Height = 323
                 Align = alClient
                 TabOrder = 0
-                ExplicitWidth = 483
                 object cxGrid1DBTableView1: TcxGridDBTableView
                   Navigator.Buttons.ConfirmDelete = True
                   Navigator.Buttons.CustomButtons = <>
@@ -352,18 +350,20 @@ inherited frm_doctor: Tfrm_doctor
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select r.rec_name,r.rec_cod,r.contract_ctr_cod,e.emp_cod,'
       
-        'concat('#39'0x'#39', hex(e.emp_cod)) as empCod, hex(e.emp_cod) as CodEmp' +
-        'loyee  from record r'
-      'left join employee e on e.record_rec_cod =  r.rec_cod'#13#10#10
-      ''
-      'where r.rec_cod in (select record_rec_cod from employee'#10
-      '                   where emp_status = '#39'A'#39')'#10#10
+        'select r.rec_name,r.rec_cod,r.contract_ctr_cod,e.emp_cod,'#10'concat' +
+        '('#39'0x'#39', hex(e.emp_cod)) as empCod,'
+      
+        ' hex(e.emp_cod) as CodEmployee  from record r'#10'left join employee' +
+        ' e on e.record_rec_cod =  r.rec_cod'#10#10' '
+      
+        'where r.rec_cod in (select record_rec_cod from employee'#10#10'       ' +
+        '           '
+      ' where emp_status = '#39'A'#39')'
       'and r.contract_ctr_cod = :ctr_cod'#10
       'order by r.rec_name'#10)
-    Left = 768
-    Top = 56
+    Left = 552
+    Top = 120
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -415,8 +415,8 @@ inherited frm_doctor: Tfrm_doctor
   end
   object ds_Doctor: TDataSource [18]
     DataSet = qry_doctor
-    Left = 792
-    Top = 56
+    Left = 584
+    Top = 120
   end
   object qry_role_employee: TFDQuery [19]
     Active = True
@@ -436,7 +436,7 @@ inherited frm_doctor: Tfrm_doctor
       ' concat('#39'0x'#39',hex(roe_cod)) as roeCod,rol_name from role_employee'
       ' left join role on rol_cod = role_rol_cod '
       ' where employee_emp_cod =:emp_cod and roe_deleted_at is null')
-    Left = 768
+    Left = 776
     Top = 104
     ParamData = <
       item

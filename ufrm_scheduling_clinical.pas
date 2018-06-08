@@ -33,7 +33,7 @@ uses
   cxGroupBox, cxGridLevel, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, cxPC, ufrm_dm, cxMaskEdit,
   cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
-  dxDateTimeWheelPicker, cxCalendar, ufrm_main, ufrm_scheduling;
+  dxDateTimeWheelPicker, cxCalendar, ufrm_main, ufrm_scheduling, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls;
 
 type
   Tfrm_scheduling_clinical = class(Tfrm_default)
@@ -128,6 +128,33 @@ type
     qryCliente: TStringField;
     grid_1DBTableView1req_dt_registration: TcxGridDBColumn;
     grid_1DBTableView1Cliente: TcxGridDBColumn;
+    looComboxConvenio: TcxLookupComboBox;
+    cxLookupComboBox1: TcxLookupComboBox;
+    cxLabel1: TcxLabel;
+    cxLabel2: TcxLabel;
+    Qry_rolee02: TFDQuery;
+    dsRolee02: TDataSource;
+    cxLookupComboBox2: TcxLookupComboBox;
+    qry_doctor_role: TFDQuery;
+    ds_doctor_role: TDataSource;
+    qry_doctor_roledoc_cod: TBytesField;
+    qry_doctor_rolecontract_ctr_cod: TBytesField;
+    qry_doctor_roleemployee_emp_cod: TBytesField;
+    qry_doctor_roledoc_id: TLongWordField;
+    qry_doctor_roledoc_status: TStringField;
+    qry_doctor_roledoc_deleted_at: TDateTimeField;
+    qry_doctor_roledoc_dt_registration: TDateTimeField;
+    qry_doctor_rolerec_name: TStringField;
+    qry_doctor_rolecodDoctor: TStringField;
+    qry_doctor_rolecodEmployee: TStringField;
+    Qry_rolee02rol_cod: TBytesField;
+    Qry_rolee02rol_name: TStringField;
+    Qry_rolee02rolCod: TStringField;
+    Qry_rolee02contract_ctr_cod: TBytesField;
+    cxLookupComboBox3: TcxLookupComboBox;
+    cxLabel3: TcxLabel;
+    Panel1: TPanel;
+    cxLabel4: TcxLabel;
     procedure Action_cancelExecute(Sender: TObject);
     procedure qry_sql(sql:string);
     procedure Action_saveExecute(Sender: TObject);
@@ -141,6 +168,7 @@ type
     procedure qry_requisition_shedulingBeforePost(DataSet: TDataSet);
     procedure qry_requisition_shedulingAfterPost(DataSet: TDataSet);
     procedure tbsht_5Show(Sender: TObject);
+    procedure cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
   private
     { Private declarations }
     req_cod,sch_cod,rsh_cod:string;
@@ -183,7 +211,10 @@ end;
 procedure Tfrm_scheduling_clinical.Action_insertExecute(Sender: TObject);
 begin
   inherited;
-qry.Insert;
+ // qry.Insert;
+
+   Qry_rolee02.Close;
+   Qry_rolee02.Open;
 end;
 
 procedure Tfrm_scheduling_clinical.Action_saveExecute(Sender: TObject);
@@ -278,30 +309,38 @@ begin
 end;
 
 
+procedure Tfrm_scheduling_clinical.cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+   qry_doctor_role.Close;
+   qry_doctor_role.ParamByName('CODROLE').Value := Qry_rolee02rol_cod.Value;
+   qry_doctor_role.Open;
+end;
+
 procedure Tfrm_scheduling_clinical.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
- With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select hex(uuid_to_bin(uuid()))';
-   prepare;
-   open;
-
-   req_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into requisition (req_id,req_cod,contract_ctr_cod) ' +
-         ' select 0,unhex('+ QuotedStr(req_cod) + '),' +  frm_dm.v_contract_ctr_cod;
-   Prepare;
-   ExecSQL;
-  end;
-
-   qry_sql('insert');
-   qry.Edit;
-   qryreq_dt_registration.AsDateTime:=Now;
-   edt_codid.Text:=qryreq_id.AsString;
-   edt_dt_registration.Text:=qryreq_dt_registration.AsString;
+// With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select hex(uuid_to_bin(uuid()))';
+//   prepare;
+//   open;
+//
+//   req_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into requisition (req_id,req_cod,contract_ctr_cod) ' +
+//         ' select 0,unhex('+ QuotedStr(req_cod) + '),' +  frm_dm.v_contract_ctr_cod;
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//   qry_sql('insert');
+//   qry.Edit;
+//   qryreq_dt_registration.AsDateTime:=Now;
+//   edt_codid.Text:=qryreq_id.AsString;
+//   edt_dt_registration.Text:=qryreq_dt_registration.AsString;
 end;
 
 procedure Tfrm_scheduling_clinical.qry_requisition_shedulingAfterInsert(

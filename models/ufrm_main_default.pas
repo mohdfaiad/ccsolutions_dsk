@@ -179,9 +179,17 @@ begin
  end;
 procedure Tfrm_main_default.FormShow(Sender: TObject);
 begin
-    dxRibbonStatusBar1.Panels[1].Text :=FormatFloat('0000',frm_dm.qry_signinctr_id.AsInteger);
+   frm_dm.qry_enterprise.Close;
+   frm_dm.qry_enterprise.ParamByName('CTR_COD').Value       := frm_dm.qry_contractctr_cod.Value;
+   frm_dm.qry_enterprise.ParamByName('CODUSUARIO').AsString := frm_dm.p_ctr_usr_cod;
+   frm_dm.qry_enterprise.Prepare;
+   frm_dm.qry_enterprise.open;
+
+
+   //Exibe as "Contrato" "Empresa"  "Usuário" e "Data Hora" na Barra de Status
+    dxRibbonStatusBar1.Panels[1].Text :=FormatFloat('0000',frm_dm.qry_contractctr_id.AsInteger);
     dxRibbonStatusBar1.Panels[3].Text := IntToStr(frm_dm.qry_enterpriseent_id.AsInteger)+' - '+frm_dm.qry_enterpriseent_last_name.AsString;
-    dxRibbonStatusBar1.Panels[5].Text :=frm_dm.qry_signinctr_usr_username.AsString;
+    dxRibbonStatusBar1.Panels[5].Text :=frm_dm.v_nome_usuario;
     dxRibbonStatusBar1.Panels[7].Text :=FormatDateTime('dd/MM/yyyy',date);
  //   Timer_1.Enabled:=True;
  //   controleAcesso(frm_dm.qry_signinctr_usr_id.AsInteger,frm_dm.qry_signinctr_usr_admin.AsString);

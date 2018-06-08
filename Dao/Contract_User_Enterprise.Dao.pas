@@ -40,7 +40,6 @@ begin
       Prepare;
       ParamByName('p_cte_usr_ent_cod').AsString := User_Contract.cte_usr_ent_cod;
       ExecProc;
-      Application.MessageBox('Permicionamentos deletados com secesso !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
      end;
 
     finally
@@ -69,7 +68,6 @@ begin
       ParamByName('p_contract_user_ctr_usr_cod').AsString := User_Contract.contract_user_ctr_usr_cod;
       ParamByName('p_enterprise_ent_cod').AsString        := User_Contract.enterprise_ent_cod;
       ExecProc;
-      Application.MessageBox('Permicionamento inseridos com secesso !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
      end;
 
     finally

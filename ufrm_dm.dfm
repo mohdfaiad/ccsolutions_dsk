@@ -168,16 +168,14 @@ object frm_dm: Tfrm_dm
     Top = 16
   end
   object qry_enterprise: TFDQuery
-    IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = ds_contract
-    MasterFields = 'ctr_cod'
+    Active = True
     Connection = connCCS
     SQL.Strings = (
-      'select * from enterprise'
-      'where contract_ctr_cod =:ctr_cod'
+      'select * from enterprise'#10'where contract_ctr_cod =:ctr_cod'
       
         'and ent_cod in (select enterprise_ent_cod  from contract_user_en' +
-        'terprise where contract_user_ctr_usr_cod =:ctr_usr_id)'#10#10#10)
+        'terprise '
+      'where contract_user_ctr_usr_cod = unhex(:CodUsuario) )')
     Left = 40
     Top = 152
     ParamData = <
@@ -189,8 +187,8 @@ object frm_dm: Tfrm_dm
         Value = Null
       end
       item
-        Name = 'CTR_USR_ID'
-        DataType = ftBytes
+        Name = 'CODUSUARIO'
+        DataType = ftString
         ParamType = ptInput
         Value = Null
       end>
@@ -207,6 +205,8 @@ object frm_dm: Tfrm_dm
     end
     object qry_enterpriseent_id: TLongWordField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'digo ID'
+      DisplayWidth = 12
       FieldName = 'ent_id'
       Origin = 'ent_id'
     end
@@ -219,12 +219,16 @@ object frm_dm: Tfrm_dm
     end
     object qry_enterpriseent_first_name: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome Empresa'
+      DisplayWidth = 100
       FieldName = 'ent_first_name'
       Origin = 'ent_first_name'
       Size = 85
     end
     object qry_enterpriseent_last_name: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Empresa'
+      DisplayWidth = 100
       FieldName = 'ent_last_name'
       Origin = 'ent_last_name'
       Size = 85

@@ -2,7 +2,6 @@ inherited frm_client: Tfrm_client
   Caption = 'Manuten'#231#227'o: Clientes'
   ClientHeight = 691
   OnClose = FormClose
-  ExplicitTop = -179
   ExplicitHeight = 730
   PixelsPerInch = 96
   TextHeight = 13
@@ -190,7 +189,7 @@ inherited frm_client: Tfrm_client
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         Height = 596
-        Properties.ActivePage = tabTelefonia
+        Properties.ActivePage = tabLaboratorio
         ExplicitHeight = 596
         ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet

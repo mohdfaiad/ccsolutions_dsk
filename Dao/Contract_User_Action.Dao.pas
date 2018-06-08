@@ -44,7 +44,6 @@ begin
       ParamByName('p_contract_user_ctr_usr_cod').AsString := codUsuario;
       ParamByName('p_cta_action_name').AsString  := Action_Name;
       ExecProc;
-      Application.MessageBox('Permicionamento inseridos com secesso !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
      end;
 
     finally
@@ -72,7 +71,6 @@ begin
       Prepare;
       ParamByName('p_cta_cod').AsString := codUsuario;
       ExecProc;
-      Application.MessageBox('Permicionamentos deletados com secesso !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
      end;
 
     finally

@@ -240,7 +240,7 @@ end;
 procedure Tfrm_scheduling.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
-    if (qrysch_id.AsInteger = 0) and (qry.State in [dsEdit]) then
+    if (qrysch_id.AsInteger = 0) then
      begin
        with frm_dm.qry,sql do
        begin
@@ -254,7 +254,9 @@ begin
      end;
 
    qry.Close;
-   qry.Open;
+   qry.sql.Text:= ' select scheduling.*, hex(sch_cod)as codScheduling from scheduling  ';
+   qry.prepare;
+   qry.open;
 
 end;
 
@@ -286,6 +288,7 @@ begin
     inherited;
     //Se tag = 2 é para alterar
      Self.Tag := 2;
+     qry.Edit;
 
      ExibirAgendamento;
 
@@ -308,18 +311,20 @@ begin
   inherited;
   //Se tag = 1 é para inserir
     Self.Tag := 1;
-   // clearField;
+
     cxDate.Date:=Date;
     cxTime.Time:=Time;
+    looComboxProficional.ItemIndex := -1;
+    cxMemoDescricao.Clear;
     qry.Insert;
     pgctrl_1.ActivePage:=tbsht_2;
-   // edt_codid.Text:=qrysch_id.AsString;
-  //  edt_dt_registration.Text:= qrysch_dt_registration.AsString;
 
 end;
 
 procedure Tfrm_scheduling.Action_saveExecute(Sender: TObject);
 begin
+ if (Self.Tag = 1) then
+  begin
 
     with frm_dm.qry,sql do
      begin
@@ -390,20 +395,29 @@ begin
             begin
               qrysch_id.AsInteger        := Fields[0].AsInteger;
               qryemployee_emp_cod.Value  := qry_proficionalemployee_emp_cod.Value;
-              qrysch_datetime.AsDateTime :=cxDate.Date + cxTime.Time;
-              qrysch_description.AsString :=cxMemoDescricao.Text;
+              qrysch_datetime.AsDateTime := cxDate.Date + cxTime.Time;
+              qrysch_description.AsString := cxMemoDescricao.Text;
               qry.Post;
               qry.ApplyUpdates(0);
 
               qry.Close;
               qry.sql.Text:= ' select scheduling.*, hex(sch_cod)as codScheduling from scheduling  ';
-               qry.prepare;
-               qry.open;
+              qry.prepare;
+              qry.open;
             end;
          end;
      end;
+  end else if (Self.Tag = 2) then
+  begin
+      qry.Edit;
+      qrysch_datetime.AsDateTime  := cxDate.Date + cxTime.Time;
+      qrysch_description.AsString := cxMemoDescricao.Text;
+      qry.Post;
+      qry.ApplyUpdates(0);
+  end;
 
-     inherited;
+   inherited;
+
 end;
 
 

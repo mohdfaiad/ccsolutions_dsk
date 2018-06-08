@@ -45,7 +45,7 @@ object frm_dm: Tfrm_dm
         'WHERE c.ctr_id = :contract AND cu.ctr_usr_username = :username a' +
         'nd (cu.ctr_usr_password=:password or cu.ctr_usr_password is null' +
         ')'#10#10)
-    Left = 48
+    Left = 32
     Top = 88
     ParamData = <
       item
@@ -487,8 +487,8 @@ object frm_dm: Tfrm_dm
   end
   object qry_signinNew: TFDQuery
     Connection = connCCS
-    Left = 248
-    Top = 168
+    Left = 264
+    Top = 184
   end
   object qry_contract: TFDQuery
     Active = True

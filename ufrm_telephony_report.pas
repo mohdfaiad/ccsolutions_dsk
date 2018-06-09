@@ -31,7 +31,8 @@ uses
   cxGridTableView, cxGridDBTableView, cxGrid, cxContainer, Vcl.ComCtrls, dxCore,
   cxDateUtils, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar, cxLabel,
   dxBevel, ufrm_dm, Vcl.StdCtrls, cxButtons, Vcl.CheckLst, Vcl.ExtCtrls,
-  AdvPanel, cxCheckListBox, frxClass, frxDBSet;
+  AdvPanel, cxCheckListBox, frxClass, frxDBSet, frxExportBaseDialog,
+  frxExportPDF, cxCheckBox, cxProgressBar;
 
 type
   Tfrm_telephony_report = class(Tfrm_search)
@@ -81,9 +82,32 @@ type
     qry_import_call_logcli_add_bus_city: TStringField;
     qry_import_call_logcli_add_bus_state: TStringField;
     qry_import_call_logcli_add_bus_street: TStringField;
+    qry_grafico: TFDQuery;
+    qry_graficoimp_type: TStringField;
+    qry_graficocount: TLargeintField;
+    qry_graficosumimp_total: TFMTBCDField;
+    qry_graficoformatsumimp_duration1000: TStringField;
+    qry_graficopercentual: TFMTBCDField;
+    frxDBDataset1: TfrxDBDataset;
+    frxPDFExport1: TfrxPDFExport;
+    qry_grafico2: TFDQuery;
+    qry_grafico2dayimp_date: TIntegerField;
+    qry_grafico2sumimp_durationdiv100: TLargeintField;
+    frxDBDataset2: TfrxDBDataset;
+    qry_grafico_total: TFDQuery;
+    qry_grafico_totalcount: TLargeintField;
+    qry_grafico_totalsumimp_total: TFMTBCDField;
+    qry_grafico_totalsumimp_durationdiv100: TLargeintField;
+    frxDBDataset3: TfrxDBDataset;
+    cxCheckBoxAll: TcxCheckBox;
+    cxProgressBar: TcxProgressBar;
     procedure cxButtonConsultarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure cxButtonPrintClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure cxCheckBoxAllClick(Sender: TObject);
+    procedure cxCheckListBoxClientSelecionadoClickCheck(Sender: TObject;
+      AIndex: Integer; APrevState, ANewState: TcxCheckBoxState);
   private
     { Private declarations }
     listaCliId:TStringList;
@@ -107,6 +131,11 @@ qry.ParamByName('fin').AsDateTime:=StrToDateTime(FormatDateTime('dd/mm/yyyy',cxD
 qry.Prepare;
 qry.Open;
 
+cxCheckBoxAll.Enabled:=qry.RecordCount > 0;
+cxCheckBoxAll.Checked:=False;
+cxCheckBoxAll.Caption:='Marcar Todos';
+cxProgressBar.Position:=0;
+
 qry.First;
 cxCheckListBoxClientSelecionado.Items.Clear;
 listaCliId.Clear;
@@ -121,23 +150,27 @@ end;
 
 procedure Tfrm_telephony_report.cxButtonPrintClick(Sender: TObject);
 var
-i:Integer;
+i,quant:Integer;
 selecionado:Boolean;
+pathPDF:string;
 begin
-selecionado:=False;
+quant:=0;
 for I := 0 to cxCheckListBoxClientSelecionado.Items.Count - 1 do
   begin
     if cxCheckListBoxClientSelecionado.Items.Items[i].Checked then
      begin
-     selecionado:=True;
-     Break;
+     quant:=quant + 1;
      end;
   end;
-  if not selecionado then
+  if quant < 0  then
    begin
      Application.MessageBox('Não existe nenhum cliente selecionado para gerar o relatório!','Imprimir Telefonia' ,MB_OK + MB_ICONEXCLAMATION);
      exit;
    end;
+
+
+cxProgressBar.Properties.Max:=quant;
+cxProgressBar.Position:=0;
 
  for I := 0 to cxCheckListBoxClientSelecionado.Items.Count - 1 do
   begin
@@ -152,22 +185,111 @@ for I := 0 to cxCheckListBoxClientSelecionado.Items.Count - 1 do
       qry_import_call_log.Prepare;
       qry_import_call_log.Open;
 
+      qry_grafico.Close;
+      qry_grafico.ParamByName('dt_ini').AsDateTime:=StrToDateTime(FormatDateTime('dd/mm/yyyy',cxDateEditDataInicial.Date) + ' 00:00:00');
+      qry_grafico.ParamByName('dt_fin').AsDateTime:=StrToDateTime(FormatDateTime('dd/mm/yyyy',cxDateEditDataFinal.Date) + ' 23:59:59');
+      qry_grafico.ParamByName('cli').AsInteger:=StrToInt(listaCliId[i]);
+      qry_grafico.Prepare;
+      qry_grafico.Open;
+
+      qry_grafico2.Close;
+      qry_grafico2.ParamByName('dt_ini').AsDateTime:=StrToDateTime(FormatDateTime('dd/mm/yyyy',cxDateEditDataInicial.Date) + ' 00:00:00');
+      qry_grafico2.ParamByName('dt_fin').AsDateTime:=StrToDateTime(FormatDateTime('dd/mm/yyyy',cxDateEditDataFinal.Date) + ' 23:59:59');
+      qry_grafico2.ParamByName('cli').AsInteger:=StrToInt(listaCliId[i]);
+      qry_grafico2.Prepare;
+      qry_grafico2.Open;
+
+
+      qry_import_call_log.First;
+      pathPDF:='C:\ccsolutions_dsk\export\telefonia\' +
+             FormatDateTime('yyyy',qry_import_call_logimp_date.AsDateTime) + '\' +
+             FormatDateTime('mm',qry_import_call_logimp_date.AsDateTime);
+
+      if not DirectoryExists(pathPDF) then
+       CreateDir(pathPDF);
+
       frxReportConta.LoadFromFile('C:\ccsolutions_dsk\reports\rep_relatorio_ligacoes_v2.fr3' ) ;
-      frxReportConta.PrepareReport(True);
-      frxReportConta.ShowReport;
+      frxPDFExport1.FileName := cxCheckListBoxClientSelecionado.Items.Items[i].Text +  ' - '  +
+                               FormatDateTime('yyyyMMdd', Date) +
+                               FormatDateTime('hhMMss',Time) +   '.pdf';
+      frxPDFExport1.DefaultPath := pathPDF + '\';
+      frxPDFExport1.ShowDialog := False;
+      frxPDFExport1.ShowProgress := False;
+      frxPDFExport1.OverwritePrompt := False;
+      frxReportConta.PrepareReport();
+      frxReportConta.Export(frxPDFExport1);
+      cxProgressBar.Position:=i +1;
+      cxProgressBar.Repaint;
      end;
-     end;
+   end;
+      Application.MessageBox('Relatório da conta telefonica gerado com sucesso!','Telefonia',MB_OK + MB_ICONINFORMATION);
+      cxProgressBar.Position:=0;
   inherited;
 
+end;
+
+procedure Tfrm_telephony_report.cxCheckBoxAllClick(Sender: TObject);
+var
+i:Integer;
+begin
+if cxCheckBoxAll.Tag = 1 then
+ exit;
+
+ for i := 0 to cxCheckListBoxClientSelecionado.Items.Count -1 do
+  cxCheckListBoxClientSelecionado.Items.Items[i].Checked:=cxCheckBoxAll.Checked;
+
+  if not cxCheckBoxAll.Checked then
+   cxCheckBoxAll.Caption:='Marcar Todos'
+   else
+   cxCheckBoxAll.Caption:='Desmarcar Todos';
+
+  inherited;
+
+end;
+
+procedure Tfrm_telephony_report.cxCheckListBoxClientSelecionadoClickCheck(
+  Sender: TObject; AIndex: Integer; APrevState, ANewState: TcxCheckBoxState);
+var
+i:Integer;
+selecionadoAll:Boolean;
+begin
+  inherited;
+selecionadoAll:=true;
+for i := 0 to cxCheckListBoxClientSelecionado.Items.Count - 1 do
+ if not cxCheckListBoxClientSelecionado.Items.Items[i].Checked then
+  begin
+   selecionadoAll:=False;
+   Break;
+  end;
+ cxCheckBoxAll.Tag:=1;
+ cxCheckBoxAll.Checked:=selecionadoAll;
+ if not cxCheckBoxAll.Checked then
+  cxCheckBoxAll.Caption:='Marcar Todos'
+  else
+   cxCheckBoxAll.Caption:='Desmarcar Todos';
+
+ cxCheckBoxAll.Tag:=0;
+
+end;
+
+procedure Tfrm_telephony_report.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  frm_telephony_report.Destroy;
+  frm_telephony_report := Nil;
 end;
 
 procedure Tfrm_telephony_report.FormCreate(Sender: TObject);
 begin
   inherited;
-cxCheckListBoxClientSelecionado.Items.Clear;
+cxCheckListBoxClientSelecionado.Clear;
 listaCliId:=TStringList.Create;
 cxDateEditDataInicial.Date:=Date - 30;
 cxDateEditDataFinal.Date:=date;
+cxCheckBoxAll.Checked:=false;
+cxCheckBoxAll.Enabled:=false;
+
 end;
 
 end.

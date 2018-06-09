@@ -199,7 +199,7 @@ if OpenDialog1.Execute then
 
  qry.Close;
  qry.ParamByName('comp').AsString:= competencia;
- qry.ParamByName('ctr_cod').Value:= frm_dm.qry_signincontractCod.Value;
+ qry.ParamByName('ctr_cod').Value:= frm_dm.qry_contractctr_cod.Value;
  qry.ParamByName('cient').AsString:= clienteSippulse;
  qry.Prepare;
  qry.Open;
@@ -237,7 +237,7 @@ begin
 x.ShortDateFormat := 'dd/mm/yyyy';
 qry.Close;
 qry.ParamByName('comp').AsString:= competencia;
-qry.ParamByName('ctr_cod').Value:= frm_dm.qry_signincontractCod.Value;
+qry.ParamByName('ctr_cod').Value:= frm_dm.qry_contractctr_cod.Value;
 qry.ParamByName('cient').AsString:= clienteSippulse;
 qry.Prepare;
 qry.Open;
@@ -289,27 +289,26 @@ coluna:=0;
 ini:=0;
 fin:=0;
 
-for I := 0 to Length(arquivo[1]) do
+for I := 0 to Length(arquivo[0]) do
 begin
- if copy(arquivo[1],i,1) = ',' then
+ if copy(arquivo[0],i,1) = ';' then
   coluna:=coluna + 1;
 
- if coluna = 9 then
+ if coluna = 10 then
   begin
-   ini:= i + 2;
-   coluna:=10;
+   ini:= i;
+   coluna:=11;
   end;
 
 
- if coluna = 11 then
+ if coluna = 12 then
   begin
-   fin:= i - 1;
+   fin:= i;
    Break;
   end;
 end;
 
-
-clienteSippulse:= Copy(arquivo[1],ini,fin-ini);
+ clienteSippulse:= Copy(arquivo[0],ini + 1,(fin - ini-1));
 
 end;
 
@@ -319,7 +318,7 @@ Var
   wdHoras, wdMinutos, wdSegundos: Word;
 begin
 procTeste.Prepare;
-procTeste.ParamByName('p_ctr_id').AsLargeInt:=frm_dm.qry_contractctr_id.AsLargeInt;
+procTeste.ParamByName('p_ctr_id').AsLargeInt:=1;//frm_dm.qry_contractctr_id.AsLargeInt;
 procTeste.ParamByName('p_cli_account_code_sippulse').AsString:=qrycli_account_code_sippulse.AsString;
 procTeste.ParamByName('p_imp_from').AsString:=qryimp_from.AsString;
 procTeste.ParamByName('p_imp_to').AsString:=qryimp_to.AsString;

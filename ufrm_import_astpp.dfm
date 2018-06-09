@@ -279,12 +279,6 @@ inherited frm_import_astpp: Tfrm_import_astpp
     Formats.LongDateFormat = 'yyyy-MM-dd hh:mm:ss'
     Formats.ShortTimeFormat = 'HH:MM:SS'
     Formats.LongTimeFormat = 'HH:MM:SS'
-    FieldFormats = <
-      item
-        FieldName = 'imp_duration'
-        Replacements = <>
-        Functions = ifNone
-      end>
     ImportEmptyRows = False
     SkipInvisibleColumns = True
     TemplateFileName = 'C:\ccsolutions_dsk\import\Import_astpp.imp'
@@ -294,6 +288,7 @@ inherited frm_import_astpp: Tfrm_import_astpp
       'imp_from'
       'imp_to'
       'imp_date')
+    OnAfterImport = QImport3Wizard_1AfterImport
     OnImportRecord = QImport3Wizard_1ImportRecord
     Left = 480
   end
@@ -309,7 +304,7 @@ inherited frm_import_astpp: Tfrm_import_astpp
       'select * from import_call_log'
       
         'where imp_comp =:comp and contract_ctr_cod =:ctr_cod and cli_acc' +
-        'ount_code_sippulse =:cient')
+        'ount_code_astpp=:cient')
     Left = 504
     Top = 208
     ParamData = <

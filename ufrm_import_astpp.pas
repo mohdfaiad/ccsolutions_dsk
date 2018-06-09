@@ -132,6 +132,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Action_importExecute(Sender: TObject);
     procedure QImport3Wizard_1ImportRecord(Sender: TObject);
+    procedure QImport3Wizard_1AfterImport(Sender: TObject);
 
 
   private
@@ -191,9 +192,9 @@ if OpenDialog1.Execute then
     Text:='delete from import_call_log '+
            ' where imp_comp =:comp ' +
            ' and contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod +
-           ' and cli_account_code_sippulse =:cli_account_code_sippulse';
+           ' and cli_account_code_astpp =:cli_account_code_astpp';
     ParamByName('comp').AsString:= competencia;
-    ParamByName('cli_account_code_sippulse').AsString:= clienteAstpp;
+    ParamByName('cli_account_code_astpp').AsString:= clienteAstpp;
 
     Prepare;
     ExecSQL;
@@ -202,7 +203,7 @@ if OpenDialog1.Execute then
 
  qry.Close;
  qry.ParamByName('comp').AsString:= competencia;
- qry.ParamByName('ctr_cod').Value:= frm_dm.qry_signincontractCod.Value;
+ qry.ParamByName('ctr_cod').Value:= frm_dm.qry_contractctr_cod.Value;
  qry.ParamByName('cient').AsString:= clienteAstpp;
  qry.Prepare;
  qry.Open;
@@ -240,8 +241,8 @@ begin
 x.ShortDateFormat := 'dd/mm/yyyy';
 qry.Close;
 qry.ParamByName('comp').AsString:= competencia;
-qry.ParamByName('ctr_cod').Value:= frm_dm.qry_signincontractCod.Value;
-//qry.ParamByName('cient').AsString:= clienteSippulse;
+qry.ParamByName('ctr_cod').Value:= frm_dm.qry_contractctr_cod.Value;
+qry.ParamByName('cient').AsString:= clienteAstpp;
 qry.Prepare;
 qry.Open;
 end;
@@ -304,11 +305,29 @@ clienteAstpp:= Copy(clienteAstpp,ini,fin - ini);
 
 end;
 
+procedure Tfrm_import_astpp.QImport3Wizard_1AfterImport(Sender: TObject);
+begin
+  inherited;
+ qry.Close;
+ qry.ParamByName('comp').AsString:= competencia;
+ qry.ParamByName('ctr_cod').Value:= frm_dm.qry_signincontractCod.Value;
+ qry.ParamByName('cient').AsString:= clienteAstpp;
+ qry.Prepare;
+ qry.Open;
+end;
+
 procedure Tfrm_import_astpp.QImport3Wizard_1ImportRecord(Sender: TObject);
 var
 i,fin:Integer;
 begin
   inherited;
+ if qryimp_total.AsFloat = 0  then
+  begin
+   qry.Delete;
+   Exit;
+  end;
+
+
  qry.Edit;
  qrycli_account_code_astpp.AsString:= clienteAstpp;
 
@@ -320,6 +339,7 @@ begin
 end;
 qryimp_from.AsString:= trim(Copy(qryimp_from.AsString,1,fin - 1));
 qry.Post;
+
 
 procTeste.Prepare;
 procTeste.ParamByName('p_ctr_id').AsLargeInt:=1;//frm_dm.qry_contractctr_id.AsLargeInt;

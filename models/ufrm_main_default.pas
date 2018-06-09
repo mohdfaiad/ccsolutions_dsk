@@ -110,7 +110,7 @@ end;
   begin
    Close;
    Text := ' select ctr_usr_act_action_name from contract_user_action '+
-           ' where ctr_usr_act_user_cod = ' + frm_dm.qry_signinuserCod.AsString;
+           ' where ctr_usr_act_user_cod = ' + frm_dm.qry_signin.FieldByName('hex(@po_ctr_usr_coda)').AsString;
    Prepare;
    Open;
    DisableControls;

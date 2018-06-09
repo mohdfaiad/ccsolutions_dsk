@@ -12,9 +12,13 @@ inherited frm_client: Tfrm_client
     ExplicitHeight = 636
     ClientRectBottom = 630
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
       ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         Height = 596
+        ExplicitLeft = -205
         ExplicitHeight = 596
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1cli_type: TcxGridDBColumn
@@ -187,6 +191,9 @@ inherited frm_client: Tfrm_client
         ExplicitHeight = 596
         ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
           ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 562
@@ -1413,6 +1420,7 @@ inherited frm_client: Tfrm_client
         end
         object tabLaboratorio: TcxTabSheet
           Caption = 'Laborat'#243'rio'
+          OnShow = tabLaboratorioShow
           object dxLayoutControl5: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1451,39 +1459,34 @@ inherited frm_client: Tfrm_client
                 DataController.Summary.DefaultGroupSummaryItems = <>
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
+                object cxGrid1DBTableView1cin_cod: TcxGridDBColumn
+                  Caption = 'C'#243'digo'
+                  DataBinding.FieldName = 'cin_cod'
+                  Width = 70
+                end
                 object cxGrid1DBTableView1cin_id: TcxGridDBColumn
-                  Caption = 'C'#243'd. ID'
+                  Caption = 'C'#243'digo ID'
                   DataBinding.FieldName = 'cin_id'
-                  MinWidth = 15
-                  Width = 50
+                  Width = 70
                 end
-                object cxGrid1DBTableView1client_cli_id: TcxGridDBColumn
-                  Caption = 'Cliente'
-                  DataBinding.FieldName = 'client_cli_id'
-                  Width = 50
-                end
-                object cxGrid1DBTableView1insurance_ins_id: TcxGridDBColumn
+                object cxGrid1DBTableView1insurance_ins_cod: TcxGridDBColumn
                   Caption = 'Conv'#234'nio'
-                  DataBinding.FieldName = 'insurance_ins_id'
+                  DataBinding.FieldName = 'insurance_ins_cod'
                   PropertiesClassName = 'TcxLookupComboBoxProperties'
+                  Properties.GridMode = True
                   Properties.KeyFieldNames = 'ins_first_name'
                   Properties.ListColumns = <
                     item
-                      Caption = 'Nome'
-                      Width = 200
                       FieldName = 'ins_first_name'
-                    end
-                    item
-                      Caption = 'C'#243'digo'
-                      FieldName = 'ins_id'
                     end>
                   Properties.ListSource = ds_insurance
-                  Width = 200
+                  Properties.OnCloseUp = cxGrid1DBTableView1insurance_ins_codPropertiesCloseUp
+                  Width = 250
                 end
                 object cxGrid1DBTableView1cin_dt_registration: TcxGridDBColumn
-                  Caption = 'Registro'
+                  Caption = 'Dt. Reg'
                   DataBinding.FieldName = 'cin_dt_registration'
-                  Width = 120
+                  Width = 110
                 end
               end
               object cxGrid1Level1: TcxGridLevel
@@ -1911,13 +1914,16 @@ inherited frm_client: Tfrm_client
   end
   object qry_insurance: TFDQuery
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select ins_id,contract_ctr_cod,ins_first_name from insurance'
-      'where contract_ctr_cod = :ctr_cod'
+      
+        'select ins_cod, concat('#39'0x'#39',hex(ins_cod)) as codInsurance, table' +
+        '_price_tbp_cod, ins_id,contract_ctr_cod,ins_first_name from insu' +
+        'rance'
+      'where contract_ctr_cod = :ctr_cod and ins_deleted_at is null'
       'order by ins_first_name')
     Left = 751
     Top = 130
@@ -1929,6 +1935,12 @@ inherited frm_client: Tfrm_client
         Size = 16
         Value = Null
       end>
+    object qry_insuranceins_cod: TBytesField
+      FieldName = 'ins_cod'
+      Origin = 'ins_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
     object qry_insuranceins_first_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ins_first_name'
@@ -1945,30 +1957,43 @@ inherited frm_client: Tfrm_client
       FieldName = 'contract_ctr_cod'
       Origin = 'contract_ctr_cod'
     end
+    object qry_insurancetable_price_tbp_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'table_price_tbp_cod'
+      Origin = 'table_price_tbp_cod'
+    end
+    object qry_insurancecodInsurance: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codInsurance'
+      Origin = 'codInsurance'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
   end
   object qry_client_insirance: TFDQuery
     AfterInsert = qry_client_insiranceAfterInsert
-    CachedUpdates = True
+    BeforePost = qry_client_insiranceBeforePost
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'
     DetailFields = 'client_cli_cod'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       
         'select client_insurance.*, hex(cin_cod) as codCliInsirance from ' +
-        'client_insurance '#13#10#10
-      'where client_cli_cod =:cli_cod')
-    Left = 351
+        'client_insurance'#10
+      'where client_cli_cod =:cli_cod and cin_deleted_at is null')
+    Left = 359
     Top = 290
     ParamData = <
       item
         Name = 'CLI_COD'
         DataType = ftBytes
         ParamType = ptInput
+        Size = 16
         Value = Null
       end>
     object qry_client_insirancecodCliInsirance: TStringField
@@ -2098,6 +2123,7 @@ inherited frm_client: Tfrm_client
         Name = 'CLI_COD'
         DataType = ftBytes
         ParamType = ptInput
+        Size = 16
         Value = Null
       end>
     object qry_client_astppcla_cod: TBytesField

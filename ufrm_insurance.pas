@@ -56,7 +56,6 @@ type
     qryins_phone4: TStringField;
     qryins_contact: TStringField;
     cxGrid_1DBTableView1ins_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_first_name: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_last_name: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_email: TcxGridDBColumn;
@@ -76,7 +75,6 @@ type
     cxGrid_1DBTableView1ins_phone4: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_contact: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_dt_maturity_contract: TcxGridDBColumn;
-    cxGrid_1DBTableView1ins_dt_day_maturity: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_dt_open: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_dt_registration: TcxGridDBColumn;
     cxDBTextEdit1: TcxDBTextEdit;
@@ -111,8 +109,6 @@ type
     dxLayoutItem14: TdxLayoutItem;
     edtPais_End: TcxDBTextEdit;
     dxLayoutItem15: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     cxDBTextEdit13: TcxDBTextEdit;
     dxLayoutItem16: TdxLayoutItem;
     cxDBTextEdit14: TcxDBTextEdit;
@@ -124,7 +120,6 @@ type
     cxDBTextEdit17: TcxDBTextEdit;
     dxLayoutItem20: TdxLayoutItem;
     dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
     cxTabSheet2: TcxTabSheet;
     dxLayoutControl2Group_Root: TdxLayoutGroup;
     dxLayoutControl2: TdxLayoutControl;
@@ -162,6 +157,16 @@ type
     qryins_dt_open: TDateField;
     qryins_deleted_at: TDateTimeField;
     qryins_dt_registration: TDateTimeField;
+    dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup10: TdxLayoutAutoCreatedGroup;
+    cxDBTextEdit6: TcxDBTextEdit;
+    dxLayoutItem23: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    cxGrid_1DBTableView1ins_nickname: TcxGridDBColumn;
+    cxGrid_1DBTableView1ins_day_maturity: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_cancelExecute(Sender: TObject);

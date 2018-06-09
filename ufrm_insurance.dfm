@@ -17,10 +17,6 @@ inherited frm_insurance: Tfrm_insurance
             DataBinding.FieldName = 'ins_id'
             Width = 75
           end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
-            Width = 75
-          end
           object cxGrid_1DBTableView1ins_first_name: TcxGridDBColumn
             DataBinding.FieldName = 'ins_first_name'
             Width = 250
@@ -28,6 +24,10 @@ inherited frm_insurance: Tfrm_insurance
           object cxGrid_1DBTableView1ins_last_name: TcxGridDBColumn
             DataBinding.FieldName = 'ins_last_name'
             Width = 250
+          end
+          object cxGrid_1DBTableView1ins_nickname: TcxGridDBColumn
+            DataBinding.FieldName = 'ins_nickname'
+            Width = 150
           end
           object cxGrid_1DBTableView1ins_email: TcxGridDBColumn
             DataBinding.FieldName = 'ins_email'
@@ -97,9 +97,9 @@ inherited frm_insurance: Tfrm_insurance
             DataBinding.FieldName = 'ins_dt_maturity_contract'
             Width = 75
           end
-          object cxGrid_1DBTableView1ins_dt_day_maturity: TcxGridDBColumn
-            DataBinding.FieldName = 'ins_dt_day_maturity'
-            Width = 75
+          object cxGrid_1DBTableView1ins_day_maturity: TcxGridDBColumn
+            DataBinding.FieldName = 'ins_day_maturity'
+            Width = 50
           end
           object cxGrid_1DBTableView1ins_status: TcxGridDBColumn
             DataBinding.FieldName = 'ins_status'
@@ -129,77 +129,27 @@ inherited frm_insurance: Tfrm_insurance
           ExplicitWidth = 986
           ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
-            inherited dbedt_id: TcxDBTextEdit
-              Left = 63
-              DataBinding.DataField = 'ins_id'
-              ExplicitLeft = 63
-            end
-            inherited dbedt_dt_registration: TcxDBDateEdit
+            object cxDBTextEdit5: TcxDBTextEdit [0]
               Left = 240
-              DataBinding.DataField = 'ins_dt_registration'
-              ExplicitLeft = 240
-            end
-            object cxDBTextEdit3: TcxDBTextEdit [2]
-              Left = 63
-              Top = 211
-              DataBinding.DataField = 'ins_email'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecLowerCase
-              Style.HotTrack = False
-              TabOrder = 7
-              Width = 307
-            end
-            object cxDBTextEdit4: TcxDBTextEdit [3]
-              Left = 63
-              Top = 276
-              DataBinding.DataField = 'ins_cnpj'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 8
-              Width = 121
-            end
-            object cxDBTextEdit5: TcxDBTextEdit [4]
-              Left = 240
-              Top = 276
+              Top = 249
               DataBinding.DataField = 'ins_im'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 9
-              Width = 121
+              TabOrder = 10
+              Width = 130
             end
-            object cxDBDateEdit2: TcxDBDateEdit [5]
-              Left = 240
+            object cxDBDateEdit2: TcxDBDateEdit [1]
+              Left = 67
               Top = 103
               DataBinding.DataField = 'ins_dt_open'
               DataBinding.DataSource = ds
               Style.HotTrack = False
-              TabOrder = 3
-              Width = 130
+              TabOrder = 2
+              Width = 121
             end
-            object cxDBTextEdit2: TcxDBTextEdit [6]
-              Left = 63
-              Top = 184
-              DataBinding.DataField = 'ins_last_name'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 6
-              Width = 307
-            end
-            object cxDBTextEdit1: TcxDBTextEdit [7]
-              Left = 63
-              Top = 157
-              DataBinding.DataField = 'ins_first_name'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 5
-              Width = 307
-            end
-            object cxDBComboBox1: TcxDBComboBox [8]
-              Left = 63
+            object cxDBComboBox1: TcxDBComboBox [2]
+              Left = 240
               Top = 103
               DataBinding.DataField = 'ins_status'
               DataBinding.DataSource = ds
@@ -209,51 +159,214 @@ inherited frm_insurance: Tfrm_insurance
                 'A - ATIVO'
                 'D - DESATIVADO')
               Style.HotTrack = False
-              TabOrder = 2
-              Width = 121
+              TabOrder = 3
+              Width = 130
             end
-            object lookupComboBoxTable: TcxLookupComboBox [9]
-              Left = 63
+            inherited dbedt_id: TcxDBTextEdit
+              Left = 67
+              DataBinding.DataField = 'ins_id'
+              ExplicitLeft = 67
+            end
+            inherited dbedt_dt_registration: TcxDBDateEdit
+              Left = 240
+              DataBinding.DataField = 'ins_dt_registration'
+              ExplicitLeft = 240
+            end
+            object cxDBTextEdit2: TcxDBTextEdit [5]
+              Left = 422
+              Top = 157
+              DataBinding.DataField = 'ins_last_name'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 7
+              Width = 303
+            end
+            object lookupComboBoxTable: TcxLookupComboBox [6]
+              Left = 67
               Top = 130
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
               Properties.KeyFieldNames = 'codTabela'
               Properties.ListColumns = <
                 item
+                  Caption = 'Nome'
+                  Width = 250
                   FieldName = 'tbp_name'
+                end
+                item
+                  Caption = 'C'#243'd. ID'
+                  Width = 75
+                  FieldName = 'tbp_id'
                 end>
               Properties.ListSource = ds_table_price
               Properties.OnCloseUp = lookupComboBoxTablePropertiesCloseUp
               Properties.OnPopup = lookupComboBoxTablePropertiesPopup
               Style.HotTrack = False
               TabOrder = 4
-              Width = 307
+              Width = 303
+            end
+            object cxDBTextEdit1: TcxDBTextEdit [7]
+              Left = 67
+              Top = 157
+              DataBinding.DataField = 'ins_first_name'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 5
+              Width = 303
+            end
+            object cxDBTextEdit4: TcxDBTextEdit [8]
+              Left = 67
+              Top = 249
+              DataBinding.DataField = 'ins_cnpj'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 9
+              Width = 121
+            end
+            object cxDBTextEdit3: TcxDBTextEdit [9]
+              Left = 67
+              Top = 184
+              DataBinding.DataField = 'ins_email'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecLowerCase
+              Style.HotTrack = False
+              TabOrder = 6
+              Width = 303
+            end
+            object cxDBTextEdit6: TcxDBTextEdit [10]
+              Left = 771
+              Top = 157
+              DataBinding.DataField = 'ins_nickname'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 8
+              Width = 198
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
             end
-            inherited dxLayoutGroup2: TdxLayoutGroup
+            inherited dxLayoutGroup1: TdxLayoutGroup
               ItemIndex = 1
             end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              CaptionOptions.Text = 'E-mail'
-              Control = cxDBTextEdit3
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 4
+            inherited dxLayoutGroup2: TdxLayoutGroup
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              SizeOptions.Width = 965
+              ItemIndex = 1
             end
-            object dxLayoutGroup3: TdxLayoutGroup
+            object dxLayoutGroup3: TdxLayoutGroup [14]
               Parent = dxLayoutControl_1Group_Root
               CaptionOptions.Text = 'Documentos'
               ButtonOptions.Buttons = <>
-              ItemIndex = 1
               LayoutDirection = ldHorizontal
               Index = 2
+            end
+            object dxLayoutItem7: TdxLayoutItem [15]
+              Parent = dxLayoutGroup3
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'IM'
+              Control = cxDBTextEdit5
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 130
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup [16]
+              Parent = dxLayoutGroup2
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 0
+              AutoCreated = True
+            end
+            object dxLayoutItem24: TdxLayoutItem [17]
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Dt. Aber.'
+              Control = cxDBDateEdit2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem25: TdxLayoutItem [18]
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignVert = avClient
+              CaptionOptions.Text = 'Status'
+              Control = cxDBComboBox1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 130
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            inherited dxLayoutItem1: TdxLayoutItem
+              AlignVert = avClient
+            end
+            object dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem4: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup8
+              AlignHorz = ahRight
+              AlignVert = avClient
+              CaptionOptions.Text = 'Fantasia'
+              Control = cxDBTextEdit2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 303
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup9
+              AlignHorz = ahClient
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem26: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup7
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Tabela'
+              Control = lookupComboBoxTable
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 303
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem3: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup10
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Raz'#227'o'
+              Control = cxDBTextEdit1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 303
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup7
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
             end
             object dxLayoutItem6: TdxLayoutItem
               Parent = dxLayoutGroup3
               AlignHorz = ahLeft
-              AlignVert = avTop
+              AlignVert = avClient
               CaptionOptions.Text = 'CNPJ'
               Control = cxDBTextEdit4
               ControlOptions.OriginalHeight = 21
@@ -261,72 +374,31 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem7: TdxLayoutItem
-              Parent = dxLayoutGroup3
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup10
               AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'IM'
-              Control = cxDBTextEdit5
+              AlignVert = avTop
+              CaptionOptions.Text = 'E-mail'
+              Control = cxDBTextEdit3
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 303
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutItem24: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
+            object dxLayoutAutoCreatedGroup10: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup9
               AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Dt. Aber.'
-              Control = cxDBDateEdit2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 130
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutItem4: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              AlignHorz = ahClient
-              CaptionOptions.Text = 'Fantasia'
-              Control = cxDBTextEdit2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 3
-            end
-            object dxLayoutItem3: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              AlignHorz = ahClient
-              CaptionOptions.Text = 'Raz'#227'o'
-              Control = cxDBTextEdit1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 2
-            end
-            object dxLayoutItem25: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignVert = avClient
-              CaptionOptions.Text = 'Status'
-              Control = cxDBComboBox1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
               Index = 0
               AutoCreated = True
             end
-            object dxLayoutItem26: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              AlignHorz = ahLeft
-              CaptionOptions.Text = 'Tabela'
-              Control = lookupComboBoxTable
+            object dxLayoutItem23: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup8
+              AlignHorz = ahRight
+              AlignVert = avClient
+              CaptionOptions.Text = 'Apelido'
+              Control = cxDBTextEdit6
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 307
+              ControlOptions.OriginalWidth = 198
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -343,7 +415,7 @@ inherited frm_insurance: Tfrm_insurance
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             object btnEditCEP: TcxDBButtonEdit
-              Left = 61
+              Left = 55
               Top = 38
               DataBinding.DataField = 'ins_add_bus_zipcode'
               DataBinding.DataSource = ds
@@ -352,117 +424,130 @@ inherited frm_insurance: Tfrm_insurance
                   Default = True
                   Kind = bkEllipsis
                 end>
+              Properties.CharCase = ecUpperCase
               Properties.OnButtonClick = cxDBButtonEdit1PropertiesButtonClick
               Style.HotTrack = False
               TabOrder = 0
               Width = 121
             end
-            object edtPais_End: TcxDBTextEdit
-              Left = 386
-              Top = 92
-              DataBinding.DataField = 'ins_add_bus_country'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 7
-              Width = 121
-            end
-            object edtBairro: TcxDBTextEdit
-              Left = 386
-              Top = 65
-              DataBinding.DataField = 'ins_add_bus_street'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 3
-              Width = 121
-            end
-            object cxDBTextEdit17: TcxDBTextEdit
-              Left = 61
-              Top = 184
-              DataBinding.DataField = 'ins_contact'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 12
-              Width = 121
-            end
             object cxDBTextEdit14: TcxDBTextEdit
-              Left = 226
-              Top = 157
+              Left = 214
+              Top = 130
               DataBinding.DataField = 'ins_phone2'
               DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 9
               Width = 121
             end
-            object edtRua: TcxDBTextEdit
-              Left = 61
-              Top = 65
-              DataBinding.DataField = 'ins_add_bus_address'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 1
-              Width = 121
-            end
-            object edtNumero_Casa: TcxDBTextEdit
-              Left = 226
-              Top = 65
-              DataBinding.DataField = 'ins_add_bus_number'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 2
-              Width = 121
-            end
             object cxDBTextEdit16: TcxDBTextEdit
-              Left = 551
-              Top = 157
+              Left = 538
+              Top = 130
               DataBinding.DataField = 'ins_phone4'
               DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 11
               Width = 121
             end
             object cxDBTextEdit13: TcxDBTextEdit
-              Left = 61
-              Top = 157
+              Left = 55
+              Top = 130
               DataBinding.DataField = 'ins_phone1'
               DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 8
               Width = 121
             end
-            object edtCidade: TcxDBTextEdit
-              Left = 61
-              Top = 92
-              DataBinding.DataField = 'ins_add_bus_city'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 5
-              Width = 121
-            end
-            object edtUF_End: TcxDBTextEdit
-              Left = 226
-              Top = 92
-              DataBinding.DataField = 'ins_add_bus_state'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 6
-              Width = 121
-            end
             object cxDBTextEdit15: TcxDBTextEdit
-              Left = 386
-              Top = 157
+              Left = 379
+              Top = 130
               DataBinding.DataField = 'ins_phone3'
               DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 10
               Width = 121
             end
             object edtComplemento: TcxDBTextEdit
-              Left = 551
+              Left = 55
               Top = 65
               DataBinding.DataField = 'ins_add_bus_complement'
               DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 4
+              Width = 280
+            end
+            object edtRua: TcxDBTextEdit
+              Left = 214
+              Top = 38
+              DataBinding.DataField = 'ins_add_bus_address'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 1
+              Width = 286
+            end
+            object edtNumero_Casa: TcxDBTextEdit
+              Left = 544
+              Top = 38
+              DataBinding.DataField = 'ins_add_bus_number'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 2
+              Width = 121
+            end
+            object edtBairro: TcxDBTextEdit
+              Left = 704
+              Top = 38
+              DataBinding.DataField = 'ins_add_bus_street'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 121
+            end
+            object edtCidade: TcxDBTextEdit
+              Left = 379
+              Top = 65
+              DataBinding.DataField = 'ins_add_bus_city'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 5
+              Width = 121
+            end
+            object edtUF_End: TcxDBTextEdit
+              Left = 544
+              Top = 65
+              DataBinding.DataField = 'ins_add_bus_state'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 6
+              Width = 121
+            end
+            object edtPais_End: TcxDBTextEdit
+              Left = 704
+              Top = 65
+              DataBinding.DataField = 'ins_add_bus_country'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 7
+              Width = 121
+            end
+            object cxDBTextEdit17: TcxDBTextEdit
+              Left = 709
+              Top = 130
+              DataBinding.DataField = 'ins_contact'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 12
               Width = 121
             end
             object dxLayoutControl1Group_Root: TdxLayoutGroup
@@ -471,6 +556,7 @@ inherited frm_insurance: Tfrm_insurance
               CaptionOptions.Visible = False
               ButtonOptions.Buttons = <>
               Hidden = True
+              ItemIndex = 1
               ShowBorder = False
               Index = -1
             end
@@ -489,7 +575,7 @@ inherited frm_insurance: Tfrm_insurance
               Index = 1
             end
             object dxLayoutItem8: TdxLayoutItem
-              Parent = dxLayoutGroup4
+              Parent = dxLayoutAutoCreatedGroup6
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'CEP'
@@ -499,68 +585,16 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup4
-              AlignHorz = ahClient
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 1
-              AutoCreated = True
-            end
-            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup4
-              LayoutDirection = ldHorizontal
-              Index = 2
-              AutoCreated = True
-            end
-            object dxLayoutItem15: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Pa'#237's'
-              Control = edtPais_End
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 2
-            end
-            object dxLayoutItem11: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup3
-              AlignVert = avClient
-              CaptionOptions.Text = 'Bairro'
-              Control = edtBairro
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 2
-            end
             object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup5
               AlignHorz = ahLeft
-              AlignVert = avTop
-              Index = 0
-              AutoCreated = True
-            end
-            object dxLayoutItem20: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Contato'
-              Control = cxDBTextEdit17
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup4
               AlignVert = avTop
               LayoutDirection = ldHorizontal
               Index = 0
               AutoCreated = True
             end
             object dxLayoutItem17: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
+              Parent = dxLayoutAutoCreatedGroup4
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Tel. 2'
@@ -570,29 +604,8 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutItem9: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup3
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Rua'
-              Control = edtRua
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutItem10: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup3
-              AlignVert = avClient
-              CaptionOptions.Text = 'N'#250'm.'
-              Control = edtNumero_Casa
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
             object dxLayoutItem19: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
+              Parent = dxLayoutAutoCreatedGroup4
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Tel. 4'
@@ -603,7 +616,7 @@ inherited frm_insurance: Tfrm_insurance
               Index = 3
             end
             object dxLayoutItem16: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
+              Parent = dxLayoutAutoCreatedGroup4
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'Tel. 1'
@@ -613,30 +626,8 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem13: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Cidade'
-              Control = edtCidade
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutItem14: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Estado'
-              Control = edtUF_End
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
             object dxLayoutItem18: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
+              Parent = dxLayoutAutoCreatedGroup4
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Tel. 3'
@@ -648,13 +639,103 @@ inherited frm_insurance: Tfrm_insurance
             end
             object dxLayoutItem12: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup3
-              AlignVert = avClient
+              AlignHorz = ahLeft
+              AlignVert = avTop
               CaptionOptions.Text = 'Compl.'
               Control = edtComplemento
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 280
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem9: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup6
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Rua'
+              Control = edtRua
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 286
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup4
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 0
+              AutoCreated = True
+            end
+            object dxLayoutItem10: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup6
+              AlignVert = avClient
+              CaptionOptions.Text = 'N'#250'm.'
+              Control = edtNumero_Casa
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
+            object dxLayoutItem11: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup6
+              AlignVert = avClient
+              CaptionOptions.Text = 'Bairro'
+              Control = edtBairro
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 3
+            end
+            object dxLayoutItem13: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup3
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Cidade'
+              Control = edtCidade
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup4
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem14: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup3
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Estado'
+              Control = edtUF_End
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
+            object dxLayoutItem15: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup3
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Pa'#237's'
+              Control = edtPais_End
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 3
+            end
+            object dxLayoutItem20: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup4
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Contato'
+              Control = cxDBTextEdit17
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 4
             end
           end
         end
@@ -678,9 +759,9 @@ inherited frm_insurance: Tfrm_insurance
               Width = 121
             end
             object cxDBSpinEdit1: TcxDBSpinEdit
-              Left = 128
-              Top = 103
-              DataBinding.DataField = 'ins_dt_day_maturity'
+              Left = 319
+              Top = 38
+              DataBinding.DataField = 'ins_day_maturity'
               DataBinding.DataSource = ds
               Style.HotTrack = False
               TabOrder = 1
@@ -691,20 +772,18 @@ inherited frm_insurance: Tfrm_insurance
               AlignVert = avTop
               ButtonOptions.Buttons = <>
               Hidden = True
+              ItemIndex = 1
+              LayoutDirection = ldHorizontal
               ShowBorder = False
               Index = -1
             end
             object dxLayoutGroup6: TdxLayoutGroup
               Parent = dxLayoutControl2Group_Root
+              AlignHorz = ahLeft
+              AlignVert = avTop
               CaptionOptions.Text = 'Prazo'
               ButtonOptions.Buttons = <>
               Index = 0
-            end
-            object dxLayoutGroup7: TdxLayoutGroup
-              Parent = dxLayoutControl2Group_Root
-              CaptionOptions.Text = 'Financeiro'
-              ButtonOptions.Buttons = <>
-              Index = 1
             end
             object dxLayoutItem21: TdxLayoutItem
               Parent = dxLayoutGroup6
@@ -714,6 +793,12 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 0
+            end
+            object dxLayoutGroup7: TdxLayoutGroup
+              Parent = dxLayoutControl2Group_Root
+              CaptionOptions.Text = 'Financeiro'
+              ButtonOptions.Buttons = <>
+              Index = 1
             end
             object dxLayoutItem22: TdxLayoutItem
               Parent = dxLayoutGroup7
@@ -748,6 +833,7 @@ inherited frm_insurance: Tfrm_insurance
         'abela from insurance'
       'where ins_deleted_at is null')
     object qryins_cod: TBytesField
+      DisplayLabel = 'C'#243'd.'
       FieldName = 'ins_cod'
       Origin = 'ins_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -765,6 +851,7 @@ inherited frm_insurance: Tfrm_insurance
     end
     object qryins_id: TLongWordField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd. ID'
       FieldName = 'ins_id'
       Origin = 'ins_id'
     end
@@ -792,6 +879,7 @@ inherited frm_insurance: Tfrm_insurance
     end
     object qryins_nickname: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Apelido'
       FieldName = 'ins_nickname'
       Origin = 'ins_nickname'
       Size = 85
@@ -929,6 +1017,7 @@ inherited frm_insurance: Tfrm_insurance
     end
     object qryins_day_maturity: TByteField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Dia Venc.'
       FieldName = 'ins_day_maturity'
       Origin = 'ins_day_maturity'
     end

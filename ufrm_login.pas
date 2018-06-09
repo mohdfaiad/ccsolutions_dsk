@@ -151,7 +151,7 @@ begin
      SQL := 'set @po_valid_user = 0;'+
             'set @po_contract_ctr_cod = 0;'+
             'set @po_ctr_usr_username = 0;'+
-            'call proc_access_signin('+ edt_contract.Text +', '+QuotedStr(edt_username.Text) +', '+QuotedStr(edt_password.Text) + ','+
+            'call proc_access_signin('+ edt_contract.Text +', '+ QuotedStr(edt_username.Text) +', '+ QuotedStr(edt_password.Text) +', '+
             '@po_valid_user, @po_contract_ctr_cod, @po_ctr_usr_cod, @po_ctr_usr_username);'+
             'select @po_valid_user, hex(@po_contract_ctr_cod), hex(@po_ctr_usr_cod), @po_ctr_usr_username';
 

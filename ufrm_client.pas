@@ -42,7 +42,7 @@ type
     qrycli_first_name: TStringField;
     qrycli_last_name: TStringField;
     qrycli_email: TStringField;
-    cxDBTextEdit1: TcxDBTextEdit;
+    edtClient: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
     cxDBTextEdit2: TcxDBTextEdit;
     dxLayoutItem4: TdxLayoutItem;
@@ -109,9 +109,8 @@ type
     dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
     dxLayoutGroup6: TdxLayoutGroup;
     qrycli_cpfcnpj: TStringField;
-    qrycli_im: TStringField;
     qrycli_suframa: TStringField;
-    cxDBTextEdit12: TcxDBTextEdit;
+    edt_cpfcnpj: TcxDBTextEdit;
     dxLayoutItem32: TdxLayoutItem;
     cxDBTextEdit20: TcxDBTextEdit;
     dxLayoutItem33: TdxLayoutItem;
@@ -251,17 +250,10 @@ type
     cxGrid1DBTableView1insurance_ins_id: TcxGridDBColumn;
     cxGrid1DBTableView1cin_dt_registration: TcxGridDBColumn;
     ds_insurance: TDataSource;
-    qrycli_cod: TBytesField;
     qrycontract_ctr_cod: TBytesField;
     qrytable_price_tbp_cod: TBytesField;
-    qrycli_id: TLongWordField;
-    qrycli_deleted_at: TDateTimeField;
     qry_insuranceins_id: TLongWordField;
     qry_insurancecontract_ctr_cod: TBytesField;
-    qry_client_insirancecin_cod: TBytesField;
-    qry_client_insiranceclient_cli_id: TBytesField;
-    qry_client_insiranceinsurance_ins_id: TBytesField;
-    qry_client_insirancecin_id: TLongWordField;
     qry_client_insirancecin_deleted_at: TDateTimeField;
     qry_client_insirancecin_dt_registration: TDateTimeField;
     qry_client_sippulse: TFDQuery;
@@ -279,7 +271,6 @@ type
     cxGrid2DBTableView1cls_dt_registration: TcxGridDBColumn;
     cxEditCodsippulse: TcxTextEdit;
     dxLayoutItem42: TdxLayoutItem;
-    qryconcat0xhexcli_cod: TStringField;
     dxLayoutGroup14: TdxLayoutGroup;
     cxEditCodastpp: TcxTextEdit;
     dxLayoutItem44: TdxLayoutItem;
@@ -298,6 +289,17 @@ type
     cxGrid3DBTableView1cla_account_astpp: TcxGridDBColumn;
     cxGrid3DBTableView1cla_dt_registration: TcxGridDBColumn;
     qry_client_astppclient_cli_cod: TBytesField;
+    qrycli_cod: TBytesField;
+    qrycli_id: TLongWordField;
+    qrycli_im: TStringField;
+    qrycli_deleted_at: TDateTimeField;
+    qryCodClient: TStringField;
+    qry_client_insiranceclient_cli_cod: TBytesField;
+    qry_client_insirancecodCliInsirance: TStringField;
+    qry_client_insirancecin_cod: TBytesField;
+    qry_client_insiranceinsurance_ins_cod: TBytesField;
+    qry_client_insirancecin_id: TLongWordField;
+    qryClientCod: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);
@@ -317,19 +319,21 @@ type
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
-    procedure cxDBTextEdit12Exit(Sender: TObject);
+    procedure edt_cpfcnpjExit(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
     procedure cxEditCodsippulseKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure cxEditCodastppKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     cep:Integer;
-    cli_cod,cls_cod:string;
+    cli_cod,cls_cod,cin_cod:string;
     procedure limpaCache(Sender:TObject);
   public
     { Public declarations }
+    procedure AtualizarGrid;
   end;
 
 var
@@ -445,36 +449,67 @@ begin
 procedure Tfrm_client.Action_editExecute(Sender: TObject);
 begin
   inherited;
- cli_cod:=qryconcat0xhexcli_cod.AsString;
+    cli_cod:=qryClientCod.AsString;
 end;
 
 procedure Tfrm_client.Action_saveExecute(Sender: TObject);
+ var
+   x,y:string;
 begin
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(cli_id) is null then 1 ' +
+ //Código para verificar se existe um CPF/CNPJ igual ja cadastrado no banco de dados
+   with frm_dm.qry,sql do
+    begin
+     close;
+     text:=' select * from client '+
+           ' where cli_cpfcnpj = ' + edt_cpfcnpj.Text;
+     prepare;
+     open;
+
+     if ((edtClient.Text <> FieldByName('cli_first_name').AsString) and (edt_cpfcnpj.Text = FieldByName('cli_cpfcnpj').AsString)) then
+      begin
+     //  Application.MessageBox('Já existe um cliente com esse CPF/CNPJ cadastrado no sistema!','CLIENTE',MB_OK + MB_ICONWARNING);
+    //   x:=qrycli_cpfcnpj.AsString;
+       x:= FieldByName('cli_first_name').AsString;
+       y:= FieldByName('cli_cpfcnpj').AsString;
+       ShowMessage('Já existe um cliente com esse CPF/CNPJ cadastrado no sistema   !'+'  Cliente: ' +x +'   CPF/CNPJ:  '+y);
+       Exit;
+      end;
+    end;
+
+   if (self.Tag = 1) then
+   begin
+   with frm_dm.qry,sql do
+    begin
+      close;
+      Text:= ' select case when max(cli_id) is null then 1 ' +
           '      else (max(cli_id) + 1) end as maxID from client '+
           ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
-   Prepare;
-   Open;
-   if not (qry.State in [dsInsert,dsEdit])  then
-    qry.Edit;
+      Prepare;
+      Open;
+      if not (qry.State in [dsInsert,dsEdit])  then
+        qry.Edit;
 
-   if qrycli_id.AsInteger = 0 then
-    qrycli_id.AsInteger:=Fields[0].AsInteger;
+      if qrycli_id.AsInteger = 0 then
+        qrycli_id.AsInteger:=Fields[0].AsInteger;
+    end;
+   end else if (self.Tag = 2) then
+      begin
 
-
-
-  end;
+      end;
 
   inherited;
-       qry.Close;
-       qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client' +
-                      ' where cli_deleted_at is null ';
-       qry.Prepare;
-       qry.open;
+  AtualizarGrid;
 
+end;
+
+procedure Tfrm_client.AtualizarGrid;
+begin
+   qry.Close;
+   qry.SQL.Text:= ' select client.*,concat(''0x'',hex(cli_cod))as CodClient, hex(cli_cod)as ClientCod from client '+
+                 ' where contract_ctr_cod =:ctr_cod and cli_deleted_at is null ';
+   qry.ParamByName('CTR_COD').Value := frm_dm.qry_contractctr_cod.Value;
+   qry.Prepare;
+   qry.open;
 end;
 
 procedure Tfrm_client.changeType;
@@ -532,41 +567,42 @@ begin
   changeType;
 end;
 
-procedure Tfrm_client.cxDBTextEdit12Exit(Sender: TObject);
+procedure Tfrm_client.edt_cpfcnpjExit(Sender: TObject);
 var
 x:string;
 begin
   inherited;
- with frm_dm.qry,sql do
-  begin
-   close;
-   text:=' select * from client '+
-         ' where cli_cpfcnpj = ' + qrycli_cpfcnpj.AsString;
-   prepare;
-   open;
-
-   if not IsEmpty then
-    begin
-     Application.MessageBox('Já existe um cliente com esse CPF/CNPJ cadastrado no sistema!','CLIENTE',MB_OK + MB_ICONWARNING);
-     x:=qrycli_cpfcnpj.AsString;
-
-     if qrycli_id.AsInteger = 0 then
-      begin
-       Close;
-       Text:= ' delete from client ' +
-              ' where cli_cod = ' + cli_cod;
-       Prepare;
-       ExecSQL;
-
-       qry.Cancel;
-       qry.sql.Text:=' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
-                     ' where cli_cpfcnpj = ' + x;
-       qry.Prepare;
-       qry.Open;
-       qry.Edit;
-      end;
-    end;
-  end;
+  // -----Irmão eu Sivaney --- pois esse código para o botão salvar-- e fiz umas adaptações---
+// with frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:=' select * from client '+
+//         ' where cli_cpfcnpj = ' + qrycli_cpfcnpj.AsString;
+//   prepare;
+//   open;
+//
+//   if ((edtClient.Text <> FieldByName('cli_first_name').AsString) and (edt_cpfcnpj.Text = FieldByName('cli_cpfcnpj').AsString)) then
+//    begin
+//     Application.MessageBox('Já existe um cliente com esse CPF/CNPJ cadastrado no sistema!','CLIENTE',MB_OK + MB_ICONWARNING);
+//     x:=qrycli_cpfcnpj.AsString;
+//
+//     if qrycli_id.AsInteger = 0 then
+//      begin
+//       Close;
+//       Text:= ' delete from client ' +
+//              ' where cli_cod = ' + cli_cod;
+//       Prepare;
+//       ExecSQL;
+//
+//       qry.Cancel;
+//       qry.sql.Text:=' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
+//                     ' where cli_cpfcnpj = ' + x;
+//       qry.Prepare;
+//       qry.Open;
+//       qry.Edit;
+//      end;
+//    end;
+//  end;
 end;
 
 procedure Tfrm_client.cxEditCodastppKeyDown(Sender: TObject; var Key: Word;
@@ -650,11 +686,17 @@ procedure Tfrm_client.FormCreate(Sender: TObject);
 begin
   inherited;
   FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
-  tabLaboratorio.TabVisible:=modulo = 'LABORATORIO';
+//  tabLaboratorio.TabVisible:=modulo = 'LABORATORIO';
   tabTelefonia.TabVisible:=modulo = 'TELEFONIA';
 end;
 
-Procedure Tfrm_client.limpaCache(Sender: TObject);
+procedure Tfrm_client.FormShow(Sender: TObject);
+begin
+  inherited;
+  AtualizarGrid;
+end;
+
+procedure Tfrm_client.limpaCache(Sender: TObject);
 begin
  qry.CommitUpdates();
  qry_client_insirance.ApplyUpdates(0);
@@ -673,26 +715,49 @@ begin
    cli_cod:=Fields[0].AsString;
 
    Close;
-   Text:='insert into client (cli_id,cli_cod,contract_ctr_cod) ' +
-         ' select 0,'+ cli_cod + ',' +  frm_dm.v_contract_ctr_cod;
+   Text:='insert into client (cli_id,cli_cod,contract_ctr_cod,cli_dt_registration) ' +
+         ' select 0,'+ cli_cod + ',' +  frm_dm.v_contract_ctr_cod +',now()';
    Prepare;
    ExecSQL;
   end;
 
    qry.Close;
-   qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
-                  ' where cli_cod = ' + cli_cod +
-                  ' and cli_deleted_at is null';
+   qry.SQL.Text:= ' select client.*,concat(''0x'',hex(cli_cod))as CodClient, hex(cli_cod)as ClientCod from client '+
+                 ' where contract_ctr_cod =:ctr_cod and cli_deleted_at is null and cli_cod ='+cli_cod;
+   qry.ParamByName('CTR_COD').Value := frm_dm.qry_contractctr_cod.Value;
    qry.Prepare;
    qry.open;
    qry.Edit;
-   qrycli_dt_registration.AsDateTime:=Now;
 end;
 
 procedure Tfrm_client.qry_client_insiranceAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-// qry_client_insirancecin_dt_registration.AsDateTime:=Now;
+ //Inicializar as variaveis vazias---------------------------------
+  cin_cod := '';
+  //Select para criar o Código Hexadecimal Primary Key--------------
+ With frm_dm.qry,sql do
+  begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+   //Setando o Código Hexadecimal na Variável-----------------------
+   cin_cod:=Fields[0].AsString;
+   //Comando para Inserir o registro no banco com (código) (ID) (contrato)(data do registro)
+   Close;
+   Text:='insert into client_insurance (cin_id, cin_cod, client_cli_cod, cin_dt_registration) ' +
+         ' select 0,'+ cin_cod + ',' + cli_cod  + ',Now()';
+   Prepare;
+   ExecSQL;
+  end;
+   //Select para retornar o registro inserido acima -----------------
+   qry.Close;
+   qry.sql.Text:= ' select client_insurance.*, hex(cin_cod) as codCliInsirance from client_insurance '+
+                  ' where client_cli_cod =:cli_cod and cin_cod = '+ cin_cod ;
+   qry.ParamByName('cli_cod').Value := qrycli_cod.Value;
+   qry.prepare;
+   qry.open;
 
 end;
 

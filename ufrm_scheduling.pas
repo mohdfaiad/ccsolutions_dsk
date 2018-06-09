@@ -62,7 +62,6 @@ type
     qry_schedulingsch_dt_registration: TDateTimeField;
     cxGridDBTableView1rec_name: TcxGridDBColumn;
     labelFuncionario: TLabel;
-    comboboxEmployee: TcxComboBox;
     cxDate: TcxDateEdit;
     labelDataAgendamento: TLabel;
     labelHora: TLabel;
@@ -109,14 +108,10 @@ type
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure cxTimePropertiesEditValueChanged(Sender: TObject);
-    procedure cxGridDBTableView1CellDblClick(Sender: TcxCustomGridTableView;
-      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
-      AShift: TShiftState; var AHandled: Boolean);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_editExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
-    procedure tbsht_5Show(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
     procedure cxDatePropertiesCloseUp(Sender: TObject);
@@ -125,11 +120,9 @@ type
     { Private declarations }
      sch_cod:string;
 
-//    //  listaCodFunc:TStrings;
-//      sch_cod:string;
       procedure limpaCache(Sender:TObject);
-      procedure fillFields;
       procedure ExibirAgendamento;
+      procedure AtualizarGrid;
 
 
   public
@@ -150,30 +143,21 @@ procedure Tfrm_scheduling.cxDatePropertiesCloseUp(Sender: TObject);
 begin
   inherited;
   //Para Exibir os agendamentos do dia
-  ExibirAgendamento;
-end;
-
-procedure Tfrm_scheduling.cxGridDBTableView1CellDblClick(
-  Sender: TcxCustomGridTableView; ACellViewInfo: TcxGridTableDataCellViewInfo;
-  AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
-begin
-  inherited;
-  fillFields;
-
+    ExibirAgendamento;
 end;
 
 procedure Tfrm_scheduling.cxTimePropertiesEditValueChanged(Sender: TObject);
 begin
    inherited;
    //Para Exibir os agendamentos do dia
-   ExibirAgendamento;
+     ExibirAgendamento;
 end;
 
 procedure Tfrm_scheduling.dxBarButton2Click(Sender: TObject);
 begin
   inherited;
-qry.Insert;
-pgctrl_1.ActivePage:=tbsht_2;
+   qry.Insert;
+   pgctrl_1.ActivePage:=tbsht_2;
 end;
 
 procedure Tfrm_scheduling.ExibirAgendamento;
@@ -183,29 +167,6 @@ begin
      qry_scheduling.ParamByName('DATAFIM').AsDateTime:= StrToDateTime(DateToStr(cxDate.Date) + ' 23:59:59');
      qry_scheduling.Prepare;
      qry_scheduling.Open;
-end;
-
-procedure Tfrm_scheduling.fillFields;
-begin
-//  edt_codid.Text:=qrysch_id.AsString;
-//  edt_dt_registration.Text:=qrysch_dt_registration.AsString;
-//  cxMemoDescricao.Text:=qrysch_description.AsString;
-//  cxDate.Date:=qrysch_datetime.AsDateTime;
-//  cxDate.Properties.ShowTime:=false;
-//  cxTime.Time:=StrToTime(FormatDateTime('h:mm:ss', qrysch_datetime.AsDateTime));
-//  comboboxEmployee.SetFocus;
-//  with frm_dm.qry,sql do
-//  begin
-//   Close;
-//   text:= ' select concat(''0x'', hex(sch_cod)),concat(''0x'', hex(employee_emp_cod)) from scheduling ' +
-//          ' where sch_id = ' + qrysch_id.AsString;
-//   Prepare;
-//   open;
-//   sch_cod:=Fields[0].AsString;
-//   comboboxEmployee.ItemIndex:=listaCodFunc.IndexOf(Fields[1].AsString);
-//  end;
-//
-
 end;
 
 procedure Tfrm_scheduling.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -219,14 +180,12 @@ procedure Tfrm_scheduling.FormCreate(Sender: TObject);
 begin
   inherited;
     schadp.AfterApplyUpdate:=limpaCache;
-   // listaCodFunc:=TStringList.Create;
 end;
 
 procedure Tfrm_scheduling.FormShow(Sender: TObject);
 begin
   inherited;
-  qry.Close;
-  qry.Open;
+   AtualizarGrid;
 end;
 
 procedure Tfrm_scheduling.limpaCache(Sender: TObject);
@@ -240,6 +199,9 @@ end;
 procedure Tfrm_scheduling.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
+  //Se existir registro com ID (0)-Zero-
+  //Comando para deletar o registro somente onde o Código hexadecimal
+  //For igual ao que está na variável (que é o ultimo registro inserido por este usuário)
     if (qrysch_id.AsInteger = 0) then
      begin
        with frm_dm.qry,sql do
@@ -252,18 +214,15 @@ begin
         ExecSQL;
        end;
      end;
-
-   qry.Close;
-   qry.sql.Text:= ' select scheduling.*, hex(sch_cod)as codScheduling from scheduling  ';
-   qry.prepare;
-   qry.open;
+   //Retorna o select para atualizar a lista no Grid--
+     AtualizarGrid;
 
 end;
 
 procedure Tfrm_scheduling.Action_deleteExecute(Sender: TObject);
 begin
  // inherited;
-
+   sch_cod := '';
    sch_cod := qrycodScheduling.AsString;
    if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
     = IDYES then
@@ -277,8 +236,8 @@ begin
         ExecSQL;
         end;
 
-       qry.Close;
-       qry.Open;
+   //Retorna o select para atualizar a lista no Grid--
+     AtualizarGrid;
     end;
 
 end;
@@ -295,14 +254,22 @@ begin
      qry_proficional.Close;
      qry_proficional.Open;
 
-     looComboxProficional.Text := qryproficional.AsString;
-    //--------------------------
+    //Desabilitando os campos que não podem ser alterados
+    //Evitando duplo agendamento para mesmo horário
+     looComboxProficional.Text    := qryproficional.AsString;
+     looComboxProficional.Enabled := false;
+     cxDate.Date    := qrysch_datetime.AsDateTime;
+     cxDate.Enabled := False;
+     cxTime.Time    := qrysch_datetime.AsDateTime;
+     cxTime.Enabled := False;
+
+    //Setando o Código hexadecimal na variável--------
+     sch_cod:= '';
      sch_cod := qrycodScheduling.AsString;
 
     edt_codid.Text                    := IntToStr(qrysch_id.AsInteger);
     edt_dt_registration.Text          := DateToStr(qrysch_dt_registration.AsDateTime);
-    cxDate.Date := qrysch_datetime.AsDateTime;
-    cxTime.Time := qrysch_datetime.AsDateTime;
+
     cxMemoDescricao.Text := qrysch_description.AsString;
 end;
 
@@ -312,9 +279,12 @@ begin
   //Se tag = 1 é para inserir
     Self.Tag := 1;
 
-    cxDate.Date:=Date;
-    cxTime.Time:=Time;
+    cxDate.Date    := Date;
+    cxDate.Enabled := True;
+    cxTime.Time    := Time;
+    cxTime.Enabled := True;
     looComboxProficional.ItemIndex := -1;
+    looComboxProficional.Enabled   := true;
     cxMemoDescricao.Clear;
     qry.Insert;
     pgctrl_1.ActivePage:=tbsht_2;
@@ -325,57 +295,34 @@ procedure Tfrm_scheduling.Action_saveExecute(Sender: TObject);
 begin
  if (Self.Tag = 1) then
   begin
+  //Não permite finalizar com Memo_Descrição vazio--------
+   if Trim(cxMemoDescricao.Text) = '' then
+     begin
+      Application.MessageBox('Para finalizar o agendamento é necessario informar uma descrição!','AVISO DE AGENDAMENTO',MB_OK + MB_ICONWARNING);
+      cxMemoDescricao.SetFocus;
+      Exit;
+     end;
 
     with frm_dm.qry,sql do
      begin
       close;
       text:='select sch_datetime from scheduling ' +
             'where sch_datetime between :ini and :fin';
-      ParamByName('ini').AsDateTime:=StrToDateTime(DateToStr(cxDate.Date) + '00:00:00');
-      ParamByName('fin').AsDateTime:=StrToDateTime(DateToStr(cxDate.Date) + FormatDateTime('hh',cxTime.Time));
+      ParamByName('ini').AsDateTime:=StrToDateTime(DateToStr(cxDate.Date) + '00:00');
+      ParamByName('fin').AsDateTime:=StrToDateTime(DateToStr(cxDate.Date) + FormatDateTime('mm',cxTime.Time));
       Prepare;
       open;
 
-      if not IsEmpty then
-       begin
-        if Application.MessageBox('Existe um compromisso para a hora selecionada, deseja reamente agendar esse compromisso? ',
-                                  'Agendamento',MB_YESNO + MB_ICONQUESTION) = mrNo  then
-           Exit;
-       end;
-
-
-      if Trim(cxMemoDescricao.Text) = '' then
-       begin
-        Application.MessageBox('Para agendamento é necessario informar uma descrição!','AVISO',MB_OK + MB_ICONWARNING);
-        cxMemoDescricao.SetFocus;
-        Exit;
-       end;
-
-        //  if (not qry_scheduling.IsEmpty) and (Self.Tag = 1) then  //Tag 1 quando for inserir
-        qry_scheduling.First;
+       qry_scheduling.First;
         while not qry_scheduling.Eof do
          begin
-           if cxTime.Time = StrToDateTime(FormatDateTime('hh:mm:ss',qry_schedulingsch_datetime.AsDateTime))then
-            begin
-              ShowMessage('Achou');
-            end;
-
-        //  if (not qry_scheduling.IsEmpty) and (Self.Tag = 1) then  //Tag 1 quando for inserir
-
          if (qry_scheduling.RecordCount >0 ) and (Self.Tag = 1) then  //Tag 1 quando for inserir
            begin
              Application.MessageBox('Existe um compromiso agendado para essa data e hoja, '+
-                'favor ajustar sua agenda!', 'AVISO',MB_OK + MB_ICONWARNING);
+                'favor ajustar sua agenda!', 'AVISO DE AGENDAMENTO',MB_OK + MB_ICONWARNING);
              cxDate.SetFocus;
              Exit;
            end;
-
-        if Trim(cxMemoDescricao.Text) = '' then
-         begin
-           Application.MessageBox('Para agendamento é necessario informar uma descrição!','AVISO',MB_OK + MB_ICONWARNING);
-           cxMemoDescricao.SetFocus;
-           Exit;
-         end;
 
            qry_scheduling.Next;
          end;
@@ -399,143 +346,72 @@ begin
               qrysch_description.AsString := cxMemoDescricao.Text;
               qry.Post;
               qry.ApplyUpdates(0);
-
-              qry.Close;
-              qry.sql.Text:= ' select scheduling.*, hex(sch_cod)as codScheduling from scheduling  ';
-              qry.prepare;
-              qry.open;
+             //Mensagem ao Inserir
+              Application.MessageBox('Registros inseridos com sucesso !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
+             //Retorna o select para atualizar a lista no Grid--
+              AtualizarGrid;
             end;
          end;
      end;
   end else if (Self.Tag = 2) then
   begin
+   //Para evitar duplicidade de agendamento no mesmo horário
+   //Semente a Descrição pode ser alterada
       qry.Edit;
-      qrysch_datetime.AsDateTime  := cxDate.Date + cxTime.Time;
       qrysch_description.AsString := cxMemoDescricao.Text;
       qry.Post;
       qry.ApplyUpdates(0);
+    //Mensagem ao Inserir
+     Application.MessageBox('Registros alterados com sucesso !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
+    //Retorna o select para atualizar a lista no Grid--
+      AtualizarGrid;
   end;
 
-   inherited;
+  inherited;
 
 end;
 
 
+procedure Tfrm_scheduling.AtualizarGrid;
+begin
+      qry.Close;
+      qry.sql.Text:= ' select scheduling.*, hex(sch_cod)as codScheduling from scheduling  ';
+      qry.prepare;
+      qry.open;
+end;
+
 procedure Tfrm_scheduling.qryAfterInsert(DataSet: TDataSet);
 begin
 inherited;
-  //inicializar as variaveis vazias
+  //Inicializar as variaveis vazias---------------------------------
   sch_cod := '';
-  //------------------------------
+  //Select para criar o Código Hexadecimal Primary Key--------------
  With frm_dm.qry,sql do
   begin
    close;
    text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
    prepare;
    open;
-
+   //Setando o Código Hexadecimal na Variável-----------------------
    sch_cod:=Fields[0].AsString;
-
+   //Comando para Inserir o registro no banco com (código) (ID) (contrato)(data do registro)
    Close;
    Text:='insert into scheduling (sch_id,sch_cod,contract_ctr_cod,sch_dt_registration) ' +
          ' select 0,'+ sch_cod + ',' +  frm_dm.v_contract_ctr_cod + ',Now()';
    Prepare;
    ExecSQL;
   end;
-
+   //Select para retornar o registro inserido acima -----------------
    qry.Close;
    qry.sql.Text:= ' select scheduling.*, hex(sch_cod)as codScheduling from scheduling  ' +
                   ' where sch_cod = '+ sch_cod ;
    qry.prepare;
    qry.open;
 
-
+  //Exibir Código ID e Data do Registro nos edit-------------------
    edt_codid.Text:=qrysch_id.AsString;
    edt_dt_registration.Text:=qrysch_dt_registration.AsString;
 
-
-// With frm_dm.qry,sql do
-//  begin
-//   Close;
-//   Text:='insert into scheduling (sch_cod,sch_id,contract_ctr_cod) ' +
-//         ' select unhex(replace(uuid(),''-'','''')),0,'+ frm_dm.v_contract_ctr_cod;
-//   Prepare;
-//   ExecSQL;
-//
-//   Close;
-//   text:= ' select concat(''0x'', hex(sch_cod)) from scheduling ' +
-//          ' where sch_id = 0 ';
-//   Prepare;
-//   open;
-//   sch_cod:=Fields[0].AsString;
-//  end;
-//
-//   qry.Unprepare;
-//   qry.Close;
-//   qry.sql.text:= ' select scheduling.*,rec_name from scheduling '+
-//                  ' left join employee  on emp_cod = employee_emp_cod ' +
-//                  ' left join record  on rec_cod =  record_rec_cod ' +
-//                  ' where sch_cod = ' + sch_cod ;
-//   qry.Prepare;
-//   qry.open;
-//
-//   qry.Edit;
-//   qrysch_dt_registration.AsDateTime:=Now;
-//   if Self.Tag = 1 then //chamado pelo agendamento da clinica
-//    begin
-//
-//    end;
-
 end;
-
-procedure Tfrm_scheduling.tbsht_5Show(Sender: TObject);
-begin
-  inherited;
-// if Self.Tag <> 1 then
-//  begin
-//  with frm_dm.qry,sql do
-//   begin
-//    clear;
-//    text:=' select emp_id,concat(''0x'', hex(emp_cod)) as emp_cod,rec_name from employee ' +
-//          ' inner join record on rec_cod = record_rec_cod ' +
-//          ' where emp_status <> ''D'' ' +
-//          ' and employee.contract_ctr_cod = '+ frm_dm.v_contract_ctr_cod;
-//    prepare;
-//    open;
-//    first;
-//    comboboxEmployee.Clear;
-//    listaCodFunc.Clear;
-//    while not Eof do
-//     begin
-//      comboboxEmployee.Properties.Items.Add(
-//      FormatFloat('000000',FieldByName('emp_id').AsInteger) + ' - ' +  FieldByName('rec_name').AsString);
-//      listaCodFunc.Add(FieldByName('emp_cod').AsString);
-//      Next;
-//     end;
-//   end;
-//  end;
-//
-//
-//
-//    comboboxEmployee.Clear;
-//    listaCodFunc.Clear;
-//  with frm_scheduling_clinical.qry_doctor do
-//   begin
-//    while not frm_scheduling_clinical.qry_doctor.Eof do
-//     begin
-//      comboboxEmployee.Properties.Items.Add(
-//      FormatFloat('000000',  FieldByName('doc_id').AsInteger) + ' - ' +  FieldByName('rec_name').AsString);
-//      listaCodFunc.Add(FieldByName('docCod').AsString);
-//      Next;
-//     end;
-//   end;
-//end;
-
-//   if Self.Tag = 1 then //chamado pelo agendamento da clinica
-//    begin
-//     comboboxEmployee.ItemIndex:=comboboxEmployee.Properties.Items.IndexOf(doctor_name);
-//     comboboxEmployee.Enabled:=False;
-
-  end;
 
 end.

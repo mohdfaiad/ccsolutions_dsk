@@ -2,6 +2,7 @@ inherited frm_client: Tfrm_client
   Caption = 'Manuten'#231#227'o: Clientes'
   ClientHeight = 691
   OnClose = FormClose
+  OnShow = FormShow
   ExplicitHeight = 730
   PixelsPerInch = 96
   TextHeight = 13
@@ -11,13 +12,9 @@ inherited frm_client: Tfrm_client
     ExplicitHeight = 636
     ClientRectBottom = 630
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         Height = 596
-        ExplicitLeft = 3
         ExplicitHeight = 596
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1cli_type: TcxGridDBColumn
@@ -183,9 +180,6 @@ inherited frm_client: Tfrm_client
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         Height = 596
@@ -193,9 +187,6 @@ inherited frm_client: Tfrm_client
         ExplicitHeight = 596
         ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
           ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 562
@@ -210,7 +201,7 @@ inherited frm_client: Tfrm_client
               DataBinding.DataField = 'cli_dt_registration'
               ExplicitLeft = 253
             end
-            object cxDBTextEdit12: TcxDBTextEdit [2]
+            object edt_cpfcnpj: TcxDBTextEdit [2]
               Left = 76
               Top = 249
               DataBinding.DataField = 'cli_cpfcnpj'
@@ -218,7 +209,7 @@ inherited frm_client: Tfrm_client
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 7
-              OnExit = cxDBTextEdit12Exit
+              OnExit = edt_cpfcnpjExit
               Width = 121
             end
             object cxDBTextEdit20: TcxDBTextEdit [3]
@@ -251,7 +242,7 @@ inherited frm_client: Tfrm_client
               TabOrder = 6
               Width = 307
             end
-            object cxDBTextEdit1: TcxDBTextEdit [6]
+            object edtClient: TcxDBTextEdit [6]
               Left = 76
               Top = 130
               DataBinding.DataField = 'cli_first_name'
@@ -328,7 +319,7 @@ inherited frm_client: Tfrm_client
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'CPF/CNPJ'
-              Control = cxDBTextEdit12
+              Control = edt_cpfcnpj
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -377,7 +368,7 @@ inherited frm_client: Tfrm_client
               AlignHorz = ahClient
               AlignVert = avTop
               CaptionOptions.Text = 'Nome'
-              Control = cxDBTextEdit1
+              Control = edtClient
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 83
               ControlOptions.ShowBorder = False
@@ -1475,7 +1466,7 @@ inherited frm_client: Tfrm_client
                   Caption = 'Conv'#234'nio'
                   DataBinding.FieldName = 'insurance_ins_id'
                   PropertiesClassName = 'TcxLookupComboBoxProperties'
-                  Properties.KeyFieldNames = 'ins_id'
+                  Properties.KeyFieldNames = 'ins_first_name'
                   Properties.ListColumns = <
                     item
                       Caption = 'Nome'
@@ -1569,14 +1560,53 @@ inherited frm_client: Tfrm_client
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select client.*,concat('#39'0x'#39',hex(cli_cod)) from client'
-      'where cli_deleted_at is null')
+      
+        'select client.*,concat('#39'0x'#39',hex(cli_cod))as CodClient, hex(cli_c' +
+        'od)as ClientCod from client'#13#10#10
+      'where contract_ctr_cod =:ctr_cod and cli_deleted_at is null')
+    ParamData = <
+      item
+        Name = 'CTR_COD'
+        DataType = ftBytes
+        ParamType = ptInput
+        Size = 16
+        Value = Null
+      end>
+    object qryCodClient: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodClient'
+      Origin = 'CodClient'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
+    end
+    object qryClientCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ClientCod'
+      Origin = 'ClientCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qrycli_cod: TBytesField
+      FieldName = 'cli_cod'
+      Origin = 'cli_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycli_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_id'
+      Origin = 'cli_id'
+    end
     object qrycli_type: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Tipo'
@@ -1611,17 +1641,17 @@ inherited frm_client: Tfrm_client
       Origin = 'cli_cpfcnpj'
       Size = 25
     end
+    object qrycli_im: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_im'
+      Origin = 'cli_im'
+      Size = 25
+    end
     object qrycli_rgie: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'RG/IE'
       FieldName = 'cli_rgie'
       Origin = 'cli_rgie'
-      Size = 25
-    end
-    object qrycli_im: TStringField
-      DisplayLabel = 'IM'
-      FieldName = 'cli_im'
-      Origin = 'cli_im'
       Size = 25
     end
     object qrycli_suframa: TStringField
@@ -1794,12 +1824,6 @@ inherited frm_client: Tfrm_client
       FieldName = 'cli_dt_birthopen'
       Origin = 'cli_dt_birthopen'
     end
-    object qrycli_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'cli_dt_registration'
-      Origin = 'cli_dt_registration'
-    end
     object qrycli_day_maturity: TIntegerField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dia Venc.'
@@ -1813,12 +1837,6 @@ inherited frm_client: Tfrm_client
       FixedChar = True
       Size = 1
     end
-    object qrycli_cod: TBytesField
-      FieldName = 'cli_cod'
-      Origin = 'cli_cod'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
     object qrycontract_ctr_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'contract_ctr_cod'
@@ -1829,23 +1847,16 @@ inherited frm_client: Tfrm_client
       FieldName = 'table_price_tbp_cod'
       Origin = 'table_price_tbp_cod'
     end
-    object qrycli_id: TLongWordField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_id'
-      Origin = 'cli_id'
-    end
     object qrycli_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
       FieldName = 'cli_deleted_at'
       Origin = 'cli_deleted_at'
     end
-    object qryconcat0xhexcli_cod: TStringField
+    object qrycli_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
-      FieldName = 'concat('#39'0x'#39',hex(cli_cod))'
-      Origin = '`concat('#39'0x'#39',hex(cli_cod))`'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 34
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'cli_dt_registration'
+      Origin = 'cli_dt_registration'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -1902,13 +1913,14 @@ inherited frm_client: Tfrm_client
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select ins_id,contract_ctr_cod,ins_first_name from insurance'
       'where contract_ctr_cod = :ctr_cod'
       'order by ins_first_name')
-    Left = 503
-    Top = 186
+    Left = 751
+    Top = 130
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -1937,46 +1949,56 @@ inherited frm_client: Tfrm_client
   object qry_client_insirance: TFDQuery
     AfterInsert = qry_client_insiranceAfterInsert
     CachedUpdates = True
-    IndexFieldNames = 'client_cli_id'
+    IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'
-    DetailFields = 'client_cli_id'
+    DetailFields = 'client_cli_cod'
     Connection = frm_dm.connCCS
     SchemaAdapter = FDSchemaAdapter_1
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from client_insurance'#10
-      'where client_cli_id = :cli_id')
+      
+        'select client_insurance.*, hex(cin_cod) as codCliInsirance from ' +
+        'client_insurance '#13#10#10
+      'where client_cli_cod =:cli_cod')
     Left = 351
     Top = 290
     ParamData = <
       item
-        Name = 'CLI_ID'
+        Name = 'CLI_COD'
         DataType = ftBytes
         ParamType = ptInput
         Value = Null
       end>
+    object qry_client_insirancecodCliInsirance: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codCliInsirance'
+      Origin = 'codCliInsirance'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
     object qry_client_insirancecin_cod: TBytesField
       FieldName = 'cin_cod'
       Origin = 'cin_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object qry_client_insiranceclient_cli_id: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'client_cli_id'
-      Origin = 'client_cli_id'
-    end
-    object qry_client_insiranceinsurance_ins_id: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'insurance_ins_id'
-      Origin = 'insurance_ins_id'
-    end
     object qry_client_insirancecin_id: TLongWordField
       AutoGenerateValue = arDefault
       FieldName = 'cin_id'
       Origin = 'cin_id'
+    end
+    object qry_client_insiranceinsurance_ins_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'insurance_ins_cod'
+      Origin = 'insurance_ins_cod'
+    end
+    object qry_client_insiranceclient_cli_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'client_cli_cod'
+      Origin = 'client_cli_cod'
     end
     object qry_client_insirancecin_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
@@ -1991,16 +2013,16 @@ inherited frm_client: Tfrm_client
   end
   object ds_client_insirance: TDataSource
     DataSet = qry_client_insirance
-    Left = 415
-    Top = 202
+    Left = 399
+    Top = 290
   end
   object ds_insurance: TDataSource
     DataSet = qry_insurance
-    Left = 583
-    Top = 186
+    Left = 791
+    Top = 130
   end
   object qry_client_sippulse: TFDQuery
-    Active = True
+    CachedUpdates = True
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'
@@ -2009,14 +2031,15 @@ inherited frm_client: Tfrm_client
     SQL.Strings = (
       'select * from client_sippulse'
       'where client_cli_cod = :cli_cod')
-    Left = 225
-    Top = 283
+    Left = 97
+    Top = 251
     ParamData = <
       item
         Name = 'CLI_COD'
         DataType = ftBytes
         ParamType = ptInput
         Size = 16
+        Value = Null
       end>
     object qry_client_sippulsecls_cod: TBytesField
       FieldName = 'cls_cod'
@@ -2049,16 +2072,17 @@ inherited frm_client: Tfrm_client
   end
   object ds_client_sippulse: TDataSource
     DataSet = qry_client_sippulse
-    Left = 127
-    Top = 298
+    Left = 151
+    Top = 242
   end
   object ds_client_astpp: TDataSource
     DataSet = qry_client_astpp
-    Left = 615
-    Top = 546
+    Left = 743
+    Top = 530
   end
   object qry_client_astpp: TFDQuery
     Active = True
+    CachedUpdates = True
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'

@@ -1,12 +1,20 @@
 inherited frm_scheduling: Tfrm_scheduling
-  Caption = 'Agendamento do proficional'
+  Caption = 'Agendamento do Proficional'
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
     inherited tbsht_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
+      ExplicitWidth = 954
+      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
         inherited tbsht_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 27
+          ExplicitWidth = 946
+          ExplicitHeight = 505
           inherited grid_1: TcxGrid
             inherited grid_1DBTableView1: TcxGridDBTableView
               object grid_1DBTableView1sch_cod: TcxGridDBColumn
@@ -72,9 +80,12 @@ inherited frm_scheduling: Tfrm_scheduling
       end
     end
     inherited tbsht_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
+      ExplicitWidth = 954
+      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         inherited tbsht_5: TcxTabSheet
-          OnShow = tbsht_5Show
           inherited grb_bottton: TcxGroupBox
             object labelFuncionario: TLabel
               Left = 3
@@ -111,34 +122,27 @@ inherited frm_scheduling: Tfrm_scheduling
               Height = 13
               Caption = 'Descri'#231#227'o'
             end
-            object comboboxEmployee: TcxComboBox
-              Left = 499
-              Top = 387
-              TabOrder = 0
-              Text = 'comboboxEmployee'
-              Width = 256
-            end
             object cxDate: TcxDateEdit
               Left = 265
               Top = 35
               EditValue = 43449.6394097222d
               Properties.ShowTime = False
               Properties.OnCloseUp = cxDatePropertiesCloseUp
-              TabOrder = 1
+              TabOrder = 0
               Width = 125
             end
             object cxTime: TcxTimeEdit
               Left = 396
               Top = 35
               Properties.OnEditValueChanged = cxTimePropertiesEditValueChanged
-              TabOrder = 2
+              TabOrder = 1
               Width = 125
             end
             object cxMemoDescricao: TcxMemo
               Left = 3
               Top = 81
               Properties.CharCase = ecUpperCase
-              TabOrder = 3
+              TabOrder = 2
               Height = 273
               Width = 518
             end
@@ -147,7 +151,7 @@ inherited frm_scheduling: Tfrm_scheduling
               Top = 35
               Width = 402
               Height = 319
-              TabOrder = 4
+              TabOrder = 3
               object cxGrid1DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
                 DataController.DataSource = ds_qry_scheduling
@@ -188,11 +192,19 @@ inherited frm_scheduling: Tfrm_scheduling
                   FieldName = 'rec_name'
                 end>
               Properties.ListSource = ds_proficional
-              TabOrder = 5
+              TabOrder = 4
               Width = 256
             end
           end
         end
+      end
+    end
+  end
+  inherited stsbar_1: TdxStatusBar
+    inherited stsbar_deleted_at: TdxStatusBarContainerControl
+      inherited chkbox_1: TcxCheckBox
+        ExplicitWidth = 926
+        ExplicitHeight = 32
       end
     end
   end

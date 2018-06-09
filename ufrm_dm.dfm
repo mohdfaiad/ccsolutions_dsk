@@ -2,8 +2,8 @@ object frm_dm: Tfrm_dm
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Height = 405
-  Width = 338
+  Height = 408
+  Width = 470
   object connCCS: TFDConnection
     Params.Strings = (
       'ConnectionDef=ccs_connection')
@@ -16,8 +16,8 @@ object frm_dm: Tfrm_dm
   end
   object wait_cursor: TFDGUIxWaitCursor
     Provider = 'Forms'
-    Left = 136
-    Top = 16
+    Left = 40
+    Top = 112
   end
   object manCCS: TFDManager
     DriverDefFileName = 'C:\ccsolutions_dsk\data\ccs_connection.ini'
@@ -26,146 +26,13 @@ object frm_dm: Tfrm_dm
     FormatOptions.OwnMapRules = True
     FormatOptions.MapRules = <>
     Active = True
-    Left = 72
+    Left = 88
     Top = 16
-  end
-  object qry_signin: TFDQuery
-    Connection = connCCS
-    SQL.Strings = (
-      
-        'SELECT concat('#39'0x'#39',hex(ctr_cod)) as contractCod,concat('#39'0x'#39',hex(' +
-        'cu.ctr_usr_cod)) as userCod,'
-      
-        'c.ctr_cod, c.ctr_id, cu.ctr_usr_cod, cu.ctr_usr_first_name, cu.c' +
-        'tr_usr_username, cu.ctr_usr_password,ctr_usr_logged,'#10'ctr_usr_adm' +
-        'in,ctr_usr_dt_birth,'
-      'ctr_usr_email FROM contract c'
-      'INNER JOIN contract_user cu ON c.ctr_cod = cu.contract_ctr_cod'
-      
-        'WHERE c.ctr_id = :contract AND cu.ctr_usr_username = :username a' +
-        'nd (cu.ctr_usr_password=:password or cu.ctr_usr_password is null' +
-        ')'#10#10)
-    Left = 32
-    Top = 88
-    ParamData = <
-      item
-        Name = 'CONTRACT'
-        DataType = ftInteger
-        ParamType = ptInput
-        Value = 1
-      end
-      item
-        Name = 'USERNAME'
-        DataType = ftString
-        ParamType = ptInput
-        Value = 'elizeu'
-      end
-      item
-        Name = 'PASSWORD'
-        DataType = ftString
-        ParamType = ptInput
-        Value = Null
-      end>
-    object qry_signincontractCod: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'contractCod'
-      Origin = 'contractCod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 34
-    end
-    object qry_signinuserCod: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'userCod'
-      Origin = 'userCod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 34
-    end
-    object qry_signinctr_cod: TBytesField
-      FieldName = 'ctr_cod'
-      Origin = 'ctr_cod'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object qry_signinctr_id: TLargeintField
-      AutoGenerateValue = arDefault
-      FieldName = 'ctr_id'
-      Origin = 'ctr_id'
-    end
-    object qry_signinctr_usr_cod: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'ctr_usr_cod'
-      Origin = 'ctr_usr_cod'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-    object qry_signinctr_usr_first_name: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'ctr_usr_first_name'
-      Origin = 'ctr_usr_first_name'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 85
-    end
-    object qry_signinctr_usr_username: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'ctr_usr_username'
-      Origin = 'ctr_usr_username'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 65
-    end
-    object qry_signinctr_usr_logged: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'ctr_usr_logged'
-      Origin = 'ctr_usr_logged'
-      ProviderFlags = []
-      ReadOnly = True
-      FixedChar = True
-      Size = 1
-    end
-    object qry_signinctr_usr_admin: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'ctr_usr_admin'
-      Origin = 'ctr_usr_admin'
-      ProviderFlags = []
-      ReadOnly = True
-      FixedChar = True
-      Size = 1
-    end
-    object qry_signinctr_usr_dt_birth: TDateField
-      AutoGenerateValue = arDefault
-      FieldName = 'ctr_usr_dt_birth'
-      Origin = 'ctr_usr_dt_birth'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-    object qry_signinctr_usr_email: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'ctr_usr_email'
-      Origin = 'ctr_usr_email'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 65
-    end
-    object qry_signinctr_usr_password: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'ctr_usr_password'
-      Origin = 'ctr_usr_password'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-  end
-  object ds_signin: TDataSource
-    DataSet = qry_signin
-    Left = 128
-    Top = 56
   end
   object mysql_driver: TFDPhysMySQLDriverLink
     VendorLib = 'C:\ccsolutions_dsk\bin\libmysql.dll'
-    Left = 104
-    Top = 16
+    Left = 40
+    Top = 64
   end
   object qry_enterprise: TFDQuery
     Active = True
@@ -176,8 +43,8 @@ object frm_dm: Tfrm_dm
         'and ent_cod in (select enterprise_ent_cod  from contract_user_en' +
         'terprise '
       'where contract_user_ctr_usr_cod = unhex(:CodUsuario) )')
-    Left = 40
-    Top = 152
+    Left = 368
+    Top = 64
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -360,8 +227,8 @@ object frm_dm: Tfrm_dm
   end
   object ds_enterprise: TDataSource
     DataSet = qry_enterprise
-    Left = 144
-    Top = 128
+    Left = 368
+    Top = 112
   end
   object frx_db_enterprise: TfrxDBDataset
     UserName = 'enterprise'
@@ -395,8 +262,8 @@ object frm_dm: Tfrm_dm
       'ent_dt_registration=ent_dt_registration')
     DataSet = qry_enterprise
     BCDToCurrency = False
-    Left = 232
-    Top = 64
+    Left = 368
+    Top = 16
   end
   object connCDL: TFDConnection
     Params.Strings = (
@@ -407,12 +274,12 @@ object frm_dm: Tfrm_dm
       'DriverID=MSSQL')
     Connected = True
     LoginPrompt = False
-    Left = 232
+    Left = 168
     Top = 16
   end
   object mssql_driver: TFDPhysMSSQLDriverLink
-    Left = 264
-    Top = 16
+    Left = 168
+    Top = 64
   end
   object qry_logged: TFDQuery
     Connection = connCCS
@@ -421,7 +288,7 @@ object frm_dm: Tfrm_dm
       'WHERE contract_ctr_cod= :contract '
       'and ctr_usr_username = :username '
       'and ctr_usr_password=:password')
-    Left = 40
+    Left = 368
     Top = 208
     ParamData = <
       item
@@ -457,8 +324,8 @@ object frm_dm: Tfrm_dm
       'where sys_act_option =:sys_Act_option'
       'and sys_act_module = :sys_act_module '
       'order by sys_act_name')
-    Left = 120
-    Top = 208
+    Left = 368
+    Top = 160
     ParamData = <
       item
         Name = 'SYS_ACT_OPTION'
@@ -485,10 +352,10 @@ object frm_dm: Tfrm_dm
       Size = 80
     end
   end
-  object qry_signinNew: TFDQuery
+  object qry_signin: TFDQuery
     Connection = connCCS
-    Left = 264
-    Top = 184
+    Left = 40
+    Top = 160
   end
   object qry_contract: TFDQuery
     Active = True
@@ -496,8 +363,8 @@ object frm_dm: Tfrm_dm
     SQL.Strings = (
       'select ctr_cod,ctr_id from contract'
       'where ctr_cod =:ctr_cod')
-    Left = 152
-    Top = 312
+    Left = 368
+    Top = 256
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -519,7 +386,7 @@ object frm_dm: Tfrm_dm
   end
   object ds_contract: TDataSource
     DataSet = qry_contract
-    Left = 192
-    Top = 312
+    Left = 368
+    Top = 304
   end
 end

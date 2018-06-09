@@ -70,7 +70,6 @@ type
     dxBarButton6: TdxBarButton;
     acAlterarPreco: TAction;
     dxBarButton7: TdxBarButton;
-    Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -346,21 +345,21 @@ end;
 procedure Tfrm_main.Button1Click(Sender: TObject);
 begin
   inherited;
- //--Função para verificar se o Usuário está com permicionamento para acessar os dados de alguma empresa--
-    TCheck_Enterprise.ValidaEmpresa;
-
-    if not Assigned(frm_supplier) then
-  begin
-    frm_requisition := Tfrm_requisition.Create(Self);
-    frm_requisition.Height := Bevel_1.Height;
-    frm_requisition.Width := Bevel_1.Width;
-    frm_requisition.Show;
-  end
-  else
-  begin
-    frm_requisition.WindowState := wsNormal;
-     frm_requisition.Show;
-  end;
+// //--Função para verificar se o Usuário está com permicionamento para acessar os dados de alguma empresa--
+//    TCheck_Enterprise.ValidaEmpresa;
+//
+//    if not Assigned(frm_supplier) then
+//  begin
+//    frm_requisition := Tfrm_requisition.Create(Self);
+//    frm_requisition.Height := Bevel_1.Height;
+//    frm_requisition.Width := Bevel_1.Width;
+//    frm_requisition.Show;
+//  end
+//  else
+//  begin
+//    frm_requisition.WindowState := wsNormal;
+//     frm_requisition.Show;
+//  end;
 end;
 
 procedure Tfrm_main.FormCreate(Sender: TObject);

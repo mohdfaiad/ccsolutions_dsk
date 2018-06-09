@@ -101,7 +101,7 @@ uses ufrm_dm, ufrm_main_default;
 
 procedure Tfrm_login.Action_accessExecute(Sender: TObject);
 var
-SQL:string;
+  SQL:string;
 begin
   // Select para listar as unidades de estoque que esse usuário tem acesso
 //   frm_dm.qry_enterprise.Close;
@@ -109,10 +109,9 @@ begin
 //   frm_dm.qry_enterprise.Prepare;
 //   frm_dm.qry_enterprise.Open;
 
- if frm_dm.qry_loggedctr_usr_logged.AsString = 'B' then
-  begin
-  Application.MessageBox('Usuário foi bloaqueado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
-   Application.Terminate
+  if frm_dm.qry_loggedctr_usr_logged.AsString = 'B' then begin
+    Application.MessageBox('Usuário foi bloaqueado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
+    Application.Terminate
   end;
 //
 //
@@ -149,36 +148,34 @@ begin
 //     frm_dm.qry_logged.Prepare;
 //     frm_dm.qry_logged.Open;
 
-     SQL := 'set @po_valid_user = 0;' +
-            'set @po_contract_ctr_cod = 0;' +
-            'set @po_ctr_usr_username = 0;' +
-            'call proc_access_signin('+ edt_contract.Text +', '+
-            QuotedStr(edt_username.Text) +', '+
-            QuotedStr(edt_password.Text) +
-            ', @po_valid_user, @po_contract_ctr_cod,@po_ctr_usr_cod, @po_ctr_usr_username);' +
-            'select @po_valid_user, hex(@po_contract_ctr_cod),hex(@po_ctr_usr_cod), @po_ctr_usr_username';
-     frm_dm.qry_signinNew.Close;
-     frm_dm.qry_signinNew.SQL.Clear;
-     frm_dm.qry_signinNew.SQL.Text:=SQL;
-     frm_dm.qry_signinNew.Open;
+     SQL := 'set @po_valid_user = 0;'+
+            'set @po_contract_ctr_cod = 0;'+
+            'set @po_ctr_usr_username = 0;'+
+            'call proc_access_signin('+ edt_contract.Text +', '+QuotedStr(edt_username.Text) +', '+QuotedStr(edt_password.Text) + ','+
+            '@po_valid_user, @po_contract_ctr_cod, @po_ctr_usr_cod, @po_ctr_usr_username);'+
+            'select @po_valid_user, hex(@po_contract_ctr_cod), hex(@po_ctr_usr_cod), @po_ctr_usr_username';
+
+     frm_dm.qry_signin.Close;
+     frm_dm.qry_signin.SQL.Clear;
+     frm_dm.qry_signin.SQL.Text:= SQL;
+     frm_dm.qry_signin.Open;
 
 
-     frm_dm.v_contract_ctr_cod := '0x' +  frm_dm.qry_signinNew.FieldByName('hex(@po_contract_ctr_cod)').Value;
-     frm_dm.v_ctr_usr_cod := '0x' +  frm_dm.qry_signinNew.FieldByName('hex(@po_ctr_usr_cod)').Value;
+     frm_dm.v_contract_ctr_cod := '0x' +  frm_dm.qry_signin.FieldByName('hex(@po_contract_ctr_cod)').Value;
+     frm_dm.v_ctr_usr_cod := '0x' +  frm_dm.qry_signin.FieldByName('hex(@po_ctr_usr_cod)').Value;
      //Sem contact
 
-     frm_dm.p_contract_ctr_cod := frm_dm.qry_signinNew.FieldByName('hex(@po_contract_ctr_cod)').Value;
-     frm_dm.p_ctr_usr_cod      := frm_dm.qry_signinNew.FieldByName('hex(@po_ctr_usr_cod)').Value;
-     frm_dm.v_nome_usuario     := frm_dm.qry_signinNew.FieldByName('@po_ctr_usr_username').Value;
+     frm_dm.p_contract_ctr_cod := frm_dm.qry_signin.FieldByName('hex(@po_contract_ctr_cod)').Value;
+     frm_dm.p_ctr_usr_cod      := frm_dm.qry_signin.FieldByName('hex(@po_ctr_usr_cod)').Value;
+     frm_dm.v_nome_usuario     := frm_dm.qry_signin.FieldByName('@po_ctr_usr_username').Value;
 
   frm_dm.qry_contract.Close;
-  frm_dm.qry_contract.sql.Text:='select ctr_cod,ctr_id from contract '+
-     ' where ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+  frm_dm.qry_contract.sql.Text:='select ctr_cod, ctr_id from contract where ctr_cod = ' + frm_dm.v_contract_ctr_cod;
   frm_dm.qry_contract.Prepare;
   frm_dm.qry_contract.Open;
 
 
-  if frm_dm.qry_signinNew.Fields[0].AsInteger = 1 then
+  if frm_dm.qry_signin.Fields[0].AsInteger = 1 then
    begin
      if Tag = 99 then
       begin

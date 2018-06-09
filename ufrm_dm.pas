@@ -1,4 +1,4 @@
- unit ufrm_dm;
+unit ufrm_dm;
 
 interface
 
@@ -16,8 +16,6 @@ type
     connCCS: TFDConnection;
     wait_cursor: TFDGUIxWaitCursor;
     manCCS: TFDManager;
-    qry_signin: TFDQuery;
-    ds_signin: TDataSource;
     mysql_driver: TFDPhysMySQLDriverLink;
     qry_enterprise: TFDQuery;
     ds_enterprise: TDataSource;
@@ -29,19 +27,7 @@ type
     qry_action: TFDQuery;
     qry_actionsys_act_subtitle: TStringField;
     qry_actionsys_Act_name: TStringField;
-    qry_signincontractCod: TStringField;
-    qry_signinuserCod: TStringField;
-    qry_signinctr_cod: TBytesField;
-    qry_signinctr_id: TLargeintField;
-    qry_signinctr_usr_cod: TBytesField;
-    qry_signinctr_usr_first_name: TStringField;
-    qry_signinctr_usr_username: TStringField;
-    qry_signinctr_usr_logged: TStringField;
-    qry_signinctr_usr_admin: TStringField;
-    qry_signinctr_usr_dt_birth: TDateField;
-    qry_signinctr_usr_email: TStringField;
-    qry_signinNew: TFDQuery;
-    qry_signinctr_usr_password: TBytesField;
+    qry_signin: TFDQuery;
     qry_contract: TFDQuery;
     qry_contractctr_cod: TBytesField;
     ds_contract: TDataSource;
@@ -79,9 +65,9 @@ type
     { Private declarations }
   public
     { Public declarations }
-    qry,qry2,qry3:TFDQuery;
+    qry, qry2, qry3: TFDQuery;
     Acao: Integer;
-    v_contract_ctr_cod,v_ctr_usr_cod,p_contract_ctr_cod,p_ctr_usr_cod,v_nome_usuario: string;
+    v_contract_ctr_cod, v_ctr_usr_cod, p_contract_ctr_cod, p_ctr_usr_cod, v_nome_usuario: string;
 
   end;
 
@@ -91,21 +77,18 @@ var
 implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
-
 {$R *.dfm}
 
 procedure Tfrm_dm.DataModuleCreate(Sender: TObject);
 begin
-  qry:=TFDQuery.Create(Self);
-  qry.Connection:=connCCS;
+  qry := TFDQuery.Create(Self);
+  qry.Connection := connCCS;
 
-  qry2:=TFDQuery.Create(Self);
-  qry2.Connection:=connCCS;
+  qry2 := TFDQuery.Create(Self);
+  qry2.Connection := connCCS;
 
-  qry3:=TFDQuery.Create(Self);
-  qry3.Connection:=connCCS;
-
-
+  qry3 := TFDQuery.Create(Self);
+  qry3.Connection := connCCS;
 end;
 
 procedure Tfrm_dm.DataModuleDestroy(Sender: TObject);

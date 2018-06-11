@@ -63,6 +63,9 @@ type
     qryctr_status: TStringField;
     qryctr_deleted_at: TDateTimeField;
     qryctr_id: TLargeintField;
+    cxDBDateEdit1: TcxDBDateEdit;
+    dxLayoutItem7: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);

@@ -5,7 +5,6 @@ inherited frm_contract: Tfrm_contract
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -15,6 +14,7 @@ inherited frm_contract: Tfrm_contract
         ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ctr_id: TcxGridDBColumn
+            Caption = 'C'#243'd.: ID.'
             DataBinding.FieldName = 'ctr_id'
             Width = 75
           end
@@ -35,8 +35,9 @@ inherited frm_contract: Tfrm_contract
             Width = 100
           end
           object cxGrid_1DBTableView1ctr_dt_birth_open: TcxGridDBColumn
-            DataBinding.FieldName = 'ctr_dt_birth_open'
-            Width = 100
+            Caption = 'Dt. Anivers'#225'rio'
+            DataBinding.FieldName = 'ctr_dt_birth'
+            Width = 120
           end
           object cxGrid_1DBTableView1ctr_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'ctr_dt_registration'
@@ -63,9 +64,9 @@ inherited frm_contract: Tfrm_contract
               ExplicitLeft = 63
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 236
+              Left = 275
               DataBinding.DataField = 'ctr_dt_registration'
-              ExplicitLeft = 236
+              ExplicitLeft = 275
             end
             object cxDBTextEdit1: TcxDBTextEdit [2]
               Left = 63
@@ -75,7 +76,7 @@ inherited frm_contract: Tfrm_contract
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 2
-              Width = 303
+              Width = 342
             end
             object cxDBTextEdit2: TcxDBTextEdit [3]
               Left = 63
@@ -85,7 +86,7 @@ inherited frm_contract: Tfrm_contract
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 3
-              Width = 303
+              Width = 342
             end
             object cxDBTextEdit3: TcxDBTextEdit [4]
               Left = 63
@@ -95,7 +96,7 @@ inherited frm_contract: Tfrm_contract
               Properties.CharCase = ecLowerCase
               Style.HotTrack = False
               TabOrder = 4
-              Width = 303
+              Width = 342
             end
             object cxDBTextEdit4: TcxDBTextEdit [5]
               Left = 63
@@ -106,6 +107,15 @@ inherited frm_contract: Tfrm_contract
               Style.HotTrack = False
               TabOrder = 5
               Width = 121
+            end
+            object cxDBDateEdit1: TcxDBDateEdit [6]
+              Left = 275
+              Top = 184
+              DataBinding.DataField = 'ctr_dt_birth'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 6
+              Width = 127
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
@@ -146,7 +156,7 @@ inherited frm_contract: Tfrm_contract
               Index = 2
             end
             object dxLayoutItem6: TdxLayoutItem
-              Parent = dxLayoutGroup2
+              Parent = dxLayoutAutoCreatedGroup1
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'Tel. 1'
@@ -154,7 +164,27 @@ inherited frm_contract: Tfrm_contract
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem7: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignVert = avClient
+              CaptionOptions.Text = 'Data Anivers'#225'rio'
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              SizeOptions.Width = 212
+              Control = cxDBDateEdit1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 130
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
               Index = 3
+              AutoCreated = True
             end
           end
         end

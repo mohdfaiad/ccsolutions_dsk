@@ -7,26 +7,28 @@ inherited frm_doctor: Tfrm_doctor
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
     Height = 588
+    Properties.ActivePage = tbsht_2
     ExplicitHeight = 588
     ClientRectBottom = 582
     inherited tbsht_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
+      ExplicitWidth = 954
       ExplicitHeight = 555
       inherited pgctrl_2: TcxPageControl
         Height = 555
         ExplicitHeight = 555
         ClientRectBottom = 549
         inherited tbsht_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 27
+          ExplicitWidth = 946
           ExplicitHeight = 522
           inherited grid_1: TcxGrid
             Height = 516
             ExplicitHeight = 516
             inherited grid_1DBTableView1: TcxGridDBTableView
               OnDblClick = grid_1DBTableView1DblClick
-              object grid_1DBTableView1employee_emp_cod: TcxGridDBColumn
-                Caption = 'Cod. Func.'
-                DataBinding.FieldName = 'employee_emp_cod'
-                Width = 70
-              end
               object grid_1DBTableView1doc_id: TcxGridDBColumn
                 Caption = 'C'#243'digo ID'
                 DataBinding.FieldName = 'doc_id'
@@ -84,6 +86,9 @@ inherited frm_doctor: Tfrm_doctor
     end
     inherited tbsht_2: TcxTabSheet
       OnShow = tbsht_2Show
+      ExplicitLeft = 2
+      ExplicitTop = 27
+      ExplicitWidth = 954
       ExplicitHeight = 555
       inherited pgctrl_3: TcxPageControl
         Height = 555
@@ -183,18 +188,13 @@ inherited frm_doctor: Tfrm_doctor
                   DataController.Summary.DefaultGroupSummaryItems = <>
                   DataController.Summary.FooterSummaryItems = <>
                   DataController.Summary.SummaryGroups = <>
-                  object cxGrid1DBTableView1roe_cod: TcxGridDBColumn
-                    Caption = 'Cod. Esp.'
-                    DataBinding.FieldName = 'roe_cod'
-                    Width = 70
-                  end
                   object cxGrid1DBTableView1roe_id: TcxGridDBColumn
-                    Caption = 'Codigo ID'
+                    Caption = 'C'#243'digo ID'
                     DataBinding.FieldName = 'roe_id'
                     Width = 70
                   end
                   object cxGrid1DBTableView1role_rol_cod: TcxGridDBColumn
-                    Caption = 'Nome'
+                    Caption = 'Especialidade'
                     DataBinding.FieldName = 'rol_name'
                     PropertiesClassName = 'TcxLookupComboBoxProperties'
                     Properties.GridMode = True
@@ -226,6 +226,12 @@ inherited frm_doctor: Tfrm_doctor
   inherited stsbar_1: TdxStatusBar
     Top = 643
     ExplicitTop = 643
+    inherited stsbar_deleted_at: TdxStatusBarContainerControl
+      inherited chkbox_1: TcxCheckBox
+        ExplicitWidth = 926
+        ExplicitHeight = 32
+      end
+    end
   end
   inherited barman_1: TdxBarManager
     object dxBarButton1: TdxBarButton
@@ -415,7 +421,7 @@ inherited frm_doctor: Tfrm_doctor
   end
   object ds_Doctor: TDataSource [18]
     DataSet = qry_doctor
-    Left = 584
+    Left = 624
     Top = 120
   end
   object qry_role_employee: TFDQuery [19]
@@ -436,8 +442,8 @@ inherited frm_doctor: Tfrm_doctor
       ' concat('#39'0x'#39',hex(roe_cod)) as roeCod,rol_name from role_employee'
       ' left join role on rol_cod = role_rol_cod '
       ' where employee_emp_cod =:emp_cod and roe_deleted_at is null')
-    Left = 776
-    Top = 104
+    Left = 712
+    Top = 288
     ParamData = <
       item
         Name = 'EMP_COD'
@@ -510,10 +516,9 @@ inherited frm_doctor: Tfrm_doctor
   object ds_role_employee: TDataSource [20]
     DataSet = qry_role_employee
     Left = 800
-    Top = 104
+    Top = 256
   end
   object qry_role: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -527,8 +532,8 @@ inherited frm_doctor: Tfrm_doctor
         'ract_ctr_cod from role'
       'where rol_deleted_at is null'
       'order by rol_name')
-    Left = 823
-    Top = 57
+    Left = 727
+    Top = 73
     object qry_rolerol_cod: TBytesField
       FieldName = 'rol_cod'
       Origin = 'rol_cod'

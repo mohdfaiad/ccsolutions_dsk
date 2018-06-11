@@ -12,13 +12,9 @@ inherited frm_client: Tfrm_client
     ExplicitHeight = 636
     ClientRectBottom = 630
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
       ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         Height = 596
-        ExplicitLeft = -205
         ExplicitHeight = 596
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1cli_type: TcxGridDBColumn
@@ -184,6 +180,9 @@ inherited frm_client: Tfrm_client
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         Height = 596
@@ -1459,19 +1458,14 @@ inherited frm_client: Tfrm_client
                 DataController.Summary.DefaultGroupSummaryItems = <>
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
-                object cxGrid1DBTableView1cin_cod: TcxGridDBColumn
-                  Caption = 'C'#243'digo'
-                  DataBinding.FieldName = 'cin_cod'
-                  Width = 70
-                end
                 object cxGrid1DBTableView1cin_id: TcxGridDBColumn
                   Caption = 'C'#243'digo ID'
                   DataBinding.FieldName = 'cin_id'
                   Width = 70
                 end
-                object cxGrid1DBTableView1insurance_ins_cod: TcxGridDBColumn
+                object cxGrid1DBTableView1ins_first_name: TcxGridDBColumn
                   Caption = 'Conv'#234'nio'
-                  DataBinding.FieldName = 'insurance_ins_cod'
+                  DataBinding.FieldName = 'ins_first_name'
                   PropertiesClassName = 'TcxLookupComboBoxProperties'
                   Properties.GridMode = True
                   Properties.KeyFieldNames = 'ins_first_name'
@@ -1480,8 +1474,8 @@ inherited frm_client: Tfrm_client
                       FieldName = 'ins_first_name'
                     end>
                   Properties.ListSource = ds_insurance
-                  Properties.OnCloseUp = cxGrid1DBTableView1insurance_ins_codPropertiesCloseUp
-                  Width = 250
+                  Properties.OnCloseUp = cxGrid1DBTableView1ins_first_namePropertiesCloseUp
+                  Width = 280
                 end
                 object cxGrid1DBTableView1cin_dt_registration: TcxGridDBColumn
                   Caption = 'Dt. Reg'
@@ -1574,6 +1568,8 @@ inherited frm_client: Tfrm_client
       
         'select client.*,concat('#39'0x'#39',hex(cli_cod))as CodClient, hex(cli_c' +
         'od)as ClientCod from client'#13#10#10
+      ''
+      ''
       'where contract_ctr_cod =:ctr_cod and cli_deleted_at is null')
     ParamData = <
       item
@@ -1583,14 +1579,6 @@ inherited frm_client: Tfrm_client
         Size = 16
         Value = Null
       end>
-    object qryCodClient: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'CodClient'
-      Origin = 'CodClient'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 34
-    end
     object qryClientCod: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ClientCod'
@@ -1598,6 +1586,14 @@ inherited frm_client: Tfrm_client
       ProviderFlags = []
       ReadOnly = True
       Size = 32
+    end
+    object qryCodClient: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodClient'
+      Origin = 'CodClient'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 34
     end
     object qrycli_cod: TBytesField
       FieldName = 'cli_cod'
@@ -1913,6 +1909,7 @@ inherited frm_client: Tfrm_client
     Top = 16
   end
   object qry_insurance: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -1972,8 +1969,10 @@ inherited frm_client: Tfrm_client
     end
   end
   object qry_client_insirance: TFDQuery
+    Active = True
     AfterInsert = qry_client_insiranceAfterInsert
     BeforePost = qry_client_insiranceBeforePost
+    CachedUpdates = True
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'
@@ -1983,11 +1982,13 @@ inherited frm_client: Tfrm_client
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       
-        'select client_insurance.*, hex(cin_cod) as codCliInsirance from ' +
-        'client_insurance'#10
+        'select client_insurance.*, ins_first_name, hex(cin_cod) as codCl' +
+        'iInsirance,'
+      ' hex(client_cli_cod)as ClientCod from client_insurance'#13#10#10
+      'left join insurance on insurance_ins_cod = ins_cod'#13#10#10
       'where client_cli_cod =:cli_cod and cin_deleted_at is null')
-    Left = 359
-    Top = 290
+    Left = 335
+    Top = 274
     ParamData = <
       item
         Name = 'CLI_COD'
@@ -2020,6 +2021,14 @@ inherited frm_client: Tfrm_client
       FieldName = 'insurance_ins_cod'
       Origin = 'insurance_ins_cod'
     end
+    object qry_client_insiranceins_first_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ins_first_name'
+      Origin = 'ins_first_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
     object qry_client_insiranceclient_cli_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'client_cli_cod'
@@ -2035,11 +2044,19 @@ inherited frm_client: Tfrm_client
       FieldName = 'cin_dt_registration'
       Origin = 'cin_dt_registration'
     end
+    object qry_client_insiranceClientCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ClientCod'
+      Origin = 'ClientCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
   object ds_client_insirance: TDataSource
     DataSet = qry_client_insirance
-    Left = 399
-    Top = 290
+    Left = 431
+    Top = 258
   end
   object ds_insurance: TDataSource
     DataSet = qry_insurance

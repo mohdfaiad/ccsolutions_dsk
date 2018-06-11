@@ -10,17 +10,21 @@ inherited frm_table_price: Tfrm_table_price
     Width = 1105
     Height = 626
     Properties.ActivePage = cxTabSheet_2
+    ExplicitWidth = 1105
+    ExplicitHeight = 626
     ClientRectBottom = 620
     ClientRectRight = 1099
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
+      ExplicitWidth = 1097
+      ExplicitHeight = 592
       inherited cxGrid_1: TcxGrid
         Width = 1091
         Height = 586
         ExplicitLeft = 3
+        ExplicitWidth = 1091
+        ExplicitHeight = 586
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1tbp_id: TcxGridDBColumn
             Caption = 'C'#243'd. ID'
@@ -48,22 +52,26 @@ inherited frm_table_price: Tfrm_table_price
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
+      ExplicitWidth = 1097
+      ExplicitHeight = 592
       inherited cxPageControl_2: TcxPageControl
         Width = 1091
         Height = 586
         Properties.ActivePage = cxTabExames
+        ExplicitWidth = 1091
+        ExplicitHeight = 586
         ClientRectBottom = 580
         ClientRectRight = 1085
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
+          ExplicitWidth = 1083
+          ExplicitHeight = 552
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 1083
             Height = 552
+            ExplicitWidth = 1083
+            ExplicitHeight = 552
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'tbp_id'
             end
@@ -96,8 +104,6 @@ inherited frm_table_price: Tfrm_table_price
         end
         object cxTabExames: TcxTabSheet
           Caption = 'Exames da  Tabela'
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -106,14 +112,11 @@ inherited frm_table_price: Tfrm_table_price
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitWidth = 986
-            ExplicitHeight = 472
             object cxGrid2: TcxGrid
               Left = 17
               Top = 38
               Width = 720
               Height = 251
-              Align = alClient
               TabOrder = 0
               object cxGrid2DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
@@ -258,8 +261,6 @@ inherited frm_table_price: Tfrm_table_price
         object cxTabAlterarPreco: TcxTabSheet
           Caption = 'Alterar Pre'#231'o dos Exames'
           OnShow = cxTabAlterarPrecoShow
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
@@ -268,8 +269,6 @@ inherited frm_table_price: Tfrm_table_price
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitWidth = 986
-            ExplicitHeight = 472
             object cxRadioDesconto: TcxRadioButton
               Left = 17
               Top = 309
@@ -494,6 +493,7 @@ inherited frm_table_price: Tfrm_table_price
   end
   inherited dxBarDockControl_1: TdxBarDockControl
     Width = 1105
+    ExplicitWidth = 1105
   end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar6: TdxBar

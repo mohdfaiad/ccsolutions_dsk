@@ -17,10 +17,6 @@ inherited frm_scheduling: Tfrm_scheduling
           ExplicitHeight = 505
           inherited grid_1: TcxGrid
             inherited grid_1DBTableView1: TcxGridDBTableView
-              object grid_1DBTableView1sch_cod: TcxGridDBColumn
-                Caption = 'Codigo'
-                DataBinding.FieldName = 'sch_cod'
-              end
               object grid_1DBTableView1sch_id: TcxGridDBColumn
                 Caption = 'C'#243'digo ID'
                 DataBinding.FieldName = 'sch_id'

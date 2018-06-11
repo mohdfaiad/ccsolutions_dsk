@@ -96,7 +96,6 @@ type
     qrysch_datetime: TDateTimeField;
     qrysch_description: TStringField;
     qrysch_dt_registration: TDateTimeField;
-    grid_1DBTableView1sch_cod: TcxGridDBColumn;
     grid_1DBTableView1sch_id: TcxGridDBColumn;
     grid_1DBTableView1sch_datetime: TcxGridDBColumn;
     grid_1DBTableView1sch_description: TcxGridDBColumn;

@@ -67,7 +67,6 @@ type
     cxGroupBox3: TcxGroupBox;
     cxGrid1: TcxGrid;
     cxGrid1DBTableView1: TcxGridDBTableView;
-    cxGrid1DBTableView1roe_cod: TcxGridDBColumn;
     cxGrid1DBTableView1role_rol_cod: TcxGridDBColumn;
     cxGrid1DBTableView1roe_id: TcxGridDBColumn;
     cxGrid1DBTableView1roe_dt_registration: TcxGridDBColumn;
@@ -83,7 +82,6 @@ type
     qryempCod_Doctor: TStringField;
     qry_doctorCodEmployee: TStringField;
     qryemp_cod: TBytesField;
-    grid_1DBTableView1employee_emp_cod: TcxGridDBColumn;
     grid_1DBTableView1doc_id: TcxGridDBColumn;
     grid_1DBTableView1doc_status: TcxGridDBColumn;
     grid_1DBTableView1doc_dt_registration: TcxGridDBColumn;

@@ -295,14 +295,15 @@ type
     qry_client_insirancecin_cod: TBytesField;
     qry_client_insiranceinsurance_ins_cod: TBytesField;
     qry_client_insirancecin_id: TLongWordField;
-    qryClientCod: TStringField;
     qry_insuranceins_cod: TBytesField;
     qry_insurancetable_price_tbp_cod: TBytesField;
-    cxGrid1DBTableView1cin_id: TcxGridDBColumn;
-    cxGrid1DBTableView1cin_dt_registration: TcxGridDBColumn;
-    cxGrid1DBTableView1cin_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1insurance_ins_cod: TcxGridDBColumn;
     qry_insurancecodInsurance: TStringField;
+    qry_client_insiranceClientCod: TStringField;
+    qryClientCod: TStringField;
+    qry_client_insiranceins_first_name: TStringField;
+    cxGrid1DBTableView1cin_id: TcxGridDBColumn;
+    cxGrid1DBTableView1ins_first_name: TcxGridDBColumn;
+    cxGrid1DBTableView1cin_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);
@@ -331,8 +332,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure tabLaboratorioShow(Sender: TObject);
     procedure cxGrid1DBTableView1insurance_ins_idPropertiesCloseUp(Sender: TObject);
-    procedure cxGrid1DBTableView1insurance_ins_codPropertiesCloseUp(Sender: TObject);
     procedure qry_client_insiranceBeforePost(DataSet: TDataSet);
+    procedure cxGrid1DBTableView1ins_first_namePropertiesCloseUp(Sender: TObject);
   private
     { Private declarations }
     cep:Integer;
@@ -513,11 +514,14 @@ end;
 
 procedure Tfrm_client.AtualizarConvenios;
 begin
+
   //Select para Atualizadr a Grid de Convenios do cliente----------------
    qry_client_insirance.Close;
-   qry_client_insirance.sql.Text:=  ' select client_insurance.*, hex(cin_cod) as codCliInsirance from client_insurance      '+
-                                    ' where client_cli_cod =:cli_cod and cin_deleted_at is null ' ;
-   qry_client_insirance.ParamByName('CLI_COD').Value := qrycli_cod.Value;
+   qry_client_insirance.sql.Text:= ' select client_insurance.*, ins_first_name, hex(cin_cod) as codCliInsirance,  '+
+                                   ' hex(client_cli_cod)as ClientCod from client_insurance                        '+
+                                   ' left join insurance on insurance_ins_cod = ins_cod                           '+
+                                   ' where client_cli_cod =:cli_cod and cin_deleted_at is null ';
+   qry_client_insirance.ParamByName('CLI_COD').Value :=qrycli_cod.Value;
    qry_client_insirance.prepare;
    qry_client_insirance.open;
 
@@ -701,45 +705,6 @@ if Application.MessageBox('Deseja associar esse código sippulse para este client
 end;
 end;
 
-procedure Tfrm_client.cxGrid1DBTableView1insurance_ins_codPropertiesCloseUp(Sender: TObject);
-begin
-  inherited;
-
-   with frm_dm.qry3,sql do
-     begin
-       close;
-       Text :=' select * from client_insurance ' +
-              ' where client_cli_cod ='+qryCodClient.AsString+' and insurance_ins_cod ='+qry_insurancecodInsurance.AsString+' and cin_deleted_at is null ';
-
-       Prepare;
-       Open;
-
-       if RecordCount >0 then
-        begin
-          Application.MessageBox('A Convênio selecionada já existe para este cliente !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
-
-           with frm_dm.qry,sql do
-           begin
-            Close;
-            Text:= ' delete from client_insurance ' +
-                   ' where cin_cod = ' + cin_cod;
-            Prepare;
-            ExecSQL;
-           end;
-
-         end else
-          begin
-          if not (qry_client_insirance.State in [dsEdit]) then
-           qry_client_insirance.Edit;
-           qry_client_insiranceinsurance_ins_cod.Value:=qry_insuranceins_cod.Value;
-           qry_client_insirance.Post;
-          end;
-
-     end;
-    //--------------------------------------
-     AtualizarConvenios;
-end;
-
 procedure Tfrm_client.cxGrid1DBTableView1insurance_ins_idPropertiesCloseUp(Sender: TObject);
 begin
   inherited;
@@ -778,6 +743,43 @@ begin
 //    //--------------------------------------
 //    AtualizarConvenios;
 
+end;
+
+procedure Tfrm_client.cxGrid1DBTableView1ins_first_namePropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+      with frm_dm.qry3,sql do
+     begin
+       close;
+       Text :=' select * from client_insurance            ' +
+              ' where client_cli_cod ='+qryCodClient.AsString+' and insurance_ins_cod = '+qry_insurancecodInsurance.AsString+' and cin_deleted_at is null ';
+       Prepare;
+       Open;
+
+       if RecordCount >0 then
+        begin
+          Application.MessageBox('A Convênio selecionada já existe para este cliente !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+
+           with frm_dm.qry,sql do
+           begin
+            Close;
+            Text:= ' delete from client_insurance ' +
+                   ' where cin_cod = ' + cin_cod;
+            Prepare;
+            ExecSQL;
+           end;
+        end else
+        begin
+          if not (qry_client_insirance.State in [dsEdit]) then
+           qry_client_insirance.Edit;
+           qry_client_insiranceinsurance_ins_cod.Value := qry_insuranceins_cod.Value;
+           qry_client_insirance.Post;
+           qry_client_insirance.ApplyUpdates(0);
+        end;
+
+     end;
+    //--------------------------------------
+    AtualizarConvenios;
 end;
 
 procedure Tfrm_client.cxTabSheet_addressShow(Sender: TObject);
@@ -862,9 +864,8 @@ begin
    ExecSQL;
   end;
 
-   //Select para retornar o registro inserido acima -----------------
-   AtualizarConvenios;
-
+   //Select para Atualizadr a Grid de Convenios do cliente----------------
+    AtualizarConvenios;
 end;
 
 procedure Tfrm_client.qry_client_insiranceBeforePost(DataSet: TDataSet);

@@ -41,9 +41,6 @@ inherited frm_employee_: Tfrm_employee_
             ExplicitWidth = 948
             ExplicitHeight = 563
             inherited grid_1DBTableView1: TcxGridDBTableView
-              object grid_1DBTableView1emp_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'emp_cod'
-              end
               object grid_1DBTableView1emp_id: TcxGridDBColumn
                 Caption = 'C'#243'digo ID'
                 DataBinding.FieldName = 'emp_id'
@@ -149,64 +146,95 @@ inherited frm_employee_: Tfrm_employee_
                 Width = 100
               end
               object grid_1DBTableView1rec_status_marital: TcxGridDBColumn
+                Caption = 'Estado Civil'
                 DataBinding.FieldName = 'rec_status_marital'
               end
               object grid_1DBTableView1rec_nationality: TcxGridDBColumn
+                Caption = 'Nacionalidade'
                 DataBinding.FieldName = 'rec_nationality'
               end
               object grid_1DBTableView1rec_naturalness_uf: TcxGridDBColumn
+                Caption = 'UF Naturalidade'
                 DataBinding.FieldName = 'rec_naturalness_uf'
+                Width = 100
               end
               object grid_1DBTableView1rec_naturalness_city: TcxGridDBColumn
+                Caption = 'Cidade Naturalidade'
                 DataBinding.FieldName = 'rec_naturalness_city'
+                Width = 150
               end
               object grid_1DBTableView1rec_father_name: TcxGridDBColumn
+                Caption = 'Pai'
                 DataBinding.FieldName = 'rec_father_name'
+                Width = 200
               end
               object grid_1DBTableView1rec_mother_name: TcxGridDBColumn
+                Caption = 'M'#227'e'
                 DataBinding.FieldName = 'rec_mother_name'
+                Width = 200
               end
               object grid_1DBTableView1rec_add_zipcode: TcxGridDBColumn
+                Caption = 'CEP'
                 DataBinding.FieldName = 'rec_add_zipcode'
               end
               object grid_1DBTableView1rec_add_address: TcxGridDBColumn
+                Caption = 'Endere'#231'o'
                 DataBinding.FieldName = 'rec_add_address'
+                Width = 200
               end
               object grid_1DBTableView1rec_add_number: TcxGridDBColumn
+                Caption = 'N'#186' Casa'
                 DataBinding.FieldName = 'rec_add_number'
               end
               object grid_1DBTableView1rec_add_street: TcxGridDBColumn
+                Caption = 'Bairro'
                 DataBinding.FieldName = 'rec_add_street'
+                Width = 150
               end
               object grid_1DBTableView1rec_add_complement: TcxGridDBColumn
+                Caption = 'Complemento'
                 DataBinding.FieldName = 'rec_add_complement'
+                Width = 150
               end
               object grid_1DBTableView1rec_add_city: TcxGridDBColumn
+                Caption = 'Cidade'
                 DataBinding.FieldName = 'rec_add_city'
+                Width = 150
               end
               object grid_1DBTableView1rec_add_state: TcxGridDBColumn
+                Caption = 'UF'
                 DataBinding.FieldName = 'rec_add_state'
               end
               object grid_1DBTableView1rec_add_country: TcxGridDBColumn
+                Caption = 'Pa'#237's'
                 DataBinding.FieldName = 'rec_add_country'
+                Width = 120
               end
               object grid_1DBTableView1rec_phone1: TcxGridDBColumn
+                Caption = 'tel 01'
                 DataBinding.FieldName = 'rec_phone1'
               end
               object grid_1DBTableView1rec_phone2: TcxGridDBColumn
+                Caption = 'Tel 02'
                 DataBinding.FieldName = 'rec_phone2'
               end
               object grid_1DBTableView1rec_phone3: TcxGridDBColumn
+                Caption = 'Tel 03'
                 DataBinding.FieldName = 'rec_phone3'
               end
               object grid_1DBTableView1rec_phone4: TcxGridDBColumn
+                Caption = 'Tel 04'
                 DataBinding.FieldName = 'rec_phone4'
               end
               object grid_1DBTableView1rec_contact: TcxGridDBColumn
+                Caption = 'Contato'
                 DataBinding.FieldName = 'rec_contact'
+                Width = 150
               end
               object grid_1DBTableView1emp_dt_registration: TcxGridDBColumn
+                Caption = 'Dt. Reg'
                 DataBinding.FieldName = 'emp_dt_registration'
+                Width = 110
               end
             end
             object cxGridDBTableView1: TcxGridDBTableView [1]
@@ -350,7 +378,6 @@ inherited frm_employee_: Tfrm_employee_
       inherited pgctrl_3: TcxPageControl
         Width = 962
         Height = 602
-        Properties.ActivePage = cxTabSheet1
         ExplicitWidth = 962
         ExplicitHeight = 602
         ClientRectBottom = 596

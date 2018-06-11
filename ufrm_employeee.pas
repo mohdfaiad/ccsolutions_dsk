@@ -253,7 +253,6 @@ type
     cxLabel4: TcxLabel;
     edtNome: TcxTextEdit;
     cxLabel3: TcxLabel;
-    grid_1DBTableView1emp_cod: TcxGridDBColumn;
     grid_1DBTableView1emp_id: TcxGridDBColumn;
     grid_1DBTableView1emp_type: TcxGridDBColumn;
     grid_1DBTableView1emp_status: TcxGridDBColumn;

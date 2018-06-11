@@ -42,7 +42,6 @@ type
     cxDBCurrencyEdit1: TcxDBCurrencyEdit;
     dxLayoutItem4: TdxLayoutItem;
     cxGrid_1DBTableView1rol_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1rol_name: TcxGridDBColumn;
     cxGrid_1DBTableView1rol_base_salary: TcxGridDBColumn;
     cxGrid_1DBTableView1rol_dt_registration: TcxGridDBColumn;

@@ -4,7 +4,6 @@ inherited frm_role: Tfrm_role
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -14,22 +13,22 @@ inherited frm_role: Tfrm_role
         ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1rol_id: TcxGridDBColumn
+            Caption = 'C'#243'digo ID'
             DataBinding.FieldName = 'rol_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
-            Width = 75
+            Width = 70
           end
           object cxGrid_1DBTableView1rol_name: TcxGridDBColumn
+            Caption = 'Cargo/Fun'#231#227'o'
             DataBinding.FieldName = 'rol_name'
             Width = 250
           end
           object cxGrid_1DBTableView1rol_base_salary: TcxGridDBColumn
+            Caption = 'Sal'#225'rio'
             DataBinding.FieldName = 'rol_base_salary'
             Width = 100
           end
           object cxGrid_1DBTableView1rol_dt_registration: TcxGridDBColumn
+            Caption = 'Dt. Reg'
             DataBinding.FieldName = 'rol_dt_registration'
             Width = 125
           end

@@ -27,7 +27,7 @@ uses
   dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
   dxRibbon, dxGDIPlusClasses, ufrm_login, ufrm_client, ufrm_contract, ufrm_contract_user,
    ufrm_enterprise, ufrm_phonebook, ufrm_report, ufrm_insurance,
-  ufrm_exam, ufrm_material, Vcl.StdCtrls, Vcl.Buttons;
+  ufrm_exam, ufrm_material, Vcl.StdCtrls, Vcl.Buttons, ufrm_requisition_type;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -70,6 +70,7 @@ type
     dxBarLargeButton12: TdxBarLargeButton;
     dxBarLargeButton13: TdxBarLargeButton;
     dxBarLargeButton14: TdxBarLargeButton;
+    dxBarLargeButton15: TdxBarLargeButton;
     procedure Action_contract_userExecute(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_clientExecute(Sender: TObject);
@@ -87,6 +88,7 @@ type
     procedure dxBarLargeButton13Click(Sender: TObject);
     procedure Action_materialExecute(Sender: TObject);
     procedure dxBarLargeButton14Click(Sender: TObject);
+    procedure dxBarLargeButton15Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -197,6 +199,20 @@ begin
   end else begin
     frm_scheduling.WindowState := wsNormal;
     frm_scheduling.Show;
+  end;
+end;
+
+procedure Tfrm_main.dxBarLargeButton15Click(Sender: TObject);
+begin
+  inherited;
+    if not Assigned(frm_requisition_type) then begin
+    frm_requisition_type := Tfrm_requisition_type.Create(Self);
+    frm_requisition_type.Height := Bevel_1.Height;
+    frm_requisition_type.Width := Bevel_1.Width;
+    frm_requisition_type.Show;
+  end else begin
+    frm_requisition_type.WindowState := wsNormal;
+    frm_requisition_type.Show;
   end;
 end;
 

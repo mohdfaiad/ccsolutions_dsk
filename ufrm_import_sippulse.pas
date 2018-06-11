@@ -88,7 +88,6 @@ type
     qry_clientcli_add_del_country: TStringField;
     qry_clientcli_day_maturity: TIntegerField;
     qry_clientcli_dt_birthopen: TDateField;
-    qry_clientcli_account_code_sippulse: TStringField;
     qry_clientcli_status: TStringField;
     qry_clientcli_deleted_at: TDateTimeField;
     qry_clientcli_dt_registration: TDateTimeField;
@@ -322,7 +321,7 @@ Var
   wdHoras, wdMinutos, wdSegundos: Word;
 begin
 procTeste.Prepare;
-procTeste.ParamByName('p_ctr_id').AsLargeInt:=1;//frm_dm.qry_contractctr_id.AsLargeInt;
+procTeste.ParamByName('p_ctr_id').AsLargeInt:=frm_dm.qry_contractctr_id.AsLargeInt;
 procTeste.ParamByName('p_cli_account_code_sippulse').AsString:=qrycli_account_code_sippulse.AsString;
 procTeste.ParamByName('p_imp_from').AsString:=qryimp_from.AsString;
 procTeste.ParamByName('p_imp_to').AsString:=qryimp_to.AsString;

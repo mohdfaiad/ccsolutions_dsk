@@ -519,12 +519,15 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         DataSetName = 'ligacoes'
       end
       item
+        DataSet = frm_telephony_report.frxDBDataset3
         DataSetName = 'qry_grafico_total'
       end
       item
+        DataSet = frm_telephony_report.frxDBDataset2
         DataSetName = 'qry_grafico2'
       end
       item
+        DataSet = frm_telephony_report.frxDBDataset_import_call_log
         DataSetName = 'qry_importLocal'
       end>
     Variables = <
@@ -3047,6 +3050,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         Top = 313.700990000000000000
         Width = 718.110700000000000000
         OnAfterPrint = 'MasterData1OnAfterPrint'
+        DataSet = frm_telephony_report.frxDBDataset_import_call_log
         DataSetName = 'qry_importLocal'
         RowCount = 0
         object Memo3: TfrxMemoView
@@ -6088,6 +6092,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Top = 6.779530000000000000
           Width = 90.708720000000000000
           Height = 18.897650000000000000
+          DataSet = frm_telephony_report.frxDBDataset3
           DataSetName = 'qry_grafico_total'
           DisplayFormat.FormatStr = '%2.0n'
           DisplayFormat.Kind = fkNumeric
@@ -6123,6 +6128,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           Top = 6.779529999999990000
           Width = 68.031540000000000000
           Height = 18.897650000000000000
+          DataSet = frm_telephony_report.frxDBDataset3
           DataSetName = 'qry_grafico_total'
           DisplayFormat.FormatStr = '%2.2n'
           DisplayFormat.Kind = fkNumeric
@@ -6238,6 +6244,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
           item
             InheritedName = 'TfrxSeriesItem2'
             DataType = dtDBData
+            DataSet = frm_telephony_report.frxDBDataset2
             DataSetName = 'qry_grafico2'
             SortOrder = soNone
             TopN = -1
@@ -8731,23 +8738,14 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     Top = 48
   end
   object qry_client: TFDQuery
-    IndexFieldNames = 'cli_account_code_sippulse'
-    MasterSource = ds
-    MasterFields = 'cli_account_code_sippulse'
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from client'
-      'where cli_account_code_sippulse =:cli_account_code_sippulse')
+      'select * from client')
     Left = 440
     Top = 128
-    ParamData = <
-      item
-        Name = 'CLI_ACCOUNT_CODE_SIPPULSE'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 50
-        Value = 'client9@sip.logicpro.com.br'
-      end>
     object qry_clientcli_cod: TBytesField
       FieldName = 'cli_cod'
       Required = True
@@ -8920,10 +8918,6 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     object qry_clientcli_dt_birthopen: TDateField
       FieldName = 'cli_dt_birthopen'
     end
-    object qry_clientcli_account_code_sippulse: TStringField
-      FieldName = 'cli_account_code_sippulse'
-      Size = 65
-    end
     object qry_clientcli_status: TStringField
       FieldName = 'cli_status'
       FixedChar = True
@@ -8946,6 +8940,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
   end
   object qryConsultla: TFDQuery
     IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (

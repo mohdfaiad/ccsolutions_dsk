@@ -101,6 +101,7 @@ type
     frxDBDataset3: TfrxDBDataset;
     cxCheckBoxAll: TcxCheckBox;
     cxProgressBar: TcxProgressBar;
+    qrycli_add_bus_street: TStringField;
     procedure cxButtonConsultarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure cxButtonPrintClick(Sender: TObject);
@@ -141,7 +142,7 @@ cxCheckListBoxClientSelecionado.Items.Clear;
 listaCliId.Clear;
 while not qry.Eof do
 begin
-  cxCheckListBoxClientSelecionado.AddItem(qrycli_first_name.AsString);
+  cxCheckListBoxClientSelecionado.AddItem(qrycli_first_name.AsString + ' - ' + qrycli_add_bus_street.AsString);
   listaCliId.Add(qrycli_id.AsString);
   qry.Next;
 end;
@@ -209,9 +210,7 @@ cxProgressBar.Position:=0;
        CreateDir(pathPDF);
 
       frxReportConta.LoadFromFile('C:\ccsolutions_dsk\reports\rep_relatorio_ligacoes_v2.fr3' ) ;
-      frxPDFExport1.FileName := cxCheckListBoxClientSelecionado.Items.Items[i].Text +  ' - '  +
-                               FormatDateTime('yyyyMMdd', Date) +
-                               FormatDateTime('hhMMss',Time) +   '.pdf';
+      frxPDFExport1.FileName := cxCheckListBoxClientSelecionado.Items.Items[i].Text +  '.pdf';
       frxPDFExport1.DefaultPath := pathPDF + '\';
       frxPDFExport1.ShowDialog := False;
       frxPDFExport1.ShowProgress := False;

@@ -215,9 +215,10 @@ inherited frm_telephony_report: Tfrm_telephony_report
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
-        'select cli_first_name,cli_cod,cli_id from client'#10'where cli_cod i' +
-        'n (select client_cli_cod from import_call_log'#10'where imp_date bet' +
-        'ween :ini and :fin);')
+        'select cli_first_name,cli_cod,cli_id,cli_add_bus_street from cli' +
+        'ent'#10'where cli_cod in (select client_cli_cod from import_call_log' +
+        #10'where imp_date between :ini and :fin)'
+      'order by cli_first_name')
     Left = 632
     Top = 336
     ParamData = <
@@ -250,6 +251,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
       FieldName = 'cli_id'
       Origin = 'cli_id'
     end
+    object qrycli_add_bus_street: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_add_bus_street'
+      Origin = 'cli_add_bus_street'
+      Size = 45
+    end
   end
   inherited ds: TDataSource
     Left = 632
@@ -272,7 +279,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
     PrintOptions.Printer = 'Padr'#227'o'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43147.480269664400000000
-    ReportOptions.LastChange = 43259.888095081020000000
+    ReportOptions.LastChange = 43262.721852395840000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -559,7 +566,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         object Picture1: TfrxPictureView
           ShiftMode = smWhenOverlapped
           Left = 7.559060000000000000
-          Top = 3.000000000000000000
+          Top = 2.000000000000000000
           Width = 98.267780000000000000
           Height = 60.472480000000000000
           Center = True
@@ -3261,9 +3268,9 @@ inherited frm_telephony_report: Tfrm_telephony_report
         end
         object Picture2: TfrxPictureView
           Left = 11.338590000000000000
-          Top = 14.338590000000000000
+          Top = 11.338590000000000000
           Width = 136.063080000000000000
-          Height = 75.590600000000000000
+          Height = 83.149660000000000000
           Frame.Typ = []
           Picture.Data = {
             0A54504E474F626A65637489504E470D0A1A0A0000000D494844520000054800
@@ -5992,9 +5999,8 @@ inherited frm_telephony_report: Tfrm_telephony_report
       BottomMargin = 10.000000000000000000
       Frame.Typ = []
       object Chart1: TfrxChartView
-        Left = 27.488250000000000000
-        Top = 238.834880000000000000
-        Width = 474.984540000000000000
+        Top = 254.668213330000000000
+        Width = 711.866420000000000000
         Height = 357.098640000000000000
         HighlightColor = clBlack
         Frame.Typ = []
@@ -6051,10 +6057,9 @@ inherited frm_telephony_report: Tfrm_telephony_report
           end>
       end
       object Chart2: TfrxChartView
-        Left = -20.000000000000000000
-        Top = 758.000000000000000000
-        Width = 721.890230000000000000
-        Height = 291.023810000000000000
+        Top = 688.666666670000000000
+        Width = 718.110700000000000000
+        Height = 348.357143330000000000
         HighlightColor = clBlack
         Frame.Typ = []
         Chart = {
@@ -6103,7 +6108,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         end
         object Picture3: TfrxPictureView
           Left = 11.338590000000000000
-          Top = 15.338590000000000000
+          Top = 14.338590000000000000
           Width = 136.063080000000000000
           Height = 83.149660000000000000
           Frame.Typ = []

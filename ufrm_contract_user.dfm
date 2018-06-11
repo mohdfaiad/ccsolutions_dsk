@@ -14,46 +14,72 @@ inherited frm_contract_user: Tfrm_contract_user
     ExplicitWidth = 1129
     ClientRectRight = 1123
     inherited tbsht_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
       ExplicitWidth = 1121
+      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
         Width = 1121
         ExplicitWidth = 1121
         ClientRectRight = 1115
         inherited tbsht_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 27
           ExplicitWidth = 1113
+          ExplicitHeight = 505
           inherited grid_1: TcxGrid
             Width = 1107
             ExplicitWidth = 1107
             inherited grid_1DBTableView1: TcxGridDBTableView
               object grid_1DBTableView1ctr_usr_id: TcxGridDBColumn
+                Caption = 'C'#243'd. ID'
                 DataBinding.FieldName = 'ctr_usr_id'
+                Width = 60
               end
               object grid_1DBTableView1ctr_usr_first_name: TcxGridDBColumn
+                Caption = 'Primeiro Nome'
                 DataBinding.FieldName = 'ctr_usr_first_name'
+                Width = 250
               end
               object grid_1DBTableView1ctr_usr_last_name: TcxGridDBColumn
+                Caption = #218'ltimo Nome'
                 DataBinding.FieldName = 'ctr_usr_last_name'
+                Width = 250
               end
               object grid_1DBTableView1ctr_usr_username: TcxGridDBColumn
+                Caption = 'Login'
                 DataBinding.FieldName = 'ctr_usr_username'
+                Width = 200
               end
               object grid_1DBTableView1ctr_usr_email: TcxGridDBColumn
+                Caption = 'email'
                 DataBinding.FieldName = 'ctr_usr_email'
+                Width = 250
               end
               object grid_1DBTableView1ctr_usr_dt_birth: TcxGridDBColumn
+                Caption = 'Dt. Anivers'#225'rio'
                 DataBinding.FieldName = 'ctr_usr_dt_birth'
+                Width = 100
               end
               object grid_1DBTableView1ctr_usr_logged: TcxGridDBColumn
+                Caption = 'Logado'
                 DataBinding.FieldName = 'ctr_usr_logged'
+                Width = 45
               end
               object grid_1DBTableView1ctr_usr_admin: TcxGridDBColumn
+                Caption = 'Admin.'
                 DataBinding.FieldName = 'ctr_usr_admin'
+                Width = 50
               end
               object grid_1DBTableView1ctr_usr_status: TcxGridDBColumn
+                Caption = 'Status'
                 DataBinding.FieldName = 'ctr_usr_status'
+                Width = 50
               end
               object grid_1DBTableView1ctr_usr_dt_registration: TcxGridDBColumn
+                Caption = 'Dt. Registro'
                 DataBinding.FieldName = 'ctr_usr_dt_registration'
+                Width = 120
               end
             end
             object cxGridDBTableView1: TcxGridDBTableView [1]
@@ -118,7 +144,10 @@ inherited frm_contract_user: Tfrm_contract_user
     end
     inherited tbsht_2: TcxTabSheet
       OnShow = tbsht_2Show
+      ExplicitLeft = 2
+      ExplicitTop = 27
       ExplicitWidth = 1121
+      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         Width = 1121
         Properties.ActivePage = tbsht_6
@@ -817,7 +846,6 @@ inherited frm_contract_user: Tfrm_contract_user
               Items = <>
               TabOrder = 1
               OnClickCheck = cxListMenuClickCheck
-              ExplicitTop = 9
             end
           end
         end
@@ -832,6 +860,7 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitWidth = 1093
       inherited chkbox_1: TcxCheckBox
         ExplicitWidth = 1093
+        ExplicitHeight = 32
       end
     end
   end

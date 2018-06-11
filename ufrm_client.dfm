@@ -186,7 +186,7 @@ inherited frm_client: Tfrm_client
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         Height = 596
-        Properties.ActivePage = tabLaboratorio
+        Properties.ActivePage = tabTelefonia
         ExplicitHeight = 596
         ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet

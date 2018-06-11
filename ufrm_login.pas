@@ -151,15 +151,15 @@ begin
      SQL := 'set @po_valid_user = 0;'+
             'set @po_contract_ctr_cod = 0;'+
             'set @po_ctr_usr_username = 0;'+
+            ' set @po_ctr_usr_admin = 0;'+
             'call proc_access_signin('+ edt_contract.Text +', '+ QuotedStr(edt_username.Text) +', '+ QuotedStr(edt_password.Text) +', '+
-            '@po_valid_user, @po_contract_ctr_cod, @po_ctr_usr_cod, @po_ctr_usr_username);'+
-            'select @po_valid_user, hex(@po_contract_ctr_cod), hex(@po_ctr_usr_cod), @po_ctr_usr_username';
+            '@po_valid_user, @po_contract_ctr_cod, @po_ctr_usr_cod, @po_ctr_usr_username,@po_ctr_usr_admin);'+
+            'select @po_valid_user, hex(@po_contract_ctr_cod), hex(@po_ctr_usr_cod), @po_ctr_usr_username,@po_ctr_usr_admin';
 
      frm_dm.qry_signin.Close;
      frm_dm.qry_signin.SQL.Clear;
      frm_dm.qry_signin.SQL.Text:= SQL;
      frm_dm.qry_signin.Open;
-
 
      frm_dm.v_contract_ctr_cod := '0x' +  frm_dm.qry_signin.FieldByName('hex(@po_contract_ctr_cod)').Value;
      frm_dm.v_ctr_usr_cod := '0x' +  frm_dm.qry_signin.FieldByName('hex(@po_ctr_usr_cod)').Value;
@@ -168,6 +168,7 @@ begin
      frm_dm.p_contract_ctr_cod := frm_dm.qry_signin.FieldByName('hex(@po_contract_ctr_cod)').Value;
      frm_dm.p_ctr_usr_cod      := frm_dm.qry_signin.FieldByName('hex(@po_ctr_usr_cod)').Value;
      frm_dm.v_nome_usuario     := frm_dm.qry_signin.FieldByName('@po_ctr_usr_username').Value;
+     frm_dm.v_ctr_usr_admin    := frm_dm.qry_signin.FieldByName('@po_ctr_usr_admin').Value;
 
   frm_dm.qry_contract.Close;
   frm_dm.qry_contract.sql.Text:='select ctr_cod, ctr_id from contract where ctr_cod = ' + frm_dm.v_contract_ctr_cod;

@@ -47,7 +47,8 @@ uses
   ufrm_scheduling_clinical2 in '..\ufrm_scheduling_clinical2.pas' {frm_scheduling_clinical2},
   Contract_User_Action.Dao in '..\Dao\Contract_User_Action.Dao.pas',
   ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
-  ufrm_material in '..\ufrm_material.pas' {frm_material};
+  ufrm_material in '..\ufrm_material.pas' {frm_material},
+  ufrm_requisition_type in '..\ufrm_requisition_type.pas' {frm_requisition_type};
 
 {$R *.res}
 begin

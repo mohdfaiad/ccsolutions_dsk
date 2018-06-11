@@ -2,7 +2,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   Caption = 'frm_scheduling_clinical'
   ClientHeight = 836
   ClientWidth = 1166
-  ExplicitTop = 1
   ExplicitWidth = 1182
   ExplicitHeight = 875
   PixelsPerInch = 96
@@ -14,48 +13,38 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   inherited pgctrl_1: TcxPageControl
     Width = 1166
     Height = 746
-    ExplicitLeft = 1
-    ExplicitTop = 51
     ExplicitWidth = 1166
     ExplicitHeight = 746
     ClientRectBottom = 740
     ClientRectRight = 1160
     inherited tbsht_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
       ExplicitWidth = 1158
-      ExplicitHeight = 548
+      ExplicitHeight = 713
       inherited pgctrl_2: TcxPageControl
         Width = 1158
         Height = 713
         ExplicitWidth = 1158
-        ExplicitHeight = 548
+        ExplicitHeight = 713
         ClientRectBottom = 707
         ClientRectRight = 1152
         inherited tbsht_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 27
           ExplicitWidth = 1150
-          ExplicitHeight = 515
+          ExplicitHeight = 680
           inherited grid_1: TcxGrid
             Width = 1144
             Height = 674
             ExplicitWidth = 1144
-            ExplicitHeight = 509
+            ExplicitHeight = 674
             inherited grid_1DBTableView1: TcxGridDBTableView
               object grid_1DBTableView1req_cod: TcxGridDBColumn
                 DataBinding.FieldName = 'req_cod'
               end
-              object grid_1DBTableView1contract_ctr_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'contract_ctr_cod'
-              end
               object grid_1DBTableView1client_cli_cod: TcxGridDBColumn
                 DataBinding.FieldName = 'client_cli_cod'
-              end
-              object grid_1DBTableView1enterprise_ent_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'enterprise_ent_cod'
-              end
-              object grid_1DBTableView1requisition_type_ret_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'requisition_type_ret_cod'
-              end
-              object grid_1DBTableView1insurance_ins_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'insurance_ins_cod'
               end
               object grid_1DBTableView1ret_name: TcxGridDBColumn
                 DataBinding.FieldName = 'ret_name'
@@ -133,18 +122,18 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     end
     inherited tbsht_2: TcxTabSheet
       ExplicitWidth = 1158
-      ExplicitHeight = 548
+      ExplicitHeight = 713
       inherited pgctrl_3: TcxPageControl
         Width = 1158
         Height = 713
         ExplicitWidth = 1158
-        ExplicitHeight = 548
+        ExplicitHeight = 713
         ClientRectBottom = 707
         ClientRectRight = 1152
         inherited tbsht_5: TcxTabSheet
           OnShow = tbsht_5Show
           ExplicitWidth = 1150
-          ExplicitHeight = 515
+          ExplicitHeight = 680
           inherited grb_top: TcxGroupBox
             ExplicitWidth = 1144
             Width = 1144
@@ -391,10 +380,10 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               Transparent = True
             end
             object cxGrid2: TcxGrid
-              Left = 646
-              Top = 22
-              Width = 478
-              Height = 200
+              Left = 562
+              Top = -9
+              Width = 403
+              Height = 115
               TabOrder = 19
               object cxGrid2DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
@@ -452,9 +441,9 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                 Navigator.Buttons.Next.ImageIndex = 2
                 Navigator.Buttons.NextPage.Visible = False
                 Navigator.Buttons.Last.ImageIndex = 1
-                Navigator.Buttons.Insert.Visible = False
-                Navigator.Buttons.Append.ImageIndex = 4
-                Navigator.Buttons.Append.Visible = True
+                Navigator.Buttons.Insert.ImageIndex = 4
+                Navigator.Buttons.Insert.Visible = True
+                Navigator.Buttons.Append.Visible = False
                 Navigator.Buttons.Delete.ImageIndex = 8
                 Navigator.Buttons.Edit.ImageIndex = 5
                 Navigator.Buttons.Post.ImageIndex = 6
@@ -492,24 +481,26 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                   DataBinding.FieldName = 'rol_name'
                   PropertiesClassName = 'TcxLookupComboBoxProperties'
                   Properties.GridMode = True
-                  Properties.KeyFieldNames = 'rolCod'
+                  Properties.KeyFieldNames = 'rol_name'
                   Properties.ListColumns = <
                     item
                       FieldName = 'rol_name'
                     end>
                   Properties.ListSource = dsRolee02
+                  Properties.OnCloseUp = cxGrid3DBTableView1rol_namePropertiesCloseUp
                   Width = 200
                 end
                 object cxGrid3DBTableView1rec_name: TcxGridDBColumn
                   DataBinding.FieldName = 'rec_name'
                   PropertiesClassName = 'TcxLookupComboBoxProperties'
                   Properties.GridMode = True
-                  Properties.KeyFieldNames = 'codDoctor'
+                  Properties.KeyFieldNames = 'rec_name'
                   Properties.ListColumns = <
                     item
                       FieldName = 'rec_name'
                     end>
                   Properties.ListSource = ds_doctor_role
+                  Properties.OnCloseUp = cxGrid3DBTableView1rec_namePropertiesCloseUp
                   Width = 200
                 end
                 object cxGrid3DBTableView1rsh_status: TcxGridDBColumn
@@ -539,6 +530,70 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               TabOrder = 21
               Width = 141
             end
+            object DBGrid1: TDBGrid
+              Left = 600
+              Top = 166
+              Width = 486
+              Height = 91
+              DataSource = ds_requisition_sheduling02
+              TabOrder = 22
+              TitleFont.Charset = DEFAULT_CHARSET
+              TitleFont.Color = clWindowText
+              TitleFont.Height = -11
+              TitleFont.Name = 'Tahoma'
+              TitleFont.Style = []
+              Columns = <
+                item
+                  Expanded = False
+                  FieldName = 'contract_ctr_cod'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'requisition_req_cod'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'scheduling_sch_cod'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'rsh_id'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'rsh_status'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'rsh_dt_registration'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'sch_datetime'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'sch_description'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'rec_name'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'rol_name'
+                  Visible = True
+                end>
+            end
           end
         end
       end
@@ -547,7 +602,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   inherited stsbar_1: TdxStatusBar
     Top = 801
     Width = 1166
-    ExplicitTop = 636
+    ExplicitTop = 801
     ExplicitWidth = 1166
     inherited stsbar_deleted_at: TdxStatusBarContainerControl
       Width = 1130
@@ -583,7 +638,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Style = <>
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -592,9 +646,9 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
-        'select r.*, c.cli_first_name, c.cli_last_name,  hex(r.req_cod)as' +
-        ' CodReq, hex(r.requisition_type_ret_cod)as CodType_ret_cod, t.re' +
-        't_name  from requisition as r'
+        'select r.*, c.cli_first_name, c.cli_last_name, concat('#39'0x'#39', hex(' +
+        'r.req_cod))as CodReq, hex(r.requisition_type_ret_cod)as CodType_' +
+        'ret_cod, t.ret_name  from requisition as r'
       
         'left join requisition_type as t on t.ret_cod = requisition_type_' +
         'ret_cod'#10'left join client as c on c.cli_cod = r.client_cli_cod '
@@ -1416,10 +1470,11 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   object qry_requisition_sheduling02: TFDQuery
     Active = True
-    IndexFieldNames = 'reqCod'
+    AfterInsert = qry_requisition_sheduling02AfterInsert
+    IndexFieldNames = 'requisition_req_cod'
     MasterSource = ds
-    MasterFields = 'CodReq'
-    DetailFields = 'reqCod'
+    MasterFields = 'req_cod'
+    DetailFields = 'requisition_req_cod'
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evCache]
     FetchOptions.Cache = [fiBlobs, fiMeta]
@@ -1430,23 +1485,19 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ' rec.rec_name, rol.rol_name from requisition_sheduling'#10
       'left join scheduling as sch on sch.sch_cod = scheduling_sch_cod'
       ' '#10'left join role as rol on rol.rol_cod = role_rol_cod'#13#10#10
-      ''
       'left join doctor as doc on   doc.doc_cod = doctor_doc_cod'#10
       'left join employee as emp on emp.emp_cod = doc.employee_emp_cod'#10
-      'left join record as rec on rec.rec_cod = emp.record_rec_cod '#13#10#10
-      ''
-      
-        'where requisition_req_cod = unhex(:req_cod) and rsh_deleted_at i' +
-        's null ')
+      'left join record as rec on rec.rec_cod = emp.record_rec_cod '
+      'where requisition_req_cod =:req_cod and rsh_deleted_at is null ')
     Left = 704
     Top = 312
     ParamData = <
       item
         Name = 'REQ_COD'
-        DataType = ftString
+        DataType = ftBytes
         ParamType = ptInput
-        Size = 34
-        Value = '0'
+        Size = 16
+        Value = Null
       end>
     object qry_requisition_sheduling02reqCod: TStringField
       AutoGenerateValue = arDefault

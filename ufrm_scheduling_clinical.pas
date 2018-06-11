@@ -222,11 +222,7 @@ type
     qryCodReq: TStringField;
     qry_requisition_sheduling02reqCod: TStringField;
     grid_1DBTableView1req_cod: TcxGridDBColumn;
-    grid_1DBTableView1contract_ctr_cod: TcxGridDBColumn;
     grid_1DBTableView1client_cli_cod: TcxGridDBColumn;
-    grid_1DBTableView1enterprise_ent_cod: TcxGridDBColumn;
-    grid_1DBTableView1requisition_type_ret_cod: TcxGridDBColumn;
-    grid_1DBTableView1insurance_ins_cod: TcxGridDBColumn;
     grid_1DBTableView1role_rol_cod: TcxGridDBColumn;
     grid_1DBTableView1doctor_doc_cod: TcxGridDBColumn;
     grid_1DBTableView1req_id: TcxGridDBColumn;
@@ -245,6 +241,7 @@ type
     grid_1DBTableView1cli_last_name: TcxGridDBColumn;
     grid_1DBTableView1CodType_ret_cod: TcxGridDBColumn;
     ComboxStatus: TcxComboBox;
+    DBGrid1: TDBGrid;
     procedure Action_cancelExecute(Sender: TObject);
     procedure qry_sql(sql:string);
     procedure Action_saveExecute(Sender: TObject);
@@ -262,6 +259,9 @@ type
     procedure edtDatePropertiesCloseUp(Sender: TObject);
     procedure edtTimePropertiesEditValueChanged(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure qry_requisition_sheduling02AfterInsert(DataSet: TDataSet);
+    procedure cxGrid3DBTableView1rol_namePropertiesCloseUp(Sender: TObject);
+    procedure cxGrid3DBTableView1rec_namePropertiesCloseUp(Sender: TObject);
   private
     { Private declarations }
     req_cod,sch_cod,rsh_cod:string;
@@ -423,6 +423,92 @@ begin
 end;
 
 
+procedure Tfrm_scheduling_clinical.cxGrid3DBTableView1rec_namePropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+    with frm_dm.qry3,sql do
+     begin
+       close;
+       Text :=' select requisition_sheduling.*,hex(requisition_req_cod)as reqCod, sch.employee_emp_cod,sch.sch_datetime, sch.sch_description, '+
+              ' rec.rec_name, rol.rol_name from requisition_sheduling                       ' +
+              ' left join scheduling as sch on sch.sch_cod = scheduling_sch_cod             ' +
+              ' left join role as rol on rol.rol_cod = role_rol_cod                         ' +
+              ' left join doctor as doc on   doc.doc_cod = doctor_doc_cod                   ' +
+              ' left join employee as emp on emp.emp_cod = doc.employee_emp_cod             ' +
+              ' left join record as rec on rec.rec_cod = emp.record_rec_cod                 ' +
+              ' where rsh_cod = '+ rsh_cod +' and rsh_deleted_at is null ';
+       Prepare;
+       Open;
+
+//       if RecordCount >0 then
+//        begin
+//          Application.MessageBox('A especialidade selecionada já existe para este proficional !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+//
+//           with frm_dm.qry,sql do
+//           begin
+//            Close;
+//            Text:= ' delete from role_employee ' +
+//                   ' where roe_cod = ' + roe_cod;
+//            Prepare;
+//            ExecSQL;
+//           end;
+//        end else
+//        begin
+
+        //  if not (qry_requisition_sheduling02.State in [dsEdit]) then
+           qry_requisition_sheduling02.Edit;
+           qry_requisition_sheduling02doctor_doc_cod.value := qry_doctor_roledoc_cod.value;
+           qry_requisition_sheduling02.Post;
+
+     end;
+    //--------------------------------------
+    qry_requisition_sheduling02.close;
+    qry_requisition_sheduling02.open;
+end;
+
+procedure Tfrm_scheduling_clinical.cxGrid3DBTableView1rol_namePropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+   with frm_dm.qry3,sql do
+     begin
+       close;
+       Text :=' select requisition_sheduling.*,hex(requisition_req_cod)as reqCod, sch.employee_emp_cod,sch.sch_datetime, sch.sch_description, '+
+              ' rec.rec_name, rol.rol_name from requisition_sheduling                       ' +
+              ' left join scheduling as sch on sch.sch_cod = scheduling_sch_cod             ' +
+              ' left join role as rol on rol.rol_cod = role_rol_cod                         ' +
+              ' left join doctor as doc on   doc.doc_cod = doctor_doc_cod                   ' +
+              ' left join employee as emp on emp.emp_cod = doc.employee_emp_cod             ' +
+              ' left join record as rec on rec.rec_cod = emp.record_rec_cod                 ' +
+              ' where rsh_cod = '+ rsh_cod +' and rsh_deleted_at is null ';
+       Prepare;
+       Open;
+
+//       if RecordCount >0 then
+//        begin
+//          Application.MessageBox('A especialidade selecionada já existe para este proficional !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+//
+//           with frm_dm.qry,sql do
+//           begin
+//            Close;
+//            Text:= ' delete from role_employee ' +
+//                   ' where roe_cod = ' + roe_cod;
+//            Prepare;
+//            ExecSQL;
+//           end;
+//        end else
+//        begin
+
+        //  if not (qry_requisition_sheduling02.State in [dsEdit]) then
+           qry_requisition_sheduling02.Edit;
+           qry_requisition_sheduling02role_rol_cod.value := qry_rolee02rol_cod.value;
+           qry_requisition_sheduling02.Post;
+
+     end;
+    //--------------------------------------
+    qry_requisition_sheduling02.close;
+    qry_requisition_sheduling02.open;
+end;
+
 procedure Tfrm_scheduling_clinical.cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
 begin
   inherited;
@@ -482,6 +568,30 @@ begin
 //   qryreq_dt_registration.AsDateTime:=Now;
    edt_codid.Text:=qryreq_id.AsString;
    edt_dt_registration.Text:=qryreq_dt_registration.AsString;
+end;
+
+procedure Tfrm_scheduling_clinical.qry_requisition_sheduling02AfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+  With frm_dm.qry,sql do
+  begin
+   close;
+   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   prepare;
+   open;
+
+   rsh_cod :=Fields[0].AsString;
+
+   Close;
+   Text:='insert into requisition_sheduling (rsh_id, rsh_cod, requisition_req_cod, contract_ctr_cod, rsh_dt_registration) ' +
+         ' select 0,'+ rsh_cod + ', unhex('  + QuotedStr(req_cod)+'),' + frm_dm.v_contract_ctr_cod +',now()'  ;
+   Prepare;
+   ExecSQL;
+  end;
+
+   qry_requisition_sheduling02.close;
+   qry_requisition_sheduling02.open;
+
 end;
 
 procedure Tfrm_scheduling_clinical.qry_requisition_shedulingAfterInsert(
@@ -628,6 +738,12 @@ begin
     qry_requisition_type.Close;
     qry_requisition_type.Prepare;
     qry_requisition_type.Open;
+
+    qry_requisition_sheduling02.Close;
+    qry_requisition_sheduling02.Prepare;
+    qry_requisition_sheduling02.Open;
+
+
 end;
 
 end.

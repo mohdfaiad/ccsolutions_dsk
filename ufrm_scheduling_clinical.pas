@@ -33,7 +33,8 @@ uses
   cxGroupBox, cxGridLevel, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, cxPC, ufrm_dm, cxMaskEdit,
   cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
-  dxDateTimeWheelPicker, cxCalendar, ufrm_main, ufrm_scheduling, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls;
+  dxDateTimeWheelPicker, cxCalendar, ufrm_main, ufrm_scheduling, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,
+  Vcl.ComCtrls, dxCore, cxDateUtils, cxMemo, cxSpinEdit, cxTimeEdit;
 
 type
   Tfrm_scheduling_clinical = class(Tfrm_default)
@@ -75,7 +76,6 @@ type
     qryreq_dt_registration: TDateTimeField;
     qry_requisition_sheduling: TFDQuery;
     ds_requisition_sheduling: TDataSource;
-    qryhexreq_cod: TStringField;
     qry_role: TFDQuery;
     qry_rolerol_name: TStringField;
     qry_rolerol_cod: TBytesField;
@@ -109,25 +109,12 @@ type
     cxGrid1DBTableView1rsh_deleted_at: TcxGridDBColumn;
     cxGrid1DBTableView1rsh_dt_registration: TcxGridDBColumn;
     cxGrid1Level1: TcxGridLevel;
-    grid_1DBTableView1req_cod: TcxGridDBColumn;
-    grid_1DBTableView1contract_ctr_cod: TcxGridDBColumn;
-    grid_1DBTableView1client_cli_cod: TcxGridDBColumn;
-    grid_1DBTableView1enterprise_ent_cod: TcxGridDBColumn;
-    grid_1DBTableView1requisition_type_ret_cod: TcxGridDBColumn;
-    grid_1DBTableView1insurance_ins_cod: TcxGridDBColumn;
-    grid_1DBTableView1role_rol_cod: TcxGridDBColumn;
-    grid_1DBTableView1doctor_doc_cod: TcxGridDBColumn;
-    grid_1DBTableView1req_id: TcxGridDBColumn;
-    grid_1DBTableView1req_status: TcxGridDBColumn;
-    grid_1DBTableView1req_deleted_at: TcxGridDBColumn;
     qry_doctordoc_cod: TBytesField;
     cxGrid1DBTableView1Column1: TcxGridDBColumn;
     qry_requisition_shedulingschCod: TStringField;
     qry_doctordoc_id: TLongWordField;
     qry_doctordocCod: TStringField;
     qryCliente: TStringField;
-    grid_1DBTableView1req_dt_registration: TcxGridDBColumn;
-    grid_1DBTableView1Cliente: TcxGridDBColumn;
     looComboxConvenio: TcxLookupComboBox;
     cxLookupComboBox1: TcxLookupComboBox;
     cxLabel1: TcxLabel;
@@ -153,7 +140,6 @@ type
     Qry_rolee02contract_ctr_cod: TBytesField;
     cxLookupComboBox3: TcxLookupComboBox;
     cxLabel3: TcxLabel;
-    Panel1: TPanel;
     cxLabel4: TcxLabel;
     qry_client_insurance: TFDQuery;
     ds_client_insurance: TDataSource;
@@ -166,7 +152,99 @@ type
     qry_client_insuranceins_first_name: TStringField;
     qry_client_insurancecodCliInsirance: TStringField;
     qry_client_insuranceClientCod: TStringField;
-    DBGrid1: TDBGrid;
+    edtDate: TcxDateEdit;
+    edtTime: TcxTimeEdit;
+    memoDescricao: TcxMemo;
+    cxLabel5: TcxLabel;
+    cxLabel6: TcxLabel;
+    cxLabel7: TcxLabel;
+    cxLookupComboBox4: TcxLookupComboBox;
+    cxLabel8: TcxLabel;
+    qry_requisition_type: TFDQuery;
+    qry_requisition_typeret_cod: TBytesField;
+    qry_requisition_typecontract_ctr_cod: TBytesField;
+    qry_requisition_typeret_id: TLongWordField;
+    qry_requisition_typeret_name: TStringField;
+    qry_requisition_typeret_status: TStringField;
+    qry_requisition_typeret_deleted_at: TDateTimeField;
+    qry_requisition_typeret_dt_registration: TDateTimeField;
+    ds_requisition_type: TDataSource;
+    cxGrid2DBTableView1: TcxGridDBTableView;
+    cxGrid2Level1: TcxGridLevel;
+    cxGrid2: TcxGrid;
+    qry_schedulin: TFDQuery;
+    qry_schedulinsch_cod: TBytesField;
+    qry_schedulincontract_ctr_cod: TBytesField;
+    qry_schedulinemployee_emp_cod: TBytesField;
+    qry_schedulinsch_id: TLongWordField;
+    qry_schedulinsch_datetime: TDateTimeField;
+    qry_schedulinsch_description: TStringField;
+    qry_schedulinsch_dt_registration: TDateTimeField;
+    ds_schedulin: TDataSource;
+    cxGrid2DBTableView1sch_id: TcxGridDBColumn;
+    cxGrid2DBTableView1sch_datetime: TcxGridDBColumn;
+    cxGrid2DBTableView1sch_description: TcxGridDBColumn;
+    cxGrid2DBTableView1sch_dt_registration: TcxGridDBColumn;
+    qry_requisition_sheduling02: TFDQuery;
+    qry_requisition_sheduling02rsh_cod: TBytesField;
+    qry_requisition_sheduling02contract_ctr_cod: TBytesField;
+    qry_requisition_sheduling02requisition_req_cod: TBytesField;
+    qry_requisition_sheduling02scheduling_sch_cod: TBytesField;
+    qry_requisition_sheduling02role_rol_cod: TBytesField;
+    qry_requisition_sheduling02doctor_doc_cod: TBytesField;
+    qry_requisition_sheduling02rsh_id: TLongWordField;
+    qry_requisition_sheduling02rsh_status: TStringField;
+    qry_requisition_sheduling02rsh_deleted_at: TDateTimeField;
+    qry_requisition_sheduling02rsh_dt_registration: TDateTimeField;
+    qry_requisition_sheduling02employee_emp_cod: TBytesField;
+    qry_requisition_sheduling02sch_datetime: TDateTimeField;
+    qry_requisition_sheduling02sch_description: TStringField;
+    qry_requisition_sheduling02rec_name: TStringField;
+    qry_requisition_sheduling02rol_name: TStringField;
+    cxGrid3DBTableView1: TcxGridDBTableView;
+    cxGrid3Level1: TcxGridLevel;
+    cxGrid3: TcxGrid;
+    ds_requisition_sheduling02: TDataSource;
+    cxGrid3DBTableView1rsh_cod: TcxGridDBColumn;
+    cxGrid3DBTableView1requisition_req_cod: TcxGridDBColumn;
+    cxGrid3DBTableView1scheduling_sch_cod: TcxGridDBColumn;
+    cxGrid3DBTableView1role_rol_cod: TcxGridDBColumn;
+    cxGrid3DBTableView1doctor_doc_cod: TcxGridDBColumn;
+    cxGrid3DBTableView1rsh_id: TcxGridDBColumn;
+    cxGrid3DBTableView1rsh_status: TcxGridDBColumn;
+    cxGrid3DBTableView1rsh_dt_registration: TcxGridDBColumn;
+    cxGrid3DBTableView1employee_emp_cod: TcxGridDBColumn;
+    cxGrid3DBTableView1sch_datetime: TcxGridDBColumn;
+    cxGrid3DBTableView1sch_description: TcxGridDBColumn;
+    cxGrid3DBTableView1rec_name: TcxGridDBColumn;
+    cxGrid3DBTableView1rol_name: TcxGridDBColumn;
+    qryreq_source: TStringField;
+    qryCodReq: TStringField;
+    qry_requisition_sheduling02reqCod: TStringField;
+    grid_1DBTableView1req_cod: TcxGridDBColumn;
+    grid_1DBTableView1contract_ctr_cod: TcxGridDBColumn;
+    grid_1DBTableView1client_cli_cod: TcxGridDBColumn;
+    grid_1DBTableView1enterprise_ent_cod: TcxGridDBColumn;
+    grid_1DBTableView1requisition_type_ret_cod: TcxGridDBColumn;
+    grid_1DBTableView1insurance_ins_cod: TcxGridDBColumn;
+    grid_1DBTableView1role_rol_cod: TcxGridDBColumn;
+    grid_1DBTableView1doctor_doc_cod: TcxGridDBColumn;
+    grid_1DBTableView1req_id: TcxGridDBColumn;
+    grid_1DBTableView1req_status: TcxGridDBColumn;
+    grid_1DBTableView1req_deleted_at: TcxGridDBColumn;
+    grid_1DBTableView1req_dt_registration: TcxGridDBColumn;
+    grid_1DBTableView1Cliente: TcxGridDBColumn;
+    grid_1DBTableView1req_source: TcxGridDBColumn;
+    grid_1DBTableView1CodReq: TcxGridDBColumn;
+    qrycli_first_name: TStringField;
+    qrycli_last_name: TStringField;
+    qryCodType_ret_cod: TStringField;
+    qryret_name: TStringField;
+    grid_1DBTableView1ret_name: TcxGridDBColumn;
+    grid_1DBTableView1cli_first_name: TcxGridDBColumn;
+    grid_1DBTableView1cli_last_name: TcxGridDBColumn;
+    grid_1DBTableView1CodType_ret_cod: TcxGridDBColumn;
+    ComboxStatus: TcxComboBox;
     procedure Action_cancelExecute(Sender: TObject);
     procedure qry_sql(sql:string);
     procedure Action_saveExecute(Sender: TObject);
@@ -181,11 +259,15 @@ type
     procedure qry_requisition_shedulingAfterPost(DataSet: TDataSet);
     procedure tbsht_5Show(Sender: TObject);
     procedure cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
+    procedure edtDatePropertiesCloseUp(Sender: TObject);
+    procedure edtTimePropertiesEditValueChanged(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     req_cod,sch_cod,rsh_cod:string;
   public
     { Public declarations }
+    procedure ExibirAgendamento;
 
   end;
 
@@ -217,67 +299,87 @@ end;
 procedure Tfrm_scheduling_clinical.Action_editExecute(Sender: TObject);
 begin
   inherited;
-   req_cod:=qryhexreq_cod.AsString;
+   req_cod:=qryCodReq.AsString;
+
+    edtDate.Date    := Date;
+    edtDate.Enabled := false;
+    edtTime.Time    := Time;
+    edtTime.Enabled := false;
 end;
 
 procedure Tfrm_scheduling_clinical.Action_insertExecute(Sender: TObject);
 begin
   inherited;
- // qry.Insert;
+  Self.Tag := 1; // para dizer que é uma inserção
+   qry.Insert;
 
+   ComboxStatus.ItemIndex := 0;
+   ComboxStatus.Enabled := False;
    Qry_rolee02.Close;
    Qry_rolee02.Open;
+
+    edtDate.Date    := Date;
+    edtDate.Enabled := True;
+    edtTime.Time    := Time;
+    edtTime.Enabled := True;
 end;
 
 procedure Tfrm_scheduling_clinical.Action_saveExecute(Sender: TObject);
 begin
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(req_id) is null then 1 ' +
-          '      else (max(req_id) + 1) end as maxID from requisition '+
-          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
-   Prepare;
-   Open;
-   if not (qry.State in [dsInsert,dsEdit])  then
-    qry.Edit;
-
-   if qryreq_id.AsInteger = 0 then
-    qryreq_id.AsInteger:=Fields[0].AsInteger;
-
-    qryclient_cli_cod.Value:=qry_clientcli_cod.Value;
-  //  qrydoctor_doc_cod.Value:=qry_doctordoc_cod.Value;
-    qry.Post;
-
-    qry_scheduling.Insert;
-
-    close;
-    Text:= ' select case when max(sch_id) is null then 1 ' +
-           '      else (max(sch_id) + 1) end as maxID from scheduling '+
-           ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
-    Prepare;
-    Open;
-    qry_schedulingsch_id.AsInteger:=Fields[0].AsInteger;
-  //  qry_schedulingemployee_emp_cod.Value:=qry_doctoremp_cod.Value;
-    qry_schedulingsch_datetime.AsDateTime:=Now;
-    qry_schedulingsch_description.AsString:= 'AGENDAMENTO DO PACIENTE ' + cxLookupComboBoxCliente.Text;
-    qry_scheduling.Post;
- end;
-
- qry_requisition_sheduling.First;
- while not qry_requisition_sheduling.Eof do
+ if Self.Tag = 1 then
   begin
-   if Length(qry_requisition_shedulingschCod.AsString) = 0  then
-    begin
-      Application.MessageBox('Existe agendamento sem horário marcado, favor confirmar um horário livre!', 'AGENDAMENTO', MB_OK + MB_ICONEXCLAMATION);
-      Exit;;
-    end;
-   qry_requisition_sheduling.Next;
+    with frm_dm.qry,sql do
+     begin
+       close;
+       Text:= ' select case when max(req_id) is null then 1 ' +
+              '      else (max(req_id) + 1) end as maxID from requisition '+
+              ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+       Prepare;
+       Open;
+       if not (qry.State in [dsInsert,dsEdit])  then
+        qry.Edit;
+
+       if qryreq_id.AsInteger = 0 then
+        qryreq_id.AsInteger:=Fields[0].AsInteger;
+        qryclient_cli_cod.Value           := qry_clientcli_cod.Value;
+        qryenterprise_ent_cod.Value       := frm_dm.qry_enterpriseent_cod.Value;
+        qryrequisition_type_ret_cod.Value := qry_requisition_typeret_cod.Value;
+        qryinsurance_ins_cod.Value        := qry_client_insuranceinsurance_ins_cod.Value;
+        qryreq_source.AsString            := 'C';
+        qryreq_status.AsString            := ComboxStatus.Text;
+        qry.Post;
+
+//        qry_scheduling.Insert;
+//
+//        close;
+//        Text:= ' select case when max(sch_id) is null then 1 ' +
+//               '      else (max(sch_id) + 1) end as maxID from scheduling '+
+//               ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+//        Prepare;
+//        Open;
+//        qry_schedulingsch_id.AsInteger:=Fields[0].AsInteger;
+//      //  qry_schedulingemployee_emp_cod.Value:=qry_doctoremp_cod.Value;
+//        qry_schedulingsch_datetime.AsDateTime:=Now;
+//        qry_schedulingsch_description.AsString:= 'AGENDAMENTO DO PACIENTE ' + cxLookupComboBoxCliente.Text;
+//        qry_scheduling.Post;
+     end;
   end;
 
 
- inherited;
-  qry_sql('todos');
+//       qry_requisition_sheduling.First;
+//       while not qry_requisition_sheduling.Eof do
+//        begin
+//         if Length(qry_requisition_shedulingschCod.AsString) = 0  then
+//          begin
+//            Application.MessageBox('Existe agendamento sem horário marcado, favor confirmar um horário livre!', 'AGENDAMENTO', MB_OK + MB_ICONEXCLAMATION);
+//            Exit;;
+//          end;
+//         qry_requisition_sheduling.Next;
+//        end;
+
+
+       inherited;
+        qry_sql('todos');
 
 end;
 
@@ -329,30 +431,57 @@ begin
    qry_doctor_role.Open;
 end;
 
+procedure Tfrm_scheduling_clinical.edtDatePropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+   ExibirAgendamento;
+end;
+
+procedure Tfrm_scheduling_clinical.edtTimePropertiesEditValueChanged(Sender: TObject);
+begin
+  inherited;
+   ExibirAgendamento;
+end;
+
+procedure Tfrm_scheduling_clinical.ExibirAgendamento;
+begin
+//     qry_scheduling.Close;
+//     qry_scheduling.ParamByName('DATAINCIO').AsDateTime:= StrToDateTime(DateToStr(edtDate.Date) + ' 00:00:00');
+//     qry_scheduling.ParamByName('DATAFIM').AsDateTime:= StrToDateTime(DateToStr(edtDate.Date) + ' 23:59:59');
+//     qry_scheduling.Prepare;
+//     qry_scheduling.Open;
+end;
+
+procedure Tfrm_scheduling_clinical.FormShow(Sender: TObject);
+begin
+  inherited;
+    qry_sql('todos');
+end;
+
 procedure Tfrm_scheduling_clinical.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-// With frm_dm.qry,sql do
-//  begin
-//   close;
-//   text:='select hex(uuid_to_bin(uuid()))';
-//   prepare;
-//   open;
-//
-//   req_cod:=Fields[0].AsString;
-//
-//   Close;
-//   Text:='insert into requisition (req_id,req_cod,contract_ctr_cod) ' +
-//         ' select 0,unhex('+ QuotedStr(req_cod) + '),' +  frm_dm.v_contract_ctr_cod;
-//   Prepare;
-//   ExecSQL;
-//  end;
-//
-//   qry_sql('insert');
+ With frm_dm.qry,sql do
+  begin
+   close;
+   text:='select hex(uuid_to_bin(uuid()))';
+   prepare;
+   open;
+
+   req_cod:=Fields[0].AsString;
+
+   Close;
+   Text:='insert into requisition (req_id,req_cod,contract_ctr_cod,req_dt_registration) ' +
+         ' select 0,unhex('+ QuotedStr(req_cod) + '),' +  frm_dm.v_contract_ctr_cod +',now()';
+   Prepare;
+   ExecSQL;
+  end;
+
+   qry_sql('insert');
 //   qry.Edit;
 //   qryreq_dt_registration.AsDateTime:=Now;
-//   edt_codid.Text:=qryreq_id.AsString;
-//   edt_dt_registration.Text:=qryreq_dt_registration.AsString;
+   edt_codid.Text:=qryreq_id.AsString;
+   edt_dt_registration.Text:=qryreq_dt_registration.AsString;
 end;
 
 procedure Tfrm_scheduling_clinical.qry_requisition_shedulingAfterInsert(
@@ -454,10 +583,15 @@ procedure Tfrm_scheduling_clinical.qry_sql(sql: string);
 begin
   qry.Close;
   if sql = 'todos' then
-   qry.sql.text:= ' select requisition.*,hex(req_cod) from requisition';
+   qry.sql.text:= ' select r.*, c.cli_first_name, c.cli_last_name,  hex(r.req_cod)as CodReq, hex(r.requisition_type_ret_cod)as CodType_ret_cod, t.ret_name  from requisition as r  '+
+                  ' left join requisition_type as t on t.ret_cod = requisition_type_ret_cod        '+
+                  ' left join client as c on c.cli_cod = r.client_cli_cod                          '+
+                  ' where r.contract_ctr_cod = unhex('+QuotedStr(frm_dm.p_contract_ctr_cod)+') and req_deleted_at is null ';
 
   if sql = 'insert' then
-   qry.sql.text:= ' select requisition.*,hex(req_cod) from requisition ' +
+   qry.sql.text:= 'select r.*, c.cli_first_name, c.cli_last_name,  hex(r.req_cod)as CodReq, hex(r.requisition_type_ret_cod)as CodType_ret_cod, t.ret_name  from requisition as r  '+
+                  ' left join requisition_type as t on t.ret_cod = requisition_type_ret_cod        '+
+                  ' left join client as c on c.cli_cod = r.client_cli_cod                          '+
                   ' where req_cod = unhex(' + QuotedStr(req_cod) + ')';
    qry.Prepare;
    qry.open;
@@ -470,13 +604,30 @@ begin
     edt_dt_registration.Text     := DateToStr(qryreq_dt_registration.AsDateTime);
     cxLookupComboBoxCliente.Text := qryCliente.AsString;
 
-  //Abrir Consulta do Cliente-------------------
+  //Abrir Consulta do Cliente-------------------------------
    qry_client.Close;
    qry_client.Prepare;
    qry_client.Open;
-  //Abrir Consulta do Convênios do Cliente------
+
+  //Abrir Consulta do Convênios do Cliente------------------
     qry_client_insurance.Close;
+    qry_client_insurance.Prepare;
     qry_client_insurance.Open;
+
+  //Abrir Consulta das Especialidades do Proficional-------
+    Qry_rolee02.Close;
+    Qry_rolee02.Prepare;
+    Qry_rolee02.Open;
+
+  //Abrir Consulta dos Proficional Médicos----------------
+    qry_doctor_role.Close;
+    qry_doctor_role.Prepare;
+    qry_doctor_role.Open;
+
+  //Abrir Consulta dos tipos de exames-------------------
+    qry_requisition_type.Close;
+    qry_requisition_type.Prepare;
+    qry_requisition_type.Open;
 end;
 
 end.

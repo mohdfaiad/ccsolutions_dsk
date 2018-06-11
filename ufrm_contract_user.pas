@@ -115,6 +115,11 @@ type
     edt_password_confirmar: TcxButtonEdit;
     comboxStatus: TcxComboBox;
     cxLabel1: TcxLabel;
+    BloquearUsurio1: TMenuItem;
+    DesbloquearUsurio1: TMenuItem;
+    ResetarSenha1: TMenuItem;
+    DesconectarUsurio1: TMenuItem;
+    N4: TMenuItem;
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
@@ -131,6 +136,13 @@ type
     procedure cxListMenuClickCheck(Sender: TObject; AIndex: Integer; APrevState, ANewState: TcxCheckBoxState);
     procedure edt_passwordPropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
     procedure edt_password_confirmarPropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
+    procedure grid_1DBTableView1CustomDrawCell(Sender: TcxCustomGridTableView;
+      ACanvas: TcxCanvas; AViewInfo: TcxGridTableDataCellViewInfo;
+      var ADone: Boolean);
+    procedure BloquearUsurio1Click(Sender: TObject);
+    procedure DesbloquearUsurio1Click(Sender: TObject);
+    procedure ResetarSenha1Click(Sender: TObject);
+    procedure DesconectarUsurio1Click(Sender: TObject);
   private
     { Private declarations }
       listEmp,listAction:TStrings;
@@ -273,6 +285,19 @@ begin
 
 end;
 
+procedure Tfrm_contract_user.BloquearUsurio1Click(Sender: TObject);
+begin
+  inherited;
+// if Application.MessageBox('Deseja bloquer o usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
+//  begin
+//    qry.Edit;
+//    qryctr_usr_logged.AsString:='B';
+//    qry.Post;
+//    qry.ApplyUpdates(0);
+//    Application.MessageBox('Usuário bloqueado com sucesso!','AVISO', MB_OK + MB_ICONWARNING)
+//  end;
+end;
+
 procedure Tfrm_contract_user.cxListEmpsClick(Sender: TObject);
  var
    Dao : TContract_User_Enterprise_Dao;
@@ -358,6 +383,32 @@ begin
 
 end;
 
+procedure Tfrm_contract_user.DesbloquearUsurio1Click(Sender: TObject);
+begin
+  inherited;
+// if Application.MessageBox('Deseja desbloquer o usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
+//  begin
+//    qry.Edit;
+//    qryctr_usr_logged.AsString:='N';
+//    qry.Post;
+//    qry.ApplyUpdates(0);
+//    Application.MessageBox('Usuário desbloqueado com sucesso!','AVISO', MB_OK + MB_ICONWARNING)
+//  end;
+end;
+
+procedure Tfrm_contract_user.DesconectarUsurio1Click(Sender: TObject);
+begin
+  inherited;
+// if Application.MessageBox('Deseja desconectar o usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
+//  begin
+//    qry.Edit;
+//    qryctr_usr_logged.AsString:='N';
+//    qry.Post;
+//    qry.ApplyUpdates(0);
+//    Application.MessageBox('Usuário desconectado com sucesso!','AVISO', MB_OK + MB_ICONWARNING)
+//  end;
+end;
+
 procedure Tfrm_contract_user.edt_passwordPropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
 begin
   inherited;
@@ -432,6 +483,28 @@ begin
   ExibirGrid;
 
  inherited;
+end;
+
+procedure Tfrm_contract_user.grid_1DBTableView1CustomDrawCell(
+  Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
+  AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
+var
+IndiceCampo: Integer;
+Valor      : Variant;
+begin
+  inherited;
+   if (AViewInfo <> nil) and ((Sender as TcxGridDBTableView).DataController.Dataset.Active ) then begin
+      IndiceCampo := (Sender as
+      TcxGridDBTableView).GetColumnByFieldName('ctr_usr_logged').Index;
+      Valor       := AViewInfo.GridRecord.Values[IndiceCampo];
+//      ACanvas.Font.Style  := [];
+      if (Valor = 'S') then
+         ACanvas.Font.Color  := clGreen;
+
+      if (Valor = 'B') then
+         ACanvas.Font.Color  := clRed;
+   end;
+
 end;
 
 procedure Tfrm_contract_user.LimpaCampos;
@@ -522,6 +595,19 @@ begin
 
    edtNome.SetFocus;
 
+end;
+
+procedure Tfrm_contract_user.ResetarSenha1Click(Sender: TObject);
+begin
+  inherited;
+//  if Application.MessageBox('Deseja Zerar a senha do usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
+//  begin
+//    qry.Edit;
+//    qryctr_usr_password.Clear;
+//    qry.Post;
+//    qry.ApplyUpdates(0);
+//    Application.MessageBox('Usuário desconectado com sucesso!','AVISO', MB_OK + MB_ICONWARNING)
+//  end;
 end;
 
 procedure Tfrm_contract_user.tbsht_2Show(Sender: TObject);

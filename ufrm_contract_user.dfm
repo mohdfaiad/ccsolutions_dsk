@@ -31,6 +31,7 @@ inherited frm_contract_user: Tfrm_contract_user
             Width = 1107
             ExplicitWidth = 1107
             inherited grid_1DBTableView1: TcxGridDBTableView
+              OnCustomDrawCell = grid_1DBTableView1CustomDrawCell
               object grid_1DBTableView1ctr_usr_id: TcxGridDBColumn
                 Caption = 'C'#243'd. ID'
                 DataBinding.FieldName = 'ctr_usr_id'
@@ -862,6 +863,27 @@ inherited frm_contract_user: Tfrm_contract_user
         ExplicitWidth = 1093
         ExplicitHeight = 32
       end
+    end
+  end
+  inherited popmenu_1: TPopupMenu
+    object BloquearUsurio1: TMenuItem [13]
+      Caption = 'Bloquear Usu'#225'rio'
+      OnClick = BloquearUsurio1Click
+    end
+    object DesbloquearUsurio1: TMenuItem [14]
+      Caption = 'Desbloquear Usu'#225'rio'
+      OnClick = DesbloquearUsurio1Click
+    end
+    object ResetarSenha1: TMenuItem [15]
+      Caption = 'Resetar Senha'
+      OnClick = ResetarSenha1Click
+    end
+    object DesconectarUsurio1: TMenuItem [16]
+      Caption = 'Desconectar  Usu'#225'rio'
+      OnClick = DesconectarUsurio1Click
+    end
+    object N4: TMenuItem [17]
+      Caption = '-'
     end
   end
   inherited ds: TDataSource

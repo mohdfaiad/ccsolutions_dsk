@@ -12,7 +12,6 @@ inherited frm_contract_userOld: Tfrm_contract_userOld
   inherited cxPageControl_1: TcxPageControl
     Width = 805
     Height = 618
-    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 805
     ExplicitHeight = 618
     ClientRectBottom = 612
@@ -25,6 +24,7 @@ inherited frm_contract_userOld: Tfrm_contract_userOld
       inherited cxGrid_1: TcxGrid
         Width = 791
         Height = 578
+        ExplicitLeft = 3
         ExplicitWidth = 791
         ExplicitHeight = 578
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -782,6 +782,8 @@ inherited frm_contract_userOld: Tfrm_contract_userOld
   end
   inherited PopupMenu_1: TPopupMenu
     OnPopup = PopupMenu_1Popup
+    Left = 536
+    Top = 224
     object N3: TMenuItem
       Caption = '-'
       Enabled = False
@@ -809,7 +811,6 @@ inherited frm_contract_userOld: Tfrm_contract_userOld
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS

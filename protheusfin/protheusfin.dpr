@@ -49,16 +49,18 @@ uses
   Employee_Model in '..\Model\Employee_Model.pas',
   ufrm_contract_user in '..\ufrm_contract_user.pas',
   ufrm_default in '..\models\ufrm_default.pas' {frm_default},
-  class_required_field in '..\class_required_field.pas';
+  class_required_field in '..\class_required_field.pas',
+  ufrm_contract_userOld in '..\ufrm_contract_userOld.pas' {frm_contract_userOld};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(Tfrm_dm, frm_dm);
+  AApplication.CreateForm(Tfrm_dm, frm_dm);
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
-  Application.Run;
+  Application.CreateForm(Tfrm_contract_userOld, frm_contract_userOld);
+  pplication.Run;
 end.

@@ -1,7 +1,5 @@
 inherited frm_main: Tfrm_main
   Caption = 'M'#243'dulo Cl'#237'nica - CCS Protheus.'
-  ExplicitWidth = 1024
-  ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon

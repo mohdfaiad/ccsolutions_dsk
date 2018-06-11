@@ -163,20 +163,16 @@ begin
 
      frm_dm.v_contract_ctr_cod := '0x' +  frm_dm.qry_signin.FieldByName('hex(@po_contract_ctr_cod)').Value;
      frm_dm.v_ctr_usr_cod := '0x' +  frm_dm.qry_signin.FieldByName('hex(@po_ctr_usr_cod)').Value;
-     //Sem contact
+
 
      frm_dm.p_contract_ctr_cod := frm_dm.qry_signin.FieldByName('hex(@po_contract_ctr_cod)').Value;
      frm_dm.p_ctr_usr_cod      := frm_dm.qry_signin.FieldByName('hex(@po_ctr_usr_cod)').Value;
      frm_dm.v_nome_usuario     := frm_dm.qry_signin.FieldByName('@po_ctr_usr_username').Value;
      frm_dm.v_ctr_usr_admin    := frm_dm.qry_signin.FieldByName('@po_ctr_usr_admin').Value;
 
-  frm_dm.qry_contract.Close;
-  frm_dm.qry_contract.sql.Text:='select ctr_cod, ctr_id from contract where ctr_cod = ' + frm_dm.v_contract_ctr_cod;
-  frm_dm.qry_contract.Prepare;
-  frm_dm.qry_contract.Open;
 
 
-  if frm_dm.qry_signin.Fields[0].AsInteger = 1 then
+  if frm_dm.qry_signin.FieldByName('@po_valid_user').AsInteger = 1 then
    begin
      if Tag = 99 then
       begin
@@ -184,8 +180,14 @@ begin
        Self.Close;
       end
       else
+       begin
+        frm_dm.qry_contract.Close;
+        frm_dm.qry_contract.sql.Text:='select ctr_cod, ctr_id from contract where ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+        frm_dm.qry_contract.Prepare;
+        frm_dm.qry_contract.Open;
         ModalResult := mrOk;
-  end
+       end;
+   end
   else
   begin
     MessageDlg('Usuário ou Senha inválida!', mtInformation, [mbOK], 0);

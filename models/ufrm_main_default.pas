@@ -109,8 +109,8 @@ end;
  with frm_dm.qry,sql do
   begin
    Close;
-   Text := ' select ctr_usr_act_action_name from contract_user_action '+
-           ' where ctr_usr_act_user_cod = ' + frm_dm.qry_signin.FieldByName('hex(@po_ctr_usr_coda)').AsString;
+   Text := ' select cta_action_name from contract_user_action ' +
+           ' where contract_user_ctr_usr_cod = ' + frm_dm.v_ctr_usr_cod;
    Prepare;
    Open;
    DisableControls;
@@ -121,7 +121,7 @@ end;
     for I := 0 to Self.ComponentCount - 1 do
      begin
       if Self.Components[i] is TAction then
-       if Taction(Self.components[i]).Name = FieldByName('ctr_usr_act_action_name').AsString then
+       if Taction(Self.components[i]).Name = FieldByName('cta_action_name').AsString then
         Taction(Self.components[i]).Enabled := true;
       end;
     Next;
@@ -192,7 +192,7 @@ begin
     dxRibbonStatusBar1.Panels[5].Text :=frm_dm.v_nome_usuario;
     dxRibbonStatusBar1.Panels[7].Text :=FormatDateTime('dd/MM/yyyy',date);
  //   Timer_1.Enabled:=True;
-  //  controleAcesso(frm_dm.qry_contractctr_id.AsInteger,frm_dm.qry_signinctr_usr_admin.AsString);
+    controleAcesso(frm_dm.qry_contractctr_id.AsInteger,frm_dm.v_ctr_usr_admin);
     AtualizarControle(self);
 
     //Controle para sempre exibir a primeira aba de cadastro

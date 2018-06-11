@@ -155,6 +155,18 @@ type
     cxLabel3: TcxLabel;
     Panel1: TPanel;
     cxLabel4: TcxLabel;
+    qry_client_insurance: TFDQuery;
+    ds_client_insurance: TDataSource;
+    qry_client_insurancecin_cod: TBytesField;
+    qry_client_insuranceclient_cli_cod: TBytesField;
+    qry_client_insuranceinsurance_ins_cod: TBytesField;
+    qry_client_insurancecin_id: TLongWordField;
+    qry_client_insurancecin_deleted_at: TDateTimeField;
+    qry_client_insurancecin_dt_registration: TDateTimeField;
+    qry_client_insuranceins_first_name: TStringField;
+    qry_client_insurancecodCliInsirance: TStringField;
+    qry_client_insuranceClientCod: TStringField;
+    DBGrid1: TDBGrid;
     procedure Action_cancelExecute(Sender: TObject);
     procedure qry_sql(sql:string);
     procedure Action_saveExecute(Sender: TObject);
@@ -457,6 +469,14 @@ begin
     edt_codid.Text               := IntToStr(qryreq_id.AsInteger);
     edt_dt_registration.Text     := DateToStr(qryreq_dt_registration.AsDateTime);
     cxLookupComboBoxCliente.Text := qryCliente.AsString;
+
+  //Abrir Consulta do Cliente-------------------
+   qry_client.Close;
+   qry_client.Prepare;
+   qry_client.Open;
+  //Abrir Consulta do Convênios do Cliente------
+    qry_client_insurance.Close;
+    qry_client_insurance.Open;
 end;
 
 end.

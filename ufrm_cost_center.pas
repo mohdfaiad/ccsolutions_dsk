@@ -144,7 +144,7 @@ end;
 procedure Tfrm_cost_center.qry_cost_center_detailAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-   qry_cost_center_detailcontract_ctr_id.AsInteger  := frm_dm.qry_signinctr_id.AsInteger;
+   qry_cost_center_detailcontract_ctr_id.AsInteger  := frm_dm.qry_contractctr_id.AsInteger;
    qry_cost_center_detailcod_dt_registration.AsDateTime := Now;
 
   //--Cama função para validar os campos da requisiçao não permite inserir itens

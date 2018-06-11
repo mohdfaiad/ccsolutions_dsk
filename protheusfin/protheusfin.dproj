@@ -136,10 +136,6 @@
             <Form>frm_contract</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\ufrm_contract_user.pas">
-            <Form>frm_contract_user</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\ufrm_enterprise.pas">
             <Form>frm_enterprise</Form>
             <FormType>dfm</FormType>
@@ -239,7 +235,6 @@
             <Form>frm_form_payment</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Casse.Field_Requested.pas"/>
         <DCCReference Include="..\ufrm_billreceive_slip.pas">
             <Form>frm_billreceive_slip</Form>
             <FormType>dfm</FormType>
@@ -248,6 +243,22 @@
             <Form>frm_shipping_file</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Dao\Client.Dao.pas"/>
+        <DCCReference Include="..\Dao\Conexao.pas"/>
+        <DCCReference Include="..\Dao\Contract_User.Dao.pas"/>
+        <DCCReference Include="..\Dao\Contract_User_Action.Dao.pas"/>
+        <DCCReference Include="..\Dao\Contract_User_Enterprise.Dao.pas"/>
+        <DCCReference Include="..\Dao\Employee.Dao.pas"/>
+        <DCCReference Include="..\Model\Contract_user.Model.pas"/>
+        <DCCReference Include="..\Model\Contract_User_Enterprise.Model.pas"/>
+        <DCCReference Include="..\Model\Employee.Model.pas"/>
+        <DCCReference Include="..\Model\Employee_Model.pas"/>
+        <DCCReference Include="..\ufrm_contract_user.pas"/>
+        <DCCReference Include="..\models\ufrm_default.pas">
+            <Form>frm_default</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\class_required_field.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

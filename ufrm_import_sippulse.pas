@@ -151,7 +151,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, ufrm_telephony_report;
 
 function StringToDateTime(const Value: String): TDateTime;
 var
@@ -219,6 +219,10 @@ if Application.MessageBox('Deseja visualizar o relatório da conta de consumo?',
    frxDbLigacoes.LoadFromFile('c:\ccsolutions_dsk\reports\rep_relatorio_ligacoes.fr3');
    frxDbLigacoes.ShowReport;
  end;
+
+
+
+
 end;
 
 procedure Tfrm_import_sippulse.FormClose(Sender: TObject;

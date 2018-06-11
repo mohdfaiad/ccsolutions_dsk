@@ -16,11 +16,14 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
     ClientRectBottom = 529
     ClientRectRight = 904
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 902
       ExplicitHeight = 501
       inherited cxGrid_1: TcxGrid
         Width = 896
         Height = 495
+        ExplicitLeft = 3
         ExplicitWidth = 896
         ExplicitHeight = 495
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -106,18 +109,18 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
             ExplicitWidth = 888
             ExplicitHeight = 461
             inherited dbedt_id: TcxDBTextEdit
-              Left = 79
+              Left = -188
               DataBinding.DataField = 'prs_id'
-              ExplicitLeft = 79
+              ExplicitLeft = -188
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 278
+              Left = -6
               DataBinding.DataField = 'prs_dt_registration'
-              ExplicitLeft = 278
+              ExplicitLeft = -6
             end
             object cxDBCurrencyEdit1: TcxDBCurrencyEdit [2]
-              Left = 79
-              Top = 157
+              Left = -188
+              Top = 211
               DataBinding.DataField = 'prs_value_fine'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -125,8 +128,8 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 121
             end
             object cxDBCurrencyEdit2: TcxDBCurrencyEdit [3]
-              Left = 278
-              Top = 157
+              Left = -6
+              Top = 211
               DataBinding.DataField = 'prs_value_interest'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -134,8 +137,8 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 130
             end
             object cxDBCurrencyEdit4: TcxDBCurrencyEdit [4]
-              Left = 466
-              Top = 157
+              Left = 182
+              Top = 211
               DataBinding.DataField = 'prs_value_discount'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -143,8 +146,8 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 121
             end
             object cxDBSpinEdit1: TcxDBSpinEdit [5]
-              Left = 79
-              Top = 184
+              Left = -188
+              Top = 103
               DataBinding.DataField = 'prs_day_interest'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -152,8 +155,8 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 121
             end
             object cxDBSpinEdit2: TcxDBSpinEdit [6]
-              Left = 278
-              Top = 184
+              Left = -6
+              Top = 103
               DataBinding.DataField = 'prs_day_discount'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -161,8 +164,8 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 130
             end
             object cxDBSpinEdit3: TcxDBSpinEdit [7]
-              Left = 466
-              Top = 184
+              Left = 182
+              Top = 103
               DataBinding.DataField = 'prs_day_protest'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -170,8 +173,8 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 121
             end
             object cxDBTextEdit5: TcxDBTextEdit [8]
-              Left = 79
-              Top = 211
+              Left = -188
+              Top = 130
               DataBinding.DataField = 'prs_instruction1'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -180,8 +183,8 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 697
             end
             object cxDBTextEdit6: TcxDBTextEdit [9]
-              Left = 79
-              Top = 238
+              Left = -188
+              Top = 157
               DataBinding.DataField = 'prs_instruction2'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -190,8 +193,8 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 697
             end
             object cxDBTextEdit7: TcxDBTextEdit [10]
-              Left = 79
-              Top = 265
+              Left = -188
+              Top = 184
               DataBinding.DataField = 'prs_instruction3'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -200,8 +203,8 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 697
             end
             object cxDBMemo1: TcxDBMemo [11]
-              Left = 79
-              Top = 292
+              Left = -188
+              Top = 238
               DataBinding.DataField = 'prs_description'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -209,11 +212,25 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Style.HotTrack = False
               TabOrder = 17
               Height = 89
-              Width = 697
+              Width = 1069
             end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [12]
-              Left = 79
+            object cxDBComboBox1: TcxDBComboBox [12]
+              Left = 344
               Top = 103
+              DataBinding.DataField = 'prs_acceptance'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.Items.Strings = (
+                'S'
+                'N')
+              Style.HotTrack = False
+              TabOrder = 13
+              Width = 121
+            end
+            object cxDBLookupComboBox1: TcxDBLookupComboBox [13]
+              Left = 199
+              Top = 10
               DataBinding.DataField = 'bank_bnk_id'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -236,9 +253,9 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               TabOrder = 2
               Width = 329
             end
-            object cxDBTextEdit3: TcxDBTextEdit [13]
-              Left = 79
-              Top = 130
+            object cxDBTextEdit3: TcxDBTextEdit [14]
+              Left = 199
+              Top = 37
               DataBinding.DataField = 'prs_species_document'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -246,9 +263,9 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               TabOrder = 3
               Width = 121
             end
-            object cxDBTextEdit4: TcxDBTextEdit [14]
-              Left = 278
-              Top = 130
+            object cxDBTextEdit4: TcxDBTextEdit [15]
+              Left = 398
+              Top = 37
               DataBinding.DataField = 'prs_species_coin'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -256,9 +273,9 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               TabOrder = 4
               Width = 130
             end
-            object cxDBTextEdit1: TcxDBTextEdit [15]
-              Left = 466
-              Top = 130
+            object cxDBTextEdit1: TcxDBTextEdit [16]
+              Left = 578
+              Top = 37
               DataBinding.DataField = 'prs_wallet'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -266,9 +283,9 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               TabOrder = 5
               Width = 121
             end
-            object cxDBTextEdit2: TcxDBTextEdit [16]
-              Left = 655
-              Top = 130
+            object cxDBTextEdit2: TcxDBTextEdit [17]
+              Left = 767
+              Top = 37
               DataBinding.DataField = 'prs_our_number'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -276,41 +293,17 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               TabOrder = 6
               Width = 121
             end
-            object cxDBComboBox1: TcxDBComboBox [17]
-              Left = 655
-              Top = 184
-              DataBinding.DataField = 'prs_acceptance'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.Items.Strings = (
-                'S'
-                'N')
-              Style.HotTrack = False
-              TabOrder = 13
-              Width = 121
-            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               CaptionOptions.Visible = False
+            end
+            inherited dxLayoutGroup1: TdxLayoutGroup
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignHorz = ahClient
             end
             object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2
               AlignHorz = ahLeft
               AlignVert = avTop
-              Index = 0
-              AutoCreated = True
-            end
-            object dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              AlignVert = avBottom
-              Index = 1
-              AutoCreated = True
-            end
-            object dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              AlignVert = avBottom
               Index = 0
               AutoCreated = True
             end
@@ -337,9 +330,9 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Index = 1
             end
             object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup7
+              Parent = dxLayoutAutoCreatedGroup1
               AlignHorz = ahLeft
-              AlignVert = avTop
+              AlignVert = avBottom
               LayoutDirection = ldHorizontal
               Index = 0
               AutoCreated = True
@@ -367,7 +360,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Index = 0
             end
             object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup7
+              Parent = dxLayoutAutoCreatedGroup1
               AlignHorz = ahLeft
               AlignVert = avTop
               Index = 1
@@ -448,6 +441,23 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               ControlOptions.ShowBorder = False
               Index = 1
             end
+            object dxLayoutItem15: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup6
+              AlignVert = avClient
+              CaptionOptions.Text = 'Aceite'
+              Control = cxDBComboBox1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 3
+            end
+            object dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              Index = 1
+              AutoCreated = True
+            end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup9
               AlignHorz = ahLeft
@@ -458,6 +468,14 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               ControlOptions.OriginalWidth = 329
               ControlOptions.ShowBorder = False
               Index = 0
+            end
+            object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup9
+              AlignHorz = ahClient
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
             end
             object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup4
@@ -481,14 +499,6 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup9
-              AlignHorz = ahClient
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 1
-              AutoCreated = True
-            end
             object dxLayoutItem7: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup4
               AlignHorz = ahLeft
@@ -511,15 +521,11 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               ControlOptions.ShowBorder = False
               Index = 3
             end
-            object dxLayoutItem15: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup6
-              AlignVert = avClient
-              CaptionOptions.Text = 'Aceite'
-              Control = cxDBComboBox1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 3
+            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutControl_1Group_Root
+              LayoutDirection = ldHorizontal
+              Index = 0
+              AutoCreated = True
             end
           end
         end
@@ -534,44 +540,26 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     AfterDelete = qryAfterDelete
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from parameter_slip'#10
-      'where contract_ctr_id =:ctr_id'#13#10#10
+      'where contract_ctr_cod =:ctr_cod'#13#10#10
+      ''
       '')
     ParamData = <
       item
-        Name = 'CTR_ID'
-        DataType = ftAutoInc
+        Name = 'CTR_COD'
+        DataType = ftBytes
         ParamType = ptInput
+        Size = 16
         Value = Null
       end>
-    object qryprs_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'prs_id'
-      Origin = 'prs_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
-    object qrybank_bnk_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Banco ID'
-      FieldName = 'bank_bnk_id'
-      Origin = 'bank_bnk_id'
-    end
     object qryprs_species_document: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Esp'#233'c. Doc.'
@@ -680,6 +668,31 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
       FieldName = 'prs_dt_registration'
       Origin = 'prs_dt_registration'
     end
+    object qryprs_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'prs_cod'
+      Origin = 'prs_cod'
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qrybank_bnk_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'bank_bnk_cod'
+      Origin = 'bank_bnk_cod'
+    end
+    object qryprs_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'prs_id'
+      Origin = 'prs_id'
+    end
+    object qryprs_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'prs_deleted_at'
+      Origin = 'prs_deleted_at'
+    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -701,29 +714,15 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
     Style = <>
   end
   object qry_bank: TFDQuery
-    Active = True
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from bank')
+      'select *,hex(bnk_cod) as bnkCod from bank')
     Left = 584
     Top = 96
-    object qry_bankbnk_id: TFDAutoIncField
-      DisplayLabel = 'Cod. ID'
-      DisplayWidth = 15
-      FieldName = 'bnk_id'
-      Origin = 'bnk_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qry_bankcontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
     object qry_bankbnk_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Banco'
@@ -868,6 +867,42 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
       AutoGenerateValue = arDefault
       FieldName = 'bnk_dt_registration'
       Origin = 'bnk_dt_registration'
+    end
+    object qry_bankbnk_cod: TBytesField
+      FieldName = 'bnk_cod'
+      Origin = 'bnk_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_bankcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_bankbnk_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'bnk_id'
+      Origin = 'bnk_id'
+    end
+    object qry_bankbnk_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'bnk_status'
+      Origin = 'bnk_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_bankbnk_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'bnk_deleted_at'
+      Origin = 'bnk_deleted_at'
+    end
+    object qry_bankbnkCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'bnkCod'
+      Origin = 'bnkCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
     end
   end
   object ds_bank: TDataSource

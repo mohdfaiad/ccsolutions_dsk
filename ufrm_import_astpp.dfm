@@ -7091,7 +7091,6 @@ inherited frm_import_astpp: Tfrm_import_astpp
   end
   object qryConsultla: TFDQuery
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (

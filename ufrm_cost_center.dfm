@@ -183,10 +183,8 @@ inherited frm_cost_center: Tfrm_cost_center
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -247,7 +245,6 @@ inherited frm_cost_center: Tfrm_cost_center
     Style = <>
   end
   object qry_cost_center_detail: TFDQuery
-    Active = True
     AfterInsert = qry_cost_center_detailAfterInsert
     AfterPost = qry_cost_center_detailAfterPost
     CachedUpdates = True

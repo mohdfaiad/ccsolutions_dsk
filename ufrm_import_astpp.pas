@@ -310,7 +310,7 @@ begin
   inherited;
  qry.Close;
  qry.ParamByName('comp').AsString:= competencia;
- qry.ParamByName('ctr_cod').Value:= frm_dm.qry_signincontractCod.Value;
+ qry.ParamByName('ctr_cod').Value:= frm_dm.qry_contractctr_cod.Value;
  qry.ParamByName('cient').AsString:= clienteAstpp;
  qry.Prepare;
  qry.Open;

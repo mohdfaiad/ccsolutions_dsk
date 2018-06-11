@@ -182,6 +182,7 @@ begin
      qrybnk_add_bus_country.AsString     := 'BRASIL';
      cxDBTextEdit22.SetFocus;
 end;
+
 end;
 
 procedure Tfrm_bank.Action_cancelExecute(Sender: TObject);
@@ -194,7 +195,7 @@ begin
     Text:= ' delete from bank ' +
            ' where contract_ctr_cod =:contract ' +
            ' and bnk_id = 0';
-    ParamByName('contract').Value:=frm_dm.qry_signinctr_cod.Value;
+    ParamByName('contract').Value:=frm_dm.qry_contractctr_cod.Value;
     Prepare;
     ExecSQL;
    end;
@@ -210,7 +211,7 @@ begin
           '      else (max(bnk_id) + 1) end as maxID from bank '+
           ' where contract_ctr_cod = (select ctr_cod from contract ' +
           ' where ctr_id =:ctr_id)';
-   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   ParamByName('ctr_id').AsInteger:=frm_dm.qry_contractctr_id.AsInteger;
    Prepare;
    Open;
    if not (qry.State in [dsInsert,dsEdit])  then
@@ -258,7 +259,7 @@ begin
    Text:='insert into bank (bnk_cod, bnk_id, contract_ctr_cod) ' +
          ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
          ' where ctr_id = :contrato)';
-   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   ParamByName('contrato').AsInteger:=frm_dm.qry_contractctr_id.AsInteger;
    Prepare;
    ExecSQL;
   end;

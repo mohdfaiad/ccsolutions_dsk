@@ -10,7 +10,6 @@ uses
   ufrm_bank in '..\ufrm_bank.pas' {frm_bank},
   ufrm_client in '..\ufrm_client.pas' {frm_client},
   ufrm_contract in '..\ufrm_contract.pas' {frm_contract},
-  ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
   ufrm_enterprise in '..\ufrm_enterprise.pas' {frm_enterprise},
   ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
   ufrm_receipt in '..\ufrm_receipt.pas' {frm_receipt},
@@ -36,9 +35,21 @@ uses
   ufrm_billreceive_ticket in '..\ufrm_billreceive_ticket.pas' {frm_billreceive_ticket},
   ufrm_parameter_slip in '..\ufrm_parameter_slip.pas' {frm_parameter_slip},
   ufrm_form_payment in '..\ufrm_form_payment.pas' {frm_form_payment},
-  Casse.Field_Requested in '..\Casse.Field_Requested.pas',
   ufrm_billreceive_slip in '..\ufrm_billreceive_slip.pas' {frm_billreceive_slip},
-  ufrm_shipping_file in '..\ufrm_shipping_file.pas' {frm_shipping_file};
+  ufrm_shipping_file in '..\ufrm_shipping_file.pas' {frm_shipping_file},
+  Client.Dao in '..\Dao\Client.Dao.pas',
+  Conexao in '..\Dao\Conexao.pas',
+  Contract_User.Dao in '..\Dao\Contract_User.Dao.pas',
+  Contract_User_Action.Dao in '..\Dao\Contract_User_Action.Dao.pas',
+  Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
+  Employee.Dao in '..\Dao\Employee.Dao.pas',
+  Contract_user.Model in '..\Model\Contract_user.Model.pas',
+  Contract_User_Enterprise.Model in '..\Model\Contract_User_Enterprise.Model.pas',
+  Employee.Model in '..\Model\Employee.Model.pas',
+  Employee_Model in '..\Model\Employee_Model.pas',
+  ufrm_contract_user in '..\ufrm_contract_user.pas',
+  ufrm_default in '..\models\ufrm_default.pas' {frm_default},
+  class_required_field in '..\class_required_field.pas';
 
 {$R *.res}
 

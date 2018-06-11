@@ -41,8 +41,6 @@ type
     dxLayoutItem3: TdxLayoutItem;
     qry_bank: TFDQuery;
     ds_bank: TDataSource;
-    qry_bankbnk_id: TFDAutoIncField;
-    qry_bankcontract_ctr_id: TIntegerField;
     qry_bankbnk_name: TStringField;
     qry_bankbnk_code: TStringField;
     qry_bankbnk_agency_number: TStringField;
@@ -72,7 +70,6 @@ type
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     cxDBTextEdit2: TcxDBTextEdit;
     dxLayoutItem8: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
     cxDBCurrencyEdit1: TcxDBCurrencyEdit;
     dxLayoutItem17: TdxLayoutItem;
     cxDBCurrencyEdit2: TcxDBCurrencyEdit;
@@ -80,9 +77,6 @@ type
     cxDBCurrencyEdit4: TcxDBCurrencyEdit;
     dxLayoutItem16: TdxLayoutItem;
     dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup;
-    qryprs_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
-    qrybank_bnk_id: TIntegerField;
     qryprs_species_document: TStringField;
     qryprs_species_coin: TStringField;
     qryprs_acceptance: TStringField;
@@ -138,6 +132,18 @@ type
     dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
     cxDBComboBox1: TcxDBComboBox;
     dxLayoutItem15: TdxLayoutItem;
+    qryprs_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qrybank_bnk_cod: TBytesField;
+    qryprs_id: TLongWordField;
+    qryprs_deleted_at: TDateTimeField;
+    qry_bankbnk_cod: TBytesField;
+    qry_bankcontract_ctr_cod: TBytesField;
+    qry_bankbnk_id: TLongWordField;
+    qry_bankbnk_status: TStringField;
+    qry_bankbnk_deleted_at: TDateTimeField;
+    qry_bankbnkCod: TStringField;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure qryAfterInsert(DataSet: TDataSet);
@@ -145,8 +151,11 @@ type
     procedure Action_saveExecute(Sender: TObject);
     procedure qryAfterDelete(DataSet: TDataSet);
     procedure Action_deleteExecute(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure qry_sql(sql:string);
   private
     { Private declarations }
+    prs_cod:string;
   public
     { Public declarations }
      procedure limpaCache(Sender:TObject);
@@ -160,6 +169,37 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm, class_required_field;
+
+procedure Tfrm_parameter_slip.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+ if (qryprs_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+ begin
+  with frm_dm.qry,sql do
+   begin
+    Close;
+    Text:= ' delete from doctor ' +
+           ' where doc_cod = ' + doc_cod;
+    Prepare;
+    ExecSQL;
+     end;
+
+   if emp_cod <>'' then
+    begin
+     with frm_dm.qry2,sql do
+      begin
+       Close;
+       Text:= ' delete from role_employee ' +
+             ' where employee_emp_cod = ' + emp_cod ;
+       Prepare;
+       ExecSQL;
+      end;
+    end;                              //   unhex(p_cte_usr_ent_cod);
+
+  qry_sql('todos');
+  end;
+
+end;
 
 procedure Tfrm_parameter_slip.Action_deleteExecute(Sender: TObject);
 begin
@@ -179,8 +219,8 @@ begin
     begin
       Close;
       Clear;
-      Text := 'select * from parameter_slip where bank_bnk_id =:bnk_id';
-      ParamByName('bnk_id').Value := qrybank_bnk_id.AsInteger;
+      Text := ' select * from parameter_slip ' +
+              ' where  hex(bank_bnk_cod) = ' + qry_bankbnkCod.AsString;
       Prepare;
       Open;
       if (RecordCount > 0) then
@@ -229,6 +269,19 @@ procedure Tfrm_parameter_slip.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   qryprs_dt_registration.Value := now;
+end;
+
+procedure Tfrm_parameter_slip.qry_sql(sql: string);
+begin
+  qry.Close;
+  if sql = 'todos' then
+   qry.sql.text:= ' select * from parameter_slip ';
+
+  if sql = 'insert' then
+   qry.sql.text:= ' select * from parameter_slip ' +
+                  ' where hex(prs_cod) = ' + prs_cod ;
+   qry.Prepare;
+   qry.open;
 end;
 
 end.

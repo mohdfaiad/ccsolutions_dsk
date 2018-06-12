@@ -45,10 +45,8 @@ type
     qrypro_gender: TStringField;
     qrypro_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1pro_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_type: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_name: TcxGridDBColumn;
-    cxGrid_1DBTableView1pro_description: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_tag: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_gender: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_dt_registration: TcxGridDBColumn;

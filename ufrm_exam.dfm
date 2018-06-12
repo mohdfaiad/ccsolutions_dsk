@@ -4,38 +4,38 @@ inherited frm_exam: Tfrm_exam
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
+        ExplicitLeft = -21
+        ExplicitTop = 27
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pro_id: TcxGridDBColumn
             DataBinding.FieldName = 'pro_id'
-          end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
+            Width = 75
           end
           object cxGrid_1DBTableView1pro_type: TcxGridDBColumn
             DataBinding.FieldName = 'pro_type'
+            Width = 50
           end
           object cxGrid_1DBTableView1pro_name: TcxGridDBColumn
             DataBinding.FieldName = 'pro_name'
-          end
-          object cxGrid_1DBTableView1pro_description: TcxGridDBColumn
-            DataBinding.FieldName = 'pro_description'
+            Width = 250
           end
           object cxGrid_1DBTableView1pro_tag: TcxGridDBColumn
             DataBinding.FieldName = 'pro_tag'
+            Width = 250
           end
           object cxGrid_1DBTableView1pro_gender: TcxGridDBColumn
             DataBinding.FieldName = 'pro_gender'
+            Width = 50
           end
           object cxGrid_1DBTableView1pro_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'pro_dt_registration'
+            Width = 125
           end
         end
       end
@@ -70,10 +70,9 @@ inherited frm_exam: Tfrm_exam
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownSizeable = True
               Properties.Items.Strings = (
-                'P - Produto'
-                'S - Servi'#231'o')
+                'P - PRODUTO'
+                'S - SERVICO')
               Style.HotTrack = False
               TabOrder = 2
               Width = 121
@@ -85,11 +84,10 @@ inherited frm_exam: Tfrm_exam
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownSizeable = True
               Properties.Items.Strings = (
-                'M - Masculino'
-                'F - Feminino'
-                'A - Ambos')
+                'M - MASCULINO'
+                'F - FEMININO'
+                'A - AMBOS')
               Style.HotTrack = False
               TabOrder = 4
               Width = 121
@@ -129,6 +127,8 @@ inherited frm_exam: Tfrm_exam
               Top = 103
               DataBinding.DataField = 'pro_status'
               DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
               Properties.Items.Strings = (
                 'A - ATIVO'
                 'D - DESATIVADO')
@@ -139,10 +139,20 @@ inherited frm_exam: Tfrm_exam
             object lookupComboBoxMaterial: TcxLookupComboBox [8]
               Left = 60
               Top = 157
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
               Properties.KeyFieldNames = 'codMaterial'
               Properties.ListColumns = <
                 item
+                  Caption = 'Nome'
+                  Width = 250
                   FieldName = 'mat_name'
+                end
+                item
+                  Caption = 'C'#243'd. ID'
+                  Width = 75
+                  FieldName = 'mat_id'
                 end>
               Properties.ListSource = ds_material
               Properties.OnCloseUp = cxLookupComboBox1PropertiesCloseUp
@@ -307,6 +317,7 @@ inherited frm_exam: Tfrm_exam
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -434,6 +445,7 @@ inherited frm_exam: Tfrm_exam
     end
     object qrypro_id: TLongWordField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd. ID'
       FieldName = 'pro_id'
       Origin = 'pro_id'
     end
@@ -529,8 +541,8 @@ inherited frm_exam: Tfrm_exam
       'concat('#39'0x'#39',hex(mat_cod)) as codMaterial from material'
       'where mat_deleted_at is null'
       'order by mat_name'#10)
-    Left = 584
-    Top = 96
+    Left = 792
+    Top = 64
     object qry_materialmat_id: TLongWordField
       AutoGenerateValue = arDefault
       FieldName = 'mat_id'
@@ -565,7 +577,7 @@ inherited frm_exam: Tfrm_exam
   end
   object ds_material: TDataSource
     DataSet = qry_material
-    Left = 616
-    Top = 96
+    Left = 824
+    Top = 64
   end
 end

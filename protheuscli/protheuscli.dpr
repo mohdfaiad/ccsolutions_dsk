@@ -26,7 +26,6 @@ uses
   ufrm_default in '..\models\ufrm_default.pas' {frm_default},
   class_Conexao in '..\class_Conexao.pas',
   class_contract_user in '..\class_contract_user.pas',
-  class_required_field in '..\class_required_field.pas',
   Contract_User.Dao in '..\Dao\Contract_User.Dao.pas',
   Conexao in '..\Dao\Conexao.pas',
   ufrm_doctor in '..\ufrm_doctor.pas' {frm_doctor},
@@ -44,11 +43,11 @@ uses
   Employee_Model in '..\Model\Employee_Model.pas',
   Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
-  ufrm_scheduling_clinical2 in '..\ufrm_scheduling_clinical2.pas' {frm_scheduling_clinical2},
   Contract_User_Action.Dao in '..\Dao\Contract_User_Action.Dao.pas',
   ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
   ufrm_material in '..\ufrm_material.pas' {frm_material},
-  ufrm_requisition_type in '..\ufrm_requisition_type.pas' {frm_requisition_type};
+  ufrm_requisition_type in '..\ufrm_requisition_type.pas' {frm_requisition_type},
+  class_required_field in '..\class_required_field.pas';
 
 {$R *.res}
 begin

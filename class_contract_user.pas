@@ -3,7 +3,7 @@ unit class_contract_user;
 interface
  uses
     class_Conexao, FireDAC.Comp.Client, System.SysUtils, Data.DB,
-    Vcl.Forms, Winapi.Windows,Vcl.Dialogs;
+    Vcl.Forms, Winapi.Windows,Vcl.Dialogs,FireDAC.Stan.Param;
  type
    TContract_user = class
    private
@@ -61,8 +61,7 @@ procedure TContract_user.Contract_User_Create(Contract_user: TContract_user);
 var
   FDStoredProc : TFDStoredProc;
 begin
- if not Assigned(FDStoredProc) then
-  begin
+
    FDStoredProc := FConexao.CriarStoredProc();
    try
 
@@ -93,7 +92,6 @@ begin
 
   end;
 
-end;
 
 { TContract_user }
 
@@ -101,8 +99,7 @@ procedure TContract_user.Contract_User_Update(Contract_user: TContract_user);
 var
   FDStoredProc : TFDStoredProc;
 begin
- if not Assigned(FDStoredProc) then
-  begin
+
    FDStoredProc := FConexao.CriarStoredProc();
    try
     try
@@ -130,8 +127,6 @@ begin
      ShowMessage('Erro ao alterar os registros   :  '+E.Message);
    end;
   end;
-
-end;
 
 constructor TContract_user.Create;
 begin

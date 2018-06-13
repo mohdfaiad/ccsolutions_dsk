@@ -34,7 +34,7 @@ uses
   cxGridTableView, cxGridDBTableView, cxGrid, cxPC, ufrm_dm, cxMaskEdit,
   cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
   dxDateTimeWheelPicker, cxCalendar, ufrm_main, ufrm_scheduling, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,
-  Vcl.ComCtrls, dxCore, cxDateUtils, cxMemo, cxSpinEdit, cxTimeEdit,DateUtils ;
+  Vcl.ComCtrls, dxCore, cxDateUtils, cxMemo, cxSpinEdit, cxTimeEdit,DateUtils, Vcl.Buttons ;
 
 type
   Tfrm_scheduling_clinical = class(Tfrm_default)
@@ -71,8 +71,8 @@ type
     looComboxEspecialidade: TcxLookupComboBox;
     cxLabel1: TcxLabel;
     cxLabel2: TcxLabel;
-    Qry_rolee02: TFDQuery;
-    dsRolee02: TDataSource;
+    Qry_role: TFDQuery;
+    dsRole: TDataSource;
     looComboxMedico: TcxLookupComboBox;
     qry_doctor_role: TFDQuery;
     ds_doctor_role: TDataSource;
@@ -86,24 +86,15 @@ type
     qry_doctor_rolerec_name: TStringField;
     qry_doctor_rolecodDoctor: TStringField;
     qry_doctor_rolecodEmployee: TStringField;
-    Qry_rolee02rol_cod: TBytesField;
-    Qry_rolee02rol_name: TStringField;
-    Qry_rolee02rolCod: TStringField;
-    Qry_rolee02contract_ctr_cod: TBytesField;
+    Qry_rolerol_cod: TBytesField;
+    Qry_rolerol_name: TStringField;
+    Qry_rolerolCod: TStringField;
+    Qry_rolecontract_ctr_cod: TBytesField;
     looComboxEmpresa: TcxLookupComboBox;
     cxLabel3: TcxLabel;
     cxLabel4: TcxLabel;
     qry_client_insurance: TFDQuery;
     ds_client_insurance: TDataSource;
-    qry_client_insurancecin_cod: TBytesField;
-    qry_client_insuranceclient_cli_cod: TBytesField;
-    qry_client_insuranceinsurance_ins_cod: TBytesField;
-    qry_client_insurancecin_id: TLongWordField;
-    qry_client_insurancecin_deleted_at: TDateTimeField;
-    qry_client_insurancecin_dt_registration: TDateTimeField;
-    qry_client_insuranceins_first_name: TStringField;
-    qry_client_insurancecodCliInsirance: TStringField;
-    qry_client_insuranceClientCod: TStringField;
     edtDate: TcxDateEdit;
     edtTime: TcxTimeEdit;
     memoDescricao: TcxMemo;
@@ -137,26 +128,26 @@ type
     cxGrid2DBTableView1sch_datetime: TcxGridDBColumn;
     cxGrid2DBTableView1sch_description: TcxGridDBColumn;
     cxGrid2DBTableView1sch_dt_registration: TcxGridDBColumn;
-    qry_requisition_sheduling02: TFDQuery;
-    qry_requisition_sheduling02rsh_cod: TBytesField;
-    qry_requisition_sheduling02contract_ctr_cod: TBytesField;
-    qry_requisition_sheduling02requisition_req_cod: TBytesField;
-    qry_requisition_sheduling02scheduling_sch_cod: TBytesField;
-    qry_requisition_sheduling02role_rol_cod: TBytesField;
-    qry_requisition_sheduling02doctor_doc_cod: TBytesField;
-    qry_requisition_sheduling02rsh_id: TLongWordField;
-    qry_requisition_sheduling02rsh_status: TStringField;
-    qry_requisition_sheduling02rsh_deleted_at: TDateTimeField;
-    qry_requisition_sheduling02rsh_dt_registration: TDateTimeField;
-    qry_requisition_sheduling02employee_emp_cod: TBytesField;
-    qry_requisition_sheduling02sch_datetime: TDateTimeField;
-    qry_requisition_sheduling02sch_description: TStringField;
-    qry_requisition_sheduling02rec_name: TStringField;
-    qry_requisition_sheduling02rol_name: TStringField;
+    qry_requisition_sheduling: TFDQuery;
+    qry_requisition_shedulingrsh_cod: TBytesField;
+    qry_requisition_shedulingcontract_ctr_cod: TBytesField;
+    qry_requisition_shedulingrequisition_req_cod: TBytesField;
+    qry_requisition_shedulingscheduling_sch_cod: TBytesField;
+    qry_requisition_shedulingrole_rol_cod: TBytesField;
+    qry_requisition_shedulingdoctor_doc_cod: TBytesField;
+    qry_requisition_shedulingrsh_id: TLongWordField;
+    qry_requisition_shedulingrsh_status: TStringField;
+    qry_requisition_shedulingrsh_deleted_at: TDateTimeField;
+    qry_requisition_shedulingrsh_dt_registration: TDateTimeField;
+    qry_requisition_shedulingemployee_emp_cod: TBytesField;
+    qry_requisition_shedulingsch_datetime: TDateTimeField;
+    qry_requisition_shedulingsch_description: TStringField;
+    qry_requisition_shedulingrec_name: TStringField;
+    qry_requisition_shedulingrol_name: TStringField;
     cxGrid3DBTableView1: TcxGridDBTableView;
     cxGrid3Level1: TcxGridLevel;
     cxGrid3: TcxGrid;
-    ds_requisition_sheduling02: TDataSource;
+    ds_requisition_sheduling: TDataSource;
     cxGrid3DBTableView1rsh_id: TcxGridDBColumn;
     cxGrid3DBTableView1rsh_status: TcxGridDBColumn;
     cxGrid3DBTableView1rsh_dt_registration: TcxGridDBColumn;
@@ -165,8 +156,7 @@ type
     cxGrid3DBTableView1rec_name: TcxGridDBColumn;
     cxGrid3DBTableView1rol_name: TcxGridDBColumn;
     qryreq_source: TStringField;
-    qryCodReq: TStringField;
-    qry_requisition_sheduling02reqCod: TStringField;
+    qry_requisition_shedulingreqCod: TStringField;
     grid_1DBTableView1req_cod: TcxGridDBColumn;
     grid_1DBTableView1req_id: TcxGridDBColumn;
     grid_1DBTableView1req_status: TcxGridDBColumn;
@@ -174,7 +164,6 @@ type
     grid_1DBTableView1Cliente: TcxGridDBColumn;
     grid_1DBTableView1req_source: TcxGridDBColumn;
     grid_1DBTableView1CodReq: TcxGridDBColumn;
-    qryCodType_ret_cod: TStringField;
     qryret_name: TStringField;
     grid_1DBTableView1CodType_ret_cod: TcxGridDBColumn;
     ComboxStatus: TcxComboBox;
@@ -186,6 +175,23 @@ type
     grid_1DBTableView1ret_name: TcxGridDBColumn;
     grid_1DBTableView1cli_first_name: TcxGridDBColumn;
     grid_1DBTableView1ent_first_name: TcxGridDBColumn;
+    btnAlterar: TButton;
+    qry_requisition_shedulingCodScheduling: TStringField;
+    qry_client_insuranceins_cod: TBytesField;
+    qry_client_insurancecontract_ctr_cod: TBytesField;
+    qry_client_insurancetable_price_tbp_cod: TBytesField;
+    qry_client_insuranceins_id: TLongWordField;
+    qry_client_insuranceins_first_name: TStringField;
+    qry_client_insuranceins_last_name: TStringField;
+    qry_client_insuranceins_nickname: TStringField;
+    qry_client_insurancecodInsirance: TStringField;
+    qry_parameter_clinic: TFDQuery;
+    qry_parameter_clinicprc_cod: TBytesField;
+    qry_parameter_cliniccontract_ctr_cod: TBytesField;
+    qry_parameter_clinicprc_time_service: TTimeField;
+    qry_parameter_clinicCodParameter: TStringField;
+    qryCodRequisition: TStringField;
+    qryCodType_ret_cod: TStringField;
     procedure Action_cancelExecute(Sender: TObject);
     procedure qry_sql(sql:string);
     procedure Action_saveExecute(Sender: TObject);
@@ -194,19 +200,23 @@ type
     procedure tbsht_5Show(Sender: TObject);
     procedure cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure qry_requisition_sheduling02AfterInsert(DataSet: TDataSet);
+    procedure qry_requisition_shedulingAfterInsert(DataSet: TDataSet);
     procedure cxGrid3DBTableView1rec_namePropertiesCloseUp(Sender: TObject);
     procedure cxGrid3DBTableView1rol_namePropertiesCloseUp(Sender: TObject);
     procedure btnAgendarClick(Sender: TObject);
     procedure edtDatePropertiesCloseUp(Sender: TObject);
     procedure edtTimePropertiesEditValueChanged(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure looComboxConvenioPropertiesPopup(Sender: TObject);
+    procedure looComboBoxClientePropertiesCloseUp(Sender: TObject);
   private
     req_cod,rsh_cod,sch_cod:string;
 
   public
     procedure ExibirAgendamento;
-    procedure ExibirAxemeAgendado;
+    procedure ExibirAxameAgendado;
 
   end;
 
@@ -222,16 +232,33 @@ procedure Tfrm_scheduling_clinical.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
  if (qryreq_id.AsInteger = 0) then
- with frm_dm.qry,sql do
  begin
-  Close;
-  Text:= ' delete from requisition ' +
-         ' where req_cod = ' + req_cod;
-  Prepare;
-  ExecSQL;
+  if qry_requisition_sheduling.RecordCount >0 then
+    begin
+     with frm_dm.qry,sql do
+     begin
+      Close;
+      Text:= ' delete from scheduling where sch_cod = unhex(' + QuotedStr(qry_requisition_shedulingCodScheduling.AsString)+')';
+      Prepare;
+      ExecSQL;
 
-  qry_sql('todos');
+      Close;
+      Text:= ' delete from requisition_sheduling where requisition_req_cod = unhex('+QuotedStr(req_cod)+')';
+      Prepare;
+      ExecSQL;
+
+      Close;
+      Text:= ' delete from requisition where req_cod = unhex(' + QuotedStr(req_cod)+')';
+      Prepare;
+      ExecSQL;
+
+     end;
+    end;
+
+   qry_sql('todos');
+
  end;
+
 end;
 
 procedure Tfrm_scheduling_clinical.Action_editExecute(Sender: TObject);
@@ -240,7 +267,7 @@ begin
 
     Self.Tag := 2; // para dizer que é uma inserção
 
-    req_cod                   := qryCodReq.AsString;
+    req_cod                   := qryCodRequisition.AsString;
     edt_codid.Text            := IntToStr(qryreq_id.AsInteger);
     edt_dt_registration.Text  := DateToStr(qryreq_dt_registration.AsDateTime);
     looComboxEmpresa.Text     := qryent_first_name.AsString;
@@ -249,12 +276,16 @@ begin
     ComboxStatus.Text         := qryreq_status.AsString;
     ComboxStatus.Enabled      := True;
 
-    looComboxEspecialidade.Text := qry_requisition_sheduling02rol_name.AsString;
-    looComboxMedico.Text        := qry_requisition_sheduling02rec_name.AsString;
-    edtDate.Date                := qry_requisition_sheduling02sch_datetime.AsDateTime;
-    edtTime.Time                := qry_requisition_sheduling02sch_datetime.AsDateTime;
+    looComboxEspecialidade.Text := qry_requisition_shedulingrol_name.AsString;
+    looComboxMedico.Text        := qry_requisition_shedulingrec_name.AsString;
+    edtDate.Date                := qry_requisition_shedulingsch_datetime.AsDateTime;
+    edtTime.Time                := qry_requisition_shedulingsch_datetime.AsDateTime;
+    ExibirAgendamento;
 
-    ExibirAxemeAgendado;
+   //Exiber todos exemes agendados do paciente selecionado------------
+    ExibirAxameAgendado;
+
+
 
 end;
 
@@ -264,16 +295,26 @@ begin
   Self.Tag := 1; // para dizer que é uma inserção
    qry.Insert;
 
+
+   looComboxEmpresa.ItemIndex   := -1;
+   looComboBoxCliente.ItemIndex := -1;
+   looComboxConvenio.ItemIndex  := -1;
+   looComboxTipoExame.ItemIndex := -1;
    ComboxStatus.ItemIndex := 0;
    ComboxStatus.Enabled := False;
-   Qry_rolee02.Close;
-   Qry_rolee02.Open;
+
+   looComboxEspecialidade.ItemIndex := -1;
+   looComboxMedico.ItemIndex        := -1;
+   Qry_role.Close;
+   Qry_role.Open;
 
     edtDate.Date    := Date;
     edtDate.Enabled := True;
     edtTime.Time    := Time;
     edtTime.Enabled := True;
     memoDescricao.Text := 'AGENDAMENTO';
+
+    qry_requisition_sheduling.Close;
 end;
 
 procedure Tfrm_scheduling_clinical.Action_saveExecute(Sender: TObject);
@@ -296,7 +337,7 @@ begin
         qryclient_cli_cod.Value           := qry_clientcli_cod.Value;
         qryenterprise_ent_cod.Value       := frm_dm.qry_enterpriseent_cod.Value;
         qryrequisition_type_ret_cod.Value := qry_requisition_typeret_cod.Value;
-        qryinsurance_ins_cod.Value        := qry_client_insuranceinsurance_ins_cod.Value;
+        qryinsurance_ins_cod.Value        := qry_client_insuranceins_cod.Value;
         qryreq_source.AsString            := 'C';
         qryreq_status.AsString            := ComboxStatus.Text;
         qry.Post;
@@ -309,7 +350,7 @@ begin
          begin
            qry.Edit;
            qryclient_cli_cod.Value           := qry_clientcli_cod.Value;
-           qryinsurance_ins_cod.Value        := qry_client_insurancecin_cod.Value;
+           qryinsurance_ins_cod.Value        := qry_client_insuranceins_cod.Value;
            qryrequisition_type_ret_cod.Value := qry_requisition_typeret_cod.Value;
            qryreq_status.AsString            := ComboxStatus.Text;
            qry.Post;
@@ -326,7 +367,6 @@ procedure Tfrm_scheduling_clinical.btnAgendarClick(Sender: TObject);
  var
   HoraInicio: TTime;
   HoraFim   : TTime;
-  DataAgend : TDateTime;
 begin
   inherited;
 
@@ -340,11 +380,16 @@ begin
       Exit;
      end;
 
+      qry_parameter_clinic.Close;   //Query do parametro de tempo do agendamento -----------
+      qry_parameter_clinic.Open;
+
+      ExibirAgendamento;       // SQL para exibir os agendamento da data selecionada---
+
         qry_scheduling.First;
         while not qry_scheduling.Eof do
          begin
           HoraInicio:=StrToTime(FormatDateTime('hh:mm',(qry_schedulingsch_datetime.AsDateTime)));
-          HoraFim:=IncMinute(HoraInicio,30);
+          HoraFim:=(HoraInicio+qry_parameter_clinicprc_time_service.AsDateTime);  //Paramentro de tempo do agendamento
 
          if ((edtTime.Time >= HoraInicio) and (edtTime.Time <= HoraFim) and (Self.Tag = 1)) then  //Tag 1 quando for inserir
            begin
@@ -368,7 +413,7 @@ begin
          end;
 
          sch_cod := '';  //Inicializar as variaveis vazias--------------
-         DataAgend := edtDate.Date + edtTime.Time;
+         memoDescricao.Text :=memoDescricao.Text +' ' + looComboxTipoExame.Text + ' COM '+ looComboxEspecialidade.Text;
          With frm_dm.qry2,sql do
           begin
            close;
@@ -380,7 +425,7 @@ begin
            //Comando para Inserir o registro no banco com (código) (ID) (contrato)(data do registro)
            Close;
            Text:='insert into scheduling (sch_id,sch_cod,contract_ctr_cod,employee_emp_cod,sch_datetime,sch_description,sch_dt_registration) ' +
-          ' select '+frm_dm.qry.Fields[0].AsString+','+ sch_cod + ',' +  frm_dm.v_contract_ctr_cod +',unhex('+QuotedStr(qry_doctor_rolecodEmployee.AsString)+'),'+QuotedStr(FormatDateTime('yyyy-MM-dd hh:mm:ss',DataAgend))+','+QuotedStr(memoDescricao.Text)+',Now()';
+          ' select '+frm_dm.qry.Fields[0].AsString+','+ sch_cod + ',' +  frm_dm.v_contract_ctr_cod +',unhex('+QuotedStr(qry_doctor_rolecodEmployee.AsString)+'),'+QuotedStr(FormatDateTime('yyyy-MM-dd hh:mm:ss',edtDate.Date + edtTime.Time))+','+QuotedStr(memoDescricao.Text)+',Now()';
            ExecSQL;
           end;
 
@@ -402,8 +447,16 @@ begin
            ExecSQL;
           end;
 
-           qry_requisition_sheduling02.close;
-           qry_requisition_sheduling02.open;
+     qry_requisition_sheduling.close;
+     qry_requisition_sheduling.SQL.Text:= ' select requisition_sheduling.*,hex(requisition_req_cod)as reqCod, sch.employee_emp_cod,sch.sch_datetime,            ' +
+                                         ' sch.sch_description, rec.rec_name, rol.rol_name,hex(scheduling_sch_cod)as CodScheduling from requisition_sheduling  ' +
+                                         ' left join scheduling as sch on sch.sch_cod = scheduling_sch_cod        ' +
+                                         ' left join role as rol on rol.rol_cod = role_rol_cod                    ' +
+                                         ' left join doctor as doc on   doc.doc_cod = doctor_doc_cod              ' +
+                                         ' left join employee as emp on emp.emp_cod = doc.employee_emp_cod        ' +
+                                         ' left join record as rec on rec.rec_cod = emp.record_rec_cod            ' +
+                                         ' where rsh_cod ='+ rsh_cod +' and rsh_deleted_at is null  ';
+     qry_requisition_sheduling.open;
 
 
         with frm_dm.qry3,sql do
@@ -414,42 +467,91 @@ begin
                   ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
            Prepare;
            Open;
-           if not (qry_requisition_sheduling02.State in [dsInsert,dsEdit])  then
-            qry_requisition_sheduling02.Edit;
 
-           if qry_requisition_sheduling02rsh_id.AsInteger = 0 then
+           if not (qry_requisition_sheduling.State in [dsInsert,dsEdit])  then
             begin
-              qry_requisition_sheduling02rsh_id.AsInteger          := Fields[0].AsInteger;
-              qry_requisition_sheduling02role_rol_cod.Value        := Qry_rolee02rol_cod.Value;
-              qry_requisition_sheduling02doctor_doc_cod.Value      := qry_doctor_roledoc_cod.Value;
-              qry_requisition_sheduling02rsh_status.AsString       := 'A';
-              qry_requisition_sheduling02.Post;
+            qry_requisition_sheduling.Edit;
 
-             //Mensagem ao Inserir
-              Application.MessageBox('Agendamento realizado com sucesso !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
-             //Retorna o select para atualizar a lista no Grid--
-               qry_requisition_sheduling02.close;
-               qry_requisition_sheduling02.open;
+             if qry_requisition_shedulingrsh_id.AsInteger = 0 then
+              begin
+                qry_requisition_shedulingrsh_id.AsInteger          := Fields[0].AsInteger;
+                qry_requisition_shedulingrole_rol_cod.Value        := Qry_rolerol_cod.Value;
+                qry_requisition_shedulingdoctor_doc_cod.Value      := qry_doctor_roledoc_cod.Value;
+                qry_requisition_shedulingrsh_status.AsString       := 'A';
+                qry_requisition_sheduling.Post;
 
+               //Mensagem ao Inserir
+                Application.MessageBox('Agendamento realizado com sucesso !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
+               //Retorna o select para atualizar a lista no Grid--
+
+
+                 ExibirAgendamento;
+
+              end;
             end;
+
+
          end;
 
-   end else if (Self.Tag = 2) then
+       //Exiber todos exemes agendados do paciente selecionado------------
+        ExibirAxameAgendado;
+
+   end;
+
+end;
+
+procedure Tfrm_scheduling_clinical.btnAlterarClick(Sender: TObject);
+ var
+  HoraInicio: TTime;
+  HoraFim   : TTime;
+begin
+  inherited;
+
+ //-------------------------------------------------------------------------
+  qry_scheduling.First;
+  while not qry_scheduling.Eof do
    begin
-   //Para evitar duplicidade de agendamento no mesmo horário
-   //Semente a Descrição pode ser alterada
+    HoraInicio:=StrToTime(FormatDateTime('hh:mm',(qry_schedulingsch_datetime.AsDateTime)));
+    HoraFim:=(HoraInicio+qry_parameter_clinicprc_time_service.AsDateTime);  //Paramentro de tempo do agendamento
 
+   if ((edtTime.Time >= HoraInicio) and (edtTime.Time <= HoraFim) and (Self.Tag = 1)) then  //Tag 1 quando for inserir
+     begin
+       Application.MessageBox('Existe um compromiso agendado para essa data e hoja, '+
+          'por favor vericar data e hora do agendamento !', 'AVISO DE AGENDAMENTO',MB_OK + MB_ICONWARNING);
+       edtDate.SetFocus;
+       Exit;
+     end;
+     qry_scheduling.Next;
+   end;
 
+ //---------------------------------------------------------------------
+  begin
+   with frm_dm.qry,sql do
+    begin
+      close;
+      Text := ' Update scheduling Set employee_emp_cod = unhex(:pemp_cod), sch_datetime =:psch_datetime, sch_description =:psch_description ' +
+              ' where sch_cod = unhex(:psch_cod)  ';
+      ParamByName('pemp_cod').Value          := QuotedStr(qry_doctor_rolecodEmployee.AsString);
+      ParamByName('psch_datetime').Value     := QuotedStr(FormatDateTime('yyyy-MM-dd hh:mm:ss',edtDate.Date + edtTime.Time));
+      ParamByName('psch_description').Value  := memoDescricao.Text;
+      ParamByName('psch_cod').Value          := QuotedStr(qry_requisition_shedulingCodScheduling.AsString);
+      Prepare;
+      ExecSQL;
+    end;
+  end;
+
+   qry_requisition_sheduling.Edit;
+   qry_requisition_shedulingrole_rol_cod.Value   := Qry_rolerol_cod.Value;
+   qry_requisition_shedulingdoctor_doc_cod.Value := qry_doctor_roledoc_cod.Value;
+   qry_requisition_shedulingrsh_status.AsString  := 'A';
+   qry_requisition_sheduling.Post;
 
 
     //Mensagem ao Inserir
      Application.MessageBox('Agendamento alterado com sucesso !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
     //Retorna o select para atualizar a lista no Grid--
-      qry_requisition_sheduling02.close;
-      qry_requisition_sheduling02.open;
-   end;
 
-
+     ExibirAxameAgendado;
 
 end;
 
@@ -472,14 +574,14 @@ begin
 
 
         //  if not (qry_requisition_sheduling02.State in [dsEdit]) then
-           qry_requisition_sheduling02.Edit;
-           qry_requisition_sheduling02doctor_doc_cod.value := qry_doctor_roledoc_cod.value;
-           qry_requisition_sheduling02.Post;
+           qry_requisition_sheduling.Edit;
+           qry_requisition_shedulingdoctor_doc_cod.value := qry_doctor_roledoc_cod.value;
+           qry_requisition_sheduling.Post;
 
      end;
     //--------------------------------------
-    qry_requisition_sheduling02.close;
-    qry_requisition_sheduling02.open;
+    qry_requisition_sheduling.close;
+    qry_requisition_sheduling.open;
 end;
 
 procedure Tfrm_scheduling_clinical.cxGrid3DBTableView1rol_namePropertiesCloseUp(Sender: TObject);
@@ -500,21 +602,21 @@ begin
        Open;
 
         //  if not (qry_requisition_sheduling02.State in [dsEdit]) then
-           qry_requisition_sheduling02.Edit;
-           qry_requisition_sheduling02role_rol_cod.value := qry_rolee02rol_cod.value;
-           qry_requisition_sheduling02.Post;
+           qry_requisition_sheduling.Edit;
+           qry_requisition_shedulingrole_rol_cod.value := qry_rolerol_cod.value;
+           qry_requisition_sheduling.Post;
 
      end;
     //--------------------------------------
-    qry_requisition_sheduling02.close;
-    qry_requisition_sheduling02.open;
+    qry_requisition_sheduling.close;
+    qry_requisition_sheduling.open;
 end;
 
 procedure Tfrm_scheduling_clinical.cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
 begin
   inherited;
    qry_doctor_role.Close;
-   qry_doctor_role.ParamByName('CODROLE').Value := Qry_rolee02rol_cod.Value;
+   qry_doctor_role.ParamByName('CODROLE').Value := Qry_rolerol_cod.Value;
    qry_doctor_role.Open;
 
 end;
@@ -533,37 +635,82 @@ end;
 
 procedure Tfrm_scheduling_clinical.ExibirAgendamento;
 begin
-//     qry_scheduling.Close;
-//     qry_scheduling.ParamByName('EMPLOYEE_EMP_COD').assTring := qry_doctor_rolecodEmployee.asstring;
-//     qry_scheduling.ParamByName('DATAINCIO').AsDateTime:= StrToDateTime(DateToStr(edtDate.Date) + ' 00:00:00');
-//     qry_scheduling.ParamByName('DATAFIM').AsDateTime:= StrToDateTime(DateToStr(edtDate.Date) + ' 23:59:59');
-//     qry_scheduling.Prepare;
-//     qry_scheduling.Open;
+     qry_scheduling.Close;
+     qry_scheduling.ParamByName('EMPLOYEE_EMP_COD').assTring := qry_doctor_rolecodEmployee.asstring;
+     qry_scheduling.ParamByName('DATAINCIO').AsDateTime:= StrToDateTime(DateToStr(edtDate.Date) + ' 00:00:00');
+     qry_scheduling.ParamByName('DATAFIM').AsDateTime:= StrToDateTime(DateToStr(edtDate.Date) + ' 23:59:59');
+     qry_scheduling.Prepare;
+     qry_scheduling.Open;
 end;
 
-procedure Tfrm_scheduling_clinical.ExibirAxemeAgendado;
+procedure Tfrm_scheduling_clinical.ExibirAxameAgendado;
 begin
-    with frm_dm.qry2,sql do
-     begin
-       close;
-       text :=  ' select requisition_sheduling.*,hex(requisition_req_cod)as reqCod, sch.employee_emp_cod,sch.sch_datetime,   ' +
-                ' sch.sch_description, rec.rec_name, rol.rol_name from requisition_sheduling     ' +
-                ' left join scheduling as sch on sch.sch_cod = scheduling_sch_cod                ' +
-                ' left join role as rol on rol.rol_cod = role_rol_cod                            ' +
-                ' left join doctor as doc on   doc.doc_cod = doctor_doc_cod                      ' +
-                ' left join employee as emp on emp.emp_cod = doc.employee_emp_cod                ' +
-                ' left join record as rec on rec.rec_cod = emp.record_rec_cod                    ' +
-                ' where requisition_req_cod ='+ qryCodReq.assTring +' and rsh_deleted_at is null   ';
-     Prepare;
-     Open;
-     end;
+    qry_requisition_sheduling.close;
+     qry_requisition_sheduling.SQL.Text:= ' select requisition_sheduling.*,hex(requisition_req_cod)as reqCod, sch.employee_emp_cod,sch.sch_datetime,            ' +
+                                         ' sch.sch_description, rec.rec_name, rol.rol_name,hex(scheduling_sch_cod)as CodScheduling from requisition_sheduling  ' +
+                                         ' left join scheduling as sch on sch.sch_cod = scheduling_sch_cod        ' +
+                                         ' left join role as rol on rol.rol_cod = role_rol_cod                    ' +
+                                         ' left join doctor as doc on   doc.doc_cod = doctor_doc_cod              ' +
+                                         ' left join employee as emp on emp.emp_cod = doc.employee_emp_cod        ' +
+                                         ' left join record as rec on rec.rec_cod = emp.record_rec_cod            ' +
+                                         ' where requisition_req_cod  = unhex('+ QuotedStr(req_cod)+') and rsh_deleted_at is null  ';
+     qry_requisition_sheduling.open;
 
+end;
+
+procedure Tfrm_scheduling_clinical.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+   FreeAndNil(frm_scheduling_clinical);
 end;
 
 procedure Tfrm_scheduling_clinical.FormShow(Sender: TObject);
 begin
   inherited;
     qry_sql('todos');
+end;
+
+procedure Tfrm_scheduling_clinical.looComboBoxClientePropertiesCloseUp(Sender: TObject);
+var
+  codigoConvenio:string;
+begin
+  inherited;
+  with frm_dm.qry,sql do
+  begin
+   close;
+   Text:= 'select hex(insurance_ins_cod) from client_insurance ' +
+          ' where hex(client_cli_cod) = ' +  QuotedStr(qry_clientcliCod.AsString);
+   Prepare;
+   Open;
+
+   codigoConvenio:=Fields[0].AsString;
+
+  end;
+
+  qry_client_insurance.Locate('codInsirance',codigoConvenio,[loCaseInsensitive, loPartialKey]);
+  looComboxConvenio.Text := qry_client_insuranceins_first_name.AsString;;
+
+end;
+
+procedure Tfrm_scheduling_clinical.looComboxConvenioPropertiesPopup(Sender: TObject);
+var
+  codigoConvenio:string;
+begin
+  inherited;
+  with frm_dm.qry,sql do
+  begin
+   close;
+   Text:= 'select hex(insurance_ins_cod) from client_insurance ' +
+          ' where hex(client_cli_cod) = ' +  QuotedStr(qry_clientcliCod.AsString);
+   Prepare;
+   Open;
+
+   codigoConvenio:=Fields[0].AsString;
+
+  end;
+
+  qry_client_insurance.Locate('codInsirance',codigoConvenio,[loCaseInsensitive, loPartialKey]);
+  looComboxConvenio.Text := qry_client_insuranceins_first_name.AsString;
 end;
 
 procedure Tfrm_scheduling_clinical.qryAfterInsert(DataSet: TDataSet);
@@ -592,7 +739,7 @@ begin
    edt_dt_registration.Text:=qryreq_dt_registration.AsString;
 end;
 
-procedure Tfrm_scheduling_clinical.qry_requisition_sheduling02AfterInsert(DataSet: TDataSet);
+procedure Tfrm_scheduling_clinical.qry_requisition_shedulingAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   With frm_dm.qry,sql do
@@ -611,8 +758,8 @@ begin
    ExecSQL;
   end;
 
-   qry_requisition_sheduling02.close;
-   qry_requisition_sheduling02.open;
+   qry_requisition_sheduling.close;
+   qry_requisition_sheduling.open;
 
 end;
 
@@ -620,14 +767,14 @@ procedure Tfrm_scheduling_clinical.qry_sql(sql: string);
 begin
   qry.Close;
   if sql = 'todos' then
-   qry.sql.text:= ' select r.*, c.cli_first_name, concat(''0x'', hex(r.req_cod))as CodReq, ent.ent_first_name, hex(r.requisition_type_ret_cod)as CodType_ret_cod, t.ret_name  from requisition as r  ' +
+   qry.sql.text:= ' select r.*, c.cli_first_name, hex(r.req_cod)as CodRequisition, ent.ent_first_name, hex(r.requisition_type_ret_cod)as CodType_ret_cod, t.ret_name  from requisition as r  ' +
                   ' left join requisition_type as t on t.ret_cod = requisition_type_ret_cod               ' +
                   ' left join client as c on c.cli_cod = r.client_cli_cod                                 ' +
                   ' left join enterprise as ent on ent.ent_cod = r.enterprise_ent_cod                     ' +
                   ' where r.contract_ctr_cod = unhex('+QuotedStr(frm_dm.p_contract_ctr_cod)+') and req_deleted_at is null ';
 
   if sql = 'insert' then
-   qry.sql.text:= ' select r.*, c.cli_first_name, concat(''0x'', hex(r.req_cod))as CodReq, ent.ent_first_name, hex(r.requisition_type_ret_cod)as CodType_ret_cod, t.ret_name  from requisition as r  ' +
+   qry.sql.text:= ' select r.*, c.cli_first_name, hex(r.req_cod)as CodRequisition, ent.ent_first_name, hex(r.requisition_type_ret_cod)as CodType_ret_cod, t.ret_name  from requisition as r  ' +
                   ' left join requisition_type as t on t.ret_cod = requisition_type_ret_cod               ' +
                   ' left join client as c on c.cli_cod = r.client_cli_cod                                 ' +
                   ' left join enterprise as ent on ent.ent_cod = r.enterprise_ent_cod                     ' +
@@ -654,9 +801,9 @@ begin
     qry_client_insurance.Open;
 
   //Abrir Consulta das Especialidades do Proficional-------
-    Qry_rolee02.Close;
-    Qry_rolee02.Prepare;
-    Qry_rolee02.Open;
+    Qry_role.Close;
+    Qry_role.Prepare;
+    Qry_role.Open;
 
   //Abrir Consulta dos Proficional Médicos----------------
     qry_doctor_role.Close;
@@ -668,9 +815,9 @@ begin
     qry_requisition_type.Prepare;
     qry_requisition_type.Open;
 
-    qry_requisition_sheduling02.Close;
-    qry_requisition_sheduling02.Prepare;
-    qry_requisition_sheduling02.Open;
+    qry_requisition_sheduling.Close;
+    qry_requisition_sheduling.Prepare;
+    qry_requisition_sheduling.Open;
 
 
 end;

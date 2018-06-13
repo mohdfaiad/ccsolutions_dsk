@@ -2,6 +2,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   Caption = 'frm_scheduling_clinical'
   ClientHeight = 776
   ClientWidth = 1291
+  OnClose = FormClose
   ExplicitWidth = 1307
   ExplicitHeight = 815
   PixelsPerInch = 96
@@ -14,31 +15,33 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Width = 1291
     Height = 686
     ExplicitWidth = 1291
-    ExplicitHeight = 720
+    ExplicitHeight = 686
     ClientRectBottom = 680
     ClientRectRight = 1285
     inherited tbsht_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 27
       ExplicitWidth = 1283
-      ExplicitHeight = 687
+      ExplicitHeight = 653
       inherited pgctrl_2: TcxPageControl
         Width = 1283
         Height = 653
         ExplicitWidth = 1283
-        ExplicitHeight = 687
+        ExplicitHeight = 653
         ClientRectBottom = 647
         ClientRectRight = 1277
         inherited tbsht_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 27
           ExplicitWidth = 1275
-          ExplicitHeight = 654
+          ExplicitHeight = 620
           inherited grid_1: TcxGrid
             Width = 1269
             Height = 614
+            ExplicitLeft = 27
+            ExplicitTop = 115
             ExplicitWidth = 1269
-            ExplicitHeight = 648
+            ExplicitHeight = 614
             inherited grid_1DBTableView1: TcxGridDBTableView
               object grid_1DBTableView1req_cod: TcxGridDBColumn
                 DataBinding.FieldName = 'req_cod'
@@ -112,18 +115,18 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ExplicitLeft = 2
       ExplicitTop = 27
       ExplicitWidth = 1283
-      ExplicitHeight = 687
+      ExplicitHeight = 653
       inherited pgctrl_3: TcxPageControl
         Width = 1283
         Height = 653
         ExplicitWidth = 1283
-        ExplicitHeight = 687
+        ExplicitHeight = 653
         ClientRectBottom = 647
         ClientRectRight = 1277
         inherited tbsht_5: TcxTabSheet
           OnShow = tbsht_5Show
           ExplicitWidth = 1275
-          ExplicitHeight = 654
+          ExplicitHeight = 620
           inherited grb_top: TcxGroupBox
             ExplicitWidth = 1269
             Width = 1269
@@ -146,7 +149,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
             Top = 62
             ExplicitTop = 62
             ExplicitWidth = 1269
-            ExplicitHeight = 588
+            ExplicitHeight = 554
             Height = 554
             Width = 1269
             object cxLabelClient: TcxLabel
@@ -156,7 +159,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
             end
             object looComboBoxCliente: TcxLookupComboBox
               Left = 3
-              Top = 67
+              Top = 66
               Properties.GridMode = True
               Properties.KeyFieldNames = 'cli_first_name'
               Properties.ListColumns = <
@@ -164,12 +167,13 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                   FieldName = 'cli_first_name'
                 end>
               Properties.ListSource = ds_qry_client
+              Properties.OnCloseUp = looComboBoxClientePropertiesCloseUp
               TabOrder = 1
               Width = 270
             end
             object looComboxConvenio: TcxLookupComboBox
               Left = 286
-              Top = 67
+              Top = 66
               Properties.GridMode = True
               Properties.KeyFieldNames = 'ins_first_name'
               Properties.ListColumns = <
@@ -177,6 +181,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                   FieldName = 'ins_first_name'
                 end>
               Properties.ListSource = ds_client_insurance
+              Properties.OnPopup = looComboxConvenioPropertiesPopup
               TabOrder = 2
               Width = 270
             end
@@ -189,7 +194,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                 item
                   FieldName = 'rol_name'
                 end>
-              Properties.ListSource = dsRolee02
+              Properties.ListSource = dsRole
               Properties.OnCloseUp = cxLookupComboBox1PropertiesCloseUp
               TabOrder = 3
               Width = 270
@@ -388,7 +393,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                 Navigator.Buttons.Filter.ImageIndex = 11
                 Navigator.Buttons.Filter.Visible = False
                 Navigator.Visible = True
-                DataController.DataSource = ds_requisition_sheduling02
+                DataController.DataSource = ds_requisition_sheduling
                 DataController.Summary.DefaultGroupSummaryItems = <>
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
@@ -442,9 +447,9 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               Width = 141
             end
             object btnAgendar: TButton
-              Left = 712
+              Left = 689
               Top = 440
-              Width = 116
+              Width = 96
               Height = 41
               Caption = 'Agendar'
               TabOrder = 21
@@ -456,6 +461,15 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               Caption = 'Status'
               Transparent = True
             end
+            object btnAlterar: TButton
+              Left = 791
+              Top = 440
+              Width = 90
+              Height = 41
+              Caption = 'Alterar'
+              TabOrder = 23
+              OnClick = btnAlterarClick
+            end
           end
         end
       end
@@ -464,7 +478,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   inherited stsbar_1: TdxStatusBar
     Top = 741
     Width = 1291
-    ExplicitTop = 775
+    ExplicitTop = 741
     ExplicitWidth = 1291
     inherited stsbar_deleted_at: TdxStatusBarContainerControl
       Width = 1255
@@ -510,16 +524,24 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
-        'select r.*, c.cli_first_name, concat('#39'0x'#39', hex(r.req_cod))as Cod' +
-        'Req, ent.ent_first_name, hex(r.requisition_type_ret_cod)as CodTy' +
-        'pe_ret_cod, t.ret_name  from requisition as r'#10
+        'select r.*, c.cli_first_name, hex(r.req_cod)as CodRequisition , ' +
+        'ent.ent_first_name, hex(r.requisition_type_ret_cod)as CodType_re' +
+        't_cod, t.ret_name  from requisition as r'#10
       
         'left join requisition_type as t on t.ret_cod = requisition_type_' +
         'ret_cod'#10
       'left join client as c on c.cli_cod = r.client_cli_cod '#13#10#10
+      ''
+      ''
+      ''
+      ''
       
         'left join enterprise as ent on ent.ent_cod = r.enterprise_ent_co' +
         'd'#13#10#10
+      ''
+      ''
+      ''
+      ''
       'where r.contract_ctr_cod =:ctr_cod and req_deleted_at is null ')
     ParamData = <
       item
@@ -617,22 +639,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       FixedChar = True
       Size = 1
     end
-    object qryCodReq: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'CodReq'
-      Origin = 'CodReq'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 32
-    end
-    object qryCodType_ret_cod: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'CodType_ret_cod'
-      Origin = 'CodType_ret_cod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 32
-    end
     object qrycli_first_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'cli_first_name'
@@ -649,6 +655,22 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ReadOnly = True
       Size = 85
     end
+    object qryCodRequisition: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodRequisition'
+      Origin = 'CodRequisition'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qryCodType_ret_cod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodType_ret_cod'
+      Origin = 'CodType_ret_cod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
   object qry_client: TFDQuery
     Active = True
@@ -659,8 +681,9 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
-        'select cli_cod,contract_ctr_cod,cli_first_name,concat('#39'0x'#39',hex(c' +
-        'li_cod)) as cliCod from client '#13#10#10
+        'select cli_cod,contract_ctr_cod,cli_first_name,hex(cli_cod) as c' +
+        'liCod from client '#13#10#10
+      ''
       
         'where contract_ctr_cod =:ctr_cod and cli_deleted_at is null'#10' ord' +
         'er by cli_first_name')
@@ -705,7 +728,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Left = 716
     Top = 68
   end
-  object Qry_rolee02: TFDQuery
+  object Qry_role: TFDQuery
     Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
@@ -715,20 +738,20 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       'where rol_deleted_at is null'
       'order by rol_name')
     Left = 688
-    Top = 120
-    object Qry_rolee02rol_cod: TBytesField
+    Top = 112
+    object Qry_rolerol_cod: TBytesField
       FieldName = 'rol_cod'
       Origin = 'rol_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object Qry_rolee02rol_name: TStringField
+    object Qry_rolerol_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'rol_name'
       Origin = 'rol_name'
       Size = 35
     end
-    object Qry_rolee02rolCod: TStringField
+    object Qry_rolerolCod: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'rolCod'
       Origin = 'rolCod'
@@ -736,16 +759,16 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ReadOnly = True
       Size = 32
     end
-    object Qry_rolee02contract_ctr_cod: TBytesField
+    object Qry_rolecontract_ctr_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'contract_ctr_cod'
       Origin = 'contract_ctr_cod'
     end
   end
-  object dsRolee02: TDataSource
-    DataSet = Qry_rolee02
+  object dsRole: TDataSource
+    DataSet = Qry_role
     Left = 718
-    Top = 120
+    Top = 112
   end
   object qry_doctor_role: TFDQuery
     Active = True
@@ -762,8 +785,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
         'and employee_emp_cod in (select employee_emp_cod from role_emplo' +
         'yee where role_rol_cod =:codRole)'
       '')
-    Left = 706
-    Top = 120
+    Left = 914
+    Top = 184
     ParamData = <
       item
         Name = 'CODROLE'
@@ -840,84 +863,64 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   object ds_doctor_role: TDataSource
     DataSet = qry_doctor_role
-    Left = 784
-    Top = 120
+    Left = 944
+    Top = 184
   end
   object qry_client_insurance: TFDQuery
     Active = True
-    IndexFieldNames = 'client_cli_cod'
-    MasterSource = ds_qry_client
-    MasterFields = 'cli_cod'
-    DetailFields = 'client_cli_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
-        'select client_insurance.*, ins_first_name, hex(cin_cod) as codCl' +
-        'iInsirance,'
-      ' hex(client_cli_cod)as ClientCod from client_insurance'#13#10#10
-      'left join insurance on insurance_ins_cod = ins_cod'#13#10#10
-      'where client_cli_cod =:cli_cod and cin_deleted_at is null')
+        'select ins_cod, contract_ctr_cod, table_price_tbp_cod, ins_id, i' +
+        'ns_first_name,'#10' ins_last_name,'
+      
+        ' ins_nickname, hex(ins_cod) as codInsirance from insurance'#10'where' +
+        ' ins_deleted_at is null;')
     Left = 755
     Top = 68
-    ParamData = <
-      item
-        Name = 'CLI_COD'
-        DataType = ftBytes
-        ParamType = ptInput
-        Size = 16
-        Value = Null
-      end>
-    object qry_client_insurancecin_cod: TBytesField
-      FieldName = 'cin_cod'
-      Origin = 'cin_cod'
+    object qry_client_insuranceins_cod: TBytesField
+      FieldName = 'ins_cod'
+      Origin = 'ins_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object qry_client_insuranceclient_cli_cod: TBytesField
+    object qry_client_insurancecontract_ctr_cod: TBytesField
       AutoGenerateValue = arDefault
-      FieldName = 'client_cli_cod'
-      Origin = 'client_cli_cod'
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
     end
-    object qry_client_insuranceinsurance_ins_cod: TBytesField
+    object qry_client_insurancetable_price_tbp_cod: TBytesField
       AutoGenerateValue = arDefault
-      FieldName = 'insurance_ins_cod'
-      Origin = 'insurance_ins_cod'
+      FieldName = 'table_price_tbp_cod'
+      Origin = 'table_price_tbp_cod'
     end
-    object qry_client_insurancecin_id: TLongWordField
+    object qry_client_insuranceins_id: TLongWordField
       AutoGenerateValue = arDefault
-      FieldName = 'cin_id'
-      Origin = 'cin_id'
-    end
-    object qry_client_insurancecin_deleted_at: TDateTimeField
-      AutoGenerateValue = arDefault
-      FieldName = 'cin_deleted_at'
-      Origin = 'cin_deleted_at'
-    end
-    object qry_client_insurancecin_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      FieldName = 'cin_dt_registration'
-      Origin = 'cin_dt_registration'
+      FieldName = 'ins_id'
+      Origin = 'ins_id'
     end
     object qry_client_insuranceins_first_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'ins_first_name'
       Origin = 'ins_first_name'
-      ProviderFlags = []
-      ReadOnly = True
       Size = 85
     end
-    object qry_client_insurancecodCliInsirance: TStringField
+    object qry_client_insuranceins_last_name: TStringField
       AutoGenerateValue = arDefault
-      FieldName = 'codCliInsirance'
-      Origin = 'codCliInsirance'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 32
+      FieldName = 'ins_last_name'
+      Origin = 'ins_last_name'
+      Size = 85
     end
-    object qry_client_insuranceClientCod: TStringField
+    object qry_client_insuranceins_nickname: TStringField
       AutoGenerateValue = arDefault
-      FieldName = 'ClientCod'
-      Origin = 'ClientCod'
+      FieldName = 'ins_nickname'
+      Origin = 'ins_nickname'
+      Size = 85
+    end
+    object qry_client_insurancecodInsirance: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codInsirance'
+      Origin = 'codInsirance'
       ProviderFlags = []
       ReadOnly = True
       Size = 32
@@ -933,8 +936,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from requisition_type')
-    Left = 816
-    Top = 120
+    Left = 752
+    Top = 112
     object qry_requisition_typeret_cod: TBytesField
       FieldName = 'ret_cod'
       Origin = 'ret_cod'
@@ -977,21 +980,19 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   object ds_requisition_type: TDataSource
     DataSet = qry_requisition_type
-    Left = 848
-    Top = 120
+    Left = 784
+    Top = 112
   end
   object qry_scheduling: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
         'select scheduling.*, hex(employee_emp_cod)as CodEmployee from sc' +
         'heduling'#13#10#10
-      ''
       'where employee_emp_cod = unhex(:employee_emp_cod)'
       'and sch_datetime between :DataIncio and :DataFim')
-    Left = 1032
-    Top = 408
+    Left = 1056
+    Top = 432
     ParamData = <
       item
         Name = 'EMPLOYEE_EMP_COD'
@@ -1060,12 +1061,12 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   object ds_scheduling: TDataSource
     DataSet = qry_scheduling
-    Left = 1104
-    Top = 400
+    Left = 1080
+    Top = 432
   end
-  object qry_requisition_sheduling02: TFDQuery
+  object qry_requisition_sheduling: TFDQuery
     Active = True
-    AfterInsert = qry_requisition_sheduling02AfterInsert
+    AfterInsert = qry_requisition_shedulingAfterInsert
     IndexFieldNames = 'requisition_req_cod'
     MasterSource = ds
     MasterFields = 'req_cod'
@@ -1077,15 +1078,17 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       
         'select requisition_sheduling.*,hex(requisition_req_cod)as reqCod' +
         ', sch.employee_emp_cod,sch.sch_datetime,'#10'sch.sch_description,'
-      ' rec.rec_name, rol.rol_name from requisition_sheduling'#10
+      
+        ' rec.rec_name, rol.rol_name,hex(scheduling_sch_cod)as CodSchedul' +
+        'ing from requisition_sheduling'#10
       'left join scheduling as sch on sch.sch_cod = scheduling_sch_cod'
       ' '#10'left join role as rol on rol.rol_cod = role_rol_cod'#13#10#10
       'left join doctor as doc on   doc.doc_cod = doctor_doc_cod'#10
       'left join employee as emp on emp.emp_cod = doc.employee_emp_cod'#10
       'left join record as rec on rec.rec_cod = emp.record_rec_cod '
       'where requisition_req_cod =:req_cod and rsh_deleted_at is null ')
-    Left = 984
-    Top = 120
+    Left = 1032
+    Top = 88
     ParamData = <
       item
         Name = 'REQ_COD'
@@ -1094,7 +1097,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
         Size = 16
         Value = Null
       end>
-    object qry_requisition_sheduling02reqCod: TStringField
+    object qry_requisition_shedulingreqCod: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'reqCod'
       Origin = 'reqCod'
@@ -1102,74 +1105,74 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ReadOnly = True
       Size = 32
     end
-    object qry_requisition_sheduling02rsh_cod: TBytesField
+    object qry_requisition_shedulingrsh_cod: TBytesField
       FieldName = 'rsh_cod'
       Origin = 'rsh_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object qry_requisition_sheduling02contract_ctr_cod: TBytesField
+    object qry_requisition_shedulingcontract_ctr_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'contract_ctr_cod'
       Origin = 'contract_ctr_cod'
     end
-    object qry_requisition_sheduling02requisition_req_cod: TBytesField
+    object qry_requisition_shedulingrequisition_req_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'requisition_req_cod'
       Origin = 'requisition_req_cod'
     end
-    object qry_requisition_sheduling02scheduling_sch_cod: TBytesField
+    object qry_requisition_shedulingscheduling_sch_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'scheduling_sch_cod'
       Origin = 'scheduling_sch_cod'
     end
-    object qry_requisition_sheduling02role_rol_cod: TBytesField
+    object qry_requisition_shedulingrole_rol_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'role_rol_cod'
       Origin = 'role_rol_cod'
     end
-    object qry_requisition_sheduling02doctor_doc_cod: TBytesField
+    object qry_requisition_shedulingdoctor_doc_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'doctor_doc_cod'
       Origin = 'doctor_doc_cod'
     end
-    object qry_requisition_sheduling02rsh_id: TLongWordField
+    object qry_requisition_shedulingrsh_id: TLongWordField
       AutoGenerateValue = arDefault
       FieldName = 'rsh_id'
       Origin = 'rsh_id'
     end
-    object qry_requisition_sheduling02rsh_status: TStringField
+    object qry_requisition_shedulingrsh_status: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'rsh_status'
       Origin = 'rsh_status'
       FixedChar = True
       Size = 1
     end
-    object qry_requisition_sheduling02rsh_deleted_at: TDateTimeField
+    object qry_requisition_shedulingrsh_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
       FieldName = 'rsh_deleted_at'
       Origin = 'rsh_deleted_at'
     end
-    object qry_requisition_sheduling02rsh_dt_registration: TDateTimeField
+    object qry_requisition_shedulingrsh_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       FieldName = 'rsh_dt_registration'
       Origin = 'rsh_dt_registration'
     end
-    object qry_requisition_sheduling02employee_emp_cod: TBytesField
+    object qry_requisition_shedulingemployee_emp_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'employee_emp_cod'
       Origin = 'employee_emp_cod'
       ProviderFlags = []
       ReadOnly = True
     end
-    object qry_requisition_sheduling02sch_datetime: TDateTimeField
+    object qry_requisition_shedulingsch_datetime: TDateTimeField
       AutoGenerateValue = arDefault
       FieldName = 'sch_datetime'
       Origin = 'sch_datetime'
       ProviderFlags = []
       ReadOnly = True
     end
-    object qry_requisition_sheduling02sch_description: TStringField
+    object qry_requisition_shedulingsch_description: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'sch_description'
       Origin = 'sch_description'
@@ -1177,7 +1180,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ReadOnly = True
       Size = 500
     end
-    object qry_requisition_sheduling02rec_name: TStringField
+    object qry_requisition_shedulingrec_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'rec_name'
       Origin = 'rec_name'
@@ -1185,7 +1188,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ReadOnly = True
       Size = 85
     end
-    object qry_requisition_sheduling02rol_name: TStringField
+    object qry_requisition_shedulingrol_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'rol_name'
       Origin = 'rol_name'
@@ -1193,10 +1196,66 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ReadOnly = True
       Size = 35
     end
+    object qry_requisition_shedulingCodScheduling: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodScheduling'
+      Origin = 'CodScheduling'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
-  object ds_requisition_sheduling02: TDataSource
-    DataSet = qry_requisition_sheduling02
-    Left = 1024
-    Top = 120
+  object ds_requisition_sheduling: TDataSource
+    DataSet = qry_requisition_sheduling
+    Left = 1064
+    Top = 88
+  end
+  object qry_parameter_clinic: TFDQuery
+    Active = True
+    IndexFieldNames = 'contract_ctr_cod'
+    ConstraintsEnabled = True
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      
+        'select parameter_clinic.*, hex(prc_cod)as CodParameter from para' +
+        'meter_clinic'
+      'where contract_ctr_cod =:ctr_cod')
+    Left = 1040
+    Top = 8
+    ParamData = <
+      item
+        Name = 'CTR_COD'
+        DataType = ftBytes
+        ParamType = ptInput
+        Size = 16
+        Value = Null
+      end>
+    object qry_parameter_clinicprc_cod: TBytesField
+      FieldName = 'prc_cod'
+      Origin = 'prc_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_parameter_cliniccontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_parameter_clinicprc_time_service: TTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'prc_time_service'
+      Origin = 'prc_time_service'
+    end
+    object qry_parameter_clinicCodParameter: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodParameter'
+      Origin = 'CodParameter'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
 end

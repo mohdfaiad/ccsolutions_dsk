@@ -112,6 +112,18 @@ end;
 
 procedure Tfrm_role.Action_saveExecute(Sender: TObject);
 begin
+if trim(cxDBTextEdit1.Text) = ''  then
+ begin
+   Application.MessageBox('Função não informada!','Tipo de Requisição', MB_OK + MB_ICONINFORMATION);
+   exit;
+ end;
+
+  inherited;
+
+  if ds.DataSet.State in [dsEdit] then
+    Exit;
+
+
 with frm_dm.qry,sql do
  begin
    close;
@@ -125,10 +137,10 @@ with frm_dm.qry,sql do
 
    if qryrol_id.AsInteger = 0 then
     qryrol_id.AsInteger:=Fields[0].AsInteger;
-
+    qry.Post;
+    qry.ApplyUpdates(0);
   end;
 
-  inherited;
     qry_sql('todos');
 end;
 

@@ -253,6 +253,9 @@ with frm_dm.qry,sql do
   end;
 
   inherited;
+    if ds.DataSet.State in [dsEdit] then
+      Exit;
+
        qry.Close;
        qry.sql.text:= ' select insurance.*,concat(''0x'',hex(table_price_tbp_cod)) as codTabela from insurance' +
                       ' where ins_deleted_at is null ';

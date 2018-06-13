@@ -180,9 +180,6 @@ inherited frm_client: Tfrm_client
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         Height = 596
@@ -190,9 +187,6 @@ inherited frm_client: Tfrm_client
         ExplicitHeight = 596
         ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
           ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 562
@@ -2064,7 +2058,6 @@ inherited frm_client: Tfrm_client
     Top = 130
   end
   object qry_client_sippulse: TFDQuery
-    CachedUpdates = True
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'
@@ -2123,8 +2116,6 @@ inherited frm_client: Tfrm_client
     Top = 530
   end
   object qry_client_astpp: TFDQuery
-    Active = True
-    CachedUpdates = True
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'
@@ -2133,7 +2124,7 @@ inherited frm_client: Tfrm_client
     SQL.Strings = (
       'select * from client_astpp'
       'where  client_cli_cod = :cli_cod')
-    Left = 713
+    Left = 657
     Top = 531
     ParamData = <
       item

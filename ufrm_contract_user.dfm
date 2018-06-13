@@ -151,7 +151,6 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         Width = 1121
-        Properties.ActivePage = tbsht_6
         ExplicitWidth = 1121
         ClientRectRight = 1115
         inherited tbsht_5: TcxTabSheet
@@ -868,10 +867,12 @@ inherited frm_contract_user: Tfrm_contract_user
   inherited popmenu_1: TPopupMenu
     object BloquearUsurio1: TMenuItem [13]
       Caption = 'Bloquear Usu'#225'rio'
+      Visible = False
       OnClick = BloquearUsurio1Click
     end
     object DesbloquearUsurio1: TMenuItem [14]
       Caption = 'Desbloquear Usu'#225'rio'
+      Visible = False
       OnClick = DesbloquearUsurio1Click
     end
     object ResetarSenha1: TMenuItem [15]

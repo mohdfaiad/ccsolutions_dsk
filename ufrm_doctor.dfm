@@ -11,18 +11,12 @@ inherited frm_doctor: Tfrm_doctor
     ExplicitHeight = 588
     ClientRectBottom = 582
     inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
-      ExplicitWidth = 954
       ExplicitHeight = 555
       inherited pgctrl_2: TcxPageControl
         Height = 555
         ExplicitHeight = 555
         ClientRectBottom = 549
         inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
-          ExplicitWidth = 946
           ExplicitHeight = 522
           inherited grid_1: TcxGrid
             Height = 516
@@ -86,9 +80,6 @@ inherited frm_doctor: Tfrm_doctor
     end
     inherited tbsht_2: TcxTabSheet
       OnShow = tbsht_2Show
-      ExplicitLeft = 2
-      ExplicitTop = 27
-      ExplicitWidth = 954
       ExplicitHeight = 555
       inherited pgctrl_3: TcxPageControl
         Height = 555
@@ -226,12 +217,6 @@ inherited frm_doctor: Tfrm_doctor
   inherited stsbar_1: TdxStatusBar
     Top = 643
     ExplicitTop = 643
-    inherited stsbar_deleted_at: TdxStatusBarContainerControl
-      inherited chkbox_1: TcxCheckBox
-        ExplicitWidth = 926
-        ExplicitHeight = 32
-      end
-    end
   end
   inherited barman_1: TdxBarManager
     object dxBarButton1: TdxBarButton

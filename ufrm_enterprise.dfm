@@ -10,7 +10,6 @@ inherited frm_enterprise: Tfrm_enterprise
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ent_id: TcxGridDBColumn
             Caption = 'C'#243'd. ID'
@@ -416,6 +415,10 @@ inherited frm_enterprise: Tfrm_enterprise
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl_address: TdxLayoutControl
             Left = 0
             Top = 0
@@ -565,7 +568,6 @@ inherited frm_enterprise: Tfrm_enterprise
               AlignVert = avTop
               ButtonOptions.Buttons = <>
               Hidden = True
-              ItemIndex = 1
               ShowBorder = False
               Index = -1
             end
@@ -576,7 +578,6 @@ inherited frm_enterprise: Tfrm_enterprise
               SizeOptions.SizableHorz = True
               SizeOptions.Width = 742
               ButtonOptions.Buttons = <>
-              ItemIndex = 4
               LayoutDirection = ldHorizontal
               Index = 1
             end
@@ -585,7 +586,6 @@ inherited frm_enterprise: Tfrm_enterprise
               AlignHorz = ahLeft
               CaptionOptions.Text = 'Comercial'
               ButtonOptions.Buttons = <>
-              ItemIndex = 1
               Index = 0
             end
             object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup

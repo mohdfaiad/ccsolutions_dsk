@@ -508,6 +508,9 @@ begin
       end;
 
   inherited;
+   if ds.DataSet.State in [dsEdit] then
+     Exit;
+
   AtualizarGrid;
 
 end;

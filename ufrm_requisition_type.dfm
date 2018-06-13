@@ -6,16 +6,12 @@ inherited frm_requisition_type: Tfrm_requisition_type
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ret_id: TcxGridDBColumn
+            Caption = 'C'#243'd. ID'
             DataBinding.FieldName = 'ret_id'
-            Width = 75
+            Width = 80
           end
           object cxGrid_1DBTableView1ret_name: TcxGridDBColumn
             DataBinding.FieldName = 'ret_name'
@@ -29,16 +25,8 @@ inherited frm_requisition_type: Tfrm_requisition_type
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'ret_id'

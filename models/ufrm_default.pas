@@ -150,7 +150,7 @@ type
 
   public
     { Public declarations }
-    delete:Boolean;
+    delete,salvou:Boolean;
   end;
 
 var
@@ -250,8 +250,16 @@ end;
 
 procedure Tfrm_default.Action_saveExecute(Sender: TObject);
 begin
+  salvou:=False;
+  if Application.MessageBox
+    ('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!',
+    'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION +
+    MB_DEFBUTTON2) = IDYES then
+  begin
   actionButton(True);
    tbsht_1.Show;
+   salvou:=True;
+end;
 end;
 
 procedure Tfrm_default.grid_1DBTableView1CellDblClick(Sender: TcxCustomGridTableView;

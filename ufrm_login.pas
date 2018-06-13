@@ -109,10 +109,6 @@ begin
 //   frm_dm.qry_enterprise.Prepare;
 //   frm_dm.qry_enterprise.Open;
 
-  if frm_dm.qry_loggedctr_usr_logged.AsString = 'B' then begin
-    Application.MessageBox('Usuário foi bloaqueado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
-    Application.Terminate
-  end;
 //
 //
 //  if frm_dm.qry_signin.RecordCount = 1 then
@@ -190,7 +186,7 @@ begin
    end
   else
   begin
-    MessageDlg('Usuário ou Senha inválida!', mtInformation, [mbOK], 0);
+    MessageDlg('Usuário ou Senha inválida, ou usuário desativado!', mtInformation, [mbOK], 0);
     edt_contract.SetFocus;
   end;
 end;

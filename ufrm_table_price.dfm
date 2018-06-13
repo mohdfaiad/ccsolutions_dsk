@@ -2,6 +2,7 @@ inherited frm_table_price: Tfrm_table_price
   Caption = 'Cadastro de Tabela de pre'#231'o'
   ClientHeight = 681
   ClientWidth = 1105
+  OnClose = FormClose
   ExplicitWidth = 1121
   ExplicitHeight = 720
   PixelsPerInch = 96
@@ -9,31 +10,22 @@ inherited frm_table_price: Tfrm_table_price
   inherited cxPageControl_1: TcxPageControl
     Width = 1105
     Height = 626
-    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 1105
     ExplicitHeight = 626
     ClientRectBottom = 620
     ClientRectRight = 1099
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 1097
       ExplicitHeight = 592
       inherited cxGrid_1: TcxGrid
         Width = 1091
         Height = 586
-        ExplicitLeft = 3
         ExplicitWidth = 1091
         ExplicitHeight = 586
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1tbp_id: TcxGridDBColumn
             Caption = 'C'#243'd. ID'
             DataBinding.FieldName = 'tbp_id'
-            Width = 70
-          end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            Caption = 'Contrato'
-            DataBinding.FieldName = 'contract_ctr_id'
             Width = 70
           end
           object cxGrid_1DBTableView1tbp_name: TcxGridDBColumn
@@ -50,21 +42,16 @@ inherited frm_table_price: Tfrm_table_price
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 1097
       ExplicitHeight = 592
       inherited cxPageControl_2: TcxPageControl
         Width = 1091
         Height = 586
-        Properties.ActivePage = cxTabExames
         ExplicitWidth = 1091
         ExplicitHeight = 586
         ClientRectBottom = 580
         ClientRectRight = 1085
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
           ExplicitWidth = 1083
           ExplicitHeight = 552
           inherited dxLayoutControl_1: TdxLayoutControl
@@ -87,9 +74,6 @@ inherited frm_table_price: Tfrm_table_price
               Style.HotTrack = False
               TabOrder = 2
               Width = 303
-            end
-            inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2

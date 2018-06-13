@@ -11,7 +11,6 @@ inherited frm_material: Tfrm_material
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1mat_id: TcxGridDBColumn
             DataBinding.FieldName = 'mat_id'

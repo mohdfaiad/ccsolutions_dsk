@@ -185,6 +185,9 @@ with frm_dm.qry,sql do
   end;
 
   inherited;
+  if ds.DataSet.State in [dsEdit] then
+      Exit;
+
        qry.Close;
        qry.sql.text:= ' select product.*,concat(''0x'',hex(material_mat_cod)) as codMaterial from product ' +
                       ' where pro_deleted_at is null ';

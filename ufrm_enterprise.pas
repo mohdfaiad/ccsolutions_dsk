@@ -273,6 +273,9 @@ with frm_dm.qry,sql do
   end;
 
   inherited;
+  if ds.DataSet.State in [dsEdit] then
+      Exit;
+
        qry.Close;
        qry.sql.text:= ' select * from enterprise ' +
                       ' where ent_deleted_at is null ';

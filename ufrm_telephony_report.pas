@@ -200,6 +200,13 @@ cxProgressBar.Position:=0;
       qry_grafico2.Prepare;
       qry_grafico2.Open;
 
+      qry_grafico_total.Close;
+      qry_grafico_total.ParamByName('dt_ini').AsDateTime:=StrToDateTime(FormatDateTime('dd/mm/yyyy',cxDateEditDataInicial.Date) + ' 00:00:00');
+      qry_grafico_total.ParamByName('dt_fin').AsDateTime:=StrToDateTime(FormatDateTime('dd/mm/yyyy',cxDateEditDataFinal.Date) + ' 23:59:59');
+      qry_grafico_total.ParamByName('cli').AsInteger:=StrToInt(listaCliId[i]);
+      qry_grafico_total.Prepare;
+      qry_grafico_total.Open;
+
 
       qry_import_call_log.First;
       pathPDF:='C:\ccsolutions_dsk\export\telefonia\' +
@@ -210,6 +217,8 @@ cxProgressBar.Position:=0;
        CreateDir(pathPDF);
 
       frxReportConta.LoadFromFile('C:\ccsolutions_dsk\reports\rep_relatorio_ligacoes_v2.fr3' ) ;
+      frxReportConta.Variables['dataIni'] := QuotedStr(DateToStr(cxDateEditDataInicial.Date));
+      frxReportConta.Variables['dataFin'] := QuotedStr(DateToStr(cxDateEditDataFinal.Date));
       frxPDFExport1.FileName := cxCheckListBoxClientSelecionado.Items.Items[i].Text +  '.pdf';
       frxPDFExport1.DefaultPath := pathPDF + '\';
       frxPDFExport1.ShowDialog := False;

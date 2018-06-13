@@ -11,7 +11,6 @@ inherited frm_insurance: Tfrm_insurance
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ins_id: TcxGridDBColumn
             DataBinding.FieldName = 'ins_id'
@@ -259,14 +258,17 @@ inherited frm_insurance: Tfrm_insurance
               SizeOptions.Width = 965
               ItemIndex = 1
             end
-            object dxLayoutGroup3: TdxLayoutGroup [14]
+            inherited dxLayoutItem1: TdxLayoutItem
+              AlignVert = avClient
+            end
+            object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutControl_1Group_Root
               CaptionOptions.Text = 'Documentos'
               ButtonOptions.Buttons = <>
               LayoutDirection = ldHorizontal
               Index = 2
             end
-            object dxLayoutItem7: TdxLayoutItem [15]
+            object dxLayoutItem7: TdxLayoutItem
               Parent = dxLayoutGroup3
               AlignHorz = ahLeft
               AlignVert = avClient
@@ -277,14 +279,14 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup [16]
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2
               AlignVert = avTop
               LayoutDirection = ldHorizontal
               Index = 0
               AutoCreated = True
             end
-            object dxLayoutItem24: TdxLayoutItem [17]
+            object dxLayoutItem24: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup1
               AlignHorz = ahLeft
               AlignVert = avClient
@@ -295,7 +297,7 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem25: TdxLayoutItem [18]
+            object dxLayoutItem25: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup1
               AlignVert = avClient
               CaptionOptions.Text = 'Status'
@@ -304,9 +306,6 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.OriginalWidth = 130
               ControlOptions.ShowBorder = False
               Index = 1
-            end
-            inherited dxLayoutItem1: TdxLayoutItem
-              AlignVert = avClient
             end
             object dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2
@@ -406,6 +405,10 @@ inherited frm_insurance: Tfrm_insurance
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -556,7 +559,6 @@ inherited frm_insurance: Tfrm_insurance
               CaptionOptions.Visible = False
               ButtonOptions.Buttons = <>
               Hidden = True
-              ItemIndex = 1
               ShowBorder = False
               Index = -1
             end
@@ -564,7 +566,6 @@ inherited frm_insurance: Tfrm_insurance
               Parent = dxLayoutControl1Group_Root
               CaptionOptions.Text = 'Endere'#231'o'
               ButtonOptions.Buttons = <>
-              ItemIndex = 1
               Index = 0
             end
             object dxLayoutGroup5: TdxLayoutGroup
@@ -741,6 +742,10 @@ inherited frm_insurance: Tfrm_insurance
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Contrato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -772,7 +777,6 @@ inherited frm_insurance: Tfrm_insurance
               AlignVert = avTop
               ButtonOptions.Buttons = <>
               Hidden = True
-              ItemIndex = 1
               LayoutDirection = ldHorizontal
               ShowBorder = False
               Index = -1

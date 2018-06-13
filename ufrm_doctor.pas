@@ -206,48 +206,31 @@ end;
 
 procedure Tfrm_doctor.Action_saveExecute(Sender: TObject);
 begin
-  if Self.Tag = 1 then
+  with frm_dm.qry,sql do
    begin
-    with frm_dm.qry3,sql do
-     begin
-       close;
-       Text :=' select * from doctor where employee_emp_cod = '+qry_doctorempCod.AsString;
-       Prepare;
-       Open;
+    close;
+    Text:= ' select case when max(doc_id) is null then 1 ' +
+           '      else (max(doc_id) + 1) end as maxID from doctor '+
+           ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+    Prepare;
+    Open;
+    if not (qry.State in [dsInsert,dsEdit])  then
+     qry.Edit;
 
-       if RecordCount >0 then
-        begin
-          Application.MessageBox('O proficional selecionado já está cadastrado !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
-          Abort;
-        end;
-
-     end;
+    if qrydoc_id.AsInteger = 0 then
+     qrydoc_id.AsInteger:=Fields[0].AsInteger;
+     qryemployee_emp_cod.Value:=qry_doctoremp_cod.Value;
+     qrydoc_status.AsString:=Copy(cxComboBoxStatus.Text,1,1);
+     qry.Post;
+     qry.ApplyUpdates(0);
    end;
 
-        with frm_dm.qry,sql do
-        begin
-         close;
-         Text:= ' select case when max(doc_id) is null then 1 ' +
-                '      else (max(doc_id) + 1) end as maxID from doctor '+
-                ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
-         Prepare;
-         Open;
-         if not (qry.State in [dsInsert,dsEdit])  then
-          qry.Edit;
+  inherited;
+    if ds.DataSet.State in [dsEdit] then
+       Exit;
 
-         if qrydoc_id.AsInteger = 0 then
-          qrydoc_id.AsInteger:=Fields[0].AsInteger;
-          qryemployee_emp_cod.Value:=qry_doctoremp_cod.Value;
-          qrydoc_status.AsString:=Copy(cxComboBoxStatus.Text,1,1);
-          qry.Post;
-          qry.ApplyUpdates(0);
-        end;
-
-
-      Application.MessageBox('Registros processados com secesso !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
-
-    inherited;
-    qry_sql('todos');
+  Application.MessageBox('Registros processados com secesso !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+  qry_sql('todos');
 
 end;
 

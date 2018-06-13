@@ -5,12 +5,7 @@ inherited frm_role: Tfrm_role
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1rol_id: TcxGridDBColumn
             Caption = 'C'#243'digo ID'
@@ -25,6 +20,7 @@ inherited frm_role: Tfrm_role
           object cxGrid_1DBTableView1rol_base_salary: TcxGridDBColumn
             Caption = 'Sal'#225'rio'
             DataBinding.FieldName = 'rol_base_salary'
+            PropertiesClassName = 'TcxCurrencyEditProperties'
             Width = 100
           end
           object cxGrid_1DBTableView1rol_dt_registration: TcxGridDBColumn
@@ -36,16 +32,8 @@ inherited frm_role: Tfrm_role
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 80

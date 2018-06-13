@@ -42,7 +42,6 @@ type
     qrytbp_name: TStringField;
     qrytbp_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1tbp_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1tbp_name: TcxGridDBColumn;
     cxGrid_1DBTableView1tbp_dt_registration: TcxGridDBColumn;
     dbedit_nome: TcxDBTextEdit;
@@ -133,6 +132,7 @@ type
     procedure cxLookupComboBoxExamePropertiesCloseUp(Sender: TObject);
     procedure cxLookupComboBoxExamePropertiesPopup(Sender: TObject);
     procedure qry_table_price_productAfterPost(DataSet: TDataSet);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     FTable_price:TTable_price;
     tbp_cod,tpp_cod:string;
@@ -142,7 +142,7 @@ type
   end;
 
 var
-  frm_table_price: Tfrm_table_price;
+frm_table_price: Tfrm_table_price;
 
 implementation
 
@@ -194,6 +194,17 @@ end;
 
 procedure Tfrm_table_price.Action_saveExecute(Sender: TObject);
 begin
+if trim(dbedit_nome.Text) = ''  then
+ begin
+   Application.MessageBox('Descrição da tabela não informada!','Tabela de Preço', MB_OK + MB_ICONINFORMATION);
+   exit;
+ end;
+
+   inherited;
+
+  if ds.DataSet.State in [dsEdit] then
+    Exit;
+
 with frm_dm.qry,sql do
  begin
    close;
@@ -207,16 +218,18 @@ with frm_dm.qry,sql do
 
    if qrytbp_id.AsInteger = 0 then
     qrytbp_id.AsInteger:=Fields[0].AsInteger;
+    qry.Post;
+    qry.ApplyUpdates(0);
+
   end;
 
-  inherited;
-       qry.Close;
-       qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price ' +
-                      ' where tbp_deleted_at is null ';
-       qry.Prepare;
-       qry.open;
-  end;
-
+  qry.Close;
+  qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price ' +
+                 ' where tbp_deleted_at is null ';
+  qry.Prepare;
+  qry.open;
+  cxTabSheet_1.Show;
+end;
 
 procedure Tfrm_table_price.butonAlterarPrecoClick(Sender: TObject);
 begin
@@ -358,6 +371,13 @@ procedure Tfrm_table_price.cxTabAlterarPrecoShow(Sender: TObject);
 begin
   inherited;
  dxLayoutGroup8.CaptionOptions.Text:='Exames da tabela '+ qrytbp_name.AsString;
+end;
+
+procedure Tfrm_table_price.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_table_price.Destroy;
+  frm_table_price := Nil;
 end;
 
 procedure Tfrm_table_price.FormCreate(Sender: TObject);

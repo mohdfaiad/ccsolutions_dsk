@@ -304,6 +304,7 @@ type
     cxGrid1DBTableView1cin_id: TcxGridDBColumn;
     cxGrid1DBTableView1ins_first_name: TcxGridDBColumn;
     cxGrid1DBTableView1cin_dt_registration: TcxGridDBColumn;
+    cxGrid_1DBTableView1Column1: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);
@@ -463,10 +464,10 @@ begin
 end;
 
 procedure Tfrm_client.Action_saveExecute(Sender: TObject);
- var
-   x,y:string;
+
 begin
- //Código para verificar se existe um CPF/CNPJ igual ja cadastrado no banco de dados
+ if trim(edt_cpfcnpj.Text)<> ''  then
+  begin
    with frm_dm.qry,sql do
     begin
      close;
@@ -475,19 +476,29 @@ begin
      prepare;
      open;
 
-     if ((edtClient.Text <> FieldByName('cli_first_name').AsString) and (edt_cpfcnpj.Text = FieldByName('cli_cpfcnpj').AsString)) then
+     if not IsEmpty then
       begin
-     //  Application.MessageBox('Já existe um cliente com esse CPF/CNPJ cadastrado no sistema!','CLIENTE',MB_OK + MB_ICONWARNING);
-    //   x:=qrycli_cpfcnpj.AsString;
-       x:= FieldByName('cli_first_name').AsString;
-       y:= FieldByName('cli_cpfcnpj').AsString;
-       ShowMessage('Já existe um cliente com esse CPF/CNPJ cadastrado no sistema   !'+'  Cliente: ' +x +'   CPF/CNPJ:  '+y);
+      Application.MessageBox(PWideChar('Já existe um cliente com esse CPF/CNPJ cadastrado no sistema!' + #13+
+                                       'Cliente: '+ FieldByName('cli_first_name').AsString + #13 +
+                                       'CPF/CNPJ: ' + FieldByName('cli_cpfcnpj').AsString),'CLIENTE',MB_OK + MB_ICONWARNING);
        Exit;
       end;
     end;
+  end;
 
-   if (self.Tag = 1) then
-   begin
+
+
+if trim(edtClient.Text) = ''  then
+ begin
+   Application.MessageBox('Nome do Cliente não informado!','Cadastro de Empresa', MB_OK + MB_ICONINFORMATION);
+   exit;
+ end;
+
+   inherited;
+
+  if ds.DataSet.State in [dsEdit] then
+    Exit;
+
    with frm_dm.qry,sql do
     begin
       close;
@@ -501,19 +512,15 @@ begin
 
       if qrycli_id.AsInteger = 0 then
         qrycli_id.AsInteger:=Fields[0].AsInteger;
+
+        qry.Post;
+        qry.ApplyUpdates(0);
     end;
-   end else if (self.Tag = 2) then
-      begin
 
-      end;
-
-  inherited;
-   if ds.DataSet.State in [dsEdit] then
-     Exit;
-
-  AtualizarGrid;
+   AtualizarGrid;
 
 end;
+
 
 procedure Tfrm_client.AtualizarConvenios;
 begin

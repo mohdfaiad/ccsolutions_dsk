@@ -8,7 +8,6 @@ inherited frm_client: Tfrm_client
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 636
-    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 636
     ClientRectBottom = 630
     inherited cxTabSheet_1: TcxTabSheet
@@ -17,6 +16,8 @@ inherited frm_client: Tfrm_client
         Height = 596
         ExplicitHeight = 596
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
+          object cxGrid_1DBTableView1Column1: TcxGridDBColumn
+          end
           object cxGrid_1DBTableView1cli_type: TcxGridDBColumn
             DataBinding.FieldName = 'cli_type'
             Width = 50
@@ -183,7 +184,6 @@ inherited frm_client: Tfrm_client
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         Height = 596
-        Properties.ActivePage = tabTelefonia
         ExplicitHeight = 596
         ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet
@@ -2058,6 +2058,7 @@ inherited frm_client: Tfrm_client
     Top = 130
   end
   object qry_client_sippulse: TFDQuery
+    Active = True
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'
@@ -2116,6 +2117,7 @@ inherited frm_client: Tfrm_client
     Top = 530
   end
   object qry_client_astpp: TFDQuery
+    Active = True
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'

@@ -172,7 +172,6 @@
         </DCCReference>
         <DCCReference Include="..\class_Conexao.pas"/>
         <DCCReference Include="..\class_contract_user.pas"/>
-        <DCCReference Include="..\class_required_field.pas"/>
         <DCCReference Include="..\Dao\Contract_User.Dao.pas"/>
         <DCCReference Include="..\Dao\Conexao.pas"/>
         <DCCReference Include="..\ufrm_doctor.pas">
@@ -210,10 +209,6 @@
             <Form>frm_search</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\ufrm_scheduling_clinical2.pas">
-            <Form>frm_scheduling_clinical2</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\Dao\Contract_User_Action.Dao.pas"/>
         <DCCReference Include="..\ufrm_table_price.pas">
             <Form>frm_table_price</Form>
@@ -227,6 +222,7 @@
             <Form>frm_requisition_type</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\class_required_field.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

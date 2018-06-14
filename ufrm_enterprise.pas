@@ -256,6 +256,18 @@ end;
 
 procedure Tfrm_enterprise.Action_saveExecute(Sender: TObject);
 begin
+if trim(cxDBTextEdit2.Text) = ''  then
+ begin
+   Application.MessageBox('Razão Social da empresa não informada!','Cadastro de Empresa', MB_OK + MB_ICONINFORMATION);
+   exit;
+ end;
+
+   inherited;
+
+  if ds.DataSet.State in [dsEdit] then
+    Exit;
+
+
 with frm_dm.qry,sql do
  begin
    close;
@@ -269,12 +281,11 @@ with frm_dm.qry,sql do
 
    if qryent_id.AsInteger = 0 then
     qryent_id.AsInteger:=Fields[0].AsInteger;
-
+    qry.Post;
+    qry.ApplyUpdates(0);
   end;
 
-  inherited;
-  if ds.DataSet.State in [dsEdit] then
-      Exit;
+
 
        qry.Close;
        qry.sql.text:= ' select * from enterprise ' +

@@ -1354,7 +1354,7 @@ object frm_form_default: Tfrm_form_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ','
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
+    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET

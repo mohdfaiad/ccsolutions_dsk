@@ -1,10 +1,10 @@
 inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   Caption = 'frm_scheduling_clinical'
-  ClientHeight = 776
+  ClientHeight = 727
   ClientWidth = 1291
   OnClose = FormClose
   ExplicitWidth = 1307
-  ExplicitHeight = 815
+  ExplicitHeight = 766
   PixelsPerInch = 96
   TextHeight = 13
   inherited bardck_1: TdxBarDockControl
@@ -13,35 +13,33 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   inherited pgctrl_1: TcxPageControl
     Width = 1291
-    Height = 686
+    Height = 637
     ExplicitWidth = 1291
-    ExplicitHeight = 686
-    ClientRectBottom = 680
+    ExplicitHeight = 637
+    ClientRectBottom = 631
     ClientRectRight = 1285
     inherited tbsht_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 27
       ExplicitWidth = 1283
-      ExplicitHeight = 653
+      ExplicitHeight = 604
       inherited pgctrl_2: TcxPageControl
         Width = 1283
-        Height = 653
+        Height = 604
         ExplicitWidth = 1283
-        ExplicitHeight = 653
-        ClientRectBottom = 647
+        ExplicitHeight = 604
+        ClientRectBottom = 598
         ClientRectRight = 1277
         inherited tbsht_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 27
           ExplicitWidth = 1275
-          ExplicitHeight = 620
+          ExplicitHeight = 571
           inherited grid_1: TcxGrid
             Width = 1269
-            Height = 614
-            ExplicitLeft = 27
-            ExplicitTop = 115
+            Height = 565
             ExplicitWidth = 1269
-            ExplicitHeight = 614
+            ExplicitHeight = 565
             inherited grid_1DBTableView1: TcxGridDBTableView
               object grid_1DBTableView1req_cod: TcxGridDBColumn
                 DataBinding.FieldName = 'req_cod'
@@ -115,18 +113,18 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ExplicitLeft = 2
       ExplicitTop = 27
       ExplicitWidth = 1283
-      ExplicitHeight = 653
+      ExplicitHeight = 604
       inherited pgctrl_3: TcxPageControl
         Width = 1283
-        Height = 653
+        Height = 604
         ExplicitWidth = 1283
-        ExplicitHeight = 653
-        ClientRectBottom = 647
+        ExplicitHeight = 604
+        ClientRectBottom = 598
         ClientRectRight = 1277
         inherited tbsht_5: TcxTabSheet
           OnShow = tbsht_5Show
           ExplicitWidth = 1275
-          ExplicitHeight = 620
+          ExplicitHeight = 571
           inherited grb_top: TcxGroupBox
             ExplicitWidth = 1269
             Width = 1269
@@ -146,11 +144,9 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
             end
           end
           inherited grb_bottton: TcxGroupBox
-            Top = 62
-            ExplicitTop = 62
             ExplicitWidth = 1269
-            ExplicitHeight = 554
-            Height = 554
+            ExplicitHeight = 505
+            Height = 505
             Width = 1269
             object cxLabelClient: TcxLabel
               Left = 3
@@ -167,12 +163,11 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                   FieldName = 'cli_first_name'
                 end>
               Properties.ListSource = ds_qry_client
-              Properties.OnCloseUp = looComboBoxClientePropertiesCloseUp
               TabOrder = 1
               Width = 270
             end
             object looComboxConvenio: TcxLookupComboBox
-              Left = 286
+              Left = 279
               Top = 66
               Properties.GridMode = True
               Properties.KeyFieldNames = 'ins_first_name'
@@ -187,7 +182,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
             end
             object looComboxEspecialidade: TcxLookupComboBox
               Left = 3
-              Top = 379
+              Top = 366
               Properties.GridMode = True
               Properties.KeyFieldNames = 'rolCod'
               Properties.ListColumns = <
@@ -201,7 +196,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
             end
             object cxLabel1: TcxLabel
               Left = 3
-              Top = 361
+              Top = 348
               Caption = 'Especialidade'
               Transparent = True
             end
@@ -213,7 +208,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
             end
             object looComboxMedico: TcxLookupComboBox
               Left = 279
-              Top = 379
+              Top = 366
               Properties.GridMode = True
               Properties.KeyFieldNames = 'codDoctor'
               Properties.ListColumns = <
@@ -245,28 +240,32 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
             end
             object cxLabel4: TcxLabel
               Left = 279
-              Top = 362
+              Top = 349
               Caption = 'M'#233'dico'
               Transparent = True
             end
             object edtDate: TcxDateEdit
               Left = 556
-              Top = 379
+              Top = 366
+              EditValue = 0d
+              Properties.SaveTime = False
               Properties.ShowTime = False
+              Properties.ShowToday = False
+              Properties.YearsInMonthList = False
               Properties.OnCloseUp = edtDatePropertiesCloseUp
               TabOrder = 10
               Width = 125
             end
             object edtTime: TcxTimeEdit
               Left = 690
-              Top = 379
+              Top = 366
               Properties.OnEditValueChanged = edtTimePropertiesEditValueChanged
               TabOrder = 11
               Width = 125
             end
             object memoDescricao: TcxMemo
               Left = 3
-              Top = 424
+              Top = 411
               Lines.Strings = (
                 '')
               TabOrder = 12
@@ -275,19 +274,19 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
             end
             object cxLabel5: TcxLabel
               Left = 556
-              Top = 361
+              Top = 348
               Caption = 'Data'
               Transparent = True
             end
             object cxLabel6: TcxLabel
               Left = 690
-              Top = 361
+              Top = 348
               Caption = 'Hora'
               Transparent = True
             end
             object cxLabel7: TcxLabel
               Left = 3
-              Top = 406
+              Top = 393
               Caption = 'Descri'#231#227'o'
               Transparent = True
             end
@@ -313,7 +312,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               Left = 945
               Top = 159
               Width = 327
-              Height = 338
+              Height = 322
               TabOrder = 18
               object cxGrid2DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
@@ -360,7 +359,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               Left = 3
               Top = 151
               Width = 936
-              Height = 202
+              Height = 186
               TabOrder = 19
               object cxGrid3DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
@@ -398,6 +397,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
                 Images = imglist_1
+                OptionsData.Editing = False
                 object cxGrid3DBTableView1rsh_id: TcxGridDBColumn
                   Caption = 'C'#243'digo ID'
                   DataBinding.FieldName = 'rsh_id'
@@ -470,15 +470,50 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               TabOrder = 23
               OnClick = btnAlterarClick
             end
+            object Button1: TButton
+              Left = 608
+              Top = 109
+              Width = 75
+              Height = 25
+              Caption = 'Button1'
+              TabOrder = 24
+              OnClick = Button1Click
+            end
+            object DBGrid1: TDBGrid
+              Left = 56
+              Top = 222
+              Width = 320
+              Height = 120
+              DataSource = ds_client_insurance
+              TabOrder = 25
+              TitleFont.Charset = DEFAULT_CHARSET
+              TitleFont.Color = clWindowText
+              TitleFont.Height = -11
+              TitleFont.Name = 'Tahoma'
+              TitleFont.Style = []
+            end
+            object DBGrid2: TDBGrid
+              Left = 601
+              Top = 193
+              Width = 320
+              Height = 120
+              DataSource = ds_qry_client
+              TabOrder = 26
+              TitleFont.Charset = DEFAULT_CHARSET
+              TitleFont.Color = clWindowText
+              TitleFont.Height = -11
+              TitleFont.Name = 'Tahoma'
+              TitleFont.Style = []
+            end
           end
         end
       end
     end
   end
   inherited stsbar_1: TdxStatusBar
-    Top = 741
+    Top = 692
     Width = 1291
-    ExplicitTop = 741
+    ExplicitTop = 692
     ExplicitWidth = 1291
     inherited stsbar_deleted_at: TdxStatusBarContainerControl
       Width = 1255
@@ -491,6 +526,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   inherited ds: TDataSource
     DataSet = qry
+    OnStateChange = nil
   end
   inherited impw_1: TQImport3Wizard
     Formats.ShortDateFormat = 'dd/MM/yyyy'
@@ -515,7 +551,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Style = <>
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -683,7 +718,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       
         'select cli_cod,contract_ctr_cod,cli_first_name,hex(cli_cod) as c' +
         'liCod from client '#13#10#10
-      ''
       
         'where contract_ctr_cod =:ctr_cod and cli_deleted_at is null'#10' ord' +
         'er by cli_first_name')
@@ -729,7 +763,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Top = 68
   end
   object Qry_role: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
@@ -737,7 +770,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
         'from role'
       'where rol_deleted_at is null'
       'order by rol_name')
-    Left = 688
+    Left = 624
     Top = 112
     object Qry_rolerol_cod: TBytesField
       FieldName = 'rol_cod'
@@ -767,11 +800,10 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   object dsRole: TDataSource
     DataSet = Qry_role
-    Left = 718
-    Top = 112
+    Left = 670
+    Top = 120
   end
   object qry_doctor_role: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
@@ -785,7 +817,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
         'and employee_emp_cod in (select employee_emp_cod from role_emplo' +
         'yee where role_rol_cod =:codRole)'
       '')
-    Left = 914
+    Left = 650
     Top = 184
     ParamData = <
       item
@@ -863,19 +895,18 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   object ds_doctor_role: TDataSource
     DataSet = qry_doctor_role
-    Left = 944
-    Top = 184
+    Left = 744
+    Top = 208
   end
   object qry_client_insurance: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
         'select ins_cod, contract_ctr_cod, table_price_tbp_cod, ins_id, i' +
         'ns_first_name,'#10' ins_last_name,'
       
-        ' ins_nickname, hex(ins_cod) as codInsirance from insurance'#10'where' +
-        ' ins_deleted_at is null;')
+        ' ins_nickname, hex(ins_cod) as codInsirance from insurance '#10'wher' +
+        'e ins_deleted_at is null;')
     Left = 755
     Top = 68
     object qry_client_insuranceins_cod: TBytesField
@@ -932,7 +963,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Top = 68
   end
   object qry_requisition_type: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from requisition_type')
@@ -1065,7 +1095,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Top = 432
   end
   object qry_requisition_sheduling: TFDQuery
-    Active = True
     AfterInsert = qry_requisition_shedulingAfterInsert
     IndexFieldNames = 'requisition_req_cod'
     MasterSource = ds
@@ -1073,22 +1102,24 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     DetailFields = 'requisition_req_cod'
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evCache]
-    FetchOptions.Cache = [fiBlobs, fiMeta]
     SQL.Strings = (
       
-        'select requisition_sheduling.*,hex(requisition_req_cod)as reqCod' +
-        ', sch.employee_emp_cod,sch.sch_datetime,'#10'sch.sch_description,'
+        'select rsh.*,hex(rsh.requisition_req_cod)as reqCod, sch.employee' +
+        '_emp_cod,sch.sch_datetime,'#10'sch.sch_description,'
       
-        ' rec.rec_name, rol.rol_name,hex(scheduling_sch_cod)as CodSchedul' +
-        'ing from requisition_sheduling'#10
-      'left join scheduling as sch on sch.sch_cod = scheduling_sch_cod'
-      ' '#10'left join role as rol on rol.rol_cod = role_rol_cod'#13#10#10
+        'rec.rec_name, rol.rol_name,hex(rsh.scheduling_sch_cod)as CodSche' +
+        'duling,hex(rsh.role_rol_cod)as CodRole, hex(rsh.doctor_doc_cod)a' +
+        's CodDoctor from requisition_sheduling'#10' as rsh'
+      
+        'left join scheduling as sch on sch.sch_cod = scheduling_sch_cod'#13 +
+        #10#10
+      'left join role as rol on rol.rol_cod = role_rol_cod'
       'left join doctor as doc on   doc.doc_cod = doctor_doc_cod'#10
       'left join employee as emp on emp.emp_cod = doc.employee_emp_cod'#10
       'left join record as rec on rec.rec_cod = emp.record_rec_cod '
       'where requisition_req_cod =:req_cod and rsh_deleted_at is null ')
-    Left = 1032
-    Top = 88
+    Left = 984
+    Top = 104
     ParamData = <
       item
         Name = 'REQ_COD'
@@ -1204,14 +1235,30 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       ReadOnly = True
       Size = 32
     end
+    object qry_requisition_shedulingCodRole: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodRole'
+      Origin = 'CodRole'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qry_requisition_shedulingCodDoctor: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodDoctor'
+      Origin = 'CodDoctor'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
   object ds_requisition_sheduling: TDataSource
     DataSet = qry_requisition_sheduling
-    Left = 1064
-    Top = 88
+    OnDataChange = ds_requisition_shedulingDataChange
+    Left = 1024
+    Top = 104
   end
   object qry_parameter_clinic: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     ConstraintsEnabled = True
     MasterSource = frm_dm.ds_contract

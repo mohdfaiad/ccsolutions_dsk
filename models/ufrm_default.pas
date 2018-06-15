@@ -150,7 +150,7 @@ type
 
   public
     { Public declarations }
-    delete,salvou:Boolean;
+    result:Boolean;
   end;
 
 var
@@ -194,9 +194,9 @@ procedure Tfrm_default.Action_deleteExecute(Sender: TObject);
 begin
   if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
     = IDYES then
-    delete:=true
+    result:=true
     else
-    delete:=false;
+    result:=false;
   actionButton(True);
 end;
 
@@ -246,11 +246,12 @@ end;
 procedure Tfrm_default.Action_refreshExecute(Sender: TObject);
 begin
   actionButton(True);
+  qry.Refresh;
 end;
 
 procedure Tfrm_default.Action_saveExecute(Sender: TObject);
 begin
-  salvou:=False;
+  result:=False;
   if Application.MessageBox
     ('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!',
     'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION +
@@ -258,7 +259,7 @@ begin
   begin
   actionButton(True);
    tbsht_1.Show;
-   salvou:=True;
+   result:=True;
 end;
 end;
 

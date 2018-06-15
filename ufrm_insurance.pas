@@ -177,6 +177,7 @@ type
     procedure lookupComboBoxTablePropertiesPopup(Sender: TObject);
     procedure cxDBButtonEdit1PropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
     procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
+    procedure cxDBTextEdit1Exit(Sender: TObject);
   private
     { Private declarations }
     ins_cod:string;
@@ -236,6 +237,12 @@ end;
 
 procedure Tfrm_insurance.Action_saveExecute(Sender: TObject);
 begin
+   inherited;
+
+  if ds.DataSet.State in [dsEdit] then
+    Exit;
+
+
 with frm_dm.qry,sql do
  begin
    close;
@@ -249,10 +256,11 @@ with frm_dm.qry,sql do
 
    if qryins_id.AsInteger = 0 then
     qryins_id.AsInteger:=Fields[0].AsInteger;
+    qry.Post;
+    qry.ApplyUpdates(0);
+ end;
 
-  end;
 
-  inherited;
     if ds.DataSet.State in [dsEdit] then
       Exit;
 
@@ -268,6 +276,13 @@ procedure Tfrm_insurance.cxDBButtonEdit1PropertiesButtonClick(Sender: TObject; A
 begin
   inherited;
     ACBrCEP_1.BuscarPorCEP(btnEditCEP.Text);
+end;
+
+procedure Tfrm_insurance.cxDBTextEdit1Exit(Sender: TObject);
+begin
+  inherited;
+if Trim(cxDBTextEdit2.TExt) = ''  then
+  qryins_last_name.AsString:=qryins_first_name.AsString;
 end;
 
 procedure Tfrm_insurance.cxTabSheet_1Show(Sender: TObject);

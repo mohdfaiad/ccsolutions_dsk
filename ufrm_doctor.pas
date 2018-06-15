@@ -206,6 +206,17 @@ end;
 
 procedure Tfrm_doctor.Action_saveExecute(Sender: TObject);
 begin
+if trim(cxLookupComboBoxProfissional.Text) = ''  then
+ begin
+   Application.MessageBox('Profissional não informado!','Tabela de Preço', MB_OK + MB_ICONINFORMATION);
+   exit;
+ end;
+
+   inherited;
+
+  if ds.DataSet.State in [dsEdit] then
+    Exit;
+
   with frm_dm.qry,sql do
    begin
     close;
@@ -225,11 +236,7 @@ begin
      qry.ApplyUpdates(0);
    end;
 
-  inherited;
-    if ds.DataSet.State in [dsEdit] then
-       Exit;
 
-  Application.MessageBox('Registros processados com secesso !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
   qry_sql('todos');
 
 end;
@@ -277,7 +284,19 @@ end;
 procedure Tfrm_doctor.cxLookupComboBoxProfissionalPropertiesPopup(Sender: TObject);
 begin
   inherited;
-  qry_role_employee.Open;
+  with frm_dm.qry3,sql do
+   begin
+    close;
+    Text :=' select * from doctor where hex(employee_emp_cod) = '+qry_doctorempCod.AsString;
+    Prepare;
+    Open;
+    if RecordCount >0 then
+     begin
+      Application.MessageBox('O proficional selecionado já está cadastrado!','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+      Abort;
+     end;
+   end;
+
 end;
 
 procedure Tfrm_doctor.ExibirRegistros;

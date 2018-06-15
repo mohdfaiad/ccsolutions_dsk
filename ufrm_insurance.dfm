@@ -4,6 +4,7 @@ inherited frm_insurance: Tfrm_insurance
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       OnShow = cxTabSheet_1Show
       ExplicitLeft = 2
@@ -214,6 +215,7 @@ inherited frm_insurance: Tfrm_insurance
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 5
+              OnExit = cxDBTextEdit1Exit
               Width = 303
             end
             object cxDBTextEdit4: TcxDBTextEdit [8]
@@ -405,10 +407,6 @@ inherited frm_insurance: Tfrm_insurance
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -742,10 +740,6 @@ inherited frm_insurance: Tfrm_insurance
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Contrato'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0

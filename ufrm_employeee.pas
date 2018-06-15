@@ -365,7 +365,7 @@ procedure Tfrm_employee_.Action_saveExecute(Sender: TObject);
   Dao : TEmployee_Dao;
 begin
  inherited;
-if not salvou then
+if not result then
  Exit;
 
      Employee    := TEmployeeModel.Create;

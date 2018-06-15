@@ -52,6 +52,8 @@ inherited frm_table_price: Tfrm_table_price
         ClientRectBottom = 580
         ClientRectRight = 1085
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
           ExplicitWidth = 1083
           ExplicitHeight = 552
           inherited dxLayoutControl_1: TdxLayoutControl
@@ -88,6 +90,10 @@ inherited frm_table_price: Tfrm_table_price
         end
         object cxTabExames: TcxTabSheet
           Caption = 'Exames da  Tabela'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -245,6 +251,10 @@ inherited frm_table_price: Tfrm_table_price
         object cxTabAlterarPreco: TcxTabSheet
           Caption = 'Alterar Pre'#231'o dos Exames'
           OnShow = cxTabAlterarPrecoShow
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
@@ -394,7 +404,6 @@ inherited frm_table_price: Tfrm_table_price
               Parent = dxLayoutGroup5
               CaptionOptions.Text = 'Op'#231#227'o para altera'#231#227'o de Pre'#231'os'
               ButtonOptions.Buttons = <>
-              ItemIndex = 1
               LayoutDirection = ldHorizontal
               Index = 1
             end

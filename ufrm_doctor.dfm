@@ -1,5 +1,5 @@
 inherited frm_doctor: Tfrm_doctor
-  Caption = 'frm_doctor'
+  Caption = 'Manuten'#231#227'o: M'#233'dico'
   ClientHeight = 678
   OnClose = FormClose
   ExplicitHeight = 717
@@ -7,7 +7,6 @@ inherited frm_doctor: Tfrm_doctor
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
     Height = 588
-    Properties.ActivePage = tbsht_2
     ExplicitHeight = 588
     ClientRectBottom = 582
     inherited tbsht_1: TcxTabSheet
@@ -97,7 +96,7 @@ inherited frm_doctor: Tfrm_doctor
             object cxLabel3: TcxLabel
               Left = 3
               Top = 15
-              Caption = 'Proficional'
+              Caption = 'Profissional'
               Transparent = True
             end
             object cxLookupComboBoxProfissional: TcxLookupComboBox
@@ -264,9 +263,10 @@ inherited frm_doctor: Tfrm_doctor
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       
-        'select doctor.*, rec_name,emp_cod, concat('#39'0x'#39',hex(employee_emp_' +
-        'cod))as empCod_Doctor from doctor'
+        'select doctor.*, rec_name,emp_cod,hex(employee_emp_cod)as empCod' +
+        '_Doctor from doctor'
       'left join employee on employee_emp_cod = emp_cod'#13#10#10
+      ''
       
         'left join record on record_rec_cod = rec_cod '#10'where doc_deleted_' +
         'at is null')

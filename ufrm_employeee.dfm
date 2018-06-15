@@ -19,8 +19,6 @@ inherited frm_employee_: Tfrm_employee_
     ClientRectBottom = 629
     ClientRectRight = 964
     inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 962
       ExplicitHeight = 602
       inherited pgctrl_2: TcxPageControl
@@ -31,8 +29,6 @@ inherited frm_employee_: Tfrm_employee_
         ClientRectBottom = 596
         ClientRectRight = 956
         inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
           ExplicitWidth = 954
           ExplicitHeight = 569
           inherited grid_1: TcxGrid
@@ -371,8 +367,6 @@ inherited frm_employee_: Tfrm_employee_
       end
     end
     inherited tbsht_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 962
       ExplicitHeight = 602
       inherited pgctrl_3: TcxPageControl
@@ -956,7 +950,6 @@ inherited frm_employee_: Tfrm_employee_
       ExplicitWidth = 934
       inherited chkbox_1: TcxCheckBox
         ExplicitWidth = 934
-        ExplicitHeight = 32
       end
     end
   end

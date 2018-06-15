@@ -169,6 +169,7 @@ type
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
+    procedure cxDBTextEdit2Exit(Sender: TObject);
   private
     { Private declarations }
    ent_cod:string;
@@ -262,7 +263,7 @@ if trim(cxDBTextEdit2.Text) = ''  then
    exit;
  end;
 
-   inherited;
+  inherited;
 
   if ds.DataSet.State in [dsEdit] then
     Exit;
@@ -292,6 +293,13 @@ with frm_dm.qry,sql do
                       ' where ent_deleted_at is null ';
        qry.Prepare;
        qry.open;
+end;
+
+procedure Tfrm_enterprise.cxDBTextEdit2Exit(Sender: TObject);
+begin
+  inherited;
+ if Trim(cxDBTextEdit3.TExt) = ''  then
+  qryent_last_name.AsString:=qryent_first_name.AsString;
 end;
 
 procedure Tfrm_enterprise.dbbtnedt_cepPropertiesButtonClick(Sender: TObject;

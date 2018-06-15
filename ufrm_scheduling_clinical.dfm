@@ -470,41 +470,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               TabOrder = 23
               OnClick = btnAlterarClick
             end
-            object Button1: TButton
-              Left = 608
-              Top = 109
-              Width = 75
-              Height = 25
-              Caption = 'Button1'
-              TabOrder = 24
-              OnClick = Button1Click
-            end
-            object DBGrid1: TDBGrid
-              Left = 56
-              Top = 222
-              Width = 320
-              Height = 120
-              DataSource = ds_client_insurance
-              TabOrder = 25
-              TitleFont.Charset = DEFAULT_CHARSET
-              TitleFont.Color = clWindowText
-              TitleFont.Height = -11
-              TitleFont.Name = 'Tahoma'
-              TitleFont.Style = []
-            end
-            object DBGrid2: TDBGrid
-              Left = 601
-              Top = 193
-              Width = 320
-              Height = 120
-              DataSource = ds_qry_client
-              TabOrder = 26
-              TitleFont.Charset = DEFAULT_CHARSET
-              TitleFont.Color = clWindowText
-              TitleFont.Height = -11
-              TitleFont.Name = 'Tahoma'
-              TitleFont.Style = []
-            end
           end
         end
       end
@@ -770,8 +735,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
         'from role'
       'where rol_deleted_at is null'
       'order by rol_name')
-    Left = 624
-    Top = 112
+    Left = 832
+    Top = 64
     object Qry_rolerol_cod: TBytesField
       FieldName = 'rol_cod'
       Origin = 'rol_cod'
@@ -800,8 +765,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   object dsRole: TDataSource
     DataSet = Qry_role
-    Left = 670
-    Top = 120
+    Left = 862
+    Top = 64
   end
   object qry_doctor_role: TFDQuery
     Connection = frm_dm.connCCS
@@ -817,8 +782,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
         'and employee_emp_cod in (select employee_emp_cod from role_emplo' +
         'yee where role_rol_cod =:codRole)'
       '')
-    Left = 650
-    Top = 184
+    Left = 986
+    Top = 112
     ParamData = <
       item
         Name = 'CODROLE'
@@ -895,8 +860,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   object ds_doctor_role: TDataSource
     DataSet = qry_doctor_role
-    Left = 744
-    Top = 208
+    Left = 1008
+    Top = 112
   end
   object qry_client_insurance: TFDQuery
     Connection = frm_dm.connCCS
@@ -966,8 +931,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from requisition_type')
-    Left = 752
-    Top = 112
+    Left = 904
+    Top = 64
     object qry_requisition_typeret_cod: TBytesField
       FieldName = 'ret_cod'
       Origin = 'ret_cod'
@@ -1010,8 +975,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   object ds_requisition_type: TDataSource
     DataSet = qry_requisition_type
-    Left = 784
-    Top = 112
+    Left = 936
+    Top = 64
   end
   object qry_scheduling: TFDQuery
     Connection = frm_dm.connCCS
@@ -1119,7 +1084,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       'left join record as rec on rec.rec_cod = emp.record_rec_cod '
       'where requisition_req_cod =:req_cod and rsh_deleted_at is null ')
     Left = 984
-    Top = 104
+    Top = 64
     ParamData = <
       item
         Name = 'REQ_COD'
@@ -1255,8 +1220,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   object ds_requisition_sheduling: TDataSource
     DataSet = qry_requisition_sheduling
     OnDataChange = ds_requisition_shedulingDataChange
-    Left = 1024
-    Top = 104
+    Left = 1016
+    Top = 64
   end
   object qry_parameter_clinic: TFDQuery
     IndexFieldNames = 'contract_ctr_cod'

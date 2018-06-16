@@ -14,6 +14,7 @@ inherited frm_employee_: Tfrm_employee_
   inherited pgctrl_1: TcxPageControl
     Width = 970
     Height = 635
+    Properties.ActivePage = tbsht_2
     ExplicitWidth = 970
     ExplicitHeight = 635
     ClientRectBottom = 629

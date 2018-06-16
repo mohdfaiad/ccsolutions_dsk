@@ -8,19 +8,18 @@ inherited frm_client: Tfrm_client
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 636
-    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 636
     ClientRectBottom = 630
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         Height = 596
         ExplicitHeight = 596
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1Column1: TcxGridDBColumn
+            Caption = 'C'#243'd.: ID'
+            DataBinding.FieldName = 'cli_id'
+            Width = 75
           end
           object cxGrid_1DBTableView1cli_type: TcxGridDBColumn
             DataBinding.FieldName = 'cli_type'
@@ -185,18 +184,12 @@ inherited frm_client: Tfrm_client
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         Height = 596
         ExplicitHeight = 596
         ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
           ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 562
@@ -218,7 +211,7 @@ inherited frm_client: Tfrm_client
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 7
+              TabOrder = 8
               OnExit = edt_cpfcnpjExit
               Width = 121
             end
@@ -229,7 +222,7 @@ inherited frm_client: Tfrm_client
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 8
+              TabOrder = 9
               Width = 130
             end
             object cxDBTextEdit28: TcxDBTextEdit [4]
@@ -239,7 +232,7 @@ inherited frm_client: Tfrm_client
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 9
+              TabOrder = 10
               Width = 121
             end
             object cxDBTextEdit3: TcxDBTextEdit [5]
@@ -303,8 +296,22 @@ inherited frm_client: Tfrm_client
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 10
+              TabOrder = 11
               Width = 121
+            end
+            object cxDBImage1: TcxDBImage [11]
+              Left = 389
+              Top = 103
+              DataBinding.DataField = 'cli_image1'
+              DataBinding.DataSource = ds
+              Properties.GraphicClassName = 'TdxPNGImage'
+              Style.HotTrack = False
+              TabOrder = 7
+              Height = 102
+              Width = 140
+            end
+            inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
+              ItemIndex = 1
             end
             inherited dxLayoutGroup1: TdxLayoutGroup
               ItemIndex = 1
@@ -312,6 +319,7 @@ inherited frm_client: Tfrm_client
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahClient
               AlignVert = avTop
+              ItemIndex = 1
               LayoutDirection = ldHorizontal
             end
             object dxLayoutGroup6: TdxLayoutGroup
@@ -436,15 +444,20 @@ inherited frm_client: Tfrm_client
               ControlOptions.ShowBorder = False
               Index = 3
             end
+            object dxLayoutItem47: TdxLayoutItem
+              Parent = dxLayoutGroup2
+              AlignVert = avClient
+              Control = cxDBImage1
+              ControlOptions.OriginalHeight = 100
+              ControlOptions.OriginalWidth = 140
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
           end
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
           OnShow = cxTabSheet_addressShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1073,10 +1086,6 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Contatos'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1218,10 +1227,6 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1284,10 +1289,6 @@ inherited frm_client: Tfrm_client
         end
         object tabTelefonia: TcxTabSheet
           Caption = 'Telefonia'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1301,6 +1302,7 @@ inherited frm_client: Tfrm_client
               Top = 103
               Width = 503
               Height = 200
+              PopupMenu = PopupMenu1
               TabOrder = 1
               object cxGrid2DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
@@ -1440,10 +1442,6 @@ inherited frm_client: Tfrm_client
         object tabLaboratorio: TcxTabSheet
           Caption = 'Laborat'#243'rio'
           OnShow = tabLaboratorioShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl5: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1581,7 +1579,6 @@ inherited frm_client: Tfrm_client
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -1593,14 +1590,13 @@ inherited frm_client: Tfrm_client
         'select client.*,concat('#39'0x'#39',hex(cli_cod))as CodClient, hex(cli_c' +
         'od)as ClientCod from client'#13#10#10
       ''
-      ''
       'where contract_ctr_cod =:ctr_cod and cli_deleted_at is null')
+    Left = 576
     ParamData = <
       item
         Name = 'CTR_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 16
         Value = Null
       end>
     object qryClientCod: TStringField
@@ -1881,6 +1877,11 @@ inherited frm_client: Tfrm_client
       FieldName = 'cli_dt_registration'
       Origin = 'cli_dt_registration'
     end
+    object qrycli_image1: TBlobField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_image1'
+      Origin = 'cli_image1'
+    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -2079,8 +2080,8 @@ inherited frm_client: Tfrm_client
   end
   object ds_client_insirance: TDataSource
     DataSet = qry_client_insirance
-    Left = 431
-    Top = 258
+    Left = 439
+    Top = 298
   end
   object ds_insurance: TDataSource
     DataSet = qry_insurance
@@ -2097,8 +2098,8 @@ inherited frm_client: Tfrm_client
     SQL.Strings = (
       'select * from client_sippulse'
       'where client_cli_cod = :cli_cod')
-    Left = 97
-    Top = 251
+    Left = 81
+    Top = 267
     ParamData = <
       item
         Name = 'CLI_COD'
@@ -2192,6 +2193,14 @@ inherited frm_client: Tfrm_client
       AutoGenerateValue = arDefault
       FieldName = 'client_cli_cod'
       Origin = 'client_cli_cod'
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 143
+    Top = 338
+    object Localizar1: TMenuItem
+      Caption = 'Localizar'
+      OnClick = Localizar1Click
     end
   end
 end

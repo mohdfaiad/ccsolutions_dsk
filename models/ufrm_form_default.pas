@@ -145,6 +145,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    result:Boolean;
   end;
 
 var
@@ -158,6 +159,7 @@ uses ufrm_main_default, ufrm_dm;
 
 procedure Tfrm_form_default.Action_cancelExecute(Sender: TObject);
 begin
+result:=false;
   if Application.MessageBox
     ('Ao Cancelar as alterações, as informações digitadas não serão salvas!',
     'Deseja Cancelar as Alterações?', MB_YESNO + MB_ICONINFORMATION +
@@ -166,6 +168,7 @@ begin
     ds.DataSet.Cancel;
     if qry.CachedUpdates then
      FDSchemaAdapter_1.CancelUpdates;
+     result:=True;
     cxTabSheet_1.Show;
   end;
 end;

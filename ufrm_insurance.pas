@@ -216,7 +216,11 @@ end;
 procedure Tfrm_insurance.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qryins_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+
+ if not result then
+ Exit;
+
+
  with frm_dm.qry,sql do
  begin
   Close;
@@ -227,7 +231,7 @@ begin
 
   qry.Close;
   qry.sql.text:= ' select insurance.*,concat(''0x'',hex(table_price_tbp_cod)) as codTabela from insurance' +
-                 ' where ent_deleted_at is null';
+                 ' where ins_deleted_at is null';
   qry.Prepare;
   qry.open;
  end;
@@ -238,8 +242,7 @@ end;
 procedure Tfrm_insurance.Action_saveExecute(Sender: TObject);
 begin
    inherited;
-
-  if ds.DataSet.State in [dsEdit] then
+if ds.DataSet.State in [dsEdit] then
     Exit;
 
 

@@ -305,6 +305,11 @@ type
     cxGrid1DBTableView1ins_first_name: TcxGridDBColumn;
     cxGrid1DBTableView1cin_dt_registration: TcxGridDBColumn;
     cxGrid_1DBTableView1Column1: TcxGridDBColumn;
+    cxDBImage1: TcxDBImage;
+    dxLayoutItem47: TdxLayoutItem;
+    qrycli_image1: TBlobField;
+    PopupMenu1: TPopupMenu;
+    Localizar1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);
@@ -335,10 +340,11 @@ type
     procedure cxGrid1DBTableView1insurance_ins_idPropertiesCloseUp(Sender: TObject);
     procedure qry_client_insiranceBeforePost(DataSet: TDataSet);
     procedure cxGrid1DBTableView1ins_first_namePropertiesCloseUp(Sender: TObject);
+    procedure Localizar1Click(Sender: TObject);
   private
     { Private declarations }
     cep:Integer;
-    cli_cod,cls_cod,cin_cod:string;
+    cli_cod,cls_cod,cin_cod,cpfCnpj:string;
     procedure limpaCache(Sender:TObject);
   public
     { Public declarations }
@@ -418,8 +424,9 @@ begin
   ExecSQL;
 
   qry.Close;
-  qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
-                 ' where cli_deleted_at is null';
+  qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod))as CodClient, hex(cli_cod)as ClientCod from client' +
+                 ' where contract_ctr_cod =:ctr_cod and cli_deleted_at is null ';
+  qry.ParamByName('CTR_COD').Value := frm_dm.qry_contractctr_cod.Value;
   qry.Prepare;
   qry.open;
  end;
@@ -461,12 +468,14 @@ procedure Tfrm_client.Action_editExecute(Sender: TObject);
 begin
   inherited;
     cli_cod:=qryCodClient.AsString;
+    cpfCnpj:=qrycli_cpfcnpj.AsString;
 end;
 
 procedure Tfrm_client.Action_saveExecute(Sender: TObject);
 
 begin
- if trim(edt_cpfcnpj.Text)<> ''  then
+ if ((trim(edt_cpfcnpj.Text)<> '') and  (qrycli_id.AsInteger = 0))
+  or (cpfCnpj <> edt_cpfcnpj.Text)  then
   begin
    with frm_dm.qry,sql do
     begin
@@ -480,8 +489,11 @@ begin
       begin
       Application.MessageBox(PWideChar('Já existe um cliente com esse CPF/CNPJ cadastrado no sistema!' + #13+
                                        'Cliente: '+ FieldByName('cli_first_name').AsString + #13 +
-                                       'CPF/CNPJ: ' + FieldByName('cli_cpfcnpj').AsString),'CLIENTE',MB_OK + MB_ICONWARNING);
-       Exit;
+                                       'CPF/CNPJ: ' + FieldByName('cli_cpfcnpj').AsString + #13 +
+                                       'O sistema irá localizar o cliente agora'),'CLIENTE',MB_OK + MB_ICONWARNING);
+      qry.Locate('cli_cpfcnpj',edt_cpfcnpj.Text,[]);
+      qry.Edit;
+      Exit;
       end;
     end;
   end;
@@ -512,6 +524,7 @@ if trim(edtClient.Text) = ''  then
 
       if qrycli_id.AsInteger = 0 then
         qrycli_id.AsInteger:=Fields[0].AsInteger;
+
 
         qry.Post;
         qry.ApplyUpdates(0);
@@ -710,7 +723,7 @@ if Application.MessageBox('Deseja associar esse código sippulse para este client
   qry_client_sippulse.Close;
   qry_client_sippulse.Prepare;
   qry_client_sippulse.Open;
-  cxEditCodastpp.Clear;
+  cxEditCodsippulse.Clear;
   cxEditCodsippulse.SetFocus;
 end;
 end;
@@ -822,6 +835,18 @@ end;
 procedure Tfrm_client.limpaCache(Sender: TObject);
 begin
  qry.CommitUpdates();
+end;
+
+procedure Tfrm_client.Localizar1Click(Sender: TObject);
+var
+cod:string;
+begin
+cod:=InputBox('Código Sippulse:','Cliente',cod);
+if Trim(cod) <> '' then
+ qry_client_sippulse.Locate('cls_account_sippulse',cod, [loCaseInsensitive, loPartialKey]);
+
+  inherited;
+
 end;
 
 procedure Tfrm_client.qryAfterInsert(DataSet: TDataSet);

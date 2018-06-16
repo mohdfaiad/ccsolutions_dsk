@@ -181,8 +181,15 @@ end;
 
 procedure Tfrm_default.Action_cancelExecute(Sender: TObject);
 begin
-  actionButton(True);
-  tbsht_1.Show;
+ result:=False;
+
+  if Application.MessageBox('Deseja cancelar a manutenção no Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
+    = IDYES then
+   begin
+   actionButton(True);
+   tbsht_1.Show;
+   result:=true;
+   end;
 end;
 
 procedure Tfrm_default.Action_closeExecute(Sender: TObject);
@@ -252,7 +259,7 @@ end;
 procedure Tfrm_default.Action_saveExecute(Sender: TObject);
 begin
   result:=False;
-  if Application.MessageBox
+   if Application.MessageBox
     ('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!',
     'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION +
     MB_DEFBUTTON2) = IDYES then

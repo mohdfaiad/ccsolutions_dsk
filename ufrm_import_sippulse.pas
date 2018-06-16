@@ -284,7 +284,7 @@ if Copy(data,5,1) = '-' then
     mes:= Copy(data,6,2);
     dia:= Copy(data,9,2);
  end;
-dtInicial:=StrToDate(mes+'/'+ dia+'/'+ano);
+dtInicial:=StrToDate(dia+'/'+ mes+'/'+ano);
 competencia:=mes + '/' + ano;
 
 i:=Length(arquivo[0]);

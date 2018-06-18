@@ -150,7 +150,7 @@ begin
    Text:='insert into ncm (ncm_cod,ncm_id,contract_ctr_cod) ' +
          ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
          ' where ctr_id = :contrato)';
-   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   ParamByName('contrato').AsInteger:=frm_dm.qry_contractctr_id.AsInteger;
    Prepare;
    ExecSQL;
   end;

@@ -310,7 +310,7 @@ begin
   inherited;
   //SQL para exibir somente as unidades de estoque que o usuário tem acesso
    qry_stock.Close;
-   qry_stock.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_cod.Value;
+   qry_stock.ParamByName('CTR_USR_ID').Value := frm_dm.qry_contractctr_cod.Value;
    qry_stock.Prepare;
    qry_stock.Open;
 
@@ -335,7 +335,7 @@ begin
   inherited;
    //SQL para exibir somente as entradas no estoque dos estoques que o usuário tem acesso
   qry.Close;
-  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_cod.Value;
+  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_contractctr_cod.Value;
   qry.Prepare;
   qry.Open;
 end;

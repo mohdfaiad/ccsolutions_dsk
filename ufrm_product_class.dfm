@@ -161,7 +161,6 @@ inherited frm_product_class: Tfrm_product_class
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS

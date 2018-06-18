@@ -51,8 +51,6 @@ type
     cxDBComboBox2: TcxDBComboBox;
     dxLayoutItem10: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    cxDBLookupComboBox1: TcxDBLookupComboBox;
-    dxLayoutItem3: TdxLayoutItem;
     qrysto_name: TStringField;
     cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
     frxDBD_Estoque: TfrxDBDataset;
@@ -64,7 +62,9 @@ type
     qrysto_deleled_at: TDateTimeField;
     cxGrid_1DBTableView1sto_id: TcxGridDBColumn;
     cxGrid_1DBTableView1Empresa: TcxGridDBColumn;
-    cxGrid_1DBTableView1sto_cod: TcxGridDBColumn;
+    qryCodStock: TStringField;
+    looComboxEmpresa: TcxLookupComboBox;
+    dxLayoutItem5: TdxLayoutItem;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
@@ -72,13 +72,14 @@ type
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure looComboxEmpresaPropertiesPopup(Sender: TObject);
   private
-    FConexao : TConexao;
     { Private declarations }
      stock_cod:string;
   public
-    { Public declarations }
-    function ExibirStock_Em_Insert: TFDQuery;
+      procedure ExibirEstoques;
   end;
 
 var
@@ -90,6 +91,22 @@ implementation
 
 uses ufrm_dm;
 
+procedure Tfrm_stock.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+  if ds.DataSet.State in [dsEdit] then
+    Exit;
+
+   if (qrysto_id.AsInteger = 0) then
+    begin
+
+      qry.Delete;
+      qry.ApplyUpdates(0);
+    end;
+
+    ExibirEstoques;
+end;
+
 procedure Tfrm_stock.Action_deleteExecute(Sender: TObject);
 begin
  //--- SQL para verificar se existe produtos em itens do estoque---
@@ -98,8 +115,8 @@ begin
     begin
       Clear;
       Text := ' select * from stock_iten' +
-              ' where stock_sto_id =:sto_id';
-       ParamByName('sto_id').AsInteger := qrysto_id.AsInteger;
+              ' where stock_sto_cod =unhex(:sto_cod)';
+       ParamByName('sto_cod').AsString := stock_cod;
        Prepare;
        Open;
 
@@ -113,14 +130,22 @@ begin
   //--Caso não retorne nenhum produto no itens do estoque poderá ser excluido
    if Application.MessageBox('Tem certeza que deseja excluir este estoque ? ','AVISO DE EXCLUSÃO DO ESTOQUE',MB_YESNO + MB_ICONQUESTION) = mrYes then
     begin
-
-     inherited;
-      qry.ApplyUpdates(0);
+     qry.Edit;
+     qrysto_deleled_at.AsDateTime := Now;
+     qry.ApplyUpdates(0);
 
     end;
 
+   ExibirEstoques;
 
+end;
 
+procedure Tfrm_stock.Action_editExecute(Sender: TObject);
+begin
+  inherited;
+
+  frm_dm.qry_enterprise.Locate('ent_last_name',qryEmpresa.AsString,[loCaseInsensitive, loPartialKey]);
+  looComboxEmpresa.Text := frm_dm.qry_enterpriseent_last_name.AsString;
 end;
 
 procedure Tfrm_stock.Action_insertExecute(Sender: TObject);
@@ -131,32 +156,62 @@ end;
 
 procedure Tfrm_stock.Action_saveExecute(Sender: TObject);
 begin
-   inherited;
-   cxTabSheet_1.Show;
+
+  inherited;
+
+ if ds.DataSet.State in [dsEdit] then
+    Exit;
+
+   if (qrysto_id.AsInteger = 0) then
+    begin
+
+     with frm_dm.qry,sql do
+      begin
+       close;
+       Text:= ' select case when max(sto_id) is null then 1 ' +
+              '      else (max(sto_id) + 1) end as maxID from stock '+
+              ' where contract_ctr_cod =unhex(' + QuotedStr(frm_dm.p_contract_ctr_cod)+')';
+       Prepare;
+       Open;
+
+
+       if not (qry.State in [dsInsert,dsEdit])  then
+        qry.Edit;
+        qrysto_id.AsInteger :=Fields[0].AsInteger;
+        qry.Post;
+        qry.ApplyUpdates(0);
+
+      end;
+
+    end;
+
+    ExibirEstoques;
+
 end;
 
 procedure Tfrm_stock.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
 begin
   inherited;
   //Para atualizar combobox
-   frm_dm.qry_enterprise.Refresh;
+   frm_dm.qry_enterprise.Close;
+   frm_dm.qry_enterprise.Open;
+
 end;
 
-function Tfrm_stock.ExibirStock_Em_Insert: TFDQuery;
-  var
-    qry : TFDQuery;
+
+procedure Tfrm_stock.ExibirEstoques;
 begin
-   qry := FConexao.CriarQuery;
-
-   qry.Unprepare;
-   qry.Close;
-   qry.sql.text:= ' select * from enterprise ' +
-                  ' where ent_cod = ' + stock_cod +
-                  ' and ent_deleted_at is null ';
-   qry.Prepare;
-   qry.open;
-
-
+      //SQL para exibir somente as unidade de estoque que o usuário tem acesso
+  qry.Close;
+  qry.SQL.Text := 'select stock.*, hex(sto_cod)as CodStock from stock     ' +
+                  ' where contract_ctr_cod =unhex(:ctr_cod)                      ' +
+                  ' and enterprise_ent_cod in                             ' +
+                  ' (select enterprise_ent_cod from contract_user_enterprise where contract_user_ctr_usr_cod =unhex(:ctr_usr_cod)) '+
+                  'and sto_deleled_at is null';
+  qry.ParamByname('ctr_cod').AsString     := frm_dm.p_contract_ctr_cod;
+  qry.ParamByname('ctr_usr_cod').AsString := frm_dm.p_ctr_usr_cod;
+  qry.Prepare;
+  qry.Open;
 end;
 
 Procedure Tfrm_stock.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -169,13 +224,15 @@ end;
 procedure Tfrm_stock.FormShow(Sender: TObject);
 begin
   inherited;
-  //SQL para exibir somente as unidade de estoque que o usuário tem acesso
-  qry.Close;
-  qry.ParamByName('CTR_USR_COD').Value := frm_dm.v_ctr_usr_cod;
-  qry.Prepare;
-  qry.Open;
+  ExibirEstoques;
 
 
+end;
+
+procedure Tfrm_stock.looComboxEmpresaPropertiesPopup(Sender: TObject);
+begin
+  inherited;
+   qryenterprise_ent_cod.value := frm_dm.qry_enterpriseent_cod.value;
 end;
 
 procedure Tfrm_stock.qryAfterInsert(DataSet: TDataSet);
@@ -185,7 +242,7 @@ begin
    With frm_dm.qry,sql do
   begin
    close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+   text:= 'select hex(uuid_to_bin(uuid()))';
    prepare;
    open;
 
@@ -193,7 +250,7 @@ begin
 
    Close;
    Text:='insert into stock (sto_id,sto_cod,contract_ctr_cod,sto_dt_registration) ' +
-         ' select 0,'+ stock_cod + ',' + frm_dm.v_contract_ctr_cod + ' now() ';
+         ' select 0, unhex('+QuotedStr(stock_cod) +'), unhex(' +QuotedStr(frm_dm.p_contract_ctr_cod) +'), now() ';
    Prepare;
    ExecSQL;
   end;
@@ -201,12 +258,12 @@ begin
 
    qry.Unprepare;
    qry.Close;
-   qry.sql.text:= ' select * from enterprise ' +
-                  ' where ent_cod = ' + stock_cod +
-                  ' and ent_deleted_at is null ';
+   qry.sql.text:= ' select stock.*, hex(sto_cod)as CodStock from stock ' +
+                  ' where sto_cod = unhex(' +QuotedStr(stock_cod)+') and sto_deleled_at is null ';
    qry.Prepare;
    qry.open;
    qry.Edit;
+
 end;
 
 end.

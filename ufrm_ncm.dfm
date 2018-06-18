@@ -120,7 +120,6 @@ inherited frm_ncm: Tfrm_ncm
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS

@@ -5,20 +5,18 @@ inherited frm_stock: Tfrm_stock
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
+            Caption = 'C'#243'digo ID'
             DataBinding.FieldName = 'sto_id'
-          end
-          object cxGrid_1DBTableView1sto_cod: TcxGridDBColumn
-            DataBinding.FieldName = 'sto_cod'
           end
           object cxGrid_1DBTableView1Empresa: TcxGridDBColumn
             DataBinding.FieldName = 'Empresa'
           end
           object cxGrid_1DBTableView1sto_name: TcxGridDBColumn
+            Caption = 'Estoque'
             DataBinding.FieldName = 'sto_name'
             Width = 250
           end
@@ -38,10 +36,6 @@ inherited frm_stock: Tfrm_stock
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
@@ -51,7 +45,7 @@ inherited frm_stock: Tfrm_stock
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
-              DataBinding.DataField = 'contract_ctr_id'
+              DataBinding.DataField = 'sto_id'
               ExplicitLeft = 63
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
@@ -97,24 +91,17 @@ inherited frm_stock: Tfrm_stock
               TabOrder = 2
               Width = 121
             end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [5]
+            object looComboxEmpresa: TcxLookupComboBox [5]
               Left = 63
               Top = 130
-              DataBinding.DataField = 'enterprise_ent_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'ent_cod'
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'ent_last_name'
               Properties.ListColumns = <
                 item
                   FieldName = 'ent_last_name'
-                end
-                item
-                  FieldName = 'ent_id'
                 end>
               Properties.ListSource = frm_dm.ds_enterprise
-              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
+              Properties.OnPopup = looComboxEmpresaPropertiesPopup
               Style.HotTrack = False
               TabOrder = 4
               Width = 303
@@ -123,11 +110,11 @@ inherited frm_stock: Tfrm_stock
               ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
-              ItemIndex = 1
+              ItemIndex = 2
             end
             object dxLayoutItem8: TdxLayoutItem
               Parent = dxLayoutGroup2
-              CaptionOptions.Text = 'Nome'
+              CaptionOptions.Text = 'Estoque'
               Control = cxDBTextEdit3
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
@@ -160,12 +147,13 @@ inherited frm_stock: Tfrm_stock
               Index = 0
               AutoCreated = True
             end
-            object dxLayoutItem3: TdxLayoutItem
+            object dxLayoutItem5: TdxLayoutItem
               Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
               CaptionOptions.Text = 'Empresa'
-              Control = cxDBLookupComboBox1
+              Control = looComboxEmpresa
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 145
+              ControlOptions.OriginalWidth = 303
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -182,29 +170,31 @@ inherited frm_stock: Tfrm_stock
     Top = 104
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
-    MasterFields = 'ctr_cod'
-    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from stock '#10'where contract_ctr_cod =:ctr_cod'
+      
+        'select stock.*, hex(sto_cod)as CodStock from stock '#10'where contra' +
+        'ct_ctr_cod =:ctr_cod'
       'and enterprise_ent_cod in '
       
-        '(select ctr_usr_ent_ent_cod from contract_user_enterprise where ' +
-        'ctr_usr_ent_user_cod =:ctr_usr_cod)')
+        '(select enterprise_ent_cod from contract_user_enterprise where c' +
+        'ontract_user_ctr_usr_cod =:ctr_usr_cod)'
+      'and sto_deleled_at is null')
     ParamData = <
       item
         Name = 'CTR_COD'
-        DataType = ftBytes
+        DataType = ftString
         ParamType = ptInput
+        Size = 85
         Value = Null
       end
       item
         Name = 'CTR_USR_COD'
-        DataType = ftBytes
+        DataType = ftString
         ParamType = ptInput
+        Size = 85
         Value = Null
       end>
     object qryenterprise_ent_cod: TBytesField
@@ -249,7 +239,7 @@ inherited frm_stock: Tfrm_stock
       DisplayLabel = 'Nome'
       FieldName = 'sto_name'
       Origin = 'sto_name'
-      Size = 50
+      Size = 35
     end
     object qryEmpresa: TStringField
       FieldKind = fkLookup
@@ -271,6 +261,14 @@ inherited frm_stock: Tfrm_stock
       AutoGenerateValue = arDefault
       FieldName = 'sto_deleled_at'
       Origin = 'sto_deleled_at'
+    end
+    object qryCodStock: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodStock'
+      Origin = 'CodStock'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

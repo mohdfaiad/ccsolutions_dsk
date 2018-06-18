@@ -21,12 +21,13 @@ inherited frm_purchase_order: Tfrm_purchase_order
   inherited cxPageControl_1: TcxPageControl
     Width = 1080
     Height = 614
-    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 1080
     ExplicitHeight = 614
     ClientRectBottom = 608
     ClientRectRight = 1074
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 1072
       ExplicitHeight = 580
       inherited cxGrid_1: TcxGrid
@@ -225,6 +226,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 1072
       ExplicitHeight = 580
       inherited cxPageControl_2: TcxPageControl
@@ -236,6 +239,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
         ClientRectRight = 1060
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
+          ExplicitLeft = 2
+          ExplicitTop = 28
           ExplicitWidth = 1058
           ExplicitHeight = 540
           inherited dxLayoutControl_1: TdxLayoutControl
@@ -243,6 +248,14 @@ inherited frm_purchase_order: Tfrm_purchase_order
             Height = 540
             ExplicitWidth = 1058
             ExplicitHeight = 540
+            object SpeedButton3: TSpeedButton [0]
+              Left = 616
+              Top = 464
+              Width = 97
+              Height = 22
+              Caption = 'Inserir'
+              OnClick = SpeedButton3Click
+            end
             inherited dbedt_id: TcxDBTextEdit
               Left = 97
               DataBinding.DataField = 'pco_id'
@@ -253,7 +266,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
               DataBinding.DataField = 'pco_dt_registration'
               ExplicitLeft = 270
             end
-            object cxGrid1: TcxGrid [2]
+            object cxGrid1: TcxGrid [3]
               Left = 17
               Top = 195
               Width = 728
@@ -315,7 +328,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
                 GridView = cxGrid1DBTableView1
               end
             end
-            object lookupComboxItens_Pedido: TcxLookupComboBox [3]
+            object lookupComboxItens_Pedido: TcxLookupComboBox [4]
               Left = 97
               Top = 464
               Properties.GridMode = True
@@ -330,7 +343,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
               TabOrder = 7
               Width = 325
             end
-            object cxDBComboBox1: TcxDBComboBox [4]
+            object cxDBComboBox1: TcxDBComboBox [5]
               Left = 420
               Top = 131
               DataBinding.DataField = 'pco_status'
@@ -346,7 +359,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
               TabOrder = 4
               Width = 52
             end
-            object cxDBTextEdit2: TcxDBTextEdit [5]
+            object cxDBTextEdit2: TcxDBTextEdit [6]
               Left = 515
               Top = 131
               DataBinding.DataField = 'poc_status_reason'
@@ -357,7 +370,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
               TabOrder = 5
               Width = 168
             end
-            object lookupComboxEmployee: TcxLookupComboBox [6]
+            object lookupComboxEmployee: TcxLookupComboBox [7]
               Left = 84
               Top = 131
               Properties.GridMode = True
@@ -372,7 +385,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
               TabOrder = 2
               Width = 294
             end
-            object lookupComboxStock: TcxLookupComboBox [7]
+            object lookupComboxStock: TcxLookupComboBox [8]
               Left = 84
               Top = 158
               Properties.GridMode = True
@@ -387,12 +400,15 @@ inherited frm_purchase_order: Tfrm_purchase_order
               TabOrder = 3
               Width = 294
             end
-            object cxTextEditQTD: TcxTextEdit [8]
+            object cxTextEditQTD: TcxTextEdit [9]
               Left = 489
               Top = 464
               Style.HotTrack = False
               TabOrder = 8
               Width = 121
+            end
+            inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
+              ItemIndex = 2
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               Parent = dxLayoutGroup3
@@ -496,6 +512,16 @@ inherited frm_purchase_order: Tfrm_purchase_order
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 1
+            end
+            object dxLayoutItem7: TdxLayoutItem
+              Parent = dxLayoutGroup4
+              CaptionOptions.Text = 'SpeedButton3'
+              CaptionOptions.Visible = False
+              Control = SpeedButton3
+              ControlOptions.OriginalHeight = 22
+              ControlOptions.OriginalWidth = 97
+              ControlOptions.ShowBorder = False
+              Index = 2
             end
           end
         end
@@ -3255,6 +3281,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
         Name = 'CTR_COD'
         DataType = ftBytes
         ParamType = ptInput
+        Size = 16
         Value = Null
       end>
     object qry_employeeemp_cod: TBytesField

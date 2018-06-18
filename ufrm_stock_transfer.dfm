@@ -8,7 +8,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 475
-    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 475
     ClientRectBottom = 469
     inherited cxTabSheet_1: TcxTabSheet
@@ -476,7 +475,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -3311,7 +3309,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object qry_stock_exit: TFDQuery
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
@@ -3371,7 +3368,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object qry_employee: TFDQuery
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -3393,7 +3389,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   object qry_purchase_order: TFDQuery
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS

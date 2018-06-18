@@ -8,7 +8,6 @@ inherited frm_request: Tfrm_request
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Width = 877
-    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 877
     ClientRectRight = 871
     inherited cxTabSheet_1: TcxTabSheet
@@ -525,7 +524,6 @@ inherited frm_request: Tfrm_request
     AfterInsert = qryAfterInsert
     AfterDelete = qryAfterDelete
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -638,7 +636,6 @@ inherited frm_request: Tfrm_request
   end
   object qry_employee: TFDQuery [13]
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -795,7 +792,6 @@ inherited frm_request: Tfrm_request
   end
   object qry_product: TFDQuery [19]
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -3286,7 +3282,6 @@ inherited frm_request: Tfrm_request
   object qry_stock: TFDQuery
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS

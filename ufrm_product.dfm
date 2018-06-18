@@ -1,11 +1,9 @@
 inherited frm_product: Tfrm_product
   Caption = 'Manuten'#231#227'o: Produtos e Servi'#231'os'
   OnClose = FormClose
-  ExplicitLeft = -30
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       OnShow = cxTabSheet_1Show
       ExplicitLeft = 2
@@ -548,6 +546,10 @@ inherited frm_product: Tfrm_product
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Medidas e Pesos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -691,6 +693,10 @@ inherited frm_product: Tfrm_product
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Insumos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -795,7 +801,6 @@ inherited frm_product: Tfrm_product
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -3264,7 +3269,6 @@ inherited frm_product: Tfrm_product
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -3282,7 +3286,6 @@ inherited frm_product: Tfrm_product
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -3300,7 +3303,6 @@ inherited frm_product: Tfrm_product
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -3318,7 +3320,6 @@ inherited frm_product: Tfrm_product
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -3336,7 +3337,6 @@ inherited frm_product: Tfrm_product
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -3372,7 +3372,6 @@ inherited frm_product: Tfrm_product
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evDetailCascade]

@@ -611,7 +611,7 @@ begin
   inherited;
    //SQL para exibir somente as Requisições da Unidade de estoque que o usuário tem acesso
    qry.Close;
-   qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_cod.Value;
+   qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_contractctr_cod.Value;
    qry.Prepare;
    qry.Open;
  //---------------------------------------------------------------------------

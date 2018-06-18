@@ -12,6 +12,10 @@ inherited frm_brand: Tfrm_brand
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
       OnShow = cxTabSheet_1Show
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1bra_id: TcxGridDBColumn
@@ -75,9 +79,6 @@ inherited frm_brand: Tfrm_brand
       end
     end
   end
-  inherited dxBarDockControl_1: TdxBarDockControl
-    ExplicitLeft = -192
-  end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar2: TdxBar
       ItemLinks = <
@@ -107,7 +108,6 @@ inherited frm_brand: Tfrm_brand
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -115,6 +115,7 @@ inherited frm_brand: Tfrm_brand
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from brand')
+    Left = 592
     object qrybra_cod: TBytesField
       FieldName = 'bra_cod'
       Origin = 'bra_cod'

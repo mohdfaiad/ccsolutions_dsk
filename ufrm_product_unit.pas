@@ -86,7 +86,7 @@ if (qrypru_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
   Text:= ' delete from product_unit ' +
          ' where contract_ctr_cod =:contract ' +
          ' and pru_id = 0';
-  ParamByName('contract').Value:=frm_dm.qry_signinctr_cod.Value;
+  ParamByName('contract').Value:=frm_dm.qry_contractctr_cod.Value;
   Prepare;
   ExecSQL;
 end;
@@ -101,7 +101,7 @@ with frm_dm.qry,sql do
           '      else (max(pru_id) + 1) end as maxID from product_unit '+
           ' where contract_ctr_cod = (select ctr_cod from contract ' +
           ' where ctr_id =:ctr_id)';
-   ParamByName('ctr_id').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   ParamByName('ctr_id').AsInteger:=frm_dm.qry_contractctr_id.AsInteger;
    Prepare;
    Open;
    if not (qry.State in [dsInsert,dsEdit])  then
@@ -157,7 +157,7 @@ begin
    Text:='insert into product_unit (pru_cod,pru_id,contract_ctr_cod) ' +
          ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
          ' where ctr_id = :contrato)';
-   ParamByName('contrato').AsInteger:=frm_dm.qry_signinctr_id.AsInteger;
+   ParamByName('contrato').AsInteger:=frm_dm.qry_contractctr_id.AsInteger;
    Prepare;
    ExecSQL;
   end;

@@ -305,7 +305,7 @@ procedure Tfrm_request.cxTabSheet_2Show(Sender: TObject);
 begin
   inherited;
    qry_stock.Close;
-   qry_stock.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_cod.Value;
+   qry_stock.ParamByName('CTR_USR_ID').Value := frm_dm.qry_contractctr_cod.Value;
    qry_stock.Prepare;
    qry_stock.Open;
 end;
@@ -406,7 +406,7 @@ begin
   inherited;
   //SQL para exibir somente as Requisições da Unidade de estoque que o usuário tem acesso
   qry.Close;
-  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_signinctr_usr_cod.Value;
+  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_contractctr_cod.Value;
   qry.Prepare;
   qry.Open;
  //---------------------------------------------------------------------------
@@ -552,7 +552,7 @@ begin
       begin
        NameReport :='';
        NameReport:= TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue;
-       TReport.Save_Report(frm_dm.qry_signinctr_id.Value,cxBarEditItem_1.EditValue, NameReport,'rep_report',frm_dm_report.qry_report);
+       TReport.Save_Report(frm_dm.qry_contractctr_id.Value,cxBarEditItem_1.EditValue, NameReport,'rep_report',frm_dm_report.qry_report);
      end;
  end;
 

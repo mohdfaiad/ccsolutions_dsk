@@ -136,6 +136,8 @@ type
     cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
     qryFuncionario: TStringField;
     qryCodPCO: TStringField;
+    SpeedButton3: TSpeedButton;
+    dxLayoutItem7: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
@@ -165,8 +167,10 @@ type
     procedure qry_purchase_order_itenAfterPost(DataSet: TDataSet);
     procedure cxTabSheet_3Show(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
   private
        pco_cod,iten_cod:string;
+       iten_ID: Integer;
   procedure filter(status:string);
   procedure limpaCache(Sender:TObject);
   public
@@ -666,9 +670,47 @@ inherited;
       begin
        NameReport :='';
        NameReport:= TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue;
-       TReport.Save_Report(frm_dm.qry_signinctr_id.Value,cxBarEditItem_1.EditValue, NameReport,'rep_report',frm_dm_report.qry_report);
+       TReport.Save_Report(frm_dm.qry_contractctr_id.Value,cxBarEditItem_1.EditValue, NameReport,'rep_report',frm_dm_report.qry_report);
      end;
  end;
 
 end;
+procedure Tfrm_purchase_order.SpeedButton3Click(Sender: TObject);
+begin
+  inherited;
+    With frm_dm.qry,sql do
+  begin
+   close;
+   text:= 'select hex(uuid_to_bin(uuid()))';
+   prepare;
+   open;
+
+   iten_cod:=Fields[0].AsString;
+
+
+       close;
+       Text:= ' select case when max(poi_id) is null then 1 ' +
+              '      else (max(poi_id) + 1) end as maxID from purchase_order_iten '+
+              ' where purchase_order_pco_cod =unhex(' + QuotedStr(pco_cod)+')';
+       Prepare;
+       Open;
+
+   iten_ID:=Fields[0].AsInteger;
+
+   Close;
+   Text:='insert into purchase_order_iten (poi_id, poi_cod, purchase_order_pco_cod, product_pro_cod, poi_product_quant, poi_dt_registration) ' +
+         ' values (:poi_id, unhex(:poi_cod), unhex(:purchase_order_pco_cod), unhex(:product_pro_cod), :poi_product_quant, :poi_dt_registration) ';
+   ParamByName('poi_id').AsInteger                := iten_ID;
+   ParamByName('poi_cod').AsString                := iten_cod;
+   ParamByName('purchase_order_pco_cod').AsString := pco_cod;
+   ParamByName('product_pro_cod').AsString        := qry_productproCod.AsString;
+//   ParamByName('poi_product_quant').AsFloat       := cxTextEditQTD.Text;
+   ParamByName('poi_dt_registration').AsDateTime  := Now;
+   Prepare;
+   ExecSQL;
+  end;
+
+ //  ExibirItensPedido;
+end;
+
 end.

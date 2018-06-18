@@ -3,43 +3,42 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   ClientHeight = 727
   ClientWidth = 1482
   OnClose = FormClose
-  ExplicitTop = -53
   ExplicitWidth = 1498
   ExplicitHeight = 766
   PixelsPerInch = 96
   TextHeight = 13
   inherited bardck_1: TdxBarDockControl
     Width = 1482
-    ExplicitWidth = 1291
+    ExplicitWidth = 1482
   end
   inherited pgctrl_1: TcxPageControl
     Width = 1482
     Height = 637
-    ExplicitWidth = 1291
+    ExplicitWidth = 1482
     ExplicitHeight = 637
     ClientRectBottom = 631
     ClientRectRight = 1476
     inherited tbsht_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 27
-      ExplicitWidth = 1283
+      ExplicitWidth = 1474
       ExplicitHeight = 604
       inherited pgctrl_2: TcxPageControl
         Width = 1474
         Height = 604
-        ExplicitWidth = 1283
+        ExplicitWidth = 1474
         ExplicitHeight = 604
         ClientRectBottom = 598
         ClientRectRight = 1468
         inherited tbsht_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 27
-          ExplicitWidth = 1275
+          ExplicitWidth = 1466
           ExplicitHeight = 571
           inherited grid_1: TcxGrid
             Width = 1460
             Height = 565
-            ExplicitWidth = 1269
+            ExplicitWidth = 1460
             ExplicitHeight = 565
             inherited grid_1DBTableView1: TcxGridDBTableView
               object grid_1DBTableView1req_id: TcxGridDBColumn
@@ -113,21 +112,21 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       end
     end
     inherited tbsht_2: TcxTabSheet
-      ExplicitWidth = 1283
+      ExplicitWidth = 1474
       ExplicitHeight = 604
       inherited pgctrl_3: TcxPageControl
         Width = 1474
         Height = 604
-        ExplicitWidth = 1283
+        ExplicitWidth = 1474
         ExplicitHeight = 604
         ClientRectBottom = 598
         ClientRectRight = 1468
         inherited tbsht_5: TcxTabSheet
           OnShow = tbsht_5Show
-          ExplicitWidth = 1275
+          ExplicitWidth = 1466
           ExplicitHeight = 571
           inherited grb_top: TcxGroupBox
-            ExplicitWidth = 1269
+            ExplicitWidth = 1460
             Width = 1460
             inherited lbl_cod_id: TcxLabel
               Top = 5
@@ -145,7 +144,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
             end
           end
           inherited grb_bottton: TcxGroupBox
-            ExplicitWidth = 1269
+            ExplicitWidth = 1460
             ExplicitHeight = 505
             Height = 505
             Width = 1460
@@ -482,12 +481,12 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Top = 692
     Width = 1482
     ExplicitTop = 692
-    ExplicitWidth = 1291
+    ExplicitWidth = 1482
     inherited stsbar_deleted_at: TdxStatusBarContainerControl
       Width = 1446
       ExplicitWidth = 1446
       inherited chkbox_1: TcxCheckBox
-        ExplicitWidth = 1255
+        ExplicitWidth = 1446
       end
     end
   end

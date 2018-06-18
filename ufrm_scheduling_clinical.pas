@@ -233,55 +233,53 @@ implementation
 
 
 procedure Tfrm_scheduling_clinical.Action_cancelExecute(Sender: TObject);
+
 begin
 
-if Application.MessageBox('Ao cancelar, todos registros que não foram salvos, serão perdidos !','DESEJA CANCELAR ESTE AGENDAMENTO ? ', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) = IDYES then
- begin
-  if (qryreq_id.AsInteger = 0) then
-   begin
-    if qry_requisition_sheduling.RecordCount >0 then
-     begin
-       with frm_dm.qry,sql do
+ inherited;
+
+ if not result then
+  Exit;
+
+   if qryreq_id.AsInteger = 0 then
+    begin
+      if qry_requisition_sheduling.RecordCount >0 then
        begin
-        Close;
-        Text:= ' delete from scheduling where sch_cod = unhex(' + QuotedStr(qry_requisition_shedulingCodScheduling.AsString)+')';
-        Prepare;
-        ExecSQL;
+         with frm_dm.qry,sql do
+         begin
+          Close;
+          Text:= ' delete from scheduling where sch_cod = unhex(' + QuotedStr(qry_requisition_shedulingCodScheduling.AsString)+')';
+          Prepare;
+          ExecSQL;
 
-        Close;
-        Text:= ' delete from requisition_sheduling where requisition_req_cod = unhex('+QuotedStr(req_cod)+')';
-        Prepare;
-        ExecSQL;
+          Close;
+          Text:= ' delete from requisition_sheduling where requisition_req_cod = unhex('+QuotedStr(req_cod)+')';
+          Prepare;
+          ExecSQL;
 
-       end;
+          Close;
+          Text:= ' delete from requisition where req_cod = unhex(' + QuotedStr(req_cod)+')';
+          Prepare;
+          ExecSQL;
 
-     end;
+         end;
 
-    with frm_dm.qry2,sql do
-     begin
-       Close;
-       Text:= ' delete from requisition where req_cod = unhex(' + QuotedStr(req_cod)+')';
-       Prepare;
-       ExecSQL;
-     end;
+         end else if (qry_requisition_sheduling.IsEmpty) then
+         begin
+          with frm_dm.qry2,sql do
+          begin
+           Close;
+           Text:= ' delete from requisition where req_cod = unhex(' + QuotedStr(req_cod)+')';
+           Prepare;
+           ExecSQL;
+          end;
 
-   end else if (qry_requisition_sheduling.IsEmpty) then
-     begin
-      with frm_dm.qry2,sql do
-      begin
-       Close;
-       Text:= ' delete from requisition where req_cod = unhex(' + QuotedStr(req_cod)+')';
-       Prepare;
-       ExecSQL;
-      end;
+         end;
+    end;
 
-     end;
 
-    qry_sql('todos');
 
-    inherited;
-
- end;
+  qry_sql('todos');
 
 end;
 
@@ -433,7 +431,6 @@ if (qry_requisition_sheduling.IsEmpty) then
           qryreq_source.AsString            := 'C';
           qryreq_status.AsString            := ComboxStatus.Text;
           qry.Post;
-          Application.MessageBox('Agendamento finalizado com sucesso !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
 
        end;
 

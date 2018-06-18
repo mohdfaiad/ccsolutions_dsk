@@ -20,11 +20,12 @@ inherited frm_parameter_clinic: Tfrm_parameter_clinic
   end
   inherited dxBarDockControl1: TdxBarDockControl
     Width = 470
-    ExplicitLeft = -16
-    ExplicitWidth = 704
+    ExplicitWidth = 470
   end
   inherited dxStatusBar_1: TdxStatusBar
     Width = 470
+    ExplicitTop = 333
+    ExplicitWidth = 470
   end
   object dxLayoutControl1: TdxLayoutControl [3]
     AlignWithMargins = True
@@ -33,22 +34,20 @@ inherited frm_parameter_clinic: Tfrm_parameter_clinic
     Width = 464
     Height = 300
     Align = alClient
-    TabOrder = 7
+    TabOrder = 3
     LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-    ExplicitLeft = -2
-    ExplicitTop = 102
-    ExplicitWidth = 698
+    ExplicitLeft = 8
+    ExplicitTop = 27
     object cxGroupBox1: TcxGroupBox
       Left = 10
       Top = 10
-      Align = alClient
       Caption = 'Tempo de atendimento'
       ParentBackground = False
       ParentColor = False
       Style.Color = clWhite
       TabOrder = 0
-      Height = 271
-      Width = 431
+      Height = 239
+      Width = 191
       object cxLabel1: TcxLabel
         Left = 24
         Top = 39
@@ -77,8 +76,8 @@ inherited frm_parameter_clinic: Tfrm_parameter_clinic
       CaptionOptions.Visible = False
       Control = cxGroupBox1
       ControlOptions.AutoColor = True
-      ControlOptions.OriginalHeight = 271
-      ControlOptions.OriginalWidth = 431
+      ControlOptions.OriginalHeight = 239
+      ControlOptions.OriginalWidth = 191
       ControlOptions.ShowBorder = False
       Index = 0
     end
@@ -120,7 +119,6 @@ inherited frm_parameter_clinic: Tfrm_parameter_clinic
     end
   end
   inherited qry: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -181,8 +179,8 @@ inherited frm_parameter_clinic: Tfrm_parameter_clinic
     Top = 16
   end
   object dxLayoutLookAndFeelList1: TdxLayoutLookAndFeelList
-    Left = 224
-    Top = 16
+    Left = 328
+    Top = 176
     object dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
     end
   end

@@ -373,7 +373,7 @@ if not result then
 
      try
 
-       Employee.ctr_cod               := frm_dm.p_contract_ctr_cod;
+       Employee.ctr_cod               := frm_dm.v_contract_ctr_cod;
        Employee.rec_name              := edtNome.Text;
        Employee.rec_nickname          := edtApelido.Text;
        Employee.rec_dt_birth          := edtDataNasc.Date;

@@ -125,6 +125,10 @@ object frm_default: Tfrm_default
     object tbsht_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pgctrl_3: TcxPageControl
         Left = 0
         Top = 0
@@ -707,7 +711,7 @@ object frm_default: Tfrm_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ';'
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
+    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET

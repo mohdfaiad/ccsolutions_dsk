@@ -124,7 +124,6 @@ type
     qry_schedulingsch_description: TStringField;
     qry_schedulingsch_dt_registration: TDateTimeField;
     ds_scheduling: TDataSource;
-    cxGrid2DBTableView1sch_id: TcxGridDBColumn;
     cxGrid2DBTableView1sch_datetime: TcxGridDBColumn;
     qry_requisition_sheduling: TFDQuery;
     qry_requisition_shedulingrsh_cod: TBytesField;
@@ -159,10 +158,8 @@ type
     grid_1DBTableView1req_dt_registration: TcxGridDBColumn;
     grid_1DBTableView1req_source: TcxGridDBColumn;
     qryret_name: TStringField;
-    ComboxStatus: TcxComboBox;
     btnAgendar: TButton;
     qry_schedulingCodEmployee: TStringField;
-    cxLabel9: TcxLabel;
     qrycli_first_name: TStringField;
     qryent_first_name: TStringField;
     grid_1DBTableView1ret_name: TcxGridDBColumn;
@@ -340,8 +337,6 @@ begin
 
     looComboBoxCliente.Text   := qrycli_first_name.AsString;
     looComboxTipoExame.Text   := qryret_name.AsString;
-    ComboxStatus.Text         := qryreq_status.AsString;
-    ComboxStatus.Enabled      := True;
 
    //Abrir Consulta das Especialidades do Proficional-------
     Qry_role.Close;
@@ -384,8 +379,6 @@ begin
    looComboBoxCliente.ItemIndex := -1;
    looComboxConvenio.ItemIndex  := -1;
    looComboxTipoExame.ItemIndex := -1;
-   ComboxStatus.ItemIndex := 0;
-   ComboxStatus.Enabled := False;
 
    looComboxEspecialidade.ItemIndex := -1;
    looComboxMedico.ItemIndex        := -1;
@@ -416,7 +409,7 @@ if (qry_requisition_sheduling.IsEmpty) then
          close;
          Text:= ' select case when max(req_id) is null then 1 ' +
                 '      else (max(req_id) + 1) end as maxID from requisition '+
-                ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+                ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
          Prepare;
          Open;
          if not (qry.State in [dsInsert,dsEdit])  then
@@ -429,7 +422,7 @@ if (qry_requisition_sheduling.IsEmpty) then
           qryrequisition_type_ret_cod.Value := qry_requisition_typeret_cod.Value;
           qryinsurance_ins_cod.Value        := qry_client_insuranceins_cod.Value;
           qryreq_source.AsString            := 'C';
-          qryreq_status.AsString            := ComboxStatus.Text;
+          qryreq_status.AsString            := 'A';
           qry.Post;
 
        end;
@@ -440,7 +433,7 @@ if (qry_requisition_sheduling.IsEmpty) then
              qryclient_cli_cod.Value           := qry_clientcli_cod.Value;
              qryinsurance_ins_cod.Value        := qry_client_insuranceins_cod.Value;
              qryrequisition_type_ret_cod.Value := qry_requisition_typeret_cod.Value;
-             qryreq_status.AsString            := ComboxStatus.Text;
+             qryreq_status.AsString            := 'A';
              qry.Post;
 
            end;
@@ -500,7 +493,7 @@ begin
            close;
            Text:= ' select case when max(sch_id) is null then 1 ' +
                   '      else (max(sch_id) + 1) end as maxID from scheduling '+
-                  ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+                  ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
            Prepare;
            Open;
          end;
@@ -523,14 +516,14 @@ begin
                  'values (:sch_id, unhex(:sch_cod), unhex(:contract_ctr_cod), unhex(:employee_emp_cod), :sch_datetime, :sch_description, :sch_dt_registration)';
            ParamByName('sch_id').AsString                := frm_dm.qry.Fields[0].AsString ;
            ParamByName('sch_cod').AsString               := sch_cod;
-           ParamByName('contract_ctr_cod').AsString      := frm_dm.p_contract_ctr_cod;
+           ParamByName('contract_ctr_cod').AsString      := frm_dm.v_contract_ctr_cod;
            ParamByName('employee_emp_cod').AsString      := qry_doctor_rolecodEmployee.AsString;
            ParamByName('sch_datetime').value             := StrToDateTime(FormatDateTime('dd/mm/yyyy',pData) + FormatDateTime('hh:mm:ss',pHora));
            ParamByName('sch_description').AsString       := memoDescricao.Text;
            ParamByName('sch_dt_registration').AsDateTime := now;
            Prepare;
            ExecSQL;
-       //   ' select '+frm_dm.qry.Fields[0].AsString+','+ sch_cod + ',' +  frm_dm.v_contract_ctr_cod +',unhex('+QuotedStr(qry_doctor_rolecodEmployee.AsString)+'),'+QuotedStr(FormatDateTime('yyyy-MM-dd hh:mm:ss',pData + PHora))+','+QuotedStr(memoDescricao.Text)+',Now()';
+       //   ' select '+frm_dm.qry.Fields[0].AsString+','+ sch_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' +',unhex('+QuotedStr(qry_doctor_rolecodEmployee.AsString)+'),'+QuotedStr(FormatDateTime('yyyy-MM-dd hh:mm:ss',pData + PHora))+','+QuotedStr(memoDescricao.Text)+',Now()';
 
           end;
 
@@ -547,7 +540,7 @@ begin
 
            Close;
            Text:='insert into requisition_sheduling (rsh_id, rsh_cod, requisition_req_cod, scheduling_sch_cod, contract_ctr_cod, rsh_dt_registration) ' +
-                 ' select 0, unhex('+QuotedStr(rsh_cod)+'),unhex('+QuotedStr(req_cod)+'),unhex('+QuotedStr(sch_cod)+'),'+ frm_dm.v_contract_ctr_cod +',now()'  ;
+                 ' select 0, unhex('+QuotedStr(rsh_cod)+'),unhex('+QuotedStr(req_cod)+'),unhex('+QuotedStr(sch_cod)+'), unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' +',now()'  ;
            Prepare;
            ExecSQL;
           end;
@@ -569,7 +562,7 @@ begin
            close;
            Text:= ' select case when max(rsh_id) is null then 1 ' +
                   '      else (max(rsh_id) + 1) end as maxID from requisition_sheduling '+
-                  ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+                  ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
            Prepare;
            Open;
 
@@ -893,7 +886,7 @@ begin
 
    Close;
    Text:='insert into requisition (req_id,req_cod,contract_ctr_cod,req_dt_registration) ' +
-         ' select 0,unhex('+ QuotedStr(req_cod) + '),' +  frm_dm.v_contract_ctr_cod +',now()';
+         ' select 0,unhex('+ QuotedStr(req_cod) + '),unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' +',now()';
    Prepare;
    ExecSQL;
   end;
@@ -919,7 +912,7 @@ begin
 
    Close;
    Text:='insert into requisition_sheduling (rsh_id, rsh_cod, requisition_req_cod, contract_ctr_cod, rsh_dt_registration) ' +
-         ' select 0,'+ rsh_cod + ', unhex('  + QuotedStr(req_cod)+'),' + frm_dm.v_contract_ctr_cod +',now()'  ;
+         ' select 0,'+ rsh_cod + ', unhex('  + QuotedStr(req_cod)+'), unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' +',now()'  ;
    Prepare;
    ExecSQL;
   end;
@@ -937,7 +930,7 @@ begin
                   ' left join requisition_type as t on t.ret_cod = requisition_type_ret_cod               ' +
                   ' left join client as c on c.cli_cod = r.client_cli_cod                                 ' +
                   ' left join enterprise as ent on ent.ent_cod = r.enterprise_ent_cod                     ' +
-                  ' where r.contract_ctr_cod = unhex('+QuotedStr(frm_dm.p_contract_ctr_cod)+') and req_deleted_at is null ';
+                  ' where r.contract_ctr_cod = unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+') and req_deleted_at is null ';
 
   if sql = 'insert' then
    qry.sql.text:= ' select r.*, c.cli_first_name, hex(r.req_cod)as CodRequisition, ent.ent_first_name, hex(r.requisition_type_ret_cod)as CodType_ret_cod, t.ret_name  from requisition as r  ' +

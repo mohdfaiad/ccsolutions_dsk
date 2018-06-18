@@ -3,8 +3,6 @@ program protheuslab;
 uses
   Vcl.Forms,
   ufrm_protheuslab in 'ufrm_protheuslab.pas' {frm_protheuslab},
-  ufrm_form_default in '..\models\ufrm_form_default.pas' {frm_form_default},
-  ufrm_main_default in '..\models\ufrm_main_default.pas' {frm_main_default},
   ufrm_dm in '..\ufrm_dm.pas' {frm_dm: TDataModule},
   ufrm_main in 'ufrm_main.pas' {frm_main},
   ufrm_client in '..\ufrm_client.pas' {frm_client},
@@ -28,20 +26,28 @@ uses
   ufrm_requisition_type in '..\ufrm_requisition_type.pas' {frm_requisition_type},
   uthred_logged in '..\uthred_logged.pas',
   ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
-  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   ufrm_requisition in '..\ufrm_requisition.pas' {frm_requisition},
   class_required_field in '..\class_required_field.pas',
   class_check_enterprise in '..\class_check_enterprise.pas',
   ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
   class_table_price in '..\class_table_price.pas',
-  ufrm_default in '..\models\ufrm_default.pas' {frm_default},
+  Contract_user.Model in '..\Model\Contract_user.Model.pas',
+  Employee.Model in '..\Model\Employee.Model.pas',
   Client.Dao in '..\Dao\Client.Dao.pas',
   Conexao in '..\Dao\Conexao.pas',
   Contract_User.Dao in '..\Dao\Contract_User.Dao.pas',
+  Contract_User_Action.Dao in '..\Dao\Contract_User_Action.Dao.pas',
+  Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
   Employee.Dao in '..\Dao\Employee.Dao.pas',
-  Contract_user.Model in '..\Model\Contract_user.Model.pas',
-  Employee.Model in '..\Model\Employee.Model.pas',
-  Employee_Model in '..\Model\Employee_Model.pas';
+  ufrm_default in '..\models\ufrm_default.pas' {frm_default},
+  ufrm_form_default in '..\models\ufrm_form_default.pas' {frm_form_default},
+  ufrm_import_default in '..\models\ufrm_import_default.pas' {frm_import_default},
+  ufrm_main_default in '..\models\ufrm_main_default.pas' {frm_main_default},
+  ufrm_main_default_2 in '..\models\ufrm_main_default_2.pas' {frm_main_default_2},
+  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
+  Employee_Model in '..\Model\Employee_Model.pas',
+  Contract_User_Enterprise.Model in '..\Model\Contract_User_Enterprise.Model.pas',
+  ufrm_Requisition_Lab in '..\ufrm_Requisition_Lab.pas' {frm_Requisition_Lab};
 
 {$R *.res}
 

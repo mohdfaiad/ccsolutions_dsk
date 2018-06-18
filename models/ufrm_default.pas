@@ -199,7 +199,7 @@ end;
 
 procedure Tfrm_default.Action_deleteExecute(Sender: TObject);
 begin
-  if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
+  if Application.MessageBox('Deseja excluir o Registro?','CANCELAR', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
     = IDYES then
     result:=true
     else

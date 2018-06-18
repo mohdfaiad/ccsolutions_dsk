@@ -516,7 +516,7 @@ if trim(edtClient.Text) = ''  then
       close;
       Text:= ' select case when max(cli_id) is null then 1 ' +
           '      else (max(cli_id) + 1) end as maxID from client '+
-          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
       Prepare;
       Open;
       if not (qry.State in [dsInsert,dsEdit])  then
@@ -863,7 +863,8 @@ begin
 
    Close;
    Text:='insert into client (cli_id,cli_cod,contract_ctr_cod,cli_dt_registration) ' +
-         ' select 0,'+ cli_cod + ',' +  frm_dm.v_contract_ctr_cod +',now()';
+         ' select 0,'+ cli_cod + ', unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' +',now()';
+
    Prepare;
    ExecSQL;
   end;

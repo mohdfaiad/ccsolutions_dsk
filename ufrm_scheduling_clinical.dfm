@@ -1,10 +1,11 @@
 inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   Caption = 'Agendamento de Consulta M'#233'dica'
-  ClientHeight = 727
+  ClientHeight = 730
   ClientWidth = 1482
   OnClose = FormClose
+  ExplicitLeft = -189
   ExplicitWidth = 1498
-  ExplicitHeight = 766
+  ExplicitHeight = 769
   PixelsPerInch = 96
   TextHeight = 13
   inherited bardck_1: TdxBarDockControl
@@ -13,33 +14,30 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   end
   inherited pgctrl_1: TcxPageControl
     Width = 1482
-    Height = 637
+    Height = 640
+    Properties.ActivePage = tbsht_2
     ExplicitWidth = 1482
-    ExplicitHeight = 637
-    ClientRectBottom = 631
+    ExplicitHeight = 640
+    ClientRectBottom = 634
     ClientRectRight = 1476
     inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 1474
-      ExplicitHeight = 604
+      ExplicitHeight = 607
       inherited pgctrl_2: TcxPageControl
         Width = 1474
-        Height = 604
+        Height = 607
         ExplicitWidth = 1474
-        ExplicitHeight = 604
-        ClientRectBottom = 598
+        ExplicitHeight = 607
+        ClientRectBottom = 601
         ClientRectRight = 1468
         inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
           ExplicitWidth = 1466
-          ExplicitHeight = 571
+          ExplicitHeight = 574
           inherited grid_1: TcxGrid
             Width = 1460
-            Height = 565
+            Height = 568
             ExplicitWidth = 1460
-            ExplicitHeight = 565
+            ExplicitHeight = 568
             inherited grid_1DBTableView1: TcxGridDBTableView
               object grid_1DBTableView1req_id: TcxGridDBColumn
                 Caption = 'C'#243'digo ID'
@@ -113,49 +111,64 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     end
     inherited tbsht_2: TcxTabSheet
       ExplicitWidth = 1474
-      ExplicitHeight = 604
+      ExplicitHeight = 607
       inherited pgctrl_3: TcxPageControl
         Width = 1474
-        Height = 604
+        Height = 607
         ExplicitWidth = 1474
-        ExplicitHeight = 604
-        ClientRectBottom = 598
+        ExplicitHeight = 607
+        ClientRectBottom = 601
         ClientRectRight = 1468
         inherited tbsht_5: TcxTabSheet
           OnShow = tbsht_5Show
           ExplicitWidth = 1466
-          ExplicitHeight = 571
+          ExplicitHeight = 574
           inherited grb_top: TcxGroupBox
             ExplicitWidth = 1460
+            ExplicitHeight = 47
+            Height = 47
             Width = 1460
             inherited lbl_cod_id: TcxLabel
+              Left = 5
               Top = 5
+              ExplicitLeft = 5
               ExplicitTop = 5
             end
+            inherited edt_codid: TcxTextEdit
+              Left = 5
+              Top = 21
+              ExplicitLeft = 5
+              ExplicitTop = 21
+            end
             inherited lbl_dt_registration: TcxLabel
-              Left = 148
+              Left = 276
               Top = 5
-              ExplicitLeft = 148
+              ExplicitLeft = 276
               ExplicitTop = 5
             end
             inherited edt_dt_registration: TcxTextEdit
-              Left = 148
-              ExplicitLeft = 148
+              Left = 276
+              Top = 21
+              ExplicitLeft = 276
+              ExplicitTop = 21
             end
           end
           inherited grb_bottton: TcxGroupBox
+            Top = 56
+            ExplicitTop = 56
             ExplicitWidth = 1460
-            ExplicitHeight = 505
-            Height = 505
+            ExplicitHeight = 508
+            Height = 508
             Width = 1460
             object cxLabelClient: TcxLabel
-              Left = 3
-              Top = 49
+              Left = 5
+              Top = 94
               Caption = 'Cliente'
+              Transparent = True
             end
             object looComboBoxCliente: TcxLookupComboBox
-              Left = 3
-              Top = 66
+              Left = 5
+              Top = 109
               Properties.GridMode = True
               Properties.KeyFieldNames = 'cli_first_name'
               Properties.ListColumns = <
@@ -165,11 +178,11 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               Properties.ListSource = ds_qry_client
               Properties.OnChange = looComboBoxClientePropertiesChange
               TabOrder = 1
-              Width = 270
+              Width = 396
             end
             object looComboxConvenio: TcxLookupComboBox
-              Left = 282
-              Top = 66
+              Left = 5
+              Top = 149
               Properties.GridMode = True
               Properties.KeyFieldNames = 'ins_first_name'
               Properties.ListColumns = <
@@ -179,11 +192,11 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               Properties.ListSource = ds_client_insurance
               Properties.OnPopup = looComboxConvenioPropertiesPopup
               TabOrder = 2
-              Width = 270
+              Width = 396
             end
             object looComboxEspecialidade: TcxLookupComboBox
-              Left = 3
-              Top = 318
+              Left = 447
+              Top = 216
               Properties.GridMode = True
               Properties.KeyFieldNames = 'rolCod'
               Properties.ListColumns = <
@@ -196,20 +209,20 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               Width = 215
             end
             object cxLabel1: TcxLabel
-              Left = 3
-              Top = 300
+              Left = 447
+              Top = 198
               Caption = 'Especialidade'
               Transparent = True
             end
             object cxLabel2: TcxLabel
-              Left = 289
-              Top = 49
+              Left = 5
+              Top = 134
               Caption = 'Conv'#234'nio'
               Transparent = True
             end
             object looComboxMedico: TcxLookupComboBox
-              Left = 227
-              Top = 318
+              Left = 671
+              Top = 216
               Properties.GridMode = True
               Properties.KeyFieldNames = 'codDoctor'
               Properties.ListColumns = <
@@ -221,8 +234,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               Width = 215
             end
             object looComboxEmpresa: TcxLookupComboBox
-              Left = 3
-              Top = 22
+              Left = 5
+              Top = 25
               Properties.GridMode = True
               Properties.KeyFieldNames = 'ent_last_name'
               Properties.ListColumns = <
@@ -231,23 +244,23 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                 end>
               Properties.ListSource = frm_dm.ds_enterprise
               TabOrder = 7
-              Width = 270
+              Width = 396
             end
             object cxLabel3: TcxLabel
-              Left = 3
-              Top = 4
+              Left = 5
+              Top = 7
               Caption = 'Empresa'
               Transparent = True
             end
             object cxLabel4: TcxLabel
-              Left = 227
-              Top = 300
+              Left = 671
+              Top = 198
               Caption = 'M'#233'dico'
               Transparent = True
             end
             object edtDate: TcxDateEdit
-              Left = 451
-              Top = 318
+              Left = 895
+              Top = 216
               EditValue = 0d
               Properties.SaveTime = False
               Properties.ShowTime = False
@@ -258,43 +271,43 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               Width = 110
             end
             object edtTime: TcxTimeEdit
-              Left = 569
-              Top = 318
+              Left = 1013
+              Top = 216
               Properties.OnEditValueChanged = edtTimePropertiesEditValueChanged
               TabOrder = 11
               Width = 110
             end
             object memoDescricao: TcxMemo
-              Left = 3
-              Top = 363
+              Left = 447
+              Top = 260
               Lines.Strings = (
                 '')
               Properties.CharCase = ecUpperCase
               TabOrder = 12
-              Height = 73
+              Height = 55
               Width = 676
             end
             object cxLabel5: TcxLabel
-              Left = 451
-              Top = 300
+              Left = 895
+              Top = 198
               Caption = 'Data'
               Transparent = True
             end
             object cxLabel6: TcxLabel
-              Left = 569
-              Top = 300
+              Left = 1013
+              Top = 198
               Caption = 'Hora'
               Transparent = True
             end
             object cxLabel7: TcxLabel
-              Left = 3
-              Top = 345
+              Left = 447
+              Top = 242
               Caption = 'Descri'#231#227'o'
               Transparent = True
             end
             object looComboxTipoExame: TcxLookupComboBox
-              Left = 282
-              Top = 22
+              Left = 5
+              Top = 67
               Properties.KeyFieldNames = 'ret_name'
               Properties.ListColumns = <
                 item
@@ -302,19 +315,19 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                 end>
               Properties.ListSource = ds_requisition_type
               TabOrder = 16
-              Width = 270
+              Width = 396
             end
             object cxLabel8: TcxLabel
-              Left = 282
-              Top = 4
+              Left = 5
+              Top = 51
               Caption = 'Tipo de exame'
               Transparent = True
             end
             object cxGrid2: TcxGrid
-              Left = 945
-              Top = 107
-              Width = 504
-              Height = 329
+              Left = 5
+              Top = 176
+              Width = 396
+              Height = 177
               TabOrder = 18
               object cxGrid2DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
@@ -340,15 +353,11 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
                 Images = imglist_1
-                object cxGrid2DBTableView1sch_id: TcxGridDBColumn
-                  Caption = 'C'#243'digo ID'
-                  DataBinding.FieldName = 'sch_id'
-                  Width = 65
-                end
+                OptionsView.GroupByBox = False
                 object cxGrid2DBTableView1sch_description: TcxGridDBColumn
                   Caption = 'Descri'#231#227'o'
                   DataBinding.FieldName = 'sch_description'
-                  Width = 300
+                  Width = 270
                 end
                 object cxGrid2DBTableView1sch_datetime: TcxGridDBColumn
                   Caption = 'Dt. Agendamento'
@@ -361,10 +370,10 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               end
             end
             object cxGrid3: TcxGrid
-              Left = 3
-              Top = 108
-              Width = 936
-              Height = 186
+              Left = 447
+              Top = 33
+              Width = 816
+              Height = 148
               PopupMenu = popmenu_req_sheduling
               TabOrder = 19
               object cxGrid3DBTableView1: TcxGridDBTableView
@@ -405,6 +414,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                 Images = imglist_1
                 OptionsData.Editing = False
                 OptionsView.NoDataToDisplayInfoText = 'Itens do Registro(s) sem agendamento(s).'
+                OptionsView.GroupByBox = False
                 object cxGrid3DBTableView1rsh_id: TcxGridDBColumn
                   Caption = 'C'#243'digo ID'
                   DataBinding.FieldName = 'rsh_id'
@@ -439,37 +449,22 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                 GridView = cxGrid3DBTableView1
               end
             end
-            object ComboxStatus: TcxComboBox
-              Left = 562
-              Top = 66
-              Properties.Items.Strings = (
-                'A - ATIVO '
-                'D - DESATIVADO')
-              TabOrder = 20
-              Width = 143
-            end
             object btnAgendar: TButton
-              Left = 701
-              Top = 376
+              Left = 1167
+              Top = 211
               Width = 96
               Height = 41
               Caption = 'Agendar'
-              TabOrder = 21
+              TabOrder = 20
               OnClick = btnAgendarClick
             end
-            object cxLabel9: TcxLabel
-              Left = 562
-              Top = 49
-              Caption = 'Status'
-              Transparent = True
-            end
             object btnAlterar: TButton
-              Left = 815
-              Top = 376
+              Left = 1167
+              Top = 274
               Width = 96
               Height = 41
               Caption = 'Alterar'
-              TabOrder = 23
+              TabOrder = 21
               OnClick = btnAlterarClick
             end
           end
@@ -478,9 +473,9 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     end
   end
   inherited stsbar_1: TdxStatusBar
-    Top = 692
+    Top = 695
     Width = 1482
-    ExplicitTop = 692
+    ExplicitTop = 695
     ExplicitWidth = 1482
     inherited stsbar_deleted_at: TdxStatusBarContainerControl
       Width = 1446
@@ -1118,8 +1113,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       'left join employee as emp on emp.emp_cod = doc.employee_emp_cod'#10
       'left join record as rec on rec.rec_cod = emp.record_rec_cod '
       'where requisition_req_cod =:req_cod and rsh_deleted_at is null ')
-    Left = 864
-    Top = 384
+    Left = 920
+    Top = 304
     ParamData = <
       item
         Name = 'REQ_COD'

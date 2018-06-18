@@ -81,7 +81,6 @@ begin
      ParamByName('p_ctr_usr_first_name').AsString := Contract_user.ctr_usr_first_name;
      ParamByName('p_ctr_usr_last_name').AsString  := Contract_user.ctr_usr_last_name;
      ParamByName('p_ctr_usr_username').AsString   := Contract_user.ctr_usr_username;
-     ParamByName('p_ctr_usr_password').AsString   := Contract_user.ctr_usr_password;
      ParamByName('p_ctr_usr_email').AsString      := Contract_user.ctr_usr_email;
      ParamByName('p_ctr_usr_dt_birth').Value      := Contract_user.ctr_usr_dt_birth;
      ParamByName('p_ctr_usr_admin').AsString      := Contract_user.ctr_usr_admin;

@@ -67,7 +67,7 @@ type
     { Public declarations }
     qry, qry2, qry3: TFDQuery;
     Acao: Integer;
-    v_contract_ctr_cod, v_ctr_usr_cod, p_contract_ctr_cod, p_ctr_usr_cod, v_nome_usuario,
+    v_contract_ctr_cod, v_ctr_usr_cod, v_nome_usuario,
     v_ctr_usr_admin: string;
 
   end;

@@ -178,6 +178,8 @@ begin
   inherited;
   //Se tag = 2 é para alterar
    Self.Tag := 2;
+   edt_password.Enabled:=False;
+   edt_password_confirmar.Enabled:=False;
    PreecherCampos;
 end;
 
@@ -186,6 +188,8 @@ begin
   inherited;
   //Se tag = 1 é para inserir
     Self.Tag := 1;
+    edt_password.Enabled:=True;
+    edt_password_confirmar.Enabled:=True;
     LimpaCampos;
 end;
 
@@ -224,7 +228,6 @@ begin
            Contract_User.ctr_usr_last_name  := edtSobrenome.Text;
            Contract_User.ctr_usr_dt_birth   := edtDtNasc.Date;
            Contract_User.ctr_usr_username   := edtUsuario.Text;
-           Contract_User.ctr_usr_password   := edt_password.Text;
            Contract_User.ctr_usr_email      := edtEmail.Text;
            Contract_User.ctr_usr_status     := copy(comboxStatus.Text,0,1) ;
            if CheckBoxAdm.Checked then
@@ -621,16 +624,16 @@ end;
 procedure Tfrm_contract_user.ResetarSenha1Click(Sender: TObject);
 begin
   inherited;
-  if Application.MessageBox('Deseja Zerar a senha do usuário selecionado?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
+  if Application.MessageBox('Deseja zerar a senha do usuario selecionado ?','AVISO', MB_YESNO + MB_ICONQUESTION) = mrYes  then
    with frm_dm.qry,sql do
     begin
      close;
      text:=' update contract_user ' +
-           ' set ctr_usr_password = NULL' +
+           ' set ctr_usr_password =  unhex(md5(''CCS''))'  +
            ' where hex(ctr_usr_cod) = ' + QuotedStr(mem.FieldByName('codUser').AsString);
      prepare;
      ExecSQL;
-    Application.MessageBox('Usuário desconectado com sucesso!','AVISO', MB_OK + MB_ICONWARNING)
+    Application.MessageBox('A senha do usuário selecionado foi alterado para a senha padrão do sistema que é CCS, altere no próximo login!','AVISO', MB_OK + MB_ICONWARNING)
   end;
 end;
 

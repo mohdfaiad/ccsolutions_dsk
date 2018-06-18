@@ -126,7 +126,7 @@ with frm_dm.qry,sql do
    close;
    Text:= ' select case when max(ret_id) is null then 1 ' +
           '      else (max(ret_id) + 1) end as maxID from requisition_type '+
-          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
    Prepare;
    Open;
    if not (qry.State in [dsInsert,dsEdit])  then
@@ -167,7 +167,7 @@ begin
 
    Close;
    Text:='insert into requisition_type (ret_id,ret_cod,contract_ctr_cod) ' +
-         ' select 0,'+ ret_cod + ',' +  frm_dm.v_contract_ctr_cod;
+         ' select 0,'+ ret_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
    Prepare;
    ExecSQL;
   end;

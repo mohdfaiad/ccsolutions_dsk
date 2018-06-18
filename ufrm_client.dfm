@@ -11,6 +11,9 @@ inherited frm_client: Tfrm_client
     ExplicitHeight = 636
     ClientRectBottom = 630
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         Height = 596
@@ -184,12 +187,18 @@ inherited frm_client: Tfrm_client
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         Height = 596
         ExplicitHeight = 596
         ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
           ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 562

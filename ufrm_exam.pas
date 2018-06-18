@@ -173,7 +173,7 @@ with frm_dm.qry,sql do
    close;
    Text:= ' select case when max(pro_id) is null then 1 ' +
           '      else (max(pro_id) + 1) end as maxID from product '+
-          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
    Prepare;
    Open;
    if not (qry.State in [dsInsert,dsEdit])  then
@@ -198,7 +198,7 @@ end;
 procedure Tfrm_exam.cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
 begin
   inherited;
-  qry_material.Locate('mat_name',lookupComboBoxMaterial.Text,[]);
+  //qry_material.Locate('mat_name',lookupComboBoxMaterial.Text,[]);
   qrymaterial_mat_cod.Value:=qry_materialmat_cod.Value;
 end;
 
@@ -246,7 +246,7 @@ With frm_dm.qry,sql do
 
    Close;
    Text:='insert into product (pro_id,pro_cod,contract_ctr_cod) ' +
-         ' select 0,'+ pro_cod + ',' +  frm_dm.v_contract_ctr_cod;
+         ' select 0,'+ pro_cod + ', unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
    Prepare;
    ExecSQL;
   end;

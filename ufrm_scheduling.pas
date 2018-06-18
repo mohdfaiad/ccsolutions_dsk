@@ -331,7 +331,7 @@ begin
            close;
            Text:= ' select case when max(sch_id) is null then 1 ' +
                   '      else (max(sch_id) + 1) end as maxID from scheduling '+
-                  ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+                  ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
            Prepare;
            Open;
            if not (qry.State in [dsInsert,dsEdit])  then
@@ -396,7 +396,7 @@ inherited;
    //Comando para Inserir o registro no banco com (código) (ID) (contrato)(data do registro)
    Close;
    Text:='insert into scheduling (sch_id,sch_cod,contract_ctr_cod,sch_dt_registration) ' +
-         ' select 0,'+ sch_cod + ',' +  frm_dm.v_contract_ctr_cod + ',Now()';
+         ' select 0,'+ sch_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' + ',Now()';
    Prepare;
    ExecSQL;
   end;

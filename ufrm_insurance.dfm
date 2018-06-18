@@ -115,6 +115,10 @@ inherited frm_insurance: Tfrm_insurance
       OnShow = cxTabSheet_2Show
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             object cxDBTextEdit5: TcxDBTextEdit [0]
               Left = 240
@@ -394,6 +398,10 @@ inherited frm_insurance: Tfrm_insurance
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -727,6 +735,10 @@ inherited frm_insurance: Tfrm_insurance
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Contrato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0

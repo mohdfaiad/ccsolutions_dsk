@@ -117,7 +117,7 @@ with frm_dm.qry,sql do
    close;
    Text:= ' select case when max(mat_id) is null then 1 ' +
           '      else (max(mat_id) + 1) end as maxID from material '+
-          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
    Prepare;
    Open;
    if not (qry.State in [dsInsert,dsEdit])  then
@@ -159,7 +159,7 @@ With frm_dm.qry,sql do
 
    Close;
    Text:='insert into material (mat_id,mat_cod,contract_ctr_cod) ' +
-         ' select 0,'+ mat_cod + ',' +  frm_dm.v_contract_ctr_cod;
+         ' select 0,'+ mat_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
    Prepare;
    ExecSQL;
   end;

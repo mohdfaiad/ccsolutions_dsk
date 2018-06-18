@@ -181,7 +181,7 @@ procedure Tfrm_main_default.FormShow(Sender: TObject);
 begin
    frm_dm.qry_enterprise.Close;
    frm_dm.qry_enterprise.ParamByName('CTR_COD').Value       := frm_dm.qry_contractctr_cod.Value;
-   frm_dm.qry_enterprise.ParamByName('CODUSUARIO').AsString := frm_dm.p_ctr_usr_cod;
+   frm_dm.qry_enterprise.ParamByName('CODUSUARIO').AsString := frm_dm.v_ctr_usr_cod;
    frm_dm.qry_enterprise.Prepare;
    frm_dm.qry_enterprise.open;
 

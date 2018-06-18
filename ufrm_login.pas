@@ -157,12 +157,9 @@ begin
      frm_dm.qry_signin.SQL.Text:= SQL;
      frm_dm.qry_signin.Open;
 
-     frm_dm.v_contract_ctr_cod := '0x' +  frm_dm.qry_signin.FieldByName('hex(@po_contract_ctr_cod)').Value;
-     frm_dm.v_ctr_usr_cod := '0x' +  frm_dm.qry_signin.FieldByName('hex(@po_ctr_usr_cod)').Value;
+     frm_dm.v_contract_ctr_cod :=frm_dm.qry_signin.FieldByName('hex(@po_contract_ctr_cod)').Value;
+     frm_dm.v_ctr_usr_cod := frm_dm.qry_signin.FieldByName('hex(@po_ctr_usr_cod)').Value;
 
-
-     frm_dm.p_contract_ctr_cod := frm_dm.qry_signin.FieldByName('hex(@po_contract_ctr_cod)').Value;
-     frm_dm.p_ctr_usr_cod      := frm_dm.qry_signin.FieldByName('hex(@po_ctr_usr_cod)').Value;
      frm_dm.v_nome_usuario     := frm_dm.qry_signin.FieldByName('@po_ctr_usr_username').Value;
      frm_dm.v_ctr_usr_admin    := frm_dm.qry_signin.FieldByName('@po_ctr_usr_admin').Value;
 
@@ -178,7 +175,8 @@ begin
       else
        begin
         frm_dm.qry_contract.Close;
-        frm_dm.qry_contract.sql.Text:='select ctr_cod, ctr_id from contract where ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+        frm_dm.qry_contract.sql.Text:='select ctr_cod, ctr_id from contract ' +
+                                      ' where ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
         frm_dm.qry_contract.Prepare;
         frm_dm.qry_contract.Open;
         ModalResult := mrOk;
@@ -232,7 +230,7 @@ if Application.MessageBox('Desja confirmar a alteração em sua senha?', 'SENHA',M
      text:= ' select hex(ctr_usr_cod) as CodUser, ctr_usr_password from contract_user     ' +
             ' where contract_ctr_cod = unhex(:CodContrato)                                ' +
             ' and ctr_usr_username =:Usuario and ctr_usr_password =  unhex(md5(:Senha)) ';
-     ParamByName('CodContrato').AsString :=  frm_dm.p_contract_ctr_cod;
+     ParamByName('CodContrato').AsString :=  frm_dm.v_contract_ctr_cod;
      ParamByName('Usuario').AsString     :=  edt_UsuarioElter.Text;
      ParamByName('Senha').AsString       :=  edt_passwordCurrent.Text;
      prepare;
@@ -292,7 +290,7 @@ begin
   begin
    close;
    text:='select ctr_usr_dt_birth,ctr_usr_email,ctr_usr_first_name from contract_user ' +
-         'where contract_ctr_id =:contrato ' +
+         'where contract_ctr_cod =:contrato ' +
          'and ctr_usr_username = :usuario';
    ParamByName('contrato').AsString:=edt_contract.Text;
    ParamByNAme('usuario').AsString:=edt_username.Text;
@@ -331,7 +329,6 @@ begin
      cxemail.SetFocus;
      Exit;
     end;
-
 
 
    newPassword:='CCS' + copy(FormatDateTime('mmm',date),1,2) +   FormatFloat('00000',Random(99999));

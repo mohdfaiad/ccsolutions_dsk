@@ -210,7 +210,7 @@ with frm_dm.qry,sql do
    close;
    Text:= ' select case when max(tbp_id) is null then 1 ' +
           '      else (max(tbp_id) + 1) end as maxID from table_price '+
-          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
    Prepare;
    Open;
    if not (qry.State in [dsInsert,dsEdit])  then
@@ -411,7 +411,7 @@ begin
 
    Close;
    Text:='insert into table_price (tbp_id,tbp_cod,contract_ctr_cod) ' +
-         ' select 0,'+ tbp_cod + ',' +  frm_dm.v_contract_ctr_cod;
+         ' select 0,'+ tbp_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
    Prepare;
    ExecSQL;
   end;

@@ -10,6 +10,7 @@ inherited frm_table_price: Tfrm_table_price
   inherited cxPageControl_1: TcxPageControl
     Width = 1105
     Height = 626
+    Properties.ActivePage = cxTabSheet_1
     ExplicitWidth = 1105
     ExplicitHeight = 626
     ClientRectBottom = 620
@@ -90,10 +91,6 @@ inherited frm_table_price: Tfrm_table_price
         end
         object cxTabExames: TcxTabSheet
           Caption = 'Exames da  Tabela'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -251,10 +248,6 @@ inherited frm_table_price: Tfrm_table_price
         object cxTabAlterarPreco: TcxTabSheet
           Caption = 'Alterar Pre'#231'o dos Exames'
           OnShow = cxTabAlterarPrecoShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0

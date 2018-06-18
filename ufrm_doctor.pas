@@ -222,7 +222,7 @@ if trim(cxLookupComboBoxProfissional.Text) = ''  then
     close;
     Text:= ' select case when max(doc_id) is null then 1 ' +
            '      else (max(doc_id) + 1) end as maxID from doctor '+
-           ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+           ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
     Prepare;
     Open;
     if not (qry.State in [dsInsert,dsEdit])  then
@@ -341,7 +341,7 @@ begin
 
    Close;
    Text:='insert into doctor (doc_id,doc_cod,contract_ctr_cod) ' +
-         ' select 0,'+ doc_cod + ',' +  frm_dm.v_contract_ctr_cod;
+         ' select 0,'+ doc_cod + ', unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
    Prepare;
    ExecSQL;
   end;
@@ -369,7 +369,7 @@ begin
 
    Close;
    Text:='insert into role_employee (roe_id,roe_cod,employee_emp_cod,contract_ctr_cod,roe_dt_registration) ' +
-         ' select 0,'+ roe_cod + ',' + emp_cod + ',' +  frm_dm.v_contract_ctr_cod +',now()'  ;
+         ' select 0,'+ roe_cod + ',' + emp_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' +',now()'  ;
    Prepare;
    ExecSQL;
   end;

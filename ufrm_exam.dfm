@@ -45,6 +45,7 @@ inherited frm_exam: Tfrm_exam
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -140,6 +141,7 @@ inherited frm_exam: Tfrm_exam
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
               Properties.DropDownWidth = 350
+              Properties.GridMode = True
               Properties.KeyFieldNames = 'codMaterial'
               Properties.ListColumns = <
                 item

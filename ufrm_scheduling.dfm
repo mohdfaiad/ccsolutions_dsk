@@ -4,6 +4,7 @@ inherited frm_scheduling: Tfrm_scheduling
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgctrl_1: TcxPageControl
+    Properties.ActivePage = tbsht_2
     inherited tbsht_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 27

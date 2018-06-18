@@ -11,23 +11,16 @@ inherited frm_contract_user: Tfrm_contract_user
   end
   inherited pgctrl_1: TcxPageControl
     Width = 1129
-    Properties.ActivePage = tbsht_2
     ExplicitWidth = 1129
     ClientRectRight = 1123
     inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 1121
-      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
         Width = 1121
         ExplicitWidth = 1121
         ClientRectRight = 1115
         inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
           ExplicitWidth = 1113
-          ExplicitHeight = 505
           inherited grid_1: TcxGrid
             Width = 1107
             ExplicitWidth = 1107
@@ -146,10 +139,7 @@ inherited frm_contract_user: Tfrm_contract_user
     end
     inherited tbsht_2: TcxTabSheet
       OnShow = tbsht_2Show
-      ExplicitLeft = 2
-      ExplicitTop = 27
       ExplicitWidth = 1121
-      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
         Width = 1121
         ExplicitWidth = 1121
@@ -861,7 +851,6 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitWidth = 1093
       inherited chkbox_1: TcxCheckBox
         ExplicitWidth = 1093
-        ExplicitHeight = 32
       end
     end
   end

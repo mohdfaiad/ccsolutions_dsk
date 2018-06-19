@@ -245,12 +245,13 @@ inherited frm_purchase_order: Tfrm_purchase_order
         ClientRectRight = 1060
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
+          ExplicitLeft = 2
+          ExplicitTop = 28
           ExplicitWidth = 1058
           ExplicitHeight = 540
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 1058
             Height = 540
-            ExplicitLeft = -3
             ExplicitWidth = 1058
             ExplicitHeight = 540
             object btnInserir: TSpeedButton [0]
@@ -585,7 +586,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     AfterDelete = qryAfterDelete
     IndexFieldNames = 'contract_ctr_cod'
@@ -3224,7 +3224,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Top = 296
   end
   object qry_product: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -3234,7 +3233,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
       
         '  select hex(pro_cod) as proCod ,pro_name,pro_cod, contract_ctr_' +
         'cod, pro_id from product'#10' '
-      ' where pro_type = '#39'S'#39'  order by pro_name')
+      ' where pro_type = '#39'P'#39'  order by pro_name')
     Left = 800
     Top = 104
     object qry_productproCod: TStringField
@@ -3274,7 +3273,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Top = 96
   end
   object qry_employee: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -3372,7 +3370,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Top = 264
   end
   object qry_stock: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'

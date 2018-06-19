@@ -15,31 +15,31 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
     Width = 1482
     Height = 582
     ExplicitWidth = 1482
-    ExplicitHeight = 640
+    ExplicitHeight = 582
     ClientRectBottom = 576
     ClientRectRight = 1476
     inherited tbsht_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 27
       ExplicitWidth = 1474
-      ExplicitHeight = 607
+      ExplicitHeight = 549
       inherited pgctrl_2: TcxPageControl
         Width = 1474
         Height = 549
         ExplicitWidth = 1474
-        ExplicitHeight = 607
+        ExplicitHeight = 549
         ClientRectBottom = 543
         ClientRectRight = 1468
         inherited tbsht_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 27
           ExplicitWidth = 1466
-          ExplicitHeight = 574
+          ExplicitHeight = 516
           inherited grid_1: TcxGrid
             Width = 1460
             Height = 510
             ExplicitWidth = 1460
-            ExplicitHeight = 568
+            ExplicitHeight = 510
             inherited grid_1DBTableView1: TcxGridDBTableView
               object grid_1DBTableView1req_id: TcxGridDBColumn
                 Caption = 'C'#243'digo ID'
@@ -112,19 +112,21 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
       end
     end
     inherited tbsht_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
       ExplicitWidth = 1474
-      ExplicitHeight = 607
+      ExplicitHeight = 549
       inherited pgctrl_3: TcxPageControl
         Width = 1474
         Height = 549
         ExplicitWidth = 1474
-        ExplicitHeight = 607
+        ExplicitHeight = 549
         ClientRectBottom = 543
         ClientRectRight = 1468
         inherited tbsht_5: TcxTabSheet
           OnShow = tbsht_5Show
           ExplicitWidth = 1466
-          ExplicitHeight = 574
+          ExplicitHeight = 516
           inherited grb_top: TcxGroupBox
             ExplicitWidth = 1460
             ExplicitHeight = 47
@@ -169,8 +171,8 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
               Transparent = True
             end
             object looComboBoxCliente: TcxLookupComboBox
-              Left = 5
-              Top = 109
+              Left = 3
+              Top = 107
               Properties.GridMode = True
               Properties.KeyFieldNames = 'cli_first_name'
               Properties.ListColumns = <
@@ -192,7 +194,6 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
                   FieldName = 'ins_first_name'
                 end>
               Properties.ListSource = ds_client_insurance
-              Properties.OnPopup = looComboxConvenioPropertiesPopup
               TabOrder = 2
               Width = 396
             end
@@ -468,13 +469,14 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   inherited stsbar_1: TdxStatusBar
     Top = 637
     Width = 1482
-    ExplicitTop = 695
+    ExplicitTop = 637
     ExplicitWidth = 1482
     inherited stsbar_deleted_at: TdxStatusBarContainerControl
       Width = 1446
       ExplicitWidth = 1446
       inherited chkbox_1: TcxCheckBox
         ExplicitWidth = 1446
+        ExplicitHeight = 32
       end
     end
   end

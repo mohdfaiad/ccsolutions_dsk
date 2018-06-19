@@ -206,7 +206,6 @@ type
     procedure Action_editExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ds_requisition_shedulingDataChange(Sender: TObject; Field: TField);
-    procedure looComboxConvenioPropertiesPopup(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
     procedure Excluir2Click(Sender: TObject);
     procedure looComboBoxClientePropertiesChange(Sender: TObject);
@@ -871,30 +870,8 @@ begin
   qry_client_insurance.close;
   qry_client_insurance.open;
 
+  looComboxConvenio.ItemIndex  := -1;
   qry_client_insurance.Locate('codInsirance',codigoConvenio,[]);
-  looComboxConvenio.Text := qry_client_insuranceins_first_name.AsString;
-end;
-
-procedure Tfrm_scheduling_clinical.looComboxConvenioPropertiesPopup(Sender: TObject);
-var
-  codigoConvenio:string;
-begin
-   with frm_dm.qry,sql do
-  begin
-   close;
-   Text:= 'select hex(insurance_ins_cod) from client_insurance ' +
-          ' where hex(client_cli_cod) = ' +  QuotedStr(qry_clientcliCod.AsString);
-   Prepare;
-   Open;
-
-   codigoConvenio:=Fields[0].AsString;
-
-  end;
-
-  qry_client_insurance.close;
-  qry_client_insurance.open;
-
-  qry_client_insurance.Locate('codInsirance',codigoConvenio,[loCaseInsensitive, loPartialKey]);
   looComboxConvenio.Text := qry_client_insuranceins_first_name.AsString;
 end;
 

@@ -170,7 +170,7 @@ begin
        close;
        Text:= ' select case when max(sto_id) is null then 1 ' +
               '      else (max(sto_id) + 1) end as maxID from stock '+
-              ' where contract_ctr_cod =unhex(' + QuotedStr(frm_dm.p_contract_ctr_cod)+')';
+              ' where contract_ctr_cod =unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod)+')';
        Prepare;
        Open;
 
@@ -208,8 +208,8 @@ begin
                   ' and enterprise_ent_cod in                             ' +
                   ' (select enterprise_ent_cod from contract_user_enterprise where contract_user_ctr_usr_cod =unhex(:ctr_usr_cod)) '+
                   'and sto_deleled_at is null';
-  qry.ParamByname('ctr_cod').AsString     := frm_dm.p_contract_ctr_cod;
-  qry.ParamByname('ctr_usr_cod').AsString := frm_dm.p_ctr_usr_cod;
+  qry.ParamByname('ctr_cod').AsString     := frm_dm.v_contract_ctr_cod;
+  qry.ParamByname('ctr_usr_cod').AsString := frm_dm.v_ctr_usr_cod;
   qry.Prepare;
   qry.Open;
 end;
@@ -250,7 +250,7 @@ begin
 
    Close;
    Text:='insert into stock (sto_id,sto_cod,contract_ctr_cod,sto_dt_registration) ' +
-         ' select 0, unhex('+QuotedStr(stock_cod) +'), unhex(' +QuotedStr(frm_dm.p_contract_ctr_cod) +'), now() ';
+         ' select 0, unhex('+QuotedStr(stock_cod) +'), unhex(' +QuotedStr(frm_dm.v_contract_ctr_cod) +'), now() ';
    Prepare;
    ExecSQL;
   end;

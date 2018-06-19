@@ -34,18 +34,10 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, dxLayoutControlAdapters,
   Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, frxClass, frxDBSet, Vcl.Grids,
-  Vcl.DBGrids, ACBrSocket, ACBrCEP;
+  Vcl.DBGrids, ACBrSocket, ACBrCEP, cxCurrencyEdit;
 
 type
   Tfrm_request = class(Tfrm_form_default)
-    qrypco_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
-    qryemployee_emp_id: TIntegerField;
-    qrypoc_status_reason: TStringField;
-    qrypco_dt_registration: TDateTimeField;
-    cxGrid_1DBTableView1pco_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1employee_emp_id: TcxGridDBColumn;
     cxGrid_1DBTableView1pco_type: TcxGridDBColumn;
     cxGrid_1DBTableView1pco_status: TcxGridDBColumn;
     cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn;
@@ -57,28 +49,14 @@ type
     qry_employee: TFDQuery;
     ds_employee: TDataSource;
     ds_stock: TDataSource;
-    cxDBLookupComboBox1: TcxDBLookupComboBox;
-    dxLayoutItem10: TdxLayoutItem;
     dxLayoutGroup3: TdxLayoutGroup;
-    qry_purchase_order_iten: TFDQuery;
     ds_purchase_order_iten: TDataSource;
     cxGrid1DBTableView1: TcxGridDBTableView;
     cxGrid1Level1: TcxGridLevel;
     cxGrid1: TcxGrid;
     dxLayoutItem3: TdxLayoutItem;
-    cxGrid1Level2: TcxGridLevel;
-    cxGrid1DBTableView1poi_id: TcxGridDBColumn;
-    cxGrid1DBTableView1purchase_order_pco_id: TcxGridDBColumn;
-    cxGrid1DBTableView1product_pro_id: TcxGridDBColumn;
-    cxGrid1DBTableView1poi_product_quant: TcxGridDBColumn;
-    cxGrid1DBTableView1poi_dt_registration: TcxGridDBColumn;
     ds_product: TDataSource;
     qry_product: TFDQuery;
-    qry_purchase_order_itenpoi_id: TFDAutoIncField;
-    qry_purchase_order_itenpurchase_order_pco_id: TIntegerField;
-    qry_purchase_order_itenproduct_pro_id: TIntegerField;
-    qry_purchase_order_itenpoi_product_quant: TBCDField;
-    qry_purchase_order_itenpoi_dt_registration: TDateTimeField;
     dxCancelReq: TdxBarButton;
     FlowPanel1: TFlowPanel;
     Shape1: TShape;
@@ -93,36 +71,75 @@ type
     lbTodos: TLabel;
     dxLibRequ: TdxBarButton;
     qry_stock: TFDQuery;
-    cxDBLookupComboBox2: TcxDBLookupComboBox;
-    dxLayoutItem4: TdxLayoutItem;
-    qrystock_sto_id: TIntegerField;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     frxDBDataset2: TfrxDBDataset;
-    qry_solicitante: TStringField;
-    qry_funcionario: TStringField;
     frx_db_iten: TfrxDBDataset;
-    qry_purchase_order_itenpro_name: TStringField;
-    qry_purchase_order_itenpru_initials: TStringField;
     qry_parameter_stock: TFDQuery;
     frx_db_parameter_stock: TfrxDBDataset;
-    qry_parameter_stockprs_id: TFDAutoIncField;
     qry_parameter_stockprs_req_day_exp: TIntegerField;
-    qry_parameter_stockdt_registration: TDateTimeField;
-    qrypco_type: TStringField;
-    qrypco_status: TStringField;
-    qry_stocksto_name: TStringField;
-    qry_stocksto_id: TFDAutoIncField;
-    qry_stockcontract_ctr_id: TIntegerField;
-    qry_stockenterprise_ent_id: TIntegerField;
-    qry_employeeemp_id: TFDAutoIncField;
-    qry_employeerecord_rec_id: TIntegerField;
     qry_employeeemp_type: TStringField;
     qry_employeeemp_status: TStringField;
     qry_employeerec_name: TStringField;
-    qry_employeecontract_ctr_id: TIntegerField;
     SpeedButton2: TSpeedButton;
     SpeedButton1: TSpeedButton;
+    qrypco_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryemployee_emp_cod: TBytesField;
+    qrystock_sto_cod: TBytesField;
+    qrypco_id: TLongWordField;
+    qrypco_type: TStringField;
+    qrypoc_status_reason: TStringField;
+    qrypco_status: TStringField;
+    qrypco_deleted_at: TDateTimeField;
+    qrypco_dt_registration: TDateTimeField;
+    qryCodPurchase: TStringField;
+    qrysto_name: TStringField;
+    cxGrid_1DBTableView1pco_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1CodPurchase: TcxGridDBColumn;
+    cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
+    qry_employeeemp_cod: TBytesField;
+    qry_employeerecord_rec_cod: TBytesField;
+    qry_employeecontract_ctr_cod: TBytesField;
+    qry_stocksto_name: TStringField;
+    qry_stocksto_cod: TBytesField;
+    qry_stockcontract_ctr_cod: TBytesField;
+    qry_stockenterprise_ent_cod: TBytesField;
+    qry_parameter_stockprs_cod: TBytesField;
+    qry_parameter_stockprs_id: TLongWordField;
+    qry_purchase_order_iten: TFDQuery;
+    cxGrid1DBTableView1poi_id: TcxGridDBColumn;
+    cxGrid1DBTableView1poi_product_quant: TcxGridDBColumn;
+    cxGrid1DBTableView1poi_dt_registration: TcxGridDBColumn;
+    cxGrid1DBTableView1pro_name: TcxGridDBColumn;
+    cxGrid1DBTableView1pru_initials: TcxGridDBColumn;
+    looComboxSolicitante: TcxLookupComboBox;
+    dxLayoutItem5: TdxLayoutItem;
+    looComboxFuncionario: TcxLookupComboBox;
+    dxLayoutItem4: TdxLayoutItem;
+    dxLayoutGroup4: TdxLayoutGroup;
+    looComboxProduto: TcxLookupComboBox;
+    dxLayoutItem6: TdxLayoutItem;
+    edtQTD: TcxCurrencyEdit;
+    dxLayoutItem9: TdxLayoutItem;
+    btnInserir: TSpeedButton;
+    dxLayoutItem10: TdxLayoutItem;
+    qry_productproCod: TStringField;
+    qry_productpro_name: TStringField;
+    qry_productpro_cod: TBytesField;
+    qry_productcontract_ctr_cod: TBytesField;
+    qry_productpro_id: TLongWordField;
+    qry_purchase_order_itenpoi_cod: TBytesField;
+    qry_purchase_order_itenpurchase_order_pco_cod: TBytesField;
+    qry_purchase_order_itenproduct_pro_cod: TBytesField;
+    qry_purchase_order_itenpoi_id: TLongWordField;
+    qry_purchase_order_itenpoi_product_quant: TBCDField;
+    qry_purchase_order_itenpoi_product_quant_served: TBCDField;
+    qry_purchase_order_itenpoi_deleted_at: TDateTimeField;
+    qry_purchase_order_itenpoi_dt_registration: TDateTimeField;
+    qry_purchase_order_itenpro_name: TStringField;
+    qry_purchase_order_itenpru_initials: TStringField;
+    qryFuncionario: TStringField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
@@ -154,13 +171,18 @@ type
     procedure cxTabSheet_2Show(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
+    procedure btnInserirClick(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
+    procedure edtQTDKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
-    { Private declarations }
+      pco_cod,iten_cod:string;
+      iten_ID: Integer;
   public
     { Public declarations }
   //variaveis para parametros do sistema
   diaMaximoVenc:Integer;
   procedure limpaCache(Sender:TObject);
+  procedure ExibirRequisicao;
   end;
 
 var
@@ -201,9 +223,25 @@ begin
 
 end;
 
+procedure Tfrm_request.Action_editExecute(Sender: TObject);
+begin
+
+  btnInserir.Tag := 1;
+  pco_cod := qryCodPurchase.AsString;
+  looComboxFuncionario.Text := qryFuncionario.AsString;
+  looComboxSolicitante.Text    := qrysto_name.AsString;
+
+  inherited;
+
+end;
+
 procedure Tfrm_request.Action_insertExecute(Sender: TObject);
 begin
   qry.Filtered:=False;
+  btnInserir.Tag := 1;
+  btnInserir.Caption :='Inserir';
+
+
   inherited;
 
 end;
@@ -211,33 +249,127 @@ end;
 procedure Tfrm_request.Action_saveExecute(Sender: TObject);
 begin
    cxGrid1.SetFocus;
-  if qrystock_sto_id.AsInteger <= 0  then
-   begin
-     Application.MessageBox('Estoque solicitante não foi informado, favor informar!','AVISO',MB_OK + MB_ICONWARNING);
-     cxPageControl_2.ActivePageIndex:=1;
-     cxDBLookupComboBox2.SetFocus;
-     exit;
-   end;
-
-  if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
-   begin
-     Application.MessageBox('Só é permitido alterar uma requisição que esteja em aberto!','Requisição', MB_ICONINFORMATION + MB_OK);
-     qry.CancelUpdates;
-     Exit;
-   end;
 
    if qry_purchase_order_iten.IsEmpty then
    begin
-     Application.MessageBox('Não é possível salvar, falta incluir os produtos desta requisição !','AVISO DO SISTEMA',MB_OK + MB_ICONQUESTION);
+     Application.MessageBox('Não é possível salvar, falta incluir os produtos nesta requisição !','AVISO DA REQUISIÇÃO',MB_OK + MB_ICONQUESTION);
       Exit;
    end;
 
-   if (qry_purchase_order_iten.State in [dsEdit,dsInsert]) then
+
+  if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
    begin
-     qry_purchase_order_iten.Post;
+     Application.MessageBox('Só é permitido alterar uma requisição que esteja em aberto!','AVISO DA REQUISIÇÃO', MB_ICONINFORMATION + MB_OK);
+     qry.CancelUpdates;
+     cxTabSheet_1.Show;
+     Exit;
    end;
 
-  inherited;
+  if qrypco_id.AsInteger = 0 then
+   begin
+
+     with frm_dm.qry,sql do
+      begin
+       close;
+       Text:= ' select case when max(pco_id) is null then 1 ' +
+          '      else (max(pco_id) + 1) end as maxID from purchase_order '+
+          ' where contract_ctr_cod =unhex(' +QuotedStr(frm_dm.v_contract_ctr_cod)+')';
+       Prepare;
+       Open;
+
+       qry.Edit;
+       qrypco_id.AsInteger:=Fields[0].AsInteger;
+       qryemployee_emp_cod.Value := qry_employeeemp_cod.Value;
+       qrystock_sto_cod.Value    := qry_stocksto_cod.Value;
+
+     end;
+   end else
+        begin
+          qry.Edit;
+          qryemployee_emp_cod.Value := qry_employeeemp_cod.Value;
+          qrystock_sto_cod.Value    := qry_stocksto_cod.Value;
+
+        end;
+
+   inherited;
+
+   ExibirRequisicao;
+
+
+
+end;
+
+procedure Tfrm_request.btnInserirClick(Sender: TObject);
+begin
+   //--Condição para só deixar inserir ou alterar produtos na requisição em Status de Aberto ------
+   if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
+   begin
+     Application.MessageBox('Só é permitido (Inserir ou Alterar), produtos na requisição que estejam em abertos!','AVISO DA REQUISIÇÃO', MB_ICONINFORMATION + MB_OK);
+     looComboxProduto.Clear;
+     edtQTD.Clear;
+     cxGrid1.SetFocus;
+     exit;
+   end;
+       //--Condição para não deixar inserir com campos em branco (vazio)------
+   if (Trim(looComboxProduto.Text)<>'') and (Trim(edtQTD.Text)<>'') then
+    begin
+     if (btnInserir.Tag = 1) then  //button com Tag = 1 -- condição onde sei que estou inserindo----
+      begin
+        With frm_dm.qry,sql do
+        begin
+         close;   //SQL para obter o Codigo ID em Hex-----
+         text:= 'select hex(uuid_to_bin(uuid()))';
+         prepare;
+         open;
+
+         iten_cod:=Fields[0].AsString;
+
+
+             close;  // SQL para Obter o proximo ID ta tabela-----
+             Text:= ' select case when max(poi_id) is null then 1 ' +
+                    '      else (max(poi_id) + 1) end as maxID from purchase_order_iten '+
+                    ' where purchase_order_pco_cod =unhex('+QuotedStr(pco_cod)+')';
+             Prepare;
+             Open;
+
+         iten_ID:=Fields[0].AsInteger;
+
+         Close;   //SQL para Inserir o produto do Pedido de Compra------
+         Text:='insert into purchase_order_iten (poi_id, poi_cod, purchase_order_pco_cod, product_pro_cod, poi_product_quant, poi_dt_registration) ' +
+               ' values (:poi_id, unhex(:poi_cod), unhex(:purchase_order_pco_cod), unhex(:product_pro_cod), :poi_product_quant, :poi_dt_registration) ';
+         ParamByName('poi_id').AsInteger                := iten_ID;
+         ParamByName('poi_cod').AsString                := iten_cod;
+         ParamByName('purchase_order_pco_cod').AsString := pco_cod;
+         ParamByName('product_pro_cod').AsString        := qry_productproCod.AsString;
+         ParamByName('poi_product_quant').AsFloat       := edtQTD.Value;
+         ParamByName('poi_dt_registration').AsDateTime  := Now;
+         Prepare;
+         ExecSQL;
+        end;
+      end else if (btnInserir.Tag = 2) then   //button com Tag = 2 -- condição onde sei que estou Alterando----
+               begin
+                qry_purchase_order_iten.Edit;
+                qry_purchase_order_itenproduct_pro_cod.Value     := qry_productpro_cod.Value;
+                qry_purchase_order_itenpoi_product_quant.AsFloat := edtQTD.Value;
+                qry_purchase_order_iten.Post;
+
+               end;
+
+
+
+
+         qry_purchase_order_iten.Close;
+         qry_purchase_order_iten.Open;
+
+         looComboxProduto.Clear;
+         edtQTD.Clear;
+         cxGrid1.SetFocus;
+         btnInserir.Tag := 1;
+         btnInserir.Caption := 'Inserir';
+    end else
+    begin
+      application.MessageBox('Para inserir um produto, é necessário informar um "Produto e sua Quantidade" !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION)
+    end;
 
 end;
 
@@ -304,10 +436,7 @@ end;
 procedure Tfrm_request.cxTabSheet_2Show(Sender: TObject);
 begin
   inherited;
-   qry_stock.Close;
-   qry_stock.ParamByName('CTR_USR_ID').Value := frm_dm.qry_contractctr_cod.Value;
-   qry_stock.Prepare;
-   qry_stock.Open;
+  //
 end;
 
 procedure Tfrm_request.dsDataChange(Sender: TObject; Field: TField);
@@ -372,6 +501,26 @@ if Application.MessageBox('Deseja liberar essa requisição?','REQUISIÇÃO',MB_YESN
  end;
 end;
 
+procedure Tfrm_request.edtQTDKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+   if key =13 then
+    btnInserir.Click;
+end;
+
+procedure Tfrm_request.ExibirRequisicao;
+begin
+  qry.Close;
+  qry.SQL.Text:= ' select pur.*, hex(pco_cod)as CodPurchase, sto_name from purchase_order as pur ' +
+                 ' left join stock as sto on sto.sto_cod = pur.stock_sto_cod                     ' +
+                 ' where pco_type = ''R'' and stock_sto_cod in (select sto_cod from stock          ' +
+                 ' where contract_ctr_cod =unhex(:ctr_cod)) ';
+  qry.ParamByName('ctr_cod').AsString :=  frm_dm.v_contract_ctr_cod;
+  qry.Prepare;
+  qry.Open;
+
+end;
+
 procedure Tfrm_request.filter(tipo: string);
 begin
   qry.Filter := 'pco_status = ' + QuotedStr(tipo);
@@ -405,10 +554,7 @@ procedure Tfrm_request.FormShow(Sender: TObject);
 begin
   inherited;
   //SQL para exibir somente as Requisições da Unidade de estoque que o usuário tem acesso
-  qry.Close;
-  qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_contractctr_cod.Value;
-  qry.Prepare;
-  qry.Open;
+    ExibirRequisicao ;
  //---------------------------------------------------------------------------
 
 with frm_dm.qry, sql do
@@ -458,7 +604,6 @@ end;
 procedure Tfrm_request.limpaCache(Sender: TObject);
 begin
   qry.CommitUpdates();
-  qry_purchase_order_iten.CommitUpdates();
 end;
 
 procedure Tfrm_request.qryAfterDelete(DataSet: TDataSet);
@@ -472,11 +617,31 @@ end;
 procedure Tfrm_request.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-qrypco_status.AsString:='A';
-qrypco_dt_registration.Value:=now;
-qrypco_type.AsString:='R';
-qry.Post;
-qry.Edit;
+ //SQL para obter Número do Cod ID em Hex--------
+  With frm_dm.qry,sql do
+  begin
+   close;
+   text:= ' select hex(uuid_to_bin(uuid()))';
+   prepare;
+   open;
+
+   pco_cod:=Fields[0].AsString;
+
+   Close;          //---Insert na tabela purchase_order inserindo os primeiros registros obrigatórios----
+   Text:='insert into purchase_order (pco_id,pco_cod,pco_status, pco_type,contract_ctr_cod,pco_dt_registration) ' +
+         ' select 0,unhex('+QuotedStr(pco_cod)+'),''A'',''R'',unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+'), Now()';
+   Prepare;
+   ExecSQL;
+  end;
+
+   qry.Close;      //--SQL para retornar o registro inserido  acima (ultimo registro)----
+   qry.sql.text:= ' select pur.*, hex(pco_cod)as CodPurchase, sto_name from purchase_order as pur    ' +
+                  ' left join stock as sto on sto.sto_cod = pur.stock_sto_cod where pco_type = ''R'' ' +
+                  ' and pco_cod = unhex('+ QuotedStr(pco_cod)+') and pur.pco_deleted_at is null';
+   qry.Prepare;
+   qry.open;
+   qry.Edit;
+
 end;
 
 procedure Tfrm_request.qry_purchase_order_itenAfterEdit(DataSet: TDataSet);
@@ -489,17 +654,17 @@ end;
 procedure Tfrm_request.qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-if not (qry.State in [dsInsert,dsEdit]) then
- qry.Edit;
-
- if qrypco_status.AsString  <> 'A' then
- begin
-   Application.MessageBox('Só é permitido alterar uma requisição que esteja em aberto!','Requisição', MB_ICONINFORMATION + MB_OK);
-   qry_purchase_order_iten.Delete;
-   Exit;
- end;
-
-qry_purchase_order_itenpoi_dt_registration.Value:=Now;
+//if not (qry.State in [dsInsert,dsEdit]) then
+// qry.Edit;
+//
+// if qrypco_status.AsString  <> 'A' then
+// begin
+//   Application.MessageBox('Só é permitido alterar uma requisição que esteja em aberto!','Requisição', MB_ICONINFORMATION + MB_OK);
+//   qry_purchase_order_iten.Delete;
+//   Exit;
+// end;
+//
+//qry_purchase_order_itenpoi_dt_registration.Value:=Now;
 end;
 
 procedure Tfrm_request.qry_purchase_order_itenBeforePost(DataSet: TDataSet);

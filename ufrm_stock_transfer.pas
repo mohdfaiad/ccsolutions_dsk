@@ -39,16 +39,6 @@ uses
 
 type
   Tfrm_stock_transfer = class(Tfrm_form_default)
-    cxGrid_1DBTableView1prt_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1employee_emp_id_request: TcxGridDBColumn;
-    cxGrid_1DBTableView1employee_emp_id_agent: TcxGridDBColumn;
-    cxGrid_1DBTableView1employee_emp_id_lecturer: TcxGridDBColumn;
-    cxGrid_1DBTableView1stock_sto_id_exit: TcxGridDBColumn;
-    cxGrid_1DBTableView1stock_sto_id_entrance: TcxGridDBColumn;
-    cxGrid_1DBTableView1prt_status: TcxGridDBColumn;
-    cxGrid_1DBTableView1prt_status_reason: TcxGridDBColumn;
-    cxGrid_1DBTableView1prt_dt_registration: TcxGridDBColumn;
     cxDBSpinEdit4: TcxDBSpinEdit;
     dxLayoutItem6: TdxLayoutItem;
     cxDBSpinEdit5: TcxDBSpinEdit;
@@ -91,16 +81,6 @@ type
     ds_employee: TDataSource;
     cxDBLookupComboBox3: TcxDBLookupComboBox;
     dxLayoutItem4: TdxLayoutItem;
-    qryprt_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
-    qryemployee_emp_id_request: TIntegerField;
-    qryemployee_emp_id_agent: TIntegerField;
-    qryemployee_emp_id_lecturer: TIntegerField;
-    qrystock_sto_id_exit: TIntegerField;
-    qrystock_sto_id_entrance: TIntegerField;
-    qryprt_status: TStringField;
-    qryprt_status_reason: TStringField;
-    qryprt_dt_registration: TDateTimeField;
     qry_productproduct_pro_id: TIntegerField;
     qry_productpro_name: TStringField;
     qry_productstock_sto_id: TIntegerField;
@@ -108,7 +88,6 @@ type
     cxGrid1DBTableView1pti_product_quant: TcxGridDBColumn;
     cxGrid1DBTableView1pti_dt_registration: TcxGridDBColumn;
     ConfirmarTransfernciaEntrada1: TMenuItem;
-    qrypurchase_order_pco_id: TIntegerField;
     cxDBButtonEdit1: TcxDBButtonEdit;
     dxLayoutItem5: TdxLayoutItem;
     qry_purchase_order: TFDQuery;
@@ -134,14 +113,23 @@ type
     ds_purchase_iten: TDataSource;
     frxDBD_Stock_Transfer: TfrxDBDataset;
     frxDBD_Tranfer_Itens: TfrxDBDataset;
-    qryStock_Saida: TStringField;
-    qrySolicitante: TStringField;
-    qryStock_Entrada: TStringField;
     qry_product_transfer_itenProduto: TStringField;
     qry_stock_exitsto_name: TStringField;
     qry_stock_exitsto_id: TFDAutoIncField;
     qry_stock_exitcontract_ctr_id: TIntegerField;
     qry_stock_exitenterprise_ent_id: TIntegerField;
+    cxGrid_1DBTableView1pco_cod: TcxGridDBColumn;
+    cxGrid_1DBTableView1contract_ctr_cod: TcxGridDBColumn;
+    cxGrid_1DBTableView1employee_emp_cod: TcxGridDBColumn;
+    cxGrid_1DBTableView1stock_sto_cod: TcxGridDBColumn;
+    cxGrid_1DBTableView1pco_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1pco_type: TcxGridDBColumn;
+    cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn;
+    cxGrid_1DBTableView1pco_status: TcxGridDBColumn;
+    cxGrid_1DBTableView1pco_deleted_at: TcxGridDBColumn;
+    cxGrid_1DBTableView1pco_dt_registration: TcxGridDBColumn;
+    cxGrid_1DBTableView1CodPurchase: TcxGridDBColumn;
+    cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qryBeforePost(DataSet: TDataSet);
     procedure ConfirmarTransfernciaSaida1Click(Sender: TObject);
@@ -179,32 +167,32 @@ uses ufrm_dm;
 
 procedure Tfrm_stock_transfer.Action_deleteExecute(Sender: TObject);
 begin
-
- //Condição para não permitir excluir transferëncia que esteja diferente do status de A - Aberto
-  if (Trim(qryprt_status.AsString) <> 'A') or (Trim(qryprt_status.AsString) ='') then
-  // if (qryprt_status.OldValue  <> 'A') and ((qryprt_status.Value  <> 'A') or (qryprt_status.Value  = ''))  then
-  begin
-     Application.MessageBox('Só é permitido excluir uma transferencia que esteja em A - Aberto !','AVISO DE EXCLUSÃO DE TRANSFERENCIA', MB_ICONINFORMATION + MB_OK);
-     qry.CancelUpdates;
-     qry_product_transfer_iten.CancelUpdates;
-     Exit;
-
-  end;
-
- //Caso a transferëncia esteja no status de aberto poderar ser excluida
- if Application.MessageBox('Tem certeza que deseja excluir esta transferëncia ? ','AVISO DE EXCLUSÃO DE TRANSFERENCIA',MB_YESNO + MB_ICONQUESTION) = mrYes then
-   begin
-    qry_product_transfer_iten.First;
-    while not qry_product_transfer_iten.Eof do
-     begin
-       qry_product_transfer_iten.Delete;
-     end;
-
-     qry_product_transfer_iten.ApplyUpdates(0);
-
-     inherited;
-
-   end;
+//
+// //Condição para não permitir excluir transferëncia que esteja diferente do status de A - Aberto
+//  if (Trim(qryprt_status.AsString) <> 'A') or (Trim(qryprt_status.AsString) ='') then
+//  // if (qryprt_status.OldValue  <> 'A') and ((qryprt_status.Value  <> 'A') or (qryprt_status.Value  = ''))  then
+//  begin
+//     Application.MessageBox('Só é permitido excluir uma transferencia que esteja em A - Aberto !','AVISO DE EXCLUSÃO DE TRANSFERENCIA', MB_ICONINFORMATION + MB_OK);
+//     qry.CancelUpdates;
+//     qry_product_transfer_iten.CancelUpdates;
+//     Exit;
+//
+//  end;
+//
+// //Caso a transferëncia esteja no status de aberto poderar ser excluida
+// if Application.MessageBox('Tem certeza que deseja excluir esta transferëncia ? ','AVISO DE EXCLUSÃO DE TRANSFERENCIA',MB_YESNO + MB_ICONQUESTION) = mrYes then
+//   begin
+//    qry_product_transfer_iten.First;
+//    while not qry_product_transfer_iten.Eof do
+//     begin
+//       qry_product_transfer_iten.Delete;
+//     end;
+//
+//     qry_product_transfer_iten.ApplyUpdates(0);
+//
+//     inherited;
+//
+//   end;
 end;
 
 procedure Tfrm_stock_transfer.Action_saveExecute(Sender: TObject);
@@ -252,178 +240,178 @@ end;
 procedure Tfrm_stock_transfer.CancelarTransferncia1Click(Sender: TObject);
 begin
   inherited;
-  if Application.MessageBox('Deseja cancelar a transferência', 'Entrada',
-    MB_YESNO + MB_ICONQUESTION) = mrYes then
-  begin
-    // Caso a transferência esteja em aberto, o sistema apenas marca como cancelada
-    if qryprt_status.AsString = 'A' then
-    begin
-      qry.Edit;
-      qryprt_status.AsString := 'C';
-      qry.Post;
-
-    end;
-
-    // Caso a transferência esteja in transit, localiza os produtos que foi dado baixa
-    // e dá entrada novamente
-    if qryprt_status.AsString = 'T' then
-    begin
-      qry_stock_iten.Close;
-      qry_stock_iten.ParamByName('stock').AsInteger :=
-        qrystock_sto_id_exit.AsInteger;
-      qry_stock_iten.Prepare;
-      qry_stock_iten.open;
-
-      qry_product_transfer_iten.First;
-      while not qry_product_transfer_iten.Eof do
-      begin
-        qry_stock_iten.Locate('product_pro_id',
-          qry_product_transfer_itenproduct_pro_id.AsInteger,
-          [loCaseInsensitive, loPartialKey]);
-        qry_stock_iten.Edit;
-        qry_stock_itensti_product_quant.AsFloat :=
-          qry_stock_itensti_product_quant.AsFloat +
-          qry_product_transfer_itenpti_product_quant.AsFloat;
-        qry_stock_iten.Post;
-        qry_product_transfer_iten.Next;
-      end;
-
-
-    end;
-
-    if qryprt_status.AsString = 'E' then
-    begin
-      // Status E - Efetivado Quer dizer que já foi confirmado a saída e a entrada
-      // então precissa  fazer o processo de inverso, ou seja dá entrada no estoque
-      // que saiu e da saída no estoque em que entrou
-
-      qry_stock_iten.Close;
-      qry_stock_iten.ParamByName('stock').AsInteger :=
-        qrystock_sto_id_exit.AsInteger;
-      qry_stock_iten.Prepare;
-      qry_stock_iten.open;
-
-      qry_product_transfer_iten.First;
-      while not qry_product_transfer_iten.Eof do
-      begin
-        qry_stock_iten.Locate('product_pro_id',
-          qry_product_transfer_itenproduct_pro_id.AsString,
-          [loCaseInsensitive, loPartialKey]);
-        qry_stock_iten.Edit;
-        qry_stock_itensti_product_quant.AsFloat :=
-          qry_stock_itensti_product_quant.AsFloat +
-          qry_product_transfer_itenpti_product_quant.AsFloat;
-        qry_stock_iten.Post;
-        qry_product_transfer_iten.Next;
-      end;
-
-      qry_stock_iten.Close;
-      qry_stock_iten.ParamByName('stock').AsInteger :=
-        qrystock_sto_id_entrance.AsInteger;
-      qry_stock_iten.Prepare;
-      qry_stock_iten.open;
-
-      qry_product_transfer_iten.First;
-      while not qry_product_transfer_iten.Eof do
-      begin
-        qry_stock_iten.Locate('product_pro_id',
-          qry_product_transfer_itenproduct_pro_id.AsString,
-          [loCaseInsensitive, loPartialKey]);
-        qry_stock_iten.Edit;
-        qry_stock_itensti_product_quant.AsFloat :=
-          qry_stock_itensti_product_quant.AsFloat -
-          qry_product_transfer_itenpti_product_quant.AsFloat;
-        qry_stock_iten.Post;
-        qry_product_transfer_iten.Next;
-      end;
-
-
-
-    end;
-
-    qry.Edit;
-    qryprt_status.AsString := 'T'; // Transferencia em transito
-    qry.Post;
-    Application.MessageBox('Saída da transferência confirmada com sucesso!',
-      'Entrada', MB_OK + MB_ICONINFORMATION);
-
-    qry.Edit;
-    qryprt_status.AsString := 'C';
-    qry.Post;
-    qry.ApplyUpdates(0);
-    Application.MessageBox('Transferência cancelada com sucesso!', 'Entrada',
-      MB_OK + MB_ICONINFORMATION);
-
-    qry.Close;
-    qry.Open;
-  end;
+//  if Application.MessageBox('Deseja cancelar a transferência', 'Entrada',
+//    MB_YESNO + MB_ICONQUESTION) = mrYes then
+//  begin
+//    // Caso a transferência esteja em aberto, o sistema apenas marca como cancelada
+//    if qryprt_status.AsString = 'A' then
+//    begin
+//      qry.Edit;
+//      qryprt_status.AsString := 'C';
+//      qry.Post;
+//
+//    end;
+//
+//    // Caso a transferência esteja in transit, localiza os produtos que foi dado baixa
+//    // e dá entrada novamente
+//    if qryprt_status.AsString = 'T' then
+//    begin
+//      qry_stock_iten.Close;
+//      qry_stock_iten.ParamByName('stock').AsInteger :=
+//        qrystock_sto_id_exit.AsInteger;
+//      qry_stock_iten.Prepare;
+//      qry_stock_iten.open;
+//
+//      qry_product_transfer_iten.First;
+//      while not qry_product_transfer_iten.Eof do
+//      begin
+//        qry_stock_iten.Locate('product_pro_id',
+//          qry_product_transfer_itenproduct_pro_id.AsInteger,
+//          [loCaseInsensitive, loPartialKey]);
+//        qry_stock_iten.Edit;
+//        qry_stock_itensti_product_quant.AsFloat :=
+//          qry_stock_itensti_product_quant.AsFloat +
+//          qry_product_transfer_itenpti_product_quant.AsFloat;
+//        qry_stock_iten.Post;
+//        qry_product_transfer_iten.Next;
+//      end;
+//
+//
+//    end;
+//
+//    if qryprt_status.AsString = 'E' then
+//    begin
+//      // Status E - Efetivado Quer dizer que já foi confirmado a saída e a entrada
+//      // então precissa  fazer o processo de inverso, ou seja dá entrada no estoque
+//      // que saiu e da saída no estoque em que entrou
+//
+//      qry_stock_iten.Close;
+//      qry_stock_iten.ParamByName('stock').AsInteger :=
+//        qrystock_sto_id_exit.AsInteger;
+//      qry_stock_iten.Prepare;
+//      qry_stock_iten.open;
+//
+//      qry_product_transfer_iten.First;
+//      while not qry_product_transfer_iten.Eof do
+//      begin
+//        qry_stock_iten.Locate('product_pro_id',
+//          qry_product_transfer_itenproduct_pro_id.AsString,
+//          [loCaseInsensitive, loPartialKey]);
+//        qry_stock_iten.Edit;
+//        qry_stock_itensti_product_quant.AsFloat :=
+//          qry_stock_itensti_product_quant.AsFloat +
+//          qry_product_transfer_itenpti_product_quant.AsFloat;
+//        qry_stock_iten.Post;
+//        qry_product_transfer_iten.Next;
+//      end;
+//
+//      qry_stock_iten.Close;
+//      qry_stock_iten.ParamByName('stock').AsInteger :=
+//        qrystock_sto_id_entrance.AsInteger;
+//      qry_stock_iten.Prepare;
+//      qry_stock_iten.open;
+//
+//      qry_product_transfer_iten.First;
+//      while not qry_product_transfer_iten.Eof do
+//      begin
+//        qry_stock_iten.Locate('product_pro_id',
+//          qry_product_transfer_itenproduct_pro_id.AsString,
+//          [loCaseInsensitive, loPartialKey]);
+//        qry_stock_iten.Edit;
+//        qry_stock_itensti_product_quant.AsFloat :=
+//          qry_stock_itensti_product_quant.AsFloat -
+//          qry_product_transfer_itenpti_product_quant.AsFloat;
+//        qry_stock_iten.Post;
+//        qry_product_transfer_iten.Next;
+//      end;
+//
+//
+//
+//    end;
+//
+//    qry.Edit;
+//    qryprt_status.AsString := 'T'; // Transferencia em transito
+//    qry.Post;
+//    Application.MessageBox('Saída da transferência confirmada com sucesso!',
+//      'Entrada', MB_OK + MB_ICONINFORMATION);
+//
+//    qry.Edit;
+//    qryprt_status.AsString := 'C';
+//    qry.Post;
+//    qry.ApplyUpdates(0);
+//    Application.MessageBox('Transferência cancelada com sucesso!', 'Entrada',
+//      MB_OK + MB_ICONINFORMATION);
+//
+//    qry.Close;
+//    qry.Open;
+//  end;
 end;
 
 procedure Tfrm_stock_transfer.ConfirmarTransfernciaEntrada1Click
   (Sender: TObject);
 begin
 
-  if Application.MessageBox('Deseja confirmar a entrada da transferência',
-    'Transferência', MB_YESNO + MB_ICONQUESTION) = mrYes then
-  begin
-    qry_stock_iten.Close;
-    qry_stock_iten.ParamByName('stock').AsInteger :=
-      qrystock_sto_id_entrance.AsInteger;
-    qry_stock_iten.Prepare;
-    qry_stock_iten.open;
-
-    // Dá entrada, se não encontrar ele inclui no estoque
-    qry_product_transfer_iten.First;
-    while not qry_product_transfer_iten.Eof do
-    begin
-      if not qry_stock_iten.Locate('product_pro_id',
-        qry_product_transfer_itenproduct_pro_id.AsString,
-        [loCaseInsensitive, loPartialKey]) then
-      begin
-        qry_stock_iten.Insert;
-        qry_stock_itenstock_sto_id.AsInteger :=
-          qrystock_sto_id_entrance.AsInteger;
-        qry_stock_itenproduct_pro_id.AsInteger :=
-          qry_product_transfer_itenproduct_pro_id.AsInteger;
-        qry_stock_itensti_product_quant.AsFloat :=
-          qry_product_transfer_itenpti_product_quant.AsFloat;
-        qry_stock_iten.Post;
-
-        qry_stock_iten.Close;
-        qry_stock_iten.ParamByName('stock').AsInteger :=
-          qrystock_sto_id_entrance.AsInteger;
-        qry_stock_iten.Prepare;
-        qry_stock_iten.open;
-
-        qry_product_transfer_iten.Next;
-      end
-      else
-      begin
-        qry_stock_iten.Locate('product_pro_id',
-          qry_product_transfer_itenproduct_pro_id.AsString,
-          [loCaseInsensitive, loPartialKey]);
-        qry_stock_iten.Edit;
-        qry_stock_itensti_product_quant.AsFloat :=
-          qry_stock_itensti_product_quant.AsFloat +
-          qry_product_transfer_itenpti_product_quant.AsFloat;
-        qry_stock_iten.Post;
-        qry_product_transfer_iten.Next;
-      end;
-    end;
-
-    qry.Edit;
-    qryprt_status.AsString := 'E'; // Transferencia em Efetivada
-    qry.Post;
-    Application.MessageBox('Entrada da transferência confirmada com sucesso!',
-      'Entrada', MB_OK + MB_ICONINFORMATION);
-
-     inherited;
-
-     qry.ApplyUpdates(0);
-     qry.Close;
-     qry.Open;
-
-  end;
+//  if Application.MessageBox('Deseja confirmar a entrada da transferência',
+//    'Transferência', MB_YESNO + MB_ICONQUESTION) = mrYes then
+//  begin
+//    qry_stock_iten.Close;
+//    qry_stock_iten.ParamByName('stock').AsInteger :=
+//      qrystock_sto_id_entrance.AsInteger;
+//    qry_stock_iten.Prepare;
+//    qry_stock_iten.open;
+//
+//    // Dá entrada, se não encontrar ele inclui no estoque
+//    qry_product_transfer_iten.First;
+//    while not qry_product_transfer_iten.Eof do
+//    begin
+//      if not qry_stock_iten.Locate('product_pro_id',
+//        qry_product_transfer_itenproduct_pro_id.AsString,
+//        [loCaseInsensitive, loPartialKey]) then
+//      begin
+//        qry_stock_iten.Insert;
+//        qry_stock_itenstock_sto_id.AsInteger :=
+//          qrystock_sto_id_entrance.AsInteger;
+//        qry_stock_itenproduct_pro_id.AsInteger :=
+//          qry_product_transfer_itenproduct_pro_id.AsInteger;
+//        qry_stock_itensti_product_quant.AsFloat :=
+//          qry_product_transfer_itenpti_product_quant.AsFloat;
+//        qry_stock_iten.Post;
+//
+//        qry_stock_iten.Close;
+//        qry_stock_iten.ParamByName('stock').AsInteger :=
+//          qrystock_sto_id_entrance.AsInteger;
+//        qry_stock_iten.Prepare;
+//        qry_stock_iten.open;
+//
+//        qry_product_transfer_iten.Next;
+//      end
+//      else
+//      begin
+//        qry_stock_iten.Locate('product_pro_id',
+//          qry_product_transfer_itenproduct_pro_id.AsString,
+//          [loCaseInsensitive, loPartialKey]);
+//        qry_stock_iten.Edit;
+//        qry_stock_itensti_product_quant.AsFloat :=
+//          qry_stock_itensti_product_quant.AsFloat +
+//          qry_product_transfer_itenpti_product_quant.AsFloat;
+//        qry_stock_iten.Post;
+//        qry_product_transfer_iten.Next;
+//      end;
+//    end;
+//
+//    qry.Edit;
+//    qryprt_status.AsString := 'E'; // Transferencia em Efetivada
+//    qry.Post;
+//    Application.MessageBox('Entrada da transferência confirmada com sucesso!',
+//      'Entrada', MB_OK + MB_ICONINFORMATION);
+//
+//     inherited;
+//
+//     qry.ApplyUpdates(0);
+//     qry.Close;
+//     qry.Open;
+//
+//  end;
 end;
 
 procedure Tfrm_stock_transfer.ConfirmarTransfernciaSaida1Click(Sender: TObject);
@@ -466,11 +454,11 @@ begin
       qry_product_transfer_iten.Next;
     end;
 
-    qry_stock_iten.Close;
-    qry_stock_iten.ParamByName('stock').AsInteger :=
-      qrystock_sto_id_exit.AsInteger;
-    qry_stock_iten.Prepare;
-    qry_stock_iten.open;
+//    qry_stock_iten.Close;
+//    qry_stock_iten.ParamByName('stock').AsInteger :=
+//    qrystock_sto_id_exit.AsInteger;
+//    qry_stock_iten.Prepare;
+//    qry_stock_iten.open;
 
     // Baixa estoque saida
     qry_product_transfer_iten.First;
@@ -487,11 +475,11 @@ begin
       qry_product_transfer_iten.Next;
     end;
 
-    qry.Edit;
-    qryprt_status.AsString := 'T'; // Transferencia em transito
-    qry.Post;
-    Application.MessageBox('Saída da transferência confirmada com sucesso!',
-      'Entrada', MB_OK + MB_ICONINFORMATION);
+//    qry.Edit;
+//    qryprt_status.AsString := 'T'; // Transferencia em transito
+//    qry.Post;
+//    Application.MessageBox('Saída da transferência confirmada com sucesso!',
+//      'Entrada', MB_OK + MB_ICONINFORMATION);
 
     inherited;
     qry.ApplyUpdates(0);
@@ -537,10 +525,10 @@ begin
     if not(qry.State in [dsinsert])  then
     qry.Insert;
 
-    qryemployee_emp_id_request.AsInteger := qry_purchase_orderemployee_emp_id.AsInteger;
-    qrypurchase_order_pco_id.AsString:=numReq;
-    qry.Post;
-    qry.Edit;
+//    qryemployee_emp_id_request.AsInteger := qry_purchase_orderemployee_emp_id.AsInteger;
+//    qrypurchase_order_pco_id.AsString:=numReq;
+//    qry.Post;
+//    qry.Edit;
 
     with frm_dm.qry,sql do
     begin
@@ -630,9 +618,9 @@ end;
 procedure Tfrm_stock_transfer.PopupMenu_1Popup(Sender: TObject);
 begin
   inherited;
-  ConfirmarTransfernciaSaida1.Enabled := qryprt_status.AsString = 'A';
-  ConfirmarTransfernciaEntrada1.Enabled := qryprt_status.AsString = 'T';
-  CancelarTransferncia1.Enabled := qryprt_status.AsString <> 'C';
+//  ConfirmarTransfernciaSaida1.Enabled := qryprt_status.AsString = 'A';
+//  ConfirmarTransfernciaEntrada1.Enabled := qryprt_status.AsString = 'T';
+//  CancelarTransferncia1.Enabled := qryprt_status.AsString <> 'C';
 end;
 
 procedure Tfrm_stock_transfer.qryAfterDelete(DataSet: TDataSet);
@@ -646,25 +634,25 @@ end;
 procedure Tfrm_stock_transfer.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qryprt_status.AsString := 'A';
-  qryprt_dt_registration.Value := Now;
-  qry.Post;
-  qry.Edit;
+//  qryprt_status.AsString := 'A';
+//  qryprt_dt_registration.Value := Now;
+//  qry.Post;
+//  qry.Edit;
 
 end;
 
 procedure Tfrm_stock_transfer.qryBeforePost(DataSet: TDataSet);
 begin
-  if (qrystock_sto_id_exit.AsInteger = qrystock_sto_id_entrance.AsInteger) and
-    (qrystock_sto_id_exit.AsInteger > 0) and
-    (qrystock_sto_id_entrance.AsInteger > 0) then
-  begin
-    Application.MessageBox
-      ('Estoque de saída igual o estoque da entrada da transferência, favor verificar!',
-      'Transferência', MB_OK + MB_ICONERROR);
-    Exit
-  end;
-  inherited;
+//  if (qrystock_sto_id_exit.AsInteger = qrystock_sto_id_entrance.AsInteger) and
+//    (qrystock_sto_id_exit.AsInteger > 0) and
+//    (qrystock_sto_id_entrance.AsInteger > 0) then
+//  begin
+//    Application.MessageBox
+//      ('Estoque de saída igual o estoque da entrada da transferência, favor verificar!',
+//      'Transferência', MB_OK + MB_ICONERROR);
+//    Exit
+//  end;
+//  inherited;
 
 end;
 

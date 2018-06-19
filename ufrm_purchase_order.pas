@@ -537,7 +537,7 @@ begin
    qry.SQL.Text:= ' select sto_name, purchase_order.*,hex(pco_cod)as CodPCO from purchase_order   ' +
                   ' left join stock on stock_sto_cod = sto_cod                                    ' +
                   ' where pco_type = ''C'' and stock_sto_cod in (select sto_cod from stock        ' +
-                  ' where contract_ctr_cod =unhex('+QuotedStr(frm_dm.p_contract_ctr_cod)+')) and pco_deleted_at is null    ';
+                  ' where contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')) and pco_deleted_at is null    ';
    qry.Prepare;
    qry.Open;
 end;

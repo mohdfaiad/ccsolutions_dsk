@@ -8,6 +8,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 475
+    Properties.ActivePage = cxTabSheet_1
     ExplicitHeight = 475
     ClientRectBottom = 469
     inherited cxTabSheet_1: TcxTabSheet
@@ -16,45 +17,41 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         Height = 435
         ExplicitHeight = 435
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
-          object cxGrid_1DBTableView1prt_id: TcxGridDBColumn
-            DataBinding.FieldName = 'prt_id'
-            Width = 75
+          object cxGrid_1DBTableView1pco_cod: TcxGridDBColumn
+            DataBinding.FieldName = 'pco_cod'
           end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
-            Width = 75
+          object cxGrid_1DBTableView1contract_ctr_cod: TcxGridDBColumn
+            DataBinding.FieldName = 'contract_ctr_cod'
           end
-          object cxGrid_1DBTableView1employee_emp_id_request: TcxGridDBColumn
-            DataBinding.FieldName = 'employee_emp_id_request'
-            Width = 75
+          object cxGrid_1DBTableView1employee_emp_cod: TcxGridDBColumn
+            DataBinding.FieldName = 'employee_emp_cod'
           end
-          object cxGrid_1DBTableView1employee_emp_id_agent: TcxGridDBColumn
-            DataBinding.FieldName = 'employee_emp_id_agent'
-            Width = 75
+          object cxGrid_1DBTableView1stock_sto_cod: TcxGridDBColumn
+            DataBinding.FieldName = 'stock_sto_cod'
           end
-          object cxGrid_1DBTableView1employee_emp_id_lecturer: TcxGridDBColumn
-            DataBinding.FieldName = 'employee_emp_id_lecturer'
-            Width = 75
+          object cxGrid_1DBTableView1pco_id: TcxGridDBColumn
+            DataBinding.FieldName = 'pco_id'
           end
-          object cxGrid_1DBTableView1stock_sto_id_exit: TcxGridDBColumn
-            DataBinding.FieldName = 'stock_sto_id_exit'
-            Width = 75
+          object cxGrid_1DBTableView1pco_type: TcxGridDBColumn
+            DataBinding.FieldName = 'pco_type'
           end
-          object cxGrid_1DBTableView1stock_sto_id_entrance: TcxGridDBColumn
-            DataBinding.FieldName = 'stock_sto_id_entrance'
-            Width = 75
+          object cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn
+            DataBinding.FieldName = 'poc_status_reason'
           end
-          object cxGrid_1DBTableView1prt_status: TcxGridDBColumn
-            DataBinding.FieldName = 'prt_status'
-            Width = 50
+          object cxGrid_1DBTableView1pco_status: TcxGridDBColumn
+            DataBinding.FieldName = 'pco_status'
           end
-          object cxGrid_1DBTableView1prt_status_reason: TcxGridDBColumn
-            DataBinding.FieldName = 'prt_status_reason'
-            Width = 200
+          object cxGrid_1DBTableView1pco_deleted_at: TcxGridDBColumn
+            DataBinding.FieldName = 'pco_deleted_at'
           end
-          object cxGrid_1DBTableView1prt_dt_registration: TcxGridDBColumn
-            DataBinding.FieldName = 'prt_dt_registration'
-            Width = 125
+          object cxGrid_1DBTableView1pco_dt_registration: TcxGridDBColumn
+            DataBinding.FieldName = 'pco_dt_registration'
+          end
+          object cxGrid_1DBTableView1CodPurchase: TcxGridDBColumn
+            DataBinding.FieldName = 'CodPurchase'
+          end
+          object cxGrid_1DBTableView1sto_name: TcxGridDBColumn
+            DataBinding.FieldName = 'sto_name'
           end
         end
       end
@@ -62,7 +59,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
+      ExplicitWidth = 1000
       ExplicitHeight = 441
       inherited cxPageControl_2: TcxPageControl
         Height = 435
@@ -474,141 +471,25 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     AfterInsert = qryAfterInsert
     BeforePost = qryBeforePost
     AfterDelete = qryAfterDelete
-    IndexFieldNames = 'contract_ctr_id'
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
-    Connection = frm_dm.connCCS
     SQL.Strings = (
-      'SELECT * FROM product_transfer'#13#10#10
       
-        'where stock_sto_id_exit in (select sto_id from stock where contr' +
-        'act_ctr_id =:ctr_id'#13#10#10
+        'select pur.*, hex(pco_cod)as CodPurchase, sto_name from purchase' +
+        '_order as pur'#13#10#10
+      'left join stock as sto on sto.sto_cod = pur.stock_sto_cod'#13#10#10
       
-        'and enterprise_ent_id in '#10'(select ctr_usr_ent_ent_id from contra' +
-        'ct_user_enterprise '#10'where ctr_usr_ent_user_id =:ctr_usr_id))'#13#10#10
-      
-        'and stock_sto_id_entrance in (select sto_id from stock where con' +
-        'tract_ctr_id =:ctr_id'#13#10#10
-      
-        'and enterprise_ent_id in '#10'(select ctr_usr_ent_ent_id from contra' +
-        'ct_user_enterprise '#10'where ctr_usr_ent_user_id =:ctr_usr_id))')
+        'where pco_type = '#39'R'#39' and stock_sto_cod in (select sto_cod from s' +
+        'tock'#10' '
+      'where contract_ctr_cod =unhex(:ctr_cod))')
     Left = 554
     Top = 40
     ParamData = <
       item
-        Name = 'CTR_ID'
-        DataType = ftInteger
+        Name = 'CTR_COD'
+        DataType = ftString
         ParamType = ptInput
-        Value = 1
-      end
-      item
-        Name = 'CTR_USR_ID'
-        DataType = ftInteger
-        ParamType = ptInput
-        Value = 4
+        Size = 85
+        Value = Null
       end>
-    object qryprt_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'prt_id'
-      Origin = 'prt_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
-    object qryemployee_emp_id_request: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Solicitante'
-      FieldName = 'employee_emp_id_request'
-      Origin = 'employee_emp_id_request'
-    end
-    object qryemployee_emp_id_agent: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Respons'#225'vel'
-      FieldName = 'employee_emp_id_agent'
-      Origin = 'employee_emp_id_agent'
-    end
-    object qryemployee_emp_id_lecturer: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Conferente'
-      FieldName = 'employee_emp_id_lecturer'
-      Origin = 'employee_emp_id_lecturer'
-    end
-    object qrystock_sto_id_exit: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Est. Sa'#237'da'
-      FieldName = 'stock_sto_id_exit'
-      Origin = 'stock_sto_id_exit'
-    end
-    object qrystock_sto_id_entrance: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Est. Entrada'
-      FieldName = 'stock_sto_id_entrance'
-      Origin = 'stock_sto_id_entrance'
-    end
-    object qryprt_status: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Status'
-      FieldName = 'prt_status'
-      Origin = 'prt_status'
-      FixedChar = True
-      Size = 1
-    end
-    object qryprt_status_reason: TStringField
-      Alignment = taRightJustify
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Motivo'
-      FieldName = 'prt_status_reason'
-      Origin = 'prt_status_reason'
-      Size = 50
-    end
-    object qryprt_dt_registration: TDateTimeField
-      Alignment = taRightJustify
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'prt_dt_registration'
-      Origin = 'prt_dt_registration'
-    end
-    object qrypurchase_order_pco_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'N'#250'm. Req.'
-      FieldName = 'purchase_order_pco_id'
-      Origin = 'purchase_order_pco_id'
-    end
-    object qryStock_Saida: TStringField
-      FieldKind = fkLookup
-      FieldName = 'Stock_Saida'
-      LookupDataSet = qry_stock_exit
-      LookupKeyFields = 'sto_id'
-      LookupResultField = 'sto_name'
-      KeyFields = 'stock_sto_id_exit'
-      Size = 50
-      Lookup = True
-    end
-    object qrySolicitante: TStringField
-      FieldKind = fkLookup
-      FieldName = 'Solicitante'
-      LookupDataSet = qry_employee
-      LookupKeyFields = 'emp_id'
-      LookupResultField = 'rec_name'
-      KeyFields = 'employee_emp_id_request'
-      Size = 50
-      Lookup = True
-    end
-    object qryStock_Entrada: TStringField
-      FieldKind = fkLookup
-      FieldName = 'Stock_Entrada'
-      LookupDataSet = qry_stock_exit
-      LookupKeyFields = 'sto_id'
-      LookupResultField = 'sto_name'
-      KeyFields = 'stock_sto_id_entrance'
-      Size = 50
-      Lookup = True
-    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'

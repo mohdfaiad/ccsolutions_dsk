@@ -165,7 +165,6 @@ type
     grid_1DBTableView1ret_name: TcxGridDBColumn;
     grid_1DBTableView1cli_first_name: TcxGridDBColumn;
     grid_1DBTableView1ent_first_name: TcxGridDBColumn;
-    btnAlterar: TButton;
     qry_requisition_shedulingCodScheduling: TStringField;
     qry_client_insuranceins_cod: TBytesField;
     qry_client_insurancecontract_ctr_cod: TBytesField;
@@ -188,6 +187,8 @@ type
     cxGrid2DBTableView1sch_description: TcxGridDBColumn;
     popmenu_req_sheduling: TPopupMenu;
     Excluir2: TMenuItem;
+    Editar2: TMenuItem;
+    Cancelar2: TMenuItem;
     procedure Action_cancelExecute(Sender: TObject);
     procedure qry_sql(sql:string);
     procedure Action_saveExecute(Sender: TObject);
@@ -203,13 +204,14 @@ type
     procedure edtDatePropertiesCloseUp(Sender: TObject);
     procedure edtTimePropertiesEditValueChanged(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
-    procedure btnAlterarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ds_requisition_shedulingDataChange(Sender: TObject; Field: TField);
     procedure looComboxConvenioPropertiesPopup(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
     procedure Excluir2Click(Sender: TObject);
     procedure looComboBoxClientePropertiesChange(Sender: TObject);
+    procedure Editar2Click(Sender: TObject);
+    procedure Cancelar2Click(Sender: TObject);
   private
     req_cod,rsh_cod,sch_cod:string;
     Descricao:string;
@@ -326,7 +328,8 @@ procedure Tfrm_scheduling_clinical.Action_editExecute(Sender: TObject);
 begin
   inherited;
 
-    Self.Tag := 2; // para dizer que é uma inserção
+    Self.Tag := 2;
+    btnAgendar.Tag := 1; // para dizer que é uma inserção
 
     req_cod                   := qryCodRequisition.AsString;
     edt_codid.Text            := IntToStr(qryreq_id.AsInteger);
@@ -371,7 +374,8 @@ end;
 procedure Tfrm_scheduling_clinical.Action_insertExecute(Sender: TObject);
 begin
   inherited;
-  Self.Tag := 1; // para dizer que é uma inserção
+   Self.Tag := 1;
+   btnAgendar.Tag := 1; // para dizer que é uma inserção
    qry.Insert;
 
 
@@ -454,6 +458,8 @@ procedure Tfrm_scheduling_clinical.btnAgendarClick(Sender: TObject);
   horaLivre :Boolean;
 begin
   inherited;
+ if (btnAgendar.Tag = 1) then
+  begin
 
   //Não permite finalizar com Memo_Descrição vazio--------
    if ((Trim(memoDescricao.Text) = '') or (looComboxEspecialidade.ItemIndex = -1) or (looComboxMedico.ItemIndex = -1)) then
@@ -523,9 +529,8 @@ begin
            ParamByName('sch_dt_registration').AsDateTime := now;
            Prepare;
            ExecSQL;
-       //   ' select '+frm_dm.qry.Fields[0].AsString+','+ sch_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' +',unhex('+QuotedStr(qry_doctor_rolecodEmployee.AsString)+'),'+QuotedStr(FormatDateTime('yyyy-MM-dd hh:mm:ss',pData + PHora))+','+QuotedStr(memoDescricao.Text)+',Now()';
 
-          end;
+          end;
 
         //-----------------------------------------------------------------------------
          rsh_cod := '';  //Inicializar as variaveis vazias--------------
@@ -591,74 +596,74 @@ begin
 
         end;
 
-       //Exiber todos exemes agendados do paciente selecionado------------
-      //  ExibirAxameAgendado;
+  end else if (btnAgendar.Tag =2) then
+            begin
+            //-------------------------------------------------------------------------
+            HoraAgendamento := StrToDateTime(FormatDateTime('hh:mm:ss',qry_requisition_shedulingsch_datetime.AsDateTime));
+            Descricao       := qry_requisition_shedulingsch_description.AsString;
+            qry_parameter_clinic.Close;   //Query do parametro de tempo do agendamento -----------
+            qry_parameter_clinic.Open;
+
+            ExibirAgendamento;
+
+            qry_scheduling.First;
+            while not qry_scheduling.Eof do
+             begin
+              HoraInicio:=StrToTime(FormatDateTime('hh:mm',(qry_schedulingsch_datetime.AsDateTime)));
+              HoraFim:=(HoraInicio+qry_parameter_clinicprc_time_service.AsDateTime);  //Paramentro de tempo do agendamento
+
+             if (((edtTime.Time >= HoraInicio) and (edtTime.Time <= HoraFim))
+                and (Descricao = memoDescricao.text)) or (HoraAgendamento = edtTime.Time) then
+               begin
+                 Application.MessageBox('Existe um compromiso agendado para essa data e hoja, '+
+                    'por favor vericar data e hora do agendamento !', 'AVISO DE AGENDAMENTO',MB_OK + MB_ICONWARNING);
+                 edtDate.SetFocus;
+                 Exit;
+               end;
+               qry_scheduling.Next;
+             end;
+
+           //---------------------------------------------------------------------
+            pData := edtDate.Date;
+            PHora := edtTime.Time;
+             with frm_dm.qry2,sql do
+              begin
+                close;
+                Text := ' Update scheduling Set employee_emp_cod =unhex(:employee_emp_cod), sch_datetime =:sch_datetime, sch_description =:sch_description where sch_cod =unhex(:sch_cod) ';
+                ParamByName('employee_emp_cod').AsString :=  qry_doctor_rolecodEmployee.AsString;
+                ParamByName('sch_datetime').value        := StrToDateTime(FormatDateTime('dd/mm/yyyy',pData) + FormatDateTime('hh:mm:ss',PHora));
+                ParamByName('sch_description').AsString  := memoDescricao.Text;
+                ParamByName('sch_cod').AsString          :=  qry_requisition_shedulingCodScheduling.AsString;
+                Prepare;
+                ExecSQL;
+
+              end;
+
+
+             qry_requisition_sheduling.Edit;
+             qry_requisition_shedulingrole_rol_cod.Value   := Qry_rolerol_cod.Value;
+             qry_requisition_shedulingdoctor_doc_cod.Value := qry_doctor_roledoc_cod.Value;
+             qry_requisition_shedulingrsh_status.AsString  := 'A';
+             qry_requisition_sheduling.Post;
+
+
+              //Mensagem ao Inserir
+               Application.MessageBox('Agendamento alterado com sucesso !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
+              //Retorna o select para atualizar a lista no Grid--
+               btnAgendar.Tag:= 1;
+               btnAgendar.Caption := 'Angendar';
+
+               ExibirAxameAgendado;
+
+            end;
+
 end;
 
-procedure Tfrm_scheduling_clinical.btnAlterarClick(Sender: TObject);
- var
-  HoraInicio: TTime;
-  HoraFim   : TTime;
-  pData     : TDate;
-  pHora     : TTime;
+procedure Tfrm_scheduling_clinical.Cancelar2Click(Sender: TObject);
 begin
-
- //-------------------------------------------------------------------------
-  HoraAgendamento := StrToDateTime(FormatDateTime('hh:mm:ss',qry_requisition_shedulingsch_datetime.AsDateTime));
-  Descricao       := qry_requisition_shedulingsch_description.AsString;
-  qry_parameter_clinic.Close;   //Query do parametro de tempo do agendamento -----------
-  qry_parameter_clinic.Open;
-
-  ExibirAgendamento;
-
-  qry_scheduling.First;
-  while not qry_scheduling.Eof do
-   begin
-    HoraInicio:=StrToTime(FormatDateTime('hh:mm',(qry_schedulingsch_datetime.AsDateTime)));
-    HoraFim:=(HoraInicio+qry_parameter_clinicprc_time_service.AsDateTime);  //Paramentro de tempo do agendamento
-
-   if (((edtTime.Time >= HoraInicio) and (edtTime.Time <= HoraFim))
-      and (Descricao = memoDescricao.text)) or (HoraAgendamento = edtTime.Time) then
-     begin
-       Application.MessageBox('Existe um compromiso agendado para essa data e hoja, '+
-          'por favor vericar data e hora do agendamento !', 'AVISO DE AGENDAMENTO',MB_OK + MB_ICONWARNING);
-       edtDate.SetFocus;
-       Exit;
-     end;
-     qry_scheduling.Next;
-   end;
-
- //---------------------------------------------------------------------
-  pData := edtDate.Date;
-  PHora := edtTime.Time;
-  begin
-   with frm_dm.qry2,sql do
-    begin
-      close;
-      Text := ' Update scheduling Set employee_emp_cod =unhex(:employee_emp_cod), sch_datetime =:sch_datetime, sch_description =:sch_description where sch_cod =unhex(:sch_cod) ';
-      ParamByName('employee_emp_cod').AsString :=  qry_doctor_rolecodEmployee.AsString;
-      ParamByName('sch_datetime').value        := StrToDateTime(FormatDateTime('dd/mm/yyyy',pData) + FormatDateTime('hh:mm:ss',PHora));
-      ParamByName('sch_description').AsString  := memoDescricao.Text;
-      ParamByName('sch_cod').AsString          :=  qry_requisition_shedulingCodScheduling.AsString;
-      Prepare;
-      ExecSQL;
-
-    end;
-  end;
-
-   qry_requisition_sheduling.Edit;
-   qry_requisition_shedulingrole_rol_cod.Value   := Qry_rolerol_cod.Value;
-   qry_requisition_shedulingdoctor_doc_cod.Value := qry_doctor_roledoc_cod.Value;
-   qry_requisition_shedulingrsh_status.AsString  := 'A';
-   qry_requisition_sheduling.Post;
-
-
-    //Mensagem ao Inserir
-     Application.MessageBox('Agendamento alterado com sucesso !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
-    //Retorna o select para atualizar a lista no Grid--
-
-     ExibirAxameAgendado;
-
+  inherited;
+  btnAgendar.Tag :=1;
+  btnAgendar.Caption := 'Agendar';
 end;
 
 procedure Tfrm_scheduling_clinical.cxGrid3DBTableView1rec_namePropertiesCloseUp(Sender: TObject);
@@ -746,6 +751,27 @@ begin
     memoDescricao.Text := qry_requisition_shedulingsch_description.AsString;
 
 
+end;
+
+procedure Tfrm_scheduling_clinical.Editar2Click(Sender: TObject);
+begin
+  inherited;
+   //  Qry_role.Locate('rolCod',qry_requisition_shedulingCodRole.AsString,[loCaseInsensitive, loPartialKey]);
+    looComboxEspecialidade.Text := qry_requisition_shedulingrol_name.AsString;
+
+    qry_doctor_role.Close;
+    qry_doctor_role.ParamByName('CODROLE').Value := qry_requisition_shedulingrole_rol_cod.value;
+    qry_doctor_role.Open;
+
+    qry_doctor_role.Locate('codDoctor',qry_requisition_shedulingCodDoctor.AsString,[loCaseInsensitive, loPartialKey]);
+    looComboxMedico.Text        := qry_doctor_rolerec_name.AsString;
+
+    edtDate.Date       := qry_requisition_shedulingsch_datetime.AsDateTime;
+    edtTime.Time       := StrToDateTime(FormatDateTime('hh:mm:ss',(qry_requisition_shedulingsch_datetime.AsDateTime)));
+    memoDescricao.Text := qry_requisition_shedulingsch_description.AsString;
+
+    btnAgendar.Tag := 2;
+    btnAgendar.Caption := 'Alterar' ;
 end;
 
 procedure Tfrm_scheduling_clinical.edtDatePropertiesCloseUp(Sender: TObject);

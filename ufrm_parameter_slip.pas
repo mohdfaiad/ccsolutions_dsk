@@ -173,31 +173,31 @@ uses ufrm_dm, class_required_field;
 procedure Tfrm_parameter_slip.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qryprs_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
- begin
-  with frm_dm.qry,sql do
-   begin
-    Close;
-    Text:= ' delete from doctor ' +
-           ' where doc_cod = ' + doc_cod;
-    Prepare;
-    ExecSQL;
-     end;
-
-   if emp_cod <>'' then
-    begin
-     with frm_dm.qry2,sql do
-      begin
-       Close;
-       Text:= ' delete from role_employee ' +
-             ' where employee_emp_cod = ' + emp_cod ;
-       Prepare;
-       ExecSQL;
-      end;
-    end;                              //   unhex(p_cte_usr_ent_cod);
-
-  qry_sql('todos');
-  end;
+// if (qryprs_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+// begin
+//  with frm_dm.qry,sql do
+//   begin
+//    Close;
+//    Text:= ' delete from doctor ' +
+//           ' where doc_cod = ' + doc_cod;
+//    Prepare;
+//    ExecSQL;
+//     end;
+//
+//   if emp_cod <>'' then
+//    begin
+//     with frm_dm.qry2,sql do
+//      begin
+//       Close;
+//       Text:= ' delete from role_employee ' +
+//             ' where employee_emp_cod = ' + emp_cod ;
+//       Prepare;
+//       ExecSQL;
+//      end;
+//    end;                              //   unhex(p_cte_usr_ent_cod);
+//
+//  qry_sql('todos');
+//  end;
 
 end;
 

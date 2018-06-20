@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxMemo, cxCurrencyEdit,
   cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket,
-  ACBrCEP, frxClass, frxDBSet, ACBrExtenso;
+  ACBrCEP, frxClass, frxDBSet, ACBrExtenso, Vcl.Grids, Vcl.DBGrids;
 
 type
   Tfrm_receipt = class(Tfrm_form_default)
@@ -47,20 +47,10 @@ type
     dxLayoutItem5: TdxLayoutItem;
     cxDBMemo1: TcxDBMemo;
     dxLayoutItem6: TdxLayoutItem;
-    cxDBLookupComboBox1: TcxDBLookupComboBox;
-    dxLayoutItem7: TdxLayoutItem;
-    cxDBLookupComboBox2: TcxDBLookupComboBox;
-    dxLayoutItem8: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     qry_enterprise: TFDQuery;
     ds_enterprise: TDataSource;
     ds_client: TDataSource;
     qry_client: TFDQuery;
-    qryrec_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
-    qryenterprise_ent_id: TIntegerField;
-    qryclient_cli_id: TIntegerField;
-    qryrec_value: TBCDField;
     qryrec_description: TStringField;
     qryrec_dt_emission: TDateField;
     qryrec_dt_registration: TDateTimeField;
@@ -76,14 +66,57 @@ type
     frx_db_recibo_cliente: TfrxDBDataset;
     ACBrExtenso1: TACBrExtenso;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    qryrec_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryenterprise_ent_cod: TBytesField;
+    qryclient_cli_cod: TBytesField;
+    qryrec_deleted_at: TDateTimeField;
+    qryrec_id: TLongWordField;
+    qryrec_value: TBCDField;
+    cxLookupComboBoxClient: TcxLookupComboBox;
+    dxLayoutItem9: TdxLayoutItem;
+    qry_clientcli_id: TLongWordField;
+    qry_clientcli_cod: TBytesField;
+    qry_clientcli_first_name: TStringField;
+    qry_clientcli_last_name: TStringField;
+    qry_clientcliCod: TStringField;
+    qry_clientcli_dt_birthopen: TDateField;
+    qry_clientcontract_ctr_cod: TBytesField;
+    qry_clientidade: TLargeintField;
+    cxLookupComboBoxEnterprise: TcxLookupComboBox;
+    dxLayoutItem7: TdxLayoutItem;
+    qry_enterpriseent_cod: TBytesField;
+    qry_enterpriseent_id: TLongWordField;
+    qry_enterpriseent_last_name: TStringField;
+    qry_enterprisecontract_ctr_cod: TBytesField;
+    qry_enterpriseentCod: TStringField;
+    frx_db_recibo_empresa: TfrxDBDataset;
+    qry_enterpriseent_first_name: TStringField;
+    qry_enterpriseent_cnpj: TStringField;
+    qry_enterpriseent_add_bus_zipcode: TStringField;
+    qry_enterpriseent_add_bus_address: TStringField;
+    qry_enterpriseent_add_bus_number: TStringField;
+    qry_enterpriseent_add_bus_street: TStringField;
+    qry_enterpriseent_add_bus_complement: TStringField;
+    qry_enterpriseent_add_bus_city: TStringField;
+    qry_enterpriseent_add_bus_state: TStringField;
+    qry_enterpriseent_add_bus_country: TStringField;
+    dxBarSubItem1: TdxBarSubItem;
+    qryclientCod: TStringField;
+    qryenterpriseCod: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_printExecute(Sender: TObject);
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure cxDBLookupComboBox1PropertiesCloseUp(Sender: TObject);
+    procedure cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
+    procedure cxLookupComboBox2PropertiesCloseUp(Sender: TObject);
   private
     { Private declarations }
+    rec_cod:string;
   public
     { Public declarations }
     procedure limpaCache(Sender:TObject);
@@ -99,15 +132,67 @@ implementation
 uses ufrm_dm;
 
 procedure Tfrm_receipt.Action_printExecute(Sender: TObject);
-
 begin
- // inherited;
-    if Application.MessageBox('Deseja imprimir o recibo selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
-   begin
-    frxReport_1.LoadFromFile(TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue);
-    frxReport_1.variables['extenso'] := QuotedStr(ACBrExtenso1.ValorToTexto(qryrec_value.AsFloat));
-    frxReport_1.ShowReport;
-   end;
+ cxLookupComboBoxClient.ItemIndex:=-1;
+ qry_client.Locate('cliCod',qryclientCod.AsString,[]);
+
+ cxLookupComboBoxEnterprise.ItemIndex:=-1;
+ qry_enterprise.Locate('entCod',qryenterpriseCod.AsString,[]);
+
+ frxReport_1.LoadFromFile(TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue);
+ frxReport_1.variables['extenso'] := QuotedStr(ACBrExtenso1.ValorToTexto(qryrec_value.AsFloat));
+ if Application.MessageBox('Deseja imprimir duas vias do recibo?','RECIBO',MB_YESNO + MB_ICONQUESTION) = mrYes  then
+  frxReport_1.variables['2vias'] := QuotedStr('SIM')
+   else
+    frxReport_1.variables['2vias'] := QuotedStr('NAO');
+  frxReport_1.ShowReport;
+ end;
+
+
+
+procedure Tfrm_receipt.Action_saveExecute(Sender: TObject);
+begin
+  inherited;
+
+  if ds.DataSet.State in [dsEdit] then
+    Exit;
+
+   with frm_dm.qry,sql do
+    begin
+      close;
+      Text:= ' select case when max(rec_id) is null then 1 ' +
+          '      else (max(rec_id) + 1) end as maxID from receipt '+
+          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+      Prepare;
+      Open;
+      if not (qry.State in [dsInsert,dsEdit])  then
+        qry.Edit;
+
+      if qryrec_id.AsInteger = 0 then
+        qryrec_id.AsInteger:=Fields[0].AsInteger;
+
+
+        qry.Post;
+        qry.ApplyUpdates(0);
+    end;
+
+   qry.Close;
+   qry.Close;
+   qry.SQL.Text:= ' select receipt.*,cli_first_name from receipt ' +
+                  ' left join client on cli_cod = client_cli_cod ' +
+                  ' where rec_deleted_at is null ';
+   qry.Prepare;
+   qry.open;
+   qry.Edit;
+
+end;
+
+procedure Tfrm_receipt.cxDBLookupComboBox1PropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+qryclient_cli_cod.Value:=qry_clientcli_cod.Value;
+qry.Post;
+
 end;
 
 procedure Tfrm_receipt.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
@@ -122,6 +207,18 @@ begin
   inherited;
   //Comando para atualizar combobox
   qry_enterprise.Refresh;
+end;
+
+procedure Tfrm_receipt.cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+ qryclient_cli_cod.Value:=qry_clientcli_cod.Value;
+end;
+
+procedure Tfrm_receipt.cxLookupComboBox2PropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+ qryenterprise_ent_cod.Value:=qry_enterpriseent_cod.Value;
 end;
 
 procedure Tfrm_receipt.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -145,7 +242,32 @@ end;
 procedure Tfrm_receipt.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qryrec_dt_registration.Value := Date + Time;
+ With frm_dm.qry,sql do
+  begin
+   close;
+   text:='select hex(uuid_to_bin(uuid()))';
+   prepare;
+   open;
+
+   rec_cod:=Fields[0].AsString;
+
+   Close;
+   Text:='insert into receipt (rec_id,rec_cod,contract_ctr_cod,rec_dt_registration) ' +
+         ' select 0,unhex( '+  QuotedStr(rec_cod) + '), unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' +',now()';
+
+   Prepare;
+   ExecSQL;
+  end;
+
+   qry.Close;
+   qry.SQL.Text:= ' select receipt.*,cli_first_name from receipt ' +
+                  ' left join client on cli_cod = client_cli_cod ' +
+                  ' where rec_deleted_at is null ' +
+                  ' and rec_cod = unhex('+ QuotedStr(rec_cod) + ')';
+   qry.Prepare;
+   qry.open;
+   qry.Edit;
+
 end;
 
 end.

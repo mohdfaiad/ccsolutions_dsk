@@ -32,7 +32,8 @@ uses
   System.Actions, Vcl.ActnList, cxCheckBox, dxStatusBar, cxTextEdit, cxLabel,
   cxGroupBox, cxGridLevel, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, cxPC, ufrm_dm, cxMaskEdit,
-  cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox;
+  cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,DateUtils,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons;
 
 type
   Tfrm_Requisition_Lab = class(Tfrm_default)
@@ -75,7 +76,7 @@ type
     grid_1DBTableView1req_status: TcxGridDBColumn;
     grid_1DBTableView1req_deleted_at: TcxGridDBColumn;
     grid_1DBTableView1req_dt_registration: TcxGridDBColumn;
-    cxTextEditPaciente: TcxTextEdit;
+    cxTextEditCNS: TcxTextEdit;
     cxLabelPaciente: TcxLabel;
     cxLookupComboBoxPaciente: TcxLookupComboBox;
     qry_client: TFDQuery;
@@ -87,18 +88,54 @@ type
     ds_qry_client: TDataSource;
     cxLabelDtNascimento: TcxLabel;
     cxLabelIdade: TcxLabel;
-    cxLabel3: TcxLabel;
-    cxLabel4: TcxLabel;
-    cxLabel5: TcxLabel;
+    cxLabelTipo: TcxLabel;
+    cxLabelCNS: TcxLabel;
+    cxLabelPeso: TcxLabel;
     cxLabel6: TcxLabel;
-    cxLabel7: TcxLabel;
-    cxLabel8: TcxLabel;
+    cxLabelAltura: TcxLabel;
+    cxLabelSexo: TcxLabel;
     cxTextEditDataNasc: TcxTextEdit;
     cxTextEditIdade: TcxTextEdit;
-    cxTextEdit3: TcxTextEdit;
+    cxTextEditTipo: TcxTextEdit;
     qry_clientcli_dt_birthopen: TDateField;
     qry_clientidade: TLargeintField;
+    cxTextEditPeso: TcxTextEdit;
+    cxTextEditAltura: TcxTextEdit;
+    cxTextEditSexo: TcxTextEdit;
+    cxLabel1: TcxLabel;
+    cxTextEditRG: TcxTextEdit;
+    cxLabelCPF: TcxLabel;
+    cxTextEditCPF: TcxTextEdit;
+    cxLabelEmpresa: TcxLabel;
+    cxLookupComboBoxEmpresa: TcxLookupComboBox;
+    qry_enterprise: TFDQuery;
+    qry_clientcontract_ctr_cod: TBytesField;
+    ds_qry_enterprise: TDataSource;
+    cxTextEditEnterpriseID: TcxTextEdit;
+    cxTextEditConvenioID: TcxTextEdit;
+    cxTextEdit3: TcxTextEdit;
+    BitBtn1: TBitBtn;
+    qry_enterpriseent_cod: TBytesField;
+    qry_enterpriseent_id: TLongWordField;
+    qry_enterpriseent_last_name: TStringField;
+    qry_enterprisecontract_ctr_cod: TBytesField;
+    qry_enterpriseentCod: TStringField;
+    cxLabelConvenio: TcxLabel;
+    cxLookupComboBoxConvenio: TcxLookupComboBox;
+    qry_insurance: TFDQuery;
+    qry_insuranceins_cod: TBytesField;
+    qry_insurancecontract_ctr_cod: TBytesField;
+    qry_insurancetable_price_tbp_cod: TBytesField;
+    qry_insuranceins_id: TLongWordField;
+    qry_insuranceins_last_name: TStringField;
+    qry_insuranceins_nickname: TStringField;
+    ds_qry_insurance: TDataSource;
+    qry_insuranceinsCod: TStringField;
     procedure cxLookupComboBoxPacientePropertiesCloseUp(Sender: TObject);
+    procedure cxLookupComboBoxEmpresaPropertiesCloseUp(Sender: TObject);
+    procedure cxTextEditEnterpriseIDExit(Sender: TObject);
+    procedure cxLookupComboBoxConvenioPropertiesCloseUp(Sender: TObject);
+    procedure cxTextEditConvenioIDExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -112,12 +149,122 @@ implementation
 
 {$R *.dfm}
 
+procedure Tfrm_Requisition_Lab.cxLookupComboBoxConvenioPropertiesCloseUp(
+  Sender: TObject);
+begin
+  inherited;
+ cxTextEditConvenioID.Text:=qry_insuranceins_id.AsString;
+end;
+
+procedure Tfrm_Requisition_Lab.cxLookupComboBoxEmpresaPropertiesCloseUp(
+  Sender: TObject);
+begin
+  inherited;
+ cxTextEditEnterpriseID.Text:=qry_enterpriseent_id.AsString;
+end;
+
 procedure Tfrm_Requisition_Lab.cxLookupComboBoxPacientePropertiesCloseUp(
   Sender: TObject);
 begin
   inherited;
 cxTextEditDataNasc.Text:=DateToStr(qry_clientcli_dt_birthopen.AsDateTime);
-cxTextEditIdade.Text:=IntToStr(qry_clientidade.AsInteger);
+
+if YearsBetween(frm_dm.dataAtual,qry_clientcli_dt_birthopen.AsDateTime) = 0   then
+begin
+ if MonthsBetween(frm_dm.dataAtual,qry_clientcli_dt_birthopen.AsDateTime) = 0   then
+  begin
+  cxTextEditIdade.Text:= IntToStr(DaysBetween(frm_dm.dataAtual,qry_clientcli_dt_birthopen.AsDateTime));
+   if StrToInt(cxTextEditIdade.Text) = 1 then
+    cxTextEditTipo.Text:='DIA'
+     else
+      cxTextEditTipo.Text:='DIAS';
+ end
+  else
+   begin
+    cxTextEditIdade.Text:=IntToStr(MonthsBetween(frm_dm.dataAtual,qry_clientcli_dt_birthopen.AsDateTime));
+     if StrToInt(cxTextEditIdade.Text) = 1 then
+      cxTextEditTipo.Text:='MES'
+       else
+        cxTextEditTipo.Text:='MESES';
+   end;
+end
+ else
+  begin
+   cxTextEditIdade.Text:= IntToStr(YearsBetween(frm_dm.dataAtual,qry_clientcli_dt_birthopen.AsDateTime));
+    if StrToInt(cxTextEditIdade.Text) = 1 then
+     cxTextEditTipo.Text:='ANO'
+      else
+       cxTextEditTipo.Text:='ANOS';
+
+  end;
+
+
+//if (StrToInt(FormatDateTime('yyyy',frm_dm.dataAtual)) - StrToInt(FormatDateTime('yyyy',qry_clientcli_dt_birthopen.AsDateTime))) = 0   then
+//begin
+// if (StrToInt(FormatDateTime('MM',frm_dm.dataAtual)) - StrToInt(FormatDateTime('MM',qry_clientcli_dt_birthopen.AsDateTime))) = 0   then
+//  begin
+//  cxTextEditIdade.Text:= IntToStr((StrToInt(FormatDateTime('dd',frm_dm.dataAtual)) - StrToInt(FormatDateTime('dd',qry_clientcli_dt_birthopen.AsDateTime))));
+//  cxTextEditTipo.Text:='Dias';
+// end
+//  else
+//   begin
+//    cxTextEditIdade.Text:=IntToStr((StrToInt(FormatDateTime('MM',frm_dm.dataAtual)) - StrToInt(FormatDateTime('MM',qry_clientcli_dt_birthopen.AsDateTime))));
+//    cxTextEditTipo.Text:='Mese(s)';
+//   end;
+//end
+// else
+//  begin
+//   cxTextEditIdade.Text:=qry_clientidade.AsString;;
+//   cxTextEditTipo.Text:='Anos';
+//  end;
+
+
+end;
+
+procedure Tfrm_Requisition_Lab.cxTextEditConvenioIDExit(Sender: TObject);
+begin
+  inherited;
+ if trim(cxTextEditConvenioID.Text) = ''  then
+  exit;
+
+ try
+   begin
+    cxLookupComboBoxConvenio.ItemIndex:=-1;
+    qry_insurance.Locate('ins_id',strToInt(cxTextEditConvenioID.Text),[loCaseInsensitive, loPartialKey]);
+    cxLookupComboBoxConvenio.Text:= qry_insuranceins_last_name.AsString;
+   end;
+ Except
+  begin
+    Application.MessageBox('Código Inválido!','LABORATÓRIO', MB_OK + MB_ICONEXCLAMATION);
+    cxTextEditConvenioID.SetFocus;
+  end;
+
+ end;
+
+
+
+end;
+
+procedure Tfrm_Requisition_Lab.cxTextEditEnterpriseIDExit(Sender: TObject);
+begin
+  inherited;
+  if trim(cxTextEditEnterpriseID.Text) = ''  then
+  exit;
+
+ try
+   begin
+    cxLookupComboBoxEmpresa.ItemIndex:=-1;
+    qry_enterprise.Locate('ent_id',strToInt(cxTextEditEnterpriseID.Text),[loCaseInsensitive, loPartialKey]);
+    cxLookupComboBoxEmpresa.Text:= qry_enterpriseent_last_name.AsString;
+   end;
+ Except
+  begin
+    Application.MessageBox('Código Inválido!','LABORATÓRIO', MB_OK + MB_ICONEXCLAMATION);
+    cxTextEditConvenioID.SetFocus;
+  end;
+
+ end;
+
 
 end;
 

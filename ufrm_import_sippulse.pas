@@ -186,7 +186,7 @@ if OpenDialog1.Execute then
     close;
     Text:='delete from import_call_log '+
            ' where imp_comp =:comp ' +
-           ' and contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod +
+           ' and contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')'+
            ' and cli_account_code_sippulse =:cli_account_code_sippulse';
     ParamByName('comp').AsString:= competencia;
     ParamByName('cli_account_code_sippulse').AsString:= clienteSippulse;

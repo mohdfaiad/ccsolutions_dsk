@@ -10,7 +10,6 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
   inherited cxPageControl_1: TcxPageControl
     Width = 910
     Height = 535
-    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 910
     ExplicitHeight = 535
     ClientRectBottom = 529
@@ -23,7 +22,6 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
       inherited cxGrid_1: TcxGrid
         Width = 896
         Height = 495
-        ExplicitLeft = 3
         ExplicitWidth = 896
         ExplicitHeight = 495
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -109,17 +107,17 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
             ExplicitWidth = 888
             ExplicitHeight = 461
             inherited dbedt_id: TcxDBTextEdit
-              Left = -188
+              Left = 77
               DataBinding.DataField = 'prs_id'
-              ExplicitLeft = -188
+              ExplicitLeft = 77
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = -6
+              Left = 259
               DataBinding.DataField = 'prs_dt_registration'
-              ExplicitLeft = -6
+              ExplicitLeft = 259
             end
             object cxDBCurrencyEdit1: TcxDBCurrencyEdit [2]
-              Left = -188
+              Left = 77
               Top = 211
               DataBinding.DataField = 'prs_value_fine'
               DataBinding.DataSource = ds
@@ -128,7 +126,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 121
             end
             object cxDBCurrencyEdit2: TcxDBCurrencyEdit [3]
-              Left = -6
+              Left = 259
               Top = 211
               DataBinding.DataField = 'prs_value_interest'
               DataBinding.DataSource = ds
@@ -137,7 +135,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 130
             end
             object cxDBCurrencyEdit4: TcxDBCurrencyEdit [4]
-              Left = 182
+              Left = 447
               Top = 211
               DataBinding.DataField = 'prs_value_discount'
               DataBinding.DataSource = ds
@@ -146,7 +144,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 121
             end
             object cxDBSpinEdit1: TcxDBSpinEdit [5]
-              Left = -188
+              Left = 77
               Top = 103
               DataBinding.DataField = 'prs_day_interest'
               DataBinding.DataSource = ds
@@ -155,7 +153,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 121
             end
             object cxDBSpinEdit2: TcxDBSpinEdit [6]
-              Left = -6
+              Left = 259
               Top = 103
               DataBinding.DataField = 'prs_day_discount'
               DataBinding.DataSource = ds
@@ -164,7 +162,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 130
             end
             object cxDBSpinEdit3: TcxDBSpinEdit [7]
-              Left = 182
+              Left = 447
               Top = 103
               DataBinding.DataField = 'prs_day_protest'
               DataBinding.DataSource = ds
@@ -173,7 +171,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 121
             end
             object cxDBTextEdit5: TcxDBTextEdit [8]
-              Left = -188
+              Left = 77
               Top = 130
               DataBinding.DataField = 'prs_instruction1'
               DataBinding.DataSource = ds
@@ -183,7 +181,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 697
             end
             object cxDBTextEdit6: TcxDBTextEdit [9]
-              Left = -188
+              Left = 77
               Top = 157
               DataBinding.DataField = 'prs_instruction2'
               DataBinding.DataSource = ds
@@ -193,7 +191,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 697
             end
             object cxDBTextEdit7: TcxDBTextEdit [10]
-              Left = -188
+              Left = 77
               Top = 184
               DataBinding.DataField = 'prs_instruction3'
               DataBinding.DataSource = ds
@@ -203,7 +201,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 697
             end
             object cxDBMemo1: TcxDBMemo [11]
-              Left = -188
+              Left = 77
               Top = 238
               DataBinding.DataField = 'prs_description'
               DataBinding.DataSource = ds
@@ -215,7 +213,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 1069
             end
             object cxDBComboBox1: TcxDBComboBox [12]
-              Left = 344
+              Left = 609
               Top = 103
               DataBinding.DataField = 'prs_acceptance'
               DataBinding.DataSource = ds
@@ -229,7 +227,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 121
             end
             object cxDBLookupComboBox1: TcxDBLookupComboBox [13]
-              Left = 199
+              Left = 464
               Top = 10
               DataBinding.DataField = 'bank_bnk_id'
               DataBinding.DataSource = ds
@@ -254,7 +252,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 329
             end
             object cxDBTextEdit3: TcxDBTextEdit [14]
-              Left = 199
+              Left = 464
               Top = 37
               DataBinding.DataField = 'prs_species_document'
               DataBinding.DataSource = ds
@@ -264,7 +262,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 121
             end
             object cxDBTextEdit4: TcxDBTextEdit [15]
-              Left = 398
+              Left = 663
               Top = 37
               DataBinding.DataField = 'prs_species_coin'
               DataBinding.DataSource = ds
@@ -274,7 +272,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 130
             end
             object cxDBTextEdit1: TcxDBTextEdit [16]
-              Left = 578
+              Left = 843
               Top = 37
               DataBinding.DataField = 'prs_wallet'
               DataBinding.DataSource = ds
@@ -284,7 +282,7 @@ inherited frm_parameter_slip: Tfrm_parameter_slip
               Width = 121
             end
             object cxDBTextEdit2: TcxDBTextEdit [17]
-              Left = 767
+              Left = 1032
               Top = 37
               DataBinding.DataField = 'prs_our_number'
               DataBinding.DataSource = ds

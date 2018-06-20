@@ -69,6 +69,7 @@ type
     Acao: Integer;
     v_contract_ctr_cod, v_ctr_usr_cod, v_nome_usuario,
     v_ctr_usr_admin: string;
+    function dataAtual:TDate;
 
   end;
 
@@ -79,6 +80,15 @@ implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 {$R *.dfm}
+
+function Tfrm_dm.dataAtual:Tdate;
+begin
+ qry.Close;
+ qry.SQL.Text:='select current_date()';
+ qry.Prepare;
+ qry.open;
+ Result:=qry.Fields[0].AsDateTime;
+end;
 
 procedure Tfrm_dm.DataModuleCreate(Sender: TObject);
 begin

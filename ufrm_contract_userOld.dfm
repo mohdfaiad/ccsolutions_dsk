@@ -17,14 +17,11 @@ inherited frm_contract_userOld: Tfrm_contract_userOld
     ClientRectBottom = 612
     ClientRectRight = 799
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 797
       ExplicitHeight = 584
       inherited cxGrid_1: TcxGrid
         Width = 791
         Height = 578
-        ExplicitLeft = 3
         ExplicitWidth = 791
         ExplicitHeight = 578
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -66,8 +63,6 @@ inherited frm_contract_userOld: Tfrm_contract_userOld
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 797
       ExplicitHeight = 584
       inherited cxPageControl_2: TcxPageControl
@@ -79,8 +74,6 @@ inherited frm_contract_userOld: Tfrm_contract_userOld
         ClientRectBottom = 572
         ClientRectRight = 785
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
           ExplicitWidth = 783
           ExplicitHeight = 544
           inherited dxLayoutControl_1: TdxLayoutControl
@@ -246,6 +239,10 @@ inherited frm_contract_userOld: Tfrm_contract_userOld
         object cxTabSheet1: TcxTabSheet
           Caption = 'Controle'
           OnShow = cxTabSheet1Show
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0

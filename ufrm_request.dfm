@@ -11,18 +11,18 @@ inherited frm_request: Tfrm_request
   inherited cxPageControl_1: TcxPageControl
     Width = 932
     Height = 613
-    ExplicitWidth = 877
+    ExplicitWidth = 932
+    ExplicitHeight = 613
     ClientRectBottom = 607
     ClientRectRight = 926
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 869
-      ExplicitHeight = 512
+      ExplicitWidth = 924
+      ExplicitHeight = 579
       inherited cxGrid_1: TcxGrid
         Width = 918
         Height = 573
-        ExplicitWidth = 863
+        ExplicitWidth = 918
+        ExplicitHeight = 573
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           OnCustomDrawCell = cxGrid_1DBTableView1CustomDrawCell
           OnFilterDialogShow = cxGrid_1DBTableView1FilterDialogShow
@@ -63,7 +63,6 @@ inherited frm_request: Tfrm_request
         Alignment = taLeftJustify
         Anchors = [akLeft, akBottom]
         TabOrder = 1
-        ExplicitTop = 419
         object Shape1: TShape
           Left = 1
           Top = 1
@@ -224,25 +223,23 @@ inherited frm_request: Tfrm_request
     end
     inherited cxTabSheet_2: TcxTabSheet
       OnShow = cxTabSheet_2Show
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 869
-      ExplicitHeight = 512
+      ExplicitWidth = 924
+      ExplicitHeight = 579
       inherited cxPageControl_2: TcxPageControl
         Width = 918
         Height = 573
-        ExplicitWidth = 863
+        ExplicitWidth = 918
+        ExplicitHeight = 573
         ClientRectBottom = 567
         ClientRectRight = 912
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 855
-          ExplicitHeight = 472
+          ExplicitWidth = 910
+          ExplicitHeight = 539
           inherited dxLayoutControl_1: TdxLayoutControl
             Width = 910
             Height = 539
-            ExplicitWidth = 855
+            ExplicitWidth = 910
+            ExplicitHeight = 539
             object btnInserir: TSpeedButton [0]
               Left = 568
               Top = 439
@@ -266,6 +263,7 @@ inherited frm_request: Tfrm_request
               Top = 195
               Width = 671
               Height = 200
+              PopupMenu = pupMenuRequisicao
               TabOrder = 6
               object cxGrid1DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.CustomButtons = <>
@@ -304,6 +302,7 @@ inherited frm_request: Tfrm_request
                 DataController.Summary.DefaultGroupSummaryItems = <>
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
+                OptionsData.Editing = False
                 object cxGrid1DBTableView1poi_id: TcxGridDBColumn
                   Caption = 'C'#243'digo ID'
                   DataBinding.FieldName = 'poi_id'
@@ -327,7 +326,7 @@ inherited frm_request: Tfrm_request
                   DataBinding.FieldName = 'poi_product_quant'
                   PropertiesClassName = 'TcxCurrencyEditProperties'
                   Properties.DecimalPlaces = 4
-                  Properties.DisplayFormat = '0.0000;-0.0000'
+                  Properties.DisplayFormat = '0.000;-0.000'
                   Width = 100
                 end
                 object cxGrid1DBTableView1pru_initials: TcxGridDBColumn
@@ -546,8 +545,7 @@ inherited frm_request: Tfrm_request
   end
   inherited dxBarDockControl_1: TdxBarDockControl
     Width = 932
-    ExplicitLeft = 1
-    ExplicitWidth = 877
+    ExplicitWidth = 932
   end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar6: TdxBar
@@ -3447,7 +3445,6 @@ inherited frm_request: Tfrm_request
     Top = 2
   end
   object qry_purchase_order_iten: TFDQuery
-    Active = True
     IndexFieldNames = 'purchase_order_pco_cod'
     MasterSource = ds
     MasterFields = 'pco_cod'
@@ -3455,8 +3452,8 @@ inherited frm_request: Tfrm_request
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
-        'select purchase_order_iten.*,pro_name,pru_initials from purchase' +
-        '_order_iten'#13#10#10
+        'select purchase_order_iten.*, hex(poi_cod)as CodItens, pro_name,' +
+        'pru_initials from purchase_order_iten'#13#10#10
       'inner join product on product_pro_cod =  pro_cod'#10
       'left join product_unit on product_unit_pru_cod = pru_cod'
       'where purchase_order_pco_cod =:pco_cod')
@@ -3528,6 +3525,29 @@ inherited frm_request: Tfrm_request
       ProviderFlags = []
       ReadOnly = True
       Size = 35
+    end
+    object qry_purchase_order_itenCodItens: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodItens'
+      Origin = 'CodItens'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+  end
+  object pupMenuRequisicao: TPopupMenu
+    Left = 487
+    Top = 50
+    object Excluir2: TMenuItem
+      Caption = 'Excluir'
+      OnClick = Excluir2Click
+    end
+    object Editar2: TMenuItem
+      Caption = 'Editar'
+      OnClick = Editar2Click
+    end
+    object CancelarEdio1: TMenuItem
+      Caption = 'Cancelar Edi'#231#227'o'
     end
   end
 end

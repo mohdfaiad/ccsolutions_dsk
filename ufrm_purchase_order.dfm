@@ -1,18 +1,18 @@
 inherited frm_purchase_order: Tfrm_purchase_order
   Caption = 'Manuten'#231#227'o: Pedidos de Compra'
-  ClientHeight = 669
-  ClientWidth = 1080
+  ClientHeight = 640
+  ClientWidth = 1018
   OnClose = FormClose
   OnShow = FormShow
-  ExplicitWidth = 1096
-  ExplicitHeight = 708
+  ExplicitWidth = 1034
+  ExplicitHeight = 679
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage [0]
     Left = 0
     Top = 55
-    Width = 1080
-    Height = 614
+    Width = 1018
+    Height = 585
     Align = alClient
     ExplicitLeft = 344
     ExplicitTop = 247
@@ -20,20 +20,20 @@ inherited frm_purchase_order: Tfrm_purchase_order
     ExplicitHeight = 105
   end
   inherited cxPageControl_1: TcxPageControl
-    Width = 1080
-    Height = 614
-    ExplicitWidth = 1080
-    ExplicitHeight = 614
-    ClientRectBottom = 608
-    ClientRectRight = 1074
+    Width = 1018
+    Height = 585
+    ExplicitWidth = 1018
+    ExplicitHeight = 585
+    ClientRectBottom = 579
+    ClientRectRight = 1012
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitWidth = 1072
-      ExplicitHeight = 580
+      ExplicitWidth = 1010
+      ExplicitHeight = 551
       inherited cxGrid_1: TcxGrid
-        Width = 1066
-        Height = 574
-        ExplicitWidth = 1066
-        ExplicitHeight = 574
+        Width = 1004
+        Height = 545
+        ExplicitWidth = 1004
+        ExplicitHeight = 545
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           OnCustomDrawCell = cxGrid_1DBTableView1CustomDrawCell
           object cxGrid_1DBTableView1pco_id: TcxGridDBColumn
@@ -69,7 +69,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
       end
       object FlowPanel1: TFlowPanel
         Left = 3
-        Top = 526
+        Top = 497
         Width = 662
         Height = 26
         Alignment = taLeftJustify
@@ -234,136 +234,67 @@ inherited frm_purchase_order: Tfrm_purchase_order
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitWidth = 1072
-      ExplicitHeight = 580
+      ExplicitWidth = 1010
+      ExplicitHeight = 551
       inherited cxPageControl_2: TcxPageControl
-        Width = 1066
-        Height = 574
-        ExplicitWidth = 1066
-        ExplicitHeight = 574
-        ClientRectBottom = 568
-        ClientRectRight = 1060
+        Width = 1004
+        Height = 545
+        ExplicitWidth = 1004
+        ExplicitHeight = 545
+        ClientRectBottom = 539
+        ClientRectRight = 998
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 1058
-          ExplicitHeight = 540
+          ExplicitWidth = 996
+          ExplicitHeight = 511
           inherited dxLayoutControl_1: TdxLayoutControl
-            Width = 1058
-            Height = 540
-            ExplicitWidth = 1058
-            ExplicitHeight = 540
-            object btnInserir: TSpeedButton [0]
-              Left = 579
-              Top = 464
-              Width = 97
-              Height = 22
-              Caption = 'Inserir'
-              OnClick = btnInserirClick
-            end
+            Width = 996
+            Height = 511
+            ExplicitWidth = 996
+            ExplicitHeight = 511
             inherited dbedt_id: TcxDBTextEdit
-              Left = 60
+              Left = 77
               DataBinding.DataField = 'pco_id'
-              ExplicitLeft = 60
+              ExplicitLeft = 77
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 233
+              Left = 250
               DataBinding.DataField = 'pco_dt_registration'
-              ExplicitLeft = 233
+              ExplicitLeft = 250
             end
-            object cxGrid1: TcxGrid [3]
-              Left = 17
-              Top = 195
-              Width = 728
-              Height = 225
-              PopupMenu = pupMenuPedido
-              TabOrder = 6
-              object cxGrid1DBTableView1: TcxGridDBTableView
-                Navigator.Buttons.ConfirmDelete = True
-                Navigator.Buttons.CustomButtons = <>
-                Navigator.Buttons.Images = cxImageList_1
-                Navigator.Buttons.First.ImageIndex = 0
-                Navigator.Buttons.First.Visible = False
-                Navigator.Buttons.PriorPage.Visible = False
-                Navigator.Buttons.Prior.ImageIndex = 1
-                Navigator.Buttons.Prior.Visible = False
-                Navigator.Buttons.Next.ImageIndex = 2
-                Navigator.Buttons.Next.Visible = False
-                Navigator.Buttons.NextPage.Visible = False
-                Navigator.Buttons.Last.ImageIndex = 3
-                Navigator.Buttons.Last.Visible = False
-                Navigator.Buttons.Insert.ImageIndex = 4
-                Navigator.Buttons.Insert.Visible = False
-                Navigator.Buttons.Delete.ImageIndex = 8
-                Navigator.Buttons.Delete.Visible = False
-                Navigator.Buttons.Edit.ImageIndex = 5
-                Navigator.Buttons.Edit.Visible = False
-                Navigator.Buttons.Post.ImageIndex = 6
-                Navigator.Buttons.Post.Visible = False
-                Navigator.Buttons.Cancel.ImageIndex = 7
-                Navigator.Buttons.Cancel.Visible = False
-                Navigator.Buttons.Refresh.ImageIndex = 9
-                Navigator.Buttons.Refresh.Visible = False
-                Navigator.Buttons.SaveBookmark.Visible = False
-                Navigator.Buttons.GotoBookmark.Visible = False
-                Navigator.Buttons.Filter.ImageIndex = 10
-                Navigator.Buttons.Filter.Visible = False
-                DataController.DataSource = ds_purchase_order_iten
-                DataController.Options = [dcoAssignGroupingValues, dcoAssignMasterDetailKeys]
-                DataController.Summary.DefaultGroupSummaryItems = <>
-                DataController.Summary.FooterSummaryItems = <>
-                DataController.Summary.SummaryGroups = <>
-                Images = cxImageList_1
-                OptionsData.Editing = False
-                object cxGrid1DBTableView1poi_id: TcxGridDBColumn
-                  Caption = 'Itens ID'
-                  DataBinding.FieldName = 'poi_id'
-                  Options.Editing = False
-                  Width = 75
-                end
-                object cxGrid1DBTableView1pro_name: TcxGridDBColumn
-                  Caption = 'Produto'
-                  DataBinding.FieldName = 'pro_name'
-                  Width = 200
-                end
-                object cxGrid1DBTableView1poi_product_quant: TcxGridDBColumn
-                  Caption = 'Quantidade'
-                  DataBinding.FieldName = 'poi_product_quant'
-                  PropertiesClassName = 'TcxCurrencyEditProperties'
-                  Properties.DecimalPlaces = 4
-                  Properties.DisplayFormat = '0.0000;-0.0000'
-                  Width = 75
-                end
-                object cxGrid1DBTableView1poi_dt_registration: TcxGridDBColumn
-                  Caption = 'Dt. Reg.'
-                  DataBinding.FieldName = 'poi_dt_registration'
-                  Options.Editing = False
-                  Width = 125
-                end
-              end
-              object cxGrid1Level1: TcxGridLevel
-                GridView = cxGrid1DBTableView1
-              end
-            end
-            object looComboxProduto: TcxLookupComboBox [4]
-              Left = 60
-              Top = 464
+            object lookupComboxEmployee: TcxLookupComboBox [2]
+              Left = 77
+              Top = 103
               Properties.GridMode = True
-              Properties.KeyFieldNames = 'proCod'
+              Properties.KeyFieldNames = 'codEmployee'
               Properties.ListColumns = <
                 item
-                  FieldName = 'pro_name'
+                  FieldName = 'rec_name'
                 end>
-              Properties.ListSource = ds_product
-              Properties.OnPopup = cxLookupComboBox1PropertiesPopup
+              Properties.ListSource = ds_employee
+              Properties.OnPopup = cxLookupComboBox2PropertiesPopup
               Style.HotTrack = False
-              TabOrder = 7
-              Width = 325
+              TabOrder = 2
+              Width = 294
             end
-            object cxDBComboBox1: TcxDBComboBox [5]
-              Left = 420
-              Top = 131
+            object lookupComboxStock: TcxLookupComboBox [3]
+              Left = 77
+              Top = 130
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'codStock'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'sto_name'
+                end>
+              Properties.ListSource = ds_stock
+              Properties.OnPopup = lookupComboxStockPropertiesPopup
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 294
+            end
+            object cxDBComboBox1: TcxDBComboBox [4]
+              Left = 413
+              Top = 103
               DataBinding.DataField = 'pco_status'
               DataBinding.DataSource = ds
               Enabled = False
@@ -377,9 +308,9 @@ inherited frm_purchase_order: Tfrm_purchase_order
               TabOrder = 4
               Width = 52
             end
-            object cxDBTextEdit2: TcxDBTextEdit [6]
-              Left = 515
-              Top = 131
+            object cxDBTextEdit2: TcxDBTextEdit [5]
+              Left = 508
+              Top = 103
               DataBinding.DataField = 'poc_status_reason'
               DataBinding.DataSource = ds
               Enabled = False
@@ -388,53 +319,133 @@ inherited frm_purchase_order: Tfrm_purchase_order
               TabOrder = 5
               Width = 168
             end
-            object lookupComboxEmployee: TcxLookupComboBox [7]
-              Left = 84
-              Top = 131
-              Properties.GridMode = True
-              Properties.KeyFieldNames = 'codEmployee'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'rec_name'
-                end>
-              Properties.ListSource = ds_employee
-              Properties.OnPopup = cxLookupComboBox2PropertiesPopup
-              Style.HotTrack = False
-              TabOrder = 2
-              Width = 294
+            object cxGrid1: TcxGrid [6]
+              Left = 17
+              Top = 195
+              Width = 768
+              Height = 200
+              TabOrder = 6
+              object cxGrid1DBTableView1: TcxGridDBTableView
+                PopupMenu = pupMenuPedido
+                Navigator.Buttons.CustomButtons = <>
+                DataController.DataSource = ds_purchase_order_iten
+                DataController.Summary.DefaultGroupSummaryItems = <>
+                DataController.Summary.FooterSummaryItems = <>
+                DataController.Summary.SummaryGroups = <>
+                OptionsData.Editing = False
+                object cxGrid1DBTableView1poi_id: TcxGridDBColumn
+                  Caption = 'C'#243'digo ID'
+                  DataBinding.FieldName = 'poi_id'
+                  Width = 70
+                end
+                object cxGrid1DBTableView1pro_name: TcxGridDBColumn
+                  Caption = 'Produto'
+                  DataBinding.FieldName = 'pro_name'
+                  Width = 300
+                end
+                object cxGrid1DBTableView1poi_product_quant: TcxGridDBColumn
+                  Caption = 'Quantidade'
+                  DataBinding.FieldName = 'poi_product_quant'
+                  PropertiesClassName = 'TcxCurrencyEditProperties'
+                  Properties.DisplayFormat = '0.000;-0.000'
+                  Width = 100
+                end
+                object cxGrid1DBTableView1pru_initials: TcxGridDBColumn
+                  Caption = 'Und'
+                  DataBinding.FieldName = 'pru_initials'
+                  Width = 70
+                end
+                object cxGrid1DBTableView1poi_dt_registration: TcxGridDBColumn
+                  Caption = 'Dt. Reg'
+                  DataBinding.FieldName = 'poi_dt_registration'
+                  Width = 110
+                end
+              end
+              object cxGrid1Level1: TcxGridLevel
+                GridView = cxGrid1DBTableView1
+              end
             end
-            object lookupComboxStock: TcxLookupComboBox [8]
-              Left = 84
-              Top = 158
-              Properties.GridMode = True
-              Properties.KeyFieldNames = 'codStock'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'sto_name'
-                end>
-              Properties.ListSource = ds_stock
-              Properties.OnPopup = lookupComboxStockPropertiesPopup
-              Style.HotTrack = False
-              TabOrder = 3
-              Width = 294
-            end
-            object edtQTD: TcxCurrencyEdit [9]
-              Left = 452
-              Top = 464
+            object edtQTD: TcxCurrencyEdit [7]
+              Left = 565
+              Top = 401
               Properties.DisplayFormat = '0.000;-,0.000'
               Style.HotTrack = False
-              TabOrder = 8
+              TabOrder = 9
               OnKeyDown = edtQTDKeyDown
-              Width = 121
+              Width = 96
+            end
+            object looComboxProduto: TcxLookupComboBox [8]
+              Left = 62
+              Top = 401
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'proCod'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'pro_name'
+                end>
+              Properties.ListSource = ds_product
+              Properties.OnCloseUp = looComboxProdutoPropertiesCloseUp
+              Properties.OnPopup = cxLookupComboBox1PropertiesPopup
+              Style.HotTrack = False
+              TabOrder = 7
+              Width = 356
+            end
+            object btnSalvar_Item: TcxButton [9]
+              Left = 667
+              Top = 401
+              Width = 25
+              Height = 24
+              Action = act_save_purchase_order_iten
+              OptionsImage.Images = cxImageList_1
+              TabOrder = 10
+            end
+            object btnEditar_Item: TcxButton [10]
+              Left = 698
+              Top = 401
+              Width = 25
+              Height = 25
+              Action = act_edit_purchase_order_iten
+              OptionsImage.Images = cxImageList_1
+              TabOrder = 11
+            end
+            object btnCancel_Item: TcxButton [11]
+              Left = 729
+              Top = 401
+              Width = 25
+              Height = 25
+              Action = act_cancel_purchase_order_iten
+              OptionsImage.Images = cxImageList_1
+              TabOrder = 12
+            end
+            object btnExcluir_Item: TcxButton [12]
+              Left = 760
+              Top = 401
+              Width = 25
+              Height = 25
+              Action = act_delete_purchase_order_iten
+              OptionsImage.Images = cxImageList_1
+              TabOrder = 13
+            end
+            object edtUnd: TcxTextEdit [13]
+              Left = 448
+              Top = 401
+              Enabled = False
+              Style.HotTrack = False
+              TabOrder = 8
+              Width = 50
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 2
             end
+            inherited dxLayoutGroup1: TdxLayoutGroup
+              ItemIndex = 1
+            end
             inherited dxLayoutGroup2: TdxLayoutGroup
-              Parent = dxLayoutGroup3
-              AlignHorz = ahClient
+              AlignHorz = ahLeft
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              SizeOptions.Width = 782
               LayoutDirection = ldHorizontal
-              Index = 0
             end
             object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutControl_1Group_Root
@@ -444,42 +455,35 @@ inherited frm_purchase_order: Tfrm_purchase_order
               SizeOptions.SizableHorz = True
               SizeOptions.SizableVert = True
               SizeOptions.Height = 150
-              SizeOptions.Width = 742
-              ButtonOptions.Buttons = <>
-              Index = 1
-            end
-            object dxLayoutItem4: TdxLayoutItem
-              Parent = dxLayoutGroup3
-              Control = cxGrid1
-              ControlOptions.OriginalHeight = 225
-              ControlOptions.OriginalWidth = 250
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutGroup4: TdxLayoutGroup
-              Parent = dxLayoutControl_1Group_Root
-              CaptionOptions.Text = 'Manuten'#231#227'o dos Pedidos de Compra'
+              SizeOptions.Width = 765
               ButtonOptions.Buttons = <>
               ItemIndex = 1
-              LayoutDirection = ldHorizontal
               Index = 2
-            end
-            object dxLayoutItem8: TdxLayoutItem
-              Parent = dxLayoutGroup4
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Produto'
-              Control = looComboxProduto
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 325
-              ControlOptions.ShowBorder = False
-              Index = 0
             end
             object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2
               AlignHorz = ahLeft
               Index = 0
               AutoCreated = True
+            end
+            object dxLayoutItem10: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignHorz = ahLeft
+              CaptionOptions.Text = 'Funcion'#225'rio'
+              Control = lookupComboxEmployee
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 294
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              CaptionOptions.Text = 'Estoque'
+              Control = lookupComboxStock
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 145
+              ControlOptions.ShowBorder = False
+              Index = 1
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -505,42 +509,90 @@ inherited frm_purchase_order: Tfrm_purchase_order
               Enabled = False
               Index = 2
             end
-            object dxLayoutItem10: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              CaptionOptions.Text = 'Funcion'#225'rio'
-              Control = lookupComboxEmployee
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 294
+            object dxLayoutItem4: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              Control = cxGrid1
+              ControlOptions.OriginalHeight = 200
+              ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              CaptionOptions.Text = 'Estoque'
-              Control = lookupComboxStock
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 145
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutItem7: TdxLayoutItem
-              Parent = dxLayoutGroup4
-              CaptionOptions.Text = 'SpeedButton3'
-              CaptionOptions.Visible = False
-              Control = btnInserir
-              ControlOptions.OriginalHeight = 22
-              ControlOptions.OriginalWidth = 97
-              ControlOptions.ShowBorder = False
-              Index = 2
-            end
             object dxLayoutItem9: TdxLayoutItem
-              Parent = dxLayoutGroup4
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignVert = avClient
               CaptionOptions.Text = 'Quantidade'
               Control = edtQTD
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 96
               ControlOptions.ShowBorder = False
+              Index = 2
+            end
+            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup3
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem8: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Produto'
+              Offsets.Left = 2
+              Control = looComboxProduto
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 356
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem11: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              CaptionOptions.Text = 'cxButton2'
+              CaptionOptions.Visible = False
+              Control = btnSalvar_Item
+              ControlOptions.OriginalHeight = 24
+              ControlOptions.OriginalWidth = 25
+              ControlOptions.ShowBorder = False
+              Index = 3
+            end
+            object dxLayoutItem13: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              CaptionOptions.Text = 'cxButton3'
+              CaptionOptions.Visible = False
+              Control = btnEditar_Item
+              ControlOptions.OriginalHeight = 25
+              ControlOptions.OriginalWidth = 25
+              ControlOptions.ShowBorder = False
+              Index = 4
+            end
+            object dxLayoutItem12: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              CaptionOptions.Text = 'cxButton1'
+              CaptionOptions.Visible = False
+              Control = btnCancel_Item
+              ControlOptions.OriginalHeight = 25
+              ControlOptions.OriginalWidth = 25
+              ControlOptions.ShowBorder = False
+              Index = 5
+            end
+            object dxLayoutItem14: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              CaptionOptions.Text = 'cxButton1'
+              CaptionOptions.Visible = False
+              Control = btnExcluir_Item
+              ControlOptions.OriginalHeight = 25
+              ControlOptions.OriginalWidth = 25
+              ControlOptions.ShowBorder = False
+              Index = 6
+            end
+            object dxLayoutItem7: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              CaptionOptions.Text = 'Und'
+              Control = edtUnd
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 50
+              ControlOptions.ShowBorder = False
+              Enabled = False
               Index = 1
             end
           end
@@ -549,8 +601,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
     end
   end
   inherited dxBarDockControl_1: TdxBarDockControl
-    Width = 1080
-    ExplicitWidth = 1080
+    Width = 1018
+    ExplicitWidth = 1018
   end
   inherited dxBarManager_1: TdxBarManager
     inherited dxBarManager_1Bar6: TdxBar
@@ -585,7 +637,12 @@ inherited frm_purchase_order: Tfrm_purchase_order
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    Left = 456
+    Top = 48
+  end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     AfterDelete = qryAfterDelete
     IndexFieldNames = 'contract_ctr_cod'
@@ -691,8 +748,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
     end
   end
   inherited ACBrEnterTab_1: TACBrEnterTab
-    Left = 584
-    Top = 288
+    Left = 520
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -701,6 +757,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Formats.TimeFormat = 'hh:mm'
     Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
     Formats.CurrencyFormat = 'R$#,###,##0.00'
+    Left = 424
+    Top = 48
   end
   inherited QImport3Wizard_1: TQImport3Wizard
     Formats.ShortDateFormat = 'dd/MM/yy'
@@ -709,14 +767,13 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   inherited FDSchemaAdapter_1: TFDSchemaAdapter
-    Left = 304
-    Top = 64
+    Left = 328
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
     ReportOptions.LastChange = 43223.395994050920000000
-    Left = 199
-    Top = 152
+    Left = 423
+    Top = 88
     Datasets = <
       item
         DataSet = frm_dm.frx_db_enterprise
@@ -3124,106 +3181,16 @@ inherited frm_purchase_order: Tfrm_purchase_order
       end
     end
   end
-  object qry_purchase_order_iten: TFDQuery
-    IndexFieldNames = 'purchase_order_pco_cod'
-    MasterSource = ds
-    MasterFields = 'pco_cod'
-    DetailFields = 'purchase_order_pco_cod'
-    Connection = frm_dm.connCCS
-    FetchOptions.AssignedValues = [evDetailCascade]
-    FetchOptions.DetailCascade = True
-    SQL.Strings = (
-      'select purchase_order_iten.*, hex(product_pro_cod)as pro_cod,'#13#10#10
-      ''
-      'pro_name, hex(poi_cod)as iten_Cod  from purchase_order_iten'#13#10#10
-      ''
-      
-        'left join product on pro_cod = product_pro_cod'#10'where purchase_or' +
-        'der_pco_cod = :pco_cod')
-    Left = 808
-    Top = 320
-    ParamData = <
-      item
-        Name = 'PCO_COD'
-        DataType = ftBytes
-        ParamType = ptInput
-        Size = 16
-        Value = Null
-      end>
-    object qry_purchase_order_iteniten_Cod: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'iten_Cod'
-      Origin = 'iten_Cod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 34
-    end
-    object qry_purchase_order_itenpoi_cod: TBytesField
-      FieldName = 'poi_cod'
-      Origin = 'poi_cod'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object qry_purchase_order_itenpro_cod: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'pro_cod'
-      Origin = 'pro_cod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 34
-    end
-    object qry_purchase_order_itenpurchase_order_pco_cod: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'purchase_order_pco_cod'
-      Origin = 'purchase_order_pco_cod'
-    end
-    object qry_purchase_order_itenproduct_pro_cod: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'product_pro_cod'
-      Origin = 'product_pro_cod'
-    end
-    object qry_purchase_order_itenpoi_id: TLongWordField
-      AutoGenerateValue = arDefault
-      FieldName = 'poi_id'
-      Origin = 'poi_id'
-    end
-    object qry_purchase_order_itenpro_name: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'pro_name'
-      Origin = 'pro_name'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 85
-    end
-    object qry_purchase_order_itenpoi_product_quant: TBCDField
-      AutoGenerateValue = arDefault
-      FieldName = 'poi_product_quant'
-      Origin = 'poi_product_quant'
-      Precision = 12
-    end
-    object qry_purchase_order_itenpoi_product_quant_served: TBCDField
-      AutoGenerateValue = arDefault
-      FieldName = 'poi_product_quant_served'
-      Origin = 'poi_product_quant_served'
-      Precision = 12
-    end
-    object qry_purchase_order_itenpoi_deleted_at: TDateTimeField
-      AutoGenerateValue = arDefault
-      FieldName = 'poi_deleted_at'
-      Origin = 'poi_deleted_at'
-    end
-    object qry_purchase_order_itenpoi_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      FieldName = 'poi_dt_registration'
-      Origin = 'poi_dt_registration'
-    end
+  inherited ACBrCEP_1: TACBrCEP
+    Left = 360
   end
   object ds_purchase_order_iten: TDataSource
     DataSet = qry_purchase_order_iten
-    Left = 904
-    Top = 296
+    Left = 824
+    Top = 96
   end
   object qry_product: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -3231,11 +3198,15 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
-        '  select hex(pro_cod) as proCod ,pro_name,pro_cod, contract_ctr_' +
-        'cod, pro_id from product'#10' '
-      ' where pro_type = '#39'P'#39'  order by pro_name')
-    Left = 800
-    Top = 104
+        'select hex(pro.pro_cod) as proCod, pro.pro_name, pro.pro_cod, pr' +
+        'o.contract_ctr_cod,'#10
+      'uni.pru_name, uni.pru_initials, pro.pro_id from product as pro'#10
+      
+        'left join product_unit as uni on uni.pru_cod = pro.product_unit_' +
+        'pru_cod '#13#10#10
+      'where pro.pro_type = '#39'P'#39'  order by pro.pro_name')
+    Left = 664
+    Top = 96
     object qry_productproCod: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'proCod'
@@ -3266,6 +3237,22 @@ inherited frm_purchase_order: Tfrm_purchase_order
       FieldName = 'contract_ctr_cod'
       Origin = 'contract_ctr_cod'
     end
+    object qry_productpru_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_name'
+      Origin = 'pru_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
+    object qry_productpru_initials: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_initials'
+      Origin = 'pru_initials'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
   end
   object ds_product: TDataSource
     DataSet = qry_product
@@ -3273,6 +3260,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Top = 96
   end
   object qry_employee: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -3282,12 +3270,12 @@ inherited frm_purchase_order: Tfrm_purchase_order
       
         'select e.emp_cod, e.emp_id, e.record_rec_cod, e.emp_type, e.emp_' +
         'status, r.rec_name, e.contract_ctr_cod,'
-      'concat('#39'0x'#39',hex(e.emp_cod)) as codEmployee from employee as e'#10
-      
-        'inner join record as r on e.record_rec_cod = r.rec_cod'#10'where e.c' +
-        'ontract_ctr_cod =:ctr_cod')
-    Left = 672
-    Top = 144
+      'hex(e.emp_cod) as codEmployee from employee as e'#10
+      'inner join record as r on e.record_rec_cod = r.rec_cod'#10
+      'where e.emp_status = '#39'A'#39
+      'and e.contract_ctr_cod =:ctr_cod')
+    Left = 728
+    Top = 96
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -3350,51 +3338,55 @@ inherited frm_purchase_order: Tfrm_purchase_order
   end
   object ds_employee: TDataSource
     DataSet = qry_employee
-    Left = 704
-    Top = 144
+    Left = 760
+    Top = 96
   end
   object frxDBD_Pedido_Compra: TfrxDBDataset
     UserName = 'purchase_order'
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False
-    Left = 328
-    Top = 152
+    Left = 392
+    Top = 88
   end
   object frxDBD_Pedido_Itens: TfrxDBDataset
     UserName = 'purchase_Itens'
     CloseDataSource = False
-    DataSet = qry_purchase_order_iten
     BCDToCurrency = False
-    Left = 208
-    Top = 264
+    Left = 368
+    Top = 88
   end
   object qry_stock: TFDQuery
-    IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
-    MasterFields = 'ctr_cod'
-    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
         'select st.sto_name, st.sto_cod, st.sto_id,st.contract_ctr_cod,st' +
-        '.enterprise_ent_cod, concat('#39'0x'#39',hex(st.sto_cod)) as codStock  f' +
-        'rom stock st'#13#10#10
+        '.enterprise_ent_cod, hex(st.sto_cod) as codStock  from stock st'#13 +
+        #10#10
       'left join contract co on co.ctr_cod = st.contract_ctr_cod'#13#10#10
+      'left join enterprise en on en.ent_cod = st.enterprise_ent_cod '#10
       
-        'left join enterprise en on en.ent_cod = st.enterprise_ent_cod '#13#10 +
-        #10
+        'where st.sto_status = '#39'A'#39' and st.contract_ctr_cod =unhex(:ctr_co' +
+        'd)'#10
+      'and st.enterprise_ent_cod in (select enterprise_ent_cod '
       
-        'where st.sto_status = '#39'A'#39' '#10'and st.contract_ctr_cod in (select ct' +
-        'r_cod from contract a where a.ctr_cod =:ctr_cod)')
-    Left = 592
-    Top = 144
+        'from contract_user_enterprise where contract_user_ctr_usr_cod =u' +
+        'nhex(:ctr_usr_cod))')
+    Left = 600
+    Top = 96
     ParamData = <
       item
         Name = 'CTR_COD'
-        DataType = ftBytes
+        DataType = ftString
         ParamType = ptInput
-        Size = 16
+        Size = 45
+        Value = Null
+      end
+      item
+        Name = 'CTR_USR_COD'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 45
         Value = Null
       end>
     object qry_stocksto_cod: TBytesField
@@ -3435,19 +3427,159 @@ inherited frm_purchase_order: Tfrm_purchase_order
   end
   object ds_stock: TDataSource
     DataSet = qry_stock
-    Left = 624
-    Top = 144
+    Left = 632
+    Top = 96
   end
   object pupMenuPedido: TPopupMenu
-    Left = 815
-    Top = 26
+    Left = 855
+    Top = 98
     object Excluir2: TMenuItem
+      Action = act_delete_purchase_order_iten
       Caption = 'Excluir'
-      OnClick = Excluir2Click
     end
     object Editar2: TMenuItem
+      Action = act_edit_purchase_order_iten
       Caption = 'Editar'
-      OnClick = Editar2Click
+    end
+    object Cancelar1: TMenuItem
+      Action = act_cancel_purchase_order_iten
+      Caption = 'Cancelar'
+    end
+  end
+  object Action_purchase_order: TActionList
+    Images = cxImageList_1
+    Left = 888
+    Top = 96
+    object act_save_purchase_order_iten: TAction
+      Hint = 'Salvar'
+      ImageIndex = 6
+      OnExecute = act_save_purchase_order_itenExecute
+    end
+    object act_edit_purchase_order_iten: TAction
+      Hint = 'Editar'
+      ImageIndex = 5
+      OnExecute = act_edit_purchase_order_itenExecute
+    end
+    object act_cancel_purchase_order_iten: TAction
+      Hint = 'Cancelar'
+      ImageIndex = 7
+      OnExecute = act_cancel_purchase_order_itenExecute
+    end
+    object act_delete_purchase_order_iten: TAction
+      Hint = 'Excluir'
+      ImageIndex = 8
+      OnExecute = act_delete_purchase_order_itenExecute
+    end
+  end
+  object qry_purchase_order_iten: TFDQuery
+    Active = True
+    IndexFieldNames = 'purchase_order_pco_cod'
+    MasterSource = ds
+    MasterFields = 'pco_cod'
+    DetailFields = 'purchase_order_pco_cod'
+    Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evCache]
+    FetchOptions.Cache = [fiBlobs, fiMeta]
+    SQL.Strings = (
+      
+        'select purchase_order_iten.*, hex(product_pro_cod)as pro_cod, '#10'p' +
+        'ro_name, pru_name, pru_initials, '
+      'hex(poi_cod)as iten_Cod  from purchase_order_iten'#13#10#10
+      'left join product on pro_cod = product_pro_cod'#13#10#10
+      'left join product_unit on pru_cod = product_unit_pru_cod'#13#10#10
+      'where purchase_order_pco_cod = :pco_cod')
+    Left = 795
+    Top = 97
+    ParamData = <
+      item
+        Name = 'PCO_COD'
+        DataType = ftBytes
+        ParamType = ptInput
+        Size = 24
+        Value = Null
+      end>
+    object qry_purchase_order_itenpoi_cod: TBytesField
+      FieldName = 'poi_cod'
+      Origin = 'poi_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_purchase_order_itenpurchase_order_pco_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'purchase_order_pco_cod'
+      Origin = 'purchase_order_pco_cod'
+    end
+    object qry_purchase_order_itenproduct_pro_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_pro_cod'
+      Origin = 'product_pro_cod'
+    end
+    object qry_purchase_order_itenpoi_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'poi_id'
+      Origin = 'poi_id'
+    end
+    object qry_purchase_order_itenpoi_product_quant: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'poi_product_quant'
+      Origin = 'poi_product_quant'
+      Precision = 12
+    end
+    object qry_purchase_order_itenpoi_product_quant_served: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'poi_product_quant_served'
+      Origin = 'poi_product_quant_served'
+      Precision = 12
+    end
+    object qry_purchase_order_itenpoi_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'poi_deleted_at'
+      Origin = 'poi_deleted_at'
+    end
+    object qry_purchase_order_itenpoi_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'poi_dt_registration'
+      Origin = 'poi_dt_registration'
+    end
+    object qry_purchase_order_itenpro_cod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_cod'
+      Origin = 'pro_cod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qry_purchase_order_itenpro_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_name'
+      Origin = 'pro_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object qry_purchase_order_itenpru_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_name'
+      Origin = 'pru_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
+    object qry_purchase_order_itenpru_initials: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_initials'
+      Origin = 'pru_initials'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
+    object qry_purchase_order_iteniten_Cod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'iten_Cod'
+      Origin = 'iten_Cod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
     end
   end
 end

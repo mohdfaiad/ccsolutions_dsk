@@ -40,10 +40,6 @@ type
   Tfrm_brand = class(Tfrm_form_default)
     cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
-    cxGrid_1DBTableView1bra_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1bra_name: TcxGridDBColumn;
-    cxGrid_1DBTableView1bra_dt_registration: TcxGridDBColumn;
     Image1: TImage;
     qrybra_cod: TBytesField;
     qrycontract_ctr_cod: TBytesField;
@@ -52,15 +48,27 @@ type
     qrybra_status: TStringField;
     qrybra_deleted_at: TDateTimeField;
     qrybra_dt_registration: TDateTimeField;
+    cxGrid_1DBTableView1bra_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1bra_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1bra_status: TcxGridDBColumn;
+    cxGrid_1DBTableView1bra_dt_registration: TcxGridDBColumn;
+    dbComboxStatus: TcxDBComboBox;
+    dxLayoutItem4: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
-    procedure cxTabSheet_1Show(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
+    procedure Action_insertExecute(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
+    bra_cod: string;
+    bra_id : Integer;
   public
     { Public declarations }
+    procedure ExibirRegistros;
   end;
 
 var
@@ -75,17 +83,53 @@ uses ufrm_dm, class_required_field;
 procedure Tfrm_brand.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qrybra_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
- with frm_dm.qry,sql do
- begin
-  Close;
-  Text:= ' delete from brand ' +
-         ' where contract_ctr_cod =:contract ' +
-         ' and bra_id = 0';
-  ParamByName('contract').Value:=frm_dm.qry_contractctr_cod.Value;
-  Prepare;
-  ExecSQL;
+  if result = false then
+    exit;
+
+ if (qrybra_id.AsInteger = 0) then
+  begin
+   with frm_dm.qry,sql do
+    begin
+      Close;
+      Text:= ' delete from brand ' +
+             ' where bra_cod = unhex('+ QuotedStr(bra_cod)+')' ;
+      Prepare;
+      ExecSQL;
+    end;
+  end;
+
+   ExibirRegistros
+
 end;
+
+procedure Tfrm_brand.Action_deleteExecute(Sender: TObject);
+begin
+   inherited;
+    if (result = false) then
+      exit;
+
+     qry.Edit;
+     qrybra_deleted_at.AsDateTime:=Now;
+     qry.Post;
+     qry.ApplyUpdates(0);
+     Application.MessageBox('Marca excluída com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
+
+    ExibirRegistros
+end;
+
+procedure Tfrm_brand.Action_editExecute(Sender: TObject);
+begin
+   inherited;
+  dbComboxStatus.Enabled := True;
+
+end;
+
+procedure Tfrm_brand.Action_insertExecute(Sender: TObject);
+begin
+   inherited;
+   dbComboxStatus.ItemIndex := 0;
+   dbComboxStatus.Enabled := false;
+
 end;
 
 procedure Tfrm_brand.Action_saveExecute(Sender: TObject);
@@ -93,14 +137,13 @@ procedure Tfrm_brand.Action_saveExecute(Sender: TObject);
 begin
 with frm_dm.qry,sql do
  begin
-   close;
+   close;     // -- SQL para retornar o ultimo ID da tabela brand---
    Text:= ' select case when max(bra_id) is null then 1 ' +
           '      else (max(bra_id) + 1) end as maxID from brand '+
-          ' where contract_ctr_cod = (select ctr_cod from contract ' +
-          ' where ctr_id =:ctr_id)';
-   ParamByName('ctr_id').AsInteger:=frm_dm.qry_contractctr_id.AsInteger;
+          ' where contract_ctr_cod = unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')';
    Prepare;
    Open;
+
    if not (qry.State in [dsInsert,dsEdit])  then
     qry.Edit;
 
@@ -115,16 +158,20 @@ with frm_dm.qry,sql do
   TCampoRequerido.TratarRequerido(qry);
 
   inherited;
+  ExibirRegistros
 
 end;
 
-procedure Tfrm_brand.cxTabSheet_1Show(Sender: TObject);
+procedure Tfrm_brand.ExibirRegistros;
 begin
-  inherited;
-   qry.Close;
-   qry.sql.text:= ' select * from brand ';
+
+  qry.Close;
+  qry.SQL.Text := 'select * from brand                ' +
+                 ' where contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')' +
+                 ' and bra_deleted_at is null  ' ;
    qry.Prepare;
-   qry.open;
+   qry.Open;
+
 end;
 
 procedure Tfrm_brand.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -134,27 +181,39 @@ begin
   frm_brand := Nil;
 end;
 
+procedure Tfrm_brand.FormShow(Sender: TObject);
+begin
+  inherited;
+   ExibirRegistros
+end;
+
 procedure Tfrm_brand.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
- With frm_dm.qry,sql do
+ //SQL para obter Número do Cod ID em Hex--------
+   With frm_dm.qry,sql do
   begin
-   Close;
-   Text:='insert into brand (bra_cod,bra_id,contract_ctr_cod) ' +
-         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
-         ' where ctr_id = :contrato)';
-   ParamByName('contrato').AsInteger:=frm_dm.qry_contractctr_id.AsInteger;
+   close;
+   text:= ' select hex(uuid_to_bin(uuid()))';
+   prepare;
+   open;
+
+   bra_cod:=Fields[0].AsString;
+
+   Close;          //---Insert na tabela brand inserindo os primeiros registros obrigatórios----
+   Text:='insert into brand (bra_id,bra_cod,contract_ctr_cod, bra_dt_registration) ' +
+         ' select 0,unhex('+QuotedStr(bra_cod)+'), unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+'),Now()';
    Prepare;
    ExecSQL;
   end;
-   qry.Close;
+
+   qry.Close;      //--SQL para retornar o registro inserido  acima (ultimo registro)----
    qry.sql.text:= ' select * from brand ' +
-                  ' where bra_id = 0 ';
+                  ' where bra_cod = unhex('+QuotedStr(bra_cod)+') and bra_deleted_at is null';
    qry.Prepare;
    qry.open;
 
-  qry.Edit;
-  qrybra_dt_registration.Value := Date + Time;
+   qry.Edit;
 end;
 
 end.

@@ -54,17 +54,23 @@ type
     qrypru_id: TLongWordField;
     qrypru_status: TStringField;
     qrypru_deleted_at: TDateTimeField;
+    dbComboxStatus: TcxDBComboBox;
+    dxLayoutItem5: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    cxGrid_1DBTableView1pru_status: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure qryAfterDelete(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
     procedure cxTabSheet_1Show(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     procedure limpaCache(Sender:TObject);
+    procedure ExibirRegistros;
   end;
 
 var
@@ -116,7 +122,9 @@ with frm_dm.qry,sql do
   //--Cama a função para verificar se existe campos requeridos em branco----
    TCampoRequerido.TratarRequerido(qry);
 
-  inherited;
+   inherited;
+   ExibirRegistros
+
 
 end;
 
@@ -129,12 +137,29 @@ begin
    qry.open;
 end;
 
+procedure Tfrm_product_unit.ExibirRegistros;
+begin
+   qry.Close;
+   qry.SQL.Text := ' select * from product_unit               ' +
+                   ' where contract_ctr_cod = unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+') ' +
+                   ' and pru_deleted_at is null ';
+   qry.Prepare;
+   qry.Open;
+
+end;
+
 procedure Tfrm_product_unit.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
   frm_product_unit.Destroy;
   frm_product_unit := Nil;
+end;
+
+procedure Tfrm_product_unit.FormShow(Sender: TObject);
+begin
+  inherited;
+  ExibirRegistros
 end;
 
 procedure Tfrm_product_unit.limpaCache(Sender: TObject);

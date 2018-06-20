@@ -1,15 +1,12 @@
 inherited frm_product_unit: Tfrm_product_unit
   Caption = 'Manuten'#231#227'o: Unidade de Medida'
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
       OnShow = cxTabSheet_1Show
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pru_id: TcxGridDBColumn
@@ -28,6 +25,9 @@ inherited frm_product_unit: Tfrm_product_unit
             DataBinding.FieldName = 'pru_initials'
             Width = 50
           end
+          object cxGrid_1DBTableView1pru_status: TcxGridDBColumn
+            DataBinding.FieldName = 'pru_status'
+          end
           object cxGrid_1DBTableView1pru_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'pru_dt_registration'
             Width = 125
@@ -36,16 +36,8 @@ inherited frm_product_unit: Tfrm_product_unit
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'pru_id'
@@ -73,6 +65,18 @@ inherited frm_product_unit: Tfrm_product_unit
               TabOrder = 3
               Width = 121
             end
+            object dbComboxStatus: TcxDBComboBox [4]
+              Left = 232
+              Top = 130
+              DataBinding.DataField = 'pru_status'
+              DataBinding.DataSource = ds
+              Properties.Items.Strings = (
+                'A - ATIVO'
+                'D - DESATIVO')
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 121
+            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
             end
@@ -89,14 +93,29 @@ inherited frm_product_unit: Tfrm_product_unit
               Index = 0
             end
             object dxLayoutItem4: TdxLayoutItem
-              Parent = dxLayoutGroup2
+              Parent = dxLayoutAutoCreatedGroup1
               AlignHorz = ahLeft
               CaptionOptions.Text = 'Sigla'
               Control = cxDBTextEdit2
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              CaptionOptions.Text = 'Status'
+              Control = dbComboxStatus
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
               Index = 1
+            end
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
             end
           end
         end
@@ -107,6 +126,7 @@ inherited frm_product_unit: Tfrm_product_unit
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     AfterDelete = qryAfterDelete
     IndexFieldNames = 'contract_ctr_cod'
@@ -116,18 +136,19 @@ inherited frm_product_unit: Tfrm_product_unit
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from product_unit')
+      'select * from product_unit'#10
+      'where pru_deleted_at is null')
     object qrypru_name: TStringField
       DisplayLabel = 'Nome'
       FieldName = 'pru_name'
       Required = True
-      Size = 50
+      Size = 35
     end
     object qrypru_initials: TStringField
       DisplayLabel = 'Sigla'
       FieldName = 'pru_initials'
       Required = True
-      Size = 50
+      Size = 35
     end
     object qrypru_dt_registration: TDateTimeField
       DisplayLabel = 'Dt. Reg.'

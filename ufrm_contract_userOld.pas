@@ -309,8 +309,6 @@ end;
 
 procedure Tfrm_contract_userOld.cxListEmpsClickCheck(Sender: TObject;
   AIndex: Integer; APrevState, ANewState: TcxCheckBoxState);
- var
-cdusu,cdemp:string;
 begin
   inherited;
 
@@ -370,8 +368,7 @@ begin
 end;
 
 procedure Tfrm_contract_userOld.FormShow(Sender: TObject);
-var
-  c: Integer;
+
 begin
  AdvOfficeTabSet1.AdvOfficeTabs.Clear;
 

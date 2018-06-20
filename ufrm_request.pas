@@ -140,8 +140,12 @@ type
     qry_purchase_order_itenpro_name: TStringField;
     qry_purchase_order_itenpru_initials: TStringField;
     qryFuncionario: TStringField;
+    pupMenuRequisicao: TPopupMenu;
+    Excluir2: TMenuItem;
+    Editar2: TMenuItem;
+    CancelarEdio1: TMenuItem;
+    qry_purchase_order_itenCodItens: TStringField;
     procedure qryAfterInsert(DataSet: TDataSet);
-    procedure qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure dxCancelReqClick(Sender: TObject);
@@ -156,14 +160,12 @@ type
     procedure lbTodosClick(Sender: TObject);
     procedure dsDataChange(Sender: TObject; Field: TField);
     procedure dxLibRequClick(Sender: TObject);
-    procedure qry_purchase_order_itenAfterEdit(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure cxGrid_1DBTableView1FilterDialogShow(
       Sender: TcxCustomGridTableView; AItem: TcxCustomGridTableItem;
       var ADone: Boolean);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
-    procedure qry_purchase_order_itenBeforePost(DataSet: TDataSet);
     procedure Action_deleteExecute(Sender: TObject);
     procedure qryAfterDelete(DataSet: TDataSet);
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
@@ -174,6 +176,8 @@ type
     procedure btnInserirClick(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
     procedure edtQTDKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Excluir2Click(Sender: TObject);
+    procedure Editar2Click(Sender: TObject);
   private
       pco_cod,iten_cod:string;
       iten_ID: Integer;
@@ -501,11 +505,66 @@ if Application.MessageBox('Deseja liberar essa requisição?','REQUISIÇÃO',MB_YESN
  end;
 end;
 
+procedure Tfrm_request.Editar2Click(Sender: TObject);
+begin
+  inherited;
+
+   //--Condição para só deixar Alterar produtos no Pedido em Status de Aberto ------
+   if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
+   begin
+     Application.MessageBox('Só é permitido (Inserir ou Alterar), produtos em pedidos de compra que estejam em abertos!','AVISO DO PEDIDO DE COMPRA', MB_ICONINFORMATION + MB_OK);
+     looComboxProduto.Clear;
+     edtQTD.Clear;
+     looComboxProduto.SetFocus;
+     exit;
+   end;
+
+  btnInserir.Tag := 2; ////button com Tag = 2 -- condição onde sei que estou alterando um produto do pedido----
+  btnInserir.Caption := 'Editar';
+  looComboxProduto.Text := qry_purchase_order_itenpro_name.AsString;
+  edtQTD.Value          := qry_purchase_order_itenpoi_product_quant.AsFloat;
+  edtQTD.SetFocus;
+
+end;
+
 procedure Tfrm_request.edtQTDKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   inherited;
    if key =13 then
     btnInserir.Click;
+end;
+
+procedure Tfrm_request.Excluir2Click(Sender: TObject);
+begin
+  inherited;
+
+  //--Condição para só deixar Excluir produtos no Pedido em Status de Aberto ------
+   if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
+   begin
+     Application.MessageBox('Só é permitido (Inserir ou Alterar), produtos em pedidos de compra que estejam em abertos!','AVISO DO PEDIDO DE COMPRA', MB_ICONINFORMATION + MB_OK);
+     looComboxProduto.Clear;
+     edtQTD.Clear;
+     looComboxProduto.SetFocus;
+     exit;
+   end;
+
+  if Application.MessageBox('Deseja excluir este produto ?','AVISO DE EXCLUSÃO',MB_YESNO+MB_ICONQUESTION)=mrYes then
+   begin
+     with frm_dm.qry,sql do
+       begin
+       Close;      //--SQL para excluir um produto do pedido de compra----
+       Text:= 'Delete from purchase_order_iten where poi_cod =unhex(:poi_cod)';
+       ParamByName('poi_cod').AsString := qry_purchase_order_itenCodItens.AsString;
+       Prepare;
+       ExecSQL;
+
+       Application.MessageBox('Produto excluído com sucesso!','AVISO DE EXCLUSÃO', MB_OK + MB_ICONINFORMATION);
+     end;
+   end;
+
+
+   qry_purchase_order_iten.Close;
+   qry_purchase_order_iten.Open;
 end;
 
 procedure Tfrm_request.ExibirRequisicao;
@@ -643,44 +702,6 @@ begin
    qry.Edit;
 
 end;
-
-procedure Tfrm_request.qry_purchase_order_itenAfterEdit(DataSet: TDataSet);
-begin
-  inherited;
-if not (qry.State in [dsInsert,dsEdit]) then
- qry.Edit;
-end;
-
-procedure Tfrm_request.qry_purchase_order_itenAfterInsert(DataSet: TDataSet);
-begin
-  inherited;
-//if not (qry.State in [dsInsert,dsEdit]) then
-// qry.Edit;
-//
-// if qrypco_status.AsString  <> 'A' then
-// begin
-//   Application.MessageBox('Só é permitido alterar uma requisição que esteja em aberto!','Requisição', MB_ICONINFORMATION + MB_OK);
-//   qry_purchase_order_iten.Delete;
-//   Exit;
-// end;
-//
-//qry_purchase_order_itenpoi_dt_registration.Value:=Now;
-end;
-
-procedure Tfrm_request.qry_purchase_order_itenBeforePost(DataSet: TDataSet);
-begin
-
-  if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
-   begin
-    Application.MessageBox('Não é permitido alterar a quantidade do produto de requisições liberadas!','Requisição', MB_ICONINFORMATION + MB_OK);
-    qry_purchase_order_iten.CancelUpdates;
-    Exit;
-   end;
-
- inherited;
-
-end;
-
 
 procedure Tfrm_request.SpeedButton1Click(Sender: TObject);
 begin

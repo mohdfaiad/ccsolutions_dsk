@@ -34,7 +34,7 @@ object frm_default: Tfrm_default
     Height = 571
     Align = alClient
     TabOrder = 1
-    Properties.ActivePage = tbsht_1
+    Properties.ActivePage = tbsht_2
     Properties.CustomButtons.Buttons = <>
     LookAndFeel.NativeStyle = False
     ClientRectBottom = 565
@@ -125,10 +125,6 @@ object frm_default: Tfrm_default
     object tbsht_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object pgctrl_3: TcxPageControl
         Left = 0
         Top = 0

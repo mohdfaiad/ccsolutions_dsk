@@ -202,9 +202,10 @@ begin
     ('Ao excluir o registro, o mesmo não poderá ser recuperado novamente!',
     'Deseja excluir o Registro?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
     = IDYES then
-  begin
-    ds.DataSet.Delete;
-  end;
+    result:=true
+    else
+    result:=false;
+
 end;
 
 procedure Tfrm_form_default.Action_editExecute(Sender: TObject);

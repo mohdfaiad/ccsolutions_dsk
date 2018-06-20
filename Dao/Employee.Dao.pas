@@ -2,7 +2,7 @@ unit Employee.Dao;
 
 interface
  uses
-   Conexao, FireDAC.Comp.Client, System.SysUtils, Data.DB,
+   Conexao, FireDAC.Comp.Client,FireDAC.Stan.Param, System.SysUtils, Data.DB,
     Vcl.Forms, Winapi.Windows,Vcl.Dialogs, Employee.Model;
 
    type

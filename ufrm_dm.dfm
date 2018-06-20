@@ -35,7 +35,6 @@ object frm_dm: Tfrm_dm
     Top = 64
   end
   object qry_enterprise: TFDQuery
-    Active = True
     Connection = connCCS
     SQL.Strings = (
       'select * from enterprise'#10'where contract_ctr_cod =:ctr_cod'
@@ -358,7 +357,6 @@ object frm_dm: Tfrm_dm
     Top = 160
   end
   object qry_contract: TFDQuery
-    Active = True
     Connection = connCCS
     SQL.Strings = (
       'select ctr_cod,ctr_id from contract'

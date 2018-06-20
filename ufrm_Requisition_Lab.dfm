@@ -266,7 +266,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
             object cxTextEdit3: TcxTextEdit
               Left = 101
               Top = 352
-              TabOrder = 25
+              TabOrder = 27
               Text = 'cxTextEdit3'
               Width = 121
             end
@@ -276,7 +276,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
               Width = 75
               Height = 25
               Caption = 'BitBtn1'
-              TabOrder = 26
+              TabOrder = 28
             end
             object cxLabelConvenio: TcxLabel
               Left = 6
@@ -295,7 +295,70 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                 end>
               Properties.ListSource = ds_qry_insurance
               Properties.OnCloseUp = cxLookupComboBoxConvenioPropertiesCloseUp
-              TabOrder = 28
+              TabOrder = 30
+              Width = 341
+            end
+            object cxButton1: TcxButton
+              Left = 529
+              Top = 197
+              Width = 75
+              Height = 25
+              Caption = 'cxButton1'
+              LookAndFeel.SkinName = 'Metropolis'
+              TabOrder = 31
+            end
+            object cxTextEditTipoExameID: TcxTextEdit
+              Left = 3
+              Top = 256
+              TabOrder = 25
+              OnExit = cxTextEditTipoExameIDExit
+              Width = 48
+            end
+            object cxLabelTipodeExame: TcxLabel
+              Left = 6
+              Top = 233
+              Caption = 'Tipo de Exame'
+              Transparent = True
+            end
+            object cxLookupComboBoxTipoExame: TcxLookupComboBox
+              Left = 57
+              Top = 256
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'retCod'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'ret_name'
+                end>
+              Properties.ListSource = ds_qry_requisition_type
+              Properties.OnCloseUp = cxLookupComboBoxTipoExamePropertiesCloseUp
+              TabOrder = 33
+              Width = 341
+            end
+            object cxLabelMedico: TcxLabel
+              Left = 6
+              Top = 289
+              Caption = 'M'#233'dico'
+              Transparent = True
+            end
+            object cxTextEditMedicoID: TcxTextEdit
+              Left = 3
+              Top = 312
+              TabOrder = 26
+              OnExit = cxTextEditMedicoIDExit
+              Width = 48
+            end
+            object cxLookupComboBoxMedico: TcxLookupComboBox
+              Left = 57
+              Top = 312
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'codDoctor'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'rec_name'
+                end>
+              Properties.ListSource = ds_qry_doctor
+              Properties.OnCloseUp = cxLookupComboBoxMedicoPropertiesCloseUp
+              TabOrder = 35
               Width = 341
             end
           end
@@ -309,6 +372,30 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
         ExplicitWidth = 926
         ExplicitHeight = 32
       end
+    end
+  end
+  inherited actlist_1: TActionList
+    inherited Action_close: TAction [1]
+    end
+    inherited Action_first: TAction [2]
+    end
+    inherited Action_prior: TAction [3]
+    end
+    inherited Action_next: TAction [4]
+    end
+    inherited Action_last: TAction [5]
+    end
+    inherited Action_insert: TAction [6]
+    end
+    inherited Action_edit: TAction [7]
+    end
+    inherited Action_cancel: TAction [8]
+    end
+    inherited Action_save: TAction [9]
+    end
+    inherited Action_delete: TAction [10]
+    end
+    inherited Action_refresh: TAction [11]
     end
   end
   inherited acbr_enter_1: TACBrEnterTab
@@ -341,6 +428,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   end
   inherited qry: TFDQuery
     Active = True
+    AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -349,7 +437,13 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from requisition')
+      
+        'select *,hex(client_cli_cod) as clientCod,hex(enterprise_ent_cod' +
+        ') as enterpriseCod,hex(insurance_ins_cod) as insuranceCod,'
+      'hex(doctor_doc_cod) as doctorCod from requisition '
+      'where req_deleted_at is null '
+      ''
+      '')
     object qryreq_cod: TBytesField
       FieldName = 'req_cod'
       Origin = 'req_cod'
@@ -419,6 +513,38 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       AutoGenerateValue = arDefault
       FieldName = 'req_dt_registration'
       Origin = 'req_dt_registration'
+    end
+    object qryclientCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'clientCod'
+      Origin = 'clientCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qryenterpriseCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'enterpriseCod'
+      Origin = 'enterpriseCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qryinsuranceCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'insuranceCod'
+      Origin = 'insuranceCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qrydoctorCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'doctorCod'
+      Origin = 'doctorCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
     end
   end
   inherited mem: TFDMemTable
@@ -688,5 +814,153 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     DataSet = qry_insurance
     Left = 583
     Top = 556
+  end
+  object qry_requisition_type: TFDQuery
+    Active = True
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      
+        'select requisition_type.*,hex(ret_cod) as retCod from requisitio' +
+        'n_type'
+      'where ret_status = '#39'A'#39' and ret_deleted_at is null'
+      'order by ret_name')
+    Left = 671
+    Top = 420
+    object qry_requisition_typeret_cod: TBytesField
+      FieldName = 'ret_cod'
+      Origin = 'ret_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_requisition_typecontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_requisition_typeret_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'ret_id'
+      Origin = 'ret_id'
+    end
+    object qry_requisition_typeret_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ret_name'
+      Origin = 'ret_name'
+      Size = 35
+    end
+    object qry_requisition_typeret_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ret_status'
+      Origin = 'ret_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_requisition_typeret_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'ret_deleted_at'
+      Origin = 'ret_deleted_at'
+    end
+    object qry_requisition_typeret_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'ret_dt_registration'
+      Origin = 'ret_dt_registration'
+    end
+    object qry_requisition_typeretCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'retCod'
+      Origin = 'retCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+  end
+  object ds_qry_requisition_type: TDataSource
+    DataSet = qry_requisition_type
+    Left = 768
+    Top = 424
+  end
+  object qry_doctor: TFDQuery
+    Active = True
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      
+        'select doctor.*,r.rec_name, hex(doc_cod)as codDoctor, hex(employ' +
+        'ee_emp_cod)as codEmployee  from doctor'#13#10#10
+      'left '
+      'join employee as e on e.emp_cod = employee_emp_cod'
+      
+        'left join record as r on e.record_rec_cod = r.rec_cod'#10'where doc_' +
+        'status = '#39'A'#39#10
+      ''
+      '')
+    Left = 775
+    Top = 524
+    object qry_doctordoc_cod: TBytesField
+      FieldName = 'doc_cod'
+      Origin = 'doc_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_doctorcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_doctoremployee_emp_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'employee_emp_cod'
+      Origin = 'employee_emp_cod'
+    end
+    object qry_doctordoc_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'doc_id'
+      Origin = 'doc_id'
+    end
+    object qry_doctordoc_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'doc_status'
+      Origin = 'doc_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_doctordoc_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'doc_deleted_at'
+      Origin = 'doc_deleted_at'
+    end
+    object qry_doctordoc_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'doc_dt_registration'
+      Origin = 'doc_dt_registration'
+    end
+    object qry_doctorrec_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_name'
+      Origin = 'rec_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object qry_doctorcodDoctor: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codDoctor'
+      Origin = 'codDoctor'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qry_doctorcodEmployee: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codEmployee'
+      Origin = 'codEmployee'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+  end
+  object ds_qry_doctor: TDataSource
+    DataSet = qry_doctor
+    Left = 848
+    Top = 528
   end
 end

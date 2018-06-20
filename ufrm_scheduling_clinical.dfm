@@ -14,6 +14,7 @@ inherited frm_scheduling_clinical: Tfrm_scheduling_clinical
   inherited pgctrl_1: TcxPageControl
     Width = 1482
     Height = 582
+    Properties.ActivePage = tbsht_2
     ExplicitWidth = 1482
     ExplicitHeight = 582
     ClientRectBottom = 576

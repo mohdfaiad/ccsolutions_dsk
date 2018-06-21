@@ -178,8 +178,7 @@ begin
 
    qry.Close;
    qry.Close;
-   qry.SQL.Text:= ' select receipt.*,cli_first_name from receipt ' +
-                  ' left join client on cli_cod = client_cli_cod ' +
+   qry.SQL.Text:= ' select receipt.*,hex(client_cli_cod) clientCod,hex(enterprise_ent_cod) enterpriseCod from receipt '+
                   ' where rec_deleted_at is null ';
    qry.Prepare;
    qry.open;
@@ -260,8 +259,7 @@ begin
   end;
 
    qry.Close;
-   qry.SQL.Text:= ' select receipt.*,cli_first_name from receipt ' +
-                  ' left join client on cli_cod = client_cli_cod ' +
+   qry.SQL.Text:= ' select receipt.*,hex(client_cli_cod) clientCod,hex(enterprise_ent_cod) enterpriseCod from receipt ' +
                   ' where rec_deleted_at is null ' +
                   ' and rec_cod = unhex('+ QuotedStr(rec_cod) + ')';
    qry.Prepare;

@@ -67,11 +67,6 @@ type
     cxLabelPaciente: TcxLabel;
     cxLookupComboBoxPaciente: TcxLookupComboBox;
     qry_client: TFDQuery;
-    qry_clientcli_id: TLongWordField;
-    qry_clientcli_cod: TBytesField;
-    qry_clientcli_first_name: TStringField;
-    qry_clientcli_last_name: TStringField;
-    qry_clientcliCod: TStringField;
     ds_qry_client: TDataSource;
     cxLabelDtNascimento: TcxLabel;
     cxLabelIdade: TcxLabel;
@@ -84,8 +79,6 @@ type
     cxTextEditDataNasc: TcxTextEdit;
     cxTextEditIdade: TcxTextEdit;
     cxTextEditTipo: TcxTextEdit;
-    qry_clientcli_dt_birthopen: TDateField;
-    qry_clientidade: TLargeintField;
     cxTextEditPeso: TcxTextEdit;
     cxTextEditAltura: TcxTextEdit;
     cxTextEditSexo: TcxTextEdit;
@@ -93,22 +86,14 @@ type
     cxTextEditRG: TcxTextEdit;
     cxLabelCPF: TcxLabel;
     cxTextEditCPF: TcxTextEdit;
-    cxLabelEmpresa: TcxLabel;
-    cxLookupComboBoxEmpresa: TcxLookupComboBox;
     qry_enterprise: TFDQuery;
-    qry_clientcontract_ctr_cod: TBytesField;
     ds_qry_enterprise: TDataSource;
-    cxTextEditEnterpriseID: TcxTextEdit;
-    cxTextEditConvenioID: TcxTextEdit;
-    cxTextEdit3: TcxTextEdit;
     BitBtn1: TBitBtn;
     qry_enterpriseent_cod: TBytesField;
     qry_enterpriseent_id: TLongWordField;
     qry_enterpriseent_last_name: TStringField;
     qry_enterprisecontract_ctr_cod: TBytesField;
     qry_enterpriseentCod: TStringField;
-    cxLabelConvenio: TcxLabel;
-    cxLookupComboBoxConvenio: TcxLookupComboBox;
     qry_insurance: TFDQuery;
     qry_insuranceins_cod: TBytesField;
     qry_insurancecontract_ctr_cod: TBytesField;
@@ -128,13 +113,7 @@ type
     qry_requisition_typeret_deleted_at: TDateTimeField;
     qry_requisition_typeret_dt_registration: TDateTimeField;
     qry_requisition_typeretCod: TStringField;
-    cxTextEditTipoExameID: TcxTextEdit;
-    cxLabelTipodeExame: TcxLabel;
-    cxLookupComboBoxTipoExame: TcxLookupComboBox;
     ds_qry_requisition_type: TDataSource;
-    cxLabelMedico: TcxLabel;
-    cxTextEditMedicoID: TcxTextEdit;
-    cxLookupComboBoxMedico: TcxLookupComboBox;
     qry_doctor: TFDQuery;
     qry_doctordoc_cod: TBytesField;
     qry_doctorcontract_ctr_cod: TBytesField;
@@ -147,6 +126,72 @@ type
     qry_doctorcodDoctor: TStringField;
     qry_doctorcodEmployee: TStringField;
     ds_qry_doctor: TDataSource;
+    qry_employee: TFDQuery;
+    ds_qry_employee: TDataSource;
+    qry_clientcli_id: TLongWordField;
+    qry_clientcli_cod: TBytesField;
+    qry_clientcli_first_name: TStringField;
+    qry_clientcli_last_name: TStringField;
+    qry_clientcliCod: TStringField;
+    qry_clientcli_dt_birthopen: TDateField;
+    qry_clientcontract_ctr_cod: TBytesField;
+    qry_clientidade: TLargeintField;
+    qry_clientcli_rgie: TStringField;
+    qry_clientcli_cpfcnpj: TStringField;
+    qry_employeeemp_cod: TBytesField;
+    qry_employeeemp_id: TLongWordField;
+    qry_employeecontract_ctr_cod: TBytesField;
+    qry_employeerec_name: TStringField;
+    qry_employeeempCod: TStringField;
+    cxPageControl1: TcxPageControl;
+    cxTabSheet1: TcxTabSheet;
+    cxGroupBox1: TcxGroupBox;
+    cxLabelEmpresa: TcxLabel;
+    cxTextEditEnterpriseID: TcxTextEdit;
+    cxLookupComboBoxEmpresa: TcxLookupComboBox;
+    cxLabelConvenio: TcxLabel;
+    cxTextEditConvenioID: TcxTextEdit;
+    cxLookupComboBoxConvenio: TcxLookupComboBox;
+    cxLabelTipodeExame: TcxLabel;
+    cxTextEditTipoExameID: TcxTextEdit;
+    cxLookupComboBoxTipoExame: TcxLookupComboBox;
+    cxLabelMedico: TcxLabel;
+    cxTextEditMedicoID: TcxTextEdit;
+    cxLookupComboBoxMedico: TcxLookupComboBox;
+    cxLookupComboBoxColetador: TcxLookupComboBox;
+    cxTextEditColetador: TcxTextEdit;
+    cxLabelColetador: TcxLabel;
+    cxTabSheet2: TcxTabSheet;
+    cxTabSheet3: TcxTabSheet;
+    cxGroupBox2: TcxGroupBox;
+    cxGroupBox3: TcxGroupBox;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    qry_requisition_iten: TFDQuery;
+    ds_qry_requisition_iten: TDataSource;
+    qry_product: TFDQuery;
+    qry_productpro_id: TLongWordField;
+    qry_productpro_cod: TBytesField;
+    qry_productproCod: TStringField;
+    qry_productpro_name: TStringField;
+    qry_productpro_initials: TStringField;
+    qry_productcontract_ctr_cod: TBytesField;
+    ds_qry_product: TDataSource;
+    qry_requisition_itenrei_cod: TBytesField;
+    qry_requisition_itenrequisition_req_cod: TBytesField;
+    qry_requisition_itenproduct_pro_cod: TBytesField;
+    qry_requisition_itenproduct_value: TBCDField;
+    qry_requisition_itenrei_deleted_at: TDateTimeField;
+    qry_requisition_itenpro_initials: TStringField;
+    cxGrid1DBTableView1rei_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1requisition_req_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1product_pro_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1rei_in: TcxGridDBColumn;
+    cxGrid1DBTableView1product_value: TcxGridDBColumn;
+    cxGrid1DBTableView1rei_deleted_at: TcxGridDBColumn;
+    cxGrid1DBTableView1pro_initials: TcxGridDBColumn;
+    qry_requisition_itenrei_id: TLongWordField;
     qryreq_cod: TBytesField;
     qrycontract_ctr_cod: TBytesField;
     qryclient_cli_cod: TBytesField;
@@ -155,6 +200,7 @@ type
     qryinsurance_ins_cod: TBytesField;
     qryrole_rol_cod: TBytesField;
     qrydoctor_doc_cod: TBytesField;
+    qryemployee_emp_cod: TBytesField;
     qryreq_id: TLongWordField;
     qryreq_source: TStringField;
     qryreq_status: TStringField;
@@ -164,6 +210,8 @@ type
     qryenterpriseCod: TStringField;
     qryinsuranceCod: TStringField;
     qrydoctorCod: TStringField;
+    qryemployeeCod: TStringField;
+    qry_requisition_itenreiCod: TStringField;
     procedure cxLookupComboBoxPacientePropertiesCloseUp(Sender: TObject);
     procedure cxLookupComboBoxEmpresaPropertiesCloseUp(Sender: TObject);
     procedure cxTextEditEnterpriseIDExit(Sender: TObject);
@@ -178,9 +226,13 @@ type
     procedure cxTextEditMedicoIDExit(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
+    procedure cxLookupComboBoxColetadorPropertiesCloseUp(Sender: TObject);
+    procedure cxTextEditColetadorExit(Sender: TObject);
+    procedure qry_requisition_itenAfterInsert(DataSet: TDataSet);
+    procedure cxGrid1DBTableView1pro_initialsPropertiesCloseUp(Sender: TObject);
   private
     { Private declarations }
-    req_cod:string;
+    req_cod,rei_cod:string;
   public
     { Public declarations }
   end;
@@ -280,6 +332,21 @@ begin
   end;
 
 
+procedure Tfrm_Requisition_Lab.cxGrid1DBTableView1pro_initialsPropertiesCloseUp(
+  Sender: TObject);
+begin
+  inherited;
+qry_requisition_itenproduct_pro_cod.Value:=qry_productpro_cod.Value;
+qry_requisition_iten.Post;
+end;
+
+procedure Tfrm_Requisition_Lab.cxLookupComboBoxColetadorPropertiesCloseUp(
+  Sender: TObject);
+begin
+  inherited;
+ cxTextEditColetador.Text:=qry_employeeemp_id.AsString;
+end;
+
 procedure Tfrm_Requisition_Lab.cxLookupComboBoxConvenioPropertiesCloseUp(
   Sender: TObject);
 begin
@@ -333,28 +400,9 @@ end
      cxTextEditTipo.Text:='ANO'
       else
        cxTextEditTipo.Text:='ANOS';
-
-  end;
-
-
-//if (StrToInt(FormatDateTime('yyyy',frm_dm.dataAtual)) - StrToInt(FormatDateTime('yyyy',qry_clientcli_dt_birthopen.AsDateTime))) = 0   then
-//begin
-// if (StrToInt(FormatDateTime('MM',frm_dm.dataAtual)) - StrToInt(FormatDateTime('MM',qry_clientcli_dt_birthopen.AsDateTime))) = 0   then
-//  begin
-//  cxTextEditIdade.Text:= IntToStr((StrToInt(FormatDateTime('dd',frm_dm.dataAtual)) - StrToInt(FormatDateTime('dd',qry_clientcli_dt_birthopen.AsDateTime))));
-//  cxTextEditTipo.Text:='Dias';
-// end
-//  else
-//   begin
-//    cxTextEditIdade.Text:=IntToStr((StrToInt(FormatDateTime('MM',frm_dm.dataAtual)) - StrToInt(FormatDateTime('MM',qry_clientcli_dt_birthopen.AsDateTime))));
-//    cxTextEditTipo.Text:='Mese(s)';
-//   end;
-//end
-// else
-//  begin
-//   cxTextEditIdade.Text:=qry_clientidade.AsString;;
-//   cxTextEditTipo.Text:='Anos';
-//  end;
+   end;
+   cxTextEditRG.Text:=qry_clientcli_rgie.AsString;
+   cxTextEditCPF.Text:=qry_clientcli_cpfcnpj.AsString;
 
 
 end;
@@ -364,6 +412,27 @@ procedure Tfrm_Requisition_Lab.cxLookupComboBoxTipoExamePropertiesCloseUp(
 begin
   inherited;
 cxTextEditTipoExameID.Text:=qry_requisition_typeret_id.AsString;
+end;
+
+procedure Tfrm_Requisition_Lab.cxTextEditColetadorExit(Sender: TObject);
+begin
+  inherited;
+ if trim(cxTextEditColetador.Text) = ''  then
+  exit;
+
+ try
+  begin
+   cxLookupComboBoxColetador.ItemIndex:=-1;
+   qry_employee.Locate('emp_id',strToInt(cxTextEditColetador.Text),[loCaseInsensitive, loPartialKey]);
+   cxLookupComboBoxColetador.Text:= qry_employeerec_name.AsString;
+   end;
+ Except
+  begin
+    Application.MessageBox('Código Inválido!','LABORATÓRIO', MB_OK + MB_ICONEXCLAMATION);
+    cxTextEditMedicoID.SetFocus;
+  end;
+
+ end;
 end;
 
 procedure Tfrm_Requisition_Lab.cxTextEditConvenioIDExit(Sender: TObject);
@@ -476,17 +545,43 @@ begin
    edt_dt_registration.Text:=qryreq_dt_registration.AsString;
 end;
 
+procedure Tfrm_Requisition_Lab.qry_requisition_itenAfterInsert(
+  DataSet: TDataSet);
+begin
+  inherited;
+ With frm_dm.qry,sql do
+ begin
+   close;
+   text:='select hex(uuid_to_bin(uuid()))';
+   prepare;
+   open;
+
+   rei_cod:=Fields[0].AsString;
+
+   Close;
+   Text:='insert into requisition_iten (rei_id,rei_cod) ' +
+         ' select 0,unhex('+ QuotedStr(rei_cod) + ')';
+   Prepare;
+   ExecSQL;
+  end;
+
+   qry_requisition_iten.Locate('reiCod',rei_cod, []);
+   qry_requisition_iten.Edit;
+
+
+end;
+
 procedure Tfrm_Requisition_Lab.qry_sql(sql: string);
 begin
   qry.Close;
   if sql = 'todos' then
    qry.sql.text:= ' select *,hex(client_cli_cod) as clientCod,hex(enterprise_ent_cod) as enterpriseCod,hex(insurance_ins_cod) as insuranceCod,  ' +
-                  ' hex(doctor_doc_cod) as doctorCod from requisition ' +
+                  ' hex(doctor_doc_cod) as doctorCod,hex(employee_emp_cod) employeeCod from requisition ' +
                   ' where req_deleted_at is null ';
 
   if sql = 'insert' then
    qry.sql.text:= ' select *,hex(client_cli_cod) as clientCod,hex(enterprise_ent_cod) as enterpriseCod,hex(insurance_ins_cod) as insuranceCod, '+
-                  ' hex(doctor_doc_cod) as doctorCod  from requisition ' +
+                  ' hex(doctor_doc_cod) as doctorCod,hex(employee_emp_cod) employeeCod  from requisition ' +
                   ' where req_cod = unhex(' + QuotedStr(req_cod) + ')';
    qry.Prepare;
    qry.open;

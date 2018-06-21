@@ -116,8 +116,8 @@
             <Form>frm_main</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\ufrm_client.pas">
-            <Form>frm_client</Form>
+        <DCCReference Include="..\ufrm_patient.pas">
+            <Form>frm_patient</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_contract.pas">
@@ -246,6 +246,10 @@
         <DCCReference Include="..\Model\Contract_User_Enterprise.Model.pas"/>
         <DCCReference Include="..\ufrm_Requisition_Lab.pas">
             <Form>frm_Requisition_Lab</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_client.pas">
+            <Form>frm_client</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

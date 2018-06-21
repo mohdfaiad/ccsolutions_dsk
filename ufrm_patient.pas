@@ -1,4 +1,4 @@
-unit ufrm_client;
+unit ufrm_patient;
 
 interface
 
@@ -35,10 +35,11 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxImage, cxShellComboBox, QExport4Dialog, cxBarEditItem,
   dxBarExtItems, QImport3Wizard, Vcl.StdCtrls, frxClass, ACBrSocket, ACBrCEP,
-  dxLayoutControlAdapters, cxButtons, cxDBLookupComboBox, ufrm_main_default, Vcl.Grids, Vcl.DBGrids;
+  dxLayoutControlAdapters, cxButtons, cxDBLookupComboBox, ufrm_main_default, Vcl.Grids, Vcl.DBGrids,
+  cxGroupBox, cxRadioGroup;
 
 type
-  Tfrm_client = class(Tfrm_form_default)
+  Tfrm_patient = class(Tfrm_form_default)
     qrycli_first_name: TStringField;
     qrycli_last_name: TStringField;
     qrycli_email: TStringField;
@@ -110,14 +111,8 @@ type
     dxLayoutGroup6: TdxLayoutGroup;
     qrycli_cpfcnpj: TStringField;
     qrycli_suframa: TStringField;
-    edt_cpfcnpj: TcxDBTextEdit;
-    dxLayoutItem32: TdxLayoutItem;
-    cxDBTextEdit20: TcxDBTextEdit;
-    dxLayoutItem33: TdxLayoutItem;
     cxDBTextEdit28: TcxDBTextEdit;
     dxLayoutItem34: TdxLayoutItem;
-    cxDBTextEdit29: TcxDBTextEdit;
-    dxLayoutItem35: TdxLayoutItem;
     cxDBComboBox1: TcxDBComboBox;
     dxLayoutItem36: TdxLayoutItem;
     qrycli_phone1: TStringField;
@@ -209,8 +204,6 @@ type
     cxGrid_1DBTableView1cli_dt_birthopen: TcxGridDBColumn;
     cxGrid_1DBTableView1cli_dt_registration: TcxGridDBColumn;
     cxGrid_1DBTableView1cli_day_maturity: TcxGridDBColumn;
-    dxLayoutAutoCreatedGroup11: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup15: TdxLayoutAutoCreatedGroup;
     cxTabSheet2: TcxTabSheet;
     dxLayoutControl3: TdxLayoutControl;
     cxDBTextEdit38: TcxDBTextEdit;
@@ -305,11 +298,36 @@ type
     cxGrid1DBTableView1ins_first_name: TcxGridDBColumn;
     cxGrid1DBTableView1cin_dt_registration: TcxGridDBColumn;
     cxGrid_1DBTableView1Column1: TcxGridDBColumn;
-    cxDBImage1: TcxDBImage;
-    dxLayoutItem47: TdxLayoutItem;
     qrycli_image1: TBlobField;
     PopupMenu1: TPopupMenu;
     Localizar1: TMenuItem;
+    cxDBRadioGroup1: TcxDBRadioGroup;
+    dxLayoutItem48: TdxLayoutItem;
+    cxDBTextEdit1: TcxDBTextEdit;
+    dxLayoutItem49: TdxLayoutItem;
+    cxDBTextEdit12: TcxDBTextEdit;
+    dxLayoutItem50: TdxLayoutItem;
+    cxDBComboBox2: TcxDBComboBox;
+    dxLayoutItem51: TdxLayoutItem;
+    cxDBRadioGroup2: TcxDBRadioGroup;
+    dxLayoutItem52: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup;
+    cxDBRadioGroup3: TcxDBRadioGroup;
+    dxLayoutItem32: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup12: TdxLayoutAutoCreatedGroup;
+    edt_cpfcnpj: TcxDBTextEdit;
+    dxLayoutItem35: TdxLayoutItem;
+    cxDBTextEdit20: TcxDBTextEdit;
+    dxLayoutItem47: TdxLayoutItem;
+    cxDBComboBox4: TcxDBComboBox;
+    dxLayoutItem53: TdxLayoutItem;
+    cxDBTextEdit34: TcxDBTextEdit;
+    dxLayoutItem33: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup15: TdxLayoutAutoCreatedGroup;
+    cxDBTextEdit29: TcxDBTextEdit;
+    CNS: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup11: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);
@@ -354,7 +372,7 @@ type
   end;
 
 var
-  frm_client: Tfrm_client;
+  frm_patient: Tfrm_patient;
 
 implementation
 
@@ -362,7 +380,7 @@ implementation
 
 uses ufrm_dm, ufrm_consult_cnpj, ufrm_consult_cpf;
 
-procedure Tfrm_client.ACBrCEP_1BuscaEfetuada(Sender: TObject);
+procedure Tfrm_patient.ACBrCEP_1BuscaEfetuada(Sender: TObject);
  var
 i:Integer;
 begin
@@ -411,7 +429,7 @@ begin
 
  end;
 
-procedure Tfrm_client.Action_cancelExecute(Sender: TObject);
+procedure Tfrm_patient.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
  if (qrycli_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
@@ -432,21 +450,21 @@ begin
  end;
 end;
 
-procedure Tfrm_client.Action_consult_cnpjExecute(Sender: TObject);
+procedure Tfrm_patient.Action_consult_cnpjExecute(Sender: TObject);
 begin
   inherited;
   frm_consult_cnpj := Tfrm_consult_cnpj.Create(Self);
   frm_consult_cnpj.Show;
 end;
 
-procedure Tfrm_client.Action_consult_cpfExecute(Sender: TObject);
+procedure Tfrm_patient.Action_consult_cpfExecute(Sender: TObject);
 begin
   inherited;
   frm_consult_cpf := Tfrm_consult_cpf.Create(Self);
   frm_consult_cpf.Show;
 end;
 
-procedure Tfrm_client.Action_deleteExecute(Sender: TObject);
+procedure Tfrm_patient.Action_deleteExecute(Sender: TObject);
 begin
    if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
     = IDYES then
@@ -464,14 +482,14 @@ begin
     end;
  end;
 
-procedure Tfrm_client.Action_editExecute(Sender: TObject);
+procedure Tfrm_patient.Action_editExecute(Sender: TObject);
 begin
   inherited;
     cli_cod:=qryCodClient.AsString;
     cpfCnpj:=qrycli_cpfcnpj.AsString;
 end;
 
-procedure Tfrm_client.Action_saveExecute(Sender: TObject);
+procedure Tfrm_patient.Action_saveExecute(Sender: TObject);
 
 begin
  if ((trim(edt_cpfcnpj.Text)<> '') and  (qrycli_id.AsInteger = 0))
@@ -535,7 +553,7 @@ if trim(edtClient.Text) = ''  then
 end;
 
 
-procedure Tfrm_client.AtualizarConvenios;
+procedure Tfrm_patient.AtualizarConvenios;
 begin
 
   //Select para Atualizadr a Grid de Convenios do cliente----------------
@@ -550,7 +568,7 @@ begin
 
 end;
 
-procedure Tfrm_client.AtualizarGrid;
+procedure Tfrm_patient.AtualizarGrid;
 begin
    qry.Close;
    qry.SQL.Text:= ' select client.*,concat(''0x'',hex(cli_cod))as CodClient, hex(cli_cod)as ClientCod from client '+
@@ -560,17 +578,17 @@ begin
    qry.open;
 end;
 
-procedure Tfrm_client.changeType;
+procedure Tfrm_patient.changeType;
 begin
   if cxDBComboBox1.ItemIndex = 0 then
   begin
     dxLayoutItem6.Caption := 'Dt. Nasc.';
     dxLayoutItem3.Caption := 'Nome';
     dxLayoutItem4.Caption := 'Sobrenome';
-    dxLayoutItem32.Caption := 'CPF';
-    dxLayoutItem33.Caption := 'RG';
+    dxLayoutItem35.Caption := 'CPF';
+    dxLayoutItem47.Caption := 'RG';
     dxLayoutItem34.Visible := False;
-    dxLayoutItem35.Visible := False;
+    dxLayoutItem33.Visible := False;
 
   end
   else
@@ -578,14 +596,14 @@ begin
     dxLayoutItem6.Caption := 'Dt. Aber.';
     dxLayoutItem3.Caption := 'Razão';
     dxLayoutItem4.Caption := 'Fantasia';
-    dxLayoutItem32.Caption := 'CNPJ';
-    dxLayoutItem33.Caption := 'IE';
+    dxLayoutItem35.Caption := 'CNPJ';
+    dxLayoutItem47.Caption := 'IE';
     dxLayoutItem34.Visible := True;
-    dxLayoutItem35.Visible := True;
+    dxLayoutItem33.Visible := True;
   end;
 end;
 
-procedure Tfrm_client.cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
+procedure Tfrm_patient.cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
   AButtonIndex: Integer);
 begin
   inherited;
@@ -593,7 +611,7 @@ begin
   ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit1.Text);
 end;
 
-procedure Tfrm_client.cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
+procedure Tfrm_patient.cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
   AButtonIndex: Integer);
 begin
   inherited;
@@ -601,7 +619,7 @@ begin
  ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit2.Text);
 end;
 
-procedure Tfrm_client.cxDBButtonEdit3PropertiesButtonClick(Sender: TObject;
+procedure Tfrm_patient.cxDBButtonEdit3PropertiesButtonClick(Sender: TObject;
   AButtonIndex: Integer);
 begin
   inherited;
@@ -609,13 +627,13 @@ begin
   ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit3.Text);
 end;
 
-procedure Tfrm_client.cxDBComboBox1PropertiesChange(Sender: TObject);
+procedure Tfrm_patient.cxDBComboBox1PropertiesChange(Sender: TObject);
 begin
   inherited;
   changeType;
 end;
 
-procedure Tfrm_client.edt_cpfcnpjExit(Sender: TObject);
+procedure Tfrm_patient.edt_cpfcnpjExit(Sender: TObject);
 //var
 //x:string;
 begin
@@ -653,7 +671,7 @@ begin
 //  end;
 end;
 
-procedure Tfrm_client.ExibirConvenios;
+procedure Tfrm_patient.ExibirConvenios;
 begin
    qry_insurance.Close;
    qry_insurance.SQL.Text := ' select ins_cod, concat(''0x'',hex(ins_cod)) as codInsurance, table_price_tbp_cod, ins_id,contract_ctr_cod,ins_first_name from insurance  ' +
@@ -664,7 +682,7 @@ begin
    qry_insurance.Open;
 end;
 
-procedure Tfrm_client.cxEditCodastppKeyDown(Sender: TObject; var Key: Word;
+procedure Tfrm_patient.cxEditCodastppKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   inherited;
@@ -696,7 +714,7 @@ if Application.MessageBox('Deseja associar esse código Astpp para este cliente?'
 end;
 end;
 
-procedure Tfrm_client.cxEditCodsippulseKeyDown(Sender: TObject; var Key: Word;
+procedure Tfrm_patient.cxEditCodsippulseKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   inherited;
@@ -728,7 +746,7 @@ if Application.MessageBox('Deseja associar esse código sippulse para este client
 end;
 end;
 
-procedure Tfrm_client.cxGrid1DBTableView1insurance_ins_idPropertiesCloseUp(Sender: TObject);
+procedure Tfrm_patient.cxGrid1DBTableView1insurance_ins_idPropertiesCloseUp(Sender: TObject);
 begin
   inherited;
 //   with frm_dm.qry3,sql do
@@ -768,7 +786,7 @@ begin
 
 end;
 
-procedure Tfrm_client.cxGrid1DBTableView1ins_first_namePropertiesCloseUp(Sender: TObject);
+procedure Tfrm_patient.cxGrid1DBTableView1ins_first_namePropertiesCloseUp(Sender: TObject);
 begin
   inherited;
       with frm_dm.qry3,sql do
@@ -805,20 +823,20 @@ begin
     AtualizarConvenios;
 end;
 
-procedure Tfrm_client.cxTabSheet_addressShow(Sender: TObject);
+Procedure Tfrm_patient.cxTabSheet_addressShow(Sender: TObject);
 begin
   inherited;
   dxLayoutControl1Group_Root.ItemIndex:=0;
 end;
 
-procedure Tfrm_client.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure Tfrm_patient.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-  frm_client.Destroy;
-  frm_client := Nil;
+  frm_patient.Destroy;
+  frm_patient := Nil;
 end;
 
-procedure Tfrm_client.FormCreate(Sender: TObject);
+procedure Tfrm_patient.FormCreate(Sender: TObject);
 begin
   inherited;
   FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
@@ -826,18 +844,18 @@ begin
   tabTelefonia.TabVisible:=modulo = 'TELEFONIA';
 end;
 
-procedure Tfrm_client.FormShow(Sender: TObject);
+procedure Tfrm_patient.FormShow(Sender: TObject);
 begin
   inherited;
   AtualizarGrid;
 end;
 
-procedure Tfrm_client.limpaCache(Sender: TObject);
+procedure Tfrm_patient.limpaCache(Sender: TObject);
 begin
  qry.CommitUpdates();
 end;
 
-procedure Tfrm_client.Localizar1Click(Sender: TObject);
+procedure Tfrm_patient.Localizar1Click(Sender: TObject);
 var
 cod:string;
 begin
@@ -849,7 +867,7 @@ if Trim(cod) <> '' then
 
 end;
 
-procedure Tfrm_client.qryAfterInsert(DataSet: TDataSet);
+procedure Tfrm_patient.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
  With frm_dm.qry,sql do
@@ -878,7 +896,7 @@ begin
    qry.Edit;
 end;
 
-procedure Tfrm_client.qry_client_insiranceAfterInsert(DataSet: TDataSet);
+procedure Tfrm_patient.qry_client_insiranceAfterInsert(DataSet: TDataSet);
 begin
   inherited;
  //Inicializar as variaveis vazias---------------------------------
@@ -904,7 +922,7 @@ begin
     AtualizarConvenios;
 end;
 
-procedure Tfrm_client.qry_client_insiranceBeforePost(DataSet: TDataSet);
+procedure Tfrm_patient.qry_client_insiranceBeforePost(DataSet: TDataSet);
 begin
   inherited;
    with frm_dm.qry,sql do
@@ -925,7 +943,7 @@ begin
 
 end;
 
-procedure Tfrm_client.tabLaboratorioShow(Sender: TObject);
+procedure Tfrm_patient.tabLaboratorioShow(Sender: TObject);
 begin
   inherited;
   //Select para Atualizadr a Grid de Convenios do cliente-------

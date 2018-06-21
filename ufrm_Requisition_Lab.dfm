@@ -1,21 +1,30 @@
 inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   Caption = 'frm_Requisition_Lab'
+  ClientHeight = 702
+  ClientWidth = 1125
+  ExplicitWidth = 1141
+  ExplicitHeight = 741
   PixelsPerInch = 96
   TextHeight = 13
+  inherited bardck_1: TdxBarDockControl
+    Width = 1125
+  end
   inherited pgctrl_1: TcxPageControl
+    Width = 1125
+    Height = 612
     Properties.ActivePage = tbsht_2
+    ClientRectBottom = 606
+    ClientRectRight = 1119
     inherited tbsht_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
-      ExplicitWidth = 954
-      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
+        Width = 1117
+        Height = 579
+        ClientRectBottom = 573
+        ClientRectRight = 1111
         inherited tbsht_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 27
-          ExplicitWidth = 946
-          ExplicitHeight = 505
           inherited grid_1: TcxGrid
+            Width = 1103
+            Height = 540
             inherited grid_1DBTableView1: TcxGridDBTableView
               object grid_1DBTableView1req_cod: TcxGridDBColumn
                 DataBinding.FieldName = 'req_cod'
@@ -62,13 +71,14 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       end
     end
     inherited tbsht_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 27
-      ExplicitWidth = 954
-      ExplicitHeight = 538
       inherited pgctrl_3: TcxPageControl
+        Width = 1117
+        Height = 579
+        ClientRectBottom = 573
+        ClientRectRight = 1111
         inherited tbsht_5: TcxTabSheet
           inherited grb_top: TcxGroupBox
+            Width = 1103
             inherited lbl_cod_id: TcxLabel
               Left = 9
               ExplicitLeft = 9
@@ -78,21 +88,23 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
               ExplicitLeft = 9
             end
             inherited lbl_dt_registration: TcxLabel
-              Left = 245
-              ExplicitLeft = 245
+              Left = 259
+              ExplicitLeft = 259
             end
             inherited edt_dt_registration: TcxTextEdit
-              Left = 245
-              ExplicitLeft = 245
+              Left = 291
+              ExplicitLeft = 291
             end
           end
           inherited grb_bottton: TcxGroupBox
+            Height = 480
+            Width = 1103
             object cxTextEditCNS: TcxTextEdit
               Left = 9
               Top = 82
               Enabled = False
               TabOrder = 0
-              Width = 141
+              Width = 125
             end
             object cxLabelPaciente: TcxLabel
               Left = 9
@@ -100,34 +112,20 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
               Caption = 'Paciente'
               Transparent = True
             end
-            object cxLookupComboBoxPaciente: TcxLookupComboBox
-              Left = 9
-              Top = 35
-              Properties.GridMode = True
-              Properties.KeyFieldNames = 'cliCod'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'cli_first_name'
-                end>
-              Properties.ListSource = ds_qry_client
-              Properties.OnCloseUp = cxLookupComboBoxPacientePropertiesCloseUp
-              TabOrder = 2
-              Width = 361
-            end
             object cxLabelDtNascimento: TcxLabel
-              Left = 161
+              Left = 291
               Top = 65
               Caption = 'Data Nasc.:'
               Transparent = True
             end
             object cxLabelIdade: TcxLabel
-              Left = 288
+              Left = 434
               Top = 65
               Caption = 'Idade'
               Transparent = True
             end
             object cxLabelTipo: TcxLabel
-              Left = 335
+              Left = 509
               Top = 65
               Caption = 'Tipo'
               Transparent = True
@@ -139,7 +137,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
               Transparent = True
             end
             object cxLabelPeso: TcxLabel
-              Left = 407
+              Left = 701
               Top = 65
               Caption = 'Peso'
               Transparent = True
@@ -150,216 +148,374 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
               Caption = 'cxLabel6'
             end
             object cxLabelAltura: TcxLabel
-              Left = 504
+              Left = 776
               Top = 65
               Caption = 'Altura'
               Transparent = True
             end
             object cxLabelSexo: TcxLabel
-              Left = 592
+              Left = 189
               Top = 65
               Caption = 'Sexo'
               Transparent = True
             end
             object cxTextEditDataNasc: TcxTextEdit
-              Left = 161
+              Left = 291
               Top = 82
               Enabled = False
               TabOrder = 11
-              Width = 121
+              Width = 125
             end
             object cxTextEditIdade: TcxTextEdit
-              Left = 288
+              Left = 437
               Top = 82
               Enabled = False
               TabOrder = 12
-              Width = 41
+              Width = 66
             end
             object cxTextEditTipo: TcxTextEdit
-              Left = 335
+              Left = 509
               Top = 82
               Enabled = False
               TabOrder = 13
               Width = 66
             end
             object cxTextEditPeso: TcxTextEdit
-              Left = 407
+              Left = 701
               Top = 82
               Enabled = False
               TabOrder = 14
               Width = 66
             end
             object cxTextEditAltura: TcxTextEdit
-              Left = 487
+              Left = 776
               Top = 82
               Enabled = False
               TabOrder = 15
               Width = 66
             end
             object cxTextEditSexo: TcxTextEdit
-              Left = 575
+              Left = 186
               Top = 82
               Enabled = False
               TabOrder = 16
               Width = 66
             end
             object cxLabel1: TcxLabel
-              Left = 407
-              Top = 18
+              Left = 434
+              Top = 21
               Caption = 'RG'
               Transparent = True
             end
             object cxTextEditRG: TcxTextEdit
-              Left = 407
-              Top = 35
+              Left = 434
+              Top = 38
               Enabled = False
               TabOrder = 18
               Width = 141
             end
             object cxLabelCPF: TcxLabel
-              Left = 575
-              Top = 18
+              Left = 701
+              Top = 21
               Caption = 'CPF'
               Transparent = True
             end
             object cxTextEditCPF: TcxTextEdit
-              Left = 575
-              Top = 35
+              Left = 701
+              Top = 38
               Enabled = False
               TabOrder = 20
               Width = 141
             end
-            object cxLabelEmpresa: TcxLabel
-              Left = 9
-              Top = 120
-              Caption = 'Empresa'
-              Transparent = True
-            end
-            object cxLookupComboBoxEmpresa: TcxLookupComboBox
-              Left = 60
-              Top = 143
-              Properties.GridMode = True
-              Properties.KeyFieldNames = 'entCod'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'ent_last_name'
-                end>
-              Properties.ListSource = ds_qry_enterprise
-              Properties.OnCloseUp = cxLookupComboBoxEmpresaPropertiesCloseUp
-              TabOrder = 22
-              Width = 341
-            end
-            object cxTextEditEnterpriseID: TcxTextEdit
-              Left = 6
-              Top = 143
-              TabOrder = 23
-              OnExit = cxTextEditEnterpriseIDExit
-              Width = 48
-            end
-            object cxTextEditConvenioID: TcxTextEdit
-              Left = 3
-              Top = 199
-              TabOrder = 24
-              OnExit = cxTextEditConvenioIDExit
-              Width = 48
-            end
-            object cxTextEdit3: TcxTextEdit
-              Left = 101
-              Top = 352
-              TabOrder = 27
-              Text = 'cxTextEdit3'
-              Width = 121
-            end
             object BitBtn1: TBitBtn
-              Left = 462
-              Top = 141
+              Left = 870
+              Top = 90
               Width = 75
               Height = 25
               Caption = 'BitBtn1'
-              TabOrder = 28
-            end
-            object cxLabelConvenio: TcxLabel
-              Left = 6
-              Top = 176
-              Caption = 'Conv'#234'nio'
-              Transparent = True
-            end
-            object cxLookupComboBoxConvenio: TcxLookupComboBox
-              Left = 57
-              Top = 199
-              Properties.GridMode = True
-              Properties.KeyFieldNames = 'insCod'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'ins_last_name'
-                end>
-              Properties.ListSource = ds_qry_insurance
-              Properties.OnCloseUp = cxLookupComboBoxConvenioPropertiesCloseUp
-              TabOrder = 30
-              Width = 341
+              TabOrder = 21
             end
             object cxButton1: TcxButton
-              Left = 529
-              Top = 197
+              Left = 913
+              Top = 141
               Width = 75
               Height = 25
               Caption = 'cxButton1'
               LookAndFeel.SkinName = 'Metropolis'
-              TabOrder = 31
+              TabOrder = 22
             end
-            object cxTextEditTipoExameID: TcxTextEdit
+            object cxLookupComboBoxPaciente: TcxLookupComboBox
               Left = 3
-              Top = 256
-              TabOrder = 25
-              OnExit = cxTextEditTipoExameIDExit
-              Width = 48
-            end
-            object cxLabelTipodeExame: TcxLabel
-              Left = 6
-              Top = 233
-              Caption = 'Tipo de Exame'
-              Transparent = True
-            end
-            object cxLookupComboBoxTipoExame: TcxLookupComboBox
-              Left = 57
-              Top = 256
+              Top = 38
               Properties.GridMode = True
-              Properties.KeyFieldNames = 'retCod'
+              Properties.KeyFieldNames = 'cliCod'
               Properties.ListColumns = <
                 item
-                  FieldName = 'ret_name'
+                  FieldName = 'cli_first_name'
                 end>
-              Properties.ListSource = ds_qry_requisition_type
-              Properties.OnCloseUp = cxLookupComboBoxTipoExamePropertiesCloseUp
-              TabOrder = 33
-              Width = 341
+              Properties.ListSource = ds_qry_client
+              Properties.OnCloseUp = cxLookupComboBoxPacientePropertiesCloseUp
+              TabOrder = 2
+              Width = 413
             end
-            object cxLabelMedico: TcxLabel
-              Left = 6
-              Top = 289
-              Caption = 'M'#233'dico'
-              Transparent = True
-            end
-            object cxTextEditMedicoID: TcxTextEdit
+            object cxPageControl1: TcxPageControl
               Left = 3
-              Top = 312
-              TabOrder = 26
-              OnExit = cxTextEditMedicoIDExit
-              Width = 48
-            end
-            object cxLookupComboBoxMedico: TcxLookupComboBox
-              Left = 57
-              Top = 312
-              Properties.GridMode = True
-              Properties.KeyFieldNames = 'codDoctor'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'rec_name'
-                end>
-              Properties.ListSource = ds_qry_doctor
-              Properties.OnCloseUp = cxLookupComboBoxMedicoPropertiesCloseUp
-              TabOrder = 35
-              Width = 341
+              Top = 121
+              Width = 1097
+              Height = 356
+              Align = alBottom
+              Anchors = [akLeft, akTop, akRight, akBottom]
+              TabOrder = 23
+              Properties.ActivePage = cxTabSheet3
+              Properties.CustomButtons.Buttons = <>
+              ClientRectBottom = 350
+              ClientRectLeft = 2
+              ClientRectRight = 1091
+              ClientRectTop = 27
+              object cxTabSheet1: TcxTabSheet
+                Caption = 'Dados da Requisi'#231#227'o'
+                Color = clBlack
+                ImageIndex = 0
+                ParentColor = False
+                ExplicitLeft = -46
+                ExplicitTop = 35
+                ExplicitWidth = 281
+                ExplicitHeight = 160
+                object cxGroupBox1: TcxGroupBox
+                  AlignWithMargins = True
+                  Left = 3
+                  Top = 3
+                  Align = alClient
+                  Style.Shadow = False
+                  Style.TransparentBorder = True
+                  TabOrder = 0
+                  ExplicitTop = 35
+                  ExplicitWidth = 275
+                  ExplicitHeight = 154
+                  Height = 317
+                  Width = 1083
+                  object cxLabelEmpresa: TcxLabel
+                    Left = 5
+                    Top = 12
+                    Caption = 'Empresa'
+                    Transparent = True
+                  end
+                  object cxTextEditEnterpriseID: TcxTextEdit
+                    Left = 5
+                    Top = 29
+                    TabOrder = 1
+                    OnExit = cxTextEditEnterpriseIDExit
+                    Width = 66
+                  end
+                  object cxLookupComboBoxEmpresa: TcxLookupComboBox
+                    Left = 71
+                    Top = 29
+                    Properties.GridMode = True
+                    Properties.KeyFieldNames = 'entCod'
+                    Properties.ListColumns = <
+                      item
+                        FieldName = 'ent_last_name'
+                      end>
+                    Properties.ListSource = ds_qry_enterprise
+                    Properties.OnCloseUp = cxLookupComboBoxEmpresaPropertiesCloseUp
+                    TabOrder = 2
+                    Width = 341
+                  end
+                  object cxLabelConvenio: TcxLabel
+                    Left = 429
+                    Top = 12
+                    Caption = 'Conv'#234'nio'
+                    Transparent = True
+                  end
+                  object cxTextEditConvenioID: TcxTextEdit
+                    Left = 429
+                    Top = 29
+                    TabOrder = 4
+                    OnExit = cxTextEditConvenioIDExit
+                    Width = 66
+                  end
+                  object cxLookupComboBoxConvenio: TcxLookupComboBox
+                    Left = 495
+                    Top = 29
+                    Properties.GridMode = True
+                    Properties.KeyFieldNames = 'insCod'
+                    Properties.ListColumns = <
+                      item
+                        FieldName = 'ins_last_name'
+                      end>
+                    Properties.ListSource = ds_qry_insurance
+                    Properties.OnCloseUp = cxLookupComboBoxConvenioPropertiesCloseUp
+                    TabOrder = 5
+                    Width = 341
+                  end
+                  object cxLabelTipodeExame: TcxLabel
+                    Left = 2
+                    Top = 57
+                    Caption = 'Tipo de Exame'
+                    Transparent = True
+                  end
+                  object cxTextEditTipoExameID: TcxTextEdit
+                    Left = 5
+                    Top = 76
+                    TabOrder = 7
+                    OnExit = cxTextEditTipoExameIDExit
+                    Width = 66
+                  end
+                  object cxLookupComboBoxTipoExame: TcxLookupComboBox
+                    Left = 71
+                    Top = 76
+                    Properties.GridMode = True
+                    Properties.KeyFieldNames = 'retCod'
+                    Properties.ListColumns = <
+                      item
+                        FieldName = 'ret_name'
+                      end>
+                    Properties.ListSource = ds_qry_requisition_type
+                    Properties.OnCloseUp = cxLookupComboBoxTipoExamePropertiesCloseUp
+                    TabOrder = 8
+                    Width = 341
+                  end
+                  object cxLabelMedico: TcxLabel
+                    Left = 431
+                    Top = 61
+                    Caption = 'M'#233'dico'
+                    Transparent = True
+                  end
+                  object cxTextEditMedicoID: TcxTextEdit
+                    Left = 431
+                    Top = 76
+                    TabOrder = 10
+                    OnExit = cxTextEditMedicoIDExit
+                    Width = 66
+                  end
+                  object cxLookupComboBoxMedico: TcxLookupComboBox
+                    Left = 497
+                    Top = 76
+                    Properties.GridMode = True
+                    Properties.KeyFieldNames = 'codDoctor'
+                    Properties.ListColumns = <
+                      item
+                        FieldName = 'rec_name'
+                      end>
+                    Properties.ListSource = ds_qry_doctor
+                    Properties.OnCloseUp = cxLookupComboBoxMedicoPropertiesCloseUp
+                    TabOrder = 11
+                    Width = 341
+                  end
+                  object cxLookupComboBoxColetador: TcxLookupComboBox
+                    Left = 71
+                    Top = 124
+                    Properties.GridMode = True
+                    Properties.KeyFieldNames = 'codDoctor'
+                    Properties.ListColumns = <
+                      item
+                        FieldName = 'rec_name'
+                      end>
+                    Properties.ListSource = ds_qry_doctor
+                    Properties.OnCloseUp = cxLookupComboBoxColetadorPropertiesCloseUp
+                    TabOrder = 12
+                    Width = 341
+                  end
+                  object cxTextEditColetador: TcxTextEdit
+                    Left = 5
+                    Top = 124
+                    TabOrder = 13
+                    OnExit = cxTextEditColetadorExit
+                    Width = 66
+                  end
+                  object cxLabelColetador: TcxLabel
+                    Left = 5
+                    Top = 104
+                    Caption = 'Coletador'
+                    Transparent = True
+                  end
+                end
+              end
+              object cxTabSheet2: TcxTabSheet
+                Caption = 'Medicamento'
+                ImageIndex = 1
+                object cxGroupBox2: TcxGroupBox
+                  AlignWithMargins = True
+                  Left = 3
+                  Top = 3
+                  Align = alClient
+                  TabOrder = 0
+                  ExplicitLeft = 368
+                  ExplicitTop = 176
+                  ExplicitWidth = 185
+                  ExplicitHeight = 105
+                  Height = 317
+                  Width = 1083
+                end
+              end
+              object cxTabSheet3: TcxTabSheet
+                Caption = 'Exame'
+                ImageIndex = 2
+                object cxGroupBox3: TcxGroupBox
+                  AlignWithMargins = True
+                  Left = 3
+                  Top = 3
+                  Align = alClient
+                  TabOrder = 0
+                  ExplicitLeft = 224
+                  ExplicitTop = 200
+                  ExplicitWidth = 185
+                  ExplicitHeight = 105
+                  Height = 317
+                  Width = 1083
+                  object cxGrid1: TcxGrid
+                    Left = 3
+                    Top = 16
+                    Width = 831
+                    Height = 289
+                    TabOrder = 0
+                    object cxGrid1DBTableView1: TcxGridDBTableView
+                      Navigator.Buttons.CustomButtons = <>
+                      Navigator.Visible = True
+                      DataController.DataSource = ds_qry_requisition_iten
+                      DataController.Summary.DefaultGroupSummaryItems = <>
+                      DataController.Summary.FooterSummaryItems = <>
+                      DataController.Summary.SummaryGroups = <>
+                      OptionsView.GroupByBox = False
+                      OptionsView.GroupByHeaderLayout = ghlHorizontal
+                      object cxGrid1DBTableView1pro_initials: TcxGridDBColumn
+                        DataBinding.FieldName = 'pro_initials'
+                        PropertiesClassName = 'TcxLookupComboBoxProperties'
+                        Properties.GridMode = True
+                        Properties.KeyFieldNames = 'pro_initials'
+                        Properties.ListColumns = <
+                          item
+                            FieldName = 'pro_initials'
+                          end>
+                        Properties.ListSource = ds_qry_product
+                        Properties.OnCloseUp = cxGrid1DBTableView1pro_initialsPropertiesCloseUp
+                        Width = 111
+                      end
+                      object cxGrid1DBTableView1rei_cod: TcxGridDBColumn
+                        DataBinding.FieldName = 'rei_cod'
+                      end
+                      object cxGrid1DBTableView1requisition_req_cod: TcxGridDBColumn
+                        DataBinding.FieldName = 'requisition_req_cod'
+                      end
+                      object cxGrid1DBTableView1product_pro_cod: TcxGridDBColumn
+                        DataBinding.FieldName = 'product_pro_cod'
+                      end
+                      object cxGrid1DBTableView1rei_in: TcxGridDBColumn
+                        DataBinding.FieldName = 'rei_id'
+                      end
+                      object cxGrid1DBTableView1product_value: TcxGridDBColumn
+                        DataBinding.FieldName = 'product_value'
+                      end
+                      object cxGrid1DBTableView1rei_deleted_at: TcxGridDBColumn
+                        DataBinding.FieldName = 'rei_deleted_at'
+                      end
+                    end
+                    object cxGrid1Level1: TcxGridLevel
+                      GridView = cxGrid1DBTableView1
+                    end
+                  end
+                end
+              end
             end
           end
         end
@@ -367,11 +523,11 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     end
   end
   inherited stsbar_1: TdxStatusBar
+    Top = 667
+    Width = 1125
     inherited stsbar_deleted_at: TdxStatusBarContainerControl
-      inherited chkbox_1: TcxCheckBox
-        ExplicitWidth = 926
-        ExplicitHeight = 32
-      end
+      Width = 1089
+      ExplicitWidth = 1089
     end
   end
   inherited actlist_1: TActionList
@@ -440,7 +596,9 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       
         'select *,hex(client_cli_cod) as clientCod,hex(enterprise_ent_cod' +
         ') as enterpriseCod,hex(insurance_ins_cod) as insuranceCod,'
-      'hex(doctor_doc_cod) as doctorCod from requisition '
+      
+        'hex(doctor_doc_cod) as doctorCod,hex(employee_emp_cod) employeeC' +
+        'od from requisition '
       'where req_deleted_at is null '
       ''
       '')
@@ -484,6 +642,11 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       AutoGenerateValue = arDefault
       FieldName = 'doctor_doc_cod'
       Origin = 'doctor_doc_cod'
+    end
+    object qryemployee_emp_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'employee_emp_cod'
+      Origin = 'employee_emp_cod'
     end
     object qryreq_id: TLongWordField
       AutoGenerateValue = arDefault
@@ -542,6 +705,14 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       AutoGenerateValue = arDefault
       FieldName = 'doctorCod'
       Origin = 'doctorCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qryemployeeCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'employeeCod'
+      Origin = 'employeeCod'
       ProviderFlags = []
       ReadOnly = True
       Size = 32
@@ -620,7 +791,6 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     end
   end
   object qry_client: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -634,12 +804,12 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
         'as cliCod,cli_dt_birthopen,contract_ctr_cod ,'
       
         '(timestampdiff(month,cli_dt_birthopen,curdate()) div 12) as idad' +
-        'e from client'
+        'e,cli_rgie,cli_cpfcnpj from client'
       'where cli_deleted_at is null'
       'and (cli_status <> '#39'D'#39' or cli_status is null)'
       'order by cli_first_name')
-    Left = 751
-    Top = 164
+    Left = 95
+    Top = 188
     object qry_clientcli_id: TLongWordField
       AutoGenerateValue = arDefault
       FieldName = 'cli_id'
@@ -676,6 +846,11 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       FieldName = 'cli_dt_birthopen'
       Origin = 'cli_dt_birthopen'
     end
+    object qry_clientcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
     object qry_clientidade: TLargeintField
       AutoGenerateValue = arDefault
       FieldName = 'idade'
@@ -683,19 +858,25 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       ProviderFlags = []
       ReadOnly = True
     end
-    object qry_clientcontract_ctr_cod: TBytesField
+    object qry_clientcli_rgie: TStringField
       AutoGenerateValue = arDefault
-      FieldName = 'contract_ctr_cod'
-      Origin = 'contract_ctr_cod'
+      FieldName = 'cli_rgie'
+      Origin = 'cli_rgie'
+      Size = 25
+    end
+    object qry_clientcli_cpfcnpj: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_cpfcnpj'
+      Origin = 'cli_cpfcnpj'
+      Size = 25
     end
   end
   object ds_qry_client: TDataSource
     DataSet = qry_client
-    Left = 823
-    Top = 172
+    Left = 127
+    Top = 188
   end
   object qry_enterprise: TFDQuery
-    Active = True
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_cod;ent_id'
     MasterSource = frm_dm.ds_contract
@@ -710,8 +891,8 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
         ') as entCod from enterprise'
       'where ent_deleted_at is null'
       'order by ent_last_name')
-    Left = 479
-    Top = 484
+    Left = 487
+    Top = 84
     object qry_enterpriseent_cod: TBytesField
       FieldName = 'ent_cod'
       Origin = 'ent_cod'
@@ -746,10 +927,9 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   object ds_qry_enterprise: TDataSource
     DataSet = qry_enterprise
     Left = 575
-    Top = 484
+    Top = 84
   end
   object qry_insurance: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -766,8 +946,8 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
         'deleted_at is null and (ins_status in ('#39'A'#39') or ins_status is nul' +
         'l)'
       'order by ins_last_name')
-    Left = 495
-    Top = 556
+    Left = 863
+    Top = 108
     object qry_insuranceins_cod: TBytesField
       FieldName = 'ins_cod'
       Origin = 'ins_cod'
@@ -812,11 +992,10 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   end
   object ds_qry_insurance: TDataSource
     DataSet = qry_insurance
-    Left = 583
-    Top = 556
+    Left = 959
+    Top = 108
   end
   object qry_requisition_type: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
@@ -824,8 +1003,8 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
         'n_type'
       'where ret_status = '#39'A'#39' and ret_deleted_at is null'
       'order by ret_name')
-    Left = 671
-    Top = 420
+    Left = 471
+    Top = 132
     object qry_requisition_typeret_cod: TBytesField
       FieldName = 'ret_cod'
       Origin = 'ret_cod'
@@ -876,11 +1055,10 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   end
   object ds_qry_requisition_type: TDataSource
     DataSet = qry_requisition_type
-    Left = 768
-    Top = 424
+    Left = 568
+    Top = 128
   end
   object qry_doctor: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
@@ -893,8 +1071,8 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
         'status = '#39'A'#39#10
       ''
       '')
-    Left = 775
-    Top = 524
+    Left = 871
+    Top = 172
     object qry_doctordoc_cod: TBytesField
       FieldName = 'doc_cod'
       Origin = 'doc_cod'
@@ -960,7 +1138,181 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   end
   object ds_qry_doctor: TDataSource
     DataSet = qry_doctor
-    Left = 848
-    Top = 528
+    Left = 976
+    Top = 168
+  end
+  object qry_employee: TFDQuery
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      
+        'select emp_cod,emp_id,employee.contract_ctr_cod,rec_name,hex(emp' +
+        '_cod) as empCod from employee'#10'left join record on rec_cod = reco' +
+        'rd_rec_cod'#10'where emp_status = '#39'A'#39' and emp_collect = '#39'S'#39' and emp_' +
+        'deleted_at is null')
+    Left = 895
+    Top = 452
+    object qry_employeeemp_cod: TBytesField
+      FieldName = 'emp_cod'
+      Origin = 'emp_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_employeeemp_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'emp_id'
+      Origin = 'emp_id'
+    end
+    object qry_employeecontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_employeerec_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_name'
+      Origin = 'rec_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object qry_employeeempCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'empCod'
+      Origin = 'empCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+  end
+  object ds_qry_employee: TDataSource
+    DataSet = qry_employee
+    Left = 943
+    Top = 396
+  end
+  object qry_requisition_iten: TFDQuery
+    AfterInsert = qry_requisition_itenAfterInsert
+    IndexFieldNames = 'requisition_req_cod'
+    MasterSource = ds
+    MasterFields = 'req_cod'
+    DetailFields = 'requisition_req_cod'
+    Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      
+        'select requisition_iten.*, pro_initials,hex(rei_cod) as reiCod f' +
+        'rom requisition_iten'#10
+      'left join product on pro_cod = product_pro_cod;'#10)
+    Left = 719
+    Top = 451
+    object qry_requisition_itenrei_cod: TBytesField
+      FieldName = 'rei_cod'
+      Origin = 'rei_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_requisition_itenrequisition_req_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'requisition_req_cod'
+      Origin = 'requisition_req_cod'
+    end
+    object qry_requisition_itenproduct_pro_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_pro_cod'
+      Origin = 'product_pro_cod'
+    end
+    object qry_requisition_itenproduct_value: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_value'
+      Origin = 'product_value'
+      Precision = 12
+    end
+    object qry_requisition_itenrei_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'rei_deleted_at'
+      Origin = 'rei_deleted_at'
+    end
+    object qry_requisition_itenpro_initials: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_initials'
+      Origin = 'pro_initials'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object qry_requisition_itenrei_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'rei_id'
+      Origin = 'rei_id'
+    end
+    object qry_requisition_itenreiCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'reiCod'
+      Origin = 'reiCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+  end
+  object ds_qry_requisition_iten: TDataSource
+    DataSet = qry_requisition_iten
+    Left = 719
+    Top = 403
+  end
+  object qry_product: TFDQuery
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
+    Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      
+        'select contract_ctr_cod, pro_id,pro_cod,hex(pro_cod) as proCod,p' +
+        'ro_name,pro_initials  from product'#10'where pro_type = '#39'E'#39';')
+    Left = 887
+    Top = 579
+    object qry_productpro_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_id'
+      Origin = 'pro_id'
+    end
+    object qry_productpro_cod: TBytesField
+      FieldName = 'pro_cod'
+      Origin = 'pro_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_productproCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'proCod'
+      Origin = 'proCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qry_productpro_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_name'
+      Origin = 'pro_name'
+      Size = 85
+    end
+    object qry_productpro_initials: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_initials'
+      Origin = 'pro_initials'
+      Size = 85
+    end
+    object qry_productcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+  end
+  object ds_qry_product: TDataSource
+    DataSet = qry_product
+    Left = 959
+    Top = 579
   end
 end

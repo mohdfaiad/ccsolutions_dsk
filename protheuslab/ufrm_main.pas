@@ -34,7 +34,7 @@ type
     Action_contract: TAction;
     Action_contract_user: TAction;
     Action_enterprise: TAction;
-    Action_client: TAction;
+    Action_patient: TAction;
     Action_supplier: TAction;
     Action_phonebook: TAction;
     dxBarLargeButton1: TdxBarLargeButton;
@@ -74,7 +74,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
-    procedure Action_clientExecute(Sender: TObject);
+    procedure Action_patientExecute(Sender: TObject);
     procedure Action_enterpriseExecute(Sender: TObject);
     procedure Action_supplierExecute(Sender: TObject);
     procedure Action_phonebookExecute(Sender: TObject);
@@ -105,7 +105,7 @@ uses ufrm_login, ufrm_contract, ufrm_contract_user, ufrm_enterprise,
   ufrm_phonebook, ufrm_receipt, ufrm_supplier, ufrm_client,
   ufrm_exam, ufrm_material, ufrm_report, ufrm_insurance, ufrm_department,
   ufrm_medicine, ufrm_requisition_type, ufrm_requisition, ufrm_dm, class_check_enterprise,
-  ufrm_Requisition_Lab;
+  ufrm_Requisition_Lab, ufrm_patient;
 
 procedure Tfrm_main.acTableExecute(Sender: TObject);
 begin
@@ -124,20 +124,20 @@ begin
   end;
 end;
 
-procedure Tfrm_main.Action_clientExecute(Sender: TObject);
+procedure Tfrm_main.Action_patientExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_client) then
+  if not Assigned(frm_patient) then
   begin
-    frm_client := Tfrm_client.Create(Self);
-    frm_client.Height := Bevel_1.Height;
-    frm_client.Width := Bevel_1.Width;
-    frm_client.Show;
+    frm_patient := Tfrm_patient.Create(Self);
+    frm_patient.Height := Bevel_1.Height;
+    frm_patient.Width := Bevel_1.Width;
+    frm_patient.Show;
   end
   else
   begin
-    frm_client.WindowState := wsNormal;
-    frm_client.Show;
+    frm_patient.WindowState := wsNormal;
+    frm_patient.Show;
   end;
 end;
 

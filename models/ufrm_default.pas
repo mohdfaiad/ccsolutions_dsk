@@ -308,9 +308,18 @@ begin
 end;
 
 procedure Tfrm_default.FormShow(Sender: TObject);
+var
+i:Integer;
+
 begin
   tbsht_1.Show;
   actionButton(True);
+ for I := 0 to Self.ComponentCount -1 do
+  if Self.Components[i] is TFDQuery then
+   begin
+    TFDQuery(Self.Components[i]).Prepare;
+    TFDQuery(Self.Components[i]).Open;
+   end;
 end;
 
 end.

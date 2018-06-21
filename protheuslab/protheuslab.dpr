@@ -5,7 +5,7 @@ uses
   ufrm_protheuslab in 'ufrm_protheuslab.pas' {frm_protheuslab},
   ufrm_dm in '..\ufrm_dm.pas' {frm_dm: TDataModule},
   ufrm_main in 'ufrm_main.pas' {frm_main},
-  ufrm_client in '..\ufrm_client.pas' {frm_client},
+  ufrm_patient in '..\ufrm_patient.pas' {frm_patient},
   ufrm_contract in '..\ufrm_contract.pas' {frm_contract},
   ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
   ufrm_enterprise in '..\ufrm_enterprise.pas' {frm_enterprise},
@@ -47,7 +47,8 @@ uses
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   Employee_Model in '..\Model\Employee_Model.pas',
   Contract_User_Enterprise.Model in '..\Model\Contract_User_Enterprise.Model.pas',
-  ufrm_Requisition_Lab in '..\ufrm_Requisition_Lab.pas' {frm_Requisition_Lab};
+  ufrm_Requisition_Lab in '..\ufrm_Requisition_Lab.pas' {frm_Requisition_Lab},
+  ufrm_client in '..\ufrm_client.pas' {frm_client};
 
 {$R *.res}
 

@@ -325,6 +325,7 @@ for I := 0 to Self.ComponentCount -1 do
     TFDQuery(Self.Components[i]).Prepare;
     TFDQuery(Self.Components[i]).Open;
    end;
+
  cxPageControl_1.ActivePageIndex:=0;
 
   cxTabSheet_1.TabVisible:=False;

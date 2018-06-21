@@ -223,6 +223,8 @@ inherited frm_request: Tfrm_request
     end
     inherited cxTabSheet_2: TcxTabSheet
       OnShow = cxTabSheet_2Show
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 924
       ExplicitHeight = 579
       inherited cxPageControl_2: TcxPageControl

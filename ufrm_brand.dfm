@@ -11,16 +11,14 @@ inherited frm_brand: Tfrm_brand
     Height = 105
   end
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 35
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           Navigator.Buttons.ConfirmDelete = False
           object cxGrid_1DBTableView1bra_id: TcxGridDBColumn
             Caption = 'C'#243'digo ID'
             DataBinding.FieldName = 'bra_id'
-            Width = 70
+            Width = 75
           end
           object cxGrid_1DBTableView1bra_name: TcxGridDBColumn
             DataBinding.FieldName = 'bra_name'
@@ -28,12 +26,12 @@ inherited frm_brand: Tfrm_brand
           end
           object cxGrid_1DBTableView1bra_status: TcxGridDBColumn
             DataBinding.FieldName = 'bra_status'
-            Width = 50
+            Width = 70
           end
           object cxGrid_1DBTableView1bra_dt_registration: TcxGridDBColumn
             Caption = 'Dt. Reg'
             DataBinding.FieldName = 'bra_dt_registration'
-            Width = 110
+            Width = 125
           end
         end
       end
@@ -134,7 +132,6 @@ inherited frm_brand: Tfrm_brand
     Top = 48
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -144,7 +141,7 @@ inherited frm_brand: Tfrm_brand
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from brand'#10
+      'select brand'#10'.*, hex(bra_cod)as CodBrand from brand'#10
       'where contract_ctr_cod =:ctr_cod'#13#10#10
       'and bra_deleted_at is null;')
     Left = 592
@@ -156,6 +153,14 @@ inherited frm_brand: Tfrm_brand
         Size = 16
         Value = Null
       end>
+    object qryCodBrand: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodBrand'
+      Origin = 'CodBrand'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
     object qrybra_cod: TBytesField
       FieldName = 'bra_cod'
       Origin = 'bra_cod'

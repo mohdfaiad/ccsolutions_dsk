@@ -183,7 +183,6 @@ type
     procedure cxLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure lookupComboxStockPropertiesPopup(Sender: TObject);
     procedure cxLookupComboBox1PropertiesPopup(Sender: TObject);
-    procedure cxTabSheet_3Show(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
     procedure edtQTDKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Action_editExecute(Sender: TObject);
@@ -297,12 +296,15 @@ begin
   inherited;
 
   btnSalvar_Item.Tag := 1; // Para Inserir
-  HabiliTarButtun(true);
-
   pco_cod := qryCodPCO.AsString;
+
   ExibirEstoque;
+  qry_purchase_order_iten.Close;
+  qry_purchase_order_iten.Open;
+
   lookupComboxEmployee.Text := qryfuncionario.AsString;
   lookupComboxStock.Text    := qrysto_name.AsString;
+  HabiliTarButtun(true);
 
 end;
 procedure Tfrm_purchase_order.Action_insertExecute(Sender: TObject);
@@ -310,11 +312,13 @@ begin
   inherited;
 
    btnSalvar_Item.Tag := 1; // Para Inserir
-   HabiliTarButtun(true);
-
    lookupComboxEmployee.ItemIndex := -1;
    lookupComboxStock.ItemIndex    := -1;
+
    ExibirEstoque;
+   qry_purchase_order_iten.Close;
+   qry_purchase_order_iten.Open;
+
    HabiliTarButtun(true);
 
 end;
@@ -371,7 +375,7 @@ end;
 
 procedure Tfrm_purchase_order.act_cancel_purchase_order_itenExecute(Sender: TObject);
 begin
-   btnSalvar_Item.Tag := 1;
+  btnSalvar_Item.Tag := 1;
   looComboxProduto.Clear;
   edtQTD.Clear;
   cxGrid1.SetFocus;
@@ -556,16 +560,6 @@ begin
     qry_employee.Close;
    qry_employee.Prepare;
    qry_employee.Open;
-end;
-
-procedure Tfrm_purchase_order.cxTabSheet_3Show(Sender: TObject);
-begin
-  inherited;
-
-    qry_purchase_order_iten.Close;
-    qry_purchase_order_iten.Open;
-
-
 end;
 
 procedure Tfrm_purchase_order.dsDataChange(Sender: TObject; Field: TField);

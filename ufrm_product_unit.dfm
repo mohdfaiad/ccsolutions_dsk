@@ -6,15 +6,11 @@ inherited frm_product_unit: Tfrm_product_unit
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      OnShow = cxTabSheet_1Show
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pru_id: TcxGridDBColumn
+            Caption = 'C'#243'digo ID'
             DataBinding.FieldName = 'pru_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
             Width = 75
           end
           object cxGrid_1DBTableView1pru_name: TcxGridDBColumn
@@ -23,10 +19,12 @@ inherited frm_product_unit: Tfrm_product_unit
           end
           object cxGrid_1DBTableView1pru_initials: TcxGridDBColumn
             DataBinding.FieldName = 'pru_initials'
-            Width = 50
+            Width = 70
           end
           object cxGrid_1DBTableView1pru_status: TcxGridDBColumn
+            Caption = 'Status'
             DataBinding.FieldName = 'pru_status'
+            Width = 70
           end
           object cxGrid_1DBTableView1pru_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'pru_dt_registration'
@@ -75,10 +73,7 @@ inherited frm_product_unit: Tfrm_product_unit
                 'D - DESATIVO')
               Style.HotTrack = False
               TabOrder = 4
-              Width = 121
-            end
-            inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
+              Width = 130
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               ItemIndex = 1
@@ -107,7 +102,7 @@ inherited frm_product_unit: Tfrm_product_unit
               CaptionOptions.Text = 'Status'
               Control = dbComboxStatus
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 130
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -128,16 +123,41 @@ inherited frm_product_unit: Tfrm_product_unit
   inherited qry: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
-    AfterDelete = qryAfterDelete
     IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from product_unit'#10
-      'where pru_deleted_at is null')
+      
+        'select product_unit.*, hex(pru_cod)as CodProdUnit from product_u' +
+        'nit'#13#10#10
+      ''
+      'where contract_ctr_cod =:ctr_cod'#10
+      'and pru_deleted_at is null')
+    ParamData = <
+      item
+        Name = 'CTR_COD'
+        DataType = ftBytes
+        ParamType = ptInput
+        Size = 24
+        Value = Null
+      end>
+    object qryCodProdUnit: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodProdUnit'
+      Origin = 'CodProdUnit'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qrypru_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_id'
+      Origin = 'pru_id'
+    end
     object qrypru_name: TStringField
       DisplayLabel = 'Nome'
       FieldName = 'pru_name'
@@ -158,17 +178,11 @@ inherited frm_product_unit: Tfrm_product_unit
       FieldName = 'pru_cod'
       Origin = 'pru_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object qrycontract_ctr_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'contract_ctr_cod'
       Origin = 'contract_ctr_cod'
-    end
-    object qrypru_id: TLongWordField
-      AutoGenerateValue = arDefault
-      FieldName = 'pru_id'
-      Origin = 'pru_id'
     end
     object qrypru_status: TStringField
       AutoGenerateValue = arDefault

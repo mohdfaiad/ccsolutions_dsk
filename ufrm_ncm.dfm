@@ -1,32 +1,31 @@
 inherited frm_ncm: Tfrm_ncm
   Caption = 'Manuten'#231#227'o: NCM'
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      OnShow = cxTabSheet_1Show
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ncm_id: TcxGridDBColumn
+            Caption = 'C'#243'digo ID'
             DataBinding.FieldName = 'ncm_id'
             Width = 75
           end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
-            Width = 75
-          end
           object cxGrid_1DBTableView1ncm_code: TcxGridDBColumn
+            Caption = 'C'#243'digo NCM'
             DataBinding.FieldName = 'ncm_code'
             Width = 100
           end
           object cxGrid_1DBTableView1ncm_description: TcxGridDBColumn
             DataBinding.FieldName = 'ncm_description'
-            Width = 381
+            Width = 350
+          end
+          object cxGrid_1DBTableView1ncm_status: TcxGridDBColumn
+            Caption = 'Status'
+            DataBinding.FieldName = 'ncm_status'
+            Width = 70
           end
           object cxGrid_1DBTableView1ncm_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'ncm_dt_registration'
@@ -36,16 +35,8 @@ inherited frm_ncm: Tfrm_ncm
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 68
@@ -65,7 +56,7 @@ inherited frm_ncm: Tfrm_ncm
               Properties.CharCase = ecUpperCase
               Properties.ScrollBars = ssVertical
               Style.HotTrack = False
-              TabOrder = 3
+              TabOrder = 4
               Height = 89
               Width = 294
             end
@@ -83,6 +74,18 @@ inherited frm_ncm: Tfrm_ncm
               TabOrder = 2
               Width = 121
             end
+            object dbComboxStatus: TcxDBComboBox [4]
+              Left = 241
+              Top = 103
+              DataBinding.DataField = 'ncm_status'
+              DataBinding.DataSource = ds
+              Properties.Items.Strings = (
+                'A - ATIVO'
+                'D - DESATIVADO')
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 121
+            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
             end
@@ -98,7 +101,7 @@ inherited frm_ncm: Tfrm_ncm
               Index = 1
             end
             object dxLayoutItem3: TdxLayoutItem
-              Parent = dxLayoutGroup2
+              Parent = dxLayoutAutoCreatedGroup1
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'C'#243'digo'
@@ -108,6 +111,24 @@ inherited frm_ncm: Tfrm_ncm
               ControlOptions.ShowBorder = False
               Index = 0
             end
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Status'
+              Control = dbComboxStatus
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 0
+              AutoCreated = True
+            end
           end
         end
       end
@@ -116,16 +137,21 @@ inherited frm_ncm: Tfrm_ncm
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    Left = 520
+    Top = 48
+  end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
-    DetailFields = 'contract_ctr_id'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from ncm'
-      'where contract_ctr_cod = :ctr_cod')
+      'select ncm.*, hex(ncm_cod)as CodNCM from ncm'
+      'where contract_ctr_cod = :ctr_cod'
+      'and ncm_deleted_at is null')
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -134,6 +160,16 @@ inherited frm_ncm: Tfrm_ncm
         Size = 16
         Value = Null
       end>
+    object qryncm_cod: TBytesField
+      FieldName = 'ncm_cod'
+      Origin = 'ncm_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object qryncm_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'ncm_id'
+      Origin = 'ncm_id'
+    end
     object qryncm_code: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'digo'
@@ -157,21 +193,10 @@ inherited frm_ncm: Tfrm_ncm
       FieldName = 'ncm_dt_registration'
       Origin = 'ncm_dt_registration'
     end
-    object qryncm_cod: TBytesField
-      FieldName = 'ncm_cod'
-      Origin = 'ncm_cod'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
     object qrycontract_ctr_cod: TBytesField
       AutoGenerateValue = arDefault
       FieldName = 'contract_ctr_cod'
       Origin = 'contract_ctr_cod'
-    end
-    object qryncm_id: TLongWordField
-      AutoGenerateValue = arDefault
-      FieldName = 'ncm_id'
-      Origin = 'ncm_id'
     end
     object qryncm_status: TStringField
       AutoGenerateValue = arDefault
@@ -185,6 +210,14 @@ inherited frm_ncm: Tfrm_ncm
       FieldName = 'ncm_deleted_at'
       Origin = 'ncm_deleted_at'
     end
+    object qryCodNCM: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodNCM'
+      Origin = 'CodNCM'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -193,6 +226,8 @@ inherited frm_ncm: Tfrm_ncm
     Formats.TimeFormat = 'hh:mm'
     Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
     Formats.CurrencyFormat = 'R$#,###,##0.00'
+    Left = 424
+    Top = 48
   end
   inherited QImport3Wizard_1: TQImport3Wizard
     Formats.ShortDateFormat = 'dd/MM/yy'

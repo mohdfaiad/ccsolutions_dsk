@@ -54,6 +54,7 @@ type
     cxGrid_1DBTableView1bra_dt_registration: TcxGridDBColumn;
     dbComboxStatus: TcxDBComboBox;
     dxLayoutItem4: TdxLayoutItem;
+    qryCodBrand: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
@@ -65,7 +66,6 @@ type
   private
     { Private declarations }
     bra_cod: string;
-    bra_id : Integer;
   public
     { Public declarations }
     procedure ExibirRegistros;
@@ -98,7 +98,7 @@ begin
     end;
   end;
 
-   ExibirRegistros
+   ExibirRegistros;
 
 end;
 
@@ -114,14 +114,14 @@ begin
      qry.ApplyUpdates(0);
      Application.MessageBox('Marca excluída com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
 
-    ExibirRegistros
+    ExibirRegistros;
 end;
 
 procedure Tfrm_brand.Action_editExecute(Sender: TObject);
 begin
    inherited;
   dbComboxStatus.Enabled := True;
-
+  bra_cod := qryCodBrand.AsString;
 end;
 
 procedure Tfrm_brand.Action_insertExecute(Sender: TObject);
@@ -135,6 +135,12 @@ end;
 procedure Tfrm_brand.Action_saveExecute(Sender: TObject);
 
 begin
+
+//--Comando para tirar o focus de todos os componentes da tela-----
+   ActiveControl := nil;
+  //--Cama a função para verificar se existe campos requeridos em branco----
+  TCampoRequerido.TratarRequerido(qry);
+
 with frm_dm.qry,sql do
  begin
    close;     // -- SQL para retornar o ultimo ID da tabela brand---
@@ -151,14 +157,8 @@ with frm_dm.qry,sql do
     qrybra_id.AsInteger:=Fields[0].AsInteger;
  end;
 
-
- //--Comando para tirar o focus de todos os componentes da tela-----
-   ActiveControl := nil;
-  //--Cama a função para verificar se existe campos requeridos em branco----
-  TCampoRequerido.TratarRequerido(qry);
-
   inherited;
-  ExibirRegistros
+  ExibirRegistros;
 
 end;
 
@@ -166,9 +166,9 @@ procedure Tfrm_brand.ExibirRegistros;
 begin
 
   qry.Close;
-  qry.SQL.Text := 'select * from brand                ' +
-                 ' where contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')' +
-                 ' and bra_deleted_at is null  ' ;
+  qry.SQL.Text := ' select brand.*, hex(bra_cod)as CodBrand from brand                     ' +
+                  ' where contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')' +
+                  ' and bra_deleted_at is null  ' ;
    qry.Prepare;
    qry.Open;
 
@@ -208,7 +208,7 @@ begin
   end;
 
    qry.Close;      //--SQL para retornar o registro inserido  acima (ultimo registro)----
-   qry.sql.text:= ' select * from brand ' +
+   qry.sql.text:= ' select brand.*, hex(bra_cod)as CodBrand from brand ' +
                   ' where bra_cod = unhex('+QuotedStr(bra_cod)+') and bra_deleted_at is null';
    qry.Prepare;
    qry.open;

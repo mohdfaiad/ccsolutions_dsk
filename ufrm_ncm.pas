@@ -42,8 +42,6 @@ type
     qryncm_description: TMemoField;
     qryncm_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1ncm_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1ncm_code: TcxGridDBColumn;
     cxGrid_1DBTableView1ncm_description: TcxGridDBColumn;
     cxGrid_1DBTableView1ncm_dt_registration: TcxGridDBColumn;
     cxDBMemo1: TcxDBMemo;
@@ -55,16 +53,25 @@ type
     qryncm_id: TLongWordField;
     qryncm_status: TStringField;
     qryncm_deleted_at: TDateTimeField;
+    qryCodNCM: TStringField;
+    cxGrid_1DBTableView1ncm_status: TcxGridDBColumn;
+    dbComboxStatus: TcxDBComboBox;
+    dxLayoutItem5: TdxLayoutItem;
+    cxGrid_1DBTableView1ncm_code: TcxGridDBColumn;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
-    procedure cxTabSheet_1Show(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
+    procedure Action_insertExecute(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
   private
-    { Private declarations }
+    ncm_cod: string;
   public
     { Public declarations }
-
+    procedure ExibirRegistros;
 
 end;
 
@@ -81,57 +88,96 @@ uses ufrm_dm, class_required_field;
 procedure Tfrm_ncm.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
-// if (qrycli_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
-// with frm_dm.qry,sql do
-// begin
-//  Close;
-//  Text:= ' delete from client ' +
-//         ' where cli_cod = ' + cli_cod;
-//  Prepare;
-//  ExecSQL;
-//
-//  qry.Close;
-//  qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
-//                 ' where cli_deleted_at is null';
-//  qry.Prepare;
-//  qry.open;
-// end;
+   if result = false then
+    exit;
+
+ if (qryncm_id.AsInteger = 0) then
+  begin
+   with frm_dm.qry,sql do
+    begin
+      Close;
+      Text:= ' delete from ncm ' +
+             ' where ncm_cod = unhex('+ QuotedStr(ncm_cod)+')' ;
+      Prepare;
+      ExecSQL;
+    end;
+  end;
+
+   ExibirRegistros ;
+end;
+
+procedure Tfrm_ncm.Action_deleteExecute(Sender: TObject);
+begin
+  inherited;
+    if (result = false) then
+      exit;
+
+     qry.Edit;
+     qryncm_deleted_at.AsDateTime:=Now;
+     qry.Post;
+     qry.ApplyUpdates(0);
+     Application.MessageBox('Unidade do produto excluída com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
+
+    ExibirRegistros;
+end;
+
+procedure Tfrm_ncm.Action_editExecute(Sender: TObject);
+begin
+  inherited;
+   dbComboxStatus.Enabled := True;
+   ncm_cod := qryCodNCM.AsString;
+end;
+
+procedure Tfrm_ncm.Action_insertExecute(Sender: TObject);
+begin
+  inherited;
+    dbComboxStatus.ItemIndex := 0;
+    dbComboxStatus.Enabled := false;
 end;
 
 procedure Tfrm_ncm.Action_saveExecute(Sender: TObject);
 begin
-//with frm_dm.qry,sql do
-// begin
-//   close;
-//   Text:= ' select case when max(cli_id) is null then 1 ' +
-//          '      else (max(cli_id) + 1) end as maxID from client '+
-//          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
-//   Prepare;
-//   Open;
-//   if not (qry.State in [dsInsert,dsEdit])  then
-//    qry.Edit;
-//
-//   if qrycli_id.AsInteger = 0 then
-//    qrycli_id.AsInteger:=Fields[0].AsInteger;
-//
-//  end;
-//
-//  inherited;
-//       qry.Close;
-//       qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client' +
-//                      ' where cli_deleted_at is null ';
-//       qry.Prepare;
-//       qry.open;
+
+//--Comando para tirar o focus de todos os componentes da tela-----
+   ActiveControl := nil;
+  //--Cama a função para verificar se existe campos requeridos em branco----
+  TCampoRequerido.TratarRequerido(qry);
+
+if (qryncm_id.AsInteger = 0) then
+ begin
+   with frm_dm.qry,sql do
+   begin
+     close;     // -- SQL para retornar o ultimo ID da tabela brand---
+     Text:= ' select case when max(ncm_id) is null then 1 ' +
+            '      else (max(ncm_id) + 1) end as maxID from ncm '+
+            ' where contract_ctr_cod = unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')';
+     Prepare;
+     Open;
+
+     if not (qry.State in [dsInsert,dsEdit])  then
+      qry.Edit;
+
+     if qryncm_id.AsInteger = 0 then
+       qryncm_id.AsInteger:=Fields[0].AsInteger;
+   end;
+ end;
+
+  inherited;
+  ExibirRegistros;
+
 
 end;
 
-procedure Tfrm_ncm.cxTabSheet_1Show(Sender: TObject);
+procedure Tfrm_ncm.ExibirRegistros;
 begin
-  inherited;
-   qry.Close;
-   qry.sql.text:= ' select * from ncm ';
-   qry.Prepare;
-   qry.open;
+
+  qry.Close;
+  qry.SQL.Text:= ' select ncm.*, hex(ncm_cod)as CodNCM from ncm                            '+
+                 ' where contract_ctr_cod = unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')'+
+                 ' and ncm_deleted_at is null   ';
+  qry.Prepare;
+  qry.Open;
+
 end;
 
 procedure Tfrm_ncm.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -141,28 +187,39 @@ begin
   frm_ncm := Nil;
 end;
 
+procedure Tfrm_ncm.FormShow(Sender: TObject);
+begin
+  inherited;
+   ExibirRegistros;
+end;
+
 procedure Tfrm_ncm.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
- With frm_dm.qry,sql do
+ //SQL para obter Número do Cod ID em Hex--------
+   With frm_dm.qry,sql do
   begin
-   Close;
-   Text:='insert into ncm (ncm_cod,ncm_id,contract_ctr_cod) ' +
-         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
-         ' where ctr_id = :contrato)';
-   ParamByName('contrato').AsInteger:=frm_dm.qry_contractctr_id.AsInteger;
+   close;
+   text:= ' select hex(uuid_to_bin(uuid()))';
+   prepare;
+   open;
+
+   ncm_cod:=Fields[0].AsString;
+
+   Close;          //---Insert na tabela brand inserindo os primeiros registros obrigatórios----
+   Text:= 'insert into ncm (ncm_id,ncm_cod,contract_ctr_cod, ncm_dt_registration) ' +
+          ' select 0,unhex('+QuotedStr(ncm_cod)+'), unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+'),Now()';
    Prepare;
    ExecSQL;
   end;
-   qry.Close;
-   qry.sql.text:= ' select * from ncm ' +
-                  ' where ncm_id = 0 ';
+
+   qry.Close;      //--SQL para retornar o registro inserido  acima (ultimo registro)----
+   qry.sql.text:= ' select ncm.*, hex(ncm_cod)as CodNCM from ncm ' +
+                  ' where ncm_cod = unhex('+QuotedStr(ncm_cod)+') and ncm_deleted_at is null';
    qry.Prepare;
    qry.open;
 
-  qry.Edit;
-  qryncm_dt_registration.Value := Date + Time;
-
+   qry.Edit;
 end;
 
 end.

@@ -22,6 +22,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
   inherited cxPageControl_1: TcxPageControl
     Width = 1018
     Height = 585
+    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 1018
     ExplicitHeight = 585
     ClientRectBottom = 579
@@ -39,7 +40,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
           object cxGrid_1DBTableView1pco_id: TcxGridDBColumn
             Caption = 'C'#243'digo ID'
             DataBinding.FieldName = 'pco_id'
-            Width = 70
+            Width = 75
           end
           object cxGrid_1DBTableView1sto_name: TcxGridDBColumn
             Caption = 'Estoque'
@@ -49,7 +50,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
           object cxGrid_1DBTableView1pco_status: TcxGridDBColumn
             Caption = 'Status'
             DataBinding.FieldName = 'pco_status'
-            Width = 60
+            Width = 70
           end
           object cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn
             Caption = 'Descri'#231#227'o do Status'
@@ -63,7 +64,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
           object cxGrid_1DBTableView1pco_dt_registration: TcxGridDBColumn
             Caption = 'Dt. Reg'
             DataBinding.FieldName = 'pco_dt_registration'
-            Width = 110
+            Width = 125
           end
         end
       end
@@ -244,7 +245,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
         ClientRectBottom = 539
         ClientRectRight = 998
         inherited cxTabSheet_3: TcxTabSheet
-          OnShow = cxTabSheet_3Show
           ExplicitWidth = 996
           ExplicitHeight = 511
           inherited dxLayoutControl_1: TdxLayoutControl
@@ -639,7 +639,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
   end
   inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
     Left = 456
-    Top = 48
   end
   inherited qry: TFDQuery
     Active = True
@@ -757,8 +756,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Formats.TimeFormat = 'hh:mm'
     Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
     Formats.CurrencyFormat = 'R$#,###,##0.00'
-    Left = 424
-    Top = 48
   end
   inherited QImport3Wizard_1: TQImport3Wizard
     Formats.ShortDateFormat = 'dd/MM/yy'
@@ -3448,8 +3445,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
   end
   object Action_purchase_order: TActionList
     Images = cxImageList_1
-    Left = 888
-    Top = 96
+    Left = 896
+    Top = 152
     object act_save_purchase_order_iten: TAction
       Hint = 'Salvar'
       ImageIndex = 6
@@ -3472,7 +3469,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
     end
   end
   object qry_purchase_order_iten: TFDQuery
-    Active = True
     IndexFieldNames = 'purchase_order_pco_cod'
     MasterSource = ds
     MasterFields = 'pco_cod'
@@ -3495,7 +3491,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
         Name = 'PCO_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 24
+        Size = 16
         Value = Null
       end>
     object qry_purchase_order_itenpoi_cod: TBytesField

@@ -212,6 +212,8 @@ type
     qrydoctorCod: TStringField;
     qryemployeeCod: TStringField;
     qry_requisition_itenreiCod: TStringField;
+    DBGrid1: TDBGrid;
+    qryreqCod: TStringField;
     procedure cxLookupComboBoxPacientePropertiesCloseUp(Sender: TObject);
     procedure cxLookupComboBoxEmpresaPropertiesCloseUp(Sender: TObject);
     procedure cxTextEditEnterpriseIDExit(Sender: TObject);
@@ -272,7 +274,7 @@ begin
    qry_doctor.Locate('codDoctor',qrydoctorCod.AsString,[loCaseInsensitive, loPartialKey]);
    cxLookupComboBoxMedico.Text:=qry_doctorrec_name.AsString;
    cxTextEditMedicoID.Text:= qry_doctordoc_id.AsString;
-
+   req_cod:=qryreqCod.AsString;
 
 end;
 
@@ -336,8 +338,12 @@ procedure Tfrm_Requisition_Lab.cxGrid1DBTableView1pro_initialsPropertiesCloseUp(
   Sender: TObject);
 begin
   inherited;
+if not (qry_requisition_iten.State in [dsEdit]) then
+ qry_requisition_iten.Edit;
+
 qry_requisition_itenproduct_pro_cod.Value:=qry_productpro_cod.Value;
 qry_requisition_iten.Post;
+qry_requisition_iten.Refresh;
 end;
 
 procedure Tfrm_Requisition_Lab.cxLookupComboBoxColetadorPropertiesCloseUp(
@@ -559,13 +565,16 @@ begin
    rei_cod:=Fields[0].AsString;
 
    Close;
-   Text:='insert into requisition_iten (rei_id,rei_cod) ' +
-         ' select 0,unhex('+ QuotedStr(rei_cod) + ')';
+   Text:='insert into requisition_iten (rei_id,rei_cod,requisition_req_cod) ' +
+         ' select 0,unhex('+ QuotedStr(rei_cod) + '),unhex('+ QuotedStr(req_cod) + ')';
    Prepare;
    ExecSQL;
   end;
-
-   qry_requisition_iten.Locate('reiCod',rei_cod, []);
+   cxGrid1.SetFocus;
+   qry_requisition_iten.Close;
+   qry_requisition_iten.Prepare;
+   qry_requisition_iten.open;
+   qry_requisition_iten.Locate('reiCod',QuotedStr(rei_cod), []);
    qry_requisition_iten.Edit;
 
 
@@ -576,12 +585,12 @@ begin
   qry.Close;
   if sql = 'todos' then
    qry.sql.text:= ' select *,hex(client_cli_cod) as clientCod,hex(enterprise_ent_cod) as enterpriseCod,hex(insurance_ins_cod) as insuranceCod,  ' +
-                  ' hex(doctor_doc_cod) as doctorCod,hex(employee_emp_cod) employeeCod from requisition ' +
+                  ' hex(doctor_doc_cod) as doctorCod,hex(employee_emp_cod) employeeCod,hex(req_cod) as reqCod from requisition ' +
                   ' where req_deleted_at is null ';
 
   if sql = 'insert' then
    qry.sql.text:= ' select *,hex(client_cli_cod) as clientCod,hex(enterprise_ent_cod) as enterpriseCod,hex(insurance_ins_cod) as insuranceCod, '+
-                  ' hex(doctor_doc_cod) as doctorCod,hex(employee_emp_cod) employeeCod  from requisition ' +
+                  ' hex(doctor_doc_cod) as doctorCod,hex(employee_emp_cod) employeeCod,hex(req_cod) as reqCod  from requisition ' +
                   ' where req_cod = unhex(' + QuotedStr(req_cod) + ')';
    qry.Prepare;
    qry.open;

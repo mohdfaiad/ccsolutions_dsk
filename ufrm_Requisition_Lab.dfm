@@ -8,23 +8,37 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   TextHeight = 13
   inherited bardck_1: TdxBarDockControl
     Width = 1125
+    ExplicitWidth = 1125
   end
   inherited pgctrl_1: TcxPageControl
     Width = 1125
     Height = 612
-    Properties.ActivePage = tbsht_2
+    ExplicitWidth = 1125
+    ExplicitHeight = 612
     ClientRectBottom = 606
     ClientRectRight = 1119
     inherited tbsht_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
+      ExplicitWidth = 1117
+      ExplicitHeight = 579
       inherited pgctrl_2: TcxPageControl
         Width = 1117
         Height = 579
+        ExplicitWidth = 1117
+        ExplicitHeight = 579
         ClientRectBottom = 573
         ClientRectRight = 1111
         inherited tbsht_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 27
+          ExplicitWidth = 1109
+          ExplicitHeight = 546
           inherited grid_1: TcxGrid
             Width = 1103
             Height = 540
+            ExplicitWidth = 1103
+            ExplicitHeight = 540
             inherited grid_1DBTableView1: TcxGridDBTableView
               object grid_1DBTableView1req_cod: TcxGridDBColumn
                 DataBinding.FieldName = 'req_cod'
@@ -71,13 +85,22 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       end
     end
     inherited tbsht_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 27
+      ExplicitWidth = 1117
+      ExplicitHeight = 579
       inherited pgctrl_3: TcxPageControl
         Width = 1117
         Height = 579
+        ExplicitWidth = 1117
+        ExplicitHeight = 579
         ClientRectBottom = 573
         ClientRectRight = 1111
         inherited tbsht_5: TcxTabSheet
+          ExplicitWidth = 1109
+          ExplicitHeight = 546
           inherited grb_top: TcxGroupBox
+            ExplicitWidth = 1103
             Width = 1103
             inherited lbl_cod_id: TcxLabel
               Left = 9
@@ -97,6 +120,8 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
             end
           end
           inherited grb_bottton: TcxGroupBox
+            ExplicitWidth = 1103
+            ExplicitHeight = 480
             Height = 480
             Width = 1103
             object cxTextEditCNS: TcxTextEdit
@@ -277,10 +302,6 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                 Color = clBlack
                 ImageIndex = 0
                 ParentColor = False
-                ExplicitLeft = -46
-                ExplicitTop = 35
-                ExplicitWidth = 281
-                ExplicitHeight = 160
                 object cxGroupBox1: TcxGroupBox
                   AlignWithMargins = True
                   Left = 3
@@ -289,9 +310,6 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                   Style.Shadow = False
                   Style.TransparentBorder = True
                   TabOrder = 0
-                  ExplicitTop = 35
-                  ExplicitWidth = 275
-                  ExplicitHeight = 154
                   Height = 317
                   Width = 1083
                   object cxLabelEmpresa: TcxLabel
@@ -440,10 +458,6 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                   Top = 3
                   Align = alClient
                   TabOrder = 0
-                  ExplicitLeft = 368
-                  ExplicitTop = 176
-                  ExplicitWidth = 185
-                  ExplicitHeight = 105
                   Height = 317
                   Width = 1083
                 end
@@ -457,10 +471,6 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                   Top = 3
                   Align = alClient
                   TabOrder = 0
-                  ExplicitLeft = 224
-                  ExplicitTop = 200
-                  ExplicitWidth = 185
-                  ExplicitHeight = 105
                   Height = 317
                   Width = 1083
                   object cxGrid1: TcxGrid
@@ -514,6 +524,19 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                       GridView = cxGrid1DBTableView1
                     end
                   end
+                  object DBGrid1: TDBGrid
+                    Left = 264
+                    Top = 144
+                    Width = 320
+                    Height = 120
+                    DataSource = ds_qry_product
+                    TabOrder = 1
+                    TitleFont.Charset = DEFAULT_CHARSET
+                    TitleFont.Color = clWindowText
+                    TitleFont.Height = -11
+                    TitleFont.Name = 'Tahoma'
+                    TitleFont.Style = []
+                  end
                 end
               end
             end
@@ -525,9 +548,15 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   inherited stsbar_1: TdxStatusBar
     Top = 667
     Width = 1125
+    ExplicitTop = 667
+    ExplicitWidth = 1125
     inherited stsbar_deleted_at: TdxStatusBarContainerControl
       Width = 1089
       ExplicitWidth = 1089
+      inherited chkbox_1: TcxCheckBox
+        ExplicitWidth = 1089
+        ExplicitHeight = 32
+      end
     end
   end
   inherited actlist_1: TActionList
@@ -583,7 +612,6 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     Style = <>
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -598,7 +626,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
         ') as enterpriseCod,hex(insurance_ins_cod) as insuranceCod,'
       
         'hex(doctor_doc_cod) as doctorCod,hex(employee_emp_cod) employeeC' +
-        'od from requisition '
+        'od,hex(req_cod) as reqCod from requisition '
       'where req_deleted_at is null '
       ''
       '')
@@ -713,6 +741,14 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       AutoGenerateValue = arDefault
       FieldName = 'employeeCod'
       Origin = 'employeeCod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qryreqCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'reqCod'
+      Origin = 'reqCod'
       ProviderFlags = []
       ReadOnly = True
       Size = 32

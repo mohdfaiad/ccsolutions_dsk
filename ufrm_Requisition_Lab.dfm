@@ -2,6 +2,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   Caption = 'frm_Requisition_Lab'
   ClientHeight = 702
   ClientWidth = 1125
+  ExplicitTop = -34
   ExplicitWidth = 1141
   ExplicitHeight = 741
   PixelsPerInch = 96
@@ -252,14 +253,6 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
               TabOrder = 20
               Width = 141
             end
-            object BitBtn1: TBitBtn
-              Left = 870
-              Top = 90
-              Width = 75
-              Height = 25
-              Caption = 'BitBtn1'
-              TabOrder = 21
-            end
             object cxButton1: TcxButton
               Left = 913
               Top = 141
@@ -267,7 +260,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
               Height = 25
               Caption = 'cxButton1'
               LookAndFeel.SkinName = 'Metropolis'
-              TabOrder = 22
+              TabOrder = 21
             end
             object cxLookupComboBoxPaciente: TcxLookupComboBox
               Left = 3
@@ -290,8 +283,8 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
               Height = 356
               Align = alBottom
               Anchors = [akLeft, akTop, akRight, akBottom]
-              TabOrder = 23
-              Properties.ActivePage = cxTabSheet3
+              TabOrder = 22
+              Properties.ActivePage = cxTabSheet2
               Properties.CustomButtons.Buttons = <>
               ClientRectBottom = 350
               ClientRectLeft = 2
@@ -477,7 +470,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                     Left = 3
                     Top = 16
                     Width = 831
-                    Height = 289
+                    Height = 273
                     TabOrder = 0
                     object cxGrid1DBTableView1: TcxGridDBTableView
                       Navigator.Buttons.CustomButtons = <>
@@ -488,54 +481,84 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                       DataController.Summary.SummaryGroups = <>
                       OptionsView.GroupByBox = False
                       OptionsView.GroupByHeaderLayout = ghlHorizontal
+                      object cxGrid1DBTableView1rei_id: TcxGridDBColumn
+                        AlternateCaption = '50'
+                        Caption = 'Seq.'
+                        DataBinding.FieldName = 'rei_id'
+                        Width = 50
+                      end
                       object cxGrid1DBTableView1pro_initials: TcxGridDBColumn
+                        Caption = 'C'#243'digo'
                         DataBinding.FieldName = 'pro_initials'
                         PropertiesClassName = 'TcxLookupComboBoxProperties'
-                        Properties.GridMode = True
                         Properties.KeyFieldNames = 'pro_initials'
                         Properties.ListColumns = <
                           item
-                            FieldName = 'pro_initials'
+                            FieldName = 'pro_name'
                           end>
                         Properties.ListSource = ds_qry_product
                         Properties.OnCloseUp = cxGrid1DBTableView1pro_initialsPropertiesCloseUp
-                        Width = 111
+                        Width = 80
+                      end
+                      object cxGrid1DBTableView1pro_name: TcxGridDBColumn
+                        Caption = 'Exame'
+                        DataBinding.FieldName = 'pro_name'
+                        Width = 300
+                      end
+                      object cxGrid1DBTableView1mat_name: TcxGridDBColumn
+                        Caption = 'Material'
+                        DataBinding.FieldName = 'mat_name'
+                        Width = 150
+                      end
+                      object cxGrid1DBTableView1rei_collect: TcxGridDBColumn
+                        Caption = 'Coletado'
+                        DataBinding.FieldName = 'rei_collect'
+                        PropertiesClassName = 'TcxCheckBoxProperties'
+                        Properties.ValueChecked = 'S'
+                        Properties.ValueUnchecked = 'N'
+                        Width = 50
+                      end
+                      object cxGrid1DBTableView1product_value: TcxGridDBColumn
+                        Caption = 'Valor'
+                        DataBinding.FieldName = 'product_value'
+                        Width = 100
                       end
                       object cxGrid1DBTableView1rei_cod: TcxGridDBColumn
                         DataBinding.FieldName = 'rei_cod'
+                        Visible = False
                       end
                       object cxGrid1DBTableView1requisition_req_cod: TcxGridDBColumn
                         DataBinding.FieldName = 'requisition_req_cod'
+                        Visible = False
                       end
                       object cxGrid1DBTableView1product_pro_cod: TcxGridDBColumn
                         DataBinding.FieldName = 'product_pro_cod'
-                      end
-                      object cxGrid1DBTableView1rei_in: TcxGridDBColumn
-                        DataBinding.FieldName = 'rei_id'
-                      end
-                      object cxGrid1DBTableView1product_value: TcxGridDBColumn
-                        DataBinding.FieldName = 'product_value'
+                        Visible = False
                       end
                       object cxGrid1DBTableView1rei_deleted_at: TcxGridDBColumn
                         DataBinding.FieldName = 'rei_deleted_at'
+                        Visible = False
+                      end
+                      object cxGrid1DBTableView1reiCod: TcxGridDBColumn
+                        DataBinding.FieldName = 'reiCod'
+                        Visible = False
                       end
                     end
                     object cxGrid1Level1: TcxGridLevel
                       GridView = cxGrid1DBTableView1
                     end
                   end
-                  object DBGrid1: TDBGrid
-                    Left = 264
-                    Top = 144
-                    Width = 320
-                    Height = 120
-                    DataSource = ds_qry_product
+                  object cxTextEditTotalExame: TcxTextEdit
+                    Left = 713
+                    Top = 295
                     TabOrder = 1
-                    TitleFont.Charset = DEFAULT_CHARSET
-                    TitleFont.Color = clWindowText
-                    TitleFont.Height = -11
-                    TitleFont.Name = 'Tahoma'
-                    TitleFont.Style = []
+                    Width = 121
+                  end
+                  object cxLabelTotalExame: TcxLabel
+                    Left = 635
+                    Top = 296
+                    Caption = 'Valor a Pagar:'
+                    Transparent = True
                   end
                 end
               end
@@ -612,6 +635,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     Style = <>
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -1227,6 +1251,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   end
   object qry_requisition_iten: TFDQuery
     AfterInsert = qry_requisition_itenAfterInsert
+    AfterPost = qry_requisition_itenAfterPost
     IndexFieldNames = 'requisition_req_cod'
     MasterSource = ds
     MasterFields = 'req_cod'
@@ -1236,11 +1261,30 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       
-        'select requisition_iten.*, pro_initials,hex(rei_cod) as reiCod f' +
-        'rom requisition_iten'#10
-      'left join product on pro_cod = product_pro_cod;'#10)
+        'select pro_initials,pro_name,mat_name, requisition_iten.*,hex(re' +
+        'i_cod) as reiCod from requisition_iten'#13#10#10
+      'left join product on pro_cod = product_pro_cod'#10
+      'left join material on mat_cod=material_mat_cod;'#10#10)
     Left = 719
     Top = 451
+    object qry_requisition_itenpro_initials: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_initials'
+      Origin = 'pro_initials'
+      Size = 85
+    end
+    object qry_requisition_itenpro_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_name'
+      Origin = 'pro_name'
+      Size = 85
+    end
+    object qry_requisition_itenmat_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'mat_name'
+      Origin = 'mat_name'
+      Size = 35
+    end
     object qry_requisition_itenrei_cod: TBytesField
       FieldName = 'rei_cod'
       Origin = 'rei_cod'
@@ -1257,6 +1301,11 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       FieldName = 'product_pro_cod'
       Origin = 'product_pro_cod'
     end
+    object qry_requisition_itenrei_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'rei_id'
+      Origin = 'rei_id'
+    end
     object qry_requisition_itenproduct_value: TBCDField
       AutoGenerateValue = arDefault
       FieldName = 'product_value'
@@ -1268,25 +1317,17 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       FieldName = 'rei_deleted_at'
       Origin = 'rei_deleted_at'
     end
-    object qry_requisition_itenpro_initials: TStringField
+    object qry_requisition_itenrei_collect: TStringField
       AutoGenerateValue = arDefault
-      FieldName = 'pro_initials'
-      Origin = 'pro_initials'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 85
-    end
-    object qry_requisition_itenrei_id: TLongWordField
-      AutoGenerateValue = arDefault
-      FieldName = 'rei_id'
-      Origin = 'rei_id'
+      FieldName = 'rei_collect'
+      Origin = 'rei_collect'
+      FixedChar = True
+      Size = 1
     end
     object qry_requisition_itenreiCod: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'reiCod'
       Origin = 'reiCod'
-      ProviderFlags = []
-      ReadOnly = True
       Size = 32
     end
   end
@@ -1296,6 +1337,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     Top = 403
   end
   object qry_product: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'

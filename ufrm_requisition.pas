@@ -187,7 +187,7 @@ begin
   //--Comando para tirar o focus de todos os componentes da tela-----
    ActiveControl := nil;
    //----Função para validar os campos obrigatorios-----------------
-   TCampoRequerido.ValidarCampos(qry,qry_requisition_iten);
+//   TCampoRequerido.ValidarCampos(qry,qry_requisition_iten);
 
    //----Condição para não deixar salvar a requisição sem os itens (sem os exames)--
     if qry_requisition_iten.IsEmpty then
@@ -243,7 +243,7 @@ procedure Tfrm_requisition.qry_requisition_itenAfterInsert(DataSet: TDataSet);
  begin
  //--Cama função para validar os campos da requisiçao não permite inserir itens
  // caso os campos do cabeçalho não estejam preenchido------
-   TCampoRequerido.ValidarCampos(qry,qry_requisition_iten);
+ //  TCampoRequerido.ValidarCampos(qry,qry_requisition_iten);
 end;
 
 procedure Tfrm_requisition.qry_requisition_itenproduct_pro_idValidate(Sender: TField);

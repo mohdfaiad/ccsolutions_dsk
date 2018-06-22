@@ -10,19 +10,15 @@ inherited frm_medicine: Tfrm_medicine
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1med_id: TcxGridDBColumn
+            Caption = 'C'#243'd.: ID'
             DataBinding.FieldName = 'med_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
-            Width = 75
+            Width = 65
           end
           object cxGrid_1DBTableView1med_name: TcxGridDBColumn
             DataBinding.FieldName = 'med_name'
-            Width = 200
+            Width = 400
           end
           object cxGrid_1DBTableView1med_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'med_dt_registration'

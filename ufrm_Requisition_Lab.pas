@@ -88,7 +88,6 @@ type
     cxTextEditCPF: TcxTextEdit;
     qry_enterprise: TFDQuery;
     ds_qry_enterprise: TDataSource;
-    BitBtn1: TBitBtn;
     qry_enterpriseent_cod: TBytesField;
     qry_enterpriseent_id: TLongWordField;
     qry_enterpriseent_last_name: TStringField;
@@ -178,20 +177,6 @@ type
     qry_productpro_initials: TStringField;
     qry_productcontract_ctr_cod: TBytesField;
     ds_qry_product: TDataSource;
-    qry_requisition_itenrei_cod: TBytesField;
-    qry_requisition_itenrequisition_req_cod: TBytesField;
-    qry_requisition_itenproduct_pro_cod: TBytesField;
-    qry_requisition_itenproduct_value: TBCDField;
-    qry_requisition_itenrei_deleted_at: TDateTimeField;
-    qry_requisition_itenpro_initials: TStringField;
-    cxGrid1DBTableView1rei_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1requisition_req_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1product_pro_cod: TcxGridDBColumn;
-    cxGrid1DBTableView1rei_in: TcxGridDBColumn;
-    cxGrid1DBTableView1product_value: TcxGridDBColumn;
-    cxGrid1DBTableView1rei_deleted_at: TcxGridDBColumn;
-    cxGrid1DBTableView1pro_initials: TcxGridDBColumn;
-    qry_requisition_itenrei_id: TLongWordField;
     qryreq_cod: TBytesField;
     qrycontract_ctr_cod: TBytesField;
     qryclient_cli_cod: TBytesField;
@@ -211,9 +196,31 @@ type
     qryinsuranceCod: TStringField;
     qrydoctorCod: TStringField;
     qryemployeeCod: TStringField;
-    qry_requisition_itenreiCod: TStringField;
-    DBGrid1: TDBGrid;
     qryreqCod: TStringField;
+    qry_requisition_itenpro_initials: TStringField;
+    qry_requisition_itenpro_name: TStringField;
+    qry_requisition_itenmat_name: TStringField;
+    qry_requisition_itenrei_cod: TBytesField;
+    qry_requisition_itenrequisition_req_cod: TBytesField;
+    qry_requisition_itenproduct_pro_cod: TBytesField;
+    qry_requisition_itenrei_id: TLongWordField;
+    qry_requisition_itenproduct_value: TBCDField;
+    qry_requisition_itenrei_deleted_at: TDateTimeField;
+    qry_requisition_itenrei_collect: TStringField;
+    qry_requisition_itenreiCod: TStringField;
+    cxGrid1DBTableView1pro_initials: TcxGridDBColumn;
+    cxGrid1DBTableView1pro_name: TcxGridDBColumn;
+    cxGrid1DBTableView1mat_name: TcxGridDBColumn;
+    cxGrid1DBTableView1rei_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1requisition_req_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1product_pro_cod: TcxGridDBColumn;
+    cxGrid1DBTableView1rei_id: TcxGridDBColumn;
+    cxGrid1DBTableView1product_value: TcxGridDBColumn;
+    cxGrid1DBTableView1rei_deleted_at: TcxGridDBColumn;
+    cxGrid1DBTableView1rei_collect: TcxGridDBColumn;
+    cxGrid1DBTableView1reiCod: TcxGridDBColumn;
+    cxTextEditTotalExame: TcxTextEdit;
+    cxLabelTotalExame: TcxLabel;
     procedure cxLookupComboBoxPacientePropertiesCloseUp(Sender: TObject);
     procedure cxLookupComboBoxEmpresaPropertiesCloseUp(Sender: TObject);
     procedure cxTextEditEnterpriseIDExit(Sender: TObject);
@@ -232,6 +239,7 @@ type
     procedure cxTextEditColetadorExit(Sender: TObject);
     procedure qry_requisition_itenAfterInsert(DataSet: TDataSet);
     procedure cxGrid1DBTableView1pro_initialsPropertiesCloseUp(Sender: TObject);
+    procedure qry_requisition_itenAfterPost(DataSet: TDataSet);
   private
     { Private declarations }
     req_cod,rei_cod:string;
@@ -565,8 +573,8 @@ begin
    rei_cod:=Fields[0].AsString;
 
    Close;
-   Text:='insert into requisition_iten (rei_id,rei_cod,requisition_req_cod) ' +
-         ' select 0,unhex('+ QuotedStr(rei_cod) + '),unhex('+ QuotedStr(req_cod) + ')';
+   Text:='insert into requisition_iten (rei_id,rei_collect, rei_cod,requisition_req_cod) ' +
+         ' select 0,''S'',unhex('+ QuotedStr(rei_cod) + '),unhex('+ QuotedStr(req_cod) + ')';
    Prepare;
    ExecSQL;
   end;
@@ -577,6 +585,23 @@ begin
    qry_requisition_iten.Locate('reiCod',QuotedStr(rei_cod), []);
    qry_requisition_iten.Edit;
 
+
+end;
+
+procedure Tfrm_Requisition_Lab.qry_requisition_itenAfterPost(DataSet: TDataSet);
+var
+total:Double;
+begin
+  inherited;
+  total:=0;
+  qry_requisition_iten.DisableControls;
+  qry_requisition_iten.First;
+  while not qry_requisition_iten.Eof  do
+   begin
+     total:=total + qry_requisition_itenproduct_value.AsFloat;
+     qry_requisition_iten.Next;
+   end;
+   cxTextEditTotalExame.Text:=FormatFloat(',0.00',total);
 
 end;
 

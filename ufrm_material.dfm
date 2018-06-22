@@ -12,12 +12,13 @@ inherited frm_material: Tfrm_material
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1mat_id: TcxGridDBColumn
+            Caption = 'C'#243'd.: ID'
             DataBinding.FieldName = 'mat_id'
-            Width = 75
+            Width = 65
           end
           object cxGrid_1DBTableView1mat_name: TcxGridDBColumn
             DataBinding.FieldName = 'mat_name'
-            Width = 250
+            Width = 300
           end
           object cxGrid_1DBTableView1mat_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'mat_dt_registration'

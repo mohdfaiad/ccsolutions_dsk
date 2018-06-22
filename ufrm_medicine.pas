@@ -40,7 +40,6 @@ type
     qrymed_name: TStringField;
     qrymed_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1med_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1med_name: TcxGridDBColumn;
     cxGrid_1DBTableView1med_dt_registration: TcxGridDBColumn;
     cxDBTextEdit1: TcxDBTextEdit;

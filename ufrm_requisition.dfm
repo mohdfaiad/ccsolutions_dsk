@@ -291,10 +291,8 @@
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (
@@ -840,9 +838,7 @@
     end
   end
   object qry_client: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -1137,7 +1133,6 @@
     Top = 96
   end
   object qry_insurance: TFDQuery
-    Active = True
     IndexFieldNames = 'client_cli_id'
     MasterSource = ds_client
     MasterFields = 'cli_id'
@@ -1238,7 +1233,6 @@
     Top = 96
   end
   object qry_price_product: TFDQuery
-    Active = True
     CachedUpdates = True
     IndexFieldNames = 'table_price_tbp_id'
     MasterSource = ds_insurance
@@ -1323,7 +1317,6 @@
     Top = 96
   end
   object qry_requisition_iten: TFDQuery
-    Active = True
     AfterInsert = qry_requisition_itenAfterInsert
     CachedUpdates = True
     IndexFieldNames = 'requisition_req_id'
@@ -1379,9 +1372,7 @@
     Top = 95
   end
   object qry_requisition_type: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS

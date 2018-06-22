@@ -1,76 +1,32 @@
 inherited frm_product: Tfrm_product
   Caption = 'Manuten'#231#227'o: Produtos e Servi'#231'os'
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       OnShow = cxTabSheet_1Show
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pro_id: TcxGridDBColumn
+            Caption = 'C'#243'digo ID'
             DataBinding.FieldName = 'pro_id'
             Width = 75
-          end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1supplier_sup_id: TcxGridDBColumn
-            DataBinding.FieldName = 'supplier_sup_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1product_class_prc_id: TcxGridDBColumn
-            DataBinding.FieldName = 'product_class_prc_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1product_class_sub_prs_id: TcxGridDBColumn
-            DataBinding.FieldName = 'product_class_sub_prs_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1manufacturer_man_id: TcxGridDBColumn
-            DataBinding.FieldName = 'manufacturer_man_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1product_unit_pru_id: TcxGridDBColumn
-            DataBinding.FieldName = 'product_unit_pru_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1brand_bra_id: TcxGridDBColumn
-            DataBinding.FieldName = 'brand_bra_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1ncm_ncm_id: TcxGridDBColumn
-            DataBinding.FieldName = 'ncm_ncm_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1pro_type: TcxGridDBColumn
-            DataBinding.FieldName = 'pro_type'
-            Width = 50
           end
           object cxGrid_1DBTableView1pro_name: TcxGridDBColumn
             DataBinding.FieldName = 'pro_name'
             Width = 250
           end
-          object cxGrid_1DBTableView1pro_tag: TcxGridDBColumn
-            DataBinding.FieldName = 'pro_tag'
-            Width = 250
-          end
           object cxGrid_1DBTableView1pro_status: TcxGridDBColumn
+            Caption = 'Status'
             DataBinding.FieldName = 'pro_status'
             Width = 50
-          end
-          object cxGrid_1DBTableView1pro_dt_registration: TcxGridDBColumn
-            DataBinding.FieldName = 'pro_dt_registration'
-            Width = 125
-          end
-          object cxGrid_1DBTableView1pro_barcod: TcxGridDBColumn
-            DataBinding.FieldName = 'pro_barcod'
-            Width = 100
-          end
-          object cxGrid_1DBTableView1pro_barcod_manufacturer: TcxGridDBColumn
-            DataBinding.FieldName = 'pro_barcod_manufacturer'
-            Width = 100
           end
           object cxGrid_1DBTableView1pro_height: TcxGridDBColumn
             DataBinding.FieldName = 'pro_height'
@@ -82,36 +38,105 @@ inherited frm_product: Tfrm_product
           end
           object cxGrid_1DBTableView1pro_length: TcxGridDBColumn
             DataBinding.FieldName = 'pro_length'
-            Width = 100
           end
           object cxGrid_1DBTableView1pro_weight: TcxGridDBColumn
             DataBinding.FieldName = 'pro_weight'
-            Width = 100
           end
           object cxGrid_1DBTableView1pro_liter: TcxGridDBColumn
             DataBinding.FieldName = 'pro_liter'
+          end
+          object cxGrid_1DBTableView1prc_name: TcxGridDBColumn
+            Caption = 'Classe'
+            DataBinding.FieldName = 'prc_name'
             Width = 100
+          end
+          object cxGrid_1DBTableView1prs_name: TcxGridDBColumn
+            Caption = 'Sub-Classe'
+            DataBinding.FieldName = 'prs_name'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1man_last_name: TcxGridDBColumn
+            Caption = 'Fabricante'
+            DataBinding.FieldName = 'man_last_name'
+            Width = 200
+          end
+          object cxGrid_1DBTableView1bra_name: TcxGridDBColumn
+            Caption = 'Marca'
+            DataBinding.FieldName = 'bra_name'
+            Width = 120
+          end
+          object cxGrid_1DBTableView1sup_last_name: TcxGridDBColumn
+            Caption = 'Fornecedor'
+            DataBinding.FieldName = 'sup_last_name'
+            Width = 120
+          end
+          object cxGrid_1DBTableView1pru_name: TcxGridDBColumn
+            Caption = 'Unidade'
+            DataBinding.FieldName = 'pru_name'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1pru_initials: TcxGridDBColumn
+            DataBinding.FieldName = 'pru_initials'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1pro_initials: TcxGridDBColumn
+            DataBinding.FieldName = 'pro_initials'
+            Width = 150
+          end
+          object cxGrid_1DBTableView1pro_tag: TcxGridDBColumn
+            DataBinding.FieldName = 'pro_tag'
+            Width = 150
+          end
+          object cxGrid_1DBTableView1pro_description: TcxGridDBColumn
+            Caption = 'Descri'#231#227'o'
+            DataBinding.FieldName = 'pro_description'
+            Width = 70
+          end
+          object cxGrid_1DBTableView1pro_gender: TcxGridDBColumn
+            DataBinding.FieldName = 'pro_gender'
+            Width = 50
+          end
+          object cxGrid_1DBTableView1pro_barcod: TcxGridDBColumn
+            DataBinding.FieldName = 'pro_barcod'
+            Width = 120
+          end
+          object cxGrid_1DBTableView1pro_barcod_manufacturer: TcxGridDBColumn
+            DataBinding.FieldName = 'pro_barcod_manufacturer'
+            Width = 130
+          end
+          object cxGrid_1DBTableView1pro_dt_registration: TcxGridDBColumn
+            Caption = 'Dt. Reg'
+            DataBinding.FieldName = 'pro_dt_registration'
+            Width = 125
           end
         end
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
-              Left = 92
+              Left = 77
               DataBinding.DataField = 'pro_id'
-              ExplicitLeft = 92
+              ExplicitLeft = 77
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 265
+              Left = 250
               DataBinding.DataField = 'pro_dt_registration'
-              ExplicitLeft = 265
+              ExplicitLeft = 250
             end
-            object cxDBComboBox1: TcxDBComboBox [2]
-              Left = 92
-              Top = 130
+            object dbComboxPro_type: TcxDBComboBox [2]
+              Left = 77
+              Top = 103
               DataBinding.DataField = 'pro_type'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -122,220 +147,41 @@ inherited frm_product: Tfrm_product
                 'P - PRODUTO'
                 'S - SERVI'#199'O')
               Style.HotTrack = False
-              TabOrder = 3
+              TabOrder = 2
               Width = 121
             end
             object cxDBTextEdit1: TcxDBTextEdit [3]
-              Left = 92
-              Top = 157
+              Left = 77
+              Top = 130
               DataBinding.DataField = 'pro_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 4
-              Width = 341
+              Width = 378
             end
-            object cxDBLookupComboBox7: TcxDBLookupComboBox [4]
-              Left = 506
-              Top = 157
-              DataBinding.DataField = 'product_unit_pru_cod'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'pru_id'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'pru_name'
-                end
-                item
-                  FieldName = 'pru_id'
-                end>
-              Properties.ListSource = ds_product_unit
-              Properties.OnPopup = cxDBLookupComboBox7PropertiesPopup
-              Style.HotTrack = False
-              TabOrder = 5
-              Width = 121
-            end
-            object cxDBLookupComboBox2: TcxDBLookupComboBox [5]
-              Left = 92
-              Top = 184
-              DataBinding.DataField = 'supplier_sup_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'pro_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Raz'#227'o'
-                  Width = 250
-                  FieldName = 'sup_first_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'sup_id'
-                end>
-              Properties.ListSource = ds_supplier
-              Properties.OnPopup = cxDBLookupComboBox2PropertiesPopup
-              Style.HotTrack = False
-              TabOrder = 6
-              Width = 121
-            end
-            object cxDBLookupComboBox3: TcxDBLookupComboBox [6]
-              Left = 312
-              Top = 184
-              DataBinding.DataField = 'manufacturer_man_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'man_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Raz'#227'o'
-                  Width = 250
-                  FieldName = 'man_first_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'man_id'
-                end>
-              Properties.ListSource = ds_manufacturer
-              Properties.OnPopup = cxDBLookupComboBox3PropertiesPopup
-              Style.HotTrack = False
-              TabOrder = 7
-              Width = 121
-            end
-            object cxDBLookupComboBox1: TcxDBLookupComboBox [7]
-              Left = 497
-              Top = 184
-              DataBinding.DataField = 'ncm_ncm_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'ncm_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'C'#243'digo'
-                  Width = 100
-                  FieldName = 'ncm_code'
-                end
-                item
-                  Caption = 'Descri'#231#227'o'
-                  Width = 250
-                  FieldName = 'ncm_description'
-                end>
-              Properties.ListSource = ds_ncm
-              Properties.OnPopup = cxDBLookupComboBox1PropertiesPopup
-              Style.HotTrack = False
-              TabOrder = 8
-              Width = 121
-            end
-            object cxDBLookupComboBox4: TcxDBLookupComboBox [8]
-              Left = 92
-              Top = 211
-              DataBinding.DataField = 'brand_bra_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'bra_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Nome'
-                  Width = 250
-                  FieldName = 'bra_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'bra_id'
-                end>
-              Properties.ListSource = ds_brand
-              Properties.OnPopup = cxDBLookupComboBox4PropertiesPopup
-              Style.HotTrack = False
-              TabOrder = 9
-              Width = 121
-            end
-            object cxDBLookupComboBox5: TcxDBLookupComboBox [9]
-              Left = 312
-              Top = 211
-              DataBinding.DataField = 'product_class_prc_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'prc_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Nome'
-                  Width = 250
-                  FieldName = 'prc_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'prc_id'
-                end>
-              Properties.ListSource = ds_product_class
-              Properties.OnPopup = cxDBLookupComboBox5PropertiesPopup
-              Style.HotTrack = False
-              TabOrder = 10
-              Width = 121
-            end
-            object cxDBLookupComboBox6: TcxDBLookupComboBox [10]
-              Left = 497
-              Top = 211
-              DataBinding.DataField = 'product_class_sub_prs_id'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'prs_id'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Nome'
-                  Width = 250
-                  FieldName = 'prs_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'prs_id'
-                end>
-              Properties.ListSource = ds_product_class_sub
-              Properties.OnPopup = cxDBLookupComboBox6PropertiesPopup
-              Style.HotTrack = False
-              TabOrder = 11
-              OnEnter = cxDBLookupComboBox6Enter
-              Width = 121
-            end
-            object cxDBTextEdit2: TcxDBTextEdit [11]
-              Left = 92
+            object cxDBTextEdit2: TcxDBTextEdit [4]
+              Left = 77
               Top = 238
               DataBinding.DataField = 'pro_barcod'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 12
-              Width = 121
+              Width = 145
             end
-            object cxDBTextEdit3: TcxDBTextEdit [12]
-              Left = 312
+            object cxDBTextEdit3: TcxDBTextEdit [5]
+              Left = 323
               Top = 238
               DataBinding.DataField = 'pro_barcod_manufacturer'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 13
-              Width = 121
+              Width = 132
             end
-            object cxDBMemo1: TcxDBMemo [13]
-              Left = 92
+            object cxDBMemo1: TcxDBMemo [6]
+              Left = 77
               Top = 265
               DataBinding.DataField = 'pro_description'
               DataBinding.DataSource = ds
@@ -344,151 +190,171 @@ inherited frm_product: Tfrm_product
               Style.HotTrack = False
               TabOrder = 14
               Height = 89
-              Width = 535
+              Width = 601
             end
-            object cxDBTextEdit4: TcxDBTextEdit [14]
-              Left = 92
+            object dbComboxStatus: TcxDBComboBox [7]
+              Left = 250
               Top = 103
-              DataBinding.DataField = 'product_unit_pru_cod'
+              DataBinding.DataField = 'pro_status'
               DataBinding.DataSource = ds
+              Properties.Items.Strings = (
+                'A - ATIVO'
+                'D - DESATIVADO')
               Style.HotTrack = False
-              TabOrder = 2
-              Width = 535
+              TabOrder = 3
+              Width = 121
+            end
+            object loopComboxNCM: TcxLookupComboBox [8]
+              Left = 533
+              Top = 130
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'ncm_description'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'ncm_description'
+                end
+                item
+                  FieldName = 'ncm_code'
+                end>
+              Properties.ListSource = ds_ncm
+              Style.HotTrack = False
+              TabOrder = 5
+              Width = 145
+            end
+            object looComboxFornecedor: TcxLookupComboBox [9]
+              Left = 77
+              Top = 157
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'sup_last_name'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'sup_last_name'
+                end
+                item
+                  FieldName = 'sup_id'
+                end>
+              Properties.ListSource = ds_supplier
+              Style.HotTrack = False
+              TabOrder = 6
+              Width = 378
+            end
+            object looComboxFabricante: TcxLookupComboBox [10]
+              Left = 77
+              Top = 184
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'man_last_name'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'man_last_name'
+                end
+                item
+                  FieldName = 'man_id'
+                end>
+              Properties.ListSource = ds_manufacturer
+              Style.HotTrack = False
+              TabOrder = 8
+              Width = 378
+            end
+            object looComboxUnidMedida: TcxLookupComboBox [11]
+              Left = 533
+              Top = 157
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'pru_name'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'pru_name'
+                end
+                item
+                  FieldName = 'pru_id'
+                end>
+              Properties.ListSource = ds_product_unit
+              Style.HotTrack = False
+              TabOrder = 7
+              Width = 145
+            end
+            object looCombxMarca: TcxLookupComboBox [12]
+              Left = 533
+              Top = 184
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'bra_name'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'bra_name'
+                end
+                item
+                  FieldName = 'bra_id'
+                end>
+              Properties.ListSource = ds_brand
+              Style.HotTrack = False
+              TabOrder = 9
+              Width = 145
+            end
+            object looComboxClasse: TcxLookupComboBox [13]
+              Left = 77
+              Top = 211
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'prc_name'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'prc_name'
+                end
+                item
+                  FieldName = 'prc_id'
+                end>
+              Properties.ListSource = ds_product_class
+              Style.HotTrack = False
+              TabOrder = 10
+              Width = 145
+            end
+            object looComboxSub_Classe: TcxLookupComboBox [14]
+              Left = 323
+              Top = 211
+              Properties.KeyFieldNames = 'prs_name'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'prs_name'
+                end
+                item
+                  FieldName = 'prs_id'
+                end>
+              Properties.ListSource = ds_product_class_sub
+              Style.HotTrack = False
+              TabOrder = 11
+              Width = 132
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahRight
-            end
-            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              Index = 0
-              AutoCreated = True
+              ItemIndex = 4
             end
             object dxLayoutItem6: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
+              Parent = dxLayoutAutoCreatedGroup6
               AlignHorz = ahLeft
-              AlignVert = avClient
+              AlignVert = avTop
               CaptionOptions.Text = 'Tipo'
-              Control = cxDBComboBox1
+              Control = dbComboxPro_type
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 2
-              AutoCreated = True
+              Index = 0
             end
             object dxLayoutItem3: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
+              Parent = dxLayoutAutoCreatedGroup1
               AlignHorz = ahLeft
-              AlignVert = avClient
+              AlignVert = avTop
               CaptionOptions.Text = 'Nome'
               Control = cxDBTextEdit1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 341
+              ControlOptions.OriginalWidth = 378
               ControlOptions.ShowBorder = False
               Index = 0
-            end
-            object dxLayoutItem12: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
-              AlignVert = avClient
-              CaptionOptions.Text = 'Unid. Medida'
-              Control = cxDBLookupComboBox7
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 1
-              AutoCreated = True
-            end
-            object dxLayoutItem7: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Fornecedor'
-              Control = cxDBLookupComboBox2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutItem8: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Fabricante'
-              Control = cxDBLookupComboBox3
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutItem4: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'NCM'
-              Control = cxDBLookupComboBox1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 2
-            end
-            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              LayoutDirection = ldHorizontal
-              Index = 2
-              AutoCreated = True
-            end
-            object dxLayoutItem9: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Marca'
-              Control = cxDBLookupComboBox4
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutItem10: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Classe'
-              Control = cxDBLookupComboBox5
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutItem11: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignVert = avClient
-              CaptionOptions.Text = 'Sub-Classe'
-              Control = cxDBLookupComboBox6
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 2
             end
             object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2
               LayoutDirection = ldHorizontal
-              Index = 3
+              Index = 5
               AutoCreated = True
             end
             object dxLayoutItem13: TdxLayoutItem
@@ -497,7 +363,7 @@ inherited frm_product: Tfrm_product
               CaptionOptions.Text = 'C'#243'd. Barra'
               Control = cxDBTextEdit2
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 145
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -506,9 +372,10 @@ inherited frm_product: Tfrm_product
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'C'#243'd. Barra - Fabr.'
+              Offsets.Left = 2
               Control = cxDBTextEdit3
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 132
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -519,25 +386,133 @@ inherited frm_product: Tfrm_product
               ControlOptions.OriginalHeight = 89
               ControlOptions.OriginalWidth = 185
               ControlOptions.ShowBorder = False
-              Index = 4
+              Index = 6
             end
             object dxLayoutItem21: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              CaptionOptions.Text = 'cxDBTextEdit4'
-              Control = cxDBTextEdit4
+              Parent = dxLayoutAutoCreatedGroup6
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Status'
+              Control = dbComboxStatus
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
               Index = 0
+              AutoCreated = True
+            end
+            object dxLayoutItem22: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              CaptionOptions.Text = 'NCM'
+              Offsets.Left = 5
+              Padding.AssignedValues = [lpavLeft]
+              Control = loopComboxNCM
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 145
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem9: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignHorz = ahLeft
+              CaptionOptions.Text = 'Fornecedor'
+              Control = looComboxFornecedor
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 378
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem7: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              AlignHorz = ahLeft
+              CaptionOptions.Text = 'Fabricante'
+              Control = looComboxFabricante
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 378
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem4: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Unid. Medida'
+              Offsets.Left = 5
+              Control = looComboxUnidMedida
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 145
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              LayoutDirection = ldHorizontal
+              Index = 2
+              AutoCreated = True
+            end
+            object dxLayoutItem12: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Marca'
+              Offsets.Left = 5
+              Control = looCombxMarca
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 145
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              LayoutDirection = ldHorizontal
+              Index = 3
+              AutoCreated = True
+            end
+            object dxLayoutItem8: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup4
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Classe'
+              Control = looComboxClasse
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 145
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem10: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup4
+              AlignVert = avClient
+              CaptionOptions.Text = 'Sub-Classe'
+              Offsets.Left = 2
+              Control = looComboxSub_Classe
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 132
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 4
+              AutoCreated = True
             end
           end
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Medidas e Pesos'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -681,10 +656,6 @@ inherited frm_product: Tfrm_product
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Insumos'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -789,17 +760,58 @@ inherited frm_product: Tfrm_product
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evDetailCascade]
     SQL.Strings = (
-      'select * from product')
+      
+        'select pro.*, hex(pro_cod)as CodProduct, sup.sup_last_name, cla.' +
+        'prc_name, cla.prc_status, cla_sub.prs_name, manuf.man_last_name,'
+      
+        ' '#10'br.bra_name, br.bra_status, pr_unt.pru_name, pr_unt.pru_initia' +
+        'ls, pr_unt.pru_status from product as pro'#13#10#10
+      
+        'left join supplier as sup on sup.sup_cod = pro.supplier_sup_cod'#13 +
+        #10#10
+      
+        'left join product_class as cla on cla.prc_cod = pro.product_clas' +
+        's_prc_cod '#10
+      
+        'left join product_class_sub as cla_sub on cla_sub.prs_cod = pro.' +
+        'product_class_prc_cod'#10
+      
+        'left join manufacturer as manuf on manuf.man_cod = pro.manufactu' +
+        'rer_man_cod '#13#10#10
+      'left join brand as br on br.bra_cod = pro.brand_bra_cod'#13#10#10
+      'left join ncm as nc on nc.ncm_cod = pro.ncm_ncm_cod'#10
+      
+        'left join product_unit as pr_unt on pr_unt.pru_cod = pro.product' +
+        '_unit_pru_cod'#10
+      
+        'where pro_type ='#39'P'#39' and pro.contract_ctr_cod =:ctr_cod and pro.p' +
+        'ro_deleted_at is null')
+    ParamData = <
+      item
+        Name = 'CTR_COD'
+        DataType = ftBytes
+        ParamType = ptInput
+        Size = 24
+        Value = Null
+      end>
+    object qryCodProduct: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodProduct'
+      Origin = 'CodProduct'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
     object qrypro_cod: TBytesField
       FieldName = 'pro_cod'
       Origin = 'pro_cod'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object qrycontract_ctr_cod: TBytesField
       AutoGenerateValue = arDefault
@@ -843,6 +855,7 @@ inherited frm_product: Tfrm_product
     end
     object qryproduct_unit_pru_cod: TBytesField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Unidade de Medida'
       FieldName = 'product_unit_pru_cod'
       Origin = 'product_unit_pru_cod'
     end
@@ -850,6 +863,81 @@ inherited frm_product: Tfrm_product
       AutoGenerateValue = arDefault
       FieldName = 'pro_id'
       Origin = 'pro_id'
+    end
+    object qryprc_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'prc_name'
+      Origin = 'prc_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
+    object qryprc_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'prc_status'
+      Origin = 'prc_status'
+      ProviderFlags = []
+      ReadOnly = True
+      FixedChar = True
+      Size = 1
+    end
+    object qryprs_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'prs_name'
+      Origin = 'prs_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
+    object qryman_last_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_last_name'
+      Origin = 'man_last_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object qrybra_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'bra_name'
+      Origin = 'bra_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
+    object qrybra_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'bra_status'
+      Origin = 'bra_status'
+      ProviderFlags = []
+      ReadOnly = True
+      FixedChar = True
+      Size = 1
+    end
+    object qrypru_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_name'
+      Origin = 'pru_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
+    object qrypru_initials: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_initials'
+      Origin = 'pru_initials'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
+    object qrypru_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_status'
+      Origin = 'pru_status'
+      ProviderFlags = []
+      ReadOnly = True
+      FixedChar = True
+      Size = 1
     end
     object qrypro_type: TStringField
       AutoGenerateValue = arDefault
@@ -860,8 +948,10 @@ inherited frm_product: Tfrm_product
     end
     object qrypro_name: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome do Produto'
       FieldName = 'pro_name'
       Origin = 'pro_name'
+      Required = True
       Size = 85
     end
     object qrypro_initials: TStringField
@@ -953,6 +1043,14 @@ inherited frm_product: Tfrm_product
       AutoGenerateValue = arDefault
       FieldName = 'pro_dt_registration'
       Origin = 'pro_dt_registration'
+    end
+    object qrysup_last_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_last_name'
+      Origin = 'sup_last_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -3257,86 +3355,594 @@ inherited frm_product: Tfrm_product
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from ncm')
-    Left = 584
-    Top = 96
+      'select ncm.*, hex(ncm_cod)as CodNCM from ncm')
+    Left = 752
+    Top = 224
+    object qry_ncmncm_cod: TBytesField
+      FieldName = 'ncm_cod'
+      Origin = 'ncm_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_ncmcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_ncmncm_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'ncm_id'
+      Origin = 'ncm_id'
+    end
+    object qry_ncmncm_code: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'NCM Cod.'
+      DisplayWidth = 12
+      FieldName = 'ncm_code'
+      Origin = 'ncm_code'
+      Size = 10
+    end
+    object qry_ncmncm_description: TMemoField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'NCM'
+      DisplayWidth = 50
+      FieldName = 'ncm_description'
+      Origin = 'ncm_description'
+      BlobType = ftMemo
+    end
+    object qry_ncmncm_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ncm_status'
+      Origin = 'ncm_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_ncmncm_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'ncm_deleted_at'
+      Origin = 'ncm_deleted_at'
+    end
+    object qry_ncmncm_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'ncm_dt_registration'
+      Origin = 'ncm_dt_registration'
+    end
+    object qry_ncmCodNCM: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodNCM'
+      Origin = 'CodNCM'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
   object ds_ncm: TDataSource
     DataSet = qry_ncm
-    Left = 616
-    Top = 96
+    Left = 784
+    Top = 224
   end
   object qry_supplier: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from supplier')
-    Left = 584
-    Top = 144
+      'select supplier.*,hex(sup_cod)as CodSupplier from supplier')
+    Left = 752
+    Top = 304
+    object qry_suppliersup_cod: TBytesField
+      FieldName = 'sup_cod'
+      Origin = 'sup_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_suppliercontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_suppliersup_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'digo ID'
+      DisplayWidth = 12
+      FieldName = 'sup_id'
+      Origin = 'sup_id'
+    end
+    object qry_suppliersup_first_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_first_name'
+      Origin = 'sup_first_name'
+      Size = 85
+    end
+    object qry_suppliersup_last_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Fornecedor'
+      DisplayWidth = 80
+      FieldName = 'sup_last_name'
+      Origin = 'sup_last_name'
+      Size = 85
+    end
+    object qry_suppliersup_email: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_email'
+      Origin = 'sup_email'
+      Size = 65
+    end
+    object qry_suppliersup_cnpj: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_cnpj'
+      Origin = 'sup_cnpj'
+      Size = 25
+    end
+    object qry_suppliersup_ie: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_ie'
+      Origin = 'sup_ie'
+      Size = 25
+    end
+    object qry_suppliersup_im: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_im'
+      Origin = 'sup_im'
+      Size = 25
+    end
+    object qry_suppliersup_suframa: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_suframa'
+      Origin = 'sup_suframa'
+      Size = 25
+    end
+    object qry_suppliersup_dt_open: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_dt_open'
+      Origin = 'sup_dt_open'
+    end
+    object qry_suppliersup_add_bus_zipcode: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_add_bus_zipcode'
+      Origin = 'sup_add_bus_zipcode'
+      Size = 9
+    end
+    object qry_suppliersup_add_bus_address: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_add_bus_address'
+      Origin = 'sup_add_bus_address'
+      Size = 50
+    end
+    object qry_suppliersup_add_bus_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_add_bus_number'
+      Origin = 'sup_add_bus_number'
+      Size = 5
+    end
+    object qry_suppliersup_add_bus_street: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_add_bus_street'
+      Origin = 'sup_add_bus_street'
+      Size = 45
+    end
+    object qry_suppliersup_add_bus_complement: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_add_bus_complement'
+      Origin = 'sup_add_bus_complement'
+      Size = 50
+    end
+    object qry_suppliersup_add_bus_city: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_add_bus_city'
+      Origin = 'sup_add_bus_city'
+      Size = 35
+    end
+    object qry_suppliersup_add_bus_state: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_add_bus_state'
+      Origin = 'sup_add_bus_state'
+      FixedChar = True
+      Size = 3
+    end
+    object qry_suppliersup_add_bus_country: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_add_bus_country'
+      Origin = 'sup_add_bus_country'
+      Size = 25
+    end
+    object qry_suppliersup_phone1: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_phone1'
+      Origin = 'sup_phone1'
+      Size = 15
+    end
+    object qry_suppliersup_phone2: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_phone2'
+      Origin = 'sup_phone2'
+      Size = 15
+    end
+    object qry_suppliersup_phone3: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_phone3'
+      Origin = 'sup_phone3'
+      Size = 15
+    end
+    object qry_suppliersup_phone4: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_phone4'
+      Origin = 'sup_phone4'
+      Size = 15
+    end
+    object qry_suppliersup_contact: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_contact'
+      Origin = 'sup_contact'
+      Size = 25
+    end
+    object qry_suppliersup_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_status'
+      Origin = 'sup_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_suppliersup_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_deleted_at'
+      Origin = 'sup_deleted_at'
+    end
+    object qry_suppliersup_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'sup_dt_registration'
+      Origin = 'sup_dt_registration'
+    end
+    object qry_supplierCodSupplier: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodSupplier'
+      Origin = 'CodSupplier'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
   object ds_supplier: TDataSource
     DataSet = qry_supplier
-    Left = 616
-    Top = 144
+    Left = 784
+    Top = 304
   end
   object qry_manufacturer: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from manufacturer')
-    Left = 520
-    Top = 144
+      
+        'select manufacturer.*, hex(man_cod)as CodManufact from manufactu' +
+        'rer')
+    Left = 832
+    Top = 304
+    object qry_manufacturerman_cod: TBytesField
+      FieldName = 'man_cod'
+      Origin = 'man_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_manufacturercontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_manufacturerman_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'digo ID'
+      DisplayWidth = 12
+      FieldName = 'man_id'
+      Origin = 'man_id'
+    end
+    object qry_manufacturerman_first_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_first_name'
+      Origin = 'man_first_name'
+      Size = 85
+    end
+    object qry_manufacturerman_last_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Fabricante'
+      DisplayWidth = 80
+      FieldName = 'man_last_name'
+      Origin = 'man_last_name'
+      Size = 85
+    end
+    object qry_manufacturerman_email: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_email'
+      Origin = 'man_email'
+      Size = 65
+    end
+    object qry_manufacturerman_cnpj: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_cnpj'
+      Origin = 'man_cnpj'
+      Size = 25
+    end
+    object qry_manufacturerman_ie: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_ie'
+      Origin = 'man_ie'
+      Size = 25
+    end
+    object qry_manufacturerman_im: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_im'
+      Origin = 'man_im'
+      Size = 25
+    end
+    object qry_manufacturerman_suframa: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_suframa'
+      Origin = 'man_suframa'
+      Size = 25
+    end
+    object qry_manufacturerman_dt_open: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_dt_open'
+      Origin = 'man_dt_open'
+    end
+    object qry_manufacturerman_add_bus_zipcode: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_zipcode'
+      Origin = 'man_add_bus_zipcode'
+      Size = 9
+    end
+    object qry_manufacturerman_add_bus_address: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_address'
+      Origin = 'man_add_bus_address'
+      Size = 50
+    end
+    object qry_manufacturerman_add_bus_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_number'
+      Origin = 'man_add_bus_number'
+      Size = 5
+    end
+    object qry_manufacturerman_add_bus_street: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_street'
+      Origin = 'man_add_bus_street'
+      Size = 45
+    end
+    object qry_manufacturerman_add_bus_complement: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_complement'
+      Origin = 'man_add_bus_complement'
+      Size = 50
+    end
+    object qry_manufacturerman_add_bus_city: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_city'
+      Origin = 'man_add_bus_city'
+      Size = 35
+    end
+    object qry_manufacturerman_add_bus_state: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_state'
+      Origin = 'man_add_bus_state'
+      FixedChar = True
+      Size = 3
+    end
+    object qry_manufacturerman_add_bus_country: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_add_bus_country'
+      Origin = 'man_add_bus_country'
+      Size = 25
+    end
+    object qry_manufacturerman_phone1: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_phone1'
+      Origin = 'man_phone1'
+      Size = 15
+    end
+    object qry_manufacturerman_phone2: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_phone2'
+      Origin = 'man_phone2'
+      Size = 15
+    end
+    object qry_manufacturerman_phone3: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_phone3'
+      Origin = 'man_phone3'
+      Size = 15
+    end
+    object qry_manufacturerman_phone4: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_phone4'
+      Origin = 'man_phone4'
+      Size = 15
+    end
+    object qry_manufacturerman_contact: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_contact'
+      Origin = 'man_contact'
+      Size = 25
+    end
+    object qry_manufacturerman_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_status'
+      Origin = 'man_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_manufacturerman_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_deleted_at'
+      Origin = 'man_deleted_at'
+    end
+    object qry_manufacturerman_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_dt_registration'
+      Origin = 'man_dt_registration'
+    end
+    object qry_manufacturerCodManufact: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodManufact'
+      Origin = 'CodManufact'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
   object ds_manufacturer: TDataSource
     DataSet = qry_manufacturer
-    Left = 552
-    Top = 144
+    Left = 864
+    Top = 304
   end
   object qry_brand: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from brand')
-    Left = 648
-    Top = 96
+      'select brand.*, hex(bra_cod)as CodBrand from brand')
+    Left = 752
+    Top = 192
+    object qry_brandbra_cod: TBytesField
+      FieldName = 'bra_cod'
+      Origin = 'bra_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_brandcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_brandbra_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'digo ID'
+      DisplayWidth = 12
+      FieldName = 'bra_id'
+      Origin = 'bra_id'
+    end
+    object qry_brandbra_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Marca'
+      DisplayWidth = 50
+      FieldName = 'bra_name'
+      Origin = 'bra_name'
+      Size = 35
+    end
+    object qry_brandbra_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'bra_status'
+      Origin = 'bra_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_brandbra_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'bra_deleted_at'
+      Origin = 'bra_deleted_at'
+    end
+    object qry_brandbra_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'bra_dt_registration'
+      Origin = 'bra_dt_registration'
+    end
+    object qry_brandCodBrand: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodBrand'
+      Origin = 'CodBrand'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
   object ds_brand: TDataSource
     DataSet = qry_brand
-    Left = 680
-    Top = 96
+    Left = 784
+    Top = 192
   end
   object qry_product_class: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from product_class')
-    Left = 648
-    Top = 144
+      
+        'select product_class.*, hex(prc_cod)as CodProductClass from prod' +
+        'uct_class')
+    Left = 752
+    Top = 264
+    object qry_product_classprc_cod: TBytesField
+      FieldName = 'prc_cod'
+      Origin = 'prc_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_product_classcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_product_classprc_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'digo ID'
+      DisplayWidth = 12
+      FieldName = 'prc_id'
+      Origin = 'prc_id'
+    end
+    object qry_product_classprc_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Classe'
+      DisplayWidth = 50
+      FieldName = 'prc_name'
+      Origin = 'prc_name'
+      Size = 35
+    end
+    object qry_product_classprc_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'prc_status'
+      Origin = 'prc_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_product_classprc_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'prc_deleted_at'
+      Origin = 'prc_deleted_at'
+    end
+    object qry_product_classprc_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'prc_dt_registration'
+      Origin = 'prc_dt_registration'
+    end
+    object qry_product_classCodProductClass: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodProductClass'
+      Origin = 'CodProductClass'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
   object ds_product_class: TDataSource
     DataSet = qry_product_class
-    Left = 680
-    Top = 144
+    Left = 784
+    Top = 264
   end
   object qry_product_class_sub: TFDQuery
     Active = True
@@ -3347,32 +3953,144 @@ inherited frm_product: Tfrm_product
     DetailFields = 'product_class_prc_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from product_class_sub')
-    Left = 416
-    Top = 88
+      
+        'select product_class_sub.*, hex(prs_cod)as CodClassSub from prod' +
+        'uct_class_sub')
+    Left = 824
+    Top = 264
+    object qry_product_class_subprs_cod: TBytesField
+      FieldName = 'prs_cod'
+      Origin = 'prs_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_product_class_subcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_product_class_subproduct_class_prc_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_class_prc_cod'
+      Origin = 'product_class_prc_cod'
+    end
+    object qry_product_class_subprs_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'dido ID'
+      DisplayWidth = 12
+      FieldName = 'prs_id'
+      Origin = 'prs_id'
+    end
+    object qry_product_class_subprs_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Sub-Classe'
+      DisplayWidth = 50
+      FieldName = 'prs_name'
+      Origin = 'prs_name'
+      Size = 35
+    end
+    object qry_product_class_subprs_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'prs_deleted_at'
+      Origin = 'prs_deleted_at'
+    end
+    object qry_product_class_subprs_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'prs_dt_registration'
+      Origin = 'prs_dt_registration'
+    end
+    object qry_product_class_subCodClassSub: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodClassSub'
+      Origin = 'CodClassSub'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
   object ds_product_class_sub: TDataSource
     DataSet = qry_product_class_sub
-    Left = 488
-    Top = 96
+    Left = 856
+    Top = 264
   end
   object qry_product_unit: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select * from product_unit')
-    Left = 520
-    Top = 96
+      
+        'select product_unit.*, hex(pru_cod)as CodProdUnit from product_u' +
+        'nit')
+    Left = 816
+    Top = 224
+    object qry_product_unitpru_cod: TBytesField
+      FieldName = 'pru_cod'
+      Origin = 'pru_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_product_unitcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_product_unitpru_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'digo ID'
+      DisplayWidth = 12
+      FieldName = 'pru_id'
+      Origin = 'pru_id'
+    end
+    object qry_product_unitpru_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      DisplayWidth = 50
+      FieldName = 'pru_name'
+      Origin = 'pru_name'
+      Size = 35
+    end
+    object qry_product_unitpru_initials: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_initials'
+      Origin = 'pru_initials'
+      Size = 35
+    end
+    object qry_product_unitpru_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_status'
+      Origin = 'pru_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_product_unitpru_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_deleted_at'
+      Origin = 'pru_deleted_at'
+    end
+    object qry_product_unitpru_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_dt_registration'
+      Origin = 'pru_dt_registration'
+    end
+    object qry_product_unitCodProdUnit: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodProdUnit'
+      Origin = 'CodProdUnit'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
   end
   object ds_product_unit: TDataSource
     DataSet = qry_product_unit
-    Left = 552
-    Top = 96
+    Left = 848
+    Top = 224
   end
   object qry_product_input: TFDQuery
     Active = True
@@ -3384,8 +4102,8 @@ inherited frm_product: Tfrm_product
     SQL.Strings = (
       'select * from product_input'
       'where product_pro_id_input = :pro_id')
-    Left = 306
-    Top = 99
+    Left = 514
+    Top = 107
     ParamData = <
       item
         Name = 'PRO_ID'
@@ -3396,8 +4114,8 @@ inherited frm_product: Tfrm_product
   end
   object ds_product_input: TDataSource
     DataSet = qry_product_input
-    Left = 423
-    Top = 154
+    Left = 551
+    Top = 106
   end
   object qry_product_list_input: TFDQuery
     Active = True
@@ -3405,8 +4123,8 @@ inherited frm_product: Tfrm_product
     SQL.Strings = (
       'select pro_id,pro_name from product'#13#10#10
       'order by pro_name ')
-    Left = 655
-    Top = 202
+    Left = 767
+    Top = 106
     object qry_product_list_inputpro_id: TLongWordField
       FieldName = 'pro_id'
     end
@@ -3419,16 +4137,16 @@ inherited frm_product: Tfrm_product
   end
   object ds_product_list_input: TDataSource
     DataSet = qry_product_list_input
-    Left = 688
-    Top = 200
+    Left = 800
+    Top = 104
   end
   object frxDBD_Produto: TfrxDBDataset
     UserName = 'Produto'
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False
-    Left = 128
-    Top = 304
+    Left = 232
+    Top = 48
   end
   object frxReport1: TfrxReport
     Version = '6.0.4'
@@ -3445,8 +4163,8 @@ inherited frm_product: Tfrm_product
       'begin'
       ''
       'end.')
-    Left = 128
-    Top = 256
+    Left = 296
+    Top = 48
     Datasets = <
       item
         DataSet = frm_dm.frx_db_enterprise

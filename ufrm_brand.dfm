@@ -37,8 +37,16 @@ inherited frm_brand: Tfrm_brand
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'bra_id'
@@ -127,10 +135,6 @@ inherited frm_brand: Tfrm_brand
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
-  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
-    Left = 520
-    Top = 48
-  end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
@@ -143,7 +147,7 @@ inherited frm_brand: Tfrm_brand
     SQL.Strings = (
       'select brand'#10'.*, hex(bra_cod)as CodBrand from brand'#10
       'where contract_ctr_cod =:ctr_cod'#13#10#10
-      'and bra_deleted_at is null;')
+      'and bra_deleted_at is null')
     Left = 592
     ParamData = <
       item
@@ -211,8 +215,6 @@ inherited frm_brand: Tfrm_brand
     Formats.TimeFormat = 'hh:mm'
     Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
     Formats.CurrencyFormat = 'R$#,###,##0.00'
-    Left = 424
-    Top = 48
   end
   inherited QImport3Wizard_1: TQImport3Wizard
     Formats.ShortDateFormat = 'dd/MM/yy'

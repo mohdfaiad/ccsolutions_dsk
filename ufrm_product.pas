@@ -41,17 +41,12 @@ type
   Tfrm_product = class(Tfrm_form_default)
     cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
-    cxDBComboBox1: TcxDBComboBox;
+    dbComboxPro_type: TcxDBComboBox;
     dxLayoutItem6: TdxLayoutItem;
     cxDBMemo1: TcxDBMemo;
     dxLayoutItem5: TdxLayoutItem;
-    cxGrid_1DBTableView1pro_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1pro_type: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_name: TcxGridDBColumn;
-    cxGrid_1DBTableView1pro_tag: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_status: TcxGridDBColumn;
-    cxGrid_1DBTableView1pro_dt_registration: TcxGridDBColumn;
     qry_ncm: TFDQuery;
     ds_ncm: TDataSource;
     qry_supplier: TFDQuery;
@@ -64,26 +59,8 @@ type
     ds_product_class: TDataSource;
     qry_product_class_sub: TFDQuery;
     ds_product_class_sub: TDataSource;
-    cxDBLookupComboBox1: TcxDBLookupComboBox;
-    dxLayoutItem4: TdxLayoutItem;
-    cxDBLookupComboBox2: TcxDBLookupComboBox;
-    dxLayoutItem7: TdxLayoutItem;
-    cxDBLookupComboBox3: TcxDBLookupComboBox;
-    dxLayoutItem8: TdxLayoutItem;
-    cxDBLookupComboBox4: TcxDBLookupComboBox;
-    dxLayoutItem9: TdxLayoutItem;
-    cxDBLookupComboBox5: TcxDBLookupComboBox;
-    dxLayoutItem10: TdxLayoutItem;
-    cxDBLookupComboBox6: TcxDBLookupComboBox;
-    dxLayoutItem11: TdxLayoutItem;
     qry_product_unit: TFDQuery;
     ds_product_unit: TDataSource;
-    cxDBLookupComboBox7: TcxDBLookupComboBox;
-    dxLayoutItem12: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
     cxDBTextEdit2: TcxDBTextEdit;
     dxLayoutItem13: TdxLayoutItem;
     cxDBTextEdit3: TcxDBTextEdit;
@@ -104,20 +81,8 @@ type
     dxLayoutItem18: TdxLayoutItem;
     cxDBCurrencyEdit5: TcxDBCurrencyEdit;
     dxLayoutItem19: TdxLayoutItem;
-    cxGrid_1DBTableView1supplier_sup_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1product_class_prc_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1product_class_sub_prs_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1manufacturer_man_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1product_unit_pru_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1brand_bra_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1pro_barcod: TcxGridDBColumn;
-    cxGrid_1DBTableView1pro_barcod_manufacturer: TcxGridDBColumn;
-    cxGrid_1DBTableView1ncm_ncm_id: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_height: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_width: TcxGridDBColumn;
-    cxGrid_1DBTableView1pro_length: TcxGridDBColumn;
-    cxGrid_1DBTableView1pro_weight: TcxGridDBColumn;
-    cxGrid_1DBTableView1pro_liter: TcxGridDBColumn;
 
     qry_product_input: TFDQuery;
     cxTabSheet2: TcxTabSheet;
@@ -167,8 +132,154 @@ type
     qrypro_status: TStringField;
     qrypro_deleted_at: TDateTimeField;
     qrypro_dt_registration: TDateTimeField;
-    cxDBTextEdit4: TcxDBTextEdit;
+    qrysup_last_name: TStringField;
+    qryprc_name: TStringField;
+    qryprc_status: TStringField;
+    qryprs_name: TStringField;
+    qryman_last_name: TStringField;
+    qrybra_name: TStringField;
+    qrybra_status: TStringField;
+    qrypru_name: TStringField;
+    qrypru_initials: TStringField;
+    qrypru_status: TStringField;
+    qry_suppliersup_cod: TBytesField;
+    qry_suppliercontract_ctr_cod: TBytesField;
+    qry_suppliersup_id: TLongWordField;
+    qry_suppliersup_first_name: TStringField;
+    qry_suppliersup_last_name: TStringField;
+    qry_suppliersup_email: TStringField;
+    qry_suppliersup_cnpj: TStringField;
+    qry_suppliersup_ie: TStringField;
+    qry_suppliersup_im: TStringField;
+    qry_suppliersup_suframa: TStringField;
+    qry_suppliersup_dt_open: TDateField;
+    qry_suppliersup_add_bus_zipcode: TStringField;
+    qry_suppliersup_add_bus_address: TStringField;
+    qry_suppliersup_add_bus_number: TStringField;
+    qry_suppliersup_add_bus_street: TStringField;
+    qry_suppliersup_add_bus_complement: TStringField;
+    qry_suppliersup_add_bus_city: TStringField;
+    qry_suppliersup_add_bus_state: TStringField;
+    qry_suppliersup_add_bus_country: TStringField;
+    qry_suppliersup_phone1: TStringField;
+    qry_suppliersup_phone2: TStringField;
+    qry_suppliersup_phone3: TStringField;
+    qry_suppliersup_phone4: TStringField;
+    qry_suppliersup_contact: TStringField;
+    qry_suppliersup_status: TStringField;
+    qry_suppliersup_deleted_at: TDateTimeField;
+    qry_suppliersup_dt_registration: TDateTimeField;
+    qry_supplierCodSupplier: TStringField;
+    qry_manufacturerman_cod: TBytesField;
+    qry_manufacturercontract_ctr_cod: TBytesField;
+    qry_manufacturerman_id: TLongWordField;
+    qry_manufacturerman_first_name: TStringField;
+    qry_manufacturerman_last_name: TStringField;
+    qry_manufacturerman_email: TStringField;
+    qry_manufacturerman_cnpj: TStringField;
+    qry_manufacturerman_ie: TStringField;
+    qry_manufacturerman_im: TStringField;
+    qry_manufacturerman_suframa: TStringField;
+    qry_manufacturerman_dt_open: TDateField;
+    qry_manufacturerman_add_bus_zipcode: TStringField;
+    qry_manufacturerman_add_bus_address: TStringField;
+    qry_manufacturerman_add_bus_number: TStringField;
+    qry_manufacturerman_add_bus_street: TStringField;
+    qry_manufacturerman_add_bus_complement: TStringField;
+    qry_manufacturerman_add_bus_city: TStringField;
+    qry_manufacturerman_add_bus_state: TStringField;
+    qry_manufacturerman_add_bus_country: TStringField;
+    qry_manufacturerman_phone1: TStringField;
+    qry_manufacturerman_phone2: TStringField;
+    qry_manufacturerman_phone3: TStringField;
+    qry_manufacturerman_phone4: TStringField;
+    qry_manufacturerman_contact: TStringField;
+    qry_manufacturerman_status: TStringField;
+    qry_manufacturerman_deleted_at: TDateTimeField;
+    qry_manufacturerman_dt_registration: TDateTimeField;
+    qry_manufacturerCodManufact: TStringField;
+    qry_product_classprc_cod: TBytesField;
+    qry_product_classcontract_ctr_cod: TBytesField;
+    qry_product_classprc_id: TLongWordField;
+    qry_product_classprc_name: TStringField;
+    qry_product_classprc_status: TStringField;
+    qry_product_classprc_deleted_at: TDateTimeField;
+    qry_product_classprc_dt_registration: TDateTimeField;
+    qry_product_classCodProductClass: TStringField;
+    qry_product_class_subprs_cod: TBytesField;
+    qry_product_class_subcontract_ctr_cod: TBytesField;
+    qry_product_class_subproduct_class_prc_cod: TBytesField;
+    qry_product_class_subprs_id: TLongWordField;
+    qry_product_class_subprs_name: TStringField;
+    qry_product_class_subprs_deleted_at: TDateTimeField;
+    qry_product_class_subprs_dt_registration: TDateTimeField;
+    qry_product_class_subCodClassSub: TStringField;
+    qry_ncmncm_cod: TBytesField;
+    qry_ncmcontract_ctr_cod: TBytesField;
+    qry_ncmncm_id: TLongWordField;
+    qry_ncmncm_code: TStringField;
+    qry_ncmncm_description: TMemoField;
+    qry_ncmncm_status: TStringField;
+    qry_ncmncm_deleted_at: TDateTimeField;
+    qry_ncmncm_dt_registration: TDateTimeField;
+    qry_ncmCodNCM: TStringField;
+    qry_product_unitpru_cod: TBytesField;
+    qry_product_unitcontract_ctr_cod: TBytesField;
+    qry_product_unitpru_id: TLongWordField;
+    qry_product_unitpru_name: TStringField;
+    qry_product_unitpru_initials: TStringField;
+    qry_product_unitpru_status: TStringField;
+    qry_product_unitpru_deleted_at: TDateTimeField;
+    qry_product_unitpru_dt_registration: TDateTimeField;
+    qry_product_unitCodProdUnit: TStringField;
+    qry_brandbra_cod: TBytesField;
+    qry_brandcontract_ctr_cod: TBytesField;
+    qry_brandbra_id: TLongWordField;
+    qry_brandbra_name: TStringField;
+    qry_brandbra_status: TStringField;
+    qry_brandbra_deleted_at: TDateTimeField;
+    qry_brandbra_dt_registration: TDateTimeField;
+    qry_brandCodBrand: TStringField;
+    dbComboxStatus: TcxDBComboBox;
     dxLayoutItem21: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
+    loopComboxNCM: TcxLookupComboBox;
+    dxLayoutItem22: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    looComboxUnidMedida: TcxLookupComboBox;
+    dxLayoutItem4: TdxLayoutItem;
+    looCombxMarca: TcxLookupComboBox;
+    dxLayoutItem12: TdxLayoutItem;
+    looComboxFornecedor: TcxLookupComboBox;
+    dxLayoutItem9: TdxLayoutItem;
+    looComboxFabricante: TcxLookupComboBox;
+    dxLayoutItem7: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
+    looComboxClasse: TcxLookupComboBox;
+    dxLayoutItem8: TdxLayoutItem;
+    looComboxSub_Classe: TcxLookupComboBox;
+    dxLayoutItem10: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
+    cxGrid_1DBTableView1pro_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1prc_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1prs_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1man_last_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1bra_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1pru_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1pru_initials: TcxGridDBColumn;
+    cxGrid_1DBTableView1pro_initials: TcxGridDBColumn;
+    cxGrid_1DBTableView1pro_tag: TcxGridDBColumn;
+    cxGrid_1DBTableView1pro_description: TcxGridDBColumn;
+    cxGrid_1DBTableView1pro_gender: TcxGridDBColumn;
+    cxGrid_1DBTableView1pro_barcod: TcxGridDBColumn;
+    cxGrid_1DBTableView1pro_barcod_manufacturer: TcxGridDBColumn;
+    cxGrid_1DBTableView1pro_length: TcxGridDBColumn;
+    cxGrid_1DBTableView1pro_weight: TcxGridDBColumn;
+    cxGrid_1DBTableView1pro_liter: TcxGridDBColumn;
+    cxGrid_1DBTableView1pro_dt_registration: TcxGridDBColumn;
+    cxGrid_1DBTableView1sup_last_name: TcxGridDBColumn;
+    qryCodProduct: TStringField;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
@@ -186,10 +297,20 @@ type
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
     procedure cxTabSheet_1Show(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
+    procedure Action_insertExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure cxDBLookupComboBox1PropertiesCloseUp(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
   private
     { Private declarations }
+     pro_cod: string;
+
   public
-    { Public declarations }
+    procedure limpaCache(Sender:TObject);
+
+    procedure ExibirRegistros;
   end;
 
 var
@@ -199,53 +320,127 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, class_required_field;
 
 procedure Tfrm_product.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qrypro_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
- with frm_dm.qry,sql do
- begin
-  Close;
-  Text:= ' delete from product ' +
-         ' where contract_ctr_cod =:contract ' +
-         ' and pro_id = 0';
-  ParamByName('contract').Value:=frm_dm.qry_contractctr_cod.Value;
-  Prepare;
-  ExecSQL;
+    if result = false then
+    exit;
+
+ if (qrypro_id.AsInteger = 0) then
+  begin
+   with frm_dm.qry2,sql do
+    begin
+     Close;
+     Text:= ' delete from product ' +
+       ' where pro_cod = unhex('+ QuotedStr(pro_cod)+')' ;
+     Prepare;
+     ExecSQL;
+    end;
+  end;
+
+  ExibirRegistros;
+
 end;
+
+procedure Tfrm_product.Action_deleteExecute(Sender: TObject);
+begin
+  inherited;
+  if (result = false) then
+      exit;
+
+
+ if Application.MessageBox('Tem certeza que deseja excluir este Produto ? ','AVISO DE EXCLUSÃO',MB_YESNO + MB_ICONQUESTION) = mrYes then
+   begin
+     qry.Edit;
+     qrypro_deleted_at.AsDateTime:=Now;
+     qry.Post;
+     qry.ApplyUpdates(0);
+     Application.MessageBox('Produto excluído com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
+   end;
+
+    ExibirRegistros;
+end;
+
+procedure Tfrm_product.Action_editExecute(Sender: TObject);
+begin
+  inherited;
+   pro_cod := qryCodProduct.AsString;
+   dbComboxStatus.Enabled :=True;
+end;
+
+procedure Tfrm_product.Action_insertExecute(Sender: TObject);
+begin
+  inherited;
+  dbComboxStatus.ItemIndex := 0;
+  dbComboxPro_type.ItemIndex :=0;
+  dbComboxStatus.Enabled :=False;
+
 end;
 
 procedure Tfrm_product.Action_saveExecute(Sender: TObject);
 begin
-  if (Trim(cxDBLookupComboBox7.Text)='') OR (Trim(cxDBTextEdit1.Text)='')  then
-   begin
-     Application.MessageBox('Por favor imformar a unidade de medida do produto !','AVISO CADASTRO DE PRODUTO',MB_OK+MB_ICONINFORMATION);
-     Exit;
-   end;
-
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(pro_id) is null then 1 ' +
-          '      else (max(pro_id) + 1) end as maxID from ncm '+
-          ' where contract_ctr_cod = (select ctr_cod from contract ' +
-          ' where ctr_id =:ctr_id)';
-   ParamByName('ctr_id').AsInteger:=frm_dm.qry_contractctr_id.AsInteger;
-   Prepare;
-   Open;
-   if not (qry.State in [dsInsert,dsEdit])  then
-    qry.Edit;
-
-   if qrypro_id.AsInteger = 0 then
-    qrypro_id.AsInteger:=Fields[0].AsInteger;
- end;
-
-
+  //--Comando para tirar o focus de todos os componentes da tela-----
+   ActiveControl := nil;
+  //--Cama a função para verificar se existe campos requeridos em branco----
+  TCampoRequerido.TratarRequerido(qry);
 
   inherited;
+  if ds.DataSet.State in [dsEdit] then
+    Exit;
 
+if qrypro_id.AsInteger = 0 then
+   begin
+
+     with frm_dm.qry,sql do
+      begin
+       close;
+       Text:= ' select case when max(pro_id) is null then 1 ' +
+          '      else (max(pro_id) + 1) end as maxID from product '+
+          ' where contract_ctr_cod = unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')';
+       Prepare;
+       Open;
+
+       qry.Edit;
+       qrypro_id.AsInteger:=Fields[0].AsInteger;
+       qrysupplier_sup_cod.Value          := qry_suppliersup_cod.Value;
+       qrymanufacturer_man_cod.Value      := qry_manufacturerman_cod.Value;
+       qryproduct_class_prc_cod.Value     := qry_product_classprc_cod.Value;
+       qryproduct_class_sub_prs_cod.Value := qry_product_class_subprs_cod.Value;
+       qryncm_ncm_cod.Value               := qry_ncmncm_cod.Value;
+       qryproduct_unit_pru_cod.Value      := qry_product_unitpru_cod.Value;
+       qrybrand_bra_cod.Value             := qry_brandbra_cod.Value;
+     end;
+   end else
+        begin
+         qry.Edit;
+         qrysupplier_sup_cod.Value          := qry_suppliersup_cod.Value;
+         qrymanufacturer_man_cod.Value      := qry_manufacturerman_cod.Value;
+         qryproduct_class_prc_cod.Value     := qry_product_classprc_cod.Value;
+         qryproduct_class_sub_prs_cod.Value := qry_product_class_subprs_cod.Value;
+         qryncm_ncm_cod.Value               := qry_ncmncm_cod.Value;
+         qryproduct_unit_pru_cod.Value      := qry_product_unitpru_cod.Value;
+         qrybrand_bra_cod.Value             := qry_brandbra_cod.Value;
+
+        end;
+
+   qry.Post;
+   qry.ApplyUpdates(0);
+   ExibirRegistros;
+
+end;
+
+procedure Tfrm_product.cxDBLookupComboBox1PropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+ if not (qry.State in[dsEdit]) then
+  qry.Edit;
+
+  qryncm_ncm_cod.Value := qry_ncmncm_cod.Value;
+  qry.Post;
+  qry.Refresh;
+  qry.Edit;
 end;
 
 procedure Tfrm_product.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
@@ -322,10 +517,23 @@ end;
 procedure Tfrm_product.cxTabSheet_1Show(Sender: TObject);
 begin
   inherited;
+   //
+end;
+procedure Tfrm_product.ExibirRegistros;
+begin
    qry.Close;
-   qry.sql.text:= ' select * from product ';
+   qry.SQL.Text:= ' select pro.*,  hex(pro_cod)as CodProduct, sup.sup_last_name, cla.prc_name, cla.prc_status, cla_sub.prs_name, manuf.man_last_name,    '+
+                  ' br.bra_name, br.bra_status, pr_unt.pru_name, pr_unt.pru_initials, pr_unt.pru_status from product as pro  '+
+                  ' left join supplier as sup on sup.sup_cod = pro.supplier_sup_cod                                          '+
+                  ' left join product_class as cla on cla.prc_cod = pro.product_class_prc_cod                                '+
+                  ' left join product_class_sub as cla_sub on cla_sub.prs_cod = pro.product_class_prc_cod                    '+
+                  ' left join manufacturer as manuf on manuf.man_cod = pro.manufacturer_man_cod                              '+
+                  ' left join brand as br on br.bra_cod = pro.brand_bra_cod                                                  '+
+                  ' left join ncm as nc on nc.ncm_cod = pro.ncm_ncm_cod                                                      '+
+                  ' left join product_unit as pr_unt on pr_unt.pru_cod = pro.product_unit_pru_cod                            '+
+                  ' where pro_type =''P'' and  pro.contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+') and pro.pro_deleted_at is null  ';
    qry.Prepare;
-   qry.open;
+   qry.Open;
 end;
 
 procedure Tfrm_product.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -335,27 +543,58 @@ begin
   frm_product := Nil;
 end;
 
+procedure Tfrm_product.FormCreate(Sender: TObject);
+begin
+  inherited;
+   FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+end;
+
+procedure Tfrm_product.FormShow(Sender: TObject);
+begin
+  inherited;
+  ExibirRegistros;
+end;
+
+procedure Tfrm_product.limpaCache(Sender: TObject);
+begin
+   qry.CommitUpdates();
+end;
+
 procedure Tfrm_product.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
- With frm_dm.qry,sql do
+//SQL para obter Número do Cod ID em Hex--------
+  With frm_dm.qry,sql do
   begin
-   Close;
-   Text:='insert into product(pro_cod,pro_id,contract_ctr_cod) ' +
-         ' select unhex(replace(uuid(),''-'','''')),0,(select ctr_cod from contract ' +
-         ' where ctr_id = :contrato)';
-   ParamByName('contrato').AsInteger:=frm_dm.qry_contractctr_id.AsInteger;
+   close;
+   text:= ' select hex(uuid_to_bin(uuid()))';
+   prepare;
+   open;
+
+   pro_cod:=Fields[0].AsString;
+
+   Close;          //---Insert na tabela purchase_order inserindo os primeiros registros obrigatórios----
+   Text:='insert into product (pro_id,pro_cod,pro_status,pro_type,contract_ctr_cod,pro_dt_registration) ' +
+         ' select 0,unhex('+QuotedStr(pro_cod)+'),''A'',''P'',unhex(' +QuotedStr(frm_dm.v_contract_ctr_cod)+'),Now()';
    Prepare;
    ExecSQL;
   end;
-   qry.Close;
-   qry.sql.text:= ' select * from product ' +
-                  ' where pro_id = 0 ';
+
+   qry.Close;      //--SQL para retornar o registro inserido  acima (ultimo registro)----
+   qry.sql.text:= ' select pro.*,  hex(pro_cod)as CodProduct, sup.sup_last_name, cla.prc_name, cla.prc_status, cla_sub.prs_name, manuf.man_last_name,    '+
+                  ' br.bra_name, br.bra_status, pr_unt.pru_name, pr_unt.pru_initials, pr_unt.pru_status from product as pro  '+
+                  ' left join supplier as sup on sup.sup_cod = pro.supplier_sup_cod                                          '+
+                  ' left join product_class as cla on cla.prc_cod = pro.product_class_prc_cod                                '+
+                  ' left join product_class_sub as cla_sub on cla_sub.prs_cod = pro.product_class_prc_cod                    '+
+                  ' left join manufacturer as manuf on manuf.man_cod = pro.manufacturer_man_cod                              '+
+                  ' left join brand as br on br.bra_cod = pro.brand_bra_cod                                                  '+
+                  ' left join ncm as nc on nc.ncm_cod = pro.ncm_ncm_cod                                                      '+
+                  ' left join product_unit as pr_unt on pr_unt.pru_cod = pro.product_unit_pru_cod                            '+
+                  ' where pro_type =''P'' and  pro_cod = unhex('+ QuotedStr(pro_cod)+') and pro_deleted_at is null';
    qry.Prepare;
    qry.open;
 
-  qry.Edit;
-  qrypro_dt_registration.Value := Date + Time;
+   qry.Edit;
 end;
 
 end.

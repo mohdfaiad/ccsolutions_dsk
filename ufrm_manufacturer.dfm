@@ -1,14 +1,12 @@
 inherited frm_manufacturer: Tfrm_manufacturer
   Caption = 'Manuten'#231#227'o: Fabricantes'
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1man_id: TcxGridDBColumn
@@ -113,15 +111,14 @@ inherited frm_manufacturer: Tfrm_manufacturer
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -325,15 +322,11 @@ inherited frm_manufacturer: Tfrm_manufacturer
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Endere'#231'o'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 762
-            Height = 432
+            Width = 986
+            Height = 472
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
@@ -546,15 +539,11 @@ inherited frm_manufacturer: Tfrm_manufacturer
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Contato'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 762
-            Height = 432
+            Width = 986
+            Height = 472
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
@@ -694,35 +683,62 @@ inherited frm_manufacturer: Tfrm_manufacturer
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
-    AfterDelete = qryAfterDelete
-    CachedUpdates = True
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
-      'select * from manufacturer')
-    object qryman_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
+      
+        'select manufacturer.*, hex(man_cod)as CodManufacturer from manuf' +
+        'acturer'
+      'where contract_ctr_cod =:ctr_cod and man_deleted_at is null')
+    ParamData = <
+      item
+        Name = 'CTR_COD'
+        DataType = ftBytes
+        ParamType = ptInput
+        Size = 24
+        Value = Null
+      end>
+    object qryman_cod: TBytesField
+      FieldName = 'man_cod'
+      Origin = 'man_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qryman_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'man_id'
       Origin = 'man_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
     end
-    object qrycontract_ctr_id: TIntegerField
+    object qryman_status: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
+      FieldName = 'man_status'
+      Origin = 'man_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qryCodManufacturer: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodManufacturer'
+      Origin = 'CodManufacturer'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
     end
     object qryman_first_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Raz'#227'o'
       FieldName = 'man_first_name'
       Origin = 'man_first_name'
+      Required = True
       Size = 50
     end
     object qryman_last_name: TStringField
@@ -730,6 +746,7 @@ inherited frm_manufacturer: Tfrm_manufacturer
       DisplayLabel = 'Fantasia'
       FieldName = 'man_last_name'
       Origin = 'man_last_name'
+      Required = True
       Size = 50
     end
     object qryman_email: TStringField
@@ -746,18 +763,17 @@ inherited frm_manufacturer: Tfrm_manufacturer
       Origin = 'man_cnpj'
       Size = 25
     end
-    object qryman_ie: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'IE'
-      FieldName = 'man_ie'
-      Origin = 'man_ie'
-      Size = 25
-    end
     object qryman_im: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'IM'
       FieldName = 'man_im'
       Origin = 'man_im'
+      Size = 25
+    end
+    object qryman_ie: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_ie'
+      Origin = 'man_ie'
       Size = 25
     end
     object qryman_suframa: TStringField
@@ -864,6 +880,11 @@ inherited frm_manufacturer: Tfrm_manufacturer
       FieldName = 'man_contact'
       Origin = 'man_contact'
       Size = 25
+    end
+    object qryman_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'man_deleted_at'
+      Origin = 'man_deleted_at'
     end
     object qryman_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault

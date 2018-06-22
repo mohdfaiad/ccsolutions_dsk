@@ -5,8 +5,11 @@ inherited frm_product_department: Tfrm_product_department
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Properties.ActivePage = cxTabSheet_2
-    ExplicitTop = 61
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prd_id: TcxGridDBColumn
@@ -29,6 +32,10 @@ inherited frm_product_department: Tfrm_product_department
     inherited cxTabSheet_2: TcxTabSheet
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 91

@@ -137,10 +137,6 @@ inherited frm_ncm: Tfrm_ncm
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
-  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
-    Left = 520
-    Top = 48
-  end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
@@ -226,8 +222,6 @@ inherited frm_ncm: Tfrm_ncm
     Formats.TimeFormat = 'hh:mm'
     Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
     Formats.CurrencyFormat = 'R$#,###,##0.00'
-    Left = 424
-    Top = 48
   end
   inherited QImport3Wizard_1: TQImport3Wizard
     Formats.ShortDateFormat = 'dd/MM/yy'

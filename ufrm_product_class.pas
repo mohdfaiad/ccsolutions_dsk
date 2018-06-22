@@ -218,6 +218,9 @@ begin
   //--Cama a função para verificar se existe campos requeridos em branco----
   TCampoRequerido.TratarRequerido(qry);
 
+  inherited;
+  if ds.DataSet.State in [dsEdit] then
+     Exit;
 
   if (qryprc_id.AsInteger = 0) then
    begin
@@ -235,10 +238,14 @@ begin
 
        if qryprc_id.AsInteger = 0 then
           qryprc_id.AsInteger:=Fields[0].AsInteger;
+
+        qry.Post;
+        qry.ApplyUpdates(0);
+
      end;
    end;
 
-  inherited;
+
   ExibirRegistros;
 
 end;

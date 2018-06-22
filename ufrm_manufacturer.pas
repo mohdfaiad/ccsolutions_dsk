@@ -37,13 +37,10 @@ uses
 
 type
   Tfrm_manufacturer = class(Tfrm_form_default)
-    qryman_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
     qryman_first_name: TStringField;
     qryman_last_name: TStringField;
     qryman_email: TStringField;
     qryman_cnpj: TStringField;
-    qryman_ie: TStringField;
     qryman_im: TStringField;
     qryman_suframa: TStringField;
     qryman_dt_open: TDateField;
@@ -142,17 +139,27 @@ type
     dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     frxDBD_Fabriante: TfrxDBDataset;
+    qryman_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryman_id: TLongWordField;
+    qryman_ie: TStringField;
+    qryman_status: TStringField;
+    qryman_deleted_at: TDateTimeField;
+    qryCodManufacturer: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_deleteExecute(Sender: TObject);
-    procedure qryAfterDelete(DataSet: TDataSet);
     procedure cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
     procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
   private
-    { Private declarations }
+     man_cod: string;
   public
     { Public declarations }
+    procedure ExibirRegistros;
   end;
 
 var
@@ -162,7 +169,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses ufrm_dm, class_required_field;
 
 procedure Tfrm_manufacturer.ACBrCEP_1BuscaEfetuada(Sender: TObject);
  var
@@ -183,12 +190,80 @@ begin
 
 end;
 
+procedure Tfrm_manufacturer.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+   if result = false then
+    exit;
+
+ if (qryman_id.AsInteger = 0) then
+  begin
+   with frm_dm.qry,sql do
+    begin
+      Close;
+      Text:= ' delete from manufacturer ' +
+             ' where man_cod = unhex('+ QuotedStr(man_cod)+')' ;
+      Prepare;
+      ExecSQL;
+    end;
+  end;
+
+   ExibirRegistros;
+
+end;
+
 procedure Tfrm_manufacturer.Action_deleteExecute(Sender: TObject);
 begin
-  if Application.MessageBox('Tem certeza que deseja excluir este fabricante ?','AVISO DE EXCLUSÃO',MB_YESNO+MB_ICONQUESTION) = mrYes then
+   inherited;
+     if (result = false) then
+      exit;
+
+     qry.Edit;
+     qryman_deleted_at.AsDateTime:=Now;
+     qry.Post;
+     qry.ApplyUpdates(0);
+     Application.MessageBox('Fabricante excluído com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
+
+    ExibirRegistros;
+end;
+
+procedure Tfrm_manufacturer.Action_saveExecute(Sender: TObject);
+begin
+
+   //--Comando para tirar o focus de todos os componentes da tela-----
+   ActiveControl := nil;
+  //--Cama a função para verificar se existe campos requeridos em branco----
+  TCampoRequerido.TratarRequerido(qry);
+
+   inherited;
+   if ds.DataSet.State in [dsEdit] then
+     Exit;
+
+
+   if qryman_id.AsInteger = 0 then
     begin
-     inherited;
+     with frm_dm.qry,sql do
+       begin
+         close;     // -- SQL para retornar o ultimo ID da tabela brand---
+         Text:= ' select case when max(man_id) is null then 1 ' +
+                '      else (max(man_id) + 1) end as maxID from manufacturer '+
+                ' where contract_ctr_cod = unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')';
+         Prepare;
+         Open;
+
+         if not (qry.State in [dsInsert,dsEdit])  then
+          qry.Edit;
+
+         if qryman_id.AsInteger = 0 then
+            qryman_id.AsInteger:=Fields[0].AsInteger;
+
+         qry.Post;
+         qry.ApplyUpdates(0);
+       end;
+
     end;
+
+   ExibirRegistros;
 
 end;
 
@@ -199,6 +274,15 @@ begin
   ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit1.Text);
 end;
 
+procedure Tfrm_manufacturer.ExibirRegistros;
+begin
+  qry.Close;
+  qry.SQL.Text:=' select manufacturer.*, hex(man_cod)as CodManufacturer from manufacturer '+
+                ' where contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+') and man_deleted_at is null ' ;
+  qry.Prepare;
+  qry.Open;
+end;
+
 procedure Tfrm_manufacturer.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -207,18 +291,39 @@ begin
   frm_manufacturer := Nil;
 end;
 
-procedure Tfrm_manufacturer.qryAfterDelete(DataSet: TDataSet);
+procedure Tfrm_manufacturer.FormShow(Sender: TObject);
 begin
   inherited;
-   qry.ApplyUpdates(0);
-    qry.Close;
-    qry.Open;
+  ExibirRegistros;
 end;
 
 procedure Tfrm_manufacturer.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qryman_dt_registration.Value := Date + Time;
+   //SQL para obter Número do Cod ID em Hex--------
+   With frm_dm.qry,sql do
+  begin
+   close;
+   text:= ' select hex(uuid_to_bin(uuid()))';
+   prepare;
+   open;
+
+   man_cod:=Fields[0].AsString;
+
+   Close;          //---Insert na tabela brand inserindo os primeiros registros obrigatórios----
+   Text:='insert into manufacturer (man_id,man_cod,contract_ctr_cod, man_dt_registration) ' +
+         ' select 0,unhex('+QuotedStr(man_cod)+'), unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+'),Now()';
+   Prepare;
+   ExecSQL;
+  end;
+
+   qry.Close;      //--SQL para retornar o registro inserido  acima (ultimo registro)----
+   qry.sql.text:= ' select manufacturer.*, hex(man_cod)as CodManufacturer from manufacturer       ' +
+                  ' where man_cod = unhex('+QuotedStr(man_cod)+') and man_deleted_at is null ';
+   qry.Prepare;
+   qry.open;
+
+   qry.Edit;
 end;
 
 end.

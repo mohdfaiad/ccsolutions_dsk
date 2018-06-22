@@ -245,6 +245,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
         ClientRectBottom = 539
         ClientRectRight = 998
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
           ExplicitWidth = 996
           ExplicitHeight = 511
           inherited dxLayoutControl_1: TdxLayoutControl
@@ -643,7 +645,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
   inherited qry: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
-    AfterDelete = qryAfterDelete
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'

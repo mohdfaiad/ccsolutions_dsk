@@ -177,7 +177,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
-    procedure qryAfterDelete(DataSet: TDataSet);
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure cxLookupComboBox2PropertiesPopup(Sender: TObject);
@@ -341,6 +340,10 @@ begin
      Exit;
    end;
 
+  inherited;
+  if ds.DataSet.State in [dsEdit] then
+     Exit;
+
   if qrypco_id.AsInteger = 0 then
    begin
 
@@ -357,18 +360,15 @@ begin
        qrypco_id.AsInteger:=Fields[0].AsInteger;
        qryemployee_emp_cod.Value := qry_employeeemp_cod.Value;
        qrystock_sto_cod.Value    := qry_stocksto_cod.Value;
-
      end;
    end else
         begin
           qry.Edit;
           qryemployee_emp_cod.Value := qry_employeeemp_cod.Value;
           qrystock_sto_cod.Value    := qry_stocksto_cod.Value;
-
-        end;
-
-  inherited;
-
+        end;
+  qry.Post;
+  qry.ApplyUpdates(0);
   ExibirPedidoCompra;
 
 end;
@@ -784,14 +784,6 @@ begin
    qry_stock.Close;
    qry_stock.Prepare;
    qry_stock.Open;
-end;
-
-procedure Tfrm_purchase_order.qryAfterDelete(DataSet: TDataSet);
-begin
-  inherited;
-    qry.ApplyUpdates(0);
-    qry.Close;
-    qry.Open;
 end;
 
 procedure Tfrm_purchase_order.qryAfterInsert(DataSet: TDataSet);

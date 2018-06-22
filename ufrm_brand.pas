@@ -141,6 +141,10 @@ begin
   //--Cama a função para verificar se existe campos requeridos em branco----
   TCampoRequerido.TratarRequerido(qry);
 
+   inherited;
+   if ds.DataSet.State in [dsEdit] then
+    Exit;
+
 with frm_dm.qry,sql do
  begin
    close;     // -- SQL para retornar o ultimo ID da tabela brand---
@@ -155,9 +159,11 @@ with frm_dm.qry,sql do
 
    if qrybra_id.AsInteger = 0 then
     qrybra_id.AsInteger:=Fields[0].AsInteger;
+
+    qry.Post;
+    qry.ApplyUpdates(0);
  end;
 
-  inherited;
   ExibirRegistros;
 
 end;

@@ -1,24 +1,16 @@
 inherited frm_supplier: Tfrm_supplier
   Caption = 'Manuten'#231#227'o: Fornecedores'
   OnClose = FormClose
-  ExplicitLeft = -290
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sup_id: TcxGridDBColumn
+            Caption = 'C'#243'digo ID'
             DataBinding.FieldName = 'sup_id'
-            Width = 75
-          end
-          object cxGrid_1DBTableView1contract_ctr_id: TcxGridDBColumn
-            DataBinding.FieldName = 'contract_ctr_id'
             Width = 75
           end
           object cxGrid_1DBTableView1sup_first_name: TcxGridDBColumn
@@ -44,6 +36,9 @@ inherited frm_supplier: Tfrm_supplier
           object cxGrid_1DBTableView1sup_im: TcxGridDBColumn
             DataBinding.FieldName = 'sup_im'
             Width = 100
+          end
+          object cxGrid_1DBTableView1sup_status: TcxGridDBColumn
+            DataBinding.FieldName = 'sup_status'
           end
           object cxGrid_1DBTableView1sup_suframa: TcxGridDBColumn
             DataBinding.FieldName = 'sup_suframa'
@@ -669,6 +664,7 @@ inherited frm_supplier: Tfrm_supplier
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -676,8 +672,17 @@ inherited frm_supplier: Tfrm_supplier
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from supplier'#10
-      'where sup_deleted_at is null')
+      'select supplier'#10'.*,hex(sup_cod)as CodSupplier from supplier'#10
+      'where contract_ctr_cod =:ctr_cod and sup_deleted_at is null')
+    Left = 592
+    ParamData = <
+      item
+        Name = 'CTR_COD'
+        DataType = ftBytes
+        ParamType = ptInput
+        Size = 24
+        Value = Null
+      end>
     object qrysup_first_name: TStringField
       DisplayLabel = 'Raz'#227'o'
       DisplayWidth = 75
@@ -848,6 +853,14 @@ inherited frm_supplier: Tfrm_supplier
       AutoGenerateValue = arDefault
       FieldName = 'sup_deleted_at'
       Origin = 'sup_deleted_at'
+    end
+    object qryCodSupplier: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodSupplier'
+      Origin = 'CodSupplier'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

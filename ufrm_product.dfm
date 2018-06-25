@@ -118,6 +118,7 @@ inherited frm_product: Tfrm_product
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = cxTabSheet2
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -757,7 +758,6 @@ inherited frm_product: Tfrm_product
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -767,11 +767,16 @@ inherited frm_product: Tfrm_product
     FetchOptions.AssignedValues = [evDetailCascade]
     SQL.Strings = (
       
-        'select pro.*, hex(pro_cod)as CodProduct, sup.sup_last_name, cla.' +
-        'prc_name, cla.prc_status, cla_sub.prs_name, manuf.man_last_name,'
+        'select pro.*, hex(pro_cod)as CodProduct,hex(pro.product_class_pr' +
+        'c_cod)as CodClass, hex(pro.product_class_sub_prs_cod)as CodSub_C' +
+        'lass,'
       
-        ' '#10'br.bra_name, br.bra_status, pr_unt.pru_name, pr_unt.pru_initia' +
-        'ls, pr_unt.pru_status from product as pro'#13#10#10
+        'sup.sup_last_name, cla.prc_name, cla.prc_status, cla_sub.prs_nam' +
+        'e, manuf.man_last_name,'#13#10#10
+      
+        'br.bra_name, br.bra_status, pr_unt.pru_name, pr_unt.pru_initials' +
+        ', pr_unt.pru_status,nc.ncm_code,nc.ncm_description from product ' +
+        'as pro'#13#10#10
       
         'left join supplier as sup on sup.sup_cod = pro.supplier_sup_cod'#13 +
         #10#10
@@ -784,7 +789,7 @@ inherited frm_product: Tfrm_product
       
         'left join manufacturer as manuf on manuf.man_cod = pro.manufactu' +
         'rer_man_cod '#13#10#10
-      'left join brand as br on br.bra_cod = pro.brand_bra_cod'#13#10#10
+      'left join brand as br on br.bra_cod = pro.brand_bra_cod'#10
       'left join ncm as nc on nc.ncm_cod = pro.ncm_ncm_cod'#10
       
         'left join product_unit as pr_unt on pr_unt.pru_cod = pro.product' +
@@ -939,6 +944,22 @@ inherited frm_product: Tfrm_product
       FixedChar = True
       Size = 1
     end
+    object qryncm_code: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ncm_code'
+      Origin = 'ncm_code'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 10
+    end
+    object qryncm_description: TMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'ncm_description'
+      Origin = 'ncm_description'
+      ProviderFlags = []
+      ReadOnly = True
+      BlobType = ftMemo
+    end
     object qrypro_type: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'pro_type'
@@ -1051,6 +1072,22 @@ inherited frm_product: Tfrm_product
       ProviderFlags = []
       ReadOnly = True
       Size = 85
+    end
+    object qryCodClass: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodClass'
+      Origin = 'CodClass'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qryCodSub_Class: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodSub_Class'
+      Origin = 'CodSub_Class'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

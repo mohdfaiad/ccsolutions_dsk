@@ -280,6 +280,10 @@ type
     cxGrid_1DBTableView1pro_dt_registration: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_last_name: TcxGridDBColumn;
     qryCodProduct: TStringField;
+    qryncm_code: TStringField;
+    qryncm_description: TMemoField;
+    qryCodClass: TStringField;
+    qryCodSub_Class: TStringField;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
@@ -287,7 +291,6 @@ type
     procedure cxDBLookupComboBox2Enter(Sender: TObject);
     procedure cxDBLookupComboBox7Enter(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
-    procedure cxDBLookupComboBox6Enter(Sender: TObject);
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox4PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox3PropertiesPopup(Sender: TObject);
@@ -367,7 +370,18 @@ procedure Tfrm_product.Action_editExecute(Sender: TObject);
 begin
   inherited;
    pro_cod := qryCodProduct.AsString;
-   dbComboxStatus.Enabled :=True;
+   dbComboxStatus.Enabled   :=True;
+   looComboxFornecedor.Text := qrysup_last_name.AsString;
+   looComboxFabricante.Text := qryman_last_name.AsString;
+   loopComboxNCM.Text       := qryncm_description.AsString;
+   looComboxUnidMedida.Text := qrypru_name.AsString;
+   looCombxMarca.Text       :=  qrybra_name.AsString;
+   looComboxClasse.Text     := qryprc_name.AsString;
+
+   looComboxSub_Classe.ItemIndex := -1;
+   qry_product_class_sub.Locate('CodClassSub',qryCodSub_Class.AsString,[loCaseInsensitive, loPartialKey]);
+   looComboxSub_Classe.Text := qry_product_class_subprs_name.AsString;
+
 end;
 
 procedure Tfrm_product.Action_insertExecute(Sender: TObject);
@@ -488,12 +502,6 @@ begin
    qry_product_class.Refresh;
 end;
 
-procedure Tfrm_product.cxDBLookupComboBox6Enter(Sender: TObject);
-begin
-  inherited;
-//   qry_product_class.Locate('prc_id',qryproduct_class_prc_id.AsInteger,[loCaseInsensitive, loPartialKey]);
-end;
-
 procedure Tfrm_product.cxDBLookupComboBox6PropertiesPopup(Sender: TObject);
 begin
   inherited;
@@ -522,16 +530,17 @@ end;
 procedure Tfrm_product.ExibirRegistros;
 begin
    qry.Close;
-   qry.SQL.Text:= ' select pro.*,  hex(pro_cod)as CodProduct, sup.sup_last_name, cla.prc_name, cla.prc_status, cla_sub.prs_name, manuf.man_last_name,    '+
-                  ' br.bra_name, br.bra_status, pr_unt.pru_name, pr_unt.pru_initials, pr_unt.pru_status from product as pro  '+
-                  ' left join supplier as sup on sup.sup_cod = pro.supplier_sup_cod                                          '+
-                  ' left join product_class as cla on cla.prc_cod = pro.product_class_prc_cod                                '+
-                  ' left join product_class_sub as cla_sub on cla_sub.prs_cod = pro.product_class_prc_cod                    '+
-                  ' left join manufacturer as manuf on manuf.man_cod = pro.manufacturer_man_cod                              '+
-                  ' left join brand as br on br.bra_cod = pro.brand_bra_cod                                                  '+
-                  ' left join ncm as nc on nc.ncm_cod = pro.ncm_ncm_cod                                                      '+
-                  ' left join product_unit as pr_unt on pr_unt.pru_cod = pro.product_unit_pru_cod                            '+
-                  ' where pro_type =''P'' and  pro.contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+') and pro.pro_deleted_at is null  ';
+   qry.SQL.Text:=  ' select pro.*, hex(pro_cod)as CodProduct,hex(pro.product_class_prc_cod)as CodClass, hex(pro.product_class_sub_prs_cod)as CodSub_Class,   ' +
+                   ' sup.sup_last_name, cla.prc_name, cla.prc_status, cla_sub.prs_name, manuf.man_last_name,                                                 ' +
+                   ' br.bra_name, br.bra_status, pr_unt.pru_name, pr_unt.pru_initials, pr_unt.pru_status,nc.ncm_code,nc.ncm_description from product as pro  ' +
+                   ' left join supplier as sup on sup.sup_cod = pro.supplier_sup_cod                                                                         ' +
+                   ' left join product_class as cla on cla.prc_cod = pro.product_class_prc_cod                                                               ' +
+                   ' left join product_class_sub as cla_sub on cla_sub.prs_cod = pro.product_class_prc_cod                                                   ' +
+                   ' left join manufacturer as manuf on manuf.man_cod = pro.manufacturer_man_cod                                                             ' +
+                   ' left join brand as br on br.bra_cod = pro.brand_bra_cod                                                                                 ' +
+                   ' left join ncm as nc on nc.ncm_cod = pro.ncm_ncm_cod                                                                                     ' +
+                   ' left join product_unit as pr_unt on pr_unt.pru_cod = pro.product_unit_pru_cod                                                           ' +
+                   ' where pro_type =''P'' and  pro.contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+') and pro.pro_deleted_at is null  ';
    qry.Prepare;
    qry.Open;
 end;
@@ -581,16 +590,17 @@ begin
   end;
 
    qry.Close;      //--SQL para retornar o registro inserido  acima (ultimo registro)----
-   qry.sql.text:= ' select pro.*,  hex(pro_cod)as CodProduct, sup.sup_last_name, cla.prc_name, cla.prc_status, cla_sub.prs_name, manuf.man_last_name,    '+
-                  ' br.bra_name, br.bra_status, pr_unt.pru_name, pr_unt.pru_initials, pr_unt.pru_status from product as pro  '+
-                  ' left join supplier as sup on sup.sup_cod = pro.supplier_sup_cod                                          '+
-                  ' left join product_class as cla on cla.prc_cod = pro.product_class_prc_cod                                '+
-                  ' left join product_class_sub as cla_sub on cla_sub.prs_cod = pro.product_class_prc_cod                    '+
-                  ' left join manufacturer as manuf on manuf.man_cod = pro.manufacturer_man_cod                              '+
-                  ' left join brand as br on br.bra_cod = pro.brand_bra_cod                                                  '+
-                  ' left join ncm as nc on nc.ncm_cod = pro.ncm_ncm_cod                                                      '+
-                  ' left join product_unit as pr_unt on pr_unt.pru_cod = pro.product_unit_pru_cod                            '+
-                  ' where pro_type =''P'' and  pro_cod = unhex('+ QuotedStr(pro_cod)+') and pro_deleted_at is null';
+   qry.sql.text:=' select pro.*, hex(pro_cod)as CodProduct,hex(pro.product_class_prc_cod)as CodClass, hex(pro.product_class_sub_prs_cod)as CodSub_Class,   ' +
+                 ' sup.sup_last_name, cla.prc_name, cla.prc_status, cla_sub.prs_name, manuf.man_last_name,                                                 ' +
+                 ' br.bra_name, br.bra_status, pr_unt.pru_name, pr_unt.pru_initials, pr_unt.pru_status,nc.ncm_code,nc.ncm_description from product as pro  ' +
+                 ' left join supplier as sup on sup.sup_cod = pro.supplier_sup_cod                                                                         ' +
+                 ' left join product_class as cla on cla.prc_cod = pro.product_class_prc_cod                                                               ' +
+                 ' left join product_class_sub as cla_sub on cla_sub.prs_cod = pro.product_class_prc_cod                                                   ' +
+                 ' left join manufacturer as manuf on manuf.man_cod = pro.manufacturer_man_cod                                                             ' +
+                 ' left join brand as br on br.bra_cod = pro.brand_bra_cod                                                                                 ' +
+                 ' left join ncm as nc on nc.ncm_cod = pro.ncm_ncm_cod                                                                                     ' +
+                 ' left join product_unit as pr_unt on pr_unt.pru_cod = pro.product_unit_pru_cod                                                           ' +
+                 ' where pro_type =''P'' and  pro_cod = unhex('+ QuotedStr(pro_cod)+') and pro_deleted_at is null ' ;
    qry.Prepare;
    qry.open;
 

@@ -40,8 +40,6 @@ uses
 type
   Tfrm_purchase_order = class(Tfrm_form_default)
     ds_purchase_order_iten: TDataSource;
-    cxGrid_1DBTableView1pco_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1pco_dt_registration: TcxGridDBColumn;
     dxLayoutGroup3: TdxLayoutGroup;
     qry_product: TFDQuery;
     ds_product: TDataSource;
@@ -51,8 +49,6 @@ type
     dxLayoutItem6: TdxLayoutItem;
     cxDBComboBox1: TcxDBComboBox;
     dxLayoutItem3: TdxLayoutItem;
-    cxGrid_1DBTableView1pco_status: TcxGridDBColumn;
-    cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn;
     FlowPanel1: TFlowPanel;
     Shape1: TShape;
     lbAberto: TLabel;
@@ -68,25 +64,11 @@ type
     dxLiberarPed: TdxBarButton;
     frxDBD_Pedido_Compra: TfrxDBDataset;
     frxDBD_Pedido_Itens: TfrxDBDataset;
-    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     qry_stock: TFDQuery;
     ds_stock: TDataSource;
     Image1: TImage;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
-    qrypco_cod: TBytesField;
-    qry_stocksto_name: TStringField;
-    qry_stocksto_id: TLongWordField;
-    qry_stockcontract_ctr_cod: TBytesField;
-    qrycontract_ctr_cod: TBytesField;
-    qryemployee_emp_cod: TBytesField;
-    qrystock_sto_cod: TBytesField;
-    qrypco_id: TLongWordField;
-    qrypco_type: TStringField;
-    qrypoc_status_reason: TStringField;
-    qrypco_status: TStringField;
-    qrypco_deleted_at: TDateTimeField;
-    qrypco_dt_registration: TDateTimeField;
     looComboxProduto: TcxLookupComboBox;
     dxLayoutItem8: TdxLayoutItem;
     qry_employeeemp_cod: TBytesField;
@@ -101,24 +83,16 @@ type
     dxLayoutItem10: TdxLayoutItem;
     lookupComboxStock: TcxLookupComboBox;
     dxLayoutItem5: TdxLayoutItem;
-    qry_stocksto_cod: TBytesField;
-    qry_stockenterprise_ent_cod: TBytesField;
-    qry_stockcodStock: TStringField;
     qry_productproCod: TStringField;
     qry_productpro_name: TStringField;
     qry_productpro_cod: TBytesField;
     qry_productpro_id: TLongWordField;
     qry_productcontract_ctr_cod: TBytesField;
-    qrysto_name: TStringField;
-    cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
-    qryFuncionario: TStringField;
-    qryCodPCO: TStringField;
     pupMenuPedido: TPopupMenu;
     Excluir2: TMenuItem;
     Editar2: TMenuItem;
     edtQTD: TcxCurrencyEdit;
     dxLayoutItem9: TdxLayoutItem;
-    cxGrid_1DBTableView1Funcionario: TcxGridDBColumn;
     cxGrid1DBTableView1: TcxGridDBTableView;
     cxGrid1Level1: TcxGridLevel;
     cxGrid1: TcxGrid;
@@ -161,6 +135,34 @@ type
     dxLayoutItem7: TdxLayoutItem;
     qry_productpru_name: TStringField;
     qry_productpru_initials: TStringField;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    qrypco_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryemployee_emp_cod: TBytesField;
+    qrystock_sto_cod: TBytesField;
+    qrypco_id: TLongWordField;
+    qrypco_type: TStringField;
+    qrypoc_status_reason: TStringField;
+    qrypco_status: TStringField;
+    qrypco_deleted_at: TDateTimeField;
+    qrypco_dt_registration: TDateTimeField;
+    qryCodPurchase: TStringField;
+    qrysto_name: TStringField;
+    qryFuncionario: TStringField;
+    cxGrid_1DBTableView1pco_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn;
+    cxGrid_1DBTableView1pco_status: TcxGridDBColumn;
+    cxGrid_1DBTableView1pco_dt_registration: TcxGridDBColumn;
+    cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1Funcionario: TcxGridDBColumn;
+    qry_stocksto_name: TStringField;
+    qry_stocksto_cod: TBytesField;
+    qry_stocksto_id: TLongWordField;
+    qry_stockcontract_ctr_cod: TBytesField;
+    qry_stockenterprise_ent_cod: TBytesField;
+    qry_stockcodStock: TStringField;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure cxGrid_1DBTableView1CustomDrawCell(Sender: TcxCustomGridTableView;
@@ -266,6 +268,11 @@ end;
 
 procedure Tfrm_purchase_order.Action_deleteExecute(Sender: TObject);
 begin
+
+   inherited;
+   if (result = false) then
+     exit;
+
 //Condição para não permitir excluir um pedido de compra que esteja diferente do status de A - Aberto
  if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
   begin
@@ -295,15 +302,15 @@ begin
   inherited;
 
   btnSalvar_Item.Tag := 1; // Para Inserir
-  pco_cod := qryCodPCO.AsString;
-
+  pco_cod := qryCodPurchase.AsString;
   ExibirEstoque;
-  qry_purchase_order_iten.Close;
-  qry_purchase_order_iten.Open;
 
   lookupComboxEmployee.Text := qryfuncionario.AsString;
   lookupComboxStock.Text    := qrysto_name.AsString;
-  HabiliTarButtun(true);
+  qry_purchase_order_iten.Close;
+  qry_purchase_order_iten.Open;
+
+   HabiliTarButtun(true);
 
 end;
 procedure Tfrm_purchase_order.Action_insertExecute(Sender: TObject);
@@ -378,6 +385,7 @@ begin
   btnSalvar_Item.Tag := 1;
   looComboxProduto.Clear;
   edtQTD.Clear;
+  edtUnd.Clear;
   cxGrid1.SetFocus;
   HabiliTarButtun(true);
 
@@ -391,6 +399,7 @@ begin
      Application.MessageBox('Só é permitido (Excluir), produtos em pedidos de compra que estejam em abertos!','AVISO DO PEDIDO DE COMPRA', MB_ICONINFORMATION + MB_OK);
      looComboxProduto.Clear;
      edtQTD.Clear;
+     edtUnd.Clear;
      looComboxProduto.SetFocus;
      exit;
    end;
@@ -430,7 +439,7 @@ begin
 
   btnSalvar_Item.Tag := 2; ////button com Tag = 2 -- condição onde sei que estou alterando um produto do pedido----
   looComboxProduto.Text := qry_purchase_order_itenpro_name.AsString;
-  edtUnd.Text := qry_productpru_initials.AsString;
+  edtUnd.Text           := qry_purchase_order_itenpru_initials.AsString;
   edtQTD.Value          := qry_purchase_order_itenpoi_product_quant.AsFloat;
   edtQTD.SetFocus;
   HabiliTarButtun(true);
@@ -501,6 +510,7 @@ begin
 
          looComboxProduto.Clear;
          edtQTD.Clear;
+         edtUnd.Clear;
          cxGrid1.SetFocus;
          btnSalvar_Item.Tag := 1;
          HabiliTarButtun(true);
@@ -590,7 +600,7 @@ begin
           Close;
           SQL.Clear;
           Text:= ' update purchase_order set poc_status_reason =:Pstatus_reason, pco_status =:Pstatus ' +
-                 ' where pco_cod = unhex('+QuotedStr(qryCodPCO.AsString)+')';
+                 ' where pco_cod = unhex('+QuotedStr(qryCodPurchase.AsString)+')';
           ParamByName('Pstatus_reason').AsString  := motCancel;
           ParamByName('Pstatus').AsString         := 'C';
           ExecSQL;
@@ -625,7 +635,7 @@ begin
         Close;
         SQL.Clear;
         Text:= ' update purchase_order set poc_status_reason =:Pstatus_reason, pco_status =:Pstatus ' +
-               ' where pco_cod = unhex('+QuotedStr(qryCodPCO.AsString)+')';
+               ' where pco_cod = unhex('+QuotedStr(qryCodPurchase.AsString)+')';
         ParamByName('Pstatus_reason').AsString  := motLib;
         ParamByName('Pstatus').AsString         := 'L';
         ExecSQL;
@@ -658,12 +668,12 @@ end;
 procedure Tfrm_purchase_order.ExibirEstoque;
 begin
   qry_stock.Close;
-  qry_stock.SQL.Text:= ' select st.sto_name, st.sto_cod, st.sto_id,st.contract_ctr_cod,st.enterprise_ent_cod, hex(st.sto_cod) as codStock  from stock st  '+
-                       ' left join contract co on co.ctr_cod = st.contract_ctr_cod                             ' +
-                       ' left join enterprise en on en.ent_cod = st.enterprise_ent_cod                         ' +
-                       ' where st.sto_status = ''A'' and st.contract_ctr_cod =unhex(:ctr_cod)                    ' +
-                       ' and st.enterprise_ent_cod in (select enterprise_ent_cod                               ' +
-                       ' from contract_user_enterprise where contract_user_ctr_usr_cod =unhex(:ctr_usr_cod))   ';
+  qry_stock.SQL.Text:= ' select st.sto_name, st.sto_cod, st.sto_id,st.contract_ctr_cod,st.enterprise_ent_cod, hex(st.sto_cod) as codStock  from stock st   ' +
+                       ' left join contract co on co.ctr_cod = st.contract_ctr_cod                                                                         ' +
+                       ' left join enterprise en on en.ent_cod = st.enterprise_ent_cod                                                                     ' +
+                       ' where st.sto_status = ''A'' and st.contract_ctr_cod =unhex(:ctr_cod)                                                                ' +
+                       ' and st.enterprise_ent_cod in (select enterprise_ent_cod                                                                           ' +
+                       ' from contract_user_enterprise where contract_user_ctr_usr_cod =unhex(:ctr_usr_cod)) ' ;
   qry_stock.ParamByname('ctr_cod').AsString     := frm_dm.v_contract_ctr_cod;
   qry_stock.ParamByname('ctr_usr_cod').AsString := frm_dm.v_ctr_usr_cod;
   qry_stock.Prepare;
@@ -674,13 +684,18 @@ end;
 procedure Tfrm_purchase_order.ExibirPedidoCompra;
 begin
    qry.Close;
-   qry.SQL.Text:= ' select sto_name, purchase_order.*,hex(pco_cod)as CodPCO from purchase_order   ' +
-                  ' left join stock on stock_sto_cod = sto_cod                                    ' +
-                  ' where pco_type = ''C'' and stock_sto_cod in (select sto_cod from stock        ' +
-                  ' where contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')) and pco_deleted_at is null    ';
-   qry.Prepare;
-   qry.Open;
-end;
+   qry.SQL.Text:= ' select pur.*, hex(pco_cod)as CodPurchase, sto_name from purchase_order as pur  ' +
+                  ' left join stock as sto on sto.sto_cod = pur.stock_sto_cod                      ' +
+                  ' where pur.pco_type = ''C'' and pur.contract_ctr_cod =unhex(:ctr_cod)             ' +
+                  ' and sto.enterprise_ent_cod in (select enterprise_ent_cod                       ' +
+                  ' from contract_user_enterprise                                                  ' +
+                  ' where contract_user_ctr_usr_cod =unhex(:ctr_usr_cod))                          ' +
+                  ' and pco_deleted_at is null  ' ;
+  qry.ParamByName('ctr_cod').AsString     :=  frm_dm.v_contract_ctr_cod;
+  qry.ParamByName('ctr_usr_cod').AsString :=  frm_dm.v_ctr_usr_cod;
+  qry.Prepare;
+  qry.Open;
+end;
 
 procedure Tfrm_purchase_order.filter(status: string);
 begin
@@ -806,13 +821,13 @@ begin
    ExecSQL;
   end;
 
-   qry.Close;      //--SQL para retornar o registro inserido  acima (ultimo registro)----
-   qry.sql.text:= ' select sto_name, purchase_order.*,hex(pco_cod) as CodPCO from purchase_order ' +
-                  ' left join stock on stock_sto_cod = sto_cod where pco_type = ''C''                 ' +
-                  ' and pco_cod = unhex('+ QuotedStr(pco_cod)+') and pco_deleted_at is null';
+    qry.Close;      //--SQL para retornar o registro inserido  acima (ultimo registro)----
+   qry.sql.text:=  ' select pur.*, hex(pco_cod)as CodPurchase, sto_name from purchase_order as pur   ' +
+                   ' left join stock as sto on sto.sto_cod = pur.stock_sto_cod                       ' +
+                   ' where pur.pco_type = ''C'' and pur.contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')' +
+                   ' and pco_cod = unhex('+ QuotedStr(pco_cod)+') and pur.pco_deleted_at is null';
    qry.Prepare;
    qry.open;
-
    qry.Edit;
 
  end;

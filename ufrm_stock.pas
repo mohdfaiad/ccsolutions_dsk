@@ -93,9 +93,10 @@ uses ufrm_dm;
 
 procedure Tfrm_stock.Action_cancelExecute(Sender: TObject);
 begin
-  inherited;
-  if ds.DataSet.State in [dsEdit] then
-    Exit;
+   inherited;
+   if result = false then
+    exit;
+
 
    if (qrysto_id.AsInteger = 0) then
     begin
@@ -109,8 +110,13 @@ end;
 
 procedure Tfrm_stock.Action_deleteExecute(Sender: TObject);
 begin
+   inherited;
+    if (result = false) then
+      exit;
+
  //--- SQL para verificar se existe produtos em itens do estoque---
  // Caso exista o estoque não poderá ser excluído
+  stock_cod:= qryCodStock.AsString;
   with frm_dm.qry3, sql do
     begin
       Clear;

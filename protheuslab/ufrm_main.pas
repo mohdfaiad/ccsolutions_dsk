@@ -67,10 +67,10 @@ type
     dxBarButton4: TdxBarButton;
     dxBarButton5: TdxBarButton;
     acTable: TAction;
-    dxBarButton6: TdxBarButton;
     acAlterarPreco: TAction;
     dxBarButton7: TdxBarButton;
     dxBarLargeButton13: TdxBarLargeButton;
+    dxBarLargeButton14: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -86,8 +86,8 @@ type
     procedure Action_medicineExecute(Sender: TObject);
     procedure Action_requisition_typeExecute(Sender: TObject);
     procedure Button1Click(Sender: TObject);
-    procedure acTableExecute(Sender: TObject);
     procedure dxBarLargeButton13Click(Sender: TObject);
+    procedure acTableExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -107,23 +107,6 @@ uses ufrm_login, ufrm_contract, ufrm_contract_user, ufrm_enterprise,
   ufrm_medicine, ufrm_requisition_type, ufrm_requisition, ufrm_dm, class_check_enterprise,
   ufrm_Requisition_Lab, ufrm_patient;
 
-procedure Tfrm_main.acTableExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_table_price) then
-  begin
-    frm_table_price := Tfrm_table_price.Create(Self);
-    frm_table_price.Height := Bevel_1.Height;
-    frm_table_price.Width := Bevel_1.Width;
-    frm_table_price.Show;
-  end
-  else
-  begin
-    frm_table_price.WindowState := wsNormal;
-    frm_table_price.Show;
-  end;
-end;
-
 procedure Tfrm_main.Action_patientExecute(Sender: TObject);
 begin
   inherited;
@@ -138,6 +121,23 @@ begin
   begin
     frm_patient.WindowState := wsNormal;
     frm_patient.Show;
+  end;
+end;
+
+procedure Tfrm_main.acTableExecute(Sender: TObject);
+begin
+  inherited;
+   if not Assigned(frm_table_price) then
+  begin
+    frm_table_price := Tfrm_table_price.Create(Self);
+    frm_table_price.Height := Bevel_1.Height;
+    frm_table_price.Width := Bevel_1.Width;
+    frm_table_price.Show;
+  end
+  else
+  begin
+    frm_table_price.WindowState := wsNormal;
+    frm_table_price.Show;
   end;
 end;
 

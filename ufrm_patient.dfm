@@ -8,6 +8,7 @@ inherited frm_patient: Tfrm_patient
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 636
+    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 636
     ClientRectBottom = 630
     inherited cxTabSheet_1: TcxTabSheet
@@ -187,12 +188,18 @@ inherited frm_patient: Tfrm_patient
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         Height = 596
         ExplicitHeight = 596
         ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
           ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 562
@@ -254,6 +261,8 @@ inherited frm_patient: Tfrm_patient
             object cxDBComboBox2: TcxDBComboBox [6]
               Left = 104
               Top = 211
+              DataBinding.DataField = 'cli_blood_type'
+              DataBinding.DataSource = ds
               Properties.Items.Strings = (
                 ''
                 'A'
@@ -268,6 +277,8 @@ inherited frm_patient: Tfrm_patient
               Left = 17
               Top = 238
               Caption = 'Fator RH'
+              DataBinding.DataField = 'cli_rh_factor'
+              DataBinding.DataSource = ds
               ParentBackground = False
               ParentColor = False
               Properties.Columns = 2
@@ -306,6 +317,7 @@ inherited frm_patient: Tfrm_patient
               Left = 237
               Top = 238
               Caption = 'Sexo'
+              DataBinding.DataSource = ds
               ParentBackground = False
               ParentColor = False
               Properties.Columns = 3
@@ -328,6 +340,8 @@ inherited frm_patient: Tfrm_patient
               Left = 127
               Top = 238
               Caption = 'Fator DU'
+              DataBinding.DataField = 'cli_du_factor'
+              DataBinding.DataSource = ds
               ParentBackground = False
               ParentColor = False
               Properties.Columns = 2
@@ -346,6 +360,7 @@ inherited frm_patient: Tfrm_patient
             object cxDBComboBox4: TcxDBComboBox [12]
               Left = 351
               Top = 184
+              DataBinding.DataSource = ds
               Properties.Items.Strings = (
                 ''
                 'AMARELA'
@@ -392,6 +407,8 @@ inherited frm_patient: Tfrm_patient
             object cxDBTextEdit12: TcxDBTextEdit [16]
               Left = 231
               Top = 184
+              DataBinding.DataField = 'cli_height'
+              DataBinding.DataSource = ds
               Style.HotTrack = False
               TabOrder = 7
               Width = 92
@@ -399,6 +416,8 @@ inherited frm_patient: Tfrm_patient
             object cxDBTextEdit1: TcxDBTextEdit [17]
               Left = 104
               Top = 184
+              DataBinding.DataField = 'cli_weight'
+              DataBinding.DataSource = ds
               Style.HotTrack = False
               TabOrder = 6
               Width = 63
@@ -406,6 +425,8 @@ inherited frm_patient: Tfrm_patient
             object cxDBTextEdit29: TcxDBTextEdit [18]
               Left = 355
               Top = 211
+              DataBinding.DataField = 'cli_cns'
+              DataBinding.DataSource = ds
               Style.HotTrack = False
               TabOrder = 10
               Width = 195
@@ -416,11 +437,15 @@ inherited frm_patient: Tfrm_patient
               SizeOptions.SizableHorz = True
               ItemIndex = 1
             end
-            inherited dxLayoutItem1: TdxLayoutItem [21]
+            inherited dxLayoutGroup2: TdxLayoutGroup
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              SizeOptions.Width = 640
+              ItemIndex = 3
             end
-            inherited dxLayoutItem2: TdxLayoutItem [22]
-            end
-            object dxLayoutGroup6: TdxLayoutGroup [23]
+            object dxLayoutGroup6: TdxLayoutGroup
               Parent = dxLayoutControl_1Group_Root
               AlignHorz = ahClient
               AlignVert = avTop
@@ -429,7 +454,7 @@ inherited frm_patient: Tfrm_patient
               LayoutDirection = ldHorizontal
               Index = 2
             end
-            object dxLayoutItem35: TdxLayoutItem [24]
+            object dxLayoutItem35: TdxLayoutItem
               Parent = dxLayoutGroup6
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -440,7 +465,7 @@ inherited frm_patient: Tfrm_patient
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem47: TdxLayoutItem [25]
+            object dxLayoutItem47: TdxLayoutItem
               Parent = dxLayoutGroup6
               CaptionOptions.Text = 'RG/IE'
               Control = cxDBTextEdit20
@@ -449,7 +474,7 @@ inherited frm_patient: Tfrm_patient
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutItem34: TdxLayoutItem [26]
+            object dxLayoutItem34: TdxLayoutItem
               Parent = dxLayoutGroup6
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -459,14 +484,6 @@ inherited frm_patient: Tfrm_patient
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 2
-            end
-            inherited dxLayoutGroup2: TdxLayoutGroup [27]
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              SizeOptions.AssignedValues = [sovSizableHorz]
-              SizeOptions.SizableHorz = True
-              SizeOptions.Width = 640
-              ItemIndex = 3
             end
             object dxLayoutItem36: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup5
@@ -497,7 +514,7 @@ inherited frm_patient: Tfrm_patient
               SizeOptions.Width = 307
               Control = cxDBComboBox2
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 314
+              ControlOptions.OriginalWidth = 220
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -521,7 +538,7 @@ inherited frm_patient: Tfrm_patient
               Control = cxDBRadioGroup2
               ControlOptions.AutoColor = True
               ControlOptions.OriginalHeight = 41
-              ControlOptions.OriginalWidth = 128
+              ControlOptions.OriginalWidth = 104
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -564,7 +581,7 @@ inherited frm_patient: Tfrm_patient
               Control = cxDBRadioGroup1
               ControlOptions.AutoColor = True
               ControlOptions.OriginalHeight = 43
-              ControlOptions.OriginalWidth = 316
+              ControlOptions.OriginalWidth = 365
               ControlOptions.ShowBorder = False
               Index = 2
             end
@@ -580,7 +597,7 @@ inherited frm_patient: Tfrm_patient
               Control = cxDBRadioGroup3
               ControlOptions.AutoColor = True
               ControlOptions.OriginalHeight = 44
-              ControlOptions.OriginalWidth = 185
+              ControlOptions.OriginalWidth = 104
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -594,7 +611,7 @@ inherited frm_patient: Tfrm_patient
               SizeOptions.Width = 224
               Control = cxDBComboBox4
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 202
               ControlOptions.ShowBorder = False
               Index = 2
             end
@@ -608,7 +625,7 @@ inherited frm_patient: Tfrm_patient
               SizeOptions.Width = 526
               Control = edtClient
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 446
+              ControlOptions.OriginalWidth = 439
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -656,7 +673,7 @@ inherited frm_patient: Tfrm_patient
               SizeOptions.Width = 150
               Control = cxDBTextEdit12
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 92
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -670,7 +687,7 @@ inherited frm_patient: Tfrm_patient
               SizeOptions.Width = 150
               Control = cxDBTextEdit1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 63
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -683,7 +700,7 @@ inherited frm_patient: Tfrm_patient
               SizeOptions.Width = 220
               Control = cxDBTextEdit29
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 247
+              ControlOptions.OriginalWidth = 195
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -2122,6 +2139,44 @@ inherited frm_patient: Tfrm_patient
       AutoGenerateValue = arDefault
       FieldName = 'cli_image1'
       Origin = 'cli_image1'
+    end
+    object qrycli_weight: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_weight'
+      Origin = 'cli_weight'
+      Precision = 12
+    end
+    object qrycli_height: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_height'
+      Origin = 'cli_height'
+      Precision = 12
+    end
+    object qrycli_blood_type: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_blood_type'
+      Origin = 'cli_blood_type'
+      Size = 5
+    end
+    object qrycli_rh_factor: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_rh_factor'
+      Origin = 'cli_rh_factor'
+      FixedChar = True
+      Size = 1
+    end
+    object qrycli_du_factor: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_du_factor'
+      Origin = 'cli_du_factor'
+      FixedChar = True
+      Size = 1
+    end
+    object qrycli_cns: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_cns'
+      Origin = 'cli_cns'
+      Size = 25
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

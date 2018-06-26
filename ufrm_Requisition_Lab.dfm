@@ -1,8 +1,7 @@
 inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
-  Caption = 'frm_Requisition_Lab'
+  Caption = 'Manuten'#231#227'o: Requisi'#231#227'o'
   ClientHeight = 702
   ClientWidth = 1125
-  ExplicitTop = -34
   ExplicitWidth = 1141
   ExplicitHeight = 741
   PixelsPerInch = 96
@@ -14,6 +13,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   inherited pgctrl_1: TcxPageControl
     Width = 1125
     Height = 612
+    Properties.ActivePage = tbsht_1
     ExplicitWidth = 1125
     ExplicitHeight = 612
     ClientRectBottom = 606
@@ -41,44 +41,34 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
             ExplicitWidth = 1103
             ExplicitHeight = 540
             inherited grid_1DBTableView1: TcxGridDBTableView
-              object grid_1DBTableView1req_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'req_cod'
-              end
-              object grid_1DBTableView1contract_ctr_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'contract_ctr_cod'
-              end
-              object grid_1DBTableView1client_cli_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'client_cli_cod'
-              end
-              object grid_1DBTableView1enterprise_ent_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'enterprise_ent_cod'
-              end
-              object grid_1DBTableView1requisition_type_ret_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'requisition_type_ret_cod'
-              end
-              object grid_1DBTableView1insurance_ins_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'insurance_ins_cod'
-              end
-              object grid_1DBTableView1role_rol_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'role_rol_cod'
-              end
-              object grid_1DBTableView1doctor_doc_cod: TcxGridDBColumn
-                DataBinding.FieldName = 'doctor_doc_cod'
-              end
               object grid_1DBTableView1req_id: TcxGridDBColumn
+                Caption = 'C'#243'd. ID'
                 DataBinding.FieldName = 'req_id'
               end
-              object grid_1DBTableView1req_source: TcxGridDBColumn
-                DataBinding.FieldName = 'req_source'
+              object grid_1DBTableView1cli_first_name: TcxGridDBColumn
+                Caption = 'Paciente'
+                DataBinding.FieldName = 'cli_first_name'
+                Width = 300
+              end
+              object grid_1DBTableView1rec_name: TcxGridDBColumn
+                Caption = 'M'#233'dico'
+                DataBinding.FieldName = 'rec_name'
+                Width = 300
+              end
+              object grid_1DBTableView1ins_nickname: TcxGridDBColumn
+                Caption = 'Conv'#234'nio'
+                DataBinding.FieldName = 'ins_nickname'
+                Width = 300
               end
               object grid_1DBTableView1req_status: TcxGridDBColumn
+                Caption = 'Status'
                 DataBinding.FieldName = 'req_status'
-              end
-              object grid_1DBTableView1req_deleted_at: TcxGridDBColumn
-                DataBinding.FieldName = 'req_deleted_at'
+                Width = 50
               end
               object grid_1DBTableView1req_dt_registration: TcxGridDBColumn
+                Caption = 'Dt. Reg.'
                 DataBinding.FieldName = 'req_dt_registration'
+                Width = 120
               end
             end
           end
@@ -263,7 +253,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
               TabOrder = 21
             end
             object cxLookupComboBoxPaciente: TcxLookupComboBox
-              Left = 3
+              Left = 9
               Top = 38
               Properties.GridMode = True
               Properties.KeyFieldNames = 'cliCod'
@@ -274,7 +264,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
               Properties.ListSource = ds_qry_client
               Properties.OnCloseUp = cxLookupComboBoxPacientePropertiesCloseUp
               TabOrder = 2
-              Width = 413
+              Width = 407
             end
             object cxPageControl1: TcxPageControl
               Left = 3
@@ -284,7 +274,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
               Align = alBottom
               Anchors = [akLeft, akTop, akRight, akBottom]
               TabOrder = 22
-              Properties.ActivePage = cxTabSheet2
+              Properties.ActivePage = cxTabSheet1
               Properties.CustomButtons.Buttons = <>
               ClientRectBottom = 350
               ClientRectLeft = 2
@@ -352,12 +342,12 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                     Properties.KeyFieldNames = 'insCod'
                     Properties.ListColumns = <
                       item
-                        FieldName = 'ins_last_name'
+                        FieldName = 'ins_nickname'
                       end>
                     Properties.ListSource = ds_qry_insurance
                     Properties.OnCloseUp = cxLookupComboBoxConvenioPropertiesCloseUp
                     TabOrder = 5
-                    Width = 341
+                    Width = 339
                   end
                   object cxLabelTipodeExame: TcxLabel
                     Left = 2
@@ -411,7 +401,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                     Properties.ListSource = ds_qry_doctor
                     Properties.OnCloseUp = cxLookupComboBoxMedicoPropertiesCloseUp
                     TabOrder = 11
-                    Width = 341
+                    Width = 337
                   end
                   object cxLookupComboBoxColetador: TcxLookupComboBox
                     Left = 71
@@ -453,6 +443,60 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                   TabOrder = 0
                   Height = 317
                   Width = 1083
+                  object cxGrid2: TcxGrid
+                    AlignWithMargins = True
+                    Left = 6
+                    Top = 22
+                    Width = 1071
+                    Height = 289
+                    Align = alClient
+                    TabOrder = 0
+                    ExplicitLeft = 3
+                    ExplicitTop = 21
+                    object cxGrid2DBTableView1: TcxGridDBTableView
+                      Navigator.Buttons.CustomButtons = <>
+                      Navigator.Buttons.Images = imglist_1
+                      Navigator.Buttons.First.ImageIndex = 0
+                      Navigator.Buttons.PriorPage.Visible = False
+                      Navigator.Buttons.Prior.ImageIndex = 1
+                      Navigator.Buttons.Next.ImageIndex = 2
+                      Navigator.Buttons.NextPage.Visible = False
+                      Navigator.Buttons.Last.ImageIndex = 3
+                      Navigator.Buttons.Insert.ImageIndex = 4
+                      Navigator.Buttons.Delete.ImageIndex = 8
+                      Navigator.Buttons.Edit.ImageIndex = 5
+                      Navigator.Buttons.Post.ImageIndex = 6
+                      Navigator.Buttons.Cancel.ImageIndex = 7
+                      Navigator.Buttons.Refresh.ImageIndex = 9
+                      Navigator.Buttons.Refresh.Visible = True
+                      Navigator.Buttons.SaveBookmark.Visible = False
+                      Navigator.Buttons.GotoBookmark.Visible = False
+                      Navigator.Buttons.Filter.ImageIndex = 11
+                      Navigator.Visible = True
+                      DataController.DataSource = ds_requisition_medicine
+                      DataController.Summary.DefaultGroupSummaryItems = <>
+                      DataController.Summary.FooterSummaryItems = <>
+                      DataController.Summary.SummaryGroups = <>
+                      OptionsView.GroupByBox = False
+                      object cxGrid2DBTableView1Column1: TcxGridDBColumn
+                        Caption = 'Medicamentos'
+                        DataBinding.FieldName = 'med_name'
+                        PropertiesClassName = 'TcxLookupComboBoxProperties'
+                        Properties.GridMode = True
+                        Properties.KeyFieldNames = 'med_name'
+                        Properties.ListColumns = <
+                          item
+                            FieldName = 'med_name'
+                          end>
+                        Properties.ListSource = ds_qry_medicine
+                        Properties.OnCloseUp = cxGrid2DBTableView1Column1PropertiesCloseUp
+                        Width = 500
+                      end
+                    end
+                    object cxGrid2Level1: TcxGridLevel
+                      GridView = cxGrid2DBTableView1
+                    end
+                  end
                 end
               end
               object cxTabSheet3: TcxTabSheet
@@ -474,6 +518,22 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                     TabOrder = 0
                     object cxGrid1DBTableView1: TcxGridDBTableView
                       Navigator.Buttons.CustomButtons = <>
+                      Navigator.Buttons.Images = imglist_1
+                      Navigator.Buttons.First.ImageIndex = 0
+                      Navigator.Buttons.PriorPage.Visible = False
+                      Navigator.Buttons.Prior.ImageIndex = 1
+                      Navigator.Buttons.Next.ImageIndex = 2
+                      Navigator.Buttons.NextPage.Visible = False
+                      Navigator.Buttons.Last.ImageIndex = 3
+                      Navigator.Buttons.Insert.ImageIndex = 4
+                      Navigator.Buttons.Delete.ImageIndex = 8
+                      Navigator.Buttons.Edit.ImageIndex = 5
+                      Navigator.Buttons.Post.ImageIndex = 6
+                      Navigator.Buttons.Cancel.ImageIndex = 7
+                      Navigator.Buttons.Refresh.ImageIndex = 9
+                      Navigator.Buttons.SaveBookmark.Visible = False
+                      Navigator.Buttons.GotoBookmark.Visible = False
+                      Navigator.Buttons.Filter.ImageIndex = 11
                       Navigator.Visible = True
                       DataController.DataSource = ds_qry_requisition_iten
                       DataController.Summary.DefaultGroupSummaryItems = <>
@@ -491,23 +551,29 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                         Caption = 'C'#243'digo'
                         DataBinding.FieldName = 'pro_initials'
                         PropertiesClassName = 'TcxLookupComboBoxProperties'
+                        Properties.GridMode = True
                         Properties.KeyFieldNames = 'pro_initials'
                         Properties.ListColumns = <
                           item
-                            FieldName = 'pro_name'
+                            FieldName = 'pro_initials'
                           end>
                         Properties.ListSource = ds_qry_product
+                        Properties.ReadOnly = True
                         Properties.OnCloseUp = cxGrid1DBTableView1pro_initialsPropertiesCloseUp
                         Width = 80
                       end
                       object cxGrid1DBTableView1pro_name: TcxGridDBColumn
                         Caption = 'Exame'
                         DataBinding.FieldName = 'pro_name'
+                        PropertiesClassName = 'TcxMemoProperties'
+                        Properties.ReadOnly = True
                         Width = 300
                       end
                       object cxGrid1DBTableView1mat_name: TcxGridDBColumn
                         Caption = 'Material'
                         DataBinding.FieldName = 'mat_name'
+                        PropertiesClassName = 'TcxMemoProperties'
+                        Properties.ReadOnly = True
                         Width = 150
                       end
                       object cxGrid1DBTableView1rei_collect: TcxGridDBColumn
@@ -521,6 +587,8 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                       object cxGrid1DBTableView1product_value: TcxGridDBColumn
                         Caption = 'Valor'
                         DataBinding.FieldName = 'product_value'
+                        PropertiesClassName = 'TcxCurrencyEditProperties'
+                        Properties.ReadOnly = True
                         Width = 100
                       end
                       object cxGrid1DBTableView1rei_cod: TcxGridDBColumn
@@ -548,17 +616,20 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                       GridView = cxGrid1DBTableView1
                     end
                   end
-                  object cxTextEditTotalExame: TcxTextEdit
-                    Left = 713
-                    Top = 295
-                    TabOrder = 1
-                    Width = 121
-                  end
                   object cxLabelTotalExame: TcxLabel
                     Left = 635
                     Top = 296
                     Caption = 'Valor a Pagar:'
                     Transparent = True
+                  end
+                  object cxTextEditTotalExame: TcxCurrencyEdit
+                    Left = 713
+                    Top = 295
+                    EditValue = 15.000000000000000000
+                    TabOrder = 2
+                    BiDiMode = bdRightToLeft
+                    ParentBiDiMode = False
+                    Width = 121
                   end
                 end
               end
@@ -635,7 +706,6 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     Style = <>
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -646,14 +716,19 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       
-        'select *,hex(client_cli_cod) as clientCod,hex(enterprise_ent_cod' +
-        ') as enterpriseCod,hex(insurance_ins_cod) as insuranceCod,'
+        'select requisition.*, hex(client_cli_cod) as clientCod,hex(enter' +
+        'prise_ent_cod) as enterpriseCod,hex(insurance_ins_cod) as insura' +
+        'nceCod,'#10'hex(doctor_doc_cod) as doctorCod,hex(employee_emp_cod) e' +
+        'mployeeCod,hex(req_cod) as reqCod,rec_name,cli_first_name,ins_ni' +
+        'ckname from requisition '#10
       
-        'hex(doctor_doc_cod) as doctorCod,hex(employee_emp_cod) employeeC' +
-        'od,hex(req_cod) as reqCod from requisition '
-      'where req_deleted_at is null '
-      ''
-      '')
+        'left join record on rec_cod in (select employee.record_rec_cod f' +
+        'rom employee where  emp_cod in (select doctor.employee_emp_cod f' +
+        'rom doctor where hex(doc_cod) = hex(requisition.doctor_doc_cod))' +
+        ')'#10
+      
+        'left join client on cli_cod = client_cli_cod'#10'left join insurance' +
+        ' on ins_cod = insurance_ins_cod'#10'where req_deleted_at is null ;')
     object qryreq_cod: TBytesField
       FieldName = 'req_cod'
       Origin = 'req_cod'
@@ -777,6 +852,30 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       ReadOnly = True
       Size = 32
     end
+    object qryrec_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rec_name'
+      Origin = 'rec_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object qrycli_first_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_first_name'
+      Origin = 'cli_first_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object qryins_nickname: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ins_nickname'
+      Origin = 'ins_nickname'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
   end
   inherited mem: TFDMemTable
     object memreq_cod: TBytesField
@@ -851,6 +950,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     end
   end
   object qry_client: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -868,8 +968,8 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       'where cli_deleted_at is null'
       'and (cli_status <> '#39'D'#39' or cli_status is null)'
       'order by cli_first_name')
-    Left = 95
-    Top = 188
+    Left = 103
+    Top = 292
     object qry_clientcli_id: TLongWordField
       AutoGenerateValue = arDefault
       FieldName = 'cli_id'
@@ -933,10 +1033,11 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   end
   object ds_qry_client: TDataSource
     DataSet = qry_client
-    Left = 127
-    Top = 188
+    Left = 215
+    Top = 332
   end
   object qry_enterprise: TFDQuery
+    Active = True
     CachedUpdates = True
     IndexFieldNames = 'contract_ctr_cod;ent_id'
     MasterSource = frm_dm.ds_contract
@@ -990,6 +1091,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     Top = 84
   end
   object qry_insurance: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -1056,6 +1158,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     Top = 108
   end
   object qry_requisition_type: TFDQuery
+    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
@@ -1063,8 +1166,8 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
         'n_type'
       'where ret_status = '#39'A'#39' and ret_deleted_at is null'
       'order by ret_name')
-    Left = 471
-    Top = 132
+    Left = 439
+    Top = 260
     object qry_requisition_typeret_cod: TBytesField
       FieldName = 'ret_cod'
       Origin = 'ret_cod'
@@ -1115,10 +1218,11 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   end
   object ds_qry_requisition_type: TDataSource
     DataSet = qry_requisition_type
-    Left = 568
-    Top = 128
+    Left = 544
+    Top = 248
   end
   object qry_doctor: TFDQuery
+    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
@@ -1202,6 +1306,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     Top = 168
   end
   object qry_employee: TFDQuery
+    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
@@ -1250,8 +1355,11 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     Top = 396
   end
   object qry_requisition_iten: TFDQuery
+    Active = True
     AfterInsert = qry_requisition_itenAfterInsert
     AfterPost = qry_requisition_itenAfterPost
+    AfterDelete = qry_requisition_itenAfterDelete
+    AfterRefresh = qry_requisition_itenAfterRefresh
     IndexFieldNames = 'requisition_req_cod'
     MasterSource = ds
     MasterFields = 'req_cod'
@@ -1261,10 +1369,11 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       
-        'select pro_initials,pro_name,mat_name, requisition_iten.*,hex(re' +
-        'i_cod) as reiCod from requisition_iten'#13#10#10
-      'left join product on pro_cod = product_pro_cod'#10
-      'left join material on mat_cod=material_mat_cod;'#10#10)
+        'select pro_initials,pro_name,mat_name, a.*,hex(rei_cod) as reiCo' +
+        'd,hex(product_pro_cod) as proCod from requisition_iten a'#10
+      
+        'left join product  on pro_cod = a.product_pro_cod'#10'left join mate' +
+        'rial on mat_cod=material_mat_cod;')
     Left = 719
     Top = 451
     object qry_requisition_itenpro_initials: TStringField
@@ -1283,6 +1392,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       AutoGenerateValue = arDefault
       FieldName = 'mat_name'
       Origin = 'mat_name'
+      ReadOnly = True
       Size = 35
     end
     object qry_requisition_itenrei_cod: TBytesField
@@ -1330,6 +1440,12 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       Origin = 'reiCod'
       Size = 32
     end
+    object qry_requisition_itenproCod: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'proCod'
+      Origin = 'proCod'
+      Size = 32
+    end
   end
   object ds_qry_requisition_iten: TDataSource
     DataSet = qry_requisition_iten
@@ -1347,10 +1463,20 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     FetchOptions.DetailCascade = True
     SQL.Strings = (
       
-        'select contract_ctr_cod, pro_id,pro_cod,hex(pro_cod) as proCod,p' +
-        'ro_name,pro_initials  from product'#10'where pro_type = '#39'E'#39';')
+        #10'select contract_ctr_cod, pro_id,pro_cod,hex(pro_cod) as proCod,' +
+        'pro_name,pro_initials,tpp_value  from product'#10'inner join table_p' +
+        'rice_product on product_pro_cod = pro_cod and table_price_tbp_co' +
+        'd in (select table_price_tbp_cod from insurance where hex(ins_co' +
+        'd) = :convenio)'#10'where pro_type = '#39'S'#39)
     Left = 887
     Top = 579
+    ParamData = <
+      item
+        Name = 'CONVENIO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end>
     object qry_productpro_id: TLongWordField
       AutoGenerateValue = arDefault
       FieldName = 'pro_id'
@@ -1387,10 +1513,115 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       FieldName = 'contract_ctr_cod'
       Origin = 'contract_ctr_cod'
     end
+    object qry_producttpp_value: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'tpp_value'
+      Origin = 'tpp_value'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 12
+    end
   end
   object ds_qry_product: TDataSource
     DataSet = qry_product
     Left = 959
     Top = 579
+  end
+  object qry_requisition_medicine: TFDQuery
+    Active = True
+    AfterInsert = qry_requisition_medicineAfterInsert
+    IndexFieldNames = 'requisition_req_cod'
+    MasterSource = ds
+    MasterFields = 'req_cod'
+    DetailFields = 'rem_cod'
+    Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      
+        'select requisition_medicine.*,hex(rem_cod) as remCod,med_name fr' +
+        'om requisition_medicine'
+      'left join medicine on med_cod = medicine_med_cod')
+    Left = 95
+    Top = 531
+    object qry_requisition_medicinerem_cod: TBytesField
+      FieldName = 'rem_cod'
+      Required = True
+    end
+    object qry_requisition_medicinerequisition_req_cod: TBytesField
+      FieldName = 'requisition_req_cod'
+    end
+    object qry_requisition_medicinemedicine_med_cod: TBytesField
+      FieldName = 'medicine_med_cod'
+    end
+    object qry_requisition_medicinerem_id: TLongWordField
+      FieldName = 'rem_id'
+    end
+    object qry_requisition_medicineremCod: TStringField
+      FieldName = 'remCod'
+      ReadOnly = True
+      Size = 32
+    end
+    object qry_requisition_medicinemed_name: TStringField
+      FieldName = 'med_name'
+      ReadOnly = True
+      Size = 85
+    end
+  end
+  object ds_requisition_medicine: TDataSource
+    DataSet = qry_requisition_medicine
+    Left = 191
+    Top = 523
+  end
+  object qry_medicine: TFDQuery
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select * from medicine')
+    Left = 375
+    Top = 555
+    object qry_medicinemed_cod: TBytesField
+      FieldName = 'med_cod'
+      Origin = 'med_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_medicinecontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_medicinemed_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_id'
+      Origin = 'med_id'
+    end
+    object qry_medicinemed_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_name'
+      Origin = 'med_name'
+      Size = 85
+    end
+    object qry_medicinemed_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_status'
+      Origin = 'med_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_medicinemed_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_deleted_at'
+      Origin = 'med_deleted_at'
+    end
+    object qry_medicinemed_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_dt_registration'
+      Origin = 'med_dt_registration'
+    end
+  end
+  object ds_qry_medicine: TDataSource
+    DataSet = qry_medicine
+    Left = 439
+    Top = 555
   end
 end

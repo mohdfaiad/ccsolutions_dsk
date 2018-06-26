@@ -1,5 +1,5 @@
 inherited frm_table_price: Tfrm_table_price
-  Caption = 'Cadastro de Tabela de pre'#231'o'
+  Caption = 'Manuten'#231#227'o: Tabela de pre'#231'o'
   ClientHeight = 681
   ClientWidth = 1105
   OnClose = FormClose
@@ -10,12 +10,13 @@ inherited frm_table_price: Tfrm_table_price
   inherited cxPageControl_1: TcxPageControl
     Width = 1105
     Height = 626
-    Properties.ActivePage = cxTabSheet_1
     ExplicitWidth = 1105
     ExplicitHeight = 626
     ClientRectBottom = 620
     ClientRectRight = 1099
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 1097
       ExplicitHeight = 592
       inherited cxGrid_1: TcxGrid
@@ -43,6 +44,8 @@ inherited frm_table_price: Tfrm_table_price
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 1097
       ExplicitHeight = 592
       inherited cxPageControl_2: TcxPageControl

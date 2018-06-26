@@ -104,6 +104,7 @@ type
     qrycodMaterial: TStringField;
     qry_materialcodMaterial: TStringField;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    qrypro_delivery_term: TIntegerField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure cxTabSheet_2Show(Sender: TObject);
@@ -254,7 +255,9 @@ With frm_dm.qry,sql do
    qry.Close;
    qry.sql.text:= ' select product.*,concat(''0x'',hex(material_mat_cod)) as codMaterial from product ' +
                   ' where pro_cod = ' + pro_cod +
-                  ' and pro_deleted_at is null';
+                  ' and pro_deleted_at is null ' +
+                  ' and pro_type = ''S''';
+
    qry.Prepare;
    qry.open;
    qry.Edit;

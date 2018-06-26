@@ -4,7 +4,6 @@ inherited frm_exam: Tfrm_exam
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -317,7 +316,6 @@ inherited frm_exam: Tfrm_exam
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -328,7 +326,8 @@ inherited frm_exam: Tfrm_exam
       
         'select product.*,concat('#39'0x'#39',hex(material_mat_cod)) as codMateri' +
         'al from product'
-      'where pro_deleted_at is null'#10)
+      'where pro_deleted_at is null'#10
+      'and pro_type = '#39'S'#39)
     object qrypro_type: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Tipo'
@@ -509,6 +508,11 @@ inherited frm_exam: Tfrm_exam
       ProviderFlags = []
       ReadOnly = True
       Size = 34
+    end
+    object qrypro_delivery_term: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_delivery_term'
+      Origin = 'pro_delivery_term'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

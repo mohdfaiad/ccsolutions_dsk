@@ -328,6 +328,12 @@ type
     cxDBTextEdit29: TcxDBTextEdit;
     CNS: TdxLayoutItem;
     dxLayoutAutoCreatedGroup11: TdxLayoutAutoCreatedGroup;
+    qrycli_weight: TBCDField;
+    qrycli_height: TBCDField;
+    qrycli_blood_type: TStringField;
+    qrycli_rh_factor: TStringField;
+    qrycli_du_factor: TStringField;
+    qrycli_cns: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);

@@ -33,7 +33,8 @@ uses
   cxGroupBox, cxGridLevel, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, cxPC, ufrm_dm, cxMaskEdit,
   cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,DateUtils,
-  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, cxButtons;
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, cxButtons, cxCurrencyEdit,
+  cxMemo;
 
 type
   Tfrm_Requisition_Lab = class(Tfrm_default)
@@ -50,19 +51,6 @@ type
     memreq_status: TStringField;
     memreq_deleted_at: TDateTimeField;
     memreq_dt_registration: TDateTimeField;
-    grid_1DBTableView1req_cod: TcxGridDBColumn;
-    grid_1DBTableView1contract_ctr_cod: TcxGridDBColumn;
-    grid_1DBTableView1client_cli_cod: TcxGridDBColumn;
-    grid_1DBTableView1enterprise_ent_cod: TcxGridDBColumn;
-    grid_1DBTableView1requisition_type_ret_cod: TcxGridDBColumn;
-    grid_1DBTableView1insurance_ins_cod: TcxGridDBColumn;
-    grid_1DBTableView1role_rol_cod: TcxGridDBColumn;
-    grid_1DBTableView1doctor_doc_cod: TcxGridDBColumn;
-    grid_1DBTableView1req_id: TcxGridDBColumn;
-    grid_1DBTableView1req_source: TcxGridDBColumn;
-    grid_1DBTableView1req_status: TcxGridDBColumn;
-    grid_1DBTableView1req_deleted_at: TcxGridDBColumn;
-    grid_1DBTableView1req_dt_registration: TcxGridDBColumn;
     cxTextEditCNS: TcxTextEdit;
     cxLabelPaciente: TcxLabel;
     cxLookupComboBoxPaciente: TcxLookupComboBox;
@@ -219,8 +207,40 @@ type
     cxGrid1DBTableView1rei_deleted_at: TcxGridDBColumn;
     cxGrid1DBTableView1rei_collect: TcxGridDBColumn;
     cxGrid1DBTableView1reiCod: TcxGridDBColumn;
-    cxTextEditTotalExame: TcxTextEdit;
     cxLabelTotalExame: TcxLabel;
+    qry_requisition_medicine: TFDQuery;
+    ds_requisition_medicine: TDataSource;
+    cxGrid2DBTableView1: TcxGridDBTableView;
+    cxGrid2Level1: TcxGridLevel;
+    cxGrid2: TcxGrid;
+    qry_medicine: TFDQuery;
+    qry_medicinemed_cod: TBytesField;
+    qry_medicinecontract_ctr_cod: TBytesField;
+    qry_medicinemed_id: TLongWordField;
+    qry_medicinemed_name: TStringField;
+    qry_medicinemed_status: TStringField;
+    qry_medicinemed_deleted_at: TDateTimeField;
+    qry_medicinemed_dt_registration: TDateTimeField;
+    cxGrid2DBTableView1Column1: TcxGridDBColumn;
+    ds_qry_medicine: TDataSource;
+    qry_requisition_medicinerem_cod: TBytesField;
+    qry_requisition_medicinerequisition_req_cod: TBytesField;
+    qry_requisition_medicinemedicine_med_cod: TBytesField;
+    qry_requisition_medicinerem_id: TLongWordField;
+    qry_requisition_medicineremCod: TStringField;
+    qry_requisition_medicinemed_name: TStringField;
+    qry_producttpp_value: TBCDField;
+    qry_requisition_itenproCod: TStringField;
+    qryrec_name: TStringField;
+    qrycli_first_name: TStringField;
+    qryins_nickname: TStringField;
+    grid_1DBTableView1req_id: TcxGridDBColumn;
+    grid_1DBTableView1req_status: TcxGridDBColumn;
+    grid_1DBTableView1req_dt_registration: TcxGridDBColumn;
+    grid_1DBTableView1rec_name: TcxGridDBColumn;
+    grid_1DBTableView1cli_first_name: TcxGridDBColumn;
+    grid_1DBTableView1ins_nickname: TcxGridDBColumn;
+    cxTextEditTotalExame: TcxCurrencyEdit;
     procedure cxLookupComboBoxPacientePropertiesCloseUp(Sender: TObject);
     procedure cxLookupComboBoxEmpresaPropertiesCloseUp(Sender: TObject);
     procedure cxTextEditEnterpriseIDExit(Sender: TObject);
@@ -239,10 +259,15 @@ type
     procedure cxTextEditColetadorExit(Sender: TObject);
     procedure qry_requisition_itenAfterInsert(DataSet: TDataSet);
     procedure cxGrid1DBTableView1pro_initialsPropertiesCloseUp(Sender: TObject);
+    procedure qry_requisition_itenAfterRefresh(DataSet: TDataSet);
     procedure qry_requisition_itenAfterPost(DataSet: TDataSet);
+    procedure qry_requisition_medicineAfterInsert(DataSet: TDataSet);
+    procedure cxGrid2DBTableView1Column1PropertiesCloseUp(Sender: TObject);
+    procedure recalcularValorExame(convenio:string);
+    procedure qry_requisition_itenAfterDelete(DataSet: TDataSet);
   private
     { Private declarations }
-    req_cod,rei_cod:string;
+    req_cod,rei_cod,rem_cod:string;
   public
     { Public declarations }
   end;
@@ -270,7 +295,7 @@ begin
 
    cxLookupComboBoxConvenio.ItemIndex:=-1;
    qry_insurance.Locate('insCod',qryinsuranceCod.AsString,[loCaseInsensitive, loPartialKey]);
-   cxLookupComboBoxConvenio.Text:=qry_insuranceins_last_name.AsString;
+   cxLookupComboBoxConvenio.Text:=qry_insuranceins_nickname.AsString;
    cxTextEditConvenioID.Text:= qry_insuranceins_id.AsString;
 
    cxLookupComboBoxTipoExame.ItemIndex:=-1;
@@ -283,6 +308,11 @@ begin
    cxLookupComboBoxMedico.Text:=qry_doctorrec_name.AsString;
    cxTextEditMedicoID.Text:= qry_doctordoc_id.AsString;
    req_cod:=qryreqCod.AsString;
+
+   qry_requisition_iten.Refresh;
+   edt_codid.Text:=qryreq_id.AsString;
+   edt_dt_registration.Text:=qryreq_dt_registration.AsString;
+
 
 end;
 
@@ -350,8 +380,21 @@ if not (qry_requisition_iten.State in [dsEdit]) then
  qry_requisition_iten.Edit;
 
 qry_requisition_itenproduct_pro_cod.Value:=qry_productpro_cod.Value;
+qry_requisition_itenproduct_value.AsFloat:=qry_producttpp_value.AsFloat;
 qry_requisition_iten.Post;
-qry_requisition_iten.Refresh;
+
+end;
+
+procedure Tfrm_Requisition_Lab.cxGrid2DBTableView1Column1PropertiesCloseUp(
+  Sender: TObject);
+begin
+  inherited;
+if not (qry_requisition_medicine.State in [dsEdit]) then
+ qry_requisition_medicine.Edit;
+
+qry_requisition_medicinemedicine_med_cod.Value:=qry_medicinemed_cod.Value;
+qry_requisition_medicine.Post;
+qry_requisition_medicine.Refresh;
 end;
 
 procedure Tfrm_Requisition_Lab.cxLookupComboBoxColetadorPropertiesCloseUp(
@@ -365,7 +408,18 @@ procedure Tfrm_Requisition_Lab.cxLookupComboBoxConvenioPropertiesCloseUp(
   Sender: TObject);
 begin
   inherited;
+
  cxTextEditConvenioID.Text:=qry_insuranceins_id.AsString;
+ qry_product.Close;
+ qry_product.ParamByName('convenio').AsString:=qry_insuranceinsCod.AsString;
+ qry_product.Prepare;
+ qry_product.Open;
+
+ if True then
+
+
+ recalcularValorExame(qry_insuranceinsCod.AsString);
+
 end;
 
 procedure Tfrm_Requisition_Lab.cxLookupComboBoxEmpresaPropertiesCloseUp(
@@ -507,7 +561,6 @@ begin
     Application.MessageBox('Código Inválido!','LABORATÓRIO', MB_OK + MB_ICONEXCLAMATION);
     cxTextEditTipoExameID.SetFocus;
   end;
-
  end;
 end;
 
@@ -528,9 +581,7 @@ begin
     Application.MessageBox('Código Inválido!','LABORATÓRIO', MB_OK + MB_ICONEXCLAMATION);
     cxTextEditConvenioID.SetFocus;
   end;
-
- end;
-
+  end;
 end;
 
 procedure Tfrm_Requisition_Lab.qryAfterInsert(DataSet: TDataSet);
@@ -559,8 +610,31 @@ begin
    edt_dt_registration.Text:=qryreq_dt_registration.AsString;
 end;
 
+procedure Tfrm_Requisition_Lab.qry_requisition_itenAfterDelete(
+  DataSet: TDataSet);
+var
+seq:Integer;
+begin
+  inherited;
+   qry_requisition_iten.First;
+   seq:=1;
+   qry_requisition_iten.Tag:=1; ///apenas para não executar o efente afterPost
+   while not qry_requisition_iten.Eof do
+    begin
+     qry_requisition_iten.Edit;
+     qry_requisition_itenrei_id.AsInteger:=seq;
+     qry_requisition_iten.Post;
+     seq:=seq + 1;
+     qry_requisition_iten.Next;
+
+    end;
+end;
+
 procedure Tfrm_Requisition_Lab.qry_requisition_itenAfterInsert(
   DataSet: TDataSet);
+   var
+ columncIndex,seq : integer;
+ b : boolean;
 begin
   inherited;
  With frm_dm.qry,sql do
@@ -578,17 +652,52 @@ begin
    Prepare;
    ExecSQL;
   end;
+
+
+
    cxGrid1.SetFocus;
    qry_requisition_iten.Close;
    qry_requisition_iten.Prepare;
    qry_requisition_iten.open;
-   qry_requisition_iten.Locate('reiCod',QuotedStr(rei_cod), []);
-   qry_requisition_iten.Edit;
 
+
+   qry_requisition_iten.First;
+   seq:=1;
+   qry_requisition_iten.Tag:=1; ///apenas para não executar o efente afterPost
+   while not qry_requisition_iten.Eof do
+    begin
+     qry_requisition_iten.Edit;
+     qry_requisition_itenrei_id.AsInteger:=seq;
+     qry_requisition_iten.Post;
+     seq:=seq + 1;
+     qry_requisition_iten.Next;
+
+    end;
+    qry_requisition_iten.Locate('reiCod',QuotedStr(rei_cod), []);
+    qry_requisition_iten.Edit;
+
+    qry_requisition_itenrei_collect.AsString:='S';
+
+   //Código para setar o foco na coluna co código do exame...
+
+   b := True;
+   cxgrid1.Setfocus;
+   columncIndex := cxGrid1DBTableView1.GetColumnByFieldName('pro_initials').index;
+   cxGrid1DBTableView1.DataController.FocusControl(columncIndex, b);
 
 end;
 
 procedure Tfrm_Requisition_Lab.qry_requisition_itenAfterPost(DataSet: TDataSet);
+begin
+  inherited;
+ if qry_requisition_iten.Tag = 1 then
+  Exit;
+
+  qry_requisition_iten.Refresh;
+end;
+
+procedure Tfrm_Requisition_Lab.qry_requisition_itenAfterRefresh(
+  DataSet: TDataSet);
 var
 total:Double;
 begin
@@ -601,7 +710,45 @@ begin
      total:=total + qry_requisition_itenproduct_value.AsFloat;
      qry_requisition_iten.Next;
    end;
-   cxTextEditTotalExame.Text:=FormatFloat(',0.00',total);
+   cxTextEditTotalExame.Value:=total;
+   qry_requisition_iten.EnableControls;
+end;
+
+procedure Tfrm_Requisition_Lab.qry_requisition_medicineAfterInsert(
+  DataSet: TDataSet);
+ var
+ columncIndex : integer;
+ b : boolean;
+begin
+  inherited;
+ With frm_dm.qry,sql do
+ begin
+   close;
+   text:='select hex(uuid_to_bin(uuid()))';
+   prepare;
+   open;
+
+   rem_cod:=Fields[0].AsString;
+
+   Close;
+   Text:='insert into requisition_medicine (rem_id,rem_cod,requisition_req_cod) ' +
+         ' select 0,unhex('+ QuotedStr(rem_cod) + '),unhex('+ QuotedStr(req_cod) + ')';
+   Prepare;
+   ExecSQL;
+  end;
+   cxGrid2.SetFocus;
+   qry_requisition_medicine.Close;
+   qry_requisition_medicine.Prepare;
+   qry_requisition_medicine.open;
+   qry_requisition_medicine.Locate('remCod',QuotedStr(rem_cod), []);
+   qry_requisition_medicine.Edit;
+
+   //Código para setar o foco na coluna co código do exame...
+
+   b := True;
+   cxGrid2.Setfocus;
+   columncIndex := cxGrid2DBTableView1.GetColumnByFieldName('med_name').index;
+   cxGrid2DBTableView1.DataController.FocusControl(columncIndex, b);
 
 end;
 
@@ -609,16 +756,74 @@ procedure Tfrm_Requisition_Lab.qry_sql(sql: string);
 begin
   qry.Close;
   if sql = 'todos' then
-   qry.sql.text:= ' select *,hex(client_cli_cod) as clientCod,hex(enterprise_ent_cod) as enterpriseCod,hex(insurance_ins_cod) as insuranceCod,  ' +
-                  ' hex(doctor_doc_cod) as doctorCod,hex(employee_emp_cod) employeeCod,hex(req_cod) as reqCod from requisition ' +
-                  ' where req_deleted_at is null ';
+   qry.sql.text:= 'select requisition.*, hex(client_cli_cod) as clientCod,hex(enterprise_ent_cod) as enterpriseCod, '+
+                  ' hex(insurance_ins_cod) as insuranceCod,hex(doctor_doc_cod) as doctorCod, '  +
+                  ' hex(employee_emp_cod) employeeCod,hex(req_cod) as reqCod,rec_name,cli_first_name,ins_nickname from requisition '+
+                  ' left join record on rec_cod in (select employee.record_rec_cod from employee  ' +
+                  ' where  emp_cod in (select doctor.employee_emp_cod from doctor where hex(doc_cod) = hex(requisition.doctor_doc_cod))) ' +
+                  ' left join client on cli_cod = client_cli_cod ' +
+                  ' left join insurance on ins_cod = insurance_ins_cod ' +
+                  ' where req_deleted_at is null';
 
   if sql = 'insert' then
-   qry.sql.text:= ' select *,hex(client_cli_cod) as clientCod,hex(enterprise_ent_cod) as enterpriseCod,hex(insurance_ins_cod) as insuranceCod, '+
-                  ' hex(doctor_doc_cod) as doctorCod,hex(employee_emp_cod) employeeCod,hex(req_cod) as reqCod  from requisition ' +
+   qry.sql.text:= 'select requisition.*, hex(client_cli_cod) as clientCod,hex(enterprise_ent_cod) as enterpriseCod, '+
+                  ' hex(insurance_ins_cod) as insuranceCod,hex(doctor_doc_cod) as doctorCod, '  +
+                  ' hex(employee_emp_cod) employeeCod,hex(req_cod) as reqCod,rec_name,cli_first_name,ins_nickname from requisition '+
+                  ' left join record on rec_cod in (select employee.record_rec_cod from employee  ' +
+                  ' where  emp_cod in (select doctor.employee_emp_cod from doctor where hex(doc_cod) = hex(requisition.doctor_doc_cod))) ' +
+                  ' left join client on cli_cod = client_cli_cod ' +
+                  ' left join insurance on ins_cod = insurance_ins_cod ' +
                   ' where req_cod = unhex(' + QuotedStr(req_cod) + ')';
    qry.Prepare;
    qry.open;
+end;
+
+procedure Tfrm_Requisition_Lab.recalcularValorExame(convenio: string);
+var
+passou:Boolean;
+begin
+passou:=True;
+with frm_dm.qry,sql do
+ begin
+  Close;
+  Text:= ' select hex(product_pro_cod) as proCod,tpp_value from table_price_product ' +
+         ' where table_price_tbp_cod in (select table_price_tbp_cod from insurance ' +
+                                         ' where hex(ins_cod) = ' + QuotedStr(convenio) + ')' ;
+  prepare;
+  open;
+  qry_requisition_iten.First;
+  while not qry_requisition_iten.Eof do
+   begin
+    if not Locate('proCod',qry_requisition_itenproCod.AsString,[]) then
+     begin
+      Application.MessageBox('Existem Exames em sua requisição que não tem cobertura por esse convênio!', 'Requisição',MB_OK + MB_ICONINFORMATION);
+      passou:=False;
+      Break;
+     end;
+     qry_requisition_iten.Next;
+   end;
+
+
+  if not passou then
+   exit;
+
+  qry_requisition_iten.First;
+  qry_requisition_iten.Tag:=1; ///apenas para não executar o efente afterPost
+  while not qry_requisition_iten.Eof do
+   begin
+    Locate('proCod',qry_requisition_itenproCod.AsString,[]);
+    qry_requisition_iten.Edit;
+    qry_requisition_itenproduct_value.Value:= FieldByName('tpp_value').AsFloat;
+    qry_requisition_iten.Post;
+   qry_requisition_iten.Next;
+   end;
+ end;
+
+ qry_requisition_iten.Tag:=0;
+ qry_requisition_iten.Refresh;
+
+
+
 end;
 
 end.

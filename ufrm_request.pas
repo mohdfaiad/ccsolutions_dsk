@@ -381,7 +381,7 @@ end;
 
 procedure Tfrm_request.act_cancel_request_itensExecute(Sender: TObject);
 begin
-   btnSalvar_Item.Tag := 1;
+  btnSalvar_Item.Tag := 1;
   looComboxProduto.Clear;
   edtQTD.Clear;
   edtUND.Clear;
@@ -425,7 +425,7 @@ end;
 
 procedure Tfrm_request.act_edit_request_itensExecute(Sender: TObject);
 begin
-     //--Condição para só deixar Alterar produtos no Pedido em Status de Aberto ------
+   //--Condição para só deixar Alterar produtos no Pedido em Status de Aberto ------
    if (qrypco_status.OldValue  <> 'A') and ((qrypco_status.Value  <> 'A') or (qrypco_status.Value  = ''))  then
    begin
      Application.MessageBox('Só é permitido (Inserir ou Alterar), produtos em requisição que esteja em aberto!','AVISO DA REQUISIÇÃO', MB_ICONINFORMATION + MB_OK);
@@ -613,7 +613,8 @@ IndiceCampo: Integer;
 Valor      : Variant;
 begin
   inherited;
-   if (AViewInfo <> nil) and ((Sender as TcxGridDBTableView).DataController.Dataset.Active ) then begin
+   if (AViewInfo <> nil) and ((Sender as TcxGridDBTableView).DataController.Dataset.Active ) then
+   begin
       IndiceCampo := (Sender as
       TcxGridDBTableView).GetColumnByFieldName('pco_status').Index;
       Valor       := AViewInfo.GridRecord.Values[IndiceCampo];

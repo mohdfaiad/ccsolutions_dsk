@@ -8,10 +8,6 @@ inherited frm_product: Tfrm_product
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       OnShow = cxTabSheet_1Show
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pro_id: TcxGridDBColumn
@@ -118,8 +114,8 @@ inherited frm_product: Tfrm_product
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet2
         inherited cxTabSheet_3: TcxTabSheet
+          OnShow = cxTabSheet_3Show
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 986
@@ -758,6 +754,7 @@ inherited frm_product: Tfrm_product
     FormatVersion = 1
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -3844,6 +3841,7 @@ inherited frm_product: Tfrm_product
     Top = 304
   end
   object qry_brand: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterFields = 'ctr_cod'

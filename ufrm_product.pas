@@ -306,6 +306,7 @@ type
     procedure cxDBLookupComboBox1PropertiesCloseUp(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
+    procedure cxTabSheet_3Show(Sender: TObject);
   private
     { Private declarations }
      pro_cod: string;
@@ -387,8 +388,15 @@ end;
 procedure Tfrm_product.Action_insertExecute(Sender: TObject);
 begin
   inherited;
-  dbComboxStatus.ItemIndex := 0;
-  dbComboxPro_type.ItemIndex :=0;
+  dbComboxStatus.ItemIndex      := 0;
+  dbComboxPro_type.ItemIndex    := 0;
+  looComboxFornecedor.ItemIndex := -1;
+  looComboxFabricante.ItemIndex := -1;
+  loopComboxNCM.ItemIndex       := -1;
+  looComboxUnidMedida.ItemIndex := -1;
+  looCombxMarca.ItemIndex       := -1;
+  looComboxClasse.ItemIndex     := -1;
+  looComboxSub_Classe.ItemIndex := -1;
   dbComboxStatus.Enabled :=False;
 
 end;
@@ -527,6 +535,26 @@ begin
   inherited;
    //
 end;
+procedure Tfrm_product.cxTabSheet_3Show(Sender: TObject);
+begin
+  inherited;
+   qry_brand.Close;
+   qry_brand.Open;
+   //-------------------------
+   qry_ncm.Close;
+   qry_ncm.Open;
+   //-------------------------
+   qry_product_unit.Close;
+   qry_product_unit.Open;
+   //-----------------------
+   qry_product_class.Close;
+   qry_product_class.Open;
+   //---------------------
+   qry_supplier.Close;
+   qry_supplier.Open;
+
+end;
+
 procedure Tfrm_product.ExibirRegistros;
 begin
    qry.Close;

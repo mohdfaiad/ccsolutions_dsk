@@ -11,7 +11,6 @@ inherited frm_request: Tfrm_request
   inherited cxPageControl_1: TcxPageControl
     Width = 932
     Height = 613
-    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 932
     ExplicitHeight = 613
     ClientRectBottom = 607
@@ -60,8 +59,8 @@ inherited frm_request: Tfrm_request
         end
       end
       object FlowPanel1: TFlowPanel
-        Left = 3
-        Top = 486
+        Left = 6
+        Top = 524
         Width = 659
         Height = 26
         Alignment = taLeftJustify
@@ -238,6 +237,8 @@ inherited frm_request: Tfrm_request
         ClientRectRight = 912
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
+          ExplicitLeft = 2
+          ExplicitTop = 28
           ExplicitWidth = 910
           ExplicitHeight = 539
           inherited dxLayoutControl_1: TdxLayoutControl

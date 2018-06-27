@@ -9,14 +9,16 @@ inherited frm_stock_entry: Tfrm_stock_entry
   inherited cxPageControl_1: TcxPageControl
     Height = 503
     Properties.ActivePage = cxTabSheet_2
-    ExplicitTop = 61
-    ExplicitHeight = 440
+    ExplicitHeight = 503
     ClientRectBottom = 497
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitHeight = 358
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 469
       inherited cxGrid_1: TcxGrid
         Height = 463
-        ExplicitHeight = 352
+        ExplicitHeight = 463
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           OnCustomDrawCell = cxGrid_1DBTableView1CustomDrawCell
           object cxGrid_1DBTableView1pde_id: TcxGridDBColumn
@@ -66,20 +68,21 @@ inherited frm_stock_entry: Tfrm_stock_entry
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
-      ExplicitHeight = 406
+      ExplicitHeight = 469
       inherited cxPageControl_2: TcxPageControl
         Height = 463
-        ExplicitHeight = 400
+        Properties.ActivePage = cxTabSheet1
+        ExplicitHeight = 463
         ClientRectBottom = 457
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 986
-          ExplicitHeight = 366
+          ExplicitHeight = 429
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 429
-            ExplicitHeight = 366
+            ExplicitHeight = 429
             inherited dbedt_id: TcxDBTextEdit
               Left = 84
               DataBinding.DataField = 'pde_id'
@@ -250,7 +253,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Produtos'
-          ExplicitHeight = 366
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -259,7 +261,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitHeight = 366
             object cxGrid1: TcxGrid
               Left = 17
               Top = 38
@@ -3299,7 +3300,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Top = 96
   end
   object qry_stock: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
@@ -3459,7 +3459,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Top = 48
   end
   object qry_purchase_order: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       

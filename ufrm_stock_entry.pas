@@ -251,7 +251,7 @@ begin
        begin
 
         Close;
-        Text:= ' delete from qry_product_entry_itens ' +
+        Text:= ' delete from product_entry_itens ' +
                ' where product_entry_pde_cod = unhex('+QuotedStr(pde_cod)+')' ;
         Prepare;
         ExecSQL;

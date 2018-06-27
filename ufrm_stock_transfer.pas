@@ -35,110 +35,161 @@ uses
   cxCalendar, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGrid, cxPC, cxDBLookupComboBox, cxLookupEdit, cxDBLookupEdit, Vcl.Grids,
   Vcl.DBGrids, cxCurrencyEdit, cxButtonEdit, frxClass, ACBrSocket, ACBrCEP,
-  frxDBSet, Vcl.StdCtrls, cxButtons;
+  frxDBSet, Vcl.StdCtrls, cxButtons, dxLayoutControlAdapters;
 
 type
   Tfrm_stock_transfer = class(Tfrm_form_default)
-    cxDBSpinEdit4: TcxDBSpinEdit;
-    dxLayoutItem6: TdxLayoutItem;
-    cxDBSpinEdit5: TcxDBSpinEdit;
-    dxLayoutItem7: TdxLayoutItem;
     cxDBTextEdit2: TcxDBTextEdit;
     dxLayoutItem11: TdxLayoutItem;
-    qry_product_transfer_iten: TFDQuery;
     dxLayoutGroup3: TdxLayoutGroup;
     cxGrid1DBTableView1: TcxGridDBTableView;
     cxGrid1Level1: TcxGridLevel;
     cxGrid1: TcxGrid;
     dxLayoutItem3: TdxLayoutItem;
-    dsItens: TDataSource;
-    cxGrid1DBTableView1pti_id: TcxGridDBColumn;
-    cxGrid1DBTableView1product_pro_id: TcxGridDBColumn;
+    ds_transfer_iten: TDataSource;
     qry_stock_iten: TFDQuery;
     ConfirmarTransfernciaSaida1: TMenuItem;
     CancelarTransferncia1: TMenuItem;
-    qry_stock_itensti_id: TFDAutoIncField;
-    qry_stock_itenstock_sto_id: TIntegerField;
-    qry_stock_itenproduct_pro_id: TIntegerField;
-    qry_stock_itenproduct_department_prd_id: TIntegerField;
-    qry_stock_itenproduct_sector_prs_id: TIntegerField;
-    qry_stock_itensti_product_quant: TBCDField;
-    qry_stock_itensti_dt_registration: TDateTimeField;
     qry_product: TFDQuery;
     ds_product: TDataSource;
-    qry_product_transfer_itenpti_id: TFDAutoIncField;
-    qry_product_transfer_itenproduct_transfer_prt_id: TIntegerField;
-    qry_product_transfer_itenproduct_pro_id: TIntegerField;
-    qry_product_transfer_itenpti_product_quant: TBCDField;
-    qry_product_transfer_itenpti_dt_registration: TDateTimeField;
     qry_stock_exit: TFDQuery;
-    cxDBLookupComboBox1: TcxDBLookupComboBox;
-    dxLayoutItem13: TdxLayoutItem;
     ds_stock_exit: TDataSource;
-    cxDBLookupComboBox2: TcxDBLookupComboBox;
-    dxLayoutItem8: TdxLayoutItem;
     qry_employee: TFDQuery;
     ds_employee: TDataSource;
-    cxDBLookupComboBox3: TcxDBLookupComboBox;
-    dxLayoutItem4: TdxLayoutItem;
     qry_productproduct_pro_id: TIntegerField;
     qry_productpro_name: TStringField;
     qry_productstock_sto_id: TIntegerField;
     qry_productsti_product_quant: TBCDField;
-    cxGrid1DBTableView1pti_product_quant: TcxGridDBColumn;
-    cxGrid1DBTableView1pti_dt_registration: TcxGridDBColumn;
     ConfirmarTransfernciaEntrada1: TMenuItem;
-    cxDBButtonEdit1: TcxDBButtonEdit;
-    dxLayoutItem5: TdxLayoutItem;
-    qry_purchase_order: TFDQuery;
-    qry_purchase_orderpco_id: TFDAutoIncField;
-    qry_purchase_ordercontract_ctr_id: TIntegerField;
-    qry_purchase_orderemployee_emp_id: TIntegerField;
-    qry_purchase_orderpco_type: TStringField;
-    qry_purchase_orderpco_status: TStringField;
-    qry_purchase_orderpoc_status_reason: TStringField;
-    qry_purchase_orderpco_dt_registration: TDateTimeField;
-    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     cxDBComboBox1: TcxDBComboBox;
     dxLayoutItem10: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
-    qry_purchase_order_iten: TFDQuery;
-    qry_purchase_order_itenpoi_id: TFDAutoIncField;
-    qry_purchase_order_itenpurchase_order_pco_id: TIntegerField;
-    qry_purchase_order_itenproduct_pro_id: TIntegerField;
-    qry_purchase_order_itenpoi_product_quant: TBCDField;
-    qry_purchase_order_itenpoi_product_quant_served: TBCDField;
-    qry_purchase_order_itenpoi_dt_registration: TDateTimeField;
     ds_purchase_iten: TDataSource;
     frxDBD_Stock_Transfer: TfrxDBDataset;
     frxDBD_Tranfer_Itens: TfrxDBDataset;
-    qry_product_transfer_itenProduto: TStringField;
+    qryprt_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryemployee_emp_id_request: TBytesField;
+    qryemployee_emp_id_agent: TBytesField;
+    qryemployee_emp_id_lecturer: TBytesField;
+    qrystock_sto_id_exit: TBytesField;
+    qrystock_sto_id_entrance: TBytesField;
+    qrypurchase_order_pco_id: TBytesField;
+    qryprt_id: TLongWordField;
+    qryprt_status: TStringField;
+    qryprt_status_reason: TStringField;
+    qryprt_deleted_at: TDateTimeField;
+    qryprt_dt_registration: TDateTimeField;
+    looComboxNumeroRequisicao: TcxLookupComboBox;
+    dxLayoutItem9: TdxLayoutItem;
+    ds_purchase_order: TDataSource;
+    qry_purchase_order: TFDQuery;
+    qry_purchase_orderpco_cod: TBytesField;
+    qry_purchase_ordercontract_ctr_cod: TBytesField;
+    qry_purchase_orderemployee_emp_cod: TBytesField;
+    qry_purchase_orderstock_sto_cod: TBytesField;
+    qry_purchase_orderpco_id: TLongWordField;
+    qry_purchase_orderpco_type: TStringField;
+    qry_purchase_orderpoc_status_reason: TStringField;
+    qry_purchase_orderpco_status: TStringField;
+    qry_purchase_orderpco_deleted_at: TDateTimeField;
+    qry_purchase_orderpco_dt_registration: TDateTimeField;
+    qry_purchase_orderCodPurchase: TStringField;
+    qry_employeeCodEmployee: TStringField;
+    qry_employeeCodRecord: TStringField;
+    qry_employeeemp_cod: TBytesField;
+    qry_employeerecord_rec_cod: TBytesField;
+    qry_employeeemp_type: TStringField;
+    qry_employeeemp_status: TStringField;
+    qry_employeerec_name: TStringField;
+    qry_employeecontract_ctr_cod: TBytesField;
+    qry_purchase_orderCodEmployee: TStringField;
+    looComboxEstoqueSaida: TcxLookupComboBox;
+    dxLayoutItem4: TdxLayoutItem;
+    dxLayoutItem8: TdxLayoutItem;
+    cxDBLookupComboBox2: TcxDBLookupComboBox;
     qry_stock_exitsto_name: TStringField;
-    qry_stock_exitsto_id: TFDAutoIncField;
-    qry_stock_exitcontract_ctr_id: TIntegerField;
-    qry_stock_exitenterprise_ent_id: TIntegerField;
-    cxGrid_1DBTableView1pco_cod: TcxGridDBColumn;
-    cxGrid_1DBTableView1contract_ctr_cod: TcxGridDBColumn;
-    cxGrid_1DBTableView1employee_emp_cod: TcxGridDBColumn;
-    cxGrid_1DBTableView1stock_sto_cod: TcxGridDBColumn;
-    cxGrid_1DBTableView1pco_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1pco_type: TcxGridDBColumn;
-    cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn;
-    cxGrid_1DBTableView1pco_status: TcxGridDBColumn;
-    cxGrid_1DBTableView1pco_deleted_at: TcxGridDBColumn;
-    cxGrid_1DBTableView1pco_dt_registration: TcxGridDBColumn;
-    cxGrid_1DBTableView1CodPurchase: TcxGridDBColumn;
-    cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
+    qry_stock_exitsto_cod: TBytesField;
+    qry_stock_exitsto_id: TLongWordField;
+    qry_stock_exitcontract_ctr_cod: TBytesField;
+    qry_stock_exitenterprise_ent_cod: TBytesField;
+    qry_stock_exitcodStock: TStringField;
+    qry_purchase_orderCodStock: TStringField;
+    looComboxEmployee_emp_ID_Agent: TcxLookupComboBox;
+    dxLayoutItem13: TdxLayoutItem;
+    looComboxEmployee_Emp_ID_Lecturer: TcxLookupComboBox;
+    dxLayoutItem6: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
+    qry_purchase_order_iten: TFDQuery;
+    qry_stock_itensti_cod: TBytesField;
+    qry_stock_itenstock_sto_cod: TBytesField;
+    qry_stock_itenproduct_pro_cod: TBytesField;
+    qry_stock_itenproduct_department_prd_cod: TBytesField;
+    qry_stock_itenproduct_sector_prs_cod: TBytesField;
+    qry_stock_itensti_id: TLongWordField;
+    qry_stock_itensti_product_quant: TBCDField;
+    qry_stock_itensti_product_quant_min: TBCDField;
+    qry_stock_itensti_deleted_at: TDateTimeField;
+    qry_stock_itensti_dt_registration: TDateTimeField;
+    qry_stock_itenCodStock: TStringField;
+    qry_stock_itenCodProduct: TStringField;
+    qry_purchase_order_itenpoi_cod: TBytesField;
+    qry_purchase_order_itenpurchase_order_pco_cod: TBytesField;
+    qry_purchase_order_itenproduct_pro_cod: TBytesField;
+    qry_purchase_order_itenpoi_id: TLongWordField;
+    qry_purchase_order_itenpoi_product_quant: TBCDField;
+    qry_purchase_order_itenpoi_product_quant_served: TBCDField;
+    qry_purchase_order_itenpoi_deleted_at: TDateTimeField;
+    qry_purchase_order_itenpoi_dt_registration: TDateTimeField;
+    qry_purchase_order_itenCodItens: TStringField;
+    qry_purchase_order_itenpro_name: TStringField;
+    qry_purchase_order_itenpru_initials: TStringField;
+    qry_purchase_order_itenCodProduct: TStringField;
+    qry_product_transfer_iten: TFDQuery;
+    qry_product_transfer_itenpti_cod: TBytesField;
+    qry_product_transfer_itenproduct_transfer_prt_cod: TBytesField;
+    qry_product_transfer_itenproduct_pro_cod: TBytesField;
+    qry_product_transfer_itenpti_id: TLongWordField;
+    qry_product_transfer_itenpti_product_quant: TBCDField;
+    qry_product_transfer_itenpti_deleted_at: TDateTimeField;
+    qry_product_transfer_itenpti_dt_registration: TDateTimeField;
+    qry_product_transfer_itenCodTrnsfItens: TStringField;
+    qry_product_transfer_itenCodTransf: TStringField;
+    qry_product_transfer_itenCodProduct: TStringField;
+    cxGrid1DBTableView1pti_id: TcxGridDBColumn;
+    cxGrid1DBTableView1pti_product_quant: TcxGridDBColumn;
+    cxGrid1DBTableView1pti_dt_registration: TcxGridDBColumn;
+    qry_product_transfer_itenpro_name: TStringField;
+    cxGrid1DBTableView1pro_name: TcxGridDBColumn;
+    qry_product_transfer_itenpru_initials: TStringField;
+    cxGrid1DBTableView1pru_initials: TcxGridDBColumn;
+    DataSource1: TDataSource;
+    qry_purchase_ordersto_name: TStringField;
+    qry_purchase_orderFuncionario: TStringField;
+    edtSolicitante: TcxTextEdit;
+    dxLayoutItem5: TdxLayoutItem;
+    edtEst_Entrada: TcxTextEdit;
+    dxLayoutItem7: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    cxGrid_1DBTableView1stock_sto_id_exit: TcxGridDBColumn;
+    cxGrid_1DBTableView1purchase_order_pco_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1prt_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1prt_status: TcxGridDBColumn;
+    cxGrid_1DBTableView1prt_status_reason: TcxGridDBColumn;
+    cxGrid_1DBTableView1prt_dt_registration: TcxGridDBColumn;
+    qry_stock_itenpro_name: TStringField;
+    qryCodTransf: TStringField;
+    qryStockSaida: TStringField;
+    qryStockEntra: TStringField;
+    cxGrid_1DBTableView1StockSaida: TcxGridDBColumn;
+    cxGrid_1DBTableView1StockEntra: TcxGridDBColumn;
     procedure qryAfterInsert(DataSet: TDataSet);
-    procedure qryBeforePost(DataSet: TDataSet);
     procedure ConfirmarTransfernciaSaida1Click(Sender: TObject);
     procedure CancelarTransferncia1Click(Sender: TObject);
     procedure PopupMenu_1Popup(Sender: TObject);
     procedure ConfirmarTransfernciaEntrada1Click(Sender: TObject);
     procedure qry_product_transfer_itenAfterInsert(DataSet: TDataSet);
-    procedure cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
-      AButtonIndex: Integer);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
@@ -146,14 +197,24 @@ type
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
-    procedure qryAfterDelete(DataSet: TDataSet);
     procedure FormShow(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
+    procedure Action_insertExecute(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
+    procedure cxTabSheet_3Show(Sender: TObject);
+    procedure looComboxEstoqueSaidaPropertiesCloseUp(Sender: TObject);
+    procedure looComboxNumeroRequisicaoPropertiesCloseUp(Sender: TObject);
+    procedure cxButton1Click(Sender: TObject);
   private
-    { Private declarations }
+     prt_cod, pti_cod: string;
+     pti_id: Integer;
 
   public
     { Public declarations }
    procedure limpaCache(Sender:TObject);
+   procedure ExibirRegistros;
+   procedure ExibirRequisicao;
+   procedure ExibirEstoque;
   end;
 
 var
@@ -164,6 +225,12 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_stock_transfer.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+   ExibirRegistros;
+end;
 
 procedure Tfrm_stock_transfer.Action_deleteExecute(Sender: TObject);
 begin
@@ -195,17 +262,59 @@ begin
 //   end;
 end;
 
+procedure Tfrm_stock_transfer.Action_editExecute(Sender: TObject);
+begin
+  inherited;
+   self.Tag := 2;
+   ExibirRequisicao;
+end;
+
+procedure Tfrm_stock_transfer.Action_insertExecute(Sender: TObject);
+begin
+  inherited;
+  self.Tag := 1;
+  ExibirRequisicao;
+end;
+
 procedure Tfrm_stock_transfer.Action_saveExecute(Sender: TObject);
 var
 fecha:Boolean;
 begin
 //Variavel para analizar se todos os produtos da requisição já foram atendido
  fecha:=True;
+
+  if qryprt_id.AsInteger = 0 then
+   begin
+
+     with frm_dm.qry,sql do
+      begin
+       close;
+       Text:= ' select case when max(prt_id) is null then 1 ' +
+          '      else (max(prt_id) + 1) end as maxID from product_transfer '+
+          ' where contract_ctr_cod =unhex(' +QuotedStr(frm_dm.v_contract_ctr_cod)+')';
+       Prepare;
+       Open;
+
+       qry.Edit;
+       qryprt_id.AsInteger:=Fields[0].AsInteger;
+       qrystock_sto_id_entrance.Value := qry_purchase_orderstock_sto_cod.Value;
+       qrystock_sto_id_exit.Value     := qry_stock_exitsto_cod.Value;
+       qrypurchase_order_pco_id.Value := qry_purchase_orderpco_cod.Value;
+
+     end;
+   end else
+        begin
+          qry.Edit;
+          qrystock_sto_id_entrance.Value := qry_purchase_orderstock_sto_cod.Value;
+          qrystock_sto_id_exit.Value     := qry_stock_exitsto_cod.Value;
+          qrypurchase_order_pco_id.Value := qry_purchase_orderpco_cod.Value;
+        end;
+
+
   qry_product_transfer_iten.First;
   while not qry_product_transfer_iten.Eof do
    begin
-      qry_purchase_order_iten.Locate('product_pro_id',
-      qry_product_transfer_itenproduct_pro_id.AsInteger);
+      qry_purchase_order_iten.Locate('CodProduct',qry_product_transfer_itenCodProduct.AsString,[loCaseInsensitive, loPartialKey]);
       qry_purchase_order_iten.Edit;
       qry_purchase_order_itenpoi_product_quant_served.AsFloat :=
       qry_purchase_order_itenpoi_product_quant_served.AsFloat +
@@ -232,8 +341,8 @@ begin
       qry_purchase_order.Post;
     end;
 
-
   inherited;
+  ExibirRegistros;
 
 end;
 
@@ -423,9 +532,9 @@ begin
     qry_product_transfer_iten.First;
     while not qry_product_transfer_iten.Eof do
     begin
-      qry_product.Locate('product_pro_id',
-        qry_product_transfer_itenproduct_pro_id.AsString,
-        [loCaseInsensitive, loPartialKey]);
+//        qry_product.Locate('product_pro_id',
+//        qry_product_transfer_itenproduct_pro_id.AsString,
+//        [loCaseInsensitive, loPartialKey]);
 
       if qry_productsti_product_quant.AsFloat <= 0 then
       begin
@@ -464,9 +573,9 @@ begin
     qry_product_transfer_iten.First;
     while not qry_product_transfer_iten.Eof do
     begin
-      qry_stock_iten.Locate('product_pro_id',
-        qry_product_transfer_itenproduct_pro_id.AsString,
-        [loCaseInsensitive, loPartialKey]);
+//        qry_stock_iten.Locate('product_pro_id',
+//        qry_product_transfer_itenproduct_pro_id.AsString,
+//        [loCaseInsensitive, loPartialKey]);
       qry_stock_iten.Edit;
       qry_stock_itensti_product_quant.AsFloat :=
         qry_stock_itensti_product_quant.AsFloat -
@@ -488,72 +597,10 @@ begin
   end;
 end;
 
-procedure Tfrm_stock_transfer.cxDBButtonEdit1PropertiesButtonClick
-  (Sender: TObject; AButtonIndex: Integer);
-var
-numReq:string;
+procedure Tfrm_stock_transfer.cxButton1Click(Sender: TObject);
 begin
-  inherited;
-  if (Trim(cxDBButtonEdit1.Text)= '') then
-  begin
-    Application.MessageBox('Informe uma requisiçao, o estoque de saída e entrada para importação!',
-      'Transferência', MB_OK + MB_ICONWARNING);
-    cxDBButtonEdit1.SetFocus;
-    Exit;
-  end;
-
-  if Application.MessageBox('Deseja importar a requisição?', 'Transferência',
-    MB_YESNO + MB_ICONQUESTION) = mrYes then
-  begin
-    if not qry_purchase_order.Locate('pco_id',cxDBButtonEdit1.Text, [loCaseInsensitive, loPartialKey])
-    then
-    begin
-      Application.MessageBox('Requisiçao não localizada!', 'Transferência',
-        MB_OK + MB_ICONWARNING);
-      Exit;
-    end;
-
-    qry_purchase_order.Locate('pco_id',cxDBButtonEdit1.Text,[loCaseInsensitive, loPartialKey]);
-    numReq:=cxDBButtonEdit1.Text;
-    if qry_purchase_orderpco_status.AsString = 'F' then
-    begin
-      Application.MessageBox('Requisiçao já utilizadaem uma transferência!',
-        'Transferência', MB_OK + MB_ICONWARNING);
-      Exit;
-    end;
-
-    if not(qry.State in [dsinsert])  then
-    qry.Insert;
-
-//    qryemployee_emp_id_request.AsInteger := qry_purchase_orderemployee_emp_id.AsInteger;
-//    qrypurchase_order_pco_id.AsString:=numReq;
-//    qry.Post;
-//    qry.Edit;
-
-    with frm_dm.qry,sql do
-    begin
-      Close;
-      Text := 'select * from purchase_order_iten ' +
-        ' where purchase_order_pco_id = ' +
-        QuotedStr(qry_purchase_orderpco_id.AsString);
-      Prepare;
-      open;
-      First;
-
-      while not Eof do
-      begin
-        qry_product_transfer_iten.Insert;
-        qry_product_transfer_itenproduct_pro_id.AsInteger := FieldByName('product_pro_id').AsInteger;
-        qry_product_transfer_itenpti_product_quant.AsFloat := FieldByName('poi_product_quant').AsFloat - FieldByName('poi_product_quant_served').AsFloat;
-        qry_product_transfer_iten.Post;
-        Next;
-      end;
-
-    end;
-
-    Application.MessageBox('Importação realizada com sucesso!', 'Transferência',MB_OK + MB_ICONWARNING);
-
-  end;
+   qry_stock_iten.Close;
+   qry_stock_iten.Open;
 end;
 
 procedure Tfrm_stock_transfer.cxDBLookupComboBox1PropertiesPopup(
@@ -580,6 +627,75 @@ begin
   qry_employee.Refresh;
 end;
 
+procedure Tfrm_stock_transfer.cxTabSheet_3Show(Sender: TObject);
+begin
+  inherited;
+   qry_employee.Close;
+   qry_employee.Open;
+
+   ExibirEstoque;
+
+end;
+
+procedure Tfrm_stock_transfer.ExibirEstoque;
+begin
+  qry_stock_exit.Close;
+  qry_stock_exit.SQL.Text := ' select st.sto_name, st.sto_cod, st.sto_id,st.contract_ctr_cod,st.enterprise_ent_cod, hex(st.sto_cod) as codStock  from stock st                              '+
+                             ' where st.sto_status = ''A'' and st.contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')                                                         '+
+                             ' and st.enterprise_ent_cod in (select enterprise_ent_cod from contract_user_enterprise where contract_user_ctr_usr_cod =unhex('+QuotedStr(frm_dm.v_ctr_usr_cod)+')) ';
+  qry_stock_exit.Prepare;
+  qry_stock_exit.Open;
+end;
+
+procedure Tfrm_stock_transfer.ExibirRegistros;
+begin
+   qry.Close;
+   qry.SQL.Text := ' select trans.*, sai.sto_name as StockSaida, ent.sto_name as StockEntra, hex(prt_cod)as CodTransf from product_transfer as trans '+
+                   ' left join stock as sai on sai.sto_cod = stock_sto_id_exit                                                      '+
+                   ' left join stock as ent on ent.sto_cod = stock_sto_id_entrance                                                  '+
+                   ' where trans.contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+') ' +
+                   ' and prt_deleted_at is null ' ;
+   qry.Prepare;
+   qry.Open;
+
+end;
+
+procedure Tfrm_stock_transfer.ExibirRequisicao;
+begin
+  if (self.tag = 1) then
+  begin
+   qry_purchase_order.Close;
+   qry_purchase_order.SQL.Text:=' SELECT pur_ord.*, hex(pur_ord.pco_cod)as CodPurchase, hex(pur_ord.employee_emp_cod)as CodEmployee, '+
+                                ' hex(pur_ord.stock_sto_cod)as CodStock, sto.sto_name FROM purchase_order as pur_ord                '+
+                                ' left join stock as sto on sto.sto_cod = pur_ord.stock_sto_cod                       '+
+                                ' where pur_ord.pco_status = ''L'' and pur_ord.pco_type = ''R''                       '+
+                                ' and pur_ord.contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')       '+
+                                ' and sto.enterprise_ent_cod in (select enterprise_ent_cod                            '+
+                                ' from contract_user_enterprise                                                       '+
+                                '  where contract_user_ctr_usr_cod =unhex('+QuotedStr(frm_dm.v_ctr_usr_cod)+'))       '+
+                                ' and pco_deleted_at is null ';
+   qry_purchase_order.Prepare;
+   qry_purchase_order.Open;
+
+  end else if (self.tag = 2) then
+     begin
+      qry_purchase_order.Close;
+      qry_purchase_order.SQL.Text:= ' SELECT pur_ord.*, hex(pur_ord.pco_cod)as CodPurchase, hex(pur_ord.employee_emp_cod)as CodEmployee, '+
+                                    ' hex(pur_ord.stock_sto_cod)as CodStock, sto.sto_name FROM purchase_order as pur_ord                '+
+                                    ' left join stock as sto on sto.sto_cod = pur_ord.stock_sto_cod                       '+
+                                    ' where pur_ord.pco_status = ''L'' and pur_ord.pco_type = ''R''                       '+
+                                    ' and pur_ord.contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')       '+
+                                    ' and sto.enterprise_ent_cod in (select enterprise_ent_cod                            '+
+                                    ' from contract_user_enterprise                                                       '+
+                                    '  where contract_user_ctr_usr_cod =unhex('+QuotedStr(frm_dm.v_ctr_usr_cod)+'))       '+
+                                    ' and pco_deleted_at is null ';
+      qry_purchase_order.Prepare;
+      qry_purchase_order.Open;
+
+     end;
+
+end;
+
 procedure Tfrm_stock_transfer.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -597,11 +713,8 @@ end;
 procedure Tfrm_stock_transfer.FormShow(Sender: TObject);
 begin
   inherited;
-   //SQL para exibir somente as Requisições da Unidade de estoque que o usuário tem acesso
-   qry.Close;
-   qry.ParamByName('CTR_USR_ID').Value := frm_dm.qry_contractctr_cod.Value;
-   qry.Prepare;
-   qry.Open;
+   //SQL para exibir somente as Transferencia da Unidade de estoque que o usuário tem acesso
+   ExibirRegistros;
  //---------------------------------------------------------------------------
 
 end;
@@ -609,10 +722,95 @@ end;
 procedure Tfrm_stock_transfer.limpaCache(Sender: TObject);
 begin
   qry.CommitUpdates();
-  qry_product_transfer_iten.CommitUpdates();
-  qry_purchase_order.CommitUpdates();
-  qry_purchase_order_iten.CommitUpdates();
+//  qry_product_transfer_iten.CommitUpdates();
+//  qry_purchase_order.CommitUpdates();
+//  qry_purchase_order_iten.CommitUpdates();
 
+end;
+
+procedure Tfrm_stock_transfer.looComboxEstoqueSaidaPropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+
+   qry_stock_iten.Close;
+   qry_stock_iten.Open;
+
+   qry_purchase_order_iten.Close;
+   qry_purchase_order_iten.Open;
+   qry_purchase_order_iten.first;
+   while not qry_purchase_order_iten.Eof do
+    begin
+     if qry_stock_iten.Locate('CodProduct',qry_purchase_order_itenCodProduct.AsString,[loCaseInsensitive, loPartialKey]) then
+      begin
+         With frm_dm.qry,sql do
+          begin
+           close;   //SQL para obter o Codigo ID em Hex-----
+           text:= 'select hex(uuid_to_bin(uuid()))';
+           prepare;
+           open;
+
+           pti_cod:=Fields[0].AsString;
+
+
+               close;  // SQL para Obter o proximo ID ta tabela-----
+               Text:= ' select case when max(pti_id) is null then 1 ' +
+                      '      else (max(pti_id) + 1) end as maxID from product_transfer_iten '+
+                      ' where product_transfer_prt_cod =unhex('+QuotedStr(prt_cod)+')';
+               Prepare;
+               Open;
+
+           pti_id:=Fields[0].AsInteger;
+
+           Close;   //SQL para Inserir o produto do Pedido de Compra------
+           Text:='insert into product_transfer_iten (pti_id, pti_cod, product_transfer_prt_cod, product_pro_cod, pti_product_quant, pti_dt_registration) ' +
+                 ' values (:pti_id, unhex(:pti_cod), unhex(:product_transfer_prt_cod), unhex(:product_pro_cod), :pti_product_quant, :pti_dt_registration) ';
+           ParamByName('pti_id').AsInteger                := pti_id;
+           ParamByName('pti_cod').AsString                := pti_cod;
+           ParamByName('product_transfer_prt_cod').AsString := prt_cod;
+           ParamByName('product_pro_cod').AsString        := qry_purchase_order_itenCodProduct.AsString;
+           ParamByName('pti_product_quant').AsFloat       := qry_purchase_order_itenpoi_product_quant.Value;
+           ParamByName('pti_dt_registration').AsDateTime  := Now;
+           Prepare;
+           ExecSQL;
+
+
+          end;
+
+
+      end else
+        begin
+           Application.MessageBox(PChar('Produto: '+qry_stock_itenpro_name.AsString+' está em falta no Estoque!'),'AVISO DE TRANSFERÊNCIA', MB_OK + MB_ICONWARNING);
+        end;
+
+     qry_purchase_order_iten.Next;
+
+    end;
+
+
+    qry_product_transfer_iten.Close;
+    qry_product_transfer_iten.Open;
+
+
+//      with frm_dm.qry,sql do
+//    begin
+//      Close;
+//      Text := 'select * from purchase_order_iten ' +
+//        ' where purchase_order_pco_id = ' +
+//        QuotedStr(qry_purchase_orderpco_id.AsString);
+//      Prepare;
+//      open;
+//      First;
+//
+//      while not Eof do
+//      begin
+//        qry_product_transfer_iten.Insert;
+//        qry_product_transfer_itenproduct_pro_id.AsInteger := FieldByName('product_pro_id').AsInteger;
+//        qry_product_transfer_itenpti_product_quant.AsFloat := FieldByName('poi_product_quant').AsFloat - FieldByName('poi_product_quant_served').AsFloat;
+//        qry_product_transfer_iten.Post;
+//        Next;
+//      end;
+//
+//    end;
 end;
 
 procedure Tfrm_stock_transfer.PopupMenu_1Popup(Sender: TObject);
@@ -623,36 +821,35 @@ begin
 //  CancelarTransferncia1.Enabled := qryprt_status.AsString <> 'C';
 end;
 
-procedure Tfrm_stock_transfer.qryAfterDelete(DataSet: TDataSet);
-begin
-  inherited;
-    qry.ApplyUpdates(0);
-    qry.Close;
-    qry.Open;
-end;
-
 procedure Tfrm_stock_transfer.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-//  qryprt_status.AsString := 'A';
-//  qryprt_dt_registration.Value := Now;
-//  qry.Post;
-//  qry.Edit;
+   //SQL para obter Número do Cod ID em Hex--------
+  With frm_dm.qry,sql do
+  begin
+   close;
+   text:= ' select hex(uuid_to_bin(uuid()))';
+   prepare;
+   open;
 
-end;
+   prt_cod:=Fields[0].AsString;
 
-procedure Tfrm_stock_transfer.qryBeforePost(DataSet: TDataSet);
-begin
-//  if (qrystock_sto_id_exit.AsInteger = qrystock_sto_id_entrance.AsInteger) and
-//    (qrystock_sto_id_exit.AsInteger > 0) and
-//    (qrystock_sto_id_entrance.AsInteger > 0) then
-//  begin
-//    Application.MessageBox
-//      ('Estoque de saída igual o estoque da entrada da transferência, favor verificar!',
-//      'Transferência', MB_OK + MB_ICONERROR);
-//    Exit
-//  end;
-//  inherited;
+   Close;          //---Insert na tabela purchase_order inserindo os primeiros registros obrigatórios----
+   Text:='insert into product_transfer (prt_id,prt_cod,prt_status,contract_ctr_cod,prt_dt_registration) ' +
+         ' select 0,unhex('+QuotedStr(prt_cod)+'),''A'', unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+'), Now()';
+   Prepare;
+   ExecSQL;
+  end;
+
+  qry.Close;
+   qry.SQL.Text := ' select trans.*, hex(prt_cod)as CodTransf from product_transfer as trans  ' +
+                   ' where trans.prt_cod =unhex('+QuotedStr(prt_cod)+') ' +
+                   ' and prt_deleted_at is null ' ;
+   qry.Prepare;
+   qry.Open;
+   qry.Edit;
+
+
 
 end;
 
@@ -661,6 +858,44 @@ procedure Tfrm_stock_transfer.qry_product_transfer_itenAfterInsert
 begin
   inherited;
   qry_product_transfer_itenpti_dt_registration.Value := Now;
+end;
+
+procedure Tfrm_stock_transfer.looComboxNumeroRequisicaoPropertiesCloseUp(Sender: TObject);
+begin
+  if (Trim(looComboxNumeroRequisicao.Text)= '') then
+  begin
+    Application.MessageBox('Selecione uma requisiçao, do estoque de saída e entrada para importação!',
+      'Transferência', MB_OK + MB_ICONWARNING);
+    Exit;
+  end;
+
+
+    edtSolicitante.Text := qry_purchase_orderFuncionario.AsString;
+    edtEst_Entrada.Text := qry_purchase_ordersto_name.AsString;
+
+
+ //      qry_stock_exit.Locate('codStock',qry_purchase_orderCodStock.AsString,[loCaseInsensitive, loPartialKey]);
+    with frm_dm.qry,sql do
+    begin
+//      Close;
+//      Text := 'select * from purchase_order_iten ' +
+//        ' where purchase_order_pco_id = ' +
+//        QuotedStr(qry_purchase_orderpco_id.AsString);
+//      Prepare;
+//      open;
+//      First;
+//
+//      while not Eof do
+//      begin
+//        qry_product_transfer_iten.Insert;
+//        qry_product_transfer_itenproduct_pro_id.AsInteger := FieldByName('product_pro_id').AsInteger;
+//        qry_product_transfer_itenpti_product_quant.AsFloat := FieldByName('poi_product_quant').AsFloat - FieldByName('poi_product_quant_served').AsFloat;
+//        qry_product_transfer_iten.Post;
+//        Next;
+//      end;
+
+    end;
+
 end;
 
 end.

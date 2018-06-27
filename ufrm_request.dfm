@@ -11,6 +11,7 @@ inherited frm_request: Tfrm_request
   inherited cxPageControl_1: TcxPageControl
     Width = 932
     Height = 613
+    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 932
     ExplicitHeight = 613
     ClientRectBottom = 607
@@ -892,8 +893,8 @@ inherited frm_request: Tfrm_request
   end
   object ds_purchase_order_iten: TDataSource [16]
     DataSet = qry_purchase_order_iten
-    Left = 627
-    Top = 367
+    Left = 699
+    Top = 343
   end
   object ds_product: TDataSource [17]
     DataSet = qry_product
@@ -3570,7 +3571,6 @@ inherited frm_request: Tfrm_request
     Top = 2
   end
   object qry_purchase_order_iten: TFDQuery
-    Active = True
     IndexFieldNames = 'purchase_order_pco_cod'
     MasterSource = ds
     MasterFields = 'pco_cod'
@@ -3580,7 +3580,8 @@ inherited frm_request: Tfrm_request
       
         'select purchase_order_iten.*, hex(poi_cod)as CodItens, pro_name,' +
         'pru_initials from purchase_order_iten'#13#10#10
-      'inner join product on product_pro_cod =  pro_cod'#10
+      ''
+      'left join product on product_pro_cod =  pro_cod'#10
       'left join product_unit on product_unit_pru_cod = pru_cod'
       'where purchase_order_pco_cod =:pco_cod')
     Left = 544

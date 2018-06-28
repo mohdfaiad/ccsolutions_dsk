@@ -8,17 +8,19 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 601
-    ExplicitHeight = 669
+    Properties.ActivePage = cxTabSheet_2
+    ExplicitHeight = 601
     ClientRectBottom = 595
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
-      ExplicitHeight = 635
+      ExplicitHeight = 567
       inherited cxGrid_1: TcxGrid
         Height = 561
-        ExplicitHeight = 629
+        ExplicitHeight = 561
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
+          OnCustomDrawCell = cxGrid_1DBTableView1CustomDrawCell
           object cxGrid_1DBTableView1prt_id: TcxGridDBColumn
             Caption = 'C'#243'digo ID'
             DataBinding.FieldName = 'prt_id'
@@ -30,28 +32,39 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
             Width = 250
           end
           object cxGrid_1DBTableView1ID_Pedido: TcxGridDBColumn
+            Caption = 'N'#186' do Pedido'
             DataBinding.FieldName = 'ID_Pedido'
             Width = 75
           end
           object cxGrid_1DBTableView1StatusPedido: TcxGridDBColumn
+            Caption = 'Status do Pedido'
             DataBinding.FieldName = 'StatusPedido'
-            Width = 50
+            Width = 100
           end
           object cxGrid_1DBTableView1poc_status_reason: TcxGridDBColumn
+            Caption = 'Obs. Pedido'
             DataBinding.FieldName = 'poc_status_reason'
-            Width = 200
+            Width = 150
           end
           object cxGrid_1DBTableView1StockSaida: TcxGridDBColumn
+            Caption = 'Estoque de Sa'#237'da'
             DataBinding.FieldName = 'StockSaida'
+            Width = 250
           end
           object cxGrid_1DBTableView1prt_status: TcxGridDBColumn
+            Caption = 'Status Transfer'#234'ncia'
             DataBinding.FieldName = 'prt_status'
+            Width = 100
           end
           object cxGrid_1DBTableView1prt_status_reason: TcxGridDBColumn
+            Caption = 'Obs. Transfer'#234'ncia'
             DataBinding.FieldName = 'prt_status_reason'
+            Width = 150
           end
           object cxGrid_1DBTableView1prt_dt_registration: TcxGridDBColumn
+            Caption = 'Dt. Reg'
             DataBinding.FieldName = 'prt_dt_registration'
+            Width = 125
           end
         end
       end
@@ -60,35 +73,40 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
-      ExplicitHeight = 635
+      ExplicitHeight = 567
       inherited cxPageControl_2: TcxPageControl
         Height = 561
-        ExplicitHeight = 629
+        ExplicitHeight = 561
         ClientRectBottom = 555
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 986
-          ExplicitHeight = 595
+          ExplicitHeight = 527
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 527
-            ExplicitHeight = 595
+            ExplicitHeight = 527
             inherited dbedt_id: TcxDBTextEdit
               Left = 88
+              Top = 33
               DataBinding.DataField = 'prt_id'
               ExplicitLeft = 88
+              ExplicitTop = 33
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
               Left = 261
+              Top = 33
               DataBinding.DataField = 'prt_dt_registration'
               ExplicitLeft = 261
+              ExplicitTop = 33
             end
             object cxGrid1: TcxGrid [2]
               Left = 17
-              Top = 249
+              Top = 244
               Width = 728
               Height = 232
+              PopupMenu = pupMenuTransf
               TabOrder = 10
               object cxGrid1DBTableView1: TcxGridDBTableView
                 Navigator.Buttons.ConfirmDelete = True
@@ -110,11 +128,11 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
                 Navigator.Buttons.GotoBookmark.Visible = False
                 Navigator.Buttons.Filter.ImageIndex = 12
                 Navigator.Buttons.Filter.Visible = True
-                Navigator.Visible = True
                 DataController.DataSource = ds_transfer_iten
                 DataController.Summary.DefaultGroupSummaryItems = <>
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
+                OptionsData.Editing = False
                 OptionsView.NoDataToDisplayInfoText = '<Nenhum dado a ser exibido>'
                 object cxGrid1DBTableView1pti_id: TcxGridDBColumn
                   Caption = 'C'#243'digo'
@@ -134,6 +152,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
                 object cxGrid1DBTableView1pti_product_quant: TcxGridDBColumn
                   Caption = 'Quantidade'
                   DataBinding.FieldName = 'pti_product_quant'
+                  PropertiesClassName = 'TcxCurrencyEditProperties'
+                  Properties.DisplayFormat = '0.000;-0.000'
                   Width = 100
                 end
                 object cxGrid1DBTableView1pti_dt_registration: TcxGridDBColumn
@@ -148,7 +168,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
             end
             object looComboxNumeroRequisicao: TcxLookupComboBox [3]
               Left = 88
-              Top = 103
+              Top = 98
               Properties.GridMode = True
               Properties.KeyFieldNames = 'pco_id'
               Properties.ListColumns = <
@@ -163,7 +183,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
             end
             object looComboxEstoqueSaida: TcxLookupComboBox [4]
               Left = 88
-              Top = 184
+              Top = 179
               Properties.GridMode = True
               Properties.KeyFieldNames = 'sto_name'
               Properties.ListColumns = <
@@ -176,9 +196,9 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               TabOrder = 9
               Width = 300
             end
-            object cxDBTextEdit2: TcxDBTextEdit [5]
+            object edtMotivo: TcxDBTextEdit [5]
               Left = 460
-              Top = 103
+              Top = 98
               DataBinding.DataField = 'prt_status_reason'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -188,7 +208,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
             end
             object cxDBComboBox1: TcxDBComboBox [6]
               Left = 261
-              Top = 103
+              Top = 98
               DataBinding.DataField = 'prt_status'
               DataBinding.DataSource = ds
               Enabled = False
@@ -205,7 +225,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
             end
             object edtSolicitante: TcxTextEdit [7]
               Left = 88
-              Top = 130
+              Top = 125
               Enabled = False
               Style.HotTrack = False
               TabOrder = 5
@@ -213,15 +233,22 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
             end
             object looComboxEmployee_emp_ID_Agent: TcxLookupComboBox [8]
               Left = 460
-              Top = 130
-              Properties.ListColumns = <>
+              Top = 125
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'rec_name'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'rec_name'
+                end>
+              Properties.ListSource = ds_employee
+              Properties.OnCloseUp = looComboxEmployee_emp_ID_AgentPropertiesCloseUp
               Style.HotTrack = False
               TabOrder = 6
               Width = 261
             end
             object edtEst_Entrada: TcxTextEdit [9]
               Left = 88
-              Top = 157
+              Top = 152
               Enabled = False
               Style.HotTrack = False
               TabOrder = 7
@@ -229,11 +256,81 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
             end
             object looComboxEmployee_Emp_ID_Lecturer: TcxLookupComboBox [10]
               Left = 460
-              Top = 157
-              Properties.ListColumns = <>
+              Top = 152
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'rec_name'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'rec_name'
+                end>
+              Properties.ListSource = ds_employee
+              Properties.OnCloseUp = looComboxEmployee_Emp_ID_LecturerPropertiesCloseUp
               Style.HotTrack = False
               TabOrder = 8
               Width = 261
+            end
+            object looComboxProduto: TcxLookupComboBox [11]
+              Left = 62
+              Top = 482
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'pro_name'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'pro_name'
+                end>
+              Properties.ListSource = ds_product
+              Properties.OnCloseUp = looComboxProdutoPropertiesCloseUp
+              Style.HotTrack = False
+              TabOrder = 11
+              Width = 255
+            end
+            object edtUND: TcxTextEdit [12]
+              Left = 349
+              Top = 482
+              Style.HotTrack = False
+              TabOrder = 12
+              Width = 70
+            end
+            object edtQTD: TcxCurrencyEdit [13]
+              Left = 486
+              Top = 482
+              Properties.DisplayFormat = '0.000;-0.000'
+              Style.HotTrack = False
+              TabOrder = 13
+              OnKeyDown = edtQTDKeyDown
+              Width = 100
+            end
+            object btnSalvar_Item: TcxButton [14]
+              Left = 592
+              Top = 482
+              Width = 25
+              Height = 25
+              Action = act_save_transf_itens
+              TabOrder = 14
+            end
+            object btnEditar_Item: TcxButton [15]
+              Left = 623
+              Top = 482
+              Width = 25
+              Height = 25
+              Action = act_edit_transf_itens
+              TabOrder = 15
+            end
+            object btnCancel_Item: TcxButton [16]
+              Left = 654
+              Top = 482
+              Width = 25
+              Height = 25
+              Action = act_cancel_transf_itens
+              TabOrder = 16
+            end
+            object btnExcluir_Item: TcxButton [17]
+              Left = 685
+              Top = 482
+              Width = 25
+              Height = 25
+              Action = act_delete_transf_itens
+              TabOrder = 17
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 2
@@ -253,6 +350,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               SizeOptions.Height = 192
               SizeOptions.Width = 742
               ButtonOptions.Buttons = <>
+              ItemIndex = 1
               Index = 2
             end
             object dxLayoutItem3: TdxLayoutItem
@@ -297,7 +395,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Motivo'
-              Control = cxDBTextEdit2
+              Control = edtMotivo
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 261
               ControlOptions.ShowBorder = False
@@ -379,6 +477,84 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
               Index = 1
               AutoCreated = True
             end
+            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup3
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem8: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Produto'
+              Offsets.Left = 2
+              Control = looComboxProduto
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 255
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem12: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              AlignVert = avClient
+              CaptionOptions.Text = 'UND'
+              Control = edtUND
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 70
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem14: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              AlignVert = avClient
+              CaptionOptions.Text = 'Quantidade'
+              Control = edtQTD
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 100
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
+            object dxLayoutItem15: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              CaptionOptions.Text = 'cxButton1'
+              CaptionOptions.Visible = False
+              Control = btnSalvar_Item
+              ControlOptions.OriginalHeight = 25
+              ControlOptions.OriginalWidth = 25
+              ControlOptions.ShowBorder = False
+              Index = 3
+            end
+            object dxLayoutItem16: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              CaptionOptions.Text = 'cxButton2'
+              CaptionOptions.Visible = False
+              Control = btnEditar_Item
+              ControlOptions.OriginalHeight = 25
+              ControlOptions.OriginalWidth = 25
+              ControlOptions.ShowBorder = False
+              Index = 4
+            end
+            object dxLayoutItem17: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              CaptionOptions.Text = 'cxButton3'
+              CaptionOptions.Visible = False
+              Control = btnCancel_Item
+              ControlOptions.OriginalHeight = 25
+              ControlOptions.OriginalWidth = 25
+              ControlOptions.ShowBorder = False
+              Index = 5
+            end
+            object dxLayoutItem19: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              CaptionOptions.Text = 'cxButton5'
+              CaptionOptions.Visible = False
+              Control = btnExcluir_Item
+              ControlOptions.OriginalHeight = 25
+              ControlOptions.OriginalWidth = 25
+              ControlOptions.ShowBorder = False
+              Index = 6
+            end
           end
         end
       end
@@ -442,7 +618,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         ')as CodStockEntrance, '
       
         'pur_ord.pco_status as StatusPedido, pur_ord.poc_status_reason, p' +
-        'ur_ord.pco_id as ID_Pedido from product_transfer as trans'
+        'ur_ord.pco_id as ID_Pedido, hex(trans.purchase_order_pco_id)as C' +
+        'odPurchase from product_transfer as trans'
       
         'left join purchase_order as pur_ord on pur_ord.pco_cod = trans.p' +
         'urchase_order_pco_id'
@@ -582,6 +759,14 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       AutoGenerateValue = arDefault
       FieldName = 'CodStockEntrance'
       Origin = 'CodStockEntrance'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qryCodPurchase: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodPurchase'
+      Origin = 'CodPurchase'
       ProviderFlags = []
       ReadOnly = True
       Size = 32
@@ -3107,15 +3292,11 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object ds_transfer_iten: TDataSource
     DataSet = qry_product_transfer_iten
-    Left = 471
-    Top = 370
+    Left = 415
+    Top = 442
   end
   object qry_stock_iten: TFDQuery
     Active = True
-    IndexFieldNames = 'stock_sto_cod'
-    MasterSource = ds_stock_exit
-    MasterFields = 'sto_cod'
-    DetailFields = 'stock_sto_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
@@ -3126,8 +3307,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       'left join product_unit on pru_cod = product_unit_pru_cod'#13#10#10
       'where stock_sto_cod =:sto_cod'#13#10#10
       'order by pro_name')
-    Left = 487
-    Top = 106
+    Left = 639
+    Top = 74
     ParamData = <
       item
         Name = 'STO_COD'
@@ -3231,10 +3412,11 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     end
   end
   object qry_product: TFDQuery
-    IndexFieldNames = 'stock_sto_id'
-    MasterSource = ds
-    MasterFields = 'stock_sto_id_exit'
-    DetailFields = 'stock_sto_id'
+    Active = True
+    IndexFieldNames = 'stock_sto_cod'
+    MasterSource = ds_stock_exit
+    MasterFields = 'sto_cod'
+    DetailFields = 'stock_sto_cod'
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evCache]
     FetchOptions.Cache = [fiBlobs, fiMeta]
@@ -3428,6 +3610,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Top = 434
   end
   object qry_employee: TFDQuery
+    Active = True
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
@@ -3462,6 +3645,12 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       ReadOnly = True
       Size = 32
     end
+    object qry_employeeemp_cod: TBytesField
+      FieldName = 'emp_cod'
+      Origin = 'emp_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
     object qry_employeeCodRecord: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'CodRecord'
@@ -3469,12 +3658,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       ProviderFlags = []
       ReadOnly = True
       Size = 32
-    end
-    object qry_employeeemp_cod: TBytesField
-      FieldName = 'emp_cod'
-      Origin = 'emp_cod'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object qry_employeerecord_rec_cod: TBytesField
       AutoGenerateValue = arDefault
@@ -3674,6 +3857,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     end
   end
   object qry_purchase_order_iten: TFDQuery
+    Active = True
     IndexFieldNames = 'purchase_order_pco_cod'
     MasterSource = ds_purchase_order
     MasterFields = 'pco_cod'
@@ -3790,8 +3974,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       'left join product on pro_cod = product_pro_cod '#10
       'left join product_unit on pru_cod = product_unit_pru_cod '
       'where product_transfer_prt_cod =:prt_cod')
-    Left = 432
-    Top = 368
+    Left = 352
+    Top = 440
     ParamData = <
       item
         Name = 'PRT_COD'
@@ -3880,7 +4064,48 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object ds_stock_iten: TDataSource
     DataSet = qry_stock_iten
-    Left = 592
-    Top = 112
+    Left = 672
+    Top = 72
+  end
+  object pupMenuTransf: TPopupMenu
+    Left = 823
+    Top = 208
+    object Excluir2: TMenuItem
+      Action = act_delete_transf_itens
+      Caption = 'Excluir'
+    end
+    object Editar2: TMenuItem
+      Action = act_edit_transf_itens
+      Caption = 'Editar'
+    end
+    object Cancelar1: TMenuItem
+      Action = act_cancel_transf_itens
+      Caption = 'Cancelar'
+    end
+  end
+  object Action_Transf_itens: TActionList
+    Images = cxImageList_1
+    Left = 896
+    Top = 200
+    object act_save_transf_itens: TAction
+      Hint = 'Salvar'
+      ImageIndex = 6
+      OnExecute = act_save_transf_itensExecute
+    end
+    object act_edit_transf_itens: TAction
+      Hint = 'Editar'
+      ImageIndex = 5
+      OnExecute = act_edit_transf_itensExecute
+    end
+    object act_cancel_transf_itens: TAction
+      Hint = 'Cancelar'
+      ImageIndex = 7
+      OnExecute = act_cancel_transf_itensExecute
+    end
+    object act_delete_transf_itens: TAction
+      Hint = 'Excluir'
+      ImageIndex = 8
+      OnExecute = act_delete_transf_itensExecute
+    end
   end
 end

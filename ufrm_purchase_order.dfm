@@ -22,7 +22,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
   inherited cxPageControl_1: TcxPageControl
     Width = 1018
     Height = 585
-    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 1018
     ExplicitHeight = 585
     ClientRectBottom = 579

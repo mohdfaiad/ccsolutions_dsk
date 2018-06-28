@@ -188,6 +188,8 @@ type
     qry_stock_itensti_dt_registration: TDateTimeField;
     qry_stock_itenCodStock: TStringField;
     qry_stock_itenCodProduct: TStringField;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    qry_purchase_orderCodStock: TStringField;
     procedure ConfirmaEntrada1Click(Sender: TObject);
     procedure PopupMenu_1Popup(Sender: TObject);
     procedure Cancelarentrada1Click(Sender: TObject);
@@ -214,6 +216,7 @@ type
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure cxGrid_1DBTableView1CustomDrawCell(Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
       AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
+    procedure looComboxPed_CompraPropertiesCloseUp(Sender: TObject);
   private
      pde_cod, pei_cod, sti_cod: string;
      pei_id, sti_id: Integer;
@@ -445,7 +448,7 @@ begin
        //--Condição para só deixar Alterar produtos no Pedido em Status de Aberto ------
    if (qrypde_status.OldValue  <> 'A') and ((qrypde_status.Value  <> 'A') or (qrypde_status.Value  = ''))  then
    begin
-     Application.MessageBox('Só é permitido (Inserir ou Alterar), produtos com status em aberto!','AVISO DA REQUISIÇÃO', MB_ICONINFORMATION + MB_OK);
+     Application.MessageBox('Só é permitido (Inserir ou Alterar), produtos com status em aberto!','AVISO DO SISTEMA', MB_ICONINFORMATION + MB_OK);
      looComboxProduto.Clear;
      edtQTD.Clear;
      edtUND.Clear;
@@ -768,7 +771,7 @@ begin
  if (self.tag = 1) then
   begin
    qry_purchase_order.Close;
-   qry_purchase_order.SQL.Text:=' SELECT pur_ord.*, hex(pur_ord.pco_cod)as CodPurchase FROM purchase_order as pur_ord '+
+   qry_purchase_order.SQL.Text:=' SELECT pur_ord.*, hex(pur_ord.pco_cod)as CodPurchase, hex(pur_ord.stock_sto_cod)as CodStock FROM purchase_order as pur_ord '+
                                 ' left join stock as sto on sto.sto_cod = pur_ord.stock_sto_cod                       '+
                                 ' where pur_ord.pco_status = ''L'' and pur_ord.pco_type = ''C''                       '+
                                 ' and pur_ord.contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')       '+
@@ -782,14 +785,14 @@ begin
   end else if (self.tag = 2) then
      begin
       qry_purchase_order.Close;
-      qry_purchase_order.SQL.Text:=' SELECT pur_ord.*, hex(pur_ord.pco_cod)as CodPurchase FROM purchase_order as pur_ord '+
-                                ' left join stock as sto on sto.sto_cod = pur_ord.stock_sto_cod                       '+
-                                ' where pur_ord.pco_status = ''F'' and pur_ord.pco_type = ''C''                       '+
-                                ' and pur_ord.contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')       '+
-                                ' and sto.enterprise_ent_cod in (select enterprise_ent_cod                            '+
-                                ' from contract_user_enterprise                                                       '+
-                                '  where contract_user_ctr_usr_cod =unhex('+QuotedStr(frm_dm.v_ctr_usr_cod)+'))       '+
-                                ' and pco_deleted_at is null ';
+      qry_purchase_order.SQL.Text:= ' SELECT pur_ord.*, hex(pur_ord.pco_cod)as CodPurchase, hex(pur_ord.stock_sto_cod)as CodStock FROM purchase_order as pur_ord '+
+                                    ' left join stock as sto on sto.sto_cod = pur_ord.stock_sto_cod                       '+
+                                    ' where pur_ord.pco_status = ''F'' and pur_ord.pco_type = ''C''                       '+
+                                    ' and pur_ord.contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')       '+
+                                    ' and sto.enterprise_ent_cod in (select enterprise_ent_cod                            '+
+                                    ' from contract_user_enterprise                                                       '+
+                                    '  where contract_user_ctr_usr_cod =unhex('+QuotedStr(frm_dm.v_ctr_usr_cod)+'))       '+
+                                    ' and pco_deleted_at is null ';
       qry_purchase_order.Prepare;
       qry_purchase_order.Open;
 
@@ -866,6 +869,24 @@ end;
 procedure Tfrm_stock_entry.limpaCache(Sender: TObject);
 begin
     qry.CommitUpdates();
+end;
+
+procedure Tfrm_stock_entry.looComboxPed_CompraPropertiesCloseUp(Sender: TObject);
+begin
+  if (Trim(looComboxPed_Compra.Text)= '') then
+  begin
+    Application.MessageBox('Selecione um número de pedido, para continuar !',
+      'AVISO DO SISTEMA', MB_OK + MB_ICONWARNING);
+    Exit;
+  end;
+
+
+    looComboxEstoque.ItemIndex := -1;
+    qry_stock.locate('codStock',qry_purchase_orderCodStock.AsString,[loCaseInsensitive, loPartialKey]);
+    looComboxEstoque.Text := qry_stocksto_name.AsString;
+
+
+
 end;
 
 procedure Tfrm_stock_entry.looComboxProdutoPropertiesCloseUp(Sender: TObject);

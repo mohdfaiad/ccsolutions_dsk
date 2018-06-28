@@ -70,6 +70,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
       ExplicitHeight = 469
       inherited cxPageControl_2: TcxPageControl
         Height = 463
+        Properties.ActivePage = cxTabSheet1
         ExplicitHeight = 463
         ClientRectBottom = 457
         inherited cxTabSheet_3: TcxTabSheet
@@ -91,27 +92,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
               DataBinding.DataField = 'pde_dt_registration'
               ExplicitLeft = 257
             end
-            object cxDBTextEdit1: TcxDBTextEdit [2]
-              Left = 231
-              Top = 184
-              DataBinding.DataField = 'pde_invoice'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 6
-              Width = 121
-            end
-            object cxDBDateEdit1: TcxDBDateEdit [3]
-              Left = 406
-              Top = 184
-              DataBinding.DataField = 'pde_invoice_dt_emission'
-              DataBinding.DataSource = ds
-              Properties.DateButtons = [btnClear]
-              Style.HotTrack = False
-              TabOrder = 7
-              Width = 121
-            end
-            object cxDBComboBox1: TcxDBComboBox [4]
+            object cxDBComboBox1: TcxDBComboBox [2]
               Left = 84
               Top = 103
               DataBinding.DataField = 'pde_status'
@@ -128,9 +109,9 @@ inherited frm_stock_entry: Tfrm_stock_entry
               TabOrder = 2
               Width = 121
             end
-            object looComboxFornecedor: TcxLookupComboBox [5]
+            object looComboxFornecedor: TcxLookupComboBox [3]
               Left = 84
-              Top = 130
+              Top = 184
               Properties.GridMode = True
               Properties.KeyFieldNames = 'sup_last_name'
               Properties.ListColumns = <
@@ -139,10 +120,45 @@ inherited frm_stock_entry: Tfrm_stock_entry
                 end>
               Properties.ListSource = ds_supplier
               Style.HotTrack = False
-              TabOrder = 3
+              TabOrder = 7
               Width = 443
             end
-            object looComboxEstoque: TcxLookupComboBox [6]
+            object looComboxPed_Compra: TcxLookupComboBox [4]
+              Left = 84
+              Top = 130
+              Properties.GridMode = True
+              Properties.KeyFieldNames = 'pco_id'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'pco_id'
+                end>
+              Properties.ListSource = ds_purchase_order
+              Properties.OnCloseUp = looComboxPed_CompraPropertiesCloseUp
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 121
+            end
+            object cxDBTextEdit1: TcxDBTextEdit [5]
+              Left = 231
+              Top = 130
+              DataBinding.DataField = 'pde_invoice'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 121
+            end
+            object cxDBDateEdit1: TcxDBDateEdit [6]
+              Left = 406
+              Top = 130
+              DataBinding.DataField = 'pde_invoice_dt_emission'
+              DataBinding.DataSource = ds
+              Properties.DateButtons = [btnClear]
+              Style.HotTrack = False
+              TabOrder = 5
+              Width = 121
+            end
+            object looComboxEstoque: TcxLookupComboBox [7]
               Left = 84
               Top = 157
               Properties.GridMode = True
@@ -153,22 +169,8 @@ inherited frm_stock_entry: Tfrm_stock_entry
                 end>
               Properties.ListSource = ds_stock
               Style.HotTrack = False
-              TabOrder = 4
+              TabOrder = 6
               Width = 443
-            end
-            object looComboxPed_Compra: TcxLookupComboBox [7]
-              Left = 84
-              Top = 184
-              Properties.GridMode = True
-              Properties.KeyFieldNames = 'pco_id'
-              Properties.ListColumns = <
-                item
-                  FieldName = 'pco_id'
-                end>
-              Properties.ListSource = ds_purchase_order
-              Style.HotTrack = False
-              TabOrder = 5
-              Width = 121
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
@@ -176,38 +178,10 @@ inherited frm_stock_entry: Tfrm_stock_entry
             inherited dxLayoutGroup2: TdxLayoutGroup
               ItemIndex = 2
             end
-            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              LayoutDirection = ldHorizontal
-              Index = 3
-              AutoCreated = True
-            end
-            object dxLayoutItem7: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'NF'
-              Offsets.Left = 2
-              Control = cxDBTextEdit1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutItem8: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Dt. Emis.'
-              Control = cxDBDateEdit1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 2
-            end
             object dxLayoutItem6: TdxLayoutItem
               Parent = dxLayoutGroup2
               AlignHorz = ahLeft
+              AlignVert = avTop
               CaptionOptions.Text = 'Status'
               Control = cxDBComboBox1
               ControlOptions.OriginalHeight = 21
@@ -224,7 +198,55 @@ inherited frm_stock_entry: Tfrm_stock_entry
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 443
               ControlOptions.ShowBorder = False
+              Index = 3
+            end
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup3
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Ped. Compra'
+              Control = looComboxPed_Compra
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup3
+              AlignVert = avBottom
+              LayoutDirection = ldHorizontal
               Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem7: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'NF'
+              Offsets.Left = 2
+              Control = cxDBTextEdit1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem8: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Dt. Emis.'
+              Control = cxDBDateEdit1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
             end
             object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -235,17 +257,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
               ControlOptions.OriginalWidth = 443
               ControlOptions.ShowBorder = False
               Index = 2
-            end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Ped. Compra'
-              Control = looComboxPed_Compra
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
             end
           end
         end
@@ -324,7 +335,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
               end
             end
             object btnSalvar_Item: TcxButton
-              Left = 588
+              Left = 590
               Top = 294
               Width = 25
               Height = 25
@@ -332,7 +343,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
               TabOrder = 4
             end
             object btnEditar_Item: TcxButton
-              Left = 619
+              Left = 621
               Top = 294
               Width = 25
               Height = 25
@@ -340,7 +351,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
               TabOrder = 5
             end
             object btnCancel_Item: TcxButton
-              Left = 650
+              Left = 652
               Top = 294
               Width = 25
               Height = 25
@@ -348,7 +359,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
               TabOrder = 6
             end
             object btnExcluir_Item: TcxButton
-              Left = 681
+              Left = 683
               Top = 294
               Width = 25
               Height = 25
@@ -356,7 +367,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
               TabOrder = 7
             end
             object edtUND: TcxTextEdit
-              Left = 345
+              Left = 347
               Top = 294
               Enabled = False
               Style.HotTrack = False
@@ -376,10 +387,10 @@ inherited frm_stock_entry: Tfrm_stock_entry
               Properties.OnCloseUp = looComboxProdutoPropertiesCloseUp
               Style.HotTrack = False
               TabOrder = 1
-              Width = 253
+              Width = 255
             end
             object edtQTD: TcxCurrencyEdit
-              Left = 482
+              Left = 484
               Top = 294
               Properties.DisplayFormat = '0.000;-0.000'
               Style.HotTrack = False
@@ -479,7 +490,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
               CaptionOptions.Text = 'Produto'
               Control = looComboxProduto
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 253
+              ControlOptions.OriginalWidth = 255
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -3460,8 +3471,8 @@ inherited frm_stock_entry: Tfrm_stock_entry
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
-        'SELECT pur_ord.*, hex(pur_ord.pco_cod)as CodPurchase FROM purcha' +
-        'se_order as pur_ord'#10
+        'SELECT pur_ord.*, hex(pur_ord.pco_cod)as CodPurchase, hex(pur_or' +
+        'd'#10'.stock_sto_cod)as CodStock FROM purchase_order as pur_ord'#10
       'left join stock as sto on sto.sto_cod = pur_ord.stock_sto_cod'#10
       'where pur_ord.pco_status = '#39'L'#39' and pur_ord.pco_type = '#39'C'#39#10
       
@@ -3548,6 +3559,14 @@ inherited frm_stock_entry: Tfrm_stock_entry
       AutoGenerateValue = arDefault
       FieldName = 'CodPurchase'
       Origin = 'CodPurchase'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qry_purchase_orderCodStock: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodStock'
+      Origin = 'CodStock'
       ProviderFlags = []
       ReadOnly = True
       Size = 32

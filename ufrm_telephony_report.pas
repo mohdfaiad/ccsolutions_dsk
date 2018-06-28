@@ -32,7 +32,7 @@ uses
   cxDateUtils, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar, cxLabel,
   dxBevel, ufrm_dm, Vcl.StdCtrls, cxButtons, Vcl.CheckLst, Vcl.ExtCtrls,
   AdvPanel, cxCheckListBox, frxClass, frxDBSet, frxExportBaseDialog,
-  frxExportPDF, cxCheckBox, cxProgressBar;
+  frxExportPDF, cxCheckBox, cxProgressBar,ShellApi;
 
 type
   Tfrm_telephony_report = class(Tfrm_search)
@@ -102,6 +102,36 @@ type
     cxCheckBoxAll: TcxCheckBox;
     cxProgressBar: TcxProgressBar;
     qrycli_add_bus_street: TStringField;
+    qry_billreceive: TFDQuery;
+    qry_billreceivebrc_cod: TBytesField;
+    qry_billreceiveclient_cli_cod: TBytesField;
+    qry_billreceivecontract_ctr_cod: TBytesField;
+    qry_billreceiveseller_sel_cod: TBytesField;
+    qry_billreceiveform_payment_frp_cod: TBytesField;
+    qry_billreceiveenterprise_ent_cod: TBytesField;
+    qry_billreceivebrc_id: TLongWordField;
+    qry_billreceivebrc_value: TBCDField;
+    qry_billreceivebrc_reference: TStringField;
+    qry_billreceivebrc_discount: TBCDField;
+    qry_billreceivebrc_addition: TBCDField;
+    qry_billreceivebrc_ammount_receive: TBCDField;
+    qry_billreceivebrc_value_discount: TBCDField;
+    qry_billreceivebrc_document: TStringField;
+    qry_billreceivebrc_dt_emission: TDateField;
+    qry_billreceivebrc_dt_maturity: TDateField;
+    qry_billreceivebrc_dt_interest: TDateField;
+    qry_billreceivebrc_dt_protest: TDateField;
+    qry_billreceivebrc_dt_rebate: TDateField;
+    qry_billreceivebrc_installment: TStringField;
+    qry_billreceivebrc_invoice: TStringField;
+    qry_billreceivebrc_code_bar: TStringField;
+    qry_billreceivebrc_slip_instruction1: TStringField;
+    qry_billreceivebrc_slip_instruction2: TStringField;
+    qry_billreceivebrc_slip_instruction3: TStringField;
+    qry_billreceivebrc_slip_description: TStringField;
+    qry_billreceivebrc_status: TStringField;
+    qry_billreceivebrc_deleted_at: TDateTimeField;
+    qry_billreceivebrc_dt_registration: TDateTimeField;
     procedure cxButtonConsultarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure cxButtonPrintClick(Sender: TObject);
@@ -163,7 +193,7 @@ for I := 0 to cxCheckListBoxClientSelecionado.Items.Count - 1 do
      quant:=quant + 1;
      end;
   end;
-  if quant < 0  then
+  if quant = 0  then
    begin
      Application.MessageBox('Não existe nenhum cliente selecionado para gerar o relatório!','Imprimir Telefonia' ,MB_OK + MB_ICONEXCLAMATION);
      exit;
@@ -226,12 +256,15 @@ cxProgressBar.Position:=0;
       frxPDFExport1.OverwritePrompt := False;
       frxReportConta.PrepareReport();
       frxReportConta.Export(frxPDFExport1);
+
       cxProgressBar.Position:=i +1;
       cxProgressBar.Repaint;
      end;
-   end;
       Application.MessageBox('Relatório da conta telefonica gerado com sucesso!','Telefonia',MB_OK + MB_ICONINFORMATION);
+      ShellExecute(Application.HANDLE, 'open', PChar(ExtractFilePath(pathPDF)),nil,nil,SW_SHOWNORMAL);
       cxProgressBar.Position:=0;
+
+   end;
   inherited;
 
 end;
@@ -297,7 +330,6 @@ cxDateEditDataInicial.Date:=Date - 30;
 cxDateEditDataFinal.Date:=date;
 cxCheckBoxAll.Checked:=false;
 cxCheckBoxAll.Enabled:=false;
-
 end;
 
 end.

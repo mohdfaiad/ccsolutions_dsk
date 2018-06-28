@@ -40,7 +40,8 @@ uses
   Contract_User_Action.Dao in '..\Dao\Contract_User_Action.Dao.pas',
   Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
   Employee.Dao in '..\Dao\Employee.Dao.pas',
-  ufrm_telephony_report in '..\ufrm_telephony_report.pas' {frm_telephony_report};
+  ufrm_telephony_report in '..\ufrm_telephony_report.pas' {frm_telephony_report},
+  class_required_field in '..\class_required_field.pas';
 
 {$R *.res}
 

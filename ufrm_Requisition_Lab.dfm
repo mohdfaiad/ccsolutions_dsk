@@ -13,7 +13,6 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   inherited pgctrl_1: TcxPageControl
     Width = 1125
     Height = 612
-    Properties.ActivePage = tbsht_1
     ExplicitWidth = 1125
     ExplicitHeight = 612
     ClientRectBottom = 606
@@ -306,11 +305,12 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                     Top = 29
                     TabOrder = 1
                     OnExit = cxTextEditEnterpriseIDExit
+                    OnKeyPress = cxTextEditEnterpriseIDKeyPress
                     Width = 66
                   end
                   object cxLookupComboBoxEmpresa: TcxLookupComboBox
-                    Left = 71
-                    Top = 29
+                    Left = 77
+                    Top = 30
                     Properties.GridMode = True
                     Properties.KeyFieldNames = 'entCod'
                     Properties.ListColumns = <
@@ -333,6 +333,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                     Top = 29
                     TabOrder = 4
                     OnExit = cxTextEditConvenioIDExit
+                    OnKeyPress = cxTextEditConvenioIDKeyPress
                     Width = 66
                   end
                   object cxLookupComboBoxConvenio: TcxLookupComboBox
@@ -360,6 +361,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                     Top = 76
                     TabOrder = 7
                     OnExit = cxTextEditTipoExameIDExit
+                    OnKeyPress = cxTextEditTipoExameIDKeyPress
                     Width = 66
                   end
                   object cxLookupComboBoxTipoExame: TcxLookupComboBox
@@ -387,6 +389,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                     Top = 76
                     TabOrder = 10
                     OnExit = cxTextEditMedicoIDExit
+                    OnKeyPress = cxTextEditMedicoIDKeyPress
                     Width = 66
                   end
                   object cxLookupComboBoxMedico: TcxLookupComboBox
@@ -451,8 +454,6 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                     Height = 289
                     Align = alClient
                     TabOrder = 0
-                    ExplicitLeft = 3
-                    ExplicitTop = 21
                     object cxGrid2DBTableView1: TcxGridDBTableView
                       Navigator.Buttons.CustomButtons = <>
                       Navigator.Buttons.Images = imglist_1
@@ -477,6 +478,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                       DataController.Summary.DefaultGroupSummaryItems = <>
                       DataController.Summary.FooterSummaryItems = <>
                       DataController.Summary.SummaryGroups = <>
+                      OptionsData.Appending = True
                       OptionsView.GroupByBox = False
                       object cxGrid2DBTableView1Column1: TcxGridDBColumn
                         Caption = 'Medicamentos'
@@ -539,6 +541,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                       DataController.Summary.DefaultGroupSummaryItems = <>
                       DataController.Summary.FooterSummaryItems = <>
                       DataController.Summary.SummaryGroups = <>
+                      OptionsData.Appending = True
                       OptionsView.GroupByBox = False
                       OptionsView.GroupByHeaderLayout = ghlHorizontal
                       object cxGrid1DBTableView1rei_id: TcxGridDBColumn
@@ -558,7 +561,6 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                             FieldName = 'pro_initials'
                           end>
                         Properties.ListSource = ds_qry_product
-                        Properties.ReadOnly = True
                         Properties.OnCloseUp = cxGrid1DBTableView1pro_initialsPropertiesCloseUp
                         Width = 80
                       end
@@ -633,6 +635,72 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
                   end
                 end
               end
+              object cxTabSheet4: TcxTabSheet
+                Caption = 'Outras Informa'#231#245'es'
+                ImageIndex = 3
+                object cxGroupBox4: TcxGroupBox
+                  AlignWithMargins = True
+                  Left = 3
+                  Top = 3
+                  Align = alClient
+                  TabOrder = 0
+                  ExplicitLeft = 6
+                  ExplicitTop = 6
+                  Height = 317
+                  Width = 1083
+                  object cxLabel2: TcxLabel
+                    Left = 635
+                    Top = 296
+                    Caption = 'Valor a Pagar:'
+                    Transparent = True
+                  end
+                  object cxCurrencyEdit1: TcxCurrencyEdit
+                    Left = 713
+                    Top = 295
+                    EditValue = 15.000000000000000000
+                    TabOrder = 1
+                    BiDiMode = bdRightToLeft
+                    ParentBiDiMode = False
+                    Width = 121
+                  end
+                  object cxGroupBox5: TcxGroupBox
+                    Left = 3
+                    Top = 16
+                    Caption = 'Dados de Acesso Laudo via Internet'
+                    TabOrder = 2
+                    Height = 137
+                    Width = 241
+                    object cxLabel3: TcxLabel
+                      Left = 3
+                      Top = 24
+                      Caption = 'Usu'#225'rio/Requisi'#231#227'o'
+                      Transparent = True
+                    end
+                    object cxTextEditUsuario: TcxTextEdit
+                      Left = 3
+                      Top = 46
+                      Enabled = False
+                      TabOrder = 1
+                      Width = 222
+                    end
+                    object cxDBTextEditSenhaWeb: TcxDBTextEdit
+                      Left = 3
+                      Top = 91
+                      DataBinding.DataField = 'req_password'
+                      DataBinding.DataSource = ds
+                      Enabled = False
+                      TabOrder = 2
+                      Width = 222
+                    end
+                    object cxLabel4: TcxLabel
+                      Left = 3
+                      Top = 73
+                      Caption = 'Senha WEB'
+                      Transparent = True
+                    end
+                  end
+                end
+              end
             end
           end
         end
@@ -677,9 +745,6 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     inherited Action_refresh: TAction [11]
     end
   end
-  inherited acbr_enter_1: TACBrEnterTab
-    EnterAsTab = True
-  end
   inherited ds: TDataSource
     DataSet = qry
   end
@@ -701,11 +766,95 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     FormatVersion = 1
   end
   inherited frxReport_1: TfrxReport
-    Datasets = <>
+    ReportOptions.CreateDate = 43278.738367569400000000
+    ReportOptions.LastChange = 43278.791061932870000000
+    Datasets = <
+      item
+        DataSet = frxDS_qry
+        DataSetName = 'qry'
+      end
+      item
+        DataSet = frxds_qry_enterprise
+        DataSetName = 'qry_enterprise'
+      end
+      item
+        DataSet = frxDS_qry_requisition_iten
+        DataSetName = 'qry_requisition_iten'
+      end>
     Variables = <>
     Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = []
+      object Memo1: TfrxMemoView
+        Left = 51.000000000000000000
+        Top = 111.000000000000000000
+        Width = 278.000000000000000000
+        Height = 20.000000000000000000
+        Frame.Typ = []
+        Memo.UTF8W = (
+          
+            '[FormatFloat('#39'000'#39',<qry_enterprise."ent_id">)]-[FormatFloat('#39'000' +
+            '0000'#39',<qry."req_id">)]-[FormatFloat('#39'00'#39',<qry_requisition_iten."' +
+            'rei_id">)]')
+        Formats = <
+          item
+          end
+          item
+          end>
+      end
+      object BarCode1: TfrxBarCodeView
+        Left = 43.000000000000000000
+        Top = 158.000000000000000000
+        Width = 278.000000000000000000
+        Height = 74.275590550000000000
+        AutoSize = False
+        BarType = bcCodeEAN13
+        Expression = 
+          'FormatFloat('#39'000'#39',<qry_enterprise."ent_id">) + FormatFloat('#39'0000' +
+          '000'#39',<qry."req_id">)+FormatFloat('#39'00'#39',<qry_requisition_iten."rei' +
+          '_id">)'
+        Frame.Typ = []
+        Rotation = 0
+        ShowText = False
+        TestLine = False
+        Text = '12345678'
+        WideBarRatio = 2.000000000000000000
+        Zoom = 2.699029126213592000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = []
+      end
+      object Memo2: TfrxMemoView
+        Left = 52.000000000000000000
+        Top = 135.000000000000000000
+        Width = 278.000000000000000000
+        Height = 16.000000000000000000
+        Frame.Typ = []
+        Memo.UTF8W = (
+          '[qry."req_dt_registration"]: [qry_requisition_iten."mat_name"]')
+        Formats = <
+          item
+          end
+          item
+          end>
+      end
+    end
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -876,6 +1025,12 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       ReadOnly = True
       Size = 85
     end
+    object qryreq_password: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'req_password'
+      Origin = 'req_password'
+      Size = 32
+    end
   end
   inherited mem: TFDMemTable
     object memreq_cod: TBytesField
@@ -968,8 +1123,8 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       'where cli_deleted_at is null'
       'and (cli_status <> '#39'D'#39' or cli_status is null)'
       'order by cli_first_name')
-    Left = 103
-    Top = 292
+    Left = 79
+    Top = 252
     object qry_clientcli_id: TLongWordField
       AutoGenerateValue = arDefault
       FieldName = 'cli_id'
@@ -1033,8 +1188,8 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   end
   object ds_qry_client: TDataSource
     DataSet = qry_client
-    Left = 215
-    Top = 332
+    Left = 159
+    Top = 244
   end
   object qry_enterprise: TFDQuery
     Active = True
@@ -1049,7 +1204,9 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     SQL.Strings = (
       
         'select ent_cod,ent_id,ent_last_name,contract_ctr_cod,hex(ent_cod' +
-        ') as entCod from enterprise'
+        ') as entCod,ent_nickname,ent_add_bus_address,ent_add_bus_number,' +
+        'ent_add_bus_street,ent_phone1,ent_phone2,ent_phone3 from enterpr' +
+        'ise'
       'where ent_deleted_at is null'
       'order by ent_last_name')
     Left = 487
@@ -1083,6 +1240,48 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       ProviderFlags = []
       ReadOnly = True
       Size = 32
+    end
+    object qry_enterpriseent_nickname: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_nickname'
+      Origin = 'ent_nickname'
+      Size = 85
+    end
+    object qry_enterpriseent_add_bus_address: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_address'
+      Origin = 'ent_add_bus_address'
+      Size = 50
+    end
+    object qry_enterpriseent_add_bus_number: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_number'
+      Origin = 'ent_add_bus_number'
+      Size = 5
+    end
+    object qry_enterpriseent_add_bus_street: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_add_bus_street'
+      Origin = 'ent_add_bus_street'
+      Size = 45
+    end
+    object qry_enterpriseent_phone1: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_phone1'
+      Origin = 'ent_phone1'
+      Size = 15
+    end
+    object qry_enterpriseent_phone2: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_phone2'
+      Origin = 'ent_phone2'
+      Size = 15
+    end
+    object qry_enterpriseent_phone3: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_phone3'
+      Origin = 'ent_phone3'
+      Size = 15
     end
   end
   object ds_qry_enterprise: TDataSource
@@ -1167,7 +1366,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
       'where ret_status = '#39'A'#39' and ret_deleted_at is null'
       'order by ret_name')
     Left = 439
-    Top = 260
+    Top = 292
     object qry_requisition_typeret_cod: TBytesField
       FieldName = 'ret_cod'
       Origin = 'ret_cod'
@@ -1219,7 +1418,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
   object ds_qry_requisition_type: TDataSource
     DataSet = qry_requisition_type
     Left = 544
-    Top = 248
+    Top = 288
   end
   object qry_doctor: TFDQuery
     Active = True
@@ -1574,6 +1773,7 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     Top = 523
   end
   object qry_medicine: TFDQuery
+    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from medicine')
@@ -1623,5 +1823,83 @@ inherited frm_Requisition_Lab: Tfrm_Requisition_Lab
     DataSet = qry_medicine
     Left = 439
     Top = 555
+  end
+  object frxds_qry_enterprise: TfrxDBDataset
+    UserName = 'qry_enterprise'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'ent_cod=ent_cod'
+      'ent_id=ent_id'
+      'ent_last_name=ent_last_name'
+      'contract_ctr_cod=contract_ctr_cod'
+      'entCod=entCod'
+      'ent_nickname=ent_nickname'
+      'ent_add_bus_address=ent_add_bus_address'
+      'ent_add_bus_number=ent_add_bus_number'
+      'ent_add_bus_street=ent_add_bus_street'
+      'ent_phone1=ent_phone1'
+      'ent_phone2=ent_phone2'
+      'ent_phone3=ent_phone3')
+    DataSet = qry_enterprise
+    BCDToCurrency = False
+    Left = 438
+    Top = 83
+  end
+  object frxDS_qry: TfrxDBDataset
+    UserName = 'qry'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'req_cod=req_cod'
+      'contract_ctr_cod=contract_ctr_cod'
+      'client_cli_cod=client_cli_cod'
+      'enterprise_ent_cod=enterprise_ent_cod'
+      'requisition_type_ret_cod=requisition_type_ret_cod'
+      'insurance_ins_cod=insurance_ins_cod'
+      'role_rol_cod=role_rol_cod'
+      'doctor_doc_cod=doctor_doc_cod'
+      'employee_emp_cod=employee_emp_cod'
+      'req_id=req_id'
+      'req_source=req_source'
+      'req_status=req_status'
+      'req_deleted_at=req_deleted_at'
+      'req_dt_registration=req_dt_registration'
+      'clientCod=clientCod'
+      'enterpriseCod=enterpriseCod'
+      'insuranceCod=insuranceCod'
+      'doctorCod=doctorCod'
+      'employeeCod=employeeCod'
+      'reqCod=reqCod'
+      'rec_name=rec_name'
+      'cli_first_name=cli_first_name'
+      'ins_nickname=ins_nickname')
+    DataSet = qry
+    BCDToCurrency = False
+    Left = 704
+    Top = 63
+  end
+  object frxDS_qry_requisition_iten: TfrxDBDataset
+    UserName = 'qry_requisition_iten'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'pro_initials=pro_initials'
+      'pro_name=pro_name'
+      'mat_name=mat_name'
+      'rei_cod=rei_cod'
+      'requisition_req_cod=requisition_req_cod'
+      'product_pro_cod=product_pro_cod'
+      'rei_id=rei_id'
+      'product_value=product_value'
+      'rei_deleted_at=rei_deleted_at'
+      'rei_collect=rei_collect'
+      'reiCod=reiCod'
+      'proCod=proCod')
+    DataSet = qry_requisition_iten
+    BCDToCurrency = False
+    Left = 732
+    Top = 501
+  end
+  object frxBarCodeObject1: TfrxBarCodeObject
+    Left = 887
+    Top = 268
   end
 end

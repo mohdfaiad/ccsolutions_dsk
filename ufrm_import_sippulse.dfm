@@ -31,7 +31,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
         Expanded = False
         FieldName = 'cli_account_code_sippulse'
         Title.Caption = 'Cliente'
-        Width = 120
+        Width = 119
         Visible = True
       end
       item
@@ -441,7 +441,7 @@ inherited frm_import_sippulse: Tfrm_import_sippulse
     PrintOptions.Printer = 'Padr'#227'o'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43147.480269664400000000
-    ReportOptions.LastChange = 43262.397340983790000000
+    ReportOptions.LastChange = 43262.397340983800000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''

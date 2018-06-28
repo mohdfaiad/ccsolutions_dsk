@@ -1,5 +1,5 @@
 inherited frm_telephony_report: Tfrm_telephony_report
-  Caption = 'frm_telephony_report'
+  Caption = 'Manuten'#231#227'o: Imprimir Conta Telef'#244'nica'
   ClientHeight = 663
   ClientWidth = 949
   FormStyle = fsMDIChild
@@ -197,11 +197,11 @@ inherited frm_telephony_report: Tfrm_telephony_report
     OnClick = cxCheckBoxAllClick
   end
   object cxProgressBar: TcxProgressBar [12]
-    Left = 240
+    Left = 168
     Top = 106
     Properties.PeakValue = 20.000000000000000000
     TabOrder = 11
-    Width = 701
+    Width = 665
   end
   inherited dxBarManager_1: TdxBarManager
     Left = 664
@@ -4545,5 +4545,180 @@ inherited frm_telephony_report: Tfrm_telephony_report
     BCDToCurrency = False
     Left = 736
     Top = 560
+  end
+  object qry_billreceive: TFDQuery
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
+    Connection = frm_dm.connCCS
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      'select * from billreceive;')
+    Left = 752
+    Top = 448
+    object qry_billreceivebrc_cod: TBytesField
+      FieldName = 'brc_cod'
+      Origin = 'brc_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_billreceiveclient_cli_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'client_cli_cod'
+      Origin = 'client_cli_cod'
+    end
+    object qry_billreceivecontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_billreceiveseller_sel_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'seller_sel_cod'
+      Origin = 'seller_sel_cod'
+    end
+    object qry_billreceiveform_payment_frp_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'form_payment_frp_cod'
+      Origin = 'form_payment_frp_cod'
+    end
+    object qry_billreceiveenterprise_ent_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'enterprise_ent_cod'
+      Origin = 'enterprise_ent_cod'
+    end
+    object qry_billreceivebrc_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_id'
+      Origin = 'brc_id'
+    end
+    object qry_billreceivebrc_value: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_value'
+      Origin = 'brc_value'
+      Precision = 12
+    end
+    object qry_billreceivebrc_reference: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_reference'
+      Origin = 'brc_reference'
+      Size = 255
+    end
+    object qry_billreceivebrc_discount: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_discount'
+      Origin = 'brc_discount'
+      Precision = 12
+    end
+    object qry_billreceivebrc_addition: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_addition'
+      Origin = 'brc_addition'
+      Precision = 12
+    end
+    object qry_billreceivebrc_ammount_receive: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_ammount_receive'
+      Origin = 'brc_ammount_receive'
+      Precision = 12
+    end
+    object qry_billreceivebrc_value_discount: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_value_discount'
+      Origin = 'brc_value_discount'
+      Precision = 12
+    end
+    object qry_billreceivebrc_document: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_document'
+      Origin = 'brc_document'
+      Size = 50
+    end
+    object qry_billreceivebrc_dt_emission: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_dt_emission'
+      Origin = 'brc_dt_emission'
+    end
+    object qry_billreceivebrc_dt_maturity: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_dt_maturity'
+      Origin = 'brc_dt_maturity'
+    end
+    object qry_billreceivebrc_dt_interest: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_dt_interest'
+      Origin = 'brc_dt_interest'
+    end
+    object qry_billreceivebrc_dt_protest: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_dt_protest'
+      Origin = 'brc_dt_protest'
+    end
+    object qry_billreceivebrc_dt_rebate: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_dt_rebate'
+      Origin = 'brc_dt_rebate'
+    end
+    object qry_billreceivebrc_installment: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_installment'
+      Origin = 'brc_installment'
+      Size = 10
+    end
+    object qry_billreceivebrc_invoice: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_invoice'
+      Origin = 'brc_invoice'
+      Size = 25
+    end
+    object qry_billreceivebrc_code_bar: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_code_bar'
+      Origin = 'brc_code_bar'
+      Size = 50
+    end
+    object qry_billreceivebrc_slip_instruction1: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_slip_instruction1'
+      Origin = 'brc_slip_instruction1'
+      Size = 100
+    end
+    object qry_billreceivebrc_slip_instruction2: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_slip_instruction2'
+      Origin = 'brc_slip_instruction2'
+      Size = 100
+    end
+    object qry_billreceivebrc_slip_instruction3: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_slip_instruction3'
+      Origin = 'brc_slip_instruction3'
+      Size = 100
+    end
+    object qry_billreceivebrc_slip_description: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_slip_description'
+      Origin = 'brc_slip_description'
+      Size = 255
+    end
+    object qry_billreceivebrc_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_status'
+      Origin = 'brc_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_billreceivebrc_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_deleted_at'
+      Origin = 'brc_deleted_at'
+    end
+    object qry_billreceivebrc_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'brc_dt_registration'
+      Origin = 'brc_dt_registration'
+    end
   end
 end

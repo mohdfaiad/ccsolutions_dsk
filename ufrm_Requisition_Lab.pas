@@ -34,7 +34,7 @@ uses
   cxGridTableView, cxGridDBTableView, cxGrid, cxPC, ufrm_dm, cxMaskEdit,
   cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,DateUtils,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, cxButtons, cxCurrencyEdit,
-  cxMemo;
+  cxMemo, frxDBSet, frxBarcode, cxDBEdit;
 
 type
   Tfrm_Requisition_Lab = class(Tfrm_default)
@@ -241,6 +241,27 @@ type
     grid_1DBTableView1cli_first_name: TcxGridDBColumn;
     grid_1DBTableView1ins_nickname: TcxGridDBColumn;
     cxTextEditTotalExame: TcxCurrencyEdit;
+    qry_enterpriseent_nickname: TStringField;
+    frxds_qry_enterprise: TfrxDBDataset;
+    qry_enterpriseent_add_bus_address: TStringField;
+    qry_enterpriseent_add_bus_number: TStringField;
+    qry_enterpriseent_add_bus_street: TStringField;
+    qry_enterpriseent_phone1: TStringField;
+    qry_enterpriseent_phone2: TStringField;
+    qry_enterpriseent_phone3: TStringField;
+    frxDS_qry: TfrxDBDataset;
+    frxDS_qry_requisition_iten: TfrxDBDataset;
+    frxBarCodeObject1: TfrxBarCodeObject;
+    cxTabSheet4: TcxTabSheet;
+    cxGroupBox4: TcxGroupBox;
+    cxLabel2: TcxLabel;
+    cxCurrencyEdit1: TcxCurrencyEdit;
+    cxGroupBox5: TcxGroupBox;
+    cxLabel3: TcxLabel;
+    cxTextEditUsuario: TcxTextEdit;
+    cxDBTextEditSenhaWeb: TcxDBTextEdit;
+    cxLabel4: TcxLabel;
+    qryreq_password: TStringField;
     procedure cxLookupComboBoxPacientePropertiesCloseUp(Sender: TObject);
     procedure cxLookupComboBoxEmpresaPropertiesCloseUp(Sender: TObject);
     procedure cxTextEditEnterpriseIDExit(Sender: TObject);
@@ -265,6 +286,10 @@ type
     procedure cxGrid2DBTableView1Column1PropertiesCloseUp(Sender: TObject);
     procedure recalcularValorExame(convenio:string);
     procedure qry_requisition_itenAfterDelete(DataSet: TDataSet);
+    procedure cxTextEditEnterpriseIDKeyPress(Sender: TObject; var Key: Char);
+    procedure cxTextEditConvenioIDKeyPress(Sender: TObject; var Key: Char);
+    procedure cxTextEditTipoExameIDKeyPress(Sender: TObject; var Key: Char);
+    procedure cxTextEditMedicoIDKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     req_cod,rei_cod,rem_cod:string;
@@ -312,6 +337,8 @@ begin
    qry_requisition_iten.Refresh;
    edt_codid.Text:=qryreq_id.AsString;
    edt_dt_registration.Text:=qryreq_dt_registration.AsString;
+   cxTextEditUsuario.Text:=qryreq_id.AsString;
+
 
 
 end;
@@ -357,7 +384,12 @@ begin
           qry.Edit;
 
          if qryreq_id.AsInteger = 0 then
+          begin
           qryreq_id.AsInteger:=Fields[0].AsInteger;
+          qryreq_password.AsInteger:=Random(99999);
+          end;
+
+
           qryclient_cli_cod.Value           := qry_clientcli_cod.Value;
           qryenterprise_ent_cod.Value       := qry_enterpriseent_cod.Value;
           qryrequisition_type_ret_cod.Value := qry_requisition_typeret_cod.Value;
@@ -524,6 +556,15 @@ begin
 
 end;
 
+procedure Tfrm_Requisition_Lab.cxTextEditConvenioIDKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  inherited;
+if key = #13 then
+ cxTextEditTipoExameID.SetFocus;
+
+end;
+
 procedure Tfrm_Requisition_Lab.cxTextEditEnterpriseIDExit(Sender: TObject);
 begin
   inherited;
@@ -542,6 +583,15 @@ begin
     cxTextEditConvenioID.SetFocus;
   end;
   end;
+end;
+
+procedure Tfrm_Requisition_Lab.cxTextEditEnterpriseIDKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  inherited;
+if key = #13 then
+ cxTextEditConvenioID.SetFocus;
+
 end;
 
 procedure Tfrm_Requisition_Lab.cxTextEditMedicoIDExit(Sender: TObject);
@@ -564,6 +614,15 @@ begin
  end;
 end;
 
+procedure Tfrm_Requisition_Lab.cxTextEditMedicoIDKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  inherited;
+if key = #13 then
+ cxTextEditColetador.SetFocus;
+
+end;
+
 procedure Tfrm_Requisition_Lab.cxTextEditTipoExameIDExit(Sender: TObject);
 begin
   inherited;
@@ -582,6 +641,15 @@ begin
     cxTextEditConvenioID.SetFocus;
   end;
   end;
+end;
+
+procedure Tfrm_Requisition_Lab.cxTextEditTipoExameIDKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  inherited;
+if key = #13 then
+ cxTextEditMedicoID.SetFocus;
+
 end;
 
 procedure Tfrm_Requisition_Lab.qryAfterInsert(DataSet: TDataSet);
@@ -604,8 +672,7 @@ begin
   end;
 
    qry_sql('insert');
-//   qry.Edit;
-//   qryreq_dt_registration.AsDateTime:=Now;
+
    edt_codid.Text:=qryreq_id.AsString;
    edt_dt_registration.Text:=qryreq_dt_registration.AsString;
 end;
@@ -626,8 +693,8 @@ begin
      qry_requisition_iten.Post;
      seq:=seq + 1;
      qry_requisition_iten.Next;
-
     end;
+    qry_requisition_iten.Tag:=0;
 end;
 
 procedure Tfrm_Requisition_Lab.qry_requisition_itenAfterInsert(
@@ -671,8 +738,9 @@ begin
      qry_requisition_iten.Post;
      seq:=seq + 1;
      qry_requisition_iten.Next;
-
     end;
+
+    qry_requisition_iten.Tag:=0;
     qry_requisition_iten.Locate('reiCod',QuotedStr(rei_cod), []);
     qry_requisition_iten.Edit;
 

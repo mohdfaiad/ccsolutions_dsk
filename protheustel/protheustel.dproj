@@ -195,6 +195,7 @@
             <Form>frm_telephony_report</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\class_required_field.pas"/>
         <None Include="ModelSupport_protheustel\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

@@ -150,7 +150,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, ufrm_telephony_report;
+uses ufrm_dm, ufrm_telephony_report,ufrm_main;
 
 function StringToDateTime(const Value: String): TDateTime;
 var
@@ -185,10 +185,11 @@ if OpenDialog1.Execute then
   begin
     close;
     Text:='delete from import_call_log '+
-           ' where imp_comp =:comp ' +
+           ' where imp_date between :ini and :fin ' +
            ' and contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')'+
            ' and cli_account_code_sippulse =:cli_account_code_sippulse';
-    ParamByName('comp').AsString:= competencia;
+    ParamByName('ini').AsDateTime:=StrToDateTime(FormatDateTime('dd/mm/yyyy',dtInicial) + ' 00:00:00');
+    ParamByName('fin').AsDateTime:=StrToDateTime(FormatDateTime('dd/mm/yyyy',dtFinal) + ' 23:59:59');
     ParamByName('cli_account_code_sippulse').AsString:= clienteSippulse;
 
     Prepare;
@@ -211,14 +212,18 @@ end;
 procedure Tfrm_import_sippulse.Action_printExecute(Sender: TObject);
 begin
   inherited;
-if Application.MessageBox('Deseja visualizar o relatório da conta de consumo?', 'CONSUMO',
-                          MB_YESNO + MB_ICONQUESTION) = mrYes then
- begin
-   frxDbLigacoes.Clear;
-   frxDbLigacoes.LoadFromFile('c:\ccsolutions_dsk\reports\rep_relatorio_ligacoes.fr3');
-   frxDbLigacoes.ShowReport;
- end;
-
+  if not Assigned(frm_telephony_report) then
+  begin
+    frm_telephony_report := Tfrm_telephony_report.Create(Self);
+    frm_telephony_report.Height :=frm_main.Bevel_1.Height;
+    frm_telephony_report.Width := frm_main.Bevel_1.Width;
+    frm_telephony_report.Show;
+  end
+  else
+  begin
+    frm_telephony_report.WindowState := wsNormal;
+    frm_telephony_report.Show;
+  end;
 
 
 
@@ -249,69 +254,107 @@ end;
 procedure Tfrm_import_sippulse.pegarCompetencia(PathArquivo:string);
 var
 arquivo: TStrings;
-i,ini,fin,coluna:Integer;
+i,ini,fin,coluna,linha:Integer;
 data,ano,mes,dia:string;
 begin
-arquivo:=TStringList.Create;
-arquivo.LoadFromFile(PathArquivo);
+ arquivo:=TStringList.Create;
+ arquivo.LoadFromFile(PathArquivo);
 
-i:=Length(arquivo[0]);
-coluna:=0;
-ini:=0;
-fin:=0;
-for I := 0 to Length(arquivo[0]) do
-begin
- if copy(arquivo[0],i,1) = ';' then
-  coluna:=coluna + 1;
-
- if coluna = 3 then
+ i:=Length(arquivo[0]);
+ coluna:=0;
+ ini:=0;
+ fin:=0;
+ for I := 0 to Length(arquivo[0]) do
   begin
-   ini:= i;
-   coluna:=4;
+   if copy(arquivo[0],i,1) = ';' then
+    coluna:=coluna + 1;
+
+   if coluna = 3 then
+    begin
+     ini:= i;
+     coluna:=4;
+    end;
+
+   if coluna = 5 then
+    begin
+     fin:= i;
+     Break;
+    end;
   end;
 
- if coluna = 5 then
-  begin
-  fin:= i;
-  Break;
-  end;
-end;
 
-data :=Copy(arquivo[0],ini + 1,(fin - ini-1));
-if Copy(data,5,1) = '-' then
- begin
+  data :=Copy(arquivo[0],ini + 1,(fin - ini-1));
+  if Copy(data,5,1) = '-' then
+   begin
     ano:=Copy(data,1,4);
     mes:= Copy(data,6,2);
     dia:= Copy(data,9,2);
- end;
-dtInicial:=StrToDate(dia+'/'+ mes+'/'+ano);
-competencia:=mes + '/' + ano;
+   end;
 
-i:=Length(arquivo[0]);
-coluna:=0;
-ini:=0;
-fin:=0;
+  dtInicial:=StrToDate(dia+'/'+ mes+'/'+ano);
+  competencia:=mes + '/' + ano;
 
-for I := 0 to Length(arquivo[0]) do
-begin
- if copy(arquivo[0],i,1) = ';' then
-  coluna:=coluna + 1;
 
- if coluna = 10 then
+  linha :=arquivo.Count -1;
+  i:=Length(arquivo[linha]);
+  coluna:=0;
+  ini:=0;
+  fin:=0;
+  for I := 0 to Length(arquivo[linha]) do
   begin
-   ini:= i;
-   coluna:=11;
+   if copy(arquivo[linha],i,1) = ';' then
+    coluna:=coluna + 1;
+
+   if coluna = 3 then
+    begin
+     ini:= i;
+     coluna:=4;
+    end;
+
+   if coluna = 5 then
+    begin
+     fin:= i;
+     Break;
+    end;
   end;
 
+  data :=Copy(arquivo[linha],ini + 1,(fin - ini-1));
+  if Copy(data,5,1) = '-' then
+   begin
+    ano:=Copy(data,1,4);
+    mes:= Copy(data,6,2);
+    dia:= Copy(data,9,2);
+   end;
 
- if coluna = 12 then
-  begin
-   fin:= i;
-   Break;
-  end;
-end;
+  dtFinal:=StrToDate(dia+'/'+ mes+'/'+ano);
 
- clienteSippulse:= Copy(arquivo[0],ini + 1,(fin - ini-1));
+
+
+
+  i:=Length(arquivo[0]);
+  coluna:=0;
+  ini:=0;
+  fin:=0;
+
+
+  for I := 0 to Length(arquivo[0]) do
+   begin
+    if copy(arquivo[0],i,1) = ';' then
+     coluna:=coluna + 1;
+
+    if coluna = 10 then
+     begin
+      ini:= i;
+      coluna:=11;
+     end;
+
+    if coluna = 12 then
+     begin
+      fin:= i;
+      Break;
+     end;
+   end;
+   clienteSippulse:= Copy(arquivo[0],ini + 1,(fin - ini-1));
 
 end;
 
@@ -319,6 +362,8 @@ procedure Tfrm_import_sippulse.qryBeforePost(DataSet: TDataSet);
 Var
   intSegundos:Integer;
   wdHoras, wdMinutos, wdSegundos: Word;
+begin
+if qryimp_rate.AsFloat > 0 then
 begin
 procTeste.Prepare;
 procTeste.ParamByName('p_ctr_id').AsLargeInt:=frm_dm.qry_contractctr_id.AsLargeInt;
@@ -332,6 +377,7 @@ procTeste.ParamByName('p_imp_rate').AsBCD:=qryimp_rate.AsFloat;
 procTeste.ParamByName('p_imp_total').AsBCD:=qryimp_total.AsFloat;
 procTeste.ParamByName('p_imp_comp').AsString:=competencia;
 procTeste.ExecProc;
+end;
 
 end;
 

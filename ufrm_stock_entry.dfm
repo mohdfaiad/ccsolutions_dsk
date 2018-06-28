@@ -8,7 +8,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 503
-    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 503
     ClientRectBottom = 497
     inherited cxTabSheet_1: TcxTabSheet
@@ -71,7 +70,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
       ExplicitHeight = 469
       inherited cxPageControl_2: TcxPageControl
         Height = 463
-        Properties.ActivePage = cxTabSheet1
         ExplicitHeight = 463
         ClientRectBottom = 457
         inherited cxTabSheet_3: TcxTabSheet

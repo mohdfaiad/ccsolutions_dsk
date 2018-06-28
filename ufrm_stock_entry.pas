@@ -607,7 +607,7 @@ begin
           begin
 
            //SQL para obter Número do Cod ID em Hex--------
-             With frm_dm.qry,sql do
+            With frm_dm.qry,sql do
             begin
               close;   //SQL para obter o Codigo ID em Hex-----
               text:= 'select hex(uuid_to_bin(uuid()))';

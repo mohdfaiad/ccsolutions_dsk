@@ -191,7 +191,6 @@ if OpenDialog1.Execute then
     ParamByName('ini').AsDateTime:=StrToDateTime(FormatDateTime('dd/mm/yyyy',dtInicial) + ' 00:00:00');
     ParamByName('fin').AsDateTime:=StrToDateTime(FormatDateTime('dd/mm/yyyy',dtFinal) + ' 23:59:59');
     ParamByName('cli_account_code_sippulse').AsString:= clienteSippulse;
-
     Prepare;
     ExecSQL;
    end;
@@ -367,7 +366,7 @@ if qryimp_rate.AsFloat > 0 then
 begin
 procTeste.Prepare;
 procTeste.ParamByName('p_ctr_id').AsLargeInt:=frm_dm.qry_contractctr_id.AsLargeInt;
-procTeste.ParamByName('p_cli_account_code_sippulse').AsString:=qrycli_account_code_sippulse.AsString;
+procTeste.ParamByName('p_cli_account_code_sippulse').AsString:=clienteSippulse;
 procTeste.ParamByName('p_imp_from').AsString:=qryimp_from.AsString;
 procTeste.ParamByName('p_imp_to').AsString:=qryimp_to.AsString;
 procTeste.ParamByName('p_imp_duration').AsInteger:=qry_duracao.AsInteger;

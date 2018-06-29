@@ -17,6 +17,8 @@ inherited frm_request: Tfrm_request
     ClientRectBottom = 607
     ClientRectRight = 926
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 924
       ExplicitHeight = 579
       inherited cxGrid_1: TcxGrid

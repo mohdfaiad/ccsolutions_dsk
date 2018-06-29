@@ -347,6 +347,11 @@ begin
      Exit;
    end;
 
+   inherited;
+   if ds.DataSet.State in [dsEdit] then
+     Exit;
+
+
   if qrypco_id.AsInteger = 0 then
    begin
 
@@ -372,8 +377,6 @@ begin
           qrystock_sto_cod.Value    := qry_stocksto_cod.Value;
 
         end;
-
-   inherited;
 
    ExibirRequisicao;
 

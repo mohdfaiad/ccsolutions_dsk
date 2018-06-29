@@ -8,6 +8,10 @@ inherited frm_product: Tfrm_product
     Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       OnShow = cxTabSheet_1Show
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pro_id: TcxGridDBColumn
@@ -510,6 +514,10 @@ inherited frm_product: Tfrm_product
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Medidas e Pesos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -653,6 +661,10 @@ inherited frm_product: Tfrm_product
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Insumos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0

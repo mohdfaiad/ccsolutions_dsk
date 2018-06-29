@@ -367,6 +367,11 @@ begin
      exit;
    end;
 
+   inherited;
+   if ds.DataSet.State in [dsEdit] then
+      Exit;
+
+
    if qrypde_id.AsInteger = 0 then
    begin
 
@@ -384,6 +389,8 @@ begin
        qrysupplier_sup_cod.Value := qry_suppliersup_cod.Value;
        qrystock_sto_cod.Value    := qry_stocksto_cod.Value;
        qrypurchase_order_pco_cod.Value := qry_purchase_orderpco_cod.Value;
+       qry.Post;
+       qry.ApplyUpdates(0);
 
      end;
    end else
@@ -392,9 +399,10 @@ begin
           qrysupplier_sup_cod.Value := qry_suppliersup_cod.Value;
           qrystock_sto_cod.Value    := qry_stocksto_cod.Value;
           qrypurchase_order_pco_cod.Value := qry_purchase_orderpco_cod.Value;
+          qry.Post;
+          qry.ApplyUpdates(0);
         end;
 
-   inherited;
    ExibirRegistros;
 
 end;

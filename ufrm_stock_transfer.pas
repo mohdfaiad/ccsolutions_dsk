@@ -152,8 +152,6 @@ type
     edtEst_Entrada: TcxTextEdit;
     dxLayoutItem7: TdxLayoutItem;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     cxGrid_1DBTableView1prt_id: TcxGridDBColumn;
     cxGrid_1DBTableView1prt_status: TcxGridDBColumn;
     cxGrid_1DBTableView1prt_status_reason: TcxGridDBColumn;
@@ -225,6 +223,20 @@ type
     qry_productCodStock: TStringField;
     qry_productCodProduct: TStringField;
     qryCodPurchase: TStringField;
+    qry_product_transfer_itenpoi_product_quant: TBCDField;
+    qry_product_transfer_itenpoi_product_quant_served: TBCDField;
+    cxGrid1DBTableView1poi_product_quant: TcxGridDBColumn;
+    cxGrid1DBTableView1poi_product_quant_served: TcxGridDBColumn;
+    qry_product_transfer_itenprt_cod: TBytesField;
+    edtStatusPedido: TcxDBTextEdit;
+    dxLayoutItem20: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    qryemployeeLiberacao: TStringField;
+    qryemployeeConferente: TStringField;
+    cxGrid_1DBTableView1employeeLiberacao: TcxGridDBColumn;
+    cxGrid_1DBTableView1employeeConferente: TcxGridDBColumn;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure ConfirmarTransfernciaSaida1Click(Sender: TObject);
     procedure CancelarTransferncia1Click(Sender: TObject);
@@ -245,7 +257,6 @@ type
     procedure cxTabSheet_3Show(Sender: TObject);
     procedure looComboxEstoqueSaidaPropertiesCloseUp(Sender: TObject);
     procedure looComboxNumeroRequisicaoPropertiesCloseUp(Sender: TObject);
-    procedure cxButton1Click(Sender: TObject);
     procedure looComboxEmployee_emp_ID_AgentPropertiesCloseUp(Sender: TObject);
     procedure looComboxEmployee_Emp_ID_LecturerPropertiesCloseUp(Sender: TObject);
     procedure act_save_transf_itensExecute(Sender: TObject);
@@ -256,6 +267,8 @@ type
     procedure looComboxProdutoPropertiesCloseUp(Sender: TObject);
     procedure cxGrid_1DBTableView1CustomDrawCell(Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
       AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
+    procedure cxGrid1DBTableView1CellDblClick(Sender: TcxCustomGridTableView;
+      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
   private
      prt_cod, pti_cod,sti_cod: string;
      pti_id, sti_id: Integer;
@@ -264,7 +277,9 @@ type
     { Public declarations }
    procedure limpaCache(Sender:TObject);
    procedure ExibirRegistros;
+   procedure ExibirItensTransferencia;
    procedure ExibirRequisicao;
+
    procedure ExibirEstoque;
    procedure HabiliTarButtun(Status: Boolean);
   end;
@@ -358,14 +373,24 @@ begin
   inherited;
    self.Tag := 2;
    prt_cod:= qryCodTransf.AsString;
-   qry_product_transfer_iten.Close;
-   qry_product_transfer_iten.Open;
 
    ExibirRequisicao;
+   ExibirItensTransferencia;
+
    looComboxNumeroRequisicao.Text := qry_purchase_orderpco_id.AsString;
    edtSolicitante.Text        := qry_purchase_orderFuncionario.AsString;
    edtEst_Entrada.Text        := qry_purchase_ordersto_name.AsString;
    looComboxEstoqueSaida.Text := qryStockSaida.AsString;
+
+   looComboxEmployee_emp_ID_Agent.ItemIndex :=-1;
+   qry_employee.Locate('CodEmployee',qryemployee_emp_id_agent.AsString,[loCaseInsensitive, loPartialKey]);
+   looComboxEmployee_emp_ID_Agent.Text := qry_employeerec_name.AsString;
+
+   looComboxEmployee_Emp_ID_Lecturer.ItemIndex :=-1;
+   qry_employee.Locate('CodEmployee',qryemployee_emp_id_lecturer.AsString,[loCaseInsensitive, loPartialKey]);
+   looComboxEmployee_Emp_ID_Lecturer.Text := qry_employeerec_name.AsString;
+
+
 
    looComboxEstoqueSaida.Enabled := true;
 
@@ -391,8 +416,19 @@ procedure Tfrm_stock_transfer.Action_saveExecute(Sender: TObject);
 var
 fecha:Boolean;
 begin
+  //--Condição para só deixar alterar Entrada no Estoque em Status de Aberto ------
+   if (qry_purchase_orderpco_status.AsString  <> 'L') or (qryprt_status.AsString  <> 'A')  then
+   begin
+     Application.MessageBox('Só é permitido (Inserir ou Alterar), Transferência com Status em Abertos!','AVISO DO SISTEMA', MB_ICONINFORMATION + MB_OK);
+     exit;
+   end;
+
 //Variavel para analizar se todos os produtos da requisição já foram atendido
  fecha:=True;
+
+  inherited;
+  if ds.DataSet.State in [dsEdit] then
+     Exit;
 
   if qryprt_id.AsInteger = 0 then
    begin
@@ -411,7 +447,8 @@ begin
        qrystock_sto_id_entrance.Value := qry_purchase_orderstock_sto_cod.Value;
        qrystock_sto_id_exit.Value     := qry_stock_exitsto_cod.Value;
        qrypurchase_order_pco_id.Value := qry_purchase_orderpco_cod.Value;
-
+       qry.Post;
+       qry.ApplyUpdates(0);
      end;
    end else
         begin
@@ -419,6 +456,8 @@ begin
           qrystock_sto_id_entrance.Value := qry_purchase_orderstock_sto_cod.Value;
           qrystock_sto_id_exit.Value     := qry_stock_exitsto_cod.Value;
           qrypurchase_order_pco_id.Value := qry_purchase_orderpco_cod.Value;
+          qry.Post;
+          qry.ApplyUpdates(0);
         end;
 
   qry_purchase_order_iten.Close;
@@ -451,7 +490,6 @@ begin
       qry_purchase_order.Post;
     end;
 
-  inherited;
   ExibirRegistros;
 
 end;
@@ -527,7 +565,7 @@ procedure Tfrm_stock_transfer.act_save_transf_itensExecute(Sender: TObject);
 begin
     //--Condição para só deixar inserir ou alterar produtos em Transferencia com Status de Aberto ------
 
-   if (qryprt_status.OldValue  <> 'A') and ((qryprt_status.Value  <> 'A') or (qryprt_status.Value  = ''))  then
+    if (qry_purchase_orderpco_status.AsString  <> 'L') or (qryprt_status.AsString  <> 'A')  then
    begin
      Application.MessageBox('Só é permitido (Inserir ou Alterar), produtos em transferência que estejam em abertos!','AVISO DO SISTEMA', MB_ICONINFORMATION + MB_OK);
      looComboxProduto.Clear;
@@ -574,16 +612,22 @@ begin
         end;
       end else if (btnSalvar_Item.Tag = 2) then   //button com Tag = 2 -- condição onde sei que estou Alterando----
                begin
-                qry_product_transfer_iten.Edit;
-                qry_product_transfer_itenproduct_pro_cod.Value     := qry_productproduct_pro_cod.Value;
-                qry_product_transfer_itenpti_product_quant.AsFloat := edtQTD.Value;
-                qry_product_transfer_iten.Post;
+                with frm_dm.qry,sql do
+                 begin
+                   Close;
+                   Text := 'Update product_transfer_iten set product_pro_cod =unhex(:pro_cod), pti_product_quant =:QTD '+
+                           'Where pti_cod =unhex(:pti_cod)';
+                   ParamByName('pro_cod').AsString := qry_product_transfer_itenCodProduct.AsString;
+                   ParamByName('QTD').AsFloat      := edtQTD.Value;
+                   ParamByName('pti_cod').AsString := qry_product_transfer_itenCodTrnsfItens.AsString;
+                   Prepare;
+                   ExecSQL;
+                 end;
 
                end;
 
 
-         qry_product_transfer_iten.Close;
-         qry_product_transfer_iten.Open;
+         ExibirItensTransferencia;
 
          looComboxProduto.Clear;
          edtQTD.Clear;
@@ -840,12 +884,6 @@ begin
    end;
 end;
 
-procedure Tfrm_stock_transfer.cxButton1Click(Sender: TObject);
-begin
-   qry_stock_iten.Close;
-   qry_stock_iten.Open;
-end;
-
 procedure Tfrm_stock_transfer.cxDBLookupComboBox1PropertiesPopup(
   Sender: TObject);
 begin
@@ -868,6 +906,13 @@ begin
   inherited;
   //Atualização do combobox
   qry_employee.Refresh;
+end;
+
+procedure Tfrm_stock_transfer.cxGrid1DBTableView1CellDblClick(Sender: TcxCustomGridTableView;
+  ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
+begin
+  act_edit_transf_itens.Execute;
+
 end;
 
 procedure Tfrm_stock_transfer.cxGrid_1DBTableView1CustomDrawCell(Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
@@ -905,6 +950,7 @@ begin
    qry_employee.Close;
    qry_employee.Open;
 
+
    ExibirEstoque;
 
 
@@ -924,6 +970,21 @@ begin
                              ' and st.enterprise_ent_cod in (select enterprise_ent_cod from contract_user_enterprise where contract_user_ctr_usr_cod =unhex('+QuotedStr(frm_dm.v_ctr_usr_cod)+')) ';
   qry_stock_exit.Prepare;
   qry_stock_exit.Open;
+end;
+
+procedure Tfrm_stock_transfer.ExibirItensTransferencia;
+begin
+    qry_product_transfer_iten.Close;
+   qry_product_transfer_iten.SQL.Text :=' select prt_cod,trans_itens.*,pro_name,pru_initials,ord_itens.poi_product_quant_served,ord_itens.poi_product_quant,      ' +
+                                        ' hex(pti_cod)as CodTrnsfItens,                                                                                           ' +
+                                        ' hex(product_transfer_prt_cod)as CodTransf, hex(trans_itens.product_pro_cod)as CodProduct from product_transfer          ' +
+                                        ' inner join product_transfer_iten as trans_itens on trans_itens.product_transfer_prt_cod = prt_cod                       ' +
+                                        ' inner join product  on pro_cod = trans_itens.product_pro_cod                                                            ' +
+                                        ' inner join product_unit on pru_cod = product_unit_pru_cod                                                               ' +
+                                        ' inner join purchase_order_iten as ord_itens on ord_itens.purchase_order_pco_cod = purchase_order_pco_id and ord_itens.product_pro_cod = trans_itens.product_pro_cod '+
+                                        ' where trans_itens.product_transfer_prt_cod =unhex('+QuotedStr(prt_cod)+')  ' ;
+   qry_product_transfer_iten.Prepare;
+   qry_product_transfer_iten.Open;
 end;
 
 procedure Tfrm_stock_transfer.ExibirRegistros;
@@ -1060,14 +1121,34 @@ begin
 
    qry_purchase_order_iten.Close;
    qry_purchase_order_iten.Open;
+
+   qry.Edit;
+   qrystock_sto_id_entrance.Value := qry_purchase_orderstock_sto_cod.Value;
+   qrystock_sto_id_exit.Value     := qry_stock_exitsto_cod.Value;
+   qrypurchase_order_pco_id.Value := qry_purchase_orderpco_cod.Value;
+   qry.Post;
+   qry.ApplyUpdates(0);
+
+   qry.Close;
+   qry.SQL.Text := ' select trans.*, sai.sto_name as StockSaida, ent.sto_name as StockEntra, hex(prt_cod)as CodTransf,hex(trans.stock_sto_id_entrance)as CodStockEntrance, ' +
+                   ' pur_ord.pco_status as StatusPedido, pur_ord.poc_status_reason, pur_ord.pco_id as ID_Pedido, hex(trans.purchase_order_pco_id)as CodPurchase from product_transfer as trans ' +
+                   ' left join purchase_order as pur_ord on pur_ord.pco_cod = trans.purchase_order_pco_id                                                                  ' +
+                   ' left join stock as sai on sai.sto_cod = stock_sto_id_exit                                                                                             ' +
+                   ' left join stock as ent on ent.sto_cod = stock_sto_id_entrance                                                                                         ' +
+                   ' where trans.prt_cod =unhex('+QuotedStr(prt_cod)+') ' +
+                   ' and prt_deleted_at is null ' ;
+   qry.Prepare;
+   qry.Open;
+   qry.Edit;
+
+
    qry_purchase_order_iten.first;
    while not qry_purchase_order_iten.Eof do
     begin
      if qry_stock_iten.Locate('CodProduct',qry_purchase_order_itenCodProduct.AsString,[loCaseInsensitive, loPartialKey]) then
       begin
 
-         qry_product_transfer_iten.Close;
-         qry_product_transfer_iten.Open;
+        ExibirItensTransferencia;
         if qry_product_transfer_iten.Locate('CodProduct',qry_purchase_order_itenCodProduct.AsString,[loCaseInsensitive, loPartialKey]) then
           begin
            qry_product_transfer_iten.Delete;
@@ -1104,7 +1185,7 @@ begin
              ParamByName('pti_cod').AsString                := pti_cod;
              ParamByName('product_transfer_prt_cod').AsString := prt_cod;
              ParamByName('product_pro_cod').AsString        := qry_purchase_order_itenCodProduct.AsString;
-             ParamByName('pti_product_quant').AsFloat       := 0;
+             ParamByName('pti_product_quant').AsFloat       := qry_stock_itensti_product_quant.Value;
              ParamByName('pti_dt_registration').AsDateTime  := Now;
              Prepare;
              ExecSQL;
@@ -1139,7 +1220,7 @@ begin
              ParamByName('pti_cod').AsString                := pti_cod;
              ParamByName('product_transfer_prt_cod').AsString := prt_cod;
              ParamByName('product_pro_cod').AsString        := qry_purchase_order_itenCodProduct.AsString;
-             ParamByName('pti_product_quant').AsFloat       := qry_purchase_order_itenpoi_product_quant.Value;
+             ParamByName('pti_product_quant').AsFloat       := qry_purchase_order_itenpoi_product_quant.Value - qry_purchase_order_itenpoi_product_quant_served.Value;
              ParamByName('pti_dt_registration').AsDateTime  := Now;
              Prepare;
              ExecSQL;
@@ -1152,15 +1233,14 @@ begin
 
       end else
         begin
-           Application.MessageBox(PChar('Produto: '+qry_stock_itenpro_name.AsString+' está em falta no Estoque!'),'AVISO DE TRANSFERÊNCIA', MB_OK + MB_ICONWARNING);
+           Application.MessageBox(PChar('Produto: '+qry_purchase_order_itenpro_name.AsString+' está em falta no Estoque!'),'AVISO DE TRANSFERÊNCIA', MB_OK + MB_ICONWARNING);
         end;
 
      qry_purchase_order_iten.Next;
 
     end;
 
-    qry_product_transfer_iten.Close;
-    qry_product_transfer_iten.Open;
+    ExibirItensTransferencia;
 
     if qryprt_id.AsInteger >0 then
        looComboxEstoqueSaida.Enabled := false;
@@ -1228,6 +1308,7 @@ begin
 
     edtSolicitante.Text := qry_purchase_orderFuncionario.AsString;
     edtEst_Entrada.Text := qry_purchase_ordersto_name.AsString;
+    edtStatusPedido.Text := qry_purchase_orderpco_status.AsString;
 
 end;
 

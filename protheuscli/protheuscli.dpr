@@ -42,12 +42,13 @@ uses
   Employee.Model in '..\Model\Employee.Model.pas',
   Employee_Model in '..\Model\Employee_Model.pas',
   Contract_User_Enterprise.Dao in '..\Dao\Contract_User_Enterprise.Dao.pas',
-  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   Contract_User_Action.Dao in '..\Dao\Contract_User_Action.Dao.pas',
   ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
   ufrm_material in '..\ufrm_material.pas' {frm_material},
   ufrm_requisition_type in '..\ufrm_requisition_type.pas' {frm_requisition_type},
-  class_required_field in '..\class_required_field.pas';
+  class_required_field in '..\class_required_field.pas',
+  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
+  ufrm_parameter_clinic in '..\ufrm_parameter_clinic.pas' {frm_parameter_clinic};
 
 {$R *.res}
 begin
@@ -57,5 +58,6 @@ begin
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
+  Application.CreateForm(Tfrm_search, frm_search);
   Application.Run;
 end.

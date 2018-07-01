@@ -71,6 +71,7 @@ type
     dxBarLargeButton13: TdxBarLargeButton;
     dxBarLargeButton14: TdxBarLargeButton;
     dxBarLargeButton15: TdxBarLargeButton;
+    dxBarLargeButton16: TdxBarLargeButton;
     procedure Action_contract_userExecute(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_clientExecute(Sender: TObject);
@@ -89,6 +90,7 @@ type
     procedure Action_materialExecute(Sender: TObject);
     procedure dxBarLargeButton14Click(Sender: TObject);
     procedure dxBarLargeButton15Click(Sender: TObject);
+    procedure dxBarLargeButton16Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -103,7 +105,7 @@ implementation
 {$R *.dfm}
 
  uses  ufrm_doctor, ufrm_employeee, ufrm_scheduling, ufrm_scheduling_clinical,
-  ufrm_role, ufrm_table_price;
+  ufrm_role, ufrm_table_price, ufrm_parameter_clinic;
 
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin
@@ -213,6 +215,17 @@ begin
   end else begin
     frm_requisition_type.WindowState := wsNormal;
     frm_requisition_type.Show;
+  end;
+end;
+
+procedure Tfrm_main.dxBarLargeButton16Click(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_parameter_clinic) then begin
+   frm_parameter_clinic := Tfrm_parameter_clinic.Create(Self);
+   frm_parameter_clinic.Show;
+  end else begin
+   frm_parameter_clinic.Show;
   end;
 end;
 

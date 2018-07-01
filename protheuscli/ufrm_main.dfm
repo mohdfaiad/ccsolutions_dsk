@@ -151,6 +151,10 @@ inherited frm_main: Tfrm_main
         item
           Visible = True
           ItemName = 'dxBarLargeButton13'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButton16'
         end>
       OneOnRow = False
       Row = 0
@@ -573,6 +577,13 @@ inherited frm_main: Tfrm_main
       Hint = 'Tipo de requisicao'
       Visible = ivAlways
       OnClick = dxBarLargeButton15Click
+    end
+    object dxBarLargeButton16: TdxBarLargeButton
+      Caption = 'Paramentro'
+      Category = 0
+      Hint = 'Paramentro'
+      Visible = ivAlways
+      OnClick = dxBarLargeButton16Click
     end
   end
   inherited ActionList_1: TActionList

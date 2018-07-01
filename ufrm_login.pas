@@ -27,7 +27,7 @@ uses
   Vcl.Menus, Vcl.StdCtrls, cxButtons, dxGDIPlusClasses, ACBrBase, ACBrEnterTab,
   Vcl.Buttons, FireDAC.Comp.Client, ACBrMail,IdHashMessageDigest,
   Vcl.Samples.Gauges, ACBrValidador, cxMaskEdit, cxButtonEdit, Vcl.ComCtrls,
-  dxCore, cxDateUtils, cxDropDownEdit, cxCalendar;
+  dxCore, cxDateUtils, cxDropDownEdit, cxCalendar,FireDAC.Stan.Param;
 
 type
   Tfrm_login = class(TForm)

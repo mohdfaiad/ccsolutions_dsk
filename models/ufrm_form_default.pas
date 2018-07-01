@@ -165,9 +165,9 @@ result:=false;
     'Deseja Cancelar as Alterações?', MB_YESNO + MB_ICONINFORMATION +
     MB_DEFBUTTON2) = IDYES then
   begin
-    ds.DataSet.Cancel;
-    if qry.CachedUpdates then
-     FDSchemaAdapter_1.CancelUpdates;
+   // ds.DataSet.Cancel;
+   // if qry.CachedUpdates then
+    // FDSchemaAdapter_1.CancelUpdates;
      result:=True;
     cxTabSheet_1.Show;
   end;
@@ -319,12 +319,12 @@ begin
 //caso esteja fechado ele abre...   e se caso o pagecontrol está em "Manutençào"
 //coloca automáticamente em "Pesquisa"
 //autor: Elizeu Souza
-for I := 0 to Self.ComponentCount -1 do
-  if Self.Components[i] is TFDQuery then
-   begin
-    TFDQuery(Self.Components[i]).Prepare;
-    TFDQuery(Self.Components[i]).Open;
-   end;
+//for I := 0 to Self.ComponentCount -1 do
+//  if Self.Components[i] is TFDQuery then
+//   begin
+//    TFDQuery(Self.Components[i]).Prepare;
+//    TFDQuery(Self.Components[i]).Open;
+//   end;
 
  cxPageControl_1.ActivePageIndex:=0;
 

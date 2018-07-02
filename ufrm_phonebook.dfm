@@ -1,9 +1,11 @@
 inherited frm_phonebook: Tfrm_phonebook
   Caption = 'Manuten'#231#227'o: Agenda Telef'#244'nica'
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -43,9 +45,17 @@ inherited frm_phonebook: Tfrm_phonebook
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             object cxDBTextEdit1: TcxDBTextEdit [0]
               Left = 68
@@ -253,37 +263,34 @@ inherited frm_phonebook: Tfrm_phonebook
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
-    AfterDelete = qryAfterDelete
-    CachedUpdates = True
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     SQL.Strings = (
-      'select * from phonebook')
-    object qrypho_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
+      'select phonebook.*, hex(pho_cod)as CodPhonebook from phonebook'#10
+      
+        'where contract_ctr_cod =unhex(:ctr_cod) and pho_deleted_at is nu' +
+        'll')
+    ParamData = <
+      item
+        Name = 'CTR_COD'
+        DataType = ftBytes
+        ParamType = ptInput
+        Size = 45
+        Value = Null
+      end>
+    object qrypho_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'digo ID'
       FieldName = 'pho_id'
       Origin = 'pho_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
     end
     object qrypho_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Nome'
       FieldName = 'pho_name'
       Origin = 'pho_name'
-      Size = 50
+      Required = True
+      Size = 35
     end
     object qrypho_contact: TStringField
       AutoGenerateValue = arDefault
@@ -297,6 +304,7 @@ inherited frm_phonebook: Tfrm_phonebook
       DisplayLabel = 'Tel. 1'
       FieldName = 'pho_phone1'
       Origin = 'pho_phone1'
+      Required = True
       Size = 15
     end
     object qrypho_phone2: TStringField
@@ -320,18 +328,35 @@ inherited frm_phonebook: Tfrm_phonebook
       Origin = 'pho_phone4'
       Size = 15
     end
-    object qrypho_annotation: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Anota'#231#227'o'
-      FieldName = 'pho_annotation'
-      Origin = 'pho_annotation'
-      Size = 255
-    end
     object qrypho_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'pho_dt_registration'
       Origin = 'pho_dt_registration'
+    end
+    object qrypho_cod: TBytesField
+      FieldName = 'pho_cod'
+      Origin = 'pho_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qrypho_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'pho_deleted_at'
+      Origin = 'pho_deleted_at'
+    end
+    object qryCodPhonebook: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodPhonebook'
+      Origin = 'CodPhonebook'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog

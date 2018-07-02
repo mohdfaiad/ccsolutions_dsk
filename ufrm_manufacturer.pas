@@ -155,6 +155,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
   private
      man_cod: string;
   public
@@ -225,6 +226,12 @@ begin
      Application.MessageBox('Fabricante excluído com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
 
     ExibirRegistros;
+end;
+
+procedure Tfrm_manufacturer.Action_editExecute(Sender: TObject);
+begin
+  inherited;
+    man_cod := qryCodManufacturer.AsString;
 end;
 
 procedure Tfrm_manufacturer.Action_saveExecute(Sender: TObject);

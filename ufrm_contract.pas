@@ -69,6 +69,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure Action_cancelExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -83,6 +84,12 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
+
+procedure Tfrm_contract.Action_cancelExecute(Sender: TObject);
+begin
+  inherited;
+   ds.DataSet.Cancel;
+end;
 
 procedure Tfrm_contract.Button1Click(Sender: TObject);
 begin

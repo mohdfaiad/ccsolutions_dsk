@@ -227,6 +227,9 @@ begin
   qry.Prepare;
   qry.open;
  end;
+
+ ds.DataSet.Cancel;
+
 end;
 
 procedure Tfrm_enterprise.Action_deleteExecute(Sender: TObject);

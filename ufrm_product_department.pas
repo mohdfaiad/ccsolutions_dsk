@@ -99,6 +99,7 @@ type
     procedure act_cancel_depart_secoesExecute(Sender: TObject);
     procedure act_delete_depart_secoesExecute(Sender: TObject);
     procedure edtSecoesKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
   private
     prd_cod,prs_cod: string;
     iten_ID: Integer;
@@ -385,6 +386,12 @@ procedure Tfrm_product_department.FormCreate(Sender: TObject);
 begin
   inherited;
   FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+end;
+
+procedure Tfrm_product_department.FormShow(Sender: TObject);
+begin
+  inherited;
+   ExibirRegistros;
 end;
 
 procedure Tfrm_product_department.HabiliTarButtun(Status: Boolean);

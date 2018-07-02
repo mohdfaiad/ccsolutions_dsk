@@ -5,13 +5,9 @@ inherited frm_contract: Tfrm_contract
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ctr_id: TcxGridDBColumn
             Caption = 'C'#243'd.: ID.'
@@ -175,7 +171,7 @@ inherited frm_contract: Tfrm_contract
               SizeOptions.Width = 212
               Control = cxDBDateEdit1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 130
+              ControlOptions.OriginalWidth = 127
               ControlOptions.ShowBorder = False
               Index = 1
             end

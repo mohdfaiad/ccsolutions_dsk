@@ -67,8 +67,6 @@ type
     qry_stock: TFDQuery;
     ds_stock: TDataSource;
     Image1: TImage;
-    SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
     looComboxProduto: TcxLookupComboBox;
     dxLayoutItem8: TdxLayoutItem;
     qry_employeeemp_cod: TBytesField;
@@ -125,7 +123,6 @@ type
     qry_purchase_order_itenpoi_product_quant_served: TBCDField;
     qry_purchase_order_itenpoi_deleted_at: TDateTimeField;
     qry_purchase_order_itenpoi_dt_registration: TDateTimeField;
-    qry_purchase_order_itenpro_cod: TStringField;
     qry_purchase_order_itenpro_name: TStringField;
     qry_purchase_order_itenpru_name: TStringField;
     qry_purchase_order_itenpru_initials: TStringField;
@@ -163,6 +160,8 @@ type
     qry_stockcodStock: TStringField;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
+    qry_purchase_order_itencodProduct: TStringField;
+    qry_purchase_order_itenpro_id: TLongWordField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure cxGrid_1DBTableView1CustomDrawCell(Sender: TcxCustomGridTableView;
@@ -179,8 +178,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
-    procedure SpeedButton2Click(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
     procedure cxLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure lookupComboxStockPropertiesPopup(Sender: TObject);
     procedure cxLookupComboBox1PropertiesPopup(Sender: TObject);
@@ -197,6 +194,7 @@ type
     procedure act_cancel_purchase_order_itenExecute(Sender: TObject);
     procedure act_delete_purchase_order_itenExecute(Sender: TObject);
     procedure looComboxProdutoPropertiesCloseUp(Sender: TObject);
+    procedure Action_print_editExecute(Sender: TObject);
   private
        pco_cod,iten_cod:string;
        iten_ID: Integer;
@@ -327,6 +325,12 @@ begin
 
    HabiliTarButtun(true);
 
+end;
+
+procedure Tfrm_purchase_order.Action_print_editExecute(Sender: TObject);
+begin
+  inherited;
+   //
 end;
 
 procedure Tfrm_purchase_order.Action_saveExecute(Sender: TObject);
@@ -832,48 +836,4 @@ begin
 
  end;
 
-procedure Tfrm_purchase_order.SpeedButton1Click(Sender: TObject);
-
-begin
-//-----------------------------------------------------
-  inherited;
-
-    if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
-   begin
-     frxReport_1.LoadFromStream(TReport.Read_Report(cxBarEditItem_1.EditValue, 'rep_report', frm_dm_report.qry_report));
-     frxReport_1.ShowReport;
-   end;
-
-
-end;
-
-procedure Tfrm_purchase_order.SpeedButton2Click(Sender: TObject);
- var
-  NameReport: string;
-begin
-  //-----------------------------------------------------------
-
-inherited;
- with frm_dm.qry3,sql do
-   begin
-    Close;
-    Clear;
-    Text:= 'select * from report where rep_name =:p_report';
-    ParamByName('p_report').Value:=cxBarEditItem_1.EditValue;
-    Prepare;
-    Open;
-    if (RecordCount >0) then
-     begin
-      Application.MessageBox('Este relatório já está cadastrada !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
-      Exit
-     end
-     else
-      begin
-       NameReport :='';
-       NameReport:= TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue;
-       TReport.Save_Report(frm_dm.qry_contractctr_id.Value,cxBarEditItem_1.EditValue, NameReport,'rep_report',frm_dm_report.qry_report);
-     end;
- end;
-
-end;
 end.

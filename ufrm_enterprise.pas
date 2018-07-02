@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxShellComboBox, QExport4Dialog, cxBarEditItem, dxBarExtItems,
   QImport3Wizard, cxImage, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons,
-  Vcl.ExtDlgs, Vcl.DBCtrls, ACBrSocket, ACBrCEP, frxClass;
+  Vcl.ExtDlgs, Vcl.DBCtrls, ACBrSocket, ACBrCEP, frxClass,cxGeometry;
 
 type
   Tfrm_enterprise = class(Tfrm_form_default)
@@ -159,6 +159,11 @@ type
     dxLayoutItem19: TdxLayoutItem;
     cxGrid_1DBTableView1ent_nickname: TcxGridDBColumn;
     cxGrid_1DBTableView1ent_status: TcxGridDBColumn;
+    qryent_image1: TBlobField;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    cxImgLogo: TcxImage;
+    dxLayoutItem20: TdxLayoutItem;
+    OpenDialogLogo: TOpenDialog;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_insert_imageExecute(Sender: TObject);
     procedure Action_delete_imageExecute(Sender: TObject);
@@ -259,6 +264,10 @@ begin
 end;
 
 procedure Tfrm_enterprise.Action_saveExecute(Sender: TObject);
+  var
+   sArq:TStream;
+   mMem:TMemoryStream;
+   nome: string;
 begin
 if trim(cxDBTextEdit2.Text) = ''  then
  begin
@@ -291,11 +300,34 @@ with frm_dm.qry,sql do
 
 
 
+  try
+    nome:='C:\development\IMG\Logo.png';
+    mMem:=TMemoryStream.Create;
+    sArq:= TFileStream.Create(nome, fmOpenRead);
+    sArq.Position:=0;
+
+    mMem.LoadFromStream(sArq);
+    qry.Edit;
+    qryent_image1.LoadFromStream(mMem);
+    qry.Post;
+    qry.ApplyUpdates(0);
+    ShowMessage('Suceeso');
+
+     finally
+    FreeAndNil(mMem);
+    FreeAndNil(sArq);
+   end;
+
+
+
+
        qry.Close;
        qry.sql.text:= ' select * from enterprise ' +
                       ' where ent_deleted_at is null ';
        qry.Prepare;
        qry.open;
+
+
 end;
 
 procedure Tfrm_enterprise.cxDBTextEdit2Exit(Sender: TObject);

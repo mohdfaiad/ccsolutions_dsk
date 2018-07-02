@@ -165,7 +165,7 @@ result:=false;
     'Deseja Cancelar as Alterações?', MB_YESNO + MB_ICONINFORMATION +
     MB_DEFBUTTON2) = IDYES then
   begin
-   // ds.DataSet.Cancel;
+    ds.DataSet.Cancel;
    // if qry.CachedUpdates then
     // FDSchemaAdapter_1.CancelUpdates;
      result:=True;

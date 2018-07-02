@@ -117,28 +117,22 @@ inherited frm_enterprise: Tfrm_enterprise
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         Properties.ActivePage = cxTabSheet_address
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
+              Left = 63
               DataBinding.DataField = 'ent_id'
+              ExplicitLeft = 63
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 240
+              Left = 236
               DataBinding.DataField = 'ent_dt_registration'
-              ExplicitLeft = 240
+              ExplicitLeft = 236
             end
             object cxDBComboBox1: TcxDBComboBox [2]
-              Left = 59
+              Left = 63
               Top = 103
               DataBinding.DataField = 'ent_type'
               DataBinding.DataSource = ds
@@ -149,100 +143,59 @@ inherited frm_enterprise: Tfrm_enterprise
                 'F - FILIAL')
               Style.HotTrack = False
               TabOrder = 2
-              Width = 121
+              Width = 106
             end
             object cxDBTextEdit6: TcxDBTextEdit [3]
-              Left = 422
-              Top = 222
+              Left = 389
+              Top = 276
               DataBinding.DataField = 'ent_im'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 11
+              TabOrder = 12
               Width = 121
             end
-            object cxDBTextEdit2: TcxDBTextEdit [4]
-              Left = 59
-              Top = 130
-              DataBinding.DataField = 'ent_first_name'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 5
-              OnExit = cxDBTextEdit2Exit
-              Width = 311
-            end
-            object cxDBDateEdit1: TcxDBDateEdit [5]
-              Left = 240
+            object cxDBDateEdit1: TcxDBDateEdit [4]
+              Left = 229
               Top = 103
               DataBinding.DataField = 'ent_dt_open'
               DataBinding.DataSource = ds
               Style.HotTrack = False
               TabOrder = 3
-              Width = 130
+              Width = 145
             end
-            object cxDBTextEdit4: TcxDBTextEdit [6]
-              Left = 59
-              Top = 157
-              DataBinding.DataField = 'ent_email'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecLowerCase
-              Style.HotTrack = False
-              TabOrder = 8
-              Width = 311
-            end
-            object cxDBTextEdit1: TcxDBTextEdit [7]
-              Left = 59
-              Top = 222
+            object cxDBTextEdit1: TcxDBTextEdit [5]
+              Left = 63
+              Top = 276
               DataBinding.DataField = 'ent_cnpj'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 9
+              TabOrder = 10
               Width = 121
             end
-            object cxDBTextEdit5: TcxDBTextEdit [8]
-              Left = 240
-              Top = 222
+            object cxDBTextEdit5: TcxDBTextEdit [6]
+              Left = 236
+              Top = 276
               DataBinding.DataField = 'ent_ie'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 10
+              TabOrder = 11
               Width = 130
             end
-            object cxDBTextEdit3: TcxDBTextEdit [9]
-              Left = 422
-              Top = 130
-              DataBinding.DataField = 'ent_last_name'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 6
-              Width = 311
-            end
-            object cxDBTextEdit7: TcxDBTextEdit [10]
-              Left = 594
-              Top = 222
+            object cxDBTextEdit7: TcxDBTextEdit [7]
+              Left = 561
+              Top = 276
               DataBinding.DataField = 'ent_suframa'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 12
+              TabOrder = 13
               Width = 139
             end
-            object cxDBTextEdit13: TcxDBTextEdit [11]
-              Left = 779
-              Top = 130
-              DataBinding.DataField = 'ent_nickname'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 7
-              Width = 190
-            end
-            object cxDBComboBox2: TcxDBComboBox [12]
-              Left = 422
+            object cxDBComboBox2: TcxDBComboBox [8]
+              Left = 416
               Top = 103
               DataBinding.DataField = 'ent_status'
               DataBinding.DataSource = ds
@@ -253,13 +206,65 @@ inherited frm_enterprise: Tfrm_enterprise
                 'D - DESATIVADO')
               Style.HotTrack = False
               TabOrder = 4
-              Width = 121
+              Width = 96
+            end
+            object cxDBTextEdit2: TcxDBTextEdit [9]
+              Left = 63
+              Top = 130
+              DataBinding.DataField = 'ent_first_name'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 5
+              OnExit = cxDBTextEdit2Exit
+              Width = 311
+            end
+            object cxDBTextEdit13: TcxDBTextEdit [10]
+              Left = 63
+              Top = 184
+              DataBinding.DataField = 'ent_nickname'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 7
+              Width = 311
+            end
+            object cxDBTextEdit3: TcxDBTextEdit [11]
+              Left = 63
+              Top = 157
+              DataBinding.DataField = 'ent_last_name'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 6
+              Width = 311
+            end
+            object cxDBTextEdit4: TcxDBTextEdit [12]
+              Left = 63
+              Top = 211
+              DataBinding.DataField = 'ent_email'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecLowerCase
+              Style.HotTrack = False
+              TabOrder = 8
+              Width = 311
+            end
+            object cxImgLogo: TcxImage [13]
+              Left = 570
+              Top = 103
+              Properties.FitMode = ifmStretch
+              Style.HotTrack = False
+              TabOrder = 9
+              Height = 100
+              Width = 140
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               CaptionOptions.Visible = False
               ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
+              AlignHorz = ahClient
+              AlignVert = avTop
               LayoutDirection = ldHorizontal
             end
             object dxLayoutItem13: TdxLayoutItem
@@ -268,7 +273,7 @@ inherited frm_enterprise: Tfrm_enterprise
               CaptionOptions.Text = 'Tipo'
               Control = cxDBComboBox1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 106
               ControlOptions.ShowBorder = False
               Index = 0
             end
@@ -294,37 +299,15 @@ inherited frm_enterprise: Tfrm_enterprise
               ControlOptions.ShowBorder = False
               Index = 2
             end
-            object dxLayoutItem4: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup8
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Raz'#227'o'
-              Control = cxDBTextEdit2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 311
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
             object dxLayoutItem7: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup9
               AlignVert = avClient
               CaptionOptions.Text = 'Dt. Abert.'
               Control = cxDBDateEdit1
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 130
+              ControlOptions.OriginalWidth = 145
               ControlOptions.ShowBorder = False
               Index = 1
-            end
-            object dxLayoutItem6: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'E-mail'
-              Control = cxDBTextEdit4
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 311
-              ControlOptions.ShowBorder = False
-              Index = 2
             end
             object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2
@@ -365,20 +348,8 @@ inherited frm_enterprise: Tfrm_enterprise
               Parent = dxLayoutAutoCreatedGroup2
               AlignHorz = ahLeft
               AlignVert = avClient
-              LayoutDirection = ldHorizontal
               Index = 1
               AutoCreated = True
-            end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup8
-              AlignHorz = ahLeft
-              AlignVert = avClient
-              CaptionOptions.Text = 'Fantasia'
-              Control = cxDBTextEdit3
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 311
-              ControlOptions.ShowBorder = False
-              Index = 1
             end
             object dxLayoutItem10: TdxLayoutItem
               Parent = dxLayoutGroup3
@@ -391,24 +362,74 @@ inherited frm_enterprise: Tfrm_enterprise
               ControlOptions.ShowBorder = False
               Index = 3
             end
-            object dxLayoutItem17: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup8
-              AlignVert = avClient
-              CaptionOptions.Text = 'Apelido'
-              Control = cxDBTextEdit13
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 190
-              ControlOptions.ShowBorder = False
-              Index = 2
-            end
             object dxLayoutItem19: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup9
               CaptionOptions.Text = 'Status'
               Control = cxDBComboBox2
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 96
               ControlOptions.ShowBorder = False
               Index = 2
+            end
+            object dxLayoutItem4: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup8
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Raz'#227'o'
+              Control = cxDBTextEdit2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 311
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem17: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup3
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Apelido'
+              Control = cxDBTextEdit13
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 311
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup3
+              AlignHorz = ahClient
+              AlignVert = avTop
+              CaptionOptions.Text = 'Fantasia'
+              Control = cxDBTextEdit3
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 311
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup8
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem6: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup3
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'E-mail'
+              Control = cxDBTextEdit4
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 311
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
+            object dxLayoutItem20: TdxLayoutItem
+              Parent = dxLayoutGroup2
+              CaptionOptions.Text = 'cxImage1'
+              Control = cxImgLogo
+              ControlOptions.OriginalHeight = 100
+              ControlOptions.OriginalWidth = 140
+              ControlOptions.ShowBorder = False
+              Index = 1
             end
           end
         end
@@ -955,6 +976,11 @@ inherited frm_enterprise: Tfrm_enterprise
       FieldName = 'ent_dt_registration'
       Origin = 'ent_dt_registration'
     end
+    object qryent_image1: TBlobField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_image1'
+      Origin = 'ent_image1'
+    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -1006,5 +1032,9 @@ inherited frm_enterprise: Tfrm_enterprise
     object Deletar1: TMenuItem
       Action = Action_delete_image
     end
+  end
+  object OpenDialogLogo: TOpenDialog
+    Left = 823
+    Top = 162
   end
 end

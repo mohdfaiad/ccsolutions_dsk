@@ -22,13 +22,12 @@ inherited frm_purchase_order: Tfrm_purchase_order
   inherited cxPageControl_1: TcxPageControl
     Width = 1018
     Height = 585
+    Properties.ActivePage = cxTabSheet_1
     ExplicitWidth = 1018
     ExplicitHeight = 585
     ClientRectBottom = 579
     ClientRectRight = 1012
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 1010
       ExplicitHeight = 551
       inherited cxGrid_1: TcxGrid
@@ -218,27 +217,9 @@ inherited frm_purchase_order: Tfrm_purchase_order
           Layout = tlCenter
           OnClick = lbTodosClick
         end
-        object SpeedButton1: TSpeedButton
-          Left = 511
-          Top = 1
-          Width = 46
-          Height = 22
-          Caption = 'print'
-          OnClick = SpeedButton1Click
-        end
-        object SpeedButton2: TSpeedButton
-          Left = 557
-          Top = 1
-          Width = 36
-          Height = 22
-          Caption = 'salve'
-          OnClick = SpeedButton2Click
-        end
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 1010
       ExplicitHeight = 551
       inherited cxPageControl_2: TcxPageControl
@@ -249,8 +230,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
         ClientRectBottom = 539
         ClientRectRight = 998
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
           ExplicitWidth = 996
           ExplicitHeight = 511
           inherited dxLayoutControl_1: TdxLayoutControl
@@ -647,6 +626,9 @@ inherited frm_purchase_order: Tfrm_purchase_order
           ItemName = 'dxLiberarPed'
         end>
     end
+    inherited cxBarEditItem_1: TcxBarEditItem
+      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\pedido de compra'
+    end
     object dxCancelPed: TdxBarButton
       Caption = 'Cancelar Pedido'
       Category = 0
@@ -660,6 +642,12 @@ inherited frm_purchase_order: Tfrm_purchase_order
       Hint = 'Liberar Pedido de Compra'
       Visible = ivAlways
       OnClick = dxLiberarPedClick
+    end
+  end
+  inherited ActionList_1: TActionList
+    inherited Action_print_edit: TAction
+      AutoCheck = True
+      OnExecute = Action_print_editExecute
     end
   end
   inherited ds: TDataSource
@@ -809,9 +797,9 @@ inherited frm_purchase_order: Tfrm_purchase_order
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
-    ReportOptions.LastChange = 43223.395994050920000000
-    Left = 423
-    Top = 88
+    ReportOptions.LastChange = 43283.753723506950000000
+    Left = 311
+    Top = 0
     Datasets = <
       item
         DataSet = frm_dm.frx_db_enterprise
@@ -846,11 +834,85 @@ inherited frm_purchase_order: Tfrm_purchase_order
         Height = 102.047244090000000000
         Top = 18.897650000000000000
         Width = 718.110700000000000000
+        object enterpriseent_first_name: TfrxMemoView
+          Left = 154.960730000000000000
+          Top = 8.559060000000000000
+          Width = 578.268090000000000000
+          Height = 22.677180000000000000
+          DataField = 'ent_first_name'
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -21
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[enterprise."ent_first_name"]')
+          ParentFont = False
+        end
+        object enterpriseent_cnpj: TfrxMemoView
+          Left = 154.960730000000000000
+          Top = 38.795300000000000000
+          Width = 578.268090000000000000
+          Height = 18.897650000000000000
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            
+              'CNPJ: [enterprise."ent_cnpj"] Insc. Estad.: [enterprise."ent_ie"' +
+              ']')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end>
+        end
+        object enterpriseent_add_bus_address: TfrxMemoView
+          Left = 154.960730000000000000
+          Top = 65.252010000000000000
+          Width = 578.268090000000000000
+          Height = 18.897650000000000000
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            
+              'Endere'#231'o: [enterprise."ent_add_bus_address"], n'#186' [enterprise."en' +
+              't_add_bus_number"] - [enterprise."ent_add_bus_street"]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
         object Picture1: TfrxPictureView
-          Left = 3.779530000000000000
-          Top = -2.779530000000000000
-          Width = 143.622140000000000000
-          Height = 102.047310000000000000
+          Left = 7.559060000000000000
+          Top = 1.000000000000000000
+          Width = 131.211810000000000000
+          Height = 93.117500000000000000
+          DataField = 'ent_image'
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
           Frame.Typ = []
           Picture.Data = {
             0A54504E474F626A65637489504E470D0A1A0A0000000D494844520000054800
@@ -2868,94 +2930,23 @@ inherited frm_purchase_order: Tfrm_purchase_order
           Transparent = False
           TransparentColor = clWhite
         end
-        object enterpriseent_first_name: TfrxMemoView
-          Left = 154.960730000000000000
-          Top = 8.559060000000000000
-          Width = 578.268090000000000000
-          Height = 22.677180000000000000
-          DataField = 'ent_first_name'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -21
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          HAlign = haCenter
-          Memo.UTF8W = (
-            '[enterprise."ent_first_name"]')
-          ParentFont = False
-        end
-        object enterpriseent_cnpj: TfrxMemoView
-          Left = 154.960730000000000000
-          Top = 38.795300000000000000
-          Width = 578.268090000000000000
-          Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -15
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          HAlign = haCenter
-          Memo.UTF8W = (
-            
-              'CNPJ: [enterprise."ent_cnpj"] Insc. Estad.: [enterprise."ent_ie"' +
-              ']')
-          ParentFont = False
-          Formats = <
-            item
-            end
-            item
-            end>
-        end
-        object enterpriseent_add_bus_address: TfrxMemoView
-          Left = 154.960730000000000000
-          Top = 65.252010000000000000
-          Width = 578.268090000000000000
-          Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          HAlign = haCenter
-          Memo.UTF8W = (
-            
-              'Endere'#231'o: [enterprise."ent_add_bus_address"], n'#186' [enterprise."en' +
-              't_add_bus_number"] - [enterprise."ent_add_bus_street"]')
-          ParentFont = False
-          Formats = <
-            item
-            end
-            item
-            end
-            item
-            end>
-        end
       end
       object PageHeader1: TfrxPageHeader
         FillType = ftBrush
         Frame.Typ = []
-        Height = 86.929190000000000000
+        Height = 117.165430000000000000
         Top = 143.622140000000000000
         Width = 718.110700000000000000
         object Shape1: TfrxShapeView
           Left = 1.779530000000000000
-          Top = 22.897650000000000000
+          Top = 0.220470000000000000
           Width = 714.331170000000000000
-          Height = 60.472480000000000000
+          Height = 109.606370000000000000
           Frame.Typ = []
         end
         object Memo2: TfrxMemoView
           Left = 6.338590000000000000
-          Top = 56.252010000000000000
+          Top = 80.708720000000000000
           Width = 90.708720000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -2981,25 +2972,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
           Frame.Typ = []
           Memo.UTF8W = (
             'Status:')
-          ParentFont = False
-        end
-        object purchase_orderFuncionrio: TfrxMemoView
-          IndexTag = 1
-          Left = 106.606370000000000000
-          Top = 56.252010000000000000
-          Width = 589.606680000000000000
-          Height = 18.897650000000000000
-          DataField = 'Funcion'#225'rio'
-          DataSet = frxDBD_Pedido_Compra
-          DataSetName = 'purchase_order'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          Memo.UTF8W = (
-            '[purchase_order."Funcion'#225'rio"]')
           ParentFont = False
         end
         object purchase_orderpco_status: TfrxMemoView
@@ -3043,12 +3015,53 @@ inherited frm_purchase_order: Tfrm_purchase_order
             item
             end>
         end
+        object purchase_orderFuncionario: TfrxMemoView
+          IndexTag = 1
+          Left = 106.606370000000000000
+          Top = 80.708720000000000000
+          Width = 461.102660000000000000
+          Height = 18.897650000000000000
+          DataField = 'Funcionario'
+          DataSet = frxDBD_Pedido_Compra
+          DataSetName = 'purchase_order'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[purchase_order."Funcionario"]')
+        end
+        object purchase_ordersto_name: TfrxMemoView
+          IndexTag = 1
+          Left = 106.606370000000000000
+          Top = 55.692950000000000000
+          Width = 461.102660000000000000
+          Height = 18.897650000000000000
+          DataField = 'sto_name'
+          DataSet = frxDBD_Pedido_Compra
+          DataSetName = 'purchase_order'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[purchase_order."sto_name"]')
+        end
+        object Memo8: TfrxMemoView
+          Left = 6.338590000000000000
+          Top = 55.692950000000000000
+          Width = 90.708720000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Estoque:')
+          ParentFont = False
+        end
       end
       object MasterData1: TfrxMasterData
         FillType = ftBrush
         Frame.Typ = []
         Height = 34.015770000000000000
-        Top = 291.023810000000000000
+        Top = 321.260050000000000000
         Width = 718.110700000000000000
         DataSet = frxDBD_Pedido_Itens
         DataSetName = 'purchase_Itens'
@@ -3094,7 +3107,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
         object Memo6: TfrxMemoView
           Left = 491.338900000000000000
           Top = 10.559060000000000000
-          Width = 181.417440000000000000
+          Width = 151.181200000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -3111,7 +3124,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
         FillType = ftBrush
         Frame.Typ = []
         Height = 22.677180000000000000
-        Top = 347.716760000000000000
+        Top = 377.953000000000000000
         Width = 718.110700000000000000
         DataSet = frxDBD_Pedido_Itens
         DataSetName = 'purchase_Itens'
@@ -3122,12 +3135,12 @@ inherited frm_purchase_order: Tfrm_purchase_order
           Top = 1.779530000000000000
           Width = 86.929190000000000000
           Height = 18.897650000000000000
-          DataField = 'purchase_order_pco_id'
+          DataField = 'pro_id'
           DataSet = frxDBD_Pedido_Itens
           DataSetName = 'purchase_Itens'
           Frame.Typ = []
           Memo.UTF8W = (
-            '[purchase_Itens."purchase_order_pco_id"]')
+            '[purchase_Itens."pro_id"]')
         end
         object purchase_ItensProduto: TfrxMemoView
           IndexTag = 1
@@ -3135,18 +3148,18 @@ inherited frm_purchase_order: Tfrm_purchase_order
           Top = 1.779530000000000000
           Width = 366.614410000000000000
           Height = 18.897650000000000000
-          DataField = 'Produto'
+          DataField = 'pro_name'
           DataSet = frxDBD_Pedido_Itens
           DataSetName = 'purchase_Itens'
           Frame.Typ = []
           Memo.UTF8W = (
-            '[purchase_Itens."Produto"]')
+            '[purchase_Itens."pro_name"]')
         end
         object purchase_Itenspoi_product_quant: TfrxMemoView
           IndexTag = 1
           Left = 491.338900000000000000
           Top = 1.779530000000000000
-          Width = 105.826840000000000000
+          Width = 151.181200000000000000
           Height = 18.897650000000000000
           DataField = 'poi_product_quant'
           DataSet = frxDBD_Pedido_Itens
@@ -3160,7 +3173,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
         FillType = ftBrush
         Frame.Typ = []
         Height = 177.637910000000000000
-        Top = 430.866420000000000000
+        Top = 461.102660000000000000
         Width = 718.110700000000000000
         object Line2: TfrxLineView
           Left = 3.779530000000000000
@@ -3200,7 +3213,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
             end>
         end
         object Memo12: TfrxMemoView
-          Left = 154.960730000000000000
+          Left = 151.181200000000000000
           Top = 140.622140000000000000
           Width = 404.409710000000000000
           Height = 30.236240000000000000
@@ -3212,7 +3225,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
           Frame.Typ = []
           HAlign = haCenter
           Memo.UTF8W = (
-            '[purchase_order."Funcion'#225'rio"]'
+            '[purchase_order."Funcionario"]'
             'Requerente')
           ParentFont = False
         end
@@ -3384,15 +3397,16 @@ inherited frm_purchase_order: Tfrm_purchase_order
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False
-    Left = 392
-    Top = 88
+    Left = 296
+    Top = 48
   end
   object frxDBD_Pedido_Itens: TfrxDBDataset
     UserName = 'purchase_Itens'
     CloseDataSource = False
+    DataSet = qry_purchase_order_iten
     BCDToCurrency = False
-    Left = 368
-    Top = 88
+    Left = 296
+    Top = 96
   end
   object qry_stock: TFDQuery
     Connection = frm_dm.connCCS
@@ -3510,6 +3524,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
     end
   end
   object qry_purchase_order_iten: TFDQuery
+    Active = True
     IndexFieldNames = 'purchase_order_pco_cod'
     MasterSource = ds
     MasterFields = 'pco_cod'
@@ -3519,8 +3534,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
     FetchOptions.Cache = [fiBlobs, fiMeta]
     SQL.Strings = (
       
-        'select purchase_order_iten.*, hex(product_pro_cod)as pro_cod, '#10'p' +
-        'ro_name, pru_name, pru_initials, '
+        'select purchase_order_iten.*, hex(product_pro_cod)as codProduct,' +
+        'pro_id, '#10'pro_name, pru_name, pru_initials, '
       'hex(poi_cod)as iten_Cod  from purchase_order_iten'#13#10#10
       'left join product on pro_cod = product_pro_cod'#13#10#10
       'left join product_unit on pru_cod = product_unit_pru_cod'#13#10#10
@@ -3578,14 +3593,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
       FieldName = 'poi_dt_registration'
       Origin = 'poi_dt_registration'
     end
-    object qry_purchase_order_itenpro_cod: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'pro_cod'
-      Origin = 'pro_cod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 32
-    end
     object qry_purchase_order_itenpro_name: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'pro_name'
@@ -3617,6 +3624,21 @@ inherited frm_purchase_order: Tfrm_purchase_order
       ProviderFlags = []
       ReadOnly = True
       Size = 32
+    end
+    object qry_purchase_order_itencodProduct: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codProduct'
+      Origin = 'codProduct'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qry_purchase_order_itenpro_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_id'
+      Origin = 'pro_id'
+      ProviderFlags = []
+      ReadOnly = True
     end
   end
 end

@@ -38,12 +38,6 @@ uses
 
 type
   Tfrm_stock_iten = class(Tfrm_form_default)
-    qrysto_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
-    qryenterprise_ent_id: TIntegerField;
-    qrysto_name: TStringField;
-    qrysto_status: TStringField;
-    qrysto_dt_registration: TDateTimeField;
     cxDBTextEdit1: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
     dxLayoutGroup3: TdxLayoutGroup;
@@ -53,28 +47,48 @@ type
     cxGrid1Level1: TcxGridLevel;
     cxGrid1: TcxGrid;
     dxLayoutItem4: TdxLayoutItem;
-    cxGrid_1DBTableView1sto_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1enterprise_ent_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
-    cxGrid_1DBTableView1sto_status: TcxGridDBColumn;
-    cxGrid_1DBTableView1sto_dt_registration: TcxGridDBColumn;
     PopupMenu1: TPopupMenu;
     ExibirItensabaixodoestoqueminmo1: TMenuItem;
     ExibirtodososItens1: TMenuItem;
     frxDBD_Estoque: TfrxDBDataset;
     frxDBD_Estoque_Itens: TfrxDBDataset;
-    qryEmpresa: TStringField;
-    cxGrid1DBTableView1product_pro_id: TcxGridDBColumn;
-    cxGrid1DBTableView1pro_name: TcxGridDBColumn;
-    cxGrid1DBTableView1pru_name: TcxGridDBColumn;
-    cxGrid1DBTableView1sti_product_quant: TcxGridDBColumn;
-    cxGrid1DBTableView1sti_product_quant_min: TcxGridDBColumn;
-    qry_stock_itenproduct_pro_id: TIntegerField;
-    qry_stock_itenpro_name: TStringField;
-    qry_stock_itenpru_name: TStringField;
+    qrysto_cod: TBytesField;
+    qrycontract_ctr_cod: TBytesField;
+    qryenterprise_ent_cod: TBytesField;
+    qrysto_id: TLongWordField;
+    qrysto_type: TStringField;
+    qrysto_name: TStringField;
+    qrysto_status: TStringField;
+    qrysto_deleled_at: TDateTimeField;
+    qrysto_dt_registration: TDateTimeField;
+    qrycodStock: TStringField;
+    qry_stock_itensti_cod: TBytesField;
+    qry_stock_itenstock_sto_cod: TBytesField;
+    qry_stock_itenproduct_pro_cod: TBytesField;
+    qry_stock_itenproduct_department_prd_cod: TBytesField;
+    qry_stock_itenproduct_sector_prs_cod: TBytesField;
+    qry_stock_itensti_id: TLongWordField;
     qry_stock_itensti_product_quant: TBCDField;
     qry_stock_itensti_product_quant_min: TBCDField;
-    qry_stock_itenstock_sto_id: TIntegerField;
+    qry_stock_itensti_deleted_at: TDateTimeField;
+    qry_stock_itensti_dt_registration: TDateTimeField;
+    qry_stock_itenCodStockItens: TStringField;
+    qry_stock_itenCodStock: TStringField;
+    qry_stock_itenCodProduct: TStringField;
+    qry_stock_itenpro_name: TStringField;
+    qry_stock_itenpru_name: TStringField;
+    qry_stock_itenpru_initials: TStringField;
+    cxGrid_1DBTableView1sto_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1sto_type: TcxGridDBColumn;
+    cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1sto_status: TcxGridDBColumn;
+    cxGrid_1DBTableView1sto_dt_registration: TcxGridDBColumn;
+    cxGrid1DBTableView1sti_id: TcxGridDBColumn;
+    cxGrid1DBTableView1sti_product_quant: TcxGridDBColumn;
+    cxGrid1DBTableView1sti_product_quant_min: TcxGridDBColumn;
+    cxGrid1DBTableView1sti_dt_registration: TcxGridDBColumn;
+    cxGrid1DBTableView1pro_name: TcxGridDBColumn;
+    cxGrid1DBTableView1pru_initials: TcxGridDBColumn;
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
     procedure cxPageControl_1PageChanging(Sender: TObject; NewPage: TcxTabSheet;
@@ -83,12 +97,14 @@ type
     procedure ExibirtodososItens1Click(Sender: TObject);
     procedure PopupMenu1Popup(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure qryAfterInsert(DataSet: TDataSet);
+    procedure FormShow(Sender: TObject);
+    procedure cxTabSheet_3Show(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
     estMin: Boolean;
   public
-    { Public declarations }
+     procedure ExibirRegistros;
   end;
 
 var
@@ -105,7 +121,7 @@ begin
   application.MessageBox
     ('Nao é permitido incluir/alterar estoque por esta opção!', 'Estoque',
     MB_OK + MB_ICONWARNING);
-  Exit;
+
   inherited;
 
 end;
@@ -118,6 +134,13 @@ begin
   Exit;
   inherited;
 
+end;
+
+procedure Tfrm_stock_iten.Action_saveExecute(Sender: TObject);
+begin
+  application.MessageBox('Nao é permitido incluir/alterar estoque por esta opção!', 'AVISO DO ESTOQUE',
+    MB_OK + MB_ICONWARNING);
+  Exit;
 end;
 
 procedure Tfrm_stock_iten.cxPageControl_1PageChanging(Sender: TObject;
@@ -145,12 +168,31 @@ begin
   end;
 end;
 
+procedure Tfrm_stock_iten.cxTabSheet_3Show(Sender: TObject);
+begin
+  inherited;
+   qry_stock_iten.Close;
+   qry_stock_iten.Open;
+end;
+
 procedure Tfrm_stock_iten.ExibirItensabaixodoestoqueminmo1Click
   (Sender: TObject);
 begin
   inherited;
   qry_stock_iten.Filter := 'sti_product_quant < sti_product_quant_min';
   qry_stock_iten.Filtered := True;
+end;
+
+procedure Tfrm_stock_iten.ExibirRegistros;
+begin
+   qry.Close;
+   qry.SQL.Text :=' select stock.*, hex(sto_cod) as codStock  from stock     ' +
+                  ' where sto_status = ''A''                                 ' +
+                  ' and contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+') ' +
+                  ' and enterprise_ent_cod in (select enterprise_ent_cod     ' +
+                  ' from contract_user_enterprise where contract_user_ctr_usr_cod =unhex('+QuotedStr(frm_dm.v_ctr_usr_cod)+')) ' ;
+   qry.Prepare;
+   qry.Open;
 end;
 
 procedure Tfrm_stock_iten.ExibirtodososItens1Click(Sender: TObject);
@@ -166,16 +208,16 @@ begin
   frm_stock_iten := Nil
 end;
 
+procedure Tfrm_stock_iten.FormShow(Sender: TObject);
+begin
+  inherited;
+  ExibirRegistros;
+end;
+
 procedure Tfrm_stock_iten.PopupMenu1Popup(Sender: TObject);
 begin
   inherited;
   ExibirItensabaixodoestoqueminmo1.Visible := estMin;
-end;
-
-procedure Tfrm_stock_iten.qryAfterInsert(DataSet: TDataSet);
-begin
-  inherited;
-  qrysto_dt_registration.Value := Now;
 end;
 
 end.

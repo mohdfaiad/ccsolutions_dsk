@@ -301,8 +301,9 @@ end;
 
 procedure Tfrm_form_default.cxGrid_1DBTableView1DblClick(Sender: TObject);
 begin
-  cxTabSheet_3.Show;
   Action_edit.Execute;
+  cxTabSheet_3.Show;
+
 end;
 
 procedure Tfrm_form_default.dxLayoutControl_1DblClick(Sender: TObject);

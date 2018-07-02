@@ -1,31 +1,36 @@
 inherited frm_stock_iten: Tfrm_stock_iten
   Caption = 'Manuten'#231#227'o: Itens em Estoques'
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     OnPageChanging = cxPageControl_1PageChanging
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
+            Caption = 'C'#243'digo ID'
             DataBinding.FieldName = 'sto_id'
             Width = 75
           end
-          object cxGrid_1DBTableView1enterprise_ent_id: TcxGridDBColumn
-            DataBinding.FieldName = 'enterprise_ent_id'
+          object cxGrid_1DBTableView1sto_type: TcxGridDBColumn
+            Caption = 'Tipo'
+            DataBinding.FieldName = 'sto_type'
             Width = 75
           end
           object cxGrid_1DBTableView1sto_name: TcxGridDBColumn
+            Caption = 'Estoque'
             DataBinding.FieldName = 'sto_name'
             Width = 250
           end
           object cxGrid_1DBTableView1sto_status: TcxGridDBColumn
+            Caption = 'Status'
             DataBinding.FieldName = 'sto_status'
-            Width = 50
+            Width = 75
           end
           object cxGrid_1DBTableView1sto_dt_registration: TcxGridDBColumn
+            Caption = 'Dt. Reg'
             DataBinding.FieldName = 'sto_dt_registration'
             Width = 125
           end
@@ -33,16 +38,11 @@ inherited frm_stock_iten: Tfrm_stock_iten
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitLeft = 5
+      ExplicitTop = 31
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          OnShow = cxTabSheet_3Show
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'sto_id'
@@ -77,41 +77,41 @@ inherited frm_stock_iten: Tfrm_stock_iten
                 Navigator.Buttons.Refresh.ImageIndex = 9
                 Navigator.Buttons.SaveBookmark.Visible = False
                 Navigator.Buttons.GotoBookmark.Visible = False
-                Navigator.Buttons.Filter.ImageIndex = 10
-                Navigator.Visible = True
+                Navigator.Buttons.Filter.ImageIndex = 12
                 DataController.DataSource = ds_qry_stock_iten
                 DataController.Summary.DefaultGroupSummaryItems = <>
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
-                object cxGrid1DBTableView1product_pro_id: TcxGridDBColumn
+                OptionsData.Editing = False
+                object cxGrid1DBTableView1sti_id: TcxGridDBColumn
                   Caption = 'C'#243'digo'
-                  DataBinding.FieldName = 'product_pro_id'
-                  Options.Editing = False
-                  Width = 100
+                  DataBinding.FieldName = 'sti_id'
+                  Width = 75
                 end
                 object cxGrid1DBTableView1pro_name: TcxGridDBColumn
                   Caption = 'Produto'
                   DataBinding.FieldName = 'pro_name'
-                  Options.Editing = False
                   Width = 250
                 end
-                object cxGrid1DBTableView1pru_name: TcxGridDBColumn
-                  Caption = 'Unidade'
-                  DataBinding.FieldName = 'pru_name'
-                  Options.Editing = False
-                  Width = 100
+                object cxGrid1DBTableView1pru_initials: TcxGridDBColumn
+                  Caption = 'Und'
+                  DataBinding.FieldName = 'pru_initials'
+                  Width = 70
                 end
                 object cxGrid1DBTableView1sti_product_quant: TcxGridDBColumn
-                  Caption = 'Qtd. Estoque'
+                  Caption = 'Quantidade'
                   DataBinding.FieldName = 'sti_product_quant'
-                  Options.Editing = False
                   Width = 100
                 end
                 object cxGrid1DBTableView1sti_product_quant_min: TcxGridDBColumn
-                  Caption = 'Qtd. M'#237'nima'
+                  Caption = 'Qtd M'#237'nima'
                   DataBinding.FieldName = 'sti_product_quant_min'
-                  Options.Editing = False
                   Width = 100
+                end
+                object cxGrid1DBTableView1sti_dt_registration: TcxGridDBColumn
+                  Caption = 'Dt. Reg'
+                  DataBinding.FieldName = 'sti_dt_registration'
+                  Width = 125
                 end
               end
               object cxGrid1Level1: TcxGridLevel
@@ -183,81 +183,89 @@ inherited frm_stock_iten: Tfrm_stock_iten
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from stock'
-      'where sto_status = '#39'A'#39' and contract_ctr_id =:ctr_id'
-      'and enterprise_ent_id in '
+      'select stock.*, hex(sto_cod) as codStock  from stock'#13#10#10
+      'where sto_status = '#39'A'#39#13#10#10
+      'and contract_ctr_cod =unhex(:ctr_cod)'#13#10#10
+      'and enterprise_ent_cod in (select enterprise_ent_cod '#13#10#10
       
-        '(select ctr_usr_ent_ent_id  from contract_user_enterprise where ' +
-        'ctr_usr_ent_user_id =:ctr_usr_id)')
+        'from contract_user_enterprise where contract_user_ctr_usr_cod =u' +
+        'nhex(:ctr_usr_cod))')
     ParamData = <
       item
-        Name = 'CTR_ID'
-        DataType = ftInteger
+        Name = 'CTR_COD'
+        DataType = ftBytes
         ParamType = ptInput
-        Value = 1
+        Size = 45
+        Value = Null
       end
       item
-        Name = 'CTR_USR_ID'
-        DataType = ftInteger
+        Name = 'CTR_USR_COD'
+        DataType = ftBytes
         ParamType = ptInput
-        Value = 4
+        Size = 45
+        Value = Null
       end>
-    object qrysto_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
+    object qrysto_cod: TBytesField
+      FieldName = 'sto_cod'
+      Origin = 'sto_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qryenterprise_ent_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'enterprise_ent_cod'
+      Origin = 'enterprise_ent_cod'
+    end
+    object qrysto_id: TLongWordField
+      AutoGenerateValue = arDefault
       FieldName = 'sto_id'
       Origin = 'sto_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
     end
-    object qrycontract_ctr_id: TIntegerField
+    object qrysto_type: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
-    object qryenterprise_ent_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Empresa ID'
-      FieldName = 'enterprise_ent_id'
-      Origin = 'enterprise_ent_id'
+      FieldName = 'sto_type'
+      Origin = 'sto_type'
+      FixedChar = True
+      Size = 1
     end
     object qrysto_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
       FieldName = 'sto_name'
       Origin = 'sto_name'
-      Size = 50
+      Size = 35
     end
     object qrysto_status: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Status'
       FieldName = 'sto_status'
       Origin = 'sto_status'
       FixedChar = True
       Size = 1
     end
+    object qrysto_deleled_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_deleled_at'
+      Origin = 'sto_deleled_at'
+    end
     object qrysto_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
       FieldName = 'sto_dt_registration'
       Origin = 'sto_dt_registration'
     end
-    object qryEmpresa: TStringField
-      FieldKind = fkLookup
-      FieldName = 'Empresa'
-      LookupDataSet = frm_dm.qry_enterprise
-      LookupKeyFields = 'ent_id'
-      LookupResultField = 'ent_first_name'
-      KeyFields = 'enterprise_ent_id'
-      Size = 80
-      Lookup = True
+    object qrycodStock: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codStock'
+      Origin = 'codStock'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -2760,49 +2768,64 @@ inherited frm_stock_iten: Tfrm_stock_iten
     end
   end
   object qry_stock_iten: TFDQuery
-    IndexFieldNames = 'stock_sto_id'
+    Active = True
+    IndexFieldNames = 'stock_sto_cod'
     MasterSource = ds
-    MasterFields = 'sto_id'
-    DetailFields = 'stock_sto_id'
+    MasterFields = 'sto_cod'
+    DetailFields = 'stock_sto_cod'
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (
-      'select product_pro_id,pro_name, pru_name, sti_product_quant,'
-      ' '#10'sti_product_quant_min, stock_sto_id from stock_iten'#13#10#10
-      ''
-      'left join product on pro_id = product_pro_id'#10
-      'left join product_unit on pru_id = product_unit_pru_id'#10
-      'where stock_sto_id =:sto_id')
+      
+        'select stock_iten.*, hex(sti_cod)as CodStockItens, hex(stock_sto' +
+        '_cod)as CodStock, '
+      
+        'hex(product_pro_cod)as CodProduct, '#10'pro_name, pru_name, pru_init' +
+        'ials from stock_iten'#13#10#10
+      'left join product on pro_cod = product_pro_cod'#10
+      'left join product_unit on pru_cod = product_unit_pru_cod'#13#10#10
+      'where stock_sto_cod =:sto_cod')
     Left = 589
     Top = 90
     ParamData = <
       item
-        Name = 'STO_ID'
-        DataType = ftInteger
+        Name = 'STO_COD'
+        DataType = ftBytes
         ParamType = ptInput
+        Size = 16
         Value = Null
       end>
-    object qry_stock_itenproduct_pro_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'product_pro_id'
-      Origin = 'product_pro_id'
+    object qry_stock_itensti_cod: TBytesField
+      FieldName = 'sti_cod'
+      Origin = 'sti_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
-    object qry_stock_itenpro_name: TStringField
+    object qry_stock_itenstock_sto_cod: TBytesField
       AutoGenerateValue = arDefault
-      FieldName = 'pro_name'
-      Origin = 'pro_name'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 50
+      FieldName = 'stock_sto_cod'
+      Origin = 'stock_sto_cod'
     end
-    object qry_stock_itenpru_name: TStringField
+    object qry_stock_itenproduct_pro_cod: TBytesField
       AutoGenerateValue = arDefault
-      FieldName = 'pru_name'
-      Origin = 'pru_name'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 50
+      FieldName = 'product_pro_cod'
+      Origin = 'product_pro_cod'
+    end
+    object qry_stock_itenproduct_department_prd_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_department_prd_cod'
+      Origin = 'product_department_prd_cod'
+    end
+    object qry_stock_itenproduct_sector_prs_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'product_sector_prs_cod'
+      Origin = 'product_sector_prs_cod'
+    end
+    object qry_stock_itensti_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'sti_id'
+      Origin = 'sti_id'
     end
     object qry_stock_itensti_product_quant: TBCDField
       AutoGenerateValue = arDefault
@@ -2816,10 +2839,63 @@ inherited frm_stock_iten: Tfrm_stock_iten
       Origin = 'sti_product_quant_min'
       Precision = 12
     end
-    object qry_stock_itenstock_sto_id: TIntegerField
+    object qry_stock_itensti_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
-      FieldName = 'stock_sto_id'
-      Origin = 'stock_sto_id'
+      FieldName = 'sti_deleted_at'
+      Origin = 'sti_deleted_at'
+    end
+    object qry_stock_itensti_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'sti_dt_registration'
+      Origin = 'sti_dt_registration'
+    end
+    object qry_stock_itenCodStockItens: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodStockItens'
+      Origin = 'CodStockItens'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qry_stock_itenCodStock: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodStock'
+      Origin = 'CodStock'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qry_stock_itenCodProduct: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodProduct'
+      Origin = 'CodProduct'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qry_stock_itenpro_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_name'
+      Origin = 'pro_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 85
+    end
+    object qry_stock_itenpru_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_name'
+      Origin = 'pru_name'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
+    end
+    object qry_stock_itenpru_initials: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'pru_initials'
+      Origin = 'pru_initials'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 35
     end
   end
   object ds_qry_stock_iten: TDataSource

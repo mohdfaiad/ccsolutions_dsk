@@ -267,6 +267,13 @@ procedure Tfrm_form_default.Action_printExecute(Sender: TObject);
 begin
   if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
    begin
+   //SQL para abrir tabela da empresa para exibir o cabeçalho do relatório e LOGO da Empresa---
+     frm_dm.qry_enterprise.Close;
+     frm_dm.qry_enterprise.ParamByName('CTR_COD').Value       := frm_dm.qry_contractctr_cod.Value;
+     frm_dm.qry_enterprise.ParamByName('CODUSUARIO').AsString := frm_dm.v_ctr_usr_cod;
+     frm_dm.qry_enterprise.Prepare;
+     frm_dm.qry_enterprise.open;
+
      frxReport_1.LoadFromFile(TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue);
      frxReport_1.ShowReport;
    end;

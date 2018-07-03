@@ -4,8 +4,11 @@ inherited frm_enterprise: Tfrm_enterprise
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ent_id: TcxGridDBColumn
@@ -118,7 +121,6 @@ inherited frm_enterprise: Tfrm_enterprise
     end
     inherited cxTabSheet_2: TcxTabSheet
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet_address
         inherited cxTabSheet_3: TcxTabSheet
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
@@ -147,12 +149,12 @@ inherited frm_enterprise: Tfrm_enterprise
             end
             object cxDBTextEdit6: TcxDBTextEdit [3]
               Left = 389
-              Top = 276
+              Top = 278
               DataBinding.DataField = 'ent_im'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 12
+              TabOrder = 13
               Width = 121
             end
             object cxDBDateEdit1: TcxDBDateEdit [4]
@@ -166,32 +168,32 @@ inherited frm_enterprise: Tfrm_enterprise
             end
             object cxDBTextEdit1: TcxDBTextEdit [5]
               Left = 63
-              Top = 276
+              Top = 278
               DataBinding.DataField = 'ent_cnpj'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 10
+              TabOrder = 11
               Width = 121
             end
             object cxDBTextEdit5: TcxDBTextEdit [6]
               Left = 236
-              Top = 276
+              Top = 278
               DataBinding.DataField = 'ent_ie'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 11
+              TabOrder = 12
               Width = 130
             end
             object cxDBTextEdit7: TcxDBTextEdit [7]
               Left = 561
-              Top = 276
+              Top = 278
               DataBinding.DataField = 'ent_suframa'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 13
+              TabOrder = 14
               Width = 139
             end
             object cxDBComboBox2: TcxDBComboBox [8]
@@ -250,13 +252,23 @@ inherited frm_enterprise: Tfrm_enterprise
               Width = 311
             end
             object cxImgLogo: TcxImage [13]
-              Left = 570
+              Left = 518
               Top = 103
               Properties.FitMode = ifmStretch
+              Properties.GraphicClassName = 'TdxPNGImage'
               Style.HotTrack = False
               TabOrder = 9
               Height = 100
               Width = 140
+            end
+            object btnLogo: TcxButton [14]
+              Left = 518
+              Top = 209
+              Width = 140
+              Height = 25
+              Caption = 'Logo'
+              TabOrder = 10
+              OnClick = btnLogoClick
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               CaptionOptions.Visible = False
@@ -423,11 +435,25 @@ inherited frm_enterprise: Tfrm_enterprise
               Index = 2
             end
             object dxLayoutItem20: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              CaptionOptions.Text = 'cxImage1'
+              Parent = dxLayoutAutoCreatedGroup1
               Control = cxImgLogo
               ControlOptions.OriginalHeight = 100
               ControlOptions.OriginalWidth = 140
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem22: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              CaptionOptions.Text = 'cxButton1'
+              CaptionOptions.Visible = False
+              Control = btnLogo
+              ControlOptions.OriginalHeight = 25
+              ControlOptions.OriginalWidth = 75
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -972,7 +998,6 @@ inherited frm_enterprise: Tfrm_enterprise
     end
     object qryent_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
       FieldName = 'ent_dt_registration'
       Origin = 'ent_dt_registration'
     end
@@ -1034,7 +1059,8 @@ inherited frm_enterprise: Tfrm_enterprise
     end
   end
   object OpenDialogLogo: TOpenDialog
-    Left = 823
-    Top = 162
+    FileName = '*.png;*.jpg'
+    Left = 855
+    Top = 90
   end
 end

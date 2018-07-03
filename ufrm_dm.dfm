@@ -35,13 +35,15 @@ object frm_dm: Tfrm_dm
     Top = 64
   end
   object qry_enterprise: TFDQuery
+    Active = True
     Connection = connCCS
     SQL.Strings = (
-      'select * from enterprise'#10'where contract_ctr_cod =:ctr_cod'
+      'select * from enterprise'#13#10#10
+      'where contract_ctr_cod =:ctr_cod'
       
         'and ent_cod in (select enterprise_ent_cod  from contract_user_en' +
         'terprise '
-      'where contract_user_ctr_usr_cod = unhex(:CodUsuario) )')
+      'where contract_user_ctr_usr_cod =unhex(:CodUsuario))')
     Left = 368
     Top = 64
     ParamData = <
@@ -71,8 +73,6 @@ object frm_dm: Tfrm_dm
     end
     object qry_enterpriseent_id: TLongWordField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'C'#243'digo ID'
-      DisplayWidth = 12
       FieldName = 'ent_id'
       Origin = 'ent_id'
     end
@@ -85,18 +85,20 @@ object frm_dm: Tfrm_dm
     end
     object qry_enterpriseent_first_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome Empresa'
-      DisplayWidth = 100
       FieldName = 'ent_first_name'
       Origin = 'ent_first_name'
       Size = 85
     end
     object qry_enterpriseent_last_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Empresa'
-      DisplayWidth = 100
       FieldName = 'ent_last_name'
       Origin = 'ent_last_name'
+      Size = 85
+    end
+    object qry_enterpriseent_nickname: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_nickname'
+      Origin = 'ent_nickname'
       Size = 85
     end
     object qry_enterpriseent_email: TStringField
@@ -133,7 +135,7 @@ object frm_dm: Tfrm_dm
       AutoGenerateValue = arDefault
       FieldName = 'ent_add_bus_zipcode'
       Origin = 'ent_add_bus_zipcode'
-      Size = 6
+      Size = 9
     end
     object qry_enterpriseent_add_bus_address: TStringField
       AutoGenerateValue = arDefault
@@ -213,6 +215,13 @@ object frm_dm: Tfrm_dm
       FieldName = 'ent_dt_open'
       Origin = 'ent_dt_open'
     end
+    object qry_enterpriseent_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_status'
+      Origin = 'ent_status'
+      FixedChar = True
+      Size = 1
+    end
     object qry_enterpriseent_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
       FieldName = 'ent_deleted_at'
@@ -223,46 +232,16 @@ object frm_dm: Tfrm_dm
       FieldName = 'ent_dt_registration'
       Origin = 'ent_dt_registration'
     end
+    object qry_enterpriseent_image1: TBlobField
+      AutoGenerateValue = arDefault
+      FieldName = 'ent_image1'
+      Origin = 'ent_image1'
+    end
   end
   object ds_enterprise: TDataSource
     DataSet = qry_enterprise
     Left = 368
     Top = 112
-  end
-  object frx_db_enterprise: TfrxDBDataset
-    UserName = 'enterprise'
-    CloseDataSource = False
-    FieldAliases.Strings = (
-      'ent_id=ent_id'
-      'contract_ctr_id=contract_ctr_id'
-      'ent_type=ent_type'
-      'ent_first_name=ent_first_name'
-      'ent_last_name=ent_last_name'
-      'ent_email=ent_email'
-      'ent_cnpj=ent_cnpj'
-      'ent_ie=ent_ie'
-      'ent_im=ent_im'
-      'ent_suframa=ent_suframa'
-      'ent_add_bus_zipcode=ent_add_bus_zipcode'
-      'ent_add_bus_address=ent_add_bus_address'
-      'ent_add_bus_number=ent_add_bus_number'
-      'ent_add_bus_street=ent_add_bus_street'
-      'ent_add_bus_complement=ent_add_bus_complement'
-      'ent_add_bus_city=ent_add_bus_city'
-      'ent_add_bus_state=ent_add_bus_state'
-      'ent_add_bus_country=ent_add_bus_country'
-      'ent_phone1=ent_phone1'
-      'ent_phone2=ent_phone2'
-      'ent_phone3=ent_phone3'
-      'ent_phone4=ent_phone4'
-      'ent_contact=ent_contact'
-      'ent_dt_open=ent_dt_open'
-      'ent_image=ent_image'
-      'ent_dt_registration=ent_dt_registration')
-    DataSet = qry_enterprise
-    BCDToCurrency = False
-    Left = 368
-    Top = 16
   end
   object connCDL: TFDConnection
     Params.Strings = (
@@ -386,5 +365,13 @@ object frm_dm: Tfrm_dm
     DataSet = qry_contract
     Left = 368
     Top = 304
+  end
+  object frx_db_enterprise: TfrxDBDataset
+    UserName = 'enterprise'
+    CloseDataSource = False
+    DataSet = qry_enterprise
+    BCDToCurrency = False
+    Left = 368
+    Top = 16
   end
 end

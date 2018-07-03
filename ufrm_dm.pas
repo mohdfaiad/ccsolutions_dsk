@@ -19,7 +19,6 @@ type
     mysql_driver: TFDPhysMySQLDriverLink;
     qry_enterprise: TFDQuery;
     ds_enterprise: TDataSource;
-    frx_db_enterprise: TfrxDBDataset;
     connCDL: TFDConnection;
     mssql_driver: TFDPhysMSSQLDriverLink;
     qry_logged: TFDQuery;
@@ -38,6 +37,7 @@ type
     qry_enterpriseent_type: TStringField;
     qry_enterpriseent_first_name: TStringField;
     qry_enterpriseent_last_name: TStringField;
+    qry_enterpriseent_nickname: TStringField;
     qry_enterpriseent_email: TStringField;
     qry_enterpriseent_cnpj: TStringField;
     qry_enterpriseent_ie: TStringField;
@@ -57,8 +57,11 @@ type
     qry_enterpriseent_phone4: TStringField;
     qry_enterpriseent_contact: TStringField;
     qry_enterpriseent_dt_open: TDateField;
+    qry_enterpriseent_status: TStringField;
     qry_enterpriseent_deleted_at: TDateTimeField;
     qry_enterpriseent_dt_registration: TDateTimeField;
+    frx_db_enterprise: TfrxDBDataset;
+    qry_enterpriseent_image1: TBlobField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

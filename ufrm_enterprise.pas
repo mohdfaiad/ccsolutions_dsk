@@ -94,7 +94,6 @@ type
     cxDBTextEdit7: TcxDBTextEdit;
     dxLayoutItem10: TdxLayoutItem;
     qryent_cnpj: TStringField;
-    qryent_dt_registration: TDateTimeField;
     qryent_add_bus_zipcode: TStringField;
     qryent_add_bus_address: TStringField;
     qryent_add_bus_number: TStringField;
@@ -138,7 +137,6 @@ type
     Deletar1: TMenuItem;
     qryent_cod: TBytesField;
     qrycontract_ctr_cod: TBytesField;
-    qryent_deleted_at: TDateTimeField;
     qryent_id: TLongWordField;
     qryent_nickname: TStringField;
     qryent_status: TStringField;
@@ -159,11 +157,16 @@ type
     dxLayoutItem19: TdxLayoutItem;
     cxGrid_1DBTableView1ent_nickname: TcxGridDBColumn;
     cxGrid_1DBTableView1ent_status: TcxGridDBColumn;
-    qryent_image1: TBlobField;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     cxImgLogo: TcxImage;
     dxLayoutItem20: TdxLayoutItem;
     OpenDialogLogo: TOpenDialog;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    btnLogo: TcxButton;
+    dxLayoutItem22: TdxLayoutItem;
+    qryent_deleted_at: TDateTimeField;
+    qryent_dt_registration: TDateTimeField;
+    qryent_image1: TBlobField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_insert_imageExecute(Sender: TObject);
     procedure Action_delete_imageExecute(Sender: TObject);
@@ -175,6 +178,8 @@ type
     procedure Action_deleteExecute(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
     procedure cxDBTextEdit2Exit(Sender: TObject);
+    procedure btnLogoClick(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
   private
     { Private declarations }
    ent_cod:string;
@@ -212,6 +217,17 @@ procedure Tfrm_enterprise.Action_delete_imageExecute(Sender: TObject);
 begin
   inherited;
   ds.DataSet.FieldByName('ent_image').Value := Null;
+end;
+
+procedure Tfrm_enterprise.Action_editExecute(Sender: TObject);
+ var
+   vStream:TMemoryStream;
+begin
+  inherited;
+     vStream :=TMemoryStream.Create;
+     qryent_image1.savetostream(vStream);
+     vStream.Position :=0;
+     cxImgLogo.Picture.LoadFromStream(vStream);
 end;
 
 procedure Tfrm_enterprise.Action_cancelExecute(Sender: TObject);
@@ -264,10 +280,7 @@ begin
 end;
 
 procedure Tfrm_enterprise.Action_saveExecute(Sender: TObject);
-  var
-   sArq:TStream;
-   mMem:TMemoryStream;
-   nome: string;
+
 begin
 if trim(cxDBTextEdit2.Text) = ''  then
  begin
@@ -280,45 +293,25 @@ if trim(cxDBTextEdit2.Text) = ''  then
   if ds.DataSet.State in [dsEdit] then
     Exit;
 
+    if qryent_id.AsInteger = 0 then
+     begin
+      with frm_dm.qry,sql do
+       begin
+         close;
+         Text:= ' select case when max(ent_id) is null then 1 ' +
+                '      else (max(ent_id) + 1) end as maxID from enterprise '+
+                ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+         Prepare;
+         Open;
+         if not (qry.State in [dsInsert,dsEdit])  then
+          qry.Edit;
 
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(ent_id) is null then 1 ' +
-          '      else (max(ent_id) + 1) end as maxID from enterprise '+
-          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-   Prepare;
-   Open;
-   if not (qry.State in [dsInsert,dsEdit])  then
-    qry.Edit;
+          qryent_id.AsInteger:=Fields[0].AsInteger;
+          qry.Post;
+          qry.ApplyUpdates(0);
+        end;
 
-   if qryent_id.AsInteger = 0 then
-    qryent_id.AsInteger:=Fields[0].AsInteger;
-    qry.Post;
-    qry.ApplyUpdates(0);
-  end;
-
-
-
-  try
-    nome:='C:\development\IMG\Logo.png';
-    mMem:=TMemoryStream.Create;
-    sArq:= TFileStream.Create(nome, fmOpenRead);
-    sArq.Position:=0;
-
-    mMem.LoadFromStream(sArq);
-    qry.Edit;
-    qryent_image1.LoadFromStream(mMem);
-    qry.Post;
-    qry.ApplyUpdates(0);
-    ShowMessage('Suceeso');
-
-     finally
-    FreeAndNil(mMem);
-    FreeAndNil(sArq);
-   end;
-
-
+     end;
 
 
        qry.Close;
@@ -327,6 +320,48 @@ with frm_dm.qry,sql do
        qry.Prepare;
        qry.open;
 
+
+end;
+
+procedure Tfrm_enterprise.btnLogoClick(Sender: TObject);
+ var
+   sArq:TStream;
+   mMem:TMemoryStream;
+   lPath: string;
+begin
+  inherited;
+
+ if OpenDialogLogo.Execute then
+  begin
+    lPath := OpenDialogLogo.FileName;
+
+
+    try
+      mMem:=TMemoryStream.Create;
+      sArq:= TFileStream.Create(lPath, fmOpenRead);
+      sArq.Position:=0;
+      mMem.LoadFromStream(sArq);
+
+     if mMem.Size < 100000 then
+      begin
+       cxImgLogo.Picture.LoadFromStream(mMem);
+       qry.Edit;
+       qryent_image1.LoadFromStream(mMem);
+       qry.Post;
+       qry.ApplyUpdates(0);
+      end else
+       begin
+         cxImgLogo.Picture := nil;
+         Application.MessageBox('A Imagem escolhida é maior que o permitidoo !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+       end;
+
+    finally
+      FreeAndNil(mMem);
+      FreeAndNil(sArq);
+    end;
+
+   end;
+  qry.Edit;
 
 end;
 

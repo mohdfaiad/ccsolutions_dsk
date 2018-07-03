@@ -69,11 +69,9 @@ type
     qry_stock: TFDQuery;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
-    frxDBDataset2: TfrxDBDataset;
     frx_db_iten: TfrxDBDataset;
     qry_parameter_stock: TFDQuery;
     frx_db_parameter_stock: TfrxDBDataset;
-    qry_parameter_stockprs_req_day_exp: TIntegerField;
     qry_employeeemp_type: TStringField;
     qry_employeeemp_status: TStringField;
     qry_employeerec_name: TStringField;
@@ -86,8 +84,6 @@ type
     qry_stocksto_cod: TBytesField;
     qry_stockcontract_ctr_cod: TBytesField;
     qry_stockenterprise_ent_cod: TBytesField;
-    qry_parameter_stockprs_cod: TBytesField;
-    qry_parameter_stockprs_id: TLongWordField;
     qry_purchase_order_iten: TFDQuery;
     cxGrid1DBTableView1poi_id: TcxGridDBColumn;
     cxGrid1DBTableView1poi_product_quant: TcxGridDBColumn;
@@ -160,6 +156,10 @@ type
     qry_productpru_name: TStringField;
     qry_productpru_initials: TStringField;
     dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
+    qry_parameter_stockprs_cod: TBytesField;
+    qry_parameter_stockprs_id: TLongWordField;
+    qry_parameter_stockprs_req_day_exp: TByteField;
+    frx_db_Requisicao: TfrxDBDataset;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);

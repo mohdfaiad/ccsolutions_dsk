@@ -190,6 +190,9 @@ type
     qry_stock_itenCodProduct: TStringField;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     qry_purchase_orderCodStock: TStringField;
+    qry_product_entry_itenspro_id: TLongWordField;
+    qrypco_status: TStringField;
+    qrypoc_status_reason: TStringField;
     procedure ConfirmaEntrada1Click(Sender: TObject);
     procedure PopupMenu_1Popup(Sender: TObject);
     procedure Cancelarentrada1Click(Sender: TObject);
@@ -324,6 +327,7 @@ begin
 
   looComboxFornecedor.Text  := qrysup_last_name.AsString;
   looComboxEstoque.Text     := qrysto_name.AsString;
+  looComboxEstoque.Enabled := False;
   looComboxPed_Compra.Text  := IntToStr(qrypco_id.AsInteger);
 
   qry_product_entry_itens.Close;
@@ -341,6 +345,7 @@ begin
 
    looComboxFornecedor.ItemIndex := -1;
    looComboxEstoque.ItemIndex    := -1;
+   looComboxEstoque.Enabled := True;
    looComboxPed_Compra.ItemIndex := -1;
 
    qry_product_entry_itens.Close;
@@ -812,7 +817,7 @@ procedure Tfrm_stock_entry.ExibirRegistros;
 begin
    qry.Close;
    qry.SQL.Text:=' SELECT pro_enty.*, hex(pde_cod)as CodProEnty, hex(pro_enty.stock_sto_cod)as CodStock, sto.sto_name, supp.sup_first_name, '+
-                 ' supp.sup_last_name, pur_ord.pco_id FROM product_entry as pro_enty                          '+
+                 ' supp.sup_last_name, pur_ord.pco_id,pur_ord.pco_status,pur_ord.poc_status_reason FROM product_entry as pro_enty           '+
                  ' left join purchase_order as pur_ord on pur_ord.pco_cod = pro_enty.purchase_order_pco_cod   '+
                  ' left join stock as sto on sto.sto_cod = pro_enty.stock_sto_cod                             '+
                  ' left join supplier as supp on supp.sup_cod = pro_enty.supplier_sup_cod                     '+
@@ -892,7 +897,7 @@ begin
     looComboxEstoque.ItemIndex := -1;
     qry_stock.locate('codStock',qry_purchase_orderCodStock.AsString,[loCaseInsensitive, loPartialKey]);
     looComboxEstoque.Text := qry_stocksto_name.AsString;
-
+    looComboxEstoque.Enabled := False;
 
 
 end;
@@ -932,7 +937,7 @@ begin
 
    qry.Close;       //--SQL para retornar o registro inserido  acima (ultimo registro)----
    qry.SQL.Text:= ' SELECT pro_enty.*, hex(pde_cod)as CodProEnty, hex(pro_enty.stock_sto_cod)as CodStock, sto.sto_name, supp.sup_first_name, '+
-                  ' supp.sup_last_name, pur_ord.pco_id FROM product_entry as pro_enty                          '+
+                  ' supp.sup_last_name, pur_ord.pco_id,pur_ord.pco_status,pur_ord.poc_status_reason FROM product_entry as pro_enty           '+
                   ' left join purchase_order as pur_ord on pur_ord.pco_cod = pro_enty.purchase_order_pco_cod   '+
                   ' left join stock as sto on sto.sto_cod = pro_enty.stock_sto_cod                             '+
                   ' left join supplier as supp on supp.sup_cod = pro_enty.supplier_sup_cod                     '+

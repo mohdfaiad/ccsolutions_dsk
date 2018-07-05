@@ -33,7 +33,7 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  ACBrSocket, ACBrCEP, frxClass, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons;
+  ACBrSocket, ACBrCEP, frxClass, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons, frxDBSet;
 
 type
   Tfrm_product_class = class(Tfrm_form_default)
@@ -91,6 +91,8 @@ type
     Editar2: TMenuItem;
     Cancelar1: TMenuItem;
     cxGrid_1DBTableView1prc_status: TcxGridDBColumn;
+    frx_db_classe: TfrxDBDataset;
+    frx_db_sub_classe: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_deleteExecute(Sender: TObject);
@@ -105,7 +107,8 @@ type
     procedure act_delete_product_class_subExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
-    procedure edtSubClasseKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState); private
+    procedure edtSubClasseKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Action_printExecute(Sender: TObject); private
      prc_cod,prs_cod: string;
      iten_ID: Integer;
   public
@@ -196,7 +199,7 @@ begin
    dbComboxStatus.Enabled := True;
    prc_cod := qryCodProdClass.AsString;
    ExibirSubClasse;
-    HabiliTarButtun(true);
+   HabiliTarButtun(true);
 
 end;
 
@@ -208,6 +211,14 @@ begin
     dbComboxStatus.ItemIndex := 0;
     dbComboxStatus.Enabled := false;
     HabiliTarButtun(true);
+end;
+
+procedure Tfrm_product_class.Action_printExecute(Sender: TObject);
+begin
+  prc_cod := qryCodProdClass.AsString;
+  ExibirSubClasse;
+  inherited;
+
 end;
 
 procedure Tfrm_product_class.Action_saveExecute(Sender: TObject);

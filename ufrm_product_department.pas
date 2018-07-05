@@ -33,7 +33,7 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  ACBrSocket, ACBrCEP, frxClass, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons;
+  ACBrSocket, ACBrCEP, frxClass, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons, frxDBSet;
 
 type
   Tfrm_product_department = class(Tfrm_form_default)
@@ -86,6 +86,8 @@ type
     Excluir2: TMenuItem;
     Editar2: TMenuItem;
     Cancelar1: TMenuItem;
+    frx_db_departamento: TfrxDBDataset;
+    frx_db_secoes: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);

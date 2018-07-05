@@ -33,7 +33,7 @@ uses
   cxGridDBTableView, cxGrid, cxPC, ufrm_dm, Vcl.ComCtrls, dxCore, cxDateUtils, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxCheckBox, Vcl.StdCtrls, frxExportDOCX, frxClass, frxExportBaseDialog, frxExportPDF,
   Contract_User.Model, Contract_User.Dao, ACBrSocket, ACBrCEP, cxCheckListBox, AdvOfficeTabSet, Vcl.Grids, Vcl.DBGrids,
-  cxButtonEdit;
+  cxButtonEdit, frxDBSet;
 
 type
   Tfrm_contract_user = class(Tfrm_default)
@@ -120,6 +120,7 @@ type
     ResetarSenha1: TMenuItem;
     DesconectarUsurio1: TMenuItem;
     N4: TMenuItem;
+    frx_db_usuario: TfrxDBDataset;
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);

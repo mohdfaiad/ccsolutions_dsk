@@ -33,7 +33,7 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  ACBrSocket, ACBrCEP, frxClass;
+  ACBrSocket, ACBrCEP, frxClass, frxDBSet;
 
 type
   Tfrm_product_unit = class(Tfrm_form_default)
@@ -48,7 +48,6 @@ type
     cxGrid_1DBTableView1pru_dt_registration: TcxGridDBColumn;
     qrypru_cod: TBytesField;
     qrycontract_ctr_cod: TBytesField;
-    qrypru_id: TLongWordField;
     qrypru_status: TStringField;
     qrypru_deleted_at: TDateTimeField;
     dbComboxStatus: TcxDBComboBox;
@@ -58,6 +57,8 @@ type
     cxGrid_1DBTableView1pru_id: TcxGridDBColumn;
     cxGrid_1DBTableView1pru_name: TcxGridDBColumn;
     qryCodProdUnit: TStringField;
+    frx_db_product_unit: TfrxDBDataset;
+    qrypru_id: TLongWordField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);

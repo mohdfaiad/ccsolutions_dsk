@@ -35,10 +35,6 @@ object frm_form_default: Tfrm_form_default
     ClientRectTop = 28
     object cxTabSheet_1: TcxTabSheet
       Caption = 'Pesquisar'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object cxGrid_1: TcxGrid
         AlignWithMargins = True
         Left = 3

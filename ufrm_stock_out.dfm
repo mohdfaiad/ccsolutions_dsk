@@ -193,6 +193,10 @@ inherited frm_stock_out: Tfrm_stock_out
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Exames'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -226,7 +230,7 @@ inherited frm_stock_out: Tfrm_stock_out
                 Navigator.Buttons.Refresh.ImageIndex = 9
                 Navigator.Buttons.SaveBookmark.Visible = False
                 Navigator.Buttons.GotoBookmark.Visible = False
-                Navigator.Buttons.Filter.ImageIndex = 10
+                Navigator.Buttons.Filter.ImageIndex = 12
                 Navigator.Visible = True
                 DataController.DataSource = ds_qry_lab_request_itens
                 DataController.Summary.DefaultGroupSummaryItems = <>
@@ -2790,8 +2794,8 @@ inherited frm_stock_out: Tfrm_stock_out
   end
   object ds_enterprise: TDataSource
     DataSet = qry_enterprise
-    Left = 632
-    Top = 136
+    Left = 736
+    Top = 176
   end
   object qry_enterprise: TFDQuery
     AfterInsert = qryAfterInsert
@@ -2808,8 +2812,8 @@ inherited frm_stock_out: Tfrm_stock_out
         'and ent_id in (select ctr_usr_ent_ent_id  from contract_user_ent' +
         'erprise where ctr_usr_ent_user_id =:ctr_usr_id)'
       '')
-    Left = 592
-    Top = 136
+    Left = 744
+    Top = 224
     ParamData = <
       item
         Name = 'CTR_ID'
@@ -2855,8 +2859,8 @@ inherited frm_stock_out: Tfrm_stock_out
     SQL.Strings = (
       'select cli_id,cli_first_name,contract_ctr_id from client'
       'order by cli_first_name')
-    Left = 591
-    Top = 90
+    Left = 631
+    Top = 138
   end
   object ds_qry_client: TDataSource
     DataSet = qry_client
@@ -2876,8 +2880,8 @@ inherited frm_stock_out: Tfrm_stock_out
     SQL.Strings = (
       'select * from lab_request_itens'
       'where lab_request_req_id = :req_id')
-    Left = 679
-    Top = 138
+    Left = 895
+    Top = 170
     ParamData = <
       item
         Name = 'REQ_ID'
@@ -2931,8 +2935,8 @@ inherited frm_stock_out: Tfrm_stock_out
   end
   object ds_qry_lab_request_itens: TDataSource
     DataSet = qry_lab_request_itens
-    Left = 719
-    Top = 138
+    Left = 895
+    Top = 122
   end
   object qry_product_list: TFDQuery
     Active = True
@@ -2941,13 +2945,13 @@ inherited frm_stock_out: Tfrm_stock_out
       'select pro_id,pro_name from product'
       'where pro_type <> '#39'S'#39
       'order by pro_name ')
-    Left = 679
-    Top = 90
+    Left = 879
+    Top = 58
   end
   object ds_product_list: TDataSource
     DataSet = qry_product_list
-    Left = 719
-    Top = 90
+    Left = 879
+    Top = 18
   end
   object ds_qry_product_out: TDataSource
     Left = 303
@@ -2960,8 +2964,8 @@ inherited frm_stock_out: Tfrm_stock_out
     SQL.Strings = (
       'select * from stock_iten'
       'where stock_sto_id = 1')
-    Left = 695
-    Top = 234
+    Left = 623
+    Top = 450
     object qry_stock_itensti_id: TFDAutoIncField
       FieldName = 'sti_id'
       Origin = 'sti_id'
@@ -3012,8 +3016,8 @@ inherited frm_stock_out: Tfrm_stock_out
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select doc_id,contract_ctr_id from doctor'#10'where doc_status = '#39'A'#39)
-    Left = 687
-    Top = 186
+    Left = 911
+    Top = 274
     object qry_doctordoc_id: TFDAutoIncField
       FieldName = 'doc_id'
       Origin = 'doc_id'
@@ -3028,8 +3032,8 @@ inherited frm_stock_out: Tfrm_stock_out
   end
   object ds_qry_doctor: TDataSource
     DataSet = qry_doctor
-    Left = 727
-    Top = 186
+    Left = 911
+    Top = 226
   end
   object frxDBD_Estoque_Saida: TfrxDBDataset
     UserName = 'Estoque_Saida'

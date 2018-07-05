@@ -975,7 +975,7 @@ inherited frm_request: Tfrm_request
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
-    ReportOptions.LastChange = 43284.722093263900000000
+    ReportOptions.LastChange = 43285.646070636600000000
     Left = 500
     Top = 0
     Datasets = <
@@ -984,8 +984,8 @@ inherited frm_request: Tfrm_request
         DataSetName = 'enterprise'
       end
       item
-        DataSet = frx_db_iten
-        DataSetName = 'Itens'
+        DataSet = frx_db_ItensRequisicao
+        DataSetName = 'ItensRequisicao'
       end
       item
         DataSet = frx_db_parameter_stock
@@ -1010,24 +1010,441 @@ inherited frm_request: Tfrm_request
       TopMargin = 10.000000000000000000
       BottomMargin = 10.000000000000000000
       Frame.Typ = []
-      object ReportTitle1: TfrxReportTitle
+      object PageHeader1: TfrxPageHeader
         FillType = ftBrush
         Frame.Typ = []
-        Height = 132.283464570000000000
-        Top = 18.897650000000000000
+        Height = 158.740157480315000000
+        Top = 143.622140000000000000
         Width = 718.110700000000000000
-        object Shape2: TfrxShapeView
+        object Shape1: TfrxShapeView
           Align = baHidden
-          Top = 0.779530000000001000
+          Top = 41.236240000000000000
           Width = 718.110700000000000000
-          Height = 115.003003430000000000
+          Height = 96.105353430000000000
           Frame.Typ = [ftLeft]
         end
+        object Requisicaosto_name: TfrxMemoView
+          IndexTag = 1
+          Left = 109.606370000000000000
+          Top = 90.370130000000000000
+          Width = 597.165740000000000000
+          Height = 18.897650000000000000
+          DataField = 'sto_name'
+          DataSet = frx_db_Requisicao
+          DataSetName = 'Requisicao'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Requisicao."sto_name"]')
+        end
+        object RequisicaoFuncionario: TfrxMemoView
+          IndexTag = 1
+          Left = 109.606370000000000000
+          Top = 113.047310000000000000
+          Width = 597.165740000000000000
+          Height = 18.897650000000000000
+          DataField = 'Funcionario'
+          DataSet = frx_db_Requisicao
+          DataSetName = 'Requisicao'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Requisicao."Funcionario"]')
+        end
+        object Requisicaopco_status: TfrxMemoView
+          IndexTag = 1
+          Left = 109.606370000000000000
+          Top = 67.692950000000000000
+          Width = 68.031540000000000000
+          Height = 18.897650000000000000
+          DataField = 'pco_status'
+          DataSet = frx_db_Requisicao
+          DataSetName = 'Requisicao'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Requisicao."pco_status"]')
+        end
+        object Requisicaopoc_status_reason: TfrxMemoView
+          IndexTag = 1
+          Left = 297.700990000000000000
+          Top = 67.692950000000000000
+          Width = 408.189240000000000000
+          Height = 18.897650000000000000
+          DataField = 'poc_status_reason'
+          DataSet = frx_db_Requisicao
+          DataSetName = 'Requisicao'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Requisicao."poc_status_reason"]')
+        end
+        object Requisicaopco_id: TfrxMemoView
+          IndexTag = 1
+          Left = 2.779530000000000000
+          Top = 43.354360000000000000
+          Width = 585.827150000000000000
+          Height = 18.897650000000000000
+          DataSet = frx_db_Requisicao
+          DataSetName = 'Requisicao'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            
+              'N'#186' da Requisi'#231#227'o: [Requisicao."pco_id"] - Data: [Requisicao."pco' +
+              '_dt_registration"]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end>
+        end
+        object Memo12: TfrxMemoView
+          Left = 2.779530000000000000
+          Top = 20.559060000000000000
+          Width = 181.417440000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'REQUISI'#199#195'O')
+          ParentFont = False
+        end
+        object Memo17: TfrxMemoView
+          Left = 2.779530000000000000
+          Top = 67.692950000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Status:')
+          ParentFont = False
+        end
+        object Memo18: TfrxMemoView
+          Left = 2.779530000000000000
+          Top = 90.370130000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Estoque:')
+          ParentFont = False
+        end
+        object Memo19: TfrxMemoView
+          Left = 2.779530000000000000
+          Top = 113.047310000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Funcion'#225'rio:')
+          ParentFont = False
+        end
+        object Memo20: TfrxMemoView
+          Left = 196.535560000000000000
+          Top = 67.692950000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Obs. Status:')
+          ParentFont = False
+        end
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 26.456710000000000000
+        Top = 362.834880000000000000
+        Width = 718.110700000000000000
+        DataSet = frx_db_ItensRequisicao
+        DataSetName = 'ItensRequisicao'
+        RowCount = 0
+        object Memo1: TfrxMemoView
+          Left = 2.779530000000000000
+          Top = 3.000000000000000000
+          Width = 98.267780000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'C'#243'digo')
+          ParentFont = False
+        end
+        object Memo2: TfrxMemoView
+          Left = 128.504020000000000000
+          Top = 3.000000000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Produto')
+          ParentFont = False
+        end
+        object Memo3: TfrxMemoView
+          Left = 453.543600000000000000
+          Top = 3.000000000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Und')
+          ParentFont = False
+        end
+        object Memo11: TfrxMemoView
+          Left = 566.929500000000000000
+          Top = 3.000000000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Quantidade')
+          ParentFont = False
+        end
+        object Line1: TfrxLineView
+          Top = 24.677180000000000000
+          Width = 718.110700000000000000
+          Color = clBlack
+          Frame.Typ = []
+          Diagonal = True
+        end
+      end
+      object DetailData1: TfrxDetailData
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 411.968770000000000000
+        Width = 718.110700000000000000
+        DataSet = frx_db_ItensRequisicao
+        DataSetName = 'ItensRequisicao'
+        RowCount = 0
+        object ItensRequisicaopru_initials: TfrxMemoView
+          IndexTag = 1
+          Left = 453.543600000000000000
+          Top = 1.779530000000000000
+          Width = 98.267780000000000000
+          Height = 18.897650000000000000
+          DataField = 'pru_initials'
+          DataSet = frx_db_ItensRequisicao
+          DataSetName = 'ItensRequisicao'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[ItensRequisicao."pru_initials"]')
+        end
+        object ItensRequisicaopro_name: TfrxMemoView
+          IndexTag = 1
+          Left = 128.504020000000000000
+          Top = 1.779530000000000000
+          Width = 309.921460000000000000
+          Height = 18.897650000000000000
+          DataField = 'pro_name'
+          DataSet = frx_db_ItensRequisicao
+          DataSetName = 'ItensRequisicao'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[ItensRequisicao."pro_name"]')
+        end
+        object ItensRequisicaopoi_product_quant: TfrxMemoView
+          IndexTag = 1
+          Left = 566.929500000000000000
+          Top = 1.779530000000000000
+          Width = 105.826840000000000000
+          Height = 18.897650000000000000
+          DataField = 'poi_product_quant'
+          DataSet = frx_db_ItensRequisicao
+          DataSetName = 'ItensRequisicao'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[ItensRequisicao."poi_product_quant"]')
+        end
+        object ItensRequisicaopro_id: TfrxMemoView
+          IndexTag = 1
+          Left = 2.779530000000000000
+          Top = 1.779530000000000000
+          Width = 98.267780000000000000
+          Height = 18.897650000000000000
+          DataField = 'pro_id'
+          DataSet = frx_db_ItensRequisicao
+          DataSetName = 'ItensRequisicao'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[ItensRequisicao."pro_id"]')
+        end
+      end
+      object ReportSummary1: TfrxReportSummary
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 219.212740000000000000
+        Top = 495.118430000000000000
+        Width = 718.110700000000000000
+        object paramentrosprs_req_day_exp: TfrxMemoView
+          IndexTag = 1
+          Left = 2.779530000000000000
+          Top = 19.559060000000000000
+          Width = 710.551640000000000000
+          Height = 18.897650000000000000
+          DataSet = frx_db_parameter_stock
+          DataSetName = 'paramentros'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            
+              'Esta requisi'#231#227'o ter'#225' vencimento ap'#243's  [paramentros."prs_req_day_' +
+              'exp"]  dias, a contar da data da emiss'#227'o.')
+          ParentFont = False
+        end
+        object Line2: TfrxLineView
+          Top = 2.559060000000000000
+          Width = 718.110700000000000000
+          Color = clBlack
+          Frame.Typ = []
+          Diagonal = True
+        end
+        object RequisicaoFuncionario1: TfrxMemoView
+          IndexTag = 1
+          Left = 158.740260000000000000
+          Top = 143.976500000000000000
+          Width = 400.630180000000000000
+          Height = 49.133890000000000000
+          DataSet = frx_db_Requisicao
+          DataSetName = 'Requisicao'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[Requisicao."Funcionario"]'
+            'Requerente')
+          ParentFont = False
+        end
+        object Line3: TfrxLineView
+          Left = 137.708720000000000000
+          Top = 142.417440000000000000
+          Width = 445.984540000000000000
+          Color = clBlack
+          Frame.Typ = []
+          Diagonal = True
+        end
+      end
+      object PageFooter1: TfrxPageFooter
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 45.354360000000000000
+        Top = 737.008350000000000000
+        Width = 718.110700000000000000
+        object Memo21: TfrxMemoView
+          Left = 10.559060000000000000
+          Top = 2.779530000000000000
+          Width = 695.433520000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            
+              'Endere'#231'o: [enterprise."ent_add_bus_address"], n'#186' [enterprise."en' +
+              't_add_bus_number"] - [enterprise."ent_add_bus_street"]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+        object Memo22: TfrxMemoView
+          Left = 10.559060000000000000
+          Top = 25.236240000000000000
+          Width = 695.433520000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            
+              'CEP: [enterprise."ent_add_bus_zipcode"] - [enterprise."ent_add_b' +
+              'us_city"] - [enterprise."ent_add_bus_state"]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+      end
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+        Height = 102.047224570000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
         object Memo16: TfrxMemoView
-          Left = 139.000000000000000000
+          Left = 137.338590000000000000
           Top = 3.779530000000000000
-          Width = 26.456710000000000000
-          Height = 109.606370000000000000
+          Width = 7.559060000000000000
+          Height = 90.708720000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -1037,11 +1454,11 @@ inherited frm_request: Tfrm_request
           ParentFont = False
         end
         object Memo9: TfrxMemoView
-          Left = 165.456710000000000000
-          Top = 7.559060000000000000
+          Left = 148.456710000000000000
+          Top = 0.559060000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
-          DataField = 'ent_first_name'
+          DataField = 'ent_last_name'
           DataSet = frm_dm.frx_db_enterprise
           DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
@@ -1051,12 +1468,12 @@ inherited frm_request: Tfrm_request
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            '[enterprise."ent_first_name"]')
+            '[enterprise."ent_last_name"]')
           ParentFont = False
         end
         object Memo10: TfrxMemoView
-          Left = 165.456710000000000000
-          Top = 27.354360000000000000
+          Left = 148.456710000000000000
+          Top = 20.354360000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
           DataSet = frm_dm.frx_db_enterprise
@@ -1072,8 +1489,8 @@ inherited frm_request: Tfrm_request
           ParentFont = False
         end
         object Memo13: TfrxMemoView
-          Left = 165.456710000000000000
-          Top = 46.811070000000000000
+          Left = 148.456710000000000000
+          Top = 39.811070000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
           DataSet = frm_dm.frx_db_enterprise
@@ -1098,8 +1515,8 @@ inherited frm_request: Tfrm_request
             end>
         end
         object Memo15: TfrxMemoView
-          Left = 165.456710000000000000
-          Top = 66.811070000000000000
+          Left = 148.456710000000000000
+          Top = 59.811070000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
           DataSet = frm_dm.frx_db_enterprise
@@ -1124,8 +1541,8 @@ inherited frm_request: Tfrm_request
             end>
         end
         object Memo14: TfrxMemoView
-          Left = 165.456710000000000000
-          Top = 87.488250000000000000
+          Left = 148.456710000000000000
+          Top = 80.488250000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
           DataSet = frm_dm.frx_db_enterprise
@@ -1150,10 +1567,10 @@ inherited frm_request: Tfrm_request
             end>
         end
         object Picture1: TfrxPictureView
-          Left = 5.779530000000000000
-          Top = 3.779530000000000000
-          Width = 132.283464570000000000
-          Height = 94.488188980000000000
+          Left = 11.456710000000000000
+          Top = 6.559060000000000000
+          Width = 124.724409450000000000
+          Height = 86.929131420000000000
           DataField = 'ent_image1'
           DataSet = frm_dm.frx_db_enterprise
           DataSetName = 'enterprise'
@@ -1163,271 +1580,10 @@ inherited frm_request: Tfrm_request
           TransparentColor = clWhite
         end
       end
-      object PageHeader1: TfrxPageHeader
-        FillType = ftBrush
-        Frame.Typ = []
-        Height = 143.622047244094000000
-        Top = 173.858380000000000000
-        Width = 718.110700000000000000
-        object Shape1: TfrxShapeView
-          Align = baHidden
-          Top = 34.015770000000000000
-          Width = 718.110700000000000000
-          Height = 88.546293430000000000
-          Frame.Typ = [ftLeft]
-        end
-        object Requisicaosto_name: TfrxMemoView
-          IndexTag = 1
-          Left = 100.047310000000000000
-          Top = 68.811070000000000000
-          Width = 487.559370000000000000
-          Height = 18.897650000000000000
-          DataField = 'sto_name'
-          DataSet = frx_db_Requisicao
-          DataSetName = 'Requisicao'
-          Frame.Typ = []
-          Memo.UTF8W = (
-            '[Requisicao."sto_name"]')
-        end
-        object RequisicaoFuncionario: TfrxMemoView
-          IndexTag = 1
-          Left = 100.047310000000000000
-          Top = 93.267780000000000000
-          Width = 487.559370000000000000
-          Height = 18.897650000000000000
-          DataField = 'Funcionario'
-          DataSet = frx_db_Requisicao
-          DataSetName = 'Requisicao'
-          Frame.Typ = []
-          Memo.UTF8W = (
-            '[Requisicao."Funcionario"]')
-        end
-        object Requisicaopco_id: TfrxMemoView
-          IndexTag = 1
-          Left = 1.779530000000000000
-          Top = 45.354360000000000000
-          Width = 585.827150000000000000
-          Height = 18.897650000000000000
-          DataSet = frx_db_Requisicao
-          DataSetName = 'Requisicao'
-          Frame.Typ = []
-          Memo.UTF8W = (
-            
-              'N'#186' da Riquisi'#231#227'o: [Requisicao."pco_id"] - Emiss'#227'o: [Requisicao."' +
-              'pco_dt_registration"]')
-        end
-        object Memo1: TfrxMemoView
-          Left = 1.779530000000000000
-          Top = 11.338590000000000000
-          Width = 294.803340000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -16
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          Frame.Typ = []
-          Memo.UTF8W = (
-            'REQUISI'#199#195'O')
-          ParentFont = False
-        end
-        object Memo2: TfrxMemoView
-          Left = 1.779530000000000000
-          Top = 68.811070000000000000
-          Width = 90.708720000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          Frame.Typ = []
-          Memo.UTF8W = (
-            'Estoque:')
-          ParentFont = False
-        end
-        object Memo3: TfrxMemoView
-          Left = 1.779530000000000000
-          Top = 93.267780000000000000
-          Width = 90.708720000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          Frame.Typ = []
-          Memo.UTF8W = (
-            'Funcion'#225'rio:')
-          ParentFont = False
-        end
-      end
-      object MasterData1: TfrxMasterData
-        FillType = ftBrush
-        Frame.Typ = []
-        Height = 37.795300000000000000
-        Top = 377.953000000000000000
-        Width = 718.110700000000000000
-        DataSet = frx_db_iten
-        DataSetName = 'Itens'
-        RowCount = 0
-        object Memo11: TfrxMemoView
-          Left = 1.779530000000000000
-          Top = 14.559060000000000000
-          Width = 94.488250000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          Frame.Typ = []
-          Memo.UTF8W = (
-            'C'#243'digo')
-          ParentFont = False
-        end
-        object Memo12: TfrxMemoView
-          Left = 113.385900000000000000
-          Top = 14.559060000000000000
-          Width = 222.992270000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          Frame.Typ = []
-          Memo.UTF8W = (
-            'Produto')
-          ParentFont = False
-        end
-        object Memo17: TfrxMemoView
-          Left = 457.323130000000000000
-          Top = 14.559060000000000000
-          Width = 94.488250000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          Frame.Typ = []
-          Memo.UTF8W = (
-            'UND')
-          ParentFont = False
-        end
-        object Memo18: TfrxMemoView
-          Left = 569.504330000000000000
-          Top = 14.559060000000000000
-          Width = 124.724490000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          Frame.Typ = []
-          Memo.UTF8W = (
-            'Quantidade')
-          ParentFont = False
-        end
-        object Line1: TfrxLineView
-          Top = 35.456710000000000000
-          Width = 718.110700000000000000
-          Color = clBlack
-          Frame.Typ = []
-          Diagonal = True
-        end
-      end
-      object DetailData1: TfrxDetailData
-        FillType = ftBrush
-        Frame.Typ = []
-        Height = 22.677180000000000000
-        Top = 438.425480000000000000
-        Width = 718.110700000000000000
-        DataSet = frx_db_iten
-        DataSetName = 'Itens'
-        RowCount = 0
-        object Itensproduct_pro_id: TfrxMemoView
-          IndexTag = 1
-          Left = 1.779530000000000000
-          Top = 2.000000000000000000
-          Width = 94.488250000000000000
-          Height = 18.897650000000000000
-          DataField = 'product_pro_id'
-          DataSet = frx_db_iten
-          DataSetName = 'Itens'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          Memo.UTF8W = (
-            '[Itens."product_pro_id"]')
-          ParentFont = False
-        end
-        object Itenspro_name: TfrxMemoView
-          IndexTag = 1
-          Left = 113.385900000000000000
-          Top = 2.000000000000000000
-          Width = 332.598640000000000000
-          Height = 18.897650000000000000
-          DataField = 'pro_name'
-          DataSet = frx_db_iten
-          DataSetName = 'Itens'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          Memo.UTF8W = (
-            '[Itens."pro_name"]')
-          ParentFont = False
-        end
-        object Itenspru_initials: TfrxMemoView
-          IndexTag = 1
-          Left = 457.323130000000000000
-          Top = 2.000000000000000000
-          Width = 102.047310000000000000
-          Height = 18.897650000000000000
-          DataField = 'pru_initials'
-          DataSet = frx_db_iten
-          DataSetName = 'Itens'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          Memo.UTF8W = (
-            '[Itens."pru_initials"]')
-          ParentFont = False
-        end
-        object Itenspoi_product_quant: TfrxMemoView
-          IndexTag = 1
-          Left = 569.504330000000000000
-          Top = 2.000000000000000000
-          Width = 124.724490000000000000
-          Height = 18.897650000000000000
-          DataField = 'poi_product_quant'
-          DataSet = frx_db_iten
-          DataSetName = 'Itens'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          Memo.UTF8W = (
-            '[Itens."poi_product_quant"]')
-          ParentFont = False
-        end
-      end
     end
   end
   object qry_stock: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     Connection = frm_dm.connCCS
     SQL.Strings = (
@@ -1497,8 +1653,8 @@ inherited frm_request: Tfrm_request
       'pru_initials=pru_initials')
     DataSet = qry_purchase_order_iten
     BCDToCurrency = False
-    Left = 436
-    Top = 2
+    Left = 804
+    Top = 202
   end
   object qry_parameter_stock: TFDQuery
     Active = True
@@ -1545,8 +1701,8 @@ inherited frm_request: Tfrm_request
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
-        'select purchase_order_iten.*, hex(poi_cod)as CodItens, pro_name,' +
-        'pru_initials from purchase_order_iten'#13#10#10
+        'select purchase_order_iten.*, hex(poi_cod)as CodItens,pro_id,pro' +
+        '_name,pru_initials from purchase_order_iten'#13#10#10
       ''
       'left join product on product_pro_cod =  pro_cod'#10
       'left join product_unit on product_unit_pru_cod = pru_cod'
@@ -1603,6 +1759,13 @@ inherited frm_request: Tfrm_request
       AutoGenerateValue = arDefault
       FieldName = 'poi_dt_registration'
       Origin = 'poi_dt_registration'
+    end
+    object qry_purchase_order_itenpro_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'pro_id'
+      Origin = 'pro_id'
+      ProviderFlags = []
+      ReadOnly = True
     end
     object qry_purchase_order_itenpro_name: TStringField
       AutoGenerateValue = arDefault
@@ -1672,5 +1835,13 @@ inherited frm_request: Tfrm_request
     DataSet = qry
     BCDToCurrency = False
     Left = 464
+  end
+  object frx_db_ItensRequisicao: TfrxDBDataset
+    UserName = 'ItensRequisicao'
+    CloseDataSource = False
+    DataSet = qry_purchase_order_iten
+    BCDToCurrency = False
+    Left = 808
+    Top = 272
   end
 end

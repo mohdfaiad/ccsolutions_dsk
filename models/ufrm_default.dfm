@@ -232,6 +232,7 @@ object frm_default: Tfrm_default
       Caption = 'Imprimir'
       Hint = 'Imprimir Relat'#243'rio'
       ImageIndex = 12
+      OnExecute = Action_printExecute
     end
     object Action_first: TAction
       Category = 'Manager'
@@ -364,7 +365,7 @@ object frm_default: Tfrm_default
       CaptionButtons = <>
       DockControl = bardck_1
       DockedDockControl = bardck_1
-      DockedLeft = 336
+      DockedLeft = 396
       DockedTop = 28
       FloatLeft = 1042
       FloatTop = 8
@@ -492,7 +493,7 @@ object frm_default: Tfrm_default
       CaptionButtons = <>
       DockControl = bardck_1
       DockedDockControl = bardck_1
-      DockedLeft = 260
+      DockedLeft = 320
       DockedTop = 28
       FloatLeft = 1042
       FloatTop = 8
@@ -578,9 +579,13 @@ object frm_default: Tfrm_default
       Category = 0
       Hint = 'Relat'#243'rios'
       Visible = ivAlways
+      ShowCaption = True
       Width = 184
       PropertiesClassName = 'TcxShellComboBoxProperties'
       Properties.DropDownWidth = 350
+      Properties.IncrementalSearch = True
+      Properties.Root.BrowseFolder = bfCustomPath
+      Properties.ViewOptions = [scvoShowFiles, scvoShowZipFilesWithFolders]
     end
   end
   object popmenu_1: TPopupMenu

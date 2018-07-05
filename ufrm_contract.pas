@@ -33,7 +33,7 @@ uses
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   ACBrBase, ACBrEnterTab, cxShellComboBox, QExport4Dialog, cxBarEditItem,
-  dxBarExtItems, QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, Vcl.StdCtrls;
+  dxBarExtItems, QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, Vcl.StdCtrls, frxDBSet;
 
 type
   Tfrm_contract = class(Tfrm_form_default)
@@ -66,6 +66,7 @@ type
     cxDBDateEdit1: TcxDBDateEdit;
     dxLayoutItem7: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    frx_db_contrato: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);

@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxShellComboBox, QExport4Dialog, cxBarEditItem, dxBarExtItems,
   QImport3Wizard, cxImage, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons,
-  Vcl.ExtDlgs, Vcl.DBCtrls, ACBrSocket, ACBrCEP, frxClass,cxGeometry;
+  Vcl.ExtDlgs, Vcl.DBCtrls, ACBrSocket, ACBrCEP, frxClass,cxGeometry, frxDBSet;
 
 type
   Tfrm_enterprise = class(Tfrm_form_default)
@@ -167,6 +167,7 @@ type
     qryent_deleted_at: TDateTimeField;
     qryent_dt_registration: TDateTimeField;
     qryent_image1: TBlobField;
+    frx_db_empresa: TfrxDBDataset;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_insert_imageExecute(Sender: TObject);
     procedure Action_delete_imageExecute(Sender: TObject);

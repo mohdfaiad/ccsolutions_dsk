@@ -34,7 +34,7 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket,
-  ACBrCEP, frxClass, Vcl.ExtCtrls;
+  ACBrCEP, frxClass, Vcl.ExtCtrls, frxDBSet;
 
 type
   Tfrm_brand = class(Tfrm_form_default)
@@ -55,6 +55,7 @@ type
     dbComboxStatus: TcxDBComboBox;
     dxLayoutItem4: TdxLayoutItem;
     qryCodBrand: TStringField;
+    frx_db_Band: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);

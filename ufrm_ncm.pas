@@ -34,7 +34,7 @@ uses
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   ACBrSocket, ACBrNCMs, cxMemo, cxButtonEdit, ACBrCEP, frxClass, Vcl.Buttons,
-  Vcl.Grids, Vcl.DBGrids;
+  Vcl.Grids, Vcl.DBGrids, frxDBSet;
 
 type
   Tfrm_ncm = class(Tfrm_form_default)
@@ -59,6 +59,7 @@ type
     dxLayoutItem5: TdxLayoutItem;
     cxGrid_1DBTableView1ncm_code: TcxGridDBColumn;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    frx_db_NCM: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_saveExecute(Sender: TObject);

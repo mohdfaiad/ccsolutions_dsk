@@ -27,8 +27,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
     ClientRectBottom = 579
     ClientRectRight = 1012
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 1010
       ExplicitHeight = 551
       inherited cxGrid_1: TcxGrid
@@ -798,7 +796,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
-    ReportOptions.LastChange = 43284.642250914360000000
+    ReportOptions.LastChange = 43286.592825544000000000
     Left = 311
     Top = 0
     Datasets = <
@@ -829,174 +827,21 @@ inherited frm_purchase_order: Tfrm_purchase_order
       TopMargin = 10.000000000000000000
       BottomMargin = 10.000000000000000000
       Frame.Typ = []
-      object ReportTitle1: TfrxReportTitle
-        FillType = ftBrush
-        Frame.Typ = []
-        Height = 132.283464570000000000
-        Top = 18.897650000000000000
-        Width = 718.110700000000000000
-        object Shape2: TfrxShapeView
-          Align = baHidden
-          Top = 0.779530000000001000
-          Width = 718.110700000000000000
-          Height = 115.003003430000000000
-          Frame.Typ = [ftLeft]
-        end
-        object Memo16: TfrxMemoView
-          Left = 139.000000000000000000
-          Top = 3.779530000000000000
-          Width = 26.456710000000000000
-          Height = 109.606370000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          ParentFont = False
-        end
-        object Memo9: TfrxMemoView
-          Left = 165.456710000000000000
-          Top = 7.559060000000000000
-          Width = 570.709030000000000000
-          Height = 18.897650000000000000
-          DataField = 'ent_first_name'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -16
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          Frame.Typ = []
-          Memo.UTF8W = (
-            '[enterprise."ent_first_name"]')
-          ParentFont = False
-        end
-        object Memo10: TfrxMemoView
-          Left = 165.456710000000000000
-          Top = 27.354360000000000000
-          Width = 570.709030000000000000
-          Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          Memo.UTF8W = (
-            'CNPJ:       [enterprise."ent_cnpj"]')
-          ParentFont = False
-        end
-        object Memo13: TfrxMemoView
-          Left = 165.456710000000000000
-          Top = 46.811070000000000000
-          Width = 570.709030000000000000
-          Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          Memo.UTF8W = (
-            
-              'Endere'#231'o: [enterprise."ent_add_bus_address"], n'#186' [enterprise."en' +
-              't_add_bus_number"], [enterprise."ent_add_bus_street"]')
-          ParentFont = False
-          Formats = <
-            item
-            end
-            item
-            end
-            item
-            end>
-        end
-        object Memo15: TfrxMemoView
-          Left = 165.456710000000000000
-          Top = 66.811070000000000000
-          Width = 570.709030000000000000
-          Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          Memo.UTF8W = (
-            
-              'CEP:        [enterprise."ent_add_bus_zipcode"] - [enterprise."en' +
-              't_add_bus_city"] - [enterprise."ent_add_bus_state"]')
-          ParentFont = False
-          Formats = <
-            item
-            end
-            item
-            end
-            item
-            end>
-        end
-        object Memo14: TfrxMemoView
-          Left = 165.456710000000000000
-          Top = 87.488250000000000000
-          Width = 570.709030000000000000
-          Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          Memo.UTF8W = (
-            
-              'Fone:       [enterprise."ent_phone1"] / [enterprise."ent_phone2"' +
-              '] - E-mail : [enterprise."ent_email"]')
-          ParentFont = False
-          Formats = <
-            item
-            end
-            item
-            end
-            item
-            end>
-        end
-        object Picture1: TfrxPictureView
-          Left = 5.779530000000000000
-          Top = 3.779530000000000000
-          Width = 132.283464570000000000
-          Height = 94.488188980000000000
-          DataField = 'ent_image1'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
-          Frame.Typ = []
-          HightQuality = False
-          Transparent = False
-          TransparentColor = clWhite
-        end
-      end
       object PageHeader1: TfrxPageHeader
         FillType = ftBrush
         Frame.Typ = []
-        Height = 117.165354330709000000
-        Top = 173.858380000000000000
+        Height = 158.740157480000000000
+        Top = 143.622140000000000000
         Width = 718.110700000000000000
         object Shape1: TfrxShapeView
-          Top = 0.436800019999993000
+          Top = 37.436800020000000000
           Width = 718.110700000000000000
           Height = 99.830979980000000000
           Frame.Typ = []
         end
         object Memo2: TfrxMemoView
-          Left = 6.338590000000000000
-          Top = 73.708720000000000000
+          Left = 1.889763780000000000
+          Top = 110.708720000000000000
           Width = 90.708720000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1010,8 +855,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
           ParentFont = False
         end
         object Memo3: TfrxMemoView
-          Left = 6.338590000000000000
-          Top = 27.015770000000000000
+          Left = 1.889763780000000000
+          Top = 64.015770000000000000
           Width = 90.708720000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1026,8 +871,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
         end
         object purchase_orderpco_status: TfrxMemoView
           IndexTag = 1
-          Left = 106.606370000000000000
-          Top = 27.015770000000000000
+          Left = 103.606370000000000000
+          Top = 64.015770000000000000
           Width = 60.472480000000000000
           Height = 18.897650000000000000
           DataField = 'pco_status'
@@ -1044,9 +889,9 @@ inherited frm_purchase_order: Tfrm_purchase_order
           ParentFont = False
         end
         object Memo7: TfrxMemoView
-          Left = 6.338590000000000000
-          Top = 2.779529999999990000
-          Width = 340.157700000000000000
+          Left = 1.889763780000000000
+          Top = 39.779530000000000000
+          Width = 710.551640000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -1067,8 +912,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
         end
         object purchase_orderFuncionario: TfrxMemoView
           IndexTag = 1
-          Left = 106.606370000000000000
-          Top = 73.708720000000000000
+          Left = 103.606370000000000000
+          Top = 110.708720000000000000
           Width = 608.504330000000000000
           Height = 18.897650000000000000
           DataField = 'Funcionario'
@@ -1080,8 +925,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
         end
         object purchase_ordersto_name: TfrxMemoView
           IndexTag = 1
-          Left = 106.606370000000000000
-          Top = 50.692950000000000000
+          Left = 103.606370000000000000
+          Top = 87.692950000000000000
           Width = 608.504330000000000000
           Height = 18.897650000000000000
           DataField = 'sto_name'
@@ -1092,8 +937,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
             '[purchase_order."sto_name"]')
         end
         object Memo8: TfrxMemoView
-          Left = 6.338590000000000000
-          Top = 50.692950000000000000
+          Left = 1.889763780000000000
+          Top = 87.692950000000000000
           Width = 90.708720000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1108,9 +953,9 @@ inherited frm_purchase_order: Tfrm_purchase_order
         end
         object purchase_orderpoc_status_reason: TfrxMemoView
           IndexTag = 1
-          Left = 317.480520000000000000
-          Top = 27.015770000000000000
-          Width = 396.850650000000000000
+          Left = 287.480520000000000000
+          Top = 64.015770000000000000
+          Width = 427.086890000000000000
           Height = 18.897650000000000000
           DataField = 'poc_status_reason'
           DataSet = frxDBD_Pedido_Compra
@@ -1120,8 +965,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
             '[purchase_order."poc_status_reason"]')
         end
         object Memo17: TfrxMemoView
-          Left = 215.433210000000000000
-          Top = 27.015770000000000000
+          Left = 189.433210000000000000
+          Top = 64.015770000000000000
           Width = 90.708720000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1134,18 +979,33 @@ inherited frm_purchase_order: Tfrm_purchase_order
             'Obs. Status:')
           ParentFont = False
         end
+        object Memo19: TfrxMemoView
+          Left = 3.338590000000000000
+          Top = 17.000000000000000000
+          Width = 196.535560000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'PEDIDO DE COMPRA')
+          ParentFont = False
+        end
       end
       object MasterData1: TfrxMasterData
         FillType = ftBrush
         Frame.Typ = []
         Height = 34.015770000000000000
-        Top = 351.496290000000000000
+        Top = 362.834880000000000000
         Width = 718.110700000000000000
         DataSet = frxDBD_Pedido_Itens
         DataSetName = 'purchase_Itens'
         RowCount = 0
         object Memo4: TfrxMemoView
-          Left = 6.338590000000000000
+          Left = 1.889763780000000000
           Top = 10.559060000000000000
           Width = 86.929190000000000000
           Height = 18.897650000000000000
@@ -1168,7 +1028,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
           Diagonal = True
         end
         object Memo5: TfrxMemoView
-          Left = 106.385900000000000000
+          Left = 104.385900000000000000
           Top = 10.559060000000000000
           Width = 181.417440000000000000
           Height = 18.897650000000000000
@@ -1184,7 +1044,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
         end
         object Memo6: TfrxMemoView
           Left = 590.590910000000000000
-          Top = 10.559059999999990000
+          Top = 10.559060000000000000
           Width = 102.047310000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1217,15 +1077,15 @@ inherited frm_purchase_order: Tfrm_purchase_order
         FillType = ftBrush
         Frame.Typ = []
         Height = 22.677180000000000000
-        Top = 408.189240000000000000
+        Top = 419.527830000000000000
         Width = 718.110700000000000000
         DataSet = frxDBD_Pedido_Itens
         DataSetName = 'purchase_Itens'
         RowCount = 0
         object purchase_Itensproduct_pro_id: TfrxMemoView
           IndexTag = 1
-          Left = 6.338590000000000000
-          Top = 1.779530000000020000
+          Left = 1.889763780000000000
+          Top = 1.779530000000000000
           Width = 86.929190000000000000
           Height = 18.897650000000000000
           DataField = 'pro_id'
@@ -1237,8 +1097,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
         end
         object purchase_ItensProduto: TfrxMemoView
           IndexTag = 1
-          Left = 106.385900000000000000
-          Top = 1.779530000000020000
+          Left = 104.385900000000000000
+          Top = 1.779530000000000000
           Width = 343.937230000000000000
           Height = 18.897650000000000000
           DataField = 'pro_name'
@@ -1251,7 +1111,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
         object purchase_Itenspru_initials: TfrxMemoView
           IndexTag = 1
           Left = 472.441250000000000000
-          Top = 1.779530000000022000
+          Top = 1.779530000000020000
           Width = 98.267780000000000000
           Height = 18.897650000000000000
           DataField = 'pru_initials'
@@ -1264,7 +1124,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
         object purchase_Itenspoi_product_quant: TfrxMemoView
           IndexTag = 1
           Left = 590.590910000000000000
-          Top = 1.779530000000022000
+          Top = 1.779530000000020000
           Width = 117.165430000000000000
           Height = 18.897650000000000000
           DataField = 'poi_product_quant'
@@ -1279,7 +1139,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
         FillType = ftBrush
         Frame.Typ = []
         Height = 177.637910000000000000
-        Top = 491.338900000000000000
+        Top = 502.677490000000000000
         Width = 718.110700000000000000
         object Line2: TfrxLineView
           Left = 3.779530000000000000
@@ -1334,6 +1194,209 @@ inherited frm_purchase_order: Tfrm_purchase_order
             '[purchase_order."Funcionario"]'
             'Requerente')
           ParentFont = False
+        end
+      end
+      object PageFooter1: TfrxPageFooter
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 45.354360000000000000
+        Top = 702.992580000000000000
+        Width = 718.110700000000000000
+        object Memo20: TfrxMemoView
+          Left = 10.559060000000000000
+          Top = 2.779530000000000000
+          Width = 695.433520000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            
+              'Endere'#231'o: [enterprise."ent_add_bus_address"], n'#186' [enterprise."en' +
+              't_add_bus_number"] - [enterprise."ent_add_bus_street"]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+        object Memo21: TfrxMemoView
+          Left = 10.559060000000000000
+          Top = 25.236240000000000000
+          Width = 695.433520000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            
+              'CEP: [enterprise."ent_add_bus_zipcode"] - [enterprise."ent_add_b' +
+              'us_city"] - [enterprise."ent_add_bus_state"]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+      end
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+        Height = 102.047224570000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object Memo16: TfrxMemoView
+          Left = 137.338590000000000000
+          Top = 3.779530000000000000
+          Width = 7.559060000000000000
+          Height = 90.708720000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          ParentFont = False
+        end
+        object Memo9: TfrxMemoView
+          Left = 148.456710000000000000
+          Top = 0.559060000000000000
+          Width = 570.709030000000000000
+          Height = 18.897650000000000000
+          DataField = 'ent_last_name'
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[enterprise."ent_last_name"]')
+          ParentFont = False
+        end
+        object Memo10: TfrxMemoView
+          Left = 148.456710000000000000
+          Top = 20.354360000000000000
+          Width = 570.709030000000000000
+          Height = 18.897650000000000000
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'CNPJ:       [enterprise."ent_cnpj"]')
+          ParentFont = False
+        end
+        object Memo13: TfrxMemoView
+          Left = 148.456710000000000000
+          Top = 39.811070000000000000
+          Width = 570.709030000000000000
+          Height = 18.897650000000000000
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            
+              'Endere'#231'o: [enterprise."ent_add_bus_address"], n'#186' [enterprise."en' +
+              't_add_bus_number"], [enterprise."ent_add_bus_street"]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+        object Memo15: TfrxMemoView
+          Left = 148.456710000000000000
+          Top = 59.811070000000000000
+          Width = 570.709030000000000000
+          Height = 18.897650000000000000
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            
+              'CEP:        [enterprise."ent_add_bus_zipcode"] - [enterprise."en' +
+              't_add_bus_city"] - [enterprise."ent_add_bus_state"]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+        object Memo14: TfrxMemoView
+          Left = 148.456710000000000000
+          Top = 80.488250000000000000
+          Width = 570.709030000000000000
+          Height = 18.897650000000000000
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            
+              'Fone:       [enterprise."ent_phone1"] / [enterprise."ent_phone2"' +
+              '] - E-mail : [enterprise."ent_email"]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+        object Picture1: TfrxPictureView
+          Left = 11.456710000000000000
+          Top = 6.559060000000000000
+          Width = 124.724409450000000000
+          Height = 86.929131420000000000
+          DataField = 'ent_image1'
+          DataSet = frm_dm.frx_db_enterprise
+          DataSetName = 'enterprise'
+          Frame.Typ = []
+          HightQuality = False
+          Transparent = False
+          TransparentColor = clWhite
         end
       end
     end
@@ -1589,8 +1652,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Top = 96
   end
   object pupMenuPedido: TPopupMenu
-    Left = 855
-    Top = 98
+    Left = 903
+    Top = 50
     object Excluir2: TMenuItem
       Action = act_delete_purchase_order_iten
       Caption = 'Excluir'

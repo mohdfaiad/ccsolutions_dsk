@@ -160,6 +160,8 @@ type
     qry_parameter_stockprs_id: TLongWordField;
     qry_parameter_stockprs_req_day_exp: TByteField;
     frx_db_Requisicao: TfrxDBDataset;
+    frx_db_ItensRequisicao: TfrxDBDataset;
+    qry_purchase_order_itenpro_id: TLongWordField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);

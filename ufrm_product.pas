@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxCurrencyEdit, cxMemo, cxShellComboBox, QExport4Dialog, cxBarEditItem,
   dxBarExtItems, QImport3Wizard, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, ACBrSocket, ACBrCEP, frxClass, frxDBSet;
+  cxDBLookupComboBox, ACBrSocket, ACBrCEP, frxClass, frxDBSet, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons;
 
 type
   Tfrm_product = class(Tfrm_form_default)
@@ -94,16 +94,9 @@ type
     cxGrid1: TcxGrid;
     dxLayoutItem20: TdxLayoutItem;
     ds_product_input: TDataSource;
-    cxGrid1DBTableView1pri_id: TcxGridDBColumn;
-    cxGrid1DBTableView1product_pro_id: TcxGridDBColumn;
-    cxGrid1DBTableView1product_pro_id_input: TcxGridDBColumn;
-    cxGrid1DBTableView1pri_dt_registration: TcxGridDBColumn;
     qry_product_list_input: TFDQuery;
-    qry_product_list_inputpro_name: TStringField;
     ds_product_list_input: TDataSource;
     frxDBD_Produto: TfrxDBDataset;
-    frxReport1: TfrxReport;
-    qry_product_list_inputpro_id: TLongWordField;
     qrypro_cod: TBytesField;
     qrycontract_ctr_cod: TBytesField;
     qrymaterial_mat_cod: TBytesField;
@@ -284,6 +277,47 @@ type
     qryncm_description: TMemoField;
     qryCodClass: TStringField;
     qryCodSub_Class: TStringField;
+    qry_product_list_inputproCod: TStringField;
+    qry_product_list_inputpro_name: TStringField;
+    qry_product_list_inputpro_cod: TBytesField;
+    qry_product_list_inputcontract_ctr_cod: TBytesField;
+    qry_product_list_inputpru_name: TStringField;
+    qry_product_list_inputpru_initials: TStringField;
+    qry_product_list_inputpro_id: TLongWordField;
+    qry_product_inputpri_cod: TBytesField;
+    qry_product_inputproduct_pro_cod: TBytesField;
+    qry_product_inputpri_id: TLongWordField;
+    qry_product_inputpri_deleted_at: TDateTimeField;
+    qry_product_inputpri_dt_registration: TDateTimeField;
+    qry_product_inputCodInput: TStringField;
+    qry_product_inputpro_id: TLongWordField;
+    qry_product_inputpro_name: TStringField;
+    qry_product_inputpru_name: TStringField;
+    qry_product_inputpru_initials: TStringField;
+    cxGrid1DBTableView1pri_id: TcxGridDBColumn;
+    cxGrid1DBTableView1pri_dt_registration: TcxGridDBColumn;
+    cxGrid1DBTableView1pro_name: TcxGridDBColumn;
+    looComboxProduto: TcxLookupComboBox;
+    dxLayoutItem11: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
+    btnEditar_Item: TcxButton;
+    dxLayoutItem24: TdxLayoutItem;
+    btnCancel_Item: TcxButton;
+    dxLayoutItem25: TdxLayoutItem;
+    btnSalvar_Item: TcxButton;
+    dxLayoutItem26: TdxLayoutItem;
+    Action_product_input: TActionList;
+    act_save_product_input: TAction;
+    act_edit_product_input: TAction;
+    act_cancel_product_input: TAction;
+    act_delete_product_input: TAction;
+    pupMenu_Product_Input: TPopupMenu;
+    Excluir2: TMenuItem;
+    Editar2: TMenuItem;
+    Cancelar1: TMenuItem;
+    btnExcluir_Item: TcxButton;
+    dxLayoutItem27: TdxLayoutItem;
+    qry_product_inputCodProduct: TStringField;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
@@ -307,14 +341,21 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
     procedure cxTabSheet_3Show(Sender: TObject);
+    procedure act_save_product_inputExecute(Sender: TObject);
+    procedure act_edit_product_inputExecute(Sender: TObject);
+    procedure act_cancel_product_inputExecute(Sender: TObject);
+    procedure act_delete_product_inputExecute(Sender: TObject);
   private
     { Private declarations }
-     pro_cod: string;
+     pro_cod,pri_cod: string;
+     pri_id: Integer;
 
   public
     procedure limpaCache(Sender:TObject);
 
     procedure ExibirRegistros;
+    procedure HabiliTarButtun(Status: Boolean);
+
   end;
 
 var
@@ -334,14 +375,39 @@ begin
 
  if (qrypro_id.AsInteger = 0) then
   begin
-   with frm_dm.qry2,sql do
-    begin
-     Close;
-     Text:= ' delete from product ' +
-       ' where pro_cod = unhex('+ QuotedStr(pro_cod)+')' ;
-     Prepare;
-     ExecSQL;
-    end;
+  if (qry_product_input.RecordCount >0) then
+   begin
+    with frm_dm.qry2,sql do
+     begin
+
+      Close;
+      Text:= ' delete from product_input ' +
+             ' where product_pro_cod = unhex('+ QuotedStr(pro_cod)+')' ;
+      Prepare;
+      ExecSQL;
+
+
+      Close;
+      Text:= ' delete from product ' +
+             ' where pro_cod = unhex('+ QuotedStr(pro_cod)+')' ;
+      Prepare;
+      ExecSQL;
+
+     end;
+   end else
+     begin
+      with frm_dm.qry2,sql do
+       begin
+
+        Close;
+         Text:= ' delete from product ' +
+                ' where pro_cod = unhex('+ QuotedStr(pro_cod)+')' ;
+         Prepare;
+         ExecSQL;
+
+       end;
+
+     end;
   end;
 
   ExibirRegistros;
@@ -383,6 +449,12 @@ begin
    qry_product_class_sub.Locate('CodClassSub',qryCodSub_Class.AsString,[loCaseInsensitive, loPartialKey]);
    looComboxSub_Classe.Text := qry_product_class_subprs_name.AsString;
 
+    btnSalvar_Item.Tag := 1; // Para Inserir
+    qry_product_input.Close;
+    qry_product_input.Open;
+
+    HabiliTarButtun(true);
+
 end;
 
 procedure Tfrm_product.Action_insertExecute(Sender: TObject);
@@ -398,6 +470,12 @@ begin
   looComboxClasse.ItemIndex     := -1;
   looComboxSub_Classe.ItemIndex := -1;
   dbComboxStatus.Enabled :=False;
+
+   btnSalvar_Item.Tag := 1; // Para Inserir
+   qry_product_input.Close;
+   qry_product_input.Open;
+
+   HabiliTarButtun(true);
 
 end;
 
@@ -450,6 +528,132 @@ if qrypro_id.AsInteger = 0 then
    qry.Post;
    qry.ApplyUpdates(0);
    ExibirRegistros;
+
+end;
+
+procedure Tfrm_product.act_cancel_product_inputExecute(Sender: TObject);
+begin
+    btnSalvar_Item.Tag := 1;
+    looComboxProduto.Clear;
+    cxGrid1.SetFocus;
+    HabiliTarButtun(true);
+
+end;
+
+procedure Tfrm_product.act_delete_product_inputExecute(Sender: TObject);
+begin
+  //--Condição para só deixar Excluir produtos em insumo de Produtos ATIVOS
+   if (qrypro_status.OldValue  <> 'A') and ((qrypro_status.Value  <> 'A') or (qrypro_status.Value  = ''))  then
+   begin
+     Application.MessageBox('Só é permitido (Excluir), insumo de produto esteja ativo !','AVISO DO PEDIDO DE COMPRA', MB_ICONINFORMATION + MB_OK);
+     looComboxProduto.Clear;
+     looComboxProduto.SetFocus;
+     exit;
+   end;
+
+  if Application.MessageBox('Deseja excluir este insumo do produto ?','AVISO DE EXCLUSÃO',MB_YESNO+MB_ICONQUESTION)=mrYes then
+   begin
+     with frm_dm.qry,sql do
+       begin
+       Close;      //--SQL para excluir um produto do pedido de compra----
+       Text:= 'Delete from product_input where pri_cod =unhex(:pri_cod)';
+       ParamByName('pri_cod').AsString := qry_product_inputCodInput.AsString;
+       Prepare;
+       ExecSQL;
+
+       Application.MessageBox('Insumo do produto excluído com sucesso!','AVISO DE EXCLUSÃO', MB_OK + MB_ICONINFORMATION);
+     end;
+   end;
+
+   btnSalvar_Item.Tag :=1;
+   qry_product_input.Close;
+   qry_product_input.Open;
+   HabiliTarButtun(true);
+end;
+
+procedure Tfrm_product.act_edit_product_inputExecute(Sender: TObject);
+begin
+   //--Condição para só deixar Alterar produtos no insumo em Status ATIVO ------
+   if (qrypro_status.OldValue  <> 'A') and ((qrypro_status.Value  <> 'A') or (qrypro_status.Value  = ''))  then
+   begin
+     Application.MessageBox('Só é permitido (Inserir ou Alterar), insumo de produtos ativos!','AVISO DO SISTEMA', MB_ICONINFORMATION + MB_OK);
+     looComboxProduto.Clear;
+     looComboxProduto.SetFocus;
+     exit;
+   end;
+
+  btnSalvar_Item.Tag := 2; ////button com Tag = 2 -- condição onde sei que estou alterando um produto do pedido----
+  looComboxProduto.Text := qry_product_inputpro_name.AsString;
+  HabiliTarButtun(true);
+end;
+
+procedure Tfrm_product.act_save_product_inputExecute(Sender: TObject);
+begin
+
+ //--Condição para só deixar inserir ou alterar insumo de produtos ativos
+
+   if (qrypro_status.OldValue  <> 'A') and ((qrypro_status.Value  <> 'A') or (qrypro_status.Value  = ''))  then
+   begin
+     Application.MessageBox('Só é permitido (Inserir ou Alterar), insumo em produtos ativos!','AVISO DO SISTEMA', MB_ICONINFORMATION + MB_OK);
+     looComboxProduto.Clear;
+     looComboxProduto.SetFocus;
+     exit;
+   end;
+
+       //--Condição para não deixar inserir com campos em branco (vazio)------
+   if (Trim(looComboxProduto.Text)<>'') then
+    begin
+     if (btnSalvar_Item.Tag = 1) then  //button com Tag = 1 -- condição onde sei que estou inserindo----
+      begin
+        With frm_dm.qry,sql do
+        begin
+         close;   //SQL para obter o Codigo ID em Hex-----
+         text:= 'select hex(uuid_to_bin(uuid()))';
+         prepare;
+         open;
+
+         pri_cod:=Fields[0].AsString;
+
+
+             close;  // SQL para Obter o proximo ID ta tabela-----
+             Text:= ' select case when max(pri_id) is null then 1 ' +
+                    '      else (max(pri_id) + 1) end as maxID from product_input '+
+                    ' where product_pro_cod =unhex('+QuotedStr(pri_cod)+')';
+             Prepare;
+             Open;
+
+         pri_id:=Fields[0].AsInteger;
+
+         Close;   //SQL para Inserir o produto do Pedido de Compra------
+         Text:='insert into product_input (pri_id, pri_cod, product_pro_cod, pri_dt_registration) ' +
+               ' values (:pri_id, unhex(:pri_cod), unhex(:product_pro_cod), :pri_dt_registration) ';
+         ParamByName('pri_id').AsInteger                := pri_id;
+         ParamByName('pri_cod').AsString                := pri_cod;
+         ParamByName('product_pro_cod').AsString := qry_product_list_inputproCod.AsString;
+         ParamByName('pri_dt_registration').AsDateTime  := Now;
+         Prepare;
+         ExecSQL;
+        end;
+      end else if (btnSalvar_Item.Tag = 2) then   //button com Tag = 2 -- condição onde sei que estou Alterando----
+               begin
+                qry_product_input.Edit;
+                qry_product_inputproduct_pro_cod.Value     := qry_product_list_inputpro_cod.Value;
+                qry_product_input.Post;
+
+               end;
+
+         qry_product_input.Close;
+         qry_product_input.Open;
+
+         looComboxProduto.Clear;
+         cxGrid1.SetFocus;
+         btnSalvar_Item.Tag := 1;
+         HabiliTarButtun(true);
+    end else
+    begin
+      application.MessageBox('Para inserir um produto, é necessário informar um "Produto" !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION)
+    end;
+
 
 end;
 
@@ -590,6 +794,33 @@ procedure Tfrm_product.FormShow(Sender: TObject);
 begin
   inherited;
   ExibirRegistros;
+end;
+
+procedure Tfrm_product.HabiliTarButtun(Status: Boolean);
+begin
+   btnSalvar_Item.Enabled  := Status ;
+   if (qry_product_input.IsEmpty) then
+    begin
+      btnEditar_Item.Enabled  := not Status;
+      btnExcluir_Item.Enabled := not Status;
+      btnCancel_Item.Enabled  := not Status;
+    end else
+      begin
+       btnCancel_Item.Enabled  := not Status;
+       btnEditar_Item.Enabled  := Status;
+       btnExcluir_Item.Enabled := not Status;
+      end;
+   if btnSalvar_Item.tag = 2 then
+    begin
+     btnEditar_Item.Enabled := not Status;
+     btnCancel_Item.Enabled  := Status;
+     btnExcluir_Item.Enabled := not Status;
+    end;
+    if ((qry_product_input.RecordCount >0) and (btnSalvar_Item.tag = 1)) then
+     begin
+      btnCancel_Item.Enabled  := not Status;
+      btnExcluir_Item.Enabled := Status;
+     end;
 end;
 
 procedure Tfrm_product.limpaCache(Sender: TObject);

@@ -237,6 +237,8 @@ type
     qryemployeeConferente: TStringField;
     cxGrid_1DBTableView1employeeLiberacao: TcxGridDBColumn;
     cxGrid_1DBTableView1employeeConferente: TcxGridDBColumn;
+    qry_product_transfer_itenpro_id: TLongWordField;
+    qryemployeeSolicitante: TStringField;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure ConfirmarTransfernciaSaida1Click(Sender: TObject);
     procedure CancelarTransferncia1Click(Sender: TObject);
@@ -269,6 +271,7 @@ type
       AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
     procedure cxGrid1DBTableView1CellDblClick(Sender: TcxCustomGridTableView;
       ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
+    procedure Action_printExecute(Sender: TObject);
   private
      prt_cod, pti_cod,sti_cod: string;
      pti_id, sti_id: Integer;
@@ -409,6 +412,14 @@ begin
   looComboxEstoqueSaida.ItemIndex := -1;
   looComboxEmployee_emp_ID_Agent.ItemIndex := -1;
   looComboxEmployee_Emp_ID_Lecturer.ItemIndex := -1;
+
+end;
+
+procedure Tfrm_stock_transfer.Action_printExecute(Sender: TObject);
+begin
+  prt_cod:= qryCodTransf.AsString;
+  ExibirItensTransferencia;
+  inherited;
 
 end;
 
@@ -975,7 +986,7 @@ end;
 procedure Tfrm_stock_transfer.ExibirItensTransferencia;
 begin
     qry_product_transfer_iten.Close;
-   qry_product_transfer_iten.SQL.Text :=' select prt_cod,trans_itens.*,pro_name,pru_initials,ord_itens.poi_product_quant_served,ord_itens.poi_product_quant,      ' +
+   qry_product_transfer_iten.SQL.Text :=' select prt_cod,trans_itens.*,pro_id,pro_name,pru_initials,ord_itens.poi_product_quant_served,ord_itens.poi_product_quant, ' +
                                         ' hex(pti_cod)as CodTrnsfItens,                                                                                           ' +
                                         ' hex(product_transfer_prt_cod)as CodTransf, hex(trans_itens.product_pro_cod)as CodProduct from product_transfer          ' +
                                         ' inner join product_transfer_iten as trans_itens on trans_itens.product_transfer_prt_cod = prt_cod                       ' +

@@ -89,6 +89,7 @@ type
     cxGrid1DBTableView1sti_dt_registration: TcxGridDBColumn;
     cxGrid1DBTableView1pro_name: TcxGridDBColumn;
     cxGrid1DBTableView1pru_initials: TcxGridDBColumn;
+    qry_stock_itenpro_id: TLongWordField;
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
     procedure cxPageControl_1PageChanging(Sender: TObject; NewPage: TcxTabSheet;

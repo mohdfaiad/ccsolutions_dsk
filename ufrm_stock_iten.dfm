@@ -7,10 +7,6 @@ inherited frm_stock_iten: Tfrm_stock_iten
   inherited cxPageControl_1: TcxPageControl
     OnPageChanging = cxPageControl_1PageChanging
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
@@ -42,17 +38,9 @@ inherited frm_stock_iten: Tfrm_stock_iten
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'sto_id'
@@ -294,7 +282,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
-    ReportOptions.LastChange = 43285.645694131900000000
+    ReportOptions.LastChange = 43287.692406261600000000
     Left = 879
     Top = 41
     Datasets = <
@@ -303,12 +291,12 @@ inherited frm_stock_iten: Tfrm_stock_iten
         DataSetName = 'enterprise'
       end
       item
-        DataSet = frm_stock.frxDBD_Estoque
-        DataSetName = 'Estoque'
+        DataSet = frx_db_stock
+        DataSetName = 'stock'
       end
       item
-        DataSet = frxDBD_Estoque_Itens
-        DataSetName = 'Estoque_Itens'
+        DataSet = frx_db_stock_itens
+        DataSetName = 'stock_itens'
       end>
     Variables = <>
     Style = <>
@@ -419,8 +407,8 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Width = 68.031540000000000000
           Height = 18.897650000000000000
           DataField = 'sto_type'
-          DataSet = frm_stock.frxDBD_Estoque
-          DataSetName = 'Estoque'
+          DataSet = frx_db_stock
+          DataSetName = 'stock'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -428,7 +416,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
-            '[Estoque."sto_type"]')
+            '[stock."sto_type"]')
           ParentFont = False
         end
         object Estoquesto_status: TfrxMemoView
@@ -438,8 +426,8 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Width = 68.031540000000000000
           Height = 18.897650000000000000
           DataField = 'sto_status'
-          DataSet = frm_stock.frxDBD_Estoque
-          DataSetName = 'Estoque'
+          DataSet = frx_db_stock
+          DataSetName = 'stock'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -447,7 +435,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
-            '[Estoque."sto_status"]')
+            '[stock."sto_status"]')
           ParentFont = False
         end
         object Estoquesto_name: TfrxMemoView
@@ -457,8 +445,8 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Width = 612.283860000000000000
           Height = 18.897650000000000000
           DataField = 'sto_name'
-          DataSet = frm_stock.frxDBD_Estoque
-          DataSetName = 'Estoque'
+          DataSet = frx_db_stock
+          DataSetName = 'stock'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -466,7 +454,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
-            '[Estoque."sto_name"]')
+            '[stock."sto_name"]')
           ParentFont = False
         end
         object enterpriseent_last_name: TfrxMemoView
@@ -521,8 +509,8 @@ inherited frm_stock_iten: Tfrm_stock_iten
         Height = 28.346456690000000000
         Top = 343.937230000000000000
         Width = 718.110700000000000000
-        DataSet = frxDBD_Estoque_Itens
-        DataSetName = 'Estoque_Itens'
+        DataSet = frx_db_stock_itens
+        DataSetName = 'stock_itens'
         RowCount = 0
         object Memo1: TfrxMemoView
           Left = 97.181200000000000000
@@ -613,8 +601,8 @@ inherited frm_stock_iten: Tfrm_stock_iten
         Height = 22.677180000000000000
         Top = 396.850650000000000000
         Width = 718.110700000000000000
-        DataSet = frxDBD_Estoque_Itens
-        DataSetName = 'Estoque_Itens'
+        DataSet = frx_db_stock_itens
+        DataSetName = 'stock_itens'
         RowCount = 0
         object Estoque_Itenspro_id: TfrxMemoView
           IndexTag = 1
@@ -623,8 +611,8 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Width = 79.370130000000000000
           Height = 18.897650000000000000
           DataField = 'pro_id'
-          DataSet = frxDBD_Estoque_Itens
-          DataSetName = 'Estoque_Itens'
+          DataSet = frx_db_stock_itens
+          DataSetName = 'stock_itens'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -632,7 +620,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
-            '[Estoque_Itens."pro_id"]')
+            '[stock_itens."pro_id"]')
           ParentFont = False
         end
         object Estoque_Itenspro_name: TfrxMemoView
@@ -642,8 +630,8 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Width = 302.362400000000000000
           Height = 18.897650000000000000
           DataField = 'pro_name'
-          DataSet = frxDBD_Estoque_Itens
-          DataSetName = 'Estoque_Itens'
+          DataSet = frx_db_stock_itens
+          DataSetName = 'stock_itens'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -651,7 +639,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
-            '[Estoque_Itens."pro_name"]')
+            '[stock_itens."pro_name"]')
           ParentFont = False
         end
         object Estoque_Itenspru_initials: TfrxMemoView
@@ -661,8 +649,8 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Width = 75.590600000000000000
           Height = 18.897650000000000000
           DataField = 'pru_initials'
-          DataSet = frxDBD_Estoque_Itens
-          DataSetName = 'Estoque_Itens'
+          DataSet = frx_db_stock_itens
+          DataSetName = 'stock_itens'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -670,7 +658,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
-            '[Estoque_Itens."pru_initials"]')
+            '[stock_itens."pru_initials"]')
           ParentFont = False
         end
         object Estoque_Itenssti_product_quant: TfrxMemoView
@@ -680,8 +668,8 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Width = 113.385900000000000000
           Height = 18.897650000000000000
           DataField = 'sti_product_quant'
-          DataSet = frxDBD_Estoque_Itens
-          DataSetName = 'Estoque_Itens'
+          DataSet = frx_db_stock_itens
+          DataSetName = 'stock_itens'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -689,7 +677,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
-            '[Estoque_Itens."sti_product_quant"]')
+            '[stock_itens."sti_product_quant"]')
           ParentFont = False
         end
         object Estoque_Itenssti_product_quant_min: TfrxMemoView
@@ -699,8 +687,8 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Width = 94.488250000000000000
           Height = 18.897650000000000000
           DataField = 'sti_product_quant_min'
-          DataSet = frxDBD_Estoque_Itens
-          DataSetName = 'Estoque_Itens'
+          DataSet = frx_db_stock_itens
+          DataSetName = 'stock_itens'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -708,7 +696,7 @@ inherited frm_stock_iten: Tfrm_stock_iten
           Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
-            '[Estoque_Itens."sti_product_quant_min"]')
+            '[stock_itens."sti_product_quant_min"]')
           ParentFont = False
         end
       end
@@ -1089,16 +1077,16 @@ inherited frm_stock_iten: Tfrm_stock_iten
       OnClick = ExibirtodososItens1Click
     end
   end
-  object frxDBD_Estoque: TfrxDBDataset
-    UserName = 'Estoque'
+  object frx_db_stock: TfrxDBDataset
+    UserName = 'stock'
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False
     Left = 840
     Top = 40
   end
-  object frxDBD_Estoque_Itens: TfrxDBDataset
-    UserName = 'Estoque_Itens'
+  object frx_db_stock_itens: TfrxDBDataset
+    UserName = 'stock_itens'
     CloseDataSource = False
     DataSet = qry_stock_iten
     BCDToCurrency = False

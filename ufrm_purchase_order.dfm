@@ -22,6 +22,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
   inherited cxPageControl_1: TcxPageControl
     Width = 1018
     Height = 585
+    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 1018
     ExplicitHeight = 585
     ClientRectBottom = 579
@@ -614,7 +615,39 @@ inherited frm_purchase_order: Tfrm_purchase_order
     ExplicitWidth = 1018
   end
   inherited dxBarManager_1: TdxBarManager
+    inherited dxBarManager_1Bar2: TdxBar
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'cxBarEditItem_1'
+        end
+        item
+          UserDefine = [udWidth]
+          UserWidth = 133
+          Visible = True
+          ItemName = 'cxlooComBoxRep'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton_report_edit'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton_report_preview'
+        end
+        item
+          Visible = True
+          ItemName = 'btnSave_Rep'
+        end>
+    end
+    inherited dxBarManager_1Bar4: TdxBar
+      DockedLeft = 465
+    end
+    inherited dxBarManager_1Bar5: TdxBar
+      DockedLeft = 614
+    end
     inherited dxBarManager_1Bar6: TdxBar
+      DockedLeft = 760
       ItemLinks = <
         item
           Visible = True
@@ -628,14 +661,14 @@ inherited frm_purchase_order: Tfrm_purchase_order
     inherited cxBarEditItem_1: TcxBarEditItem
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\pedido de compra'
     end
-    object dxCancelPed: TdxBarButton
+    object dxCancelPed: TdxBarButton [25]
       Caption = 'Cancelar Pedido'
       Category = 0
       Hint = 'Cancelar Pedido de Compra'
       Visible = ivAlways
       OnClick = dxCancelPedClick
     end
-    object dxLiberarPed: TdxBarButton
+    object dxLiberarPed: TdxBarButton [26]
       Caption = 'Liberar Pedido'
       Category = 0
       Hint = 'Liberar Pedido de Compra'
@@ -791,14 +824,11 @@ inherited frm_purchase_order: Tfrm_purchase_order
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
-  inherited FDSchemaAdapter_1: TFDSchemaAdapter
-    Left = 328
-  end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
-    ReportOptions.LastChange = 43286.592825544000000000
-    Left = 311
-    Top = 0
+    ReportOptions.LastChange = 43287.584886122680000000
+    Left = 551
+    Top = 96
     Datasets = <
       item
         DataSet = frm_dm.frx_db_enterprise
@@ -955,7 +985,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
           IndexTag = 1
           Left = 287.480520000000000000
           Top = 64.015770000000000000
-          Width = 427.086890000000000000
+          Width = 423.307360000000000000
           Height = 18.897650000000000000
           DataField = 'poc_status_reason'
           DataSet = frxDBD_Pedido_Compra
@@ -1401,9 +1431,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
       end
     end
   end
-  inherited ACBrCEP_1: TACBrCEP
-    Left = 360
-  end
   object ds_purchase_order_iten: TDataSource
     DataSet = qry_purchase_order_iten
     Left = 824
@@ -1566,15 +1593,15 @@ inherited frm_purchase_order: Tfrm_purchase_order
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False
-    Left = 296
-    Top = 48
+    Left = 520
+    Top = 96
   end
   object frxDBD_Pedido_Itens: TfrxDBDataset
     UserName = 'purchase_Itens'
     CloseDataSource = False
     DataSet = qry_purchase_order_iten
     BCDToCurrency = False
-    Left = 296
+    Left = 488
     Top = 96
   end
   object qry_stock: TFDQuery

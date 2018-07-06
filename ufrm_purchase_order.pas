@@ -587,7 +587,7 @@ begin
   dxLiberarPed.Enabled:=qrypco_status.AsString = 'A';
 end;
 
-Procedure Tfrm_purchase_order.dxCancelPedClick(Sender: TObject);
+procedure Tfrm_purchase_order.dxCancelPedClick(Sender: TObject);
 var
 motCancel:string;
 begin
@@ -826,7 +826,7 @@ begin
   end;
 
     qry.Close;      //--SQL para retornar o registro inserido  acima (ultimo registro)----
-   qry.sql.text:=  ' select pur.*, hex(pco_cod)as CodPurchase, sto_name from purchase_order as pur   ' +
+    qry.sql.text:=  ' select pur.*, hex(pco_cod)as CodPurchase, sto_name from purchase_order as pur   ' +
                    ' left join stock as sto on sto.sto_cod = pur.stock_sto_cod                       ' +
                    ' where pur.pco_type = ''C'' and pur.contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')' +
                    ' and pco_cod = unhex('+ QuotedStr(pco_cod)+') and pur.pco_deleted_at is null';

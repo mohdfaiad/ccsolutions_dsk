@@ -35,7 +35,8 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxCurrencyEdit, cxMemo, cxShellComboBox, QExport4Dialog, cxBarEditItem,
   dxBarExtItems, QImport3Wizard, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, ACBrSocket, ACBrCEP, frxClass, frxDBSet, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons;
+  cxDBLookupComboBox, ACBrSocket, ACBrCEP, frxClass, frxDBSet, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons,
+  Vcl.Grids, Vcl.DBGrids;
 
 type
   Tfrm_product = class(Tfrm_form_default)
@@ -96,7 +97,7 @@ type
     ds_product_input: TDataSource;
     qry_product_list_input: TFDQuery;
     ds_product_list_input: TDataSource;
-    frxDBD_Produto: TfrxDBDataset;
+    frx_db_produto: TfrxDBDataset;
     qrypro_cod: TBytesField;
     qrycontract_ctr_cod: TBytesField;
     qrymaterial_mat_cod: TBytesField;
@@ -345,6 +346,7 @@ type
     procedure act_edit_product_inputExecute(Sender: TObject);
     procedure act_cancel_product_inputExecute(Sender: TObject);
     procedure act_delete_product_inputExecute(Sender: TObject);
+    procedure cxlooComBoxRepPropertiesCloseUp(Sender: TObject);
   private
     { Private declarations }
      pro_cod,pri_cod: string;
@@ -365,7 +367,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, class_required_field;
+uses ufrm_dm, class_required_field, ufrm_dm_report;
 
 procedure Tfrm_product.Action_cancelExecute(Sender: TObject);
 begin
@@ -732,6 +734,12 @@ begin
   inherited;
    //Comando para atualização do combobox
    qry_product_unit.Refresh;
+end;
+
+procedure Tfrm_product.cxlooComBoxRepPropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+   //
 end;
 
 procedure Tfrm_product.cxTabSheet_1Show(Sender: TObject);

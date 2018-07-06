@@ -53,7 +53,7 @@ type
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     qrysto_name: TStringField;
     cxGrid_1DBTableView1sto_name: TcxGridDBColumn;
-    frxDBD_Estoque: TfrxDBDataset;
+    frx_db_stock: TfrxDBDataset;
     qryEmpresa: TStringField;
     qrysto_cod: TBytesField;
     qrycontract_ctr_cod: TBytesField;

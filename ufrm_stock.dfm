@@ -6,10 +6,6 @@ inherited frm_stock: Tfrm_stock
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
@@ -40,16 +36,8 @@ inherited frm_stock: Tfrm_stock
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -178,10 +166,6 @@ inherited frm_stock: Tfrm_stock
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
-  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
-    Left = 464
-    Top = 104
-  end
   inherited qry: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
@@ -300,7 +284,7 @@ inherited frm_stock: Tfrm_stock
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
-    ReportOptions.LastChange = 43285.659864409720000000
+    ReportOptions.LastChange = 43287.688320092600000000
     Left = 759
     Top = 8
     Datasets = <
@@ -309,8 +293,8 @@ inherited frm_stock: Tfrm_stock
         DataSetName = 'enterprise'
       end
       item
-        DataSet = frxDBD_Estoque
-        DataSetName = 'Estoque'
+        DataSet = frx_db_stock
+        DataSetName = 'stock'
       end>
     Variables = <>
     Style = <>
@@ -333,8 +317,8 @@ inherited frm_stock: Tfrm_stock
         Height = 22.677180000000000000
         Top = 340.157700000000000000
         Width = 718.110700000000000000
-        DataSet = frxDBD_Estoque
-        DataSetName = 'Estoque'
+        DataSet = frx_db_stock
+        DataSetName = 'stock'
         RowCount = 0
         object Line1: TfrxLineView
           Top = 19.559060000000000000
@@ -350,8 +334,8 @@ inherited frm_stock: Tfrm_stock
         Height = 26.456710000000000000
         Top = 385.512060000000000000
         Width = 718.110700000000000000
-        DataSet = frxDBD_Estoque
-        DataSetName = 'Estoque'
+        DataSet = frx_db_stock
+        DataSetName = 'stock'
         RowCount = 0
         object Estoquesto_name: TfrxMemoView
           IndexTag = 1
@@ -360,11 +344,11 @@ inherited frm_stock: Tfrm_stock
           Width = 359.055350000000000000
           Height = 18.897650000000000000
           DataField = 'sto_name'
-          DataSet = frxDBD_Estoque
-          DataSetName = 'Estoque'
+          DataSet = frx_db_stock
+          DataSetName = 'stock'
           Frame.Typ = []
           Memo.UTF8W = (
-            '[Estoque."sto_name"]')
+            '[stock."sto_name"]')
         end
         object Memo12: TfrxMemoView
           Left = 3.559060000000000000
@@ -403,8 +387,8 @@ inherited frm_stock: Tfrm_stock
           Width = 68.031540000000000000
           Height = 18.897650000000000000
           DataField = 'sto_status'
-          DataSet = frxDBD_Estoque
-          DataSetName = 'Estoque'
+          DataSet = frx_db_stock
+          DataSetName = 'stock'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -412,7 +396,7 @@ inherited frm_stock: Tfrm_stock
           Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
-            '[Estoque."sto_status"]')
+            '[stock."sto_status"]')
           ParentFont = False
         end
       end
@@ -803,8 +787,8 @@ inherited frm_stock: Tfrm_stock
       end
     end
   end
-  object frxDBD_Estoque: TfrxDBDataset
-    UserName = 'Estoque'
+  object frx_db_stock: TfrxDBDataset
+    UserName = 'stock'
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False

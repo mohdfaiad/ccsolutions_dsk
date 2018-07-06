@@ -7,10 +7,6 @@ inherited frm_product: Tfrm_product
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
       OnShow = cxTabSheet_1Show
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pro_id: TcxGridDBColumn
@@ -112,18 +108,9 @@ inherited frm_product: Tfrm_product
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet2
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 77
@@ -853,6 +840,9 @@ inherited frm_product: Tfrm_product
     inherited cxBarEditItem_1: TcxBarEditItem
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\produto'
     end
+    inherited cxlooComBoxRep: TcxBarEditItem
+      Properties.OnCloseUp = cxlooComBoxRepPropertiesCloseUp
+    end
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
@@ -904,7 +894,7 @@ inherited frm_product: Tfrm_product
         Name = 'CTR_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 24
+        Size = 16
         Value = Null
       end>
     object qryCodProduct: TStringField
@@ -1207,13 +1197,8 @@ inherited frm_product: Tfrm_product
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   inherited frxReport_1: TfrxReport
-    ReportOptions.CreateDate = 43201.723185011600000000
-    ReportOptions.LastChange = 43286.597847476850000000
-    ScriptText.Strings = (
-      ''
-      'begin'
-      ''
-      'end.')
+    ReportOptions.CreateDate = 43193.605400104200000000
+    ReportOptions.LastChange = 43287.747316909700000000
     Left = 271
     Datasets = <
       item
@@ -1221,68 +1206,14 @@ inherited frm_product: Tfrm_product
         DataSetName = 'enterprise'
       end
       item
-        DataSet = frxDBD_Produto
-        DataSetName = 'Produto'
+        DataSet = frx_db_produto
+        DataSetName = 'produto'
       end>
     Variables = <>
     Style = <>
     object Data: TfrxDataPage
       Height = 1000.000000000000000000
       Width = 1000.000000000000000000
-      object connexao: TfrxFDDatabase
-        ConnectionDefName = 'ccs_connection'
-        DriverName = 'MySQL'
-        DatabaseName = 'ccs'
-        Params.Strings = (
-          'ConnectionDef=ccs_connection')
-        LoginPrompt = False
-        Connected = True
-        pLeft = 36
-        pTop = 32
-      end
-      object qry_product: TfrxFDQuery
-        UserName = 'qry_product'
-        CloseDataSource = True
-        BCDToCurrency = False
-        IgnoreDupParams = False
-        Params = <>
-        SQL.Strings = (
-          
-            'select pro_id,pro_name,product_class_prc_id,prc_name from produc' +
-            't'
-          'left join product_class on prc_id = product_class_prc_id'
-          
-            'order by product_class_prc_id,pro_name                          ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                                                ' +
-            '                                               ')
-        Database = frxReport_1.connexao
-        pLeft = 60
-        pTop = 112
-        Parameters = <>
-      end
     end
     object Page1: TfrxReportPage
       PaperWidth = 210.000000000000000000
@@ -1293,97 +1224,6 @@ inherited frm_product: Tfrm_product
       TopMargin = 10.000000000000000000
       BottomMargin = 10.000000000000000000
       Frame.Typ = []
-      object MasterData1: TfrxMasterData
-        FillType = ftBrush
-        Frame.Typ = []
-        Height = 22.677180000000000000
-        Top = 230.551330000000000000
-        Width = 718.110700000000000000
-        DataSet = frxReport_1.qry_product
-        DataSetName = 'qry_product'
-        RowCount = 0
-        object Produtopro_name: TfrxMemoView
-          IndexTag = 1
-          Left = 1.889763780000000000
-          Top = 1.779530000000000000
-          Width = 532.913730000000000000
-          Height = 18.897650000000000000
-          DataField = 'pro_name'
-          DataSet = frxDBD_Produto
-          DataSetName = 'Produto'
-          Frame.Typ = []
-          Memo.UTF8W = (
-            '[Produto."pro_name"]')
-        end
-      end
-      object GroupHeader1: TfrxGroupHeader
-        FillType = ftBrush
-        Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
-        Height = 22.677180000000000000
-        Top = 185.196970000000000000
-        Width = 718.110700000000000000
-        Condition = '<Produto."pro_id">'
-        object qry_productproduct_class_prc_id: TfrxMemoView
-          IndexTag = 1
-          Left = 3.779530000000000000
-          Top = 3.000000000000000000
-          Width = 461.102660000000000000
-          Height = 15.118120000000000000
-          DataSet = frxReport_1.qry_product
-          DataSetName = 'qry_product'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          Memo.UTF8W = (
-            '[<Produto."pro_id"> - <Produto."pro_name">]')
-          ParentFont = False
-          Formats = <
-            item
-            end
-            item
-            end>
-        end
-      end
-      object GroupFooter1: TfrxGroupFooter
-        FillType = ftBrush
-        Frame.Typ = []
-        Height = 22.677180000000000000
-        Top = 275.905690000000000000
-        Width = 718.110700000000000000
-        object Memo1: TfrxMemoView
-          Left = 306.141930000000000000
-          Top = 1.000000000000000000
-          Width = 109.606370000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          Memo.UTF8W = (
-            '[COUNT(MasterData1)]')
-          ParentFont = False
-        end
-        object Memo2: TfrxMemoView
-          Left = 206.504020000000000000
-          Top = 1.000000000000000000
-          Width = 94.488250000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          Frame.Typ = []
-          Memo.UTF8W = (
-            'Quantidade:')
-          ParentFont = False
-        end
-      end
       object ReportTitle1: TfrxReportTitle
         FillType = ftBrush
         Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
@@ -1528,6 +1368,226 @@ inherited frm_product: Tfrm_product
           HightQuality = False
           Transparent = False
           TransparentColor = clWhite
+        end
+      end
+      object PageHeader1: TfrxPageHeader
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 22.677165354330700000
+        Top = 147.401670000000000000
+        Width = 718.110700000000000000
+      end
+      object PageFooter1: TfrxPageFooter
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 41.574830000000000000
+        Top = 438.425480000000000000
+        Width = 718.110700000000000000
+        object Memo21: TfrxMemoView
+          Left = 10.559060000000000000
+          Top = 2.779530000000000000
+          Width = 695.433520000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            
+              'Endere'#231'o: [enterprise."ent_add_bus_address"], n'#186' [enterprise."en' +
+              't_add_bus_number"] - [enterprise."ent_add_bus_street"]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+        object Memo18: TfrxMemoView
+          Left = 10.559060000000000000
+          Top = 23.236240000000000000
+          Width = 695.433520000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            
+              'CEP: [enterprise."ent_add_bus_zipcode"] - [enterprise."ent_add_b' +
+              'us_city"] - [enterprise."ent_add_bus_state"]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 26.456692910000000000
+        Top = 230.551330000000000000
+        Width = 718.110700000000000000
+        DataSet = frx_db_produto
+        DataSetName = 'produto'
+        RowCount = 0
+        object Memo1: TfrxMemoView
+          Left = 1.889763780000000000
+          Top = 4.779530000000000000
+          Width = 86.929190000000000000
+          Height = 18.897650000000000000
+          DataSet = frx_db_produto
+          DataSetName = 'produto'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'C'#243'digo')
+          ParentFont = False
+        end
+        object Line1: TfrxLineView
+          Left = 0.377952760000000000
+          Top = 24.677180000000000000
+          Width = 718.110700000000000000
+          Color = clBlack
+          Frame.Typ = []
+          Diagonal = True
+        end
+        object Memo11: TfrxMemoView
+          Left = 106.385900000000000000
+          Top = 4.779530000000000000
+          Width = 86.929190000000000000
+          Height = 18.897650000000000000
+          DataSet = frx_db_produto
+          DataSetName = 'produto'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Produto')
+          ParentFont = False
+        end
+        object Memo12: TfrxMemoView
+          Left = 501.811380000000000000
+          Top = 4.779530000000000000
+          Width = 86.929190000000000000
+          Height = 18.897650000000000000
+          DataSet = frx_db_produto
+          DataSetName = 'produto'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Und')
+          ParentFont = False
+        end
+      end
+      object DetailData1: TfrxDetailData
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 279.685220000000000000
+        Width = 718.110700000000000000
+        DataSet = frx_db_produto
+        DataSetName = 'produto'
+        RowCount = 0
+        object produtopro_id: TfrxMemoView
+          IndexTag = 1
+          Left = 1.889763780000000000
+          Top = 1.779530000000000000
+          Width = 86.929190000000000000
+          Height = 18.897650000000000000
+          DataField = 'pro_id'
+          DataSet = frx_db_produto
+          DataSetName = 'produto'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[produto."pro_id"]')
+        end
+        object produtopro_name: TfrxMemoView
+          IndexTag = 1
+          Left = 106.385900000000000000
+          Top = 1.779530000000000000
+          Width = 377.953000000000000000
+          Height = 18.897650000000000000
+          DataField = 'pro_name'
+          DataSet = frx_db_produto
+          DataSetName = 'produto'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[produto."pro_name"]')
+        end
+        object produtopru_initials: TfrxMemoView
+          IndexTag = 1
+          Left = 501.811380000000000000
+          Top = 1.779530000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          DataField = 'pru_initials'
+          DataSet = frx_db_produto
+          DataSetName = 'produto'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[produto."pru_initials"]')
+        end
+      end
+      object ColumnFooter1: TfrxColumnFooter
+        FillType = ftBrush
+        Frame.Typ = []
+        Height = 52.913420000000000000
+        Top = 362.834880000000000000
+        Width = 718.110700000000000000
+        object Memo17: TfrxMemoView
+          Align = baRight
+          Left = 634.961040000000000000
+          Top = 30.236240000000000000
+          Width = 83.149660000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[COUNT(DetailData1,2)]')
+          ParentFont = False
+        end
+        object Memo19: TfrxMemoView
+          Left = 498.897960000000000000
+          Top = 30.236240000000000000
+          Width = 132.283550000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Total de Registros:')
+          ParentFont = False
         end
       end
     end
@@ -2402,7 +2462,7 @@ inherited frm_product: Tfrm_product
         Name = 'CTR_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 35
+        Size = 16
         Value = Null
       end>
     object qry_product_list_inputproCod: TStringField
@@ -2457,8 +2517,8 @@ inherited frm_product: Tfrm_product
     Left = 856
     Top = 128
   end
-  object frxDBD_Produto: TfrxDBDataset
-    UserName = 'Produto'
+  object frx_db_produto: TfrxDBDataset
+    UserName = 'produto'
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False

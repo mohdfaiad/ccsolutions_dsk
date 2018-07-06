@@ -16,12 +16,17 @@ type
     frxds_import_call_log: TfrxDBDataset;
     frxfdcomp_1: TfrxFDComponents;
     qry_report: TFDQuery;
-    qry_reportrep_id: TFDAutoIncField;
-    qry_reportcontract_ctr_id: TIntegerField;
+    qry_reportrep_cod: TBytesField;
+    qry_reportcontract_ctr_cod: TBytesField;
+    qry_reportrep_id: TLongWordField;
     qry_reportrep_name: TStringField;
     qry_reportrep_report: TMemoField;
     qry_reportrep_edit: TStringField;
+    qry_reportrep_status: TStringField;
+    qry_reportrep_deleted_at: TDateTimeField;
     qry_reportrep_dt_registration: TDateTimeField;
+    qry_reportCodReport: TStringField;
+    ds_report: TDataSource;
     procedure qry_reportAfterPost(DataSet: TDataSet);
     procedure qry_reportAfterDelete(DataSet: TDataSet);
   private

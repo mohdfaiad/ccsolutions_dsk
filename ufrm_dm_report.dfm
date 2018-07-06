@@ -128,40 +128,92 @@ object frm_dm_report: Tfrm_dm_report
     Top = 120
   end
   object qry_report: TFDQuery
+    Active = True
     AfterPost = qry_reportAfterPost
     AfterDelete = qry_reportAfterDelete
     CachedUpdates = True
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'SELECT * FROM report')
-    Left = 224
-    Top = 160
-    object qry_reportrep_id: TFDAutoIncField
-      FieldName = 'rep_id'
-      ReadOnly = True
+      'SELECT report.*, hex(rep_cod)as CodReport FROM report'
+      'where rep_reference =:reference')
+    Left = 176
+    Top = 152
+    ParamData = <
+      item
+        Name = 'REFERENCE'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 26
+        Value = Null
+      end>
+    object qry_reportrep_cod: TBytesField
+      FieldName = 'rep_cod'
+      Origin = 'rep_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
-    object qry_reportcontract_ctr_id: TIntegerField
-      FieldName = 'contract_ctr_id'
+    object qry_reportcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_reportrep_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'rep_id'
+      Origin = 'rep_id'
     end
     object qry_reportrep_name: TStringField
+      AutoGenerateValue = arDefault
       FieldName = 'rep_name'
-      Size = 25
+      Origin = 'rep_name'
+      Size = 35
     end
     object qry_reportrep_report: TMemoField
+      AutoGenerateValue = arDefault
       FieldName = 'rep_report'
+      Origin = 'rep_report'
       BlobType = ftMemo
     end
     object qry_reportrep_edit: TStringField
+      AutoGenerateValue = arDefault
       FieldName = 'rep_edit'
+      Origin = 'rep_edit'
       FixedChar = True
       Size = 1
     end
-    object qry_reportrep_dt_registration: TDateTimeField
-      FieldName = 'rep_dt_registration'
+    object qry_reportrep_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rep_status'
+      Origin = 'rep_status'
+      FixedChar = True
+      Size = 1
     end
+    object qry_reportrep_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'rep_deleted_at'
+      Origin = 'rep_deleted_at'
+    end
+    object qry_reportrep_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'rep_dt_registration'
+      Origin = 'rep_dt_registration'
+    end
+    object qry_reportCodReport: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodReport'
+      Origin = 'CodReport'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+  end
+  object ds_report: TDataSource
+    DataSet = qry_report
+    Left = 248
+    Top = 152
   end
 end

@@ -34,7 +34,7 @@ uses
   cxCalendar, cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
   cxGrid, cxPC, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons, cxLabel,
-  Vcl.Buttons, cxCurrencyEdit, frxClass, ACBrSocket, ACBrCEP, frxDBSet;
+  Vcl.Buttons, cxCurrencyEdit, frxClass, ACBrSocket, ACBrCEP, frxDBSet, cxDBLookupComboBox;
 
 type
   Tfrm_stock_iten = class(Tfrm_form_default)
@@ -50,8 +50,8 @@ type
     PopupMenu1: TPopupMenu;
     ExibirItensabaixodoestoqueminmo1: TMenuItem;
     ExibirtodososItens1: TMenuItem;
-    frxDBD_Estoque: TfrxDBDataset;
-    frxDBD_Estoque_Itens: TfrxDBDataset;
+    frx_db_stock: TfrxDBDataset;
+    frx_db_stock_itens: TfrxDBDataset;
     qrysto_cod: TBytesField;
     qrycontract_ctr_cod: TBytesField;
     qryenterprise_ent_cod: TBytesField;

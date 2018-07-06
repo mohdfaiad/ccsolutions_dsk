@@ -16,6 +16,7 @@ object frm_form_default: Tfrm_form_default
   ShowHint = True
   Visible = True
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object cxPageControl_1: TcxPageControl
@@ -25,7 +26,7 @@ object frm_form_default: Tfrm_form_default
     Height = 546
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet_2
+    Properties.ActivePage = cxTabSheet_1
     Properties.CustomButtons.Buttons = <>
     Properties.HotImages = cxImageList_1
     Properties.Images = cxImageList_1
@@ -295,12 +296,22 @@ object frm_form_default: Tfrm_form_default
           ItemName = 'cxBarEditItem_1'
         end
         item
+          UserDefine = [udWidth]
+          UserWidth = 149
+          Visible = True
+          ItemName = 'cxlooComBoxRep'
+        end
+        item
           Visible = True
           ItemName = 'dxBarButton_report_edit'
         end
         item
           Visible = True
           ItemName = 'dxBarButton_report_preview'
+        end
+        item
+          Visible = True
+          ItemName = 'btnSave_Rep'
         end>
       OneOnRow = False
       Row = 1
@@ -335,7 +346,7 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 281
+      DockedLeft = 536
       DockedTop = 28
       FloatLeft = 818
       FloatTop = 8
@@ -357,7 +368,7 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 430
+      DockedLeft = 685
       DockedTop = 28
       FloatLeft = 818
       FloatTop = 8
@@ -379,7 +390,7 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 576
+      DockedLeft = 831
       DockedTop = 28
       FloatLeft = 818
       FloatTop = 8
@@ -600,6 +611,28 @@ object frm_form_default: Tfrm_form_default
     object dxBarButton_import: TdxBarButton
       Action = Action_import
       Category = 0
+    end
+    object cxlooComBoxRep: TcxBarEditItem
+      Caption = 'Relat'#243'rio'
+      Category = 0
+      Hint = 'Relat'#243'rio'
+      Visible = ivAlways
+      ShowCaption = True
+      PropertiesClassName = 'TcxLookupComboBoxProperties'
+      Properties.GridMode = True
+      Properties.KeyFieldNames = 'rep_name'
+      Properties.ListColumns = <
+        item
+          FieldName = 'rep_name'
+        end>
+      Properties.ListSource = frm_dm_report.ds_report
+    end
+    object btnSave_Rep: TdxBarButton
+      Caption = 'save rep'
+      Category = 0
+      Hint = 'save rep'
+      Visible = ivAlways
+      OnClick = btnSave_RepClick
     end
   end
   object ActionList_1: TActionList
@@ -1429,7 +1462,7 @@ object frm_form_default: Tfrm_form_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ','
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
+    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET

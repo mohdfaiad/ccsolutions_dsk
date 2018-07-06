@@ -30,13 +30,12 @@ implementation
 
 class function TReport.Read_Report(const Name, Param: string; DataSet: TFDQuery): TMemoryStream;
  var
-   i :Integer;
    vStream:TMemoryStream;
 begin
 
      DataSet.Close;
      DataSet.Open;      
-     DataSet.Locate(DataSet.Fields[2].FieldName,Name,[loCaseInsensitive, loPartialKey]);
+     DataSet.Locate(DataSet.Fields[3].FieldName,Name,[loCaseInsensitive, loPartialKey]);
      vStream :=TMemoryStream.Create;
      TBlobField(DataSet.fieldbyname(Param)).savetostream( vStream );
      vStream.Position :=0;

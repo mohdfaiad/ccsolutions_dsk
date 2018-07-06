@@ -34,7 +34,7 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxShellComboBox, QExport4Dialog, cxBarEditItem, dxBarExtItems,
-  QImport3Wizard, ACBrSocket, ACBrCEP, frxClass;
+  QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, frxDBSet;
 
 type
   Tfrm_supplier = class(Tfrm_form_default)
@@ -143,6 +143,7 @@ type
     qryCodSupplier: TStringField;
     cxGrid_1DBTableView1sup_id: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_status: TcxGridDBColumn;
+    frx_db_fornecedor: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);

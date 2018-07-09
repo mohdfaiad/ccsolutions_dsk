@@ -239,6 +239,8 @@ type
     cxGrid_1DBTableView1employeeConferente: TcxGridDBColumn;
     qry_product_transfer_itenpro_id: TLongWordField;
     qryemployeeSolicitante: TStringField;
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure ConfirmarTransfernciaSaida1Click(Sender: TObject);
     procedure CancelarTransferncia1Click(Sender: TObject);
@@ -383,7 +385,15 @@ begin
    looComboxNumeroRequisicao.Text := qry_purchase_orderpco_id.AsString;
    edtSolicitante.Text        := qry_purchase_orderFuncionario.AsString;
    edtEst_Entrada.Text        := qry_purchase_ordersto_name.AsString;
+
    looComboxEstoqueSaida.Text := qryStockSaida.AsString;
+   if (qryStatusPedido.AsString = 'F') then
+     begin
+       looComboxEstoqueSaida.Enabled := False;
+     end else
+      begin
+        looComboxEstoqueSaida.Enabled := true;
+      end;
 
    looComboxEmployee_emp_ID_Agent.ItemIndex :=-1;
    qry_employee.Locate('CodEmployee',qryemployee_emp_id_agent.AsString,[loCaseInsensitive, loPartialKey]);
@@ -392,10 +402,6 @@ begin
    looComboxEmployee_Emp_ID_Lecturer.ItemIndex :=-1;
    qry_employee.Locate('CodEmployee',qryemployee_emp_id_lecturer.AsString,[loCaseInsensitive, loPartialKey]);
    looComboxEmployee_Emp_ID_Lecturer.Text := qry_employeerec_name.AsString;
-
-
-
-   looComboxEstoqueSaida.Enabled := true;
 
 end;
 
@@ -1015,7 +1021,7 @@ end;
 
 procedure Tfrm_stock_transfer.ExibirRequisicao;
 begin
-  if (self.tag = 1) then
+  if ((qryStatusPedido.AsString ='L') or (qryStatusPedido.AsString.IsEmpty) ) then
   begin
    qry_purchase_order.Close;
    qry_purchase_order.SQL.Text:=' SELECT pur_ord.*, hex(pur_ord.pco_cod)as CodPurchase, hex(pur_ord.employee_emp_cod)as CodEmployee, '+
@@ -1030,7 +1036,7 @@ begin
    qry_purchase_order.Prepare;
    qry_purchase_order.Open;
 
-  end else if (self.tag = 2) then
+  end else if (qryStatusPedido.AsString ='F') then
      begin
       qry_purchase_order.Close;
       qry_purchase_order.SQL.Text:= ' SELECT pur_ord.*, hex(pur_ord.pco_cod)as CodPurchase, hex(pur_ord.employee_emp_cod)as CodEmployee, '+
@@ -1253,8 +1259,8 @@ begin
 
     ExibirItensTransferencia;
 
-    if qryprt_id.AsInteger >0 then
-       looComboxEstoqueSaida.Enabled := false;
+//    if qryprt_id.AsInteger >0 then
+//       looComboxEstoqueSaida.Enabled := false;
 
 end;
 
@@ -1286,7 +1292,7 @@ begin
    ExecSQL;
   end;
 
-  qry.Close;
+   qry.Close;
    qry.SQL.Text := ' select trans.*, sai.sto_name as StockSaida, ent.sto_name as StockEntra, hex(prt_cod)as CodTransf,hex(trans.stock_sto_id_entrance)as CodStockEntrance, ' +
                    ' pur_ord.pco_status as StatusPedido, pur_ord.poc_status_reason, pur_ord.pco_id as ID_Pedido, hex(trans.purchase_order_pco_id)as CodPurchase from product_transfer as trans ' +
                    ' left join purchase_order as pur_ord on pur_ord.pco_cod = trans.purchase_order_pco_id                                                                  ' +

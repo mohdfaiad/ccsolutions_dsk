@@ -3,7 +3,6 @@ inherited frm_request: Tfrm_request
   ClientHeight = 668
   ClientWidth = 932
   OnClose = FormClose
-  OnShow = FormShow
   ExplicitWidth = 948
   ExplicitHeight = 707
   PixelsPerInch = 96
@@ -23,6 +22,8 @@ inherited frm_request: Tfrm_request
       inherited cxGrid_1: TcxGrid
         Width = 918
         Height = 573
+        ExplicitLeft = 3
+        ExplicitTop = 3
         ExplicitWidth = 918
         ExplicitHeight = 573
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -207,22 +208,6 @@ inherited frm_request: Tfrm_request
           ParentFont = False
           Layout = tlCenter
           OnClick = lbTodosClick
-        end
-        object SpeedButton2: TSpeedButton
-          Left = 511
-          Top = 1
-          Width = 35
-          Height = 22
-          Caption = 'salve'
-          OnClick = SpeedButton2Click
-        end
-        object SpeedButton1: TSpeedButton
-          Left = 546
-          Top = 1
-          Width = 40
-          Height = 22
-          Caption = 'print'
-          OnClick = SpeedButton1Click
         end
       end
     end
@@ -641,7 +626,14 @@ inherited frm_request: Tfrm_request
     ExplicitWidth = 932
   end
   inherited dxBarManager_1: TdxBarManager
+    inherited dxBarManager_1Bar4: TdxBar
+      DockedLeft = 493
+    end
+    inherited dxBarManager_1Bar5: TdxBar
+      DockedLeft = 642
+    end
     inherited dxBarManager_1Bar6: TdxBar
+      DockedLeft = 788
       ItemLinks = <
         item
           Visible = True
@@ -842,7 +834,7 @@ inherited frm_request: Tfrm_request
         Name = 'CTR_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 34
+        Size = 16
         Value = Null
       end>
     object qry_employeeemp_type: TStringField

@@ -319,9 +319,9 @@ end;
 procedure Tfrm_stock_entry.Action_editExecute(Sender: TObject);
 begin
   inherited;
-  self.Tag :=2;
+
   ExibirPed_Compra;
-  btnSalvar_Item.Tag := 1;
+  btnSalvar_Item.Tag := 1; //Tag = 1 - Condição para Inserir Itens Entrada de Produto----
   pde_cod := qryCodProEnty.AsString;
   ExibirEstoque;
 
@@ -340,8 +340,8 @@ end;
 Procedure Tfrm_stock_entry.Action_insertExecute(Sender: TObject);
 begin
   inherited;
-   self.Tag :=1;
-   btnSalvar_Item.Tag := 1;
+
+   btnSalvar_Item.Tag := 1;  //Tag = 1 - Condição para Inserir Itens Entrada de Produto----
 
    looComboxFornecedor.ItemIndex := -1;
    looComboxEstoque.ItemIndex    := -1;
@@ -350,7 +350,7 @@ begin
 
    qry_product_entry_itens.Close;
    qry_product_entry_itens.Open;
-
+   //Chamada do Metodo que exibe os Pedidos de Compra-----
    ExibirPed_Compra;
    HabiliTarButtun(True);
 end;
@@ -407,14 +407,14 @@ begin
           qry.Post;
           qry.ApplyUpdates(0);
         end;
-
+    //Chamada do metodo que exibe todos os Registros de Entrada ---
    ExibirRegistros;
 
 end;
 
 procedure Tfrm_stock_entry.act_cancel_entry_itensExecute(Sender: TObject);
 begin
-  btnSalvar_Item.Tag := 1;
+  btnSalvar_Item.Tag := 1; //Tag = 1 - Condição para Inserir Itens Entrada de Produto----
   looComboxProduto.Clear;
   edtQTD.Clear;
   edtUND.Clear;
@@ -469,7 +469,7 @@ begin
      exit;
    end;
 
-  btnSalvar_Item.Tag := 2; ////button com Tag = 2 -- condição onde sei que estou alterando um produto do pedido----
+  btnSalvar_Item.Tag := 2; //Tag = 2 - Condição para Alterar Itens Entrada de Produto----
   looComboxProduto.Text := qry_product_entry_itenspro_name.AsString;
   edtUnd.Text           := qry_product_entry_itenspru_initials.AsString;
   edtQTD.Value          := qry_product_entry_itenspei_product_quant.AsFloat;
@@ -493,7 +493,7 @@ begin
        //--Condição para não deixar inserir com campos em branco (vazio)------
    if (Trim(looComboxProduto.Text)<>'') and (Trim(edtQTD.Text)<>'') then
     begin
-     if (btnSalvar_Item.Tag = 1) then  //button com Tag = 1 -- condição onde sei que estou inserindo----
+     if (btnSalvar_Item.Tag = 1) then  //Tag = 1 - Condição para Inserir Itens Entrada de Produto----
       begin
         With frm_dm.qry,sql do
         begin
@@ -526,7 +526,7 @@ begin
          Prepare;
          ExecSQL;
         end;
-      end else if (btnSalvar_Item.Tag = 2) then   //button com Tag = 2 -- condição onde sei que estou Alterando----
+      end else if (btnSalvar_Item.Tag = 2) then   //Tag = 2 - Condição para Alterar Itens Entrada de Produto----
                begin
                 qry_product_entry_itens.Edit;
                 qry_product_entry_itensproduct_pro_cod.Value     := qry_productpro_cod.Value;
@@ -781,8 +781,9 @@ end;
 procedure Tfrm_stock_entry.ExibirPed_Compra;
 begin
 
- if (self.tag = 1) then
+ if (qrypco_status.AsString = 'L') then
   begin
+   looComboxPed_Compra.Enabled := True;   //Ativando loockup somente com Pedido de Compra em Aberto---para possivel alteração--
    qry_purchase_order.Close;
    qry_purchase_order.SQL.Text:=' SELECT pur_ord.*, hex(pur_ord.pco_cod)as CodPurchase, hex(pur_ord.stock_sto_cod)as CodStock FROM purchase_order as pur_ord '+
                                 ' left join stock as sto on sto.sto_cod = pur_ord.stock_sto_cod                       '+
@@ -795,8 +796,9 @@ begin
    qry_purchase_order.Prepare;
    qry_purchase_order.Open;
 
-  end else if (self.tag = 2) then
+  end else if (qrypco_status.AsString = 'F') then
      begin
+      looComboxPed_Compra.Enabled := False; //Desativando Loockup pois o Pedido de Compra já está Fechado-----
       qry_purchase_order.Close;
       qry_purchase_order.SQL.Text:= ' SELECT pur_ord.*, hex(pur_ord.pco_cod)as CodPurchase, hex(pur_ord.stock_sto_cod)as CodStock FROM purchase_order as pur_ord '+
                                     ' left join stock as sto on sto.sto_cod = pur_ord.stock_sto_cod                       '+

@@ -260,7 +260,7 @@ begin
 
   end;
 
-  ExibirPedidoCompra;
+  ExibirPedidoCompra; //Chamada do metodo que exibe todos os pedidos de compra---
 
 end;
 
@@ -291,7 +291,7 @@ begin
 
     end;
 
-    ExibirPedidoCompra;
+    ExibirPedidoCompra; //Chamada do metodo que exibe todos os pedidos de compra---
 
 end;
 
@@ -299,9 +299,9 @@ procedure Tfrm_purchase_order.Action_editExecute(Sender: TObject);
 begin
   inherited;
 
-  btnSalvar_Item.Tag := 1; // Para Inserir
+  btnSalvar_Item.Tag := 1; //Tag = 1 - Condição para Inserir Itens Entrada de Produto----
   pco_cod := qryCodPurchase.AsString;
-  ExibirEstoque;
+  ExibirEstoque;   //Chamada do metodo que exibe todos os Estoque que o Usuário tem acesso----
 
   lookupComboxEmployee.Text := qryfuncionario.AsString;
   lookupComboxStock.Text    := qrysto_name.AsString;
@@ -315,11 +315,11 @@ procedure Tfrm_purchase_order.Action_insertExecute(Sender: TObject);
 begin
   inherited;
 
-   btnSalvar_Item.Tag := 1; // Para Inserir
+   btnSalvar_Item.Tag := 1; //Tag = 1 - Condição para Inserir Itens Entrada de Produto----
    lookupComboxEmployee.ItemIndex := -1;
    lookupComboxStock.ItemIndex    := -1;
 
-   ExibirEstoque;
+   ExibirEstoque;  //Chamada do metodo que exibe todos os Estoque que o Usuário tem acesso----
    qry_purchase_order_iten.Close;
    qry_purchase_order_iten.Open;
 
@@ -380,7 +380,7 @@ begin
         end;
   qry.Post;
   qry.ApplyUpdates(0);
-  ExibirPedidoCompra;
+  ExibirPedidoCompra; //Chamada do metodo que exibe todos os pedidos de compra---
 
 end;
 

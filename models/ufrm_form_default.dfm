@@ -47,6 +47,8 @@ object frm_form_default: Tfrm_form_default
         PopupMenu = PopupMenu_1
         TabOrder = 0
         LockedStateImageOptions.Text = 'Aguarde por favor...'
+        ExplicitLeft = 51
+        ExplicitTop = 83
         object cxGrid_1DBTableView1: TcxGridDBTableView
           PopupMenu = PopupMenu_1
           OnDblClick = cxGrid_1DBTableView1DblClick
@@ -296,6 +298,10 @@ object frm_form_default: Tfrm_form_default
           ItemName = 'cxBarEditItem_1'
         end
         item
+          Visible = True
+          ItemName = 'dxBarSubItem1'
+        end
+        item
           UserDefine = [udWidth]
           UserWidth = 149
           Visible = True
@@ -308,10 +314,6 @@ object frm_form_default: Tfrm_form_default
         item
           Visible = True
           ItemName = 'dxBarButton_report_preview'
-        end
-        item
-          Visible = True
-          ItemName = 'btnSave_Rep'
         end>
       OneOnRow = False
       Row = 1
@@ -346,7 +348,7 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 536
+      DockedLeft = 603
       DockedTop = 28
       FloatLeft = 818
       FloatTop = 8
@@ -368,7 +370,7 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 685
+      DockedLeft = 752
       DockedTop = 28
       FloatLeft = 818
       FloatTop = 8
@@ -390,7 +392,7 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 831
+      DockedLeft = 898
       DockedTop = 28
       FloatLeft = 818
       FloatTop = 8
@@ -626,13 +628,26 @@ object frm_form_default: Tfrm_form_default
           FieldName = 'rep_name'
         end>
       Properties.ListSource = frm_dm_report.ds_report
+      Properties.OnPopup = cxlooComBoxRepPropertiesPopup
     end
-    object btnSave_Rep: TdxBarButton
-      Caption = 'save rep'
+    object dxBarSubItem1: TdxBarSubItem
+      Caption = 'Salvar Relat'#243'rio'
       Category = 0
-      Hint = 'save rep'
       Visible = ivAlways
-      OnClick = btnSave_RepClick
+      ImageIndex = 16
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton1'
+        end>
+    end
+    object dxBarButton1: TdxBarButton
+      Caption = 'Salvar Relat'#243'rio'
+      Category = 0
+      Hint = 'Salvar Relat'#243'rio'
+      Visible = ivAlways
+      ImageIndex = 6
+      OnClick = dxBarButton1Click
     end
   end
   object ActionList_1: TActionList
@@ -1396,6 +1411,43 @@ object frm_form_default: Tfrm_form_default
           1EFFA96522FFA56526FFA1652AFF9D652EFF0000000000000000000000000000
           00000085AAB8006FA3FF0085AAB8000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000}
+      end
+      item
+        Image.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000000000000000000000000000000000000000000000303
+          030C040404110101010302020209040404110404041104040411040404110404
+          0411040404110404041104040411040404110303030C000000000303030D7151
+          16AE945F12CD291C0D4E151516521010103E1010103E1010103E1010103E1010
+          103E1010103E1010103E1010103E1010103E161616520303030C050505129769
+          13CFDD870BFF3524106016161656060606180606061806060618060606180606
+          0618060606180606061806060618060606181313134B04040411010101032D21
+          0D53372610640F0B061E0C0C0C2B0E0E0F380E0E0F380E0E0F380E0E0F380E0E
+          0F380E0E0F380E0E0F380E0E0F380E0E0F380D0D0D3201010103000000000606
+          06160808081E01010105040404100808081E0808081E0808081E0808081E0808
+          081E0808081E0808081E0808081E0808081E050506150000000004040410835E
+          14C2B3720FE82E200F59171717570D0D0D320D0D0D320D0D0D320D0D0D320D0D
+          0D320D0D0D320D0D0D320D0D0D320D0D0D32151515530404040F050505129368
+          15D2D5830EFF352411621717175B090909240909092409090924090909240909
+          092409090924090909240909092409090924151515520404041100000000110E
+          092A15110B350605030D0707071A0B0B0B2B0B0B0B2B0B0B0B2B0B0B0B2B0B0B
+          0B2B0B0B0B2B0B0B0B2B0B0B0B2B0B0B0B2B0909092100000000000000000D0C
+          0825120F0B320403020A070707180B0B0B2B0B0B0B2B0B0B0B2B0B0B0B2B0B0B
+          0B2B0B0B0B2B0B0B0B2B0B0B0B2B0B0B0B2B0808081F00000000050505129367
+          15D2D5830FFF362411621717175B0A0A0A250A0A0A250A0A0A250A0A0A250A0A
+          0A250A0A0A250A0A0A250A0A0A250A0A0A25151515520404041104040410855E
+          14C4B77212EB30200F5A161617570D0D0D310D0D0D310D0D0D310D0D0D310D0D
+          0D310D0D0D310D0D0D310D0D0D310D0D0D31151516530404040F000000000606
+          06160808081F01010105040404100808081F0808081F0808081F0808081F0808
+          081F0808081F0808081F0808081F0808081F060606160000000001010103291F
+          0E4E34250F5F0F0B061C0C0C0C290E0E0E370E0E0E370E0E0E370E0E0E370E0E
+          0E370E0E0E370E0E0E370E0E0E370E0E0E370D0D0D3001010103050505129768
+          14D0DD870BFF3523106116161656060606180606061806060618060606180606
+          0618060606180606061806060618060606181313134B040404110303030D7451
+          15B0986214D0291D0E4F151515521010103E1010103E1010103E1010103E1010
+          103E1010103E1010103E1010103E1010103E151516520303030C000000000303
+          030D050505120101010302020209050505120505051205050512050505120505
+          0512050505120505051205050512050505120303030D00000000}
       end>
   end
   object dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
@@ -1462,7 +1514,7 @@ object frm_form_default: Tfrm_form_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ','
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
+    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET

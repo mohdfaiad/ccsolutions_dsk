@@ -75,8 +75,6 @@ type
     qry_employeeemp_type: TStringField;
     qry_employeeemp_status: TStringField;
     qry_employeerec_name: TStringField;
-    SpeedButton2: TSpeedButton;
-    SpeedButton1: TSpeedButton;
     qry_employeeemp_cod: TBytesField;
     qry_employeerecord_rec_cod: TBytesField;
     qry_employeecontract_ctr_cod: TBytesField;
@@ -187,8 +185,6 @@ type
     procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
     procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
     procedure cxTabSheet_2Show(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
-    procedure SpeedButton2Click(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
     procedure edtQTDKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -302,7 +298,7 @@ end;
 procedure Tfrm_request.Action_editExecute(Sender: TObject);
 begin
  inherited;
-  btnSalvar_Item.Tag := 1;
+  btnSalvar_Item.Tag := 1; //Tag = 1 - Condição para Inserir Itens Na Requisição----
   pco_cod := qryCodPurchase.AsString;
   ExibirEstoque;
   looComboxFuncionario.Text := qryFuncionario.AsString;
@@ -321,8 +317,7 @@ begin
    inherited;
 
    qry.Filtered:=False;
-   btnSalvar_Item.Tag := 1;
-
+   btnSalvar_Item.Tag := 1;   //Tag = 1 - Condição para Inserir Itens Na Requisição----
    qry_purchase_order_iten.Close;
    qry_purchase_order_iten.Open;
    ExibirEstoque;
@@ -386,7 +381,7 @@ end;
 
 procedure Tfrm_request.act_cancel_request_itensExecute(Sender: TObject);
 begin
-  btnSalvar_Item.Tag := 1;
+  btnSalvar_Item.Tag := 1; //Tag = 1 - Condição para Inserir Itens Na Requisição----
   looComboxProduto.Clear;
   edtQTD.Clear;
   edtUND.Clear;
@@ -422,7 +417,7 @@ begin
      end;
    end;
 
-   btnSalvar_Item.Tag :=1;
+   btnSalvar_Item.Tag :=1;   //Tag = 1 - Condição para Inserir Itens Na Requisição----
    qry_purchase_order_iten.Close;
    qry_purchase_order_iten.Open;
    HabiliTarButtun(true);
@@ -516,7 +511,7 @@ begin
          edtQTD.Clear;
          edtUND.Clear;
          cxGrid1.SetFocus;
-         btnSalvar_Item.Tag := 1;
+         btnSalvar_Item.Tag := 1;  //Tag = 1 - Condição para Inserir Itens Na Requisição----
          HabiliTarButtun(True);
     end else
     begin
@@ -980,48 +975,6 @@ begin
    qry.Prepare;
    qry.open;
    qry.Edit;
-
-end;
-
-procedure Tfrm_request.SpeedButton1Click(Sender: TObject);
-begin
-  inherited;
-  if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
- begin
-   frxReport_1.LoadFromStream(TReport.Read_Report(cxBarEditItem_1.EditValue, 'rep_report', frm_dm_report.qry_report));
-   frxReport_1.ShowReport;
- end;
-
-end;
-
-procedure Tfrm_request.SpeedButton2Click(Sender: TObject);
- var
-  NameReport: string;
-begin
-  //-----------------------------------------------------------
-
- inherited;
- with frm_dm.qry3,sql do
-   begin
-    Close;
-    Clear;
-    Text:= 'select * from report where rep_name =:p_report';
-    ParamByName('p_report').Value:=cxBarEditItem_1.EditValue;
-    Prepare;
-    Open;
-    if (RecordCount >0) then
-     begin
-      Application.MessageBox('Este relatório já está cadastrada !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
-      Exit
-     end
-     else
-      begin
-       NameReport :='';
-       NameReport:= TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue;
-       TReport.Save_Report(frm_dm.qry_contractctr_id.Value,cxBarEditItem_1.EditValue, NameReport,'rep_report',frm_dm_report.qry_report);
-     end;
- end;
-
 
 end;
 

@@ -3,7 +3,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   ClientHeight = 686
   ClientWidth = 980
   OnClose = FormClose
-  OnShow = FormShow
   ExplicitWidth = 996
   ExplicitHeight = 725
   PixelsPerInch = 96
@@ -11,7 +10,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   inherited cxPageControl_1: TcxPageControl
     Width = 980
     Height = 631
-    Properties.ActivePage = cxTabSheet_1
+    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 980
     ExplicitHeight = 631
     ClientRectBottom = 625
@@ -24,6 +23,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       inherited cxGrid_1: TcxGrid
         Width = 966
         Height = 591
+        ExplicitLeft = 3
+        ExplicitTop = 3
         ExplicitWidth = 966
         ExplicitHeight = 591
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -620,6 +621,32 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Width = 980
     ExplicitWidth = 980
   end
+  object DBGrid1: TDBGrid [2]
+    Left = 248
+    Top = 75
+    Width = 697
+    Height = 82
+    DataSource = ds_transfer_iten
+    TabOrder = 6
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object DBGrid2: TDBGrid [3]
+    Left = 248
+    Top = 163
+    Width = 689
+    Height = 94
+    DataSource = ds_purchase_iten
+    TabOrder = 7
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
   inherited dxBarManager_1: TdxBarManager
     Left = 718
     Top = 24
@@ -665,7 +692,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Top = 24
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -696,7 +722,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         Name = 'CTR_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 34
+        Size = 16
         Value = Null
       end>
     object qryprt_cod: TBytesField
@@ -1948,7 +1974,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         Name = 'CTR_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 45
+        Size = 16
         Value = Null
       end>
     object qry_employeeCodEmployee: TStringField
@@ -2036,7 +2062,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Top = 488
   end
   object qry_purchase_order: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       
@@ -2052,8 +2077,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         '_ent_cod in (select enterprise_ent_cod '#10'from contract_user_enter' +
         'prise'
       
-        ' where contract_user_ctr_usr_cod =unhex(:ctr_usr_cod))'#10'and pco_d' +
-        'eleted_at is null')
+        'where contract_user_ctr_usr_cod =unhex(:ctr_usr_cod))'#10'and pco_de' +
+        'leted_at is null')
     Left = 800
     Top = 488
     ParamData = <

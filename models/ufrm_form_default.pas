@@ -123,7 +123,8 @@ type
     frxReport_1: TfrxReport;
     ACBrCEP_1: TACBrCEP;
     cxlooComBoxRep: TcxBarEditItem;
-    btnSave_Rep: TdxBarButton;
+    dxBarSubItem1: TdxBarSubItem;
+    dxBarButton1: TdxBarButton;
     procedure cxGrid_1DBTableView1DblClick(Sender: TObject);
     procedure Action_insertUpdate(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
@@ -143,8 +144,9 @@ type
     procedure Action_importExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Action_printExecute(Sender: TObject);
-    procedure btnSave_RepClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure dxBarButton1Click(Sender: TObject);
+    procedure cxlooComBoxRepPropertiesPopup(Sender: TObject);
   private
     { Private declarations }
   public
@@ -334,7 +336,14 @@ begin
 
 end;
 
-procedure Tfrm_form_default.btnSave_RepClick(Sender: TObject);
+procedure Tfrm_form_default.cxlooComBoxRepPropertiesPopup(Sender: TObject);
+begin
+   frm_dm_report.qry_report.Close;
+   frm_dm_report.qry_report.Open;
+
+end;
+
+procedure Tfrm_form_default.dxBarButton1Click(Sender: TObject);
  var
   rep_cod, NameReport: string;
   rep_id: Integer;

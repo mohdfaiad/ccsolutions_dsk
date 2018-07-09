@@ -21,12 +21,13 @@ inherited frm_purchase_order: Tfrm_purchase_order
   inherited cxPageControl_1: TcxPageControl
     Width = 1018
     Height = 585
-    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 1018
     ExplicitHeight = 585
     ClientRectBottom = 579
     ClientRectRight = 1012
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 1010
       ExplicitHeight = 551
       inherited cxGrid_1: TcxGrid
@@ -221,6 +222,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
       ExplicitWidth = 1010
       ExplicitHeight = 551
       inherited cxPageControl_2: TcxPageControl
@@ -231,6 +234,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
         ClientRectBottom = 539
         ClientRectRight = 998
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
           ExplicitWidth = 996
           ExplicitHeight = 511
           inherited dxLayoutControl_1: TdxLayoutControl

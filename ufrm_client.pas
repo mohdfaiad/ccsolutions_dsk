@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxImage, cxShellComboBox, QExport4Dialog, cxBarEditItem,
   dxBarExtItems, QImport3Wizard, Vcl.StdCtrls, frxClass, ACBrSocket, ACBrCEP,
-  dxLayoutControlAdapters, cxButtons, cxDBLookupComboBox, ufrm_main_default, Vcl.Grids, Vcl.DBGrids;
+  dxLayoutControlAdapters, cxButtons, cxDBLookupComboBox, ufrm_main_default, Vcl.Grids, Vcl.DBGrids, frxDBSet;
 
 type
   Tfrm_client = class(Tfrm_form_default)
@@ -226,7 +226,6 @@ type
     dxBarButton5: TdxBarButton;
     Action_consult_cpf: TAction;
     Action_consult_cnpj: TAction;
-    dxBarButton1: TdxBarButton;
     tabTelefonia: TcxTabSheet;
     Label1: TLabel;
     dxLayoutControl4Group_Root: TdxLayoutGroup;
@@ -310,6 +309,8 @@ type
     qrycli_image1: TBlobField;
     PopupMenu1: TPopupMenu;
     Localizar1: TMenuItem;
+    frx_db_client: TfrxDBDataset;
+    frx_db_client_insirance: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);

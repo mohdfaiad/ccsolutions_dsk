@@ -1,13 +1,14 @@
 inherited frm_product: Tfrm_product
   Caption = 'Manuten'#231#227'o: Produtos e Servi'#231'os'
   OnClose = FormClose
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
       OnShow = cxTabSheet_1Show
       inherited cxGrid_1: TcxGrid
+        ExplicitLeft = 3
+        ExplicitTop = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pro_id: TcxGridDBColumn
             Caption = 'C'#243'digo ID'
@@ -1198,7 +1199,7 @@ inherited frm_product: Tfrm_product
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
-    ReportOptions.LastChange = 43287.747316909700000000
+    ReportOptions.LastChange = 43290.577698993050000000
     Left = 271
     Datasets = <
       item
@@ -1381,7 +1382,7 @@ inherited frm_product: Tfrm_product
         FillType = ftBrush
         Frame.Typ = []
         Height = 41.574830000000000000
-        Top = 438.425480000000000000
+        Top = 449.764070000000000000
         Width = 718.110700000000000000
         object Memo21: TfrxMemoView
           Left = 10.559060000000000000
@@ -1555,13 +1556,13 @@ inherited frm_product: Tfrm_product
       object ColumnFooter1: TfrxColumnFooter
         FillType = ftBrush
         Frame.Typ = []
-        Height = 52.913420000000000000
+        Height = 64.252010000000000000
         Top = 362.834880000000000000
         Width = 718.110700000000000000
         object Memo17: TfrxMemoView
           Align = baRight
           Left = 634.961040000000000000
-          Top = 30.236240000000000000
+          Top = 24.236240000000000000
           Width = 83.149660000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1576,7 +1577,7 @@ inherited frm_product: Tfrm_product
         end
         object Memo19: TfrxMemoView
           Left = 498.897960000000000000
-          Top = 30.236240000000000000
+          Top = 24.236240000000000000
           Width = 132.283550000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1588,6 +1589,22 @@ inherited frm_product: Tfrm_product
           Memo.UTF8W = (
             'Total de Registros:')
           ParentFont = False
+        end
+        object Line2: TfrxLineView
+          Left = 0.377952760000000000
+          Top = 0.779530000000000000
+          Width = 718.110700000000000000
+          Color = clBlack
+          Frame.Typ = []
+          Diagonal = True
+        end
+        object Line3: TfrxLineView
+          Left = 0.377952760000000000
+          Top = 57.692950000000000000
+          Width = 718.110700000000000000
+          Color = clBlack
+          Frame.Typ = []
+          Diagonal = True
         end
       end
     end

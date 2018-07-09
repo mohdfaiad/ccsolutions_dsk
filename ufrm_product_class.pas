@@ -33,7 +33,7 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  ACBrSocket, ACBrCEP, frxClass, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons, frxDBSet;
+  ACBrSocket, ACBrCEP, frxClass, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons, frxDBSet, cxDBLookupComboBox;
 
 type
   Tfrm_product_class = class(Tfrm_form_default)

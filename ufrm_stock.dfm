@@ -1,10 +1,10 @@
 inherited frm_stock: Tfrm_stock
   Caption = 'Manuten'#231#227'o Estoques'
   OnClose = FormClose
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -97,6 +97,7 @@ inherited frm_stock: Tfrm_stock
                   FieldName = 'ent_last_name'
                 end>
               Properties.ListSource = frm_dm.ds_enterprise
+              Properties.OnCloseUp = looComboxEmpresaPropertiesCloseUp
               Properties.OnPopup = looComboxEmpresaPropertiesPopup
               Style.HotTrack = False
               TabOrder = 4

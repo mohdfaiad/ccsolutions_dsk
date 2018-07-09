@@ -34,7 +34,7 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket,
-  ACBrCEP, frxClass, Vcl.ExtCtrls, frxDBSet;
+  ACBrCEP, frxClass, Vcl.ExtCtrls, frxDBSet, cxDBLookupComboBox;
 
 type
   Tfrm_brand = class(Tfrm_form_default)

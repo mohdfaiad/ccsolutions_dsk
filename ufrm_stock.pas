@@ -75,6 +75,7 @@ type
     procedure Action_editExecute(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
     procedure looComboxEmpresaPropertiesPopup(Sender: TObject);
+    procedure looComboxEmpresaPropertiesCloseUp(Sender: TObject);
   private
     { Private declarations }
      stock_cod:string;
@@ -235,10 +236,21 @@ begin
 
 end;
 
+procedure Tfrm_stock.looComboxEmpresaPropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+  qryenterprise_ent_cod.value := frm_dm.qry_enterpriseent_cod.value;
+end;
+
 procedure Tfrm_stock.looComboxEmpresaPropertiesPopup(Sender: TObject);
 begin
   inherited;
-   qryenterprise_ent_cod.value := frm_dm.qry_enterpriseent_cod.value;
+   frm_dm.qry_enterprise.Close;
+   frm_dm.qry_enterprise.ParamByName('CTR_COD').Value       := frm_dm.qry_contractctr_cod.Value;
+   frm_dm.qry_enterprise.ParamByName('CODUSUARIO').AsString := frm_dm.v_ctr_usr_cod;
+   frm_dm.qry_enterprise.Prepare;
+   frm_dm.qry_enterprise.open;
+
 end;
 
 procedure Tfrm_stock.qryAfterInsert(DataSet: TDataSet);

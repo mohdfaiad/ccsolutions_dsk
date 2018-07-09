@@ -1,7 +1,7 @@
 object frm_dm_report: Tfrm_dm_report
   OldCreateOrder = False
-  Height = 389
-  Width = 425
+  Height = 649
+  Width = 630
   object frxds_client: TfrxDBDataset
     UserName = 'Clientes'
     CloseDataSource = False
@@ -140,8 +140,8 @@ object frm_dm_report: Tfrm_dm_report
     SQL.Strings = (
       'SELECT report.*, hex(rep_cod)as CodReport FROM report'
       'where rep_reference =:reference')
-    Left = 176
-    Top = 152
+    Left = 496
+    Top = 16
     ParamData = <
       item
         Name = 'REFERENCE'
@@ -213,7 +213,81 @@ object frm_dm_report: Tfrm_dm_report
   end
   object ds_report: TDataSource
     DataSet = qry_report
-    Left = 248
-    Top = 152
+    Left = 568
+    Top = 16
+  end
+  object qry_stock: TFDQuery
+    Active = True
+    Connection = frm_dm.connCCS
+    SQL.Strings = (
+      'select stock.*, hex(sto_cod)as CodStock from stock')
+    Left = 32
+    Top = 272
+    object qry_stocksto_cod: TBytesField
+      FieldName = 'sto_cod'
+      Origin = 'sto_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qry_stockcontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qry_stockenterprise_ent_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'enterprise_ent_cod'
+      Origin = 'enterprise_ent_cod'
+    end
+    object qry_stocksto_id: TLongWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_id'
+      Origin = 'sto_id'
+    end
+    object qry_stocksto_type: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_type'
+      Origin = 'sto_type'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_stocksto_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_name'
+      Origin = 'sto_name'
+      Size = 35
+    end
+    object qry_stocksto_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_status'
+      Origin = 'sto_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_stocksto_deleled_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_deleled_at'
+      Origin = 'sto_deleled_at'
+    end
+    object qry_stocksto_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'sto_dt_registration'
+      Origin = 'sto_dt_registration'
+    end
+    object qry_stockCodStock: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CodStock'
+      Origin = 'CodStock'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+  end
+  object frx_db_stock: TfrxDBDataset
+    UserName = 'stock'
+    CloseDataSource = False
+    BCDToCurrency = False
+    Left = 72
+    Top = 272
   end
 end

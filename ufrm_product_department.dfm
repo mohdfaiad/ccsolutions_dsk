@@ -1,16 +1,13 @@
 inherited frm_product_department: Tfrm_product_department
   Caption = 'Manuten'#231#227'o: Departamentos e Se'#231#245'es'
   OnClose = FormClose
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
+        ExplicitLeft = 3
+        ExplicitTop = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prd_id: TcxGridDBColumn
             Caption = 'C'#243'digo ID'
@@ -30,16 +27,8 @@ inherited frm_product_department: Tfrm_product_department
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 91
@@ -343,7 +332,7 @@ inherited frm_product_department: Tfrm_product_department
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
-    ReportOptions.LastChange = 43286.590953298610000000
+    ReportOptions.LastChange = 43286.590953298600000000
     Datasets = <
       item
         DataSet = frx_db_departamento
@@ -835,7 +824,7 @@ inherited frm_product_department: Tfrm_product_department
         Name = 'PRD_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 24
+        Size = 16
         Value = Null
       end>
     object qry_product_sectorprs_cod: TBytesField

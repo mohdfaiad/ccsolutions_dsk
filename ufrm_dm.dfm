@@ -260,6 +260,7 @@ object frm_dm: Tfrm_dm
     Top = 64
   end
   object qry_logged: TFDQuery
+    Active = True
     Connection = connCCS
     SQL.Strings = (
       'SELECT ctr_usr_logged FROM contract_user'
@@ -296,6 +297,7 @@ object frm_dm: Tfrm_dm
     end
   end
   object qry_action: TFDQuery
+    Active = True
     Connection = connCCS
     SQL.Strings = (
       'select sys_act_subtitle,sys_Act_name from system_action'#10

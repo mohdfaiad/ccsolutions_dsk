@@ -6,6 +6,8 @@ inherited frm_enterprise: Tfrm_enterprise
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
+        ExplicitLeft = 3
+        ExplicitTop = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ent_id: TcxGridDBColumn
             Caption = 'C'#243'd. ID'
@@ -118,10 +120,6 @@ inherited frm_enterprise: Tfrm_enterprise
     inherited cxTabSheet_2: TcxTabSheet
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -1028,7 +1026,7 @@ inherited frm_enterprise: Tfrm_enterprise
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
-    ReportOptions.LastChange = 43286.758400243050000000
+    ReportOptions.LastChange = 43290.579703252310000000
     Datasets = <
       item
         DataSet = frx_db_empresa
@@ -1943,19 +1941,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Frame.Typ = []
           Memo.UTF8W = (
             '[Empresa."ent_add_bus_number"]')
-        end
-        object Picture2: TfrxPictureView
-          Left = 616.063390000000000000
-          Top = 29.236240000000000000
-          Width = 98.267780000000000000
-          Height = 79.370130000000000000
-          DataField = 'ent_image1'
-          DataSet = frx_db_empresa
-          DataSetName = 'Empresa'
-          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
-          HightQuality = False
-          Transparent = False
-          TransparentColor = clWhite
         end
       end
     end

@@ -3,7 +3,6 @@ inherited frm_purchase_order: Tfrm_purchase_order
   ClientHeight = 640
   ClientWidth = 1018
   OnClose = FormClose
-  OnShow = FormShow
   ExplicitWidth = 1034
   ExplicitHeight = 679
   PixelsPerInch = 96
@@ -33,6 +32,8 @@ inherited frm_purchase_order: Tfrm_purchase_order
       inherited cxGrid_1: TcxGrid
         Width = 1004
         Height = 545
+        ExplicitLeft = 3
+        ExplicitTop = 3
         ExplicitWidth = 1004
         ExplicitHeight = 545
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -622,6 +623,10 @@ inherited frm_purchase_order: Tfrm_purchase_order
           ItemName = 'cxBarEditItem_1'
         end
         item
+          Visible = True
+          ItemName = 'dxBarSubItem1'
+        end
+        item
           UserDefine = [udWidth]
           UserWidth = 133
           Visible = True
@@ -634,20 +639,16 @@ inherited frm_purchase_order: Tfrm_purchase_order
         item
           Visible = True
           ItemName = 'dxBarButton_report_preview'
-        end
-        item
-          Visible = True
-          ItemName = 'btnSave_Rep'
         end>
     end
     inherited dxBarManager_1Bar4: TdxBar
-      DockedLeft = 465
+      DockedLeft = 515
     end
     inherited dxBarManager_1Bar5: TdxBar
-      DockedLeft = 614
+      DockedLeft = 664
     end
     inherited dxBarManager_1Bar6: TdxBar
-      DockedLeft = 760
+      DockedLeft = 810
       ItemLinks = <
         item
           Visible = True

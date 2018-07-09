@@ -68,6 +68,9 @@ type
     cxShellTreeView1: TcxShellTreeView;
     Action_preview: TAction;
     dxBarButton1: TdxBarButton;
+    dxBarSubItem_Salvar: TdxBarSubItem;
+    dxBarButton2: TdxBarButton;
+    cxEdt_Item_rep: TcxBarEditItem;
     procedure Action_closeExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_insertExecute(Sender: TObject);
@@ -80,6 +83,7 @@ type
     procedure Action_deleteExecute(Sender: TObject);
     procedure Action_previewExecute(Sender: TObject);
     procedure cxBarEditItem1Change(Sender: TObject);
+    procedure dxBarButton2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -93,7 +97,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm_report;
+uses ufrm_dm_report, ufrm_dm;
 
 procedure Tfrm_report.Action_closeExecute(Sender: TObject);
 begin
@@ -142,6 +146,96 @@ begin
   begin
     DeleteFile(cxShellTreeView1.Path);
   end;
+end;
+
+procedure Tfrm_report.dxBarButton2Click(Sender: TObject);
+ var
+  rep_cod, NameReport: string;
+  rep_id: Integer;
+  sArq:TStream;
+  mMem:TMemoryStream;
+begin
+  if cxEdt_Item_rep.EditValue <> '' then
+   begin
+
+    frm_dm_report.qry_report.Open;
+
+    NameReport :='';
+    NameReport := TcxShellComboBoxProperties(cxEdt_Item_rep.Properties).Root.CurrentPath +'\'+cxEdt_Item_rep.EditValue;
+   // NameReport:= cxShellTreeView1.AbsolutePath;
+
+    mMem:=TMemoryStream.Create;
+    sArq:= TFileStream.Create(NameReport, fmOpenRead);
+    sArq.Position:=0;
+
+    mMem.LoadFromStream(sArq);
+
+    try
+
+     if frm_dm_report.qry_report.locate('rep_name',cxEdt_Item_rep.EditValue,[]) then
+      begin
+
+        frm_dm_report.qry_report.Edit;
+        frm_dm_report.qry_reportrep_report.LoadFromStream(mMem);
+        frm_dm_report.qry_report.Post;
+        Application.MessageBox('Relatório salvo com sucesso !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
+
+      end else
+       begin
+
+         With frm_dm.qry,sql do
+          begin
+           close;   //SQL para obter o Codigo ID em Hex-----
+           text:= 'select hex(uuid_to_bin(uuid()))';
+           prepare;
+           open;
+
+           rep_cod:=Fields[0].AsString;
+
+
+               close;  // SQL para Obter o proximo ID ta tabela-----
+               Text:= ' select case when max(rep_id) is null then 1 ' +
+                      '      else (max(rep_id) + 1) end as maxID from report '+
+                      ' where contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')';
+               Prepare;
+               Open;
+
+           rep_id:=Fields[0].AsInteger;
+
+           Close;   //SQL para Inserir o produto do Pedido de Compra------
+           Text:='insert into report (rep_id, rep_cod, contract_ctr_cod, rep_name,rep_reference, rep_status, rep_dt_registration ) ' +
+                 ' values (:rep_id, unhex(:rep_cod), unhex(:contract_ctr_cod), :rep_name, :rep_reference, :rep_status, :rep_dt_registration) ';
+           ParamByName('rep_id').AsInteger             := rep_id;
+           ParamByName('rep_cod').AsString             := rep_cod;
+           ParamByName('contract_ctr_cod').AsString    := frm_dm.v_contract_ctr_cod;
+           ParamByName('rep_name').AsString            := NameReport;
+           ParamByName('rep_reference').AsString       := Self.Name;
+           ParamByName('rep_status').AsString          := 'A';
+           ParamByName('rep_dt_registration').AsDateTime:= Now;
+           Prepare;
+           ExecSQL;
+
+           frm_dm_report.qry_report.Close;
+           frm_dm_report.qry_report.Open;
+           frm_dm_report.qry_report.locate('rep_name',cxEdt_Item_rep.EditValue,[]);
+           frm_dm_report.qry_report.Edit;
+           frm_dm_report.qry_reportrep_report.LoadFromStream(mMem);
+           frm_dm_report.qry_report.Post;
+           Application.MessageBox('Relatório salvo com sucesso !','AVISO DO SISTEMA',MB_OK + MB_ICONINFORMATION);
+
+          end;
+
+       end;
+
+     finally
+      FreeAndNil(mMem);
+      FreeAndNil(sArq);
+    end;
+
+   end else
+    begin
+      Application.MessageBox('Campo relatório está vazio, por favor selecione um relatório !','AVISO DO SISTEMA',MB_OK + MB_ICONWARNING);
+    end;
 end;
 
 procedure Tfrm_report.editReport;

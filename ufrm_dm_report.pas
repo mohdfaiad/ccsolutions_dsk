@@ -27,6 +27,18 @@ type
     qry_reportrep_dt_registration: TDateTimeField;
     qry_reportCodReport: TStringField;
     ds_report: TDataSource;
+    qry_stock: TFDQuery;
+    qry_stocksto_cod: TBytesField;
+    qry_stockcontract_ctr_cod: TBytesField;
+    qry_stockenterprise_ent_cod: TBytesField;
+    qry_stocksto_id: TLongWordField;
+    qry_stocksto_type: TStringField;
+    qry_stocksto_name: TStringField;
+    qry_stocksto_status: TStringField;
+    qry_stocksto_deleled_at: TDateTimeField;
+    qry_stocksto_dt_registration: TDateTimeField;
+    qry_stockCodStock: TStringField;
+    frx_db_stock: TfrxDBDataset;
     procedure qry_reportAfterPost(DataSet: TDataSet);
     procedure qry_reportAfterDelete(DataSet: TDataSet);
   private

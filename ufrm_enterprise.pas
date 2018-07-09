@@ -35,7 +35,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxShellComboBox, QExport4Dialog, cxBarEditItem, dxBarExtItems,
   QImport3Wizard, cxImage, dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons,
-  Vcl.ExtDlgs, Vcl.DBCtrls, ACBrSocket, ACBrCEP, frxClass,cxGeometry, frxDBSet;
+  Vcl.ExtDlgs, Vcl.DBCtrls, ACBrSocket, ACBrCEP, frxClass,cxGeometry, frxDBSet, cxDBLookupComboBox;
 
 type
   Tfrm_enterprise = class(Tfrm_form_default)

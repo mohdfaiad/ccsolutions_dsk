@@ -34,7 +34,7 @@ uses
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   ACBrSocket, ACBrNCMs, cxMemo, cxButtonEdit, ACBrCEP, frxClass, Vcl.Buttons,
-  Vcl.Grids, Vcl.DBGrids, frxDBSet;
+  Vcl.Grids, Vcl.DBGrids, frxDBSet, cxDBLookupComboBox;
 
 type
   Tfrm_ncm = class(Tfrm_form_default)
@@ -124,6 +124,9 @@ end;
 
 procedure Tfrm_ncm.Action_editExecute(Sender: TObject);
 begin
+  if qry.IsEmpty then
+   exit;
+
   inherited;
    dbComboxStatus.Enabled := True;
    ncm_cod := qryCodNCM.AsString;

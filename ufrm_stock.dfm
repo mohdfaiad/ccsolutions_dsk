@@ -1,6 +1,7 @@
 inherited frm_stock: Tfrm_stock
   Caption = 'Manuten'#231#227'o Estoques'
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
@@ -11,8 +12,6 @@ inherited frm_stock: Tfrm_stock
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
-        ExplicitTop = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sto_id: TcxGridDBColumn
             Caption = 'C'#243'digo ID'
@@ -42,10 +41,6 @@ inherited frm_stock: Tfrm_stock
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
@@ -188,25 +183,25 @@ inherited frm_stock: Tfrm_stock
     SQL.Strings = (
       
         'select stock.*, hex(sto_cod)as CodStock from stock '#10'where contra' +
-        'ct_ctr_cod =:ctr_cod'
+        'ct_ctr_cod =unhex(:ctr_cod)'
       'and enterprise_ent_cod in '
       
         '(select enterprise_ent_cod from contract_user_enterprise where c' +
-        'ontract_user_ctr_usr_cod =:ctr_usr_cod)'
+        'ontract_user_ctr_usr_cod =unhex(:ctr_usr_cod))'
       'and sto_deleled_at is null')
     ParamData = <
       item
         Name = 'CTR_COD'
-        DataType = ftString
+        DataType = ftBytes
         ParamType = ptInput
-        Size = 85
+        Size = 34
         Value = Null
       end
       item
         Name = 'CTR_USR_COD'
-        DataType = ftString
+        DataType = ftBytes
         ParamType = ptInput
-        Size = 85
+        Size = 34
         Value = Null
       end>
     object qryenterprise_ent_cod: TBytesField

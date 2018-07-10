@@ -33,7 +33,7 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  ACBrSocket, ACBrCEP, frxClass, frxDBSet;
+  ACBrSocket, ACBrCEP, frxClass, frxDBSet, cxDBLookupComboBox;
 
 type
   Tfrm_product_unit = class(Tfrm_form_default)
@@ -123,6 +123,9 @@ end;
 
 procedure Tfrm_product_unit.Action_editExecute(Sender: TObject);
 begin
+ if qry.IsEmpty then
+   exit;
+
   inherited;
    dbComboxStatus.Enabled := True;
    pru_cod := qryCodProdUnit.AsString;

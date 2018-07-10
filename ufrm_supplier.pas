@@ -152,6 +152,7 @@ type
     procedure Action_cancelExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
   private
     { Private declarations }
     sup_cod:string;
@@ -218,6 +219,14 @@ begin
      Application.MessageBox('Fornecedor excluída com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
 
     ExibirRegistros;
+
+end;
+
+procedure Tfrm_supplier.Action_editExecute(Sender: TObject);
+begin
+  if qry.IsEmpty then
+   exit;
+  inherited;
 
 end;
 

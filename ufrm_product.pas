@@ -437,6 +437,9 @@ end;
 
 procedure Tfrm_product.Action_editExecute(Sender: TObject);
 begin
+  if qry.IsEmpty then
+   exit;
+
   inherited;
    pro_cod := qryCodProduct.AsString;
    dbComboxStatus.Enabled   :=True;

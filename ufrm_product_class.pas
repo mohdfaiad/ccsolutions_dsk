@@ -194,6 +194,9 @@ end;
 
 procedure Tfrm_product_class.Action_editExecute(Sender: TObject);
 begin
+  if qry.IsEmpty then
+   exit;
+
   inherited;
    btnSalvar_Item.Tag := 1; // Para Inserir
    dbComboxStatus.Enabled := True;

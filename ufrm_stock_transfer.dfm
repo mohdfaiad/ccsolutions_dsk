@@ -3,6 +3,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   ClientHeight = 686
   ClientWidth = 980
   OnClose = FormClose
+  OnShow = FormShow
   ExplicitWidth = 996
   ExplicitHeight = 725
   PixelsPerInch = 96
@@ -16,15 +17,13 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     ClientRectBottom = 625
     ClientRectRight = 974
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 972
       ExplicitHeight = 597
       inherited cxGrid_1: TcxGrid
         Width = 966
         Height = 591
-        ExplicitLeft = 3
-        ExplicitTop = 3
         ExplicitWidth = 966
         ExplicitHeight = 591
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -88,8 +87,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 972
       ExplicitHeight = 597
       inherited cxPageControl_2: TcxPageControl
@@ -101,8 +100,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         ClientRectRight = 960
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
-          ExplicitLeft = 2
-          ExplicitTop = 28
           ExplicitWidth = 958
           ExplicitHeight = 557
           inherited dxLayoutControl_1: TdxLayoutControl
@@ -162,7 +159,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
                 object cxGrid1DBTableView1pro_name: TcxGridDBColumn
                   Caption = 'Produto'
                   DataBinding.FieldName = 'pro_name'
-                  Width = 300
+                  Width = 250
                 end
                 object cxGrid1DBTableView1pru_initials: TcxGridDBColumn
                   Caption = 'Und'
@@ -172,19 +169,19 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
                 object cxGrid1DBTableView1poi_product_quant: TcxGridDBColumn
                   Caption = 'Qtd da Requisi'#231#227'o'
                   DataBinding.FieldName = 'poi_product_quant'
-                  Width = 80
+                  Width = 100
                 end
                 object cxGrid1DBTableView1poi_product_quant_served: TcxGridDBColumn
                   Caption = 'Qtd j'#225' Atendida'
                   DataBinding.FieldName = 'poi_product_quant_served'
-                  Width = 80
+                  Width = 100
                 end
                 object cxGrid1DBTableView1pti_product_quant: TcxGridDBColumn
                   Caption = 'Qtd A Liberar'
                   DataBinding.FieldName = 'pti_product_quant'
                   PropertiesClassName = 'TcxCurrencyEditProperties'
                   Properties.DisplayFormat = '0.000;-0.000'
-                  Width = 80
+                  Width = 100
                 end
                 object cxGrid1DBTableView1pti_dt_registration: TcxGridDBColumn
                   Caption = 'Dt. Reg'
@@ -621,32 +618,6 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Width = 980
     ExplicitWidth = 980
   end
-  object DBGrid1: TDBGrid [2]
-    Left = 248
-    Top = 75
-    Width = 697
-    Height = 82
-    DataSource = ds_transfer_iten
-    TabOrder = 6
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-  end
-  object DBGrid2: TDBGrid [3]
-    Left = 248
-    Top = 163
-    Width = 689
-    Height = 94
-    DataSource = ds_purchase_iten
-    TabOrder = 7
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-  end
   inherited dxBarManager_1: TdxBarManager
     Left = 718
     Top = 24
@@ -692,6 +663,7 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
     Top = 24
   end
   inherited qry: TFDQuery
+    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -1631,8 +1603,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object ds_transfer_iten: TDataSource
     DataSet = qry_product_transfer_iten
-    Left = 415
-    Top = 442
+    Left = 671
+    Top = 81
   end
   object qry_stock_iten: TFDQuery
     Active = True
@@ -1646,8 +1618,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       'left join product_unit on pru_cod = product_unit_pru_cod'#13#10#10
       'where stock_sto_cod =:sto_cod'#13#10#10
       'order by pro_name')
-    Left = 463
-    Top = 98
+    Left = 575
+    Top = 80
     ParamData = <
       item
         Name = 'STO_COD'
@@ -1768,8 +1740,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       'left join product_unit on pru_cod = product_unit_pru_cod'#13#10#10
       'where stock_sto_cod =:sto_cod'
       'order by pro_name')
-    Left = 824
-    Top = 136
+    Left = 832
+    Top = 81
     ParamData = <
       item
         Name = 'STO_COD'
@@ -1874,8 +1846,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object ds_product: TDataSource
     DataSet = qry_product
-    Left = 872
-    Top = 136
+    Left = 864
+    Top = 81
   end
   object qry_stock_exit: TFDQuery
     Active = True
@@ -1891,8 +1863,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         'and st.enterprise_ent_cod in (select enterprise_ent_cod from con' +
         'tract_user_enterprise where contract_user_ctr_usr_cod =unhex(:ct' +
         'r_usr_cod))')
-    Left = 799
-    Top = 434
+    Left = 871
+    Top = 127
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -1946,8 +1918,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object ds_stock_exit: TDataSource
     DataSet = qry_stock_exit
-    Left = 831
-    Top = 434
+    Left = 903
+    Top = 124
   end
   object qry_employee: TFDQuery
     Active = True
@@ -1967,8 +1939,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         't_ctr_cod from employee as e'#13#10#10
       'left join record as r on e.record_rec_cod = r.rec_cod'#13#10#10
       'where e.contract_ctr_cod =:ctr_cod')
-    Left = 792
-    Top = 384
+    Left = 896
+    Top = 80
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -2034,13 +2006,13 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object ds_employee: TDataSource
     DataSet = qry_employee
-    Left = 825
-    Top = 384
+    Left = 922
+    Top = 80
   end
   object ds_purchase_iten: TDataSource
     DataSet = qry_purchase_order_iten
-    Left = 832
-    Top = 336
+    Left = 800
+    Top = 80
   end
   object frxDBD_Stock_Transfer: TfrxDBDataset
     UserName = 'Stock_Transfer'
@@ -2058,8 +2030,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object ds_purchase_order: TDataSource
     DataSet = qry_purchase_order
-    Left = 840
-    Top = 488
+    Left = 736
+    Top = 80
   end
   object qry_purchase_order: TFDQuery
     Connection = frm_dm.connCCS
@@ -2079,8 +2051,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       
         'where contract_user_ctr_usr_cod =unhex(:ctr_usr_cod))'#10'and pco_de' +
         'leted_at is null')
-    Left = 800
-    Top = 488
+    Left = 704
+    Top = 80
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -2210,8 +2182,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
       'left join product on product_pro_cod =  pro_cod'#10
       'left join product_unit on product_unit_pru_cod = pru_cod'
       'where purchase_order_pco_cod =:pco_cod')
-    Left = 792
-    Top = 336
+    Left = 768
+    Top = 80
     ParamData = <
       item
         Name = 'PCO_COD'
@@ -2321,8 +2293,8 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
         'e_order_pco_cod = purchase_order_pco_id and ord_itens.product_pr' +
         'o_cod = trans_itens.product_pro_cod'
       'where trans_itens.product_transfer_prt_cod =unhex(:prt_cod)')
-    Left = 352
-    Top = 440
+    Left = 640
+    Top = 81
     ParamData = <
       item
         Name = 'PRT_COD'
@@ -2440,29 +2412,35 @@ inherited frm_stock_transfer: Tfrm_stock_transfer
   end
   object ds_stock_iten: TDataSource
     DataSet = qry_stock_iten
-    Left = 496
-    Top = 96
+    Left = 608
+    Top = 80
   end
   object pupMenuTransf: TPopupMenu
-    Left = 823
-    Top = 208
+    Left = 871
+    Top = 176
     object Excluir2: TMenuItem
-      Action = act_delete_transf_itens
       Caption = 'Excluir'
+      Hint = 'Excluir'
+      ImageIndex = 8
+      OnClick = act_delete_transf_itensExecute
     end
     object Editar2: TMenuItem
-      Action = act_edit_transf_itens
       Caption = 'Editar'
+      Hint = 'Editar'
+      ImageIndex = 5
+      OnClick = act_edit_transf_itensExecute
     end
     object Cancelar1: TMenuItem
-      Action = act_cancel_transf_itens
       Caption = 'Cancelar'
+      Hint = 'Cancelar'
+      ImageIndex = 7
+      OnClick = act_cancel_transf_itensExecute
     end
   end
   object Action_Transf_itens: TActionList
     Images = cxImageList_1
-    Left = 896
-    Top = 200
+    Left = 912
+    Top = 176
     object act_save_transf_itens: TAction
       Hint = 'Salvar'
       ImageIndex = 6

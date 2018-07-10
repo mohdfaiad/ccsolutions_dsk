@@ -69,7 +69,6 @@ type
     qry_stock: TFDQuery;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
-    frx_db_iten: TfrxDBDataset;
     qry_parameter_stock: TFDQuery;
     frx_db_parameter_stock: TfrxDBDataset;
     qry_employeeemp_type: TStringField;
@@ -197,6 +196,8 @@ type
     procedure cxTabSheet_3Show(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
     procedure looComboxProdutoPropertiesCloseUp(Sender: TObject);
+    procedure looComboxSolicitantePropertiesCloseUp(Sender: TObject);
+    procedure looComboxFuncionarioPropertiesCloseUp(Sender: TObject);
   private
       pco_cod,iten_cod:string;
       iten_ID: Integer;
@@ -297,7 +298,11 @@ end;
 
 procedure Tfrm_request.Action_editExecute(Sender: TObject);
 begin
+ if qry.IsEmpty then
+   exit;
+
  inherited;
+
   btnSalvar_Item.Tag := 1; //Tag = 1 - Condição para Inserir Itens Na Requisição----
   pco_cod := qryCodPurchase.AsString;
   ExibirEstoque;
@@ -373,7 +378,10 @@ begin
           qryemployee_emp_cod.Value := qry_employeeemp_cod.Value;
           qrystock_sto_cod.Value    := qry_stocksto_cod.Value;
 
-        end;
+        end;
+
+    qry.Post;
+    qry.ApplyUpdates(0);
 
    ExibirRequisicao;
 
@@ -816,14 +824,12 @@ begin
   qry.SQL.Text:= ' select pur.*, hex(pco_cod)as CodPurchase, sto_name from purchase_order as pur  '+
                  ' left join stock as sto on sto.sto_cod = pur.stock_sto_cod                      '+
                  ' where pur.pco_type = ''R'' and pur.contract_ctr_cod =unhex(:ctr_cod)           '+
-                 ' and sto.enterprise_ent_cod in (select enterprise_ent_cod                       '+
-                 ' from contract_user_enterprise                                                  '+
-                 ' where contract_user_ctr_usr_cod =unhex(:ctr_usr_cod))                          '+
-                 ' and pco_deleted_at is null      ';
-  qry.ParamByName('ctr_cod').AsString     :=  frm_dm.v_contract_ctr_cod;
-  qry.ParamByName('ctr_usr_cod').AsString :=  frm_dm.v_ctr_usr_cod;
-  qry.Prepare;
-  qry.Open;
+                 ' and sto.enterprise_ent_cod in (select enterprise_ent_cod from contract_user_enterprise '+
+                 ' where contract_user_ctr_usr_cod =unhex(:ctr_usr_cod)) and pco_deleted_at is null ';
+  qry.ParamByName('ctr_cod').AsString := frm_dm.v_contract_ctr_cod;
+  qry.ParamByName('ctr_usr_cod').AsString := frm_dm.v_ctr_usr_cod;
+  qry.Prepare;
+  qry.Open;
 
 end;
 
@@ -940,11 +946,29 @@ begin
   qry.CommitUpdates();
 end;
 
+procedure Tfrm_request.looComboxFuncionarioPropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+   qryemployee_emp_cod.Value := qry_employeeemp_cod.Value;
+   qry.Post;
+   qry.ApplyUpdates(0);
+   qry.Edit;
+end;
+
 procedure Tfrm_request.looComboxProdutoPropertiesCloseUp(Sender: TObject);
 begin
   inherited;
    edtUND.Text := qry_productpru_initials.AsString;
 
+end;
+
+procedure Tfrm_request.looComboxSolicitantePropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+   qrystock_sto_cod.Value := qry_stocksto_cod.Value;
+   qry.Post;
+   qry.ApplyUpdates(0);
+   qry.Edit;
 end;
 
 procedure Tfrm_request.qryAfterInsert(DataSet: TDataSet);

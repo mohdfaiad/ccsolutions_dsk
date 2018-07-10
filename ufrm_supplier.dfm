@@ -6,8 +6,6 @@ inherited frm_supplier: Tfrm_supplier
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
-        ExplicitTop = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1sup_id: TcxGridDBColumn
             Caption = 'C'#243'digo ID'
@@ -678,7 +676,7 @@ inherited frm_supplier: Tfrm_supplier
         Name = 'CTR_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 24
+        Size = 16
         Value = Null
       end>
     object qrysup_first_name: TStringField

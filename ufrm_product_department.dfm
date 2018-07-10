@@ -6,8 +6,6 @@ inherited frm_product_department: Tfrm_product_department
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
-        ExplicitTop = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1prd_id: TcxGridDBColumn
             Caption = 'C'#243'digo ID'
@@ -29,6 +27,10 @@ inherited frm_product_department: Tfrm_product_department
     inherited cxTabSheet_2: TcxTabSheet
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 91
@@ -270,7 +272,7 @@ inherited frm_product_department: Tfrm_product_department
         Name = 'CTR_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 24
+        Size = 16
         Value = Null
       end>
     object qryprd_name: TStringField

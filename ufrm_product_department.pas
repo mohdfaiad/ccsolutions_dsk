@@ -189,6 +189,9 @@ end;
 
 procedure Tfrm_product_department.Action_editExecute(Sender: TObject);
 begin
+  if qry.IsEmpty then
+   exit;
+
   inherited;
     btnSalvar_Item.Tag := 1; // Para Inserir
     prd_cod := qryCodDepartment.AsString;

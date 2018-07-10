@@ -3,6 +3,7 @@ inherited frm_request: Tfrm_request
   ClientHeight = 668
   ClientWidth = 932
   OnClose = FormClose
+  OnShow = FormShow
   ExplicitWidth = 948
   ExplicitHeight = 707
   PixelsPerInch = 96
@@ -10,20 +11,17 @@ inherited frm_request: Tfrm_request
   inherited cxPageControl_1: TcxPageControl
     Width = 932
     Height = 613
+    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 932
     ExplicitHeight = 613
     ClientRectBottom = 607
     ClientRectRight = 926
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 924
       ExplicitHeight = 579
       inherited cxGrid_1: TcxGrid
         Width = 918
         Height = 573
-        ExplicitLeft = 3
-        ExplicitTop = 3
         ExplicitWidth = 918
         ExplicitHeight = 573
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -351,6 +349,7 @@ inherited frm_request: Tfrm_request
                   FieldName = 'sto_name'
                 end>
               Properties.ListSource = ds_stock
+              Properties.OnCloseUp = looComboxSolicitantePropertiesCloseUp
               Style.HotTrack = False
               TabOrder = 2
               Width = 270
@@ -365,6 +364,7 @@ inherited frm_request: Tfrm_request
                   FieldName = 'rec_name'
                 end>
               Properties.ListSource = ds_employee
+              Properties.OnCloseUp = looComboxFuncionarioPropertiesCloseUp
               Style.HotTrack = False
               TabOrder = 3
               Width = 270
@@ -685,11 +685,11 @@ inherited frm_request: Tfrm_request
     SQL.Strings = (
       
         'select pur.*, hex(pco_cod)as CodPurchase, sto_name from purchase' +
-        '_order as pur'#10
-      'left join stock as sto on sto.sto_cod = pur.stock_sto_cod'#10
+        '_order as pur '#10
+      'left join stock as sto on sto.sto_cod = pur.stock_sto_cod'
       
         'where pur.pco_type = '#39'R'#39' and pur.contract_ctr_cod =unhex(:ctr_co' +
-        'd)'#10
+        'd)'
       
         'and sto.enterprise_ent_cod in (select enterprise_ent_cod '#10'from c' +
         'ontract_user_enterprise'
@@ -702,14 +702,14 @@ inherited frm_request: Tfrm_request
         Name = 'CTR_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 45
+        Size = 34
         Value = Null
       end
       item
         Name = 'CTR_USR_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 45
+        Size = 34
         Value = Null
       end>
     object qrypco_cod: TBytesField
@@ -827,8 +827,8 @@ inherited frm_request: Tfrm_request
         'rec_name, e.contract_ctr_cod from employee as e'#10
       'inner join record as r on e.record_rec_cod = r.rec_cod'
       'where e.contract_ctr_cod =:ctr_cod')
-    Left = 664
-    Top = 88
+    Left = 744
+    Top = 80
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -879,23 +879,23 @@ inherited frm_request: Tfrm_request
   end
   object ds_employee: TDataSource [14]
     DataSet = qry_employee
-    Left = 695
-    Top = 88
+    Left = 775
+    Top = 80
   end
   object ds_stock: TDataSource [15]
     DataSet = qry_stock
-    Left = 624
-    Top = 88
+    Left = 712
+    Top = 80
   end
   object ds_purchase_order_iten: TDataSource [16]
     DataSet = qry_purchase_order_iten
-    Left = 699
-    Top = 343
+    Left = 651
+    Top = 79
   end
   object ds_product: TDataSource [17]
     DataSet = qry_product
-    Left = 705
-    Top = 136
+    Left = 841
+    Top = 80
   end
   object qry_product: TFDQuery [18]
     Active = True
@@ -913,8 +913,8 @@ inherited frm_request: Tfrm_request
         'left join product_unit as uni on uni.pru_cod = pro.product_unit_' +
         'pru_cod '#13#10#10
       'where pro.pro_type = '#39'P'#39'  order by pro.pro_name')
-    Left = 672
-    Top = 136
+    Left = 808
+    Top = 80
     object qry_productproCod: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'proCod'
@@ -1592,8 +1592,8 @@ inherited frm_request: Tfrm_request
       
         'from contract_user_enterprise where contract_user_ctr_usr_cod =u' +
         'nhex(:ctr_usr_cod))')
-    Left = 588
-    Top = 88
+    Left = 684
+    Top = 80
     ParamData = <
       item
         Name = 'CTR_COD'
@@ -1632,29 +1632,13 @@ inherited frm_request: Tfrm_request
       Origin = 'enterprise_ent_cod'
     end
   end
-  object frx_db_iten: TfrxDBDataset
-    UserName = 'Itens'
-    CloseDataSource = False
-    FieldAliases.Strings = (
-      'poi_id=poi_id'
-      'purchase_order_pco_id=purchase_order_pco_id'
-      'product_pro_id=product_pro_id'
-      'poi_product_quant=poi_product_quant'
-      'poi_dt_registration=poi_dt_registration'
-      'pro_name=pro_name'
-      'pru_initials=pru_initials')
-    DataSet = qry_purchase_order_iten
-    BCDToCurrency = False
-    Left = 804
-    Top = 202
-  end
   object qry_parameter_stock: TFDQuery
     Active = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from parameter_stock')
-    Left = 121
-    Top = 368
+    Left = 457
+    Top = 96
     object qry_parameter_stockprs_cod: TBytesField
       FieldName = 'prs_cod'
       Origin = 'prs_cod'
@@ -1681,7 +1665,7 @@ inherited frm_request: Tfrm_request
       'dt_registration=dt_registration')
     DataSet = qry_parameter_stock
     BCDToCurrency = False
-    Left = 407
+    Left = 551
     Top = 2
   end
   object qry_purchase_order_iten: TFDQuery
@@ -1699,8 +1683,8 @@ inherited frm_request: Tfrm_request
       'left join product on product_pro_cod =  pro_cod'#10
       'left join product_unit on product_unit_pru_cod = pru_cod'
       'where purchase_order_pco_cod =:pco_cod')
-    Left = 544
-    Top = 368
+    Left = 616
+    Top = 80
     ParamData = <
       item
         Name = 'PCO_COD'
@@ -1826,14 +1810,13 @@ inherited frm_request: Tfrm_request
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False
-    Left = 464
+    Left = 432
   end
   object frx_db_ItensRequisicao: TfrxDBDataset
     UserName = 'ItensRequisicao'
     CloseDataSource = False
     DataSet = qry_purchase_order_iten
     BCDToCurrency = False
-    Left = 808
-    Top = 272
+    Left = 464
   end
 end

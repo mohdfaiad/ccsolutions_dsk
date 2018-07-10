@@ -2,6 +2,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
   Caption = 'Manuten'#231#227'o: Entrada de Produtos'
   ClientHeight = 558
   OnClose = FormClose
+  OnShow = FormShow
   ExplicitHeight = 597
   PixelsPerInch = 96
   TextHeight = 13
@@ -17,8 +18,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
       ExplicitHeight = 469
       inherited cxGrid_1: TcxGrid
         Height = 463
-        ExplicitLeft = 3
-        ExplicitTop = 3
         ExplicitHeight = 463
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           OnCustomDrawCell = cxGrid_1DBTableView1CustomDrawCell
@@ -72,7 +71,6 @@ inherited frm_stock_entry: Tfrm_stock_entry
       ExplicitHeight = 469
       inherited cxPageControl_2: TcxPageControl
         Height = 463
-        Properties.ActivePage = cxTabSheet1
         ExplicitHeight = 463
         ClientRectBottom = 457
         inherited cxTabSheet_3: TcxTabSheet
@@ -554,6 +552,7 @@ inherited frm_stock_entry: Tfrm_stock_entry
     FormatVersion = 1
   end
   inherited qry: TFDQuery [10]
+    Active = True
     AfterInsert = qryAfterInsert
     Connection = frm_dm.connCCS
     SQL.Strings = (
@@ -562,20 +561,14 @@ inherited frm_stock_entry: Tfrm_stock_entry
         'sto_cod)as CodStock, sto.sto_name,'#10'supp.sup_first_name, '
       
         'supp.sup_last_name, pur_ord.pco_id,pur_ord.pco_status,pur_ord.po' +
-        'c_status_reason FROM product_entry as pro_enty'#13#10#10
-      ''
+        'c_status_reason FROM product_entry as pro_enty'
       
         'left join purchase_order as pur_ord on pur_ord.pco_cod = pro_ent' +
-        'y.purchase_order_pco_cod'#13#10#10
-      ''
-      
-        'left join stock as sto on sto.sto_cod = pro_enty.stock_sto_cod'#13#10 +
-        #10
-      ''
+        'y.purchase_order_pco_cod'
+      'left join stock as sto on sto.sto_cod = pro_enty.stock_sto_cod'
       
         'left join supplier as supp on supp.sup_cod = pro_enty.supplier_s' +
-        'up_cod'#13#10#10
-      ''
+        'up_cod'
       'where pro_enty.contract_ctr_cod =unhex(:ctr_cod)'#10
       
         'and sto.enterprise_ent_cod in (select enterprise_ent_cod '#10'from c' +

@@ -119,6 +119,9 @@ uses ufrm_dm;
 
 procedure Tfrm_stock_iten.Action_editExecute(Sender: TObject);
 begin
+   if qry.IsEmpty then
+   exit;
+
   application.MessageBox
     ('Nao é permitido incluir/alterar estoque por esta opção!', 'Estoque',
     MB_OK + MB_ICONWARNING);

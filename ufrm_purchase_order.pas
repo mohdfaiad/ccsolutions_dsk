@@ -195,6 +195,8 @@ type
     procedure act_delete_purchase_order_itenExecute(Sender: TObject);
     procedure looComboxProdutoPropertiesCloseUp(Sender: TObject);
     procedure Action_print_editExecute(Sender: TObject);
+    procedure lookupComboxStockPropertiesCloseUp(Sender: TObject);
+    procedure lookupComboxEmployeePropertiesCloseUp(Sender: TObject);
   private
        pco_cod,iten_cod:string;
        iten_ID: Integer;
@@ -297,6 +299,9 @@ end;
 
 procedure Tfrm_purchase_order.Action_editExecute(Sender: TObject);
 begin
+   if qry.IsEmpty then
+   exit;
+
   inherited;
 
   btnSalvar_Item.Tag := 1; //Tag = 1 - Condição para Inserir Itens Entrada de Produto----
@@ -795,6 +800,24 @@ end;
 procedure Tfrm_purchase_order.looComboxProdutoPropertiesCloseUp(Sender: TObject);
 begin
   edtUnd.Text := qry_productpru_initials.AsString;
+end;
+
+procedure Tfrm_purchase_order.lookupComboxEmployeePropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+    qryemployee_emp_cod.Value := qry_employeeemp_cod.Value;
+    qry.Post;
+    qry.ApplyUpdates(0);
+    qry.Edit;
+end;
+
+procedure Tfrm_purchase_order.lookupComboxStockPropertiesCloseUp(Sender: TObject);
+begin
+  inherited;
+   qrystock_sto_cod.Value := qry_stocksto_cod.Value;
+   qry.Post;
+   qry.ApplyUpdates(0);
+   qry.Edit;
 end;
 
 procedure Tfrm_purchase_order.lookupComboxStockPropertiesPopup(Sender: TObject);

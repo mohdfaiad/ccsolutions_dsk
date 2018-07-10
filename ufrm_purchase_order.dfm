@@ -3,6 +3,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
   ClientHeight = 640
   ClientWidth = 1018
   OnClose = FormClose
+  OnShow = FormShow
   ExplicitWidth = 1034
   ExplicitHeight = 679
   PixelsPerInch = 96
@@ -21,20 +22,17 @@ inherited frm_purchase_order: Tfrm_purchase_order
   inherited cxPageControl_1: TcxPageControl
     Width = 1018
     Height = 585
+    Properties.ActivePage = cxTabSheet_2
     ExplicitWidth = 1018
     ExplicitHeight = 585
     ClientRectBottom = 579
     ClientRectRight = 1012
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
       ExplicitWidth = 1010
       ExplicitHeight = 551
       inherited cxGrid_1: TcxGrid
         Width = 1004
         Height = 545
-        ExplicitLeft = 3
-        ExplicitTop = 3
         ExplicitWidth = 1004
         ExplicitHeight = 545
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
@@ -395,6 +393,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
                   FieldName = 'sto_name'
                 end>
               Properties.ListSource = ds_stock
+              Properties.OnCloseUp = lookupComboxStockPropertiesCloseUp
               Properties.OnPopup = lookupComboxStockPropertiesPopup
               Style.HotTrack = False
               TabOrder = 2
@@ -421,6 +420,7 @@ inherited frm_purchase_order: Tfrm_purchase_order
                   FieldName = 'rec_name'
                 end>
               Properties.ListSource = ds_employee
+              Properties.OnCloseUp = lookupComboxEmployeePropertiesCloseUp
               Properties.OnPopup = cxLookupComboBox2PropertiesPopup
               Style.HotTrack = False
               TabOrder = 3

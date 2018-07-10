@@ -318,6 +318,9 @@ end;
 
 procedure Tfrm_stock_entry.Action_editExecute(Sender: TObject);
 begin
+  if qry.IsEmpty then
+   exit;
+
   inherited;
 
   ExibirPed_Compra;
@@ -781,7 +784,7 @@ end;
 procedure Tfrm_stock_entry.ExibirPed_Compra;
 begin
 
- if (qrypco_status.AsString = 'L') then
+ if ((qrypco_status.AsString ='L') or (qrypco_status.AsString.IsEmpty) ) then
   begin
    looComboxPed_Compra.Enabled := True;   //Ativando loockup somente com Pedido de Compra em Aberto---para possivel alteração--
    qry_purchase_order.Close;

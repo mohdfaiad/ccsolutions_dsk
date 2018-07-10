@@ -149,6 +149,9 @@ end;
 
 procedure Tfrm_stock.Action_editExecute(Sender: TObject);
 begin
+  if qry.IsEmpty then
+   exit;
+
   inherited;
 
   frm_dm.qry_enterprise.Locate('ent_last_name',qryEmpresa.AsString,[loCaseInsensitive, loPartialKey]);
@@ -158,7 +161,7 @@ end;
 procedure Tfrm_stock.Action_insertExecute(Sender: TObject);
 begin
   inherited;
-  //
+    looComboxEmpresa.ItemIndex :=-1;
 end;
 
 procedure Tfrm_stock.Action_saveExecute(Sender: TObject);

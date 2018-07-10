@@ -158,7 +158,7 @@ inherited frm_product_unit: Tfrm_product_unit
         Name = 'CTR_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 24
+        Size = 16
         Value = Null
       end>
     object qryCodProdUnit: TStringField
@@ -229,7 +229,7 @@ inherited frm_product_unit: Tfrm_product_unit
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
-    ReportOptions.LastChange = 43286.545380497690000000
+    ReportOptions.LastChange = 43286.545380497700000000
     Datasets = <
       item
         DataSet = frm_dm.frx_db_enterprise

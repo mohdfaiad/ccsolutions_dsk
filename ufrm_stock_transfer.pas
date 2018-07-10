@@ -202,11 +202,6 @@ type
     Excluir2: TMenuItem;
     Editar2: TMenuItem;
     Cancelar1: TMenuItem;
-    Action_Transf_itens: TActionList;
-    act_save_transf_itens: TAction;
-    act_edit_transf_itens: TAction;
-    act_cancel_transf_itens: TAction;
-    act_delete_transf_itens: TAction;
     qry_productsti_cod: TBytesField;
     qry_productstock_sto_cod: TBytesField;
     qry_productproduct_pro_cod: TBytesField;
@@ -239,8 +234,11 @@ type
     cxGrid_1DBTableView1employeeConferente: TcxGridDBColumn;
     qry_product_transfer_itenpro_id: TLongWordField;
     qryemployeeSolicitante: TStringField;
-    DBGrid1: TDBGrid;
-    DBGrid2: TDBGrid;
+    Action_Transf_itens: TActionList;
+    act_save_transf_itens: TAction;
+    act_edit_transf_itens: TAction;
+    act_cancel_transf_itens: TAction;
+    act_delete_transf_itens: TAction;
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure ConfirmarTransfernciaSaida1Click(Sender: TObject);
     procedure CancelarTransferncia1Click(Sender: TObject);
@@ -375,6 +373,9 @@ end;
 
 procedure Tfrm_stock_transfer.Action_editExecute(Sender: TObject);
 begin
+   if qry.IsEmpty then
+   exit;
+
   inherited;
    self.Tag := 2;
    prt_cod:= qryCodTransf.AsString;
@@ -1131,6 +1132,8 @@ procedure Tfrm_stock_transfer.looComboxEstoqueSaidaPropertiesCloseUp(Sender: TOb
 begin
   inherited;
 
+ if not (qry_stock_exitcodStock.AsString = qry_purchase_orderCodStock.AsString) then
+  begin
    qry_stock_iten.Close;
    qry_stock_iten.ParamByName('STO_COD').Value := qry_stock_exitsto_cod.Value;
    qry_stock_iten.Prepare;
@@ -1168,7 +1171,18 @@ begin
         ExibirItensTransferencia;
         if qry_product_transfer_iten.Locate('CodProduct',qry_purchase_order_itenCodProduct.AsString,[loCaseInsensitive, loPartialKey]) then
           begin
-           qry_product_transfer_iten.Delete;
+            with frm_dm.qry,sql do
+             begin
+
+              Close;
+              Text:= ' delete from product_transfer_iten ' +
+                     ' where pti_cod = unhex('+QuotedStr(qry_product_transfer_itenCodTrnsfItens.AsString)+')' +
+                     ' And product_transfer_prt_cod = unhex('+QuotedStr(qry_product_transfer_itenCodTransf.AsString)+')';
+              Prepare;
+              ExecSQL;
+
+             end;
+
           end;
 
 
@@ -1259,8 +1273,12 @@ begin
 
     ExibirItensTransferencia;
 
-//    if qryprt_id.AsInteger >0 then
-//       looComboxEstoqueSaida.Enabled := false;
+  //  if qryprt_id.AsInteger >0 then
+  //  looComboxEstoqueSaida.Enabled := false;
+  end else
+   begin
+    Application.MessageBox('Não é possível efetuar a transferência, pois o estoque selecionado é o mesmo da Requisição, !','AVISO DE TRANSFERÊNCIA', MB_OK + MB_ICONWARNING);
+   end;
 
 end;
 

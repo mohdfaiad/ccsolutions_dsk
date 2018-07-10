@@ -108,6 +108,10 @@ inherited frm_manufacturer: Tfrm_manufacturer
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           inherited dxLayoutControl_1: TdxLayoutControl
@@ -313,6 +317,10 @@ inherited frm_manufacturer: Tfrm_manufacturer
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Endere'#231'o'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -530,6 +538,10 @@ inherited frm_manufacturer: Tfrm_manufacturer
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Contato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -691,7 +703,7 @@ inherited frm_manufacturer: Tfrm_manufacturer
         Name = 'CTR_COD'
         DataType = ftBytes
         ParamType = ptInput
-        Size = 24
+        Size = 16
         Value = Null
       end>
     object qryman_cod: TBytesField

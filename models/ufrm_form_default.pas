@@ -144,7 +144,6 @@ type
     procedure Action_importExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Action_printExecute(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure dxBarButton1Click(Sender: TObject);
     procedure cxlooComBoxRepPropertiesPopup(Sender: TObject);
   private
@@ -338,8 +337,10 @@ end;
 
 procedure Tfrm_form_default.cxlooComBoxRepPropertiesPopup(Sender: TObject);
 begin
-   frm_dm_report.qry_report.Close;
-   frm_dm_report.qry_report.Open;
+    frm_dm_report.qry_report.Close;
+    frm_dm_report.qry_report.ParamByName('REFERENCE').AsString := Self.Name;
+    frm_dm_report.qry_report.Prepare;
+    frm_dm_report.qry_report.Open;
 
 end;
 
@@ -459,14 +460,6 @@ begin
   cxTabSheet_2.TabVisible:=False;
   cxTabSheet_1.Show;
 
-end;
-
-procedure Tfrm_form_default.FormShow(Sender: TObject);
-begin
-    frm_dm_report.qry_report.Close;
-    frm_dm_report.qry_report.ParamByName('REFERENCE').AsString := Self.Name;
-    frm_dm_report.qry_report.Prepare;
-    frm_dm_report.qry_report.Open;
 end;
 
 end.

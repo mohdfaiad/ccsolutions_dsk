@@ -12,8 +12,6 @@ inherited frm_brand: Tfrm_brand
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
-        ExplicitTop = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           Navigator.Buttons.ConfirmDelete = False
           object cxGrid_1DBTableView1bra_id: TcxGridDBColumn
@@ -40,6 +38,10 @@ inherited frm_brand: Tfrm_brand
     inherited cxTabSheet_2: TcxTabSheet
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'bra_id'

@@ -224,6 +224,9 @@ procedure Tfrm_enterprise.Action_editExecute(Sender: TObject);
  var
    vStream:TMemoryStream;
 begin
+   if qry.IsEmpty then
+   exit;
+
   inherited;
      vStream :=TMemoryStream.Create;
      qryent_image1.savetostream(vStream);

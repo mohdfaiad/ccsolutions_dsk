@@ -33,7 +33,7 @@ uses
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   ACBrBase, ACBrEnterTab, cxShellComboBox, QExport4Dialog, cxBarEditItem,
-  dxBarExtItems, QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, Vcl.StdCtrls, frxDBSet;
+  dxBarExtItems, QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, Vcl.StdCtrls, frxDBSet, cxDBLookupComboBox;
 
 type
   Tfrm_contract = class(Tfrm_form_default)
@@ -71,6 +71,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_cancelExecute(Sender: TObject);
+    procedure Action_editExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -90,6 +91,15 @@ procedure Tfrm_contract.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
    ds.DataSet.Cancel;
+end;
+
+procedure Tfrm_contract.Action_editExecute(Sender: TObject);
+begin
+  if qry.IsEmpty then
+   exit;
+
+  inherited;
+
 end;
 
 procedure Tfrm_contract.Button1Click(Sender: TObject);

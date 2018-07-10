@@ -467,6 +467,9 @@ begin
 
 procedure Tfrm_client.Action_editExecute(Sender: TObject);
 begin
+  if qry.IsEmpty then
+   exit;
+
   inherited;
     cli_cod:=qryCodClient.AsString;
     cpfCnpj:=qrycli_cpfcnpj.AsString;

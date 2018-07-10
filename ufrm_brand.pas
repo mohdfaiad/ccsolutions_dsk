@@ -120,6 +120,9 @@ end;
 
 procedure Tfrm_brand.Action_editExecute(Sender: TObject);
 begin
+   if qry.IsEmpty then
+   exit;
+
    inherited;
   dbComboxStatus.Enabled := True;
   bra_cod := qryCodBrand.AsString;

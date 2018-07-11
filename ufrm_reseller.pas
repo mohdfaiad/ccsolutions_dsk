@@ -36,14 +36,10 @@ uses
 
 type
   Tfrm_reseller = class(Tfrm_form_default)
-    qryres_id: TFDAutoIncField;
-    qrycontract_ctr_id: TIntegerField;
     qryres_first_name: TStringField;
     qryres_last_name: TStringField;
     qryres_email: TStringField;
-    qryres_cnpj: TStringField;
     qryres_im: TStringField;
-    qryres_ie: TStringField;
     qryres_suframa: TStringField;
     qryres_add_bus_zipcode: TStringField;
     qryres_add_bus_address: TStringField;
@@ -60,13 +56,10 @@ type
     qryres_contact: TStringField;
     qryres_dt_open: TDateField;
     qryres_dt_registration: TDateTimeField;
-    cxGrid_1DBTableView1res_id: TcxGridDBColumn;
     cxGrid_1DBTableView1res_first_name: TcxGridDBColumn;
     cxGrid_1DBTableView1res_last_name: TcxGridDBColumn;
     cxGrid_1DBTableView1res_email: TcxGridDBColumn;
-    cxGrid_1DBTableView1res_cnpj: TcxGridDBColumn;
     cxGrid_1DBTableView1res_im: TcxGridDBColumn;
-    cxGrid_1DBTableView1res_ie: TcxGridDBColumn;
     cxGrid_1DBTableView1res_suframa: TcxGridDBColumn;
     cxGrid_1DBTableView1res_add_bus_zipcode: TcxGridDBColumn;
     cxGrid_1DBTableView1res_add_bus_address: TcxGridDBColumn;
@@ -107,19 +100,19 @@ type
     dxLayoutControl1: TdxLayoutControl;
     dxLayoutGroup4: TdxLayoutGroup;
     dxLayoutGroup5: TdxLayoutGroup;
-    cxDBTextEdit9: TcxDBTextEdit;
+    dbedt_add_bus_address: TcxDBTextEdit;
     dxLayoutItem12: TdxLayoutItem;
-    cxDBTextEdit10: TcxDBTextEdit;
+    dbedt_add_bus_number: TcxDBTextEdit;
     dxLayoutItem13: TdxLayoutItem;
-    cxDBTextEdit11: TcxDBTextEdit;
+    dbedt_add_bus_street: TcxDBTextEdit;
     dxLayoutItem14: TdxLayoutItem;
-    cxDBTextEdit12: TcxDBTextEdit;
+    dbedt_add_bus_complement: TcxDBTextEdit;
     dxLayoutItem15: TdxLayoutItem;
-    cxDBTextEdit13: TcxDBTextEdit;
+    dbedt_add_bus_city: TcxDBTextEdit;
     dxLayoutItem16: TdxLayoutItem;
-    cxDBTextEdit14: TcxDBTextEdit;
+    dbedt_add_bus_state: TcxDBTextEdit;
     dxLayoutItem17: TdxLayoutItem;
-    cxDBTextEdit15: TcxDBTextEdit;
+    dbedt_add_bus_country: TcxDBTextEdit;
     dxLayoutItem18: TdxLayoutItem;
     cxDBTextEdit16: TcxDBTextEdit;
     dxLayoutItem19: TdxLayoutItem;
@@ -131,19 +124,35 @@ type
     dxLayoutItem22: TdxLayoutItem;
     cxDBTextEdit20: TcxDBTextEdit;
     dxLayoutItem23: TdxLayoutItem;
-    cxDBButtonEdit1: TcxDBButtonEdit;
+    dbedt_add_bus_zipcode: TcxDBButtonEdit;
     dxLayoutItem11: TdxLayoutItem;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
+    qrycontract_ctr_cod: TBytesField;
+    qryres_cpfcnpj: TStringField;
+    qryres_rgie: TStringField;
+    qryres_status: TStringField;
+    qryres_deleted_at: TDateTimeField;
+    cxGrid_1DBTableView1res_cpfcnpj: TcxGridDBColumn;
+    cxGrid_1DBTableView1res_rgie: TcxGridDBColumn;
+    cxGrid_1DBTableView1res_status: TcxGridDBColumn;
+    cxGrid_1DBTableView1res_deleted_at: TcxGridDBColumn;
+    qryres_id: TLongWordField;
+    cxGrid_1DBTableView1res_id: TcxGridDBColumn;
     dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
+    qryres_cod: TBytesField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
+    procedure cxDBButtonEdit1PropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
+    procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
+    procedure qryres_first_nameGetText(Sender: TField; var Text: string; DisplayText: Boolean);
   private
     { Private declarations }
   public
     { Public declarations }
+    res_cod : string;
   end;
 
 var
@@ -153,6 +162,29 @@ implementation
 
 {$R *.dfm}
 
+procedure Tfrm_reseller.ACBrCEP_1BuscaEfetuada(Sender: TObject);
+var
+ I: Integer;
+begin
+  inherited;
+  for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+  begin
+    dbedt_add_bus_address.Text    := ACBrCEP_1.Enderecos[i].Logradouro;
+    dbedt_add_bus_street.Text     := ACBrCEP_1.Enderecos[i].Bairro;
+    dbedt_add_bus_complement.Text := ACBrCEP_1.Enderecos[i].Complemento;
+    dbedt_add_bus_city.Text     	:= ACBrCEP_1.Enderecos[i].Municipio;
+    dbedt_add_bus_state.Text      := ACBrCEP_1.Enderecos[i].UF;
+    dbedt_add_bus_country.Text    := 'BRASIL';
+    dbedt_add_bus_number.SetFocus;
+  end;
+end;
+
+procedure Tfrm_reseller.cxDBButtonEdit1PropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
+begin
+  inherited;
+ ACBrCEP_1.BuscarPorCEP(dbedt_add_bus_zipcode.Text);
+end;
+
 procedure Tfrm_reseller.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -161,9 +193,32 @@ begin
 end;
 
 procedure Tfrm_reseller.qryAfterInsert(DataSet: TDataSet);
+var
+  qry_insert : TFDQuery;
+  SQL: string;
 begin
   inherited;
-  qryres_dt_registration.Value := Date + Time;
+  SQL       := 'select ' +
+               'case when max(res_id) is null then 1 ' +
+               'else (max(res_id) + 1) end as res_id ' +
+               'from reseller where contract_ctr_cod = unhex('+ QuotedStr(frm_dm.v_contract_ctr_cod) +');';
+
+  qry_insert := TFDQuery.Create(Self);
+  qry_insert.Connection := frm_dm.connCCS;
+
+  qry_insert.Close;
+  qry_insert.SQL.Clear;
+  qry_insert.SQL.Add(SQL);
+  qry_insert.Prepare;
+  qry_insert.Open;
+
+  qryres_id.Value   := qry_insert.FieldByName('res_id').Value;
+end;
+
+procedure Tfrm_reseller.qryres_first_nameGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+begin
+  inherited;
+  ShowMessage(Sender.Text);
 end;
 
 end.

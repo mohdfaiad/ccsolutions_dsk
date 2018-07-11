@@ -147,7 +147,7 @@ procedure Tfrm_ticket_interaction.qry_ticket_interactionAfterInsert(DataSet: TDa
 begin
   inherited;
   qry_ticket_interactiontki_dt_registration.Value := Date + Time;
-  qry_ticket_interactioncontract_user_ctr_usr_id.Value := frm_dm.qry_signinctr_usr_id.Value;
+//  qry_ticket_interactioncontract_user_ctr_usr_id.Value := frm_dm.qry_signinctr_usr_id.Value;
 end;
 
 procedure Tfrm_ticket_interaction.Timer1Timer(Sender: TObject);

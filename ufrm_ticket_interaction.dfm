@@ -84,18 +84,12 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
-        ExplicitWidth = 994
-        ExplicitHeight = 506
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 986
           ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
-            Width = 986
-            Height = 472
-            ExplicitWidth = 986
-            ExplicitHeight = 472
             object cxDBMemo1: TcxDBMemo [0]
               Left = 55
               Top = 92
@@ -212,7 +206,7 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
               Left = 10000
               Top = 10000
               DataBinding.DataField = 'tkt_id'
-              TabOrder = 13
+              TabOrder = 12
               Visible = False
               ExplicitLeft = 10000
               ExplicitTop = 10000
@@ -490,9 +484,7 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -717,7 +709,6 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
     Style = <>
   end
   object qry_ticket_interaction: TFDQuery
-    Active = True
     AfterInsert = qry_ticket_interactionAfterInsert
     IndexFieldNames = 'ticket_tkt_id'
     MasterSource = ds
@@ -767,9 +758,7 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
     Top = 448
   end
   object qry_client: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -784,7 +773,6 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
     Top = 448
   end
   object qry_ticket_category_sub: TFDQuery
-    Active = True
     IndexFieldNames = 'ticket_category_tkc_id'
     MasterSource = ds_ticket_category
     MasterFields = 'tkc_id'
@@ -801,9 +789,7 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
     Top = 448
   end
   object qry_enterprise: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -823,9 +809,7 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
     Top = 448
   end
   object qry_reseller: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -835,9 +819,7 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
     Top = 400
   end
   object qry_ticket_type: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -852,9 +834,7 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
     Top = 448
   end
   object qry_ticket_category: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -869,9 +849,7 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
     Top = 448
   end
   object qry_ticket_priority: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -886,9 +864,7 @@ inherited frm_ticket_interaction: Tfrm_ticket_interaction
     Top = 448
   end
   object qry_contract_user: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS

@@ -5,10 +5,15 @@ inherited frm_reseller: Tfrm_reseller
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1res_id: TcxGridDBColumn
             DataBinding.FieldName = 'res_id'
+            Width = 75
           end
           object cxGrid_1DBTableView1res_first_name: TcxGridDBColumn
             DataBinding.FieldName = 'res_first_name'
@@ -22,16 +27,14 @@ inherited frm_reseller: Tfrm_reseller
             DataBinding.FieldName = 'res_email'
             Width = 150
           end
-          object cxGrid_1DBTableView1res_cnpj: TcxGridDBColumn
-            DataBinding.FieldName = 'res_cnpj'
-            Width = 100
+          object cxGrid_1DBTableView1res_cpfcnpj: TcxGridDBColumn
+            DataBinding.FieldName = 'res_cpfcnpj'
+          end
+          object cxGrid_1DBTableView1res_rgie: TcxGridDBColumn
+            DataBinding.FieldName = 'res_rgie'
           end
           object cxGrid_1DBTableView1res_im: TcxGridDBColumn
             DataBinding.FieldName = 'res_im'
-            Width = 100
-          end
-          object cxGrid_1DBTableView1res_ie: TcxGridDBColumn
-            DataBinding.FieldName = 'res_ie'
             Width = 100
           end
           object cxGrid_1DBTableView1res_suframa: TcxGridDBColumn
@@ -94,6 +97,12 @@ inherited frm_reseller: Tfrm_reseller
             DataBinding.FieldName = 'res_dt_open'
             Width = 100
           end
+          object cxGrid_1DBTableView1res_status: TcxGridDBColumn
+            DataBinding.FieldName = 'res_status'
+          end
+          object cxGrid_1DBTableView1res_deleted_at: TcxGridDBColumn
+            DataBinding.FieldName = 'res_deleted_at'
+          end
           object cxGrid_1DBTableView1res_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'res_dt_registration'
             Width = 125
@@ -102,23 +111,31 @@ inherited frm_reseller: Tfrm_reseller
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
-              Left = 63
+              Left = 70
               DataBinding.DataField = 'res_id'
-              ExplicitLeft = 63
+              ExplicitLeft = 70
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 236
+              Left = 243
               DataBinding.DataField = 'res_dt_registration'
-              ExplicitLeft = 236
+              ExplicitLeft = 243
             end
             object cxDBTextEdit4: TcxDBTextEdit [2]
-              Left = 63
+              Left = 70
               Top = 222
-              DataBinding.DataField = 'res_cnpj'
+              DataBinding.DataField = 'res_cpfcnpj'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
@@ -126,7 +143,7 @@ inherited frm_reseller: Tfrm_reseller
               Width = 121
             end
             object cxDBTextEdit5: TcxDBTextEdit [3]
-              Left = 236
+              Left = 243
               Top = 222
               DataBinding.DataField = 'res_im'
               DataBinding.DataSource = ds
@@ -136,9 +153,9 @@ inherited frm_reseller: Tfrm_reseller
               Width = 130
             end
             object cxDBTextEdit6: TcxDBTextEdit [4]
-              Left = 422
+              Left = 429
               Top = 222
-              DataBinding.DataField = 'res_ie'
+              DataBinding.DataField = 'res_rgie'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
@@ -146,7 +163,7 @@ inherited frm_reseller: Tfrm_reseller
               Width = 121
             end
             object cxDBTextEdit7: TcxDBTextEdit [5]
-              Left = 594
+              Left = 601
               Top = 222
               DataBinding.DataField = 'res_suframa'
               DataBinding.DataSource = ds
@@ -156,7 +173,7 @@ inherited frm_reseller: Tfrm_reseller
               Width = 121
             end
             object cxDBTextEdit1: TcxDBTextEdit [6]
-              Left = 63
+              Left = 70
               Top = 103
               DataBinding.DataField = 'res_first_name'
               DataBinding.DataSource = ds
@@ -166,17 +183,17 @@ inherited frm_reseller: Tfrm_reseller
               Width = 303
             end
             object cxDBTextEdit3: TcxDBTextEdit [7]
-              Left = 63
+              Left = 70
               Top = 157
               DataBinding.DataField = 'res_email'
               DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
+              Properties.CharCase = ecLowerCase
               Style.HotTrack = False
               TabOrder = 4
               Width = 303
             end
             object cxDBTextEdit2: TcxDBTextEdit [8]
-              Left = 63
+              Left = 70
               Top = 130
               DataBinding.DataField = 'res_last_name'
               DataBinding.DataSource = ds
@@ -186,7 +203,7 @@ inherited frm_reseller: Tfrm_reseller
               Width = 303
             end
             object cxDBDateEdit1: TcxDBDateEdit [9]
-              Left = 422
+              Left = 429
               Top = 157
               DataBinding.DataField = 'res_dt_open'
               DataBinding.DataSource = ds
@@ -198,7 +215,7 @@ inherited frm_reseller: Tfrm_reseller
               ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
-              ItemIndex = 2
+              ItemIndex = 1
             end
             object dxLayoutGroup3: TdxLayoutGroup
               Parent = dxLayoutControl_1Group_Root
@@ -210,7 +227,7 @@ inherited frm_reseller: Tfrm_reseller
               Parent = dxLayoutAutoCreatedGroup3
               AlignHorz = ahLeft
               AlignVert = avTop
-              CaptionOptions.Text = 'CNPJ'
+              CaptionOptions.Text = 'CPF/CNPJ'
               Control = cxDBTextEdit4
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
@@ -239,7 +256,7 @@ inherited frm_reseller: Tfrm_reseller
             object dxLayoutItem8: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup3
               AlignVert = avClient
-              CaptionOptions.Text = 'IE'
+              CaptionOptions.Text = 'IRG/E'
               Control = cxDBTextEdit6
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
@@ -313,18 +330,14 @@ inherited frm_reseller: Tfrm_reseller
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 762
-            Height = 432
+            Width = 986
+            Height = 472
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            ExplicitLeft = 232
-            ExplicitTop = 144
-            ExplicitWidth = 300
-            ExplicitHeight = 250
-            object cxDBTextEdit15: TcxDBTextEdit
-              Left = 380
-              Top = 92
+            object dbedt_add_bus_country: TcxDBTextEdit
+              Left = 545
+              Top = 65
               DataBinding.DataField = 'res_add_bus_country'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -332,9 +345,9 @@ inherited frm_reseller: Tfrm_reseller
               TabOrder = 7
               Width = 121
             end
-            object cxDBTextEdit10: TcxDBTextEdit
-              Left = 220
-              Top = 65
+            object dbedt_add_bus_number: TcxDBTextEdit
+              Left = 385
+              Top = 38
               DataBinding.DataField = 'res_add_bus_number'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -342,9 +355,9 @@ inherited frm_reseller: Tfrm_reseller
               TabOrder = 2
               Width = 121
             end
-            object cxDBTextEdit11: TcxDBTextEdit
-              Left = 380
-              Top = 65
+            object dbedt_add_bus_street: TcxDBTextEdit
+              Left = 545
+              Top = 38
               DataBinding.DataField = 'res_add_bus_street'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -352,27 +365,7 @@ inherited frm_reseller: Tfrm_reseller
               TabOrder = 3
               Width = 121
             end
-            object cxDBTextEdit12: TcxDBTextEdit
-              Left = 545
-              Top = 65
-              DataBinding.DataField = 'res_add_bus_complement'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 4
-              Width = 121
-            end
-            object cxDBTextEdit9: TcxDBTextEdit
-              Left = 61
-              Top = 65
-              DataBinding.DataField = 'res_add_bus_address'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 1
-              Width = 121
-            end
-            object cxDBButtonEdit1: TcxDBButtonEdit
+            object dbedt_add_bus_zipcode: TcxDBButtonEdit
               Left = 61
               Top = 38
               DataBinding.DataField = 'res_add_bus_zipcode'
@@ -383,13 +376,14 @@ inherited frm_reseller: Tfrm_reseller
                   Kind = bkEllipsis
                 end>
               Properties.CharCase = ecUpperCase
+              Properties.OnButtonClick = cxDBButtonEdit1PropertiesButtonClick
               Style.HotTrack = False
               TabOrder = 0
               Width = 121
             end
-            object cxDBTextEdit13: TcxDBTextEdit
-              Left = 61
-              Top = 92
+            object dbedt_add_bus_city: TcxDBTextEdit
+              Left = 226
+              Top = 65
               DataBinding.DataField = 'res_add_bus_city'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -397,9 +391,9 @@ inherited frm_reseller: Tfrm_reseller
               TabOrder = 5
               Width = 121
             end
-            object cxDBTextEdit14: TcxDBTextEdit
-              Left = 220
-              Top = 92
+            object dbedt_add_bus_state: TcxDBTextEdit
+              Left = 385
+              Top = 65
               DataBinding.DataField = 'res_add_bus_state'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -409,7 +403,7 @@ inherited frm_reseller: Tfrm_reseller
             end
             object cxDBTextEdit16: TcxDBTextEdit
               Left = 61
-              Top = 157
+              Top = 130
               DataBinding.DataField = 'res_phone1'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -417,9 +411,29 @@ inherited frm_reseller: Tfrm_reseller
               TabOrder = 8
               Width = 121
             end
+            object dbedt_add_bus_address: TcxDBTextEdit
+              Left = 226
+              Top = 38
+              DataBinding.DataField = 'res_add_bus_address'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 1
+              Width = 121
+            end
+            object dbedt_add_bus_complement: TcxDBTextEdit
+              Left = 61
+              Top = 65
+              DataBinding.DataField = 'res_add_bus_complement'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 121
+            end
             object cxDBTextEdit20: TcxDBTextEdit
               Left = 61
-              Top = 184
+              Top = 157
               DataBinding.DataField = 'res_contact'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -428,8 +442,8 @@ inherited frm_reseller: Tfrm_reseller
               Width = 121
             end
             object cxDBTextEdit17: TcxDBTextEdit
-              Left = 220
-              Top = 157
+              Left = 226
+              Top = 130
               DataBinding.DataField = 'res_phone2'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -438,8 +452,8 @@ inherited frm_reseller: Tfrm_reseller
               Width = 121
             end
             object cxDBTextEdit18: TcxDBTextEdit
-              Left = 380
-              Top = 157
+              Left = 385
+              Top = 130
               DataBinding.DataField = 'res_phone3'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -449,7 +463,7 @@ inherited frm_reseller: Tfrm_reseller
             end
             object cxDBTextEdit19: TcxDBTextEdit
               Left = 545
-              Top = 157
+              Top = 130
               DataBinding.DataField = 'res_phone4'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -462,7 +476,6 @@ inherited frm_reseller: Tfrm_reseller
               AlignVert = avTop
               ButtonOptions.Buttons = <>
               Hidden = True
-              ItemIndex = 1
               ShowBorder = False
               Index = -1
             end
@@ -497,16 +510,17 @@ inherited frm_reseller: Tfrm_reseller
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Pa'#237's'
-              Control = cxDBTextEdit15
+              Control = dbedt_add_bus_country
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
-              Index = 2
+              Index = 3
             end
             object dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutAutoCreatedGroup2
               AlignHorz = ahLeft
               AlignVert = avTop
+              LayoutDirection = ldHorizontal
               Index = 0
               AutoCreated = True
             end
@@ -515,7 +529,7 @@ inherited frm_reseller: Tfrm_reseller
               AlignHorz = ahLeft
               AlignVert = avBottom
               CaptionOptions.Text = 'N'#250'm.'
-              Control = cxDBTextEdit10
+              Control = dbedt_add_bus_number
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -525,39 +539,18 @@ inherited frm_reseller: Tfrm_reseller
               Parent = dxLayoutAutoCreatedGroup2
               AlignVert = avBottom
               CaptionOptions.Text = 'Bairro'
-              Control = cxDBTextEdit11
+              Control = dbedt_add_bus_street
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 2
-            end
-            object dxLayoutItem15: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
-              AlignVert = avBottom
-              CaptionOptions.Text = 'Compl.'
-              Control = cxDBTextEdit12
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 3
-            end
-            object dxLayoutItem12: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup6
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Rua'
-              Control = cxDBTextEdit9
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
             end
             object dxLayoutItem11: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup6
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'CEP'
-              Control = cxDBButtonEdit1
+              Control = dbedt_add_bus_zipcode
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -568,24 +561,24 @@ inherited frm_reseller: Tfrm_reseller
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Cidade'
-              Control = cxDBTextEdit13
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutItem17: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
-              AlignVert = avClient
-              CaptionOptions.Text = 'UF'
-              Control = cxDBTextEdit14
+              Control = dbedt_add_bus_city
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 1
             end
+            object dxLayoutItem17: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup4
+              AlignVert = avClient
+              CaptionOptions.Text = 'UF'
+              Control = dbedt_add_bus_state
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
             object dxLayoutItem19: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
+              Parent = dxLayoutAutoCreatedGroup7
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Tel. 1'
@@ -595,9 +588,31 @@ inherited frm_reseller: Tfrm_reseller
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem23: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup7
+            object dxLayoutItem12: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup6
               AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Rua'
+              Control = dbedt_add_bus_address
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem15: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup4
+              AlignVert = avClient
+              CaptionOptions.Text = 'Compl.'
+              Control = dbedt_add_bus_complement
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem23: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup5
+              AlignHorz = ahLeft
+              AlignVert = avTop
               CaptionOptions.Text = 'Contato'
               Control = cxDBTextEdit20
               ControlOptions.OriginalHeight = 21
@@ -605,15 +620,14 @@ inherited frm_reseller: Tfrm_reseller
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup
+            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup5
               AlignHorz = ahLeft
-              AlignVert = avClient
               Index = 0
               AutoCreated = True
             end
             object dxLayoutItem20: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
+              Parent = dxLayoutAutoCreatedGroup7
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Tel. 2'
@@ -623,15 +637,15 @@ inherited frm_reseller: Tfrm_reseller
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup7
+            object dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup5
               AlignVert = avClient
               LayoutDirection = ldHorizontal
               Index = 0
               AutoCreated = True
             end
             object dxLayoutItem21: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
+              Parent = dxLayoutAutoCreatedGroup7
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Tel. 3'
@@ -642,7 +656,7 @@ inherited frm_reseller: Tfrm_reseller
               Index = 2
             end
             object dxLayoutItem22: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup5
+              Parent = dxLayoutAutoCreatedGroup7
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Fax'
@@ -663,30 +677,35 @@ inherited frm_reseller: Tfrm_reseller
   inherited qry: TFDQuery
     Active = True
     AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
+    IndexFieldNames = 'contract_ctr_cod'
+    MasterSource = frm_dm.ds_contract
+    MasterFields = 'ctr_cod'
+    DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'select * from reseller')
-    object qryres_id: TFDAutoIncField
+    object qrycontract_ctr_cod: TBytesField
+      AutoGenerateValue = arDefault
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+    end
+    object qryres_cod: TBytesField
+      FieldName = 'res_cod'
+      Origin = 'res_cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object qryres_id: TLongWordField
+      AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd. ID'
       FieldName = 'res_id'
       Origin = 'res_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
     end
     object qryres_first_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Raz'#227'o'
       FieldName = 'res_first_name'
       Origin = 'res_first_name'
+      OnGetText = qryres_first_nameGetText
       Size = 75
     end
     object qryres_last_name: TStringField
@@ -703,11 +722,16 @@ inherited frm_reseller: Tfrm_reseller
       Origin = 'res_email'
       Size = 65
     end
-    object qryres_cnpj: TStringField
+    object qryres_cpfcnpj: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'CNPJ'
-      FieldName = 'res_cnpj'
-      Origin = 'res_cnpj'
+      FieldName = 'res_cpfcnpj'
+      Origin = 'res_cpfcnpj'
+      Size = 25
+    end
+    object qryres_rgie: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'res_rgie'
+      Origin = 'res_rgie'
       Size = 25
     end
     object qryres_im: TStringField
@@ -715,13 +739,6 @@ inherited frm_reseller: Tfrm_reseller
       DisplayLabel = 'IM'
       FieldName = 'res_im'
       Origin = 'res_im'
-      Size = 25
-    end
-    object qryres_ie: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'IE'
-      FieldName = 'res_ie'
-      Origin = 'res_ie'
       Size = 25
     end
     object qryres_suframa: TStringField
@@ -828,6 +845,18 @@ inherited frm_reseller: Tfrm_reseller
       FieldName = 'res_dt_open'
       Origin = 'res_dt_open'
     end
+    object qryres_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'res_status'
+      Origin = 'res_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qryres_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'res_deleted_at'
+      Origin = 'res_deleted_at'
+    end
     object qryres_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Reg.'
@@ -853,5 +882,8 @@ inherited frm_reseller: Tfrm_reseller
     Datasets = <>
     Variables = <>
     Style = <>
+  end
+  inherited ACBrCEP_1: TACBrCEP
+    OnBuscaEfetuada = ACBrCEP_1BuscaEfetuada
   end
 end

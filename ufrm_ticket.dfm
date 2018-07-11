@@ -88,18 +88,12 @@ inherited frm_ticket: Tfrm_ticket
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
-        ExplicitWidth = 994
-        ExplicitHeight = 506
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 986
           ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
-            Width = 986
-            Height = 472
-            ExplicitWidth = 986
-            ExplicitHeight = 472
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'tkt_id'
             end
@@ -124,6 +118,10 @@ inherited frm_ticket: Tfrm_ticket
               object cxTabSheet2: TcxTabSheet
                 Caption = 'Ticket'
                 ImageIndex = 0
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object dxLayoutControl2: TdxLayoutControl
                   Left = 0
                   Top = 0
@@ -390,7 +388,6 @@ inherited frm_ticket: Tfrm_ticket
                     AlignVert = avTop
                     ButtonOptions.Buttons = <>
                     Hidden = True
-                    ItemIndex = 2
                     ShowBorder = False
                     Index = -1
                   end
@@ -587,6 +584,10 @@ inherited frm_ticket: Tfrm_ticket
               object cxTabSheet3: TcxTabSheet
                 Caption = 'Revenda'
                 ImageIndex = 1
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object dxLayoutControl3: TdxLayoutControl
                   Left = 0
                   Top = 0
@@ -709,10 +710,8 @@ inherited frm_ticket: Tfrm_ticket
     FormatVersion = 1
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -860,10 +859,8 @@ inherited frm_ticket: Tfrm_ticket
     Style = <>
   end
   object qry_client: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -883,10 +880,8 @@ inherited frm_ticket: Tfrm_ticket
     Top = 144
   end
   object qry_reseller: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -896,10 +891,8 @@ inherited frm_ticket: Tfrm_ticket
     Top = 144
   end
   object qry_ticket_type: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -919,10 +912,8 @@ inherited frm_ticket: Tfrm_ticket
     Top = 144
   end
   object qry_ticket_category: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -932,7 +923,6 @@ inherited frm_ticket: Tfrm_ticket
     Top = 144
   end
   object qry_ticket_interaction: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'ticket_tkt_id'
     MasterSource = ds
@@ -976,10 +966,8 @@ inherited frm_ticket: Tfrm_ticket
     Top = 96
   end
   object qry_ticket_priority: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -994,7 +982,6 @@ inherited frm_ticket: Tfrm_ticket
     Top = 144
   end
   object qry_ticket_category_sub: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'ticket_category_tkc_id'
     MasterSource = ds_ticket_category
@@ -1017,10 +1004,8 @@ inherited frm_ticket: Tfrm_ticket
     Top = 96
   end
   object qry_enterprise: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS
@@ -1030,10 +1015,8 @@ inherited frm_ticket: Tfrm_ticket
     Top = 96
   end
   object qry_contract_user: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     DetailFields = 'contract_ctr_id'
     Connection = frm_dm.connCCS

@@ -168,7 +168,7 @@ begin
   inherited;
   qrytkt_dt_registration.Value := Date + Time;
   qrytkt_dt_open.Value := Date + Time;
-  qrycontract_user_ctr_usr_id.Value := frm_dm.qry_signinctr_usr_id.Value;
+//  qrycontract_user_ctr_usr_id.Value := frm_dm.qry_signinctr_usr_id.Value;
   qrytkt_status.Value := 'A';
 end;
 

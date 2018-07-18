@@ -2,8 +2,8 @@ object frm_default: Tfrm_default
   Left = 0
   Top = 0
   Caption = 'Formul'#225'rio Default'
-  ClientHeight = 661
-  ClientWidth = 962
+  ClientHeight = 601
+  ClientWidth = 1008
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -22,54 +22,61 @@ object frm_default: Tfrm_default
   object bardck_1: TdxBarDockControl
     Left = 0
     Top = 0
-    Width = 962
+    Width = 1008
     Height = 55
     Align = dalTop
     BarManager = barman_1
+    ExplicitWidth = 962
   end
   object pgctrl_1: TcxPageControl
     Left = 0
     Top = 55
-    Width = 962
-    Height = 571
+    Width = 1008
+    Height = 511
     Align = alClient
     TabOrder = 1
-    Properties.ActivePage = tbsht_2
+    Properties.ActivePage = tbsht_1
     Properties.CustomButtons.Buttons = <>
     LookAndFeel.NativeStyle = False
-    ClientRectBottom = 565
+    ExplicitWidth = 962
+    ExplicitHeight = 571
+    ClientRectBottom = 505
     ClientRectLeft = 2
-    ClientRectRight = 956
+    ClientRectRight = 1002
     ClientRectTop = 27
     object tbsht_1: TcxTabSheet
       Caption = 'Registros'
       ImageIndex = 0
+      ExplicitHeight = 538
       object pgctrl_2: TcxPageControl
         Left = 0
         Top = 0
-        Width = 954
-        Height = 538
+        Width = 1000
+        Height = 478
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = tbsht_3
         Properties.CustomButtons.Buttons = <>
-        ClientRectBottom = 532
+        ExplicitHeight = 538
+        ClientRectBottom = 472
         ClientRectLeft = 2
-        ClientRectRight = 948
+        ClientRectRight = 994
         ClientRectTop = 27
         object tbsht_3: TcxTabSheet
           Caption = 'Registros'
           ImageIndex = 0
+          ExplicitHeight = 505
           object grid_1: TcxGrid
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 940
-            Height = 499
+            Width = 986
+            Height = 439
             Align = alClient
             Images = imglist_1
             PopupMenu = popmenu_1
             TabOrder = 0
+            ExplicitHeight = 499
             object grid_1DBTableView1: TcxGridDBTableView
               OnKeyPress = grid_1DBTableView1KeyPress
               Navigator.Buttons.ConfirmDelete = True
@@ -125,32 +132,39 @@ object frm_default: Tfrm_default
     object tbsht_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
+      ExplicitWidth = 954
+      ExplicitHeight = 538
       object pgctrl_3: TcxPageControl
         Left = 0
         Top = 0
-        Width = 954
-        Height = 538
+        Width = 1000
+        Height = 478
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = tbsht_5
         Properties.CustomButtons.Buttons = <>
-        ClientRectBottom = 532
+        ExplicitWidth = 954
+        ExplicitHeight = 538
+        ClientRectBottom = 472
         ClientRectLeft = 2
-        ClientRectRight = 948
+        ClientRectRight = 994
         ClientRectTop = 27
         object tbsht_5: TcxTabSheet
           Caption = 'Informa'#231#245'es'
           ImageIndex = 0
+          ExplicitWidth = 946
+          ExplicitHeight = 505
           DesignSize = (
-            946
-            505)
+            992
+            445)
           object grb_top: TcxGroupBox
             Left = 3
             Top = 3
             Anchors = [akLeft, akTop, akRight]
             TabOrder = 0
+            ExplicitWidth = 940
             Height = 54
-            Width = 940
+            Width = 986
             object lbl_cod_id: TcxLabel
               Left = 3
               Top = 7
@@ -183,8 +197,10 @@ object frm_default: Tfrm_default
             Top = 63
             Anchors = [akLeft, akTop, akRight, akBottom]
             TabOrder = 1
-            Height = 439
-            Width = 940
+            ExplicitWidth = 940
+            ExplicitHeight = 439
+            Height = 379
+            Width = 986
           end
         end
       end
@@ -192,8 +208,8 @@ object frm_default: Tfrm_default
   end
   object stsbar_1: TdxStatusBar
     Left = 0
-    Top = 626
-    Width = 962
+    Top = 566
+    Width = 1008
     Height = 35
     Panels = <
       item
@@ -207,10 +223,12 @@ object frm_default: Tfrm_default
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+    ExplicitTop = 626
+    ExplicitWidth = 962
     object stsbar_deleted_at: TdxStatusBarContainerControl
       Left = 1
       Top = 2
-      Width = 926
+      Width = 972
       Height = 32
       object chkbox_1: TcxCheckBox
         Left = 0
@@ -220,12 +238,13 @@ object frm_default: Tfrm_default
         Properties.Alignment = taLeftJustify
         TabOrder = 0
         Transparent = True
+        ExplicitWidth = 926
       end
     end
   end
   object actlist_1: TActionList
     Images = imglist_1
-    Left = 880
+    Left = 928
     Top = 8
     object Action_print: TAction
       Category = 'Print'
@@ -358,7 +377,7 @@ object frm_default: Tfrm_default
     ImageOptions.Images = imglist_1
     PopupMenuLinks = <>
     UseSystemFont = True
-    Left = 912
+    Left = 960
     Top = 8
     object barman_bar_other: TdxBar
       Caption = 'Outros'
@@ -590,7 +609,7 @@ object frm_default: Tfrm_default
   end
   object popmenu_1: TPopupMenu
     Images = imglist_1
-    Left = 784
+    Left = 832
     Top = 8
     object Primeiro1: TMenuItem
       Action = Action_first
@@ -636,13 +655,13 @@ object frm_default: Tfrm_default
     end
   end
   object acbr_enter_1: TACBrEnterTab
-    Left = 752
+    Left = 800
     Top = 8
   end
   object ds: TDataSource
     DataSet = mem
     OnStateChange = dsStateChange
-    Left = 720
+    Left = 768
     Top = 8
   end
   object impw_1: TQImport3Wizard
@@ -663,7 +682,7 @@ object frm_default: Tfrm_default
     FieldFormats = <>
     ErrorLogFileName = 'error.log'
     AddType = qatInsert
-    Left = 592
+    Left = 640
     Top = 8
   end
   object expw_1: TQExport4Dialog
@@ -844,12 +863,12 @@ object frm_default: Tfrm_default
     DocxOptions.FooterStyle.Font.Name = 'Calibri'
     DocxOptions.FooterStyle.Font.Style = []
     AccessOptions.TableName = 'EXPORT_TABLE'
-    Left = 560
+    Left = 608
     Top = 8
   end
   object popmenu_2: TPopupMenu
     Images = imglist_1
-    Left = 816
+    Left = 864
     Top = 8
     object Restaurar1: TMenuItem
       Caption = 'Restaurar'
@@ -858,7 +877,7 @@ object frm_default: Tfrm_default
   end
   object imglist_1: TcxImageList
     FormatVersion = 1
-    DesignInfo = 525136
+    DesignInfo = 525184
     ImageInfo = <
       item
         Image.Data = {
@@ -1481,7 +1500,7 @@ object frm_default: Tfrm_default
       'begin'
       ''
       'end.')
-    Left = 528
+    Left = 576
     Top = 8
     Datasets = <>
     Variables = <>
@@ -1509,7 +1528,7 @@ object frm_default: Tfrm_default
     CenterWindow = False
     PrintScaling = False
     PdfA = False
-    Left = 464
+    Left = 512
     Top = 8
   end
   object frxDOCXExport_1: TfrxDOCXExport
@@ -1519,15 +1538,15 @@ object frm_default: Tfrm_default
     DataOnly = False
     OpenAfterExport = False
     PictureType = gpPNG
-    Left = 496
+    Left = 544
     Top = 8
   end
   object qry: TFDQuery
-    Left = 688
+    Left = 736
     Top = 8
   end
   object schadp: TFDSchemaAdapter
-    Left = 656
+    Left = 704
     Top = 8
   end
   object mem: TFDMemTable
@@ -1538,13 +1557,7 @@ object frm_default: Tfrm_default
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 624
-    Top = 8
-  end
-  object ACBrCEP1: TACBrCEP
-    ProxyPort = '8080'
-    PesquisarIBGE = True
-    Left = 464
+    Left = 672
     Top = 8
   end
 end

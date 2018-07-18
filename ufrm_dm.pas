@@ -22,15 +22,12 @@ type
     connCDL: TFDConnection;
     mssql_driver: TFDPhysMSSQLDriverLink;
     qry_logged: TFDQuery;
-    qry_loggedctr_usr_logged: TStringField;
     qry_action: TFDQuery;
     qry_actionsys_act_subtitle: TStringField;
     qry_actionsys_Act_name: TStringField;
     qry_signin: TFDQuery;
     qry_contract: TFDQuery;
-    qry_contractctr_cod: TBytesField;
     ds_contract: TDataSource;
-    qry_contractctr_id: TLargeintField;
     qry_enterpriseent_cod: TBytesField;
     qry_enterprisecontract_ctr_cod: TBytesField;
     qry_enterpriseent_id: TLongWordField;
@@ -62,18 +59,29 @@ type
     qry_enterpriseent_dt_registration: TDateTimeField;
     frx_db_enterprise: TfrxDBDataset;
     qry_enterpriseent_image1: TBlobField;
+    qry_loggedctr_usr_logged: TShortintField;
+    qry_contractctr_id: TLargeintField;
+    qry_contractctr_first_name: TStringField;
+    qry_contractctr_last_name: TStringField;
+    qry_contractctr_email: TStringField;
+    qry_contractctr_phone1: TStringField;
+    qry_contractctr_dt_birth: TDateField;
+    qry_contractctr_user_license: TWordField;
+    qry_contractctr_status: TStringField;
+    qry_contractctr_deleted_at: TDateTimeField;
+    qry_contractctr_dt_registration: TDateTimeField;
+    qry_contractctr_cod: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    acao: Integer;
     qry, qry2, qry3: TFDQuery;
-    Acao: Integer;
-    v_contract_ctr_cod, v_ctr_usr_cod, v_nome_usuario,
-    v_ctr_usr_admin: string;
-    function dataAtual:TDate;
-
+    v_contract_ctr_cod, v_ctr_usr_cod, v_nome_usuario: string;
+    v_ctr_usr_admin : Integer;
+    function dataAtual : TDate;
   end;
 
 var
@@ -86,11 +94,11 @@ implementation
 
 function Tfrm_dm.dataAtual:Tdate;
 begin
- qry.Close;
- qry.SQL.Text:='select current_date()';
- qry.Prepare;
- qry.open;
- Result:=qry.Fields[0].AsDateTime;
+  qry.Close;
+  qry.SQL.Text := 'select current_date()';
+  qry.Prepare;
+  qry.open;
+  Result := qry.Fields[0].AsDateTime;
 end;
 
 procedure Tfrm_dm.DataModuleCreate(Sender: TObject);

@@ -218,8 +218,8 @@ object frm_form_default: Tfrm_form_default
     ImageOptions.Images = cxImageList_1
     PopupMenuLinks = <>
     UseSystemFont = True
-    Left = 648
-    Top = 48
+    Left = 928
+    Top = 8
     object dxBarManager_1Bar1: TdxBar
       Caption = 'Navega'#231#227'o'
       CaptionButtons = <>
@@ -291,14 +291,6 @@ object frm_form_default: Tfrm_form_default
       FloatClientHeight = 0
       ItemLinks = <
         item
-          Visible = True
-          ItemName = 'cxBarEditItem_1'
-        end
-        item
-          Visible = True
-          ItemName = 'dxBarSubItem1'
-        end
-        item
           UserDefine = [udWidth]
           UserWidth = 149
           Visible = True
@@ -345,7 +337,7 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 603
+      DockedLeft = 280
       DockedTop = 28
       FloatLeft = 818
       FloatTop = 8
@@ -367,7 +359,7 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 752
+      DockedLeft = 429
       DockedTop = 28
       FloatLeft = 818
       FloatTop = 8
@@ -389,13 +381,17 @@ object frm_form_default: Tfrm_form_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 898
+      DockedLeft = 575
       DockedTop = 28
       FloatLeft = 818
       FloatTop = 8
       FloatClientWidth = 0
       FloatClientHeight = 0
-      ItemLinks = <>
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton1'
+        end>
       OneOnRow = False
       Row = 1
       UseOwnFont = False
@@ -624,19 +620,7 @@ object frm_form_default: Tfrm_form_default
         item
           FieldName = 'rep_name'
         end>
-      Properties.ListSource = frm_dm_report.ds_report
       Properties.OnPopup = cxlooComBoxRepPropertiesPopup
-    end
-    object dxBarSubItem1: TdxBarSubItem
-      Caption = 'Salvar Relat'#243'rio'
-      Category = 0
-      Visible = ivAlways
-      ImageIndex = 16
-      ItemLinks = <
-        item
-          Visible = True
-          ItemName = 'dxBarButton1'
-        end>
     end
     object dxBarButton1: TdxBarButton
       Caption = 'Salvar Relat'#243'rio'
@@ -649,8 +633,8 @@ object frm_form_default: Tfrm_form_default
   end
   object ActionList_1: TActionList
     Images = cxImageList_1
-    Left = 712
-    Top = 48
+    Left = 960
+    Top = 8
     object Action_first: TAction
       Caption = 'Primeiro'
       Hint = 'Registro Primeiro'
@@ -762,8 +746,8 @@ object frm_form_default: Tfrm_form_default
   end
   object ds: TDataSource
     DataSet = qry
-    Left = 616
-    Top = 48
+    Left = 960
+    Top = 56
   end
   object cxGridPopupMenu_1: TcxGridPopupMenu
     Grid = cxGrid_1
@@ -774,13 +758,13 @@ object frm_form_default: Tfrm_form_default
         Index = 0
         PopupMenu = PopupMenu_1
       end>
-    Left = 552
-    Top = 48
+    Left = 864
+    Top = 8
   end
   object PopupMenu_1: TPopupMenu
     Images = cxImageList_1
-    Left = 488
-    Top = 48
+    Left = 800
+    Top = 8
     object Primeiro1: TMenuItem
       Action = Action_first
     end
@@ -814,7 +798,7 @@ object frm_form_default: Tfrm_form_default
   end
   object cxImageList_1: TcxImageList
     FormatVersion = 1
-    DesignInfo = 3146408
+    DesignInfo = 525184
     ImageInfo = <
       item
         Image.Data = {
@@ -1448,21 +1432,21 @@ object frm_form_default: Tfrm_form_default
       end>
   end
   object dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
-    Left = 520
-    Top = 48
+    Left = 832
+    Top = 8
     object dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
     end
   end
   object qry: TFDQuery
     CachedUpdates = True
     SchemaAdapter = FDSchemaAdapter_1
-    Left = 584
-    Top = 48
+    Left = 928
+    Top = 56
   end
   object ACBrEnterTab_1: TACBrEnterTab
     EnterAsTab = True
-    Left = 456
-    Top = 48
+    Left = 768
+    Top = 8
   end
   object QExport4Dialog_1: TQExport4Dialog
     DataSet = qry
@@ -1511,7 +1495,7 @@ object frm_form_default: Tfrm_form_default
     HTMLPageOptions.TextFont.Style = []
     CSVOptions.Comma = ','
     PDFOptions.PageOptions.MarginLeft = 1.170000000000000000
-    PDFOptions.PageOptions.MarginRight = 0.569999999999999900
+    PDFOptions.PageOptions.MarginRight = 0.570000000000000000
     PDFOptions.PageOptions.MarginTop = 0.780000000000000000
     PDFOptions.PageOptions.MarginBottom = 0.780000000000000000
     PDFOptions.HeaderFont.UserFont.Charset = DEFAULT_CHARSET
@@ -1643,8 +1627,8 @@ object frm_form_default: Tfrm_form_default
     DocxOptions.FooterStyle.Font.Name = 'Calibri'
     DocxOptions.FooterStyle.Font.Style = []
     AccessOptions.TableName = 'EXPORT_TABLE'
-    Left = 424
-    Top = 48
+    Left = 736
+    Top = 8
   end
   object QImport3Wizard_1: TQImport3Wizard
     DataSet = qry
@@ -1665,12 +1649,12 @@ object frm_form_default: Tfrm_form_default
     FieldFormats = <>
     ErrorLogFileName = 'error.log'
     AddType = qatInsert
-    Left = 392
-    Top = 48
+    Left = 704
+    Top = 8
   end
   object FDSchemaAdapter_1: TFDSchemaAdapter
-    Left = 360
-    Top = 48
+    Left = 896
+    Top = 56
   end
   object frxReport_1: TfrxReport
     Version = '6.0.4'
@@ -1687,17 +1671,10 @@ object frm_form_default: Tfrm_form_default
       'begin'
       ''
       'end.')
-    Left = 296
-    Top = 48
+    Left = 672
+    Top = 8
     Datasets = <>
     Variables = <>
     Style = <>
-  end
-  object ACBrCEP_1: TACBrCEP
-    ProxyPort = '8080'
-    WebService = wsRepublicaVirtual
-    PesquisarIBGE = True
-    Left = 328
-    Top = 48
   end
 end

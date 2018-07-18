@@ -26,7 +26,7 @@ uses
   cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxCustomData, cxStyles,
   cxTL, cxTLdxBarBuiltInMenu, cxInplaceContainer,
   Vcl.ComCtrls, cxContainer, cxEdit, cxTreeView, Winapi.ShlObj, cxShellCommon,
-  cxShellTreeView, cxShellComboBox, cxBarEditItem;
+  cxShellTreeView, cxShellComboBox, cxBarEditItem, FireDAC.Stan.Param;
 
 type
   Tfrm_report = class(TForm)

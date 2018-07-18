@@ -121,9 +121,7 @@ type
     dxBarButton_import: TdxBarButton;
     FDSchemaAdapter_1: TFDSchemaAdapter;
     frxReport_1: TfrxReport;
-    ACBrCEP_1: TACBrCEP;
     cxlooComBoxRep: TcxBarEditItem;
-    dxBarSubItem1: TdxBarSubItem;
     dxBarButton1: TdxBarButton;
     procedure cxGrid_1DBTableView1DblClick(Sender: TObject);
     procedure Action_insertUpdate(Sender: TObject);
@@ -160,11 +158,11 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_main_default, ufrm_dm, Class_Report, ufrm_dm_report;
+uses ufrm_main_default, ufrm_dm, class_report, ufrm_dm_report;
 
 procedure Tfrm_form_default.Action_cancelExecute(Sender: TObject);
 begin
-result:=false;
+  result:=false;
   if Application.MessageBox
     ('Ao Cancelar as alterações, as informações digitadas não serão salvas!',
     'Deseja Cancelar as Alterações?', MB_YESNO + MB_ICONINFORMATION +
@@ -337,11 +335,10 @@ end;
 
 procedure Tfrm_form_default.cxlooComBoxRepPropertiesPopup(Sender: TObject);
 begin
-    frm_dm_report.qry_report.Close;
-    frm_dm_report.qry_report.ParamByName('REFERENCE').AsString := Self.Name;
-    frm_dm_report.qry_report.Prepare;
-    frm_dm_report.qry_report.Open;
-
+  frm_dm_report.qry_report.Close;
+  frm_dm_report.qry_report.ParamByName('reference').AsString := Self.Name;
+  frm_dm_report.qry_report.Prepare;
+  frm_dm_report.qry_report.Open;
 end;
 
 procedure Tfrm_form_default.dxBarButton1Click(Sender: TObject);
@@ -439,27 +436,11 @@ begin
 end;
 
 procedure Tfrm_form_default.FormCreate(Sender: TObject);
-var
-i:Integer;
 begin
-
-//procedimento criado dia 26/03/2018 para verificar se tem alguma query fechado
-//caso esteja fechado ele abre...   e se caso o pagecontrol está em "Manutençào"
-//coloca automáticamente em "Pesquisa"
-//autor: Elizeu Souza
-//for I := 0 to Self.ComponentCount -1 do
-//  if Self.Components[i] is TFDQuery then
-//   begin
-//    TFDQuery(Self.Components[i]).Prepare;
-//    TFDQuery(Self.Components[i]).Open;
-//   end;
-
- cxPageControl_1.ActivePageIndex:=0;
-
-  cxTabSheet_1.TabVisible:=False;
-  cxTabSheet_2.TabVisible:=False;
+  cxPageControl_1.ActivePageIndex := 0;
+  cxTabSheet_1.TabVisible := False;
+  cxTabSheet_2.TabVisible := False;
   cxTabSheet_1.Show;
-
 end;
 
 end.

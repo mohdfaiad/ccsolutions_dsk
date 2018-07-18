@@ -125,7 +125,6 @@ type
     qry: TFDQuery;
     schadp: TFDSchemaAdapter;
     mem: TFDMemTable;
-    ACBrCEP1: TACBrCEP;
      procedure dsStateChange(Sender: TObject);
     procedure Action_closeExecute(Sender: TObject);
     procedure Action_importExecute(Sender: TObject);

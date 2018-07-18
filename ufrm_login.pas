@@ -101,89 +101,41 @@ uses ufrm_dm, ufrm_main_default;
 
 procedure Tfrm_login.Action_accessExecute(Sender: TObject);
 var
-  SQL:string;
+  SQL : string;
 begin
-  // Select para listar as unidades de estoque que esse usuário tem acesso
-//   frm_dm.qry_enterprise.Close;
-//   frm_dm.qry_enterprise.ParamByName('CTR_USR_ID').Value:=frm_dm.qry_signinuserCod.Value;
-//   frm_dm.qry_enterprise.Prepare;
-//   frm_dm.qry_enterprise.Open;
+  SQL := 'set @po_valid_user = 0;'      +
+         'set @po_contract_ctr_cod = 0;'+
+         'set @po_ctr_usr_username = 0;'+
+         'set @po_ctr_usr_admin = 0;'   +
+         'call proc_contract_user_signin('+ edt_contract.Text +', '+ QuotedStr(edt_username.Text) +', '+ QuotedStr(edt_password.Text) +', @po_valid_user, @po_contract_ctr_cod, @po_ctr_usr_cod, @po_ctr_usr_username,@po_ctr_usr_admin);'+
+         'select @po_valid_user as valid_user, hex(@po_contract_ctr_cod) as contract_ctr_cod, hex(@po_ctr_usr_cod) as ctr_usr_cod, @po_ctr_usr_username as ctr_usr_username, @po_ctr_usr_admin as ctr_usr_admin';
 
-//
-//
-//  if frm_dm.qry_signin.RecordCount = 1 then
-//  begin
-//   if Length(frm_dm.qry_signinctr_usr_password.AsString) = 0  then
-//    begin
-//     Application.MessageBox('Usuário sem senha definida favor informar sua senha!', 'LOGIN',MB_OK + MB_ICONINFORMATION);
-//     cxPageControl1.Pages[1].TabVisible:=True;
-//     cxPageControl1.ActivePageIndex:=1;
-//     cxPageControl1.Pages[0].TabVisible:=False;
-//     cxPageControl1.Pages[2].TabVisible:=False;
-//     edt_passwordCurrent.SetFocus;
-//     exit;
-//    end;
-//  if frm_dm.qry_signinctr_usr_logged.AsString <> 'B' then
-//   with frm_dm.qry,sql do
-//    begin
-//      close;
-//      Text:='update contract_user ' +
-//            ' set ctr_usr_logged = ''S'' '+
-//            ' where contract_ctr_cod = (select ctr_cod from contract ' +
-//                      ' where ctr_id = ' + QuotedStr(edt_contract.Text) + ')' +
-//            ' and ctr_usr_password = '+ QuotedStr(md5.HashStringAsHex(edt_password.Text)) +
-//            ' and ctr_usr_username = ' + QuotedStr(edt_username.Text);
-//      Prepare;
-//      ExecSQL;
-//    end;
-//     frm_dm.qry_logged.Close;
-//     frm_dm.qry_logged.Params.ClearValues();
-//     frm_dm.qry_logged.Params[0].AsInteger := StrToInt(edt_contract.Text);
-//     frm_dm.qry_logged.Params[1].AsString := edt_username.Text;
-//     frm_dm.qry_logged.Params[2].AsString :=md5.HashStringAsHex(edt_password.Text);
-//     frm_dm.qry_logged.Prepare;
-//     frm_dm.qry_logged.Open;
+  frm_dm.qry_signin.Close;
+  frm_dm.qry_signin.SQL.Clear;
+  frm_dm.qry_signin.SQL.Text := SQL;
+  frm_dm.qry_signin.Open;
 
-     SQL := 'set @po_valid_user = 0;'+
-            'set @po_contract_ctr_cod = 0;'+
-            'set @po_ctr_usr_username = 0;'+
-            ' set @po_ctr_usr_admin = 0;'+
-            'call proc_access_signin('+ edt_contract.Text +', '+ QuotedStr(edt_username.Text) +', '+ QuotedStr(edt_password.Text) +', '+
-            '@po_valid_user, @po_contract_ctr_cod, @po_ctr_usr_cod, @po_ctr_usr_username,@po_ctr_usr_admin);'+
-            'select @po_valid_user, hex(@po_contract_ctr_cod), hex(@po_ctr_usr_cod), @po_ctr_usr_username, @po_ctr_usr_admin';
+  frm_dm.v_contract_ctr_cod := frm_dm.qry_signin.FieldByName('contract_ctr_cod').AsString;
+  frm_dm.v_ctr_usr_cod      := frm_dm.qry_signin.FieldByName('ctr_usr_cod').AsString;
 
-     frm_dm.qry_signin.Close;
-     frm_dm.qry_signin.SQL.Clear;
-     frm_dm.qry_signin.SQL.Text:= SQL;
-     frm_dm.qry_signin.Open;
+  frm_dm.v_nome_usuario     := frm_dm.qry_signin.FieldByName('ctr_usr_username').AsString;
+  frm_dm.v_ctr_usr_admin    := frm_dm.qry_signin.FieldByName('ctr_usr_admin').AsInteger;
 
-     frm_dm.v_contract_ctr_cod :=frm_dm.qry_signin.FieldByName('hex(@po_contract_ctr_cod)').Value;
-     frm_dm.v_ctr_usr_cod := frm_dm.qry_signin.FieldByName('hex(@po_ctr_usr_cod)').Value;
+  if frm_dm.qry_signin.FieldByName('valid_user').AsInteger = 1 then begin
+    if Tag = 99 then begin
+       ModalResult := mrYes;
 
-     frm_dm.v_nome_usuario     := frm_dm.qry_signin.FieldByName('@po_ctr_usr_username').Value;
-     frm_dm.v_ctr_usr_admin    := frm_dm.qry_signin.FieldByName('@po_ctr_usr_admin').Value;
-
-
-
-  if frm_dm.qry_signin.FieldByName('@po_valid_user').AsInteger = 1 then
-   begin
-     if Tag = 99 then
-      begin
-       ModalResult :=mrYes;
        Self.Close;
-      end
-      else
-       begin
-        frm_dm.qry_contract.Close;
-        frm_dm.qry_contract.sql.Text:='select ctr_cod, ctr_id from contract ' +
-                                      ' where ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-        frm_dm.qry_contract.Prepare;
-        frm_dm.qry_contract.Open;
-        ModalResult := mrOk;
-       end;
-   end
-  else
-  begin
+    end else begin
+      frm_dm.qry_contract.Close;
+      frm_dm.qry_contract.SQL.Clear;
+      frm_dm.qry_contract.SQL.Text := 'call proc_contract_read('+ QuotedStr(frm_dm.v_contract_ctr_cod) +');';
+      frm_dm.qry_contract.Prepare;
+      frm_dm.qry_contract.Open;
+
+      ModalResult := mrOk;
+    end;
+  end else begin
     MessageDlg('Usuário ou Senha inválida, ou usuário desativado!', mtInformation, [mbOK], 0);
     edt_contract.SetFocus;
   end;
@@ -191,21 +143,20 @@ end;
 
 procedure Tfrm_login.Action_cancelExecute(Sender: TObject);
 begin
-  if frm_login.Tag = 99  then  //Tag 99 quando for para alterar senha não finalizar a apliacação
+  if frm_login.Tag = 99 then begin //Tag 99 quando for para alterar senha não finalizar a apliacação
     Self.Close
-  else
-   begin
-     if MessageDlg('Você não se autenticou. A aplicação será encerrada!' + #13 +
-        'Deseja continuar?', mtConfirmation, mbYesNo, 0) = mrYes then
-        begin
-         Application.Terminate;
-       end;
-   end;
+  end else begin
+    if MessageDlg('Você não se autenticou. A aplicação será encerrada!' + #13 +
+      'Deseja continuar?', mtConfirmation, mbYesNo, 0) = mrYes then
+      begin
+        Application.Terminate;
+      end;
+  end;
 end;
 
 procedure Tfrm_login.cxButton3Click(Sender: TObject);
 var
- CodUsuario : string;
+  CodUsuario : string;
 begin
    if edt_passwordConfirm.Text <> edt_passwordNew.Text then
    begin
@@ -264,7 +215,6 @@ if Application.MessageBox('Desja confirmar a alteração em sua senha?', 'SENHA',M
      edt_password.SetFocus;
     end;
    end;
-
 end;
 
 procedure Tfrm_login.cxButton4Click(Sender: TObject);

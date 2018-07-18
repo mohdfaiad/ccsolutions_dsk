@@ -15,7 +15,6 @@ object frm_main_default: Tfrm_main_default
   Position = poDesigned
   ShowHint = True
   WindowState = wsMaximized
-  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96

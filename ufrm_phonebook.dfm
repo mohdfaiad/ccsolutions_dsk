@@ -1,13 +1,20 @@
 inherited frm_phonebook: Tfrm_phonebook
   Caption = 'Manuten'#231#227'o: Agenda Telef'#244'nica'
+  ClientHeight = 661
   OnClose = FormClose
   OnShow = FormShow
+  ExplicitHeight = 700
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
+    Height = 606
+    ExplicitHeight = 606
+    ClientRectBottom = 600
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitHeight = 572
       inherited cxGrid_1: TcxGrid
+        Height = 566
+        ExplicitHeight = 566
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pho_id: TcxGridDBColumn
             DataBinding.FieldName = 'pho_id'
@@ -45,18 +52,17 @@ inherited frm_phonebook: Tfrm_phonebook
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
+      ExplicitHeight = 572
       inherited cxPageControl_2: TcxPageControl
+        Height = 566
+        ExplicitHeight = 566
+        ClientRectBottom = 560
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
+          ExplicitHeight = 532
           inherited dxLayoutControl_1: TdxLayoutControl
+            Height = 532
+            ExplicitHeight = 532
             object cxDBTextEdit1: TcxDBTextEdit [0]
               Left = 68
               Top = 38
@@ -382,8 +388,8 @@ inherited frm_phonebook: Tfrm_phonebook
         DataSetName = 'enterprise'
       end
       item
-        DataSet = frxDBD_Lista_Telefonica
-        DataSetName = 'Lista_Telefonica'
+        DataSet = frxds_phonebook
+        DataSetName = 'Agenda Telef'#244'nia'
       end>
     Variables = <>
     Style = <>
@@ -2520,8 +2526,8 @@ inherited frm_phonebook: Tfrm_phonebook
         Height = 90.708720000000000000
         Top = 298.582870000000000000
         Width = 718.110700000000000000
-        DataSet = frxDBD_Lista_Telefonica
-        DataSetName = 'Lista_Telefonica'
+        DataSet = frxds_phonebook
+        DataSetName = 'Agenda Telef'#244'nia'
         RowCount = 0
         object Lista_Telefonicapho_phone1: TfrxMemoView
           IndexTag = 1
@@ -2530,8 +2536,8 @@ inherited frm_phonebook: Tfrm_phonebook
           Width = 120.944960000000000000
           Height = 18.897650000000000000
           DataField = 'pho_phone1'
-          DataSet = frxDBD_Lista_Telefonica
-          DataSetName = 'Lista_Telefonica'
+          DataSet = frxds_phonebook
+          DataSetName = 'Agenda Telef'#244'nia'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -2549,8 +2555,8 @@ inherited frm_phonebook: Tfrm_phonebook
           Width = 120.944960000000000000
           Height = 18.897650000000000000
           DataField = 'pho_phone2'
-          DataSet = frxDBD_Lista_Telefonica
-          DataSetName = 'Lista_Telefonica'
+          DataSet = frxds_phonebook
+          DataSetName = 'Agenda Telef'#244'nia'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -2568,8 +2574,8 @@ inherited frm_phonebook: Tfrm_phonebook
           Width = 120.944960000000000000
           Height = 18.897650000000000000
           DataField = 'pho_phone3'
-          DataSet = frxDBD_Lista_Telefonica
-          DataSetName = 'Lista_Telefonica'
+          DataSet = frxds_phonebook
+          DataSetName = 'Agenda Telef'#244'nia'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -2587,8 +2593,8 @@ inherited frm_phonebook: Tfrm_phonebook
           Width = 120.944960000000000000
           Height = 18.897650000000000000
           DataField = 'pho_phone4'
-          DataSet = frxDBD_Lista_Telefonica
-          DataSetName = 'Lista_Telefonica'
+          DataSet = frxds_phonebook
+          DataSetName = 'Agenda Telef'#244'nia'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -2681,8 +2687,8 @@ inherited frm_phonebook: Tfrm_phonebook
           Width = 298.582870000000000000
           Height = 18.897650000000000000
           DataField = 'pho_name'
-          DataSet = frxDBD_Lista_Telefonica
-          DataSetName = 'Lista_Telefonica'
+          DataSet = frxds_phonebook
+          DataSetName = 'Agenda Telef'#244'nia'
           Frame.Typ = []
           Memo.UTF8W = (
             '[Lista_Telefonica."pho_name"]')
@@ -2694,8 +2700,8 @@ inherited frm_phonebook: Tfrm_phonebook
           Width = 219.212740000000000000
           Height = 18.897650000000000000
           DataField = 'pho_contact'
-          DataSet = frxDBD_Lista_Telefonica
-          DataSetName = 'Lista_Telefonica'
+          DataSet = frxds_phonebook
+          DataSetName = 'Agenda Telef'#244'nia'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -2713,8 +2719,8 @@ inherited frm_phonebook: Tfrm_phonebook
           Width = 578.268090000000000000
           Height = 18.897650000000000000
           DataField = 'pho_annotation'
-          DataSet = frxDBD_Lista_Telefonica
-          DataSetName = 'Lista_Telefonica'
+          DataSet = frxds_phonebook
+          DataSetName = 'Agenda Telef'#244'nia'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -2770,8 +2776,8 @@ inherited frm_phonebook: Tfrm_phonebook
         Height = 22.677180000000000000
         Top = 253.228510000000000000
         Width = 718.110700000000000000
-        DataSet = frxDBD_Lista_Telefonica
-        DataSetName = 'Lista_Telefonica'
+        DataSet = frxds_phonebook
+        DataSetName = 'Agenda Telef'#244'nia'
         RowCount = 0
         object Line2: TfrxLineView
           Left = 1.614100000000000000
@@ -2784,12 +2790,12 @@ inherited frm_phonebook: Tfrm_phonebook
       end
     end
   end
-  object frxDBD_Lista_Telefonica: TfrxDBDataset
-    UserName = 'Lista_Telefonica'
+  object frxds_phonebook: TfrxDBDataset
+    UserName = 'Agenda Telef'#244'nia'
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False
-    Left = 648
-    Top = 96
+    Left = 672
+    Top = 56
   end
 end

@@ -38,12 +38,11 @@ object frm_dm: Tfrm_dm
     Active = True
     Connection = connCCS
     SQL.Strings = (
-      'select * from enterprise'#13#10#10
-      'where contract_ctr_cod =:ctr_cod'
+      'select * '#10'from'#10' enterprise '#10
       
-        'and ent_cod in (select enterprise_ent_cod  from contract_user_en' +
-        'terprise '
-      'where contract_user_ctr_usr_cod =unhex(:CodUsuario))')
+        'where '#10'contract_ctr_cod = :ctr_cod and ent_cod in (select enterp' +
+        'rise_ent_cod from contract_user_enterprise  where contract_user_' +
+        'ctr_usr_cod = unhex(:CodUsuario))')
     Left = 368
     Top = 64
     ParamData = <
@@ -263,10 +262,10 @@ object frm_dm: Tfrm_dm
     Active = True
     Connection = connCCS
     SQL.Strings = (
-      'SELECT ctr_usr_logged FROM contract_user'
-      'WHERE contract_ctr_cod= :contract '
-      'and ctr_usr_username = :username '
-      'and ctr_usr_password=:password')
+      
+        'select ctr_usr_logged from contract_user where contract_ctr_cod ' +
+        '= :contract and ctr_usr_username = :username and ctr_usr_passwor' +
+        'd = :password')
     Left = 368
     Top = 208
     ParamData = <
@@ -288,12 +287,10 @@ object frm_dm: Tfrm_dm
         ParamType = ptInput
         Value = Null
       end>
-    object qry_loggedctr_usr_logged: TStringField
+    object qry_loggedctr_usr_logged: TShortintField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_usr_logged'
       Origin = 'ctr_usr_logged'
-      FixedChar = True
-      Size = 1
     end
   end
   object qry_action: TFDQuery
@@ -338,30 +335,68 @@ object frm_dm: Tfrm_dm
     Top = 160
   end
   object qry_contract: TFDQuery
-    Active = True
     Connection = connCCS
-    SQL.Strings = (
-      'select ctr_cod,ctr_id from contract'
-      'where ctr_cod =:ctr_cod')
     Left = 368
     Top = 256
-    ParamData = <
-      item
-        Name = 'CTR_COD'
-        DataType = ftBytes
-        ParamType = ptInput
-        Value = Null
-      end>
-    object qry_contractctr_cod: TBytesField
+    object qry_contractctr_cod: TStringField
       FieldName = 'ctr_cod'
-      Origin = 'ctr_cod'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
+      Size = 32
     end
     object qry_contractctr_id: TLargeintField
       AutoGenerateValue = arDefault
       FieldName = 'ctr_id'
       Origin = 'ctr_id'
+    end
+    object qry_contractctr_first_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_first_name'
+      Origin = 'ctr_first_name'
+      Size = 85
+    end
+    object qry_contractctr_last_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_last_name'
+      Origin = 'ctr_last_name'
+      Size = 85
+    end
+    object qry_contractctr_email: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_email'
+      Origin = 'ctr_email'
+      Size = 65
+    end
+    object qry_contractctr_phone1: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_phone1'
+      Origin = 'ctr_phone1'
+      Size = 15
+    end
+    object qry_contractctr_dt_birth: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_dt_birth'
+      Origin = 'ctr_dt_birth'
+    end
+    object qry_contractctr_user_license: TWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_user_license'
+      Origin = 'ctr_user_license'
+    end
+    object qry_contractctr_status: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_status'
+      Origin = 'ctr_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qry_contractctr_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_deleted_at'
+      Origin = 'ctr_deleted_at'
+    end
+    object qry_contractctr_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'ctr_dt_registration'
+      Origin = 'ctr_dt_registration'
     end
   end
   object ds_contract: TDataSource

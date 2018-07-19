@@ -17,7 +17,8 @@ uses
   ufrm_dm_report in '..\ufrm_dm_report.pas' {frm_dm_report: TDataModule},
   ufrm_report in '..\ufrm_report.pas' {frm_report},
   class_report in '..\class_report.pas',
-  class_required_field in '..\class_required_field.pas';
+  class_required_field in '..\class_required_field.pas',
+  ufrm_contract in '..\ufrm_contract.pas' {frm_contract};
 
 {$R *.res}
 

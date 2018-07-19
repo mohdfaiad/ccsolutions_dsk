@@ -3,40 +3,146 @@ unit ufrm_form_default;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels,
-  cxLookAndFeelPainters, dxSkinsCore, dxSkinBlack, dxSkinBlue, dxSkinBlueprint,
-  dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide,
-  dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
-  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
-  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
-  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
-  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
-  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
-  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
-  dxSkinOffice2013White, dxSkinOffice2016Colorful, dxSkinOffice2016Dark,
-  dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
-  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
-  dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, dxSkinscxPCPainter, dxBarBuiltInMenu, cxPC,
-  dxSkinsdxBarPainter, cxClasses, dxBar, System.Actions, Vcl.ActnList,
-  System.ImageList, Vcl.ImgList, cxStyles, cxCustomData, cxFilter, cxData,
-  cxDataStorage, cxEdit, cxNavigator, Data.DB, cxDBData, cxGridLevel,
-  cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxGrid, dxSkinsForm, dxRibbon, cxGridCustomPopupMenu, cxGridPopupMenu,
-  Vcl.Menus, dxLayoutContainer, dxLayoutControl, cxContainer,
-  dxLayoutcxEditAdapters, cxLabel, cxMaskEdit, cxDropDownEdit, cxCalendar,
-  cxDBEdit, cxTextEdit, dxLayoutLookAndFeels, FireDAC.Stan.Intf,
-  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
-  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, ACBrBase, ACBrEnterTab,
-  QExport4Dialog, dxBarExtItems, cxShellComboBox, cxBarEditItem, frxDesgn,
-  QImport3Wizard, frxClass, cxLocalization, ACBrSocket, ACBrCEP,uthred_logged,
-  Vcl.ExtCtrls, cxDBLookupComboBox;
+  Winapi.Windows,
+  Winapi.Messages,
 
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.Actions,
+  System.ImageList,
+
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.ImgList,
+  Vcl.Forms,
+  Vcl.ActnList,
+  Vcl.Dialogs,
+  Vcl.Menus,
+  Vcl.ExtCtrls,
+
+  cxGraphics,
+  cxControls,
+  cxLookAndFeels,
+  cxLookAndFeelPainters,
+  dxSkinsCore,
+  dxSkinBlack,
+  dxSkinBlue,
+  dxSkinBlueprint,
+  dxSkinCaramel,
+  dxSkinCoffee,
+  dxSkinDarkRoom,
+  dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle,
+  dxSkinDevExpressStyle,
+  dxSkinFoggy,
+  dxSkinGlassOceans,
+  dxSkinHighContrast,
+  dxSkiniMaginary,
+  dxSkinLilian,
+  dxSkinLiquidSky,
+  dxSkinLondonLiquidSky,
+  dxSkinMcSkin,
+  dxSkinMetropolis,
+  dxSkinMetropolisDark,
+  dxSkinMoneyTwins,
+  dxSkinOffice2007Black,
+  dxSkinOffice2007Blue,
+  dxSkinOffice2007Green,
+  dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver,
+  dxSkinOffice2010Black,
+  dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver,
+  dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray,
+  dxSkinOffice2013White,
+  dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark,
+  dxSkinPumpkin,
+  dxSkinSeven,
+  dxSkinSevenClassic,
+  dxSkinSharp,
+  dxSkinSharpPlus,
+  dxSkinSilver,
+  dxSkinSpringTime,
+  dxSkinStardust,
+  dxSkinSummer2008,
+  dxSkinTheAsphaltWorld,
+  dxSkinsDefaultPainters,
+  dxSkinValentine,
+  dxSkinVisualStudio2013Blue,
+  dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light,
+  dxSkinVS2010,
+  dxSkinWhiteprint,
+  dxSkinXmas2008Blue,
+  dxSkinscxPCPainter,
+  dxBarBuiltInMenu,
+  cxPC,
+  dxSkinsdxBarPainter,
+  cxClasses,
+  dxBar,
+  dxLayoutContainer,
+  dxLayoutControl,
+  cxContainer,
+  dxLayoutcxEditAdapters,
+  cxLabel,
+  cxMaskEdit,
+  cxDropDownEdit,
+  cxCalendar,
+  cxDBEdit,
+  cxTextEdit,
+  dxLayoutLookAndFeels,
+  cxDBData,
+  cxGridLevel,
+  cxGridCustomView,
+  cxGridCustomTableView,
+  cxGridTableView,
+  cxGridDBTableView,
+  cxGrid,
+  dxSkinsForm,
+  dxRibbon,
+  cxGridCustomPopupMenu,
+  cxGridPopupMenu,
+  cxStyles,
+  cxCustomData,
+  cxFilter,
+  cxData,
+  cxDataStorage,
+  cxEdit,
+  cxNavigator,
+  dxBarExtItems,
+  cxShellComboBox,
+  cxBarEditItem,
+  cxDBLookupComboBox,
+  cxLocalization,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.Stan.Async,
+  FireDAC.DApt,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+
+  ACBrBase,
+  ACBrEnterTab,
+  ACBrSocket,
+
+  QExport4Dialog,
+  QImport3Wizard,
+
+  frxDesgn,
+  frxClass,
+
+  uthred_logged;
 type
   Tfrm_form_default = class(TForm)
     cxPageControl_1: TcxPageControl;
@@ -148,7 +254,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    result:Boolean;
+    Result : Boolean;
   end;
 
 var
@@ -162,24 +268,18 @@ uses ufrm_main_default, ufrm_dm, class_report, ufrm_dm_report;
 
 procedure Tfrm_form_default.Action_cancelExecute(Sender: TObject);
 begin
-  result:=false;
-  if Application.MessageBox
-    ('Ao Cancelar as alterações, as informações digitadas não serão salvas!',
-    'Deseja Cancelar as Alterações?', MB_YESNO + MB_ICONINFORMATION +
-    MB_DEFBUTTON2) = IDYES then
-  begin
+  Result := False;
+
+  if Application.MessageBox('Ao Cancelar as alterações, as informações digitadas não serão salvas!', 'Deseja Cancelar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
     ds.DataSet.Cancel;
-   // if qry.CachedUpdates then
-    // FDSchemaAdapter_1.CancelUpdates;
-     result:=True;
+    Result := True;
     cxTabSheet_1.Show;
   end;
 end;
 
 procedure Tfrm_form_default.Action_cancelUpdate(Sender: TObject);
 begin
-  if ds.State in [dsBrowse] then
-  begin
+  if ds.State in [dsBrowse] then begin
     Action_first.Enabled := True;
     Action_prior.Enabled := True;
     Action_next.Enabled := True;
@@ -201,14 +301,11 @@ end;
 
 procedure Tfrm_form_default.Action_deleteExecute(Sender: TObject);
 begin
-  if Application.MessageBox
-    ('Ao excluir o registro, o mesmo não poderá ser recuperado novamente!',
-    'Deseja excluir o Registro?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
-    = IDYES then
-    result:=true
-    else
-    result:=false;
-
+  if Application.MessageBox('Ao excluir o registro, o mesmo não poderá ser recuperado novamente!', 'Deseja excluir o Registro?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+    Result := True
+  end else begin
+    Result := False;
+  end;
 end;
 
 procedure Tfrm_form_default.Action_editExecute(Sender: TObject);
@@ -240,8 +337,7 @@ end;
 
 procedure Tfrm_form_default.Action_insertUpdate(Sender: TObject);
 begin
-  if ds.State in [dsInsert, dsEdit] then
-  begin
+  if ds.State in [dsInsert, dsEdit] then begin
     Action_first.Enabled := False;
     Action_prior.Enabled := False;
     Action_next.Enabled := False;
@@ -268,7 +364,6 @@ end;
 
 procedure Tfrm_form_default.Action_printExecute(Sender: TObject);
 begin
-
  if (cxlooComBoxRep.EditValue <> '') then
    begin
     if Application.MessageBox('Deseja imprimir o relatório selecionado ?','AVISO DE IMPRESSÃO',MB_YESNO + MB_ICONQUESTION) = ID_YES then
@@ -312,17 +407,14 @@ end;
 
 procedure Tfrm_form_default.Action_saveExecute(Sender: TObject);
 begin
-  if Application.MessageBox
-    ('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!',
-    'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION +
-    MB_DEFBUTTON2) = IDYES then
-  begin
+  if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
     ds.DataSet.Post;
-    if qry.CachedUpdates then
-      FDSchemaAdapter_1.ApplyUpdates(0);
 
+    if qry.CachedUpdates then begin
+      FDSchemaAdapter_1.ApplyUpdates(0);
       Application.MessageBox('Registros salvos com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
-     cxTabSheet_1.Show;
+      cxTabSheet_1.Show;
+    end;
   end;
 end;
 
@@ -330,7 +422,6 @@ procedure Tfrm_form_default.cxGrid_1DBTableView1DblClick(Sender: TObject);
 begin
   Action_edit.Execute;
   cxTabSheet_3.Show;
-
 end;
 
 procedure Tfrm_form_default.cxlooComBoxRepPropertiesPopup(Sender: TObject);
@@ -342,11 +433,11 @@ begin
 end;
 
 procedure Tfrm_form_default.dxBarButton1Click(Sender: TObject);
- var
+var
   rep_cod, NameReport: string;
   rep_id: Integer;
-  sArq:TStream;
-  mMem:TMemoryStream;
+  sArq : TStream;
+  mMem : TMemoryStream;
 begin
   if cxBarEditItem_1.EditValue <> '' then
    begin

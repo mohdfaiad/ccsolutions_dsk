@@ -42,8 +42,16 @@ inherited frm_contract: Tfrm_contract
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -196,9 +204,6 @@ inherited frm_contract: Tfrm_contract
     end
     inherited dxBarButton_delete: TdxBarButton
       Visible = ivNever
-    end
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\cadastro\basico\Contrato'
     end
   end
   inherited PopupMenu_1: TPopupMenu
@@ -821,7 +826,7 @@ inherited frm_contract: Tfrm_contract
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False
-    Left = 256
-    Top = 48
+    Left = 672
+    Top = 56
   end
 end

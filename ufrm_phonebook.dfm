@@ -59,6 +59,9 @@ inherited frm_phonebook: Tfrm_phonebook
         ClientRectBottom = 560
         inherited cxTabSheet_3: TcxTabSheet
           OnShow = cxTabSheet_3Show
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
           ExplicitHeight = 532
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 532

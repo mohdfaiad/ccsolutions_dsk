@@ -3,197 +3,89 @@ unit ufrm_phonebook;
 interface
 
 uses
-  Winapi.Windows,
-  Winapi.Messages,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_form_default, cxGraphics,
+  cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxSkinsCore, dxSkinBlack,
+  dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
+  dxSkinDarkSide, dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
+  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
+  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
+  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
+  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
+  dxSkinOffice2013White, dxSkinOffice2016Colorful, dxSkinOffice2016Dark,
+  dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
+  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
+  dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
+  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
+  dxSkinXmas2008Blue, dxBarBuiltInMenu, cxStyles, cxCustomData, cxFilter,
+  cxData, cxDataStorage, cxEdit, cxNavigator,
+  cxDataControllerConditionalFormattingRulesManagerDialog, Data.DB, cxDBData,
+  cxContainer, dxLayoutcxEditAdapters, cxShellComboBox, cxDBLookupComboBox,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, frxClass, FireDAC.Comp.Client,
+  QImport3Wizard, QExport4Dialog, ACBrBase, ACBrEnterTab, FireDAC.Comp.DataSet,
+  dxLayoutLookAndFeels, System.ImageList, Vcl.ImgList, cxImageList, Vcl.Menus,
+  cxGridCustomPopupMenu, cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar,
+  cxBarEditItem, cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit,
+  cxCalendar, cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel,
+  cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
+  cxGrid, cxPC;
 
-  System.SysUtils,
-  System.Variants,
-  System.Classes,
-  System.ImageList,
-  System.Actions,
-
-  Vcl.ActnList,
-  Vcl.ImgList,
-  Vcl.Menus,
-  Vcl.Graphics,
-  Vcl.Controls,
-  Vcl.Forms,
-  Vcl.Dialogs,
-
-  cxGraphics,
-  cxControls,
-  cxLookAndFeels,
-  cxLookAndFeelPainters,
-  dxSkinsCore,
-  dxSkinBlack,
-  dxSkinBlue,
-  dxSkinBlueprint,
-  dxSkinCaramel,
-  dxSkinCoffee,
-  dxSkinDarkRoom,
-  dxSkinDarkSide,
-  dxSkinDevExpressDarkStyle,
-  dxSkinDevExpressStyle,
-  dxSkinFoggy,
-  dxSkinGlassOceans,
-  dxSkinHighContrast,
-  dxSkiniMaginary,
-  dxSkinLilian,
-  dxSkinLiquidSky,
-  dxSkinLondonLiquidSky,
-  dxSkinMcSkin,
-  dxSkinMetropolis,
-  dxSkinMetropolisDark,
-  dxSkinMoneyTwins,
-  dxSkinOffice2007Black,
-  dxSkinOffice2007Blue,
-  dxSkinOffice2007Green,
-  dxSkinOffice2007Pink,
-  dxSkinOffice2007Silver,
-  dxSkinOffice2010Black,
-  dxSkinOffice2010Blue,
-  dxSkinOffice2010Silver,
-  dxSkinOffice2013DarkGray,
-  dxSkinOffice2013LightGray,
-  dxSkinOffice2013White,
-  dxSkinOffice2016Colorful,
-  dxSkinOffice2016Dark,
-  dxSkinPumpkin,
-  dxSkinSeven,
-  dxSkinSevenClassic,
-  dxSkinSharp,
-  dxSkinSharpPlus,
-  dxSkinSilver,
-  dxSkinSpringTime,
-  dxSkinStardust,
-  dxSkinSummer2008,
-  dxSkinTheAsphaltWorld,
-  dxSkinsDefaultPainters,
-  dxSkinValentine,
-  dxSkinVisualStudio2013Blue,
-  dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light,
-  dxSkinVS2010,
-  dxSkinWhiteprint,
-  dxSkinXmas2008Blue,
-  dxSkinscxPCPainter,
-  dxBarBuiltInMenu,
-  cxStyles,
-  cxCustomData,
-  cxFilter,
-  cxData,
-  cxDataStorage,
-  cxEdit,
-  cxNavigator,
-  cxDBData,
-  cxContainer,
-  dxLayoutcxEditAdapters,
-  dxSkinsdxBarPainter,
-  dxLayoutLookAndFeels,
-  cxGridCustomPopupMenu,
-  cxGridPopupMenu,
-  dxBar,
-  cxClasses,
-  dxLayoutContainer,
-  cxMaskEdit,
-  cxDropDownEdit,
-  cxCalendar,
-  cxDBEdit,
-  cxTextEdit,
-  dxLayoutControl,
-  cxGridLevel,
-  cxGridCustomView,
-  cxGridCustomTableView,
-  cxGridTableView,
-  cxGridDBTableView,
-  cxGrid,
-  cxPC,
-  cxShellComboBox,
-  cxBarEditItem,
-  dxBarExtItems,
-  cxDBLookupComboBox,
-
-  Data.DB,
-
-  FireDAC.Stan.Intf,
-  FireDAC.Stan.Option,
-  FireDAC.Stan.Param,
-  FireDAC.Stan.Error,
-  FireDAC.DatS,
-  FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf,
-  FireDAC.Stan.Async,
-  FireDAC.DApt,
-  FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client,
-
-  ACBrBase,
-  ACBrEnterTab,
-  ACBrSocket,
-
-  QExport4Dialog,
-  QImport3Wizard,
-
-  frxClass,
-  frxDBSet,
-
-  class_required_field,
-  ufrm_form_default;
 type
   Tfrm_phonebook = class(Tfrm_form_default)
-    cxDBTextEdit1: TcxDBTextEdit;
-    dxLayoutItem3: TdxLayoutItem;
-    cxDBTextEdit2: TcxDBTextEdit;
-    dxLayoutItem4: TdxLayoutItem;
-    cxDBTextEdit3: TcxDBTextEdit;
-    dxLayoutItem5: TdxLayoutItem;
-    cxDBTextEdit4: TcxDBTextEdit;
-    dxLayoutItem6: TdxLayoutItem;
-    cxDBTextEdit5: TcxDBTextEdit;
-    dxLayoutItem7: TdxLayoutItem;
-    cxDBTextEdit6: TcxDBTextEdit;
-    dxLayoutItem8: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
-    cxDBTextEdit7: TcxDBTextEdit;
-    dxLayoutItem9: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
+    qrypho_cod: TStringField;
+    qrycontract_ctr_cod: TStringField;
+    qrypho_id: TLongWordField;
     qrypho_name: TStringField;
-    qrypho_contact: TStringField;
     qrypho_phone1: TStringField;
     qrypho_phone2: TStringField;
     qrypho_phone3: TStringField;
-    qrypho_dt_registration: TDateTimeField;
     qrypho_phone4: TStringField;
+    qrypho_contact: TStringField;
+    qrypho_deleted_at: TDateTimeField;
+    qrypho_dt_registration: TDateTimeField;
+    dbedt_name: TcxDBTextEdit;
+    dxLayoutItem3: TdxLayoutItem;
+    dbedt_phone4: TcxDBTextEdit;
+    dxLayoutItem4: TdxLayoutItem;
+    dbedt_phone3: TcxDBTextEdit;
+    dxLayoutItem5: TdxLayoutItem;
+    dbedt_phone2: TcxDBTextEdit;
+    dxLayoutItem6: TdxLayoutItem;
+    dbedt_phone1: TcxDBTextEdit;
+    dxLayoutItem7: TdxLayoutItem;
+    dbedt_contact: TcxDBTextEdit;
+    dxLayoutItem8: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     cxGrid_1DBTableView1pho_id: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_name: TcxGridDBColumn;
-    cxGrid_1DBTableView1pho_contact: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_phone1: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_phone2: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_phone3: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_phone4: TcxGridDBColumn;
+    cxGrid_1DBTableView1pho_contact: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_dt_registration: TcxGridDBColumn;
-    frxds_phonebook: TfrxDBDataset;
-    qrypho_id: TLongWordField;
-    qrypho_cod: TBytesField;
-    qrycontract_ctr_cod: TBytesField;
-    qrypho_deleted_at: TDateTimeField;
-    qryCodPhonebook: TStringField;
+    str_proc_phonebook_create: TFDStoredProc;
+    str_proc_phonebook_delete: TFDStoredProc;
+    str_proc_phonebook_update: TFDStoredProc;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure qryAfterInsert(DataSet: TDataSet);
-    procedure cxTabSheet_3Show(Sender: TObject);
-    procedure FormShow(Sender: TObject);
+    procedure qryBeforeOpen(DataSet: TDataSet);
+    procedure Action_insertExecute(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
-    procedure Action_cancelExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
+    procedure cxGrid_1DBTableView1DblClick(Sender: TObject);
   private
-      pho_cod: string;
+    { Private declarations }
   public
     { Public declarations }
-    procedure limpaCache(Sender:TObject);
-    procedure ExibirRegistros;
+    var
+      stats : Integer;
   end;
 
 var
@@ -205,152 +97,106 @@ implementation
 
 uses ufrm_dm;
 
-procedure Tfrm_phonebook.Action_cancelExecute(Sender: TObject);
-begin
-  inherited;
-  if result = false then
-    exit;
-
-  if (qrypho_id.AsInteger = 0) then begin
-    with frm_dm.qry2, sql do begin
-      Close;
-      Text:= 'delete from phonebook ' +
-             'where pho_cod = unhex('+ QuotedStr(pho_cod)+')' ;
-      Prepare;
-      ExecSQL;
-    end;
-  end;
-
-  ExibirRegistros;
-end;
-
 procedure Tfrm_phonebook.Action_deleteExecute(Sender: TObject);
 begin
-  inherited;
-  if (result = false) then
-    Exit;
+  str_proc_phonebook_delete.ParamByName('p_pho_cod').AsString := qry.FieldByName('pho_cod').AsString;
+  str_proc_phonebook_delete.ParamByName('p_pho_deleted_at').AsDateTime := Date + Time;
 
-  qry.Edit;
-  qrypho_deleted_at.AsDateTime := Now;
-  qry.Post;
-  qry.ApplyUpdates(0);
-  Application.MessageBox('Agenda Telefônica excluído com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
+  str_proc_phonebook_delete.ExecProc;
 
-  ExibirRegistros;
-
+  qry.Close;
+  qry.Open;
 end;
 
 procedure Tfrm_phonebook.Action_editExecute(Sender: TObject);
 begin
   inherited;
-   pho_cod:= qryCodPhonebook.AsString;
+  stats := 1;
+  cxTabSheet_3.Show;
+end;
+
+procedure Tfrm_phonebook.Action_insertExecute(Sender: TObject);
+begin
+  stats := 0;
+  qry.EmptyDataSet;
+  cxTabSheet_3.Show;
 end;
 
 procedure Tfrm_phonebook.Action_saveExecute(Sender: TObject);
- begin
-//--Comando para tirar o focus de todos os componentes da tela-----
-   ActiveControl := nil;
-  //--Cama a função para verificar se existe campos requeridos em branco----
-  TCampoRequerido.TratarRequerido(qry);
+begin
+  case stats of
+    0 : begin
+          try
+            try
+              str_proc_phonebook_create.ParamByName('p_contract_ctr_cod').AsString  := frm_dm.v_contract_ctr_cod;
+              str_proc_phonebook_create.ParamByName('p_pho_name').AsString          := dbedt_name.Text;
+              str_proc_phonebook_create.ParamByName('p_pho_contact').AsString       := dbedt_contact.Text;
+              str_proc_phonebook_create.ParamByName('p_pho_phone1').AsString        := dbedt_phone1.Text;
+              str_proc_phonebook_create.ParamByName('p_pho_phone2').AsString        := dbedt_phone2.Text;
+              str_proc_phonebook_create.ParamByName('p_pho_phone3').AsString        := dbedt_phone3.Text;
+              str_proc_phonebook_create.ParamByName('p_pho_phone4').AsString        := dbedt_phone4.Text;
+              str_proc_phonebook_create.ExecProc;
 
-   inherited;
-     if ds.DataSet.State in [dsEdit] then
-        Exit;
+              ShowMessage('Registro inserido com sucesso');
 
-  if (qrypho_id.AsInteger = 0) then
-    begin
-     with frm_dm.qry,sql do
-      begin
-       close;     // -- SQL para retornar o ultimo ID da tabela---
-       Text:= ' select case when max(pho_id) is null then 1 ' +
-              '      else (max(pho_id) + 1) end as maxID from phonebook '+
-              ' where contract_ctr_cod = unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')';
-       Prepare;
-       Open;
-
-       if not (qry.State in [dsInsert,dsEdit])  then
-        qry.Edit;
-
-       if qrypho_id.AsInteger = 0 then
-          qrypho_id.AsInteger:=Fields[0].AsInteger;
-
-        qry.Post;
-        qry.ApplyUpdates(0);
-
-      end;
+              qry.Close;
+              qry.Open;
+              qry.Last;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
     end;
 
+    1 : begin
+          try
+            try
+              if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+                str_proc_phonebook_update.ParamByName('p_pho_cod').AsString           := qry.FieldByName('pho_cod').AsString;
+                str_proc_phonebook_update.ParamByName('p_pho_name').AsString          := dbedt_name.Text;
+                str_proc_phonebook_update.ParamByName('p_pho_contact').AsString       := dbedt_contact.Text;
+                str_proc_phonebook_update.ParamByName('p_pho_phone1').AsString        := dbedt_phone1.Text;
+                str_proc_phonebook_update.ParamByName('p_pho_phone2').AsString        := dbedt_phone2.Text;
+                str_proc_phonebook_update.ParamByName('p_pho_phone3').AsString        := dbedt_phone3.Text;
+                str_proc_phonebook_update.ParamByName('p_pho_phone4').AsString        := dbedt_phone4.Text;
+                str_proc_phonebook_update.ExecProc;
 
-  ExibirRegistros;
+                ShowMessage('Registro Salvo com sucesso');
 
+                qry.UpdateRecord;
+              end else begin
+                qry.Cancel;
+              end;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+    end;
+  end;
 end;
 
-procedure Tfrm_phonebook.cxTabSheet_3Show(Sender: TObject);
+procedure Tfrm_phonebook.cxGrid_1DBTableView1DblClick(Sender: TObject);
 begin
   inherited;
-  cxDBTextEdit1.SetFocus;
-end;
-
-procedure Tfrm_phonebook.ExibirRegistros;
-begin
-  qry.Close;
-  qry.SQL.Text := ' select phonebook.*, hex(pho_cod)as CodPhonebook from phonebook     ' +
-                  ' where contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+') and pho_deleted_at is null ' ;
-  qry.Prepare;
-  qry.Open;
+  stats := 1;
 end;
 
 procedure Tfrm_phonebook.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-  frm_phonebook.Destroy;
-  frm_phonebook := Nil;
+  frm_phonebook.Free;
+  frm_phonebook := nil;
 end;
 
-procedure Tfrm_phonebook.FormCreate(Sender: TObject);
+procedure Tfrm_phonebook.qryBeforeOpen(DataSet: TDataSet);
 begin
   inherited;
-  //
-end;
-
-procedure Tfrm_phonebook.FormShow(Sender: TObject);
-begin
-  inherited;
-   ExibirRegistros;
-end;
-
-procedure Tfrm_phonebook.limpaCache(Sender: TObject);
-begin
-  qry.CommitUpdates();
-end;
-
-procedure Tfrm_phonebook.qryAfterInsert(DataSet: TDataSet);
-begin
-  inherited;
-   //SQL para obter Número do Cod ID em Hex--------
-   With frm_dm.qry,sql do
-  begin
-   close;
-   text:= ' select hex(uuid_to_bin(uuid()))';
-   prepare;
-   open;
-
-   pho_cod:=Fields[0].AsString;
-
-   Close;          //---Insert na tabela brand inserindo os primeiros registros obrigatórios----
-   Text:='insert into phonebook (pho_id,pho_cod,contract_ctr_cod,pho_dt_registration) ' +
-         ' select 0,unhex('+QuotedStr(pho_cod)+'), unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+'),Now()';
-   Prepare;
-   ExecSQL;
-  end;
-
-   qry.Close;      //--SQL para retornar o registro inserido  acima (ultimo registro)----
-   qry.sql.text:= ' select phonebook.*, hex(pho_cod)as CodPhonebook from phonebook           ' +
-                  ' where pho_cod =unhex('+QuotedStr(pho_cod)+') and pho_deleted_at is null ' ;
-   qry.Prepare;
-   qry.open;
-
-   qry.Edit;
+  qry.Filtered := False;
+  qry.ParamByName('contract_ctr_cod').AsString := frm_dm.v_contract_ctr_cod;
+  qry.Filter := 'pho_deleted_at is null';
+  qry.Filtered := True;
 end;
 
 end.

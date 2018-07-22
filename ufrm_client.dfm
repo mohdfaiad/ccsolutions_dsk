@@ -7,13 +7,9 @@ inherited frm_client: Tfrm_client
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     Height = 636
-    Properties.ActivePage = cxTabSheet_2
     ExplicitHeight = 636
     ClientRectBottom = 630
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
       ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         Height = 596
@@ -190,7 +186,6 @@ inherited frm_client: Tfrm_client
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         Height = 596
-        Properties.ActivePage = tabLaboratorio
         ExplicitHeight = 596
         ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet
@@ -462,10 +457,6 @@ inherited frm_client: Tfrm_client
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
           OnShow = cxTabSheet_addressShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1094,10 +1085,6 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Contatos'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1239,10 +1226,6 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1305,10 +1288,6 @@ inherited frm_client: Tfrm_client
         end
         object tabTelefonia: TcxTabSheet
           Caption = 'Telefonia'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1319,7 +1298,7 @@ inherited frm_client: Tfrm_client
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             object cxGrid2: TcxGrid
               Left = 17
-              Top = 33
+              Top = 103
               Width = 503
               Height = 200
               PopupMenu = PopupMenu1
@@ -1347,7 +1326,7 @@ inherited frm_client: Tfrm_client
             end
             object cxEditCodsippulse: TcxTextEdit
               Left = 87
-              Top = -32
+              Top = 38
               Style.HotTrack = False
               TabOrder = 0
               OnKeyDown = cxEditCodsippulseKeyDown
@@ -1355,7 +1334,7 @@ inherited frm_client: Tfrm_client
             end
             object cxEditCodastpp: TcxTextEdit
               Left = 87
-              Top = 277
+              Top = 347
               Style.HotTrack = False
               TabOrder = 2
               OnKeyDown = cxEditCodastppKeyDown
@@ -1363,7 +1342,7 @@ inherited frm_client: Tfrm_client
             end
             object cxGrid3: TcxGrid
               Left = 17
-              Top = 342
+              Top = 412
               Width = 503
               Height = 200
               TabOrder = 3
@@ -1563,6 +1542,7 @@ inherited frm_client: Tfrm_client
     end
   end
   inherited dxBarManager_1: TdxBarManager
+    PixelsPerInch = 96
     inherited dxBarManager_1Bar6: TdxBar
       ItemLinks = <
         item
@@ -1596,6 +1576,11 @@ inherited frm_client: Tfrm_client
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
   end
   inherited qry: TFDQuery
     Active = True
@@ -1919,9 +1904,6 @@ inherited frm_client: Tfrm_client
     Formats.LongTimeFormat = 'hh:mm:ss'
     Top = 24
   end
-  inherited FDSchemaAdapter_1: TFDSchemaAdapter
-    Top = 16
-  end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
     ReportOptions.LastChange = 43290.649473935170000000
@@ -1962,6 +1944,7 @@ inherited frm_client: Tfrm_client
         Top = 18.897650000000000000
         Width = 718.110700000000000000
         object Memo16: TfrxMemoView
+          AllowVectorExport = True
           Left = 137.338590000000000000
           Top = 7.779530000000000000
           Width = 7.559060000000000000
@@ -1975,6 +1958,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo9: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 4.559060000000000000
           Width = 570.709030000000000000
@@ -1993,6 +1977,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo10: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 24.354360000000000000
           Width = 570.709030000000000000
@@ -2010,6 +1995,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo13: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 43.811070000000000000
           Width = 570.709030000000000000
@@ -2036,6 +2022,7 @@ inherited frm_client: Tfrm_client
             end>
         end
         object Memo15: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 63.811070000000000000
           Width = 570.709030000000000000
@@ -2062,6 +2049,7 @@ inherited frm_client: Tfrm_client
             end>
         end
         object Memo14: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 84.488250000000000000
           Width = 570.709030000000000000
@@ -2088,6 +2076,7 @@ inherited frm_client: Tfrm_client
             end>
         end
         object Picture1: TfrxPictureView
+          AllowVectorExport = True
           Left = 11.456710000000000000
           Top = 10.559060000000000000
           Width = 124.724409450000000000
@@ -2115,6 +2104,7 @@ inherited frm_client: Tfrm_client
         Top = 842.835190000000000000
         Width = 718.110700000000000000
         object Memo21: TfrxMemoView
+          AllowVectorExport = True
           Left = 10.559060000000000000
           Top = 2.779530000000000000
           Width = 695.433520000000000000
@@ -2140,6 +2130,7 @@ inherited frm_client: Tfrm_client
             end>
         end
         object Memo18: TfrxMemoView
+          AllowVectorExport = True
           Left = 10.559060000000000000
           Top = 23.236240000000000000
           Width = 695.433520000000000000
@@ -2175,6 +2166,7 @@ inherited frm_client: Tfrm_client
         DataSetName = 'client_insirance'
         RowCount = 0
         object Memo33: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.889763780000000000
           Top = 37.779530000000000000
           Width = 68.031540000000000000
@@ -2190,6 +2182,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo34: TfrxMemoView
+          AllowVectorExport = True
           Left = 105.826840000000000000
           Top = 37.779530000000000000
           Width = 68.031540000000000000
@@ -2205,6 +2198,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Line1: TfrxLineView
+          AllowVectorExport = True
           Left = 0.377952760000000000
           Top = 58.677180000000000000
           Width = 718.110700000000000000
@@ -2213,6 +2207,7 @@ inherited frm_client: Tfrm_client
           Diagonal = True
         end
         object Line3: TfrxLineView
+          AllowVectorExport = True
           Left = 0.377952755905512000
           Top = 34.015770000000000000
           Width = 718.110700000000000000
@@ -2221,6 +2216,7 @@ inherited frm_client: Tfrm_client
           Diagonal = True
         end
         object Memo35: TfrxMemoView
+          AllowVectorExport = True
           Left = 0.377952755905512000
           Top = 11.338590000000000000
           Width = 347.716760000000000000
@@ -2247,6 +2243,7 @@ inherited frm_client: Tfrm_client
         RowCount = 0
         object client_insirancecin_id: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 1.889763780000000000
           Top = 1.779530000000000000
           Width = 79.370130000000000000
@@ -2260,6 +2257,7 @@ inherited frm_client: Tfrm_client
         end
         object client_insiranceins_first_name: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 105.826840000000000000
           Top = 1.779530000000000000
           Width = 400.630180000000000000
@@ -2279,12 +2277,14 @@ inherited frm_client: Tfrm_client
         Top = 192.756030000000000000
         Width = 718.110700000000000000
         object Shape2: TfrxShapeView
+          AllowVectorExport = True
           Top = 172.858380000000000000
           Width = 718.110700000000000000
           Height = 92.598425200000000000
           Frame.Typ = []
         end
         object Memo1: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.889763780000000000
           Top = 198.110390000000000000
           Width = 105.826840000000000000
@@ -2301,6 +2301,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_add_bus_complement: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 117.165430000000000000
           Top = 198.110390000000000000
           Width = 241.889920000000000000
@@ -2313,6 +2314,7 @@ inherited frm_client: Tfrm_client
             '[client."cli_add_bus_complement"]')
         end
         object Memo11: TfrxMemoView
+          AllowVectorExport = True
           Left = 375.291590000000000000
           Top = 198.110390000000000000
           Width = 68.031540000000000000
@@ -2329,6 +2331,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_add_bus_street: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 447.645950000000000000
           Top = 198.110390000000000000
           Width = 257.008040000000000000
@@ -2342,6 +2345,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_add_bus_zipcode: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 117.165430000000000000
           Top = 221.110390000000000000
           Width = 128.504020000000000000
@@ -2354,6 +2358,7 @@ inherited frm_client: Tfrm_client
             '[client."cli_add_bus_zipcode"]')
         end
         object Memo12: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.889763780000000000
           Top = 221.110390000000000000
           Width = 83.149660000000000000
@@ -2370,6 +2375,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_add_bus_city: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 344.614410000000000000
           Top = 221.110390000000000000
           Width = 253.228510000000000000
@@ -2382,6 +2388,7 @@ inherited frm_client: Tfrm_client
             '[client."cli_add_bus_city"]')
         end
         object Memo17: TfrxMemoView
+          AllowVectorExport = True
           Left = 268.346630000000000000
           Top = 221.110390000000000000
           Width = 71.811070000000000000
@@ -2398,6 +2405,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_add_bus_state: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 646.299630000000000000
           Top = 221.110390000000000000
           Width = 56.692950000000000000
@@ -2410,6 +2418,7 @@ inherited frm_client: Tfrm_client
             '[client."cli_add_bus_state"]')
         end
         object Memo19: TfrxMemoView
+          AllowVectorExport = True
           Left = 604.724800000000000000
           Top = 221.110390000000000000
           Width = 34.015770000000000000
@@ -2426,6 +2435,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_add_bus_country: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 117.165430000000000000
           Top = 244.905690000000000000
           Width = 200.315090000000000000
@@ -2438,6 +2448,7 @@ inherited frm_client: Tfrm_client
             '[client."cli_add_del_country"]')
         end
         object Memo20: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.889763780000000000
           Top = 244.905690000000000000
           Width = 86.929190000000000000
@@ -2453,12 +2464,14 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Shape3: TfrxShapeView
+          AllowVectorExport = True
           Top = 291.141930000000000000
           Width = 718.110700000000000000
           Height = 52.913420000000000000
           Frame.Typ = []
         end
         object Memo22: TfrxMemoView
+          AllowVectorExport = True
           Left = 0.377952755905512000
           Top = 272.023810000000000000
           Width = 170.078850000000000000
@@ -2475,6 +2488,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_phone1: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 52.472480000000000000
           Top = 296.598640000000000000
           Width = 120.944960000000000000
@@ -2488,6 +2502,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_phone2: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 232.228510000000000000
           Top = 296.598640000000000000
           Width = 120.944960000000000000
@@ -2501,6 +2516,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_phone3: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 412.086890000000000000
           Top = 296.598640000000000000
           Width = 120.944960000000000000
@@ -2514,6 +2530,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_phone4: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 590.724800000000000000
           Top = 296.598640000000000000
           Width = 120.944960000000000000
@@ -2527,6 +2544,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_contact: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 79.370130000000000000
           Top = 319.275820000000000000
           Width = 328.819110000000000000
@@ -2539,6 +2557,7 @@ inherited frm_client: Tfrm_client
             '[client."cli_contact"]')
         end
         object Memo23: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.889763780000000000
           Top = 296.598640000000000000
           Width = 45.354360000000000000
@@ -2554,6 +2573,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo24: TfrxMemoView
+          AllowVectorExport = True
           Left = 185.756030000000000000
           Top = 296.598640000000000000
           Width = 45.354360000000000000
@@ -2569,6 +2589,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo25: TfrxMemoView
+          AllowVectorExport = True
           Left = 365.732530000000000000
           Top = 296.598640000000000000
           Width = 45.354360000000000000
@@ -2584,6 +2605,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo26: TfrxMemoView
+          AllowVectorExport = True
           Left = 545.031850000000000000
           Top = 296.598640000000000000
           Width = 45.354360000000000000
@@ -2599,6 +2621,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo27: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.889763780000000000
           Top = 319.275820000000000000
           Width = 68.031540000000000000
@@ -2614,12 +2637,14 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Shape1: TfrxShapeView
+          AllowVectorExport = True
           Top = 25.677180000000000000
           Width = 718.110700000000000000
           Height = 120.944960000000000000
           Frame.Typ = []
         end
         object Memo28: TfrxMemoView
+          AllowVectorExport = True
           Left = 0.377952755905512000
           Top = 6.779530000000000000
           Width = 170.078850000000000000
@@ -2635,6 +2660,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo2: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.889763780000000000
           Top = 29.456710000000000000
           Width = 90.708720000000000000
@@ -2651,6 +2677,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_first_name: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 105.826840000000000000
           Top = 29.456710000000000000
           Width = 230.551330000000000000
@@ -2670,6 +2697,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_last_name: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 449.764070000000000000
           Top = 29.456710000000000000
           Width = 249.448980000000000000
@@ -2688,6 +2716,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo3: TfrxMemoView
+          AllowVectorExport = True
           Left = 342.157700000000000000
           Top = 29.456710000000000000
           Width = 98.267780000000000000
@@ -2703,6 +2732,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo4: TfrxMemoView
+          AllowVectorExport = True
           Left = 243.110390000000000000
           Top = 54.031540000000000000
           Width = 60.472480000000000000
@@ -2719,6 +2749,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_cnpj: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 315.480520000000000000
           Top = 54.031540000000000000
           Width = 136.063080000000000000
@@ -2737,6 +2768,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo5: TfrxMemoView
+          AllowVectorExport = True
           Left = 473.220780000000000000
           Top = 54.031540000000000000
           Width = 56.692950000000000000
@@ -2753,6 +2785,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_ie: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 541.149970000000000000
           Top = 54.031540000000000000
           Width = 136.063080000000000000
@@ -2771,6 +2804,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo8: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.889763780000000000
           Top = 79.488250000000000000
           Width = 83.149660000000000000
@@ -2787,6 +2821,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_email: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 105.826840000000000000
           Top = 79.488250000000000000
           Width = 355.275820000000000000
@@ -2799,6 +2834,7 @@ inherited frm_client: Tfrm_client
             '[client."cli_email"]')
         end
         object Memo29: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.889763780000000000
           Top = 54.031540000000000000
           Width = 90.708720000000000000
@@ -2815,6 +2851,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_dt_open: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 105.826840000000000000
           Top = 54.031540000000000000
           Width = 113.385900000000000000
@@ -2827,6 +2864,7 @@ inherited frm_client: Tfrm_client
             '[client."cli_dt_birthopen"]')
         end
         object Memo30: TfrxMemoView
+          AllowVectorExport = True
           Left = 0.377952755905512000
           Top = 153.299320000000000000
           Width = 170.078850000000000000
@@ -2843,6 +2881,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_add_bus_address: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 117.165430000000000000
           Top = 176.756030000000000000
           Width = 400.630180000000000000
@@ -2855,6 +2894,7 @@ inherited frm_client: Tfrm_client
             '[client."cli_add_del_address"]')
         end
         object Memo31: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.889763780000000000
           Top = 176.756030000000000000
           Width = 102.047310000000000000
@@ -2870,6 +2910,7 @@ inherited frm_client: Tfrm_client
           ParentFont = False
         end
         object Memo32: TfrxMemoView
+          AllowVectorExport = True
           Left = 536.693260000000000000
           Top = 176.756030000000000000
           Width = 41.574830000000000000
@@ -2886,6 +2927,7 @@ inherited frm_client: Tfrm_client
         end
         object Fabricanteman_add_bus_number: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 582.047620000000000000
           Top = 176.756030000000000000
           Width = 94.488250000000000000
@@ -2905,6 +2947,7 @@ inherited frm_client: Tfrm_client
         Top = 797.480830000000000000
         Width = 718.110700000000000000
         object Line2: TfrxLineView
+          AllowVectorExport = True
           Left = 0.377952760000000000
           Top = 1.779530000000000000
           Width = 718.110700000000000000
@@ -2914,10 +2957,6 @@ inherited frm_client: Tfrm_client
         end
       end
     end
-  end
-  inherited ACBrCEP_1: TACBrCEP
-    OnBuscaEfetuada = ACBrCEP_1BuscaEfetuada
-    Top = 16
   end
   object qry_insurance: TFDQuery
     Active = True
@@ -3204,5 +3243,12 @@ inherited frm_client: Tfrm_client
     BCDToCurrency = False
     Left = 864
     Top = 104
+  end
+  object acbr_cep: TACBrCEP
+    ProxyPort = '8080'
+    WebService = wsCorreios
+    PesquisarIBGE = True
+    Left = 744
+    Top = 208
   end
 end

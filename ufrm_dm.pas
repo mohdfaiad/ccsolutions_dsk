@@ -3,13 +3,36 @@ unit ufrm_dm;
 interface
 
 uses
-  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
-  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
-  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait,
-  FireDAC.Phys.MSSQLDef, FireDAC.Phys.ODBCBase, FireDAC.Phys.MSSQL,
-  FireDAC.Comp.UI, Data.DB, FireDAC.Comp.Client, FireDAC.Stan.Param,
-  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
-  FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, frxClass, frxDBSet;
+  System.SysUtils,
+  System.Classes,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.VCLUI.Wait,
+  FireDAC.Phys.MSSQLDef,
+  FireDAC.Phys.ODBCBase,
+  FireDAC.Phys.MSSQL,
+  FireDAC.Comp.UI,
+  FireDAC.Comp.Client,
+  FireDAC.Stan.Param,
+  FireDAC.DatS,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  FireDAC.Comp.DataSet,
+  FireDAC.Phys.MySQL,
+  FireDAC.Phys.MySQLDef,
+
+  frxClass,
+  frxDBSet;
 
 type
   Tfrm_dm = class(TDataModule)
@@ -77,7 +100,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    acao: Integer;
+    acao : Integer;
     qry, qry2, qry3: TFDQuery;
     v_contract_ctr_cod, v_ctr_usr_cod, v_nome_usuario: string;
     v_ctr_usr_admin : Integer;

@@ -3,39 +3,152 @@ unit ufrm_client;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_form_default, cxGraphics,
-  cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxSkinsCore, dxSkinBlack,
-  dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
-  dxSkinDarkSide, dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
-  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
-  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
-  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
-  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
-  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
-  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
-  dxSkinOffice2013White, dxSkinOffice2016Colorful, dxSkinOffice2016Dark,
-  dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
-  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
-  dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, dxSkinscxPCPainter, dxBarBuiltInMenu, cxStyles,
-  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, Data.DB,
-  cxDBData, cxContainer, dxLayoutcxEditAdapters, dxSkinsdxBarPainter,
-  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
-  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
-  FireDAC.Stan.Async, FireDAC.DApt, ACBrBase, ACBrEnterTab,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, dxLayoutLookAndFeels,
-  System.ImageList, Vcl.ImgList, Vcl.Menus, cxGridCustomPopupMenu,
-  cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar, cxClasses,
-  dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar, cxDBEdit,
-  cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  cxButtonEdit, cxImage, cxShellComboBox, QExport4Dialog, cxBarEditItem,
-  dxBarExtItems, QImport3Wizard, Vcl.StdCtrls, frxClass, ACBrSocket, ACBrCEP,
-  dxLayoutControlAdapters, cxButtons, cxDBLookupComboBox, ufrm_main_default, Vcl.Grids, Vcl.DBGrids, frxDBSet;
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  System.Actions,
+
+  Vcl.ActnList,
+  Vcl.ImgList,
+  Vcl.Menus,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.StdCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+
+  cxGraphics,
+  cxControls,
+  cxLookAndFeels,
+  cxLookAndFeelPainters,
+  dxSkinsCore,
+  dxSkinBlack,
+  dxSkinBlue,
+  dxSkinBlueprint,
+  dxSkinCaramel,
+  dxSkinCoffee,
+  dxSkinDarkRoom,
+  dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle,
+  dxSkinDevExpressStyle,
+  dxSkinFoggy,
+  dxSkinGlassOceans,
+  dxSkinHighContrast,
+  dxSkiniMaginary,
+  dxSkinLilian,
+  dxSkinLiquidSky,
+  dxSkinLondonLiquidSky,
+  dxSkinMcSkin,
+  dxSkinMetropolis,
+  dxSkinMetropolisDark,
+  dxSkinMoneyTwins,
+  dxSkinOffice2007Black,
+  dxSkinOffice2007Blue,
+  dxSkinOffice2007Green,
+  dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver,
+  dxSkinOffice2010Black,
+  dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver,
+  dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray,
+  dxSkinOffice2013White,
+  dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark,
+  dxSkinPumpkin,
+  dxSkinSeven,
+  dxSkinSevenClassic,
+  dxSkinSharp,
+  dxSkinSharpPlus,
+  dxSkinSilver,
+  dxSkinSpringTime,
+  dxSkinStardust,
+  dxSkinSummer2008,
+  dxSkinTheAsphaltWorld,
+  dxSkinsDefaultPainters,
+  dxSkinValentine,
+  dxSkinVisualStudio2013Blue,
+  dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light,
+  dxSkinVS2010,
+  dxSkinWhiteprint,
+  dxSkinXmas2008Blue,
+  dxSkinscxPCPainter,
+  dxBarBuiltInMenu,
+  cxStyles,
+  cxCustomData,
+  cxFilter,
+  cxData,
+  cxDataStorage,
+  cxEdit,
+  cxNavigator,
+  cxDBData,
+  cxContainer,
+  dxLayoutcxEditAdapters,
+  dxSkinsdxBarPainter,
+  dxLayoutLookAndFeels,
+  cxGridCustomPopupMenu,
+  cxGridPopupMenu,
+  dxBar,
+  cxClasses,
+  dxLayoutContainer,
+  cxMaskEdit,
+  cxDropDownEdit,
+  cxCalendar,
+  cxDBEdit,
+  cxTextEdit,
+  dxLayoutControl,
+  cxGridLevel,
+  cxGridCustomView,
+  cxGridCustomTableView,
+  cxGridTableView,
+  cxGridDBTableView,
+  cxGrid,
+  cxPC,
+  cxButtonEdit,
+  cxImage,
+  cxShellComboBox,
+  cxBarEditItem,
+  dxBarExtItems,
+  dxLayoutControlAdapters,
+  cxButtons,
+  cxDBLookupComboBox,
+  cxDataControllerConditionalFormattingRulesManagerDialog,
+  cxImageList,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.Stan.Async,
+  FireDAC.DApt,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+
+  ACBrBase,
+  ACBrEnterTab,
+  ACBrSocket,
+  ACBrCEP,
+
+  QExport4Dialog,
+  QImport3Wizard,
+
+  frxClass,
+  frxDBSet,
+
+  ufrm_main_default,
+  ufrm_form_default;
 
 type
   Tfrm_client = class(Tfrm_form_default)
@@ -311,19 +424,17 @@ type
     Localizar1: TMenuItem;
     frx_db_client: TfrxDBDataset;
     frx_db_client_insirance: TfrxDBDataset;
+    acbr_cep: TACBrCEP;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);
     procedure Action_consult_cpfExecute(Sender: TObject);
     procedure changeType;
     procedure cxDBComboBox1PropertiesChange(Sender: TObject);
-    procedure cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
-      AButtonIndex: Integer);
+    procedure cxDBButtonEdit2PropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
     procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
-    procedure cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
-      AButtonIndex: Integer);
-    procedure cxDBButtonEdit3PropertiesButtonClick(Sender: TObject;
-      AButtonIndex: Integer);
+    procedure cxDBButtonEdit1PropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
+    procedure cxDBButtonEdit3PropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
     procedure cxTabSheet_addressShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure qry_client_insiranceAfterInsert(DataSet: TDataSet);
@@ -332,10 +443,8 @@ type
     procedure Action_deleteExecute(Sender: TObject);
     procedure edt_cpfcnpjExit(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
-    procedure cxEditCodsippulseKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-    procedure cxEditCodastppKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
+    procedure cxEditCodsippulseKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure cxEditCodastppKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure tabLaboratorioShow(Sender: TObject);
     procedure cxGrid1DBTableView1insurance_ins_idPropertiesCloseUp(Sender: TObject);
@@ -344,9 +453,9 @@ type
     procedure Localizar1Click(Sender: TObject);
   private
     { Private declarations }
-    cep:Integer;
-    cli_cod,cls_cod,cin_cod,cpfCnpj:string;
-    procedure limpaCache(Sender:TObject);
+    cep : Integer;
+    cli_cod, cls_cod, cin_cod, cpf_cnpj : string;
+    procedure limpaCache(Sender: TObject);
   public
     { Public declarations }
     procedure AtualizarGrid;
@@ -364,73 +473,65 @@ implementation
 uses ufrm_dm, ufrm_consult_cnpj, ufrm_consult_cpf;
 
 procedure Tfrm_client.ACBrCEP_1BuscaEfetuada(Sender: TObject);
- var
-i:Integer;
+var
+  i:Integer;
 begin
   inherited;
- if cep = 1 then
-  begin
-    for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
-    begiN
-     qrycli_add_bus_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
-     qrycli_add_bus_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
-     qrycli_add_bus_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
-     qrycli_add_bus_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
-     qrycli_add_bus_state.AsString     := ACBrCEP_1.Enderecos[i].UF;
-     qrycli_add_bus_country.AsString     := 'BRASIL';
+  if cep = 1 then begin
+    for i := 0 to acbr_cep.Enderecos.Count -1 do begin
+     qrycli_add_bus_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
+     qrycli_add_bus_street.AsString     := acbr_cep.Enderecos[i].Bairro;
+     qrycli_add_bus_complement.AsString := acbr_cep.Enderecos[i].Complemento;
+     qrycli_add_bus_city.AsString     	:= acbr_cep.Enderecos[i].Municipio;
+     qrycli_add_bus_state.AsString      := acbr_cep.Enderecos[i].UF;
+     qrycli_add_bus_country.AsString    := 'BRASIL';
      cxDBTextEdit22.SetFocus;
     end;
   end;
 
-  if cep = 2 then
-  begin
-    for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
-    begiN
-     qrycli_add_bil_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
-     qrycli_add_bil_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
-     qrycli_add_bil_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
-     qrycli_add_bus_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
-     qrycli_add_bil_city.AsString     := ACBrCEP_1.Enderecos[i].UF;
-     qrycli_add_bil_country.AsString     := 'BRASIL';
-     cxDBTextEdit14.SetFocus;
+  if cep = 2 then begin
+    for i := 0 to acbr_cep.Enderecos.Count -1 do begin
+      qrycli_add_bil_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
+      qrycli_add_bil_street.AsString     := acbr_cep.Enderecos[i].Bairro;
+      qrycli_add_bil_complement.AsString := acbr_cep.Enderecos[i].Complemento;
+      qrycli_add_bus_city.AsString     	 := acbr_cep.Enderecos[i].Municipio;
+      qrycli_add_bil_city.AsString       := acbr_cep.Enderecos[i].UF;
+      qrycli_add_bil_country.AsString    := 'BRASIL';
+      cxDBTextEdit14.SetFocus;
     end;
   end;
 
- if cep = 3 then
-  begin
-    for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
-    begiN
-     qrycli_add_del_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
-     qrycli_add_del_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
-     qrycli_add_del_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
-     qrycli_add_del_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
-     qrycli_add_bil_city.AsString     := ACBrCEP_1.Enderecos[i].UF;
-     qrycli_add_del_country.AsString     := 'BRASIL';
-     cxDBTextEdit6.SetFocus;
+  if cep = 3 then begin
+    for i := 0 to acbr_cep.Enderecos.Count -1 do begin
+      qrycli_add_del_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
+      qrycli_add_del_street.AsString     := acbr_cep.Enderecos[i].Bairro;
+      qrycli_add_del_complement.AsString := acbr_cep.Enderecos[i].Complemento;
+      qrycli_add_del_city.AsString     	 := acbr_cep.Enderecos[i].Municipio;
+      qrycli_add_bil_city.AsString       := acbr_cep.Enderecos[i].UF;
+      qrycli_add_del_country.AsString    := 'BRASIL';
+      cxDBTextEdit6.SetFocus;
     end;
   end;
-
  end;
 
 procedure Tfrm_client.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qrycli_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
- with frm_dm.qry,sql do
- begin
-  Close;
-  Text:= ' delete from client ' +
-         ' where cli_cod = ' + cli_cod;
-  Prepare;
-  ExecSQL;
+  if (qrycli_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+    with frm_dm.qry,sql do begin
+      Close;
+      Text := ' delete from client ' +
+             ' where cli_cod = ' + cli_cod;
+      Prepare;
+      ExecSQL;
 
-  qry.Close;
-  qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod))as CodClient, hex(cli_cod)as ClientCod from client' +
-                 ' where contract_ctr_cod =:ctr_cod and cli_deleted_at is null ';
-  qry.ParamByName('CTR_COD').Value := frm_dm.qry_contractctr_cod.Value;
-  qry.Prepare;
-  qry.open;
- end;
+      qry.Close;
+      qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod))as CodClient, hex(cli_cod)as ClientCod from client' +
+                     ' where contract_ctr_cod =:ctr_cod and cli_deleted_at is null ';
+      qry.ParamByName('CTR_COD').Value := frm_dm.qry_contractctr_cod.Value;
+      qry.Prepare;
+      qry.open;
+    end;
 end;
 
 procedure Tfrm_client.Action_consult_cnpjExecute(Sender: TObject);
@@ -449,74 +550,63 @@ end;
 
 procedure Tfrm_client.Action_deleteExecute(Sender: TObject);
 begin
-   if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
-    = IDYES then
-    begin
-     qry.Edit;
-     qrycli_deleted_at.AsDateTime:=Now;
-     qry.Post;
-     qry.ApplyUpdates(0);
+  if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+    qry.Edit;
+    qrycli_deleted_at.AsDateTime:=Now;
+    qry.Post;
+    qry.ApplyUpdates(0);
 
-     qry.Close;
-     qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
-                    ' where cli_deleted_at is null ';
-     qry.Prepare;
-     qry.open;
-    end;
+    qry.Close;
+    qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod)) from client ' +
+                   ' where cli_deleted_at is null ';
+    qry.Prepare;
+    qry.open;
+  end;
  end;
 
 procedure Tfrm_client.Action_editExecute(Sender: TObject);
 begin
   if qry.IsEmpty then
-   exit;
+    exit;
 
   inherited;
     cli_cod:=qryCodClient.AsString;
-    cpfCnpj:=qrycli_cpfcnpj.AsString;
+    cpf_cnpj:=qrycli_cpfcnpj.AsString;
 end;
 
 procedure Tfrm_client.Action_saveExecute(Sender: TObject);
-
 begin
- if ((trim(edt_cpfcnpj.Text)<> '') and  (qrycli_id.AsInteger = 0))
-  or (cpfCnpj <> edt_cpfcnpj.Text)  then
-  begin
-   with frm_dm.qry,sql do
-    begin
-     close;
-     text:=' select * from client ' +
-           ' where cli_cpfcnpj = ' + edt_cpfcnpj.Text;
-     prepare;
-     open;
+  if ((trim(edt_cpfcnpj.Text)<> '') and (qrycli_id.AsInteger = 0)) or (cpf_cnpj <> edt_cpfcnpj.Text) then begin
+    with frm_dm.qry,sql do begin
+      close;
+      text:=' select * from client ' +
+            ' where cli_cpfcnpj = ' + edt_cpfcnpj.Text;
+      prepare;
+      open;
 
-     if not IsEmpty then
-      begin
-      Application.MessageBox(PWideChar('Já existe um cliente com esse CPF/CNPJ cadastrado no sistema!' + #13+
-                                       'Cliente: '+ FieldByName('cli_first_name').AsString + #13 +
-                                       'CPF/CNPJ: ' + FieldByName('cli_cpfcnpj').AsString + #13 +
-                                       'O sistema irá localizar o cliente agora'),'CLIENTE',MB_OK + MB_ICONWARNING);
-      qry.Locate('cli_cpfcnpj',edt_cpfcnpj.Text,[]);
-      qry.Edit;
-      Exit;
+      if not IsEmpty then begin
+        Application.MessageBox(PWideChar('Já existe um cliente com esse CPF/CNPJ cadastrado no sistema!' + #13+
+                                         'Cliente: '+ FieldByName('cli_first_name').AsString + #13 +
+                                         'CPF/CNPJ: ' + FieldByName('cli_cpfcnpj').AsString + #13 +
+                                         'O sistema irá localizar o cliente agora'),'CLIENTE',MB_OK + MB_ICONWARNING);
+        qry.Locate('cli_cpfcnpj',edt_cpfcnpj.Text,[]);
+        qry.Edit;
+        Exit;
       end;
     end;
   end;
 
-
-
-if trim(edtClient.Text) = ''  then
- begin
+  if trim(edtClient.Text) = ''  then begin
    Application.MessageBox('Nome do Cliente não informado!','Cadastro de Empresa', MB_OK + MB_ICONINFORMATION);
    exit;
- end;
+  end;
 
-   inherited;
+  inherited;
 
   if ds.DataSet.State in [dsEdit] then
     Exit;
 
-   with frm_dm.qry,sql do
-    begin
+  with frm_dm.qry,sql do begin
       close;
       Text:= ' select case when max(cli_id) is null then 1 ' +
           '      else (max(cli_id) + 1) end as maxID from client '+
@@ -594,7 +684,7 @@ procedure Tfrm_client.cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
 begin
   inherited;
   cep:=2;
-  ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit1.Text);
+  acbr_cep.BuscarPorCEP(cxDBButtonEdit1.Text);
 end;
 
 procedure Tfrm_client.cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
@@ -602,7 +692,7 @@ procedure Tfrm_client.cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
 begin
   inherited;
  cep:=1;
- ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit2.Text);
+ acbr_cep.BuscarPorCEP(cxDBButtonEdit2.Text);
 end;
 
 procedure Tfrm_client.cxDBButtonEdit3PropertiesButtonClick(Sender: TObject;
@@ -610,7 +700,7 @@ procedure Tfrm_client.cxDBButtonEdit3PropertiesButtonClick(Sender: TObject;
 begin
   inherited;
   cep:=3;
-  ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit3.Text);
+  acbr_cep.BuscarPorCEP(cxDBButtonEdit3.Text);
 end;
 
 procedure Tfrm_client.cxDBComboBox1PropertiesChange(Sender: TObject);
@@ -825,7 +915,7 @@ end;
 procedure Tfrm_client.FormCreate(Sender: TObject);
 begin
   inherited;
-  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+  schadapter.AfterApplyUpdate:=limpaCache;
 //  tabLaboratorio.TabVisible:=modulo = 'LABORATORIO';
   tabTelefonia.TabVisible:=modulo = 'TELEFONIA';
 end;

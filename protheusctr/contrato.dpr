@@ -12,13 +12,14 @@ uses
   ufrm_main in 'ufrm_main.pas' {frm_main},
   ufrm_default in '..\models\ufrm_default.pas' {frm_default},
   ufrm_form_default in '..\models\ufrm_form_default.pas' {frm_form_default},
-  ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
   ufrm_dm_ds in '..\ufrm_dm_ds.pas' {frm_dm_ds: TDataModule},
   ufrm_dm_report in '..\ufrm_dm_report.pas' {frm_dm_report: TDataModule},
   ufrm_report in '..\ufrm_report.pas' {frm_report},
   class_report in '..\class_report.pas',
   class_required_field in '..\class_required_field.pas',
-  ufrm_contract in '..\ufrm_contract.pas' {frm_contract};
+  ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
+  ufrm_contract in '..\ufrm_contract.pas' {frm_contract},
+  ufrm_client in '..\ufrm_client.pas' {frm_client};
 
 {$R *.res}
 

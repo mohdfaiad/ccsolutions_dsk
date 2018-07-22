@@ -108,7 +108,7 @@ uses
   ACBrBase,
   ACBrDownload,
 
-  uthred_logged;
+  uthred_logged, cxImageList;
 type
   Tfrm_main_default = class(TdxRibbonForm)
     dxBarManager_1: TdxBarManager;

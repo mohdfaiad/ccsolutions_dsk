@@ -141,10 +141,6 @@
             <Form>frm_form_default</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\ufrm_phonebook.pas">
-            <Form>frm_phonebook</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\ufrm_dm_ds.pas">
             <Form>frm_dm_ds</Form>
             <FormType>dfm</FormType>
@@ -161,8 +157,16 @@
         </DCCReference>
         <DCCReference Include="..\class_report.pas"/>
         <DCCReference Include="..\class_required_field.pas"/>
+        <DCCReference Include="..\ufrm_phonebook.pas">
+            <Form>frm_phonebook</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <DCCReference Include="..\ufrm_contract.pas">
             <Form>frm_contract</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_client.pas">
+            <Form>frm_client</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -188,7 +192,6 @@
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k250.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp250.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Users\Usuario\AppData\Roaming\IntraWeb XIV\Bin\dclIntraweb_14_D10_2.bpl">IntraWeb 14.0 Design Package for RAD Studio 10.2 Tokyo</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">

@@ -5,14 +5,22 @@ interface
 uses
   Winapi.Windows,
   Winapi.Messages,
+
   System.SysUtils,
   System.Variants,
   System.Classes,
+  System.ImageList,
+  System.Actions,
+
+  Vcl.ActnList,
+  Vcl.ImgList,
+  Vcl.Menus,
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
   Vcl.Dialogs,
-  ufrm_form_default,
+  Vcl.StdCtrls,
+
   cxGraphics,
   cxControls,
   cxLookAndFeels,
@@ -28,73 +36,160 @@ uses
   dxSkinDevExpressDarkStyle,
   dxSkinDevExpressStyle,
   dxSkinFoggy,
-  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
-  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
-  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
-  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
-  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
-  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
-  dxSkinOffice2013White, dxSkinOffice2016Colorful, dxSkinOffice2016Dark,
-  dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
-  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
-  dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, dxSkinscxPCPainter, dxBarBuiltInMenu, cxStyles,
-  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, Data.DB,
-  cxDBData, cxContainer, dxLayoutcxEditAdapters, dxSkinsdxBarPainter,
-  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
-  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
-  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  dxLayoutLookAndFeels, System.ImageList, Vcl.ImgList, Vcl.Menus,
-  cxGridCustomPopupMenu, cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar,
-  cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
-  cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  ACBrBase, ACBrEnterTab, cxShellComboBox, QExport4Dialog, cxBarEditItem,
-  dxBarExtItems, QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, Vcl.StdCtrls, frxDBSet, cxDBLookupComboBox;
+  dxSkinGlassOceans,
+  dxSkinHighContrast,
+  dxSkiniMaginary,
+  dxSkinLilian,
+  dxSkinLiquidSky,
+  dxSkinLondonLiquidSky,
+  dxSkinMcSkin,
+  dxSkinMetropolis,
+  dxSkinMetropolisDark,
+  dxSkinMoneyTwins,
+  dxSkinOffice2007Black,
+  dxSkinOffice2007Blue,
+  dxSkinOffice2007Green,
+  dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver,
+  dxSkinOffice2010Black,
+  dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver,
+  dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray,
+  dxSkinOffice2013White,
+  dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark,
+  dxSkinPumpkin,
+  dxSkinSeven,
+  dxSkinSevenClassic,
+  dxSkinSharp,
+  dxSkinSharpPlus,
+  dxSkinSilver,
+  dxSkinSpringTime,
+  dxSkinStardust,
+  dxSkinSummer2008,
+  dxSkinTheAsphaltWorld,
+  dxSkinsDefaultPainters,
+  dxSkinValentine,
+  dxSkinVisualStudio2013Blue,
+  dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light,
+  dxSkinVS2010,
+  dxSkinWhiteprint,
+  dxSkinXmas2008Blue,
+  dxSkinscxPCPainter,
+  dxBarBuiltInMenu,
+  cxStyles,
+  cxCustomData,
+  cxFilter,
+  cxData,
+  cxDataStorage,
+  cxEdit,
+  cxNavigator,
+  cxDBData,
+  cxContainer,
+  dxLayoutcxEditAdapters,
+  dxSkinsdxBarPainter,
+  dxLayoutLookAndFeels,
+  cxGridCustomPopupMenu,
+  cxGridPopupMenu,
+  dxBar,
+  cxClasses,
+  dxLayoutContainer,
+  cxMaskEdit,
+  cxDropDownEdit,
+  cxCalendar,
+  cxDBEdit,
+  cxTextEdit,
+  dxLayoutControl,
+  cxGridLevel,
+  cxGridCustomView,
+  cxGridCustomTableView,
+  cxGridTableView,
+  cxGridDBTableView,
+  cxGrid,
+  cxPC,
+  cxShellComboBox,
+  cxBarEditItem,
+  dxBarExtItems,
+  cxDBLookupComboBox,
+  cxDataControllerConditionalFormattingRulesManagerDialog,
+  cxImageList,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.Stan.Async,
+  FireDAC.DApt,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+
+  ACBrBase,
+  ACBrEnterTab,
+  ACBrSocket,
+
+  QExport4Dialog,
+  QImport3Wizard,
+
+  frxClass,
+  frxDBSet,
+
+  ufrm_form_default;
 
 type
   Tfrm_contract = class(Tfrm_form_default)
-    cxDBTextEdit1: TcxDBTextEdit;
-    dxLayoutItem3: TdxLayoutItem;
-    cxDBTextEdit2: TcxDBTextEdit;
-    dxLayoutItem4: TdxLayoutItem;
-    cxDBTextEdit3: TcxDBTextEdit;
-    dxLayoutItem5: TdxLayoutItem;
-    cxDBTextEdit4: TcxDBTextEdit;
-    dxLayoutItem6: TdxLayoutItem;
+    frx_db_contrato: TfrxDBDataset;
+    qryctr_cod: TStringField;
+    qryctr_id: TLargeintField;
     qryctr_first_name: TStringField;
     qryctr_last_name: TStringField;
     qryctr_email: TStringField;
     qryctr_phone1: TStringField;
+    qryctr_dt_birth: TDateField;
+    qryctr_user_license: TWordField;
+    qryctr_status: TStringField;
+    qryctr_deleted_at: TDateTimeField;
     qryctr_dt_registration: TDateTimeField;
+    dbedt_first_name: TcxDBTextEdit;
+    dxLayoutItem3: TdxLayoutItem;
+    dbedt_phone1: TcxDBTextEdit;
+    dxLayoutItem4: TdxLayoutItem;
+    dbedt_email: TcxDBTextEdit;
+    dxLayoutItem5: TdxLayoutItem;
+    dbedt_last_name: TcxDBTextEdit;
+    dxLayoutItem6: TdxLayoutItem;
+    dbedt_dt_birth: TcxDBDateEdit;
+    dxLayoutItem7: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    str_proc_contract_update: TFDStoredProc;
     cxGrid_1DBTableView1ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_first_name: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_last_name: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_email: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_phone1: TcxGridDBColumn;
+    cxGrid_1DBTableView1ctr_dt_birth: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_dt_registration: TcxGridDBColumn;
-    cxGrid_1DBTableView1ctr_dt_birth_open: TcxGridDBColumn;
-    qryctr_cod: TBytesField;
-    qryctr_dt_birth: TDateField;
-    qryctr_user_license: TWordField;
-    qryctr_status: TStringField;
-    qryctr_deleted_at: TDateTimeField;
-    qryctr_id: TLargeintField;
-    cxDBDateEdit1: TcxDBDateEdit;
-    dxLayoutItem7: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    frx_db_contrato: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure Action_cancelExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
+    procedure qryBeforeOpen(DataSet: TDataSet);
+    procedure Action_insertExecute(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    var
+      stats : Integer;
   end;
 
 var
@@ -106,19 +201,49 @@ implementation
 
 uses ufrm_dm;
 
-procedure Tfrm_contract.Action_cancelExecute(Sender: TObject);
-begin
-  inherited;
-   ds.DataSet.Cancel;
-end;
-
 procedure Tfrm_contract.Action_editExecute(Sender: TObject);
 begin
-  if qry.IsEmpty then
-   exit;
+  stats := 1;
+  cxTabSheet_3.Show;
+end;
 
+procedure Tfrm_contract.Action_insertExecute(Sender: TObject);
+begin
   inherited;
+  stats := 0;
+  qry.EmptyDataSet;
+  cxTabSheet_3.Show;
+end;
 
+procedure Tfrm_contract.Action_saveExecute(Sender: TObject);
+begin
+  inherited;
+  case stats of
+    1 : begin
+          try
+            try
+              if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+                str_proc_contract_update.ParamByName('p_ctr_cod').AsString        := qry.FieldByName('pho_cod').AsString;
+                str_proc_contract_update.ParamByName('p_ctr_first_name').AsString := dbedt_first_name.Text;
+                str_proc_contract_update.ParamByName('p_ctr_last_name').AsString  := dbedt_last_name.Text;
+                str_proc_contract_update.ParamByName('p_ctr_phone1').AsString     := dbedt_phone1.Text;
+                str_proc_contract_update.ParamByName('p_ctr_email').AsString      := dbedt_email.Text;
+                str_proc_contract_update.ParamByName('p_ctr_dt_birth').AsString   := dbedt_dt_birth.Text;
+                str_proc_contract_update.ExecProc;
+
+                ShowMessage('Registro Salvo com sucesso');
+
+                qry.UpdateRecord;
+              end else begin
+                qry.Cancel;
+              end;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+    end;
+  end;
 end;
 
 procedure Tfrm_contract.Button1Click(Sender: TObject);
@@ -138,6 +263,15 @@ procedure Tfrm_contract.FormShow(Sender: TObject);
 begin
   inherited;
   dxBarManager_1Bar3.DockedLeft := 122;
+end;
+
+procedure Tfrm_contract.qryBeforeOpen(DataSet: TDataSet);
+begin
+  inherited;
+  qry.Filtered := False;
+  qry.ParamByName('ctr_cod').AsString := frm_dm.v_contract_ctr_cod;
+  qry.Filter := 'ctr_deleted_at is null';
+  qry.Filtered := True;
 end;
 
 end.

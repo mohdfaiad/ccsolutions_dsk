@@ -2175,9 +2175,9 @@ object frm_main_default: Tfrm_main_default
     Style = rs2010
     ColorSchemeName = 'Blue'
     QuickAccessToolbar.Toolbar = dxBarManager1Bar1
-    TabAreaToolbar.Toolbar = dxBarManager1Bar2
     SupportNonClientDrawing = True
     Contexts = <>
+    TabAreaToolbar.Toolbar = dxBarManager1Bar2
     TabOrder = 0
     TabStop = False
     object dxRibbon1Tab_1: TdxRibbonTab
@@ -2385,6 +2385,7 @@ object frm_main_default: Tfrm_main_default
     UseSystemFont = True
     Left = 592
     Top = 8
+    PixelsPerInch = 96
     object dxBarManager1Bar1: TdxBar
       Caption = 'Quick Access Toolbar'
       CaptionButtons = <>
@@ -2453,6 +2454,7 @@ object frm_main_default: Tfrm_main_default
     Top = 8
   end
   object cxImageList_1: TcxImageList
+    SourceDPI = 96
     Height = 32
     Width = 32
     FormatVersion = 1

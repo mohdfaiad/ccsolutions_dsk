@@ -2,8 +2,8 @@ object frm_dm: Tfrm_dm
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Height = 408
-  Width = 470
+  Height = 371
+  Width = 347
   object connCCS: TFDConnection
     Params.Strings = (
       'ConnectionDef=ccs_connection')
@@ -43,7 +43,7 @@ object frm_dm: Tfrm_dm
         'where '#10'contract_ctr_cod = :ctr_cod and ent_cod in (select enterp' +
         'rise_ent_cod from contract_user_enterprise  where contract_user_' +
         'ctr_usr_cod = unhex(:CodUsuario))')
-    Left = 368
+    Left = 256
     Top = 64
     ParamData = <
       item
@@ -239,7 +239,7 @@ object frm_dm: Tfrm_dm
   end
   object ds_enterprise: TDataSource
     DataSet = qry_enterprise
-    Left = 368
+    Left = 256
     Top = 112
   end
   object connCDL: TFDConnection
@@ -251,11 +251,11 @@ object frm_dm: Tfrm_dm
       'DriverID=MSSQL')
     Connected = True
     LoginPrompt = False
-    Left = 168
+    Left = 160
     Top = 16
   end
   object mssql_driver: TFDPhysMSSQLDriverLink
-    Left = 168
+    Left = 160
     Top = 64
   end
   object qry_logged: TFDQuery
@@ -266,7 +266,7 @@ object frm_dm: Tfrm_dm
         'select ctr_usr_logged from contract_user where contract_ctr_cod ' +
         '= :contract and ctr_usr_username = :username and ctr_usr_passwor' +
         'd = :password')
-    Left = 368
+    Left = 256
     Top = 208
     ParamData = <
       item
@@ -301,7 +301,7 @@ object frm_dm: Tfrm_dm
       'where sys_act_option =:sys_Act_option'
       'and sys_act_module = :sys_act_module '
       'order by sys_act_name')
-    Left = 368
+    Left = 256
     Top = 160
     ParamData = <
       item
@@ -336,7 +336,7 @@ object frm_dm: Tfrm_dm
   end
   object qry_contract: TFDQuery
     Connection = connCCS
-    Left = 368
+    Left = 256
     Top = 256
     object qry_contractctr_cod: TStringField
       FieldName = 'ctr_cod'
@@ -401,7 +401,7 @@ object frm_dm: Tfrm_dm
   end
   object ds_contract: TDataSource
     DataSet = qry_contract
-    Left = 368
+    Left = 256
     Top = 304
   end
   object frx_db_enterprise: TfrxDBDataset
@@ -409,7 +409,7 @@ object frm_dm: Tfrm_dm
     CloseDataSource = False
     DataSet = qry_enterprise
     BCDToCurrency = False
-    Left = 368
+    Left = 256
     Top = 16
   end
 end

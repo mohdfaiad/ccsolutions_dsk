@@ -9,30 +9,28 @@ inherited frm_contract: Tfrm_contract
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ctr_id: TcxGridDBColumn
-            Caption = 'C'#243'd.: ID.'
             DataBinding.FieldName = 'ctr_id'
             Width = 75
           end
           object cxGrid_1DBTableView1ctr_first_name: TcxGridDBColumn
             DataBinding.FieldName = 'ctr_first_name'
-            Width = 250
+            Width = 150
           end
           object cxGrid_1DBTableView1ctr_last_name: TcxGridDBColumn
             DataBinding.FieldName = 'ctr_last_name'
-            Width = 250
+            Width = 150
           end
           object cxGrid_1DBTableView1ctr_email: TcxGridDBColumn
             DataBinding.FieldName = 'ctr_email'
-            Width = 200
+            Width = 250
           end
           object cxGrid_1DBTableView1ctr_phone1: TcxGridDBColumn
             DataBinding.FieldName = 'ctr_phone1'
             Width = 100
           end
-          object cxGrid_1DBTableView1ctr_dt_birth_open: TcxGridDBColumn
-            Caption = 'Dt. Anivers'#225'rio'
+          object cxGrid_1DBTableView1ctr_dt_birth: TcxGridDBColumn
             DataBinding.FieldName = 'ctr_dt_birth'
-            Width = 120
+            Width = 100
           end
           object cxGrid_1DBTableView1ctr_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'ctr_dt_registration'
@@ -42,75 +40,65 @@ inherited frm_contract: Tfrm_contract
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
-              Left = 63
               DataBinding.DataField = 'ctr_id'
-              ExplicitLeft = 63
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 275
+              Left = 245
               DataBinding.DataField = 'ctr_dt_registration'
-              ExplicitLeft = 275
+              ExplicitLeft = 245
             end
-            object cxDBTextEdit1: TcxDBTextEdit [2]
-              Left = 63
+            object dbedt_first_name: TcxDBTextEdit [2]
+              Left = 59
               Top = 103
               DataBinding.DataField = 'ctr_first_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 2
-              Width = 342
+              Width = 121
             end
-            object cxDBTextEdit2: TcxDBTextEdit [3]
-              Left = 63
+            object dbedt_phone1: TcxDBTextEdit [3]
+              Left = 429
+              Top = 103
+              DataBinding.DataField = 'ctr_phone1'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 121
+            end
+            object dbedt_email: TcxDBTextEdit [4]
+              Left = 59
               Top = 130
+              DataBinding.DataField = 'ctr_email'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecLowerCase
+              Style.HotTrack = False
+              TabOrder = 5
+              Width = 316
+            end
+            object dbedt_last_name: TcxDBTextEdit [5]
+              Left = 245
+              Top = 103
               DataBinding.DataField = 'ctr_last_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 3
-              Width = 342
+              Width = 130
             end
-            object cxDBTextEdit3: TcxDBTextEdit [4]
-              Left = 63
-              Top = 157
-              DataBinding.DataField = 'ctr_email'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecLowerCase
-              Style.HotTrack = False
-              TabOrder = 4
-              Width = 342
-            end
-            object cxDBTextEdit4: TcxDBTextEdit [5]
-              Left = 63
-              Top = 184
-              DataBinding.DataField = 'ctr_phone1'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 5
-              Width = 121
-            end
-            object cxDBDateEdit1: TcxDBDateEdit [6]
-              Left = 275
-              Top = 184
+            object dbedt_dt_birth: TcxDBDateEdit [6]
+              Left = 429
+              Top = 130
               DataBinding.DataField = 'ctr_dt_birth'
               DataBinding.DataSource = ds
               Style.HotTrack = False
               TabOrder = 6
-              Width = 127
+              Width = 121
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
@@ -119,66 +107,77 @@ inherited frm_contract: Tfrm_contract
               ItemIndex = 1
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
-              ItemIndex = 3
+              LayoutDirection = ldHorizontal
             end
             object dxLayoutItem3: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              CaptionOptions.Text = 'Raz'#227'o'
-              Control = cxDBTextEdit1
+              Parent = dxLayoutAutoCreatedGroup3
+              AlignVert = avClient
+              CaptionOptions.Text = 'Nome'
+              Control = dbedt_first_name
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 0
             end
             object dxLayoutItem4: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              CaptionOptions.Text = 'Fantasia'
-              Control = cxDBTextEdit2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              AlignHorz = ahClient
-              AlignVert = avTop
-              CaptionOptions.Text = 'E-mail'
-              Control = cxDBTextEdit3
+              Parent = dxLayoutAutoCreatedGroup3
+              AlignVert = avClient
+              CaptionOptions.Text = 'Tel. 1'
+              Control = dbedt_phone1
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 2
             end
-            object dxLayoutItem6: TdxLayoutItem
+            object dxLayoutItem5: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup1
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Tel. 1'
-              Control = cxDBTextEdit4
+              AlignVert = avClient
+              CaptionOptions.Text = 'E-mail'
+              Control = dbedt_email
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 316
               ControlOptions.ShowBorder = False
               Index = 0
+            end
+            object dxLayoutItem6: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup3
+              AlignVert = avClient
+              CaptionOptions.Text = 'Sobrenome'
+              Control = dbedt_last_name
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 130
+              ControlOptions.ShowBorder = False
+              Index = 1
             end
             object dxLayoutItem7: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup1
               AlignVert = avClient
-              CaptionOptions.Text = 'Data Anivers'#225'rio'
-              SizeOptions.AssignedValues = [sovSizableHorz]
-              SizeOptions.SizableHorz = True
-              SizeOptions.Width = 212
-              Control = cxDBDateEdit1
+              CaptionOptions.Text = 'Dt. Aniv.'
+              Control = dbedt_dt_birth
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 127
+              ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 1
             end
-            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutGroup2
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              Index = 0
+              AutoCreated = True
+            end
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup2
               AlignVert = avTop
               LayoutDirection = ldHorizontal
-              Index = 3
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 0
               AutoCreated = True
             end
           end
@@ -187,6 +186,7 @@ inherited frm_contract: Tfrm_contract
     end
   end
   inherited dxBarManager_1: TdxBarManager
+    PixelsPerInch = 96
     inherited dxBarButton_first: TdxBarButton
       Visible = ivNever
     end
@@ -229,28 +229,56 @@ inherited frm_contract: Tfrm_contract
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
+  end
   inherited qry: TFDQuery
     Active = True
+    BeforeOpen = qryBeforeOpen
     IndexFieldNames = 'ctr_cod'
     MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'ctr_cod'
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'select * from contract')
+      'call proc_contract_read(:ctr_cod);')
+    ParamData = <
+      item
+        Name = 'CTR_COD'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qryctr_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'ctr_cod'
+      Origin = 'ctr_cod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qryctr_id: TLargeintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'ctr_id'
+      Origin = 'ctr_id'
+    end
     object qryctr_first_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Raz'#227'o'
+      DisplayLabel = 'Nome'
       FieldName = 'ctr_first_name'
       Origin = 'ctr_first_name'
-      Size = 50
+      Size = 85
     end
     object qryctr_last_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Fantasia'
+      DisplayLabel = 'Sobre Nome'
       FieldName = 'ctr_last_name'
       Origin = 'ctr_last_name'
-      Size = 50
+      Size = 85
     end
     object qryctr_email: TStringField
       AutoGenerateValue = arDefault
@@ -266,34 +294,37 @@ inherited frm_contract: Tfrm_contract
       Origin = 'ctr_phone1'
       Size = 15
     end
+    object qryctr_dt_birth: TDateField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Aniv.'
+      FieldName = 'ctr_dt_birth'
+      Origin = 'ctr_dt_birth'
+    end
+    object qryctr_user_license: TWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Licen'#231'a'
+      FieldName = 'ctr_user_license'
+      Origin = 'ctr_user_license'
+    end
+    object qryctr_status: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'ctr_status'
+      Origin = 'ctr_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qryctr_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'ctr_deleted_at'
+      Origin = 'ctr_deleted_at'
+    end
     object qryctr_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'ctr_dt_registration'
       Origin = 'ctr_dt_registration'
-    end
-    object qryctr_cod: TBytesField
-      FieldName = 'ctr_cod'
-      Required = True
-    end
-    object qryctr_dt_birth: TDateField
-      FieldName = 'ctr_dt_birth'
-    end
-    object qryctr_user_license: TWordField
-      FieldName = 'ctr_user_license'
-    end
-    object qryctr_status: TStringField
-      FieldName = 'ctr_status'
-      FixedChar = True
-      Size = 1
-    end
-    object qryctr_deleted_at: TDateTimeField
-      FieldName = 'ctr_deleted_at'
-    end
-    object qryctr_id: TLargeintField
-      AutoGenerateValue = arDefault
-      FieldName = 'ctr_id'
-      Origin = 'ctr_id'
     end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
@@ -344,6 +375,7 @@ inherited frm_contract: Tfrm_contract
         Top = 18.897650000000000000
         Width = 718.110700000000000000
         object Memo16: TfrxMemoView
+          AllowVectorExport = True
           Left = 137.338590000000000000
           Top = 7.779530000000000000
           Width = 7.559060000000000000
@@ -357,6 +389,7 @@ inherited frm_contract: Tfrm_contract
           ParentFont = False
         end
         object Memo9: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 4.559060000000000000
           Width = 570.709030000000000000
@@ -375,6 +408,7 @@ inherited frm_contract: Tfrm_contract
           ParentFont = False
         end
         object Memo10: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 24.354360000000000000
           Width = 570.709030000000000000
@@ -392,6 +426,7 @@ inherited frm_contract: Tfrm_contract
           ParentFont = False
         end
         object Memo13: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 43.811070000000000000
           Width = 570.709030000000000000
@@ -418,6 +453,7 @@ inherited frm_contract: Tfrm_contract
             end>
         end
         object Memo15: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 63.811070000000000000
           Width = 570.709030000000000000
@@ -444,6 +480,7 @@ inherited frm_contract: Tfrm_contract
             end>
         end
         object Memo14: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 84.488250000000000000
           Width = 570.709030000000000000
@@ -470,6 +507,7 @@ inherited frm_contract: Tfrm_contract
             end>
         end
         object Picture1: TfrxPictureView
+          AllowVectorExport = True
           Left = 11.456710000000000000
           Top = 10.559060000000000000
           Width = 124.724409450000000000
@@ -497,6 +535,7 @@ inherited frm_contract: Tfrm_contract
         Top = 453.543600000000000000
         Width = 718.110700000000000000
         object Memo21: TfrxMemoView
+          AllowVectorExport = True
           Left = 10.559060000000000000
           Top = 2.779530000000000000
           Width = 695.433520000000000000
@@ -522,6 +561,7 @@ inherited frm_contract: Tfrm_contract
             end>
         end
         object Memo18: TfrxMemoView
+          AllowVectorExport = True
           Left = 10.559060000000000000
           Top = 23.236240000000000000
           Width = 695.433520000000000000
@@ -554,6 +594,7 @@ inherited frm_contract: Tfrm_contract
         Top = 196.535560000000000000
         Width = 718.110700000000000000
         object Shape1: TfrxShapeView
+          AllowVectorExport = True
           Top = 39.181200000000000000
           Width = 718.110700000000000000
           Height = 151.181200000000000000
@@ -561,6 +602,7 @@ inherited frm_contract: Tfrm_contract
         end
         object Contratoctr_first_name: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 116.787477240000000000
           Top = 94.417440000000000000
           Width = 400.630180000000000000
@@ -574,6 +616,7 @@ inherited frm_contract: Tfrm_contract
         end
         object Contratoctr_last_name: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 116.787477240000000000
           Top = 119.094620000000000000
           Width = 400.630180000000000000
@@ -587,6 +630,7 @@ inherited frm_contract: Tfrm_contract
         end
         object Contratoctr_email: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 415.370347240000000000
           Top = 167.110390000000000000
           Width = 283.464750000000000000
@@ -600,6 +644,7 @@ inherited frm_contract: Tfrm_contract
         end
         object Contratoctr_phone1: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 116.787477240000000000
           Top = 167.110390000000000000
           Width = 170.078850000000000000
@@ -613,6 +658,7 @@ inherited frm_contract: Tfrm_contract
         end
         object Contratoctr_status: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 350.708937240000000000
           Top = 43.960730000000000000
           Width = 79.370130000000000000
@@ -626,6 +672,7 @@ inherited frm_contract: Tfrm_contract
         end
         object Contratoctr_user_license: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 116.787477240000000000
           Top = 68.874150000000000000
           Width = 128.504020000000000000
@@ -639,6 +686,7 @@ inherited frm_contract: Tfrm_contract
         end
         object Contratoctr_id: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 116.787477240000000000
           Top = 43.960730000000000000
           Width = 105.826840000000000000
@@ -652,6 +700,7 @@ inherited frm_contract: Tfrm_contract
         end
         object Contratoctr_dt_birth: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 116.787477240000000000
           Top = 143.228510000000000000
           Width = 207.874150000000000000
@@ -664,6 +713,7 @@ inherited frm_contract: Tfrm_contract
             '[Contrato."ctr_dt_birth"]')
         end
         object Memo1: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.511811020000000000
           Top = 43.960730000000000000
           Width = 102.047310000000000000
@@ -679,6 +729,7 @@ inherited frm_contract: Tfrm_contract
           ParentFont = False
         end
         object Memo11: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.511811020000000000
           Top = 94.417440000000000000
           Width = 102.047310000000000000
@@ -694,6 +745,7 @@ inherited frm_contract: Tfrm_contract
           ParentFont = False
         end
         object Memo12: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.511811020000000000
           Top = 119.094620000000000000
           Width = 102.047310000000000000
@@ -709,6 +761,7 @@ inherited frm_contract: Tfrm_contract
           ParentFont = False
         end
         object Memo17: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.511811020000000000
           Top = 167.110390000000000000
           Width = 102.047310000000000000
@@ -724,6 +777,7 @@ inherited frm_contract: Tfrm_contract
           ParentFont = False
         end
         object Memo19: TfrxMemoView
+          AllowVectorExport = True
           Left = 343.559277240000000000
           Top = 167.110390000000000000
           Width = 60.472480000000000000
@@ -739,6 +793,7 @@ inherited frm_contract: Tfrm_contract
           ParentFont = False
         end
         object Memo20: TfrxMemoView
+          AllowVectorExport = True
           Left = 275.118337240000000000
           Top = 43.960730000000000000
           Width = 71.811070000000000000
@@ -754,6 +809,7 @@ inherited frm_contract: Tfrm_contract
           ParentFont = False
         end
         object Memo22: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.511811020000000000
           Top = 68.874150000000000000
           Width = 102.047310000000000000
@@ -769,6 +825,7 @@ inherited frm_contract: Tfrm_contract
           ParentFont = False
         end
         object Memo23: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.511811020000000000
           Top = 143.228510000000000000
           Width = 102.047310000000000000
@@ -784,6 +841,7 @@ inherited frm_contract: Tfrm_contract
           ParentFont = False
         end
         object Memo24: TfrxMemoView
+          AllowVectorExport = True
           Top = 18.897650000000000000
           Width = 283.464750000000000000
           Height = 18.897650000000000000
@@ -800,6 +858,7 @@ inherited frm_contract: Tfrm_contract
         object enterpriseent_add_bus_city: TfrxMemoView
           IndexTag = 1
           Align = baRight
+          AllowVectorExport = True
           Left = 540.472790000000000000
           Top = 19.677180000000000000
           Width = 177.637910000000000000
@@ -828,5 +887,60 @@ inherited frm_contract: Tfrm_contract
     BCDToCurrency = False
     Left = 672
     Top = 56
+  end
+  object str_proc_contract_update: TFDStoredProc
+    Connection = frm_dm.connCCS
+    StoredProcName = 'ccs.proc_contract_update'
+    Left = 810
+    Top = 291
+    ParamData = <
+      item
+        Position = 1
+        Name = 'p_ctr_cod'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 32
+      end
+      item
+        Position = 2
+        Name = 'p_ctr_first_name'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 85
+      end
+      item
+        Position = 3
+        Name = 'p_ctr_last_name'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 85
+      end
+      item
+        Position = 4
+        Name = 'p_ctr_email'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 65
+      end
+      item
+        Position = 5
+        Name = 'p_ctr_phone1'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 15
+      end
+      item
+        Position = 6
+        Name = 'p_ctr_dt_birth'
+        DataType = ftDate
+        ParamType = ptInput
+      end
+      item
+        Position = 7
+        Name = 'p_ctr_status'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 1
+      end>
   end
 end

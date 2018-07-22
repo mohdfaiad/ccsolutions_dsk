@@ -117,6 +117,8 @@ uses
   cxBarEditItem,
   cxDBLookupComboBox,
   cxLocalization,
+  cxDataControllerConditionalFormattingRulesManagerDialog,
+  cxImageList,
 
   Data.DB,
 
@@ -225,7 +227,7 @@ type
     QImport3Wizard_1: TQImport3Wizard;
     Action_import: TAction;
     dxBarButton_import: TdxBarButton;
-    FDSchemaAdapter_1: TFDSchemaAdapter;
+    schadapter: TFDSchemaAdapter;
     frxReport_1: TfrxReport;
     cxlooComBoxRep: TcxBarEditItem;
     dxBarButton1: TdxBarButton;
@@ -411,7 +413,7 @@ begin
     ds.DataSet.Post;
 
     if qry.CachedUpdates then begin
-      FDSchemaAdapter_1.ApplyUpdates(0);
+      schadapter.ApplyUpdates(0);
       Application.MessageBox('Registros salvos com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
       cxTabSheet_1.Show;
     end;

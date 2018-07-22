@@ -3,31 +3,115 @@ unit ufrm_login;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels,
-  cxLookAndFeelPainters, dxSkinsCore, dxSkinBlack, dxSkinBlue, dxSkinBlueprint,
-  dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide,
-  dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
-  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
-  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
-  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
-  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
-  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
-  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
-  dxSkinOffice2013White, dxSkinOffice2016Colorful, dxSkinOffice2016Dark,
-  dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
-  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
-  dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, cxContainer, cxEdit, Vcl.ExtCtrls, cxLabel, cxTextEdit,
-  Data.DB, System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList,
-  dxStatusBar, dxRibbonStatusBar, dxSkinscxPCPainter, dxBarBuiltInMenu, cxPC,
-  Vcl.Menus, Vcl.StdCtrls, cxButtons, dxGDIPlusClasses, ACBrBase, ACBrEnterTab,
-  Vcl.Buttons, FireDAC.Comp.Client, ACBrMail,IdHashMessageDigest,
-  Vcl.Samples.Gauges, ACBrValidador, cxMaskEdit, cxButtonEdit, Vcl.ComCtrls,
-  dxCore, cxDateUtils, cxDropDownEdit, cxCalendar,FireDAC.Stan.Param;
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  System.Actions,
+  System.UITypes,
+
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  Vcl.ImgList,
+  Vcl.ActnList,
+  Vcl.Menus,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  Vcl.ComCtrls,
+  Vcl.Samples.Gauges,
+
+  cxGraphics,
+  cxControls,
+  cxLookAndFeels,
+  cxLookAndFeelPainters,
+  dxSkinsCore,
+  dxSkinBlack,
+  dxSkinBlue,
+  dxSkinBlueprint,
+  dxSkinCaramel,
+  dxSkinCoffee,
+  dxSkinDarkRoom,
+  dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle,
+  dxSkinDevExpressStyle,
+  dxSkinFoggy,
+  dxSkinGlassOceans,
+  dxSkinHighContrast,
+  dxSkiniMaginary,
+  dxSkinLilian,
+  dxSkinLiquidSky,
+  dxSkinLondonLiquidSky,
+  dxSkinMcSkin,
+  dxSkinMetropolis,
+  dxSkinMetropolisDark,
+  dxSkinMoneyTwins,
+  dxSkinOffice2007Black,
+  dxSkinOffice2007Blue,
+  dxSkinOffice2007Green,
+  dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver,
+  dxSkinOffice2010Black,
+  dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver,
+  dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray,
+  dxSkinOffice2013White,
+  dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark,
+  dxSkinPumpkin,
+  dxSkinSeven,
+  dxSkinSevenClassic,
+  dxSkinSharp,
+  dxSkinSharpPlus,
+  dxSkinSilver,
+  dxSkinSpringTime,
+  dxSkinStardust,
+  dxSkinSummer2008,
+  dxSkinTheAsphaltWorld,
+  dxSkinsDefaultPainters,
+  dxSkinValentine,
+  dxSkinVisualStudio2013Blue,
+  dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light,
+  dxSkinVS2010,
+  dxSkinWhiteprint,
+  dxSkinXmas2008Blue,
+  cxContainer,
+  cxEdit,
+  cxLabel,
+  cxTextEdit,
+  dxStatusBar,
+  dxRibbonStatusBar,
+  dxSkinscxPCPainter,
+  dxBarBuiltInMenu,
+  cxPC,
+  cxButtons,
+  dxGDIPlusClasses,
+  cxMaskEdit,
+  cxButtonEdit,
+  dxCore,
+  cxDateUtils,
+  cxDropDownEdit,
+  cxCalendar,
+  cxImageList,
+
+  Data.DB,
+
+  ACBrBase,
+  ACBrEnterTab,
+  ACBrMail,
+  ACBrValidador,
+
+  IdHashMessageDigest,
+
+  FireDAC.Comp.Client,
+  FireDAC.Stan.Param;
 
 type
   Tfrm_login = class(TForm)
@@ -77,14 +161,13 @@ type
     procedure cxButton3Click(Sender: TObject);
     procedure cxButton4Click(Sender: TObject);
     procedure edt_passwordNewPropertiesChange(Sender: TObject);
-    procedure edt_passwordPropertiesButtonClick(Sender: TObject;
-      AButtonIndex: Integer);
+    procedure edt_passwordPropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
     procedure cxButton5Click(Sender: TObject);
     procedure cxTabSheet1Show(Sender: TObject);
 
   private
     { Private declarations }
-  forcaSenha:Integer;
+    strong_password : Integer;
   public
     { Public declarations }
     Acao:Integer;
@@ -127,11 +210,11 @@ begin
 
        Self.Close;
     end else begin
-      frm_dm.qry_contract.Close;
-      frm_dm.qry_contract.SQL.Clear;
-      frm_dm.qry_contract.SQL.Text := 'call proc_contract_read('+ QuotedStr(frm_dm.v_contract_ctr_cod) +');';
-      frm_dm.qry_contract.Prepare;
-      frm_dm.qry_contract.Open;
+//      frm_dm.qry_contract.Close;
+//      frm_dm.qry_contract.SQL.Clear;
+//      frm_dm.qry_contract.SQL.Text := 'call proc_contract_read('+ QuotedStr(frm_dm.v_contract_ctr_cod) +');';
+//      frm_dm.qry_contract.Prepare;
+//      frm_dm.qry_contract.Open;
 
       ModalResult := mrOk;
     end;
@@ -146,8 +229,7 @@ begin
   if frm_login.Tag = 99 then begin //Tag 99 quando for para alterar senha não finalizar a apliacação
     Self.Close
   end else begin
-    if MessageDlg('Você não se autenticou. A aplicação será encerrada!' + #13 +
-      'Deseja continuar?', mtConfirmation, mbYesNo, 0) = mrYes then
+    if MessageDlg('Você não se autenticou. A aplicação será encerrada!' + #13 + 'Deseja continuar?', mtConfirmation, mbYesNo, 0) = mrYes then
       begin
         Application.Terminate;
       end;
@@ -386,13 +468,13 @@ i:Integer;
 begin
 // gaugePassword.Progress:=0;
 // gaugePassword.ForeColor:=clWhite;
- forcaSenha:=0;
+ strong_password:=0;
 
 begin
  for i:=1 to length(n) do
   if pos(n[i],edt_passwordNew.Text)>0 then
    begin
-    forcaSenha:=forcaSenha + 25;
+    strong_password:=strong_password + 25;
     Break;
    end;
 
@@ -400,36 +482,36 @@ begin
  for i:=1 to length(l) do
   if pos(l[i],edt_passwordNew.Text)>0 then
    begin
-    forcaSenha:=forcaSenha + 25;
+    strong_password:=strong_password + 25;
     Break;
    end;
 
  for i:=1 to length(le) do
   if pos(le[i],edt_passwordNew.Text)>0 then
    begin
-    forcaSenha:=forcaSenha + 25;
+    strong_password:=strong_password + 25;
     Break
    end;
 
  for i:=1 to length(s) do
   if pos(s[i],edt_passwordNew.Text)>0 then
    begin
-    forcaSenha:=forcaSenha + 25;
+    strong_password:=strong_password + 25;
     Break
    end;
 
 
-if forcaSenha <= 25 then
+if strong_password <= 25 then
  begin
 //    gaugePassword.ForeColor:=clRed;
  end;
 
- if (forcaSenha >= 25) and (forcaSenha  <= 50) then
+ if (strong_password >= 25) and (strong_password  <= 50) then
  begin
 //    gaugePassword.ForeColor:=$000080FF;
  end;
 
-  if forcaSenha  >50 then
+  if strong_password  >50 then
  begin
 //    gaugePassword.ForeColor:=clGreen;
  end;
@@ -467,7 +549,7 @@ if self.Tag = 99 then
   cxTabSheet_1.Show;
   edt_contract.SetFocus;
 //  gaugePassword.Progress:=0;
-  forcaSenha:=0;
+  strong_password:=0;
 end;
 
 end.

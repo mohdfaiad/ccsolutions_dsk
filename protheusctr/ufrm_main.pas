@@ -96,12 +96,20 @@ uses
   cxClasses,
   dxRibbon,
   dxGDIPlusClasses,
+  cxImageList,
 
   ufrm_main_default;
 
 type
   Tfrm_main = class(Tfrm_main_default)
+    dxBarManager_1Bar2: TdxBar;
+    dxBarLargeButton1: TdxBarLargeButton;
+    Action_phonebook: TAction;
+    dxBarLargeButton2: TdxBarLargeButton;
+    Action_contract: TAction;
     procedure FormCreate(Sender: TObject);
+    procedure Action_phonebookExecute(Sender: TObject);
+    procedure Action_contractExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -115,7 +123,35 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_login;
+uses ufrm_login, ufrm_phonebook, ufrm_contract;
+
+procedure Tfrm_main.Action_contractExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_contract) then begin
+    frm_contract := Tfrm_contract.Create(Self);
+    frm_contract.Height := Bevel_1.Height;
+    frm_contract.Width := Bevel_1.Width;
+    frm_contract.Show
+  end else begin
+    frm_contract.WindowState := wsNormal;
+    frm_contract.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_phonebookExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_phonebook) then begin
+    frm_phonebook := Tfrm_phonebook.Create(Self);
+    frm_phonebook.Height := Bevel_1.Height;
+    frm_phonebook.Width := Bevel_1.Width;
+    frm_phonebook.Show
+  end else begin
+    frm_phonebook.WindowState := wsNormal;
+    frm_phonebook.Show;
+  end;
+end;
 
 procedure Tfrm_main.FormCreate(Sender: TObject);
 begin
@@ -125,8 +161,7 @@ begin
 
   if frm_login.ModalResult <> mrOk then
   begin
-    MessageDlg('Você não se autenticou. A aplicação será encerrada!', mtWarning,
-      [mbOK], 0);
+    MessageDlg('Você não se autenticou. A aplicação será encerrada!', mtWarning, [mbOK], 0);
     Application.Terminate;
   end;
 end;

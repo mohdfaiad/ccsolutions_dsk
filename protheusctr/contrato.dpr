@@ -19,7 +19,8 @@ uses
   class_required_field in '..\class_required_field.pas',
   ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
   ufrm_contract in '..\ufrm_contract.pas' {frm_contract},
-  ufrm_client in '..\ufrm_client.pas' {frm_client};
+  ufrm_client in '..\ufrm_client.pas' {frm_client},
+  ufrm_enterprise in '..\ufrm_enterprise.pas' {frm_enterprise};
 
 {$R *.res}
 

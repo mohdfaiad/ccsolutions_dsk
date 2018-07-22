@@ -107,9 +107,12 @@ type
     Action_phonebook: TAction;
     dxBarLargeButton2: TdxBarLargeButton;
     Action_contract: TAction;
+    dxBarLargeButton3: TdxBarLargeButton;
+    Action_enterprise: TAction;
     procedure FormCreate(Sender: TObject);
     procedure Action_phonebookExecute(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
+    procedure Action_enterpriseExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -123,7 +126,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_login, ufrm_phonebook, ufrm_contract;
+uses ufrm_login, ufrm_phonebook, ufrm_contract, ufrm_enterprise;
 
 procedure Tfrm_main.Action_contractExecute(Sender: TObject);
 begin
@@ -136,6 +139,20 @@ begin
   end else begin
     frm_contract.WindowState := wsNormal;
     frm_contract.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_enterpriseExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_enterprise) then begin
+    frm_enterprise := Tfrm_enterprise.Create(Self);
+    frm_enterprise.Height := Bevel_1.Height;
+    frm_enterprise.Width := Bevel_1.Width;
+    frm_enterprise.Show
+  end else begin
+    frm_enterprise.WindowState := wsNormal;
+    frm_enterprise.Show;
   end;
 end;
 

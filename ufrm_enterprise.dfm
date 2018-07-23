@@ -4,17 +4,144 @@ inherited frm_enterprise: Tfrm_enterprise
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
+      inherited cxGrid_1: TcxGrid
+        inherited cxGrid_1DBTableView1: TcxGridDBTableView
+          object cxGrid_1DBTableView1ent_id: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_id'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1ent_type: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_type'
+            Width = 35
+          end
+          object cxGrid_1DBTableView1ent_first_name: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_first_name'
+            Width = 250
+          end
+          object cxGrid_1DBTableView1ent_last_name: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_last_name'
+            Width = 250
+          end
+          object cxGrid_1DBTableView1ent_nickname: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_nickname'
+            Width = 200
+          end
+          object cxGrid_1DBTableView1ent_email: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_email'
+            Width = 200
+          end
+          object cxGrid_1DBTableView1ent_cnpj: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_cnpj'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1ent_ie: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_ie'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1ent_im: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_im'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1ent_suframa: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_suframa'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1ent_add_bus_zipcode: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_add_bus_zipcode'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1ent_add_bus_address: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_add_bus_address'
+            Width = 200
+          end
+          object cxGrid_1DBTableView1ent_add_bus_number: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_add_bus_number'
+            Width = 50
+          end
+          object cxGrid_1DBTableView1ent_add_bus_street: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_add_bus_street'
+            Width = 150
+          end
+          object cxGrid_1DBTableView1ent_add_bus_complement: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_add_bus_complement'
+            Width = 200
+          end
+          object cxGrid_1DBTableView1ent_add_bus_city: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_add_bus_city'
+            Width = 150
+          end
+          object cxGrid_1DBTableView1ent_add_bus_state: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_add_bus_state'
+            Width = 35
+          end
+          object cxGrid_1DBTableView1ent_add_bus_country: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_add_bus_country'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1ent_phone1: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_phone1'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1ent_phone2: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_phone2'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1ent_phone3: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_phone3'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1ent_phone4: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_phone4'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1ent_contact: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_contact'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1ent_dt_open: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_dt_open'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1ent_status: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_status'
+            Width = 50
+          end
+          object cxGrid_1DBTableView1ent_dt_registration: TcxGridDBColumn
+            DataBinding.FieldName = 'ent_dt_registration'
+            Width = 125
+          end
+        end
+      end
+    end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
+            inherited dbedt_id: TcxDBTextEdit
+              DataBinding.DataField = 'ent_id'
+            end
             inherited dbedt_dt_registration: TcxDBDateEdit
               Left = 240
+              DataBinding.DataField = 'ent_dt_registration'
               ExplicitLeft = 240
             end
             object dbcmb_type: TcxDBComboBox [2]
               Left = 59
               Top = 103
+              DataBinding.DataField = 'ent_type'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
@@ -27,16 +154,18 @@ inherited frm_enterprise: Tfrm_enterprise
             end
             object dbedt_im: TcxDBTextEdit [3]
               Left = 422
-              Top = 278
+              Top = 249
+              DataBinding.DataField = 'ent_im'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 13
+              TabOrder = 12
               Width = 121
             end
             object dbedt_dt_open: TcxDBDateEdit [4]
               Left = 240
               Top = 103
+              DataBinding.DataField = 'ent_dt_open'
               DataBinding.DataSource = ds
               Style.HotTrack = False
               TabOrder = 3
@@ -44,34 +173,38 @@ inherited frm_enterprise: Tfrm_enterprise
             end
             object dbedt_cnpj: TcxDBTextEdit [5]
               Left = 59
-              Top = 278
+              Top = 249
+              DataBinding.DataField = 'ent_cnpj'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 11
+              TabOrder = 10
               Width = 121
             end
             object dbedt_ie: TcxDBTextEdit [6]
               Left = 240
-              Top = 278
+              Top = 249
+              DataBinding.DataField = 'ent_ie'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 12
+              TabOrder = 11
               Width = 130
             end
             object dbedt_suframa: TcxDBTextEdit [7]
               Left = 594
-              Top = 278
+              Top = 249
+              DataBinding.DataField = 'ent_suframa'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 14
-              Width = 139
+              TabOrder = 13
+              Width = 121
             end
             object dbcmb_status: TcxDBComboBox [8]
               Left = 422
               Top = 103
+              DataBinding.DataField = 'ent_status'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
@@ -85,6 +218,7 @@ inherited frm_enterprise: Tfrm_enterprise
             object dbedt_first_name: TcxDBTextEdit [9]
               Left = 59
               Top = 130
+              DataBinding.DataField = 'ent_last_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
@@ -94,6 +228,7 @@ inherited frm_enterprise: Tfrm_enterprise
             object dbedt_nickname: TcxDBTextEdit [10]
               Left = 59
               Top = 157
+              DataBinding.DataField = 'ent_nickname'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
@@ -103,39 +238,33 @@ inherited frm_enterprise: Tfrm_enterprise
             object dbedt_last_name: TcxDBTextEdit [11]
               Left = 422
               Top = 130
+              DataBinding.DataField = 'ent_last_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 6
-              Width = 311
+              Width = 293
             end
             object dbedt_email: TcxDBTextEdit [12]
-              Left = 422
-              Top = 157
+              Left = 59
+              Top = 184
+              DataBinding.DataField = 'ent_email'
               DataBinding.DataSource = ds
               Properties.CharCase = ecLowerCase
               Style.HotTrack = False
               TabOrder = 8
               Width = 311
             end
-            object cxImgLogo: TcxImage [13]
-              Left = 739
+            object dbimg_image1: TcxDBImage [13]
+              Left = 721
               Top = 103
-              Properties.FitMode = ifmStretch
-              Properties.GraphicClassName = 'TdxPNGImage'
+              DataBinding.DataField = 'ent_image1'
+              DataBinding.DataSource = ds
+              Properties.Caption = 'Logo'
               Style.HotTrack = False
               TabOrder = 9
               Height = 100
               Width = 140
-            end
-            object btnLogo: TcxButton [14]
-              Left = 739
-              Top = 209
-              Width = 140
-              Height = 25
-              Caption = 'Logo'
-              TabOrder = 10
-              OnClick = btnLogoClick
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               CaptionOptions.Visible = False
@@ -235,7 +364,7 @@ inherited frm_enterprise: Tfrm_enterprise
               CaptionOptions.Text = 'Suframa'
               Control = dbedt_suframa
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 139
+              ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 3
             end
@@ -249,7 +378,7 @@ inherited frm_enterprise: Tfrm_enterprise
               Index = 2
             end
             object dxLayoutItem4: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
+              Parent = dxLayoutAutoCreatedGroup3
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'Raz'#227'o'
@@ -260,7 +389,7 @@ inherited frm_enterprise: Tfrm_enterprise
               Index = 0
             end
             object dxLayoutItem17: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup3
+              Parent = dxLayoutAutoCreatedGroup8
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'Apelido'
@@ -268,63 +397,42 @@ inherited frm_enterprise: Tfrm_enterprise
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 311
               ControlOptions.ShowBorder = False
-              Index = 0
+              Index = 1
             end
             object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup4
+              Parent = dxLayoutAutoCreatedGroup3
               AlignVert = avClient
               CaptionOptions.Text = 'Fantasia'
               Control = dbedt_last_name
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 311
+              ControlOptions.OriginalWidth = 293
               ControlOptions.ShowBorder = False
               Index = 1
             end
             object dxLayoutItem6: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup3
+              Parent = dxLayoutAutoCreatedGroup8
+              AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'E-mail'
               Control = dbedt_email
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 311
               ControlOptions.ShowBorder = False
-              Index = 1
+              Index = 2
             end
             object dxLayoutItem20: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              Control = cxImgLogo
+              Parent = dxLayoutGroup2
+              Control = dbimg_image1
               ControlOptions.OriginalHeight = 100
               ControlOptions.OriginalWidth = 140
               ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
               Index = 1
-              AutoCreated = True
-            end
-            object dxLayoutItem22: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              CaptionOptions.Text = 'cxButton1'
-              CaptionOptions.Visible = False
-              Control = btnLogo
-              ControlOptions.OriginalHeight = 25
-              ControlOptions.OriginalWidth = 75
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup8
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 0
-              AutoCreated = True
             end
             object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
               Parent = dxLayoutAutoCreatedGroup8
               AlignVert = avTop
               LayoutDirection = ldHorizontal
-              Index = 1
+              Index = 0
               AutoCreated = True
             end
           end
@@ -339,27 +447,30 @@ inherited frm_enterprise: Tfrm_enterprise
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            object dbedt_city: TcxDBTextEdit
+            object dbedt_add_bus_city: TcxDBTextEdit
               Left = 373
               Top = 65
+              DataBinding.DataField = 'ent_add_bus_city'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 5
               Width = 121
             end
-            object dbedt_state: TcxDBTextEdit
+            object dbedt_add_bus_state: TcxDBTextEdit
               Left = 538
               Top = 65
+              DataBinding.DataField = 'ent_add_bus_state'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 6
               Width = 121
             end
-            object dbedt_country: TcxDBTextEdit
+            object dbedt_add_bus_country: TcxDBTextEdit
               Left = 709
               Top = 65
+              DataBinding.DataField = 'ent_add_bus_country'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
@@ -369,6 +480,7 @@ inherited frm_enterprise: Tfrm_enterprise
             object dbedt_phone1: TcxDBTextEdit
               Left = 55
               Top = 130
+              DataBinding.DataField = 'ent_phone1'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
@@ -378,15 +490,17 @@ inherited frm_enterprise: Tfrm_enterprise
             object dbedt_phone2: TcxDBTextEdit
               Left = 214
               Top = 130
+              DataBinding.DataField = 'ent_phone2'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 9
               Width = 121
             end
-            object dbedt_zipcode: TcxDBButtonEdit
+            object dbedt_add_bus_zipcode: TcxDBButtonEdit
               Left = 55
               Top = 38
+              DataBinding.DataField = 'ent_add_bus_zipcode'
               DataBinding.DataSource = ds
               Properties.Buttons = <
                 item
@@ -399,36 +513,40 @@ inherited frm_enterprise: Tfrm_enterprise
               TabOrder = 0
               Width = 121
             end
-            object dbedt_address: TcxDBTextEdit
+            object dbedt_add_bus_address: TcxDBTextEdit
               Left = 214
               Top = 38
+              DataBinding.DataField = 'ent_add_bus_address'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 1
               Width = 280
             end
-            object dbedt_number: TcxDBTextEdit
+            object dbedt_add_bus_number: TcxDBTextEdit
               Left = 538
               Top = 38
+              DataBinding.DataField = 'ent_add_bus_number'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 2
               Width = 121
             end
-            object dbedt_street: TcxDBTextEdit
+            object dbedt_add_bus_street: TcxDBTextEdit
               Left = 709
               Top = 38
+              DataBinding.DataField = 'ent_add_bus_street'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 3
               Width = 121
             end
-            object dbedt_complement: TcxDBTextEdit
+            object dbedt_add_bus_complement: TcxDBTextEdit
               Left = 55
               Top = 65
+              DataBinding.DataField = 'ent_add_bus_complement'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
@@ -438,6 +556,7 @@ inherited frm_enterprise: Tfrm_enterprise
             object dbedt_phone3: TcxDBTextEdit
               Left = 373
               Top = 130
+              DataBinding.DataField = 'ent_phone3'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
@@ -447,6 +566,7 @@ inherited frm_enterprise: Tfrm_enterprise
             object dbedt_phone4: TcxDBTextEdit
               Left = 538
               Top = 130
+              DataBinding.DataField = 'ent_phone4'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
@@ -456,6 +576,7 @@ inherited frm_enterprise: Tfrm_enterprise
             object dbedt_contact: TcxDBTextEdit
               Left = 709
               Top = 130
+              DataBinding.DataField = 'ent_contact'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
@@ -508,7 +629,7 @@ inherited frm_enterprise: Tfrm_enterprise
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Cidade'
-              Control = dbedt_city
+              Control = dbedt_add_bus_city
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -519,7 +640,7 @@ inherited frm_enterprise: Tfrm_enterprise
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Estado'
-              Control = dbedt_state
+              Control = dbedt_add_bus_state
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -530,7 +651,7 @@ inherited frm_enterprise: Tfrm_enterprise
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Pa'#237's'
-              Control = dbedt_country
+              Control = dbedt_add_bus_country
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -561,7 +682,7 @@ inherited frm_enterprise: Tfrm_enterprise
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'CEP'
-              Control = dbedt_zipcode
+              Control = dbedt_add_bus_zipcode
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -572,7 +693,7 @@ inherited frm_enterprise: Tfrm_enterprise
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Rua'
-              Control = dbedt_address
+              Control = dbedt_add_bus_address
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 280
               ControlOptions.ShowBorder = False
@@ -583,7 +704,7 @@ inherited frm_enterprise: Tfrm_enterprise
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'N'#250'm.'
-              Control = dbedt_number
+              Control = dbedt_add_bus_number
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -594,7 +715,7 @@ inherited frm_enterprise: Tfrm_enterprise
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Bairro'
-              Control = dbedt_street
+              Control = dbedt_add_bus_street
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -605,7 +726,7 @@ inherited frm_enterprise: Tfrm_enterprise
               AlignHorz = ahClient
               AlignVert = avClient
               CaptionOptions.Text = 'Compl.'
-              Control = dbedt_complement
+              Control = dbedt_add_bus_complement
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 274
               ControlOptions.ShowBorder = False
@@ -652,26 +773,9 @@ inherited frm_enterprise: Tfrm_enterprise
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\cadastro\basico\empresa'
     end
   end
-  inherited ActionList_1: TActionList
-    object Action_insert_image: TAction
-      Caption = 'Inserir'
-      ImageIndex = 4
-      OnExecute = Action_insert_imageExecute
-    end
-    object Action_delete_image: TAction
-      Caption = 'Deletar'
-      ImageIndex = 8
-    end
-  end
-  inherited cxImageList_1: TcxImageList
-    FormatVersion = 1
-  end
-  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
-    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
-      PixelsPerInch = 96
-    end
-  end
-  inherited qry: TFDQuery
+  inherited qry: TFDQuery [5]
+    Active = True
+    BeforeOpen = qryBeforeOpen
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'call proc_enterprise_read(:contract_ctr_cod)')
@@ -680,10 +784,224 @@ inherited frm_enterprise: Tfrm_enterprise
         Name = 'CONTRACT_CTR_COD'
         DataType = ftWideString
         ParamType = ptInput
-        Value = ''
+        Value = Null
       end>
+    object qrycontract_ctr_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Contrato'
+      FieldName = 'contract_ctr_cod'
+      Origin = 'contract_ctr_cod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qryent_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'ent_cod'
+      Origin = 'ent_cod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object qryent_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'ent_id'
+      Origin = 'ent_id'
+    end
+    object qryent_type: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tipo'
+      FieldName = 'ent_type'
+      Origin = 'ent_type'
+      FixedChar = True
+      Size = 1
+    end
+    object qryent_first_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Raz'#227'o'
+      FieldName = 'ent_first_name'
+      Origin = 'ent_first_name'
+      Size = 85
+    end
+    object qryent_last_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Fantasia'
+      FieldName = 'ent_last_name'
+      Origin = 'ent_last_name'
+      Size = 85
+    end
+    object qryent_nickname: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Apelido'
+      FieldName = 'ent_nickname'
+      Origin = 'ent_nickname'
+      Size = 85
+    end
+    object qryent_email: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'E-mail'
+      FieldName = 'ent_email'
+      Origin = 'ent_email'
+      Size = 65
+    end
+    object qryent_cnpj: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'CNPJ'
+      FieldName = 'ent_cnpj'
+      Origin = 'ent_cnpj'
+      Size = 25
+    end
+    object qryent_ie: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'IE'
+      FieldName = 'ent_ie'
+      Origin = 'ent_ie'
+      Size = 25
+    end
+    object qryent_im: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'IM'
+      FieldName = 'ent_im'
+      Origin = 'ent_im'
+      Size = 25
+    end
+    object qryent_suframa: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Suframa'
+      FieldName = 'ent_suframa'
+      Origin = 'ent_suframa'
+      Size = 25
+    end
+    object qryent_add_bus_zipcode: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'CEP'
+      FieldName = 'ent_add_bus_zipcode'
+      Origin = 'ent_add_bus_zipcode'
+      Size = 9
+    end
+    object qryent_add_bus_address: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Rua'
+      FieldName = 'ent_add_bus_address'
+      Origin = 'ent_add_bus_address'
+      Size = 50
+    end
+    object qryent_add_bus_number: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'N'#250'm.'
+      FieldName = 'ent_add_bus_number'
+      Origin = 'ent_add_bus_number'
+      Size = 5
+    end
+    object qryent_add_bus_street: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Bairro'
+      FieldName = 'ent_add_bus_street'
+      Origin = 'ent_add_bus_street'
+      Size = 45
+    end
+    object qryent_add_bus_complement: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Compl.'
+      FieldName = 'ent_add_bus_complement'
+      Origin = 'ent_add_bus_complement'
+      Size = 50
+    end
+    object qryent_add_bus_city: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Cidade'
+      FieldName = 'ent_add_bus_city'
+      Origin = 'ent_add_bus_city'
+      Size = 35
+    end
+    object qryent_add_bus_state: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'UF'
+      FieldName = 'ent_add_bus_state'
+      Origin = 'ent_add_bus_state'
+      FixedChar = True
+      Size = 3
+    end
+    object qryent_add_bus_country: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Pa'#237's'
+      FieldName = 'ent_add_bus_country'
+      Origin = 'ent_add_bus_country'
+      Size = 25
+    end
+    object qryent_phone1: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 1'
+      FieldName = 'ent_phone1'
+      Origin = 'ent_phone1'
+      Size = 15
+    end
+    object qryent_phone2: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 2'
+      FieldName = 'ent_phone2'
+      Origin = 'ent_phone2'
+      Size = 15
+    end
+    object qryent_phone3: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 3'
+      FieldName = 'ent_phone3'
+      Origin = 'ent_phone3'
+      Size = 15
+    end
+    object qryent_phone4: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Fax'
+      FieldName = 'ent_phone4'
+      Origin = 'ent_phone4'
+      Size = 15
+    end
+    object qryent_contact: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Contato'
+      FieldName = 'ent_contact'
+      Origin = 'ent_contact'
+      Size = 25
+    end
+    object qryent_dt_open: TDateField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Aber.'
+      FieldName = 'ent_dt_open'
+      Origin = 'ent_dt_open'
+    end
+    object qryent_status: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'ent_status'
+      Origin = 'ent_status'
+      FixedChar = True
+      Size = 1
+    end
+    object qryent_image1: TBlobField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Logo'
+      FieldName = 'ent_image1'
+      Origin = 'ent_image1'
+    end
+    object qryent_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'ent_deleted_at'
+      Origin = 'ent_deleted_at'
+    end
+    object qryent_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'ent_dt_registration'
+      Origin = 'ent_dt_registration'
+    end
   end
-  inherited QExport4Dialog_1: TQExport4Dialog
+  inherited ACBrEnterTab_1: TACBrEnterTab [6]
+  end
+  inherited QExport4Dialog_1: TQExport4Dialog [7]
     Formats.IntegerFormat = '#,###,##0'
     Formats.FloatFormat = '#,###,##0.00'
     Formats.DateFormat = 'dd/MM/yy'
@@ -691,11 +1009,54 @@ inherited frm_enterprise: Tfrm_enterprise
     Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
     Formats.CurrencyFormat = 'R$#,###,##0.00'
   end
-  inherited QImport3Wizard_1: TQImport3Wizard
+  inherited QImport3Wizard_1: TQImport3Wizard [8]
     Formats.ShortDateFormat = 'dd/MM/yy'
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
+  end
+  inherited schadapter: TFDSchemaAdapter [9]
+  end
+  inherited cxGridPopupMenu_1: TcxGridPopupMenu [10]
+  end
+  inherited PopupMenu_1: TPopupMenu [11]
+  end
+  inherited cxImageList_1: TcxImageList [12]
+    FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList [13]
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
+  end
+  object OpenPictureDialog1: TOpenPictureDialog [14]
+    Left = 735
+    Top = 74
+  end
+  object PopupMenu1: TPopupMenu [15]
+    Images = cxImageList_1
+    Left = 799
+    Top = 74
+    object Inserir2: TMenuItem
+      Caption = 'Inserir'
+      ImageIndex = 4
+    end
+    object Deletar1: TMenuItem
+      Caption = 'Deletar'
+      ImageIndex = 8
+    end
+  end
+  object OpenDialogLogo: TOpenDialog [16]
+    FileName = '*.png;*.jpg'
+    Left = 767
+    Top = 74
+  end
+  object frx_db_empresa: TfrxDBDataset [17]
+    UserName = 'Empresa'
+    CloseDataSource = False
+    BCDToCurrency = False
+    Left = 671
+    Top = 74
   end
   inherited frxReport_1: TfrxReport
     ReportOptions.CreateDate = 43193.605400104200000000
@@ -1674,34 +2035,6 @@ inherited frm_enterprise: Tfrm_enterprise
         end
       end
     end
-  end
-  object OpenPictureDialog1: TOpenPictureDialog
-    Left = 735
-    Top = 74
-  end
-  object PopupMenu1: TPopupMenu
-    Images = cxImageList_1
-    Left = 799
-    Top = 74
-    object Inserir2: TMenuItem
-      Action = Action_insert_image
-    end
-    object Deletar1: TMenuItem
-      Action = Action_delete_image
-    end
-  end
-  object OpenDialogLogo: TOpenDialog
-    FileName = '*.png;*.jpg'
-    Left = 767
-    Top = 74
-  end
-  object frx_db_empresa: TfrxDBDataset
-    UserName = 'Empresa'
-    CloseDataSource = False
-    DataSet = qry
-    BCDToCurrency = False
-    Left = 671
-    Top = 74
   end
   object acbr_cep: TACBrCEP
     ProxyPort = '8080'

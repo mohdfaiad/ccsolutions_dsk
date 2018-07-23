@@ -35,10 +35,8 @@ inherited frm_main: Tfrm_main
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
     inherited dxBarManager_1Bar1: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
-      FloatClientWidth = 79
-      FloatClientHeight = 96
+      FloatClientWidth = 66
+      FloatClientHeight = 108
       ItemLinks = <
         item
           Visible = True
@@ -78,10 +76,8 @@ inherited frm_main: Tfrm_main
       Category = 0
     end
     object dxBarLargeButton3: TdxBarLargeButton
-      Caption = 'New Button'
+      Action = Action_enterprise
       Category = 0
-      Hint = 'New Button'
-      Visible = ivAlways
     end
   end
   inherited ActionList_1: TActionList

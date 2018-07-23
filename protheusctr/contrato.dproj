@@ -173,6 +173,14 @@
             <Form>frm_enterprise</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\ufrm_consult_cnpj.pas">
+            <Form>frm_consult_cnpj</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_consult_cpf.pas">
+            <Form>frm_consult_cpf</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

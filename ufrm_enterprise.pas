@@ -163,14 +163,14 @@ type
     dxLayoutItem13: TdxLayoutItem;
     cxTabSheet_address: TcxTabSheet;
     dxLayoutControl_address: TdxLayoutControl;
-    dbedt_address: TcxDBTextEdit;
-    dbedt_street: TcxDBTextEdit;
-    dbedt_city: TcxDBTextEdit;
-    dbedt_state: TcxDBTextEdit;
-    dbedt_country: TcxDBTextEdit;
-    dbedt_zipcode: TcxDBButtonEdit;
-    dbedt_number: TcxDBTextEdit;
-    dbedt_complement: TcxDBTextEdit;
+    dbedt_add_bus_address: TcxDBTextEdit;
+    dbedt_add_bus_street: TcxDBTextEdit;
+    dbedt_add_bus_city: TcxDBTextEdit;
+    dbedt_add_bus_state: TcxDBTextEdit;
+    dbedt_add_bus_country: TcxDBTextEdit;
+    dbedt_add_bus_zipcode: TcxDBButtonEdit;
+    dbedt_add_bus_number: TcxDBTextEdit;
+    dbedt_add_bus_complement: TcxDBTextEdit;
     dxLayoutControl_addressGroup_Root: TdxLayoutGroup;
     dxLayoutGroup6: TdxLayoutGroup;
     dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
@@ -197,8 +197,6 @@ type
     dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup;
     OpenPictureDialog1: TOpenPictureDialog;
     PopupMenu1: TPopupMenu;
-    Action_insert_image: TAction;
-    Action_delete_image: TAction;
     Inserir2: TMenuItem;
     Deletar1: TMenuItem;
     dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
@@ -216,28 +214,82 @@ type
     dxLayoutItem17: TdxLayoutItem;
     dbcmb_status: TcxDBComboBox;
     dxLayoutItem19: TdxLayoutItem;
-    cxImgLogo: TcxImage;
-    dxLayoutItem20: TdxLayoutItem;
     OpenDialogLogo: TOpenDialog;
-    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    btnLogo: TcxButton;
-    dxLayoutItem22: TdxLayoutItem;
     frx_db_empresa: TfrxDBDataset;
     acbr_cep: TACBrCEP;
     str_proc_enterprise_create: TFDStoredProc;
     str_proc_enterprise_update: TFDStoredProc;
     str_proc_enterprise_delete: TFDStoredProc;
-    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
+    qrycontract_ctr_cod: TStringField;
+    qryent_cod: TStringField;
+    qryent_id: TLongWordField;
+    qryent_type: TStringField;
+    qryent_first_name: TStringField;
+    qryent_last_name: TStringField;
+    qryent_nickname: TStringField;
+    qryent_email: TStringField;
+    qryent_cnpj: TStringField;
+    qryent_ie: TStringField;
+    qryent_im: TStringField;
+    qryent_suframa: TStringField;
+    qryent_add_bus_zipcode: TStringField;
+    qryent_add_bus_address: TStringField;
+    qryent_add_bus_number: TStringField;
+    qryent_add_bus_street: TStringField;
+    qryent_add_bus_complement: TStringField;
+    qryent_add_bus_city: TStringField;
+    qryent_add_bus_state: TStringField;
+    qryent_add_bus_country: TStringField;
+    qryent_phone1: TStringField;
+    qryent_phone2: TStringField;
+    qryent_phone3: TStringField;
+    qryent_phone4: TStringField;
+    qryent_contact: TStringField;
+    qryent_dt_open: TDateField;
+    qryent_status: TStringField;
+    qryent_image1: TBlobField;
+    qryent_deleted_at: TDateTimeField;
+    qryent_dt_registration: TDateTimeField;
+    cxGrid_1DBTableView1ent_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_type: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_first_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_last_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_nickname: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_email: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_cnpj: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_ie: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_im: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_suframa: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_add_bus_zipcode: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_add_bus_address: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_add_bus_number: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_add_bus_street: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_add_bus_complement: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_add_bus_city: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_add_bus_state: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_add_bus_country: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_phone1: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_phone2: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_phone3: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_phone4: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_contact: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_dt_open: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_status: TcxGridDBColumn;
+    cxGrid_1DBTableView1ent_dt_registration: TcxGridDBColumn;
+    dbimg_image1: TcxDBImage;
+    dxLayoutItem20: TdxLayoutItem;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
-    procedure Action_insert_imageExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure dbbtnedt_cepPropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
     procedure acbr_cepBuscaEfetuada(Sender: TObject);
-    procedure btnLogoClick(Sender: TObject);
+    procedure Action_insertExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
+    procedure Action_deleteExecute(Sender: TObject);
+    procedure qryBeforeOpen(DataSet: TDataSet);
   private
     { Private declarations }
-    status : string;
+      status : Integer;
   public
     { Public declarations }
   end;
@@ -255,85 +307,141 @@ procedure Tfrm_enterprise.acbr_cepBuscaEfetuada(Sender: TObject);
 var
   i:Integer;
 begin
-  inherited;
-//    for i := 0 to acbr_cep.Enderecos.Count -1 do
-//    begin
-//     qryent_add_bus_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
-//     qryent_add_bus_street.AsString     := acbr_cep.Enderecos[i].Bairro;
-//     qryent_add_bus_complement.AsString     := acbr_cep.Enderecos[i].Complemento;
-//     qryent_add_bus_city.AsString     	 := acbr_cep.Enderecos[i].Municipio;
-//     qryent_add_bus_state.AsString     := acbr_cep.Enderecos[i].UF;
-//     qryent_add_bus_country.AsString     := 'BRASIL';
-//     dbtxtedt_number.SetFocus;
-//end;
+  for i := 0 to acbr_cep.Enderecos.Count -1 do begin
+    qryent_add_bus_address.AsString     := acbr_cep.Enderecos[i].Logradouro;
+    qryent_add_bus_street.AsString      := acbr_cep.Enderecos[i].Bairro;
+    qryent_add_bus_complement.AsString  := acbr_cep.Enderecos[i].Complemento;
+    qryent_add_bus_city.AsString     	  := acbr_cep.Enderecos[i].Municipio;
+    qryent_add_bus_state.AsString       := acbr_cep.Enderecos[i].UF;
+    qryent_add_bus_country.AsString     := 'BRASIL';
+
+    dbedt_add_bus_number.SetFocus;
+  end;
+end;
+
+
+procedure Tfrm_enterprise.Action_deleteExecute(Sender: TObject);
+begin
+  str_proc_enterprise_delete.ParamByName('p_ent_cod').AsString := qry.FieldByName('ent_cod').AsString;
+  str_proc_enterprise_delete.ParamByName('p_ent_deleted_at').AsDateTime := Date + Time;
+
+  str_proc_enterprise_delete.ExecProc;
+
+  qry.Close;
+  qry.Open;
 end;
 
 procedure Tfrm_enterprise.Action_editExecute(Sender: TObject);
-// var
-//   vStream:TMemoryStream;
-begin
-//   if qry.IsEmpty then
-//   exit;
-//
-//  inherited;
-//     vStream :=TMemoryStream.Create;
-//     qryent_image1.savetostream(vStream);
-//     vStream.Position :=0;
-//     cxImgLogo.Picture.LoadFromStream(vStream);
+begin
+  status := 1;
+  cxTabSheet_3.Show;
 end;
 
-procedure Tfrm_enterprise.Action_insert_imageExecute(Sender: TObject);
-begin
-  inherited;
-//  imgObj := TCompress_image.Create;
-//  imgObj.imgCompress(DBImage1, OpenPictureDialog1);
+procedure Tfrm_enterprise.Action_insertExecute(Sender: TObject);
+begin
+  status := 0;
+  qry.EmptyDataSet;
+  cxTabSheet_3.Show;
 end;
 
-procedure Tfrm_enterprise.btnLogoClick(Sender: TObject);
-// var
-//   sArq:TStream;
-//   mMem:TMemoryStream;
-//   lPath: string;
-begin
-//  inherited;
-//
-// if OpenDialogLogo.Execute then
-//  begin
-//    lPath := OpenDialogLogo.FileName;
-//
-//
-//    try
-//      mMem:=TMemoryStream.Create;
-//      sArq:= TFileStream.Create(lPath, fmOpenRead);
-//      sArq.Position:=0;
-//      mMem.LoadFromStream(sArq);
-//
-//     if mMem.Size < 100000 then
-//      begin
-//       cxImgLogo.Picture.LoadFromStream(mMem);
-//       qry.Edit;
-//       qryent_image1.LoadFromStream(mMem);
-//       qry.Post;
-//       qry.ApplyUpdates(0);
-//      end else
-//       begin
-//         cxImgLogo.Picture := nil;
-//         Application.MessageBox('A Imagem escolhida é maior que o permitidoo !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
-//       end;
-//
-//    finally
-//      FreeAndNil(mMem);
-//      FreeAndNil(sArq);
-//    end;
-//
-//   end;
-//  qry.Edit;
+procedure Tfrm_enterprise.Action_saveExecute(Sender: TObject);
+begin
+  case status of
+    0 : begin
+          try
+            try
+              str_proc_enterprise_create.ParamByName('p_contract_ctr_cod').AsString       := frm_dm.v_contract_ctr_cod;
+              str_proc_enterprise_create.ParamByName('p_ent_type').AsString               := dbcmb_type.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_first_name').AsString         := dbedt_first_name.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_last_name').AsString          := dbedt_last_name.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_nickname').AsString           := dbedt_nickname.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_email').AsString              := dbedt_email.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_cnpj').AsString               := dbedt_cnpj.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_ie').AsString                 := dbedt_ie.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_im').AsString                 := dbedt_im.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_suframa').AsString            := dbedt_suframa.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_add_bus_zipcode').AsString    := dbedt_add_bus_zipcode.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_add_bus_address').AsString    := dbedt_add_bus_address.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_add_bus_number').AsString     := dbedt_add_bus_number.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_add_bus_street').AsString     := dbedt_add_bus_street.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_add_bus_complement').AsString := dbedt_add_bus_complement.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_add_bus_city').AsString       := dbedt_add_bus_city.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_add_bus_state').AsString      := dbedt_add_bus_state.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_add_bus_country').AsString    := dbedt_add_bus_country.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_phone1').AsString             := dbedt_phone1.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_phone2').AsString             := dbedt_phone2.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_phone3').AsString             := dbedt_phone3.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_phone4').AsString             := dbedt_phone4.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_contact').AsString            := dbedt_contact.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_dt_open').AsString            := dbedt_dt_open.Text;
+              str_proc_enterprise_create.ParamByName('p_ent_image1').AsString             := Null;
+              str_proc_enterprise_create.ParamByName('p_ent_status').AsString             := dbcmb_status.Text;
+              str_proc_enterprise_create.ExecProc;
+
+              ShowMessage('Registro inserido com sucesso');
+
+              qry.Close;
+              qry.Open;
+              qry.Last;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+    end;
+
+    1 : begin
+          try
+            try
+              if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+                str_proc_enterprise_update.ParamByName('p_ent_cod').AsString                := qry.FieldByName('ent_cod').AsString;;
+                str_proc_enterprise_update.ParamByName('p_ent_type').AsString               := dbcmb_type.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_first_name').AsString         := dbedt_first_name.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_last_name').AsString          := dbedt_last_name.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_nickname').AsString           := dbedt_nickname.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_email').AsString              := dbedt_email.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_cnpj').AsString               := dbedt_cnpj.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_ie').AsString                 := dbedt_ie.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_im').AsString                 := dbedt_im.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_suframa').AsString            := dbedt_suframa.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_add_bus_zipcode').AsString    := dbedt_add_bus_zipcode.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_add_bus_address').AsString    := dbedt_add_bus_address.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_add_bus_number').AsString     := dbedt_add_bus_number.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_add_bus_street').AsString     := dbedt_add_bus_street.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_add_bus_complement').AsString := dbedt_add_bus_complement.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_add_bus_city').AsString       := dbedt_add_bus_city.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_add_bus_state').AsString      := dbedt_add_bus_state.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_add_bus_country').AsString    := dbedt_add_bus_country.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_phone1').AsString             := dbedt_phone1.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_phone2').AsString             := dbedt_phone2.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_phone3').AsString             := dbedt_phone3.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_phone4').AsString             := dbedt_phone4.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_contact').AsString            := dbedt_contact.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_dt_open').AsString            := dbedt_dt_open.Text;
+                str_proc_enterprise_update.ParamByName('p_ent_image1').AsString             := Null;
+                str_proc_enterprise_update.ParamByName('p_ent_status').AsString             := dbcmb_status.Text;
+
+                str_proc_enterprise_update.ExecProc;
+
+                ShowMessage('Registro Salvo com sucesso');
+
+                qry.UpdateRecord;
+              end else begin
+                qry.Cancel;
+              end;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+    end;
+  end;
 end;
 
 procedure Tfrm_enterprise.dbbtnedt_cepPropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
-begin
+begin
   inherited;
-// acbr_cep.BuscarPorCEP(dbbtnedt_cep.Text);
+  acbr_cep.BuscarPorCEP(dbedt_add_bus_zipcode.Text);
 end;
 
 procedure Tfrm_enterprise.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -341,6 +449,14 @@ begin
   inherited;
   frm_enterprise.Destroy;
   frm_enterprise := Nil;
+end;
+
+procedure Tfrm_enterprise.qryBeforeOpen(DataSet: TDataSet);
+begin
+  qry.Filtered                                  := False;
+  qry.ParamByName('contract_ctr_cod').AsString  := frm_dm.v_contract_ctr_cod;
+  qry.Filter                                    := 'ent_deleted_at is null';
+  qry.Filtered                                  := True;
 end;
 
 end.

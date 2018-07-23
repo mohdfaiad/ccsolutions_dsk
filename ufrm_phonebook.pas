@@ -85,7 +85,7 @@ type
   public
     { Public declarations }
     var
-      stats : Integer;
+      status : Integer;
   end;
 
 var
@@ -111,20 +111,20 @@ end;
 procedure Tfrm_phonebook.Action_editExecute(Sender: TObject);
 begin
   inherited;
-  stats := 1;
+  status := 1;
   cxTabSheet_3.Show;
 end;
 
 procedure Tfrm_phonebook.Action_insertExecute(Sender: TObject);
 begin
-  stats := 0;
+  status := 0;
   qry.EmptyDataSet;
   cxTabSheet_3.Show;
 end;
 
 procedure Tfrm_phonebook.Action_saveExecute(Sender: TObject);
 begin
-  case stats of
+  case status of
     0 : begin
           try
             try
@@ -180,7 +180,7 @@ end;
 procedure Tfrm_phonebook.cxGrid_1DBTableView1DblClick(Sender: TObject);
 begin
   inherited;
-  stats := 1;
+  status := 1;
 end;
 
 procedure Tfrm_phonebook.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -193,10 +193,10 @@ end;
 procedure Tfrm_phonebook.qryBeforeOpen(DataSet: TDataSet);
 begin
   inherited;
-  qry.Filtered := False;
-  qry.ParamByName('contract_ctr_cod').AsString := frm_dm.v_contract_ctr_cod;
-  qry.Filter := 'pho_deleted_at is null';
-  qry.Filtered := True;
+  qry.Filtered                                  := False;
+  qry.ParamByName('contract_ctr_cod').AsString  := frm_dm.v_contract_ctr_cod;
+  qry.Filter                                    := 'pho_deleted_at is null';
+  qry.Filtered                                  := True;
 end;
 
 end.

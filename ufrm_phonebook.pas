@@ -3,37 +3,138 @@ unit ufrm_phonebook;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_form_default, cxGraphics,
-  cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxSkinsCore, dxSkinBlack,
-  dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
-  dxSkinDarkSide, dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
-  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
-  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
-  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
-  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
-  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
-  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
-  dxSkinOffice2013White, dxSkinOffice2016Colorful, dxSkinOffice2016Dark,
-  dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
-  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
-  dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, dxBarBuiltInMenu, cxStyles, cxCustomData, cxFilter,
-  cxData, cxDataStorage, cxEdit, cxNavigator,
-  cxDataControllerConditionalFormattingRulesManagerDialog, Data.DB, cxDBData,
-  cxContainer, dxLayoutcxEditAdapters, cxShellComboBox, cxDBLookupComboBox,
-  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
-  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
-  FireDAC.Stan.Async, FireDAC.DApt, frxClass, FireDAC.Comp.Client,
-  QImport3Wizard, QExport4Dialog, ACBrBase, ACBrEnterTab, FireDAC.Comp.DataSet,
-  dxLayoutLookAndFeels, System.ImageList, Vcl.ImgList, cxImageList, Vcl.Menus,
-  cxGridCustomPopupMenu, cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar,
-  cxBarEditItem, cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit,
-  cxCalendar, cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel,
-  cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxGrid, cxPC;
+  Winapi.Windows, 
+  Winapi.Messages, 
+  
+  System.SysUtils, 
+  System.Variants, 
+  System.Classes, 
+  System.ImageList,  
+  System.Actions,    
+  
+  Vcl.Menus,
+  Vcl.ActnList,   
+  Vcl.ImgList,   
+  Vcl.Graphics,
+  Vcl.Controls, 
+  Vcl.Forms, 
+  Vcl.Dialogs, 
+
+  cxGraphics,
+  cxControls, 
+  cxLookAndFeels, 
+  cxLookAndFeelPainters, 
+  dxSkinsCore, 
+  dxSkinBlack,
+  dxSkinBlue, 
+  dxSkinBlueprint, 
+  dxSkinCaramel, 
+  dxSkinCoffee, 
+  dxSkinDarkRoom,
+  dxSkinDarkSide, 
+  dxSkinDevExpressDarkStyle, 
+  dxSkinDevExpressStyle, 
+  dxSkinFoggy,
+  dxSkinGlassOceans, 
+  dxSkinHighContrast, 
+  dxSkiniMaginary, 
+  dxSkinLilian,
+  dxSkinLiquidSky, 
+  dxSkinLondonLiquidSky, 
+  dxSkinMcSkin, 
+  dxSkinMetropolis,
+  dxSkinMetropolisDark, 
+  dxSkinMoneyTwins, 
+  dxSkinOffice2007Black,
+  dxSkinOffice2007Blue, 
+  dxSkinOffice2007Green, 
+  dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver, 
+  dxSkinOffice2010Black, 
+  dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver, 
+  dxSkinOffice2013DarkGray, 
+  dxSkinOffice2013LightGray,
+  dxSkinOffice2013White, 
+  dxSkinOffice2016Colorful, 
+  dxSkinOffice2016Dark,
+  dxSkinPumpkin, 
+  dxSkinSeven, 
+  dxSkinSevenClassic, 
+  dxSkinSharp, 
+  dxSkinSharpPlus,
+  dxSkinSilver, 
+  dxSkinSpringTime, 
+  dxSkinStardust, 
+  dxSkinSummer2008,
+  dxSkinTheAsphaltWorld,
+  dxSkinsDefaultPainters, 
+  dxSkinValentine,
+  dxSkinVisualStudio2013Blue, 
+  dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light, 
+  dxSkinVS2010, 
+  dxSkinWhiteprint,
+  dxSkinXmas2008Blue, 
+  dxBarBuiltInMenu, 
+  cxStyles, 
+  cxCustomData, 
+  cxFilter,
+  cxData, 
+  cxDataStorage, 
+  cxEdit, 
+  cxNavigator,
+  cxDataControllerConditionalFormattingRulesManagerDialog,
+  dxBar,
+  cxBarEditItem, 
+  cxClasses, 
+  dxLayoutContainer, 
+  cxMaskEdit, 
+  cxDropDownEdit,
+  cxCalendar, 
+  cxDBEdit, 
+  cxTextEdit, 
+  dxLayoutControl, 
+  cxGridLevel,
+  cxGridCustomView, 
+  cxGridCustomTableView, 
+  cxGridTableView, 
+  cxGridDBTableView,
+  cxGrid, 
+  cxPC,
+  cxDBData,
+  cxContainer, 
+  dxLayoutcxEditAdapters, 
+  cxShellComboBox, 
+  cxDBLookupComboBox,
+  dxLayoutLookAndFeels, 
+  cxGridCustomPopupMenu, 
+  cxGridPopupMenu,
+  cxImageList,
+   
+  Data.DB,
+  
+  FireDAC.Stan.Intf, 
+  FireDAC.Stan.Option, 
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error, 
+  FireDAC.DatS, 
+  FireDAC.Phys.Intf, 
+  FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, 
+  FireDAC.DApt, 
+  FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet,
+  
+  QImport3Wizard, 
+  QExport4Dialog, 
+  
+  ACBrBase, 
+  ACBrEnterTab, 
+  
+  frxClass, 
+
+  ufrm_form_default;
 
 type
   Tfrm_phonebook = class(Tfrm_form_default)
@@ -70,22 +171,18 @@ type
     cxGrid_1DBTableView1pho_phone4: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_contact: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_dt_registration: TcxGridDBColumn;
-    str_proc_phonebook_create: TFDStoredProc;
-    str_proc_phonebook_delete: TFDStoredProc;
-    str_proc_phonebook_update: TFDStoredProc;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure qryBeforeOpen(DataSet: TDataSet);
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
     procedure cxGrid_1DBTableView1DblClick(Sender: TObject);
+    procedure qryBeforeOpen(DataSet: TDataSet);
   private
     { Private declarations }
+    status : Integer;
   public
     { Public declarations }
-    var
-      status : Integer;
   end;
 
 var
@@ -98,14 +195,27 @@ implementation
 uses ufrm_dm;
 
 procedure Tfrm_phonebook.Action_deleteExecute(Sender: TObject);
+var
+  strproc_delete : TFDStoredProc;
 begin
-  str_proc_phonebook_delete.ParamByName('p_pho_cod').AsString := qry.FieldByName('pho_cod').AsString;
-  str_proc_phonebook_delete.ParamByName('p_pho_deleted_at').AsDateTime := Date + Time;
+  try
+    try
+      strproc_delete := TFDStoredProc.Create(Self);
+      strproc_delete.Connection := frm_dm.connCCS;
+      strproc_delete.StoredProcName := 'proc_phonebook_delete';
+      strproc_delete.Prepare;
 
-  str_proc_phonebook_delete.ExecProc;
+      strproc_delete.ParamByName('p_pho_cod').AsString := qry.FieldByName('pho_cod').AsString;
+      strproc_delete.ParamByName('p_pho_deleted_at').AsDateTime := Date + Time;
+      strproc_delete.ExecProc;
 
-  qry.Close;
-  qry.Open;
+      qry.Close;
+      qry.Open;
+    except on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
+    end;
+  finally
+  end;
 end;
 
 procedure Tfrm_phonebook.Action_editExecute(Sender: TObject);
@@ -123,19 +233,26 @@ begin
 end;
 
 procedure Tfrm_phonebook.Action_saveExecute(Sender: TObject);
+var
+  strproc_create, strproc_update : TFDStoredProc;
 begin
   case status of
-    0 : begin
+    0 : begin         
           try
             try
-              str_proc_phonebook_create.ParamByName('p_contract_ctr_cod').AsString  := frm_dm.v_contract_ctr_cod;
-              str_proc_phonebook_create.ParamByName('p_pho_name').AsString          := dbedt_name.Text;
-              str_proc_phonebook_create.ParamByName('p_pho_contact').AsString       := dbedt_contact.Text;
-              str_proc_phonebook_create.ParamByName('p_pho_phone1').AsString        := dbedt_phone1.Text;
-              str_proc_phonebook_create.ParamByName('p_pho_phone2').AsString        := dbedt_phone2.Text;
-              str_proc_phonebook_create.ParamByName('p_pho_phone3').AsString        := dbedt_phone3.Text;
-              str_proc_phonebook_create.ParamByName('p_pho_phone4').AsString        := dbedt_phone4.Text;
-              str_proc_phonebook_create.ExecProc;
+              strproc_create := TFDStoredProc.Create(Self);
+              strproc_create.Connection := frm_dm.connCCS;
+              strproc_create.StoredProcName := 'proc_phonebook_create';
+              strproc_create.Prepare;
+
+              strproc_create.ParamByName('p_contract_ctr_cod').AsString  := frm_dm.v_contract_ctr_cod;
+              strproc_create.ParamByName('p_pho_name').AsString          := dbedt_name.Text;
+              strproc_create.ParamByName('p_pho_contact').AsString       := dbedt_contact.Text;
+              strproc_create.ParamByName('p_pho_phone1').AsString        := dbedt_phone1.Text;
+              strproc_create.ParamByName('p_pho_phone2').AsString        := dbedt_phone2.Text;
+              strproc_create.ParamByName('p_pho_phone3').AsString        := dbedt_phone3.Text;
+              strproc_create.ParamByName('p_pho_phone4').AsString        := dbedt_phone4.Text;
+              strproc_create.ExecProc;
 
               ShowMessage('Registro inserido com sucesso');
 
@@ -149,18 +266,23 @@ begin
           end;
     end;
 
-    1 : begin
+    1 : begin  
           try
             try
               if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
-                str_proc_phonebook_update.ParamByName('p_pho_cod').AsString           := qry.FieldByName('pho_cod').AsString;
-                str_proc_phonebook_update.ParamByName('p_pho_name').AsString          := dbedt_name.Text;
-                str_proc_phonebook_update.ParamByName('p_pho_contact').AsString       := dbedt_contact.Text;
-                str_proc_phonebook_update.ParamByName('p_pho_phone1').AsString        := dbedt_phone1.Text;
-                str_proc_phonebook_update.ParamByName('p_pho_phone2').AsString        := dbedt_phone2.Text;
-                str_proc_phonebook_update.ParamByName('p_pho_phone3').AsString        := dbedt_phone3.Text;
-                str_proc_phonebook_update.ParamByName('p_pho_phone4').AsString        := dbedt_phone4.Text;
-                str_proc_phonebook_update.ExecProc;
+                strproc_update := TFDStoredProc.Create(Self);
+                strproc_update.Connection := frm_dm.connCCS;
+                strproc_update.StoredProcName := 'proc_phonebook_update';
+                strproc_update.Prepare;
+
+                strproc_update.ParamByName('p_pho_cod').AsString           := qry.FieldByName('pho_cod').AsString;
+                strproc_update.ParamByName('p_pho_name').AsString          := dbedt_name.Text;
+                strproc_update.ParamByName('p_pho_contact').AsString       := dbedt_contact.Text;
+                strproc_update.ParamByName('p_pho_phone1').AsString        := dbedt_phone1.Text;
+                strproc_update.ParamByName('p_pho_phone2').AsString        := dbedt_phone2.Text;
+                strproc_update.ParamByName('p_pho_phone3').AsString        := dbedt_phone3.Text;
+                strproc_update.ParamByName('p_pho_phone4').AsString        := dbedt_phone4.Text;
+                strproc_update.ExecProc;
 
                 ShowMessage('Registro Salvo com sucesso');
 

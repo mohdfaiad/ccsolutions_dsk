@@ -5,10 +5,6 @@ inherited frm_enterprise: Tfrm_enterprise
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ent_id: TcxGridDBColumn
@@ -119,16 +115,12 @@ inherited frm_enterprise: Tfrm_enterprise
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'ent_id'
@@ -146,8 +138,8 @@ inherited frm_enterprise: Tfrm_enterprise
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
               Properties.Items.Strings = (
-                'M - MATRIZ'
-                'F - FILIAL')
+                'M'
+                'F')
               Style.HotTrack = False
               TabOrder = 2
               Width = 121
@@ -209,8 +201,8 @@ inherited frm_enterprise: Tfrm_enterprise
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
               Properties.Items.Strings = (
-                'A - ATIVO'
-                'D - DESATIVADO')
+                'A'
+                'D')
               Style.HotTrack = False
               TabOrder = 4
               Width = 121
@@ -439,6 +431,10 @@ inherited frm_enterprise: Tfrm_enterprise
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl_address: TdxLayoutControl
             Left = 0
             Top = 0
@@ -773,12 +769,15 @@ inherited frm_enterprise: Tfrm_enterprise
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\cadastro\basico\empresa'
     end
   end
+  inherited ds: TDataSource
+    DataSet = nil
+  end
   inherited qry: TFDQuery [5]
-    Active = True
     BeforeOpen = qryBeforeOpen
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'call proc_enterprise_read(:contract_ctr_cod)')
+    Left = 896
     ParamData = <
       item
         Name = 'CONTRACT_CTR_COD'
@@ -1016,6 +1015,7 @@ inherited frm_enterprise: Tfrm_enterprise
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   inherited schadapter: TFDSchemaAdapter [9]
+    Left = 864
   end
   inherited cxGridPopupMenu_1: TcxGridPopupMenu [10]
   end
@@ -2042,399 +2042,5 @@ inherited frm_enterprise: Tfrm_enterprise
     PesquisarIBGE = True
     Left = 703
     Top = 74
-  end
-  object str_proc_enterprise_create: TFDStoredProc
-    Connection = frm_dm.connCCS
-    StoredProcName = 'ccs.proc_enterprise_create'
-    Left = 919
-    Top = 218
-    ParamData = <
-      item
-        Position = 1
-        Name = 'p_contract_ctr_cod'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 32
-      end
-      item
-        Position = 2
-        Name = 'p_ent_type'
-        DataType = ftFixedChar
-        ParamType = ptInput
-        Size = 1
-      end
-      item
-        Position = 3
-        Name = 'p_ent_first_name'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 85
-      end
-      item
-        Position = 4
-        Name = 'p_ent_last_name'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 85
-      end
-      item
-        Position = 5
-        Name = 'p_ent_nickname'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 85
-      end
-      item
-        Position = 6
-        Name = 'p_ent_email'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 65
-      end
-      item
-        Position = 7
-        Name = 'p_ent_cnpj'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end
-      item
-        Position = 8
-        Name = 'p_ent_ie'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end
-      item
-        Position = 9
-        Name = 'p_ent_im'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end
-      item
-        Position = 10
-        Name = 'p_ent_suframa'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end
-      item
-        Position = 11
-        Name = 'p_ent_add_bus_zipcode'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 9
-      end
-      item
-        Position = 12
-        Name = 'p_ent_add_bus_address'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 50
-      end
-      item
-        Position = 13
-        Name = 'p_ent_add_bus_number'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 5
-      end
-      item
-        Position = 14
-        Name = 'p_ent_add_bus_street'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 45
-      end
-      item
-        Position = 15
-        Name = 'p_ent_add_bus_complement'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 50
-      end
-      item
-        Position = 16
-        Name = 'p_ent_add_bus_city'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 35
-      end
-      item
-        Position = 17
-        Name = 'p_ent_add_bus_state'
-        DataType = ftFixedChar
-        ParamType = ptInput
-        Size = 3
-      end
-      item
-        Position = 18
-        Name = 'p_ent_add_bus_country'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end
-      item
-        Position = 19
-        Name = 'p_ent_phone1'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 20
-        Name = 'p_ent_phone2'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 21
-        Name = 'p_ent_phone3'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 22
-        Name = 'p_ent_phone4'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 23
-        Name = 'p_ent_contact'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end
-      item
-        Position = 24
-        Name = 'p_ent_dt_open'
-        DataType = ftDate
-        ParamType = ptInput
-      end
-      item
-        Position = 25
-        Name = 'p_ent_image1'
-        DataType = ftBlob
-        ParamType = ptInput
-      end
-      item
-        Position = 26
-        Name = 'p_ent_status'
-        DataType = ftFixedChar
-        ParamType = ptInput
-        Size = 1
-      end>
-  end
-  object str_proc_enterprise_update: TFDStoredProc
-    Connection = frm_dm.connCCS
-    StoredProcName = 'ccs.proc_enterprise_update'
-    Left = 919
-    Top = 266
-    ParamData = <
-      item
-        Position = 1
-        Name = 'p_ent_cod'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 32
-      end
-      item
-        Position = 2
-        Name = 'p_ent_type'
-        DataType = ftFixedChar
-        ParamType = ptInput
-        Size = 1
-      end
-      item
-        Position = 3
-        Name = 'p_ent_first_name'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 85
-      end
-      item
-        Position = 4
-        Name = 'p_ent_last_name'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 85
-      end
-      item
-        Position = 5
-        Name = 'p_ent_nickname'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 85
-      end
-      item
-        Position = 6
-        Name = 'p_ent_email'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 65
-      end
-      item
-        Position = 7
-        Name = 'p_ent_cnpj'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end
-      item
-        Position = 8
-        Name = 'p_ent_ie'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end
-      item
-        Position = 9
-        Name = 'p_ent_im'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end
-      item
-        Position = 10
-        Name = 'p_ent_suframa'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end
-      item
-        Position = 11
-        Name = 'p_ent_add_bus_zipcode'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 9
-      end
-      item
-        Position = 12
-        Name = 'p_ent_add_bus_address'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 50
-      end
-      item
-        Position = 13
-        Name = 'p_ent_add_bus_number'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 5
-      end
-      item
-        Position = 14
-        Name = 'p_ent_add_bus_street'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 45
-      end
-      item
-        Position = 15
-        Name = 'p_ent_add_bus_complement'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 50
-      end
-      item
-        Position = 16
-        Name = 'p_ent_add_bus_city'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 35
-      end
-      item
-        Position = 17
-        Name = 'p_ent_add_bus_state'
-        DataType = ftFixedChar
-        ParamType = ptInput
-        Size = 3
-      end
-      item
-        Position = 18
-        Name = 'p_ent_add_bus_country'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end
-      item
-        Position = 19
-        Name = 'p_ent_phone1'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 20
-        Name = 'p_ent_phone2'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 21
-        Name = 'p_ent_phone3'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 22
-        Name = 'p_ent_phone4'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 23
-        Name = 'p_ent_contact'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end
-      item
-        Position = 24
-        Name = 'p_ent_dt_open'
-        DataType = ftDate
-        ParamType = ptInput
-      end
-      item
-        Position = 25
-        Name = 'p_ent_image1'
-        DataType = ftBlob
-        ParamType = ptInput
-      end
-      item
-        Position = 26
-        Name = 'p_ent_status'
-        DataType = ftFixedChar
-        ParamType = ptInput
-        Size = 1
-      end>
-  end
-  object str_proc_enterprise_delete: TFDStoredProc
-    Connection = frm_dm.connCCS
-    StoredProcName = 'ccs.proc_enterprise_delete'
-    Left = 919
-    Top = 314
-    ParamData = <
-      item
-        Position = 1
-        Name = 'p_ent_cod'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 32
-      end
-      item
-        Position = 2
-        Name = 'p_ent_deleted_at'
-        DataType = ftDateTime
-        ParamType = ptInput
-      end>
   end
 end

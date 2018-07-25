@@ -219,16 +219,18 @@ inherited frm_phonebook: Tfrm_phonebook
     end
   end
   inherited qry: TFDQuery
+    Active = True
     BeforeOpen = qryBeforeOpen
+    CachedUpdates = True
     Connection = frm_dm.connCCS
     SQL.Strings = (
-      'call proc_phonebook_read(:contract_ctr_cod);')
+      'call proc_phonebook_read(:contract_ctr_cod)')
     ParamData = <
       item
         Name = 'CONTRACT_CTR_COD'
         DataType = ftWideString
         ParamType = ptInput
-        Value = ''
+        Value = Null
       end>
     object qrypho_cod: TStringField
       AutoGenerateValue = arDefault
@@ -327,137 +329,5 @@ inherited frm_phonebook: Tfrm_phonebook
     Datasets = <>
     Variables = <>
     Style = <>
-  end
-  object str_proc_phonebook_create: TFDStoredProc
-    Connection = frm_dm.connCCS
-    StoredProcName = 'ccs.proc_phonebook_create'
-    Left = 762
-    Top = 155
-    ParamData = <
-      item
-        Position = 1
-        Name = 'p_contract_ctr_cod'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 32
-      end
-      item
-        Position = 2
-        Name = 'p_pho_name'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 85
-      end
-      item
-        Position = 3
-        Name = 'p_pho_phone1'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 4
-        Name = 'p_pho_phone2'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 5
-        Name = 'p_pho_phone3'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 6
-        Name = 'p_pho_phone4'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 7
-        Name = 'p_pho_contact'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end>
-  end
-  object str_proc_phonebook_delete: TFDStoredProc
-    Connection = frm_dm.connCCS
-    StoredProcName = 'ccs.proc_phonebook_delete'
-    Left = 762
-    Top = 203
-    ParamData = <
-      item
-        Position = 1
-        Name = 'p_pho_cod'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 32
-      end
-      item
-        Position = 2
-        Name = 'p_pho_deleted_at'
-        DataType = ftDateTime
-        ParamType = ptInput
-      end>
-  end
-  object str_proc_phonebook_update: TFDStoredProc
-    Connection = frm_dm.connCCS
-    StoredProcName = 'ccs.proc_phonebook_update'
-    Left = 762
-    Top = 251
-    ParamData = <
-      item
-        Position = 1
-        Name = 'p_pho_cod'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 32
-      end
-      item
-        Position = 2
-        Name = 'p_pho_name'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 85
-      end
-      item
-        Position = 3
-        Name = 'p_pho_phone1'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 4
-        Name = 'p_pho_phone2'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 5
-        Name = 'p_pho_phone3'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 6
-        Name = 'p_pho_phone4'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 7
-        Name = 'p_pho_contact'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 25
-      end>
   end
 end

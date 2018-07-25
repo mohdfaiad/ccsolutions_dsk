@@ -148,7 +148,7 @@ uses
   frxClass,
   frxDBSet,
 
-  ufrm_form_default;
+  ufrm_form_default, Vcl.ExtCtrls;
 type
   Tfrm_enterprise = class(Tfrm_form_default)
     dbedt_first_name: TcxDBTextEdit;
@@ -217,9 +217,6 @@ type
     OpenDialogLogo: TOpenDialog;
     frx_db_empresa: TfrxDBDataset;
     acbr_cep: TACBrCEP;
-    str_proc_enterprise_create: TFDStoredProc;
-    str_proc_enterprise_update: TFDStoredProc;
-    str_proc_enterprise_delete: TFDStoredProc;
     qrycontract_ctr_cod: TStringField;
     qryent_cod: TStringField;
     qryent_id: TLongWordField;
@@ -307,25 +304,39 @@ procedure Tfrm_enterprise.acbr_cepBuscaEfetuada(Sender: TObject);
 var
   i:Integer;
 begin
-  for i := 0 to acbr_cep.Enderecos.Count -1 do begin
-    qryent_add_bus_address.AsString     := acbr_cep.Enderecos[i].Logradouro;
-    qryent_add_bus_street.AsString      := acbr_cep.Enderecos[i].Bairro;
-    qryent_add_bus_complement.AsString  := acbr_cep.Enderecos[i].Complemento;
-    qryent_add_bus_city.AsString     	  := acbr_cep.Enderecos[i].Municipio;
-    qryent_add_bus_state.AsString       := acbr_cep.Enderecos[i].UF;
-    qryent_add_bus_country.AsString     := 'BRASIL';
+  try
+    try
+      for i := 0 to acbr_cep.Enderecos.Count -1 do begin
+      qryent_add_bus_address.AsString     := acbr_cep.Enderecos[i].Logradouro;
+      qryent_add_bus_street.AsString      := acbr_cep.Enderecos[i].Bairro;
+      qryent_add_bus_complement.AsString  := acbr_cep.Enderecos[i].Complemento;
+      qryent_add_bus_city.AsString     	  := acbr_cep.Enderecos[i].Municipio;
+      qryent_add_bus_state.AsString       := acbr_cep.Enderecos[i].UF;
+      qryent_add_bus_country.AsString     := 'BRASIL';
 
-    dbedt_add_bus_number.SetFocus;
+      dbedt_add_bus_number.SetFocus;
+  end;
+    except on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
+    end;
+  finally
   end;
 end;
 
 
 procedure Tfrm_enterprise.Action_deleteExecute(Sender: TObject);
+var
+  strproc_delete : TFDStoredProc;
 begin
-  str_proc_enterprise_delete.ParamByName('p_ent_cod').AsString := qry.FieldByName('ent_cod').AsString;
-  str_proc_enterprise_delete.ParamByName('p_ent_deleted_at').AsDateTime := Date + Time;
+  strproc_delete := TFDStoredProc.Create(Self);
+  strproc_delete.Connection := frm_dm.connCCS;
+  strproc_delete.StoredProcName := 'proc_enterprise_create';
+  strproc_delete.Prepare;
 
-  str_proc_enterprise_delete.ExecProc;
+  strproc_delete.ParamByName('p_ent_cod').AsString := qry.FieldByName('ent_cod').AsString;
+  strproc_delete.ParamByName('p_ent_deleted_at').AsDateTime := Date + Time;
+
+  strproc_delete.ExecProc;
 
   qry.Close;
   qry.Open;
@@ -345,38 +356,45 @@ procedure Tfrm_enterprise.Action_insertExecute(Sender: TObject);
 end;
 
 procedure Tfrm_enterprise.Action_saveExecute(Sender: TObject);
+var
+  strproc_create, strproc_update : TFDStoredProc;
 begin
   case status of
     0 : begin
           try
             try
-              str_proc_enterprise_create.ParamByName('p_contract_ctr_cod').AsString       := frm_dm.v_contract_ctr_cod;
-              str_proc_enterprise_create.ParamByName('p_ent_type').AsString               := dbcmb_type.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_first_name').AsString         := dbedt_first_name.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_last_name').AsString          := dbedt_last_name.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_nickname').AsString           := dbedt_nickname.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_email').AsString              := dbedt_email.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_cnpj').AsString               := dbedt_cnpj.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_ie').AsString                 := dbedt_ie.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_im').AsString                 := dbedt_im.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_suframa').AsString            := dbedt_suframa.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_add_bus_zipcode').AsString    := dbedt_add_bus_zipcode.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_add_bus_address').AsString    := dbedt_add_bus_address.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_add_bus_number').AsString     := dbedt_add_bus_number.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_add_bus_street').AsString     := dbedt_add_bus_street.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_add_bus_complement').AsString := dbedt_add_bus_complement.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_add_bus_city').AsString       := dbedt_add_bus_city.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_add_bus_state').AsString      := dbedt_add_bus_state.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_add_bus_country').AsString    := dbedt_add_bus_country.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_phone1').AsString             := dbedt_phone1.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_phone2').AsString             := dbedt_phone2.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_phone3').AsString             := dbedt_phone3.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_phone4').AsString             := dbedt_phone4.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_contact').AsString            := dbedt_contact.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_dt_open').AsString            := dbedt_dt_open.Text;
-              str_proc_enterprise_create.ParamByName('p_ent_image1').AsString             := Null;
-              str_proc_enterprise_create.ParamByName('p_ent_status').AsString             := dbcmb_status.Text;
-              str_proc_enterprise_create.ExecProc;
+              strproc_create := TFDStoredProc.Create(Self);
+              strproc_create.Connection := frm_dm.connCCS;
+              strproc_create.StoredProcName := 'proc_enterprise_create';
+              strproc_create.Prepare;
+
+              strproc_create.ParamByName('p_contract_ctr_cod').AsString       := frm_dm.v_contract_ctr_cod;
+              strproc_create.ParamByName('p_ent_type').AsString               := dbcmb_type.Text;
+              strproc_create.ParamByName('p_ent_first_name').AsString         := dbedt_first_name.Text;
+              strproc_create.ParamByName('p_ent_last_name').AsString          := dbedt_last_name.Text;
+              strproc_create.ParamByName('p_ent_nickname').AsString           := dbedt_nickname.Text;
+              strproc_create.ParamByName('p_ent_email').AsString              := dbedt_email.Text;
+              strproc_create.ParamByName('p_ent_cnpj').AsString               := dbedt_cnpj.Text;
+              strproc_create.ParamByName('p_ent_ie').AsString                 := dbedt_ie.Text;
+              strproc_create.ParamByName('p_ent_im').AsString                 := dbedt_im.Text;
+              strproc_create.ParamByName('p_ent_suframa').AsString            := dbedt_suframa.Text;
+              strproc_create.ParamByName('p_ent_add_bus_zipcode').AsString    := dbedt_add_bus_zipcode.Text;
+              strproc_create.ParamByName('p_ent_add_bus_address').AsString    := dbedt_add_bus_address.Text;
+              strproc_create.ParamByName('p_ent_add_bus_number').AsString     := dbedt_add_bus_number.Text;
+              strproc_create.ParamByName('p_ent_add_bus_street').AsString     := dbedt_add_bus_street.Text;
+              strproc_create.ParamByName('p_ent_add_bus_complement').AsString := dbedt_add_bus_complement.Text;
+              strproc_create.ParamByName('p_ent_add_bus_city').AsString       := dbedt_add_bus_city.Text;
+              strproc_create.ParamByName('p_ent_add_bus_state').AsString      := dbedt_add_bus_state.Text;
+              strproc_create.ParamByName('p_ent_add_bus_country').AsString    := dbedt_add_bus_country.Text;
+              strproc_create.ParamByName('p_ent_phone1').AsString             := dbedt_phone1.Text;
+              strproc_create.ParamByName('p_ent_phone2').AsString             := dbedt_phone2.Text;
+              strproc_create.ParamByName('p_ent_phone3').AsString             := dbedt_phone3.Text;
+              strproc_create.ParamByName('p_ent_phone4').AsString             := dbedt_phone4.Text;
+              strproc_create.ParamByName('p_ent_contact').AsString            := dbedt_contact.Text;
+              strproc_create.ParamByName('p_ent_dt_open').AsString            := dbedt_dt_open.Text;
+              strproc_create.ParamByName('p_ent_image1').AsString             := 'Null';
+              strproc_create.ParamByName('p_ent_status').AsString             := dbcmb_status.Text;
+              strproc_create.ExecProc;
 
               ShowMessage('Registro inserido com sucesso');
 
@@ -394,34 +412,38 @@ procedure Tfrm_enterprise.Action_saveExecute(Sender: TObject);
           try
             try
               if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
-                str_proc_enterprise_update.ParamByName('p_ent_cod').AsString                := qry.FieldByName('ent_cod').AsString;;
-                str_proc_enterprise_update.ParamByName('p_ent_type').AsString               := dbcmb_type.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_first_name').AsString         := dbedt_first_name.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_last_name').AsString          := dbedt_last_name.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_nickname').AsString           := dbedt_nickname.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_email').AsString              := dbedt_email.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_cnpj').AsString               := dbedt_cnpj.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_ie').AsString                 := dbedt_ie.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_im').AsString                 := dbedt_im.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_suframa').AsString            := dbedt_suframa.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_add_bus_zipcode').AsString    := dbedt_add_bus_zipcode.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_add_bus_address').AsString    := dbedt_add_bus_address.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_add_bus_number').AsString     := dbedt_add_bus_number.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_add_bus_street').AsString     := dbedt_add_bus_street.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_add_bus_complement').AsString := dbedt_add_bus_complement.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_add_bus_city').AsString       := dbedt_add_bus_city.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_add_bus_state').AsString      := dbedt_add_bus_state.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_add_bus_country').AsString    := dbedt_add_bus_country.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_phone1').AsString             := dbedt_phone1.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_phone2').AsString             := dbedt_phone2.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_phone3').AsString             := dbedt_phone3.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_phone4').AsString             := dbedt_phone4.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_contact').AsString            := dbedt_contact.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_dt_open').AsString            := dbedt_dt_open.Text;
-                str_proc_enterprise_update.ParamByName('p_ent_image1').AsString             := Null;
-                str_proc_enterprise_update.ParamByName('p_ent_status').AsString             := dbcmb_status.Text;
+                strproc_create := TFDStoredProc.Create(Self);
+                strproc_create.Connection := frm_dm.connCCS;
+                strproc_create.StoredProcName := 'proc_enterprise_create';
+                strproc_create.Prepare;
 
-                str_proc_enterprise_update.ExecProc;
+                strproc_create.ParamByName('p_ent_cod').AsString                := qry.FieldByName('ent_cod').AsString;;
+                strproc_create.ParamByName('p_ent_type').AsString               := dbcmb_type.Text;
+                strproc_create.ParamByName('p_ent_first_name').AsString         := dbedt_first_name.Text;
+                strproc_create.ParamByName('p_ent_last_name').AsString          := dbedt_last_name.Text;
+                strproc_create.ParamByName('p_ent_nickname').AsString           := dbedt_nickname.Text;
+                strproc_create.ParamByName('p_ent_email').AsString              := dbedt_email.Text;
+                strproc_create.ParamByName('p_ent_cnpj').AsString               := dbedt_cnpj.Text;
+                strproc_create.ParamByName('p_ent_ie').AsString                 := dbedt_ie.Text;
+                strproc_create.ParamByName('p_ent_im').AsString                 := dbedt_im.Text;
+                strproc_create.ParamByName('p_ent_suframa').AsString            := dbedt_suframa.Text;
+                strproc_create.ParamByName('p_ent_add_bus_zipcode').AsString    := dbedt_add_bus_zipcode.Text;
+                strproc_create.ParamByName('p_ent_add_bus_address').AsString    := dbedt_add_bus_address.Text;
+                strproc_create.ParamByName('p_ent_add_bus_number').AsString     := dbedt_add_bus_number.Text;
+                strproc_create.ParamByName('p_ent_add_bus_street').AsString     := dbedt_add_bus_street.Text;
+                strproc_create.ParamByName('p_ent_add_bus_complement').AsString := dbedt_add_bus_complement.Text;
+                strproc_create.ParamByName('p_ent_add_bus_city').AsString       := dbedt_add_bus_city.Text;
+                strproc_create.ParamByName('p_ent_add_bus_state').AsString      := dbedt_add_bus_state.Text;
+                strproc_create.ParamByName('p_ent_add_bus_country').AsString    := dbedt_add_bus_country.Text;
+                strproc_create.ParamByName('p_ent_phone1').AsString             := dbedt_phone1.Text;
+                strproc_create.ParamByName('p_ent_phone2').AsString             := dbedt_phone2.Text;
+                strproc_create.ParamByName('p_ent_phone3').AsString             := dbedt_phone3.Text;
+                strproc_create.ParamByName('p_ent_phone4').AsString             := dbedt_phone4.Text;
+                strproc_create.ParamByName('p_ent_contact').AsString            := dbedt_contact.Text;
+                strproc_create.ParamByName('p_ent_dt_open').AsString            := dbedt_dt_open.Text;
+                strproc_create.ParamByName('p_ent_image1').AsString             := 'Null';
+                strproc_create.ParamByName('p_ent_status').AsString             := dbcmb_status.Text;
+                strproc_create.ExecProc;
 
                 ShowMessage('Registro Salvo com sucesso');
 

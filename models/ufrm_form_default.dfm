@@ -1391,7 +1391,7 @@ object frm_form_default: Tfrm_form_default
   end
   object qry: TFDQuery
     SchemaAdapter = schadapter
-    Left = 896
+    Left = 928
     Top = 56
   end
   object ACBrEnterTab_1: TACBrEnterTab
@@ -1606,7 +1606,7 @@ object frm_form_default: Tfrm_form_default
     Top = 8
   end
   object schadapter: TFDSchemaAdapter
-    Left = 928
+    Left = 896
     Top = 56
   end
   object frxReport_1: TfrxReport

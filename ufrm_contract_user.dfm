@@ -17,7 +17,6 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitLeft = 2
       ExplicitTop = 27
       ExplicitWidth = 1121
-      ExplicitHeight = 538
       inherited pgctrl_2: TcxPageControl
         Width = 1121
         ExplicitWidth = 1121
@@ -26,7 +25,6 @@ inherited frm_contract_user: Tfrm_contract_user
           ExplicitLeft = 2
           ExplicitTop = 27
           ExplicitWidth = 1113
-          ExplicitHeight = 505
           inherited grid_1: TcxGrid
             Width = 1107
             ExplicitWidth = 1107
@@ -148,10 +146,11 @@ inherited frm_contract_user: Tfrm_contract_user
       ExplicitLeft = 2
       ExplicitTop = 27
       ExplicitWidth = 1121
-      ExplicitHeight = 538
+      ExplicitHeight = 478
       inherited pgctrl_3: TcxPageControl
         Width = 1121
         ExplicitWidth = 1121
+        ExplicitHeight = 478
         ClientRectRight = 1115
         inherited tbsht_5: TcxTabSheet
           ExplicitWidth = 1113
@@ -251,41 +250,42 @@ inherited frm_contract_user: Tfrm_contract_user
               Properties.Buttons = <
                 item
                   Default = True
+                  Glyph.SourceDPI = 96
                   Glyph.Data = {
-                    36040000424D3604000000000000360000002800000010000000100000000100
-                    2000000000000004000000000000000000000000000000000000000000000000
+                    424D360400000000000036000000280000001000000010000000010020000000
+                    000000000000C40E0000C40E0000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
-                    000000000000000000040000000A000000100000001300000015000000140000
-                    00110000000C0000000500000001000000000000000000000000000000000000
-                    00030000000C070404263F271F836E4235CA7A4839DE915644FF774436DE693C
-                    30CE3A2019870704032B00000010000000040000000000000000000000030000
-                    0011442C2486976253F5BE998EFFD9C5BEFFE0CFCAFFEFE6E3FFDDCAC4FFD3BC
-                    B5FFB48B7FFF895140F540231B92000000180000000500000001010204145536
-                    2D9CC5A398FFF2E9E7FFF5EFEDFFBCAEA8FF71574CFF593A2DFF755B4EFFBEAE
-                    A7FFEBE2DEFFE5D8D3FFB79085FF4E2A21A90101021A000000032F23246BB58D
-                    80FFF9F5F4FFF7F3F2FFC1B3ADFF826555FFB19A85FFC2AC97FFB09783FF7F62
-                    51FFC0B0A9FFECE3DFFFECE2DFFFA37467FF28191A750000000A5E4F60E1BCB1
-                    ACFFF6F3F3FFF8F4F3FF7A5E50FFBEA995FF857162FF3F2A22FF746053FFB8A3
-                    8FFF806658FFEEE5E2FFECE2DFFFB1A29CFF503F50E40000000D182C4D885C63
-                    72FFB2B0B0FFF1EEEDFF725242FFDDD1B9FF806D5EFF493229FF493228FFCFC0
-                    A9FF745545FFEBE3E1FFABA6A3FF505566FF142A55AA0000000A05080F21395F
-                    9DFA697F9AFF626160FF55443CFFB2A894FFE4E0C1FF584135FF847466FFA498
-                    87FF58483FFF5F5C5CFF4E6586FF2F5191FF050B173C00000004000000031221
-                    3B685A7FB7FFA6C5E3FF7990ABFF444D59FF3E4248FF2B2A25FF3C4148FF3E48
-                    56FF627D9EFF789DC9FF3C609FFD0B172E630000000600000000000000000000
-                    00030F1B3159315593ED6F91C1FF9BB9DCFFB0CDE9FFCBE8FCFFA7C7E6FF87AA
-                    D3FF5A7EB3FF284B8BF10A152958000000060000000100000000000000000000
-                    0000000000020204071112223E6F1C3765B0213F76D0274C91FC1E3C74D01933
-                    62B40F1F3D750204081700000003000000000000000000000000000000000000
-                    0000000000000000000000000002000000030000000400000005000000050000
-                    0004000000020000000100000000000000000000000000000000000000000000
+                    0000000000040000000A00000010000000130000001500000014000000110000
+                    000C000000050000000100000000000000000000000000000000000000030000
+                    000C070404263F271F836E4235CA7A4839DE915644FF774436DE693C30CE3A20
+                    19870704032B000000100000000400000000000000000000000300000011442C
+                    2486976253F5BE998EFFD9C5BEFFE0CFCAFFEFE6E3FFDDCAC4FFD3BCB5FFB48B
+                    7FFF895140F540231B920000001800000005000000010102041455362D9CC5A3
+                    98FFF2E9E7FFF5EFEDFFBCAEA8FF71574CFF593A2DFF755B4EFFBEAEA7FFEBE2
+                    DEFFE5D8D3FFB79085FF4E2A21A90101021A000000032F23246BB58D80FFF9F5
+                    F4FFF7F3F2FFC1B3ADFF826555FFB19A85FFC2AC97FFB09783FF7F6251FFC0B0
+                    A9FFECE3DFFFECE2DFFFA37467FF28191A750000000A5E4F60E1BCB1ACFFF6F3
+                    F3FFF8F4F3FF7A5E50FFBEA995FF857162FF3F2A22FF746053FFB8A38FFF8066
+                    58FFEEE5E2FFECE2DFFFB1A29CFF503F50E40000000D182C4D885C6372FFB2B0
+                    B0FFF1EEEDFF725242FFDDD1B9FF806D5EFF493229FF493228FFCFC0A9FF7455
+                    45FFEBE3E1FFABA6A3FF505566FF142A55AA0000000A05080F21395F9DFA697F
+                    9AFF626160FF55443CFFB2A894FFE4E0C1FF584135FF847466FFA49887FF5848
+                    3FFF5F5C5CFF4E6586FF2F5191FF050B173C000000040000000312213B685A7F
+                    B7FFA6C5E3FF7990ABFF444D59FF3E4248FF2B2A25FF3C4148FF3E4856FF627D
+                    9EFF789DC9FF3C609FFD0B172E63000000060000000000000000000000030F1B
+                    3159315593ED6F91C1FF9BB9DCFFB0CDE9FFCBE8FCFFA7C7E6FF87AAD3FF5A7E
+                    B3FF284B8BF10A15295800000006000000010000000000000000000000000000
+                    00020204071112223E6F1C3765B0213F76D0274C91FC1E3C74D0193362B40F1F
+                    3D75020408170000000300000000000000000000000000000000000000000000
+                    0000000000000000000200000003000000040000000500000005000000040000
+                    0002000000010000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
-                    0000000000000000000000000000000000000000000000000000}
+                    00000000000000000000000000000000000000000000}
                   Kind = bkGlyph
                 end>
               Properties.EchoMode = eemPassword
@@ -299,41 +299,42 @@ inherited frm_contract_user: Tfrm_contract_user
               Properties.Buttons = <
                 item
                   Default = True
+                  Glyph.SourceDPI = 96
                   Glyph.Data = {
-                    36040000424D3604000000000000360000002800000010000000100000000100
-                    2000000000000004000000000000000000000000000000000000000000000000
+                    424D360400000000000036000000280000001000000010000000010020000000
+                    000000000000C40E0000C40E0000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
-                    000000000000000000040000000A000000100000001300000015000000140000
-                    00110000000C0000000500000001000000000000000000000000000000000000
-                    00030000000C070404263F271F836E4235CA7A4839DE915644FF774436DE693C
-                    30CE3A2019870704032B00000010000000040000000000000000000000030000
-                    0011442C2486976253F5BE998EFFD9C5BEFFE0CFCAFFEFE6E3FFDDCAC4FFD3BC
-                    B5FFB48B7FFF895140F540231B92000000180000000500000001010204145536
-                    2D9CC5A398FFF2E9E7FFF5EFEDFFBCAEA8FF71574CFF593A2DFF755B4EFFBEAE
-                    A7FFEBE2DEFFE5D8D3FFB79085FF4E2A21A90101021A000000032F23246BB58D
-                    80FFF9F5F4FFF7F3F2FFC1B3ADFF826555FFB19A85FFC2AC97FFB09783FF7F62
-                    51FFC0B0A9FFECE3DFFFECE2DFFFA37467FF28191A750000000A5E4F60E1BCB1
-                    ACFFF6F3F3FFF8F4F3FF7A5E50FFBEA995FF857162FF3F2A22FF746053FFB8A3
-                    8FFF806658FFEEE5E2FFECE2DFFFB1A29CFF503F50E40000000D182C4D885C63
-                    72FFB2B0B0FFF1EEEDFF725242FFDDD1B9FF806D5EFF493229FF493228FFCFC0
-                    A9FF745545FFEBE3E1FFABA6A3FF505566FF142A55AA0000000A05080F21395F
-                    9DFA697F9AFF626160FF55443CFFB2A894FFE4E0C1FF584135FF847466FFA498
-                    87FF58483FFF5F5C5CFF4E6586FF2F5191FF050B173C00000004000000031221
-                    3B685A7FB7FFA6C5E3FF7990ABFF444D59FF3E4248FF2B2A25FF3C4148FF3E48
-                    56FF627D9EFF789DC9FF3C609FFD0B172E630000000600000000000000000000
-                    00030F1B3159315593ED6F91C1FF9BB9DCFFB0CDE9FFCBE8FCFFA7C7E6FF87AA
-                    D3FF5A7EB3FF284B8BF10A152958000000060000000100000000000000000000
-                    0000000000020204071112223E6F1C3765B0213F76D0274C91FC1E3C74D01933
-                    62B40F1F3D750204081700000003000000000000000000000000000000000000
-                    0000000000000000000000000002000000030000000400000005000000050000
-                    0004000000020000000100000000000000000000000000000000000000000000
+                    0000000000040000000A00000010000000130000001500000014000000110000
+                    000C000000050000000100000000000000000000000000000000000000030000
+                    000C070404263F271F836E4235CA7A4839DE915644FF774436DE693C30CE3A20
+                    19870704032B000000100000000400000000000000000000000300000011442C
+                    2486976253F5BE998EFFD9C5BEFFE0CFCAFFEFE6E3FFDDCAC4FFD3BCB5FFB48B
+                    7FFF895140F540231B920000001800000005000000010102041455362D9CC5A3
+                    98FFF2E9E7FFF5EFEDFFBCAEA8FF71574CFF593A2DFF755B4EFFBEAEA7FFEBE2
+                    DEFFE5D8D3FFB79085FF4E2A21A90101021A000000032F23246BB58D80FFF9F5
+                    F4FFF7F3F2FFC1B3ADFF826555FFB19A85FFC2AC97FFB09783FF7F6251FFC0B0
+                    A9FFECE3DFFFECE2DFFFA37467FF28191A750000000A5E4F60E1BCB1ACFFF6F3
+                    F3FFF8F4F3FF7A5E50FFBEA995FF857162FF3F2A22FF746053FFB8A38FFF8066
+                    58FFEEE5E2FFECE2DFFFB1A29CFF503F50E40000000D182C4D885C6372FFB2B0
+                    B0FFF1EEEDFF725242FFDDD1B9FF806D5EFF493229FF493228FFCFC0A9FF7455
+                    45FFEBE3E1FFABA6A3FF505566FF142A55AA0000000A05080F21395F9DFA697F
+                    9AFF626160FF55443CFFB2A894FFE4E0C1FF584135FF847466FFA49887FF5848
+                    3FFF5F5C5CFF4E6586FF2F5191FF050B173C000000040000000312213B685A7F
+                    B7FFA6C5E3FF7990ABFF444D59FF3E4248FF2B2A25FF3C4148FF3E4856FF627D
+                    9EFF789DC9FF3C609FFD0B172E63000000060000000000000000000000030F1B
+                    3159315593ED6F91C1FF9BB9DCFFB0CDE9FFCBE8FCFFA7C7E6FF87AAD3FF5A7E
+                    B3FF284B8BF10A15295800000006000000010000000000000000000000000000
+                    00020204071112223E6F1C3765B0213F76D0274C91FC1E3C74D0193362B40F1F
+                    3D75020408170000000300000000000000000000000000000000000000000000
+                    0000000000000000000200000003000000040000000500000005000000040000
+                    0002000000010000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
-                    0000000000000000000000000000000000000000000000000000}
+                    00000000000000000000000000000000000000000000}
                   Kind = bkGlyph
                 end>
               Properties.EchoMode = eemPassword
@@ -389,11 +390,11 @@ inherited frm_contract_user: Tfrm_contract_user
             Caption = 'Acesso ao Sistema'
             Style.Edges = [bLeft, bTop, bRight, bBottom]
             TabOrder = 1
-            Height = 256
+            Height = 196
             Width = 1113
             object AdvOfficeTabSet1: TAdvOfficeTabSet
               Left = 3
-              Top = 222
+              Top = 162
               Width = 1107
               Height = 27
               AdvOfficeTabs = <
@@ -841,7 +842,7 @@ inherited frm_contract_user: Tfrm_contract_user
               Left = 3
               Top = 15
               Width = 638
-              Height = 207
+              Height = 147
               Align = alLeft
               Items = <>
               TabOrder = 1
@@ -865,6 +866,7 @@ inherited frm_contract_user: Tfrm_contract_user
     end
   end
   inherited barman_1: TdxBarManager
+    PixelsPerInch = 96
     inherited edt_report: TcxBarEditItem
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\cadastro\basico\usuario'
     end
@@ -946,6 +948,7 @@ inherited frm_contract_user: Tfrm_contract_user
         Top = 18.897650000000000000
         Width = 718.110700000000000000
         object Memo16: TfrxMemoView
+          AllowVectorExport = True
           Left = 137.338590000000000000
           Top = 7.779530000000000000
           Width = 7.559060000000000000
@@ -959,6 +962,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo9: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 4.559060000000000000
           Width = 570.709030000000000000
@@ -977,6 +981,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo10: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 24.354360000000000000
           Width = 570.709030000000000000
@@ -994,6 +999,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo13: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 43.811070000000000000
           Width = 570.709030000000000000
@@ -1020,6 +1026,7 @@ inherited frm_contract_user: Tfrm_contract_user
             end>
         end
         object Memo15: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 63.811070000000000000
           Width = 570.709030000000000000
@@ -1046,6 +1053,7 @@ inherited frm_contract_user: Tfrm_contract_user
             end>
         end
         object Memo14: TfrxMemoView
+          AllowVectorExport = True
           Left = 148.456710000000000000
           Top = 84.488250000000000000
           Width = 570.709030000000000000
@@ -1072,6 +1080,7 @@ inherited frm_contract_user: Tfrm_contract_user
             end>
         end
         object Picture1: TfrxPictureView
+          AllowVectorExport = True
           Left = 11.456710000000000000
           Top = 10.559060000000000000
           Width = 124.724409450000000000
@@ -1099,6 +1108,7 @@ inherited frm_contract_user: Tfrm_contract_user
         Top = 427.086890000000000000
         Width = 718.110700000000000000
         object Memo21: TfrxMemoView
+          AllowVectorExport = True
           Left = 10.559060000000000000
           Top = 2.779530000000000000
           Width = 695.433520000000000000
@@ -1124,6 +1134,7 @@ inherited frm_contract_user: Tfrm_contract_user
             end>
         end
         object Memo18: TfrxMemoView
+          AllowVectorExport = True
           Left = 10.559060000000000000
           Top = 23.236240000000000000
           Width = 695.433520000000000000
@@ -1156,6 +1167,7 @@ inherited frm_contract_user: Tfrm_contract_user
         Top = 196.535560000000000000
         Width = 718.110700000000000000
         object Shape2: TfrxShapeView
+          AllowVectorExport = True
           Top = 31.574830000000000000
           Width = 718.110700000000000000
           Height = 132.283550000000000000
@@ -1163,6 +1175,7 @@ inherited frm_contract_user: Tfrm_contract_user
         end
         object Memo28: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 106.228417240000000000
           Top = 35.913420000000000000
           Width = 79.370130000000000000
@@ -1176,6 +1189,7 @@ inherited frm_contract_user: Tfrm_contract_user
         end
         object Memo29: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 106.228417240000000000
           Top = 59.811070000000000000
           Width = 498.897960000000000000
@@ -1189,6 +1203,7 @@ inherited frm_contract_user: Tfrm_contract_user
         end
         object Memo30: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 106.228417240000000000
           Top = 85.047310000000000000
           Width = 495.118430000000000000
@@ -1202,6 +1217,7 @@ inherited frm_contract_user: Tfrm_contract_user
         end
         object Memo31: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 351.118337240000000000
           Top = 110.299320000000000000
           Width = 343.937230000000000000
@@ -1215,6 +1231,7 @@ inherited frm_contract_user: Tfrm_contract_user
         end
         object Memo32: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 106.228417240000000000
           Top = 110.299320000000000000
           Width = 136.063080000000000000
@@ -1228,6 +1245,7 @@ inherited frm_contract_user: Tfrm_contract_user
         end
         object Memo33: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 540.094837240000000000
           Top = 35.913420000000000000
           Width = 64.252010000000000000
@@ -1241,6 +1259,7 @@ inherited frm_contract_user: Tfrm_contract_user
         end
         object Memo34: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 325.236457240000000000
           Top = 35.913420000000000000
           Width = 56.692950000000000000
@@ -1253,6 +1272,7 @@ inherited frm_contract_user: Tfrm_contract_user
             '[usuario."ctr_usr_status"]')
         end
         object Memo35: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.511811020000000000
           Top = 35.913420000000000000
           Width = 94.488250000000000000
@@ -1268,6 +1288,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo36: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.511811020000000000
           Top = 59.811070000000000000
           Width = 94.488250000000000000
@@ -1283,6 +1304,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo37: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.511811020000000000
           Top = 85.047310000000000000
           Width = 94.488250000000000000
@@ -1298,6 +1320,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo38: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.511811020000000000
           Top = 137.519790000000000000
           Width = 90.708720000000000000
@@ -1313,6 +1336,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo39: TfrxMemoView
+          AllowVectorExport = True
           Left = 283.086797240000000000
           Top = 137.519790000000000000
           Width = 60.472480000000000000
@@ -1328,6 +1352,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo40: TfrxMemoView
+          AllowVectorExport = True
           Left = 1.511811020000000000
           Top = 110.299320000000000000
           Width = 94.488250000000000000
@@ -1343,6 +1368,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo41: TfrxMemoView
+          AllowVectorExport = True
           Left = 283.086797240000000000
           Top = 110.299320000000000000
           Width = 60.472480000000000000
@@ -1358,6 +1384,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo42: TfrxMemoView
+          AllowVectorExport = True
           Left = 252.850557240000000000
           Top = 35.913420000000000000
           Width = 64.252010000000000000
@@ -1373,6 +1400,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo43: TfrxMemoView
+          AllowVectorExport = True
           Left = 415.370347240000000000
           Top = 35.913420000000000000
           Width = 117.165430000000000000
@@ -1388,6 +1416,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo44: TfrxMemoView
+          AllowVectorExport = True
           Left = 106.228417240000000000
           Top = 137.519790000000000000
           Width = 166.299320000000000000
@@ -1403,6 +1432,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo45: TfrxMemoView
+          AllowVectorExport = True
           Left = 351.118337240000000000
           Top = 137.519790000000000000
           Width = 166.299320000000000000
@@ -1418,6 +1448,7 @@ inherited frm_contract_user: Tfrm_contract_user
           ParentFont = False
         end
         object Memo46: TfrxMemoView
+          AllowVectorExport = True
           Top = 10.897650000000000000
           Width = 204.094620000000000000
           Height = 18.897650000000000000
@@ -1434,6 +1465,7 @@ inherited frm_contract_user: Tfrm_contract_user
         object Memo47: TfrxMemoView
           IndexTag = 1
           Align = baRight
+          AllowVectorExport = True
           Left = 551.811380000000000000
           Top = 11.559060000000000000
           Width = 166.299320000000000000

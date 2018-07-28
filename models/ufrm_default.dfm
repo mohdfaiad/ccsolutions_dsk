@@ -26,7 +26,6 @@ object frm_default: Tfrm_default
     Height = 55
     Align = dalTop
     BarManager = barman_1
-    ExplicitWidth = 962
   end
   object pgctrl_1: TcxPageControl
     Left = 0
@@ -47,6 +46,9 @@ object frm_default: Tfrm_default
     object tbsht_1: TcxTabSheet
       Caption = 'Registros'
       ImageIndex = 0
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
       ExplicitHeight = 538
       object pgctrl_2: TcxPageControl
         Left = 0
@@ -65,6 +67,9 @@ object frm_default: Tfrm_default
         object tbsht_3: TcxTabSheet
           Caption = 'Registros'
           ImageIndex = 0
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
           ExplicitHeight = 505
           object grid_1: TcxGrid
             AlignWithMargins = True
@@ -132,6 +137,8 @@ object frm_default: Tfrm_default
     object tbsht_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 954
       ExplicitHeight = 538
       object pgctrl_3: TcxPageControl
@@ -152,8 +159,6 @@ object frm_default: Tfrm_default
         object tbsht_5: TcxTabSheet
           Caption = 'Informa'#231#245'es'
           ImageIndex = 0
-          ExplicitWidth = 946
-          ExplicitHeight = 505
           DesignSize = (
             992
             445)
@@ -162,7 +167,6 @@ object frm_default: Tfrm_default
             Top = 3
             Anchors = [akLeft, akTop, akRight]
             TabOrder = 0
-            ExplicitWidth = 940
             Height = 54
             Width = 986
             object lbl_cod_id: TcxLabel
@@ -197,8 +201,6 @@ object frm_default: Tfrm_default
             Top = 63
             Anchors = [akLeft, akTop, akRight, akBottom]
             TabOrder = 1
-            ExplicitWidth = 940
-            ExplicitHeight = 439
             Height = 379
             Width = 986
           end
@@ -379,12 +381,13 @@ object frm_default: Tfrm_default
     UseSystemFont = True
     Left = 960
     Top = 8
+    PixelsPerInch = 96
     object barman_bar_other: TdxBar
       Caption = 'Outros'
       CaptionButtons = <>
       DockControl = bardck_1
       DockedDockControl = bardck_1
-      DockedLeft = 396
+      DockedLeft = 410
       DockedTop = 28
       FloatLeft = 1042
       FloatTop = 8
@@ -490,7 +493,7 @@ object frm_default: Tfrm_default
       CaptionButtons = <>
       DockControl = bardck_1
       DockedDockControl = bardck_1
-      DockedLeft = 260
+      DockedLeft = 267
       DockedTop = 0
       FloatLeft = 1042
       FloatTop = 8
@@ -512,7 +515,7 @@ object frm_default: Tfrm_default
       CaptionButtons = <>
       DockControl = bardck_1
       DockedDockControl = bardck_1
-      DockedLeft = 320
+      DockedLeft = 327
       DockedTop = 28
       FloatLeft = 1042
       FloatTop = 8
@@ -680,12 +683,14 @@ object frm_default: Tfrm_default
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
     FieldFormats = <>
+    HelpFile = 'AImportWizard.hlp'
     ErrorLogFileName = 'error.log'
     AddType = qatInsert
     Left = 640
     Top = 8
   end
   object expw_1: TQExport4Dialog
+    HelpFile = 'AExportDialog.hlp'
     Formats.DecimalSeparator = ','
     Formats.ThousandSeparator = '.'
     Formats.DateSeparator = '/'
@@ -876,6 +881,7 @@ object frm_default: Tfrm_default
     end
   end
   object imglist_1: TcxImageList
+    SourceDPI = 96
     FormatVersion = 1
     DesignInfo = 525184
     ImageInfo = <
@@ -1486,7 +1492,7 @@ object frm_default: Tfrm_default
       end>
   end
   object frxReport_1: TfrxReport
-    Version = '6.0.4'
+    Version = '6.1.9'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]

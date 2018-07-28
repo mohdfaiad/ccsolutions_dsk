@@ -3,31 +3,105 @@ unit ufrm_main;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_main_default, cxGraphics,
-  cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxRibbonSkins, dxSkinsCore,
-  dxSkinBlack, dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee,
-  dxSkinDarkRoom, dxSkinDarkSide, dxSkinDevExpressDarkStyle,
-  dxSkinDevExpressStyle, dxSkinFoggy, dxSkinGlassOceans, dxSkinHighContrast,
-  dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky,
-  dxSkinMcSkin, dxSkinMetropolis, dxSkinMetropolisDark, dxSkinMoneyTwins,
-  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
-  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinOffice2010Black,
-  dxSkinOffice2010Blue, dxSkinOffice2010Silver, dxSkinOffice2013DarkGray,
-  dxSkinOffice2013LightGray, dxSkinOffice2013White, dxSkinOffice2016Colorful,
-  dxSkinOffice2016Dark, dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic,
-  dxSkinSharp, dxSkinSharpPlus, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
-  dxSkinSummer2008, dxSkinTheAsphaltWorld, dxSkinsDefaultPainters,
-  dxSkinValentine, dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint, System.UITypes,
-  dxSkinXmas2008Blue, dxSkinsdxRibbonPainter, dxRibbonCustomizationForm,
-  cxContainer, cxEdit, dxSkinscxPCPainter, dxSkinsdxBarPainter,
-  System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList, dxSkinsForm,
-  dxBar, dxStatusBar, dxRibbonStatusBar, cxLabel, dxGalleryControl,
-  dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
-  dxRibbon, dxGDIPlusClasses, Vcl.ExtCtrls, dxBevel, cxLocalization, Vcl.StdCtrls,
-  ufrm_table_price;
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.UITypes,
+  System.ImageList,
+  System.Actions,
+
+  Vcl.ImgList,
+  Vcl.ActnList,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  Vcl.StdCtrls,
+
+  cxGraphics,
+  cxControls,
+  cxLookAndFeels,
+  cxLookAndFeelPainters,
+  dxRibbonSkins,
+  dxSkinsCore,
+  dxSkinBlack,
+  dxSkinBlue,
+  dxSkinBlueprint,
+  dxSkinCaramel,
+  dxSkinCoffee,
+  dxSkinDarkRoom,
+  dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle,
+  dxSkinDevExpressStyle,
+  dxSkinFoggy,
+  dxSkinGlassOceans,
+  dxSkinHighContrast,
+  dxSkiniMaginary,
+  dxSkinLilian,
+  dxSkinLiquidSky,
+  dxSkinLondonLiquidSky,
+  dxSkinMcSkin,
+  dxSkinMetropolis,
+  dxSkinMetropolisDark,
+  dxSkinMoneyTwins,
+  dxSkinOffice2007Black,
+  dxSkinOffice2007Blue,
+  dxSkinOffice2007Green,
+  dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver,
+  dxSkinOffice2010Black,
+  dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver,
+  dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray,
+  dxSkinOffice2013White,
+  dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark,
+  dxSkinPumpkin,
+  dxSkinSeven,
+  dxSkinSevenClassic,
+  dxSkinSharp,
+  dxSkinSharpPlus,
+  dxSkinSilver,
+  dxSkinSpringTime,
+  dxSkinStardust,
+  dxSkinSummer2008,
+  dxSkinTheAsphaltWorld,
+  dxSkinsDefaultPainters,
+  dxSkinValentine,
+  dxSkinVisualStudio2013Blue,
+  dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light,
+  dxSkinVS2010,
+  dxSkinWhiteprint,
+  dxSkinXmas2008Blue,
+  dxSkinsdxRibbonPainter,
+  dxRibbonCustomizationForm,
+  cxContainer,
+  cxEdit,
+  dxSkinscxPCPainter,
+  dxSkinsdxBarPainter,
+  dxSkinsForm,
+  dxBar,
+  dxStatusBar,
+  dxRibbonStatusBar,
+  cxLabel,
+  dxGalleryControl,
+  dxRibbonBackstageViewGalleryControl,
+  dxRibbonBackstageView,
+  cxClasses,
+  dxRibbon,
+  dxGDIPlusClasses,
+  dxBevel,
+  cxLocalization,
+  cxImageList,
+
+  ufrm_table_price,
+  ufrm_main_default;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -74,7 +148,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
-    procedure Action_patientExecute(Sender: TObject);
     procedure Action_enterpriseExecute(Sender: TObject);
     procedure Action_supplierExecute(Sender: TObject);
     procedure Action_phonebookExecute(Sender: TObject);
@@ -101,28 +174,10 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_login, ufrm_contract, ufrm_contract_user, ufrm_enterprise,
-  ufrm_phonebook, ufrm_receipt, ufrm_supplier, ufrm_client,
+uses ufrm_login, ufrm_contract, ufrm_enterprise, ufrm_phonebook, ufrm_receipt,
   ufrm_exam, ufrm_material, ufrm_report, ufrm_insurance, ufrm_department,
   ufrm_medicine, ufrm_requisition_type, ufrm_requisition, ufrm_dm, class_check_enterprise,
-  ufrm_Requisition_Lab, ufrm_patient;
-
-procedure Tfrm_main.Action_patientExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_patient) then
-  begin
-    frm_patient := Tfrm_patient.Create(Self);
-    frm_patient.Height := Bevel_1.Height;
-    frm_patient.Width := Bevel_1.Width;
-    frm_patient.Show;
-  end
-  else
-  begin
-    frm_patient.WindowState := wsNormal;
-    frm_patient.Show;
-  end;
-end;
+  ufrm_supplier, ufrm_client, ufrm_Requisition_Lab, ufrm_patient;
 
 procedure Tfrm_main.acTableExecute(Sender: TObject);
 begin
@@ -161,18 +216,18 @@ end;
 procedure Tfrm_main.Action_contract_userExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_contract_user) then
-  begin
-    frm_contract_user := Tfrm_contract_user.Create(Self);
-    frm_contract_user.Height := Bevel_1.Height;
-    frm_contract_user.Width := Bevel_1.Width;
-    frm_contract_user.Show;
-  end
-  else
-  begin
-    frm_contract_user.WindowState := wsNormal;
-    frm_contract_user.Show;
-  end;
+//  if not Assigned(frm_contract_user) then
+//  begin
+//    frm_contract_user := Tfrm_contract_user.Create(Self);
+//    frm_contract_user.Height := Bevel_1.Height;
+//    frm_contract_user.Width := Bevel_1.Width;
+//    frm_contract_user.Show;
+//  end
+//  else
+//  begin
+//    frm_contract_user.WindowState := wsNormal;
+//    frm_contract_user.Show;
+//  end;
 end;
 
 procedure Tfrm_main.Action_departmentExecute(Sender: TObject);
@@ -204,7 +259,7 @@ begin
   end
   else
   begin
-    frm_contract_user.WindowState := wsNormal;
+    frm_enterprise.WindowState := wsNormal;
     frm_enterprise.Show;
   end;
 end;

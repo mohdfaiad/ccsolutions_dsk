@@ -2,13 +2,22 @@ unit class_report;
 
 interface
 
- uses
-    System.SysUtils, Vcl.Dialogs, Data.DB, FireDAC.Comp.DataSet, Vcl.ExtCtrls,
-    System.Variants, System.Classes, Vcl.Imaging.jpeg, ufrm_dm,FireDAC.Comp.Client;
+uses
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
 
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  Vcl.Imaging.jpeg,
 
- type
+  Data.DB,
 
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+
+  ufrm_dm;
+type
   TReport = class
 
   private
@@ -17,11 +26,7 @@ interface
 
   class function Save_Report(const Contrato: Integer; const Name, Report, Param: string; DataSet: TFDQuery): Boolean;
   class function Read_Report(const Name, Param: string; DataSet: TFDQuery): TMemoryStream;
-
-
   end;
-
-
 
 implementation
 
@@ -29,27 +34,26 @@ implementation
 
 
 class function TReport.Read_Report(const Name, Param: string; DataSet: TFDQuery): TMemoryStream;
- var
-   vStream:TMemoryStream;
+var
+  vStream: TMemoryStream;
 begin
+  DataSet.Close;
+  DataSet.Open;
+  DataSet.Locate(DataSet.Fields[3].FieldName,Name,[loCaseInsensitive, loPartialKey]);
+  vStream :=TMemoryStream.Create;
+  TBlobField(DataSet.fieldbyname(Param)).savetostream( vStream );
+  vStream.Position :=0;
 
-     DataSet.Close;
-     DataSet.Open;      
-     DataSet.Locate(DataSet.Fields[3].FieldName,Name,[loCaseInsensitive, loPartialKey]);
-     vStream :=TMemoryStream.Create;
-     TBlobField(DataSet.fieldbyname(Param)).savetostream( vStream );
-     vStream.Position :=0;
-     Result := vStream;
-
+  Result := vStream;
 end;
 
 class function TReport.Save_Report(const Contrato: Integer; const Name, Report, Param: string; DataSet: TFDQuery): Boolean;
 var
-   i :Integer;
-   sArq:TStream;
-   mMem:TMemoryStream;
+  i: Integer;
+  sArq: TStream;
+  mMem: TMemoryStream;
 begin       
-  try       
+  try
     mMem:=TMemoryStream.Create;
     sArq:= TFileStream.Create(Report,fmOpenRead);
     sArq.Position:=0;
@@ -59,13 +63,12 @@ begin
     DataSet.Open;
     DataSet.Append;
 
-    for i:=0 to DataSet.Fields.Count-1 do
-     begin
+    for i := 0 to DataSet.Fields.Count - 1 do begin
       if (DataSet.Fields[i].Index = 1) then
          (DataSet.Fields[i].Value := Contrato);
       if (DataSet.Fields[i].Index = 2) then
-         (DataSet.Fields[i].Value := Name); 
-     end;
+         (DataSet.Fields[i].Value := Name);
+    end;
 
     TBlobField(DataSet.FieldByName(Param)).LoadFromStream(mMem);
 
@@ -73,11 +76,10 @@ begin
     DataSet.ApplyUpdates(0);
 
     ShowMessage('Relatório salvo com sucesso !');
-
-   finally
+  finally
     FreeAndNil(mMem);
     FreeAndNil(sArq);
-   end;  
+  end;
 end;
 
 end.

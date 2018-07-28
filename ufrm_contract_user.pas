@@ -32,8 +32,10 @@ uses
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, ufrm_dm, Vcl.ComCtrls, dxCore, cxDateUtils, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxCheckBox, Vcl.StdCtrls, frxExportDOCX, frxClass, frxExportBaseDialog, frxExportPDF,
-  Contract_User.Model, Contract_User.Dao, ACBrSocket, ACBrCEP, cxCheckListBox, AdvOfficeTabSet, Vcl.Grids, Vcl.DBGrids,
-  cxButtonEdit, frxDBSet;
+  Contract_User.Model, Contract_User.Dao, ACBrSocket, ACBrCEP, cxCheckListBox, Vcl.Grids, Vcl.DBGrids,
+  cxButtonEdit, frxDBSet,
+  cxDataControllerConditionalFormattingRulesManagerDialog,
+  cxCustomListBox, cxImageList, AdvOfficeTabSet;
 
 type
   Tfrm_contract_user = class(Tfrm_default)
@@ -64,7 +66,6 @@ type
     tbsht_6: TcxTabSheet;
     cxGroupBox3: TcxGroupBox;
     cxGroupBox4: TcxGroupBox;
-    AdvOfficeTabSet1: TAdvOfficeTabSet;
     cxListMenu: TcxCheckListBox;
     cxListEmps: TcxCheckListBox;
     cxLabel3: TcxLabel;
@@ -262,7 +263,7 @@ begin
    try
 
      memSystem_Action.Close;
-     memSystem_Action.Data:= Dao.ExibirActionMudulo(AdvOfficeTabSet1.AdvOfficeTabs[AdvOfficeTabSet1.ActiveTabIndex].Caption,modulo);
+//     memSystem_Action.Data:= Dao.ExibirActionMudulo(AdvOfficeTabSet1.AdvOfficeTabs[AdvOfficeTabSet1.ActiveTabIndex].Caption,modulo);
 
      memSystem_Action.First;
      cxListMenu.Items.clear;
@@ -475,7 +476,7 @@ var
   c: Integer;
 begin
 
-  AdvOfficeTabSet1.AdvOfficeTabs.Clear;
+//  AdvOfficeTabSet1.AdvOfficeTabs.Clear;
 
   with frm_dm.qry,sql do
   begin
@@ -490,7 +491,7 @@ begin
     while not Eof do
      begin
       //ShowMessage( AdvOfficeTabSet1.AdvOfficeTabs.AdvOfficeTabSet.AddTab(FieldByName('sys_act_option').AsString));
-      AdvOfficeTabSet1.AdvOfficeTabs.AdvOfficeTabSet.AddTab(FieldByName('sys_act_option').AsString);
+//      AdvOfficeTabSet1.AdvOfficeTabs.AdvOfficeTabSet.AddTab(FieldByName('sys_act_option').AsString);
       Next;
     end;
   end;
@@ -649,9 +650,9 @@ begin
   inherited;
   //Exibe a lista das empresas do contrato
      montar_empresa;
-
-     AdvOfficeTabSet1.ActiveTabIndex:=1;
-     AdvOfficeTabSet1.ActiveTabIndex:=0;
+//
+//     AdvOfficeTabSet1.ActiveTabIndex:=1;
+//     AdvOfficeTabSet1.ActiveTabIndex:=0;
 end;
 
 end.

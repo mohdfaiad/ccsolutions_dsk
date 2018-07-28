@@ -7,7 +7,6 @@ uses
   ufrm_main in 'ufrm_main.pas' {frm_main},
   ufrm_patient in '..\ufrm_patient.pas' {frm_patient},
   ufrm_contract in '..\ufrm_contract.pas' {frm_contract},
-  ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
   ufrm_enterprise in '..\ufrm_enterprise.pas' {frm_enterprise},
   ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
   ufrm_receipt in '..\ufrm_receipt.pas' {frm_receipt},
@@ -43,12 +42,12 @@ uses
   ufrm_form_default in '..\models\ufrm_form_default.pas' {frm_form_default},
   ufrm_import_default in '..\models\ufrm_import_default.pas' {frm_import_default},
   ufrm_main_default in '..\models\ufrm_main_default.pas' {frm_main_default},
-  ufrm_main_default_2 in '..\models\ufrm_main_default_2.pas' {frm_main_default_2},
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   Employee_Model in '..\Model\Employee_Model.pas',
   Contract_User_Enterprise.Model in '..\Model\Contract_User_Enterprise.Model.pas',
   ufrm_Requisition_Lab in '..\ufrm_Requisition_Lab.pas' {frm_Requisition_Lab},
-  ufrm_client in '..\ufrm_client.pas' {frm_client};
+  ufrm_client in '..\ufrm_client.pas' {frm_client},
+  class_report in '..\class_report.pas';
 
 {$R *.res}
 

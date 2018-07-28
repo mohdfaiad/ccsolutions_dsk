@@ -124,10 +124,6 @@
             <Form>frm_contract</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\ufrm_contract_user.pas">
-            <Form>frm_contract_user</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\ufrm_enterprise.pas">
             <Form>frm_enterprise</Form>
             <FormType>dfm</FormType>
@@ -234,10 +230,6 @@
             <Form>frm_main_default</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\models\ufrm_main_default_2.pas">
-            <Form>frm_main_default_2</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\models\ufrm_search.pas">
             <Form>frm_search</Form>
             <FormType>dfm</FormType>
@@ -252,6 +244,7 @@
             <Form>frm_client</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\class_report.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

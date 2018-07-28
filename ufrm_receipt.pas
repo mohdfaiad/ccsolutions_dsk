@@ -35,7 +35,8 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxMemo, cxCurrencyEdit,
   cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket,
-  ACBrCEP, frxClass, frxDBSet, ACBrExtenso, Vcl.Grids, Vcl.DBGrids;
+  ACBrCEP, frxClass, frxDBSet, ACBrExtenso, Vcl.Grids, Vcl.DBGrids,
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxImageList;
 
 type
   Tfrm_receipt = class(Tfrm_form_default)
@@ -230,7 +231,7 @@ end;
 procedure Tfrm_receipt.FormCreate(Sender: TObject);
 begin
   inherited;
-  FDSchemaAdapter_1.AfterApplyUpdate := limpaCache;
+  schadapter.AfterApplyUpdate := limpaCache;
 end;
 
 procedure Tfrm_receipt.limpaCache(Sender: TObject);

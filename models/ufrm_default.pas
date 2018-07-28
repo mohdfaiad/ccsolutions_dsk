@@ -34,7 +34,7 @@ uses
   cxGridTableView, cxGridDBTableView, cxGrid, cxShellComboBox, cxBarEditItem,
   cxContainer, cxGroupBox, cxTextEdit, cxLabel, dxSkinsdxStatusBarPainter,
   dxSkinsForm, frxClass, frxExportDOCX, frxExportBaseDialog, frxExportPDF, cxCheckBox, ACBrSocket, ACBrCEP,
-  ufrm_dm;
+  ufrm_dm, cxDataControllerConditionalFormattingRulesManagerDialog, cxImageList;
 
 type
   Tfrm_default = class(TForm)

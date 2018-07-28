@@ -716,6 +716,10 @@ inherited frm_patient: Tfrm_patient
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
           OnShow = cxTabSheet_addressShow
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1344,6 +1348,10 @@ inherited frm_patient: Tfrm_patient
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Contatos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1485,6 +1493,10 @@ inherited frm_patient: Tfrm_patient
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1547,6 +1559,10 @@ inherited frm_patient: Tfrm_patient
         end
         object tabTelefonia: TcxTabSheet
           Caption = 'Telefonia'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1700,6 +1716,10 @@ inherited frm_patient: Tfrm_patient
         object tabLaboratorio: TcxTabSheet
           Caption = 'Laborat'#243'rio'
           OnShow = tabLaboratorioShow
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl5: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1801,6 +1821,7 @@ inherited frm_patient: Tfrm_patient
     end
   end
   inherited dxBarManager_1: TdxBarManager
+    PixelsPerInch = 96
     inherited dxBarManager_1Bar6: TdxBar
       ItemLinks = <
         item
@@ -1814,10 +1835,6 @@ inherited frm_patient: Tfrm_patient
     end
     object dxBarButton5: TdxBarButton
       Action = Action_consult_cpf
-      Category = 0
-    end
-    object dxBarButton1: TdxBarButton
-      Action = Action_consult_cnpj
       Category = 0
     end
   end
@@ -1835,6 +1852,11 @@ inherited frm_patient: Tfrm_patient
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
   end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
@@ -2194,9 +2216,6 @@ inherited frm_patient: Tfrm_patient
     Formats.LongTimeFormat = 'hh:mm:ss'
     Top = 24
   end
-  inherited FDSchemaAdapter_1: TFDSchemaAdapter
-    Top = 16
-  end
   inherited frxReport_1: TfrxReport
     Left = 272
     Top = 136
@@ -2224,10 +2243,6 @@ inherited frm_patient: Tfrm_patient
         Width = 718.110700000000000000
       end
     end
-  end
-  inherited ACBrCEP_1: TACBrCEP
-    OnBuscaEfetuada = ACBrCEP_1BuscaEfetuada
-    Top = 16
   end
   object qry_insurance: TFDQuery
     Active = True
@@ -2498,5 +2513,11 @@ inherited frm_patient: Tfrm_patient
       Caption = 'Localizar'
       OnClick = Localizar1Click
     end
+  end
+  object acbr_cep: TACBrCEP
+    ProxyPort = '8080'
+    PesquisarIBGE = True
+    Left = 496
+    Top = 352
   end
 end

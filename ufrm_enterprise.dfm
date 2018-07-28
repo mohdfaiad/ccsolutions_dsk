@@ -115,10 +115,6 @@ inherited frm_enterprise: Tfrm_enterprise
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           inherited dxLayoutControl_1: TdxLayoutControl
@@ -431,10 +427,6 @@ inherited frm_enterprise: Tfrm_enterprise
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl_address: TdxLayoutControl
             Left = 0
             Top = 0
@@ -769,15 +761,12 @@ inherited frm_enterprise: Tfrm_enterprise
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\cadastro\basico\empresa'
     end
   end
-  inherited ds: TDataSource
-    DataSet = nil
-  end
   inherited qry: TFDQuery [5]
+    Active = True
     BeforeOpen = qryBeforeOpen
     Connection = frm_dm.connCCS
     SQL.Strings = (
       'call proc_enterprise_read(:contract_ctr_cod)')
-    Left = 896
     ParamData = <
       item
         Name = 'CONTRACT_CTR_COD'
@@ -1015,7 +1004,6 @@ inherited frm_enterprise: Tfrm_enterprise
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
   inherited schadapter: TFDSchemaAdapter [9]
-    Left = 864
   end
   inherited cxGridPopupMenu_1: TcxGridPopupMenu [10]
   end

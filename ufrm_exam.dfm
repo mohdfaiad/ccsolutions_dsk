@@ -312,8 +312,16 @@ inherited frm_exam: Tfrm_exam
       end
     end
   end
+  inherited dxBarManager_1: TdxBarManager
+    PixelsPerInch = 96
+  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
   end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
@@ -545,8 +553,8 @@ inherited frm_exam: Tfrm_exam
       'concat('#39'0x'#39',hex(mat_cod)) as codMaterial from material'
       'where mat_deleted_at is null'
       'order by mat_name'#10)
-    Left = 792
-    Top = 64
+    Left = 672
+    Top = 56
     object qry_materialmat_id: TLongWordField
       AutoGenerateValue = arDefault
       FieldName = 'mat_id'
@@ -581,7 +589,7 @@ inherited frm_exam: Tfrm_exam
   end
   object ds_material: TDataSource
     DataSet = qry_material
-    Left = 824
-    Top = 64
+    Left = 704
+    Top = 56
   end
 end

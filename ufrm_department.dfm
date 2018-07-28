@@ -11,7 +11,6 @@ inherited frm_department: Tfrm_department
       ExplicitWidth = 1000
       ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
-        ExplicitLeft = 3
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1dep_id: TcxGridDBColumn
             Caption = 'C'#243'd. ID'
@@ -145,8 +144,16 @@ inherited frm_department: Tfrm_department
       end
     end
   end
+  inherited dxBarManager_1: TdxBarManager
+    PixelsPerInch = 96
+  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
   end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert

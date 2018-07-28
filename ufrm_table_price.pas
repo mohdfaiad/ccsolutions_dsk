@@ -35,7 +35,8 @@ uses
   cxGridDBTableView, cxGrid, cxPC, ufrm_dm, cxDBLookupComboBox,
   dxLayoutControlAdapters, Vcl.StdCtrls, cxButtons, cxRadioGroup, cxCurrencyEdit,
   Vcl.ExtCtrls, cxListBox, cxCheckListBox,class_table_price, cxLookupEdit,
-  cxDBLookupEdit, cxLabel;
+  cxDBLookupEdit, cxLabel,
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxImageList;
 
 type
   Tfrm_table_price = class(Tfrm_form_default)
@@ -388,7 +389,7 @@ if not Assigned(FTable_price) then
 
 
 
-FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+schadapter.AfterApplyUpdate:=limpaCache;
 cxTabAlterarPreco.TabVisible:=false;
 end;
 

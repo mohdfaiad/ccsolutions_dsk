@@ -287,8 +287,16 @@
     Width = 928
     ExplicitWidth = 928
   end
+  inherited dxBarManager_1: TdxBarManager
+    PixelsPerInch = 96
+  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
   end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
@@ -419,6 +427,7 @@
         Top = 18.897650000000000000
         Width = 718.110700000000000000
         object enterpriseent_first_name: TfrxMemoView
+          AllowVectorExport = True
           Left = 126.622140000000000000
           Top = 9.559060000000000000
           Width = 578.268090000000000000
@@ -438,6 +447,7 @@
           ParentFont = False
         end
         object enterpriseent_cnpj: TfrxMemoView
+          AllowVectorExport = True
           Left = 126.622140000000000000
           Top = 36.795300000000000000
           Width = 578.268090000000000000
@@ -463,6 +473,7 @@
             end>
         end
         object enterpriseent_add_bus_address: TfrxMemoView
+          AllowVectorExport = True
           Left = 126.622140000000000000
           Top = 61.252010000000000000
           Width = 578.268090000000000000
@@ -490,6 +501,7 @@
             end>
         end
         object Picture1: TfrxPictureView
+          AllowVectorExport = True
           Left = 8.559060000000000000
           Top = 8.559059999999999000
           Width = 113.385900000000000000
@@ -510,6 +522,7 @@
         Top = 128.504020000000000000
         Width = 718.110700000000000000
         object Shape1: TfrxShapeView
+          AllowVectorExport = True
           Left = 1.559060000000000000
           Top = 107.929190000000000000
           Width = 714.331170000000000000
@@ -518,6 +531,7 @@
         end
         object frxDB_RequisitionCliente: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 107.842610000000000000
           Top = 57.228355000000000000
           Width = 400.630180000000000000
@@ -530,6 +544,7 @@
             '[frxDB_Requisition."Cliente"]')
         end
         object Memo1: TfrxMemoView
+          AllowVectorExport = True
           Left = 4.677180000000000000
           Top = 59.118120000000000000
           Width = 83.149660000000000000
@@ -546,6 +561,7 @@
         end
         object frxDB_RequisitionConvnio: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 107.842610000000000000
           Top = 81.023655000000000000
           Width = 400.630180000000000000
@@ -558,6 +574,7 @@
             '[frxDB_Requisition."Conv'#234'nio"]')
         end
         object Memo2: TfrxMemoView
+          AllowVectorExport = True
           Left = 4.677180000000000000
           Top = 82.913420000000000000
           Width = 83.149660000000000000
@@ -574,6 +591,7 @@
         end
         object frxDB_Requisitionreq_dt_registration: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 107.842610000000000000
           Top = 33.338590000000000000
           Width = 143.622140000000000000
@@ -592,6 +610,7 @@
           ParentFont = False
         end
         object Memo3: TfrxMemoView
+          AllowVectorExport = True
           Left = 4.677180000000000000
           Top = 33.338590000000000000
           Width = 98.267780000000000000
@@ -608,6 +627,7 @@
         end
         object frxDB_RequisitionTipoexame: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 82.149660000000000000
           Top = 119.047310000000000000
           Width = 400.630180000000000000
@@ -626,6 +646,7 @@
           ParentFont = False
         end
         object Memo4: TfrxMemoView
+          AllowVectorExport = True
           Left = 4.677180000000000000
           Top = 119.047310000000000000
           Width = 68.031540000000000000
@@ -642,6 +663,7 @@
         end
         object frxDB_Requisitionreq_id: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 645.181510000000000000
           Top = 111.929190000000000000
           Width = 64.252010000000000000
@@ -660,6 +682,7 @@
           ParentFont = False
         end
         object Memo5: TfrxMemoView
+          AllowVectorExport = True
           Left = 574.031850000000000000
           Top = 111.929190000000000000
           Width = 68.031540000000000000
@@ -685,6 +708,7 @@
         DataSetName = 'frxDBD_Requisition_iten'
         RowCount = 0
         object Line1: TfrxLineView
+          AllowVectorExport = True
           Left = 1.559060000000000000
           Top = 25.677180000000000000
           Width = 714.331170000000000000
@@ -693,6 +717,7 @@
           Diagonal = True
         end
         object Memo8: TfrxMemoView
+          AllowVectorExport = True
           Left = 11.338590000000000000
           Top = 3.779530000000020000
           Width = 75.590600000000000000
@@ -708,6 +733,7 @@
           ParentFont = False
         end
         object Memo9: TfrxMemoView
+          AllowVectorExport = True
           Left = 102.047310000000000000
           Top = 3.779530000000020000
           Width = 94.488250000000000000
@@ -723,6 +749,7 @@
           ParentFont = False
         end
         object Memo10: TfrxMemoView
+          AllowVectorExport = True
           Left = 480.000310000000000000
           Top = 3.779530000000020000
           Width = 94.488250000000000000
@@ -749,6 +776,7 @@
         RowCount = 0
         object frxDBD_Requisition_itenproduct_pro_id: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 11.338590000000000000
           Top = 5.559059999999990000
           Width = 79.370130000000000000
@@ -762,6 +790,7 @@
         end
         object frxDBD_Requisition_itenExame: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 102.047310000000000000
           Top = 5.559059999999990000
           Width = 343.937230000000000000
@@ -775,6 +804,7 @@
         end
         object frxDBD_Requisition_itenproduct_value: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 480.000310000000000000
           Top = 5.559059999999988000
           Width = 105.826840000000000000
@@ -794,6 +824,7 @@
         Top = 540.472790000000000000
         Width = 718.110700000000000000
         object Memo7: TfrxMemoView
+          AllowVectorExport = True
           Left = 364.141930000000000000
           Top = 6.000000000000000000
           Width = 98.267780000000000000
@@ -809,6 +840,7 @@
           ParentFont = False
         end
         object Memo6: TfrxMemoView
+          AllowVectorExport = True
           Left = 480.000310000000000000
           Top = 6.000000000000000000
           Width = 94.488250000000000000
@@ -827,6 +859,7 @@
         Top = 461.102660000000000000
         Width = 718.110700000000000000
         object Line2: TfrxLineView
+          AllowVectorExport = True
           Left = 1.559060000000000000
           Top = 3.779530000000020000
           Width = 714.331170000000000000
@@ -1324,7 +1357,6 @@
     MasterFields = 'req_id'
     DetailFields = 'requisition_req_id'
     Connection = frm_dm.connCCS
-    SchemaAdapter = FDSchemaAdapter_1
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True
     SQL.Strings = (

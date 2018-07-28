@@ -24,7 +24,7 @@ uses
   dxRibbon, cxClasses, dxSkinsForm, System.ImageList, Vcl.ImgList,
   System.Actions, Vcl.ActnList, dxStatusBar, Vcl.Menus, cxContainer, cxEdit,
   cxImage, dxBevel, Vcl.ToolWin, Vcl.ComCtrls, Vcl.ExtCtrls, dxGDIPlusClasses,
-  AdvMenus;
+  AdvMenus, cxImageList;
 
 type
   Tfrm_main_default_2 = class(TForm)
@@ -37,7 +37,6 @@ type
     Bevel_1: TBevel;
     Image_1: TImage;
     ToolButton1: TToolButton;
-    AdvMainMenu_1: TAdvMainMenu;
     Systema1: TMenuItem;
     Cadastros1: TMenuItem;
     SairdoSistema1: TMenuItem;

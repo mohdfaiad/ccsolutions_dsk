@@ -36,7 +36,8 @@ uses
   cxButtonEdit, cxImage, cxShellComboBox, QExport4Dialog, cxBarEditItem,
   dxBarExtItems, QImport3Wizard, Vcl.StdCtrls, frxClass, ACBrSocket, ACBrCEP,
   dxLayoutControlAdapters, cxButtons, cxDBLookupComboBox, ufrm_main_default, Vcl.Grids, Vcl.DBGrids,
-  cxGroupBox, cxRadioGroup;
+  cxGroupBox, cxRadioGroup,
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxImageList;
 
 type
   Tfrm_patient = class(Tfrm_form_default)
@@ -219,7 +220,6 @@ type
     dxBarButton5: TdxBarButton;
     Action_consult_cpf: TAction;
     Action_consult_cnpj: TAction;
-    dxBarButton1: TdxBarButton;
     tabTelefonia: TcxTabSheet;
     Label1: TLabel;
     dxLayoutControl4Group_Root: TdxLayoutGroup;
@@ -334,6 +334,7 @@ type
     qrycli_rh_factor: TStringField;
     qrycli_du_factor: TStringField;
     qrycli_cns: TStringField;
+    acbr_cep: TACBrCEP;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);
@@ -393,13 +394,13 @@ begin
   inherited;
  if cep = 1 then
   begin
-    for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+    for I := 0 to acbr_cep.Enderecos.Count -1 do
     begiN
-     qrycli_add_bus_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
-     qrycli_add_bus_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
-     qrycli_add_bus_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
-     qrycli_add_bus_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
-     qrycli_add_bus_state.AsString     := ACBrCEP_1.Enderecos[i].UF;
+     qrycli_add_bus_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
+     qrycli_add_bus_street.AsString     := acbr_cep.Enderecos[i].Bairro;
+     qrycli_add_bus_complement.AsString     := acbr_cep.Enderecos[i].Complemento;
+     qrycli_add_bus_city.AsString     	 := acbr_cep.Enderecos[i].Municipio;
+     qrycli_add_bus_state.AsString     := acbr_cep.Enderecos[i].UF;
      qrycli_add_bus_country.AsString     := 'BRASIL';
      cxDBTextEdit22.SetFocus;
     end;
@@ -407,13 +408,13 @@ begin
 
   if cep = 2 then
   begin
-    for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+    for I := 0 to acbr_cep.Enderecos.Count -1 do
     begiN
-     qrycli_add_bil_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
-     qrycli_add_bil_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
-     qrycli_add_bil_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
-     qrycli_add_bus_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
-     qrycli_add_bil_city.AsString     := ACBrCEP_1.Enderecos[i].UF;
+     qrycli_add_bil_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
+     qrycli_add_bil_street.AsString     := acbr_cep.Enderecos[i].Bairro;
+     qrycli_add_bil_complement.AsString     := acbr_cep.Enderecos[i].Complemento;
+     qrycli_add_bus_city.AsString     	 := acbr_cep.Enderecos[i].Municipio;
+     qrycli_add_bil_city.AsString     := acbr_cep.Enderecos[i].UF;
      qrycli_add_bil_country.AsString     := 'BRASIL';
      cxDBTextEdit14.SetFocus;
     end;
@@ -421,13 +422,13 @@ begin
 
  if cep = 3 then
   begin
-    for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+    for I := 0 to acbr_cep.Enderecos.Count -1 do
     begiN
-     qrycli_add_del_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
-     qrycli_add_del_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
-     qrycli_add_del_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
-     qrycli_add_del_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
-     qrycli_add_bil_city.AsString     := ACBrCEP_1.Enderecos[i].UF;
+     qrycli_add_del_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
+     qrycli_add_del_street.AsString     := acbr_cep.Enderecos[i].Bairro;
+     qrycli_add_del_complement.AsString     := acbr_cep.Enderecos[i].Complemento;
+     qrycli_add_del_city.AsString     	 := acbr_cep.Enderecos[i].Municipio;
+     qrycli_add_bil_city.AsString     := acbr_cep.Enderecos[i].UF;
      qrycli_add_del_country.AsString     := 'BRASIL';
      cxDBTextEdit6.SetFocus;
     end;
@@ -614,7 +615,7 @@ procedure Tfrm_patient.cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
 begin
   inherited;
   cep:=2;
-  ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit1.Text);
+  acbr_cep.BuscarPorCEP(cxDBButtonEdit1.Text);
 end;
 
 procedure Tfrm_patient.cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
@@ -622,7 +623,7 @@ procedure Tfrm_patient.cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
 begin
   inherited;
  cep:=1;
- ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit2.Text);
+ acbr_cep.BuscarPorCEP(cxDBButtonEdit2.Text);
 end;
 
 procedure Tfrm_patient.cxDBButtonEdit3PropertiesButtonClick(Sender: TObject;
@@ -630,7 +631,7 @@ procedure Tfrm_patient.cxDBButtonEdit3PropertiesButtonClick(Sender: TObject;
 begin
   inherited;
   cep:=3;
-  ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit3.Text);
+  acbr_cep.BuscarPorCEP(cxDBButtonEdit3.Text);
 end;
 
 procedure Tfrm_patient.cxDBComboBox1PropertiesChange(Sender: TObject);
@@ -845,7 +846,7 @@ end;
 procedure Tfrm_patient.FormCreate(Sender: TObject);
 begin
   inherited;
-  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+  schadapter.AfterApplyUpdate:=limpaCache;
 //  tabLaboratorio.TabVisible:=modulo = 'LABORATORIO';
   tabTelefonia.TabVisible:=modulo = 'TELEFONIA';
 end;

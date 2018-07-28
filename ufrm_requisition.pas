@@ -24,7 +24,8 @@ uses
   dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar, cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC, cxLookupEdit,
   cxDBLookupEdit, cxDBLookupComboBox, Vcl.Grids, Vcl.DBGrids, frxDBSet, cxCheckBox, dxLayoutControlAdapters,
-  Vcl.StdCtrls, Vcl.Buttons;
+  Vcl.StdCtrls, Vcl.Buttons,
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxImageList;
 
 type
   Tfrm_requisition = class(Tfrm_form_default)
@@ -221,7 +222,7 @@ end;
 procedure Tfrm_requisition.FormCreate(Sender: TObject);
 begin
   inherited;
-  FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+  schadapter.AfterApplyUpdate:=limpaCache;
 end;
 
 procedure Tfrm_requisition.limpaCache(Sender: TObject);

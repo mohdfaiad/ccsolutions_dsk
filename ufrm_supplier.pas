@@ -34,7 +34,8 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxShellComboBox, QExport4Dialog, cxBarEditItem, dxBarExtItems,
-  QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, frxDBSet, cxDBLookupComboBox;
+  QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, frxDBSet, cxDBLookupComboBox,
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxImageList;
 
 type
   Tfrm_supplier = class(Tfrm_form_default)
@@ -144,6 +145,7 @@ type
     cxGrid_1DBTableView1sup_id: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_status: TcxGridDBColumn;
     frx_db_fornecedor: TfrxDBDataset;
+    acbr_cep: TACBrCEP;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
@@ -175,13 +177,13 @@ procedure Tfrm_supplier.ACBrCEP_1BuscaEfetuada(Sender: TObject);
 i:Integer;
 begin
   inherited;
-  for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+  for I := 0 to acbr_cep.Enderecos.Count -1 do
     begiN
-     qrysup_add_bus_address.AsString    := ACBrCEP_1.Enderecos[i].Logradouro;
-     qrysup_add_bus_street.AsString     := ACBrCEP_1.Enderecos[i].Bairro;
-     qrysup_add_bus_complement.AsString     := ACBrCEP_1.Enderecos[i].Complemento;
-     qrysup_add_bus_city.AsString     	 := ACBrCEP_1.Enderecos[i].Municipio;
-     qrysup_add_bus_state.AsString     := ACBrCEP_1.Enderecos[i].UF;
+     qrysup_add_bus_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
+     qrysup_add_bus_street.AsString     := acbr_cep.Enderecos[i].Bairro;
+     qrysup_add_bus_complement.AsString     := acbr_cep.Enderecos[i].Complemento;
+     qrysup_add_bus_city.AsString     	 := acbr_cep.Enderecos[i].Municipio;
+     qrysup_add_bus_state.AsString     := acbr_cep.Enderecos[i].UF;
      qrysup_add_bus_country.AsString     := 'BRASIL';
      cxDBTextEdit22.SetFocus;
     end;
@@ -271,7 +273,7 @@ procedure Tfrm_supplier.cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
   AButtonIndex: Integer);
 begin
   inherited;
- ACBrCEP_1.BuscarPorCEP(cxDBButtonEdit2.Text);
+ acbr_cep.BuscarPorCEP(cxDBButtonEdit2.Text);
 end;
 
 procedure Tfrm_supplier.ExibirRegistros;

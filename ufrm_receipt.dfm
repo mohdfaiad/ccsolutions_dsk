@@ -4,7 +4,6 @@ inherited frm_receipt: Tfrm_receipt
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_1
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -225,6 +224,7 @@ inherited frm_receipt: Tfrm_receipt
     end
   end
   inherited dxBarManager_1: TdxBarManager
+    PixelsPerInch = 96
     inherited cxBarEditItem_1: TcxBarEditItem
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\financeiro\recibo'
     end
@@ -237,6 +237,11 @@ inherited frm_receipt: Tfrm_receipt
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
   end
   inherited qry: TFDQuery
     Active = True
@@ -411,6 +416,7 @@ inherited frm_receipt: Tfrm_receipt
         AllowSplit = True
         Child = frxReport_1.Child1
         object Picture1: TfrxPictureView
+          AllowVectorExport = True
           Left = 7.559060000000000000
           Top = 7.559060000000000000
           Width = 132.283550000000000000
@@ -2433,6 +2439,7 @@ inherited frm_receipt: Tfrm_receipt
           TransparentColor = clWhite
         end
         object Memo1: TfrxMemoView
+          AllowVectorExport = True
           Left = 430.866420000000000000
           Top = 7.559060000000000000
           Width = 173.858380000000000000
@@ -2448,6 +2455,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Shape1: TfrxShapeView
+          AllowVectorExport = True
           Left = 428.866420000000000000
           Top = 60.252010000000000000
           Width = 283.464750000000000000
@@ -2456,6 +2464,7 @@ inherited frm_receipt: Tfrm_receipt
           Shape = skRoundRectangle
         end
         object Shape2: TfrxShapeView
+          AllowVectorExport = True
           Left = 608.504330000000000000
           Top = 7.559060000000000000
           Width = 102.047310000000000000
@@ -2464,6 +2473,7 @@ inherited frm_receipt: Tfrm_receipt
           Shape = skRoundRectangle
         end
         object Memo2: TfrxMemoView
+          AllowVectorExport = True
           Left = 434.645950000000000000
           Top = 64.031540000000000000
           Width = 30.236240000000000000
@@ -2479,6 +2489,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Shape3: TfrxShapeView
+          AllowVectorExport = True
           Left = 7.559060000000000000
           Top = 111.858380000000000000
           Width = 699.213050000000000000
@@ -2487,6 +2498,7 @@ inherited frm_receipt: Tfrm_receipt
           Shape = skRoundRectangle
         end
         object Memo3: TfrxMemoView
+          AllowVectorExport = True
           Left = 22.677180000000000000
           Top = 143.622140000000000000
           Width = 120.944960000000000000
@@ -2503,6 +2515,7 @@ inherited frm_receipt: Tfrm_receipt
         end
         object frxDadosReciborec_id: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 616.063390000000000000
           Top = 18.897650000000000000
           Width = 79.370130000000000000
@@ -2523,6 +2536,7 @@ inherited frm_receipt: Tfrm_receipt
         end
         object frx_db_reciborec_value: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 480.000310000000000000
           Top = 69.031540000000000000
           Width = 219.212740000000000000
@@ -2544,6 +2558,7 @@ inherited frm_receipt: Tfrm_receipt
         end
         object frx_db_recibo_clientecli_first_name: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 151.181200000000000000
           Top = 143.622140000000000000
           Width = 544.252320000000000000
@@ -2563,6 +2578,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Memo4: TfrxMemoView
+          AllowVectorExport = True
           Left = 22.677180000000000000
           Top = 177.637910000000000000
           Width = 120.944960000000000000
@@ -2578,6 +2594,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Memo5: TfrxMemoView
+          AllowVectorExport = True
           Left = 150.401670000000000000
           Top = 177.637910000000000000
           Width = 544.252320000000000000
@@ -2594,6 +2611,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Memo6: TfrxMemoView
+          AllowVectorExport = True
           Left = 18.897650000000000000
           Top = 230.110390000000000000
           Width = 120.944960000000000000
@@ -2610,6 +2628,7 @@ inherited frm_receipt: Tfrm_receipt
         end
         object frx_db_reciborec_description: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 151.181200000000000000
           Top = 230.110390000000000000
           Width = 544.252320000000000000
@@ -2629,6 +2648,7 @@ inherited frm_receipt: Tfrm_receipt
         end
         object enterpriseent_first_name: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 143.622140000000000000
           Top = 11.338590000000000000
           Width = 264.567100000000000000
@@ -2647,6 +2667,7 @@ inherited frm_receipt: Tfrm_receipt
         end
         object enterpriseent_cnpj: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 143.622140000000000000
           Top = 34.015770000000000000
           Width = 264.567100000000000000
@@ -2664,6 +2685,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Memo7: TfrxMemoView
+          AllowVectorExport = True
           Left = 151.999999990000000000
           Top = 319.102350000000000000
           Width = 546.488250000000000000
@@ -2690,6 +2712,7 @@ inherited frm_receipt: Tfrm_receipt
             end>
         end
         object Memo8: TfrxMemoView
+          AllowVectorExport = True
           Left = 225.333333330000000000
           Top = 383.102350000000000000
           Width = 414.666666670000000000
@@ -2707,6 +2730,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Line1: TfrxLineView
+          AllowVectorExport = True
           Left = 227.000000000000000000
           Top = 380.769016670000000000
           Width = 414.000000000000000000
@@ -2714,6 +2738,7 @@ inherited frm_receipt: Tfrm_receipt
           Frame.Typ = [ftTop]
         end
         object Line3: TfrxLineView
+          AllowVectorExport = True
           Left = 11.000000000000000000
           Top = 473.102350000000000000
           Width = 694.000000000000000000
@@ -2731,6 +2756,7 @@ inherited frm_receipt: Tfrm_receipt
         ToNRows = 0
         ToNRowsMode = rmCount
         object Picture2: TfrxPictureView
+          AllowVectorExport = True
           Left = 8.000000000000000000
           Top = 11.220160000000000000
           Width = 132.283550000000000000
@@ -4753,6 +4779,7 @@ inherited frm_receipt: Tfrm_receipt
           TransparentColor = clWhite
         end
         object Memo9: TfrxMemoView
+          AllowVectorExport = True
           Left = 431.307360000000000000
           Top = 11.220160000000000000
           Width = 173.858380000000000000
@@ -4768,6 +4795,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Shape4: TfrxShapeView
+          AllowVectorExport = True
           Left = 429.307360000000000000
           Top = 63.913110000000000000
           Width = 283.464750000000000000
@@ -4776,6 +4804,7 @@ inherited frm_receipt: Tfrm_receipt
           Shape = skRoundRectangle
         end
         object Shape5: TfrxShapeView
+          AllowVectorExport = True
           Left = 608.945270000000000000
           Top = 11.220160000000000000
           Width = 102.047310000000000000
@@ -4784,6 +4813,7 @@ inherited frm_receipt: Tfrm_receipt
           Shape = skRoundRectangle
         end
         object Memo10: TfrxMemoView
+          AllowVectorExport = True
           Left = 435.086890000000000000
           Top = 67.692640000000000000
           Width = 30.236240000000000000
@@ -4799,6 +4829,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Shape6: TfrxShapeView
+          AllowVectorExport = True
           Left = 8.000000000000000000
           Top = 115.519480000000000000
           Width = 699.213050000000000000
@@ -4807,6 +4838,7 @@ inherited frm_receipt: Tfrm_receipt
           Shape = skRoundRectangle
         end
         object Memo11: TfrxMemoView
+          AllowVectorExport = True
           Left = 23.118120000000000000
           Top = 147.283240000000000000
           Width = 120.944960000000000000
@@ -4823,6 +4855,7 @@ inherited frm_receipt: Tfrm_receipt
         end
         object Memo12: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 616.504330000000000000
           Top = 22.558750000000000000
           Width = 79.370130000000000000
@@ -4843,6 +4876,7 @@ inherited frm_receipt: Tfrm_receipt
         end
         object Memo13: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 480.441250000000000000
           Top = 72.692640000000000000
           Width = 219.212740000000000000
@@ -4864,6 +4898,7 @@ inherited frm_receipt: Tfrm_receipt
         end
         object Memo14: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 151.622140000000000000
           Top = 147.283240000000000000
           Width = 544.252320000000000000
@@ -4883,6 +4918,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Memo15: TfrxMemoView
+          AllowVectorExport = True
           Left = 23.118120000000000000
           Top = 181.299010000000000000
           Width = 120.944960000000000000
@@ -4898,6 +4934,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Memo16: TfrxMemoView
+          AllowVectorExport = True
           Left = 150.842610000000000000
           Top = 181.299010000000000000
           Width = 544.252320000000000000
@@ -4914,6 +4951,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Memo17: TfrxMemoView
+          AllowVectorExport = True
           Left = 19.338590000000000000
           Top = 233.771490000000000000
           Width = 120.944960000000000000
@@ -4930,6 +4968,7 @@ inherited frm_receipt: Tfrm_receipt
         end
         object Memo18: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 151.622140000000000000
           Top = 233.771490000000000000
           Width = 544.252320000000000000
@@ -4949,6 +4988,7 @@ inherited frm_receipt: Tfrm_receipt
         end
         object Memo19: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 144.063080000000000000
           Top = 14.999690000000000000
           Width = 264.567100000000000000
@@ -4967,6 +5007,7 @@ inherited frm_receipt: Tfrm_receipt
         end
         object Memo20: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 144.063080000000000000
           Top = 37.676870000000000000
           Width = 264.567100000000000000
@@ -4984,6 +5025,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Memo21: TfrxMemoView
+          AllowVectorExport = True
           Left = 152.440939990000000000
           Top = 322.763450000000000000
           Width = 546.488250000000000000
@@ -5010,6 +5052,7 @@ inherited frm_receipt: Tfrm_receipt
             end>
         end
         object Memo22: TfrxMemoView
+          AllowVectorExport = True
           Left = 225.774273330000000000
           Top = 386.763450000000000000
           Width = 414.666666670000000000
@@ -5027,6 +5070,7 @@ inherited frm_receipt: Tfrm_receipt
           ParentFont = False
         end
         object Line2: TfrxLineView
+          AllowVectorExport = True
           Left = 227.440940000000000000
           Top = 384.430116670000000000
           Width = 414.000000000000000000

@@ -128,7 +128,17 @@ inherited frm_insurance: Tfrm_insurance
           ExplicitWidth = 986
           ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
-            object cxDBTextEdit5: TcxDBTextEdit [0]
+            inherited dbedt_id: TcxDBTextEdit
+              Left = 67
+              DataBinding.DataField = 'ins_id'
+              ExplicitLeft = 67
+            end
+            inherited dbedt_dt_registration: TcxDBDateEdit
+              Left = 240
+              DataBinding.DataField = 'ins_dt_registration'
+              ExplicitLeft = 240
+            end
+            object cxDBTextEdit5: TcxDBTextEdit [2]
               Left = 240
               Top = 249
               DataBinding.DataField = 'ins_im'
@@ -138,7 +148,7 @@ inherited frm_insurance: Tfrm_insurance
               TabOrder = 10
               Width = 130
             end
-            object cxDBDateEdit2: TcxDBDateEdit [1]
+            object cxDBDateEdit2: TcxDBDateEdit [3]
               Left = 67
               Top = 103
               DataBinding.DataField = 'ins_dt_open'
@@ -147,7 +157,7 @@ inherited frm_insurance: Tfrm_insurance
               TabOrder = 2
               Width = 121
             end
-            object cxDBComboBox1: TcxDBComboBox [2]
+            object cxDBComboBox1: TcxDBComboBox [4]
               Left = 240
               Top = 103
               DataBinding.DataField = 'ins_status'
@@ -160,16 +170,6 @@ inherited frm_insurance: Tfrm_insurance
               Style.HotTrack = False
               TabOrder = 3
               Width = 130
-            end
-            inherited dbedt_id: TcxDBTextEdit
-              Left = 67
-              DataBinding.DataField = 'ins_id'
-              ExplicitLeft = 67
-            end
-            inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 240
-              DataBinding.DataField = 'ins_dt_registration'
-              ExplicitLeft = 240
             end
             object cxDBTextEdit2: TcxDBTextEdit [5]
               Left = 422
@@ -811,8 +811,16 @@ inherited frm_insurance: Tfrm_insurance
       end
     end
   end
+  inherited dxBarManager_1: TdxBarManager
+    PixelsPerInch = 96
+  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
   end
   inherited qry: TFDQuery
     Active = True
@@ -1048,9 +1056,6 @@ inherited frm_insurance: Tfrm_insurance
     Variables = <>
     Style = <>
   end
-  inherited ACBrCEP_1: TACBrCEP
-    OnBuscaEfetuada = ACBrCEP_1BuscaEfetuada
-  end
   object qry_table_price: TFDQuery
     Active = True
     IndexFieldNames = 'contract_ctr_cod'
@@ -1108,5 +1113,11 @@ inherited frm_insurance: Tfrm_insurance
     DataSet = qry_table_price
     Left = 735
     Top = 122
+  end
+  object acbr_cep: TACBrCEP
+    ProxyPort = '8080'
+    PesquisarIBGE = True
+    Left = 504
+    Top = 200
   end
 end

@@ -94,6 +94,10 @@ inherited frm_table_price: Tfrm_table_price
         end
         object cxTabExames: TcxTabSheet
           Caption = 'Exames da  Tabela'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -251,6 +255,10 @@ inherited frm_table_price: Tfrm_table_price
         object cxTabAlterarPreco: TcxTabSheet
           Caption = 'Alterar Pre'#231'o dos Exames'
           OnShow = cxTabAlterarPrecoShow
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
@@ -485,6 +493,7 @@ inherited frm_table_price: Tfrm_table_price
     ExplicitWidth = 1105
   end
   inherited dxBarManager_1: TdxBarManager
+    PixelsPerInch = 96
     inherited dxBarManager_1Bar6: TdxBar
       ItemLinks = <
         item
@@ -503,8 +512,12 @@ inherited frm_table_price: Tfrm_table_price
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
+  end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -689,7 +702,6 @@ inherited frm_table_price: Tfrm_table_price
     Top = 298
   end
   object qry_product: TFDQuery
-    Active = True
     Connection = frm_dm.connCCS
     FetchOptions.AssignedValues = [evDetailCascade]
     FetchOptions.DetailCascade = True

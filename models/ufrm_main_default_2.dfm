@@ -2200,6 +2200,7 @@ object frm_main_default_2: Tfrm_main_default_2
     end
   end
   object cxImageList_1: TcxImageList
+    SourceDPI = 96
     FormatVersion = 1
     DesignInfo = 17826360
     ImageInfo = <
@@ -2250,7 +2251,7 @@ object frm_main_default_2: Tfrm_main_default_2
   end
   object AdvMainMenu_1: TAdvMainMenu
     Images = cxImageList_1
-    Version = '2.6.5.6'
+    Version = '2.6.5.8'
     Left = 504
     Top = 272
     object Systema1: TMenuItem

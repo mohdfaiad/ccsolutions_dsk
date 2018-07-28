@@ -35,7 +35,8 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxMemo, cxShellComboBox,
   QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket, ACBrCEP, frxClass,
-  Vcl.DBCtrls;
+  Vcl.DBCtrls, cxDataControllerConditionalFormattingRulesManagerDialog,
+  cxImageList;
 
 type
   Tfrm_exam = class(Tfrm_form_default)

@@ -33,7 +33,9 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  ACBrSocket, ACBrCEP, frxClass, Vcl.Grids, Vcl.DBGrids;
+  ACBrSocket, ACBrCEP, frxClass, Vcl.Grids, Vcl.DBGrids,
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxDBLookupComboBox,
+  cxImageList;
 
 type
   Tfrm_department = class(Tfrm_form_default)
@@ -177,7 +179,7 @@ end;
 procedure Tfrm_department.FormCreate(Sender: TObject);
 begin
   inherited;
- FDSchemaAdapter_1.AfterApplyUpdate:=limpaCache;
+ schadapter.AfterApplyUpdate:=limpaCache;
 end;
 
 procedure Tfrm_department.limpaCache(Sender: TObject);

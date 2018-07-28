@@ -34,7 +34,8 @@ uses
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxButtonEdit, cxSpinEdit, ACBrSocket, ACBrCEP, frxClass, cxLookupEdit,
-  cxDBLookupEdit, cxDBLookupComboBox;
+  cxDBLookupEdit, cxDBLookupComboBox,
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxImageList;
 
 type
   Tfrm_insurance = class(Tfrm_form_default)
@@ -167,6 +168,7 @@ type
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     cxGrid_1DBTableView1ins_nickname: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_day_maturity: TcxGridDBColumn;
+    acbr_cep: TACBrCEP;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_cancelExecute(Sender: TObject);
@@ -200,13 +202,13 @@ procedure Tfrm_insurance.ACBrCEP_1BuscaEfetuada(Sender: TObject);
   i:Integer;
 begin
   inherited;
-  for I := 0 to ACBrCEP_1.Enderecos.Count -1 do
+  for I := 0 to acbr_cep.Enderecos.Count -1 do
     begiN
-     edtRua.Text            := ACBrCEP_1.Enderecos[i].Logradouro;
-     edtBairro.Text         := ACBrCEP_1.Enderecos[i].Bairro;
-     edtComplemento.Text    := ACBrCEP_1.Enderecos[i].Complemento;
-     edtCidade.Text    	    := ACBrCEP_1.Enderecos[i].Municipio;
-     edtUF_End.Text         := ACBrCEP_1.Enderecos[i].UF;
+     edtRua.Text            := acbr_cep.Enderecos[i].Logradouro;
+     edtBairro.Text         := acbr_cep.Enderecos[i].Bairro;
+     edtComplemento.Text    := acbr_cep.Enderecos[i].Complemento;
+     edtCidade.Text    	    := acbr_cep.Enderecos[i].Municipio;
+     edtUF_End.Text         := acbr_cep.Enderecos[i].UF;
      edtPais_End.Text       := 'BRASIL';
      edtNumero_Casa.SetFocus;
     end;
@@ -278,7 +280,7 @@ end;
 procedure Tfrm_insurance.cxDBButtonEdit1PropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
 begin
   inherited;
-    ACBrCEP_1.BuscarPorCEP(btnEditCEP.Text);
+    acbr_cep.BuscarPorCEP(btnEditCEP.Text);
 end;
 
 procedure Tfrm_insurance.cxDBTextEdit1Exit(Sender: TObject);

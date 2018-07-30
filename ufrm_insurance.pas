@@ -3,39 +3,145 @@ unit ufrm_insurance;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_form_default, cxGraphics,
-  cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxSkinsCore, dxSkinBlack,
-  dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
-  dxSkinDarkSide, dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
-  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
-  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
-  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
-  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
-  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
-  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
-  dxSkinOffice2013White, dxSkinOffice2016Colorful, dxSkinOffice2016Dark,
-  dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
-  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
-  dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, dxSkinscxPCPainter, dxBarBuiltInMenu, cxStyles,
-  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, Data.DB,
-  cxDBData, cxContainer, dxLayoutcxEditAdapters, dxSkinsdxBarPainter,
-  cxShellComboBox, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
-  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
-  FireDAC.Stan.Async, FireDAC.DApt, QImport3Wizard, QExport4Dialog, ACBrBase,
-  ACBrEnterTab, FireDAC.Comp.DataSet, FireDAC.Comp.Client, dxLayoutLookAndFeels,
-  System.ImageList, Vcl.ImgList, Vcl.Menus, cxGridCustomPopupMenu,
-  cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar, cxBarEditItem,
-  cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
-  cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  cxButtonEdit, cxSpinEdit, ACBrSocket, ACBrCEP, frxClass, cxLookupEdit,
-  cxDBLookupEdit, cxDBLookupComboBox,
-  cxDataControllerConditionalFormattingRulesManagerDialog, cxImageList;
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  System.Actions,
+
+  Vcl.ActnList,
+  Vcl.ImgList,
+  Vcl.Menus,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+
+  cxControls,
+  cxLookAndFeels,
+  cxLookAndFeelPainters,
+  dxSkinsCore,
+  dxSkinBlack,
+  dxSkinBlue,
+  dxSkinBlueprint,
+  dxSkinCaramel,
+  dxSkinCoffee,
+  dxSkinDarkRoom,
+  dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle,
+  dxSkinDevExpressStyle,
+  dxSkinFoggy,
+  dxSkinGlassOceans,
+  dxSkinHighContrast,
+  dxSkiniMaginary,
+  dxSkinLilian,
+  dxSkinLiquidSky,
+  dxSkinLondonLiquidSky,
+  dxSkinMcSkin,
+  dxSkinMetropolis,
+  dxSkinMetropolisDark,
+  dxSkinMoneyTwins,
+  dxSkinOffice2007Black,
+  dxSkinOffice2007Blue,
+  dxSkinOffice2007Green,
+  dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver,
+  dxSkinOffice2010Black,
+  dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver,
+  dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray,
+  dxSkinOffice2013White,
+  dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark,
+  dxSkinPumpkin,
+  dxSkinSeven,
+  dxSkinSevenClassic,
+  dxSkinSharp,
+  dxSkinSharpPlus,
+  dxSkinSilver,
+  dxSkinSpringTime,
+  dxSkinStardust,
+  dxSkinSummer2008,
+  dxSkinTheAsphaltWorld,
+  dxSkinsDefaultPainters,
+  dxSkinValentine,
+  dxSkinVisualStudio2013Blue,
+  dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light,
+  dxSkinVS2010,
+  dxSkinWhiteprint,
+  dxSkinXmas2008Blue,
+  dxSkinscxPCPainter,
+  dxBarBuiltInMenu,
+  cxStyles,
+  cxCustomData,
+  cxFilter,
+  cxData,
+  cxDataStorage,
+  cxEdit,
+  cxNavigator,
+  cxDBData,
+  cxContainer,
+  dxLayoutcxEditAdapters,
+  dxSkinsdxBarPainter,
+  cxShellComboBox,
+  dxLayoutLookAndFeels,
+  cxGridCustomPopupMenu,
+  cxGridPopupMenu,
+  dxBar,
+  cxBarEditItem,
+  cxClasses,
+  dxLayoutContainer,
+  cxMaskEdit,
+  cxDropDownEdit,
+  cxCalendar,
+  cxDBEdit,
+  cxTextEdit,
+  dxLayoutControl,
+  cxGridLevel,
+  cxGridCustomView,
+  cxGridCustomTableView,
+  cxGridTableView,
+  cxGridDBTableView,
+  cxGrid,
+  cxPC,
+  cxButtonEdit,
+  cxSpinEdit,
+  cxLookupEdit,
+  cxDBLookupEdit,
+  cxDBLookupComboBox,
+  cxDataControllerConditionalFormattingRulesManagerDialog,
+  cxImageList,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.Stan.Async,
+  FireDAC.DApt,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+
+  QImport3Wizard,
+  QExport4Dialog,
+
+  ACBrBase,
+  ACBrEnterTab,
+  ACBrSocket,
+  ACBrCEP,
+
+  frxClass,
+
+  ufrm_form_default, cxGraphics;
 
 type
   Tfrm_insurance = class(Tfrm_form_default)
@@ -132,7 +238,6 @@ type
     dxLayoutItem22: TdxLayoutItem;
     cxDBDateEdit2: TcxDBDateEdit;
     dxLayoutItem24: TdxLayoutItem;
-    qryins_status: TStringField;
     cxDBComboBox1: TcxDBComboBox;
     dxLayoutItem25: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
@@ -202,8 +307,7 @@ procedure Tfrm_insurance.ACBrCEP_1BuscaEfetuada(Sender: TObject);
   i:Integer;
 begin
   inherited;
-  for I := 0 to acbr_cep.Enderecos.Count -1 do
-    begiN
+  for I := 0 to acbr_cep.Enderecos.Count -1 do begin
      edtRua.Text            := acbr_cep.Enderecos[i].Logradouro;
      edtBairro.Text         := acbr_cep.Enderecos[i].Bairro;
      edtComplemento.Text    := acbr_cep.Enderecos[i].Complemento;
@@ -211,8 +315,7 @@ begin
      edtUF_End.Text         := acbr_cep.Enderecos[i].UF;
      edtPais_End.Text       := 'BRASIL';
      edtNumero_Casa.SetFocus;
-    end;
-
+  end;
 end;
 
 procedure Tfrm_insurance.Action_cancelExecute(Sender: TObject);

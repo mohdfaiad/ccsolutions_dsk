@@ -823,7 +823,6 @@ inherited frm_insurance: Tfrm_insurance
     end
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterSource = frm_dm.ds_contract
@@ -888,14 +887,6 @@ inherited frm_insurance: Tfrm_insurance
       FieldName = 'ins_nickname'
       Origin = 'ins_nickname'
       Size = 85
-    end
-    object qryins_status: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Status'
-      FieldName = 'ins_status'
-      Origin = 'ins_status'
-      FixedChar = True
-      Size = 1
     end
     object qryins_cnpj: TStringField
       AutoGenerateValue = arDefault

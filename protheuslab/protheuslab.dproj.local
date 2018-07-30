@@ -17,8 +17,8 @@
     <Transaction>2018/02/10 09:10:41.000.649,C:\developper\ccsolutions\mod_dsk\ufrm_dm_ds.dfm=C:\developper\ccsolutions\mod_dsk\protheuslab\Unit1.dfm</Transaction>
     <Transaction>2018/03/08 10:03:47.000.417,C:\development\ccsolutions\ccsolutions_dsk\protheuslab\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\ufrm_insurance.dfm</Transaction>
     <Transaction>2018/03/08 10:05:08.000.777,C:\development\ccsolutions\ccsolutions_dsk\protheuslab\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\ufrm_insurance.dfm</Transaction>
-    <Transaction>2018/03/08 11:20:26.000.508,C:\development\ccsolutions\ccsolutions_dsk\protheuslab\Unit1.pas=C:\development\ccsolutions\ccsolutions_dsk\ufrm_department.pas</Transaction>
     <Transaction>2018/03/08 11:20:26.000.508,C:\development\ccsolutions\ccsolutions_dsk\protheuslab\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\ufrm_department.dfm</Transaction>
+    <Transaction>2018/03/08 11:20:26.000.508,C:\development\ccsolutions\ccsolutions_dsk\protheuslab\Unit1.pas=C:\development\ccsolutions\ccsolutions_dsk\ufrm_department.pas</Transaction>
     <Transaction>2018/03/08 12:24:08.000.803,C:\development\ccsolutions\ccsolutions_dsk\protheuslab\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\ufrm_medicine.dfm</Transaction>
     <Transaction>2018/03/08 12:24:08.000.803,C:\development\ccsolutions\ccsolutions_dsk\protheuslab\Unit1.pas=C:\development\ccsolutions\ccsolutions_dsk\ufrm_medicine.pas</Transaction>
     <Transaction>2018/03/08 12:46:10.000.623,C:\development\ccsolutions\ccsolutions_dsk\protheuslab\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\ufrm_request_type.dfm</Transaction>
@@ -26,6 +26,5 @@
     <Transaction>2018/05/04 13:08:57.000.878,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_request_type.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_requisition_type.dfm</Transaction>
     <Transaction>2018/06/18 16:12:55.000.258,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuslab\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_Requisition_Lab.dfm</Transaction>
     <Transaction>2018/06/21 10:42:47.000.067,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_patient.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_client.dfm</Transaction>
-    <Transaction>2018/07/27 11:28:43.600,C:\development\ccsolutions\ccsolutions_dsk\trunk\Class_Rreport.pas=C:\development\ccsolutions\ccsolutions_dsk\trunk\Class_Report.pas</Transaction>
   </Transactions>
 </BorlandProject>

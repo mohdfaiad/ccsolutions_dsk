@@ -32,7 +32,8 @@ uses
   FireDAC.Phys.MySQLDef,
 
   frxClass,
-  frxDBSet;
+  frxDBSet, IPPeerClient, REST.Response.Adapter, REST.Client,
+  Data.Bind.Components, Data.Bind.ObjectScope;
 
 type
   Tfrm_dm = class(TDataModule)
@@ -94,6 +95,12 @@ type
     qry_contractctr_deleted_at: TDateTimeField;
     qry_contractctr_dt_registration: TDateTimeField;
     qry_contractctr_cod: TStringField;
+    rest_client: TRESTClient;
+    rest_request: TRESTRequest;
+    rest_response: TRESTResponse;
+    rest_response_dsa: TRESTResponseDataSetAdapter;
+    rest_mem: TFDMemTable;
+    mem_contract_user_signin: TFDMemTable;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

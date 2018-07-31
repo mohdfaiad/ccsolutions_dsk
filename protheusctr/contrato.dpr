@@ -22,7 +22,9 @@ uses
   ufrm_client in '..\ufrm_client.pas' {frm_client},
   ufrm_enterprise in '..\ufrm_enterprise.pas' {frm_enterprise},
   ufrm_consult_cnpj in '..\ufrm_consult_cnpj.pas' {frm_consult_cnpj},
-  ufrm_consult_cpf in '..\ufrm_consult_cpf.pas' {frm_consult_cpf};
+  ufrm_consult_cpf in '..\ufrm_consult_cpf.pas' {frm_consult_cpf},
+  u_clientclasses in 'u_clientclasses.pas',
+  ufrm_cm in '..\ufrm_cm.pas' {frm_cc: TDataModule};
 
 {$R *.res}
 
@@ -32,6 +34,7 @@ begin
   Application.CreateForm(Tfrm_dm, frm_dm);
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_dm_report, frm_dm_report);
+  Application.CreateForm(Tfrm_cc, frm_cc);
   Application.CreateForm(Tfrm_main, frm_main);
   Application.Run;
 end.

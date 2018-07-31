@@ -12,6 +12,9 @@ uses
   System.ImageList,
   System.Actions,
   System.UITypes,
+  System.JSON,
+  System.JSON.Readers,
+  System.JSON.Types,
 
   Vcl.Graphics,
   Vcl.Controls,
@@ -180,48 +183,96 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, ufrm_main_default;
+uses ufrm_dm, ufrm_main_default, u_clientclasses;
 
 procedure Tfrm_login.Action_accessExecute(Sender: TObject);
 var
-  SQL : string;
+  lResult, sResult, sMessage  : string;
+  lStrReader                  : TStringReader;
+  lJsonReader                 : TJsonTextReader;
+  clientclasses               : methodsClient;
 begin
-  SQL := 'set @po_valid_user = 0;'      +
-         'set @po_contract_ctr_cod = 0;'+
-         'set @po_ctr_usr_username = 0;'+
-         'set @po_ctr_usr_admin = 0;'   +
-         'call proc_contract_user_signin('+ edt_contract.Text +', '+ QuotedStr(edt_username.Text) +', '+ QuotedStr(edt_password.Text) +', @po_valid_user, @po_contract_ctr_cod, @po_ctr_usr_cod, @po_ctr_usr_username,@po_ctr_usr_admin);'+
-         'select @po_valid_user as valid_user, hex(@po_contract_ctr_cod) as contract_ctr_cod, hex(@po_ctr_usr_cod) as ctr_usr_cod, @po_ctr_usr_username as ctr_usr_username, @po_ctr_usr_admin as ctr_usr_admin';
-
-  frm_dm.qry_signin.Close;
-  frm_dm.qry_signin.SQL.Clear;
-  frm_dm.qry_signin.SQL.Text := SQL;
-  frm_dm.qry_signin.Open;
-
-  frm_dm.v_contract_ctr_cod := frm_dm.qry_signin.FieldByName('contract_ctr_cod').AsString;
-  frm_dm.v_ctr_usr_cod      := frm_dm.qry_signin.FieldByName('ctr_usr_cod').AsString;
-
-  frm_dm.v_nome_usuario     := frm_dm.qry_signin.FieldByName('ctr_usr_username').AsString;
-  frm_dm.v_ctr_usr_admin    := frm_dm.qry_signin.FieldByName('ctr_usr_admin').AsInteger;
-
-  if frm_dm.qry_signin.FieldByName('valid_user').AsInteger = 1 then begin
-    if Tag = 99 then begin
-       ModalResult := mrYes;
-
-       Self.Close;
-    end else begin
-//      frm_dm.qry_contract.Close;
-//      frm_dm.qry_contract.SQL.Clear;
-//      frm_dm.qry_contract.SQL.Text := 'call proc_contract_read('+ QuotedStr(frm_dm.v_contract_ctr_cod) +');';
-//      frm_dm.qry_contract.Prepare;
-//      frm_dm.qry_contract.Open;
-
-      ModalResult := mrOk;
-    end;
-  end else begin
-    MessageDlg('Usuário ou Senha inválida, ou usuário desativado!', mtInformation, [mbOK], 0);
-    edt_contract.SetFocus;
+  if edt_username.Text = (EmptyStr) then begin
+    ShowMessage('Usuário Obrigatório!');
+    edt_username.SetFocus;
+    Exit
+  end else if edt_password.Text = (EmptyStr) then begin
+    ShowMessage('Senha Obrigatório!');
+    edt_password.SetFocus;
+    Exit
   end;
+
+  clientclasses := methodsClient.Create;
+
+  lResult := clientclasses.contract_user_signin(StrToInt64(edt_contract.Text), edt_username.Text, edt_password.Text);
+
+  lStrReader := TStringReader.Create(lResult);
+  lJsonReader := TJsonTextReader.Create(lStrReader);
+  try
+    try
+      while lJsonReader.Read do
+      begin
+        if lJsonReader.Path = 'result' then begin
+          sResult := lJsonReader.Value.ToString
+        end else if lJsonReader.Path = 'message' then begin
+          sMessage := lJsonReader.Value.ToString;
+        end;
+      end;
+    finally
+      lJsonReader.Free;
+    end;
+  finally
+    lStrReader.Free;
+  end;
+
+  if sResult.Equals('success') then
+  begin
+    ShowMessage('Usuário Ok!');
+  end else begin
+    ShowMessage(sMessage);
+  end;
+
+//var
+//  SQL : string;
+//begin
+
+
+//  SQL := 'set @po_valid_user = 0;'      +
+//         'set @po_contract_ctr_cod = 0;'+
+//         'set @po_ctr_usr_username = 0;'+
+//         'set @po_ctr_usr_admin = 0;'   +
+//         'call proc_contract_user_signin('+ edt_contract.Text +', '+ QuotedStr(edt_username.Text) +', '+ QuotedStr(edt_password.Text) +', @po_valid_user, @po_contract_ctr_cod, @po_ctr_usr_cod, @po_ctr_usr_username,@po_ctr_usr_admin);'+
+//         'select @po_valid_user as valid_user, hex(@po_contract_ctr_cod) as contract_ctr_cod, hex(@po_ctr_usr_cod) as ctr_usr_cod, @po_ctr_usr_username as ctr_usr_username, @po_ctr_usr_admin as ctr_usr_admin';
+//
+//  frm_dm.qry_signin.Close;
+//  frm_dm.qry_signin.SQL.Clear;
+//  frm_dm.qry_signin.SQL.Text := SQL;
+//  frm_dm.qry_signin.Open;
+//
+//  frm_dm.v_contract_ctr_cod := frm_dm.qry_signin.FieldByName('contract_ctr_cod').AsString;
+//  frm_dm.v_ctr_usr_cod      := frm_dm.qry_signin.FieldByName('ctr_usr_cod').AsString;
+//
+//  frm_dm.v_nome_usuario     := frm_dm.qry_signin.FieldByName('ctr_usr_username').AsString;
+//  frm_dm.v_ctr_usr_admin    := frm_dm.qry_signin.FieldByName('ctr_usr_admin').AsInteger;
+//
+//  if frm_dm.qry_signin.FieldByName('valid_user').AsInteger = 1 then begin
+//    if Tag = 99 then begin
+//       ModalResult := mrYes;
+//
+//       Self.Close;
+//    end else begin
+////      frm_dm.qry_contract.Close;
+////      frm_dm.qry_contract.SQL.Clear;
+////      frm_dm.qry_contract.SQL.Text := 'call proc_contract_read('+ QuotedStr(frm_dm.v_contract_ctr_cod) +');';
+////      frm_dm.qry_contract.Prepare;
+////      frm_dm.qry_contract.Open;
+//
+//      ModalResult := mrOk;
+//    end;
+//  end else begin
+//    MessageDlg('Usuário ou Senha inválida, ou usuário desativado!', mtInformation, [mbOK], 0);
+//    edt_contract.SetFocus;
+//  end;
 end;
 
 procedure Tfrm_login.Action_cancelExecute(Sender: TObject);

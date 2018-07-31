@@ -3,7 +3,7 @@ object frm_dm: Tfrm_dm
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
   Height = 371
-  Width = 347
+  Width = 534
   object connCCS: TFDConnection
     Params.Strings = (
       'ConnectionDef=ccs_connection')
@@ -411,5 +411,58 @@ object frm_dm: Tfrm_dm
     BCDToCurrency = False
     Left = 256
     Top = 16
+  end
+  object rest_client: TRESTClient
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'UTF-8, *;q=0.8'
+    BaseURL = 
+      'http://localhost/api/rest/methods/contract_user_signin/1/eltonba' +
+      'hiabc/3LbEr7'
+    Params = <>
+    HandleRedirects = True
+    RaiseExceptionOn500 = False
+    Left = 400
+    Top = 16
+  end
+  object rest_request: TRESTRequest
+    Client = rest_client
+    Params = <>
+    Response = rest_response
+    SynchronizedEvents = False
+    Left = 400
+    Top = 64
+  end
+  object rest_response: TRESTResponse
+    ContentType = 'text/html'
+    RootElement = 'contract_user_signin'
+    Left = 400
+    Top = 112
+  end
+  object rest_response_dsa: TRESTResponseDataSetAdapter
+    Dataset = rest_mem
+    FieldDefs = <>
+    Response = rest_response
+    Left = 400
+    Top = 160
+  end
+  object rest_mem: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired]
+    UpdateOptions.CheckRequired = False
+    Left = 400
+    Top = 208
+  end
+  object mem_contract_user_signin: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired]
+    UpdateOptions.CheckRequired = False
+    Left = 400
+    Top = 256
   end
 end

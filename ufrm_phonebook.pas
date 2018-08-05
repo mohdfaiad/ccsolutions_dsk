@@ -245,7 +245,7 @@ begin
               strproc_create.StoredProcName := 'proc_phonebook_create';
               strproc_create.Prepare;
 
-              strproc_create.ParamByName('p_contract_ctr_cod').AsString  := frm_dm.v_contract_ctr_cod;
+//              strproc_create.ParamByName('p_contract_ctr_cod').AsString  := frm_dm.v_contract_ctr_cod;
               strproc_create.ParamByName('p_pho_name').AsString          := dbedt_name.Text;
               strproc_create.ParamByName('p_pho_contact').AsString       := dbedt_contact.Text;
               strproc_create.ParamByName('p_pho_phone1').AsString        := dbedt_phone1.Text;
@@ -316,7 +316,7 @@ procedure Tfrm_phonebook.qryBeforeOpen(DataSet: TDataSet);
 begin
   inherited;
   qry.Filtered                                  := False;
-  qry.ParamByName('contract_ctr_cod').AsString  := frm_dm.v_contract_ctr_cod;
+//  qry.ParamByName('contract_ctr_cod').AsString  := frm_dm.v_contract_ctr_cod;
   qry.Filter                                    := 'pho_deleted_at is null';
   qry.Filtered                                  := True;
 end;

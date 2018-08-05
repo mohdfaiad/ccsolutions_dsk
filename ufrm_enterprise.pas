@@ -368,7 +368,7 @@ procedure Tfrm_enterprise.Action_saveExecute(Sender: TObject);
               strproc_create.StoredProcName := 'proc_enterprise_create';
               strproc_create.Prepare;
 
-              strproc_create.ParamByName('p_contract_ctr_cod').AsString       := frm_dm.v_contract_ctr_cod;
+//              strproc_create.ParamByName('p_contract_ctr_cod').AsString       := frm_dm.v_contract_ctr_cod;
               strproc_create.ParamByName('p_ent_type').AsString               := dbcmb_type.Text;
               strproc_create.ParamByName('p_ent_first_name').AsString         := dbedt_first_name.Text;
               strproc_create.ParamByName('p_ent_last_name').AsString          := dbedt_last_name.Text;
@@ -476,7 +476,7 @@ end;
 procedure Tfrm_enterprise.qryBeforeOpen(DataSet: TDataSet);
 begin
   qry.Filtered                                  := False;
-  qry.ParamByName('contract_ctr_cod').AsString  := frm_dm.v_contract_ctr_cod;
+//  qry.ParamByName('contract_ctr_cod').AsString  := frm_dm.v_contract_ctr_cod;
   qry.Filter                                    := 'ent_deleted_at is null';
   qry.Filtered                                  := True;
 end;

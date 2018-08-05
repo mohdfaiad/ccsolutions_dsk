@@ -177,13 +177,25 @@ type
     cxGrid_1DBTableView1ctr_phone1: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_dt_birth: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_dt_registration: TcxGridDBColumn;
+    mem_contract: TFDMemTable;
+    mem_contractctr_cod: TStringField;
+    mem_contractctr_id: TLargeintField;
+    mem_contractctr_first_name: TStringField;
+    mem_contractctr_last_name: TStringField;
+    mem_contractctr_email: TStringField;
+    mem_contractctr_phone1: TStringField;
+    mem_contractctr_dt_birth: TDateField;
+    mem_contractctr_user_license: TWordField;
+    mem_contractctr_status: TStringField;
+    mem_contractctr_deleted_at: TDateTimeField;
+    mem_contractctr_dt_registration: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
-    procedure qryBeforeOpen(DataSet: TDataSet);
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
+    procedure qryBeforeOpen(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -199,7 +211,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses u_class_rest_method;
 
 procedure Tfrm_contract.Action_editExecute(Sender: TObject);
 begin
@@ -219,29 +231,29 @@ procedure Tfrm_contract.Action_saveExecute(Sender: TObject);
 begin
   inherited;
   case stats of
-    1 : begin
+    1: begin
+        try
           try
-            try
-              if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
-                str_proc_contract_update.ParamByName('p_ctr_cod').AsString        := qry.FieldByName('pho_cod').AsString;
-                str_proc_contract_update.ParamByName('p_ctr_first_name').AsString := dbedt_first_name.Text;
-                str_proc_contract_update.ParamByName('p_ctr_last_name').AsString  := dbedt_last_name.Text;
-                str_proc_contract_update.ParamByName('p_ctr_phone1').AsString     := dbedt_phone1.Text;
-                str_proc_contract_update.ParamByName('p_ctr_email').AsString      := dbedt_email.Text;
-                str_proc_contract_update.ParamByName('p_ctr_dt_birth').AsString   := dbedt_dt_birth.Text;
-                str_proc_contract_update.ExecProc;
+            if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+              str_proc_contract_update.ParamByName('p_ctr_cod').AsString        := qry.FieldByName('pho_cod').AsString;
+              str_proc_contract_update.ParamByName('p_ctr_first_name').AsString := dbedt_first_name.Text;
+              str_proc_contract_update.ParamByName('p_ctr_last_name').AsString  := dbedt_last_name.Text;
+              str_proc_contract_update.ParamByName('p_ctr_phone1').AsString     := dbedt_phone1.Text;
+              str_proc_contract_update.ParamByName('p_ctr_email').AsString      := dbedt_email.Text;
+              str_proc_contract_update.ParamByName('p_ctr_dt_birth').AsString   := dbedt_dt_birth.Text;
+              str_proc_contract_update.ExecProc;
 
-                ShowMessage('Registro Salvo com sucesso');
+              ShowMessage('Registro Salvo com sucesso');
 
-                qry.UpdateRecord;
-              end else begin
-                qry.Cancel;
-              end;
-            except on E: Exception do
-              ShowMessage('Erro: ' + E.Message);
+              qry.UpdateRecord;
+            end else begin
+              qry.Cancel;
             end;
-          finally
+          except on E: Exception do
+            ShowMessage('Erro: ' + E.Message);
           end;
+        finally
+      end;
     end;
   end;
 end;
@@ -262,16 +274,33 @@ end;
 procedure Tfrm_contract.FormShow(Sender: TObject);
 begin
   inherited;
-  dxBarManager_1Bar3.DockedLeft := 122;
+//  dxBarManager_1Bar3.DockedLeft := 122;
+//
+//  methods := Tmethods_rest.Create;
+//
+//  Trest_methods.v_method         := 'contract_user';
+//  Trest_methods.v_parameter      := edt_contract.Text +'/'+ edt_username.Text +'/'+ edt_password.Text;
+//  Trest_methods.v_root_element   := 'contract_user_signin';
+//
+//  frm_dm_rest.get_contract_user_signin;
+//
+//  if frm_dm.mem_contract_user_signin.FieldByName('valid_user').AsInteger = 1 then begin
+//    frm_dm.v_contract_ctr_cod := frm_dm.mem_contract_user_signincontract_ctr_cod.AsString;
+//    frm_dm.v_ctr_usr_cod      := frm_dm.mem_contract_user_signinctr_usr_cod.AsString;
+//
+//    ModalResult := mrOk;
+//  end else begin
+//    ShowMessage('Usuário ou Senha inválida!');
+//  end;
 end;
 
 procedure Tfrm_contract.qryBeforeOpen(DataSet: TDataSet);
 begin
   inherited;
-  qry.Filtered := False;
-  qry.ParamByName('ctr_cod').AsString := frm_dm.v_contract_ctr_cod;
-  qry.Filter := 'ctr_deleted_at is null';
-  qry.Filtered := True;
+//  qry.Filtered := False;
+//  qry.ParamByName('ctr_cod').AsString := frm_dm.v_contract_ctr_cod;
+//  qry.Filter := 'ctr_deleted_at is null';
+//  qry.Filtered := True;
 end;
 
 end.

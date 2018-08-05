@@ -17,14 +17,14 @@ object frm_login: Tfrm_login
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object cxPageControl1: TcxPageControl
+  object pgctrl_login: TcxPageControl
     Left = 0
     Top = 0
     Width = 594
     Height = 273
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet_1
+    Properties.ActivePage = tbsht_login
     Properties.CustomButtons.Buttons = <>
     Properties.Images = cxImageList_1
     LookAndFeel.NativeStyle = True
@@ -33,7 +33,7 @@ object frm_login: Tfrm_login
     ClientRectLeft = 4
     ClientRectRight = 590
     ClientRectTop = 25
-    object cxTabSheet_1: TcxTabSheet
+    object tbsht_login: TcxTabSheet
       Caption = 'Acesso ao Sistema'
       ImageIndex = 2
       object Image1: TImage
@@ -2170,7 +2170,6 @@ object frm_login: Tfrm_login
         Left = 3
         Top = 45
         TabOrder = 0
-        OnKeyPress = edt_contractKeyPress
         Width = 250
       end
       object edt_username: TcxTextEdit
@@ -2198,7 +2197,7 @@ object frm_login: Tfrm_login
         Caption = 'Senha'
         Transparent = True
       end
-      object cxLabel4: TcxLabel
+      object lbl_recovery_password: TcxLabel
         Left = 162
         Top = 172
         Cursor = crHandPoint
@@ -2211,9 +2210,8 @@ object frm_login: Tfrm_login
         StyleFocused.LookAndFeel.NativeStyle = True
         StyleHot.LookAndFeel.NativeStyle = True
         Transparent = True
-        OnClick = cxLabel4Click
       end
-      object cxButton1: TcxButton
+      object btn_signin: TcxButton
         Left = 3
         Top = 208
         Width = 122
@@ -2221,7 +2219,7 @@ object frm_login: Tfrm_login
         Action = Action_access
         TabOrder = 3
       end
-      object cxButton2: TcxButton
+      object btn_cancel: TcxButton
         Left = 131
         Top = 208
         Width = 122
@@ -2277,15 +2275,13 @@ object frm_login: Tfrm_login
           end>
         Properties.EchoMode = eemPassword
         Properties.Images = cxImageList_1
-        Properties.OnButtonClick = edt_passwordPropertiesButtonClick
         TabOrder = 2
         Width = 250
       end
     end
-    object cxTabSheet1: TcxTabSheet
+    object tbsht_alter_password: TcxTabSheet
       Caption = 'Alterar Senha'
       ImageIndex = 2
-      OnShow = cxTabSheet1Show
       object Image2: TImage
         AlignWithMargins = True
         Left = 259
@@ -4445,7 +4441,6 @@ object frm_login: Tfrm_login
         OptionsImage.ImageIndex = 0
         OptionsImage.Images = cxImageList_1
         TabOrder = 7
-        OnClick = cxButton3Click
       end
       object cxButton4: TcxButton
         Left = 131
@@ -4456,7 +4451,6 @@ object frm_login: Tfrm_login
         OptionsImage.ImageIndex = 1
         OptionsImage.Images = cxImageList_1
         TabOrder = 9
-        OnClick = cxButton4Click
       end
       object edt_passwordCurrent: TcxButtonEdit
         Left = 3
@@ -4503,7 +4497,6 @@ object frm_login: Tfrm_login
             Kind = bkGlyph
           end>
         Properties.EchoMode = eemPassword
-        Properties.OnButtonClick = edt_passwordPropertiesButtonClick
         TabOrder = 4
         Width = 250
       end
@@ -4552,7 +4545,6 @@ object frm_login: Tfrm_login
             Kind = bkGlyph
           end>
         Properties.EchoMode = eemPassword
-        Properties.OnChange = edt_passwordNewPropertiesChange
         TabOrder = 5
         Width = 250
       end
@@ -4617,7 +4609,7 @@ object frm_login: Tfrm_login
         Transparent = True
       end
     end
-    object cxTabSheet2: TcxTabSheet
+    object tbsht_recovery_password: TcxTabSheet
       Caption = 'Recuperar Senha '
       ImageIndex = 2
       object Image3: TImage
@@ -6780,7 +6772,6 @@ object frm_login: Tfrm_login
         OptionsImage.ImageIndex = 0
         OptionsImage.Images = cxImageList_1
         TabOrder = 3
-        OnClick = cxButton5Click
       end
       object cxButton6: TcxButton
         Left = 131
@@ -6791,7 +6782,6 @@ object frm_login: Tfrm_login
         OptionsImage.ImageIndex = 1
         OptionsImage.Images = cxImageList_1
         TabOrder = 4
-        OnClick = cxButton4Click
       end
       object cxDateNasc: TcxDateEdit
         Left = 3
@@ -6956,5 +6946,23 @@ object frm_login: Tfrm_login
     IDECharset = ISO_8859_1
     Left = 360
     Top = 208
+  end
+  object mem: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 408
+    Top = 40
+    object memvalid_user: TLargeintField
+      FieldName = 'valid_user'
+    end
+    object memctr_usr_cod: TStringField
+      FieldName = 'ctr_usr_cod'
+      Size = 32
+    end
   end
 end

@@ -28,7 +28,8 @@ uses
   System.ImageList, Vcl.ImgList, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   System.Actions, Vcl.ActnList, dxBar, cxClasses, dxStatusBar, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxGrid;
+  cxGrid, cxDataControllerConditionalFormattingRulesManagerDialog, Vcl.Menus,
+  cxImageList;
 
 type
   Tfrm_search_enterprise = class(Tfrm_search)
@@ -90,9 +91,9 @@ procedure Tfrm_search_enterprise.cxGrid_1DBTableView1CellDblClick(
   AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
 begin
   inherited;
-   frm_dm.qry_enterprise.Locate('ent_id',frm_dm.qry_enterpriseent_id.AsInteger,[loCaseInsensitive, loPartialKey]);
-   empresa := IntToStr(frm_dm.qry_enterpriseent_id.AsInteger)+ ' - '+frm_dm.qry_enterpriseent_last_name.AsString;
-   close;
+//   frm_dm.qry_enterprise.Locate('ent_id',frm_dm.qry_enterpriseent_id.AsInteger,[loCaseInsensitive, loPartialKey]);
+//   empresa := IntToStr(frm_dm.qry_enterpriseent_id.AsInteger)+ ' - '+frm_dm.qry_enterpriseent_last_name.AsString;
+//   close;
 end;
 
 end.

@@ -6,6 +6,10 @@ inherited frm_contract: Tfrm_contract
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ctr_id: TcxGridDBColumn
@@ -40,8 +44,16 @@ inherited frm_contract: Tfrm_contract
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'ctr_id'
@@ -206,6 +218,9 @@ inherited frm_contract: Tfrm_contract
       Visible = ivNever
     end
   end
+  inherited ds: TDataSource
+    DataSet = mem_contract
+  end
   inherited PopupMenu_1: TPopupMenu
     inherited Primeiro1: TMenuItem
       Enabled = False
@@ -235,10 +250,8 @@ inherited frm_contract: Tfrm_contract
     end
   end
   inherited qry: TFDQuery
-    Active = True
     BeforeOpen = qryBeforeOpen
     IndexFieldNames = 'ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'ctr_cod'
     Connection = frm_dm.connCCS
@@ -350,8 +363,6 @@ inherited frm_contract: Tfrm_contract
         DataSetName = 'Contrato'
       end
       item
-        DataSet = frm_dm.frx_db_enterprise
-        DataSetName = 'enterprise'
       end>
     Variables = <>
     Style = <>
@@ -395,8 +406,6 @@ inherited frm_contract: Tfrm_contract
           Width = 570.709030000000000000
           Height = 18.897650000000000000
           DataField = 'ent_last_name'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -16
@@ -413,8 +422,6 @@ inherited frm_contract: Tfrm_contract
           Top = 24.354360000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -431,8 +438,6 @@ inherited frm_contract: Tfrm_contract
           Top = 43.811070000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -458,8 +463,6 @@ inherited frm_contract: Tfrm_contract
           Top = 63.811070000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -485,8 +488,6 @@ inherited frm_contract: Tfrm_contract
           Top = 84.488250000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -513,8 +514,6 @@ inherited frm_contract: Tfrm_contract
           Width = 124.724409450000000000
           Height = 86.929131420000000000
           DataField = 'ent_image1'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Frame.Typ = []
           HightQuality = False
           Transparent = False
@@ -863,8 +862,6 @@ inherited frm_contract: Tfrm_contract
           Top = 19.677180000000000000
           Width = 177.637910000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -942,5 +939,146 @@ inherited frm_contract: Tfrm_contract
         ParamType = ptInput
         Size = 1
       end>
+  end
+  object mem_contract: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'ctr_cod'
+        Attributes = [faReadonly]
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'ctr_id'
+        DataType = ftLargeint
+      end
+      item
+        Name = 'ctr_first_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'ctr_last_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'ctr_email'
+        DataType = ftString
+        Size = 65
+      end
+      item
+        Name = 'ctr_phone1'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'ctr_dt_birth'
+        DataType = ftDate
+      end
+      item
+        Name = 'ctr_user_license'
+        DataType = ftWord
+      end
+      item
+        Name = 'ctr_status'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'ctr_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'ctr_dt_registration'
+        DataType = ftDateTime
+      end>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 770
+    Top = 187
+    object mem_contractctr_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'ctr_cod'
+      Origin = 'ctr_cod'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 32
+    end
+    object mem_contractctr_id: TLargeintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'ctr_id'
+      Origin = 'ctr_id'
+    end
+    object mem_contractctr_first_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'ctr_first_name'
+      Origin = 'ctr_first_name'
+      Size = 85
+    end
+    object mem_contractctr_last_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Sobre Nome'
+      FieldName = 'ctr_last_name'
+      Origin = 'ctr_last_name'
+      Size = 85
+    end
+    object mem_contractctr_email: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'E-mail'
+      FieldName = 'ctr_email'
+      Origin = 'ctr_email'
+      Size = 65
+    end
+    object mem_contractctr_phone1: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 1'
+      FieldName = 'ctr_phone1'
+      Origin = 'ctr_phone1'
+      Size = 15
+    end
+    object mem_contractctr_dt_birth: TDateField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Aniv.'
+      FieldName = 'ctr_dt_birth'
+      Origin = 'ctr_dt_birth'
+    end
+    object mem_contractctr_user_license: TWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Licen'#231'a'
+      FieldName = 'ctr_user_license'
+      Origin = 'ctr_user_license'
+    end
+    object mem_contractctr_status: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'ctr_status'
+      Origin = 'ctr_status'
+      FixedChar = True
+      Size = 1
+    end
+    object mem_contractctr_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'ctr_deleted_at'
+      Origin = 'ctr_deleted_at'
+    end
+    object mem_contractctr_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'ctr_dt_registration'
+      Origin = 'ctr_dt_registration'
+    end
   end
 end

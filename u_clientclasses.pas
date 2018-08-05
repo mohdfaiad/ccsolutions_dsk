@@ -1,6 +1,6 @@
 //
 // Created by the DataSnap proxy generator.
-// 31/07/2018 00:29:16
+// 05/08/2018 10:32:47
 //
 
 unit u_clientclasses;
@@ -15,10 +15,11 @@ type
     FechostringCommand: TDSRestCommand;
     FreversestringCommand: TDSRestCommand;
     Fuser_signinCommand: TDSRestCommand;
+    Fcontract_user_signinCommand: TDSRestCommand;
+    Fget_contractCommand: TDSRestCommand;
     Fget_productCommand: TDSRestCommand;
     Fget_enterpriseCommand: TDSRestCommand;
     Fget_insuranceCommand: TDSRestCommand;
-    Fcontract_user_signinCommand: TDSRestCommand;
   public
     constructor Create(ARestConnection: TDSRestConnection); overload;
     constructor Create(ARestConnection: TDSRestConnection; AInstanceOwner: Boolean); overload;
@@ -26,10 +27,11 @@ type
     function echostring(Value: string; const ARequestFilter: string = ''): string;
     function reversestring(Value: string; const ARequestFilter: string = ''): string;
     function user_signin(usr_username: string; usr_password: string; const ARequestFilter: string = ''): string;
+    function contract_user_signin(ctr_id: Int64; ctr_usr_username: string; ctr_usr_password: string; const ARequestFilter: string = ''): string;
+    function get_contract(contract_ctr_cod: string; const ARequestFilter: string = ''): string;
     function get_product(contract_ctr_cod: string; const ARequestFilter: string = ''): string;
     function get_enterprise(contract_ctr_cod: string; const ARequestFilter: string = ''): string;
     function get_insurance(contract_ctr_cod: string; const ARequestFilter: string = ''): string;
-    function contract_user_signin(ctr_id: Int64; ctr_usr_username: string; ctr_usr_password: string; const ARequestFilter: string = ''): string;
   end;
 
 const
@@ -52,6 +54,20 @@ const
     (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
   );
 
+  methods_contract_user_signin: array [0..3] of TDSRestParameterMetaData =
+  (
+    (Name: 'ctr_id'; Direction: 1; DBXType: 18; TypeName: 'Int64'),
+    (Name: 'ctr_usr_username'; Direction: 1; DBXType: 26; TypeName: 'string'),
+    (Name: 'ctr_usr_password'; Direction: 1; DBXType: 26; TypeName: 'string'),
+    (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
+  );
+
+  methods_get_contract: array [0..1] of TDSRestParameterMetaData =
+  (
+    (Name: 'contract_ctr_cod'; Direction: 1; DBXType: 26; TypeName: 'string'),
+    (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
+  );
+
   methods_get_product: array [0..1] of TDSRestParameterMetaData =
   (
     (Name: 'contract_ctr_cod'; Direction: 1; DBXType: 26; TypeName: 'string'),
@@ -67,14 +83,6 @@ const
   methods_get_insurance: array [0..1] of TDSRestParameterMetaData =
   (
     (Name: 'contract_ctr_cod'; Direction: 1; DBXType: 26; TypeName: 'string'),
-    (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
-  );
-
-  methods_contract_user_signin: array [0..3] of TDSRestParameterMetaData =
-  (
-    (Name: 'ctr_id'; Direction: 1; DBXType: 18; TypeName: 'Int64'),
-    (Name: 'ctr_usr_username'; Direction: 1; DBXType: 26; TypeName: 'string'),
-    (Name: 'ctr_usr_password'; Direction: 1; DBXType: 26; TypeName: 'string'),
     (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
   );
 
@@ -123,6 +131,36 @@ begin
   Result := Fuser_signinCommand.Parameters[2].Value.GetWideString;
 end;
 
+function methodsClient.contract_user_signin(ctr_id: Int64; ctr_usr_username: string; ctr_usr_password: string; const ARequestFilter: string): string;
+begin
+  if Fcontract_user_signinCommand = nil then
+  begin
+    Fcontract_user_signinCommand := FConnection.CreateCommand;
+    Fcontract_user_signinCommand.RequestType := 'GET';
+    Fcontract_user_signinCommand.Text := 'methods.contract_user_signin';
+    Fcontract_user_signinCommand.Prepare(methods_contract_user_signin);
+  end;
+  Fcontract_user_signinCommand.Parameters[0].Value.SetInt64(ctr_id);
+  Fcontract_user_signinCommand.Parameters[1].Value.SetWideString(ctr_usr_username);
+  Fcontract_user_signinCommand.Parameters[2].Value.SetWideString(ctr_usr_password);
+  Fcontract_user_signinCommand.Execute(ARequestFilter);
+  Result := Fcontract_user_signinCommand.Parameters[3].Value.GetWideString;
+end;
+
+function methodsClient.get_contract(contract_ctr_cod: string; const ARequestFilter: string): string;
+begin
+  if Fget_contractCommand = nil then
+  begin
+    Fget_contractCommand := FConnection.CreateCommand;
+    Fget_contractCommand.RequestType := 'GET';
+    Fget_contractCommand.Text := 'methods.get_contract';
+    Fget_contractCommand.Prepare(methods_get_contract);
+  end;
+  Fget_contractCommand.Parameters[0].Value.SetWideString(contract_ctr_cod);
+  Fget_contractCommand.Execute(ARequestFilter);
+  Result := Fget_contractCommand.Parameters[1].Value.GetWideString;
+end;
+
 function methodsClient.get_product(contract_ctr_cod: string; const ARequestFilter: string): string;
 begin
   if Fget_productCommand = nil then
@@ -165,22 +203,6 @@ begin
   Result := Fget_insuranceCommand.Parameters[1].Value.GetWideString;
 end;
 
-function methodsClient.contract_user_signin(ctr_id: Int64; ctr_usr_username: string; ctr_usr_password: string; const ARequestFilter: string): string;
-begin
-  if Fcontract_user_signinCommand = nil then
-  begin
-    Fcontract_user_signinCommand := FConnection.CreateCommand;
-    Fcontract_user_signinCommand.RequestType := 'GET';
-    Fcontract_user_signinCommand.Text := 'methods.contract_user_signin';
-    Fcontract_user_signinCommand.Prepare(methods_contract_user_signin);
-  end;
-  Fcontract_user_signinCommand.Parameters[0].Value.SetInt64(ctr_id);
-  Fcontract_user_signinCommand.Parameters[1].Value.SetWideString(ctr_usr_username);
-  Fcontract_user_signinCommand.Parameters[2].Value.SetWideString(ctr_usr_password);
-  Fcontract_user_signinCommand.Execute(ARequestFilter);
-  Result := Fcontract_user_signinCommand.Parameters[3].Value.GetWideString;
-end;
-
 constructor methodsClient.Create(ARestConnection: TDSRestConnection);
 begin
   inherited Create(ARestConnection);
@@ -196,10 +218,11 @@ begin
   FechostringCommand.DisposeOf;
   FreversestringCommand.DisposeOf;
   Fuser_signinCommand.DisposeOf;
+  Fcontract_user_signinCommand.DisposeOf;
+  Fget_contractCommand.DisposeOf;
   Fget_productCommand.DisposeOf;
   Fget_enterpriseCommand.DisposeOf;
   Fget_insuranceCommand.DisposeOf;
-  Fcontract_user_signinCommand.DisposeOf;
   inherited;
 end;
 

@@ -117,6 +117,10 @@ inherited frm_enterprise: Tfrm_enterprise
     inherited cxTabSheet_2: TcxTabSheet
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'ent_id'
@@ -427,6 +431,10 @@ inherited frm_enterprise: Tfrm_enterprise
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl_address: TdxLayoutControl
             Left = 0
             Top = 0
@@ -762,7 +770,6 @@ inherited frm_enterprise: Tfrm_enterprise
     end
   end
   inherited qry: TFDQuery [5]
-    Active = True
     BeforeOpen = qryBeforeOpen
     Connection = frm_dm.connCCS
     SQL.Strings = (
@@ -1055,8 +1062,6 @@ inherited frm_enterprise: Tfrm_enterprise
         DataSetName = 'Empresa'
       end
       item
-        DataSet = frm_dm.frx_db_enterprise
-        DataSetName = 'enterprise'
       end>
     Variables = <>
     Style = <>
@@ -1100,8 +1105,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 570.709030000000000000
           Height = 18.897650000000000000
           DataField = 'ent_last_name'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -16
@@ -1118,8 +1121,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Top = 24.354360000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -1136,8 +1137,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Top = 43.811070000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -1163,8 +1162,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Top = 63.811070000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -1190,8 +1187,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Top = 84.488250000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -1218,8 +1213,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 124.724409450000000000
           Height = 86.929131420000000000
           DataField = 'ent_image1'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Frame.Typ = []
           HightQuality = False
           Transparent = False

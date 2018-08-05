@@ -5,7 +5,6 @@ inherited frm_search_enterprise: Tfrm_search_enterprise
   inherited cxGrid_1: TcxGrid
     inherited cxGrid_1DBTableView1: TcxGridDBTableView
       OnCellDblClick = cxGrid_1DBTableView1CellDblClick
-      DataController.DataSource = frm_dm.ds_enterprise
       DataController.Options = [dcoCaseInsensitive, dcoAssignGroupingValues, dcoAssignMasterDetailKeys, dcoSaveExpanding]
       OptionsData.Deleting = False
       OptionsData.DeletingConfirmation = False
@@ -51,13 +50,13 @@ inherited frm_search_enterprise: Tfrm_search_enterprise
   inherited dxBarManager_1: TdxBarManager
     Left = 480
     Top = 24
+    PixelsPerInch = 96
   end
   inherited ActionList_1: TActionList
     Left = 520
     Top = 24
   end
   inherited qry: TFDQuery
-    MasterSource = frm_dm.ds_signin
     MasterFields = 'ctr_id'
     Connection = frm_dm.connCCS
     SQL.Strings = (

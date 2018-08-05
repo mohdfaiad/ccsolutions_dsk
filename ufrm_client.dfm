@@ -189,6 +189,9 @@ inherited frm_client: Tfrm_client
         ExplicitHeight = 596
         ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
           ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             Height = 562
@@ -457,6 +460,10 @@ inherited frm_client: Tfrm_client
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
           OnShow = cxTabSheet_addressShow
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1085,6 +1092,10 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Contatos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1226,6 +1237,10 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1288,6 +1303,10 @@ inherited frm_client: Tfrm_client
         end
         object tabTelefonia: TcxTabSheet
           Caption = 'Telefonia'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1441,6 +1460,10 @@ inherited frm_client: Tfrm_client
         object tabLaboratorio: TcxTabSheet
           Caption = 'Laborat'#243'rio'
           OnShow = tabLaboratorioShow
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl5: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1583,10 +1606,8 @@ inherited frm_client: Tfrm_client
     end
   end
   inherited qry: TFDQuery
-    Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -1919,8 +1940,6 @@ inherited frm_client: Tfrm_client
         DataSetName = 'client_insirance'
       end
       item
-        DataSet = frm_dm.frx_db_enterprise
-        DataSetName = 'enterprise'
       end>
     Variables = <>
     Style = <>
@@ -1964,8 +1983,6 @@ inherited frm_client: Tfrm_client
           Width = 570.709030000000000000
           Height = 18.897650000000000000
           DataField = 'ent_last_name'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -16
@@ -1982,8 +1999,6 @@ inherited frm_client: Tfrm_client
           Top = 24.354360000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -2000,8 +2015,6 @@ inherited frm_client: Tfrm_client
           Top = 43.811070000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -2027,8 +2040,6 @@ inherited frm_client: Tfrm_client
           Top = 63.811070000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -2054,8 +2065,6 @@ inherited frm_client: Tfrm_client
           Top = 84.488250000000000000
           Width = 570.709030000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -2082,8 +2091,6 @@ inherited frm_client: Tfrm_client
           Width = 124.724409450000000000
           Height = 86.929131420000000000
           DataField = 'ent_image1'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Frame.Typ = []
           HightQuality = False
           Transparent = False
@@ -2959,9 +2966,7 @@ inherited frm_client: Tfrm_client
     end
   end
   object qry_insurance: TFDQuery
-    Active = True
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -3019,7 +3024,6 @@ inherited frm_client: Tfrm_client
     end
   end
   object qry_client_insirance: TFDQuery
-    Active = True
     AfterInsert = qry_client_insiranceAfterInsert
     BeforePost = qry_client_insiranceBeforePost
     CachedUpdates = True
@@ -3114,7 +3118,6 @@ inherited frm_client: Tfrm_client
     Top = 90
   end
   object qry_client_sippulse: TFDQuery
-    Active = True
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'
@@ -3173,7 +3176,6 @@ inherited frm_client: Tfrm_client
     Top = 90
   end
   object qry_client_astpp: TFDQuery
-    Active = True
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'

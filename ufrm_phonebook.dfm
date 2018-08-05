@@ -219,7 +219,6 @@ inherited frm_phonebook: Tfrm_phonebook
     end
   end
   inherited qry: TFDQuery
-    Active = True
     BeforeOpen = qryBeforeOpen
     CachedUpdates = True
     Connection = frm_dm.connCCS

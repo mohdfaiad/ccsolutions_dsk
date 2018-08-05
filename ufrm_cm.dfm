@@ -1,4 +1,4 @@
-object frm_cc: Tfrm_cc
+object frm_cm: Tfrm_cm
   OldCreateOrder = False
   Height = 271
   Width = 415

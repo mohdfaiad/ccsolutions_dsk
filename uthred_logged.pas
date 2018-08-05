@@ -53,15 +53,15 @@ uses ufrm_dm, ufrm_main_default;
 
 procedure TLogado.Execute;
 begin
-  { Place thread code here }
-  Priority:=tpLower;
-
-  frm_dm.qry_logged.Refresh;
-  if frm_dm.qry_loggedctr_usr_logged.AsString = 'N' then
-    logado:=False;
-
-  if frm_dm.qry_loggedctr_usr_logged.AsString = 'B' then
-    bloqueado:=true;
+//  { Place thread code here }
+//  Priority:=tpLower;
+//
+//  frm_dm.qry_logged.Refresh;
+//  if frm_dm.qry_loggedctr_usr_logged.AsString = 'N' then
+//    logado:=False;
+//
+//  if frm_dm.qry_loggedctr_usr_logged.AsString = 'B' then
+//    bloqueado:=true;
     inherited;
  end;
 

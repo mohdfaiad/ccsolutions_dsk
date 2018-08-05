@@ -1,4 +1,4 @@
-unit class_report;
+unit u_class_report;
 
 interface
 

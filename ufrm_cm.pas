@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Classes, u_clientclasses, Datasnap.DSClientRest;
 
 type
-  Tfrm_cc = class(TDataModule)
+  Tfrm_cm = class(TDataModule)
     dsrestconn: TDSRestConnection;
   private
     FInstanceOwner: Boolean;
@@ -22,7 +22,7 @@ type
 end;
 
 var
-  frm_cc: Tfrm_cc;
+  frm_cm: Tfrm_cm;
 
 implementation
 
@@ -30,19 +30,19 @@ implementation
 
 {$R *.dfm}
 
-constructor Tfrm_cc.Create(AOwner: TComponent);
+constructor Tfrm_cm.Create(AOwner: TComponent);
 begin
   inherited;
   FInstanceOwner := True;
 end;
 
-destructor Tfrm_cc.Destroy;
+destructor Tfrm_cm.Destroy;
 begin
   FmethodsClient.Free;
   inherited;
 end;
 
-function Tfrm_cc.GetmethodsClient: methodsClient;
+function Tfrm_cm.GetmethodsClient: methodsClient;
 begin
   if FmethodsClient = nil then
     FmethodsClient:= methodsClient.Create(dsrestconn, FInstanceOwner);

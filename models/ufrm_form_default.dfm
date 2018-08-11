@@ -35,10 +35,6 @@ object frm_form_default: Tfrm_form_default
     ClientRectTop = 28
     object cxTabSheet_1: TcxTabSheet
       Caption = 'Pesquisar'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object cxGrid_1: TcxGrid
         AlignWithMargins = True
         Left = 3
@@ -104,10 +100,6 @@ object frm_form_default: Tfrm_form_default
     end
     object cxTabSheet_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object cxPageControl_2: TcxPageControl
         AlignWithMargins = True
         Left = 3
@@ -126,10 +118,6 @@ object frm_form_default: Tfrm_form_default
         ClientRectTop = 28
         object cxTabSheet_3: TcxTabSheet
           Caption = 'Informa'#231#245'es'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl_1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -744,7 +732,7 @@ object frm_form_default: Tfrm_form_default
     end
   end
   object ds: TDataSource
-    DataSet = qry
+    DataSet = mem
     Left = 960
     Top = 56
   end
@@ -1618,7 +1606,7 @@ object frm_form_default: Tfrm_form_default
     Top = 8
   end
   object schadapter: TFDSchemaAdapter
-    Left = 896
+    Left = 864
     Top = 56
   end
   object frxReport_1: TfrxReport
@@ -1641,5 +1629,16 @@ object frm_form_default: Tfrm_form_default
     Datasets = <>
     Variables = <>
     Style = <>
+  end
+  object mem: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 896
+    Top = 56
   end
 end

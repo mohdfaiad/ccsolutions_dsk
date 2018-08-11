@@ -51,11 +51,11 @@ object frm_dm: Tfrm_dm
   end
   object rest_response: TRESTResponse
     ContentType = 'text/html'
+    RootElement = 'contract_user_signin'
     Left = 40
     Top = 112
   end
   object rest_response_dsa: TRESTResponseDataSetAdapter
-    Active = True
     Dataset = mem_rest
     FieldDefs = <>
     Response = rest_response
@@ -64,18 +64,7 @@ object frm_dm: Tfrm_dm
     Top = 160
   end
   object mem_rest: TFDMemTable
-    Active = True
-    FieldDefs = <
-      item
-        Name = 'result'
-        DataType = ftWideString
-        Size = 255
-      end
-      item
-        Name = 'contract_user_signin'
-        DataType = ftWideString
-        Size = 255
-      end>
+    FieldDefs = <>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll

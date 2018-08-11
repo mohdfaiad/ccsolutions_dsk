@@ -5,6 +5,10 @@ inherited frm_enterprise: Tfrm_enterprise
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ent_id: TcxGridDBColumn
@@ -13,7 +17,7 @@ inherited frm_enterprise: Tfrm_enterprise
           end
           object cxGrid_1DBTableView1ent_type: TcxGridDBColumn
             DataBinding.FieldName = 'ent_type'
-            Width = 35
+            Width = 50
           end
           object cxGrid_1DBTableView1ent_first_name: TcxGridDBColumn
             DataBinding.FieldName = 'ent_first_name'
@@ -61,7 +65,7 @@ inherited frm_enterprise: Tfrm_enterprise
           end
           object cxGrid_1DBTableView1ent_add_bus_street: TcxGridDBColumn
             DataBinding.FieldName = 'ent_add_bus_street'
-            Width = 150
+            Width = 200
           end
           object cxGrid_1DBTableView1ent_add_bus_complement: TcxGridDBColumn
             DataBinding.FieldName = 'ent_add_bus_complement'
@@ -73,11 +77,11 @@ inherited frm_enterprise: Tfrm_enterprise
           end
           object cxGrid_1DBTableView1ent_add_bus_state: TcxGridDBColumn
             DataBinding.FieldName = 'ent_add_bus_state'
-            Width = 35
+            Width = 50
           end
           object cxGrid_1DBTableView1ent_add_bus_country: TcxGridDBColumn
             DataBinding.FieldName = 'ent_add_bus_country'
-            Width = 100
+            Width = 150
           end
           object cxGrid_1DBTableView1ent_phone1: TcxGridDBColumn
             DataBinding.FieldName = 'ent_phone1'
@@ -115,6 +119,10 @@ inherited frm_enterprise: Tfrm_enterprise
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
@@ -431,10 +439,6 @@ inherited frm_enterprise: Tfrm_enterprise
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl_address: TdxLayoutControl
             Left = 0
             Top = 0
@@ -772,227 +776,8 @@ inherited frm_enterprise: Tfrm_enterprise
   inherited qry: TFDQuery [5]
     BeforeOpen = qryBeforeOpen
     Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'call proc_enterprise_read(:contract_ctr_cod)')
-    ParamData = <
-      item
-        Name = 'CONTRACT_CTR_COD'
-        DataType = ftWideString
-        ParamType = ptInput
-        Value = Null
-      end>
-    object qrycontract_ctr_cod: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato'
-      FieldName = 'contract_ctr_cod'
-      Origin = 'contract_ctr_cod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 32
-    end
-    object qryent_cod: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'C'#243'd.'
-      FieldName = 'ent_cod'
-      Origin = 'ent_cod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 32
-    end
-    object qryent_id: TLongWordField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'ID'
-      FieldName = 'ent_id'
-      Origin = 'ent_id'
-    end
-    object qryent_type: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Tipo'
-      FieldName = 'ent_type'
-      Origin = 'ent_type'
-      FixedChar = True
-      Size = 1
-    end
-    object qryent_first_name: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Raz'#227'o'
-      FieldName = 'ent_first_name'
-      Origin = 'ent_first_name'
-      Size = 85
-    end
-    object qryent_last_name: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Fantasia'
-      FieldName = 'ent_last_name'
-      Origin = 'ent_last_name'
-      Size = 85
-    end
-    object qryent_nickname: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Apelido'
-      FieldName = 'ent_nickname'
-      Origin = 'ent_nickname'
-      Size = 85
-    end
-    object qryent_email: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'E-mail'
-      FieldName = 'ent_email'
-      Origin = 'ent_email'
-      Size = 65
-    end
-    object qryent_cnpj: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'CNPJ'
-      FieldName = 'ent_cnpj'
-      Origin = 'ent_cnpj'
-      Size = 25
-    end
-    object qryent_ie: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'IE'
-      FieldName = 'ent_ie'
-      Origin = 'ent_ie'
-      Size = 25
-    end
-    object qryent_im: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'IM'
-      FieldName = 'ent_im'
-      Origin = 'ent_im'
-      Size = 25
-    end
-    object qryent_suframa: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Suframa'
-      FieldName = 'ent_suframa'
-      Origin = 'ent_suframa'
-      Size = 25
-    end
-    object qryent_add_bus_zipcode: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'CEP'
-      FieldName = 'ent_add_bus_zipcode'
-      Origin = 'ent_add_bus_zipcode'
-      Size = 9
-    end
-    object qryent_add_bus_address: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Rua'
-      FieldName = 'ent_add_bus_address'
-      Origin = 'ent_add_bus_address'
-      Size = 50
-    end
-    object qryent_add_bus_number: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'N'#250'm.'
-      FieldName = 'ent_add_bus_number'
-      Origin = 'ent_add_bus_number'
-      Size = 5
-    end
-    object qryent_add_bus_street: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Bairro'
-      FieldName = 'ent_add_bus_street'
-      Origin = 'ent_add_bus_street'
-      Size = 45
-    end
-    object qryent_add_bus_complement: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Compl.'
-      FieldName = 'ent_add_bus_complement'
-      Origin = 'ent_add_bus_complement'
-      Size = 50
-    end
-    object qryent_add_bus_city: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Cidade'
-      FieldName = 'ent_add_bus_city'
-      Origin = 'ent_add_bus_city'
-      Size = 35
-    end
-    object qryent_add_bus_state: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'UF'
-      FieldName = 'ent_add_bus_state'
-      Origin = 'ent_add_bus_state'
-      FixedChar = True
-      Size = 3
-    end
-    object qryent_add_bus_country: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Pa'#237's'
-      FieldName = 'ent_add_bus_country'
-      Origin = 'ent_add_bus_country'
-      Size = 25
-    end
-    object qryent_phone1: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Tel. 1'
-      FieldName = 'ent_phone1'
-      Origin = 'ent_phone1'
-      Size = 15
-    end
-    object qryent_phone2: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Tel. 2'
-      FieldName = 'ent_phone2'
-      Origin = 'ent_phone2'
-      Size = 15
-    end
-    object qryent_phone3: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Tel. 3'
-      FieldName = 'ent_phone3'
-      Origin = 'ent_phone3'
-      Size = 15
-    end
-    object qryent_phone4: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Fax'
-      FieldName = 'ent_phone4'
-      Origin = 'ent_phone4'
-      Size = 15
-    end
-    object qryent_contact: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contato'
-      FieldName = 'ent_contact'
-      Origin = 'ent_contact'
-      Size = 25
-    end
-    object qryent_dt_open: TDateField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Aber.'
-      FieldName = 'ent_dt_open'
-      Origin = 'ent_dt_open'
-    end
-    object qryent_status: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Status'
-      FieldName = 'ent_status'
-      Origin = 'ent_status'
-      FixedChar = True
-      Size = 1
-    end
-    object qryent_image1: TBlobField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Logo'
-      FieldName = 'ent_image1'
-      Origin = 'ent_image1'
-    end
-    object qryent_deleted_at: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Deletado em'
-      FieldName = 'ent_deleted_at'
-      Origin = 'ent_deleted_at'
-    end
-    object qryent_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'ent_dt_registration'
-      Origin = 'ent_dt_registration'
-    end
+    FetchOptions.AssignedValues = [evMode, evRecordCountMode, evAutoFetchAll]
+    FetchOptions.Mode = fmManual
   end
   inherited ACBrEnterTab_1: TACBrEnterTab [6]
   end
@@ -2015,6 +1800,208 @@ inherited frm_enterprise: Tfrm_enterprise
             '[Empresa."ent_add_bus_number"]')
         end
       end
+    end
+  end
+  inherited mem: TFDMemTable
+    Active = True
+    object mement_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'ent_cod'
+      Origin = 'ent_cod'
+      Size = 32
+    end
+    object mement_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'ent_id'
+      Origin = 'ent_id'
+    end
+    object mement_type: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tipo'
+      FieldName = 'ent_type'
+      Origin = 'ent_type'
+      FixedChar = True
+      Size = 1
+    end
+    object mement_first_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Raz'#227'o Social'
+      FieldName = 'ent_first_name'
+      Origin = 'ent_first_name'
+      Size = 85
+    end
+    object mement_last_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome Fantasia'
+      FieldName = 'ent_last_name'
+      Origin = 'ent_last_name'
+      Size = 85
+    end
+    object mement_nickname: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Apelido'
+      FieldName = 'ent_nickname'
+      Origin = 'ent_nickname'
+      Size = 85
+    end
+    object mement_email: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'E-mail'
+      FieldName = 'ent_email'
+      Origin = 'ent_email'
+      Size = 65
+    end
+    object mement_cnpj: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'CNPJ'
+      FieldName = 'ent_cnpj'
+      Origin = 'ent_cnpj'
+      Size = 25
+    end
+    object mement_ie: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'IE'
+      FieldName = 'ent_ie'
+      Origin = 'ent_ie'
+      Size = 25
+    end
+    object mement_im: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'IM'
+      FieldName = 'ent_im'
+      Origin = 'ent_im'
+      Size = 25
+    end
+    object mement_suframa: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Suframa'
+      FieldName = 'ent_suframa'
+      Origin = 'ent_suframa'
+      Size = 25
+    end
+    object mement_add_bus_zipcode: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'CEP'
+      FieldName = 'ent_add_bus_zipcode'
+      Origin = 'ent_add_bus_zipcode'
+      Size = 9
+    end
+    object mement_add_bus_address: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Rua'
+      FieldName = 'ent_add_bus_address'
+      Origin = 'ent_add_bus_address'
+      Size = 50
+    end
+    object mement_add_bus_number: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'N'#250'm.'
+      FieldName = 'ent_add_bus_number'
+      Origin = 'ent_add_bus_number'
+      Size = 5
+    end
+    object mement_add_bus_street: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Bairro'
+      FieldName = 'ent_add_bus_street'
+      Origin = 'ent_add_bus_street'
+      Size = 45
+    end
+    object mement_add_bus_complement: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Compl.'
+      FieldName = 'ent_add_bus_complement'
+      Origin = 'ent_add_bus_complement'
+      Size = 50
+    end
+    object mement_add_bus_city: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Cidade'
+      FieldName = 'ent_add_bus_city'
+      Origin = 'ent_add_bus_city'
+      Size = 35
+    end
+    object mement_add_bus_state: TShortintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'UF'
+      FieldName = 'ent_add_bus_state'
+      Origin = 'ent_add_bus_state'
+    end
+    object mement_add_bus_country: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Pa'#237's'
+      FieldName = 'ent_add_bus_country'
+      Origin = 'ent_add_bus_country'
+      Size = 25
+    end
+    object mement_phone1: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 1'
+      FieldName = 'ent_phone1'
+      Origin = 'ent_phone1'
+      Size = 15
+    end
+    object mement_phone2: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 2'
+      FieldName = 'ent_phone2'
+      Origin = 'ent_phone2'
+      Size = 15
+    end
+    object mement_phone3: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 3'
+      FieldName = 'ent_phone3'
+      Origin = 'ent_phone3'
+      Size = 15
+    end
+    object mement_phone4: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 4'
+      FieldName = 'ent_phone4'
+      Origin = 'ent_phone4'
+      Size = 15
+    end
+    object mement_contact: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Contato'
+      FieldName = 'ent_contact'
+      Origin = 'ent_contact'
+      Size = 25
+    end
+    object mement_dt_open: TDateField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Aber.'
+      FieldName = 'ent_dt_open'
+      Origin = 'ent_dt_open'
+    end
+    object mement_status: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'ent_status'
+      Origin = 'ent_status'
+      FixedChar = True
+      Size = 1
+    end
+    object mement_image1: TBlobField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Logo'
+      FieldName = 'ent_image1'
+      Origin = 'ent_image1'
+    end
+    object mement_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'ent_deleted_at'
+      Origin = 'ent_deleted_at'
+    end
+    object mement_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'ent_dt_registration'
+      Origin = 'ent_dt_registration'
     end
   end
   object acbr_cep: TACBrCEP

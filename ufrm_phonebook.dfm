@@ -19,10 +19,6 @@ inherited frm_phonebook: Tfrm_phonebook
             DataBinding.FieldName = 'pho_name'
             Width = 150
           end
-          object cxGrid_1DBTableView1pho_contact: TcxGridDBColumn
-            DataBinding.FieldName = 'pho_contact'
-            Width = 150
-          end
           object cxGrid_1DBTableView1pho_phone1: TcxGridDBColumn
             DataBinding.FieldName = 'pho_phone1'
             Width = 100
@@ -37,6 +33,10 @@ inherited frm_phonebook: Tfrm_phonebook
           end
           object cxGrid_1DBTableView1pho_phone4: TcxGridDBColumn
             DataBinding.FieldName = 'pho_phone4'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1pho_contact: TcxGridDBColumn
+            DataBinding.FieldName = 'pho_contact'
             Width = 100
           end
           object cxGrid_1DBTableView1pho_dt_registration: TcxGridDBColumn
@@ -222,93 +222,6 @@ inherited frm_phonebook: Tfrm_phonebook
     BeforeOpen = qryBeforeOpen
     CachedUpdates = True
     Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'call proc_phonebook_read(:contract_ctr_cod)')
-    ParamData = <
-      item
-        Name = 'CONTRACT_CTR_COD'
-        DataType = ftWideString
-        ParamType = ptInput
-        Value = Null
-      end>
-    object qrypho_cod: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'C'#243'd.'
-      FieldName = 'pho_cod'
-      Origin = 'pho_cod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 32
-    end
-    object qrycontract_ctr_cod: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato C'#243'd.'
-      FieldName = 'contract_ctr_cod'
-      Origin = 'contract_ctr_cod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 32
-    end
-    object qrypho_id: TLongWordField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'ID'
-      FieldName = 'pho_id'
-      Origin = 'pho_id'
-    end
-    object qrypho_name: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
-      FieldName = 'pho_name'
-      Origin = 'pho_name'
-      Size = 35
-    end
-    object qrypho_phone1: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Tel. 1'
-      FieldName = 'pho_phone1'
-      Origin = 'pho_phone1'
-      Size = 15
-    end
-    object qrypho_phone2: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Tel. 2'
-      FieldName = 'pho_phone2'
-      Origin = 'pho_phone2'
-      Size = 15
-    end
-    object qrypho_phone3: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Tel. 3'
-      FieldName = 'pho_phone3'
-      Origin = 'pho_phone3'
-      Size = 15
-    end
-    object qrypho_phone4: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Tel. 4'
-      FieldName = 'pho_phone4'
-      Origin = 'pho_phone4'
-      Size = 15
-    end
-    object qrypho_contact: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contato'
-      FieldName = 'pho_contact'
-      Origin = 'pho_contact'
-      Size = 25
-    end
-    object qrypho_deleted_at: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Deletado em'
-      FieldName = 'pho_deleted_at'
-      Origin = 'pho_deleted_at'
-    end
-    object qrypho_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'pho_dt_registration'
-      Origin = 'pho_dt_registration'
-    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -328,5 +241,106 @@ inherited frm_phonebook: Tfrm_phonebook
     Datasets = <>
     Variables = <>
     Style = <>
+  end
+  inherited mem: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'pho_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'pho_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'pho_name'
+        DataType = ftString
+        Size = 35
+      end
+      item
+        Name = 'pho_phone1'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'pho_phone2'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'pho_phone3'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'pho_phone4'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'pho_contact'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'pho_deleted_at'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'pho_dt_registration'
+        DataType = ftString
+        Size = 20
+      end>
+    StoreDefs = True
+    object mempho_cod: TStringField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'pho_cod'
+      Size = 32
+    end
+    object mempho_id: TIntegerField
+      DisplayLabel = 'ID'
+      FieldName = 'pho_id'
+    end
+    object mempho_name: TStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'pho_name'
+      Size = 35
+    end
+    object mempho_phone1: TStringField
+      DisplayLabel = 'Tel. 1'
+      FieldName = 'pho_phone1'
+      Size = 15
+    end
+    object mempho_phone2: TStringField
+      DisplayLabel = 'Tel. 2'
+      FieldName = 'pho_phone2'
+      Size = 15
+    end
+    object mempho_phone3: TStringField
+      DisplayLabel = 'Tel. 3'
+      FieldName = 'pho_phone3'
+      Size = 15
+    end
+    object mempho_phone4: TStringField
+      DisplayLabel = 'Tel. 4'
+      FieldName = 'pho_phone4'
+      Size = 15
+    end
+    object mempho_contact: TStringField
+      DisplayLabel = 'Contato'
+      FieldName = 'pho_contact'
+      Size = 25
+    end
+    object mempho_deleted_at: TStringField
+      DisplayLabel = 'Deletado em'
+      FieldName = 'pho_deleted_at'
+    end
+    object mempho_dt_registration: TStringField
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'pho_dt_registration'
+    end
   end
 end

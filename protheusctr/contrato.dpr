@@ -28,7 +28,10 @@ uses
   u_class_rest_contract in '..\u_class_rest_contract.pas',
   u_class_rest_method in '..\u_class_rest_method.pas',
   u_class_connection in '..\u_class_connection.pas',
-  u_class_rest_login in '..\u_class_rest_login.pas';
+  u_class_rest_login in '..\u_class_rest_login.pas',
+  u_class_phonebook in '..\u_class_phonebook.pas',
+  u_class_rest_enterprise in '..\u_class_rest_enterprise.pas',
+  u_class_rest_client in '..\u_class_rest_client.pas';
 
 {$R *.res}
 

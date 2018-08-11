@@ -148,13 +148,14 @@ uses
   frxDBSet,
 
   ufrm_main_default,
-  ufrm_form_default;
+  ufrm_form_default,
+
+  u_class_rest_method,
+  u_class_connection,
+  u_class_rest_client;
 
 type
   Tfrm_client = class(Tfrm_form_default)
-    qrycli_first_name: TStringField;
-    qrycli_last_name: TStringField;
-    qrycli_email: TStringField;
     edtClient: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
     cxDBTextEdit2: TcxDBTextEdit;
@@ -221,8 +222,6 @@ type
     dxLayoutItem23: TdxLayoutItem;
     dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
     dxLayoutGroup6: TdxLayoutGroup;
-    qrycli_cpfcnpj: TStringField;
-    qrycli_suframa: TStringField;
     edt_cpfcnpj: TcxDBTextEdit;
     dxLayoutItem32: TdxLayoutItem;
     cxDBTextEdit20: TcxDBTextEdit;
@@ -233,14 +232,6 @@ type
     dxLayoutItem35: TdxLayoutItem;
     cxDBComboBox1: TcxDBComboBox;
     dxLayoutItem36: TdxLayoutItem;
-    qrycli_phone1: TStringField;
-    qrycli_phone2: TStringField;
-    qrycli_phone3: TStringField;
-    qrycli_rgie: TStringField;
-    qrycli_dt_birthopen: TDateField;
-    qrycli_phone4: TStringField;
-    qrycli_dt_registration: TDateTimeField;
-    qrycli_type: TStringField;
     cxTabSheet1: TcxTabSheet;
     dxLayoutControl2: TdxLayoutControl;
     cxDBTextEdit4: TcxDBTextEdit;
@@ -256,32 +247,6 @@ type
     dxLayoutItem38: TdxLayoutItem;
     dxLayoutItem39: TdxLayoutItem;
     dxLayoutItem40: TdxLayoutItem;
-    qrycli_contact: TStringField;
-    qrycli_add_bus_zipcode: TStringField;
-    qrycli_add_bus_address: TStringField;
-    qrycli_add_bus_number: TStringField;
-    qrycli_add_bus_street: TStringField;
-    qrycli_add_bus_complement: TStringField;
-    qrycli_add_bus_city: TStringField;
-    qrycli_add_bus_state: TStringField;
-    qrycli_add_bus_country: TStringField;
-    qrycli_add_bil_zipcode: TStringField;
-    qrycli_add_bil_address: TStringField;
-    qrycli_add_bil_number: TStringField;
-    qrycli_add_bil_street: TStringField;
-    qrycli_add_bil_complement: TStringField;
-    qrycli_add_bil_city: TStringField;
-    qrycli_add_bil_state: TStringField;
-    qrycli_add_bil_country: TStringField;
-    qrycli_add_del_zipcode: TStringField;
-    qrycli_add_del_address: TStringField;
-    qrycli_add_del_number: TStringField;
-    qrycli_add_del_street: TStringField;
-    qrycli_add_del_complement: TStringField;
-    qrycli_add_del_city: TStringField;
-    qrycli_add_del_state: TStringField;
-    qrycli_add_del_country: TStringField;
-    qrycli_day_maturity: TIntegerField;
     cxGrid_1DBTableView1cli_type: TcxGridDBColumn;
     cxGrid_1DBTableView1cli_first_name: TcxGridDBColumn;
     cxGrid_1DBTableView1cli_last_name: TcxGridDBColumn;
@@ -344,7 +309,6 @@ type
     dxLayoutControl4Group_Root: TdxLayoutGroup;
     dxLayoutControl4: TdxLayoutControl;
     dxLayoutGroup11: TdxLayoutGroup;
-    qrycli_status: TStringField;
     qry_insurance: TFDQuery;
     qry_insuranceins_first_name: TStringField;
     tabLaboratorio: TcxTabSheet;
@@ -358,8 +322,6 @@ type
     qry_client_insirance: TFDQuery;
     ds_client_insirance: TDataSource;
     ds_insurance: TDataSource;
-    qrycontract_ctr_cod: TBytesField;
-    qrytable_price_tbp_cod: TBytesField;
     qry_insuranceins_id: TLongWordField;
     qry_insurancecontract_ctr_cod: TBytesField;
     qry_client_insirancecin_deleted_at: TDateTimeField;
@@ -397,11 +359,6 @@ type
     cxGrid3DBTableView1cla_account_astpp: TcxGridDBColumn;
     cxGrid3DBTableView1cla_dt_registration: TcxGridDBColumn;
     qry_client_astppclient_cli_cod: TBytesField;
-    qrycli_cod: TBytesField;
-    qrycli_id: TLongWordField;
-    qrycli_im: TStringField;
-    qrycli_deleted_at: TDateTimeField;
-    qryCodClient: TStringField;
     qry_client_insiranceclient_cli_cod: TBytesField;
     qry_client_insirancecodCliInsirance: TStringField;
     qry_client_insirancecin_cod: TBytesField;
@@ -411,7 +368,6 @@ type
     qry_insurancetable_price_tbp_cod: TBytesField;
     qry_insurancecodInsurance: TStringField;
     qry_client_insiranceClientCod: TStringField;
-    qryClientCod: TStringField;
     qry_client_insiranceins_first_name: TStringField;
     cxGrid1DBTableView1cin_id: TcxGridDBColumn;
     cxGrid1DBTableView1ins_first_name: TcxGridDBColumn;
@@ -419,12 +375,120 @@ type
     cxGrid_1DBTableView1Column1: TcxGridDBColumn;
     cxDBImage1: TcxDBImage;
     dxLayoutItem47: TdxLayoutItem;
-    qrycli_image1: TBlobField;
     PopupMenu1: TPopupMenu;
     Localizar1: TMenuItem;
     frx_db_client: TfrxDBDataset;
     frx_db_client_insirance: TfrxDBDataset;
     acbr_cep: TACBrCEP;
+    FDStoredProc1: TFDStoredProc;
+    FDStoredProc1cli_cod: TStringField;
+    FDStoredProc1table_price_tbp_cod: TStringField;
+    FDStoredProc1cli_id: TLongWordField;
+    FDStoredProc1cli_type: TStringField;
+    FDStoredProc1cli_first_name: TStringField;
+    FDStoredProc1cli_last_name: TStringField;
+    FDStoredProc1cli_email: TStringField;
+    FDStoredProc1cli_cpfcnpj: TStringField;
+    FDStoredProc1cli_rgie: TStringField;
+    FDStoredProc1cli_im: TStringField;
+    FDStoredProc1cli_suframa: TStringField;
+    FDStoredProc1cli_add_bus_zipcode: TStringField;
+    FDStoredProc1cli_add_bus_address: TStringField;
+    FDStoredProc1cli_add_bus_number: TStringField;
+    FDStoredProc1cli_add_bus_street: TStringField;
+    FDStoredProc1cli_add_bus_complement: TStringField;
+    FDStoredProc1cli_add_bus_city: TStringField;
+    FDStoredProc1cli_add_bus_state: TShortintField;
+    FDStoredProc1cli_add_bus_country: TStringField;
+    FDStoredProc1cli_add_bil_zipcode: TStringField;
+    FDStoredProc1cli_add_bil_address: TStringField;
+    FDStoredProc1cli_add_bil_number: TStringField;
+    FDStoredProc1cli_add_bil_street: TStringField;
+    FDStoredProc1cli_add_bil_complement: TStringField;
+    FDStoredProc1cli_add_bil_city: TStringField;
+    FDStoredProc1cli_add_bil_state: TShortintField;
+    FDStoredProc1cli_add_bil_country: TStringField;
+    FDStoredProc1cli_add_del_zipcode: TStringField;
+    FDStoredProc1cli_add_del_address: TStringField;
+    FDStoredProc1cli_add_del_number: TStringField;
+    FDStoredProc1cli_add_del_street: TStringField;
+    FDStoredProc1cli_add_del_complement: TStringField;
+    FDStoredProc1cli_add_del_city: TStringField;
+    FDStoredProc1cli_add_del_state: TShortintField;
+    FDStoredProc1cli_add_del_country: TStringField;
+    FDStoredProc1cli_phone1: TStringField;
+    FDStoredProc1cli_phone2: TStringField;
+    FDStoredProc1cli_phone3: TStringField;
+    FDStoredProc1cli_phone4: TStringField;
+    FDStoredProc1cli_contact: TStringField;
+    FDStoredProc1cli_day_maturity: TIntegerField;
+    FDStoredProc1cli_dt_birthopen: TDateField;
+    FDStoredProc1cli_weight: TBCDField;
+    FDStoredProc1cli_height: TBCDField;
+    FDStoredProc1cli_blood_type: TStringField;
+    FDStoredProc1cli_rh_factor: TStringField;
+    FDStoredProc1cli_du_factor: TStringField;
+    FDStoredProc1cli_cns: TStringField;
+    FDStoredProc1cli_gender: TStringField;
+    FDStoredProc1cli_skin_color: TStringField;
+    FDStoredProc1cli_status: TStringField;
+    FDStoredProc1cli_image1: TBlobField;
+    FDStoredProc1cli_deleted_at: TDateTimeField;
+    FDStoredProc1cli_dt_registration: TDateTimeField;
+    memcli_cod: TStringField;
+    memtable_price_tbp_cod: TStringField;
+    memcli_id: TLongWordField;
+    memcli_type: TStringField;
+    memcli_first_name: TStringField;
+    memcli_last_name: TStringField;
+    memcli_email: TStringField;
+    memcli_cpfcnpj: TStringField;
+    memcli_rgie: TStringField;
+    memcli_im: TStringField;
+    memcli_suframa: TStringField;
+    memcli_add_bus_zipcode: TStringField;
+    memcli_add_bus_address: TStringField;
+    memcli_add_bus_number: TStringField;
+    memcli_add_bus_street: TStringField;
+    memcli_add_bus_complement: TStringField;
+    memcli_add_bus_city: TStringField;
+    memcli_add_bus_state: TShortintField;
+    memcli_add_bus_country: TStringField;
+    memcli_add_bil_zipcode: TStringField;
+    memcli_add_bil_address: TStringField;
+    memcli_add_bil_number: TStringField;
+    memcli_add_bil_street: TStringField;
+    memcli_add_bil_complement: TStringField;
+    memcli_add_bil_city: TStringField;
+    memcli_add_bil_state: TShortintField;
+    memcli_add_bil_country: TStringField;
+    memcli_add_del_zipcode: TStringField;
+    memcli_add_del_address: TStringField;
+    memcli_add_del_number: TStringField;
+    memcli_add_del_street: TStringField;
+    memcli_add_del_complement: TStringField;
+    memcli_add_del_city: TStringField;
+    memcli_add_del_state: TShortintField;
+    memcli_add_del_country: TStringField;
+    memcli_phone1: TStringField;
+    memcli_phone2: TStringField;
+    memcli_phone3: TStringField;
+    memcli_phone4: TStringField;
+    memcli_contact: TStringField;
+    memcli_day_maturity: TIntegerField;
+    memcli_dt_birthopen: TDateField;
+    memcli_weight: TBCDField;
+    memcli_height: TBCDField;
+    memcli_blood_type: TStringField;
+    memcli_rh_factor: TStringField;
+    memcli_du_factor: TStringField;
+    memcli_cns: TStringField;
+    memcli_gender: TStringField;
+    memcli_skin_color: TStringField;
+    memcli_status: TStringField;
+    memcli_image1: TBlobField;
+    memcli_deleted_at: TDateTimeField;
+    memcli_dt_registration: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qryAfterInsert(DataSet: TDataSet);
     procedure Action_consult_cnpjExecute(Sender: TObject);
@@ -479,36 +543,36 @@ begin
   inherited;
   if cep = 1 then begin
     for i := 0 to acbr_cep.Enderecos.Count -1 do begin
-     qrycli_add_bus_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
-     qrycli_add_bus_street.AsString     := acbr_cep.Enderecos[i].Bairro;
-     qrycli_add_bus_complement.AsString := acbr_cep.Enderecos[i].Complemento;
-     qrycli_add_bus_city.AsString     	:= acbr_cep.Enderecos[i].Municipio;
-     qrycli_add_bus_state.AsString      := acbr_cep.Enderecos[i].UF;
-     qrycli_add_bus_country.AsString    := 'BRASIL';
+//     qrycli_add_bus_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
+//     qrycli_add_bus_street.AsString     := acbr_cep.Enderecos[i].Bairro;
+//     qrycli_add_bus_complement.AsString := acbr_cep.Enderecos[i].Complemento;
+//     qrycli_add_bus_city.AsString     	:= acbr_cep.Enderecos[i].Municipio;
+//     qrycli_add_bus_state.AsString      := acbr_cep.Enderecos[i].UF;
+//     qrycli_add_bus_country.AsString    := 'BRASIL';
      cxDBTextEdit22.SetFocus;
     end;
   end;
 
   if cep = 2 then begin
     for i := 0 to acbr_cep.Enderecos.Count -1 do begin
-      qrycli_add_bil_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
-      qrycli_add_bil_street.AsString     := acbr_cep.Enderecos[i].Bairro;
-      qrycli_add_bil_complement.AsString := acbr_cep.Enderecos[i].Complemento;
-      qrycli_add_bus_city.AsString     	 := acbr_cep.Enderecos[i].Municipio;
-      qrycli_add_bil_city.AsString       := acbr_cep.Enderecos[i].UF;
-      qrycli_add_bil_country.AsString    := 'BRASIL';
+//      qrycli_add_bil_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
+//      qrycli_add_bil_street.AsString     := acbr_cep.Enderecos[i].Bairro;
+//      qrycli_add_bil_complement.AsString := acbr_cep.Enderecos[i].Complemento;
+//      qrycli_add_bus_city.AsString     	 := acbr_cep.Enderecos[i].Municipio;
+//      qrycli_add_bil_city.AsString       := acbr_cep.Enderecos[i].UF;
+//      qrycli_add_bil_country.AsString    := 'BRASIL';
       cxDBTextEdit14.SetFocus;
     end;
   end;
 
   if cep = 3 then begin
     for i := 0 to acbr_cep.Enderecos.Count -1 do begin
-      qrycli_add_del_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
-      qrycli_add_del_street.AsString     := acbr_cep.Enderecos[i].Bairro;
-      qrycli_add_del_complement.AsString := acbr_cep.Enderecos[i].Complemento;
-      qrycli_add_del_city.AsString     	 := acbr_cep.Enderecos[i].Municipio;
-      qrycli_add_bil_city.AsString       := acbr_cep.Enderecos[i].UF;
-      qrycli_add_del_country.AsString    := 'BRASIL';
+//      qrycli_add_del_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
+//      qrycli_add_del_street.AsString     := acbr_cep.Enderecos[i].Bairro;
+//      qrycli_add_del_complement.AsString := acbr_cep.Enderecos[i].Complemento;
+//      qrycli_add_del_city.AsString     	 := acbr_cep.Enderecos[i].Municipio;
+//      qrycli_add_bil_city.AsString       := acbr_cep.Enderecos[i].UF;
+//      qrycli_add_del_country.AsString    := 'BRASIL';
       cxDBTextEdit6.SetFocus;
     end;
   end;
@@ -552,7 +616,7 @@ procedure Tfrm_client.Action_deleteExecute(Sender: TObject);
 begin
   if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
     qry.Edit;
-    qrycli_deleted_at.AsDateTime:=Now;
+//    qrycli_deleted_at.AsDateTime:=Now;
     qry.Post;
     qry.ApplyUpdates(0);
 
@@ -570,8 +634,8 @@ begin
     exit;
 
   inherited;
-    cli_cod:=qryCodClient.AsString;
-    cpf_cnpj:=qrycli_cpfcnpj.AsString;
+//    cli_cod:=qryCodClient.AsString;
+//    cpf_cnpj:=qrycli_cpfcnpj.AsString;
 end;
 
 procedure Tfrm_client.Action_saveExecute(Sender: TObject);
@@ -633,14 +697,14 @@ procedure Tfrm_client.AtualizarConvenios;
 begin
 
   //Select para Atualizadr a Grid de Convenios do cliente----------------
-   qry_client_insirance.Close;
-   qry_client_insirance.sql.Text:= ' select client_insurance.*, ins_first_name, hex(cin_cod) as codCliInsirance,  '+
-                                   ' hex(client_cli_cod)as ClientCod from client_insurance                        '+
-                                   ' left join insurance on insurance_ins_cod = ins_cod                           '+
-                                   ' where client_cli_cod =:cli_cod and cin_deleted_at is null ';
-   qry_client_insirance.ParamByName('CLI_COD').Value :=qrycli_cod.Value;
-   qry_client_insirance.prepare;
-   qry_client_insirance.open;
+//   qry_client_insirance.Close;
+//   qry_client_insirance.sql.Text:= ' select client_insurance.*, ins_first_name, hex(cin_cod) as codCliInsirance,  '+
+//                                   ' hex(client_cli_cod)as ClientCod from client_insurance                        '+
+//                                   ' left join insurance on insurance_ins_cod = ins_cod                           '+
+//                                   ' where client_cli_cod =:cli_cod and cin_deleted_at is null ';
+//   qry_client_insirance.ParamByName('CLI_COD').Value := qrycli_cod.Value;
+//   qry_client_insirance.prepare;
+//   qry_client_insirance.open;
 
 end;
 
@@ -915,9 +979,15 @@ end;
 procedure Tfrm_client.FormCreate(Sender: TObject);
 begin
   inherited;
-  schadapter.AfterApplyUpdate:=limpaCache;
+  Trest_methods.v_method        := 'get_client';
+  Trest_methods.v_parameter     := Tconnection.ctr_token;
+  Trest_methods.v_root_element  := 'client';
+
+  Trest_client.get_client(mem);
+
+//  schadapter.AfterApplyUpdate:=limpaCache;
 //  tabLaboratorio.TabVisible:=modulo = 'LABORATORIO';
-  tabTelefonia.TabVisible:=modulo = 'TELEFONIA';
+//  tabTelefonia.TabVisible:=modulo = 'TELEFONIA';
 end;
 
 procedure Tfrm_client.FormShow(Sender: TObject);

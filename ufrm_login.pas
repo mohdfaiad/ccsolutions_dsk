@@ -165,6 +165,7 @@ type
     mem: TFDMemTable;
     memvalid_user: TLargeintField;
     memctr_usr_cod: TStringField;
+    memctr_token: TStringField;
     procedure Action_cancelExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_accessExecute(Sender: TObject);

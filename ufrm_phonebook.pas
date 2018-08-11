@@ -132,23 +132,16 @@ uses
   ACBrBase, 
   ACBrEnterTab, 
   
-  frxClass, 
+  frxClass,
+
+  u_class_rest_method,
+  u_class_phonebook,
+  u_class_connection,
 
   ufrm_form_default;
 
 type
   Tfrm_phonebook = class(Tfrm_form_default)
-    qrypho_cod: TStringField;
-    qrycontract_ctr_cod: TStringField;
-    qrypho_id: TLongWordField;
-    qrypho_name: TStringField;
-    qrypho_phone1: TStringField;
-    qrypho_phone2: TStringField;
-    qrypho_phone3: TStringField;
-    qrypho_phone4: TStringField;
-    qrypho_contact: TStringField;
-    qrypho_deleted_at: TDateTimeField;
-    qrypho_dt_registration: TDateTimeField;
     dbedt_name: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
     dbedt_phone4: TcxDBTextEdit;
@@ -163,6 +156,16 @@ type
     dxLayoutItem8: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    mempho_cod: TStringField;
+    mempho_id: TIntegerField;
+    mempho_name: TStringField;
+    mempho_phone1: TStringField;
+    mempho_phone2: TStringField;
+    mempho_phone3: TStringField;
+    mempho_phone4: TStringField;
+    mempho_contact: TStringField;
+    mempho_deleted_at: TStringField;
+    mempho_dt_registration: TStringField;
     cxGrid_1DBTableView1pho_id: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_name: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_phone1: TcxGridDBColumn;
@@ -178,6 +181,7 @@ type
     procedure Action_editExecute(Sender: TObject);
     procedure cxGrid_1DBTableView1DblClick(Sender: TObject);
     procedure qryBeforeOpen(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     status : Integer;
@@ -310,6 +314,16 @@ begin
   inherited;
   frm_phonebook.Free;
   frm_phonebook := nil;
+end;
+
+procedure Tfrm_phonebook.FormCreate(Sender: TObject);
+begin
+  inherited;
+  Trest_methods.v_method        := 'get_phonebook';
+  Trest_methods.v_parameter     := Tconnection.ctr_token;
+  Trest_methods.v_root_element  := 'phonebook';
+
+  Trest_phonebook.get_phonebook(mem);
 end;
 
 procedure Tfrm_phonebook.qryBeforeOpen(DataSet: TDataSet);

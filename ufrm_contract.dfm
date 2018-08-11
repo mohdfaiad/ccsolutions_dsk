@@ -1,15 +1,10 @@
 inherited frm_contract: Tfrm_contract
   Caption = 'Manuten'#231#227'o: Contrato'
   OnClose = FormClose
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ctr_id: TcxGridDBColumn
@@ -218,9 +213,6 @@ inherited frm_contract: Tfrm_contract
       Visible = ivNever
     end
   end
-  inherited ds: TDataSource
-    DataSet = mem_contract
-  end
   inherited PopupMenu_1: TPopupMenu
     inherited Primeiro1: TMenuItem
       Enabled = False
@@ -250,95 +242,10 @@ inherited frm_contract: Tfrm_contract
     end
   end
   inherited qry: TFDQuery
-    BeforeOpen = qryBeforeOpen
     IndexFieldNames = 'ctr_cod'
     MasterFields = 'ctr_cod'
     DetailFields = 'ctr_cod'
     Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'call proc_contract_read(:ctr_cod);')
-    ParamData = <
-      item
-        Name = 'CTR_COD'
-        DataType = ftWideString
-        ParamType = ptInput
-        Value = Null
-      end>
-    object qryctr_cod: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'C'#243'd.'
-      FieldName = 'ctr_cod'
-      Origin = 'ctr_cod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 32
-    end
-    object qryctr_id: TLargeintField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'ID'
-      FieldName = 'ctr_id'
-      Origin = 'ctr_id'
-    end
-    object qryctr_first_name: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
-      FieldName = 'ctr_first_name'
-      Origin = 'ctr_first_name'
-      Size = 85
-    end
-    object qryctr_last_name: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Sobre Nome'
-      FieldName = 'ctr_last_name'
-      Origin = 'ctr_last_name'
-      Size = 85
-    end
-    object qryctr_email: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'E-mail'
-      FieldName = 'ctr_email'
-      Origin = 'ctr_email'
-      Size = 65
-    end
-    object qryctr_phone1: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Tel. 1'
-      FieldName = 'ctr_phone1'
-      Origin = 'ctr_phone1'
-      Size = 15
-    end
-    object qryctr_dt_birth: TDateField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Aniv.'
-      FieldName = 'ctr_dt_birth'
-      Origin = 'ctr_dt_birth'
-    end
-    object qryctr_user_license: TWordField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Licen'#231'a'
-      FieldName = 'ctr_user_license'
-      Origin = 'ctr_user_license'
-    end
-    object qryctr_status: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Status'
-      FieldName = 'ctr_status'
-      Origin = 'ctr_status'
-      FixedChar = True
-      Size = 1
-    end
-    object qryctr_deleted_at: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Deletado em'
-      FieldName = 'ctr_deleted_at'
-      Origin = 'ctr_deleted_at'
-    end
-    object qryctr_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'ctr_dt_registration'
-      Origin = 'ctr_dt_registration'
-    end
   end
   inherited QExport4Dialog_1: TQExport4Dialog
     Formats.IntegerFormat = '#,###,##0'
@@ -877,7 +784,7 @@ inherited frm_contract: Tfrm_contract
       end
     end
   end
-  object frx_db_contrato: TfrxDBDataset
+  object frx_db_contrato: TfrxDBDataset [15]
     UserName = 'Contrato'
     CloseDataSource = False
     DataSet = qry
@@ -885,11 +792,11 @@ inherited frm_contract: Tfrm_contract
     Left = 672
     Top = 56
   end
-  object str_proc_contract_update: TFDStoredProc
+  object str_proc_contract_update: TFDStoredProc [16]
     Connection = frm_dm.connCCS
     StoredProcName = 'ccs.proc_contract_update'
-    Left = 810
-    Top = 291
+    Left = 874
+    Top = 243
     ParamData = <
       item
         Position = 1
@@ -940,15 +847,9 @@ inherited frm_contract: Tfrm_contract
         Size = 1
       end>
   end
-  object mem_contract: TFDMemTable
+  inherited mem: TFDMemTable
     Active = True
     FieldDefs = <
-      item
-        Name = 'ctr_cod'
-        Attributes = [faReadonly]
-        DataType = ftString
-        Size = 32
-      end
       item
         Name = 'ctr_id'
         DataType = ftLargeint
@@ -994,73 +895,54 @@ inherited frm_contract: Tfrm_contract
         Name = 'ctr_dt_registration'
         DataType = ftDateTime
       end>
-    IndexDefs = <>
-    FetchOptions.AssignedValues = [evMode]
-    FetchOptions.Mode = fmAll
-    ResourceOptions.AssignedValues = [rvSilentMode]
-    ResourceOptions.SilentMode = True
-    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
-    UpdateOptions.CheckRequired = False
-    UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 770
-    Top = 187
-    object mem_contractctr_cod: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'C'#243'd.'
-      FieldName = 'ctr_cod'
-      Origin = 'ctr_cod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 32
-    end
-    object mem_contractctr_id: TLargeintField
+    object memctr_id: TLargeintField
       AutoGenerateValue = arDefault
       DisplayLabel = 'ID'
       FieldName = 'ctr_id'
       Origin = 'ctr_id'
     end
-    object mem_contractctr_first_name: TStringField
+    object memctr_first_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Nome'
       FieldName = 'ctr_first_name'
       Origin = 'ctr_first_name'
       Size = 85
     end
-    object mem_contractctr_last_name: TStringField
+    object memctr_last_name: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Sobre Nome'
+      DisplayLabel = 'Sobrenome'
       FieldName = 'ctr_last_name'
       Origin = 'ctr_last_name'
       Size = 85
     end
-    object mem_contractctr_email: TStringField
+    object memctr_email: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'E-mail'
       FieldName = 'ctr_email'
       Origin = 'ctr_email'
       Size = 65
     end
-    object mem_contractctr_phone1: TStringField
+    object memctr_phone1: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Tel. 1'
       FieldName = 'ctr_phone1'
       Origin = 'ctr_phone1'
       Size = 15
     end
-    object mem_contractctr_dt_birth: TDateField
+    object memctr_dt_birth: TDateField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Aniv.'
+      DisplayLabel = 'Dt. Nasc.'
       FieldName = 'ctr_dt_birth'
       Origin = 'ctr_dt_birth'
     end
-    object mem_contractctr_user_license: TWordField
+    object memctr_user_license: TWordField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Licen'#231'a'
       FieldName = 'ctr_user_license'
       Origin = 'ctr_user_license'
     end
-    object mem_contractctr_status: TStringField
+    object memctr_status: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Status'
       FieldName = 'ctr_status'
@@ -1068,13 +950,13 @@ inherited frm_contract: Tfrm_contract
       FixedChar = True
       Size = 1
     end
-    object mem_contractctr_deleted_at: TDateTimeField
+    object memctr_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Deletado em'
       FieldName = 'ctr_deleted_at'
       Origin = 'ctr_deleted_at'
     end
-    object mem_contractctr_dt_registration: TDateTimeField
+    object memctr_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'ctr_dt_registration'

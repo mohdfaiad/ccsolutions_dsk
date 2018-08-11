@@ -140,22 +140,14 @@ uses
   frxClass,
   frxDBSet,
 
-  ufrm_form_default;
+  ufrm_form_default,
+  u_class_connection,
+  u_class_rest_method,
+  u_class_rest_contract;
 
 type
   Tfrm_contract = class(Tfrm_form_default)
     frx_db_contrato: TfrxDBDataset;
-    qryctr_cod: TStringField;
-    qryctr_id: TLargeintField;
-    qryctr_first_name: TStringField;
-    qryctr_last_name: TStringField;
-    qryctr_email: TStringField;
-    qryctr_phone1: TStringField;
-    qryctr_dt_birth: TDateField;
-    qryctr_user_license: TWordField;
-    qryctr_status: TStringField;
-    qryctr_deleted_at: TDateTimeField;
-    qryctr_dt_registration: TDateTimeField;
     dbedt_first_name: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
     dbedt_phone1: TcxDBTextEdit;
@@ -177,25 +169,22 @@ type
     cxGrid_1DBTableView1ctr_phone1: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_dt_birth: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_dt_registration: TcxGridDBColumn;
-    mem_contract: TFDMemTable;
-    mem_contractctr_cod: TStringField;
-    mem_contractctr_id: TLargeintField;
-    mem_contractctr_first_name: TStringField;
-    mem_contractctr_last_name: TStringField;
-    mem_contractctr_email: TStringField;
-    mem_contractctr_phone1: TStringField;
-    mem_contractctr_dt_birth: TDateField;
-    mem_contractctr_user_license: TWordField;
-    mem_contractctr_status: TStringField;
-    mem_contractctr_deleted_at: TDateTimeField;
-    mem_contractctr_dt_registration: TDateTimeField;
+    memctr_id: TLargeintField;
+    memctr_first_name: TStringField;
+    memctr_last_name: TStringField;
+    memctr_email: TStringField;
+    memctr_phone1: TStringField;
+    memctr_dt_birth: TDateField;
+    memctr_user_license: TWordField;
+    memctr_status: TStringField;
+    memctr_deleted_at: TDateTimeField;
+    memctr_dt_registration: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Button1Click(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure Action_editExecute(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
-    procedure qryBeforeOpen(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -210,8 +199,6 @@ var
 implementation
 
 {$R *.dfm}
-
-uses u_class_rest_method;
 
 procedure Tfrm_contract.Action_editExecute(Sender: TObject);
 begin
@@ -271,36 +258,14 @@ begin
   frm_contract := Nil;
 end;
 
-procedure Tfrm_contract.FormShow(Sender: TObject);
+procedure Tfrm_contract.FormCreate(Sender: TObject);
 begin
   inherited;
-//  dxBarManager_1Bar3.DockedLeft := 122;
-//
-//  methods := Tmethods_rest.Create;
-//
-//  Trest_methods.v_method         := 'contract_user';
-//  Trest_methods.v_parameter      := edt_contract.Text +'/'+ edt_username.Text +'/'+ edt_password.Text;
-//  Trest_methods.v_root_element   := 'contract_user_signin';
-//
-//  frm_dm_rest.get_contract_user_signin;
-//
-//  if frm_dm.mem_contract_user_signin.FieldByName('valid_user').AsInteger = 1 then begin
-//    frm_dm.v_contract_ctr_cod := frm_dm.mem_contract_user_signincontract_ctr_cod.AsString;
-//    frm_dm.v_ctr_usr_cod      := frm_dm.mem_contract_user_signinctr_usr_cod.AsString;
-//
-//    ModalResult := mrOk;
-//  end else begin
-//    ShowMessage('Usuário ou Senha inválida!');
-//  end;
-end;
+  Trest_methods.v_method        := 'get_contract';
+  Trest_methods.v_parameter     := Tconnection.ctr_token;
+  Trest_methods.v_root_element  := 'contract';
 
-procedure Tfrm_contract.qryBeforeOpen(DataSet: TDataSet);
-begin
-  inherited;
-//  qry.Filtered := False;
-//  qry.ParamByName('ctr_cod').AsString := frm_dm.v_contract_ctr_cod;
-//  qry.Filter := 'ctr_deleted_at is null';
-//  qry.Filtered := True;
+  Trest_contract.get_contract(mem);
 end;
 
 end.

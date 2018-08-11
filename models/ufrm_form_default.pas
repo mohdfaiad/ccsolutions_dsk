@@ -145,6 +145,7 @@ uses
   frxClass,
 
   uthred_logged;
+
 type
   Tfrm_form_default = class(TForm)
     cxPageControl_1: TcxPageControl;
@@ -231,6 +232,7 @@ type
     frxReport_1: TfrxReport;
     cxlooComBoxRep: TcxBarEditItem;
     dxBarButton1: TdxBarButton;
+    mem: TFDMemTable;
     procedure cxGrid_1DBTableView1DblClick(Sender: TObject);
     procedure Action_insertUpdate(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);

@@ -286,24 +286,24 @@ procedure Tfrm_main_default.Timer_1Timer(Sender: TObject);
 var
   ThreadLogado : TLogado;
 begin
-  if not frm_dm.qry_signin.Active then
-  exit;
-
-  ThreadLogado := TLogado.Create(True);
-  ThreadLogado.FreeOnTerminate := True;
-  ThreadLogado.Resume;
-
-  if not logado then begin
-    Timer_1.Enabled := False;
-    Application.MessageBox('Usuário foi desconectado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
-    Application.Terminate;
-  end;
-
-  if bloqueado then begin
-    Timer_1.Enabled := False;
-    Application.MessageBox('Usuário foi bloaqueado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
-    Application.Terminate;
-  end;
+//  if not frm_dm.qry_signin.Active then
+//  exit;
+//
+//  ThreadLogado := TLogado.Create(True);
+//  ThreadLogado.FreeOnTerminate := True;
+//  ThreadLogado.Resume;
+//
+//  if not logado then begin
+//    Timer_1.Enabled := False;
+//    Application.MessageBox('Usuário foi desconectado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
+//    Application.Terminate;
+//  end;
+//
+//  if bloqueado then begin
+//    Timer_1.Enabled := False;
+//    Application.MessageBox('Usuário foi bloaqueado pelo administrador do sistema!','AVISO', MB_OK + MB_ICONWARNING);
+//    Application.Terminate;
+//  end;
 end;
 
 end.

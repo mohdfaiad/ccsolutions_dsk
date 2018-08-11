@@ -22,6 +22,7 @@ uses
   Vcl.StdCtrls,
   Vcl.ExtDlgs,
   Vcl.DBCtrls,
+  Vcl.ExtCtrls,
 
   cxGraphics,
   cxControls,
@@ -148,7 +149,12 @@ uses
   frxClass,
   frxDBSet,
 
-  ufrm_form_default, Vcl.ExtCtrls;
+  ufrm_dm,
+  ufrm_form_default,
+
+  u_class_connection,
+  u_class_rest_method,
+  u_class_rest_enterprise;
 type
   Tfrm_enterprise = class(Tfrm_form_default)
     dbedt_first_name: TcxDBTextEdit;
@@ -217,36 +223,38 @@ type
     OpenDialogLogo: TOpenDialog;
     frx_db_empresa: TfrxDBDataset;
     acbr_cep: TACBrCEP;
-    qrycontract_ctr_cod: TStringField;
-    qryent_cod: TStringField;
-    qryent_id: TLongWordField;
-    qryent_type: TStringField;
-    qryent_first_name: TStringField;
-    qryent_last_name: TStringField;
-    qryent_nickname: TStringField;
-    qryent_email: TStringField;
-    qryent_cnpj: TStringField;
-    qryent_ie: TStringField;
-    qryent_im: TStringField;
-    qryent_suframa: TStringField;
-    qryent_add_bus_zipcode: TStringField;
-    qryent_add_bus_address: TStringField;
-    qryent_add_bus_number: TStringField;
-    qryent_add_bus_street: TStringField;
-    qryent_add_bus_complement: TStringField;
-    qryent_add_bus_city: TStringField;
-    qryent_add_bus_state: TStringField;
-    qryent_add_bus_country: TStringField;
-    qryent_phone1: TStringField;
-    qryent_phone2: TStringField;
-    qryent_phone3: TStringField;
-    qryent_phone4: TStringField;
-    qryent_contact: TStringField;
-    qryent_dt_open: TDateField;
-    qryent_status: TStringField;
-    qryent_image1: TBlobField;
-    qryent_deleted_at: TDateTimeField;
-    qryent_dt_registration: TDateTimeField;
+    dbimg_image1: TcxDBImage;
+    dxLayoutItem20: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    mement_cod: TStringField;
+    mement_id: TLongWordField;
+    mement_type: TStringField;
+    mement_first_name: TStringField;
+    mement_last_name: TStringField;
+    mement_nickname: TStringField;
+    mement_email: TStringField;
+    mement_cnpj: TStringField;
+    mement_ie: TStringField;
+    mement_im: TStringField;
+    mement_suframa: TStringField;
+    mement_add_bus_zipcode: TStringField;
+    mement_add_bus_address: TStringField;
+    mement_add_bus_number: TStringField;
+    mement_add_bus_street: TStringField;
+    mement_add_bus_complement: TStringField;
+    mement_add_bus_city: TStringField;
+    mement_add_bus_state: TShortintField;
+    mement_add_bus_country: TStringField;
+    mement_phone1: TStringField;
+    mement_phone2: TStringField;
+    mement_phone3: TStringField;
+    mement_phone4: TStringField;
+    mement_contact: TStringField;
+    mement_dt_open: TDateField;
+    mement_status: TStringField;
+    mement_image1: TBlobField;
+    mement_deleted_at: TDateTimeField;
+    mement_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1ent_id: TcxGridDBColumn;
     cxGrid_1DBTableView1ent_type: TcxGridDBColumn;
     cxGrid_1DBTableView1ent_first_name: TcxGridDBColumn;
@@ -273,9 +281,6 @@ type
     cxGrid_1DBTableView1ent_dt_open: TcxGridDBColumn;
     cxGrid_1DBTableView1ent_status: TcxGridDBColumn;
     cxGrid_1DBTableView1ent_dt_registration: TcxGridDBColumn;
-    dbimg_image1: TcxDBImage;
-    dxLayoutItem20: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure dbbtnedt_cepPropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
     procedure acbr_cepBuscaEfetuada(Sender: TObject);
@@ -284,6 +289,7 @@ type
     procedure Action_saveExecute(Sender: TObject);
     procedure Action_deleteExecute(Sender: TObject);
     procedure qryBeforeOpen(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
       status : Integer;
@@ -298,8 +304,6 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
-
 procedure Tfrm_enterprise.acbr_cepBuscaEfetuada(Sender: TObject);
 var
   i:Integer;
@@ -307,12 +311,12 @@ begin
   try
     try
       for i := 0 to acbr_cep.Enderecos.Count -1 do begin
-      qryent_add_bus_address.AsString     := acbr_cep.Enderecos[i].Logradouro;
-      qryent_add_bus_street.AsString      := acbr_cep.Enderecos[i].Bairro;
-      qryent_add_bus_complement.AsString  := acbr_cep.Enderecos[i].Complemento;
-      qryent_add_bus_city.AsString     	  := acbr_cep.Enderecos[i].Municipio;
-      qryent_add_bus_state.AsString       := acbr_cep.Enderecos[i].UF;
-      qryent_add_bus_country.AsString     := 'BRASIL';
+//      qryent_add_bus_address.AsString     := acbr_cep.Enderecos[i].Logradouro;
+//      qryent_add_bus_street.AsString      := acbr_cep.Enderecos[i].Bairro;
+//      qryent_add_bus_complement.AsString  := acbr_cep.Enderecos[i].Complemento;
+//      qryent_add_bus_city.AsString     	  := acbr_cep.Enderecos[i].Municipio;
+//      qryent_add_bus_state.AsString       := acbr_cep.Enderecos[i].UF;
+//      qryent_add_bus_country.AsString     := 'BRASIL';
 
       dbedt_add_bus_number.SetFocus;
   end;
@@ -471,6 +475,16 @@ begin
   inherited;
   frm_enterprise.Destroy;
   frm_enterprise := Nil;
+end;
+
+procedure Tfrm_enterprise.FormCreate(Sender: TObject);
+begin
+  inherited;
+  Trest_methods.v_method        := 'get_enterprise';
+  Trest_methods.v_parameter     := Tconnection.ctr_token;
+  Trest_methods.v_root_element  := 'enterprise';
+
+  Trest_enterprise.get_enterprise(mem);
 end;
 
 procedure Tfrm_enterprise.qryBeforeOpen(DataSet: TDataSet);

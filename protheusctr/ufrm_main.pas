@@ -98,7 +98,7 @@ uses
   dxGDIPlusClasses,
   cxImageList,
 
-  ufrm_main_default;
+  ufrm_main_default, ufrm_client;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -109,10 +109,13 @@ type
     Action_contract: TAction;
     dxBarLargeButton3: TdxBarLargeButton;
     Action_enterprise: TAction;
+    dxBarLargeButton4: TdxBarLargeButton;
+    Action_client: TAction;
     procedure FormCreate(Sender: TObject);
     procedure Action_phonebookExecute(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_enterpriseExecute(Sender: TObject);
+    procedure Action_clientExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -127,6 +130,20 @@ implementation
 {$R *.dfm}
 
 uses ufrm_login, ufrm_phonebook, ufrm_contract, ufrm_enterprise;
+
+procedure Tfrm_main.Action_clientExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_client) then begin
+    frm_client := Tfrm_client.Create(Self);
+    frm_client.Height := Bevel_1.Height;
+    frm_client.Width := Bevel_1.Width;
+    frm_client.Show
+  end else begin
+    frm_client.WindowState := wsNormal;
+    frm_client.Show;
+  end;
+end;
 
 procedure Tfrm_main.Action_contractExecute(Sender: TObject);
 begin

@@ -18,8 +18,7 @@ inherited frm_client: Tfrm_client
         Height = 596
         ExplicitHeight = 596
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
-          object cxGrid_1DBTableView1Column1: TcxGridDBColumn
-            Caption = 'C'#243'd.: ID'
+          object cxGrid_1DBTableView1cli_id: TcxGridDBColumn
             DataBinding.FieldName = 'cli_id'
             Width = 75
           end
@@ -37,7 +36,7 @@ inherited frm_client: Tfrm_client
           end
           object cxGrid_1DBTableView1cli_email: TcxGridDBColumn
             DataBinding.FieldName = 'cli_email'
-            Width = 150
+            Width = 175
           end
           object cxGrid_1DBTableView1cli_cpfcnpj: TcxGridDBColumn
             DataBinding.FieldName = 'cli_cpfcnpj'
@@ -65,7 +64,7 @@ inherited frm_client: Tfrm_client
           end
           object cxGrid_1DBTableView1cli_add_bus_number: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_bus_number'
-            Width = 50
+            Width = 75
           end
           object cxGrid_1DBTableView1cli_add_bus_street: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_bus_street'
@@ -73,7 +72,7 @@ inherited frm_client: Tfrm_client
           end
           object cxGrid_1DBTableView1cli_add_bus_complement: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_bus_complement'
-            Width = 150
+            Width = 200
           end
           object cxGrid_1DBTableView1cli_add_bus_city: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_bus_city'
@@ -81,11 +80,11 @@ inherited frm_client: Tfrm_client
           end
           object cxGrid_1DBTableView1cli_add_bus_state: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_bus_state'
-            Width = 50
+            Width = 75
           end
           object cxGrid_1DBTableView1cli_add_bus_country: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_bus_country'
-            Width = 100
+            Width = 150
           end
           object cxGrid_1DBTableView1cli_add_bil_zipcode: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_bil_zipcode'
@@ -97,7 +96,7 @@ inherited frm_client: Tfrm_client
           end
           object cxGrid_1DBTableView1cli_add_bil_number: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_bil_number'
-            Width = 50
+            Width = 75
           end
           object cxGrid_1DBTableView1cli_add_bil_street: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_bil_street'
@@ -105,7 +104,7 @@ inherited frm_client: Tfrm_client
           end
           object cxGrid_1DBTableView1cli_add_bil_complement: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_bil_complement'
-            Width = 150
+            Width = 200
           end
           object cxGrid_1DBTableView1cli_add_bil_city: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_bil_city'
@@ -113,14 +112,15 @@ inherited frm_client: Tfrm_client
           end
           object cxGrid_1DBTableView1cli_add_bil_state: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_bil_state'
-            Width = 50
+            Width = 75
           end
           object cxGrid_1DBTableView1cli_add_bil_country: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_bil_country'
-            Width = 100
+            Width = 150
           end
           object cxGrid_1DBTableView1cli_add_del_zipcode: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_del_zipcode'
+            Width = 75
           end
           object cxGrid_1DBTableView1cli_add_del_address: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_del_address'
@@ -128,7 +128,7 @@ inherited frm_client: Tfrm_client
           end
           object cxGrid_1DBTableView1cli_add_del_number: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_del_number'
-            Width = 50
+            Width = 75
           end
           object cxGrid_1DBTableView1cli_add_del_street: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_del_street'
@@ -136,7 +136,7 @@ inherited frm_client: Tfrm_client
           end
           object cxGrid_1DBTableView1cli_add_del_complement: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_del_complement'
-            Width = 150
+            Width = 200
           end
           object cxGrid_1DBTableView1cli_add_del_city: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_del_city'
@@ -144,11 +144,11 @@ inherited frm_client: Tfrm_client
           end
           object cxGrid_1DBTableView1cli_add_del_state: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_del_state'
-            Width = 50
+            Width = 75
           end
           object cxGrid_1DBTableView1cli_add_del_country: TcxGridDBColumn
             DataBinding.FieldName = 'cli_add_del_country'
-            Width = 100
+            Width = 150
           end
           object cxGrid_1DBTableView1cli_phone1: TcxGridDBColumn
             DataBinding.FieldName = 'cli_phone1'
@@ -170,17 +170,53 @@ inherited frm_client: Tfrm_client
             DataBinding.FieldName = 'cli_contact'
             Width = 100
           end
+          object cxGrid_1DBTableView1cli_day_maturity: TcxGridDBColumn
+            DataBinding.FieldName = 'cli_day_maturity'
+            Width = 65
+          end
           object cxGrid_1DBTableView1cli_dt_birthopen: TcxGridDBColumn
             DataBinding.FieldName = 'cli_dt_birthopen'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1cli_weight: TcxGridDBColumn
+            DataBinding.FieldName = 'cli_weight'
             Width = 75
+          end
+          object cxGrid_1DBTableView1cli_height: TcxGridDBColumn
+            DataBinding.FieldName = 'cli_height'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1cli_blood_type: TcxGridDBColumn
+            DataBinding.FieldName = 'cli_blood_type'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1cli_rh_factor: TcxGridDBColumn
+            DataBinding.FieldName = 'cli_rh_factor'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1cli_du_factor: TcxGridDBColumn
+            DataBinding.FieldName = 'cli_du_factor'
+            Width = 75
+          end
+          object cxGrid_1DBTableView1cli_cns: TcxGridDBColumn
+            DataBinding.FieldName = 'cli_cns'
+            Width = 100
+          end
+          object cxGrid_1DBTableView1cli_gender: TcxGridDBColumn
+            DataBinding.FieldName = 'cli_gender'
+            Width = 50
+          end
+          object cxGrid_1DBTableView1cli_skin_color: TcxGridDBColumn
+            DataBinding.FieldName = 'cli_skin_color'
+            Width = 150
+          end
+          object cxGrid_1DBTableView1cli_status: TcxGridDBColumn
+            DataBinding.FieldName = 'cli_status'
+            Width = 50
           end
           object cxGrid_1DBTableView1cli_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'cli_dt_registration'
             Width = 125
-          end
-          object cxGrid_1DBTableView1cli_day_maturity: TcxGridDBColumn
-            DataBinding.FieldName = 'cli_day_maturity'
-            Width = 75
           end
         end
       end
@@ -466,6 +502,10 @@ inherited frm_client: Tfrm_client
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
           OnShow = cxTabSheet_addressShow
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1094,6 +1134,10 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Contatos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1235,6 +1279,10 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1297,6 +1345,10 @@ inherited frm_client: Tfrm_client
         end
         object tabTelefonia: TcxTabSheet
           Caption = 'Telefonia'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1450,6 +1502,10 @@ inherited frm_client: Tfrm_client
         object tabLaboratorio: TcxTabSheet
           Caption = 'Laborat'#243'rio'
           OnShow = tabLaboratorioShow
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl5: TdxLayoutControl
             Left = 0
             Top = 0
@@ -2653,25 +2709,30 @@ inherited frm_client: Tfrm_client
     end
   end
   inherited mem: TFDMemTable
+    Active = True
     object memcli_cod: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
       FieldName = 'cli_cod'
       Origin = 'cli_cod'
       Size = 32
     end
     object memtable_price_tbp_cod: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Tabela de Pre'#231'o'
       FieldName = 'table_price_tbp_cod'
       Origin = 'table_price_tbp_cod'
       Size = 32
     end
     object memcli_id: TLongWordField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
       FieldName = 'cli_id'
       Origin = 'cli_id'
     end
     object memcli_type: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Tipo'
       FieldName = 'cli_type'
       Origin = 'cli_type'
       FixedChar = True
@@ -2679,247 +2740,289 @@ inherited frm_client: Tfrm_client
     end
     object memcli_first_name: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
       FieldName = 'cli_first_name'
       Origin = 'cli_first_name'
       Size = 85
     end
     object memcli_last_name: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome Fantasia'
       FieldName = 'cli_last_name'
       Origin = 'cli_last_name'
       Size = 85
     end
     object memcli_email: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'E-mail'
       FieldName = 'cli_email'
       Origin = 'cli_email'
       Size = 65
     end
     object memcli_cpfcnpj: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'CPF/CNPJ'
       FieldName = 'cli_cpfcnpj'
       Origin = 'cli_cpfcnpj'
       Size = 25
     end
     object memcli_rgie: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'RG/IE'
       FieldName = 'cli_rgie'
       Origin = 'cli_rgie'
       Size = 25
     end
     object memcli_im: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'IM'
       FieldName = 'cli_im'
       Origin = 'cli_im'
       Size = 25
     end
     object memcli_suframa: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Suframa'
       FieldName = 'cli_suframa'
       Origin = 'cli_suframa'
       Size = 25
     end
     object memcli_add_bus_zipcode: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'CEP - Com.'
       FieldName = 'cli_add_bus_zipcode'
       Origin = 'cli_add_bus_zipcode'
       Size = 9
     end
     object memcli_add_bus_address: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Rua - Com.'
       FieldName = 'cli_add_bus_address'
       Origin = 'cli_add_bus_address'
       Size = 50
     end
     object memcli_add_bus_number: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'N'#250'm. - Com.'
       FieldName = 'cli_add_bus_number'
       Origin = 'cli_add_bus_number'
       Size = 5
     end
     object memcli_add_bus_street: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Bairro - Com.'
       FieldName = 'cli_add_bus_street'
       Origin = 'cli_add_bus_street'
       Size = 45
     end
     object memcli_add_bus_complement: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Compl. - Com.'
       FieldName = 'cli_add_bus_complement'
       Origin = 'cli_add_bus_complement'
       Size = 50
     end
     object memcli_add_bus_city: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Cidade - Com.'
       FieldName = 'cli_add_bus_city'
       Origin = 'cli_add_bus_city'
       Size = 35
     end
     object memcli_add_bus_state: TShortintField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'UF - Com.'
       FieldName = 'cli_add_bus_state'
       Origin = 'cli_add_bus_state'
     end
     object memcli_add_bus_country: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Pa'#237's - Com.'
       FieldName = 'cli_add_bus_country'
       Origin = 'cli_add_bus_country'
       Size = 25
     end
     object memcli_add_bil_zipcode: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'CEP - Fin.'
       FieldName = 'cli_add_bil_zipcode'
       Origin = 'cli_add_bil_zipcode'
       Size = 9
     end
     object memcli_add_bil_address: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Rua - Fin.'
       FieldName = 'cli_add_bil_address'
       Origin = 'cli_add_bil_address'
       Size = 50
     end
     object memcli_add_bil_number: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'N'#250'm. - Fin.'
       FieldName = 'cli_add_bil_number'
       Origin = 'cli_add_bil_number'
       Size = 5
     end
     object memcli_add_bil_street: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Bairro - Fin.'
       FieldName = 'cli_add_bil_street'
       Origin = 'cli_add_bil_street'
       Size = 45
     end
     object memcli_add_bil_complement: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Compl. - Fin.'
       FieldName = 'cli_add_bil_complement'
       Origin = 'cli_add_bil_complement'
       Size = 50
     end
     object memcli_add_bil_city: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Cidade - Fin.'
       FieldName = 'cli_add_bil_city'
       Origin = 'cli_add_bil_city'
       Size = 35
     end
     object memcli_add_bil_state: TShortintField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'UF - Fin.'
       FieldName = 'cli_add_bil_state'
       Origin = 'cli_add_bil_state'
     end
     object memcli_add_bil_country: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Pa'#237's - Fin.'
       FieldName = 'cli_add_bil_country'
       Origin = 'cli_add_bil_country'
       Size = 25
     end
     object memcli_add_del_zipcode: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'CEP - Ent.'
       FieldName = 'cli_add_del_zipcode'
       Origin = 'cli_add_del_zipcode'
       Size = 9
     end
     object memcli_add_del_address: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Rua - Ent.'
       FieldName = 'cli_add_del_address'
       Origin = 'cli_add_del_address'
       Size = 50
     end
     object memcli_add_del_number: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'N'#250'm. - Ent.'
       FieldName = 'cli_add_del_number'
       Origin = 'cli_add_del_number'
       Size = 5
     end
     object memcli_add_del_street: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Bairro - Ent.'
       FieldName = 'cli_add_del_street'
       Origin = 'cli_add_del_street'
       Size = 45
     end
     object memcli_add_del_complement: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Compl. - Ent.'
       FieldName = 'cli_add_del_complement'
       Origin = 'cli_add_del_complement'
       Size = 50
     end
     object memcli_add_del_city: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Cidade - Ent.'
       FieldName = 'cli_add_del_city'
       Origin = 'cli_add_del_city'
       Size = 35
     end
     object memcli_add_del_state: TShortintField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'UF - Ent.'
       FieldName = 'cli_add_del_state'
       Origin = 'cli_add_del_state'
     end
     object memcli_add_del_country: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Pa'#237's - Ent.'
       FieldName = 'cli_add_del_country'
       Origin = 'cli_add_del_country'
       Size = 25
     end
     object memcli_phone1: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 1'
       FieldName = 'cli_phone1'
       Origin = 'cli_phone1'
       Size = 15
     end
     object memcli_phone2: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 2'
       FieldName = 'cli_phone2'
       Origin = 'cli_phone2'
       Size = 15
     end
     object memcli_phone3: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 3'
       FieldName = 'cli_phone3'
       Origin = 'cli_phone3'
       Size = 15
     end
     object memcli_phone4: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 4'
       FieldName = 'cli_phone4'
       Origin = 'cli_phone4'
       Size = 15
     end
     object memcli_contact: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Contato'
       FieldName = 'cli_contact'
       Origin = 'cli_contact'
       Size = 25
     end
     object memcli_day_maturity: TIntegerField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Dia Venc.'
       FieldName = 'cli_day_maturity'
       Origin = 'cli_day_maturity'
     end
     object memcli_dt_birthopen: TDateField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Nasc./Abert.'
       FieldName = 'cli_dt_birthopen'
       Origin = 'cli_dt_birthopen'
     end
     object memcli_weight: TBCDField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Peso'
       FieldName = 'cli_weight'
       Origin = 'cli_weight'
       Precision = 12
     end
     object memcli_height: TBCDField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Altura'
       FieldName = 'cli_height'
       Origin = 'cli_height'
       Precision = 12
     end
     object memcli_blood_type: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Tipo Sangue'
       FieldName = 'cli_blood_type'
       Origin = 'cli_blood_type'
       Size = 5
     end
     object memcli_rh_factor: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Fator RH'
       FieldName = 'cli_rh_factor'
       Origin = 'cli_rh_factor'
       FixedChar = True
@@ -2927,6 +3030,7 @@ inherited frm_client: Tfrm_client
     end
     object memcli_du_factor: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Fator DU'
       FieldName = 'cli_du_factor'
       Origin = 'cli_du_factor'
       FixedChar = True
@@ -2934,12 +3038,14 @@ inherited frm_client: Tfrm_client
     end
     object memcli_cns: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'CNS'
       FieldName = 'cli_cns'
       Origin = 'cli_cns'
       Size = 25
     end
     object memcli_gender: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Sexo'
       FieldName = 'cli_gender'
       Origin = 'cli_gender'
       FixedChar = True
@@ -2947,12 +3053,14 @@ inherited frm_client: Tfrm_client
     end
     object memcli_skin_color: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Cor da Pele'
       FieldName = 'cli_skin_color'
       Origin = 'cli_skin_color'
       Size = 30
     end
     object memcli_status: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
       FieldName = 'cli_status'
       Origin = 'cli_status'
       FixedChar = True
@@ -2960,16 +3068,19 @@ inherited frm_client: Tfrm_client
     end
     object memcli_image1: TBlobField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Foto'
       FieldName = 'cli_image1'
       Origin = 'cli_image1'
     end
     object memcli_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
       FieldName = 'cli_deleted_at'
       Origin = 'cli_deleted_at'
     end
     object memcli_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
       FieldName = 'cli_dt_registration'
       Origin = 'cli_dt_registration'
     end
@@ -3244,8 +3355,8 @@ inherited frm_client: Tfrm_client
     CloseDataSource = False
     DataSet = qry
     BCDToCurrency = False
-    Left = 816
-    Top = 176
+    Left = 848
+    Top = 178
   end
   object frx_db_client_insirance: TfrxDBDataset
     UserName = 'client_insirance'
@@ -3259,345 +3370,7 @@ inherited frm_client: Tfrm_client
     ProxyPort = '8080'
     WebService = wsCorreios
     PesquisarIBGE = True
-    Left = 848
-    Top = 176
-  end
-  object FDStoredProc1: TFDStoredProc
-    Connection = frm_dm.connCCS
-    StoredProcName = 'ccs.proc_client_read'
-    Left = 594
-    Top = 283
-    ParamData = <
-      item
-        Position = 1
-        Name = 'p_ctr_token'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 32
-      end>
-    object FDStoredProc1cli_cod: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_cod'
-      Origin = 'cli_cod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 32
-    end
-    object FDStoredProc1table_price_tbp_cod: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'table_price_tbp_cod'
-      Origin = 'table_price_tbp_cod'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 32
-    end
-    object FDStoredProc1cli_id: TLongWordField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_id'
-      Origin = 'cli_id'
-    end
-    object FDStoredProc1cli_type: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_type'
-      Origin = 'cli_type'
-      FixedChar = True
-      Size = 2
-    end
-    object FDStoredProc1cli_first_name: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_first_name'
-      Origin = 'cli_first_name'
-      Size = 85
-    end
-    object FDStoredProc1cli_last_name: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_last_name'
-      Origin = 'cli_last_name'
-      Size = 85
-    end
-    object FDStoredProc1cli_email: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_email'
-      Origin = 'cli_email'
-      Size = 65
-    end
-    object FDStoredProc1cli_cpfcnpj: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_cpfcnpj'
-      Origin = 'cli_cpfcnpj'
-      Size = 25
-    end
-    object FDStoredProc1cli_rgie: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_rgie'
-      Origin = 'cli_rgie'
-      Size = 25
-    end
-    object FDStoredProc1cli_im: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_im'
-      Origin = 'cli_im'
-      Size = 25
-    end
-    object FDStoredProc1cli_suframa: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_suframa'
-      Origin = 'cli_suframa'
-      Size = 25
-    end
-    object FDStoredProc1cli_add_bus_zipcode: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bus_zipcode'
-      Origin = 'cli_add_bus_zipcode'
-      Size = 9
-    end
-    object FDStoredProc1cli_add_bus_address: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bus_address'
-      Origin = 'cli_add_bus_address'
-      Size = 50
-    end
-    object FDStoredProc1cli_add_bus_number: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bus_number'
-      Origin = 'cli_add_bus_number'
-      Size = 5
-    end
-    object FDStoredProc1cli_add_bus_street: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bus_street'
-      Origin = 'cli_add_bus_street'
-      Size = 45
-    end
-    object FDStoredProc1cli_add_bus_complement: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bus_complement'
-      Origin = 'cli_add_bus_complement'
-      Size = 50
-    end
-    object FDStoredProc1cli_add_bus_city: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bus_city'
-      Origin = 'cli_add_bus_city'
-      Size = 35
-    end
-    object FDStoredProc1cli_add_bus_state: TShortintField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bus_state'
-      Origin = 'cli_add_bus_state'
-    end
-    object FDStoredProc1cli_add_bus_country: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bus_country'
-      Origin = 'cli_add_bus_country'
-      Size = 25
-    end
-    object FDStoredProc1cli_add_bil_zipcode: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bil_zipcode'
-      Origin = 'cli_add_bil_zipcode'
-      Size = 9
-    end
-    object FDStoredProc1cli_add_bil_address: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bil_address'
-      Origin = 'cli_add_bil_address'
-      Size = 50
-    end
-    object FDStoredProc1cli_add_bil_number: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bil_number'
-      Origin = 'cli_add_bil_number'
-      Size = 5
-    end
-    object FDStoredProc1cli_add_bil_street: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bil_street'
-      Origin = 'cli_add_bil_street'
-      Size = 45
-    end
-    object FDStoredProc1cli_add_bil_complement: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bil_complement'
-      Origin = 'cli_add_bil_complement'
-      Size = 50
-    end
-    object FDStoredProc1cli_add_bil_city: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bil_city'
-      Origin = 'cli_add_bil_city'
-      Size = 35
-    end
-    object FDStoredProc1cli_add_bil_state: TShortintField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bil_state'
-      Origin = 'cli_add_bil_state'
-    end
-    object FDStoredProc1cli_add_bil_country: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_bil_country'
-      Origin = 'cli_add_bil_country'
-      Size = 25
-    end
-    object FDStoredProc1cli_add_del_zipcode: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_del_zipcode'
-      Origin = 'cli_add_del_zipcode'
-      Size = 9
-    end
-    object FDStoredProc1cli_add_del_address: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_del_address'
-      Origin = 'cli_add_del_address'
-      Size = 50
-    end
-    object FDStoredProc1cli_add_del_number: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_del_number'
-      Origin = 'cli_add_del_number'
-      Size = 5
-    end
-    object FDStoredProc1cli_add_del_street: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_del_street'
-      Origin = 'cli_add_del_street'
-      Size = 45
-    end
-    object FDStoredProc1cli_add_del_complement: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_del_complement'
-      Origin = 'cli_add_del_complement'
-      Size = 50
-    end
-    object FDStoredProc1cli_add_del_city: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_del_city'
-      Origin = 'cli_add_del_city'
-      Size = 35
-    end
-    object FDStoredProc1cli_add_del_state: TShortintField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_del_state'
-      Origin = 'cli_add_del_state'
-    end
-    object FDStoredProc1cli_add_del_country: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_add_del_country'
-      Origin = 'cli_add_del_country'
-      Size = 25
-    end
-    object FDStoredProc1cli_phone1: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_phone1'
-      Origin = 'cli_phone1'
-      Size = 15
-    end
-    object FDStoredProc1cli_phone2: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_phone2'
-      Origin = 'cli_phone2'
-      Size = 15
-    end
-    object FDStoredProc1cli_phone3: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_phone3'
-      Origin = 'cli_phone3'
-      Size = 15
-    end
-    object FDStoredProc1cli_phone4: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_phone4'
-      Origin = 'cli_phone4'
-      Size = 15
-    end
-    object FDStoredProc1cli_contact: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_contact'
-      Origin = 'cli_contact'
-      Size = 25
-    end
-    object FDStoredProc1cli_day_maturity: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_day_maturity'
-      Origin = 'cli_day_maturity'
-    end
-    object FDStoredProc1cli_dt_birthopen: TDateField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_dt_birthopen'
-      Origin = 'cli_dt_birthopen'
-    end
-    object FDStoredProc1cli_weight: TBCDField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_weight'
-      Origin = 'cli_weight'
-      Precision = 12
-    end
-    object FDStoredProc1cli_height: TBCDField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_height'
-      Origin = 'cli_height'
-      Precision = 12
-    end
-    object FDStoredProc1cli_blood_type: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_blood_type'
-      Origin = 'cli_blood_type'
-      Size = 5
-    end
-    object FDStoredProc1cli_rh_factor: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_rh_factor'
-      Origin = 'cli_rh_factor'
-      FixedChar = True
-      Size = 1
-    end
-    object FDStoredProc1cli_du_factor: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_du_factor'
-      Origin = 'cli_du_factor'
-      FixedChar = True
-      Size = 1
-    end
-    object FDStoredProc1cli_cns: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_cns'
-      Origin = 'cli_cns'
-      Size = 25
-    end
-    object FDStoredProc1cli_gender: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_gender'
-      Origin = 'cli_gender'
-      FixedChar = True
-      Size = 1
-    end
-    object FDStoredProc1cli_skin_color: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_skin_color'
-      Origin = 'cli_skin_color'
-      Size = 30
-    end
-    object FDStoredProc1cli_status: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_status'
-      Origin = 'cli_status'
-      FixedChar = True
-      Size = 1
-    end
-    object FDStoredProc1cli_image1: TBlobField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_image1'
-      Origin = 'cli_image1'
-    end
-    object FDStoredProc1cli_deleted_at: TDateTimeField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_deleted_at'
-      Origin = 'cli_deleted_at'
-    end
-    object FDStoredProc1cli_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      FieldName = 'cli_dt_registration'
-      Origin = 'cli_dt_registration'
-    end
+    Left = 816
+    Top = 178
   end
 end

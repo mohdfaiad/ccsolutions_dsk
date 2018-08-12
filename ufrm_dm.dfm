@@ -7,7 +7,6 @@ object frm_dm: Tfrm_dm
       'ConnectionDef=ccs_connection')
     ResourceOptions.AssignedValues = [rvAutoReconnect]
     ResourceOptions.AutoReconnect = True
-    Connected = True
     LoginPrompt = False
     Left = 136
     Top = 64

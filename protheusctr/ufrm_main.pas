@@ -98,7 +98,13 @@ uses
   dxGDIPlusClasses,
   cxImageList,
 
-  ufrm_main_default, ufrm_client;
+  ufrm_main_default,
+  ufrm_client,
+  ufrm_login,
+  ufrm_phonebook,
+  ufrm_contract,
+  ufrm_enterprise,
+  ufrm_contract_user;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -111,11 +117,14 @@ type
     Action_enterprise: TAction;
     dxBarLargeButton4: TdxBarLargeButton;
     Action_client: TAction;
+    Action_contract_user: TAction;
+    dxBarLargeButton5: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_phonebookExecute(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_enterpriseExecute(Sender: TObject);
     procedure Action_clientExecute(Sender: TObject);
+    procedure Action_contract_userExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -128,8 +137,6 @@ var
 implementation
 
 {$R *.dfm}
-
-uses ufrm_login, ufrm_phonebook, ufrm_contract, ufrm_enterprise;
 
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin
@@ -156,6 +163,20 @@ begin
   end else begin
     frm_contract.WindowState := wsNormal;
     frm_contract.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_contract_userExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_contract_user) then begin
+    frm_contract_user := Tfrm_contract_user.Create(Self);
+    frm_contract_user.Height := Bevel_1.Height;
+    frm_contract_user.Width := Bevel_1.Width;
+    frm_contract_user.Show
+  end else begin
+    frm_contract_user.WindowState := wsNormal;
+    frm_contract_user.Show;
   end;
 end;
 

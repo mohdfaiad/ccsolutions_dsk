@@ -31,7 +31,9 @@ uses
   u_class_rest_login in '..\u_class_rest_login.pas',
   u_class_phonebook in '..\u_class_phonebook.pas',
   u_class_rest_enterprise in '..\u_class_rest_enterprise.pas',
-  u_class_rest_client in '..\u_class_rest_client.pas';
+  u_class_rest_client in '..\u_class_rest_client.pas',
+  ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
+  u_class_rest_contract_user in '..\u_class_rest_contract_user.pas';
 
 {$R *.res}
 

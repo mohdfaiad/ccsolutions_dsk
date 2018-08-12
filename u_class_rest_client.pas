@@ -89,7 +89,7 @@ begin
             mem.FieldByName('cli_weight').AsString              := frm_dm.mem_rest.FieldByName('cli_weight').AsString;
             mem.FieldByName('cli_height').AsString              := frm_dm.mem_rest.FieldByName('cli_height').AsString;
             mem.FieldByName('cli_blood_type').AsString          := frm_dm.mem_rest.FieldByName('cli_blood_type').AsString;
-            mem.FieldByName('cli_rh_factor').AsInteger          := frm_dm.mem_rest.FieldByName('cli_rh_factor').AsInteger;
+            mem.FieldByName('cli_rh_factor').AsString          := frm_dm.mem_rest.FieldByName('cli_rh_factor').AsString;
             mem.FieldByName('cli_du_factor').AsString           := frm_dm.mem_rest.FieldByName('cli_du_factor').AsString;
             mem.FieldByName('cli_cns').AsString                 := frm_dm.mem_rest.FieldByName('cli_cns').AsString;
             mem.FieldByName('cli_gender').AsString              := frm_dm.mem_rest.FieldByName('cli_gender').AsString;

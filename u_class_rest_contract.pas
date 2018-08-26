@@ -17,7 +17,7 @@ type
   protected
 
   public
-    class function get_contract(mem: TFDMemTable): Boolean;
+    class function GetContract(mem: TFDMemTable): Boolean;
   published
 
   end;
@@ -29,7 +29,7 @@ uses
 
 { Trest_contract }
 
-class function Trest_contract.get_contract(mem: TFDMemTable): Boolean;
+class function Trest_contract.GetContract(mem: TFDMemTable): Boolean;
 begin
   try
     try
@@ -43,6 +43,7 @@ begin
 
           while not (frm_dm.mem_rest.Eof) do begin
             mem.Append;
+            mem.FieldByName('ctr_cod').AsString             := frm_dm.mem_rest.FieldByName('ctr_cod').AsString;
             mem.FieldByName('ctr_id').AsInteger             := frm_dm.mem_rest.FieldByName('ctr_id').AsInteger;
             mem.FieldByName('ctr_first_name').AsString      := frm_dm.mem_rest.FieldByName('ctr_first_name').AsString;
             mem.FieldByName('ctr_last_name').AsString       := frm_dm.mem_rest.FieldByName('ctr_last_name').AsString;

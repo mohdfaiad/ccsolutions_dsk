@@ -10,7 +10,6 @@ uses
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
   ufrm_main in 'ufrm_main.pas' {frm_main},
-  ufrm_default in '..\models\ufrm_default.pas' {frm_default},
   ufrm_form_default in '..\models\ufrm_form_default.pas' {frm_form_default},
   ufrm_dm_ds in '..\ufrm_dm_ds.pas' {frm_dm_ds: TDataModule},
   ufrm_dm_report in '..\ufrm_dm_report.pas' {frm_dm_report: TDataModule},
@@ -33,7 +32,11 @@ uses
   u_class_rest_enterprise in '..\u_class_rest_enterprise.pas',
   u_class_rest_client in '..\u_class_rest_client.pas',
   ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
-  u_class_rest_contract_user in '..\u_class_rest_contract_user.pas';
+  u_class_rest_contract_user in '..\u_class_rest_contract_user.pas',
+  ufrm_reseller in '..\ufrm_reseller.pas' {frm_reseller},
+  u_class_rest_reseller in '..\u_class_rest_reseller.pas',
+  ufrm_product in '..\ufrm_product.pas' {frm_product},
+  u_class_rest_product in '..\u_class_rest_product.pas';
 
 {$R *.res}
 
@@ -42,8 +45,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfrm_cm, frm_cm);
   Application.CreateForm(Tfrm_dm, frm_dm);
-  Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
-  Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
   Application.Run;
 end.

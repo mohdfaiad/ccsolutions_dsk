@@ -14,11 +14,11 @@ type
 
     public
       class var
-        ctr_token, ctr_usr_cod                                       : string;
+        ctr_token, ctr_usr_cod, ctr_cod                              : string;
         db, db_server, db_username, db_password, db_port, db_driver  : string;
         rest_server, rest_username, rest_password                    : string;
 
-      function read_ini(patch_ini: string): string;
+      class function read_ini(patch_ini: string): Boolean;
     published
 
   end;
@@ -27,7 +27,7 @@ implementation
 
 { Tconnection }
 
-function Tconnection.read_ini(patch_ini: string): string;
+class function Tconnection.read_ini(patch_ini: string): Boolean;
 var
   ini : TIniFile;
 begin
@@ -39,6 +39,8 @@ begin
   db_server   := ini.ReadString('connection', 'Server', '');
   db_driver   := ini.ReadString('connection', 'DriverID', '');
   rest_server := ini.ReadString('webservice', 'Server', '');
+
+  Result := True;
 end;
 
 end.

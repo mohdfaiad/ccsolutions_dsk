@@ -17,7 +17,7 @@ type
   protected
 
   public
-    class function get_phonebook(mem: TFDMemTable): Boolean;
+    class function GetPhonebook(mem: TFDMemTable): Boolean;
 
   published
 
@@ -30,7 +30,7 @@ uses
 
 { Trest_phonebook }
 
-class function Trest_phonebook.get_phonebook(mem: TFDMemTable): Boolean;
+class function Trest_phonebook.GetPhonebook(mem: TFDMemTable): Boolean;
 begin
   try
     try

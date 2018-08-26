@@ -39,16 +39,8 @@ inherited frm_contract: Tfrm_contract
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'ctr_id'
@@ -213,41 +205,16 @@ inherited frm_contract: Tfrm_contract
       Visible = ivNever
     end
   end
-  inherited PopupMenu_1: TPopupMenu
-    inherited Primeiro1: TMenuItem
-      Enabled = False
-    end
-    inherited Anterior1: TMenuItem
-      Enabled = False
-    end
-    inherited Prximo1: TMenuItem
-      Enabled = False
-    end
-    inherited ltimo1: TMenuItem
-      Enabled = False
-    end
-    inherited Inserir1: TMenuItem
-      Enabled = False
-    end
-    inherited Excluir1: TMenuItem
-      Enabled = False
+  inherited ActionList_1: TActionList
+    inherited Action_save: TAction
+      OnExecute = Action_saveExecute
     end
   end
-  inherited cxImageList_1: TcxImageList
-    FormatVersion = 1
+  inherited qry: TFDQuery [5]
   end
-  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
-    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
-      PixelsPerInch = 96
-    end
+  inherited ACBrEnterTab_1: TACBrEnterTab [6]
   end
-  inherited qry: TFDQuery
-    IndexFieldNames = 'ctr_cod'
-    MasterFields = 'ctr_cod'
-    DetailFields = 'ctr_cod'
-    Connection = frm_dm.connCCS
-  end
-  inherited QExport4Dialog_1: TQExport4Dialog
+  inherited QExport4Dialog_1: TQExport4Dialog [7]
     Formats.IntegerFormat = '#,###,##0'
     Formats.FloatFormat = '#,###,##0.00'
     Formats.DateFormat = 'dd/MM/yy'
@@ -255,20 +222,20 @@ inherited frm_contract: Tfrm_contract
     Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
     Formats.CurrencyFormat = 'R$#,###,##0.00'
   end
-  inherited QImport3Wizard_1: TQImport3Wizard
+  inherited QImport3Wizard_1: TQImport3Wizard [8]
     Formats.ShortDateFormat = 'dd/MM/yy'
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
-  inherited frxReport_1: TfrxReport
+  inherited schadp: TFDSchemaAdapter [9]
+  end
+  inherited cxGridPopupMenu_1: TcxGridPopupMenu [10]
+  end
+  inherited frxReport_1: TfrxReport [11]
     ReportOptions.CreateDate = 43193.605400104200000000
     ReportOptions.LastChange = 43286.747143391200000000
     Datasets = <
-      item
-        DataSet = frx_db_contrato
-        DataSetName = 'Contrato'
-      end
       item
       end>
     Variables = <>
@@ -514,7 +481,6 @@ inherited frm_contract: Tfrm_contract
           Width = 400.630180000000000000
           Height = 18.897650000000000000
           DataField = 'ctr_first_name'
-          DataSet = frx_db_contrato
           DataSetName = 'Contrato'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -528,7 +494,6 @@ inherited frm_contract: Tfrm_contract
           Width = 400.630180000000000000
           Height = 18.897650000000000000
           DataField = 'ctr_last_name'
-          DataSet = frx_db_contrato
           DataSetName = 'Contrato'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -542,7 +507,6 @@ inherited frm_contract: Tfrm_contract
           Width = 283.464750000000000000
           Height = 18.897650000000000000
           DataField = 'ctr_email'
-          DataSet = frx_db_contrato
           DataSetName = 'Contrato'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -556,7 +520,6 @@ inherited frm_contract: Tfrm_contract
           Width = 170.078850000000000000
           Height = 18.897650000000000000
           DataField = 'ctr_phone1'
-          DataSet = frx_db_contrato
           DataSetName = 'Contrato'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -570,7 +533,6 @@ inherited frm_contract: Tfrm_contract
           Width = 79.370130000000000000
           Height = 18.897650000000000000
           DataField = 'ctr_status'
-          DataSet = frx_db_contrato
           DataSetName = 'Contrato'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -584,7 +546,6 @@ inherited frm_contract: Tfrm_contract
           Width = 128.504020000000000000
           Height = 18.897650000000000000
           DataField = 'ctr_user_license'
-          DataSet = frx_db_contrato
           DataSetName = 'Contrato'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -598,7 +559,6 @@ inherited frm_contract: Tfrm_contract
           Width = 105.826840000000000000
           Height = 18.897650000000000000
           DataField = 'ctr_id'
-          DataSet = frx_db_contrato
           DataSetName = 'Contrato'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -612,7 +572,6 @@ inherited frm_contract: Tfrm_contract
           Width = 207.874150000000000000
           Height = 18.897650000000000000
           DataField = 'ctr_dt_birth'
-          DataSet = frx_db_contrato
           DataSetName = 'Contrato'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -784,72 +743,15 @@ inherited frm_contract: Tfrm_contract
       end
     end
   end
-  object frx_db_contrato: TfrxDBDataset [15]
-    UserName = 'Contrato'
-    CloseDataSource = False
-    DataSet = qry
-    BCDToCurrency = False
-    Left = 672
-    Top = 56
-  end
-  object str_proc_contract_update: TFDStoredProc [16]
-    Connection = frm_dm.connCCS
-    StoredProcName = 'ccs.proc_contract_update'
-    Left = 874
-    Top = 243
-    ParamData = <
-      item
-        Position = 1
-        Name = 'p_ctr_cod'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 32
-      end
-      item
-        Position = 2
-        Name = 'p_ctr_first_name'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 85
-      end
-      item
-        Position = 3
-        Name = 'p_ctr_last_name'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 85
-      end
-      item
-        Position = 4
-        Name = 'p_ctr_email'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 65
-      end
-      item
-        Position = 5
-        Name = 'p_ctr_phone1'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 15
-      end
-      item
-        Position = 6
-        Name = 'p_ctr_dt_birth'
-        DataType = ftDate
-        ParamType = ptInput
-      end
-      item
-        Position = 7
-        Name = 'p_ctr_status'
-        DataType = ftFixedChar
-        ParamType = ptInput
-        Size = 1
-      end>
-  end
-  inherited mem: TFDMemTable
+  inherited mem: TFDMemTable [12]
     Active = True
     FieldDefs = <
+      item
+        Name = 'ctr_cod'
+        Attributes = [faReadonly]
+        DataType = ftString
+        Size = 32
+      end
       item
         Name = 'ctr_id'
         DataType = ftLargeint
@@ -884,8 +786,7 @@ inherited frm_contract: Tfrm_contract
       end
       item
         Name = 'ctr_status'
-        DataType = ftString
-        Size = 1
+        DataType = ftShortint
       end
       item
         Name = 'ctr_deleted_at'
@@ -895,7 +796,15 @@ inherited frm_contract: Tfrm_contract
         Name = 'ctr_dt_registration'
         DataType = ftDateTime
       end>
+    IndexFieldNames = 'ctr_id'
     StoreDefs = True
+    object memctr_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'ctr_cod'
+      Origin = 'ctr_cod'
+      Size = 32
+    end
     object memctr_id: TLargeintField
       AutoGenerateValue = arDefault
       DisplayLabel = 'ID'
@@ -942,13 +851,11 @@ inherited frm_contract: Tfrm_contract
       FieldName = 'ctr_user_license'
       Origin = 'ctr_user_license'
     end
-    object memctr_status: TStringField
+    object memctr_status: TShortintField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Status'
       FieldName = 'ctr_status'
       Origin = 'ctr_status'
-      FixedChar = True
-      Size = 1
     end
     object memctr_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
@@ -961,6 +868,34 @@ inherited frm_contract: Tfrm_contract
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'ctr_dt_registration'
       Origin = 'ctr_dt_registration'
+    end
+  end
+  inherited PopupMenu_1: TPopupMenu [13]
+    inherited Primeiro1: TMenuItem
+      Enabled = False
+    end
+    inherited Anterior1: TMenuItem
+      Enabled = False
+    end
+    inherited Prximo1: TMenuItem
+      Enabled = False
+    end
+    inherited ltimo1: TMenuItem
+      Enabled = False
+    end
+    inherited Inserir1: TMenuItem
+      Enabled = False
+    end
+    inherited Excluir1: TMenuItem
+      Enabled = False
+    end
+  end
+  inherited cxImageList_1: TcxImageList [14]
+    FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList [15]
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
     end
   end
 end

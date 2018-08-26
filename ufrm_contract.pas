@@ -141,13 +141,12 @@ uses
   frxDBSet,
 
   ufrm_form_default,
+
   u_class_connection,
-  u_class_rest_method,
   u_class_rest_contract;
 
 type
   Tfrm_contract = class(Tfrm_form_default)
-    frx_db_contrato: TfrxDBDataset;
     dbedt_first_name: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
     dbedt_phone1: TcxDBTextEdit;
@@ -161,7 +160,6 @@ type
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
-    str_proc_contract_update: TFDStoredProc;
     cxGrid_1DBTableView1ctr_id: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_first_name: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_last_name: TcxGridDBColumn;
@@ -169,6 +167,7 @@ type
     cxGrid_1DBTableView1ctr_phone1: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_dt_birth: TcxGridDBColumn;
     cxGrid_1DBTableView1ctr_dt_registration: TcxGridDBColumn;
+    memctr_cod: TStringField;
     memctr_id: TLargeintField;
     memctr_first_name: TStringField;
     memctr_last_name: TStringField;
@@ -176,21 +175,18 @@ type
     memctr_phone1: TStringField;
     memctr_dt_birth: TDateField;
     memctr_user_license: TWordField;
-    memctr_status: TStringField;
+    memctr_status: TShortintField;
     memctr_deleted_at: TDateTimeField;
     memctr_dt_registration: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure Button1Click(Sender: TObject);
-    procedure Action_editExecute(Sender: TObject);
-    procedure Action_insertExecute(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
-    { Private declarations }
+    function GetContract : Boolean;
+    procedure afterUpdate;
+
   public
-    { Public declarations }
-    var
-      stats : Integer;
+
   end;
 
 var
@@ -200,55 +196,48 @@ implementation
 
 {$R *.dfm}
 
-procedure Tfrm_contract.Action_editExecute(Sender: TObject);
-begin
-  stats := 1;
-  cxTabSheet_3.Show;
-end;
-
-procedure Tfrm_contract.Action_insertExecute(Sender: TObject);
-begin
-  inherited;
-  stats := 0;
-  qry.EmptyDataSet;
-  cxTabSheet_3.Show;
-end;
-
+uses ufrm_dm;
+
 procedure Tfrm_contract.Action_saveExecute(Sender: TObject);
+var
+  strproc_update : TFDStoredProc;
 begin
   inherited;
-  case stats of
-    1: begin
+  case ds.State of
+    dsEdit:
+      try
         try
-          try
-            if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
-              str_proc_contract_update.ParamByName('p_ctr_cod').AsString        := qry.FieldByName('pho_cod').AsString;
-              str_proc_contract_update.ParamByName('p_ctr_first_name').AsString := dbedt_first_name.Text;
-              str_proc_contract_update.ParamByName('p_ctr_last_name').AsString  := dbedt_last_name.Text;
-              str_proc_contract_update.ParamByName('p_ctr_phone1').AsString     := dbedt_phone1.Text;
-              str_proc_contract_update.ParamByName('p_ctr_email').AsString      := dbedt_email.Text;
-              str_proc_contract_update.ParamByName('p_ctr_dt_birth').AsString   := dbedt_dt_birth.Text;
-              str_proc_contract_update.ExecProc;
+          strproc_update := TFDStoredProc.Create(Self);
+          strproc_update.Connection := frm_dm.connCCS;
+          strproc_update.StoredProcName := 'proc_contract_update';
+          strproc_update.Prepare;
 
-              ShowMessage('Registro Salvo com sucesso');
+          if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+            strproc_update.ParamByName('p_ctr_cod').AsString        := memctr_cod.AsString;
+            strproc_update.ParamByName('p_ctr_first_name').AsString := dbedt_first_name.Text;
+            strproc_update.ParamByName('p_ctr_last_name').AsString  := dbedt_last_name.Text;
+            strproc_update.ParamByName('p_ctr_email').AsString      := dbedt_email.Text;
+            strproc_update.ParamByName('p_ctr_phone1').AsString     := dbedt_phone1.Text;
+            strproc_update.ParamByName('p_ctr_dt_birth').AsDate     := dbedt_dt_birth.Date;
+            strproc_update.ExecProc;
 
-              qry.UpdateRecord;
-            end else begin
-              qry.Cancel;
-            end;
-          except on E: Exception do
-            ShowMessage('Erro: ' + E.Message);
+            afterUpdate;
+          end else begin
+            ds.DataSet.Cancel;
           end;
-        finally
+        except on E: Exception do
+          ShowMessage('Erro: ' + E.Message);
+        end;
+      finally
       end;
-    end;
   end;
 end;
 
-procedure Tfrm_contract.Button1Click(Sender: TObject);
+procedure Tfrm_contract.afterUpdate;
 begin
-  inherited;
-   ShowMessage(IntToStr(dxBarManager_1Bar3.DockedLeft));
+  ShowMessage('Registro Atualizado com sucesso');
+  cxTabSheet_3.Show;
+  GetContract;
 end;
 
 procedure Tfrm_contract.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -261,11 +250,23 @@ end;
 procedure Tfrm_contract.FormCreate(Sender: TObject);
 begin
   inherited;
-  Trest_methods.v_method        := 'get_contract';
-  Trest_methods.v_parameter     := Tconnection.ctr_token;
-  Trest_methods.v_root_element  := 'contract';
+  GetContract;
+end;
 
-  Trest_contract.get_contract(mem);
+function Tfrm_contract.GetContract: Boolean;
+begin
+  try
+    try
+      Trest_contract.v_method        := '/api/rest/contracts/Contract';
+      Trest_contract.v_parameter     := Tconnection.ctr_token;
+      Trest_contract.GetContract(mem);
+
+      Result := True;
+    except on E: Exception do
+      Result := False;
+    end;
+  finally
+  end;
 end;
 
 end.

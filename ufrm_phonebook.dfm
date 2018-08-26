@@ -5,10 +5,6 @@ inherited frm_phonebook: Tfrm_phonebook
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pho_id: TcxGridDBColumn
@@ -47,25 +43,21 @@ inherited frm_phonebook: Tfrm_phonebook
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
+              Left = 63
               DataBinding.DataField = 'pho_id'
+              ExplicitLeft = 63
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
+              Left = 236
               DataBinding.DataField = 'pho_dt_registration'
+              ExplicitLeft = 236
             end
             object dbedt_name: TcxDBTextEdit [2]
-              Left = 59
+              Left = 63
               Top = 103
               DataBinding.DataField = 'pho_name'
               DataBinding.DataSource = ds
@@ -75,7 +67,7 @@ inherited frm_phonebook: Tfrm_phonebook
               Width = 121
             end
             object dbedt_phone4: TcxDBTextEdit [3]
-              Left = 559
+              Left = 563
               Top = 130
               DataBinding.DataField = 'pho_phone4'
               DataBinding.DataSource = ds
@@ -85,7 +77,7 @@ inherited frm_phonebook: Tfrm_phonebook
               Width = 121
             end
             object dbedt_phone3: TcxDBTextEdit [4]
-              Left = 400
+              Left = 404
               Top = 130
               DataBinding.DataField = 'pho_phone3'
               DataBinding.DataSource = ds
@@ -95,7 +87,7 @@ inherited frm_phonebook: Tfrm_phonebook
               Width = 121
             end
             object dbedt_phone2: TcxDBTextEdit [5]
-              Left = 232
+              Left = 236
               Top = 130
               DataBinding.DataField = 'pho_phone2'
               DataBinding.DataSource = ds
@@ -105,7 +97,7 @@ inherited frm_phonebook: Tfrm_phonebook
               Width = 130
             end
             object dbedt_phone1: TcxDBTextEdit [6]
-              Left = 59
+              Left = 63
               Top = 130
               DataBinding.DataField = 'pho_phone1'
               DataBinding.DataSource = ds
@@ -115,7 +107,7 @@ inherited frm_phonebook: Tfrm_phonebook
               Width = 121
             end
             object dbedt_contact: TcxDBTextEdit [7]
-              Left = 232
+              Left = 236
               Top = 103
               DataBinding.DataField = 'pho_contact'
               DataBinding.DataSource = ds
@@ -133,7 +125,7 @@ inherited frm_phonebook: Tfrm_phonebook
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup1
               AlignVert = avClient
-              CaptionOptions.Text = 'Nome'
+              CaptionOptions.Text = 'Empresa'
               Control = dbedt_name
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
@@ -209,6 +201,9 @@ inherited frm_phonebook: Tfrm_phonebook
   end
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
+    inherited dxBarButton_save: TdxBarButton
+      OnClick = dxBarButton_saveClick
+    end
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
@@ -219,7 +214,6 @@ inherited frm_phonebook: Tfrm_phonebook
     end
   end
   inherited qry: TFDQuery
-    BeforeOpen = qryBeforeOpen
     CachedUpdates = True
     Connection = frm_dm.connCCS
   end

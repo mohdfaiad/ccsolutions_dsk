@@ -115,12 +115,19 @@ uses
 
   FireDAC.Comp.Client,
   FireDAC.Stan.Param,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.Comp.DataSet,
+
+  u_class_connection,
+  u_class_rest_login,
 
   ufrm_main_default,
-  u_class_connection,
-  u_class_rest_login, ufrm_dm, FireDAC.Stan.Intf, FireDAC.Stan.Option,
-  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
-  FireDAC.Comp.DataSet;
+  ufrm_dm;
 
 type
   Tfrm_login = class(TForm)
@@ -166,6 +173,7 @@ type
     memvalid_user: TLargeintField;
     memctr_usr_cod: TStringField;
     memctr_token: TStringField;
+    memctr_cod: TStringField;
     procedure Action_cancelExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_accessExecute(Sender: TObject);
@@ -185,9 +193,8 @@ implementation
 
 procedure Tfrm_login.Action_accessExecute(Sender: TObject);
 begin
-  Trest_login.v_method        := 'contract_user_signin';
+  Trest_login.v_method        := '/api/rest/login/contract_user_signin';
   Trest_login.v_parameter     := edt_contract.Text +'/'+ edt_username.Text +'/'+ edt_password.Text;
-  Trest_login.v_root_element  := 'contract_user_signin';
 
   Trest_login.contract_user_signin(mem);
 
@@ -195,6 +202,7 @@ begin
     ModalResult := mrOk;
   end else begin
     ShowMessage('Usuário ou Senha inválida!');
+    edt_contract.SetFocus;
   end;
 end;
 

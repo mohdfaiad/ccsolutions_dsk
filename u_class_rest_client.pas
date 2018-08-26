@@ -17,7 +17,7 @@ type
   protected
 
   public
-    class function get_client(mem: TFDMemTable): Boolean;
+    class function GetClient(mem: TFDMemTable): Boolean;
 
   published
 
@@ -30,12 +30,12 @@ uses
 
 { Trest_client }
 
-class function Trest_client.get_client(mem: TFDMemTable): Boolean;
+class function Trest_client.GetClient(mem: TFDMemTable): Boolean;
 begin
   try
     try
       begin
-        if get(Trest_methods.v_method, Trest_methods.v_parameter) then begin
+        if Get(Trest_methods.v_method, Trest_methods.v_parameter) then begin
           frm_dm.rest_response.RootElement := Trest_methods.v_root_element;
 
           mem.Active := False;

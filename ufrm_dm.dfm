@@ -1,12 +1,13 @@
 object frm_dm: Tfrm_dm
   OldCreateOrder = False
-  Height = 280
-  Width = 221
+  Height = 283
+  Width = 201
   object connCCS: TFDConnection
     Params.Strings = (
-      'ConnectionDef=ccs_connection')
+      'ConnectionDef=database')
     ResourceOptions.AssignedValues = [rvAutoReconnect]
     ResourceOptions.AutoReconnect = True
+    Connected = True
     LoginPrompt = False
     Left = 136
     Top = 64
@@ -17,8 +18,8 @@ object frm_dm: Tfrm_dm
     Top = 160
   end
   object manCCS: TFDManager
-    DriverDefFileName = 'C:\ccsolutions_dsk\data\ccs_connection.ini'
-    ConnectionDefFileName = 'C:\ccsolutions_dsk\data\ccs_connection.ini'
+    DriverDefFileName = 'C:\ccsolutions_dsk\data\connection.ini'
+    ConnectionDefFileName = 'C:\ccsolutions_dsk\data\connection.ini'
     FormatOptions.AssignedValues = [fvMapRules]
     FormatOptions.OwnMapRules = True
     FormatOptions.MapRules = <>
@@ -50,7 +51,6 @@ object frm_dm: Tfrm_dm
   end
   object rest_response: TRESTResponse
     ContentType = 'text/html'
-    RootElement = 'contract_user_signin'
     Left = 40
     Top = 112
   end
@@ -58,7 +58,6 @@ object frm_dm: Tfrm_dm
     Dataset = mem_rest
     FieldDefs = <>
     Response = rest_response
-    NestedElements = True
     Left = 40
     Top = 160
   end

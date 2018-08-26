@@ -9,6 +9,7 @@ uses
 
   u_class_rest_method,
   u_class_connection;
+
 type
   Trest_enterprise = class(Trest_methods)
   private
@@ -16,7 +17,7 @@ type
   protected
 
   public
-    class function get_enterprise(mem: TFDMemTable): Boolean;
+    class function GetEnterprise(mem: TFDMemTable): Boolean;
 
   published
 
@@ -29,7 +30,7 @@ uses
 
 { Trest_enterprise }
 
-class function Trest_enterprise.get_enterprise(mem: TFDMemTable): Boolean;
+class function Trest_enterprise.GetEnterprise(mem: TFDMemTable): Boolean;
 begin
   try
     try
@@ -68,7 +69,7 @@ begin
             mem.FieldByName('ent_phone4').AsString              := frm_dm.mem_rest.FieldByName('ent_phone4').AsString;
             mem.FieldByName('ent_contact').AsString             := frm_dm.mem_rest.FieldByName('ent_contact').AsString;
             mem.FieldByName('ent_dt_open').AsString             := frm_dm.mem_rest.FieldByName('ent_dt_open').AsString;
-            mem.FieldByName('ent_status').AsBoolean             := frm_dm.mem_rest.FieldByName('ent_status').AsBoolean;
+            mem.FieldByName('ent_status').AsString              := frm_dm.mem_rest.FieldByName('ent_status').AsString;
             mem.FieldByName('ent_deleted_at').AsString          := frm_dm.mem_rest.FieldByName('ent_deleted_at').AsString;
             mem.FieldByName('ent_dt_registration').AsString     := frm_dm.mem_rest.FieldByName('ent_dt_registration').AsString;
             mem.Post;

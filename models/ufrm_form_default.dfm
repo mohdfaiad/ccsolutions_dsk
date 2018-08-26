@@ -2,7 +2,7 @@ object frm_form_default: Tfrm_form_default
   Left = 0
   Top = 0
   Caption = 'Form Default'
-  ClientHeight = 601
+  ClientHeight = 691
   ClientWidth = 1008
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -22,14 +22,14 @@ object frm_form_default: Tfrm_form_default
     Left = 0
     Top = 55
     Width = 1008
-    Height = 546
+    Height = 636
     Align = alClient
     TabOrder = 0
     Properties.ActivePage = cxTabSheet_1
     Properties.CustomButtons.Buttons = <>
     Properties.HotImages = cxImageList_1
     Properties.Images = cxImageList_1
-    ClientRectBottom = 540
+    ClientRectBottom = 630
     ClientRectLeft = 2
     ClientRectRight = 1002
     ClientRectTop = 28
@@ -40,7 +40,7 @@ object frm_form_default: Tfrm_form_default
         Left = 3
         Top = 3
         Width = 994
-        Height = 506
+        Height = 596
         Align = alClient
         Images = cxImageList_1
         PopupMenu = PopupMenu_1
@@ -105,14 +105,14 @@ object frm_form_default: Tfrm_form_default
         Left = 3
         Top = 3
         Width = 994
-        Height = 506
+        Height = 596
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = cxTabSheet_3
         Properties.CustomButtons.Buttons = <>
         Properties.HotImages = cxImageList_1
         Properties.Images = cxImageList_1
-        ClientRectBottom = 500
+        ClientRectBottom = 590
         ClientRectLeft = 2
         ClientRectRight = 988
         ClientRectTop = 28
@@ -122,7 +122,7 @@ object frm_form_default: Tfrm_form_default
             Left = 0
             Top = 0
             Width = 986
-            Height = 472
+            Height = 562
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
@@ -388,11 +388,7 @@ object frm_form_default: Tfrm_form_default
       FloatTop = 8
       FloatClientWidth = 0
       FloatClientHeight = 0
-      ItemLinks = <
-        item
-          Visible = True
-          ItemName = 'dxBarButton1'
-        end>
+      ItemLinks = <>
       OneOnRow = False
       Row = 1
       UseOwnFont = False
@@ -607,15 +603,6 @@ object frm_form_default: Tfrm_form_default
         item
           FieldName = 'rep_name'
         end>
-      Properties.OnPopup = cxlooComBoxRepPropertiesPopup
-    end
-    object dxBarButton1: TdxBarButton
-      Caption = 'Salvar Relat'#243'rio'
-      Category = 0
-      Hint = 'Salvar Relat'#243'rio'
-      Visible = ivAlways
-      ImageIndex = 6
-      OnClick = dxBarButton1Click
     end
   end
   object ActionList_1: TActionList
@@ -670,7 +657,6 @@ object frm_form_default: Tfrm_form_default
       Hint = 'Salvar Altera'#231#245'es'
       ImageIndex = 6
       ShortCut = 16467
-      OnExecute = Action_saveExecute
     end
     object Action_cancel: TAction
       Caption = 'Cancelar'
@@ -685,7 +671,6 @@ object frm_form_default: Tfrm_form_default
       Hint = 'Excluir Registro'
       ImageIndex = 8
       ShortCut = 16452
-      OnExecute = Action_deleteExecute
       OnUpdate = Action_insertUpdate
     end
     object Action_refresh: TAction
@@ -723,7 +708,6 @@ object frm_form_default: Tfrm_form_default
       Caption = 'Imprimir'
       Hint = 'Visualizar Relat'#243'rio'
       ImageIndex = 12
-      OnExecute = Action_printExecute
     end
     object Action_print_edit: TAction
       Caption = 'Editar'
@@ -1390,7 +1374,7 @@ object frm_form_default: Tfrm_form_default
     end
   end
   object qry: TFDQuery
-    SchemaAdapter = schadapter
+    SchemaAdapter = schadp
     Left = 928
     Top = 56
   end
@@ -1605,7 +1589,7 @@ object frm_form_default: Tfrm_form_default
     Left = 704
     Top = 8
   end
-  object schadapter: TFDSchemaAdapter
+  object schadp: TFDSchemaAdapter
     Left = 864
     Top = 56
   end

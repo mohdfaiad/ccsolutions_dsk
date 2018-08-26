@@ -5,10 +5,6 @@ inherited frm_enterprise: Tfrm_enterprise
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ent_id: TcxGridDBColumn
@@ -119,16 +115,8 @@ inherited frm_enterprise: Tfrm_enterprise
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 512
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 472
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'ent_id'
@@ -149,7 +137,7 @@ inherited frm_enterprise: Tfrm_enterprise
                 'M'
                 'F')
               Style.HotTrack = False
-              TabOrder = 2
+              TabOrder = 3
               Width = 121
             end
             object dbedt_im: TcxDBTextEdit [3]
@@ -168,7 +156,7 @@ inherited frm_enterprise: Tfrm_enterprise
               DataBinding.DataField = 'ent_dt_open'
               DataBinding.DataSource = ds
               Style.HotTrack = False
-              TabOrder = 3
+              TabOrder = 4
               Width = 130
             end
             object dbedt_cnpj: TcxDBTextEdit [5]
@@ -201,31 +189,17 @@ inherited frm_enterprise: Tfrm_enterprise
               TabOrder = 13
               Width = 121
             end
-            object dbcmb_status: TcxDBComboBox [8]
-              Left = 422
-              Top = 103
-              DataBinding.DataField = 'ent_status'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.Items.Strings = (
-                'A'
-                'D')
-              Style.HotTrack = False
-              TabOrder = 4
-              Width = 121
-            end
-            object dbedt_first_name: TcxDBTextEdit [9]
+            object dbedt_first_name: TcxDBTextEdit [8]
               Left = 59
               Top = 130
-              DataBinding.DataField = 'ent_last_name'
+              DataBinding.DataField = 'ent_first_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 5
               Width = 311
             end
-            object dbedt_nickname: TcxDBTextEdit [10]
+            object dbedt_nickname: TcxDBTextEdit [9]
               Left = 59
               Top = 157
               DataBinding.DataField = 'ent_nickname'
@@ -235,7 +209,7 @@ inherited frm_enterprise: Tfrm_enterprise
               TabOrder = 7
               Width = 311
             end
-            object dbedt_last_name: TcxDBTextEdit [11]
+            object dbedt_last_name: TcxDBTextEdit [10]
               Left = 422
               Top = 130
               DataBinding.DataField = 'ent_last_name'
@@ -245,7 +219,7 @@ inherited frm_enterprise: Tfrm_enterprise
               TabOrder = 6
               Width = 293
             end
-            object dbedt_email: TcxDBTextEdit [12]
+            object dbedt_email: TcxDBTextEdit [11]
               Left = 59
               Top = 184
               DataBinding.DataField = 'ent_email'
@@ -255,7 +229,7 @@ inherited frm_enterprise: Tfrm_enterprise
               TabOrder = 8
               Width = 311
             end
-            object dbimg_image1: TcxDBImage [13]
+            object dbimg_image1: TcxDBImage [12]
               Left = 721
               Top = 103
               DataBinding.DataField = 'ent_image1'
@@ -265,6 +239,20 @@ inherited frm_enterprise: Tfrm_enterprise
               TabOrder = 9
               Height = 100
               Width = 140
+            end
+            object dbchk_status: TcxDBCheckBox [13]
+              Left = 376
+              Top = 38
+              Caption = 'Status'
+              DataBinding.DataField = 'ent_status'
+              DataBinding.DataSource = ds
+              Properties.Alignment = taRightJustify
+              Properties.ValueChecked = 1
+              Properties.ValueGrayed = 0
+              Properties.ValueUnchecked = 0
+              Style.HotTrack = False
+              TabOrder = 2
+              Transparent = True
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               CaptionOptions.Visible = False
@@ -368,15 +356,6 @@ inherited frm_enterprise: Tfrm_enterprise
               ControlOptions.ShowBorder = False
               Index = 3
             end
-            object dxLayoutItem19: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup9
-              CaptionOptions.Text = 'Status'
-              Control = dbcmb_status
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 2
-            end
             object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup3
               AlignHorz = ahLeft
@@ -435,15 +414,25 @@ inherited frm_enterprise: Tfrm_enterprise
               Index = 0
               AutoCreated = True
             end
+            object dxLayoutItem19: TdxLayoutItem
+              Parent = dxLayoutGroup1
+              CaptionOptions.Text = 'cxDBCheckBox1'
+              CaptionOptions.Visible = False
+              Control = dbchk_status
+              ControlOptions.OriginalHeight = 19
+              ControlOptions.OriginalWidth = 53
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
           end
         end
         object cxTabSheet_address: TcxTabSheet
-          Caption = 'Endere'#231'o e Contato'
+          Caption = 'Endere'#231'os'
           object dxLayoutControl_address: TdxLayoutControl
             Left = 0
             Top = 0
             Width = 986
-            Height = 472
+            Height = 562
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
@@ -468,33 +457,13 @@ inherited frm_enterprise: Tfrm_enterprise
               Width = 121
             end
             object dbedt_add_bus_country: TcxDBTextEdit
-              Left = 709
+              Left = 689
               Top = 65
               DataBinding.DataField = 'ent_add_bus_country'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 7
-              Width = 121
-            end
-            object dbedt_phone1: TcxDBTextEdit
-              Left = 55
-              Top = 130
-              DataBinding.DataField = 'ent_phone1'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 8
-              Width = 121
-            end
-            object dbedt_phone2: TcxDBTextEdit
-              Left = 214
-              Top = 130
-              DataBinding.DataField = 'ent_phone2'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 9
               Width = 121
             end
             object dbedt_add_bus_zipcode: TcxDBButtonEdit
@@ -508,13 +477,12 @@ inherited frm_enterprise: Tfrm_enterprise
                   Kind = bkEllipsis
                 end>
               Properties.CharCase = ecUpperCase
-              Properties.OnButtonClick = dbbtnedt_cepPropertiesButtonClick
               Style.HotTrack = False
               TabOrder = 0
               Width = 121
             end
             object dbedt_add_bus_address: TcxDBTextEdit
-              Left = 214
+              Left = 206
               Top = 38
               DataBinding.DataField = 'ent_add_bus_address'
               DataBinding.DataSource = ds
@@ -524,7 +492,7 @@ inherited frm_enterprise: Tfrm_enterprise
               Width = 280
             end
             object dbedt_add_bus_number: TcxDBTextEdit
-              Left = 538
+              Left = 522
               Top = 38
               DataBinding.DataField = 'ent_add_bus_number'
               DataBinding.DataSource = ds
@@ -534,7 +502,7 @@ inherited frm_enterprise: Tfrm_enterprise
               Width = 121
             end
             object dbedt_add_bus_street: TcxDBTextEdit
-              Left = 709
+              Left = 682
               Top = 38
               DataBinding.DataField = 'ent_add_bus_street'
               DataBinding.DataSource = ds
@@ -553,36 +521,6 @@ inherited frm_enterprise: Tfrm_enterprise
               TabOrder = 4
               Width = 274
             end
-            object dbedt_phone3: TcxDBTextEdit
-              Left = 373
-              Top = 130
-              DataBinding.DataField = 'ent_phone3'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 10
-              Width = 121
-            end
-            object dbedt_phone4: TcxDBTextEdit
-              Left = 538
-              Top = 130
-              DataBinding.DataField = 'ent_phone4'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 11
-              Width = 121
-            end
-            object dbedt_contact: TcxDBTextEdit
-              Left = 709
-              Top = 130
-              DataBinding.DataField = 'ent_contact'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 12
-              Width = 121
-            end
             object dxLayoutControl_addressGroup_Root: TdxLayoutGroup
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -590,16 +528,6 @@ inherited frm_enterprise: Tfrm_enterprise
               Hidden = True
               ShowBorder = False
               Index = -1
-            end
-            object dxLayoutGroup5: TdxLayoutGroup
-              Parent = dxLayoutControl_addressGroup_Root
-              CaptionOptions.Text = 'Contato'
-              SizeOptions.AssignedValues = [sovSizableHorz]
-              SizeOptions.SizableHorz = True
-              SizeOptions.Width = 742
-              ButtonOptions.Buttons = <>
-              LayoutDirection = ldHorizontal
-              Index = 1
             end
             object dxLayoutGroup6: TdxLayoutGroup
               Parent = dxLayoutControl_addressGroup_Root
@@ -657,26 +585,6 @@ inherited frm_enterprise: Tfrm_enterprise
               ControlOptions.ShowBorder = False
               Index = 3
             end
-            object dxLayoutItem11: TdxLayoutItem
-              Parent = dxLayoutGroup5
-              AlignVert = avClient
-              CaptionOptions.Text = 'Tel. 1'
-              Control = dbedt_phone1
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutItem12: TdxLayoutItem
-              Parent = dxLayoutGroup5
-              AlignVert = avClient
-              CaptionOptions.Text = 'Tel. 2'
-              Control = dbedt_phone2
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
             object dxLayoutItem18: TdxLayoutItem
               Parent = dxLayoutAutoCreatedGroup5
               AlignHorz = ahLeft
@@ -732,8 +640,108 @@ inherited frm_enterprise: Tfrm_enterprise
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem14: TdxLayoutItem
-              Parent = dxLayoutGroup5
+          end
+        end
+        object tbsht_contact: TcxTabSheet
+          Caption = 'Contatos'
+          object dxLayoutControl1: TdxLayoutControl
+            Left = 0
+            Top = 0
+            Width = 986
+            Height = 562
+            Align = alClient
+            TabOrder = 0
+            LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+            object dbedt_phone1: TcxDBTextEdit
+              Left = 49
+              Top = 38
+              DataBinding.DataField = 'ent_phone1'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 0
+              Width = 121
+            end
+            object dbedt_phone2: TcxDBTextEdit
+              Left = 208
+              Top = 38
+              DataBinding.DataField = 'ent_phone2'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 1
+              Width = 121
+            end
+            object dbedt_phone3: TcxDBTextEdit
+              Left = 367
+              Top = 38
+              DataBinding.DataField = 'ent_phone3'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 2
+              Width = 121
+            end
+            object dbedt_phone4: TcxDBTextEdit
+              Left = 517
+              Top = 38
+              DataBinding.DataField = 'ent_phone4'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 121
+            end
+            object dbedt_contact: TcxDBTextEdit
+              Left = 688
+              Top = 38
+              DataBinding.DataField = 'ent_contact'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 121
+            end
+            object dxLayoutGroup4: TdxLayoutGroup
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              ButtonOptions.Buttons = <>
+              Hidden = True
+              ShowBorder = False
+              Index = -1
+            end
+            object dxLayoutGroup7: TdxLayoutGroup
+              Parent = dxLayoutGroup4
+              CaptionOptions.Text = 'Contato'
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              SizeOptions.Width = 742
+              ButtonOptions.Buttons = <>
+              LayoutDirection = ldHorizontal
+              Index = 0
+            end
+            object dxLayoutItem27: TdxLayoutItem
+              Parent = dxLayoutGroup7
+              AlignVert = avClient
+              CaptionOptions.Text = 'Tel. 1'
+              Control = dbedt_phone1
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem31: TdxLayoutItem
+              Parent = dxLayoutGroup7
+              AlignVert = avClient
+              CaptionOptions.Text = 'Tel. 2'
+              Control = dbedt_phone2
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem38: TdxLayoutItem
+              Parent = dxLayoutGroup7
               AlignVert = avClient
               CaptionOptions.Text = 'Tel. 3'
               Control = dbedt_phone3
@@ -742,8 +750,8 @@ inherited frm_enterprise: Tfrm_enterprise
               ControlOptions.ShowBorder = False
               Index = 2
             end
-            object dxLayoutItem15: TdxLayoutItem
-              Parent = dxLayoutGroup5
+            object dxLayoutItem39: TdxLayoutItem
+              Parent = dxLayoutGroup7
               AlignVert = avClient
               CaptionOptions.Text = 'Fax'
               Control = dbedt_phone4
@@ -752,8 +760,8 @@ inherited frm_enterprise: Tfrm_enterprise
               ControlOptions.ShowBorder = False
               Index = 3
             end
-            object dxLayoutItem16: TdxLayoutItem
-              Parent = dxLayoutGroup5
+            object dxLayoutItem40: TdxLayoutItem
+              Parent = dxLayoutGroup7
               AlignVert = avClient
               CaptionOptions.Text = 'Contato'
               Control = dbedt_contact
@@ -773,11 +781,12 @@ inherited frm_enterprise: Tfrm_enterprise
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\cadastro\basico\empresa'
     end
   end
+  inherited ActionList_1: TActionList
+    inherited Action_save: TAction
+      OnExecute = Action_saveExecute
+    end
+  end
   inherited qry: TFDQuery [5]
-    BeforeOpen = qryBeforeOpen
-    Connection = frm_dm.connCCS
-    FetchOptions.AssignedValues = [evMode, evRecordCountMode, evAutoFetchAll]
-    FetchOptions.Mode = fmManual
   end
   inherited ACBrEnterTab_1: TACBrEnterTab [6]
   end
@@ -795,57 +804,12 @@ inherited frm_enterprise: Tfrm_enterprise
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
-  inherited schadapter: TFDSchemaAdapter [9]
+  inherited cxGridPopupMenu_1: TcxGridPopupMenu [9]
   end
-  inherited cxGridPopupMenu_1: TcxGridPopupMenu [10]
-  end
-  inherited PopupMenu_1: TPopupMenu [11]
-  end
-  inherited cxImageList_1: TcxImageList [12]
-    FormatVersion = 1
-  end
-  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList [13]
-    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
-      PixelsPerInch = 96
-    end
-  end
-  object OpenPictureDialog1: TOpenPictureDialog [14]
-    Left = 735
-    Top = 74
-  end
-  object PopupMenu1: TPopupMenu [15]
-    Images = cxImageList_1
-    Left = 799
-    Top = 74
-    object Inserir2: TMenuItem
-      Caption = 'Inserir'
-      ImageIndex = 4
-    end
-    object Deletar1: TMenuItem
-      Caption = 'Deletar'
-      ImageIndex = 8
-    end
-  end
-  object OpenDialogLogo: TOpenDialog [16]
-    FileName = '*.png;*.jpg'
-    Left = 767
-    Top = 74
-  end
-  object frx_db_empresa: TfrxDBDataset [17]
-    UserName = 'Empresa'
-    CloseDataSource = False
-    BCDToCurrency = False
-    Left = 671
-    Top = 74
-  end
-  inherited frxReport_1: TfrxReport
+  inherited frxReport_1: TfrxReport [10]
     ReportOptions.CreateDate = 43193.605400104200000000
     ReportOptions.LastChange = 43290.579703252310000000
     Datasets = <
-      item
-        DataSet = frx_db_empresa
-        DataSetName = 'Empresa'
-      end
       item
       end>
     Variables = <>
@@ -1107,7 +1071,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 241.889920000000000000
           Height = 18.897650000000000000
           DataField = 'ent_add_bus_complement'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1137,7 +1100,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 257.008040000000000000
           Height = 18.897650000000000000
           DataField = 'ent_add_bus_street'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1151,7 +1113,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 128.504020000000000000
           Height = 18.897650000000000000
           DataField = 'ent_add_bus_zipcode'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1181,7 +1142,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 253.228510000000000000
           Height = 18.897650000000000000
           DataField = 'ent_add_bus_city'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1211,7 +1171,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 56.692950000000000000
           Height = 18.897650000000000000
           DataField = 'ent_add_bus_state'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1241,7 +1200,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 200.315090000000000000
           Height = 18.897650000000000000
           DataField = 'ent_add_bus_country'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1294,7 +1252,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 120.944960000000000000
           Height = 18.897650000000000000
           DataField = 'ent_phone1'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1308,7 +1265,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 120.944960000000000000
           Height = 18.897650000000000000
           DataField = 'ent_phone2'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1322,7 +1278,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 120.944960000000000000
           Height = 18.897650000000000000
           DataField = 'ent_phone3'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1336,7 +1291,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 120.944960000000000000
           Height = 18.897650000000000000
           DataField = 'ent_phone4'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1350,7 +1304,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 328.819110000000000000
           Height = 18.897650000000000000
           DataField = 'ent_contact'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1483,7 +1436,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 400.630180000000000000
           Height = 18.897650000000000000
           DataField = 'ent_first_name'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -1503,7 +1455,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 400.630180000000000000
           Height = 18.897650000000000000
           DataField = 'ent_last_name'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -1555,7 +1506,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 196.535560000000000000
           Height = 18.897650000000000000
           DataField = 'ent_cnpj'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -1591,7 +1541,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 170.078850000000000000
           Height = 18.897650000000000000
           DataField = 'ent_ie'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -1627,7 +1576,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 200.315090000000000000
           Height = 18.897650000000000000
           DataField = 'ent_im'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1657,7 +1605,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 170.078850000000000000
           Height = 18.897650000000000000
           DataField = 'ent_suframa'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1687,7 +1634,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 355.275820000000000000
           Height = 18.897650000000000000
           DataField = 'ent_email'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1717,7 +1663,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 102.047310000000000000
           Height = 18.897650000000000000
           DataField = 'ent_dt_open'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1747,7 +1692,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 400.630180000000000000
           Height = 18.897650000000000000
           DataField = 'ent_add_bus_address'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1793,7 +1737,6 @@ inherited frm_enterprise: Tfrm_enterprise
           Width = 94.488250000000000000
           Height = 18.897650000000000000
           DataField = 'ent_add_bus_number'
-          DataSet = frx_db_empresa
           DataSetName = 'Empresa'
           Frame.Typ = []
           Memo.UTF8W = (
@@ -1802,8 +1745,152 @@ inherited frm_enterprise: Tfrm_enterprise
       end
     end
   end
-  inherited mem: TFDMemTable
+  inherited PopupMenu_1: TPopupMenu [11]
+  end
+  inherited mem: TFDMemTable [12]
     Active = True
+    FieldDefs = <
+      item
+        Name = 'ent_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'ent_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'ent_type'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'ent_first_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'ent_last_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'ent_nickname'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'ent_email'
+        DataType = ftString
+        Size = 65
+      end
+      item
+        Name = 'ent_cnpj'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'ent_ie'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'ent_im'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'ent_suframa'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'ent_add_bus_zipcode'
+        DataType = ftString
+        Size = 9
+      end
+      item
+        Name = 'ent_add_bus_address'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'ent_add_bus_number'
+        DataType = ftString
+        Size = 5
+      end
+      item
+        Name = 'ent_add_bus_street'
+        DataType = ftString
+        Size = 45
+      end
+      item
+        Name = 'ent_add_bus_complement'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'ent_add_bus_city'
+        DataType = ftString
+        Size = 35
+      end
+      item
+        Name = 'ent_add_bus_state'
+        DataType = ftString
+        Size = 3
+      end
+      item
+        Name = 'ent_add_bus_country'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'ent_phone1'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'ent_phone2'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'ent_phone3'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'ent_phone4'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'ent_contact'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'ent_dt_open'
+        DataType = ftDate
+      end
+      item
+        Name = 'ent_status'
+        DataType = ftShortint
+      end
+      item
+        Name = 'ent_image1'
+        DataType = ftBlob
+      end
+      item
+        Name = 'ent_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'ent_dt_registration'
+        DataType = ftDateTime
+      end>
+    IndexFieldNames = 'ent_id'
+    StoreDefs = True
     object mement_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'
@@ -1923,11 +2010,13 @@ inherited frm_enterprise: Tfrm_enterprise
       Origin = 'ent_add_bus_city'
       Size = 35
     end
-    object mement_add_bus_state: TShortintField
+    object mement_add_bus_state: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'UF'
       FieldName = 'ent_add_bus_state'
       Origin = 'ent_add_bus_state'
+      FixedChar = True
+      Size = 3
     end
     object mement_add_bus_country: TStringField
       AutoGenerateValue = arDefault
@@ -1959,7 +2048,7 @@ inherited frm_enterprise: Tfrm_enterprise
     end
     object mement_phone4: TStringField
       AutoGenerateValue = arDefault
-      DisplayLabel = 'Tel. 4'
+      DisplayLabel = 'Fax'
       FieldName = 'ent_phone4'
       Origin = 'ent_phone4'
       Size = 15
@@ -1977,13 +2066,11 @@ inherited frm_enterprise: Tfrm_enterprise
       FieldName = 'ent_dt_open'
       Origin = 'ent_dt_open'
     end
-    object mement_status: TStringField
+    object mement_status: TShortintField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Status'
       FieldName = 'ent_status'
       Origin = 'ent_status'
-      FixedChar = True
-      Size = 1
     end
     object mement_image1: TBlobField
       AutoGenerateValue = arDefault
@@ -2004,11 +2091,14 @@ inherited frm_enterprise: Tfrm_enterprise
       Origin = 'ent_dt_registration'
     end
   end
-  object acbr_cep: TACBrCEP
-    ProxyPort = '8080'
-    WebService = wsCorreios
-    PesquisarIBGE = True
-    Left = 703
-    Top = 74
+  inherited cxImageList_1: TcxImageList [13]
+    FormatVersion = 1
+  end
+  inherited schadp: TFDSchemaAdapter [14]
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList [15]
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
   end
 end

@@ -17,7 +17,7 @@ type
   protected
 
   public
-    class function get_contract_user(mem: TFDMemTable): Boolean;
+    class function GetContract_User(mem: TFDMemTable): Boolean;
 
   published
 
@@ -30,7 +30,7 @@ uses
 
 { Trest_contract_user }
 
-class function Trest_contract_user.get_contract_user(mem: TFDMemTable): Boolean;
+class function Trest_contract_user.GetContract_User(mem: TFDMemTable): Boolean;
 begin
   try
     try
@@ -51,7 +51,7 @@ begin
             mem.FieldByName('ctr_usr_username').AsString        := frm_dm.mem_rest.FieldByName('ctr_usr_username').AsString;
             mem.FieldByName('ctr_usr_email').AsString           := frm_dm.mem_rest.FieldByName('ctr_usr_email').AsString;
             mem.FieldByName('ctr_usr_dt_birth').AsString        := frm_dm.mem_rest.FieldByName('ctr_usr_dt_birth').AsString;
-            mem.FieldByName('ctr_usr_status').AsBoolean         := frm_dm.mem_rest.FieldByName('ctr_usr_status').AsBoolean;
+            mem.FieldByName('ctr_usr_status').AsInteger         := frm_dm.mem_rest.FieldByName('ctr_usr_status').AsInteger;
             mem.FieldByName('ctr_usr_deleted_at').AsString      := frm_dm.mem_rest.FieldByName('ctr_usr_deleted_at').AsString;
             mem.FieldByName('ctr_usr_dt_registration').AsString := frm_dm.mem_rest.FieldByName('ctr_usr_dt_registration').AsString;
             mem.Post;

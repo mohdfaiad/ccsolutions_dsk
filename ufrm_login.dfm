@@ -6968,5 +6968,9 @@ object frm_login: Tfrm_login
       FieldName = 'ctr_token'
       Size = 32
     end
+    object memctr_cod: TStringField
+      FieldName = 'ctr_cod'
+      Size = 32
+    end
   end
 end

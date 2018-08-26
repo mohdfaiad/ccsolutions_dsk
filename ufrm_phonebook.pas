@@ -134,7 +134,6 @@ uses
   
   frxClass,
 
-  u_class_rest_method,
   u_class_phonebook,
   u_class_connection,
 
@@ -175,18 +174,15 @@ type
     cxGrid_1DBTableView1pho_contact: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure Action_insertExecute(Sender: TObject);
-    procedure Action_saveExecute(Sender: TObject);
-    procedure Action_deleteExecute(Sender: TObject);
-    procedure Action_editExecute(Sender: TObject);
-    procedure cxGrid_1DBTableView1DblClick(Sender: TObject);
-    procedure qryBeforeOpen(DataSet: TDataSet);
+    procedure dxBarButton_saveClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
-    { Private declarations }
-    status : Integer;
+    function GetPhonebook : Boolean;
+    procedure afterInsert;
+    procedure afterUpdate;
+
   public
-    { Public declarations }
+
   end;
 
 var
@@ -198,115 +194,79 @@ implementation
 
 uses ufrm_dm;
 
-procedure Tfrm_phonebook.Action_deleteExecute(Sender: TObject);
-var
-  strproc_delete : TFDStoredProc;
+procedure Tfrm_phonebook.afterInsert;
 begin
-  try
-    try
-      strproc_delete := TFDStoredProc.Create(Self);
-      strproc_delete.Connection := frm_dm.connCCS;
-      strproc_delete.StoredProcName := 'proc_phonebook_delete';
-      strproc_delete.Prepare;
-
-      strproc_delete.ParamByName('p_pho_cod').AsString := qry.FieldByName('pho_cod').AsString;
-      strproc_delete.ParamByName('p_pho_deleted_at').AsDateTime := Date + Time;
-      strproc_delete.ExecProc;
-
-      qry.Close;
-      qry.Open;
-    except on E: Exception do
-      ShowMessage('Erro: ' + E.Message);
-    end;
-  finally
-  end;
-end;
-
-procedure Tfrm_phonebook.Action_editExecute(Sender: TObject);
-begin
-  inherited;
-  status := 1;
+  ShowMessage('Registro Iserido com Sucesso');
   cxTabSheet_3.Show;
+  GetPhonebook;
+  ds.DataSet.Last;
 end;
 
-procedure Tfrm_phonebook.Action_insertExecute(Sender: TObject);
+procedure Tfrm_phonebook.afterUpdate;
 begin
-  status := 0;
-  qry.EmptyDataSet;
+  ShowMessage('Registro Atualizado com sucesso');
   cxTabSheet_3.Show;
+  GetPhonebook;
 end;
 
-procedure Tfrm_phonebook.Action_saveExecute(Sender: TObject);
+procedure Tfrm_phonebook.dxBarButton_saveClick(Sender: TObject);
 var
   strproc_create, strproc_update : TFDStoredProc;
 begin
-  case status of
-    0 : begin         
-          try
-            try
-              strproc_create := TFDStoredProc.Create(Self);
-              strproc_create.Connection := frm_dm.connCCS;
-              strproc_create.StoredProcName := 'proc_phonebook_create';
-              strproc_create.Prepare;
+  case ds.State of
+    dsEdit:
+      try
+        try
+          if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+            strproc_update := TFDStoredProc.Create(Self);
+            strproc_update.Connection := frm_dm.connCCS;
+            strproc_update.StoredProcName := 'proc_phonebook_update';
+            strproc_update.Prepare;
 
-//              strproc_create.ParamByName('p_contract_ctr_cod').AsString  := frm_dm.v_contract_ctr_cod;
-              strproc_create.ParamByName('p_pho_name').AsString          := dbedt_name.Text;
-              strproc_create.ParamByName('p_pho_contact').AsString       := dbedt_contact.Text;
-              strproc_create.ParamByName('p_pho_phone1').AsString        := dbedt_phone1.Text;
-              strproc_create.ParamByName('p_pho_phone2').AsString        := dbedt_phone2.Text;
-              strproc_create.ParamByName('p_pho_phone3').AsString        := dbedt_phone3.Text;
-              strproc_create.ParamByName('p_pho_phone4').AsString        := dbedt_phone4.Text;
-              strproc_create.ExecProc;
+            strproc_update.ParamByName('p_ctr_token').AsString         := Tconnection.ctr_token;
+            strproc_update.ParamByName('p_pho_cod').AsString           := mempho_cod.AsString;
+            strproc_update.ParamByName('p_pho_name').AsString          := dbedt_name.Text;
+            strproc_update.ParamByName('p_pho_contact').AsString       := dbedt_contact.Text;
+            strproc_update.ParamByName('p_pho_phone1').AsString        := dbedt_phone1.Text;
+            strproc_update.ParamByName('p_pho_phone2').AsString        := dbedt_phone2.Text;
+            strproc_update.ParamByName('p_pho_phone3').AsString        := dbedt_phone3.Text;
+            strproc_update.ParamByName('p_pho_phone4').AsString        := dbedt_phone4.Text;
+            strproc_update.ExecProc;
 
-              ShowMessage('Registro inserido com sucesso');
-
-              qry.Close;
-              qry.Open;
-              qry.Last;
-            except on E: Exception do
-              ShowMessage('Erro: ' + E.Message);
-            end;
-          finally
+            afterUpdate;
+          end else begin
+            ds.DataSet.Cancel;
           end;
-    end;
+        except on E: Exception do
+          ShowMessage('Erro: ' + E.Message);
+        end;
+      finally
+      end;
 
-    1 : begin  
-          try
-            try
-              if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
-                strproc_update := TFDStoredProc.Create(Self);
-                strproc_update.Connection := frm_dm.connCCS;
-                strproc_update.StoredProcName := 'proc_phonebook_update';
-                strproc_update.Prepare;
+    dsInsert:
+      try
+        try
+          strproc_create := TFDStoredProc.Create(Self);
+          strproc_create.Connection := frm_dm.connCCS;
+          strproc_create.StoredProcName := 'proc_phonebook_create';
+          strproc_create.Prepare;
 
-                strproc_update.ParamByName('p_pho_cod').AsString           := qry.FieldByName('pho_cod').AsString;
-                strproc_update.ParamByName('p_pho_name').AsString          := dbedt_name.Text;
-                strproc_update.ParamByName('p_pho_contact').AsString       := dbedt_contact.Text;
-                strproc_update.ParamByName('p_pho_phone1').AsString        := dbedt_phone1.Text;
-                strproc_update.ParamByName('p_pho_phone2').AsString        := dbedt_phone2.Text;
-                strproc_update.ParamByName('p_pho_phone3').AsString        := dbedt_phone3.Text;
-                strproc_update.ParamByName('p_pho_phone4').AsString        := dbedt_phone4.Text;
-                strproc_update.ExecProc;
+          strproc_create.ParamByName('p_ctr_token').AsString         := Tconnection.ctr_token;
+          strproc_create.ParamByName('p_pho_name').AsString          := dbedt_name.Text;
+          strproc_create.ParamByName('p_pho_contact').AsString       := dbedt_contact.Text;
+          strproc_create.ParamByName('p_pho_phone1').AsString        := dbedt_phone1.Text;
+          strproc_create.ParamByName('p_pho_phone2').AsString        := dbedt_phone2.Text;
+          strproc_create.ParamByName('p_pho_phone3').AsString        := dbedt_phone3.Text;
+          strproc_create.ParamByName('p_pho_phone4').AsString        := dbedt_phone4.Text;
+          strproc_create.ExecProc;
 
-                ShowMessage('Registro Salvo com sucesso');
-
-                qry.UpdateRecord;
-              end else begin
-                qry.Cancel;
-              end;
-            except on E: Exception do
-              ShowMessage('Erro: ' + E.Message);
-            end;
-          finally
-          end;
-    end;
+          afterInsert;
+        except on E: Exception do
+          ShowMessage('Erro: ' + E.Message);
+        end;
+      finally
+      end;
   end;
-end;
-
-procedure Tfrm_phonebook.cxGrid_1DBTableView1DblClick(Sender: TObject);
-begin
-  inherited;
-  status := 1;
 end;
 
 procedure Tfrm_phonebook.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -319,20 +279,24 @@ end;
 procedure Tfrm_phonebook.FormCreate(Sender: TObject);
 begin
   inherited;
-  Trest_methods.v_method        := 'get_phonebook';
-  Trest_methods.v_parameter     := Tconnection.ctr_token;
-  Trest_methods.v_root_element  := 'phonebook';
-
-  Trest_phonebook.get_phonebook(mem);
+  GetPhonebook;
 end;
 
-procedure Tfrm_phonebook.qryBeforeOpen(DataSet: TDataSet);
+function Tfrm_phonebook.GetPhonebook: Boolean;
 begin
-  inherited;
-  qry.Filtered                                  := False;
-//  qry.ParamByName('contract_ctr_cod').AsString  := frm_dm.v_contract_ctr_cod;
-  qry.Filter                                    := 'pho_deleted_at is null';
-  qry.Filtered                                  := True;
+  try
+    try
+      Trest_phonebook.v_method        := '/api/rest/phonebooks/Phonebook';
+      Trest_phonebook.v_parameter     := Tconnection.ctr_token;
+      Trest_phonebook.GetPhonebook(mem);
+
+      Result := True;
+    except on E: Exception do
+      Result := False;
+    end;
+  finally
+  end;
 end;
 
 end.
+

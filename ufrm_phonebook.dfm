@@ -45,6 +45,10 @@ inherited frm_phonebook: Tfrm_phonebook
     inherited cxTabSheet_2: TcxTabSheet
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 63
@@ -201,9 +205,6 @@ inherited frm_phonebook: Tfrm_phonebook
   end
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
-    inherited dxBarButton_save: TdxBarButton
-      OnClick = dxBarButton_saveClick
-    end
   end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1

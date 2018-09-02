@@ -28,7 +28,8 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  Vcl.Menus;
+  Vcl.Menus, cxDataControllerConditionalFormattingRulesManagerDialog,
+  cxImageList;
 
 type
   Tfrm_search = class(TForm)

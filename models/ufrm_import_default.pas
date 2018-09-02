@@ -3,29 +3,124 @@ unit ufrm_import_default;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, dxSkinsCore, dxSkinBlack, dxSkinBlue,
-  dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide,
-  dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
-  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
-  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
-  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
-  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
-  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
-  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
-  dxSkinOffice2013White, dxSkinOffice2016Colorful, dxSkinOffice2016Dark,
-  dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
-  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
-  dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, dxSkinscxPCPainter, dxSkinsdxBarPainter, frxClass,
-  frxDesgn, ACBrBase, ACBrEnterTab, System.ImageList, Vcl.ImgList, cxGraphics,
-  Vcl.Menus, System.Actions, Vcl.ActnList, dxBar, cxClasses, QImport3Wizard,
-  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
-  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
-  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids, dxBarExtItems;
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  System.Actions,
+
+  Vcl.ImgList,
+  Vcl.Menus,
+  Vcl.ActnList,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.Grids,
+  Vcl.DBGrids,
+
+  dxSkinsCore,
+  dxSkinBlack,
+  dxSkinBlue,
+  dxSkinBlueprint,
+  dxSkinCaramel,
+  dxSkinCoffee,
+  dxSkinDarkRoom,
+  dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle,
+  dxSkinDevExpressStyle,
+  dxSkinFoggy,
+  dxSkinGlassOceans,
+  dxSkinHighContrast,
+  dxSkiniMaginary,
+  dxSkinLilian,
+  dxSkinLiquidSky,
+  dxSkinLondonLiquidSky,
+  dxSkinMcSkin,
+  dxSkinMetropolis,
+  dxSkinMetropolisDark,
+  dxSkinMoneyTwins,
+  dxSkinOffice2007Black,
+  dxSkinOffice2007Blue,
+  dxSkinOffice2007Green,
+  dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver,
+  dxSkinOffice2010Black,
+  dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver,
+  dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray,
+  dxSkinOffice2013White,
+  dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark,
+  dxSkinPumpkin,
+  dxSkinSeven,
+  dxSkinSevenClassic,
+  dxSkinSharp,
+  dxSkinSharpPlus,
+  dxSkinSilver,
+  dxSkinSpringTime,
+  dxSkinStardust,
+  dxSkinSummer2008,
+  dxSkinTheAsphaltWorld,
+  dxSkinsDefaultPainters,
+  dxSkinValentine,
+  dxSkinVisualStudio2013Blue,
+  dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light,
+  dxSkinVS2010,
+  dxSkinWhiteprint,
+  dxSkinXmas2008Blue,
+  dxSkinscxPCPainter,
+  dxSkinsdxBarPainter,
+  cxGraphics,
+  dxBar,
+  cxClasses,
+  dxBarExtItems,
+  cxImageList,
+  dxRibbon,
+  cxControls,
+  cxLookAndFeels,
+  cxLookAndFeelPainters,
+  dxBarBuiltInMenu,
+  cxPC,
+  cxStyles,
+  cxCustomData,
+  cxFilter,
+  cxData,
+  cxDataStorage,
+  cxEdit,
+  cxNavigator,
+  cxDataControllerConditionalFormattingRulesManagerDialog,
+  cxDBData,
+  cxGridLevel,
+  cxGridCustomView,
+  cxGridCustomTableView,
+  cxGridTableView,
+  cxGridDBTableView,
+  cxGrid,
+
+  ACBrBase,
+  ACBrEnterTab,
+
+  QImport3Wizard,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.Stan.Async,
+  FireDAC.DApt,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+
+  Data.DB, cxEdit;
 
 type
   Tfrm_import_default = class(TForm)
@@ -33,26 +128,29 @@ type
     dxBarManager_1: TdxBarManager;
     dxBarManager_1Bar1: TdxBar;
     dxBarManager_1Bar3: TdxBar;
-    dxBarButton_insert: TdxBarButton;
     dxBarButton_close: TdxBarButton;
     ActionList_1: TActionList;
     Action_import: TAction;
     Action_close: TAction;
     cxImageList_1: TcxImageList;
-    ACBrEnterTab_1: TACBrEnterTab;
     QImport3Wizard_1: TQImport3Wizard;
     qry: TFDQuery;
     ds: TDataSource;
-    DBGrid_1: TDBGrid;
     Action_save: TAction;
-    dxBarButton2: TdxBarButton;
+    mem: TFDMemTable;
+    popup_1: TdxRibbonPopupMenu;
+    dxBarSubItem1: TdxBarSubItem;
+    pgctrl_import: TcxPageControl;
+    tbsht_data: TcxTabSheet;
+    grid_dataview: TcxGridDBTableView;
+    grid_datalvl: TcxGridLevel;
+    grid_data: TcxGrid;
     procedure Action_closeExecute(Sender: TObject);
     procedure Action_importExecute(Sender: TObject);
-    procedure Action_saveExecute(Sender: TObject);
   private
-    { Private declarations }
+
   public
-    { Public declarations }
+
   end;
 
 var
@@ -70,11 +168,6 @@ end;
 procedure Tfrm_import_default.Action_importExecute(Sender: TObject);
 begin
   QImport3Wizard_1.Execute;
-end;
-
-procedure Tfrm_import_default.Action_saveExecute(Sender: TObject);
-begin
-  ds.DataSet.Post
 end;
 
 end.

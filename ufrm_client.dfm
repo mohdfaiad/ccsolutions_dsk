@@ -510,10 +510,6 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1143,10 +1139,6 @@ inherited frm_client: Tfrm_client
         end
         object tbsht_contact: TcxTabSheet
           Caption = 'Contatos'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1284,10 +1276,6 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1345,6 +1333,174 @@ inherited frm_client: Tfrm_client
             end
           end
         end
+        object tbsht_telephony: TcxTabSheet
+          Caption = 'Telefonia'
+          object pgctrl_telephony: TcxPageControl
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 980
+            Height = 556
+            Align = alClient
+            TabOrder = 0
+            Properties.ActivePage = cxTabSheet3
+            Properties.CustomButtons.Buttons = <>
+            Properties.HotImages = cxImageList_1
+            Properties.Images = cxImageList_1
+            ClientRectBottom = 550
+            ClientRectLeft = 2
+            ClientRectRight = 974
+            ClientRectTop = 28
+            object cxTabSheet3: TcxTabSheet
+              Caption = 'Integra'#231#227'o'
+              object dxLayoutControl5: TdxLayoutControl
+                Left = 0
+                Top = 0
+                Width = 972
+                Height = 522
+                Align = alClient
+                TabOrder = 0
+                LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+                OnDblClick = dxLayoutControl_1DblClick
+                object astppgrid: TcxGrid
+                  Left = 17
+                  Top = 38
+                  Width = 459
+                  Height = 150
+                  TabOrder = 0
+                  object astppgridview: TcxGridDBTableView
+                    Navigator.Buttons.OnButtonClick = astppgridviewNavigatorButtonsButtonClick
+                    Navigator.Buttons.ConfirmDelete = True
+                    Navigator.Buttons.CustomButtons = <>
+                    Navigator.Buttons.Images = cxImageList_1
+                    Navigator.Buttons.First.ImageIndex = 0
+                    Navigator.Buttons.PriorPage.Visible = False
+                    Navigator.Buttons.Prior.ImageIndex = 1
+                    Navigator.Buttons.Next.ImageIndex = 2
+                    Navigator.Buttons.NextPage.Visible = False
+                    Navigator.Buttons.Last.ImageIndex = 3
+                    Navigator.Buttons.Insert.ImageIndex = 4
+                    Navigator.Buttons.Delete.ImageIndex = 8
+                    Navigator.Buttons.Edit.ImageIndex = 5
+                    Navigator.Buttons.Post.ImageIndex = 6
+                    Navigator.Buttons.Cancel.ImageIndex = 7
+                    Navigator.Buttons.Refresh.ImageIndex = 9
+                    Navigator.Buttons.SaveBookmark.Visible = False
+                    Navigator.Buttons.GotoBookmark.Visible = False
+                    Navigator.Buttons.Filter.ImageIndex = 11
+                    Navigator.Visible = True
+                    DataController.DataSource = dsClientASTPP
+                    DataController.Summary.DefaultGroupSummaryItems = <>
+                    DataController.Summary.FooterSummaryItems = <>
+                    DataController.Summary.SummaryGroups = <>
+                    Images = cxImageList_1
+                    object astppgridviewcla_account_astpp: TcxGridDBColumn
+                      DataBinding.FieldName = 'cla_account_astpp'
+                      PropertiesClassName = 'TcxTextEditProperties'
+                      Properties.CharCase = ecLowerCase
+                      Width = 250
+                    end
+                  end
+                  object astppgridlvl: TcxGridLevel
+                    GridView = astppgridview
+                  end
+                end
+                object sipgrid: TcxGrid
+                  Left = 496
+                  Top = 38
+                  Width = 459
+                  Height = 150
+                  TabOrder = 1
+                  object sipgridview: TcxGridDBTableView
+                    Navigator.Buttons.OnButtonClick = sipgridviewNavigatorButtonsButtonClick
+                    Navigator.Buttons.ConfirmDelete = True
+                    Navigator.Buttons.CustomButtons = <>
+                    Navigator.Buttons.Images = cxImageList_1
+                    Navigator.Buttons.First.ImageIndex = 0
+                    Navigator.Buttons.PriorPage.Visible = False
+                    Navigator.Buttons.Prior.ImageIndex = 1
+                    Navigator.Buttons.Next.ImageIndex = 2
+                    Navigator.Buttons.NextPage.Visible = False
+                    Navigator.Buttons.Last.ImageIndex = 3
+                    Navigator.Buttons.Insert.ImageIndex = 4
+                    Navigator.Buttons.Delete.ImageIndex = 8
+                    Navigator.Buttons.Edit.ImageIndex = 5
+                    Navigator.Buttons.Post.ImageIndex = 6
+                    Navigator.Buttons.Cancel.ImageIndex = 7
+                    Navigator.Buttons.Refresh.ImageIndex = 9
+                    Navigator.Buttons.SaveBookmark.Visible = False
+                    Navigator.Buttons.GotoBookmark.Visible = False
+                    Navigator.Buttons.Filter.ImageIndex = 11
+                    Navigator.Visible = True
+                    DataController.DataSource = dsClientSIPPulse
+                    DataController.Summary.DefaultGroupSummaryItems = <>
+                    DataController.Summary.FooterSummaryItems = <>
+                    DataController.Summary.SummaryGroups = <>
+                    Images = cxImageList_1
+                    object sipgridviewcls_account_sippulse: TcxGridDBColumn
+                      DataBinding.FieldName = 'cls_account_sippulse'
+                      Width = 250
+                    end
+                  end
+                  object sipgridlvl: TcxGridLevel
+                    GridView = sipgridview
+                  end
+                end
+                object dxLayoutGroup13: TdxLayoutGroup
+                  AlignHorz = ahLeft
+                  AlignVert = avTop
+                  SizeOptions.AssignedValues = [sovSizableHorz]
+                  SizeOptions.SizableHorz = True
+                  ButtonOptions.Buttons = <>
+                  Hidden = True
+                  ItemIndex = 1
+                  LayoutDirection = ldHorizontal
+                  ShowBorder = False
+                  Index = -1
+                end
+                object dxLayoutGroup15: TdxLayoutGroup
+                  Parent = dxLayoutGroup13
+                  AlignHorz = ahLeft
+                  AlignVert = avTop
+                  CaptionOptions.Text = 'ASTPP'
+                  SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
+                  SizeOptions.SizableHorz = True
+                  SizeOptions.SizableVert = True
+                  SizeOptions.Height = 188
+                  SizeOptions.Width = 473
+                  ButtonOptions.Buttons = <>
+                  Index = 0
+                end
+                object dxLayoutItem39: TdxLayoutItem
+                  Parent = dxLayoutGroup15
+                  Control = astppgrid
+                  ControlOptions.OriginalHeight = 150
+                  ControlOptions.OriginalWidth = 250
+                  ControlOptions.ShowBorder = False
+                  Index = 0
+                end
+                object dxLayoutItem40: TdxLayoutItem
+                  Parent = dxLayoutGroup16
+                  Control = sipgrid
+                  ControlOptions.OriginalHeight = 150
+                  ControlOptions.OriginalWidth = 250
+                  ControlOptions.ShowBorder = False
+                  Index = 0
+                end
+                object dxLayoutGroup16: TdxLayoutGroup
+                  Parent = dxLayoutGroup13
+                  AlignVert = avTop
+                  CaptionOptions.Text = 'SIPPulse'
+                  SizeOptions.AssignedValues = [sovSizableHorz]
+                  SizeOptions.SizableHorz = True
+                  SizeOptions.Width = 473
+                  ButtonOptions.Buttons = <>
+                  Index = 1
+                end
+              end
+            end
+          end
+        end
       end
     end
   end
@@ -1352,6 +1508,14 @@ inherited frm_client: Tfrm_client
     PixelsPerInch = 96
     inherited dxBarManager_1Bar6: TdxBar
       ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton1'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton3'
+        end
         item
           Visible = True
           ItemName = 'dxBarButton2'
@@ -1371,6 +1535,20 @@ inherited frm_client: Tfrm_client
     object dxBarButton2: TdxBarButton
       Action = Action_consult_cnpj
       Category = 0
+    end
+    object dxBarButton1: TdxBarButton
+      Caption = 'ASTPP'
+      Category = 0
+      Hint = 'ASTPP'
+      Visible = ivAlways
+      OnClick = dxBarButton1Click
+    end
+    object dxBarButton3: TdxBarButton
+      Caption = 'SIPPulse'
+      Category = 0
+      Hint = 'SIPPulse'
+      Visible = ivAlways
+      OnClick = dxBarButton3Click
     end
   end
   inherited ActionList_1: TActionList
@@ -3075,5 +3253,143 @@ inherited frm_client: Tfrm_client
     inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
       PixelsPerInch = 96
     end
+  end
+  object memClientASTPP: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'cla_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'client_cli_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'cla_account_astpp'
+        DataType = ftString
+        Size = 65
+      end
+      item
+        Name = 'cla_dt_registration'
+        DataType = ftDateTime
+      end>
+    IndexDefs = <>
+    IndexFieldNames = 'client_cli_cod'
+    MasterSource = ds
+    MasterFields = 'cli_cod'
+    DetailFields = 'client_cli_cod'
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 864
+    Top = 104
+    object memClientASTPPcla_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cla_cod'
+      Origin = 'cla_cod'
+      Size = 32
+    end
+    object memClientASTPPclient_cli_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Cliente'
+      FieldName = 'client_cli_cod'
+      Origin = 'client_cli_cod'
+      Size = 32
+    end
+    object memClientASTPPcla_account_astpp: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Conta'
+      FieldName = 'cla_account_astpp'
+      Origin = 'cla_account_astpp'
+      Size = 65
+    end
+    object memClientASTPPcla_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'cla_dt_registration'
+      Origin = 'cla_dt_registration'
+    end
+  end
+  object dsClientASTPP: TDataSource
+    DataSet = memClientASTPP
+    Left = 896
+    Top = 104
+  end
+  object memClientSIPPulse: TFDMemTable
+    Active = True
+    IndexFieldNames = 'client_cli_cod'
+    MasterSource = ds
+    MasterFields = 'cli_cod'
+    DetailFields = 'client_cli_cod'
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 864
+    Top = 152
+    object memClientSIPPulsecls_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cls_cod'
+      Origin = 'cls_cod'
+      Size = 32
+    end
+    object memClientSIPPulseclient_cli_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'client_cli_cod'
+      Origin = 'client_cli_cod'
+      Size = 32
+    end
+    object memClientSIPPulsecls_account_sippulse: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Conta'
+      FieldName = 'cls_account_sippulse'
+      Origin = 'cls_account_sippulse'
+      Size = 65
+    end
+    object memClientSIPPulsecls_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'cls_dt_registration'
+      Origin = 'cls_dt_registration'
+    end
+  end
+  object dsClientSIPPulse: TDataSource
+    DataSet = memClientSIPPulse
+    Left = 896
+    Top = 152
+  end
+  object FDStoredProc1: TFDStoredProc
+    Connection = frm_dm.connCCS
+    StoredProcName = 'ccs.proc_client_delete'
+    Left = 548
+    Top = 401
+    ParamData = <
+      item
+        Position = 1
+        Name = 'p_cli_cod'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 32
+      end
+      item
+        Position = 2
+        Name = 'p_dt_deleted_at'
+        DataType = ftDateTime
+        ParamType = ptInput
+      end>
   end
 end

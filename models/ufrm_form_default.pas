@@ -362,7 +362,7 @@ end;
 
 procedure Tfrm_form_default.cxGrid_1DBTableView1DblClick(Sender: TObject);
 begin
-  Action_edit.Execute;
+//  Action_edit.Execute;
   cxTabSheet_3.Show;
 end;
 

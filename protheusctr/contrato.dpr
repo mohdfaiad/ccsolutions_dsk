@@ -36,7 +36,10 @@ uses
   ufrm_reseller in '..\ufrm_reseller.pas' {frm_reseller},
   u_class_rest_reseller in '..\u_class_rest_reseller.pas',
   ufrm_product in '..\ufrm_product.pas' {frm_product},
-  u_class_rest_product in '..\u_class_rest_product.pas';
+  u_class_rest_product in '..\u_class_rest_product.pas',
+  ufrm_client_contract in '..\ufrm_client_contract.pas' {frm_client_contract},
+  u_class_rest_client_contract in '..\u_class_rest_client_contract.pas',
+  u_class_rest_client_contract_iten in '..\u_class_rest_client_contract_iten.pas';
 
 {$R *.res}
 

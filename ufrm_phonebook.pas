@@ -134,8 +134,8 @@ uses
   
   frxClass,
 
-  u_class_phonebook,
   u_class_connection,
+  u_class_rest_phonebook,
 
   ufrm_form_default;
 

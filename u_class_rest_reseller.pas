@@ -34,6 +34,9 @@ class function Trest_reseller.GetReseller(mem: TFDMemTable): Boolean;
 begin
   try
     try
+      v_method        := '/api/rest/resellers/Reseller';
+      v_parameter     := Tconnection.ctr_token;
+
       begin
         if Get(Trest_methods.v_method, Trest_methods.v_parameter) then begin
           frm_dm.rest_response.RootElement := Trest_methods.v_root_element;

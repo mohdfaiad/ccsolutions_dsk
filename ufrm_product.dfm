@@ -104,7 +104,7 @@ inherited frm_product: Tfrm_product
               DataBinding.DataField = 'pro_dt_registration'
               ExplicitLeft = 250
             end
-            object dbComboxPro_type: TcxDBComboBox [2]
+            object dbcmb_type: TcxDBComboBox [2]
               Left = 77
               Top = 103
               DataBinding.DataField = 'pro_type'
@@ -114,13 +114,13 @@ inherited frm_product: Tfrm_product
               Properties.DropDownListStyle = lsFixedList
               Properties.DropDownWidth = 250
               Properties.Items.Strings = (
-                'P - PRODUTO'
-                'S - SERVI'#199'O')
+                'P'
+                'S')
               Style.HotTrack = False
               TabOrder = 3
               Width = 121
             end
-            object cxDBTextEdit1: TcxDBTextEdit [3]
+            object dbedt_name: TcxDBTextEdit [3]
               Left = 77
               Top = 130
               DataBinding.DataField = 'pro_name'
@@ -130,7 +130,7 @@ inherited frm_product: Tfrm_product
               TabOrder = 4
               Width = 378
             end
-            object cxDBTextEdit2: TcxDBTextEdit [4]
+            object dbedt_barcod: TcxDBTextEdit [4]
               Left = 77
               Top = 238
               DataBinding.DataField = 'pro_barcod'
@@ -140,7 +140,7 @@ inherited frm_product: Tfrm_product
               TabOrder = 12
               Width = 145
             end
-            object cxDBTextEdit3: TcxDBTextEdit [5]
+            object dbedt_barcod_manufacturer: TcxDBTextEdit [5]
               Left = 323
               Top = 238
               DataBinding.DataField = 'pro_barcod_manufacturer'
@@ -150,7 +150,7 @@ inherited frm_product: Tfrm_product
               TabOrder = 13
               Width = 132
             end
-            object cxDBMemo1: TcxDBMemo [6]
+            object dbmem_description: TcxDBMemo [6]
               Left = 77
               Top = 265
               DataBinding.DataField = 'pro_description'
@@ -273,7 +273,7 @@ inherited frm_product: Tfrm_product
               TabOrder = 11
               Width = 132
             end
-            object cxDBCheckBox1: TcxDBCheckBox [14]
+            object dbchk_status: TcxDBCheckBox [14]
               Left = 386
               Top = 38
               Caption = 'Status'
@@ -299,7 +299,7 @@ inherited frm_product: Tfrm_product
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'Tipo'
-              Control = dbComboxPro_type
+              Control = dbcmb_type
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -310,7 +310,7 @@ inherited frm_product: Tfrm_product
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'Nome'
-              Control = cxDBTextEdit1
+              Control = dbedt_name
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 378
               ControlOptions.ShowBorder = False
@@ -326,7 +326,7 @@ inherited frm_product: Tfrm_product
               Parent = dxLayoutAutoCreatedGroup3
               AlignHorz = ahLeft
               CaptionOptions.Text = 'C'#243'd. Barra'
-              Control = cxDBTextEdit2
+              Control = dbedt_barcod
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 145
               ControlOptions.ShowBorder = False
@@ -338,7 +338,7 @@ inherited frm_product: Tfrm_product
               AlignVert = avClient
               CaptionOptions.Text = 'C'#243'd. Barra - Fabr.'
               Offsets.Left = 2
-              Control = cxDBTextEdit3
+              Control = dbedt_barcod_manufacturer
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 132
               ControlOptions.ShowBorder = False
@@ -347,7 +347,7 @@ inherited frm_product: Tfrm_product
             object dxLayoutItem5: TdxLayoutItem
               Parent = dxLayoutGroup2
               CaptionOptions.Text = 'Descri'#231#227'o'
-              Control = cxDBMemo1
+              Control = dbmem_description
               ControlOptions.OriginalHeight = 89
               ControlOptions.OriginalWidth = 185
               ControlOptions.ShowBorder = False
@@ -460,7 +460,7 @@ inherited frm_product: Tfrm_product
               Parent = dxLayoutGroup1
               CaptionOptions.Text = 'cxDBCheckBox1'
               CaptionOptions.Visible = False
-              Control = cxDBCheckBox1
+              Control = dbchk_status
               ControlOptions.OriginalHeight = 19
               ControlOptions.OriginalWidth = 53
               ControlOptions.ShowBorder = False
@@ -478,7 +478,7 @@ inherited frm_product: Tfrm_product
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            object cxDBCurrencyEdit3: TcxDBCurrencyEdit
+            object dbedt_height: TcxDBCurrencyEdit
               Left = 51
               Top = 38
               DataBinding.DataField = 'pro_height'
@@ -489,7 +489,7 @@ inherited frm_product: Tfrm_product
               TabOrder = 0
               Width = 121
             end
-            object cxDBCurrencyEdit4: TcxDBCurrencyEdit
+            object dbedt_width: TcxDBCurrencyEdit
               Left = 220
               Top = 38
               DataBinding.DataField = 'pro_width'
@@ -500,7 +500,7 @@ inherited frm_product: Tfrm_product
               TabOrder = 1
               Width = 121
             end
-            object cxDBCurrencyEdit5: TcxDBCurrencyEdit
+            object dbedt_length: TcxDBCurrencyEdit
               Left = 415
               Top = 38
               DataBinding.DataField = 'pro_length'
@@ -511,7 +511,7 @@ inherited frm_product: Tfrm_product
               TabOrder = 2
               Width = 121
             end
-            object cxDBCurrencyEdit1: TcxDBCurrencyEdit
+            object dbedt_weight: TcxDBCurrencyEdit
               Left = 51
               Top = 103
               DataBinding.DataField = 'pro_weight'
@@ -522,7 +522,7 @@ inherited frm_product: Tfrm_product
               TabOrder = 3
               Width = 121
             end
-            object cxDBCurrencyEdit2: TcxDBCurrencyEdit
+            object dbedt_liter: TcxDBCurrencyEdit
               Left = 220
               Top = 103
               DataBinding.DataField = 'pro_liter'
@@ -560,7 +560,7 @@ inherited frm_product: Tfrm_product
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'Altura'
-              Control = cxDBCurrencyEdit3
+              Control = dbedt_height
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -571,7 +571,7 @@ inherited frm_product: Tfrm_product
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Largura'
-              Control = cxDBCurrencyEdit4
+              Control = dbedt_width
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -581,7 +581,7 @@ inherited frm_product: Tfrm_product
               Parent = dxLayoutGroup3
               AlignVert = avClient
               CaptionOptions.Text = 'Comprimento'
-              Control = cxDBCurrencyEdit5
+              Control = dbedt_length
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -592,7 +592,7 @@ inherited frm_product: Tfrm_product
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'Peso'
-              Control = cxDBCurrencyEdit1
+              Control = dbedt_weight
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -603,7 +603,7 @@ inherited frm_product: Tfrm_product
               AlignHorz = ahLeft
               AlignVert = avBottom
               CaptionOptions.Text = 'Litro'
-              Control = cxDBCurrencyEdit2
+              Control = dbedt_liter
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
@@ -616,11 +616,13 @@ inherited frm_product: Tfrm_product
   end
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
-    inherited dxBarButton_save: TdxBarButton
-      OnClick = dxBarButton_saveClick
-    end
     inherited cxBarEditItem_1: TcxBarEditItem
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\estoque\produto'
+    end
+  end
+  inherited ActionList_1: TActionList
+    inherited Action_save: TAction
+      OnExecute = Action_saveExecute
     end
   end
   inherited qry: TFDQuery [5]

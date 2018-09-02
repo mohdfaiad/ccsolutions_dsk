@@ -31,8 +31,10 @@ uses
   cxGridTableView, cxGridDBTableView, cxGrid, cxContainer, Vcl.ComCtrls, dxCore,
   cxDateUtils, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar, cxLabel,
   dxBevel, ufrm_dm, Vcl.StdCtrls, cxButtons, Vcl.CheckLst, Vcl.ExtCtrls,
-  AdvPanel, cxCheckListBox, frxClass, frxDBSet, frxExportBaseDialog,
-  frxExportPDF, cxCheckBox, cxProgressBar,ShellApi;
+  cxCheckListBox, frxClass, frxDBSet, frxExportBaseDialog,
+  frxExportPDF, cxCheckBox, cxProgressBar,ShellApi,
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxCustomListBox,
+  cxImageList;
 
 type
   Tfrm_telephony_report = class(Tfrm_search)

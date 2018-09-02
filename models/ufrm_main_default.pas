@@ -150,7 +150,7 @@ type
 
 var
   frm_main_default: Tfrm_main_default;
-  logado,bloqueado,ativa:Boolean;
+//  logado,bloqueado,ativa:Boolean;
   modulo: string;
 
 implementation

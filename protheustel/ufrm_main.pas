@@ -3,31 +3,118 @@ unit ufrm_main;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_main_default, cxGraphics,
-  cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxRibbonSkins, dxSkinsCore,
-  dxSkinBlack, dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee,
-  dxSkinDarkRoom, dxSkinDarkSide, dxSkinDevExpressDarkStyle,
-  dxSkinDevExpressStyle, dxSkinFoggy, dxSkinGlassOceans, dxSkinHighContrast,
-  dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky,
-  dxSkinMcSkin, dxSkinMetropolis, dxSkinMetropolisDark, dxSkinMoneyTwins,
-  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
-  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinOffice2010Black,
-  dxSkinOffice2010Blue, dxSkinOffice2010Silver, dxSkinOffice2013DarkGray,
-  dxSkinOffice2013LightGray, dxSkinOffice2013White, dxSkinOffice2016Colorful,
-  dxSkinOffice2016Dark, dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic,
-  dxSkinSharp, dxSkinSharpPlus, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
-  dxSkinSummer2008, dxSkinTheAsphaltWorld, dxSkinsDefaultPainters,
-  dxSkinValentine, dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, dxSkinsdxRibbonPainter, dxRibbonCustomizationForm,
-  cxContainer, cxEdit, dxSkinscxPCPainter, dxSkinsdxBarPainter, ACBrBase,
-  ACBrDownload, System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList,
-  dxSkinsForm, dxBar, dxStatusBar, dxRibbonStatusBar, cxLabel, dxGalleryControl,
-  dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
-  dxRibbon, dxBevel, dxGDIPlusClasses, Vcl.ExtCtrls, Vcl.Menus, cxLocalization,
-  Vcl.StdCtrls;
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  System.Actions,
+
+  Vcl.ImgList,
+  Vcl.ActnList,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  Vcl.Menus,
+  Vcl.StdCtrls,
+
+  cxGraphics,
+  cxControls,
+  cxLookAndFeels,
+  cxLookAndFeelPainters,
+  dxRibbonSkins,
+  dxSkinsCore,
+  dxSkinBlack,
+  dxSkinBlue,
+  dxSkinBlueprint,
+  dxSkinCaramel,
+  dxSkinCoffee,
+  dxSkinDarkRoom,
+  dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle,
+  dxSkinDevExpressStyle,
+  dxSkinFoggy,
+  dxSkinGlassOceans,
+  dxSkinHighContrast,
+  dxSkiniMaginary,
+  dxSkinLilian,
+  dxSkinLiquidSky,
+  dxSkinLondonLiquidSky,
+  dxSkinMcSkin,
+  dxSkinMetropolis,
+  dxSkinMetropolisDark,
+  dxSkinMoneyTwins,
+  dxSkinOffice2007Black,
+  dxSkinOffice2007Blue,
+  dxSkinOffice2007Green,
+  dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver,
+  dxSkinOffice2010Black,
+  dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver,
+  dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray,
+  dxSkinOffice2013White,
+  dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark,
+  dxSkinPumpkin,
+  dxSkinSeven,
+  dxSkinSevenClassic,
+  dxSkinSharp,
+  dxSkinSharpPlus,
+  dxSkinSilver,
+  dxSkinSpringTime,
+  dxSkinStardust,
+  dxSkinSummer2008,
+  dxSkinTheAsphaltWorld,
+  dxSkinsDefaultPainters,
+  dxSkinValentine,
+  dxSkinVisualStudio2013Blue,
+  dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light,
+  dxSkinVS2010, dxSkinWhiteprint,
+  dxSkinXmas2008Blue,
+  dxSkinsdxRibbonPainter,
+  dxRibbonCustomizationForm,
+  cxContainer,
+  cxEdit,
+  dxSkinscxPCPainter,
+  dxSkinsdxBarPainter,
+  dxSkinsForm,
+  dxBar,
+  dxStatusBar,
+  dxRibbonStatusBar,
+  cxLabel,
+  dxGalleryControl,
+  dxRibbonBackstageViewGalleryControl,
+  dxRibbonBackstageView,
+  cxClasses,
+  dxRibbon,
+  dxBevel,
+  dxGDIPlusClasses,
+  cxLocalization,
+  cxImageList,
+
+  ACBrBase,
+
+  ufrm_main_default,
+
+  ufrm_login,
+  ufrm_client,
+  ufrm_contract,
+  ufrm_contract_user,
+  ufrm_enterprise,
+  ufrm_phonebook,
+  ufrm_report,
+  ufrm_supplier,
+  ufrm_import_sippulse,
+  ufrm_voip_server,
+  ufrm_import_astpp,
+  ufrm_telephony_report;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -70,9 +157,9 @@ type
     procedure dxBarButton3Click(Sender: TObject);
     procedure Action_relatorioContaTelefonicaExecute(Sender: TObject);
   private
-    { Private declarations }
+
   public
-    { Public declarations }
+
   end;
 
 var
@@ -81,11 +168,6 @@ var
 implementation
 
 {$R *.dfm}
-
-uses ufrm_login, ufrm_client, ufrm_contract, ufrm_contract_user,
-  ufrm_enterprise, ufrm_phonebook, ufrm_report, ufrm_supplier,
-  ufrm_import_sippulse, ufrm_voip_server, ufrm_import_astpp,
-  ufrm_telephony_report;
 
 procedure Tfrm_main.Action_phonebookExecute(Sender: TObject);
 begin
@@ -281,10 +363,8 @@ begin
   frm_login := Tfrm_login.Create(Self);
   frm_login.ShowModal;
 
-  if frm_login.ModalResult <> mrOk then
-  begin
-    MessageDlg('Você não se autenticou. A aplicação será encerrada!', mtWarning,
-      [mbOK], 0);
+  if frm_login.ModalResult <> mrOk then begin
+    MessageDlg('Você não se autenticou. A aplicação será encerrada!', mtWarning, [mbOK], 0);
     Application.Terminate;
   end;
 end;

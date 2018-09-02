@@ -185,7 +185,6 @@ type
     dxLayoutItem11: TdxLayoutItem;
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
     memres_cod: TStringField;
     memres_id: TLongWordField;
     memres_type: TStringField;
@@ -256,15 +255,13 @@ type
     dxLayoutItem32: TdxLayoutItem;
     dxLayoutItem35: TdxLayoutItem;
     dxLayoutItem36: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup13: TdxLayoutAutoCreatedGroup;
     dxLayoutItem37: TdxLayoutItem;
     dxLayoutItem38: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure dxBarButton_saveClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
   private
-    function GetReseller : Boolean;
     procedure afterInsert;
     procedure afterUpdate;
 
@@ -280,22 +277,7 @@ implementation
 
 {$R *.dfm}
 
-procedure Tfrm_reseller.afterInsert;
-begin
-  ShowMessage('Registro Iserido com Sucesso');
-  cxTabSheet_3.Show;
-  GetReseller;
-  ds.DataSet.Last;
-end;
-
-procedure Tfrm_reseller.afterUpdate;
-begin
-  ShowMessage('Registro Atualizado com sucesso');
-  cxTabSheet_3.Show;
-  GetReseller;
-end;
-
-procedure Tfrm_reseller.dxBarButton_saveClick(Sender: TObject);
+procedure Tfrm_reseller.Action_saveExecute(Sender: TObject);
 var
   strproc_create, strproc_update : TFDStoredProc;
 begin
@@ -390,6 +372,21 @@ begin
   end;
 end;
 
+procedure Tfrm_reseller.afterInsert;
+begin
+  ShowMessage('Registro Iserido com Sucesso');
+  cxTabSheet_3.Show;
+  Trest_reseller.GetReseller(mem);
+  ds.DataSet.Last;
+end;
+
+procedure Tfrm_reseller.afterUpdate;
+begin
+  ShowMessage('Registro Atualizado com sucesso');
+  cxTabSheet_3.Show;
+  Trest_reseller.GetReseller(mem);
+end;
+
 procedure Tfrm_reseller.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -400,23 +397,7 @@ end;
 procedure Tfrm_reseller.FormCreate(Sender: TObject);
 begin
   inherited;
-  GetReseller;
-end;
-
-function Tfrm_reseller.GetReseller: Boolean;
-begin
-  try
-    try
-      Trest_reseller.v_method        := '/api/rest/resellers/Reseller';
-      Trest_reseller.v_parameter     := Tconnection.ctr_token;
-      Trest_reseller.GetReseller(mem);
-
-      Result := True;
-    except on E: Exception do
-      Result := False;
-    end;
-  finally
-  end;
+  Trest_reseller.GetReseller(mem);
 end;
 
 end.

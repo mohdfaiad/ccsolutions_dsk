@@ -189,8 +189,8 @@ type
     Actionalterpassword1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure dxBarButton_saveClick(Sender: TObject);
     procedure Action_alter_passwordExecute(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
   private
     function getContract_User : Boolean;
     procedure afterInsert;
@@ -238,22 +238,7 @@ begin
   end;
 end;
 
-procedure Tfrm_contract_user.afterInsert;
-begin
-  ShowMessage('Registro Iserido com Sucesso');
-  cxTabSheet_3.Show;
-  getContract_User;
-  ds.DataSet.Last;
-end;
-
-procedure Tfrm_contract_user.afterUpdate;
-begin
-  ShowMessage('Registro Atualizado com sucesso');
-  cxTabSheet_3.Show;
-  getContract_User;
-end;
-
-procedure Tfrm_contract_user.dxBarButton_saveClick(Sender: TObject);
+procedure Tfrm_contract_user.Action_saveExecute(Sender: TObject);
 var
   strproc_create, strproc_update : TFDStoredProc;
 begin
@@ -297,7 +282,7 @@ begin
           strproc_create.Prepare;
 
           strproc_create.ParamByName('p_ctr_token').AsString          := Tconnection.ctr_token;
-          strproc_create.ParamByName('p_ctr_usr_first_name').AsString := dbedt_last_name.Text;
+          strproc_create.ParamByName('p_ctr_usr_first_name').AsString := dbedt_first_name.Text;
           strproc_create.ParamByName('p_ctr_usr_last_name').AsString  := dbedt_last_name.Text;
           strproc_create.ParamByName('p_ctr_usr_email').AsString      := dbedt_email.Text;
           strproc_create.ParamByName('p_ctr_usr_username').AsString   := dbedt_username.Text;
@@ -312,6 +297,21 @@ begin
       finally
       end;
   end;
+end;
+
+procedure Tfrm_contract_user.afterInsert;
+begin
+  ShowMessage('Registro Iserido com Sucesso');
+  cxTabSheet_3.Show;
+  getContract_User;
+  ds.DataSet.Last;
+end;
+
+procedure Tfrm_contract_user.afterUpdate;
+begin
+  ShowMessage('Registro Atualizado com sucesso');
+  cxTabSheet_3.Show;
+  getContract_User;
 end;
 
 procedure Tfrm_contract_user.FormClose(Sender: TObject;

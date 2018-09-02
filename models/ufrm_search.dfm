@@ -73,7 +73,6 @@ object frm_search: Tfrm_search
     Height = 27
     Align = dalTop
     BarManager = dxBarManager_1
-    ExplicitWidth = 594
   end
   object dxStatusBar_1: TdxStatusBar
     Left = 0
@@ -107,6 +106,7 @@ object frm_search: Tfrm_search
     UseSystemFont = True
     Left = 472
     Top = 72
+    PixelsPerInch = 96
     object dxBarManager_1Bar1: TdxBar
       Caption = 'Navega'#231#227'o'
       CaptionButtons = <>
@@ -168,6 +168,7 @@ object frm_search: Tfrm_search
     Top = 72
   end
   object cxImageList_1: TcxImageList
+    SourceDPI = 96
     FormatVersion = 1
     DesignInfo = 4719030
     ImageInfo = <

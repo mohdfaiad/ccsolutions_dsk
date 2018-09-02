@@ -205,6 +205,12 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\u_class_rest_product.pas"/>
+        <DCCReference Include="..\ufrm_client_contract.pas">
+            <Form>frm_client_contract</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\u_class_rest_client_contract.pas"/>
+        <DCCReference Include="..\u_class_rest_client_contract_iten.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -192,97 +192,98 @@ end;
 procedure Tfrm_supplier.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
-  if result = false then
-    exit;
-
- if (qrysup_id.AsInteger = 0) then
-  with frm_dm.qry,sql do
-  begin
-    Close;
-    Text:= ' delete from supplier ' +
-           ' where sup_cod = unhex('+QuotedStr(sup_cod)+')';
-    Prepare;
-    ExecSQL;
-  end;
-
-  ExibirRegistros;
+//  if result = false then
+//    exit;
+//
+// if (qrysup_id.AsInteger = 0) then
+//  with frm_dm.qry,sql do
+//  begin
+//    Close;
+//    Text:= ' delete from supplier ' +
+//           ' where sup_cod = unhex('+QuotedStr(sup_cod)+')';
+//    Prepare;
+//    ExecSQL;
+//  end;
+//
+//  ExibirRegistros;
 end;
 
 procedure Tfrm_supplier.Action_deleteExecute(Sender: TObject);
 begin
   inherited;
-  if (result = false) then
-    exit;
-
-     qry.Edit;
-     qrysup_deleted_at.AsDateTime:=Now;
-     qry.Post;
-     qry.ApplyUpdates(0);
-     Application.MessageBox('Fornecedor excluída com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
-
-    ExibirRegistros;
+//  if (result = false) then
+//    exit;
+//
+//     qry.Edit;
+//     qrysup_deleted_at.AsDateTime:=Now;
+//     qry.Post;
+//     qry.ApplyUpdates(0);
+//     Application.MessageBox('Fornecedor excluída com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
+//
+//    ExibirRegistros;
 
 end;
 
 procedure Tfrm_supplier.Action_editExecute(Sender: TObject);
 begin
-  if qry.IsEmpty then
-   exit;
-  inherited;
+//  if qry.IsEmpty then
+//   exit;
+//  inherited;
 
 end;
 
 procedure Tfrm_supplier.Action_saveExecute(Sender: TObject);
 begin
-//--Comando para tirar o focus de todos os componentes da tela-----
-   ActiveControl := nil;
-  //--Cama a função para verificar se existe campos requeridos em branco----
-  TCampoRequerido.TratarRequerido(qry);
+////--Comando para tirar o focus de todos os componentes da tela-----
+//   ActiveControl := nil;
+//  //--Cama a função para verificar se existe campos requeridos em branco----
+//  TCampoRequerido.TratarRequerido(qry);
+//
+//  inherited;
+//  if ds.DataSet.State in [dsEdit] then
+//   Exit;
+//
+//if (qrysup_id.AsInteger = 0) then
+// begin
+//   with frm_dm.qry,sql do
+//   begin
+//     close;     // -- SQL para retornar o ultimo ID da tabela brand---
+//     Text:= ' select case when max(sup_id) is null then 1 ' +
+//            '      else (max(sup_id) + 1) end as maxID from supplier '+
+//            ' where contract_ctr_cod = unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')';
+//     Prepare;
+//     Open;
+//
+//     if not (qry.State in [dsInsert,dsEdit])  then
+//      qry.Edit;
+//
+//     if qrysup_id.AsInteger = 0 then
+//       qrysup_id.AsInteger:=Fields[0].AsInteger;
+//
+//      qry.Post;
+//      qry.ApplyUpdates(0);
+//
+//   end;
+// end;
+//
+//  ExibirRegistros;
+end;
 
-  inherited;
-  if ds.DataSet.State in [dsEdit] then
-   Exit;
-
-if (qrysup_id.AsInteger = 0) then
- begin
-   with frm_dm.qry,sql do
-   begin
-     close;     // -- SQL para retornar o ultimo ID da tabela brand---
-     Text:= ' select case when max(sup_id) is null then 1 ' +
-            '      else (max(sup_id) + 1) end as maxID from supplier '+
-            ' where contract_ctr_cod = unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')';
-     Prepare;
-     Open;
-
-     if not (qry.State in [dsInsert,dsEdit])  then
-      qry.Edit;
-
-     if qrysup_id.AsInteger = 0 then
-       qrysup_id.AsInteger:=Fields[0].AsInteger;
-
-      qry.Post;
-      qry.ApplyUpdates(0);
-
-   end;
- end;
-
-  ExibirRegistros;
-end;
 
 procedure Tfrm_supplier.cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
   AButtonIndex: Integer);
 begin
-  inherited;
- acbr_cep.BuscarPorCEP(cxDBButtonEdit2.Text);
+//  inherited;
+// acbr_cep.BuscarPorCEP(cxDBButtonEdit2.Text);
 end;
 
 procedure Tfrm_supplier.ExibirRegistros;
 begin
-      qry.Close;
-      qry.SQL.Text:= ' select supplier.*,hex(sup_cod)as CodSupplier from supplier '+
-                     ' where contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+') and sup_deleted_at is null ';
-      qry.Prepare;
-      qry.Open;
+//      qry.Close;
+//      qry.SQL.Text:= ' select supplier.*,hex(sup_cod)as CodSupplier from supplier '+
+//                     ' where contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+') and sup_deleted_at is null ';
+//      qry.Prepare;
+//      qry.Open;
 end;
 
 procedure Tfrm_supplier.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -294,29 +295,29 @@ end;
 
 procedure Tfrm_supplier.qryAfterInsert(DataSet: TDataSet);
 begin
-  inherited;
-  With frm_dm.qry,sql do
-  begin
-   close;
-   text:= ' select hex(uuid_to_bin(uuid())) ';
-   prepare;
-   open;
-
-   sup_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into supplier (sup_id,sup_cod,contract_ctr_cod, sup_dt_registration) ' +
-         ' select 0,unhex('+QuotedStr(sup_cod)+'), unhex('+ QuotedStr(frm_dm.v_contract_ctr_cod)+'),Now()';
-   Prepare;
-   ExecSQL;
-  end;
-
-   qry.Close;
-   qry.sql.text:= ' select supplier.*,hex(sup_cod)as CodSupplier from supplier ' +
-                  ' where sup_cod =unhex('+QuotedStr(sup_cod)+') and sup_deleted_at is null ';
-   qry.Prepare;
-   qry.open;
-   qry.Edit;
+//  inherited;
+//  With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:= ' select hex(uuid_to_bin(uuid())) ';
+//   prepare;
+//   open;
+//
+//   sup_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into supplier (sup_id,sup_cod,contract_ctr_cod, sup_dt_registration) ' +
+//         ' select 0,unhex('+QuotedStr(sup_cod)+'), unhex('+ QuotedStr(frm_dm.v_contract_ctr_cod)+'),Now()';
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//   qry.Close;
+//   qry.sql.text:= ' select supplier.*,hex(sup_cod)as CodSupplier from supplier ' +
+//                  ' where sup_cod =unhex('+QuotedStr(sup_cod)+') and sup_deleted_at is null ';
+//   qry.Prepare;
+//   qry.open;
+//   qry.Edit;
 
 end;
 

@@ -87,41 +87,42 @@ inherited frm_telephony_report: Tfrm_telephony_report
     Width = 97
     Height = 25
     Caption = 'Consultar'
+    OptionsImage.Glyph.SourceDPI = 96
     OptionsImage.Glyph.Data = {
-      36040000424D3604000000000000360000002800000010000000100000000100
-      2000000000000004000000000000000000000000000000000000000000000000
+      424D360400000000000036000000280000001000000010000000010020000000
+      000000000000C40E0000C40E0000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000040404142828287604040420000000000000
+      0000000000000000000004040414282828760404042000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000005050514595959BB535353F10C0C0C420B0B0B143939
-      39563C3C3C5A3C3C3C5A3C3C3C5A3C3C3C5A3C3C3C5A3A39395A3533315A3533
-      315A28272645050505155B5B5ABB595959F61D1D1D6C0000000434343446E6E6
-      E6F1EEEEEEF9EEEEEEF9EEEEEEF9EDEDEDF9D6D0CAF9B7A89AF9C7BAAEF9CDBE
-      B2F9A4968BDC5C5248A878726EE91C1C1C68000000040000000038383849EFEF
-      EFF7F8F8F8FFF8F7F7FFF8F7F7FFE4DED9FFC1B1A3FFEEE8E4FFF6F0ECFFF6EA
-      E4FFEEDBD1FFC5B1A3FA3A332E7500000003000000000000000038383849F1F1
-      F1F7F8F6F5FFF6F4F2FFF4F1EEFFC3B4A6FFF0E8E3FFFBF7F4FFFBF5F1FFFCF1
-      ECFFF6E4DCFFEFD6C7FF74665ABD0202020F000000000000000038383849F3F3
-      F3F7F9F7F6FFF6F3F1FFF2EEEBFFC8B7A8FFF3E7DFFFF6EBE4FFF6EAE2FFF6E7
-      DEFFF6E1D6FFF9DCCDFF998272EB0404031A000000000000000038383849F4F4
-      F4F7F9F8F6FFF6F3F0FFF3F0ECFFDBCBBDFFFAEAE2FFFCECE4FFFDE9E0FFFDE7
-      DCFFF9E4D9FFF6D7C7FF8C7665E703020214000000000000000039393949F5F5
-      F5F7FDFCFCFFFCFBFAFFFBFAF9FFEADFD5FFEFDACEFFF5DED1FFF8E2D7FFF9E4
-      D9FFF8E2D7FFD6B5A0FF55483DA901010005000000000000000039393949F5F5
-      F5F7FBFAF9FFF9F7F5FFF9F7F5FFF6F2EEFFEEE0D5FFF2DED1FFF5DED2FFF1D9
-      CCFFD5BBAAFF806D5ED90908072500000000000000000000000039393949F6F6
-      F5F7FBFAF9FFFAF8F5FFFAF8F5FFF9F7F5FFF6F2EEFFF1E8E0FFE1D3C6FFD4C5
-      B7FF9C9289D40A0908240000000000000000000000000000000039393949F6F5
-      F5F7FBFAF8FFF8F5F3FFF8F5F3FFF8F5F3FFF8F5F3FFF7F4F2FFF6F3F0FFFCFB
-      FAFF9B9B9BB2020202080000000000000000000000000000000039393949F6F6
-      F6F7FEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFFEFDFDFFFDFD
-      FDFF8E8E8EA6010101050000000000000000000000000000000039393949F6F6
-      F6F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFEFFF6F6F6FFB9B9
-      B9D40F0F0F24000000000000000000000000000000000000000039393949F6F6
-      F6F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFDFDFFBFBFBFD61111
-      11270000000000000000000000000000000000000000000000002B2B2B38ACAC
-      ACB5B1B1B1BAB1B1B1BAB1B1B1BAB1B1B1BAB1B1B1BA9E9E9EAD121212280000
-      0000000000000000000000000000000000000000000000000000}
+      00000000000005050514595959BB535353F10C0C0C420B0B0B14393939563C3C
+      3C5A3C3C3C5A3C3C3C5A3C3C3C5A3C3C3C5A3A39395A3533315A3533315A2827
+      2645050505155B5B5ABB595959F61D1D1D6C0000000434343446E6E6E6F1EEEE
+      EEF9EEEEEEF9EEEEEEF9EDEDEDF9D6D0CAF9B7A89AF9C7BAAEF9CDBEB2F9A496
+      8BDC5C5248A878726EE91C1C1C68000000040000000038383849EFEFEFF7F8F8
+      F8FFF8F7F7FFF8F7F7FFE4DED9FFC1B1A3FFEEE8E4FFF6F0ECFFF6EAE4FFEEDB
+      D1FFC5B1A3FA3A332E7500000003000000000000000038383849F1F1F1F7F8F6
+      F5FFF6F4F2FFF4F1EEFFC3B4A6FFF0E8E3FFFBF7F4FFFBF5F1FFFCF1ECFFF6E4
+      DCFFEFD6C7FF74665ABD0202020F000000000000000038383849F3F3F3F7F9F7
+      F6FFF6F3F1FFF2EEEBFFC8B7A8FFF3E7DFFFF6EBE4FFF6EAE2FFF6E7DEFFF6E1
+      D6FFF9DCCDFF998272EB0404031A000000000000000038383849F4F4F4F7F9F8
+      F6FFF6F3F0FFF3F0ECFFDBCBBDFFFAEAE2FFFCECE4FFFDE9E0FFFDE7DCFFF9E4
+      D9FFF6D7C7FF8C7665E703020214000000000000000039393949F5F5F5F7FDFC
+      FCFFFCFBFAFFFBFAF9FFEADFD5FFEFDACEFFF5DED1FFF8E2D7FFF9E4D9FFF8E2
+      D7FFD6B5A0FF55483DA901010005000000000000000039393949F5F5F5F7FBFA
+      F9FFF9F7F5FFF9F7F5FFF6F2EEFFEEE0D5FFF2DED1FFF5DED2FFF1D9CCFFD5BB
+      AAFF806D5ED90908072500000000000000000000000039393949F6F6F5F7FBFA
+      F9FFFAF8F5FFFAF8F5FFF9F7F5FFF6F2EEFFF1E8E0FFE1D3C6FFD4C5B7FF9C92
+      89D40A0908240000000000000000000000000000000039393949F6F5F5F7FBFA
+      F8FFF8F5F3FFF8F5F3FFF8F5F3FFF8F5F3FFF7F4F2FFF6F3F0FFFCFBFAFF9B9B
+      9BB2020202080000000000000000000000000000000039393949F6F6F6F7FEFE
+      FEFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFFEFDFDFFFDFDFDFF8E8E
+      8EA6010101050000000000000000000000000000000039393949F6F6F6F7FFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFEFFF6F6F6FFB9B9B9D40F0F
+      0F24000000000000000000000000000000000000000039393949F6F6F6F7FFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFDFDFFBFBFBFD6111111270000
+      000000000000000000000000000000000000000000002B2B2B38ACACACB5B1B1
+      B1BAB1B1B1BAB1B1B1BAB1B1B1BAB1B1B1BA9E9E9EAD12121228000000000000
+      00000000000000000000000000000000000000000000}
     OptionsImage.ImageIndex = 12
     OptionsImage.Images = cxImageList_1
     TabOrder = 6
@@ -133,58 +134,57 @@ inherited frm_telephony_report: Tfrm_telephony_report
     Width = 105
     Height = 25
     Caption = 'imprimir'
+    OptionsImage.Glyph.SourceDPI = 96
     OptionsImage.Glyph.Data = {
-      36040000424D3604000000000000360000002800000010000000100000000100
-      2000000000000004000000000000000000000000000000000000000000000101
-      010206060610484848885656569E555555A2545454A5525252A64F4F4FA64D4D
-      4DA44B4B4BA14A4B4A9E474747930707071F0101010800000001000000000101
-      010605050517757575C7C2C2C2FFC5C5C5FFC5C5C5FFC4C4C4FFC3C3C3FFC1C1
-      C1FF9DB1A9FF89AA9CFF7B7D7CD90505051C0101010900000000090909168B8B
-      8BAEA1A1A1C2A1A1A1F0C0C0C0FFC5C5C5FFC5C5C5FFC5C5C5FFC5C5C5FFB3C0
-      BAFF67C09AFF54BC90FF79958AEC858585C06767679A0202020C28282843E5E5
-      E5F7D6D6D6FF5B5B5BFFC1C1C1FFDEDEDEFFDEDEDEFFDEDEDEFFD3D9D6FF8CC7
-      ADFF51C693FF42C28BFF61B591FFA8B7B1FFAFAFAFEF0A0A0A1E2E2E2E4AE5E5
-      E5F7E4E4E4FFADADADFFBABABAFFBBBBBBFFBBBBBBFFB6B8B7FF8AB3A1FFA3DD
-      C2FF6BCDA1FF5CC898FF66CA9CFF88C1A7FFA9B1ADF20B0B0B232E2E2E4AE6E6
-      E6F7F0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFEFEFEFFFB0CFC1FFA0CFB9FFA9DC
-      C3FF92D8B6FF7BD1A7FF81D1ABFF83C3A5FF80A494F20A0A0A232C2C2C48E4E4
-      E4F7E7E0DAFFE5DCD5FFE5DBD5FFE5DBD5FFE4DBD5FFDED8D0FFD9D7CEFFA0D1
-      B8FFABE0C5FF97D9B7FF8FCFAFFFB5BFB4FFB4B5B2F20A0A0A2128282843D4C8
-      BEF6BE9373FFBB8D6BFFB98A68FFB98865FFB88764FFB88764FFB48A67FF9CCB
-      B0FFADE1C6FFA4DDBFFF93CDADFFA68B69FFAFA197F00606061A12121227C4B8
-      B0ECCFBAABFFA49183FFB6A193FFB39E8EFFB09989FFAF9685FFAB9785FF9CCC
-      B4FFAEE1C7FFA5DEC1FF98D0B2FFB2A085FF9E958FDB0303030C020202075855
-      547B96908CC9A19E9DE1E8E7E7FFE3E2E2FFDAD9D9FFDBDAD9FFDCDFDDFF9CCA
-      B6FFA1CFBAFF9CCEB7FF88B9A2F5858378C82F2F2E5700000001000000000101
-      01060303030C5B5B5B87EAEAEAFFE9E9E9FFDFDFDFFFDFDFDFFFDFDFDFFFD8DB
-      DAFFD7DAD9FFDEE1DFFF929493BA040404110000000100000000000000000000
-      00000000000159595983EEEEEEFFE5E5E5FFD8D8D8FFD7D7D7FFD5D5D5FFD2D2
-      D2FFD1D1D1FFD8D8D8FF8A8A8AB4020202080000000000000000000000000000
-      0000000000015A5A5A83EEEEEEFFEBEBEBFFE4E4E4FFE1E1E1FFDEDEDEFFDDDD
-      DDFFDFDFDFFFDEDEDEFF838383AF010101060000000000000000000000000000
-      00000000000159595983EAEAEAFFE4E4E4FFD7D7D7FFD4D4D4FFD2D2D2FFD2D2
-      D2FFE0E0E0FFCFCFCFEA20202037000000000000000000000000000000000000
-      00000000000159595981E6E6E6FCE1E1E1FCDCDCDCFCD8D8D8FCD5D5D5FCD6D6
-      D6FCCDCDCDEF2F2F2F4800000001000000000000000000000000000000000000
-      0000000000001E1E1E3A3D3D3D5F3C3C3C5F3A3A3A5F3A3A3A5F3939395F3838
-      385F1E1E1E380000000200000000000000000000000000000000}
+      424D360400000000000036000000280000001000000010000000010020000000
+      000000000000C40E0000C40E0000000000000000000000000000010101020606
+      0610484848885656569E555555A2545454A5525252A64F4F4FA64D4D4DA44B4B
+      4BA14A4B4A9E474747930707071F010101080000000100000000010101060505
+      0517757575C7C2C2C2FFC5C5C5FFC5C5C5FFC4C4C4FFC3C3C3FFC1C1C1FF9DB1
+      A9FF89AA9CFF7B7D7CD90505051C0101010900000000090909168B8B8BAEA1A1
+      A1C2A1A1A1F0C0C0C0FFC5C5C5FFC5C5C5FFC5C5C5FFC5C5C5FFB3C0BAFF67C0
+      9AFF54BC90FF79958AEC858585C06767679A0202020C28282843E5E5E5F7D6D6
+      D6FF5B5B5BFFC1C1C1FFDEDEDEFFDEDEDEFFDEDEDEFFD3D9D6FF8CC7ADFF51C6
+      93FF42C28BFF61B591FFA8B7B1FFAFAFAFEF0A0A0A1E2E2E2E4AE5E5E5F7E4E4
+      E4FFADADADFFBABABAFFBBBBBBFFBBBBBBFFB6B8B7FF8AB3A1FFA3DDC2FF6BCD
+      A1FF5CC898FF66CA9CFF88C1A7FFA9B1ADF20B0B0B232E2E2E4AE6E6E6F7F0F0
+      F0FFF0F0F0FFF0F0F0FFF0F0F0FFEFEFEFFFB0CFC1FFA0CFB9FFA9DCC3FF92D8
+      B6FF7BD1A7FF81D1ABFF83C3A5FF80A494F20A0A0A232C2C2C48E4E4E4F7E7E0
+      DAFFE5DCD5FFE5DBD5FFE5DBD5FFE4DBD5FFDED8D0FFD9D7CEFFA0D1B8FFABE0
+      C5FF97D9B7FF8FCFAFFFB5BFB4FFB4B5B2F20A0A0A2128282843D4C8BEF6BE93
+      73FFBB8D6BFFB98A68FFB98865FFB88764FFB88764FFB48A67FF9CCBB0FFADE1
+      C6FFA4DDBFFF93CDADFFA68B69FFAFA197F00606061A12121227C4B8B0ECCFBA
+      ABFFA49183FFB6A193FFB39E8EFFB09989FFAF9685FFAB9785FF9CCCB4FFAEE1
+      C7FFA5DEC1FF98D0B2FFB2A085FF9E958FDB0303030C020202075855547B9690
+      8CC9A19E9DE1E8E7E7FFE3E2E2FFDAD9D9FFDBDAD9FFDCDFDDFF9CCAB6FFA1CF
+      BAFF9CCEB7FF88B9A2F5858378C82F2F2E570000000100000000010101060303
+      030C5B5B5B87EAEAEAFFE9E9E9FFDFDFDFFFDFDFDFFFDFDFDFFFD8DBDAFFD7DA
+      D9FFDEE1DFFF929493BA04040411000000010000000000000000000000000000
+      000159595983EEEEEEFFE5E5E5FFD8D8D8FFD7D7D7FFD5D5D5FFD2D2D2FFD1D1
+      D1FFD8D8D8FF8A8A8AB402020208000000000000000000000000000000000000
+      00015A5A5A83EEEEEEFFEBEBEBFFE4E4E4FFE1E1E1FFDEDEDEFFDDDDDDFFDFDF
+      DFFFDEDEDEFF838383AF01010106000000000000000000000000000000000000
+      000159595983EAEAEAFFE4E4E4FFD7D7D7FFD4D4D4FFD2D2D2FFD2D2D2FFE0E0
+      E0FFCFCFCFEA2020203700000000000000000000000000000000000000000000
+      000159595981E6E6E6FCE1E1E1FCDCDCDCFCD8D8D8FCD5D5D5FCD6D6D6FCCDCD
+      CDEF2F2F2F480000000100000000000000000000000000000000000000000000
+      00001E1E1E3A3D3D3D5F3C3C3C5F3A3A3A5F3A3A3A5F3939395F3838385F1E1E
+      1E380000000200000000000000000000000000000000}
     TabOrder = 7
     OnClick = cxButtonPrintClick
   end
   object cxCheckListBoxClientSelecionado: TcxCheckListBox [10]
     AlignWithMargins = True
     Left = 3
-    Top = 131
+    Top = 133
     Width = 943
-    Height = 509
+    Height = 507
     Align = alClient
     Items = <
       item
       end>
     TabOrder = 8
     OnClickCheck = cxCheckListBoxClientSelecionadoClickCheck
-    ExplicitTop = 133
-    ExplicitHeight = 507
   end
   object cxCheckBoxAll: TcxCheckBox [11]
     AlignWithMargins = True
@@ -195,6 +195,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
     TabOrder = 10
     Transparent = True
     OnClick = cxCheckBoxAllClick
+    ExplicitWidth = 121
   end
   object cxProgressBar: TcxProgressBar [12]
     Left = 168
@@ -206,6 +207,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
   inherited dxBarManager_1: TdxBarManager
     Left = 664
     Top = 256
+    PixelsPerInch = 96
   end
   inherited ActionList_1: TActionList
     Left = 712
@@ -271,7 +273,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
     Top = 328
   end
   object frxReportConta: TfrxReport
-    Version = '6.0.4'
+    Version = '6.1.9'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
@@ -349,8 +351,6 @@ inherited frm_telephony_report: Tfrm_telephony_report
     Top = 160
     Datasets = <
       item
-        DataSet = frm_dm.frx_db_enterprise
-        DataSetName = 'enterprise'
       end
       item
         DataSet = frxDBDataset1
@@ -413,17 +413,17 @@ inherited frm_telephony_report: Tfrm_telephony_report
         Top = 18.897650000000000000
         Width = 718.110700000000000000
         object Shape1: TfrxShapeView
+          AllowVectorExport = True
           Width = 925.984850000000000000
           Height = 90.708720000000000000
           Frame.Typ = []
         end
         object enterpriseent_first_name: TfrxMemoView
+          AllowVectorExport = True
           Left = 117.165430000000000000
           Top = 3.338590000000000000
           Width = 593.386210000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -17
@@ -436,12 +436,11 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object enterpriseent_cnpj: TfrxMemoView
+          AllowVectorExport = True
           Left = 117.165430000000000000
           Top = 23.795300000000000000
           Width = 593.386210000000000000
           Height = 15.118120000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -454,6 +453,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo13: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 98.047310000000000000
           Width = 102.047310000000000000
@@ -469,11 +469,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object frx_qry_clientcli_first_name: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 98.047310000000000000
           Width = 343.937230000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -486,6 +487,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo14: TfrxMemoView
+          AllowVectorExport = True
           Left = 498.897960000000000000
           Top = 113.220547500000000000
           Width = 52.913420000000000000
@@ -501,6 +503,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object data_inicial: TfrxMemoView
+          AllowVectorExport = True
           Left = 551.134200000000000000
           Top = 113.220547500000000000
           Width = 68.031540000000000000
@@ -519,6 +522,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo15: TfrxMemoView
+          AllowVectorExport = True
           Left = 626.724800000000000000
           Top = 113.220547500000000000
           Width = 11.338590000000000000
@@ -534,6 +538,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object data_final: TfrxMemoView
+          AllowVectorExport = True
           Left = 644.417750000000000000
           Top = 113.220547500000000000
           Width = 68.031540000000000000
@@ -553,13 +558,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
         end
         object enterpriseent_email: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 117.165430000000000000
           Top = 43.133890000000000000
           Width = 593.386210000000000000
           Height = 15.118120000000000000
           DataField = 'ent_email'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -572,6 +576,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Picture1: TfrxPictureView
+          AllowVectorExport = True
           ShiftMode = smWhenOverlapped
           Left = 4.559060000000000000
           Top = 4.000000000000000000
@@ -1087,6 +1092,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           TransparentColor = clWhite
         end
         object Memo42: TfrxMemoView
+          AllowVectorExport = True
           Left = 495.118430000000000000
           Top = 98.047310000000000000
           Width = 56.692950000000000000
@@ -1102,11 +1108,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo44: TfrxMemoView
+          AllowVectorExport = True
           Left = 644.417750000000000000
           Top = 98.047310000000000000
           Width = 68.031540000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           DisplayFormat.FormatStr = 'dd/mm/yyyy hh:mm:ss'
           DisplayFormat.Kind = fkDateTime
@@ -1122,6 +1129,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo48: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 113.220547500000000000
           Width = 102.047310000000000000
@@ -1137,11 +1145,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo49: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 113.220547500000000000
           Width = 222.992270000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1154,6 +1163,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo50: TfrxMemoView
+          AllowVectorExport = True
           Left = 389.291590000000000000
           Top = 113.220547500000000000
           Width = 22.677180000000000000
@@ -1170,11 +1180,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo51: TfrxMemoView
+          AllowVectorExport = True
           Left = 417.527830000000000000
           Top = 113.220547500000000000
           Width = 60.472480000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1188,6 +1199,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo52: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 128.393785000000000000
           Width = 102.047310000000000000
@@ -1203,11 +1215,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo53: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 128.393785000000000000
           Width = 222.992270000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1220,6 +1233,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo54: TfrxMemoView
+          AllowVectorExport = True
           Left = 381.732530000000000000
           Top = 128.393785000000000000
           Width = 30.236240000000000000
@@ -1236,11 +1250,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo55: TfrxMemoView
+          AllowVectorExport = True
           Left = 417.527830000000000000
           Top = 128.393785000000000000
           Width = 60.472480000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1254,6 +1269,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo56: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 143.567022500000000000
           Width = 102.047310000000000000
@@ -1269,11 +1285,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo57: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 143.567022500000000000
           Width = 222.992270000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1286,6 +1303,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo58: TfrxMemoView
+          AllowVectorExport = True
           Left = 389.291590000000000000
           Top = 143.567022500000000000
           Width = 22.677180000000000000
@@ -1302,11 +1320,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo59: TfrxMemoView
+          AllowVectorExport = True
           Left = 417.527830000000000000
           Top = 143.567022500000000000
           Width = 60.472480000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1320,6 +1339,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo60: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 158.740260000000000000
           Width = 102.047310000000000000
@@ -1335,11 +1355,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo61: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 158.740260000000000000
           Width = 222.992270000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1359,6 +1380,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         Top = 514.016080000000000000
         Width = 718.110700000000000000
         object Memo1: TfrxMemoView
+          AllowVectorExport = True
           Left = 586.929500000000000000
           Top = 3.779530000000000000
           Width = 105.826840000000000000
@@ -1391,6 +1413,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         DataSetName = 'qry_importLocal'
         RowCount = 0
         object Memo3: TfrxMemoView
+          AllowVectorExport = True
           Top = 1.000000000000000000
           Width = 83.149660000000000000
           Height = 11.338590000000000000
@@ -1405,6 +1428,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo4: TfrxMemoView
+          AllowVectorExport = True
           Left = 93.929190000000000000
           Width = 75.590600000000000000
           Height = 11.338590000000000000
@@ -1419,6 +1443,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo5: TfrxMemoView
+          AllowVectorExport = True
           Left = 202.078740160000000000
           Width = 109.606370000000000000
           Height = 11.338590000000000000
@@ -1435,6 +1460,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo6: TfrxMemoView
+          AllowVectorExport = True
           Left = 365.023810000000000000
           Width = 90.708720000000000000
           Height = 11.338590000000000000
@@ -1449,6 +1475,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo16: TfrxMemoView
+          AllowVectorExport = True
           Left = 472.850650000000000000
           Width = 90.708720000000000000
           Height = 11.338590000000000000
@@ -1465,6 +1492,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo17: TfrxMemoView
+          AllowVectorExport = True
           Left = 551.897960000000000000
           Width = 52.913420000000000000
           Height = 11.338590000000000000
@@ -1482,6 +1510,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo18: TfrxMemoView
+          AllowVectorExport = True
           Left = 617.165740000000000000
           Width = 75.590600000000000000
           Height = 11.338590000000000000
@@ -1499,6 +1528,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo85: TfrxMemoView
+          AllowVectorExport = True
           Left = 268.771800000000000000
           Width = 109.606370000000000000
           Height = 11.338590000000000000
@@ -1522,6 +1552,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         Top = 430.866420000000000000
         Width = 718.110700000000000000
         object Memo19: TfrxMemoView
+          AllowVectorExport = True
           Left = 571.811380000000000000
           Top = 3.000000000000000000
           Width = 120.944960000000000000
@@ -1538,6 +1569,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo20: TfrxMemoView
+          AllowVectorExport = True
           Left = 411.055350000000000000
           Top = 3.000000000000000000
           Width = 136.063080000000000000
@@ -1553,6 +1585,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo21: TfrxMemoView
+          AllowVectorExport = True
           Left = 571.811380000000000000
           Top = 30.236240000000000000
           Width = 120.944960000000000000
@@ -1571,6 +1604,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo22: TfrxMemoView
+          AllowVectorExport = True
           Left = 413.071120000000000000
           Top = 30.236240000000000000
           Width = 136.063080000000000000
@@ -1594,6 +1628,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         Width = 718.110700000000000000
         Condition = 'qry_importLocal."imp_from"'
         object Memo2: TfrxMemoView
+          AllowVectorExport = True
           Top = 2.000000000000000000
           Width = 64.252010000000000000
           Height = 13.984254410000000000
@@ -1608,6 +1643,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo11: TfrxMemoView
+          AllowVectorExport = True
           Left = 555.677167800000000000
           Top = 2.000000000000000000
           Width = 49.133841180000000000
@@ -1624,6 +1660,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo12: TfrxMemoView
+          AllowVectorExport = True
           Left = 615.134200000000000000
           Top = 2.000000000000000000
           Width = 75.590551180000000000
@@ -1640,6 +1677,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo7: TfrxMemoView
+          AllowVectorExport = True
           Left = 93.795275590000000000
           Top = 2.000000000000000000
           Width = 56.692950000000000000
@@ -1655,6 +1693,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo8: TfrxMemoView
+          AllowVectorExport = True
           Left = 202.078740160000000000
           Top = 2.000000000000000000
           Width = 41.574768980000000000
@@ -1670,6 +1709,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo9: TfrxMemoView
+          AllowVectorExport = True
           Left = 472.850393700000000000
           Top = 2.000000000000000000
           Width = 52.913383390000000000
@@ -1685,6 +1725,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo10: TfrxMemoView
+          AllowVectorExport = True
           Left = 365.023622050000000000
           Top = 2.000000000000000000
           Width = 75.590551180000000000
@@ -1700,6 +1741,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo86: TfrxMemoView
+          AllowVectorExport = True
           Left = 270.771800000000000000
           Top = 3.779530000000000000
           Width = 41.574768980000000000
@@ -1723,6 +1765,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         Top = 351.496290000000000000
         Width = 718.110700000000000000
         object Memo23: TfrxMemoView
+          AllowVectorExport = True
           Left = 401.732578820000000000
           Top = 3.000000000000000000
           Width = 291.023761180000000000
@@ -1759,6 +1802,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         Top = 18.897650000000000000
         Width = 718.110700000000000000
         object Shape2: TfrxShapeView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 11.338590000000000000
           Width = 718.110700000000000000
@@ -1766,6 +1810,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           Frame.Typ = []
         end
         object Picture2: TfrxPictureView
+          AllowVectorExport = True
           Left = 11.338590000000000000
           Top = 18.338590000000000000
           Width = 136.063080000000000000
@@ -2279,6 +2324,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           TransparentColor = clWhite
         end
         object Memo62: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 113.385900000000000000
           Width = 102.047310000000000000
@@ -2294,11 +2340,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo63: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 113.385900000000000000
           Width = 343.937230000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -2311,6 +2358,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo64: TfrxMemoView
+          AllowVectorExport = True
           Left = 498.897960000000000000
           Top = 128.559137500000000000
           Width = 52.913420000000000000
@@ -2326,6 +2374,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object data_inicial2: TfrxMemoView
+          AllowVectorExport = True
           Left = 550.634200000000000000
           Top = 129.059137500000000000
           Width = 68.031540000000000000
@@ -2344,6 +2393,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo66: TfrxMemoView
+          AllowVectorExport = True
           Left = 626.724800000000000000
           Top = 128.559137500000000000
           Width = 11.338590000000000000
@@ -2359,6 +2409,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object data_final2: TfrxMemoView
+          AllowVectorExport = True
           Left = 644.417750000000000000
           Top = 129.059137500000000000
           Width = 68.031540000000000000
@@ -2377,6 +2428,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo68: TfrxMemoView
+          AllowVectorExport = True
           Left = 495.118430000000000000
           Top = 113.385900000000000000
           Width = 56.692950000000000000
@@ -2392,11 +2444,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo69: TfrxMemoView
+          AllowVectorExport = True
           Left = 644.417750000000000000
           Top = 113.385900000000000000
           Width = 68.031540000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           DisplayFormat.FormatStr = 'dd/mm/yyyy hh:mm:ss'
           DisplayFormat.Kind = fkDateTime
@@ -2412,6 +2465,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo70: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 128.559137500000000000
           Width = 102.047310000000000000
@@ -2427,11 +2481,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo71: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 128.559137500000000000
           Width = 222.992270000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -2444,6 +2499,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo72: TfrxMemoView
+          AllowVectorExport = True
           Left = 389.291590000000000000
           Top = 128.559137500000000000
           Width = 22.677180000000000000
@@ -2460,11 +2516,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo73: TfrxMemoView
+          AllowVectorExport = True
           Left = 417.527830000000000000
           Top = 128.559137500000000000
           Width = 60.472480000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -2478,6 +2535,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo74: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 143.732375000000000000
           Width = 102.047310000000000000
@@ -2493,11 +2551,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo75: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 143.732375000000000000
           Width = 222.992270000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -2510,6 +2569,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo76: TfrxMemoView
+          AllowVectorExport = True
           Left = 381.732530000000000000
           Top = 143.732375000000000000
           Width = 30.236240000000000000
@@ -2526,11 +2586,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo77: TfrxMemoView
+          AllowVectorExport = True
           Left = 417.527830000000000000
           Top = 143.732375000000000000
           Width = 60.472480000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -2544,6 +2605,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo78: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 158.905612500000000000
           Width = 102.047310000000000000
@@ -2559,11 +2621,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo79: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 158.905612500000000000
           Width = 222.992270000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -2576,6 +2639,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo80: TfrxMemoView
+          AllowVectorExport = True
           Left = 389.291590000000000000
           Top = 158.905612500000000000
           Width = 22.677180000000000000
@@ -2592,11 +2656,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo81: TfrxMemoView
+          AllowVectorExport = True
           Left = 417.527830000000000000
           Top = 158.905612500000000000
           Width = 60.472480000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -2610,6 +2675,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo82: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 174.078850000000000000
           Width = 102.047310000000000000
@@ -2625,11 +2691,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo83: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 174.078850000000000000
           Width = 222.992270000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -2642,12 +2709,11 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo87: TfrxMemoView
+          AllowVectorExport = True
           Left = 154.960730000000000000
           Top = 15.118120000000000000
           Width = 555.590910000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -17
@@ -2660,12 +2726,11 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo88: TfrxMemoView
+          AllowVectorExport = True
           Left = 154.960730000000000000
           Top = 35.574830000000000000
           Width = 555.590910000000000000
           Height = 15.118120000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -2679,13 +2744,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
         end
         object Memo89: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 154.960730000000000000
           Top = 54.913420000000000000
           Width = 555.590910000000000000
           Height = 15.118120000000000000
           DataField = 'ent_email'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -2705,6 +2769,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         Top = 272.126160000000000000
         Width = 718.110700000000000000
         object Subreport1: TfrxSubreport
+          AllowVectorExport = True
           Left = 156.850495000000000000
           Top = 11.338590000000000000
           Width = 113.385900000000000000
@@ -2719,6 +2784,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         Top = 336.378170000000000000
         Width = 718.110700000000000000
         object Memo84: TfrxMemoView
+          AllowVectorExport = True
           Left = 574.488560000000000000
           Top = 3.779530000000020000
           Width = 105.826840000000000000
@@ -2765,6 +2831,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         DataSetName = 'qry_grafico'
         RowCount = 0
         object Memo25: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 0.779530000000000000
           Width = 71.811070000000000000
@@ -2780,6 +2847,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo27: TfrxMemoView
+          AllowVectorExport = True
           Left = 97.708720000000000000
           Top = 0.779530000000000000
           Width = 49.133890000000000000
@@ -2801,6 +2869,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo34: TfrxMemoView
+          AllowVectorExport = True
           Left = 180.740260000000000000
           Width = 49.133890000000000000
           Height = 15.118120000000000000
@@ -2820,6 +2889,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo37: TfrxMemoView
+          AllowVectorExport = True
           Left = 268.346630000000000000
           Width = 83.149660000000000000
           Height = 15.118120000000000000
@@ -2846,6 +2916,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         Top = 18.897650000000000000
         Width = 718.110700000000000000
         object Memo24: TfrxMemoView
+          AllowVectorExport = True
           Top = 7.000000000000000000
           Width = 71.811070000000000000
           Height = 15.118120000000000000
@@ -2860,6 +2931,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo26: TfrxMemoView
+          AllowVectorExport = True
           Left = 101.708720000000000000
           Top = 7.000000000000000000
           Width = 41.574830000000000000
@@ -2876,6 +2948,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo33: TfrxMemoView
+          AllowVectorExport = True
           Left = 182.740260000000000000
           Top = 7.000000000000000000
           Width = 49.133890000000000000
@@ -2892,6 +2965,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo36: TfrxMemoView
+          AllowVectorExport = True
           Left = 270.346630000000000000
           Top = 7.000000000000000000
           Width = 83.149660000000000000
@@ -2916,6 +2990,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         Width = 718.110700000000000000
         object qry_grafico_totalformatsumimp_duration1000: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 56.133890000000000000
           Top = 6.779530000000000000
           Width = 90.708720000000000000
@@ -2936,6 +3011,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo46: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 6.779530000000000000
           Width = 34.015770000000000000
@@ -2952,6 +3028,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         end
         object Memo47: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 161.842610000000000000
           Top = 6.779529999999990000
           Width = 68.031540000000000000
@@ -2972,6 +3049,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Line1: TfrxLineView
+          AllowVectorExport = True
           Top = 3.779530000000000000
           Width = 351.496290000000000000
           Color = clBlack
@@ -2989,6 +3067,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
       BottomMargin = 10.000000000000000000
       Frame.Typ = []
       object Chart1: TfrxChartView
+        AllowVectorExport = True
         Top = 254.668213330000000000
         Width = 711.866420000000000000
         Height = 357.098640000000000000
@@ -3047,6 +3126,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           end>
       end
       object Chart2: TfrxChartView
+        AllowVectorExport = True
         Top = 688.666666670000000000
         Width = 718.110700000000000000
         Height = 348.357143330000000000
@@ -3090,6 +3170,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
         Top = 18.897650000000000000
         Width = 718.110700000000000000
         object Shape3: TfrxShapeView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 11.338590000000000000
           Width = 718.110700000000000000
@@ -3097,6 +3178,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           Frame.Typ = []
         end
         object Picture3: TfrxPictureView
+          AllowVectorExport = True
           Left = 11.338590000000000000
           Top = 15.338590000000000000
           Width = 136.063080000000000000
@@ -3610,6 +3692,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           TransparentColor = clWhite
         end
         object Memo90: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 113.385900000000000000
           Width = 102.047310000000000000
@@ -3625,11 +3708,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo91: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 113.385900000000000000
           Width = 343.937230000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -3642,6 +3726,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo92: TfrxMemoView
+          AllowVectorExport = True
           Left = 498.897960000000000000
           Top = 128.559137500000000000
           Width = 52.913420000000000000
@@ -3657,6 +3742,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo93: TfrxMemoView
+          AllowVectorExport = True
           Left = 551.134200000000000000
           Top = 128.559137500000000000
           Width = 68.031540000000000000
@@ -3675,6 +3761,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo94: TfrxMemoView
+          AllowVectorExport = True
           Left = 626.724800000000000000
           Top = 128.559137500000000000
           Width = 11.338590000000000000
@@ -3690,6 +3777,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo95: TfrxMemoView
+          AllowVectorExport = True
           Left = 644.417750000000000000
           Top = 128.559137500000000000
           Width = 68.031540000000000000
@@ -3708,6 +3796,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo96: TfrxMemoView
+          AllowVectorExport = True
           Left = 495.118430000000000000
           Top = 113.385900000000000000
           Width = 56.692950000000000000
@@ -3723,11 +3812,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo97: TfrxMemoView
+          AllowVectorExport = True
           Left = 561.917750000000000000
           Top = 113.385900000000000000
           Width = 150.531540000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           DisplayFormat.FormatStr = 'dd/mm/yyyy hh:mm:ss'
           DisplayFormat.Kind = fkDateTime
@@ -3743,6 +3833,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo98: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 128.559137500000000000
           Width = 102.047310000000000000
@@ -3758,11 +3849,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo99: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 128.559137500000000000
           Width = 222.992270000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -3775,6 +3867,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo100: TfrxMemoView
+          AllowVectorExport = True
           Left = 389.291590000000000000
           Top = 128.559137500000000000
           Width = 22.677180000000000000
@@ -3791,11 +3884,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo101: TfrxMemoView
+          AllowVectorExport = True
           Left = 417.527830000000000000
           Top = 128.559137500000000000
           Width = 60.472480000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -3809,6 +3903,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo102: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 143.732375000000000000
           Width = 102.047310000000000000
@@ -3824,11 +3919,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo103: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 143.732375000000000000
           Width = 222.992270000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -3841,6 +3937,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo104: TfrxMemoView
+          AllowVectorExport = True
           Left = 381.732530000000000000
           Top = 143.732375000000000000
           Width = 30.236240000000000000
@@ -3857,11 +3954,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo105: TfrxMemoView
+          AllowVectorExport = True
           Left = 417.527830000000000000
           Top = 143.732375000000000000
           Width = 60.472480000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -3875,6 +3973,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo106: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 158.905612500000000000
           Width = 102.047310000000000000
@@ -3890,11 +3989,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo107: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 158.905612500000000000
           Width = 222.992270000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -3907,6 +4007,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo108: TfrxMemoView
+          AllowVectorExport = True
           Left = 389.291590000000000000
           Top = 158.905612500000000000
           Width = 22.677180000000000000
@@ -3923,11 +4024,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo109: TfrxMemoView
+          AllowVectorExport = True
           Left = 417.527830000000000000
           Top = 158.905612500000000000
           Width = 60.472480000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -3941,6 +4043,7 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo110: TfrxMemoView
+          AllowVectorExport = True
           Left = 3.779530000000000000
           Top = 174.078850000000000000
           Width = 102.047310000000000000
@@ -3956,11 +4059,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo111: TfrxMemoView
+          AllowVectorExport = True
           Left = 134.063080000000000000
           Top = 174.078850000000000000
           Width = 222.992270000000000000
           Height = 15.118120000000000000
-          DataSet = frm_import_sippulse.frx_dataset_qry_client
+          DataSet = frm_import_astpp.frx_dataset_qry_client
           DataSetName = 'frx_qry_client'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -3973,12 +4077,11 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo112: TfrxMemoView
+          AllowVectorExport = True
           Left = 154.960730000000000000
           Top = 15.118120000000000000
           Width = 555.590910000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -17
@@ -3991,12 +4094,11 @@ inherited frm_telephony_report: Tfrm_telephony_report
           ParentFont = False
         end
         object Memo113: TfrxMemoView
+          AllowVectorExport = True
           Left = 154.960730000000000000
           Top = 35.574830000000000000
           Width = 555.590910000000000000
           Height = 15.118120000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -4010,13 +4112,12 @@ inherited frm_telephony_report: Tfrm_telephony_report
         end
         object Memo114: TfrxMemoView
           IndexTag = 1
+          AllowVectorExport = True
           Left = 154.960730000000000000
           Top = 54.913420000000000000
           Width = 555.590910000000000000
           Height = 15.118120000000000000
           DataField = 'ent_email'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -4548,7 +4649,6 @@ inherited frm_telephony_report: Tfrm_telephony_report
   end
   object qry_billreceive: TFDQuery
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS

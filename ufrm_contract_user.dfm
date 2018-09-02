@@ -5,10 +5,6 @@ inherited frm_contract_user: Tfrm_contract_user
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ctr_usr_id: TcxGridDBColumn
@@ -47,16 +43,8 @@ inherited frm_contract_user: Tfrm_contract_user
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'ctr_usr_id'
@@ -221,6 +209,9 @@ inherited frm_contract_user: Tfrm_contract_user
     PixelsPerInch = 96
   end
   inherited ActionList_1: TActionList
+    inherited Action_save: TAction
+      OnExecute = Action_saveExecute
+    end
     object Action_alter_password: TAction
       Caption = 'Alterar Senha'
       Hint = 'Alterar Senha'

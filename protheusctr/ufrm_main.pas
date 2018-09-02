@@ -104,7 +104,7 @@ uses
   ufrm_phonebook,
   ufrm_contract,
   ufrm_enterprise,
-  ufrm_contract_user, ufrm_reseller, ufrm_product;
+  ufrm_contract_user, ufrm_reseller, ufrm_product, ufrm_client_contract;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -123,6 +123,9 @@ type
     dxBarLargeButton6: TdxBarLargeButton;
     Action_product: TAction;
     dxBarLargeButton7: TdxBarLargeButton;
+    dxBarManager_1Bar3: TdxBar;
+    dxBarLargeButton8: TdxBarLargeButton;
+    Action_client_contract: TAction;
     procedure FormCreate(Sender: TObject);
     procedure Action_phonebookExecute(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
@@ -131,6 +134,7 @@ type
     procedure Action_contract_userExecute(Sender: TObject);
     procedure Action_resellerExecute(Sender: TObject);
     procedure Action_productExecute(Sender: TObject);
+    procedure Action_client_contractExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -169,6 +173,20 @@ begin
   end else begin
     frm_client.WindowState := wsNormal;
     frm_client.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_client_contractExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_client_contract) then begin
+    frm_client_contract := Tfrm_client_contract.Create(Self);
+    frm_client_contract.Height := Bevel_1.Height;
+    frm_client_contract.Width := Bevel_1.Width;
+    frm_client_contract.Show
+  end else begin
+    frm_client_contract.WindowState := wsNormal;
+    frm_client_contract.Show;
   end;
 end;
 

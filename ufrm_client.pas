@@ -123,6 +123,7 @@ uses
   cxImageList,
   cxCheckBox,
   cxSpinEdit,
+  cxCurrencyEdit,
 
   Data.DB,
 
@@ -152,7 +153,9 @@ uses
   ufrm_consult_cpf,
 
   u_class_connection,
-  u_class_rest_client;
+  u_class_rest_client,
+  u_class_rest_client_astpp,
+  u_class_rest_client_sippulse;
 
 type
   Tfrm_client = class(Tfrm_form_default)
@@ -373,13 +376,50 @@ type
     memcli_image1: TBlobField;
     memcli_deleted_at: TDateTimeField;
     memcli_dt_registration: TDateTimeField;
+    tbsht_telephony: TcxTabSheet;
+    pgctrl_telephony: TcxPageControl;
+    cxTabSheet3: TcxTabSheet;
+    dxLayoutControl5: TdxLayoutControl;
+    astppgrid: TcxGrid;
+    astppgridview: TcxGridDBTableView;
+    astppgridlvl: TcxGridLevel;
+    sipgrid: TcxGrid;
+    sipgridview: TcxGridDBTableView;
+    sipgridlvl: TcxGridLevel;
+    dxLayoutGroup13: TdxLayoutGroup;
+    dxLayoutGroup15: TdxLayoutGroup;
+    dxLayoutItem39: TdxLayoutItem;
+    dxLayoutItem40: TdxLayoutItem;
+    dxLayoutGroup16: TdxLayoutGroup;
+    memClientASTPP: TFDMemTable;
+    dsClientASTPP: TDataSource;
+    memClientASTPPcla_cod: TStringField;
+    memClientASTPPclient_cli_cod: TStringField;
+    memClientASTPPcla_account_astpp: TStringField;
+    memClientASTPPcla_dt_registration: TDateTimeField;
+    dxBarButton1: TdxBarButton;
+    astppgridviewcla_account_astpp: TcxGridDBColumn;
+    dxBarButton3: TdxBarButton;
+    memClientSIPPulse: TFDMemTable;
+    dsClientSIPPulse: TDataSource;
+    FDStoredProc1: TFDStoredProc;
+    memClientSIPPulsecls_cod: TStringField;
+    memClientSIPPulseclient_cli_cod: TStringField;
+    memClientSIPPulsecls_account_sippulse: TStringField;
+    memClientSIPPulsecls_dt_registration: TDateTimeField;
+    sipgridviewcls_account_sippulse: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Action_consult_cpfExecute(Sender: TObject);
     procedure Action_consult_cnpjExecute(Sender: TObject);
+    procedure dxBarButton1Click(Sender: TObject);
+    procedure astppgridviewNavigatorButtonsButtonClick(Sender: TObject;
+      AButtonIndex: Integer; var ADone: Boolean);
+    procedure dxBarButton3Click(Sender: TObject);
+    procedure sipgridviewNavigatorButtonsButtonClick(Sender: TObject;
+      AButtonIndex: Integer; var ADone: Boolean);
   private
-    function GetClient : Boolean;
     procedure afterInsert;
     procedure afterUpdate;
 
@@ -428,7 +468,7 @@ begin
             strproc_update.ParamByName('p_ctr_token').AsString              := Tconnection.ctr_token;
             strproc_update.ParamByName('p_cli_cod').AsString                := memcli_cod.AsString;
             strproc_update.ParamByName('p_cli_type').AsString               := dbcmb_type.Text;
-            strproc_update.ParamByName('p_cli_first_name').AsString         := dbedt_last_name.Text;
+            strproc_update.ParamByName('p_cli_first_name').AsString         := dbedt_first_name.Text;
             strproc_update.ParamByName('p_cli_last_name').AsString          := dbedt_last_name.Text;
             strproc_update.ParamByName('p_cli_email').AsString              := dbedt_email.Text;
             strproc_update.ParamByName('p_cli_cpfcnpj').AsString            := dbedt_cpfcnpj.Text;
@@ -489,7 +529,7 @@ begin
 
           strproc_create.ParamByName('p_ctr_token').AsString              := Tconnection.ctr_token;
           strproc_create.ParamByName('p_cli_type').AsString               := dbcmb_type.Text;
-          strproc_create.ParamByName('p_cli_first_name').AsString         := dbedt_last_name.Text;
+          strproc_create.ParamByName('p_cli_first_name').AsString         := dbedt_first_name.Text;
           strproc_create.ParamByName('p_cli_last_name').AsString          := dbedt_last_name.Text;
           strproc_create.ParamByName('p_cli_email').AsString              := dbedt_email.Text;
           strproc_create.ParamByName('p_cli_cpfcnpj').AsString            := dbedt_cpfcnpj.Text;
@@ -549,22 +589,53 @@ end;
 procedure Tfrm_client.FormCreate(Sender: TObject);
 begin
   inherited;
-  GetClient;
+  Trest_client.GetClient(mem);
 end;
 
-function Tfrm_client.GetClient: Boolean;
+procedure Tfrm_client.sipgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
+var
+  strproc_create, strproc_update : TFDStoredProc;
 begin
-  try
-    try
-      Trest_client.v_method        := '/api/rest/clients/Client';
-      Trest_client.v_parameter     := Tconnection.ctr_token;
-      Trest_client.GetClient(mem);
+  inherited;
+  case AButtonIndex of
+    NBDI_POST:
+      case dsClientSIPPulse.State of
+        dsEdit:
+          try
+            try
+              strproc_update := TFDStoredProc.Create(Self);
+              strproc_update.Connection := frm_dm.connCCS;
+              strproc_update.StoredProcName := 'proc_client_sippulse_update';
+              strproc_update.Prepare;
 
-      Result := True;
-    except on E: Exception do
-      Result := False;
-    end;
-  finally
+              strproc_update.ParamByName('p_ctr_token').AsString            := Tconnection.ctr_token;
+              strproc_update.ParamByName('p_cls_cod').AsString              := memClientSIPPulsecls_cod.AsString;
+              strproc_update.ParamByName('p_cls_account_sippulse').AsString := memClientSIPPulsecls_account_sippulse.AsString;
+              strproc_update.ExecProc;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+
+        dsInsert:
+          try
+            try
+              strproc_create := TFDStoredProc.Create(Self);
+              strproc_create.Connection := frm_dm.connCCS;
+              strproc_create.StoredProcName := 'proc_client_sippulse_create';
+              strproc_create.Prepare;
+
+              strproc_create.ParamByName('p_ctr_token').AsString            := Tconnection.ctr_token;
+              strproc_create.ParamByName('p_client_cli_cod').AsString       := memcli_cod.AsString;
+              strproc_create.ParamByName('p_cls_account_sippulse').AsString := memClientSIPPulsecls_account_sippulse.AsString;
+              strproc_create.ExecProc;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+      end;
   end;
 end;
 
@@ -572,7 +643,7 @@ procedure Tfrm_client.afterInsert;
 begin
   ShowMessage('Registro Iserido com Sucesso');
   cxTabSheet_3.Show;
-  GetClient;
+  Trest_client.GetClient(mem);
   ds.DataSet.Last;
 end;
 
@@ -580,7 +651,66 @@ procedure Tfrm_client.afterUpdate;
 begin
   ShowMessage('Registro Atualizado com sucesso');
   cxTabSheet_3.Show;
-  GetClient;
+  Trest_client.GetClient(mem);
+end;
+
+procedure Tfrm_client.astppgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
+var
+  strproc_create, strproc_update : TFDStoredProc;
+begin
+  inherited;
+  case AButtonIndex of
+    NBDI_POST:
+      case dsClientASTPP.State of
+        dsEdit:
+          try
+            try
+              strproc_update := TFDStoredProc.Create(Self);
+              strproc_update.Connection := frm_dm.connCCS;
+              strproc_update.StoredProcName := 'proc_client_astpp_update';
+              strproc_update.Prepare;
+
+              strproc_update.ParamByName('p_ctr_token').AsString          := Tconnection.ctr_token;
+              strproc_update.ParamByName('p_cla_cod').AsString            := memClientASTPPcla_cod.AsString;
+              strproc_update.ParamByName('p_cla_account_astpp').AsString  := memClientASTPPcla_account_astpp.AsString;
+              strproc_update.ExecProc;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+
+        dsInsert:
+          try
+            try
+              strproc_create := TFDStoredProc.Create(Self);
+              strproc_create.Connection := frm_dm.connCCS;
+              strproc_create.StoredProcName := 'proc_client_astpp_create';
+              strproc_create.Prepare;
+
+              strproc_create.ParamByName('p_ctr_token').AsString          := Tconnection.ctr_token;
+              strproc_create.ParamByName('p_client_cli_cod').AsString     := memcli_cod.AsString;
+              strproc_create.ParamByName('p_cla_account_astpp').AsString  := memClientASTPPcla_account_astpp.AsString;
+              strproc_create.ExecProc;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+      end;
+  end;
+end;
+
+procedure Tfrm_client.dxBarButton1Click(Sender: TObject);
+begin
+  inherited;
+  Trest_client_astpp.GetClientATPP(memClientASTPP);
+end;
+
+procedure Tfrm_client.dxBarButton3Click(Sender: TObject);
+begin
+  inherited;
+  Trest_client_sippulse.GetClientSIPPulse(memClientSIPPulse);
 end;
 
 end.

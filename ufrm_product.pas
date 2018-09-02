@@ -19,9 +19,6 @@ uses
   Vcl.Controls,
   Vcl.Forms,
   Vcl.Dialogs,
-  Vcl.StdCtrls,
-  Vcl.Grids,
-  Vcl.DBGrids,
 
   cxGraphics,
   cxControls,
@@ -146,23 +143,23 @@ uses
   QImport3Wizard,
 
   frxClass,
-  frxDBSet,
 
   ufrm_form_default,
 
-  u_class_rest_product, u_class_connection;
+  u_class_connection,
+  u_class_rest_product;
 
 type
   Tfrm_product = class(Tfrm_form_default)
-    cxDBTextEdit1: TcxDBTextEdit;
+    dbedt_name: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
-    dbComboxPro_type: TcxDBComboBox;
+    dbcmb_type: TcxDBComboBox;
     dxLayoutItem6: TdxLayoutItem;
-    cxDBMemo1: TcxDBMemo;
+    dbmem_description: TcxDBMemo;
     dxLayoutItem5: TdxLayoutItem;
-    cxDBTextEdit2: TcxDBTextEdit;
+    dbedt_barcod: TcxDBTextEdit;
     dxLayoutItem13: TdxLayoutItem;
-    cxDBTextEdit3: TcxDBTextEdit;
+    dbedt_barcod_manufacturer: TcxDBTextEdit;
     dxLayoutItem14: TdxLayoutItem;
     dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     cxTabSheet1: TcxTabSheet;
@@ -170,15 +167,15 @@ type
     dxLayoutControl1Group_Root: TdxLayoutGroup;
     dxLayoutGroup3: TdxLayoutGroup;
     dxLayoutGroup4: TdxLayoutGroup;
-    cxDBCurrencyEdit1: TcxDBCurrencyEdit;
+    dbedt_weight: TcxDBCurrencyEdit;
     dxLayoutItem15: TdxLayoutItem;
-    cxDBCurrencyEdit2: TcxDBCurrencyEdit;
+    dbedt_liter: TcxDBCurrencyEdit;
     dxLayoutItem16: TdxLayoutItem;
-    cxDBCurrencyEdit3: TcxDBCurrencyEdit;
+    dbedt_height: TcxDBCurrencyEdit;
     dxLayoutItem17: TdxLayoutItem;
-    cxDBCurrencyEdit4: TcxDBCurrencyEdit;
+    dbedt_width: TcxDBCurrencyEdit;
     dxLayoutItem18: TdxLayoutItem;
-    cxDBCurrencyEdit5: TcxDBCurrencyEdit;
+    dbedt_length: TcxDBCurrencyEdit;
     dxLayoutItem19: TdxLayoutItem;
     loopComboxNCM: TcxLookupComboBox;
     dxLayoutItem22: TdxLayoutItem;
@@ -243,14 +240,13 @@ type
     cxGrid_1DBTableView1pro_status: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_deleted_at: TcxGridDBColumn;
     cxGrid_1DBTableView1pro_dt_registration: TcxGridDBColumn;
-    cxDBCheckBox1: TcxDBCheckBox;
+    dbchk_status: TcxDBCheckBox;
     dxLayoutItem11: TdxLayoutItem;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure dxBarButton_saveClick(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
   private
-    function GetProduct : Boolean;
     procedure afterInsert;
     procedure afterUpdate;
 
@@ -268,22 +264,7 @@ implementation
 uses
   ufrm_dm;
 
-procedure Tfrm_product.afterInsert;
-begin
-  ShowMessage('Registro Iserido com Sucesso');
-  cxTabSheet_3.Show;
-  GetProduct;
-  ds.DataSet.Last;
-end;
-
-procedure Tfrm_product.afterUpdate;
-begin
-  ShowMessage('Registro Atualizado com sucesso');
-  cxTabSheet_3.Show;
-  GetProduct;
-end;
-
-procedure Tfrm_product.dxBarButton_saveClick(Sender: TObject);
+procedure Tfrm_product.Action_saveExecute(Sender: TObject);
 var
   strproc_create, strproc_update : TFDStoredProc;
 begin
@@ -299,32 +280,31 @@ begin
 
           if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
             strproc_update.ParamByName('p_ctr_token').AsString                  := Tconnection.ctr_token;
-            strproc_update.ParamByName('p_ctr_cod').AsString                    := mempro_cod.AsString;
-            strproc_update.ParamByName('p_material_mat_cod').AsString           := dbcmb_type.Text;
-            strproc_update.ParamByName('p_supplier_sup_cod').AsString           := dbedt_last_name.Text;
-            strproc_update.ParamByName('p_product_class_prc_cod').AsString      := dbedt_last_name.Text;
-            strproc_update.ParamByName('p_product_class_sub_prs_cod').AsString  := dbedt_email.Text;
-            strproc_update.ParamByName('p_manufacturer_man_cod').AsString       := dbedt_cpfcnpj.Text;
-            strproc_update.ParamByName('p_brand_bra_cod').AsString              := dbedt_rgie.Text;
-            strproc_update.ParamByName('p_ncm_ncm_cod').AsString                := dbedt_im.Text;
-            strproc_update.ParamByName('p_product_unit_pru_cod').AsString       := dbedt_suframa.Text;
-            strproc_update.ParamByName('p_pro_id').AsString                     := dbedt_add_bus_zipcode.Text;
-            strproc_update.ParamByName('p_pro_type').AsString                   := dbedt_add_bus_address.Text;
-            strproc_update.ParamByName('p_pro_name').AsString                   := dbedt_add_bus_number.Text;
-            strproc_update.ParamByName('p_pro_initials').AsString               := dbedt_add_bus_street.Text;
-            strproc_update.ParamByName('p_pro_tag').AsString                    := dbedt_add_bus_complement.Text;
-            strproc_update.ParamByName('p_pro_description').AsString            := dbedt_add_bus_city.Text;
-            strproc_update.ParamByName('p_pro_gender').AsString                 := dbedt_add_bus_state.Text;
-            strproc_update.ParamByName('p_pro_annotation').AsString             := dbedt_add_bus_country.Text;
-            strproc_update.ParamByName('p_pro_barcod').AsString                 := dbedt_add_bil_zipcode.Text;
-            strproc_update.ParamByName('p_pro_barcod_manufacturer').AsString    := dbedt_add_bil_address.Text;
-            strproc_update.ParamByName('p_pro_height').AsString                 := dbedt_add_bil_number.Text;
-            strproc_update.ParamByName('p_pro_width').AsString                  := dbedt_add_bil_street.Text;
-            strproc_update.ParamByName('p_pro_length').AsString                 := dbedt_add_bil_complement.Text;
-            strproc_update.ParamByName('p_pro_weight').AsString                 := dbedt_add_bil_city.Text;
-            strproc_update.ParamByName('p_pro_liter').AsString                  := dbedt_add_bil_state.Text;
-            strproc_update.ParamByName('p_pro_delivery_term').AsString          := dbedt_add_bil_country.Text;
-            strproc_update.ParamByName('p_pro_status').AsString                 := dbchk_status.Checked.ToInteger;
+            strproc_update.ParamByName('p_pro_cod').AsString                    := mempro_cod.AsString;
+            strproc_update.ParamByName('p_material_mat_cod').AsString           := ''; //dbcmb_type.Text;
+            strproc_update.ParamByName('p_supplier_sup_cod').AsString           := ''; //dbedt_last_name.Text;
+            strproc_update.ParamByName('p_product_class_prc_cod').AsString      := ''; //dbedt_last_name.Text;
+            strproc_update.ParamByName('p_product_class_sub_prs_cod').AsString  := ''; //dbedt_email.Text;
+            strproc_update.ParamByName('p_manufacturer_man_cod').AsString       := ''; //dbedt_cpfcnpj.Text;
+            strproc_update.ParamByName('p_brand_bra_cod').AsString              := ''; //dbedt_rgie.Text;
+            strproc_update.ParamByName('p_ncm_ncm_cod').AsString                := ''; //dbedt_im.Text;
+            strproc_update.ParamByName('p_product_unit_pru_cod').AsString       := ''; //dbedt_suframa.Text;
+            strproc_update.ParamByName('p_pro_type').AsString                   := dbcmb_type.Text;
+            strproc_update.ParamByName('p_pro_name').AsString                   := dbedt_name.Text;
+            strproc_update.ParamByName('p_pro_initials').AsString               := ''; //dbedt_add_bus_street.Text;
+            strproc_update.ParamByName('p_pro_tag').AsString                    := ''; //dbedt_add_bus_complement.Text;
+            strproc_update.ParamByName('p_pro_description').AsMemo              := dbmem_description.Text;
+            strproc_update.ParamByName('p_pro_gender').AsString                 := ''; //dbedt_add_bus_state.Text;
+            strproc_update.ParamByName('p_pro_annotation').AsMemo               := ''; //dbedt_add_bus_country.Lines;
+            strproc_update.ParamByName('p_pro_barcod').AsString                 := dbedt_barcod.Text;
+            strproc_update.ParamByName('p_pro_barcod_manufacturer').AsString    := dbedt_barcod_manufacturer.Text;
+            strproc_update.ParamByName('p_pro_height').AsBCD                    := dbedt_height.Value;
+            strproc_update.ParamByName('p_pro_width').AsBCD                     := dbedt_width.Value;
+            strproc_update.ParamByName('p_pro_length').AsBCD                    := dbedt_length.Value;
+            strproc_update.ParamByName('p_pro_weight').AsBCD                    := dbedt_weight.Value;
+            strproc_update.ParamByName('p_pro_liter').AsBCD                     := dbedt_liter.Value;
+            strproc_update.ParamByName('p_pro_delivery_term').AsInteger         := 1; //dbedt_add_bil_country.Text;
+            strproc_update.ParamByName('p_pro_status').AsShortInt               := dbchk_status.Checked.ToInteger;
             strproc_update.ExecProc;
 
             afterUpdate;
@@ -346,31 +326,30 @@ begin
           strproc_create.Prepare;
 
           strproc_create.ParamByName('p_ctr_token').AsString                  := Tconnection.ctr_token;
-          strproc_create.ParamByName('p_material_mat_cod').AsString           := dbcmb_type.Text;
-          strproc_create.ParamByName('p_supplier_sup_cod').AsString           := dbedt_last_name.Text;
-          strproc_create.ParamByName('p_product_class_prc_cod').AsString      := dbedt_last_name.Text;
-          strproc_create.ParamByName('p_product_class_sub_prs_cod').AsString  := dbedt_email.Text;
-          strproc_create.ParamByName('p_manufacturer_man_cod').AsString       := dbedt_cpfcnpj.Text;
-          strproc_create.ParamByName('p_brand_bra_cod').AsString              := dbedt_rgie.Text;
-          strproc_create.ParamByName('p_ncm_ncm_cod').AsString                := dbedt_im.Text;
-          strproc_create.ParamByName('p_product_unit_pru_cod').AsString       := dbedt_suframa.Text;
-          strproc_create.ParamByName('p_pro_id').AsString                     := dbedt_add_bus_zipcode.Text;
-          strproc_create.ParamByName('p_pro_type').AsString                   := dbedt_add_bus_address.Text;
-          strproc_create.ParamByName('p_pro_name').AsString                   := dbedt_add_bus_number.Text;
-          strproc_create.ParamByName('p_pro_initials').AsString               := dbedt_add_bus_street.Text;
-          strproc_create.ParamByName('p_pro_tag').AsString                    := dbedt_add_bus_complement.Text;
-          strproc_create.ParamByName('p_pro_description').AsString            := dbedt_add_bus_city.Text;
-          strproc_create.ParamByName('p_pro_gender').AsString                 := dbedt_add_bus_state.Text;
-          strproc_create.ParamByName('p_pro_annotation').AsString             := dbedt_add_bus_country.Text;
-          strproc_create.ParamByName('p_pro_barcod').AsString                 := dbedt_add_bil_zipcode.Text;
-          strproc_create.ParamByName('p_pro_barcod_manufacturer').AsString    := dbedt_add_bil_address.Text;
-          strproc_create.ParamByName('p_pro_height').AsString                 := dbedt_add_bil_number.Text;
-          strproc_create.ParamByName('p_pro_width').AsString                  := dbedt_add_bil_street.Text;
-          strproc_create.ParamByName('p_pro_length').AsString                 := dbedt_add_bil_complement.Text;
-          strproc_create.ParamByName('p_pro_weight').AsString                 := dbedt_add_bil_city.Text;
-          strproc_create.ParamByName('p_pro_liter').AsString                  := dbedt_add_bil_state.Text;
-          strproc_create.ParamByName('p_pro_delivery_term').AsString          := dbedt_add_bil_country.Text;
-          strproc_create.ParamByName('p_pro_status').AsString                 := dbchk_status.Checked.ToInteger;
+          strproc_create.ParamByName('p_material_mat_cod').AsString           := ''; //dbcmb_type.Text;
+          strproc_create.ParamByName('p_supplier_sup_cod').AsString           := ''; //dbedt_last_name.Text;
+          strproc_create.ParamByName('p_product_class_prc_cod').AsString      := ''; //dbedt_last_name.Text;
+          strproc_create.ParamByName('p_product_class_sub_prs_cod').AsString  := ''; //dbedt_email.Text;
+          strproc_create.ParamByName('p_manufacturer_man_cod').AsString       := ''; //dbedt_cpfcnpj.Text;
+          strproc_create.ParamByName('p_brand_bra_cod').AsString              := ''; //dbedt_rgie.Text;
+          strproc_create.ParamByName('p_ncm_ncm_cod').AsString                := ''; //dbedt_im.Text;
+          strproc_create.ParamByName('p_product_unit_pru_cod').AsString       := ''; //dbedt_suframa.Text;
+          strproc_create.ParamByName('p_pro_type').AsString                   := dbcmb_type.Text;
+          strproc_create.ParamByName('p_pro_name').AsString                   := dbedt_name.Text;
+          strproc_create.ParamByName('p_pro_initials').AsString               := ''; //dbedt_add_bus_street.Text;
+          strproc_create.ParamByName('p_pro_tag').AsString                    := ''; //dbedt_add_bus_complement.Text;
+          strproc_create.ParamByName('p_pro_description').AsMemo              := dbmem_description.Text;
+          strproc_create.ParamByName('p_pro_gender').AsString                 := ''; //dbedt_add_bus_state.Text;
+          strproc_create.ParamByName('p_pro_annotation').AsMemo               := ''; //dbedt_add_bus_country.Lines;
+          strproc_create.ParamByName('p_pro_barcod').AsString                 := dbedt_barcod.Text;
+          strproc_create.ParamByName('p_pro_barcod_manufacturer').AsString    := dbedt_barcod_manufacturer.Text;
+          strproc_create.ParamByName('p_pro_height').AsBCD                    := dbedt_height.Value;
+          strproc_create.ParamByName('p_pro_width').AsBCD                     := dbedt_width.Value;
+          strproc_create.ParamByName('p_pro_length').AsBCD                    := dbedt_length.Value;
+          strproc_create.ParamByName('p_pro_weight').AsBCD                    := dbedt_weight.Value;
+          strproc_create.ParamByName('p_pro_liter').AsBCD                     := dbedt_liter.Value;
+          strproc_create.ParamByName('p_pro_delivery_term').AsInteger         := 0; //dbedt_add_bil_country.Text;
+          strproc_create.ParamByName('p_pro_status').AsShortInt               := dbchk_status.Checked.ToInteger;
           strproc_create.ExecProc;
 
           afterInsert;
@@ -380,6 +359,21 @@ begin
       finally
       end;
   end;
+end;
+
+procedure Tfrm_product.afterInsert;
+begin
+  ShowMessage('Registro Iserido com Sucesso');
+  cxTabSheet_3.Show;
+  Trest_product.GetProduct(mem);
+  ds.DataSet.Last;
+end;
+
+procedure Tfrm_product.afterUpdate;
+begin
+  ShowMessage('Registro Atualizado com sucesso');
+  cxTabSheet_3.Show;
+  Trest_product.GetProduct(mem);
 end;
 
 procedure Tfrm_product.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -392,23 +386,7 @@ end;
 procedure Tfrm_product.FormCreate(Sender: TObject);
 begin
   inherited;
-  GetProduct;
-end;
-
-function Tfrm_product.GetProduct: Boolean;
-begin
-  try
-    try
-      Trest_product.v_method        := '/api/rest/products/Product';
-      Trest_product.v_parameter     := Tconnection.ctr_token;
-      Trest_product.GetProduct(mem);
-
-      Result := True;
-    except on E: Exception do
-      Result := False;
-    end;
-  finally
-  end;
+  Trest_product.GetProduct(mem);
 end;
 
 end.

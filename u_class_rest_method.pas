@@ -63,8 +63,8 @@ begin
     try
       frm_dm.mem_rest.Active := False;
 
-      frm_dm.rest_response.RootElement := EmptyStr;
-      frm_dm.rest_client.BaseURL := Base_URL(Amethod, Aparameter);
+      frm_dm.rest_response.RootElement  := EmptyStr;
+      frm_dm.rest_client.BaseURL        := Base_URL(Amethod, Aparameter);
       frm_dm.rest_request.Execute;
 
       Result := True;

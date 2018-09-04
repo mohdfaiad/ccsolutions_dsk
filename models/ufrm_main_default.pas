@@ -94,6 +94,7 @@ uses
   dxSkinscxPCPainter,
   dxBevel,
   cxLocalization,
+  cxImageList,
 
   System.Actions,
   System.ImageList,
@@ -106,9 +107,7 @@ uses
   Vcl.Buttons,
 
   ACBrBase,
-  ACBrDownload,
-
-  uthred_logged, cxImageList;
+  ACBrDownload;
 type
   Tfrm_main_default = class(TdxRibbonForm)
     dxBarManager_1: TdxBarManager;
@@ -283,8 +282,6 @@ begin
 end;
 
 procedure Tfrm_main_default.Timer_1Timer(Sender: TObject);
-var
-  ThreadLogado : TLogado;
 begin
 //  if not frm_dm.qry_signin.Active then
 //  exit;

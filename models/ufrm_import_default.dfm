@@ -21,55 +21,39 @@ object frm_import_default: Tfrm_import_default
     Left = 0
     Top = 0
     Width = 1008
-    Height = 28
+    Height = 27
     Align = dalTop
     BarManager = dxBarManager_1
   end
   object pgctrl_import: TcxPageControl
     Left = 0
-    Top = 28
+    Top = 27
     Width = 1008
-    Height = 663
+    Height = 664
     Align = alClient
-    TabOrder = 5
+    TabOrder = 1
     Properties.ActivePage = tbsht_data
     Properties.CustomButtons.Buttons = <>
-    ExplicitLeft = 544
-    ExplicitTop = 328
-    ExplicitWidth = 289
-    ExplicitHeight = 193
-    ClientRectBottom = 659
-    ClientRectLeft = 4
-    ClientRectRight = 1004
-    ClientRectTop = 24
+    ClientRectBottom = 658
+    ClientRectLeft = 2
+    ClientRectRight = 1002
+    ClientRectTop = 27
     object tbsht_data: TcxTabSheet
       Caption = 'Dados'
       ImageIndex = 0
-      ExplicitLeft = 2
-      ExplicitTop = 27
-      ExplicitWidth = 281
-      ExplicitHeight = 160
-      object grid_data: TcxGrid
+      object DBGrid_1: TDBGrid
         Left = 0
         Top = 0
         Width = 1000
-        Height = 635
+        Height = 631
         Align = alClient
+        DataSource = ds
         TabOrder = 0
-        ExplicitLeft = 440
-        ExplicitTop = 208
-        ExplicitWidth = 250
-        ExplicitHeight = 200
-        object grid_dataview: TcxGridDBTableView
-          Navigator.Buttons.CustomButtons = <>
-          DataController.DataSource = ds
-          DataController.Summary.DefaultGroupSummaryItems = <>
-          DataController.Summary.FooterSummaryItems = <>
-          DataController.Summary.SummaryGroups = <>
-        end
-        object grid_datalvl: TcxGridLevel
-          GridView = grid_dataview
-        end
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
       end
     end
   end
@@ -88,8 +72,8 @@ object frm_import_default: Tfrm_import_default
     ImageOptions.Images = cxImageList_1
     PopupMenuLinks = <>
     UseSystemFont = True
-    Left = 616
-    Top = 48
+    Left = 864
+    Top = 8
     PixelsPerInch = 96
     object dxBarManager_1Bar1: TdxBar
       Caption = 'Navega'#231#227'o'
@@ -118,7 +102,7 @@ object frm_import_default: Tfrm_import_default
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 142
+      DockedLeft = 156
       DockedTop = 0
       FloatLeft = 818
       FloatTop = 8
@@ -149,19 +133,8 @@ object frm_import_default: Tfrm_import_default
   end
   object ActionList_1: TActionList
     Images = cxImageList_1
-    Left = 680
-    Top = 48
-    object Action_import: TAction
-      Caption = 'Importar'
-      Hint = 'Importar Dados'
-      ImageIndex = 2
-      OnExecute = Action_importExecute
-    end
-    object Action_save: TAction
-      Caption = 'Salvar'
-      Hint = 'Salvar Importa'#231#227'o'
-      ImageIndex = 1
-    end
+    Left = 928
+    Top = 8
     object Action_close: TAction
       Caption = 'Fechar'
       Hint = 'Fechar Formul'#225'rio'
@@ -172,7 +145,7 @@ object frm_import_default: Tfrm_import_default
   object cxImageList_1: TcxImageList
     SourceDPI = 96
     FormatVersion = 1
-    DesignInfo = 3146377
+    DesignInfo = 525185
     ImageInfo = <
       item
         Image.Data = {
@@ -288,7 +261,8 @@ object frm_import_default: Tfrm_import_default
       end>
   end
   object QImport3Wizard_1: TQImport3Wizard
-    DataSet = qry
+    DataSet = mem
+    DBGrid = DBGrid_1
     Formats.DecimalSeparator = ','
     Formats.ThousandSeparator = '.'
     Formats.DateSeparator = '/'
@@ -309,17 +283,17 @@ object frm_import_default: Tfrm_import_default
     ErrorLogFileName = 'error.log'
     ImportDestination = qidDBGrid
     AddType = qatInsert
-    Left = 488
-    Top = 48
+    Left = 736
+    Top = 8
   end
   object qry: TFDQuery
-    Left = 552
-    Top = 48
+    Left = 800
+    Top = 8
   end
   object ds: TDataSource
     DataSet = mem
-    Left = 584
-    Top = 48
+    Left = 832
+    Top = 8
   end
   object mem: TFDMemTable
     FetchOptions.AssignedValues = [evMode]
@@ -329,15 +303,15 @@ object frm_import_default: Tfrm_import_default
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 520
-    Top = 48
+    Left = 768
+    Top = 8
   end
   object popup_1: TdxRibbonPopupMenu
     BarManager = dxBarManager_1
     ItemLinks = <>
     UseOwnFont = False
-    Left = 712
-    Top = 48
+    Left = 960
+    Top = 8
     PixelsPerInch = 96
   end
 end

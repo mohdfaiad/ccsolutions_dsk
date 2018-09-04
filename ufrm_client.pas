@@ -402,7 +402,6 @@ type
     dxBarButton3: TdxBarButton;
     memClientSIPPulse: TFDMemTable;
     dsClientSIPPulse: TDataSource;
-    FDStoredProc1: TFDStoredProc;
     memClientSIPPulsecls_cod: TStringField;
     memClientSIPPulseclient_cli_cod: TStringField;
     memClientSIPPulsecls_account_sippulse: TStringField;
@@ -414,11 +413,9 @@ type
     procedure Action_consult_cpfExecute(Sender: TObject);
     procedure Action_consult_cnpjExecute(Sender: TObject);
     procedure dxBarButton1Click(Sender: TObject);
-    procedure astppgridviewNavigatorButtonsButtonClick(Sender: TObject;
-      AButtonIndex: Integer; var ADone: Boolean);
+    procedure astppgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
     procedure dxBarButton3Click(Sender: TObject);
-    procedure sipgridviewNavigatorButtonsButtonClick(Sender: TObject;
-      AButtonIndex: Integer; var ADone: Boolean);
+    procedure sipgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
   private
     procedure afterInsert;
     procedure afterUpdate;

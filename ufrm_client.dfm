@@ -510,6 +510,10 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1139,6 +1143,10 @@ inherited frm_client: Tfrm_client
         end
         object tbsht_contact: TcxTabSheet
           Caption = 'Contatos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1276,6 +1284,10 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1335,6 +1347,10 @@ inherited frm_client: Tfrm_client
         end
         object tbsht_telephony: TcxTabSheet
           Caption = 'Telefonia'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object pgctrl_telephony: TcxPageControl
             AlignWithMargins = True
             Left = 3
@@ -1353,6 +1369,10 @@ inherited frm_client: Tfrm_client
             ClientRectTop = 28
             object cxTabSheet3: TcxTabSheet
               Caption = 'Integra'#231#227'o'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object dxLayoutControl5: TdxLayoutControl
                 Left = 0
                 Top = 0
@@ -1453,7 +1473,6 @@ inherited frm_client: Tfrm_client
                   SizeOptions.SizableHorz = True
                   ButtonOptions.Buttons = <>
                   Hidden = True
-                  ItemIndex = 1
                   LayoutDirection = ldHorizontal
                   ShowBorder = False
                   Index = -1
@@ -3371,25 +3390,5 @@ inherited frm_client: Tfrm_client
     DataSet = memClientSIPPulse
     Left = 896
     Top = 152
-  end
-  object FDStoredProc1: TFDStoredProc
-    Connection = frm_dm.connCCS
-    StoredProcName = 'ccs.proc_client_delete'
-    Left = 548
-    Top = 401
-    ParamData = <
-      item
-        Position = 1
-        Name = 'p_cli_cod'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 32
-      end
-      item
-        Position = 2
-        Name = 'p_dt_deleted_at'
-        DataType = ftDateTime
-        ParamType = ptInput
-      end>
   end
 end

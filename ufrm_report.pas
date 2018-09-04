@@ -86,9 +86,9 @@ type
     procedure cxBarEditItem1Change(Sender: TObject);
     procedure dxBarButton2Click(Sender: TObject);
   private
-    { Private declarations }
+
   public
-    { Public declarations }
+
   end;
 
 var
@@ -98,7 +98,8 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm_report, ufrm_dm;
+uses
+  ufrm_dm;
 
 procedure Tfrm_report.Action_closeExecute(Sender: TObject);
 begin

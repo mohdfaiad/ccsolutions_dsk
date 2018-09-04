@@ -120,7 +120,7 @@ uses
   FireDAC.Comp.DataSet,
   FireDAC.Comp.Client,
 
-  Data.DB, cxEdit;
+  Data.DB;
 
 type
   Tfrm_import_default = class(TForm)
@@ -130,23 +130,18 @@ type
     dxBarManager_1Bar3: TdxBar;
     dxBarButton_close: TdxBarButton;
     ActionList_1: TActionList;
-    Action_import: TAction;
     Action_close: TAction;
     cxImageList_1: TcxImageList;
     QImport3Wizard_1: TQImport3Wizard;
     qry: TFDQuery;
     ds: TDataSource;
-    Action_save: TAction;
     mem: TFDMemTable;
     popup_1: TdxRibbonPopupMenu;
     dxBarSubItem1: TdxBarSubItem;
     pgctrl_import: TcxPageControl;
     tbsht_data: TcxTabSheet;
-    grid_dataview: TcxGridDBTableView;
-    grid_datalvl: TcxGridLevel;
-    grid_data: TcxGrid;
+    DBGrid_1: TDBGrid;
     procedure Action_closeExecute(Sender: TObject);
-    procedure Action_importExecute(Sender: TObject);
   private
 
   public
@@ -163,11 +158,6 @@ implementation
 procedure Tfrm_import_default.Action_closeExecute(Sender: TObject);
 begin
   Close;
-end;
-
-procedure Tfrm_import_default.Action_importExecute(Sender: TObject);
-begin
-  QImport3Wizard_1.Execute;
 end;
 
 end.

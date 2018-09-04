@@ -170,7 +170,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, class_required_field;
+uses ufrm_dm;
 
 procedure Tfrm_supplier.ACBrCEP_1BuscaEfetuada(Sender: TObject);
  var

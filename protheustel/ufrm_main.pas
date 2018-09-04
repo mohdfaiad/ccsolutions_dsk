@@ -111,10 +111,8 @@ uses
   ufrm_phonebook,
   ufrm_report,
   ufrm_supplier,
-  ufrm_import_sippulse,
   ufrm_voip_server,
-  ufrm_import_astpp,
-  ufrm_telephony_report;
+  ufrm_telephony_report, ufrm_import_astpp;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -142,8 +140,14 @@ type
     Action_voip_server: TAction;
     dxBarLargeButton10: TdxBarLargeButton;
     dxBarButton3: TdxBarButton;
-    Action_relatorioContaTelefonica: TAction;
     dxBarLargeButtonContaTelefonica: TdxBarLargeButton;
+    Action_import_astpp: TAction;
+    dxBarLargeButton11: TdxBarLargeButton;
+    dxBarLargeButton12: TdxBarLargeButton;
+    dxBarSubItem1: TdxBarSubItem;
+    dxBarButton4: TdxBarButton;
+    Action_import_sippulse: TAction;
+    dxBarButton5: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -152,10 +156,9 @@ type
     procedure Action_supplierExecute(Sender: TObject);
     procedure Action_phonebookExecute(Sender: TObject);
     procedure Action_reportExecute(Sender: TObject);
-    procedure dxBarButton1Click(Sender: TObject);
     procedure Action_voip_serverExecute(Sender: TObject);
-    procedure dxBarButton3Click(Sender: TObject);
     procedure Action_relatorioContaTelefonicaExecute(Sender: TObject);
+    procedure Action_import_astppExecute(Sender: TObject);
   private
 
   public
@@ -288,6 +291,23 @@ begin
   end;
 end;
 
+procedure Tfrm_main.Action_import_astppExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_import_astpp) then
+  begin
+    frm_import_astpp := Tfrm_import_astpp.Create(Self);
+    frm_import_astpp.Height := Bevel_1.Height;
+    frm_import_astpp.Width := Bevel_1.Width;
+    frm_import_astpp.Show;
+  end
+  else
+  begin
+    frm_import_astpp.WindowState := wsNormal;
+    frm_import_astpp.Show;
+  end;
+end;
+
 procedure Tfrm_main.Action_supplierExecute(Sender: TObject);
 begin
   inherited;
@@ -319,40 +339,6 @@ begin
   begin
     frm_voip_server.WindowState := wsNormal;
     frm_voip_server.Show;
-  end;
-end;
-
-procedure Tfrm_main.dxBarButton1Click(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_import_sippulse) then
-  begin
-    frm_import_sippulse := Tfrm_import_sippulse.Create(Self);
-    frm_import_sippulse.Height := Bevel_1.Height;
-    frm_import_sippulse.Width := Bevel_1.Width;
-    frm_import_sippulse.Show;
-  end
-  else
-  begin
-    frm_import_sippulse.WindowState := wsNormal;
-    frm_import_sippulse.Show;
-  end;
-end;
-
-procedure Tfrm_main.dxBarButton3Click(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_import_astpp) then
-  begin
-    frm_import_astpp := Tfrm_import_astpp.Create(Self);
-    frm_import_astpp.Height := Bevel_1.Height;
-    frm_import_astpp.Width := Bevel_1.Width;
-    frm_import_astpp.Show;
-  end
-  else
-  begin
-    frm_import_astpp.WindowState := wsNormal;
-    frm_import_astpp.Show;
   end;
 end;
 

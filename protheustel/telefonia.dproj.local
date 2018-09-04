@@ -1,29 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2018/02/16 05:28:17.000.273,C:\development\ccsolutions\mod_dsk\protheustel\ufrm_protheustel.pas=C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2018/02/16 05:28:17.000.273,C:\development\ccsolutions\mod_dsk\protheustel\ufrm_protheustel.dfm=C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2018/02/16 05:28:31.000.362,C:\development\ccsolutions\mod_dsk\protheustel\protheustel.dproj=C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2018/02/16 05:31:58.000.139,C:\development\ccsolutions\mod_dsk\protheustel\ufrm_main.dfm=C:\development\ccsolutions\mod_dsk\protheustel\Unit1.dfm</Transaction>
-    <Transaction>2018/02/16 05:31:58.000.139,C:\development\ccsolutions\mod_dsk\protheustel\ufrm_main.pas=C:\development\ccsolutions\mod_dsk\protheustel\Unit1.pas</Transaction>
-    <Transaction>2018/02/16 05:36:13.000.395,C:\development\ccsolutions\mod_dsk\protheustel\ufrm_login.pas=C:\development\ccsolutions\mod_dsk\protheustel\Unit1.pas</Transaction>
-    <Transaction>2018/02/16 05:36:13.000.395,C:\development\ccsolutions\mod_dsk\protheustel\ufrm_login.dfm=C:\development\ccsolutions\mod_dsk\protheustel\Unit1.dfm</Transaction>
-    <Transaction>2018/02/16 07:20:46.000.371,C:\development\ccsolutions\mod_dsk\models\ufrm_import_default.pas=C:\development\ccsolutions\mod_dsk\protheustel\Unit1.pas</Transaction>
-    <Transaction>2018/02/16 07:20:46.000.371,C:\development\ccsolutions\mod_dsk\models\ufrm_import_default.dfm=C:\development\ccsolutions\mod_dsk\protheustel\Unit1.dfm</Transaction>
-    <Transaction>2018/02/16 09:13:33.000.812,C:\development\ccsolutions\mod_dsk\protheustel\Unit1.dfm=C:\development\ccsolutions\mod_dsk\ufrm_import_sippulse.dfm</Transaction>
-    <Transaction>2018/06/05 14:20:46.000.546,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_import_astpp.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_import_sippulse.dfm</Transaction>
-    <Transaction>2018/06/07 14:54:10.000.660,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_telephony_report.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\Unit1.dfm</Transaction>
-    <Transaction>2018/09/01 17:39:39.000.959,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\protheustel.dproj=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\telefonia.dproj</Transaction>
-    <Transaction>2018/09/01 17:42:48.000.834,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\ufrm_protheustel.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\ufrm_telefonia.dfm</Transaction>
-    <Transaction>2018/09/01 20:48:24.000.009,=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\Unit1.pas</Transaction>
-    <Transaction>2018/09/01 20:48:35.000.751,C:\development\ccsolutions\ccsolutions_dsk\trunk\u_class_rest_client_astpp.pas=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\Unit1.pas</Transaction>
-    <Transaction>2018/09/02 12:18:06.000.017,=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\Unit1.pas</Transaction>
-    <Transaction>2018/09/02 12:21:08.000.590,C:\development\ccsolutions\ccsolutions_dsk\trunk\u_class_rest_client_sippulse.pas=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\Unit1.pas</Transaction>
-    <Transaction>2018/09/02 14:31:46.000.358,=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\Unit1.pas</Transaction>
-    <Transaction>2018/09/02 14:32:17.000.970,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_import_astpp.pas=</Transaction>
-    <Transaction>2018/09/02 14:32:29.000.493,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_import_sippulse.pas=</Transaction>
-    <Transaction>2018/09/02 14:33:50.000.205,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\Unit1.pas=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_import_astpp.pas</Transaction>
-    <Transaction>2018/09/02 14:33:50.000.205,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_import_astpp.dfm</Transaction>
-    <Transaction>2018/09/02 14:40:32.325,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_import_astpp.pas=</Transaction>
+    <Transaction>2018/02/16 05:28:17.000.273,C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\development\ccsolutions\mod_dsk\protheustel\ufrm_protheustel.dfm</Transaction>
+    <Transaction>2018/02/16 05:28:17.000.273,C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\development\ccsolutions\mod_dsk\protheustel\ufrm_protheustel.pas</Transaction>
+    <Transaction>2018/02/16 05:28:31.000.362,C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\development\ccsolutions\mod_dsk\protheustel\protheustel.dproj</Transaction>
+    <Transaction>2018/02/16 05:31:58.000.139,C:\development\ccsolutions\mod_dsk\protheustel\Unit1.pas=C:\development\ccsolutions\mod_dsk\protheustel\ufrm_main.pas</Transaction>
+    <Transaction>2018/02/16 05:31:58.000.139,C:\development\ccsolutions\mod_dsk\protheustel\Unit1.dfm=C:\development\ccsolutions\mod_dsk\protheustel\ufrm_main.dfm</Transaction>
+    <Transaction>2018/02/16 05:36:13.000.395,C:\development\ccsolutions\mod_dsk\protheustel\Unit1.pas=C:\development\ccsolutions\mod_dsk\protheustel\ufrm_login.pas</Transaction>
+    <Transaction>2018/02/16 05:36:13.000.395,C:\development\ccsolutions\mod_dsk\protheustel\Unit1.dfm=C:\development\ccsolutions\mod_dsk\protheustel\ufrm_login.dfm</Transaction>
+    <Transaction>2018/02/16 07:20:46.000.371,C:\development\ccsolutions\mod_dsk\protheustel\Unit1.pas=C:\development\ccsolutions\mod_dsk\models\ufrm_import_default.pas</Transaction>
+    <Transaction>2018/02/16 07:20:46.000.371,C:\development\ccsolutions\mod_dsk\protheustel\Unit1.dfm=C:\development\ccsolutions\mod_dsk\models\ufrm_import_default.dfm</Transaction>
+    <Transaction>2018/02/16 09:13:33.000.812,C:\development\ccsolutions\mod_dsk\ufrm_import_sippulse.dfm=C:\development\ccsolutions\mod_dsk\protheustel\Unit1.dfm</Transaction>
+    <Transaction>2018/06/05 14:20:46.000.546,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_import_sippulse.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_import_astpp.dfm</Transaction>
+    <Transaction>2018/06/07 14:54:10.000.660,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_telephony_report.dfm</Transaction>
+    <Transaction>2018/09/01 17:39:39.000.959,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\telefonia.dproj=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\protheustel.dproj</Transaction>
+    <Transaction>2018/09/01 17:42:48.000.834,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\ufrm_telefonia.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\ufrm_protheustel.dfm</Transaction>
+    <Transaction>2018/09/02 14:33:50.000.205,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_import_astpp.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\Unit1.dfm</Transaction>
+    <Transaction>2018/09/02 15:39:28.000.329,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheustel\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_import_astpp.dfm</Transaction>
   </Transactions>
 </BorlandProject>

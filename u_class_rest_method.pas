@@ -59,6 +59,7 @@ class function Trest_methods.Get(const Amethod, Aparameter: string): Boolean;
 var
   lSuccess: string;
 begin
+
   try
     try
       frm_dm.mem_rest.Active := False;

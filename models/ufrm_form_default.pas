@@ -144,7 +144,7 @@ uses
   frxDesgn,
   frxClass,
 
-  uthred_logged;
+  ufrm_main_default;
 
 type
   Tfrm_form_default = class(TForm)
@@ -261,7 +261,8 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_main_default, ufrm_dm, ufrm_dm_report;
+uses
+  ufrm_dm;
 
 procedure Tfrm_form_default.Action_cancelExecute(Sender: TObject);
 begin

@@ -11,25 +11,25 @@ inherited frm_import_astpp: Tfrm_import_astpp
           item
             Expanded = False
             FieldName = 'cli_account_code_astpp'
-            Width = 175
+            Width = 250
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'imp_from'
-            Width = 125
+            Width = 175
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'imp_to'
-            Width = 150
+            Width = 125
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'imp_duration'
-            Width = 65
+            Width = 50
             Visible = True
           end
           item
@@ -56,15 +56,6 @@ inherited frm_import_astpp: Tfrm_import_astpp
             Width = 75
             Visible = True
           end>
-      end
-      object Button1: TButton
-        Left = 704
-        Top = 200
-        Width = 75
-        Height = 25
-        Caption = 'Button1'
-        TabOrder = 1
-        OnClick = Button1Click
       end
     end
   end
@@ -118,38 +109,46 @@ inherited frm_import_astpp: Tfrm_import_astpp
     StoreDefs = True
     object memcli_account_code_astpp: TStringField
       DisplayLabel = 'Conta'
+      DisplayWidth = 65
       FieldName = 'cli_account_code_astpp'
       Size = 65
     end
     object memimp_from: TStringField
       DisplayLabel = 'Origem'
+      DisplayWidth = 65
       FieldName = 'imp_from'
       Size = 50
     end
     object memimp_to: TStringField
       DisplayLabel = 'Destino'
+      DisplayWidth = 65
       FieldName = 'imp_to'
       Size = 32
     end
     object memimp_duration: TStringField
       DisplayLabel = 'Dura'#231#227'o'
+      DisplayWidth = 65
       FieldName = 'imp_duration'
     end
     object memimp_date: TStringField
       DisplayLabel = 'Data'
+      DisplayWidth = 65
       FieldName = 'imp_date'
     end
     object memimp_type: TStringField
       DisplayLabel = 'Tipo'
+      DisplayWidth = 65
       FieldName = 'imp_type'
       Size = 50
     end
     object memimp_rate: TStringField
       DisplayLabel = 'Vl.'
+      DisplayWidth = 65
       FieldName = 'imp_rate'
     end
     object memimp_total: TStringField
       DisplayLabel = 'Vl. Total'
+      DisplayWidth = 65
       FieldName = 'imp_total'
     end
   end
@@ -158,7 +157,7 @@ inherited frm_import_astpp: Tfrm_import_astpp
   end
   inherited dxBarManager_1: TdxBarManager [6]
     PixelsPerInch = 96
-    inherited dxBarSubItem1: TdxBarSubItem
+    inherited dxBarSubItem_1: TdxBarSubItem
       ItemLinks = <
         item
           Visible = True
@@ -184,5 +183,7 @@ inherited frm_import_astpp: Tfrm_import_astpp
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
+    OnBeforeImport = QImport3Wizard_1BeforeImport
+    OnAfterImport = QImport3Wizard_1AfterImport
   end
 end

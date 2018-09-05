@@ -15,6 +15,8 @@ object frm_import_default: Tfrm_import_default
   Position = poDesigned
   ShowHint = True
   Visible = True
+  OnCreate = FormCreate
+  OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 13
   object dxBarDockControl_1: TdxBarDockControl
@@ -89,7 +91,7 @@ object frm_import_default: Tfrm_import_default
       ItemLinks = <
         item
           Visible = True
-          ItemName = 'dxBarSubItem1'
+          ItemName = 'dxBarSubItem_1'
         end>
       OneOnRow = False
       Row = 0
@@ -123,7 +125,7 @@ object frm_import_default: Tfrm_import_default
       Action = Action_close
       Category = 0
     end
-    object dxBarSubItem1: TdxBarSubItem
+    object dxBarSubItem_1: TdxBarSubItem
       Caption = 'Importar Dados'
       Category = 0
       Visible = ivAlways
@@ -283,6 +285,7 @@ object frm_import_default: Tfrm_import_default
     ErrorLogFileName = 'error.log'
     ImportDestination = qidDBGrid
     AddType = qatInsert
+    OnAfterImport = QImport3Wizard_1AfterImport
     Left = 736
     Top = 8
   end

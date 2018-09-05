@@ -11,6 +11,7 @@ uses
   System.Classes,
   System.ImageList,
   System.Actions,
+  System.UITypes,
 
   Vcl.ImgList,
   Vcl.ActnList,
@@ -133,8 +134,6 @@ type
     dxBarLargeButton6: TdxBarLargeButton;
     dxBarLargeButton7: TdxBarLargeButton;
     dxBarManager_1Bar4: TdxBar;
-    dxBarLargeButton8: TdxBarLargeButton;
-    dxBarLargeButton9: TdxBarLargeButton;
     rbpopmenu_1: TdxRibbonPopupMenu;
     dxBarButton1: TdxBarButton;
     Action_voip_server: TAction;
@@ -142,12 +141,19 @@ type
     dxBarButton3: TdxBarButton;
     dxBarLargeButtonContaTelefonica: TdxBarLargeButton;
     Action_import_astpp: TAction;
-    dxBarLargeButton11: TdxBarLargeButton;
-    dxBarLargeButton12: TdxBarLargeButton;
     dxBarSubItem1: TdxBarSubItem;
     dxBarButton4: TdxBarButton;
     Action_import_sippulse: TAction;
     dxBarButton5: TdxBarButton;
+    dxBarSubItem2: TdxBarSubItem;
+    dxBarManager_1Bar5: TdxBar;
+    Action_invoice_unified: TAction;
+    Action_invoice_astpp: TAction;
+    Action_invoice_sippulse: TAction;
+    dxBarButton6: TdxBarButton;
+    dxBarSeparator1: TdxBarSeparator;
+    dxBarButton7: TdxBarButton;
+    dxBarButton8: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -159,6 +165,7 @@ type
     procedure Action_voip_serverExecute(Sender: TObject);
     procedure Action_relatorioContaTelefonicaExecute(Sender: TObject);
     procedure Action_import_astppExecute(Sender: TObject);
+    procedure Action_invoice_astppExecute(Sender: TObject);
   private
 
   public
@@ -171,6 +178,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses ufrm_print_astpp;
 
 procedure Tfrm_main.Action_phonebookExecute(Sender: TObject);
 begin
@@ -305,6 +314,23 @@ begin
   begin
     frm_import_astpp.WindowState := wsNormal;
     frm_import_astpp.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_invoice_astppExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_print_astpp) then
+  begin
+    frm_print_astpp := Tfrm_print_astpp.Create(Self);
+    frm_print_astpp.Height := Bevel_1.Height;
+    frm_print_astpp.Width := Bevel_1.Width;
+    frm_print_astpp.Show;
+  end
+  else
+  begin
+    frm_print_astpp.WindowState := wsNormal;
+    frm_print_astpp.Show;
   end;
 end;
 

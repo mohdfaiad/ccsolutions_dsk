@@ -98,8 +98,9 @@ uses
   cxGridDBTableView,
   cxGrid,
   cxPC,
+  cxDBData,
 
-  Data.DB, cxDBData,
+  Data.DB,
 
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
@@ -131,10 +132,10 @@ type
     memimp_rate: TStringField;
     memimp_total: TStringField;
     memimp_duration: TStringField;
-    Button1: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_importExecute(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure QImport3Wizard_1AfterImport(Sender: TObject);
+    procedure QImport3Wizard_1BeforeImport(Sender: TObject);
   private
     procedure CreateClientASTPP;
   public
@@ -155,12 +156,6 @@ procedure Tfrm_import_astpp.Action_importExecute(Sender: TObject);
 begin
   inherited;
   QImport3Wizard_1.Execute;
-end;
-
-procedure Tfrm_import_astpp.Button1Click(Sender: TObject);
-begin
-  inherited;
-  CreateClientASTPP;
 end;
 
 procedure Tfrm_import_astpp.CreateClientASTPP;
@@ -203,6 +198,19 @@ begin
   inherited;
   frm_import_astpp.Destroy;
   frm_import_astpp := Nil;
+end;
+
+procedure Tfrm_import_astpp.QImport3Wizard_1AfterImport(Sender: TObject);
+begin
+  inherited;
+  CreateClientASTPP;
+end;
+
+procedure Tfrm_import_astpp.QImport3Wizard_1BeforeImport(Sender: TObject);
+begin
+  inherited;
+  mem.Close;
+  mem.Open;
 end;
 
 end.

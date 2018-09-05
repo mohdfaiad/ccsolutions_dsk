@@ -159,10 +159,6 @@
         <DCCReference Include="..\models\ufrm_search.pas">
             <Form>frm_search</Form>
         </DCCReference>
-        <DCCReference Include="..\models\ufrm_default.pas">
-            <Form>frm_default</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\ufrm_telephony_report.pas">
             <Form>frm_telephony_report</Form>
             <FormType>dfm</FormType>
@@ -182,6 +178,15 @@
             <Form>frm_import_astpp</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\models\ufrm_print_default.pas">
+            <Form>frm_print_default</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_print_astpp.pas">
+            <Form>frm_print_astpp</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="u_class_print_astpp.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

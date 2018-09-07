@@ -29,6 +29,9 @@ type
 
 implementation
 
+uses
+  Vcl.Dialogs;
+
 { TRest }
 
 class function Trest_methods.Base_URL(const Amethod, Aparameter: string): string;

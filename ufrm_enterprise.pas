@@ -282,7 +282,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
   private
-    function GetEnterprise : Boolean;
     procedure afterInsert;
     procedure afterUpdate;
 
@@ -398,7 +397,7 @@ procedure Tfrm_enterprise.afterInsert;
 begin
   ShowMessage('Registro Iserido com Sucesso');
   cxTabSheet_3.Show;
-  GetEnterprise;
+  Trest_enterprise.GetEnterprise(mem);
   ds.DataSet.Last;
 end;
 
@@ -406,7 +405,7 @@ procedure Tfrm_enterprise.afterUpdate;
 begin
   ShowMessage('Registro Atualizado com sucesso');
   cxTabSheet_3.Show;
-  GetEnterprise;
+  Trest_enterprise.GetEnterprise(mem);
 end;
 
 procedure Tfrm_enterprise.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -419,23 +418,7 @@ end;
 procedure Tfrm_enterprise.FormCreate(Sender: TObject);
 begin
   inherited;
-  GetEnterprise;
-end;
-
-function Tfrm_enterprise.GetEnterprise: Boolean;
-begin
-  try
-    try
-      Trest_enterprise.v_method        := '/api/rest/enterprises/Enterprise';
-      Trest_enterprise.v_parameter     := Tconnection.ctr_token;
-      Trest_enterprise.GetEnterprise(mem);
-
-      Result := True;
-    except on E: Exception do
-      Result := False;
-    end;
-  finally
-  end;
+  Trest_enterprise.GetEnterprise(mem);
 end;
 
 end.

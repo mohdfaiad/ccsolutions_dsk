@@ -5,6 +5,7 @@ object frm_dm: Tfrm_dm
   object connCCS: TFDConnection
     Params.Strings = (
       'ConnectionDef=database')
+    FetchOptions.AssignedValues = [evMode]
     ResourceOptions.AssignedValues = [rvAutoReconnect]
     ResourceOptions.AutoReconnect = True
     Connected = True
@@ -64,7 +65,7 @@ object frm_dm: Tfrm_dm
   object mem_rest: TFDMemTable
     FieldDefs = <>
     IndexDefs = <>
-    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.AssignedValues = [evMode, evRowsetSize]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
     ResourceOptions.SilentMode = True

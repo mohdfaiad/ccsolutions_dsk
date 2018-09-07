@@ -102,7 +102,7 @@ uses
   cxDBPivotGrid, dxBevel, cxFilter, cxData, cxDataStorage, cxNavigator,
   cxDataControllerConditionalFormattingRulesManagerDialog, cxDBData,
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
-  cxGridDBTableView, cxGrid;
+  cxGridDBTableView, cxGrid, ACBrBase, ACBrEnterTab;
 
 type
   Tfrm_print_default = class(TForm)
@@ -126,6 +126,7 @@ type
     cxGrid_1: TcxGrid;
     cxGrid_1DBTableView1: TcxGridDBTableView;
     cxGrid_1Level1: TcxGridLevel;
+    ACBrEnterTab_1: TACBrEnterTab;
     procedure Action_closeExecute(Sender: TObject);
   private
     { Private declarations }

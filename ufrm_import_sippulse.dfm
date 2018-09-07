@@ -1,5 +1,5 @@
-inherited frm_import_astpp: Tfrm_import_astpp
-  Caption = 'Importar: ASTPP'
+inherited frm_import_sippulse: Tfrm_import_sippulse
+  Caption = 'Importar: SIPPulse'
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
@@ -10,7 +10,7 @@ inherited frm_import_astpp: Tfrm_import_astpp
         Columns = <
           item
             Expanded = False
-            FieldName = 'cli_account_code_astpp'
+            FieldName = 'cli_account_code_sippulse'
             Width = 250
             Visible = True
           end
@@ -59,58 +59,41 @@ inherited frm_import_astpp: Tfrm_import_astpp
       end
     end
   end
-  inherited qry: TFDQuery [2]
+  inherited dxBarManager_1: TdxBarManager
+    PixelsPerInch = 96
+    inherited dxBarSubItem_1: TdxBarSubItem
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton1'
+        end>
+    end
+    object dxBarButton1: TdxBarButton
+      Action = Action_import
+      Category = 0
+    end
   end
-  inherited ds: TDataSource [3]
+  inherited ActionList_1: TActionList
+    object Action_import: TAction
+      Caption = 'CSV - SIPPulse'
+      OnExecute = Action_importExecute
+    end
   end
-  inherited mem: TFDMemTable [4]
+  inherited cxImageList_1: TcxImageList
+    FormatVersion = 1
+  end
+  inherited QImport3Wizard_1: TQImport3Wizard
+    Formats.ShortDateFormat = 'dd/MM/yy'
+    Formats.LongDateFormat = 'd MMMM yyyy'
+    Formats.ShortTimeFormat = 'hh:mm'
+    Formats.LongTimeFormat = 'hh:mm:ss'
+    OnBeforeImport = QImport3Wizard_1BeforeImport
+  end
+  inherited mem: TFDMemTable
     Active = True
-    FieldDefs = <
-      item
-        Name = 'cli_account_code_astpp'
-        DataType = ftString
-        Size = 65
-      end
-      item
-        Name = 'imp_from'
-        DataType = ftString
-        Size = 50
-      end
-      item
-        Name = 'imp_to'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'imp_duration'
-        DataType = ftString
-        Size = 20
-      end
-      item
-        Name = 'imp_date'
-        DataType = ftString
-        Size = 20
-      end
-      item
-        Name = 'imp_type'
-        DataType = ftString
-        Size = 50
-      end
-      item
-        Name = 'imp_rate'
-        DataType = ftString
-        Size = 20
-      end
-      item
-        Name = 'imp_total'
-        DataType = ftString
-        Size = 20
-      end>
-    StoreDefs = True
-    object memcli_account_code_astpp: TStringField
+    object memcli_account_code_sippulse: TStringField
       DisplayLabel = 'Conta'
-      DisplayWidth = 65
-      FieldName = 'cli_account_code_astpp'
+      FieldName = 'cli_account_code_sippulse'
       Size = 65
     end
     object memimp_from: TStringField
@@ -152,38 +135,8 @@ inherited frm_import_astpp: Tfrm_import_astpp
       FieldName = 'imp_total'
     end
   end
-  inherited popup_1: TdxRibbonPopupMenu [5]
+  inherited popup_1: TdxRibbonPopupMenu
     PixelsPerInch = 96
-  end
-  inherited dxBarManager_1: TdxBarManager [6]
-    PixelsPerInch = 96
-    inherited dxBarSubItem_1: TdxBarSubItem
-      ItemLinks = <
-        item
-          Visible = True
-          ItemName = 'dxBarButton1'
-        end>
-    end
-    object dxBarButton1: TdxBarButton
-      Action = Action_import
-      Category = 0
-    end
-  end
-  inherited ActionList_1: TActionList [7]
-    object Action_import: TAction
-      Caption = 'CSV - ASTPP'
-      OnExecute = Action_importExecute
-    end
-  end
-  inherited cxImageList_1: TcxImageList [8]
-    FormatVersion = 1
-  end
-  inherited QImport3Wizard_1: TQImport3Wizard [9]
-    Formats.ShortDateFormat = 'dd/MM/yy'
-    Formats.LongDateFormat = 'd MMMM yyyy'
-    Formats.ShortTimeFormat = 'hh:mm'
-    Formats.LongTimeFormat = 'hh:mm:ss'
-    OnBeforeImport = QImport3Wizard_1BeforeImport
   end
   object OpenDialog: TOpenDialog
     Left = 960

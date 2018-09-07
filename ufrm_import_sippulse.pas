@@ -1,4 +1,4 @@
-unit ufrm_import_astpp;
+unit ufrm_import_sippulse;
 
 interface
 
@@ -13,15 +13,14 @@ uses
   System.Actions,
   System.IniFiles,
 
-  Vcl.ImgList,
   Vcl.ActnList,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.ImgList,
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
   Vcl.Dialogs,
-  Vcl.Grids,
-  Vcl.DBGrids,
-  Vcl.StdCtrls,
 
   cxGraphics,
   cxControls,
@@ -80,26 +79,10 @@ uses
   dxSkinWhiteprint,
   dxSkinXmas2008Blue,
   dxBarBuiltInMenu,
-  cxStyles,
-  cxCustomData,
-  cxFilter,
-  cxData,
-  cxDataStorage,
-  cxEdit,
-  cxNavigator,
-  cxDataControllerConditionalFormattingRulesManagerDialog,
-  dxBar,
+  cxPC,
   dxRibbon,
   cxImageList,
   cxClasses,
-  cxGridLevel,
-  cxGridCustomView,
-  cxGridCustomTableView,
-  cxGridTableView,
-  cxGridDBTableView,
-  cxGrid,
-  cxPC,
-  cxDBData,
 
   Data.DB,
 
@@ -111,7 +94,7 @@ uses
   FireDAC.Phys.Intf,
   FireDAC.DApt.Intf,
   FireDAC.Stan.Async,
-  FireDAC.DApt,
+  FireDAC.DApt, dxBar,
   FireDAC.Comp.Client,
   FireDAC.Comp.DataSet,
 
@@ -122,47 +105,49 @@ uses
   u_class_connection;
 
 type
-  Tfrm_import_astpp = class(Tfrm_import_default)
-    Action_import: TAction;
-    dxBarButton1: TdxBarButton;
-    memcli_account_code_astpp: TStringField;
+  Tfrm_import_sippulse = class(Tfrm_import_default)
+    OpenDialog: TOpenDialog;
     memimp_from: TStringField;
     memimp_to: TStringField;
-    memimp_type: TStringField;
+    memimp_duration: TStringField;
     memimp_date: TStringField;
+    memimp_type: TStringField;
     memimp_rate: TStringField;
     memimp_total: TStringField;
-    memimp_duration: TStringField;
-    OpenDialog: TOpenDialog;
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure Action_importExecute(Sender: TObject);
+    memcli_account_code_sippulse: TStringField;
+    Action_import: TAction;
+    dxBarButton1: TdxBarButton;
     procedure QImport3Wizard_1AfterImport(Sender: TObject);
     procedure QImport3Wizard_1BeforeImport(Sender: TObject);
+    procedure Action_importExecute(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
-    procedure CreateClientASTPP;
+    procedure CreateClientSIPPulse;
 
   public
 
   end;
 
 var
-  frm_import_astpp: Tfrm_import_astpp;
+  frm_import_sippulse: Tfrm_import_sippulse;
 
 implementation
-
-{$R *.dfm}
 
 uses
   ufrm_dm;
 
-procedure Tfrm_import_astpp.Action_importExecute(Sender: TObject);
+{$R *.dfm}
+
+{ Tfrm_import_sippulse }
+
+procedure Tfrm_import_sippulse.Action_importExecute(Sender: TObject);
 var
   pathFile, pathImport, pathError : string;
   imp                             : TIniFile;
 begin
   inherited;
-  pathImport  := ExtractFileDir(GetCurrentDir) + '\import\import_astpp.imp';
-  pathError   := ExtractFileDir(GetCurrentDir) + '\logs\error_import_astpp.txt';
+  pathImport  := ExtractFileDir(GetCurrentDir) + '\import\import_sippulse.imp';
+  pathError   := ExtractFileDir(GetCurrentDir) + '\logs\error_import_sippulse.txt';
 
   try
     try
@@ -190,7 +175,7 @@ begin
   end;
 end;
 
-procedure Tfrm_import_astpp.CreateClientASTPP;
+procedure Tfrm_import_sippulse.CreateClientSIPPulse;
 var
   strproc_create : TFDStoredProc;
 begin
@@ -201,18 +186,18 @@ begin
       try
         strproc_create := TFDStoredProc.Create(Self);
         strproc_create.Connection := frm_dm.connCCS;
-        strproc_create.StoredProcName := 'proc_import_call_log_astpp';
+        strproc_create.StoredProcName := 'proc_import_call_log_sippulse';
         strproc_create.Prepare;
 
-        strproc_create.ParamByName('p_ctr_token').AsString              := Tconnection.ctr_token;
-        strproc_create.ParamByName('p_cli_account_code_astpp').AsString := memcli_account_code_astpp.AsString;
-        strproc_create.ParamByName('p_imp_from').AsString               := memimp_from.AsString;
-        strproc_create.ParamByName('p_imp_to').AsString                 := memimp_to.AsString;
-        strproc_create.ParamByName('p_imp_duration').AsString           := memimp_duration.AsString;
-        strproc_create.ParamByName('p_imp_date').AsString               := memimp_date.AsString;
-        strproc_create.ParamByName('p_imp_type').AsString               := memimp_type.AsString;
-        strproc_create.ParamByName('p_imp_rate').AsString               := memimp_rate.AsString;
-        strproc_create.ParamByName('p_imp_total').AsString              := memimp_total.AsString;
+        strproc_create.ParamByName('p_ctr_token').AsString                  := Tconnection.ctr_token;
+        strproc_create.ParamByName('p_cli_account_code_sippulse').AsString  := memcli_account_code_sippulse.AsString;
+        strproc_create.ParamByName('p_imp_from').AsString                   := memimp_from.AsString;
+        strproc_create.ParamByName('p_imp_to').AsString                     := memimp_to.AsString;
+        strproc_create.ParamByName('p_imp_duration').AsString               := memimp_duration.AsString;
+        strproc_create.ParamByName('p_imp_date').AsString                   := memimp_date.AsString;
+        strproc_create.ParamByName('p_imp_type').AsString                   := memimp_type.AsString;
+        strproc_create.ParamByName('p_imp_rate').AsString                   := memimp_rate.AsString;
+        strproc_create.ParamByName('p_imp_total').AsString                  := memimp_total.AsString;
         strproc_create.ExecProc;
 
         mem.Next;
@@ -224,21 +209,21 @@ begin
   end;
 end;
 
-procedure Tfrm_import_astpp.FormClose(Sender: TObject;
+procedure Tfrm_import_sippulse.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
-  frm_import_astpp.Destroy;
-  frm_import_astpp := Nil;
+  frm_import_sippulse.Destroy;
+  frm_import_sippulse := Nil;
 end;
 
-procedure Tfrm_import_astpp.QImport3Wizard_1AfterImport(Sender: TObject);
+procedure Tfrm_import_sippulse.QImport3Wizard_1AfterImport(Sender: TObject);
 begin
   inherited;
-  CreateClientASTPP;
+  CreateClientSIPPulse;
 end;
 
-procedure Tfrm_import_astpp.QImport3Wizard_1BeforeImport(Sender: TObject);
+procedure Tfrm_import_sippulse.QImport3Wizard_1BeforeImport(Sender: TObject);
 begin
   inherited;
   mem.Close;

@@ -22,7 +22,6 @@ uses
   ufrm_main_default in '..\models\ufrm_main_default.pas' {frm_main_default},
   ufrm_search_enterprise in '..\ufrm_search_enterprise.pas',
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
-  ufrm_telephony_report in '..\ufrm_telephony_report.pas' {frm_telephony_report},
   u_class_connection in '..\u_class_connection.pas',
   u_class_rest_client in '..\u_class_rest_client.pas',
   u_class_rest_method in '..\u_class_rest_method.pas',
@@ -37,7 +36,8 @@ uses
   ufrm_import_astpp in '..\ufrm_import_astpp.pas' {frm_import_astpp},
   ufrm_print_default in '..\models\ufrm_print_default.pas' {frm_print_default},
   ufrm_print_astpp in '..\ufrm_print_astpp.pas' {frm_print_astpp},
-  u_class_print_astpp in 'u_class_print_astpp.pas';
+  u_class_print_astpp in 'u_class_print_astpp.pas',
+  ufrm_import_sippulse in '..\ufrm_import_sippulse.pas' {frm_import_sippulse};
 
 {$R *.res}
 

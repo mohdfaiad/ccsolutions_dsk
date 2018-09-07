@@ -102,6 +102,18 @@ uses
   cxDateUtils,
   cxCalendar,
   cxButtons,
+  cxFilter,
+  cxData,
+  cxDataStorage,
+  cxNavigator,
+  cxDataControllerConditionalFormattingRulesManagerDialog,
+  cxDBData,
+  cxGridCustomTableView,
+  cxGridTableView,
+  cxGridDBTableView,
+  cxGridLevel,
+  cxGridCustomView,
+  cxGrid,
 
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
@@ -119,29 +131,26 @@ uses
 
   Data.DB,
 
+  ACBrBase,
+  ACBrEnterTab,
+
   frxClass,
+  frxDesgn,
+  frxDBSet,
 
   ufrm_print_default,
 
-  u_class_print_astpp, cxFilter, cxData, cxDataStorage, cxNavigator,
-  cxDataControllerConditionalFormattingRulesManagerDialog, cxDBData,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridLevel,
-  cxGridCustomView, cxGrid;
+  u_class_print_astpp;
 
 type
   Tfrm_print_astpp = class(Tfrm_print_default)
     cxLabel1: TcxLabel;
     dblkupcmbbox_client: TcxDBLookupComboBox;
     cxLabel2: TcxLabel;
-    dt_start: TcxDateEdit;
-    dt_end: TcxDateEdit;
     cxLabel3: TcxLabel;
     memClient: TFDMemTable;
     dsClient: TDataSource;
-    frxReport: TfrxReport;
-    memClientcli_cod: TStringField;
-    memClientcli_first_name: TStringField;
-    memClientcli_last_name: TStringField;
+    frxReport_astpp: TfrxReport;
     memcli_account_code_astpp: TStringField;
     memimp_from: TStringField;
     memimp_to: TStringField;
@@ -150,7 +159,6 @@ type
     memimp_type: TStringField;
     memimp_rate: TBCDField;
     memimp_total: TBCDField;
-    memClientcli_id: TLongWordField;
     cxButton1: TcxButton;
     Action_filter: TAction;
     cxGrid_1DBTableView1cli_account_code_astpp: TcxGridDBColumn;
@@ -161,13 +169,80 @@ type
     cxGrid_1DBTableView1imp_type: TcxGridDBColumn;
     cxGrid_1DBTableView1imp_rate: TcxGridDBColumn;
     cxGrid_1DBTableView1imp_total: TcxGridDBColumn;
+    dt_start: TcxDateEdit;
+    dt_end: TcxDateEdit;
+    dbdsCall: TfrxDBDataset;
+    dbdsClient: TfrxDBDataset;
+    cxButton2: TcxButton;
+    Action_print: TAction;
+    memClientcli_cod: TStringField;
+    memClientcli_id: TLongWordField;
+    memClientcli_type: TStringField;
+    memClientcli_first_name: TStringField;
+    memClientcli_last_name: TStringField;
+    memClientcli_email: TStringField;
+    memClientcli_cpfcnpj: TStringField;
+    memClientcli_rgie: TStringField;
+    memClientcli_im: TStringField;
+    memClientcli_suframa: TStringField;
+    memClientcli_add_bus_zipcode: TStringField;
+    memClientcli_add_bus_address: TStringField;
+    memClientcli_add_bus_number: TStringField;
+    memClientcli_add_bus_street: TStringField;
+    memClientcli_add_bus_complement: TStringField;
+    memClientcli_add_bus_city: TStringField;
+    memClientcli_add_bus_state: TStringField;
+    memClientcli_add_bus_country: TStringField;
+    memClientcli_phone1: TStringField;
+    memClientcli_phone2: TStringField;
+    memClientcli_phone3: TStringField;
+    memClientcli_phone4: TStringField;
+    memClientcli_contact: TStringField;
+    memClientcli_day_maturity: TIntegerField;
+    memClientcli_dt_birthopen: TDateField;
+    memClientcli_status: TShortintField;
+    memClientcli_image1: TBlobField;
+    memClientcli_dt_registration: TDateTimeField;
+    memEnterprise: TFDMemTable;
+    dsEnterprise: TDataSource;
+    memEnterpriseent_cod: TStringField;
+    memEnterpriseent_id: TLongWordField;
+    memEnterpriseent_type: TStringField;
+    memEnterpriseent_first_name: TStringField;
+    memEnterpriseent_last_name: TStringField;
+    memEnterpriseent_nickname: TStringField;
+    memEnterpriseent_email: TStringField;
+    memEnterpriseent_cnpj: TStringField;
+    memEnterpriseent_ie: TStringField;
+    memEnterpriseent_im: TStringField;
+    memEnterpriseent_suframa: TStringField;
+    memEnterpriseent_add_bus_zipcode: TStringField;
+    memEnterpriseent_add_bus_address: TStringField;
+    memEnterpriseent_add_bus_number: TStringField;
+    memEnterpriseent_add_bus_street: TStringField;
+    memEnterpriseent_add_bus_complement: TStringField;
+    memEnterpriseent_add_bus_city: TStringField;
+    memEnterpriseent_add_bus_state: TStringField;
+    memEnterpriseent_add_bus_country: TStringField;
+    memEnterpriseent_phone1: TStringField;
+    memEnterpriseent_phone2: TStringField;
+    memEnterpriseent_phone3: TStringField;
+    memEnterpriseent_phone4: TStringField;
+    memEnterpriseent_contact: TStringField;
+    memEnterpriseent_dt_open: TDateField;
+    memEnterpriseent_status: TShortintField;
+    memEnterpriseent_image1: TBlobField;
+    memEnterpriseent_deleted_at: TDateTimeField;
+    memEnterpriseent_dt_registration: TDateTimeField;
+    dbdsEnterprise: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_filterExecute(Sender: TObject);
+    procedure Action_printExecute(Sender: TObject);
   private
-    { Private declarations }
+
   public
-    { Public declarations }
+
   end;
 
 var
@@ -185,6 +260,16 @@ begin
   Trest_print_astpp.GetImportCallLogASTPP(mem, memClientcli_cod.AsString, StringReplace(FormatDateTime('yyyy/mm/dd', dt_start.Date), '/', '-', [rfReplaceAll]), StringReplace(FormatDateTime('yyyy/mm/dd', dt_end.Date), '/', '-', [rfReplaceAll]));
 end;
 
+procedure Tfrm_print_astpp.Action_printExecute(Sender: TObject);
+var
+  path: string;
+begin
+  inherited;
+  path := ExtractFileDir(GetCurrentDir) + '\reports\telefonia\report_print_astpp.fr3';
+  frxReport_astpp.LoadFromFile(path);
+  frxReport_astpp.ShowReport();
+end;
+
 procedure Tfrm_print_astpp.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -196,6 +281,7 @@ procedure Tfrm_print_astpp.FormCreate(Sender: TObject);
 begin
   inherited;
   Trest_print_astpp.GetClient(memClient);
+  Trest_print_astpp.GetEnterprise(memEnterprise)
 end;
 
 end.

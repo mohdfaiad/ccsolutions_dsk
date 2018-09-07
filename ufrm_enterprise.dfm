@@ -117,6 +117,10 @@ inherited frm_enterprise: Tfrm_enterprise
     inherited cxTabSheet_2: TcxTabSheet
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'ent_id'
@@ -428,6 +432,10 @@ inherited frm_enterprise: Tfrm_enterprise
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl_address: TdxLayoutControl
             Left = 0
             Top = 0
@@ -644,6 +652,10 @@ inherited frm_enterprise: Tfrm_enterprise
         end
         object tbsht_contact: TcxTabSheet
           Caption = 'Contatos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0

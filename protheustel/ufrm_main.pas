@@ -113,7 +113,7 @@ uses
   ufrm_report,
   ufrm_supplier,
   ufrm_voip_server,
-  ufrm_telephony_report, ufrm_import_astpp;
+  ufrm_import_astpp;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -163,9 +163,9 @@ type
     procedure Action_phonebookExecute(Sender: TObject);
     procedure Action_reportExecute(Sender: TObject);
     procedure Action_voip_serverExecute(Sender: TObject);
-    procedure Action_relatorioContaTelefonicaExecute(Sender: TObject);
     procedure Action_import_astppExecute(Sender: TObject);
     procedure Action_invoice_astppExecute(Sender: TObject);
+    procedure Action_import_sippulseExecute(Sender: TObject);
   private
 
   public
@@ -179,54 +179,31 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_print_astpp;
+uses ufrm_print_astpp, ufrm_import_sippulse;
 
 procedure Tfrm_main.Action_phonebookExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_phonebook) then
-  begin
+  if not Assigned(frm_phonebook) then begin
     frm_phonebook := Tfrm_phonebook.Create(Self);
     frm_phonebook.Height := Bevel_1.Height;
     frm_phonebook.Width := Bevel_1.Width;
     frm_phonebook.Show;
-  end
-  else
-  begin
+  end else begin
     frm_phonebook.WindowState := wsNormal;
     frm_phonebook.Show;
-  end;
-end;
-
-procedure Tfrm_main.Action_relatorioContaTelefonicaExecute(Sender: TObject);
-begin
-  inherited;
-  if not Assigned(frm_telephony_report) then
-  begin
-    frm_telephony_report := Tfrm_telephony_report.Create(Self);
-    frm_telephony_report.Height := Bevel_1.Height;
-    frm_telephony_report.Width := Bevel_1.Width;
-    frm_telephony_report.Show;
-  end
-  else
-  begin
-    frm_telephony_report.WindowState := wsNormal;
-    frm_telephony_report.Show;
   end;
 end;
 
 procedure Tfrm_main.Action_reportExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_report) then
-  begin
+  if not Assigned(frm_report) then begin
     frm_report := Tfrm_report.Create(Self);
     frm_report.Height := Bevel_1.Height;
     frm_report.Width := Bevel_1.Width;
     frm_report.Show;
-  end
-  else
-  begin
+  end else begin
     frm_report.WindowState := wsNormal;
     frm_report.Show;
   end;
@@ -235,15 +212,12 @@ end;
 procedure Tfrm_main.Action_clientExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_client) then
-  begin
+  if not Assigned(frm_client) then begin
     frm_client := Tfrm_client.Create(Self);
     frm_client.Height := Bevel_1.Height;
     frm_client.Width := Bevel_1.Width;
     frm_client.Show;
-  end
-  else
-  begin
+  end else begin
     frm_client.WindowState := wsNormal;
     frm_client.Show;
   end;
@@ -252,15 +226,12 @@ end;
 procedure Tfrm_main.Action_contractExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_contract) then
-  begin
+  if not Assigned(frm_contract) then begin
     frm_contract := Tfrm_contract.Create(Self);
     frm_contract.Height := Bevel_1.Height;
     frm_contract.Width := Bevel_1.Width;
     frm_contract.Show;
-  end
-  else
-  begin
+  end else begin
     frm_contract.WindowState := wsNormal;
     frm_contract.Show;
   end;
@@ -269,15 +240,12 @@ end;
 procedure Tfrm_main.Action_contract_userExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_contract_user) then
-  begin
+  if not Assigned(frm_contract_user) then begin
     frm_contract_user := Tfrm_contract_user.Create(Self);
     frm_contract_user.Height := Bevel_1.Height;
     frm_contract_user.Width := Bevel_1.Width;
     frm_contract_user.Show;
-  end
-  else
-  begin
+  end else begin
     frm_contract_user.WindowState := wsNormal;
     frm_contract_user.Show;
   end;
@@ -286,15 +254,12 @@ end;
 procedure Tfrm_main.Action_enterpriseExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_enterprise) then
-  begin
+  if not Assigned(frm_enterprise) then begin
     frm_enterprise := Tfrm_enterprise.Create(Self);
     frm_enterprise.Height := Bevel_1.Height;
     frm_enterprise.Width := Bevel_1.Width;
     frm_enterprise.Show;
-  end
-  else
-  begin
+  end else begin
     frm_enterprise.WindowState := wsNormal;
     frm_enterprise.Show;
   end;
@@ -303,32 +268,40 @@ end;
 procedure Tfrm_main.Action_import_astppExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_import_astpp) then
-  begin
+  if not Assigned(frm_import_astpp) then begin
     frm_import_astpp := Tfrm_import_astpp.Create(Self);
     frm_import_astpp.Height := Bevel_1.Height;
     frm_import_astpp.Width := Bevel_1.Width;
     frm_import_astpp.Show;
-  end
-  else
-  begin
+  end else begin
     frm_import_astpp.WindowState := wsNormal;
     frm_import_astpp.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_import_sippulseExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_import_sippulse) then begin
+    frm_import_sippulse := Tfrm_import_sippulse.Create(Self);
+    frm_import_sippulse.Height := Bevel_1.Height;
+    frm_import_sippulse.Width := Bevel_1.Width;
+    frm_import_sippulse.Show;
+  end else begin
+    frm_import_sippulse.WindowState := wsNormal;
+    frm_import_sippulse.Show;
   end;
 end;
 
 procedure Tfrm_main.Action_invoice_astppExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_print_astpp) then
-  begin
+  if not Assigned(frm_print_astpp) then begin
     frm_print_astpp := Tfrm_print_astpp.Create(Self);
     frm_print_astpp.Height := Bevel_1.Height;
     frm_print_astpp.Width := Bevel_1.Width;
     frm_print_astpp.Show;
-  end
-  else
-  begin
+  end else begin
     frm_print_astpp.WindowState := wsNormal;
     frm_print_astpp.Show;
   end;
@@ -337,15 +310,12 @@ end;
 procedure Tfrm_main.Action_supplierExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_supplier) then
-  begin
+  if not Assigned(frm_supplier) then begin
     frm_supplier := Tfrm_supplier.Create(Self);
     frm_supplier.Height := Bevel_1.Height;
     frm_supplier.Width := Bevel_1.Width;
     frm_supplier.Show;
-  end
-  else
-  begin
+  end else begin
     frm_supplier.WindowState := wsNormal;
     frm_supplier.Show;
   end;
@@ -354,15 +324,12 @@ end;
 procedure Tfrm_main.Action_voip_serverExecute(Sender: TObject);
 begin
   inherited;
-  if not Assigned(frm_voip_server) then
-  begin
+  if not Assigned(frm_voip_server) then begin
     frm_voip_server := Tfrm_voip_server.Create(Self);
     frm_voip_server.Height := Bevel_1.Height;
     frm_voip_server.Width := Bevel_1.Width;
     frm_voip_server.Show;
-  end
-  else
-  begin
+  end else begin
     frm_voip_server.WindowState := wsNormal;
     frm_voip_server.Show;
   end;

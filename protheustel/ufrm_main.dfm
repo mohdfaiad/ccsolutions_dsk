@@ -53,8 +53,6 @@ inherited frm_main: Tfrm_main
       True)
     PixelsPerInch = 96
     inherited dxBarManager_1Bar1: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
       FloatClientWidth = 87
       FloatClientHeight = 270
       ItemLinks = <
@@ -137,8 +135,8 @@ inherited frm_main: Tfrm_main
           Visible = True
           ItemName = 'dxBarSubItem2'
         end>
-      OneOnRow = True
-      Row = 1
+      OneOnRow = False
+      Row = 0
       UseOwnFont = False
       Visible = True
       WholeRow = False
@@ -157,7 +155,7 @@ inherited frm_main: Tfrm_main
           Visible = True
           ItemName = 'dxBarLargeButton10'
         end>
-      OneOnRow = True
+      OneOnRow = False
       Row = 0
       UseOwnFont = False
       Visible = True
@@ -275,7 +273,6 @@ inherited frm_main: Tfrm_main
       Caption = 'Conta Telefonica'
       Category = 1
       Visible = ivAlways
-      OnClick = Action_relatorioContaTelefonicaExecute
       LargeImageIndex = 10
     end
   end
@@ -344,6 +341,7 @@ inherited frm_main: Tfrm_main
     object Action_import_sippulse: TAction
       Category = 'Modulo'
       Caption = 'Arquivo - SIPPulse'
+      OnExecute = Action_import_sippulseExecute
     end
     object Action_invoice_unified: TAction
       Category = 'Modulo'

@@ -40,7 +40,6 @@ object frm_report: Tfrm_report
     StateImages = cxImageList_1
     TabOrder = 1
     OnDblClick = cxShellTreeView1DblClick
-    ExplicitTop = 61
   end
   object dxBarManager_1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
@@ -321,7 +320,6 @@ object frm_report: Tfrm_report
       Hint = 'Salvar'
       Visible = ivAlways
       ImageIndex = 8
-      OnClick = dxBarButton2Click
     end
     object cxEdt_Item_rep: TcxBarEditItem
       Caption = 'Relat'#243'rio'

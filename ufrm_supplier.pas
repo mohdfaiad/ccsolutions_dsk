@@ -3,64 +3,161 @@ unit ufrm_supplier;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_form_default, cxGraphics,
-  cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxSkinsCore, dxSkinBlack,
-  dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
-  dxSkinDarkSide, dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
-  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
-  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
-  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
-  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
-  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
-  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
-  dxSkinOffice2013White, dxSkinOffice2016Colorful, dxSkinOffice2016Dark,
-  dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
-  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
-  dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, dxSkinscxPCPainter, dxBarBuiltInMenu, cxStyles,
-  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, Data.DB,
-  cxDBData, cxContainer, dxLayoutcxEditAdapters, dxSkinsdxBarPainter,
-  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
-  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
-  FireDAC.Stan.Async, FireDAC.DApt, ACBrBase, ACBrEnterTab,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, dxLayoutLookAndFeels,
-  System.ImageList, Vcl.ImgList, Vcl.Menus, cxGridCustomPopupMenu,
-  cxGridPopupMenu, System.Actions, Vcl.ActnList, dxBar, cxClasses,
-  dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar, cxDBEdit,
-  cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  cxButtonEdit, cxShellComboBox, QExport4Dialog, cxBarEditItem, dxBarExtItems,
-  QImport3Wizard, ACBrSocket, ACBrCEP, frxClass, frxDBSet, cxDBLookupComboBox,
-  cxDataControllerConditionalFormattingRulesManagerDialog, cxImageList;
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  System.Actions,
+
+  Vcl.ActnList,
+  Vcl.ImgList,
+  Vcl.Menus,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+
+  cxGraphics,
+  cxControls,
+  cxLookAndFeels,
+  cxLookAndFeelPainters,
+  dxSkinsCore,
+  dxSkinBlack,
+  dxSkinBlue,
+  dxSkinBlueprint,
+  dxSkinCaramel,
+  dxSkinCoffee,
+  dxSkinDarkRoom,
+  dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle,
+  dxSkinDevExpressStyle,
+  dxSkinFoggy,
+  dxSkinGlassOceans,
+  dxSkinHighContrast,
+  dxSkiniMaginary,
+  dxSkinLilian,
+  dxSkinLiquidSky,
+  dxSkinLondonLiquidSky,
+  dxSkinMcSkin,
+  dxSkinMetropolis,
+  dxSkinMetropolisDark,
+  dxSkinMoneyTwins,
+  dxSkinOffice2007Black,
+  dxSkinOffice2007Blue,
+  dxSkinOffice2007Green,
+  dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver,
+  dxSkinOffice2010Black,
+  dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver,
+  dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray,
+  dxSkinOffice2013White,
+  dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark,
+  dxSkinPumpkin,
+  dxSkinSeven,
+  dxSkinSevenClassic,
+  dxSkinSharp,
+  dxSkinSharpPlus,
+  dxSkinSilver,
+  dxSkinSpringTime,
+  dxSkinStardust,
+  dxSkinSummer2008,
+  dxSkinTheAsphaltWorld,
+  dxSkinsDefaultPainters,
+  dxSkinValentine,
+  dxSkinVisualStudio2013Blue,
+  dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light,
+  dxSkinVS2010,
+  dxSkinWhiteprint,
+  dxSkinXmas2008Blue,
+  dxSkinscxPCPainter,
+  dxBarBuiltInMenu,
+  cxStyles,
+  cxCustomData,
+  cxFilter,
+  cxData,
+  cxDataStorage,
+  cxEdit,
+  cxNavigator,
+  cxDBData,
+  cxContainer,
+  dxLayoutcxEditAdapters,
+  dxSkinsdxBarPainter,
+  dxLayoutLookAndFeels,
+  cxGridCustomPopupMenu,
+  cxGridPopupMenu,
+  dxBar,
+  cxClasses,
+  dxLayoutContainer,
+  cxMaskEdit,
+  cxDropDownEdit,
+  cxCalendar,
+  cxDBEdit,
+  cxTextEdit,
+  dxLayoutControl,
+  cxGridLevel,
+  cxGridCustomView,
+  cxGridCustomTableView,
+  cxGridTableView,
+  cxGridDBTableView,
+  cxGrid,
+  cxPC,
+  cxButtonEdit,
+  cxShellComboBox,
+  cxBarEditItem,
+  dxBarExtItems,
+  cxDBLookupComboBox,
+  cxDataControllerConditionalFormattingRulesManagerDialog,
+  cxImageList,
+  cxCheckBox,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.Stan.Async,
+  FireDAC.DApt,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+
+  ACBrBase,
+  ACBrEnterTab,
+
+  QExport4Dialog,
+  QImport3Wizard,
+
+  frxClass,
+  frxDBSet,
+
+  ufrm_dm,
+  ufrm_form_default,
+
+  u_class_rest_supplier,
+  u_class_connection;
 
 type
   Tfrm_supplier = class(Tfrm_form_default)
-    qrysup_first_name: TStringField;
-    qrysup_last_name: TStringField;
-    qrysup_email: TStringField;
-    qrysup_phone1: TStringField;
-    qrysup_phone2: TStringField;
-    qrysup_phone3: TStringField;
-    qrysup_phone4: TStringField;
-    qrysup_contact: TStringField;
-    qrysup_dt_open: TDateField;
-    qrysup_ie: TStringField;
-    qrysup_im: TStringField;
-    qrysup_suframa: TStringField;
     cxTabSheet_address: TcxTabSheet;
     dxLayoutControl1: TdxLayoutControl;
-    cxDBTextEdit21: TcxDBTextEdit;
-    cxDBTextEdit23: TcxDBTextEdit;
-    cxDBTextEdit25: TcxDBTextEdit;
-    cxDBTextEdit26: TcxDBTextEdit;
-    cxDBTextEdit27: TcxDBTextEdit;
-    cxDBButtonEdit2: TcxDBButtonEdit;
-    cxDBTextEdit22: TcxDBTextEdit;
-    cxDBTextEdit29: TcxDBTextEdit;
+    dbedt_add_bus_address: TcxDBTextEdit;
+    dbedt_add_bus_street: TcxDBTextEdit;
+    dbedt_add_bus_city: TcxDBTextEdit;
+    dbedt_add_bus_state: TcxDBTextEdit;
+    dbedt_add_bus_country: TcxDBTextEdit;
+    dbedt_add_bus_zipcode: TcxDBButtonEdit;
+    dbedt_add_bus_number: TcxDBTextEdit;
+    dbedt_add_bus_complement: TcxDBTextEdit;
     dxLayoutControl1Group_Root: TdxLayoutGroup;
     dxLayoutGroup6: TdxLayoutGroup;
     dxLayoutItem24: TdxLayoutItem;
@@ -73,32 +170,51 @@ type
     dxLayoutItem25: TdxLayoutItem;
     dxLayoutItem36: TdxLayoutItem;
     dxLayoutGroup3: TdxLayoutGroup;
-    cxDBTextEdit1: TcxDBTextEdit;
+    dbedt_first_name: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
-    cxDBTextEdit2: TcxDBTextEdit;
+    dbedt_last_name: TcxDBTextEdit;
     dxLayoutItem4: TdxLayoutItem;
-    cxDBTextEdit3: TcxDBTextEdit;
+    dbedt_email: TcxDBTextEdit;
     dxLayoutItem5: TdxLayoutItem;
-    cxDBDateEdit1: TcxDBDateEdit;
+    dbedt_dt_open: TcxDBDateEdit;
     dxLayoutItem6: TdxLayoutItem;
-    cxDBTextEdit4: TcxDBTextEdit;
+    dbedt_cnpj: TcxDBTextEdit;
     dxLayoutItem7: TdxLayoutItem;
-    cxDBTextEdit5: TcxDBTextEdit;
+    dbedt_ie: TcxDBTextEdit;
     dxLayoutItem8: TdxLayoutItem;
-    cxDBTextEdit6: TcxDBTextEdit;
+    dbedt_im: TcxDBTextEdit;
     dxLayoutItem9: TdxLayoutItem;
-    cxDBTextEdit7: TcxDBTextEdit;
+    dbedt_suframa: TcxDBTextEdit;
     dxLayoutItem10: TdxLayoutItem;
-    qrysup_cnpj: TStringField;
-    qrysup_dt_registration: TDateTimeField;
-    qrysup_add_bus_zipcode: TStringField;
-    qrysup_add_bus_address: TStringField;
-    qrysup_add_bus_number: TStringField;
-    qrysup_add_bus_street: TStringField;
-    qrysup_add_bus_complement: TStringField;
-    qrysup_add_bus_city: TStringField;
-    qrysup_add_bus_state: TStringField;
-    qrysup_add_bus_country: TStringField;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
+    memsup_cod: TStringField;
+    memsup_id: TLongWordField;
+    memsup_first_name: TStringField;
+    memsup_last_name: TStringField;
+    memsup_email: TStringField;
+    memsup_cnpj: TStringField;
+    memsup_ie: TStringField;
+    memsup_im: TStringField;
+    memsup_suframa: TStringField;
+    memsup_add_bus_zipcode: TStringField;
+    memsup_add_bus_address: TStringField;
+    memsup_add_bus_number: TStringField;
+    memsup_add_bus_street: TStringField;
+    memsup_add_bus_complement: TStringField;
+    memsup_add_bus_city: TStringField;
+    memsup_add_bus_state: TStringField;
+    memsup_add_bus_country: TStringField;
+    memsup_phone1: TStringField;
+    memsup_phone2: TStringField;
+    memsup_phone3: TStringField;
+    memsup_phone4: TStringField;
+    memsup_contact: TStringField;
+    memsup_dt_open: TDateField;
+    memsup_status: TShortintField;
+    memsup_deleted_at: TDateTimeField;
+    memsup_dt_registration: TDateTimeField;
+    cxGrid_1DBTableView1sup_id: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_first_name: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_last_name: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_email: TcxGridDBColumn;
@@ -106,7 +222,6 @@ type
     cxGrid_1DBTableView1sup_ie: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_im: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_suframa: TcxGridDBColumn;
-    cxGrid_1DBTableView1sup_dt_open: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_add_bus_zipcode: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_add_bus_address: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_add_bus_number: TcxGridDBColumn;
@@ -120,47 +235,35 @@ type
     cxGrid_1DBTableView1sup_phone3: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_phone4: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_contact: TcxGridDBColumn;
-    cxGrid_1DBTableView1sup_dt_registration: TcxGridDBColumn;
-    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
-    dxLayoutGroup5: TdxLayoutGroup;
-    cxDBTextEdit8: TcxDBTextEdit;
-    dxLayoutItem11: TdxLayoutItem;
-    cxDBTextEdit9: TcxDBTextEdit;
-    dxLayoutItem12: TdxLayoutItem;
-    cxDBTextEdit10: TcxDBTextEdit;
-    dxLayoutItem13: TdxLayoutItem;
-    cxDBTextEdit11: TcxDBTextEdit;
-    dxLayoutItem14: TdxLayoutItem;
-    cxDBTextEdit12: TcxDBTextEdit;
-    dxLayoutItem15: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
-    qrysup_cod: TBytesField;
-    qrycontract_ctr_cod: TBytesField;
-    qrysup_id: TLongWordField;
-    qrysup_status: TStringField;
-    qrysup_deleted_at: TDateTimeField;
-    qryCodSupplier: TStringField;
-    cxGrid_1DBTableView1sup_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1sup_dt_open: TcxGridDBColumn;
     cxGrid_1DBTableView1sup_status: TcxGridDBColumn;
-    frx_db_fornecedor: TfrxDBDataset;
-    acbr_cep: TACBrCEP;
+    cxGrid_1DBTableView1sup_dt_registration: TcxGridDBColumn;
+    tbsht_contact: TcxTabSheet;
+    dxLayoutControl2: TdxLayoutControl;
+    dbedt_phone1: TcxDBTextEdit;
+    dbedt_contact: TcxDBTextEdit;
+    dbedt_phone2: TcxDBTextEdit;
+    dbedt_phone3: TcxDBTextEdit;
+    dbedt_phone4: TcxDBTextEdit;
+    dxLayoutGroup4: TdxLayoutGroup;
+    dxLayoutGroup8: TdxLayoutGroup;
+    dxLayoutItem31: TdxLayoutItem;
+    dxLayoutItem32: TdxLayoutItem;
+    dxLayoutItem33: TdxLayoutItem;
+    dxLayoutItem34: TdxLayoutItem;
+    dxLayoutItem35: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    dbchk_status: TcxDBCheckBox;
+    dxLayoutItem11: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure qryAfterInsert(DataSet: TDataSet);
-    procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
-    procedure cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
-      AButtonIndex: Integer);
-    procedure Action_cancelExecute(Sender: TObject);
-    procedure Action_deleteExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
-    procedure Action_editExecute(Sender: TObject);
   private
-    { Private declarations }
-    sup_cod:string;
+    procedure afterInsert;
+    procedure afterUpdate;
+
   public
-    { Public declarations }
-     procedure ExibirRegistros;
+
   end;
 
 var
@@ -170,120 +273,112 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
-
-procedure Tfrm_supplier.ACBrCEP_1BuscaEfetuada(Sender: TObject);
- var
-i:Integer;
-begin
-  inherited;
-  for I := 0 to acbr_cep.Enderecos.Count -1 do
-    begiN
-     qrysup_add_bus_address.AsString    := acbr_cep.Enderecos[i].Logradouro;
-     qrysup_add_bus_street.AsString     := acbr_cep.Enderecos[i].Bairro;
-     qrysup_add_bus_complement.AsString     := acbr_cep.Enderecos[i].Complemento;
-     qrysup_add_bus_city.AsString     	 := acbr_cep.Enderecos[i].Municipio;
-     qrysup_add_bus_state.AsString     := acbr_cep.Enderecos[i].UF;
-     qrysup_add_bus_country.AsString     := 'BRASIL';
-     cxDBTextEdit22.SetFocus;
-    end;
-end;
-
-procedure Tfrm_supplier.Action_cancelExecute(Sender: TObject);
-begin
-  inherited;
-//  if result = false then
-//    exit;
-//
-// if (qrysup_id.AsInteger = 0) then
-//  with frm_dm.qry,sql do
-//  begin
-//    Close;
-//    Text:= ' delete from supplier ' +
-//           ' where sup_cod = unhex('+QuotedStr(sup_cod)+')';
-//    Prepare;
-//    ExecSQL;
-//  end;
-//
-//  ExibirRegistros;
-end;
-
-procedure Tfrm_supplier.Action_deleteExecute(Sender: TObject);
-begin
-  inherited;
-//  if (result = false) then
-//    exit;
-//
-//     qry.Edit;
-//     qrysup_deleted_at.AsDateTime:=Now;
-//     qry.Post;
-//     qry.ApplyUpdates(0);
-//     Application.MessageBox('Fornecedor excluída com sucesso!','AVISO DO SISTEMA', MB_OK + MB_ICONINFORMATION);
-//
-//    ExibirRegistros;
-
-end;
-
-procedure Tfrm_supplier.Action_editExecute(Sender: TObject);
-begin
-//  if qry.IsEmpty then
-//   exit;
-//  inherited;
-
-end;
-
 procedure Tfrm_supplier.Action_saveExecute(Sender: TObject);
-begin
-////--Comando para tirar o focus de todos os componentes da tela-----
-//   ActiveControl := nil;
-//  //--Cama a função para verificar se existe campos requeridos em branco----
-//  TCampoRequerido.TratarRequerido(qry);
-//
-//  inherited;
-//  if ds.DataSet.State in [dsEdit] then
-//   Exit;
-//
-//if (qrysup_id.AsInteger = 0) then
-// begin
-//   with frm_dm.qry,sql do
-//   begin
-//     close;     // -- SQL para retornar o ultimo ID da tabela brand---
-//     Text:= ' select case when max(sup_id) is null then 1 ' +
-//            '      else (max(sup_id) + 1) end as maxID from supplier '+
-//            ' where contract_ctr_cod = unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+')';
-//     Prepare;
-//     Open;
-//
-//     if not (qry.State in [dsInsert,dsEdit])  then
-//      qry.Edit;
-//
-//     if qrysup_id.AsInteger = 0 then
-//       qrysup_id.AsInteger:=Fields[0].AsInteger;
-//
-//      qry.Post;
-//      qry.ApplyUpdates(0);
-//
-//   end;
-// end;
-//
-//  ExibirRegistros;
-end;
+var
+  strproc_create, strproc_update : TFDStoredProc;
+begin
+  inherited;
+  case ds.State of
+    dsEdit:
+      try
+        try
+          strproc_update := TFDStoredProc.Create(Self);
+          strproc_update.Connection := frm_dm.connCCS;
+          strproc_update.StoredProcName := 'proc_supplier_update';
+          strproc_update.Prepare;
 
+          strproc_update.ParamByName('p_ctr_token').AsString              := Tconnection.ctr_token;
+          strproc_update.ParamByName('p_sup_cod').AsString                := memsup_cod.AsString;
+          strproc_update.ParamByName('p_ent_first_name').AsString         := dbedt_first_name.Text;
+          strproc_update.ParamByName('p_sup_last_name').AsString          := dbedt_last_name.Text;
+          strproc_update.ParamByName('p_sup_email').AsString              := dbedt_email.Text;
+          strproc_update.ParamByName('p_sup_cnpj').AsString               := dbedt_cnpj.Text;
+          strproc_update.ParamByName('p_sup_ie').AsString                 := dbedt_ie.Text;
+          strproc_update.ParamByName('p_sup_im').AsString                 := dbedt_im.Text;
+          strproc_update.ParamByName('p_sup_suframa').AsString            := dbedt_suframa.Text;
+          strproc_update.ParamByName('p_sup_add_bus_zipcode').AsString    := dbedt_add_bus_zipcode.Text;
+          strproc_update.ParamByName('p_sup_add_bus_address').AsString    := dbedt_add_bus_address.Text;
+          strproc_update.ParamByName('p_sup_add_bus_number').AsString     := dbedt_add_bus_number.Text;
+          strproc_update.ParamByName('p_sup_add_bus_street').AsString     := dbedt_add_bus_street.Text;
+          strproc_update.ParamByName('p_sup_add_bus_complement').AsString := dbedt_add_bus_complement.Text;
+          strproc_update.ParamByName('p_sup_add_bus_city').AsString       := dbedt_add_bus_city.Text;
+          strproc_update.ParamByName('p_sup_add_bus_state').AsString      := dbedt_add_bus_state.Text;
+          strproc_update.ParamByName('p_sup_add_bus_country').AsString    := dbedt_add_bus_country.Text;
+          strproc_update.ParamByName('p_sup_phone1').AsString             := dbedt_phone1.Text;
+          strproc_update.ParamByName('p_sup_phone2').AsString             := dbedt_phone2.Text;
+          strproc_update.ParamByName('p_sup_phone3').AsString             := dbedt_phone3.Text;
+          strproc_update.ParamByName('p_sup_phone4').AsString             := dbedt_phone4.Text;
+          strproc_update.ParamByName('p_sup_contact').AsString            := dbedt_contact.Text;
+          strproc_update.ParamByName('p_sup_dt_open').AsDate              := dbedt_dt_open.Date;
+          strproc_update.ParamByName('p_sup_status').AsShortInt           := dbchk_status.Checked.ToInteger;
+          strproc_update.ExecProc;
 
-procedure Tfrm_supplier.cxDBButtonEdit2PropertiesButtonClick(Sender: TObject;
-  AButtonIndex: Integer);
-begin
-//  inherited;
-// acbr_cep.BuscarPorCEP(cxDBButtonEdit2.Text);
+          afterUpdate;
+        except on E: Exception do
+          ShowMessage('Erro: ' + E.Message);
+        end;
+      finally
+      end;
+
+    dsInsert:
+      try
+        try
+          if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+            strproc_create := TFDStoredProc.Create(Self);
+            strproc_create.Connection := frm_dm.connCCS;
+            strproc_create.StoredProcName := 'proc_supplier_create';
+            strproc_create.Prepare;
+
+            strproc_create.ParamByName('p_ctr_token').AsString              := Tconnection.ctr_token;
+            strproc_create.ParamByName('p_sup_first_name').AsString         := dbedt_first_name.Text;
+            strproc_create.ParamByName('p_sup_last_name').AsString          := dbedt_last_name.Text;
+            strproc_create.ParamByName('p_sup_email').AsString              := dbedt_email.Text;
+            strproc_create.ParamByName('p_sup_cnpj').AsString               := dbedt_cnpj.Text;
+            strproc_create.ParamByName('p_sup_ie').AsString                 := dbedt_ie.Text;
+            strproc_create.ParamByName('p_sup_im').AsString                 := dbedt_im.Text;
+            strproc_create.ParamByName('p_sup_suframa').AsString            := dbedt_suframa.Text;
+            strproc_create.ParamByName('p_sup_add_bus_zipcode').AsString    := dbedt_add_bus_zipcode.Text;
+            strproc_create.ParamByName('p_sup_add_bus_address').AsString    := dbedt_add_bus_address.Text;
+            strproc_create.ParamByName('p_sup_add_bus_number').AsString     := dbedt_add_bus_number.Text;
+            strproc_create.ParamByName('p_sup_add_bus_street').AsString     := dbedt_add_bus_street.Text;
+            strproc_create.ParamByName('p_sup_add_bus_complement').AsString := dbedt_add_bus_complement.Text;
+            strproc_create.ParamByName('p_sup_add_bus_city').AsString       := dbedt_add_bus_city.Text;
+            strproc_create.ParamByName('p_sup_add_bus_state').AsString      := dbedt_add_bus_state.Text;
+            strproc_create.ParamByName('p_sup_add_bus_country').AsString    := dbedt_add_bus_country.Text;
+            strproc_create.ParamByName('p_sup_phone1').AsString             := dbedt_phone1.Text;
+            strproc_create.ParamByName('p_sup_phone2').AsString             := dbedt_phone2.Text;
+            strproc_create.ParamByName('p_sup_phone3').AsString             := dbedt_phone3.Text;
+            strproc_create.ParamByName('p_sup_phone4').AsString             := dbedt_phone4.Text;
+            strproc_create.ParamByName('p_sup_contact').AsString            := dbedt_contact.Text;
+            strproc_create.ParamByName('p_sup_dt_open').AsDate              := dbedt_dt_open.Date;
+            strproc_create.ParamByName('p_sup_status').AsShortInt           := dbchk_status.Checked.ToInteger;
+            strproc_create.ExecProc;
+
+            afterInsert;
+          end else begin
+            ds.DataSet.Cancel;
+          end;
+          except on E: Exception do
+            ShowMessage('Erro: ' + E.Message);
+          end;
+      finally
+      end;
+  end;
 end;
 
-procedure Tfrm_supplier.ExibirRegistros;
+procedure Tfrm_supplier.afterInsert;
 begin
-//      qry.Close;
-//      qry.SQL.Text:= ' select supplier.*,hex(sup_cod)as CodSupplier from supplier '+
-//                     ' where contract_ctr_cod =unhex('+QuotedStr(frm_dm.v_contract_ctr_cod)+') and sup_deleted_at is null ';
-//      qry.Prepare;
-//      qry.Open;
+  ShowMessage('Registro Iserido com Sucesso');
+  cxTabSheet_3.Show;
+  Trest_supplier.GetSupplier(mem);
+  ds.DataSet.Last;
+end;
+
+procedure Tfrm_supplier.afterUpdate;
+begin
+  ShowMessage('Registro Atualizado com sucesso');
+  cxTabSheet_3.Show;
+  Trest_supplier.GetSupplier(mem);
 end;
 
 procedure Tfrm_supplier.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -293,32 +388,10 @@ begin
   frm_supplier := Nil;
 end;
 
-procedure Tfrm_supplier.qryAfterInsert(DataSet: TDataSet);
+procedure Tfrm_supplier.FormCreate(Sender: TObject);
 begin
-//  inherited;
-//  With frm_dm.qry,sql do
-//  begin
-//   close;
-//   text:= ' select hex(uuid_to_bin(uuid())) ';
-//   prepare;
-//   open;
-//
-//   sup_cod:=Fields[0].AsString;
-//
-//   Close;
-//   Text:='insert into supplier (sup_id,sup_cod,contract_ctr_cod, sup_dt_registration) ' +
-//         ' select 0,unhex('+QuotedStr(sup_cod)+'), unhex('+ QuotedStr(frm_dm.v_contract_ctr_cod)+'),Now()';
-//   Prepare;
-//   ExecSQL;
-//  end;
-//
-//   qry.Close;
-//   qry.sql.text:= ' select supplier.*,hex(sup_cod)as CodSupplier from supplier ' +
-//                  ' where sup_cod =unhex('+QuotedStr(sup_cod)+') and sup_deleted_at is null ';
-//   qry.Prepare;
-//   qry.open;
-//   qry.Edit;
-
+  inherited;
+  Trest_supplier.GetSupplier(mem)
 end;
 
 end.

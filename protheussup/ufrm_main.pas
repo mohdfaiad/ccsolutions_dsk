@@ -27,7 +27,8 @@ uses
   dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
   dxRibbon, dxGDIPlusClasses, ufrm_login, ufrm_contract, ufrm_contract_user,
   ufrm_enterprise, ufrm_client, ufrm_supplier, ufrm_phonebook, ufrm_report,
-  ufrm_ticket_category, ufrm_ticket_type, ufrm_ticket, ufrm_reseller, ufrm_ticket_priority, ufrm_ticket_interaction;
+  ufrm_ticket_category, ufrm_ticket_type, ufrm_ticket, ufrm_reseller, ufrm_ticket_priority, ufrm_ticket_interaction,
+  cxImageList;
 
 type
   Tfrm_main = class(Tfrm_main_default)

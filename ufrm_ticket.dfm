@@ -8,7 +8,7 @@ inherited frm_ticket: Tfrm_ticket
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
-      ExplicitHeight = 512
+      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1tkt_id: TcxGridDBColumn
@@ -86,13 +86,13 @@ inherited frm_ticket: Tfrm_ticket
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
-      ExplicitHeight = 512
+      ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 986
-          ExplicitHeight = 472
+          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'tkt_id'
@@ -118,10 +118,6 @@ inherited frm_ticket: Tfrm_ticket
               object cxTabSheet2: TcxTabSheet
                 Caption = 'Ticket'
                 ImageIndex = 0
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object dxLayoutControl2: TdxLayoutControl
                   Left = 0
                   Top = 0
@@ -150,7 +146,6 @@ inherited frm_ticket: Tfrm_ticket
                         Width = 75
                         FieldName = 'cli_id'
                       end>
-                    Properties.ListSource = ds_client
                     Style.HotTrack = False
                     TabOrder = 6
                     Width = 292
@@ -253,7 +248,6 @@ inherited frm_ticket: Tfrm_ticket
                         Width = 75
                         FieldName = 'tky_id'
                       end>
-                    Properties.ListSource = ds_ticket_type
                     Style.HotTrack = False
                     TabOrder = 11
                     Width = 121
@@ -279,7 +273,6 @@ inherited frm_ticket: Tfrm_ticket
                         FieldName = 'tkc_id'
                       end>
                     Properties.ListOptions.SyncMode = True
-                    Properties.ListSource = ds_ticket_category
                     Style.HotTrack = False
                     TabOrder = 12
                     Width = 121
@@ -304,7 +297,6 @@ inherited frm_ticket: Tfrm_ticket
                         Width = 75
                         FieldName = 'tks_id'
                       end>
-                    Properties.ListSource = ds_ticket_category_sub
                     Style.HotTrack = False
                     TabOrder = 13
                     Width = 121
@@ -329,7 +321,6 @@ inherited frm_ticket: Tfrm_ticket
                         Width = 75
                         FieldName = 'ctr_usr_id'
                       end>
-                    Properties.ListSource = ds_contract_user
                     Style.HotTrack = False
                     TabOrder = 1
                     Width = 121
@@ -353,7 +344,6 @@ inherited frm_ticket: Tfrm_ticket
                         Width = 75
                         FieldName = 'ent_id'
                       end>
-                    Properties.ListSource = ds_enterprise
                     Style.HotTrack = False
                     TabOrder = 2
                     Width = 296
@@ -378,7 +368,6 @@ inherited frm_ticket: Tfrm_ticket
                         Width = 75
                         FieldName = 'tkp_id'
                       end>
-                    Properties.ListSource = ds_ticket_priority
                     Style.HotTrack = False
                     TabOrder = 10
                     Width = 121
@@ -584,10 +573,6 @@ inherited frm_ticket: Tfrm_ticket
               object cxTabSheet3: TcxTabSheet
                 Caption = 'Revenda'
                 ImageIndex = 1
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object dxLayoutControl3: TdxLayoutControl
                   Left = 0
                   Top = 0
@@ -616,7 +601,6 @@ inherited frm_ticket: Tfrm_ticket
                         Width = 75
                         FieldName = 'res_id'
                       end>
-                    Properties.ListSource = ds_reseller
                     Style.HotTrack = False
                     TabOrder = 0
                     Width = 285
@@ -706,140 +690,14 @@ inherited frm_ticket: Tfrm_ticket
       end
     end
   end
-  inherited cxImageList_1: TcxImageList
-    FormatVersion = 1
+  inherited dxBarManager_1: TdxBarManager
+    PixelsPerInch = 96
   end
-  inherited qry: TFDQuery
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
-    Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'select * from ticket')
-    object qrytkt_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'tkt_id'
-      Origin = 'tkt_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
-    object qryclient_cli_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Cliente ID'
-      FieldName = 'client_cli_id'
-      Origin = 'client_cli_id'
-    end
-    object qryenterprise_ent_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Empresa ID'
-      FieldName = 'enterprise_ent_id'
-      Origin = 'enterprise_ent_id'
-    end
-    object qryreseller_res_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Revenda ID'
-      FieldName = 'reseller_res_id'
-      Origin = 'reseller_res_id'
-    end
-    object qryticket_type_tky_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Tipo ID'
-      FieldName = 'ticket_type_tky_id'
-      Origin = 'ticket_type_tky_id'
-    end
-    object qryticket_category_tkc_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Categoria ID'
-      FieldName = 'ticket_category_tkc_id'
-      Origin = 'ticket_category_tkc_id'
-    end
-    object qryticket_category_sub_tks_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Subcategoria ID'
-      FieldName = 'ticket_category_sub_tks_id'
-      Origin = 'ticket_category_sub_tks_id'
-    end
-    object qryticket_priority_tkp_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Prioridade ID'
-      FieldName = 'ticket_priority_tkp_id'
-      Origin = 'ticket_priority_tkp_id'
-    end
-    object qrycontract_user_ctr_usr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Usu'#225'rio'
-      FieldName = 'contract_user_ctr_usr_id'
-      Origin = 'contract_user_ctr_usr_id'
-    end
-    object qrytkt_dt_open: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Aber.'
-      FieldName = 'tkt_dt_open'
-      Origin = 'tkt_dt_open'
-    end
-    object qrytkt_dt_close: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Fec.'
-      FieldName = 'tkt_dt_close'
-      Origin = 'tkt_dt_close'
-    end
-    object qrytkt_dt_maturity: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Venc.'
-      FieldName = 'tkt_dt_maturity'
-      Origin = 'tkt_dt_maturity'
-    end
-    object qrytkt_reason: TMemoField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Motivo'
-      FieldName = 'tkt_reason'
-      Origin = 'tkt_reason'
-      BlobType = ftMemo
-    end
-    object qrytkt_status: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Status'
-      FieldName = 'tkt_status'
-      Origin = 'tkt_status'
-      FixedChar = True
-      Size = 1
-    end
-    object qrytkt_phone1: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Tel. 1'
-      FieldName = 'tkt_phone1'
-      Origin = 'tkt_phone1'
-      Size = 15
-    end
-    object qrytkt_phone2: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Tel. 2'
-      FieldName = 'tkt_phone2'
-      Origin = 'tkt_phone2'
-      Size = 15
-    end
-    object qrytkt_contact: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contato'
-      FieldName = 'tkt_contact'
-      Origin = 'tkt_contact'
-      Size = 15
-    end
-    object qrytkt_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'tkt_dt_registration'
-      Origin = 'tkt_dt_registration'
-    end
+  inherited qry: TFDQuery [5]
   end
-  inherited QExport4Dialog_1: TQExport4Dialog
+  inherited ACBrEnterTab_1: TACBrEnterTab [6]
+  end
+  inherited QExport4Dialog_1: TQExport4Dialog [7]
     Formats.IntegerFormat = '#,###,##0'
     Formats.FloatFormat = '#,###,##0.00'
     Formats.DateFormat = 'dd/MM/yy'
@@ -847,187 +705,31 @@ inherited frm_ticket: Tfrm_ticket
     Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
     Formats.CurrencyFormat = 'R$#,###,##0.00'
   end
-  inherited QImport3Wizard_1: TQImport3Wizard
+  inherited QImport3Wizard_1: TQImport3Wizard [8]
     Formats.ShortDateFormat = 'dd/MM/yy'
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
-  inherited frxReport_1: TfrxReport
+  inherited schadp: TFDSchemaAdapter [9]
+  end
+  inherited frxReport_1: TfrxReport [10]
     Datasets = <>
     Variables = <>
     Style = <>
   end
-  object qry_client: TFDQuery
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
-    Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'select * from client')
-    Left = 584
-    Top = 96
+  inherited mem: TFDMemTable [11]
   end
-  object ds_client: TDataSource
-    DataSet = qry_client
-    Left = 616
-    Top = 96
+  inherited cxGridPopupMenu_1: TcxGridPopupMenu [12]
   end
-  object ds_reseller: TDataSource
-    DataSet = qry_reseller
-    Left = 616
-    Top = 144
+  inherited PopupMenu_1: TPopupMenu [13]
   end
-  object qry_reseller: TFDQuery
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
-    Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'select * from reseller')
-    Left = 584
-    Top = 144
+  inherited cxImageList_1: TcxImageList [14]
+    FormatVersion = 1
   end
-  object qry_ticket_type: TFDQuery
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
-    Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'select * from ticket_type')
-    Left = 648
-    Top = 96
-  end
-  object ds_ticket_type: TDataSource
-    DataSet = qry_ticket_type
-    Left = 680
-    Top = 96
-  end
-  object ds_ticket_category: TDataSource
-    DataSet = qry_ticket_category
-    Left = 680
-    Top = 144
-  end
-  object qry_ticket_category: TFDQuery
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
-    Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'select * from ticket_category')
-    Left = 648
-    Top = 144
-  end
-  object qry_ticket_interaction: TFDQuery
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'ticket_tkt_id'
-    MasterSource = ds
-    MasterFields = 'tkt_id'
-    DetailFields = 'ticket_tkt_id'
-    Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'select * from ticket_interaction')
-    Left = 520
-    Top = 96
-    object qry_ticket_interactiontki_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'tki_id'
-      Origin = 'tki_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList [15]
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
     end
-    object qry_ticket_interactionticket_tkt_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Ticket ID'
-      FieldName = 'ticket_tkt_id'
-      Origin = 'ticket_tkt_id'
-    end
-    object qry_ticket_interactiontki_reason: TMemoField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Motivo'
-      FieldName = 'tki_reason'
-      Origin = 'tki_reason'
-      BlobType = ftMemo
-    end
-    object qry_ticket_interactiontki_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'tki_dt_registration'
-      Origin = 'tki_dt_registration'
-    end
-  end
-  object ds_ticket_interaction: TDataSource
-    DataSet = qry_ticket_interaction
-    Left = 552
-    Top = 96
-  end
-  object qry_ticket_priority: TFDQuery
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
-    Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'select * from ticket_priority')
-    Left = 520
-    Top = 144
-  end
-  object ds_ticket_priority: TDataSource
-    DataSet = qry_ticket_priority
-    Left = 552
-    Top = 144
-  end
-  object qry_ticket_category_sub: TFDQuery
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'ticket_category_tkc_id'
-    MasterSource = ds_ticket_category
-    MasterFields = 'tkc_id'
-    DetailFields = 'ticket_category_tkc_id'
-    Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'select * from ticket_category_sub')
-    Left = 456
-    Top = 144
-  end
-  object ds_ticket_category_sub: TDataSource
-    DataSet = qry_ticket_category_sub
-    Left = 488
-    Top = 144
-  end
-  object ds_enterprise: TDataSource
-    DataSet = qry_enterprise
-    Left = 488
-    Top = 96
-  end
-  object qry_enterprise: TFDQuery
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
-    Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'select * from enterprise')
-    Left = 456
-    Top = 96
-  end
-  object qry_contract_user: TFDQuery
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
-    Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'select * from contract_user')
-    Left = 712
-    Top = 144
-  end
-  object ds_contract_user: TDataSource
-    DataSet = qry_contract_user
-    Left = 744
-    Top = 144
   end
 end

@@ -390,6 +390,10 @@ inherited frm_reseller: Tfrm_reseller
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Endere'#231'os'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -597,6 +601,10 @@ inherited frm_reseller: Tfrm_reseller
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Contatos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -667,7 +675,6 @@ inherited frm_reseller: Tfrm_reseller
               Parent = dxLayoutGroup6
               CaptionOptions.Text = 'Contato'
               ButtonOptions.Buttons = <>
-              ItemIndex = 4
               LayoutDirection = ldHorizontal
               Index = 0
             end

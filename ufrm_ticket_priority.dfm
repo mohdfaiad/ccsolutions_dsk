@@ -13,7 +13,11 @@ inherited frm_ticket_priority: Tfrm_ticket_priority
           end
           object cxGrid_1DBTableView1tkp_name: TcxGridDBColumn
             DataBinding.FieldName = 'tkp_name'
-            Width = 250
+            Width = 200
+          end
+          object cxGrid_1DBTableView1tkp_status: TcxGridDBColumn
+            DataBinding.FieldName = 'tkp_status'
+            Width = 50
           end
           object cxGrid_1DBTableView1tkp_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'tkp_dt_registration'
@@ -25,14 +29,14 @@ inherited frm_ticket_priority: Tfrm_ticket_priority
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 776
-      ExplicitHeight = 472
+      ExplicitWidth = 1000
+      ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 762
-          ExplicitHeight = 432
+          ExplicitWidth = 986
+          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'tkp_id'
@@ -40,15 +44,29 @@ inherited frm_ticket_priority: Tfrm_ticket_priority
             inherited dbedt_dt_registration: TcxDBDateEdit
               DataBinding.DataField = 'tkp_dt_registration'
             end
-            object cxDBTextEdit1: TcxDBTextEdit [2]
+            object dbedt_name: TcxDBTextEdit [2]
               Left = 59
               Top = 103
               DataBinding.DataField = 'tkp_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
+              TabOrder = 3
+              Width = 362
+            end
+            object dbchk_status: TcxDBCheckBox [3]
+              Left = 368
+              Top = 38
+              Caption = 'Status'
+              DataBinding.DataField = 'tkp_status'
+              DataBinding.DataSource = ds
+              Properties.Alignment = taRightJustify
+              Properties.ValueChecked = 1
+              Properties.ValueGrayed = '1'
+              Properties.ValueUnchecked = 0
+              Style.HotTrack = False
               TabOrder = 2
-              Width = 303
+              Transparent = True
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 1
@@ -56,57 +74,40 @@ inherited frm_ticket_priority: Tfrm_ticket_priority
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
               CaptionOptions.Text = 'Nome'
-              Control = cxDBTextEdit1
+              Control = dbedt_name
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 0
+            end
+            object dxLayoutItem4: TdxLayoutItem
+              Parent = dxLayoutGroup1
+              CaptionOptions.Text = 'cxDBCheckBox1'
+              CaptionOptions.Visible = False
+              Control = dbchk_status
+              ControlOptions.OriginalHeight = 19
+              ControlOptions.OriginalWidth = 53
+              ControlOptions.ShowBorder = False
+              Index = 2
             end
           end
         end
       end
     end
   end
-  inherited cxImageList_1: TcxImageList
-    FormatVersion = 1
+  inherited dxBarManager_1: TdxBarManager
+    PixelsPerInch = 96
   end
-  inherited qry: TFDQuery
-    Active = True
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_id'
-    MasterSource = frm_dm.ds_signin
-    MasterFields = 'ctr_id'
-    DetailFields = 'contract_ctr_id'
-    Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'select * from ticket_priority')
-    object qrytkp_id: TFDAutoIncField
-      DisplayLabel = 'C'#243'd. ID'
-      FieldName = 'tkp_id'
-      Origin = 'tkp_id'
-      ProviderFlags = [pfInWhere, pfInKey]
-    end
-    object qrycontract_ctr_id: TIntegerField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Contrato ID'
-      FieldName = 'contract_ctr_id'
-      Origin = 'contract_ctr_id'
-    end
-    object qrytkp_name: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
-      FieldName = 'tkp_name'
-      Origin = 'tkp_name'
-      Size = 25
-    end
-    object qrytkp_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'tkp_dt_registration'
-      Origin = 'tkp_dt_registration'
+  inherited ActionList_1: TActionList
+    inherited Action_save: TAction
+      OnExecute = Action_saveExecute
     end
   end
-  inherited QExport4Dialog_1: TQExport4Dialog
+  inherited qry: TFDQuery [5]
+  end
+  inherited ACBrEnterTab_1: TACBrEnterTab [6]
+  end
+  inherited QExport4Dialog_1: TQExport4Dialog [7]
     Formats.IntegerFormat = '#,###,##0'
     Formats.FloatFormat = '#,###,##0.00'
     Formats.DateFormat = 'dd/MM/yy'
@@ -114,15 +115,70 @@ inherited frm_ticket_priority: Tfrm_ticket_priority
     Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
     Formats.CurrencyFormat = 'R$#,###,##0.00'
   end
-  inherited QImport3Wizard_1: TQImport3Wizard
+  inherited QImport3Wizard_1: TQImport3Wizard [8]
     Formats.ShortDateFormat = 'dd/MM/yy'
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
-  inherited frxReport_1: TfrxReport
+  inherited schadp: TFDSchemaAdapter [9]
+  end
+  inherited frxReport_1: TfrxReport [10]
     Datasets = <>
     Variables = <>
     Style = <>
+  end
+  inherited cxGridPopupMenu_1: TcxGridPopupMenu [11]
+  end
+  inherited mem: TFDMemTable [12]
+    Active = True
+    object memtkp_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd'
+      FieldName = 'tkp_cod'
+      Origin = 'tkp_cod'
+      Size = 32
+    end
+    object memtkp_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'tkp_id'
+      Origin = 'tkp_id'
+    end
+    object memtkp_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'tkp_name'
+      Origin = 'tkp_name'
+      Size = 35
+    end
+    object memtkp_status: TShortintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'tkp_status'
+      Origin = 'tkp_status'
+    end
+    object memtkp_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'tkp_deleted_at'
+      Origin = 'tkp_deleted_at'
+    end
+    object memtkp_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'tkp_dt_registration'
+      Origin = 'tkp_dt_registration'
+    end
+  end
+  inherited PopupMenu_1: TPopupMenu [13]
+  end
+  inherited cxImageList_1: TcxImageList [14]
+    FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList [15]
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
   end
 end

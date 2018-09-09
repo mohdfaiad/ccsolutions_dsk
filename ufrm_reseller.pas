@@ -114,6 +114,7 @@ uses
   cxDataControllerConditionalFormattingRulesManagerDialog,
   cxDBLookupComboBox,
   cxImageList,
+  cxCheckBox,
 
   Data.DB,
 
@@ -141,7 +142,7 @@ uses
   ufrm_form_default,
 
   u_class_connection,
-  u_class_rest_reseller, cxCheckBox;
+  u_class_rest_reseller;
 
 type
   Tfrm_reseller = class(Tfrm_form_default)

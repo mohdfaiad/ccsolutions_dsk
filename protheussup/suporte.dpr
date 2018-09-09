@@ -1,12 +1,11 @@
-program protheussup;
+program suporte;
 
 uses
   Vcl.Forms,
-  ufrm_protheussup in 'ufrm_protheussup.pas' {frm_protheussup},
+  ufrm_suporte in 'ufrm_suporte.pas' {frm_protheussup},
   ufrm_form_default in '..\models\ufrm_form_default.pas' {frm_form_default},
   ufrm_import_default in '..\models\ufrm_import_default.pas' {frm_import_default},
   ufrm_main_default in '..\models\ufrm_main_default.pas' {frm_main_default},
-  ufrm_main_default_2 in '..\models\ufrm_main_default_2.pas' {frm_main_default_2},
   ufrm_search in '..\models\ufrm_search.pas' {frm_search},
   ufrm_dm in '..\ufrm_dm.pas' {frm_dm: TDataModule},
   ufrm_dm_ds in '..\ufrm_dm_ds.pas' {frm_dm_ds: TDataModule},
@@ -30,7 +29,23 @@ uses
   ufrm_reseller in '..\ufrm_reseller.pas' {frm_reseller},
   ufrm_ticket_priority in '..\ufrm_ticket_priority.pas' {frm_ticket_priority},
   ufrm_ticket_interaction in '..\ufrm_ticket_interaction.pas' {frm_ticket_interaction},
-  uclass_thread_ticket_interation in '..\uclass_thread_ticket_interation.pas';
+  uclass_thread_ticket_interation in '..\uclass_thread_ticket_interation.pas',
+  u_class_connection in '..\u_class_connection.pas',
+  u_class_rest_client in '..\u_class_rest_client.pas',
+  u_class_rest_contract in '..\u_class_rest_contract.pas',
+  u_class_rest_contract_user in '..\u_class_rest_contract_user.pas',
+  u_class_rest_enterprise in '..\u_class_rest_enterprise.pas',
+  u_class_rest_login in '..\u_class_rest_login.pas',
+  u_class_rest_method in '..\u_class_rest_method.pas',
+  u_class_rest_phonebook in '..\u_class_rest_phonebook.pas',
+  u_class_rest_client_astpp in '..\u_class_rest_client_astpp.pas',
+  u_class_rest_client_sippulse in '..\u_class_rest_client_sippulse.pas',
+  u_class_rest_reseller in '..\u_class_rest_reseller.pas',
+  u_class_rest_supplier in '..\u_class_rest_supplier.pas',
+  u_class_rest_ticket_type in '..\u_class_rest_ticket_type.pas',
+  u_class_rest_ticket_priority in '..\u_class_rest_ticket_priority.pas',
+  u_class_rest_category in '..\u_class_rest_category.pas',
+  u_class_rest_category_sub in '..\u_class_rest_category_sub.pas';
 
 {$R *.res}
 
@@ -38,8 +53,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfrm_dm, frm_dm);
-  Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
-  Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
   Application.Run;
 end.

@@ -104,7 +104,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="ufrm_laboratorio.pas">
-            <Form>frm_protheuslab</Form>
+            <Form>frm_laboratorio</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_dm.pas">
@@ -221,7 +221,6 @@
         <DCCReference Include="..\u_class_rest_method.pas"/>
         <DCCReference Include="..\u_class_rest_phonebook.pas"/>
         <DCCReference Include="..\u_class_rest_supplier.pas"/>
-        <DCCReference Include="..\u_class_connection.pas"/>
         <DCCReference Include="..\u_class_rest_client_astpp.pas"/>
         <DCCReference Include="..\u_class_rest_client_sippulse.pas"/>
         <DCCReference Include="..\u_class_rest_contract_user.pas"/>
@@ -229,6 +228,9 @@
             <Form>frm_contract_user</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\u_class_rest_material.pas"/>
+        <DCCReference Include="..\u_class_connection.pas"/>
+        <DCCReference Include="..\u_class_rest_medicine.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

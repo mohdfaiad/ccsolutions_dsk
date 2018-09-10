@@ -140,7 +140,7 @@ uses
 
   ufrm_print_default,
 
-  u_class_rest_print_astpp;
+  u_class_rest_print_astpp, frxChart;
 
 type
   Tfrm_print_astpp = class(Tfrm_print_default)
@@ -235,6 +235,7 @@ type
     memEnterpriseent_deleted_at: TDateTimeField;
     memEnterpriseent_dt_registration: TDateTimeField;
     dbdsEnterprise: TfrxDBDataset;
+    frxChartObject1: TfrxChartObject;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_filterExecute(Sender: TObject);

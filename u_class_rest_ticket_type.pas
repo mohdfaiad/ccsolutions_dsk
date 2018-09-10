@@ -34,8 +34,8 @@ class function Trest_ticket_type.GetTicketType(mem: TFDMemTable): Boolean;
 begin
   try
     try
-      Trest_ticket_type.v_method        := '/api/rest/ticket_types/TicketType';
-      Trest_ticket_type.v_parameter     := Tconnection.ctr_token;
+      v_method        := '/api/rest/ticket_types/TicketType';
+      v_parameter     := Tconnection.ctr_token;
 
       begin
         if get(Trest_methods.v_method, Trest_methods.v_parameter) then begin

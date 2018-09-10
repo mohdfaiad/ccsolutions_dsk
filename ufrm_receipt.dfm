@@ -114,7 +114,6 @@ inherited frm_receipt: Tfrm_receipt
                   FieldName = 'cli_first_name'
                 end>
               Properties.ListSource = ds_client
-              Properties.OnCloseUp = cxLookupComboBox1PropertiesCloseUp
               Style.HotTrack = False
               TabOrder = 3
               Width = 302
@@ -225,9 +224,6 @@ inherited frm_receipt: Tfrm_receipt
   end
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\modulo\financeiro\recibo'
-    end
     object dxBarSubItem1: TdxBarSubItem
       Caption = 'Imprimir Recibo'
       Category = 0
@@ -245,7 +241,6 @@ inherited frm_receipt: Tfrm_receipt
   end
   inherited qry: TFDQuery
     Active = True
-    AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'

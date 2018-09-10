@@ -100,7 +100,25 @@ uses
   cxLocalization,
   cxImageList,
 
-  ufrm_main_default;
+  ufrm_main_default,
+
+  ufrm_login,
+  ufrm_contract,
+  ufrm_enterprise,
+  ufrm_phonebook,
+  ufrm_receipt,
+  ufrm_exam,
+  ufrm_material,
+  ufrm_report,
+  ufrm_insurance,
+  ufrm_department,
+  ufrm_medicine,
+  ufrm_requisition_type,
+  ufrm_requisition,
+  ufrm_dm,
+  ufrm_supplier,
+  ufrm_client,
+  ufrm_contract_user;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -173,11 +191,6 @@ var
 implementation
 
 {$R *.dfm}
-
-uses ufrm_login, ufrm_contract, ufrm_enterprise, ufrm_phonebook, ufrm_receipt,
-  ufrm_exam, ufrm_material, ufrm_report, ufrm_insurance, ufrm_department,
-  ufrm_medicine, ufrm_requisition_type, ufrm_requisition, ufrm_dm,
-  ufrm_supplier, ufrm_client, ufrm_contract_user;
 
 procedure Tfrm_main.acTableExecute(Sender: TObject);
 begin
@@ -421,10 +434,8 @@ begin
   frm_login := Tfrm_login.Create(Self);
   frm_login.ShowModal;
 
-  if frm_login.ModalResult <> mrOk then
-  begin
-    MessageDlg('Você não se autenticou. A aplicação será encerrada!', mtWarning,
-      [mbOK], 0);
+  if frm_login.ModalResult <> mrOk then begin
+    MessageDlg('Você não se autenticou. A aplicação será encerrada!', mtWarning, [mbOK], 0);
     Application.Terminate;
   end;
 end;

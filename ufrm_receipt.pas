@@ -106,21 +106,11 @@ type
     qryclientCod: TStringField;
     qryenterpriseCod: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure qryAfterInsert(DataSet: TDataSet);
-    procedure Action_printExecute(Sender: TObject);
-    procedure cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
-    procedure cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure Action_saveExecute(Sender: TObject);
-    procedure cxDBLookupComboBox1PropertiesCloseUp(Sender: TObject);
-    procedure cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
     procedure cxLookupComboBox2PropertiesCloseUp(Sender: TObject);
   private
-    { Private declarations }
-    rec_cod:string;
+
   public
-    { Public declarations }
-    procedure limpaCache(Sender:TObject);
+
   end;
 
 var
@@ -131,89 +121,6 @@ implementation
 {$R *.dfm}
 
 uses ufrm_dm;
-
-procedure Tfrm_receipt.Action_printExecute(Sender: TObject);
-begin
- cxLookupComboBoxClient.ItemIndex:=-1;
- qry_client.Locate('cliCod',qryclientCod.AsString,[]);
-
- cxLookupComboBoxEnterprise.ItemIndex:=-1;
- qry_enterprise.Locate('entCod',qryenterpriseCod.AsString,[]);
-
- frxReport_1.LoadFromFile(TcxShellComboBoxProperties(cxBarEditItem_1.Properties).Root.CurrentPath +'\'+cxBarEditItem_1.EditValue);
- frxReport_1.variables['extenso'] := QuotedStr(ACBrExtenso1.ValorToTexto(qryrec_value.AsFloat));
- if Application.MessageBox('Deseja imprimir duas vias do recibo?','RECIBO',MB_YESNO + MB_ICONQUESTION) = mrYes  then
-  frxReport_1.variables['2vias'] := QuotedStr('SIM')
-   else
-    frxReport_1.variables['2vias'] := QuotedStr('NAO');
-  frxReport_1.ShowReport;
- end;
-
-
-
-procedure Tfrm_receipt.Action_saveExecute(Sender: TObject);
-begin
-  inherited;
-//
-//  if ds.DataSet.State in [dsEdit] then
-//    Exit;
-//
-//   with frm_dm.qry,sql do
-//    begin
-//      close;
-//      Text:= ' select case when max(rec_id) is null then 1 ' +
-//          '      else (max(rec_id) + 1) end as maxID from receipt '+
-//          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-//      Prepare;
-//      Open;
-//      if not (qry.State in [dsInsert,dsEdit])  then
-//        qry.Edit;
-//
-//      if qryrec_id.AsInteger = 0 then
-//        qryrec_id.AsInteger:=Fields[0].AsInteger;
-//
-//
-//        qry.Post;
-//        qry.ApplyUpdates(0);
-//    end;
-//
-//   qry.Close;
-//   qry.Close;
-//   qry.SQL.Text:= ' select receipt.*,hex(client_cli_cod) clientCod,hex(enterprise_ent_cod) enterpriseCod from receipt '+
-//                  ' where rec_deleted_at is null ';
-//   qry.Prepare;
-//   qry.open;
-//   qry.Edit;
-
-end;
-
-procedure Tfrm_receipt.cxDBLookupComboBox1PropertiesCloseUp(Sender: TObject);
-begin
-  inherited;
-qryclient_cli_cod.Value:=qry_clientcli_cod.Value;
-qry.Post;
-
-end;
-
-procedure Tfrm_receipt.cxDBLookupComboBox1PropertiesPopup(Sender: TObject);
-begin
-  inherited;
-   //Comando para atualizar combobox
-  qry_client.Refresh;
-end;
-
-procedure Tfrm_receipt.cxDBLookupComboBox2PropertiesPopup(Sender: TObject);
-begin
-  inherited;
-  //Comando para atualizar combobox
-  qry_enterprise.Refresh;
-end;
-
-procedure Tfrm_receipt.cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
-begin
-  inherited;
- qryclient_cli_cod.Value:=qry_clientcli_cod.Value;
-end;
 
 procedure Tfrm_receipt.cxLookupComboBox2PropertiesCloseUp(Sender: TObject);
 begin
@@ -226,47 +133,6 @@ begin
   inherited;
   frm_receipt.Destroy;
   frm_receipt := Nil;
-end;
-
-procedure Tfrm_receipt.FormCreate(Sender: TObject);
-begin
-  inherited;
-//  schadapter.AfterApplyUpdate := limpaCache;
-end;
-
-procedure Tfrm_receipt.limpaCache(Sender: TObject);
-begin
-   qry.CommitUpdates();
-end;
-
-procedure Tfrm_receipt.qryAfterInsert(DataSet: TDataSet);
-begin
-  inherited;
-// With frm_dm.qry,sql do
-//  begin
-//   close;
-//   text:='select hex(uuid_to_bin(uuid()))';
-//   prepare;
-//   open;
-//
-//   rec_cod:=Fields[0].AsString;
-//
-//   Close;
-//   Text:='insert into receipt (rec_id,rec_cod,contract_ctr_cod,rec_dt_registration) ' +
-//         ' select 0,unhex( '+  QuotedStr(rec_cod) + '), unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' +',now()';
-//
-//   Prepare;
-//   ExecSQL;
-//  end;
-//
-//   qry.Close;
-//   qry.SQL.Text:= ' select receipt.*,hex(client_cli_cod) clientCod,hex(enterprise_ent_cod) enterpriseCod from receipt ' +
-//                  ' where rec_deleted_at is null ' +
-//                  ' and rec_cod = unhex('+ QuotedStr(rec_cod) + ')';
-//   qry.Prepare;
-//   qry.open;
-//   qry.Edit;
-
 end;
 
 end.

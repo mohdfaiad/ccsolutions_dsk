@@ -1,7 +1,7 @@
-object frm_protheuslab: Tfrm_protheuslab
+object frm_laboratorio: Tfrm_laboratorio
   Left = 0
   Top = 0
-  Caption = 'frm_protheuslab'
+  Caption = 'frm_laboratorio'
   ClientHeight = 201
   ClientWidth = 447
   Color = clBtnFace

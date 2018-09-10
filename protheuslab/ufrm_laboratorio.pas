@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
 
 type
-  Tfrm_protheuslab = class(TForm)
+  Tfrm_laboratorio = class(TForm)
   private
     { Private declarations }
   public
@@ -15,7 +15,7 @@ type
   end;
 
 var
-  frm_protheuslab: Tfrm_protheuslab;
+  frm_laboratorio: Tfrm_laboratorio;
 
 implementation
 

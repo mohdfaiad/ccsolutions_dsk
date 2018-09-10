@@ -8,17 +8,20 @@ inherited frm_material: Tfrm_material
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
-      ExplicitHeight = 512
+      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1mat_id: TcxGridDBColumn
-            Caption = 'C'#243'd.: ID'
             DataBinding.FieldName = 'mat_id'
-            Width = 65
+            Width = 75
           end
           object cxGrid_1DBTableView1mat_name: TcxGridDBColumn
             DataBinding.FieldName = 'mat_name'
-            Width = 300
+            Width = 200
+          end
+          object cxGrid_1DBTableView1mat_status: TcxGridDBColumn
+            DataBinding.FieldName = 'mat_status'
+            Width = 50
           end
           object cxGrid_1DBTableView1mat_dt_registration: TcxGridDBColumn
             DataBinding.FieldName = 'mat_dt_registration'
@@ -31,7 +34,7 @@ inherited frm_material: Tfrm_material
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
-      ExplicitHeight = 512
+      ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
@@ -45,24 +48,47 @@ inherited frm_material: Tfrm_material
             inherited dbedt_dt_registration: TcxDBDateEdit
               DataBinding.DataField = 'mat_dt_registration'
             end
-            object cxDBTextEdit1: TcxDBTextEdit [2]
+            object dbedt_name: TcxDBTextEdit [2]
               Left = 59
               Top = 103
               DataBinding.DataField = 'mat_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
+              TabOrder = 3
+              Width = 362
+            end
+            object dbchk_status: TcxDBCheckBox [3]
+              Left = 368
+              Top = 38
+              Caption = 'Status'
+              DataBinding.DataField = 'mat_status'
+              DataBinding.DataSource = ds
+              Properties.Alignment = taRightJustify
+              Properties.ValueChecked = 1
+              Properties.ValueUnchecked = 0
+              Style.HotTrack = False
               TabOrder = 2
-              Width = 303
+              Transparent = True
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
               CaptionOptions.Text = 'Nome'
-              Control = cxDBTextEdit1
+              Control = dbedt_name
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 0
+            end
+            object dxLayoutItem4: TdxLayoutItem
+              Parent = dxLayoutGroup1
+              CaptionOptions.Text = 'cxDBCheckBox1'
+              CaptionOptions.Visible = False
+              Control = dbchk_status
+              ControlOptions.OriginalHeight = 19
+              ControlOptions.OriginalWidth = 53
+              ControlOptions.ShowBorder = False
+              Index = 2
             end
           end
         end
@@ -72,66 +98,16 @@ inherited frm_material: Tfrm_material
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
   end
-  inherited cxImageList_1: TcxImageList
-    FormatVersion = 1
-  end
-  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
-    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
-      PixelsPerInch = 96
+  inherited ActionList_1: TActionList
+    inherited Action_save: TAction
+      OnExecute = Action_saveExecute
     end
   end
-  inherited qry: TFDQuery
-    AfterInsert = qryAfterInsert
-    IndexFieldNames = 'contract_ctr_cod'
-    MasterFields = 'ctr_cod'
-    DetailFields = 'contract_ctr_cod'
-    Connection = frm_dm.connCCS
-    SQL.Strings = (
-      'select * from material'#13#10#10
-      'where mat_deleted_at is null')
-    object qrymat_name: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
-      FieldName = 'mat_name'
-      Origin = 'mat_name'
-      Size = 35
-    end
-    object qrymat_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'mat_dt_registration'
-      Origin = 'mat_dt_registration'
-    end
-    object qrymat_cod: TBytesField
-      FieldName = 'mat_cod'
-      Origin = 'mat_cod'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object qrycontract_ctr_cod: TBytesField
-      AutoGenerateValue = arDefault
-      FieldName = 'contract_ctr_cod'
-      Origin = 'contract_ctr_cod'
-    end
-    object qrymat_id: TLongWordField
-      AutoGenerateValue = arDefault
-      FieldName = 'mat_id'
-      Origin = 'mat_id'
-    end
-    object qrymat_status: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'mat_status'
-      Origin = 'mat_status'
-      FixedChar = True
-      Size = 1
-    end
-    object qrymat_deleted_at: TDateTimeField
-      AutoGenerateValue = arDefault
-      FieldName = 'mat_deleted_at'
-      Origin = 'mat_deleted_at'
-    end
+  inherited qry: TFDQuery [5]
   end
-  inherited QExport4Dialog_1: TQExport4Dialog
+  inherited ACBrEnterTab_1: TACBrEnterTab [6]
+  end
+  inherited QExport4Dialog_1: TQExport4Dialog [7]
     Formats.IntegerFormat = '#,###,##0'
     Formats.FloatFormat = '#,###,##0.00'
     Formats.DateFormat = 'dd/MM/yy'
@@ -139,15 +115,71 @@ inherited frm_material: Tfrm_material
     Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
     Formats.CurrencyFormat = 'R$#,###,##0.00'
   end
-  inherited QImport3Wizard_1: TQImport3Wizard
+  inherited QImport3Wizard_1: TQImport3Wizard [8]
     Formats.ShortDateFormat = 'dd/MM/yy'
     Formats.LongDateFormat = 'd MMMM yyyy'
     Formats.ShortTimeFormat = 'hh:mm'
     Formats.LongTimeFormat = 'hh:mm:ss'
   end
-  inherited frxReport_1: TfrxReport
+  inherited schadp: TFDSchemaAdapter [9]
+  end
+  inherited frxReport_1: TfrxReport [10]
     Datasets = <>
     Variables = <>
     Style = <>
+  end
+  inherited mem: TFDMemTable [11]
+    Active = True
+    IndexFieldNames = 'mat_id'
+    object memmat_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'mat_cod'
+      Origin = 'mat_cod'
+      Size = 32
+    end
+    object memmat_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'mat_id'
+      Origin = 'mat_id'
+    end
+    object memmat_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'mat_name'
+      Origin = 'mat_name'
+      Size = 35
+    end
+    object memmat_status: TShortintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'mat_status'
+      Origin = 'mat_status'
+    end
+    object memmat_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'mat_deleted_at'
+      Origin = 'mat_deleted_at'
+    end
+    object memmat_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'mat_dt_registration'
+      Origin = 'mat_dt_registration'
+    end
+  end
+  inherited cxGridPopupMenu_1: TcxGridPopupMenu [12]
+  end
+  inherited PopupMenu_1: TPopupMenu [13]
+  end
+  inherited cxImageList_1: TcxImageList [14]
+    FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList [15]
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
   end
 end

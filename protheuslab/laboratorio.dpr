@@ -2,7 +2,7 @@ program laboratorio;
 
 uses
   Vcl.Forms,
-  ufrm_laboratorio in 'ufrm_laboratorio.pas' {frm_protheuslab},
+  ufrm_laboratorio in 'ufrm_laboratorio.pas' {frm_laboratorio},
   ufrm_dm in '..\ufrm_dm.pas' {frm_dm: TDataModule},
   ufrm_main in 'ufrm_main.pas' {frm_main},
   ufrm_contract in '..\ufrm_contract.pas' {frm_contract},
@@ -36,11 +36,13 @@ uses
   u_class_rest_method in '..\u_class_rest_method.pas',
   u_class_rest_phonebook in '..\u_class_rest_phonebook.pas',
   u_class_rest_supplier in '..\u_class_rest_supplier.pas',
-  u_class_connection in '..\u_class_connection.pas',
   u_class_rest_client_astpp in '..\u_class_rest_client_astpp.pas',
   u_class_rest_client_sippulse in '..\u_class_rest_client_sippulse.pas',
   u_class_rest_contract_user in '..\u_class_rest_contract_user.pas',
-  ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user};
+  ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
+  u_class_rest_material in '..\u_class_rest_material.pas',
+  u_class_connection in '..\u_class_connection.pas',
+  u_class_rest_medicine in '..\u_class_rest_medicine.pas';
 
 {$R *.res}
 

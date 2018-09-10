@@ -354,6 +354,10 @@ inherited frm_supplier: Tfrm_supplier
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -569,6 +573,10 @@ inherited frm_supplier: Tfrm_supplier
         end
         object tbsht_contact: TcxTabSheet
           Caption = 'Contatos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -639,7 +647,6 @@ inherited frm_supplier: Tfrm_supplier
               Parent = dxLayoutGroup4
               CaptionOptions.Text = 'Contatos'
               ButtonOptions.Buttons = <>
-              ItemIndex = 4
               LayoutDirection = ldHorizontal
               Index = 0
             end
@@ -704,9 +711,6 @@ inherited frm_supplier: Tfrm_supplier
   end
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\cadastro\basico\fornecedor'
-    end
   end
   inherited ActionList_1: TActionList
     inherited Action_save: TAction

@@ -188,6 +188,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\u_class_rest_print_astpp.pas"/>
+        <None Include="ModelSupport_telefonia\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -214,6 +215,12 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="ModelSupport_telefonia\default.txaPackage" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="C:\ccsolutions_dsk\protheustel\telefonia.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>telefonia.exe</RemoteName>

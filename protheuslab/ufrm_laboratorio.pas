@@ -1,4 +1,4 @@
-unit ufrm_protheuslab;
+unit ufrm_laboratorio;
 
 interface
 

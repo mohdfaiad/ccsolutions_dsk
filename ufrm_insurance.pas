@@ -321,25 +321,25 @@ end;
 procedure Tfrm_insurance.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
-
- if not result then
- Exit;
-
-
- with frm_dm.qry,sql do
- begin
-  Close;
-  Text:= ' delete from insurance ' +
-         ' where ins_cod = ' + ins_cod;
-  Prepare;
-  ExecSQL;
-
-  qry.Close;
-  qry.sql.text:= ' select insurance.*,concat(''0x'',hex(table_price_tbp_cod)) as codTabela from insurance' +
-                 ' where ins_deleted_at is null';
-  qry.Prepare;
-  qry.open;
- end;
+//
+// if not result then
+// Exit;
+//
+//
+// with frm_dm.qry,sql do
+// begin
+//  Close;
+//  Text:= ' delete from insurance ' +
+//         ' where ins_cod = ' + ins_cod;
+//  Prepare;
+//  ExecSQL;
+//
+//  qry.Close;
+//  qry.sql.text:= ' select insurance.*,concat(''0x'',hex(table_price_tbp_cod)) as codTabela from insurance' +
+//                 ' where ins_deleted_at is null';
+//  qry.Prepare;
+//  qry.open;
+// end;
 
 end;
 
@@ -347,36 +347,36 @@ end;
 procedure Tfrm_insurance.Action_saveExecute(Sender: TObject);
 begin
    inherited;
-if ds.DataSet.State in [dsEdit] then
-    Exit;
-
-
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(ins_id) is null then 1 ' +
-          '      else (max(ins_id) + 1) end as maxID from insurance '+
-          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-   Prepare;
-   Open;
-   if not (qry.State in [dsInsert,dsEdit])  then
-    qry.Edit;
-
-   if qryins_id.AsInteger = 0 then
-    qryins_id.AsInteger:=Fields[0].AsInteger;
-    qry.Post;
-    qry.ApplyUpdates(0);
- end;
-
-
-    if ds.DataSet.State in [dsEdit] then
-      Exit;
-
-       qry.Close;
-       qry.sql.text:= ' select insurance.*,concat(''0x'',hex(table_price_tbp_cod)) as codTabela from insurance' +
-                      ' where ins_deleted_at is null ';
-       qry.Prepare;
-       qry.open;
+//if ds.DataSet.State in [dsEdit] then
+//    Exit;
+//
+//
+//with frm_dm.qry,sql do
+// begin
+//   close;
+//   Text:= ' select case when max(ins_id) is null then 1 ' +
+//          '      else (max(ins_id) + 1) end as maxID from insurance '+
+//          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+//   Prepare;
+//   Open;
+//   if not (qry.State in [dsInsert,dsEdit])  then
+//    qry.Edit;
+//
+//   if qryins_id.AsInteger = 0 then
+//    qryins_id.AsInteger:=Fields[0].AsInteger;
+//    qry.Post;
+//    qry.ApplyUpdates(0);
+// end;
+//
+//
+//    if ds.DataSet.State in [dsEdit] then
+//      Exit;
+//
+//       qry.Close;
+//       qry.sql.text:= ' select insurance.*,concat(''0x'',hex(table_price_tbp_cod)) as codTabela from insurance' +
+//                      ' where ins_deleted_at is null ';
+//       qry.Prepare;
+//       qry.open;
 
 end;
 
@@ -435,32 +435,32 @@ end;
 procedure Tfrm_insurance.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-
- With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
-   prepare;
-   open;
-
-   ins_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into insurance (ins_id,ins_cod,contract_ctr_cod) ' +
-         ' select 0,'+ ins_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-   Prepare;
-   ExecSQL;
-  end;
-
-   qry.Unprepare;
-   qry.Close;
-   qry.sql.text:= ' select insurance.*,concat(''0x'',hex(table_price_tbp_cod)) as codTabela from insurance ' +
-                  ' where ins_cod = ' + ins_cod +
-                  ' and ins_deleted_at is null ';
-   qry.Prepare;
-   qry.open;
-   qry.Edit;
-   qryins_dt_registration.AsDateTime:=Now;
+//
+// With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+//   prepare;
+//   open;
+//
+//   ins_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into insurance (ins_id,ins_cod,contract_ctr_cod) ' +
+//         ' select 0,'+ ins_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//   qry.Unprepare;
+//   qry.Close;
+//   qry.sql.text:= ' select insurance.*,concat(''0x'',hex(table_price_tbp_cod)) as codTabela from insurance ' +
+//                  ' where ins_cod = ' + ins_cod +
+//                  ' and ins_deleted_at is null ';
+//   qry.Prepare;
+//   qry.open;
+//   qry.Edit;
+//   qryins_dt_registration.AsDateTime:=Now;
 end;
 
 end.

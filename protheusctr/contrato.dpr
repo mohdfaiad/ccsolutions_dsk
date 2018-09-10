@@ -14,21 +14,16 @@ uses
   ufrm_dm_ds in '..\ufrm_dm_ds.pas' {frm_dm_ds: TDataModule},
   ufrm_dm_report in '..\ufrm_dm_report.pas' {frm_dm_report: TDataModule},
   ufrm_report in '..\ufrm_report.pas' {frm_report},
-  u_class_report in '..\u_class_report.pas',
-  class_required_field in '..\class_required_field.pas',
   ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
   ufrm_contract in '..\ufrm_contract.pas' {frm_contract},
   ufrm_client in '..\ufrm_client.pas' {frm_client},
   ufrm_enterprise in '..\ufrm_enterprise.pas' {frm_enterprise},
   ufrm_consult_cnpj in '..\ufrm_consult_cnpj.pas' {frm_consult_cnpj},
   ufrm_consult_cpf in '..\ufrm_consult_cpf.pas' {frm_consult_cpf},
-  u_clientclasses in '..\u_clientclasses.pas',
-  ufrm_cm in '..\ufrm_cm.pas' {frm_cm: TDataModule},
   u_class_rest_contract in '..\u_class_rest_contract.pas',
   u_class_rest_method in '..\u_class_rest_method.pas',
   u_class_connection in '..\u_class_connection.pas',
   u_class_rest_login in '..\u_class_rest_login.pas',
-  u_class_phonebook in '..\u_class_phonebook.pas',
   u_class_rest_enterprise in '..\u_class_rest_enterprise.pas',
   u_class_rest_client in '..\u_class_rest_client.pas',
   ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
@@ -39,14 +34,16 @@ uses
   u_class_rest_product in '..\u_class_rest_product.pas',
   ufrm_client_contract in '..\ufrm_client_contract.pas' {frm_client_contract},
   u_class_rest_client_contract in '..\u_class_rest_client_contract.pas',
-  u_class_rest_client_contract_iten in '..\u_class_rest_client_contract_iten.pas';
+  u_class_rest_client_contract_iten in '..\u_class_rest_client_contract_iten.pas',
+  u_class_rest_client_astpp in '..\u_class_rest_client_astpp.pas',
+  u_class_rest_client_sippulse in '..\u_class_rest_client_sippulse.pas',
+  u_class_rest_phonebook in '..\u_class_rest_phonebook.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(Tfrm_cm, frm_cm);
   Application.CreateForm(Tfrm_dm, frm_dm);
   Application.CreateForm(Tfrm_main, frm_main);
   Application.Run;

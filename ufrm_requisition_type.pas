@@ -33,7 +33,9 @@ uses
   cxClasses, dxLayoutContainer, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxDBEdit, cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
-  ACBrSocket, ACBrCEP, frxClass;
+  ACBrSocket, ACBrCEP, frxClass,
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxDBLookupComboBox,
+  cxImageList;
 
 type
   Tfrm_requisition_type = class(Tfrm_form_default)
@@ -73,21 +75,21 @@ uses ufrm_dm;
 procedure Tfrm_requisition_type.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qryret_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
- with frm_dm.qry,sql do
- begin
-  Close;
-  Text:= ' delete from requisition_type ' +
-         ' where ret_cod = ' + ret_cod;
-  Prepare;
-  ExecSQL;
-
-  qry.Close;
-  qry.sql.text:= ' select * from requisition_type ' +
-                 ' where ret_deleted_at is null';
-  qry.Prepare;
-  qry.open;
- end;
+// if (qryret_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+// with frm_dm.qry,sql do
+// begin
+//  Close;
+//  Text:= ' delete from requisition_type ' +
+//         ' where ret_cod = ' + ret_cod;
+//  Prepare;
+//  ExecSQL;
+//
+//  qry.Close;
+//  qry.sql.text:= ' select * from requisition_type ' +
+//                 ' where ret_deleted_at is null';
+//  qry.Prepare;
+//  qry.open;
+// end;
 end;
 
 procedure Tfrm_requisition_type.Action_deleteExecute(Sender: TObject);
@@ -110,39 +112,39 @@ end;
 
 procedure Tfrm_requisition_type.Action_saveExecute(Sender: TObject);
 begin
-if trim(cxDBTextEdit1.Text) = ''  then
- begin
-   Application.MessageBox('Descrição do tipo de Requisição!','Tipo de Requisição', MB_OK + MB_ICONINFORMATION);
-   exit;
- end;
-
-  inherited;
-
-  if ds.DataSet.State in [dsEdit] then
-    Exit;
-
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(ret_id) is null then 1 ' +
-          '      else (max(ret_id) + 1) end as maxID from requisition_type '+
-          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-   Prepare;
-   Open;
-   if not (qry.State in [dsInsert,dsEdit])  then
-    qry.Edit;
-
-   if qryret_id.AsInteger = 0 then
-    qryret_id.AsInteger:=Fields[0].AsInteger;
-    qry.Post;
-    qry.ApplyUpdates(0);
-  end;
-
-       qry.Close;
-       qry.sql.text:= ' select * from requisition_type ' +
-                      ' where ret_deleted_at is null ';
-       qry.Prepare;
-       qry.open;
+//if trim(cxDBTextEdit1.Text) = ''  then
+// begin
+//   Application.MessageBox('Descrição do tipo de Requisição!','Tipo de Requisição', MB_OK + MB_ICONINFORMATION);
+//   exit;
+// end;
+//
+//  inherited;
+//
+//  if ds.DataSet.State in [dsEdit] then
+//    Exit;
+//
+//with frm_dm.qry,sql do
+// begin
+//   close;
+//   Text:= ' select case when max(ret_id) is null then 1 ' +
+//          '      else (max(ret_id) + 1) end as maxID from requisition_type '+
+//          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+//   Prepare;
+//   Open;
+//   if not (qry.State in [dsInsert,dsEdit])  then
+//    qry.Edit;
+//
+//   if qryret_id.AsInteger = 0 then
+//    qryret_id.AsInteger:=Fields[0].AsInteger;
+//    qry.Post;
+//    qry.ApplyUpdates(0);
+//  end;
+//
+//       qry.Close;
+//       qry.sql.text:= ' select * from requisition_type ' +
+//                      ' where ret_deleted_at is null ';
+//       qry.Prepare;
+//       qry.open;
 end;
 
 procedure Tfrm_requisition_type.FormClose(Sender: TObject;
@@ -156,30 +158,30 @@ end;
 procedure Tfrm_requisition_type.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
- With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
-   prepare;
-   open;
-
-   ret_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into requisition_type (ret_id,ret_cod,contract_ctr_cod) ' +
-         ' select 0,'+ ret_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-   Prepare;
-   ExecSQL;
-  end;
-
-   qry.Close;
-   qry.sql.text:= ' select * from requisition_type ' +
-                  ' where ret_cod = ' + ret_cod +
-                  ' and ret_deleted_at is null';
-   qry.Prepare;
-   qry.open;
-   qry.Edit;
-   qryret_dt_registration.AsDateTime:=Now;
+// With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+//   prepare;
+//   open;
+//
+//   ret_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into requisition_type (ret_id,ret_cod,contract_ctr_cod) ' +
+//         ' select 0,'+ ret_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//   qry.Close;
+//   qry.sql.text:= ' select * from requisition_type ' +
+//                  ' where ret_cod = ' + ret_cod +
+//                  ' and ret_deleted_at is null';
+//   qry.Prepare;
+//   qry.open;
+//   qry.Edit;
+//   qryret_dt_registration.AsDateTime:=Now;
 end;
 
 end.

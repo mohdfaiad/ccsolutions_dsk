@@ -140,7 +140,7 @@ uses
 
   ufrm_print_default,
 
-  u_class_print_astpp;
+  u_class_rest_print_astpp;
 
 type
   Tfrm_print_astpp = class(Tfrm_print_default)

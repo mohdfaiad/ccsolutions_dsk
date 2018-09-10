@@ -126,7 +126,7 @@ inherited frm_insurance: Tfrm_insurance
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 986
-          ExplicitHeight = 472
+          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 67
@@ -406,6 +406,10 @@ inherited frm_insurance: Tfrm_insurance
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Endere'#231'o e Contato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -739,6 +743,10 @@ inherited frm_insurance: Tfrm_insurance
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Contrato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -825,7 +833,6 @@ inherited frm_insurance: Tfrm_insurance
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -1050,7 +1057,6 @@ inherited frm_insurance: Tfrm_insurance
   object qry_table_price: TFDQuery
     Active = True
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS

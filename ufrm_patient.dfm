@@ -1,24 +1,16 @@
 inherited frm_patient: Tfrm_patient
   Caption = 'Manuten'#231#227'o: Paciente'
-  ClientHeight = 691
   OnClose = FormClose
   OnShow = FormShow
-  ExplicitHeight = 730
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Height = 636
-    Properties.ActivePage = cxTabSheet_2
-    ExplicitHeight = 636
-    ClientRectBottom = 630
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
       ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
-        Height = 596
-        ExplicitHeight = 596
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1Column1: TcxGridDBColumn
             Caption = 'C'#243'd.: ID'
@@ -193,17 +185,12 @@ inherited frm_patient: Tfrm_patient
       ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
-        Height = 596
-        ExplicitHeight = 596
-        ClientRectBottom = 590
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 986
           ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
-            Height = 562
-            ExplicitHeight = 562
             inherited dbedt_id: TcxDBTextEdit
               Left = 104
               DataBinding.DataField = 'cli_id'
@@ -716,10 +703,6 @@ inherited frm_patient: Tfrm_patient
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
           OnShow = cxTabSheet_addressShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1348,10 +1331,6 @@ inherited frm_patient: Tfrm_patient
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Contatos'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1493,10 +1472,6 @@ inherited frm_patient: Tfrm_patient
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1559,10 +1534,6 @@ inherited frm_patient: Tfrm_patient
         end
         object tabTelefonia: TcxTabSheet
           Caption = 'Telefonia'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1716,10 +1687,6 @@ inherited frm_patient: Tfrm_patient
         object tabLaboratorio: TcxTabSheet
           Caption = 'Laborat'#243'rio'
           OnShow = tabLaboratorioShow
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl5: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1826,10 +1793,6 @@ inherited frm_patient: Tfrm_patient
       ItemLinks = <
         item
           Visible = True
-          ItemName = 'dxBarButton1'
-        end
-        item
-          Visible = True
           ItemName = 'dxBarButton5'
         end>
     end
@@ -1861,7 +1824,6 @@ inherited frm_patient: Tfrm_patient
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -2247,7 +2209,6 @@ inherited frm_patient: Tfrm_patient
   object qry_insurance: TFDQuery
     Active = True
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -2400,7 +2361,6 @@ inherited frm_patient: Tfrm_patient
     Top = 130
   end
   object qry_client_sippulse: TFDQuery
-    Active = True
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'
@@ -2459,7 +2419,6 @@ inherited frm_patient: Tfrm_patient
     Top = 626
   end
   object qry_client_astpp: TFDQuery
-    Active = True
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
     MasterFields = 'cli_cod'

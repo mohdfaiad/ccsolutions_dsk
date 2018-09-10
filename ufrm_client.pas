@@ -397,9 +397,7 @@ type
     memClientASTPPclient_cli_cod: TStringField;
     memClientASTPPcla_account_astpp: TStringField;
     memClientASTPPcla_dt_registration: TDateTimeField;
-    dxBarButton1: TdxBarButton;
     astppgridviewcla_account_astpp: TcxGridDBColumn;
-    dxBarButton3: TdxBarButton;
     memClientSIPPulse: TFDMemTable;
     dsClientSIPPulse: TDataSource;
     memClientSIPPulsecls_cod: TStringField;
@@ -412,9 +410,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Action_consult_cpfExecute(Sender: TObject);
     procedure Action_consult_cnpjExecute(Sender: TObject);
-    procedure dxBarButton1Click(Sender: TObject);
     procedure astppgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
-    procedure dxBarButton3Click(Sender: TObject);
     procedure sipgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
   private
     procedure afterInsert;
@@ -587,6 +583,8 @@ procedure Tfrm_client.FormCreate(Sender: TObject);
 begin
   inherited;
   Trest_client.GetClient(mem);
+  Trest_client_astpp.GetClientATPP(memClientASTPP);
+  Trest_client_sippulse.GetClientSIPPulse(memClientSIPPulse);
 end;
 
 procedure Tfrm_client.sipgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
@@ -697,17 +695,5 @@ begin
       end;
   end;
 end;
-
-procedure Tfrm_client.dxBarButton1Click(Sender: TObject);
-begin
-  inherited;
-  Trest_client_astpp.GetClientATPP(memClientASTPP);
-end;
-
-procedure Tfrm_client.dxBarButton3Click(Sender: TObject);
-begin
-  inherited;
-  Trest_client_sippulse.GetClientSIPPulse(memClientSIPPulse);
-end;
-
+ 
 end.

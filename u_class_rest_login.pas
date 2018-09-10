@@ -3,12 +3,7 @@ unit u_class_rest_login;
 interface
 
 uses
-  System.SysUtils,
-
-  FireDAC.Comp.Client,
-
-  u_class_rest_method,
-  u_class_connection;
+  System.SysUtils, FireDAC.Comp.Client, u_class_rest_method, u_class_connection;
 
 type
   Trest_login = class(Trest_methods)
@@ -17,7 +12,7 @@ type
   protected
 
   public
-    class function contract_user_signin(mem: TFDMemTable): Boolean;
+    class function Logins(mem: TFDMemTable): Boolean;
 
   published
 
@@ -30,7 +25,7 @@ uses
 
 { Trest_login }
 
-class function Trest_login.contract_user_signin(mem: TFDMemTable): Boolean;
+class function Trest_login.Logins(mem: TFDMemTable): Boolean;
 begin
   try
     try

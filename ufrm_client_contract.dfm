@@ -5,10 +5,6 @@ inherited frm_client_contract: Tfrm_client_contract
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1cli_ctr_id: TcxGridDBColumn
@@ -35,16 +31,8 @@ inherited frm_client_contract: Tfrm_client_contract
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'cli_ctr_id'
@@ -330,20 +318,6 @@ inherited frm_client_contract: Tfrm_client_contract
   end
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
-    inherited dxBarManager_1Bar6: TdxBar
-      ItemLinks = <
-        item
-          Visible = True
-          ItemName = 'dxBarButton1'
-        end>
-    end
-    object dxBarButton1: TdxBarButton
-      Caption = 'Itens'
-      Category = 0
-      Hint = 'Itens'
-      Visible = ivAlways
-      OnClick = dxBarButton1Click
-    end
   end
   inherited ActionList_1: TActionList
     inherited Action_save: TAction
@@ -503,8 +477,8 @@ inherited frm_client_contract: Tfrm_client_contract
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 864
-    Top = 176
+    Left = 896
+    Top = 152
     object memProductpro_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'
@@ -701,8 +675,8 @@ inherited frm_client_contract: Tfrm_client_contract
   end
   object dsProduct: TDataSource
     DataSet = memProduct
-    Left = 896
-    Top = 176
+    Left = 928
+    Top = 152
   end
   object memReseller: TFDMemTable
     Active = True
@@ -713,8 +687,8 @@ inherited frm_client_contract: Tfrm_client_contract
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 864
-    Top = 128
+    Left = 896
+    Top = 104
     object memResellerres_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'
@@ -904,8 +878,8 @@ inherited frm_client_contract: Tfrm_client_contract
   end
   object dsReseller: TDataSource
     DataSet = memReseller
-    Left = 896
-    Top = 128
+    Left = 928
+    Top = 104
   end
   object memClient: TFDMemTable
     Active = True
@@ -916,8 +890,8 @@ inherited frm_client_contract: Tfrm_client_contract
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 864
-    Top = 224
+    Left = 896
+    Top = 200
     object memClientcli_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'
@@ -1299,8 +1273,8 @@ inherited frm_client_contract: Tfrm_client_contract
   end
   object dsClient: TDataSource
     DataSet = memClient
-    Left = 896
-    Top = 224
+    Left = 928
+    Top = 200
   end
   object memClientContractIten: TFDMemTable
     Active = True
@@ -1355,8 +1329,8 @@ inherited frm_client_contract: Tfrm_client_contract
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 864
-    Top = 272
+    Left = 896
+    Top = 248
     object memClientContractItencci_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'
@@ -1418,7 +1392,7 @@ inherited frm_client_contract: Tfrm_client_contract
   end
   object dsClientContractIten: TDataSource
     DataSet = memClientContractIten
-    Left = 896
-    Top = 272
+    Left = 928
+    Top = 248
   end
 end

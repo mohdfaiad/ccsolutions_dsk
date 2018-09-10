@@ -439,22 +439,22 @@ begin
 procedure Tfrm_patient.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qrycli_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
- with frm_dm.qry,sql do
- begin
-  Close;
-  Text:= ' delete from client ' +
-         ' where cli_cod = ' + cli_cod;
-  Prepare;
-  ExecSQL;
-
-  qry.Close;
-  qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod))as CodClient, hex(cli_cod)as ClientCod from client' +
-                 ' where contract_ctr_cod =:ctr_cod and cli_deleted_at is null ';
-  qry.ParamByName('CTR_COD').Value := frm_dm.qry_contractctr_cod.Value;
-  qry.Prepare;
-  qry.open;
- end;
+// if (qrycli_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+// with frm_dm.qry,sql do
+// begin
+//  Close;
+//  Text:= ' delete from client ' +
+//         ' where cli_cod = ' + cli_cod;
+//  Prepare;
+//  ExecSQL;
+//
+//  qry.Close;
+//  qry.sql.text:= ' select client.*,concat(''0x'',hex(cli_cod))as CodClient, hex(cli_cod)as ClientCod from client' +
+//                 ' where contract_ctr_cod =:ctr_cod and cli_deleted_at is null ';
+//  qry.ParamByName('CTR_COD').Value := frm_dm.qry_contractctr_cod.Value;
+//  qry.Prepare;
+//  qry.open;
+// end;
 end;
 
 procedure Tfrm_patient.Action_consult_cnpjExecute(Sender: TObject);
@@ -499,63 +499,63 @@ end;
 procedure Tfrm_patient.Action_saveExecute(Sender: TObject);
 
 begin
- if ((trim(edt_cpfcnpj.Text)<> '') and  (qrycli_id.AsInteger = 0))
-  or (cpfCnpj <> edt_cpfcnpj.Text)  then
-  begin
-   with frm_dm.qry,sql do
-    begin
-     close;
-     text:=' select * from client '+
-           ' where cli_cpfcnpj = ' + edt_cpfcnpj.Text;
-     prepare;
-     open;
-
-     if not IsEmpty then
-      begin
-      Application.MessageBox(PWideChar('Já existe um cliente com esse CPF/CNPJ cadastrado no sistema!' + #13+
-                                       'Cliente: '+ FieldByName('cli_first_name').AsString + #13 +
-                                       'CPF/CNPJ: ' + FieldByName('cli_cpfcnpj').AsString + #13 +
-                                       'O sistema irá localizar o cliente agora'),'CLIENTE',MB_OK + MB_ICONWARNING);
-      qry.Locate('cli_cpfcnpj',edt_cpfcnpj.Text,[]);
-      qry.Edit;
-      Exit;
-      end;
-    end;
-  end;
-
-
-
-if trim(edtClient.Text) = ''  then
- begin
-   Application.MessageBox('Nome do Cliente não informado!','Cadastro de Empresa', MB_OK + MB_ICONINFORMATION);
-   exit;
- end;
-
-   inherited;
-
-  if ds.DataSet.State in [dsEdit] then
-    Exit;
-
-   with frm_dm.qry,sql do
-    begin
-      close;
-      Text:= ' select case when max(cli_id) is null then 1 ' +
-          '      else (max(cli_id) + 1) end as maxID from client '+
-          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-      Prepare;
-      Open;
-      if not (qry.State in [dsInsert,dsEdit])  then
-        qry.Edit;
-
-      if qrycli_id.AsInteger = 0 then
-        qrycli_id.AsInteger:=Fields[0].AsInteger;
-
-
-        qry.Post;
-        qry.ApplyUpdates(0);
-    end;
-
-   AtualizarGrid;
+// if ((trim(edt_cpfcnpj.Text)<> '') and  (qrycli_id.AsInteger = 0))
+//  or (cpfCnpj <> edt_cpfcnpj.Text)  then
+//  begin
+//   with frm_dm.qry,sql do
+//    begin
+//     close;
+//     text:=' select * from client '+
+//           ' where cli_cpfcnpj = ' + edt_cpfcnpj.Text;
+//     prepare;
+//     open;
+//
+//     if not IsEmpty then
+//      begin
+//      Application.MessageBox(PWideChar('Já existe um cliente com esse CPF/CNPJ cadastrado no sistema!' + #13+
+//                                       'Cliente: '+ FieldByName('cli_first_name').AsString + #13 +
+//                                       'CPF/CNPJ: ' + FieldByName('cli_cpfcnpj').AsString + #13 +
+//                                       'O sistema irá localizar o cliente agora'),'CLIENTE',MB_OK + MB_ICONWARNING);
+//      qry.Locate('cli_cpfcnpj',edt_cpfcnpj.Text,[]);
+//      qry.Edit;
+//      Exit;
+//      end;
+//    end;
+//  end;
+//
+//
+//
+//if trim(edtClient.Text) = ''  then
+// begin
+//   Application.MessageBox('Nome do Cliente não informado!','Cadastro de Empresa', MB_OK + MB_ICONINFORMATION);
+//   exit;
+// end;
+//
+//   inherited;
+//
+//  if ds.DataSet.State in [dsEdit] then
+//    Exit;
+//
+//   with frm_dm.qry,sql do
+//    begin
+//      close;
+//      Text:= ' select case when max(cli_id) is null then 1 ' +
+//          '      else (max(cli_id) + 1) end as maxID from client '+
+//          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+//      Prepare;
+//      Open;
+//      if not (qry.State in [dsInsert,dsEdit])  then
+//        qry.Edit;
+//
+//      if qrycli_id.AsInteger = 0 then
+//        qrycli_id.AsInteger:=Fields[0].AsInteger;
+//
+//
+//        qry.Post;
+//        qry.ApplyUpdates(0);
+//    end;
+//
+//   AtualizarGrid;
 
 end;
 
@@ -577,37 +577,37 @@ end;
 
 procedure Tfrm_patient.AtualizarGrid;
 begin
-   qry.Close;
-   qry.SQL.Text:= ' select client.*,concat(''0x'',hex(cli_cod))as CodClient, hex(cli_cod)as ClientCod from client '+
-                 ' where contract_ctr_cod =:ctr_cod and cli_deleted_at is null ';
-   qry.ParamByName('CTR_COD').Value := frm_dm.qry_contractctr_cod.Value;
-   qry.Prepare;
-   qry.open;
-end;
-
-procedure Tfrm_patient.changeType;
-begin
-  if cxDBComboBox1.ItemIndex = 0 then
-  begin
-    dxLayoutItem6.Caption := 'Dt. Nasc.';
-    dxLayoutItem3.Caption := 'Nome';
-    dxLayoutItem4.Caption := 'Sobrenome';
-    dxLayoutItem35.Caption := 'CPF';
-    dxLayoutItem47.Caption := 'RG';
-    dxLayoutItem34.Visible := False;
-    dxLayoutItem33.Visible := False;
-
-  end
-  else
-  begin
-    dxLayoutItem6.Caption := 'Dt. Aber.';
-    dxLayoutItem3.Caption := 'Razão';
-    dxLayoutItem4.Caption := 'Fantasia';
-    dxLayoutItem35.Caption := 'CNPJ';
-    dxLayoutItem47.Caption := 'IE';
-    dxLayoutItem34.Visible := True;
-    dxLayoutItem33.Visible := True;
-  end;
+//   qry.Close;
+//   qry.SQL.Text:= ' select client.*,concat(''0x'',hex(cli_cod))as CodClient, hex(cli_cod)as ClientCod from client '+
+//                 ' where contract_ctr_cod =:ctr_cod and cli_deleted_at is null ';
+//   qry.ParamByName('CTR_COD').Value := frm_dm.qry_contractctr_cod.Value;
+//   qry.Prepare;
+//   qry.open;
+//end;
+//
+//procedure Tfrm_patient.changeType;
+//begin
+//  if cxDBComboBox1.ItemIndex = 0 then
+//  begin
+//    dxLayoutItem6.Caption := 'Dt. Nasc.';
+//    dxLayoutItem3.Caption := 'Nome';
+//    dxLayoutItem4.Caption := 'Sobrenome';
+//    dxLayoutItem35.Caption := 'CPF';
+//    dxLayoutItem47.Caption := 'RG';
+//    dxLayoutItem34.Visible := False;
+//    dxLayoutItem33.Visible := False;
+//
+//  end
+//  else
+//  begin
+//    dxLayoutItem6.Caption := 'Dt. Aber.';
+//    dxLayoutItem3.Caption := 'Razão';
+//    dxLayoutItem4.Caption := 'Fantasia';
+//    dxLayoutItem35.Caption := 'CNPJ';
+//    dxLayoutItem47.Caption := 'IE';
+//    dxLayoutItem34.Visible := True;
+//    dxLayoutItem33.Visible := True;
+//  end;
 end;
 
 procedure Tfrm_patient.cxDBButtonEdit1PropertiesButtonClick(Sender: TObject;
@@ -680,77 +680,77 @@ end;
 
 procedure Tfrm_patient.ExibirConvenios;
 begin
-   qry_insurance.Close;
-   qry_insurance.SQL.Text := ' select ins_cod, concat(''0x'',hex(ins_cod)) as codInsurance, table_price_tbp_cod, ins_id,contract_ctr_cod,ins_first_name from insurance  ' +
-                             ' where contract_ctr_cod = :ctr_cod and ins_deleted_at is null                               '+
-                             ' order by ins_first_name  ';
-   qry_insurance.ParamByName('CTR_COD').Value := frm_dm.qry_contractctr_cod.Value;
-   qry_insurance.Prepare;
-   qry_insurance.Open;
+//   qry_insurance.Close;
+//   qry_insurance.SQL.Text := ' select ins_cod, concat(''0x'',hex(ins_cod)) as codInsurance, table_price_tbp_cod, ins_id,contract_ctr_cod,ins_first_name from insurance  ' +
+//                             ' where contract_ctr_cod = :ctr_cod and ins_deleted_at is null                               '+
+//                             ' order by ins_first_name  ';
+//   qry_insurance.ParamByName('CTR_COD').Value := frm_dm.qry_contractctr_cod.Value;
+//   qry_insurance.Prepare;
+//   qry_insurance.Open;
 end;
 
 procedure Tfrm_patient.cxEditCodastppKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   inherited;
- if key = 13 then
-if Application.MessageBox('Deseja associar esse código Astpp para este cliente?',
-'CLIENTE', MB_YESNO + MB_ICONQUESTION) = mrYes       then
- begin
- With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
-   prepare;
-   open;
-
-   cls_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into client_astpp (cla_cod,client_cli_cod,cla_account_astpp,cla_dt_registration) ' +
-         ' select '+ cls_cod + ',' +  cli_cod + ',' +  QuotedStr(cxEditCodastpp.Text) + ', now()' ;
-   Prepare;
-   ExecSQL;
-  end;
-
-  qry_client_astpp.Close;
-  qry_client_astpp.Prepare;
-  qry_client_astpp.Open;
-  cxEditCodastpp.Clear;
-  cxEditCodastpp.SetFocus;
-end;
+// if key = 13 then
+//if Application.MessageBox('Deseja associar esse código Astpp para este cliente?',
+//'CLIENTE', MB_YESNO + MB_ICONQUESTION) = mrYes       then
+// begin
+// With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+//   prepare;
+//   open;
+//
+//   cls_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into client_astpp (cla_cod,client_cli_cod,cla_account_astpp,cla_dt_registration) ' +
+//         ' select '+ cls_cod + ',' +  cli_cod + ',' +  QuotedStr(cxEditCodastpp.Text) + ', now()' ;
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//  qry_client_astpp.Close;
+//  qry_client_astpp.Prepare;
+//  qry_client_astpp.Open;
+//  cxEditCodastpp.Clear;
+//  cxEditCodastpp.SetFocus;
+//end;
 end;
 
 procedure Tfrm_patient.cxEditCodsippulseKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   inherited;
- if key = 13 then
-if Application.MessageBox('Deseja associar esse código sippulse para este cliente?',
-'CLIENTE', MB_YESNO + MB_ICONQUESTION) = mrYes       then
- begin
- With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
-   prepare;
-   open;
-
-   cls_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into client_sippulse (cls_cod,client_cli_cod,cls_account_sippulse,cls_dt_registration) ' +
-         ' select '+ cls_cod + ',' +  cli_cod + ',' +  QuotedStr(cxEditCodsippulse.Text) + ', now()' ;
-   Prepare;
-   ExecSQL;
-  end;
-
-  qry_client_sippulse.Close;
-  qry_client_sippulse.Prepare;
-  qry_client_sippulse.Open;
-  cxEditCodsippulse.Clear;
-  cxEditCodsippulse.SetFocus;
-end;
+// if key = 13 then
+//if Application.MessageBox('Deseja associar esse código sippulse para este cliente?',
+//'CLIENTE', MB_YESNO + MB_ICONQUESTION) = mrYes       then
+// begin
+// With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+//   prepare;
+//   open;
+//
+//   cls_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into client_sippulse (cls_cod,client_cli_cod,cls_account_sippulse,cls_dt_registration) ' +
+//         ' select '+ cls_cod + ',' +  cli_cod + ',' +  QuotedStr(cxEditCodsippulse.Text) + ', now()' ;
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//  qry_client_sippulse.Close;
+//  qry_client_sippulse.Prepare;
+//  qry_client_sippulse.Open;
+//  cxEditCodsippulse.Clear;
+//  cxEditCodsippulse.SetFocus;
+//end;
 end;
 
 procedure Tfrm_patient.cxGrid1DBTableView1insurance_ins_idPropertiesCloseUp(Sender: TObject);
@@ -796,38 +796,38 @@ end;
 procedure Tfrm_patient.cxGrid1DBTableView1ins_first_namePropertiesCloseUp(Sender: TObject);
 begin
   inherited;
-      with frm_dm.qry3,sql do
-     begin
-       close;
-       Text :=' select * from client_insurance            ' +
-              ' where client_cli_cod ='+qryCodClient.AsString+' and insurance_ins_cod = '+qry_insurancecodInsurance.AsString+' and cin_deleted_at is null ';
-       Prepare;
-       Open;
-
-       if RecordCount >0 then
-        begin
-          Application.MessageBox('A Convênio selecionada já existe para este cliente !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
-
-           with frm_dm.qry,sql do
-           begin
-            Close;
-            Text:= ' delete from client_insurance ' +
-                   ' where cin_cod = ' + cin_cod;
-            Prepare;
-            ExecSQL;
-           end;
-        end else
-        begin
-          if not (qry_client_insirance.State in [dsEdit]) then
-           qry_client_insirance.Edit;
-           qry_client_insiranceinsurance_ins_cod.Value := qry_insuranceins_cod.Value;
-           qry_client_insirance.Post;
-           qry_client_insirance.ApplyUpdates(0);
-        end;
-
-     end;
-    //--------------------------------------
-    AtualizarConvenios;
+//      with frm_dm.qry3,sql do
+//     begin
+//       close;
+//       Text :=' select * from client_insurance            ' +
+//              ' where client_cli_cod ='+qryCodClient.AsString+' and insurance_ins_cod = '+qry_insurancecodInsurance.AsString+' and cin_deleted_at is null ';
+//       Prepare;
+//       Open;
+//
+//       if RecordCount >0 then
+//        begin
+//          Application.MessageBox('A Convênio selecionada já existe para este cliente !','AVISO DO SISTEMA',MB_OK+MB_ICONINFORMATION);
+//
+//           with frm_dm.qry,sql do
+//           begin
+//            Close;
+//            Text:= ' delete from client_insurance ' +
+//                   ' where cin_cod = ' + cin_cod;
+//            Prepare;
+//            ExecSQL;
+//           end;
+//        end else
+//        begin
+//          if not (qry_client_insirance.State in [dsEdit]) then
+//           qry_client_insirance.Edit;
+//           qry_client_insiranceinsurance_ins_cod.Value := qry_insuranceins_cod.Value;
+//           qry_client_insirance.Post;
+//           qry_client_insirance.ApplyUpdates(0);
+//        end;
+//
+//     end;
+//    //--------------------------------------
+//    AtualizarConvenios;
 end;
 
 Procedure Tfrm_patient.cxTabSheet_addressShow(Sender: TObject);
@@ -846,9 +846,9 @@ end;
 procedure Tfrm_patient.FormCreate(Sender: TObject);
 begin
   inherited;
-  schadapter.AfterApplyUpdate:=limpaCache;
-//  tabLaboratorio.TabVisible:=modulo = 'LABORATORIO';
-  tabTelefonia.TabVisible:=modulo = 'TELEFONIA';
+//  schadapter.AfterApplyUpdate:=limpaCache;
+////  tabLaboratorio.TabVisible:=modulo = 'LABORATORIO';
+//  tabTelefonia.TabVisible:=modulo = 'TELEFONIA';
 end;
 
 procedure Tfrm_patient.FormShow(Sender: TObject);
@@ -877,76 +877,76 @@ end;
 procedure Tfrm_patient.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
- With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
-   prepare;
-   open;
-
-   cli_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into client (cli_id,cli_cod,contract_ctr_cod,cli_dt_registration) ' +
-         ' select 0,'+ cli_cod + ', unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' +',now()';
-
-   Prepare;
-   ExecSQL;
-  end;
-
-   qry.Close;
-   qry.SQL.Text:= ' select client.*,concat(''0x'',hex(cli_cod))as CodClient, hex(cli_cod)as ClientCod from client '+
-                 ' where contract_ctr_cod =:ctr_cod and cli_deleted_at is null and cli_cod ='+cli_cod;
-   qry.ParamByName('CTR_COD').Value := frm_dm.qry_contractctr_cod.Value;
-   qry.Prepare;
-   qry.open;
-   qry.Edit;
+// With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+//   prepare;
+//   open;
+//
+//   cli_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into client (cli_id,cli_cod,contract_ctr_cod,cli_dt_registration) ' +
+//         ' select 0,'+ cli_cod + ', unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' +',now()';
+//
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//   qry.Close;
+//   qry.SQL.Text:= ' select client.*,concat(''0x'',hex(cli_cod))as CodClient, hex(cli_cod)as ClientCod from client '+
+//                 ' where contract_ctr_cod =:ctr_cod and cli_deleted_at is null and cli_cod ='+cli_cod;
+//   qry.ParamByName('CTR_COD').Value := frm_dm.qry_contractctr_cod.Value;
+//   qry.Prepare;
+//   qry.open;
+//   qry.Edit;
 end;
 
 procedure Tfrm_patient.qry_client_insiranceAfterInsert(DataSet: TDataSet);
 begin
   inherited;
- //Inicializar as variaveis vazias---------------------------------
-  cin_cod := '';
-  //Select para criar o Código Hexadecimal Primary Key--------------
- With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
-   prepare;
-   open;
-   //Setando o Código Hexadecimal na Variável-----------------------
-   cin_cod:=Fields[0].AsString;
-   //Comando para Inserir o registro no banco com (código) (ID) (contrato)(data do registro)
-   Close;
-   Text:='insert into client_insurance (cin_id, cin_cod, client_cli_cod, cin_dt_registration) ' +
-         ' select 0,'+ cin_cod + ',' + cli_cod  + ',Now()';
-   Prepare;
-   ExecSQL;
-  end;
-
-   //Select para Atualizadr a Grid de Convenios do cliente----------------
-    AtualizarConvenios;
+// //Inicializar as variaveis vazias---------------------------------
+//  cin_cod := '';
+//  //Select para criar o Código Hexadecimal Primary Key--------------
+// With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+//   prepare;
+//   open;
+//   //Setando o Código Hexadecimal na Variável-----------------------
+//   cin_cod:=Fields[0].AsString;
+//   //Comando para Inserir o registro no banco com (código) (ID) (contrato)(data do registro)
+//   Close;
+//   Text:='insert into client_insurance (cin_id, cin_cod, client_cli_cod, cin_dt_registration) ' +
+//         ' select 0,'+ cin_cod + ',' + cli_cod  + ',Now()';
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//   //Select para Atualizadr a Grid de Convenios do cliente----------------
+//    AtualizarConvenios;
 end;
 
 procedure Tfrm_patient.qry_client_insiranceBeforePost(DataSet: TDataSet);
 begin
   inherited;
-   with frm_dm.qry,sql do
-   begin
-    close;
-     Text:= ' select case when max(cin_id) is null then 1 ' +
-          '      else (max(cin_id) + 1) end as maxID from client_insurance '+
-          ' where client_cli_cod = ' + cli_cod;
-     Prepare;
-     Open;
-
-    if not (qry_client_insirance.State in [dsInsert,dsEdit])  then
-       qry_client_insirance.Edit;
-
-    if qry_client_insirancecin_id.Value = 0 then
-       qry_client_insirancecin_id.Value  := Fields[0].Value;
-   end;
+//   with frm_dm.qry,sql do
+//   begin
+//    close;
+//     Text:= ' select case when max(cin_id) is null then 1 ' +
+//          '      else (max(cin_id) + 1) end as maxID from client_insurance '+
+//          ' where client_cli_cod = ' + cli_cod;
+//     Prepare;
+//     Open;
+//
+//    if not (qry_client_insirance.State in [dsInsert,dsEdit])  then
+//       qry_client_insirance.Edit;
+//
+//    if qry_client_insirancecin_id.Value = 0 then
+//       qry_client_insirancecin_id.Value  := Fields[0].Value;
+//   end;
 
 end;
 

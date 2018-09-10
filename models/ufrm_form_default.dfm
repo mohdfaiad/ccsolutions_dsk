@@ -35,10 +35,6 @@ object frm_form_default: Tfrm_form_default
     ClientRectTop = 28
     object cxTabSheet_1: TcxTabSheet
       Caption = 'Pesquisar'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object cxGrid_1: TcxGrid
         AlignWithMargins = True
         Left = 3
@@ -104,10 +100,6 @@ object frm_form_default: Tfrm_form_default
     end
     object cxTabSheet_2: TcxTabSheet
       Caption = 'Manuten'#231#227'o'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object cxPageControl_2: TcxPageControl
         AlignWithMargins = True
         Left = 3
@@ -126,10 +118,6 @@ object frm_form_default: Tfrm_form_default
         ClientRectTop = 28
         object cxTabSheet_3: TcxTabSheet
           Caption = 'Informa'#231#245'es'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl_1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -574,21 +562,6 @@ object frm_form_default: Tfrm_form_default
     object dxBarButton_export: TdxBarButton
       Action = Action_export
       Category = 0
-    end
-    object cxBarEditItem_1: TcxBarEditItem
-      Caption = 'Relat'#243'rio'
-      Category = 0
-      Hint = 'Relat'#243'rio'
-      Visible = ivAlways
-      ShowCaption = True
-      Width = 150
-      PropertiesClassName = 'TcxShellComboBoxProperties'
-      Properties.DropDownWidth = 350
-      Properties.IncrementalSearch = True
-      Properties.Root.BrowseFolder = bfCustomPath
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports'
-      Properties.ViewOptions = [scvoShowFiles, scvoShowZipFilesWithFolders]
-      InternalEditValue = nil
     end
     object dxBarButton_report_edit: TdxBarButton
       Action = Action_print

@@ -3,7 +3,7 @@ unit ufrm_cm;
 interface
 
 uses
-  System.SysUtils, System.Classes, u_clientclasses, Datasnap.DSClientRest;
+  System.SysUtils, System.Classes, Datasnap.DSClientRest;
 
 type
   Tfrm_cm = class(TDataModule)

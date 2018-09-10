@@ -128,26 +128,26 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, class_required_field;
+uses ufrm_dm;
 
 procedure Tfrm_exam.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qrypro_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
- with frm_dm.qry,sql do
- begin
-  Close;
-  Text:= ' delete from product ' +
-         ' where pro_cod = ' + pro_cod;
-  Prepare;
-  ExecSQL;
-
-  qry.Close;
-  qry.sql.text:= ' select product.*,concat(''0x'',hex(material_mat_cod)) as codMaterial from product ' +
-                 ' where pro_deleted_at is null';
-  qry.Prepare;
-  qry.open;
-end;
+// if (qrypro_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+// with frm_dm.qry,sql do
+// begin
+//  Close;
+//  Text:= ' delete from product ' +
+//         ' where pro_cod = ' + pro_cod;
+//  Prepare;
+//  ExecSQL;
+//
+//  qry.Close;
+//  qry.sql.text:= ' select product.*,concat(''0x'',hex(material_mat_cod)) as codMaterial from product ' +
+//                 ' where pro_deleted_at is null';
+//  qry.Prepare;
+//  qry.open;
+//end;
 end;
 
 procedure Tfrm_exam.Action_deleteExecute(Sender: TObject);
@@ -170,31 +170,31 @@ end;
 
 procedure Tfrm_exam.Action_saveExecute(Sender: TObject);
 begin
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(pro_id) is null then 1 ' +
-          '      else (max(pro_id) + 1) end as maxID from product '+
-          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-   Prepare;
-   Open;
-   if not (qry.State in [dsInsert,dsEdit])  then
-    qry.Edit;
-
-   if qrypro_id.AsInteger = 0 then
-    qrypro_id.AsInteger:=Fields[0].AsInteger;
-
-  end;
-
-  inherited;
-  if ds.DataSet.State in [dsEdit] then
-      Exit;
-
-       qry.Close;
-       qry.sql.text:= ' select product.*,concat(''0x'',hex(material_mat_cod)) as codMaterial from product ' +
-                      ' where pro_deleted_at is null ';
-       qry.Prepare;
-       qry.open;
+//with frm_dm.qry,sql do
+// begin
+//   close;
+//   Text:= ' select case when max(pro_id) is null then 1 ' +
+//          '      else (max(pro_id) + 1) end as maxID from product '+
+//          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+//   Prepare;
+//   Open;
+//   if not (qry.State in [dsInsert,dsEdit])  then
+//    qry.Edit;
+//
+//   if qrypro_id.AsInteger = 0 then
+//    qrypro_id.AsInteger:=Fields[0].AsInteger;
+//
+//  end;
+//
+//  inherited;
+//  if ds.DataSet.State in [dsEdit] then
+//      Exit;
+//
+//       qry.Close;
+//       qry.sql.text:= ' select product.*,concat(''0x'',hex(material_mat_cod)) as codMaterial from product ' +
+//                      ' where pro_deleted_at is null ';
+//       qry.Prepare;
+//       qry.open;
 end;
 
 procedure Tfrm_exam.cxLookupComboBox1PropertiesCloseUp(Sender: TObject);
@@ -237,32 +237,32 @@ end;
 procedure Tfrm_exam.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
-   prepare;
-   open;
-
-   pro_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into product (pro_id,pro_cod,contract_ctr_cod) ' +
-         ' select 0,'+ pro_cod + ', unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-   Prepare;
-   ExecSQL;
-  end;
-
-   qry.Close;
-   qry.sql.text:= ' select product.*,concat(''0x'',hex(material_mat_cod)) as codMaterial from product ' +
-                  ' where pro_cod = ' + pro_cod +
-                  ' and pro_deleted_at is null ' +
-                  ' and pro_type = ''S''';
-
-   qry.Prepare;
-   qry.open;
-   qry.Edit;
-   qrypro_dt_registration.AsDateTime:=Now;
+//With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+//   prepare;
+//   open;
+//
+//   pro_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into product (pro_id,pro_cod,contract_ctr_cod) ' +
+//         ' select 0,'+ pro_cod + ', unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//   qry.Close;
+//   qry.sql.text:= ' select product.*,concat(''0x'',hex(material_mat_cod)) as codMaterial from product ' +
+//                  ' where pro_cod = ' + pro_cod +
+//                  ' and pro_deleted_at is null ' +
+//                  ' and pro_type = ''S''';
+//
+//   qry.Prepare;
+//   qry.open;
+//   qry.Edit;
+//   qrypro_dt_registration.AsDateTime:=Now;
 end;
 
 end.

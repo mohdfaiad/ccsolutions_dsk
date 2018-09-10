@@ -219,7 +219,6 @@ type
     QExport4Dialog_1: TQExport4Dialog;
     Action_export: TAction;
     dxBarButton_export: TdxBarButton;
-    cxBarEditItem_1: TcxBarEditItem;
     Action_print: TAction;
     dxBarButton_report_edit: TdxBarButton;
     Action_print_edit: TAction;

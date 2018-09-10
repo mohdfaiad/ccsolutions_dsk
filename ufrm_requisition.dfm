@@ -394,8 +394,6 @@
     ReportOptions.LastChange = 43229.685769837960000000
     Datasets = <
       item
-        DataSet = frm_dm.frx_db_enterprise
-        DataSetName = 'enterprise'
       end
       item
         DataSet = frxDB_Requisition
@@ -433,8 +431,6 @@
           Width = 578.268090000000000000
           Height = 22.677180000000000000
           DataField = 'ent_first_name'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -21
@@ -452,8 +448,6 @@
           Top = 36.795300000000000000
           Width = 578.268090000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -15
@@ -478,8 +472,6 @@
           Top = 61.252010000000000000
           Width = 578.268090000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -507,8 +499,6 @@
           Width = 113.385900000000000000
           Height = 71.811070000000000000
           DataField = 'ent_image'
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Frame.Typ = []
           HightQuality = False
           Transparent = False

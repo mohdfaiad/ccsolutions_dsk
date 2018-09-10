@@ -189,8 +189,8 @@ type
     Actionalterpassword1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure Action_alter_passwordExecute(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
+    procedure Action_alter_passwordExecute(Sender: TObject);
   private
     function getContract_User : Boolean;
     procedure afterInsert;
@@ -206,36 +206,17 @@ var
 implementation
 
 uses
-  ufrm_dm;
+  ufrm_dm, ufrm_login;
 
 {$R *.dfm}
 
 procedure Tfrm_contract_user.Action_alter_passwordExecute(Sender: TObject);
-var
-  strproc : TFDStoredProc;
-  password : String;
 begin
   inherited;
-  password := '';
-  InputQuery('Alterar Senha.', 'Senha', password);
-
-  try
-    try
-      strproc := TFDStoredProc.Create(Self);
-      strproc.Connection := frm_dm.connCCS;
-      strproc.StoredProcName := 'proc_contract_user_alter_password';
-      strproc.Prepare;
-
-      strproc.ParamByName('p_ctr_token').AsString         := Tconnection.ctr_token;
-      strproc.ParamByName('p_ctr_usr_cod').AsString       := memctr_usr_cod.AsString;
-      strproc.ParamByName('p_ctr_usr_password').AsString  := password;
-      strproc.ExecProc;
-
-      ShowMessage('Senha Alterada com Sucesso!');
-    except on E: Exception do
-    end;
-  finally
-  end;
+  frm_login := Tfrm_login.Create(Self);
+  frm_login.Tag := 98;
+  frm_login.ctr_usr_cod := memctr_usr_cod.AsString;
+  frm_login.ShowModal;
 end;
 
 procedure Tfrm_contract_user.Action_saveExecute(Sender: TObject);

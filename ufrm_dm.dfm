@@ -1,7 +1,7 @@
 object frm_dm: Tfrm_dm
   OldCreateOrder = False
-  Height = 283
-  Width = 201
+  Height = 279
+  Width = 191
   object connCCS: TFDConnection
     Params.Strings = (
       'ConnectionDef=database')
@@ -10,12 +10,12 @@ object frm_dm: Tfrm_dm
     ResourceOptions.AutoReconnect = True
     Connected = True
     LoginPrompt = False
-    Left = 136
+    Left = 128
     Top = 64
   end
   object wait_cursor: TFDGUIxWaitCursor
     Provider = 'Forms'
-    Left = 136
+    Left = 128
     Top = 160
   end
   object manCCS: TFDManager
@@ -25,12 +25,12 @@ object frm_dm: Tfrm_dm
     FormatOptions.OwnMapRules = True
     FormatOptions.MapRules = <>
     Active = True
-    Left = 136
+    Left = 128
     Top = 16
   end
   object mysql_driver: TFDPhysMySQLDriverLink
     VendorLib = 'C:\ccsolutions_dsk\bin\libmysql.dll'
-    Left = 136
+    Left = 128
     Top = 112
   end
   object rest_client: TRESTClient
@@ -51,7 +51,6 @@ object frm_dm: Tfrm_dm
     Top = 64
   end
   object rest_response: TRESTResponse
-    ContentType = 'text/html'
     Left = 40
     Top = 112
   end
@@ -63,15 +62,12 @@ object frm_dm: Tfrm_dm
     Top = 160
   end
   object mem_rest: TFDMemTable
-    FieldDefs = <>
-    IndexDefs = <>
     FetchOptions.AssignedValues = [evMode, evRowsetSize]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
     ResourceOptions.SilentMode = True
     UpdateOptions.AssignedValues = [uvCheckRequired]
     UpdateOptions.CheckRequired = False
-    StoreDefs = True
     Left = 40
     Top = 216
   end

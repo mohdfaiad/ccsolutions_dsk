@@ -37,7 +37,7 @@ inherited frm_medicine: Tfrm_medicine
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 986
-          ExplicitHeight = 472
+          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'med_id'
@@ -69,13 +69,20 @@ inherited frm_medicine: Tfrm_medicine
       end
     end
   end
+  inherited dxBarManager_1: TdxBarManager
+    PixelsPerInch = 96
+  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
+  end
+  inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList
+    inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
+      PixelsPerInch = 96
+    end
   end
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS

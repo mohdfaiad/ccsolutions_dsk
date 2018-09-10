@@ -5,10 +5,6 @@ inherited frm_client: Tfrm_client
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1cli_id: TcxGridDBColumn
@@ -215,16 +211,8 @@ inherited frm_client: Tfrm_client
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 93
@@ -1529,23 +1517,12 @@ inherited frm_client: Tfrm_client
       ItemLinks = <
         item
           Visible = True
-          ItemName = 'dxBarButton1'
-        end
-        item
-          Visible = True
-          ItemName = 'dxBarButton3'
-        end
-        item
-          Visible = True
           ItemName = 'dxBarButton2'
         end
         item
           Visible = True
           ItemName = 'dxBarButton5'
         end>
-    end
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\cadastro\basico\cliente'
     end
     object dxBarButton5: TdxBarButton
       Action = Action_consult_cpf
@@ -1554,20 +1531,6 @@ inherited frm_client: Tfrm_client
     object dxBarButton2: TdxBarButton
       Action = Action_consult_cnpj
       Category = 0
-    end
-    object dxBarButton1: TdxBarButton
-      Caption = 'ASTPP'
-      Category = 0
-      Hint = 'ASTPP'
-      Visible = ivAlways
-      OnClick = dxBarButton1Click
-    end
-    object dxBarButton3: TdxBarButton
-      Caption = 'SIPPulse'
-      Category = 0
-      Hint = 'SIPPulse'
-      Visible = ivAlways
-      OnClick = dxBarButton3Click
     end
   end
   inherited ActionList_1: TActionList

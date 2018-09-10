@@ -3,12 +3,7 @@ unit u_class_rest_method;
 interface
 
 uses
-  System.SysUtils,
-  System.JSON,
-
-  ufrm_dm,
-
-  u_class_connection;
+  System.SysUtils, System.JSON, Vcl.Dialogs, ufrm_dm, u_class_connection;
 
 type
   Trest_methods = class(Tfrm_dm)
@@ -28,9 +23,6 @@ type
   end;
 
 implementation
-
-uses
-  Vcl.Dialogs;
 
 { TRest }
 
@@ -65,13 +57,13 @@ begin
   try
     try
       frm_dm.mem_rest.Active := False;
-
       frm_dm.rest_response.RootElement  := EmptyStr;
       frm_dm.rest_client.BaseURL        := Base_URL(Amethod, Aparameter);
       frm_dm.rest_request.Execute;
 
-      Result := True;
+      lSuccess := frm_dm.rest_response.JSONValue.ToString;
 
+      Result := not lSuccess.Equals('[]');
     except on E: Exception do
       Result := False;
     end;

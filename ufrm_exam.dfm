@@ -49,7 +49,7 @@ inherited frm_exam: Tfrm_exam
           ExplicitLeft = 2
           ExplicitTop = 28
           ExplicitWidth = 986
-          ExplicitHeight = 472
+          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 60
@@ -263,15 +263,20 @@ inherited frm_exam: Tfrm_exam
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Anota'#231#245'es'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
             Width = 986
-            Height = 472
+            Height = 562
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             OnDblClick = dxLayoutControl_1DblClick
+            ExplicitHeight = 472
             object cxDBMemo1: TcxDBMemo
               Left = 17
               Top = 38
@@ -326,7 +331,6 @@ inherited frm_exam: Tfrm_exam
   inherited qry: TFDQuery
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -544,7 +548,6 @@ inherited frm_exam: Tfrm_exam
   end
   object qry_material: TFDQuery
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS

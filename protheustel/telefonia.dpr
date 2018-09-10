@@ -35,9 +35,10 @@ uses
   u_class_rest_client_sippulse in '..\u_class_rest_client_sippulse.pas',
   ufrm_import_astpp in '..\ufrm_import_astpp.pas' {frm_import_astpp},
   ufrm_print_default in '..\models\ufrm_print_default.pas' {frm_print_default},
+  ufrm_import_sippulse in '..\ufrm_import_sippulse.pas' {frm_import_sippulse},
+  u_class_rest_supplier in '..\u_class_rest_supplier.pas',
   ufrm_print_astpp in '..\ufrm_print_astpp.pas' {frm_print_astpp},
-  u_class_print_astpp in 'u_class_print_astpp.pas',
-  ufrm_import_sippulse in '..\ufrm_import_sippulse.pas' {frm_import_sippulse};
+  u_class_rest_print_astpp in '..\u_class_rest_print_astpp.pas';
 
 {$R *.res}
 

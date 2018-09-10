@@ -151,8 +151,6 @@
             <Form>frm_report</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\u_class_report.pas"/>
-        <DCCReference Include="..\class_required_field.pas"/>
         <DCCReference Include="..\ufrm_phonebook.pas">
             <Form>frm_phonebook</Form>
             <FormType>dfm</FormType>
@@ -177,17 +175,10 @@
             <Form>frm_consult_cpf</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\u_clientclasses.pas"/>
-        <DCCReference Include="..\ufrm_cm.pas">
-            <Form>frm_cm</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="..\u_class_rest_contract.pas"/>
         <DCCReference Include="..\u_class_rest_method.pas"/>
         <DCCReference Include="..\u_class_connection.pas"/>
         <DCCReference Include="..\u_class_rest_login.pas"/>
-        <DCCReference Include="..\u_class_phonebook.pas"/>
         <DCCReference Include="..\u_class_rest_enterprise.pas"/>
         <DCCReference Include="..\u_class_rest_client.pas"/>
         <DCCReference Include="..\ufrm_contract_user.pas">
@@ -211,6 +202,9 @@
         </DCCReference>
         <DCCReference Include="..\u_class_rest_client_contract.pas"/>
         <DCCReference Include="..\u_class_rest_client_contract_iten.pas"/>
+        <DCCReference Include="..\u_class_rest_client_astpp.pas"/>
+        <DCCReference Include="..\u_class_rest_client_sippulse.pas"/>
+        <DCCReference Include="..\u_class_rest_phonebook.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

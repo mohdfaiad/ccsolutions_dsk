@@ -309,7 +309,6 @@ type
     memProductpro_dt_registration: TDateTimeField;
     memClientContractItenproduct_name: TStringField;
     griddbproduct_pro_cod: TcxGridDBColumn;
-    dxBarButton1: TdxBarButton;
     memcli_ctr_value_reseller: TBCDField;
     memClientContractItencci_value_reseller: TBCDField;
     cxDBCurrencyEdit1: TcxDBCurrencyEdit;
@@ -319,7 +318,6 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
-    procedure dxBarButton1Click(Sender: TObject);
     procedure griddbNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
   private
     procedure afterInsert;
@@ -411,12 +409,6 @@ begin
   Trest_client_contract.GetClientContract(mem);
 end;
 
-procedure Tfrm_client_contract.dxBarButton1Click(Sender: TObject);
-begin
-  inherited;
-  Trest_client_contract_iten.GetClientContractIten(memClientContractIten, memcli_ctr_cod.AsString);
-end;
-
 procedure Tfrm_client_contract.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -432,6 +424,7 @@ begin
   Trest_product.GetProduct(memProduct);
   Trest_reseller.GetReseller(memReseller);
   Trest_client_contract.GetClientContract(mem);
+  Trest_client_contract_iten.GetClientContractIten(memClientContractIten, memcli_ctr_cod.AsString);
 end;
 
 procedure Tfrm_client_contract.griddbNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);

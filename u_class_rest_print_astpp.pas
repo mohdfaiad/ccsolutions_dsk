@@ -1,4 +1,4 @@
-unit u_class_print_astpp;
+unit u_class_rest_print_astpp;
 
 interface
 
@@ -38,7 +38,7 @@ class function Trest_print_astpp.GetClient(mem: TFDMemTable): Boolean;
 begin
   try
     try
-      v_method        := '/api/rest/clients/Client';
+      v_method        := '/api/rest/Client/Clients';
       v_parameter     := Tconnection.ctr_token;
 
       begin

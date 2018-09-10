@@ -247,7 +247,6 @@ inherited frm_receipt: Tfrm_receipt
     Active = True
     AfterInsert = qryAfterInsert
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -2653,8 +2652,6 @@ inherited frm_receipt: Tfrm_receipt
           Top = 11.338590000000000000
           Width = 264.567100000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -2672,8 +2669,6 @@ inherited frm_receipt: Tfrm_receipt
           Top = 34.015770000000000000
           Width = 264.567100000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -4993,8 +4988,6 @@ inherited frm_receipt: Tfrm_receipt
           Top = 14.999690000000000000
           Width = 264.567100000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -5012,8 +5005,6 @@ inherited frm_receipt: Tfrm_receipt
           Top = 37.676870000000000000
           Width = 264.567100000000000000
           Height = 18.897650000000000000
-          DataSet = frm_dm.frx_db_enterprise
-          DataSetName = 'enterprise'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -5083,7 +5074,6 @@ inherited frm_receipt: Tfrm_receipt
   object qry_enterprise: TFDQuery
     Active = True
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS
@@ -5193,7 +5183,6 @@ inherited frm_receipt: Tfrm_receipt
   object qry_client: TFDQuery
     Active = True
     IndexFieldNames = 'contract_ctr_cod'
-    MasterSource = frm_dm.ds_contract
     MasterFields = 'ctr_cod'
     DetailFields = 'contract_ctr_cod'
     Connection = frm_dm.connCCS

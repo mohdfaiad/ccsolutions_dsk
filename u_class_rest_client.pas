@@ -34,7 +34,7 @@ class function Trest_client.GetClient(mem: TFDMemTable): Boolean;
 begin
   try
     try
-      v_method        := '/api/rest/clients/Client';
+      v_method        := '/api/rest/Client/Clients';
       v_parameter     := Tconnection.ctr_token;
 
       begin

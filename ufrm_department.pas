@@ -98,21 +98,21 @@ uses ufrm_dm;
 procedure Tfrm_department.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qrydep_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
- with frm_dm.qry,sql do
- begin
-  Close;
-  Text:= ' delete from department ' +
-         ' where dep_cod = ' + dep_cod;
-  Prepare;
-  ExecSQL;
-
-  qry.Close;
-  qry.sql.text:= ' select department.*,concat(''0x'',hex(dep_cod)) from department ' +
-                 ' where dep_deleted_at is null';
-  qry.Prepare;
-  qry.open;
-end;
+// if (qrydep_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+// with frm_dm.qry,sql do
+// begin
+//  Close;
+//  Text:= ' delete from department ' +
+//         ' where dep_cod = ' + dep_cod;
+//  Prepare;
+//  ExecSQL;
+//
+//  qry.Close;
+//  qry.sql.text:= ' select department.*,concat(''0x'',hex(dep_cod)) from department ' +
+//                 ' where dep_deleted_at is null';
+//  qry.Prepare;
+//  qry.open;
+//end;
 end;
 
 procedure Tfrm_department.Action_deleteExecute(Sender: TObject);
@@ -141,31 +141,31 @@ begin
 end;
 
 procedure Tfrm_department.Action_saveExecute(Sender: TObject);
-VAR
-max:Integer;
+//VAR
+//max:Integer;
 begin
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(dep_id) is null then 1 ' +
-          '      else (max(dep_id) + 1) end as maxID from department '+
-          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
-   Prepare;
-   Open;
-   if not (qry.State in [dsInsert,dsEdit])  then
-    qry.Edit;
-
-   if qrydep_id.AsInteger = 0 then
-    qrydep_id.AsInteger:=Fields[0].AsInteger;
-
-  end;
-
-  inherited;
-       qry.Close;
-       qry.sql.text:= ' select department.*,concat(''0x'',hex(dep_cod)) from department ' +
-                      ' where dep_deleted_at is null ';
-       qry.Prepare;
-       qry.open;
+//with frm_dm.qry,sql do
+// begin
+//   close;
+//   Text:= ' select case when max(dep_id) is null then 1 ' +
+//          '      else (max(dep_id) + 1) end as maxID from department '+
+//          ' where contract_ctr_cod = ' + frm_dm.v_contract_ctr_cod;
+//   Prepare;
+//   Open;
+//   if not (qry.State in [dsInsert,dsEdit])  then
+//    qry.Edit;
+//
+//   if qrydep_id.AsInteger = 0 then
+//    qrydep_id.AsInteger:=Fields[0].AsInteger;
+//
+//  end;
+//
+//  inherited;
+//       qry.Close;
+//       qry.sql.text:= ' select department.*,concat(''0x'',hex(dep_cod)) from department ' +
+//                      ' where dep_deleted_at is null ';
+//       qry.Prepare;
+//       qry.open;
 end;
 
 
@@ -179,7 +179,7 @@ end;
 procedure Tfrm_department.FormCreate(Sender: TObject);
 begin
   inherited;
- schadapter.AfterApplyUpdate:=limpaCache;
+// schadapter.AfterApplyUpdate:=limpaCache;
 end;
 
 procedure Tfrm_department.limpaCache(Sender: TObject);
@@ -190,79 +190,79 @@ end;
 procedure Tfrm_department.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
- With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
-   prepare;
-   open;
-
-   dep_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into department (dep_id,dep_cod,contract_ctr_cod) ' +
-         ' select 0,'+ dep_cod + ',' +  frm_dm.v_contract_ctr_cod;
-   Prepare;
-   ExecSQL;
-  end;
-
-   qry.Close;
-   qry.sql.text:= ' select department.*,concat(''0x'',hex(dep_cod)) from department ' +
-                  ' where dep_cod = ' + dep_cod +
-                  ' and dep_deleted_at is null';
-   qry.Prepare;
-   qry.open;
-   qry.Edit;
-   qrydep_dt_registration.AsDateTime:=Now;
+// With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+//   prepare;
+//   open;
+//
+//   dep_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into department (dep_id,dep_cod,contract_ctr_cod) ' +
+//         ' select 0,'+ dep_cod + ',' +  frm_dm.v_contract_ctr_cod;
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//   qry.Close;
+//   qry.sql.text:= ' select department.*,concat(''0x'',hex(dep_cod)) from department ' +
+//                  ' where dep_cod = ' + dep_cod +
+//                  ' and dep_deleted_at is null';
+//   qry.Prepare;
+//   qry.open;
+//   qry.Edit;
+//   qrydep_dt_registration.AsDateTime:=Now;
 end;
 
 procedure Tfrm_department.qry_sectorAfterInsert(DataSet: TDataSet);
 begin
   inherited;
- With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
-   prepare;
-   open;
-
-   sec_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into sector (sec_id,sec_cod,department_dep_cod) ' +
-         ' select 0,'+ sec_cod + ',' + dep_cod;
-   Prepare;
-   ExecSQL;
-  end;
-
-   qry_sector.Close;
-   qry_sector.sql.text:= ' select * from sector ' +
-                  ' where sec_deleted_at is null ' +
-                  ' and department_dep_cod = ' + dep_cod;
-   qry_sector.Prepare;
-   qry_sector.open;
-   qry_sector.Edit;
-   qry_sectorsec_dt_registration.AsDateTime:=Now;
+// With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+//   prepare;
+//   open;
+//
+//   sec_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into sector (sec_id,sec_cod,department_dep_cod) ' +
+//         ' select 0,'+ sec_cod + ',' + dep_cod;
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//   qry_sector.Close;
+//   qry_sector.sql.text:= ' select * from sector ' +
+//                  ' where sec_deleted_at is null ' +
+//                  ' and department_dep_cod = ' + dep_cod;
+//   qry_sector.Prepare;
+//   qry_sector.open;
+//   qry_sector.Edit;
+//   qry_sectorsec_dt_registration.AsDateTime:=Now;
 
 end;
 
 procedure Tfrm_department.qry_sectorBeforePost(DataSet: TDataSet);
 begin
   inherited;
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(sec_id) is null then 1 ' +
-          '      else (max(sec_id) + 1) end as maxID from sector '+
-          ' where department_dep_cod = ' + dep_cod;
-   Prepare;
-   Open;
-   if not (qry_sector.State in [dsInsert,dsEdit])  then
-    qry.Edit;
-
-   if qry_sectorsec_id.AsInteger = 0 then
-    qry_sectorsec_id.AsInteger:=Fields[0].AsInteger;
-  end;
+//with frm_dm.qry,sql do
+// begin
+//   close;
+//   Text:= ' select case when max(sec_id) is null then 1 ' +
+//          '      else (max(sec_id) + 1) end as maxID from sector '+
+//          ' where department_dep_cod = ' + dep_cod;
+//   Prepare;
+//   Open;
+//   if not (qry_sector.State in [dsInsert,dsEdit])  then
+//    qry.Edit;
+//
+//   if qry_sectorsec_id.AsInteger = 0 then
+//    qry_sectorsec_id.AsInteger:=Fields[0].AsInteger;
+//  end;
 end;
 
 end.

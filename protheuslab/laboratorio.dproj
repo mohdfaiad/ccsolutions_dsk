@@ -3,7 +3,7 @@
         <ProjectGuid>{B869D37C-4647-40F1-9B62-51EF9DA1D55D}</ProjectGuid>
         <ProjectVersion>18.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
-        <MainSource>protheuslab.dpr</MainSource>
+        <MainSource>laboratorio.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -58,7 +58,7 @@
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
-        <SanitizedProjectName>protheuslab</SanitizedProjectName>
+        <SanitizedProjectName>laboratorio</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_UsePackage>DBXSqliteDriver;dxPSPrVwRibbonRS25;dxRibbonCustomizationFormRS25;DBXDb2Driver;dxSkinOffice2007PinkRS25;dxSkinMcSkinRS25;vclactnband;vclFireDAC;cxExportRS25;dxHttpIndyRequestRS25;tethering;dxPScxCommonRS25;FireDACADSDriver;cxPivotGridOLAPRS25;FireDACMSSQLDriver;tmsxlsdXE11;vcltouch;cxSchedulerGridRS25;dxSkinDarkRoomRS25;vcldb;Intraweb;svn;dxSkinDarkSideRS25;dxGaugeControlRS25;QImport3RT_D25;cxLibraryRS25;dxSkinOffice2007SilverRS25;dxSkinscxSchedulerPainterRS25;dxSkinBlackRS25;vclib;dxSkinOffice2007BlueRS25;dxSkinOffice2007BlackRS25;FireDACDBXDriver;dxSkinVS2010RS25;vclx;dxSkinFoggyRS25;dxSpreadSheetConditionalFormattingDialogsRS25;dxSkinSevenRS25;dxSkinSpringTimeRS25;dxTileControlRS25;dxMapControlRS25;dxPDFViewerRS25;dxDockingRS25;VCLRESTComponents;dxSkinsdxNavBarPainterRS25;cxPageControlRS25;dxSkinLilianRS25;dxPSLnksRS25;dxWizardControlRS25;dxRichEditControlRS25;vclie;bindengine;dxFireDACServerModeRS25;FireDACMySQLDriver;dxSkinOffice2013LightGrayRS25;dxSkinMetropolisRS25;DataSnapClient;dxPSdxPDFViewerLnkRS25;dxSkinOffice2016DarkRS25;bindcompdbx;dxSkinBlueprintRS25;ACBr_TCP;dxSkinStardustRS25;DBXSybaseASEDriver;IndyIPServer;dxPSdxLCLnkRS25;IndySystem;dxSkinOffice2007GreenRS25;dsnapcon;ACBr_synapse;dxLayoutControlRS25;dxPSRichEditControlLnkRS25;FireDACMSAccDriver;fmxFireDAC;FireDACInfxDriver;vclimg;dxdbtrRS25;dxPScxTLLnkRS25;emshosting;dxSpreadSheetRS25;dxSkinVisualStudio2013LightRS25;DBXOdbcDriver;FireDACTDataDriver;FMXTee;cxGridRS25;dxSkinTheAsphaltWorldRS25;DbxCommonDriver;dxPScxSchedulerLnkRS25;dxorgcRS25;dxSkinHighContrastRS25;xmlrtl;DataSnapNativeClient;fmxobj;frx25;dxPScxGridLnkRS25;rtl;DbxClientDriver;DBXSybaseASADriver;dxPSCoreRS25;dxmdsRS25;dxSkinOffice2016ColorfulRS25;appanalytics;IndyIPClient;bindcompvcl;dxSkinscxPCPainterRS25;dxThemeRS25;TeeUI;VclSmp;FireDACODBCDriver;DataSnapIndy10ServerTransport;ACBr_Boleto;DataSnapProviderClient;FireDACMongoDBDriver;cxVerticalGridRS25;dxtrmdRS25;dxADOServerModeRS25;dxSkinPumpkinRS25;DataSnapServerMidas;dxCoreRS25;cxSchedulerTreeBrowserRS25;dxSkinValentineRS25;DBXInterBaseDriver;dxPSTeeChartRS25;svnui;dxSkinOffice2010BlueRS25;dxSkinMoneyTwinsRS25;frxe25;dxSkinSilverRS25;DBXMSSQLDriver;dxPSdxFCLnkRS25;DatasnapConnectorsFreePascal;dxSkinOffice2013WhiteRS25;bindcompfmx;DBXOracleDriver;inetdb;ACBr_Diversos;dxOfficeCoreRS25;ACBr_TXTComum;FmxTeeUI;emsedge;fmx;fmxdae;frxDB25;tmsdXE11;dxTabbedMDIRS25;dxBarDBNavRS25;dxSkinBlueRS25;dxPScxPivotGridLnkRS25;frxTee25;dxSkinDevExpressDarkStyleRS25;ACBr_Ponto;tmsexdXE11;dbexpress;IndyCore;dxFlowChartRS25;dxSkinsdxDLPainterRS25;dsnap;DataSnapCommon;dxBarRS25;dxPSDBTeeChartRS25;ACBr_PCNComum;dxSkinLiquidSkyRS25;dxdborRS25;DataSnapConnectors;ACBR_DeSTDA;dxPScxExtCommonRS25;cxPivotGridRS25;dxPSdxSpreadSheetLnkRS25;dxSpreadSheetReportDesignerRS25;dxNavBarRS25;cxSchedulerRibbonStyleEventEditorRS25;dxSkinCoffeeRS25;FireDACOracleDriver;DBXMySQLDriver;QExport4RT_D25;DBXFirebirdDriver;FireDACCommonODBC;dxSkinOffice2010SilverRS25;cxTreeListRS25;dxSkinsdxBarPainterRS25;IndyIPCommon;dxSkinLondonLiquidSkyRS25;vcl;dxPScxVGridLnkRS25;dxBarExtItemsRS25;dxSkinsCoreRS25;dxComnRS25;FireDACDb2Driver;dxSkinWhiteprintRS25;dxPSdxDBTVLnkRS25;ACBr_Integrador;dxSkinVisualStudio2013BlueRS25;dxSkinGlassOceansRS25;dxSkinMetropolisDarkRS25;dxSkinOffice2013DarkGrayRS25;dxSkinSharpPlusRS25;TeeDB;dxSkinCaramelRS25;dxServerModeRS25;dxPScxPCProdRS25;ACBr_Comum;FireDACPgDriver;ibmonitor;FireDACASADriver;cxEditorsRS25;dxSkiniMaginaryRS25;ibxpress;Tee;DataSnapServer;ibxbindings;dxPsPrVwAdvRS25;vclwinx;FireDACDSDriver;ACBr_OpenSSL;cxDataRS25;cxTreeListdxBarPopupMenuRS25;dxSkinSevenClassicRS25;CustomIPTransport;vcldsnap;dxPSdxOCLnkRS25;dxSkinSharpRS25;bindcomp;tmswizdXE11;ACBr_Serial;DBXInformixDriver;cxPivotGridChartRS25;cxSchedulerRS25;dxBarExtDBItemsRS25;frce;dxSkinOffice2010BlackRS25;dxSkinVisualStudio2013DarkRS25;dxDBXServerModeRS25;dxSkinDevExpressStyleRS25;dxGDIPlusRS25;dxPSdxGaugeControlLnkRS25;dxSkinsdxRibbonPainterRS25;dbxcds;adortl;dxPSdxDBOCLnkRS25;dxRibbonRS25;dsnapxml;dxSpellCheckerRS25;dbrtl;inetdbxpress;IndyProtocols;dxSkinSummer2008RS25;ACBr_MTER;dxPSdxMapControlLnkRS25;dxSkinXmas2008BlueRS25;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
@@ -103,7 +103,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="ufrm_protheuslab.pas">
+        <DCCReference Include="ufrm_laboratorio.pas">
             <Form>frm_protheuslab</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -114,10 +114,6 @@
         </DCCReference>
         <DCCReference Include="ufrm_main.pas">
             <Form>frm_main</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="..\ufrm_patient.pas">
-            <Form>frm_patient</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_contract.pas">
@@ -190,32 +186,12 @@
             <Form>frm_requisition_type</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\uthred_logged.pas"/>
         <DCCReference Include="..\ufrm_search_enterprise.pas">
             <Form>frm_search_enterprise</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\ufrm_requisition.pas">
             <Form>frm_requisition</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="..\class_required_field.pas"/>
-        <DCCReference Include="..\class_check_enterprise.pas"/>
-        <DCCReference Include="..\ufrm_table_price.pas">
-            <Form>frm_table_price</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="..\class_table_price.pas"/>
-        <DCCReference Include="..\Model\Contract_user.Model.pas"/>
-        <DCCReference Include="..\Model\Employee.Model.pas"/>
-        <DCCReference Include="..\Dao\Client.Dao.pas"/>
-        <DCCReference Include="..\Dao\Conexao.pas"/>
-        <DCCReference Include="..\Dao\Contract_User.Dao.pas"/>
-        <DCCReference Include="..\Dao\Contract_User_Action.Dao.pas"/>
-        <DCCReference Include="..\Dao\Contract_User_Enterprise.Dao.pas"/>
-        <DCCReference Include="..\Dao\Employee.Dao.pas"/>
-        <DCCReference Include="..\models\ufrm_default.pas">
-            <Form>frm_default</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\models\ufrm_form_default.pas">
@@ -234,17 +210,25 @@
             <Form>frm_search</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Model\Employee_Model.pas"/>
-        <DCCReference Include="..\Model\Contract_User_Enterprise.Model.pas"/>
-        <DCCReference Include="..\ufrm_Requisition_Lab.pas">
-            <Form>frm_Requisition_Lab</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\ufrm_client.pas">
             <Form>frm_client</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\class_report.pas"/>
+        <DCCReference Include="..\u_class_rest_client.pas"/>
+        <DCCReference Include="..\u_class_rest_contract.pas"/>
+        <DCCReference Include="..\u_class_rest_enterprise.pas"/>
+        <DCCReference Include="..\u_class_rest_login.pas"/>
+        <DCCReference Include="..\u_class_rest_method.pas"/>
+        <DCCReference Include="..\u_class_rest_phonebook.pas"/>
+        <DCCReference Include="..\u_class_rest_supplier.pas"/>
+        <DCCReference Include="..\u_class_connection.pas"/>
+        <DCCReference Include="..\u_class_rest_client_astpp.pas"/>
+        <DCCReference Include="..\u_class_rest_client_sippulse.pas"/>
+        <DCCReference Include="..\u_class_rest_contract_user.pas"/>
+        <DCCReference Include="..\ufrm_contract_user.pas">
+            <Form>frm_contract_user</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -263,7 +247,7 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">protheuslab.dpr</Source>
+                    <Source Name="MainSource">laboratorio.dpr</Source>
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k250.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
@@ -271,9 +255,9 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="C:\ccsolutions_dsk\protheuslab\protheuslab.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\ccsolutions_dsk\protheuslab\laboratorio.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>protheuslab.exe</RemoteName>
+                        <RemoteName>laboratorio.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

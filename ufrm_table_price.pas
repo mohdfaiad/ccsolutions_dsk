@@ -152,39 +152,39 @@ implementation
 procedure Tfrm_table_price.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
-if (qrytbp_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
- with frm_dm.qry,sql do
- begin
-  Close;
-  Text:= ' delete from table_price ' +
-         ' where tbp_cod = ' + tbp_cod;
-  Prepare;
-  ExecSQL;
-
-  qry.Close;
-  qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price' +
-                 ' where tbp_deleted_at is null';
-  qry.Prepare;
-  qry.open;
- end;
+//if (qrytbp_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+// with frm_dm.qry,sql do
+// begin
+//  Close;
+//  Text:= ' delete from table_price ' +
+//         ' where tbp_cod = ' + tbp_cod;
+//  Prepare;
+//  ExecSQL;
+//
+//  qry.Close;
+//  qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price' +
+//                 ' where tbp_deleted_at is null';
+//  qry.Prepare;
+//  qry.open;
+// end;
 end;
 
 procedure Tfrm_table_price.Action_deleteExecute(Sender: TObject);
 begin
-   if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
-    = IDYES then
-    begin
-     qry.Edit;
-     qrytbp_deleted_at.AsDateTime:=Now;
-     qry.Post;
-     qry.ApplyUpdates(0);
-
-     qry.Close;
-     qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price ' +
-                    ' where tbp_deleted_at is null ';
-     qry.Prepare;
-     qry.open;
-    end;
+//   if Application.MessageBox('Deseja excluir o Registro?','DELETE', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
+//    = IDYES then
+//    begin
+//     qry.Edit;
+//     qrytbp_deleted_at.AsDateTime:=Now;
+//     qry.Post;
+//     qry.ApplyUpdates(0);
+//
+//     qry.Close;
+//     qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price ' +
+//                    ' where tbp_deleted_at is null ';
+//     qry.Prepare;
+//     qry.open;
+//    end;
 end;
 
 procedure Tfrm_table_price.Action_editExecute(Sender: TObject);
@@ -195,41 +195,41 @@ end;
 
 procedure Tfrm_table_price.Action_saveExecute(Sender: TObject);
 begin
-if trim(dbedit_nome.Text) = ''  then
- begin
-   Application.MessageBox('Descrição da tabela não informada!','Tabela de Preço', MB_OK + MB_ICONINFORMATION);
-   exit;
- end;
-
-   inherited;
-
-  if ds.DataSet.State in [dsEdit] then
-    Exit;
-
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(tbp_id) is null then 1 ' +
-          '      else (max(tbp_id) + 1) end as maxID from table_price '+
-          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-   Prepare;
-   Open;
-   if not (qry.State in [dsInsert,dsEdit])  then
-    qry.Edit;
-
-   if qrytbp_id.AsInteger = 0 then
-    qrytbp_id.AsInteger:=Fields[0].AsInteger;
-    qry.Post;
-    qry.ApplyUpdates(0);
-
-  end;
-
-  qry.Close;
-  qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price ' +
-                 ' where tbp_deleted_at is null ';
-  qry.Prepare;
-  qry.open;
-  cxTabSheet_1.Show;
+//if trim(dbedit_nome.Text) = ''  then
+// begin
+//   Application.MessageBox('Descrição da tabela não informada!','Tabela de Preço', MB_OK + MB_ICONINFORMATION);
+//   exit;
+// end;
+//
+//   inherited;
+//
+//  if ds.DataSet.State in [dsEdit] then
+//    Exit;
+//
+//with frm_dm.qry,sql do
+// begin
+//   close;
+//   Text:= ' select case when max(tbp_id) is null then 1 ' +
+//          '      else (max(tbp_id) + 1) end as maxID from table_price '+
+//          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+//   Prepare;
+//   Open;
+//   if not (qry.State in [dsInsert,dsEdit])  then
+//    qry.Edit;
+//
+//   if qrytbp_id.AsInteger = 0 then
+//    qrytbp_id.AsInteger:=Fields[0].AsInteger;
+//    qry.Post;
+//    qry.ApplyUpdates(0);
+//
+//  end;
+//
+//  qry.Close;
+//  qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price ' +
+//                 ' where tbp_deleted_at is null ';
+//  qry.Prepare;
+//  qry.open;
+//  cxTabSheet_1.Show;
 end;
 
 procedure Tfrm_table_price.butonAlterarPrecoClick(Sender: TObject);
@@ -384,13 +384,13 @@ end;
 procedure Tfrm_table_price.FormCreate(Sender: TObject);
 begin
   inherited;
-if not Assigned(FTable_price) then
- FTable_price := TTable_price.Create;
-
-
-
-schadapter.AfterApplyUpdate:=limpaCache;
-cxTabAlterarPreco.TabVisible:=false;
+//if not Assigned(FTable_price) then
+// FTable_price := TTable_price.Create;
+//
+//
+//
+//schadapter.AfterApplyUpdate:=limpaCache;
+//cxTabAlterarPreco.TabVisible:=false;
 end;
 
 procedure Tfrm_table_price.limpaCache(Sender: TObject);
@@ -401,30 +401,30 @@ end;
 procedure Tfrm_table_price.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
- With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
-   prepare;
-   open;
-
-   tbp_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into table_price (tbp_id,tbp_cod,contract_ctr_cod) ' +
-         ' select 0,'+ tbp_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-   Prepare;
-   ExecSQL;
-  end;
-
-   qry.Close;
-   qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price ' +
-                  ' where tbp_cod = ' + tbp_cod +
-                  ' and tbp_deleted_at is null';
-   qry.Prepare;
-   qry.open;
-   qry.Edit;
-   qrytbp_dt_registration.AsDateTime:=Now;
+// With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+//   prepare;
+//   open;
+//
+//   tbp_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into table_price (tbp_id,tbp_cod,contract_ctr_cod) ' +
+//         ' select 0,'+ tbp_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//   qry.Close;
+//   qry.sql.text:= ' select table_price.*,concat(''0x'',hex(tbp_cod)) from table_price ' +
+//                  ' where tbp_cod = ' + tbp_cod +
+//                  ' and tbp_deleted_at is null';
+//   qry.Prepare;
+//   qry.open;
+//   qry.Edit;
+//   qrytbp_dt_registration.AsDateTime:=Now;
 
 end;
 
@@ -432,35 +432,35 @@ procedure Tfrm_table_price.qry_table_price_productAfterInsert(
   DataSet: TDataSet);
 begin
   inherited;
- With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
-   prepare;
-   open;
-
-   tpp_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into table_price_product(tpp_id,tpp_cod,table_price_tbp_cod) ' +
-         ' select 0,'+ tpp_cod + ',' + tbp_cod;
-   Prepare;
-   ExecSQL;
-  end;
-
-   qry_table_price_product.Close;
-   qry_table_price_product.sql.text:= 'select table_price_product.*,tpp_value as vlrAntigo, ' +
-       ' concat(''0x'',hex(product_pro_cod)) as pro_cod,pro_name,  ' +
-       ' concat(''0x'',hex(tpp_cod)) as tppCod from table_price_product ' +
-       ' left join product on pro_cod = product_pro_cod ' +
-       ' where tpp_deleted_at is null ' +
-       ' and table_price_tbp_cod = ' + tbp_cod;
-   qry_table_price_product.Prepare;
-   qry_table_price_product.open;
-
-   qry_table_price_product.Locate('tppCod',tpp_cod,[]);
-   qry_table_price_product.Edit;
-   qry_table_price_producttpp_dt_registration.AsDateTime:=Now;
+// With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+//   prepare;
+//   open;
+//
+//   tpp_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into table_price_product(tpp_id,tpp_cod,table_price_tbp_cod) ' +
+//         ' select 0,'+ tpp_cod + ',' + tbp_cod;
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//   qry_table_price_product.Close;
+//   qry_table_price_product.sql.text:= 'select table_price_product.*,tpp_value as vlrAntigo, ' +
+//       ' concat(''0x'',hex(product_pro_cod)) as pro_cod,pro_name,  ' +
+//       ' concat(''0x'',hex(tpp_cod)) as tppCod from table_price_product ' +
+//       ' left join product on pro_cod = product_pro_cod ' +
+//       ' where tpp_deleted_at is null ' +
+//       ' and table_price_tbp_cod = ' + tbp_cod;
+//   qry_table_price_product.Prepare;
+//   qry_table_price_product.open;
+//
+//   qry_table_price_product.Locate('tppCod',tpp_cod,[]);
+//   qry_table_price_product.Edit;
+//   qry_table_price_producttpp_dt_registration.AsDateTime:=Now;
 end;
 
 procedure Tfrm_table_price.qry_table_price_productAfterPost(DataSet: TDataSet);
@@ -473,24 +473,24 @@ end;
 
 procedure Tfrm_table_price.qry_table_price_productBeforePost(DataSet: TDataSet);
 begin
-  inherited;
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(tpp_id) is null then 1 ' +
-          '      else (max(tpp_id) + 1) end as maxID from table_price_product '+
-          ' where table_price_tbp_cod = ' + tbp_cod;
-   Prepare;
-   Open;
-
-   if not (qry_table_price_product.State in [dsInsert,dsEdit])  then
-    qry.Edit;
-
-   if qry_table_price_producttpp_id.AsInteger = 0 then
-    qry_table_price_producttpp_id.AsInteger:=Fields[0].AsInteger;
-    qry_table_price_productproduct_pro_cod.Value:=qry_productpro_cod.Value;
-    qry_table_price_producttpp_value.AsFloat:=StrToFloat(cxTextEditValor.Text);
-  end;
+//  inherited;
+//with frm_dm.qry,sql do
+// begin
+//   close;
+//   Text:= ' select case when max(tpp_id) is null then 1 ' +
+//          '      else (max(tpp_id) + 1) end as maxID from table_price_product '+
+//          ' where table_price_tbp_cod = ' + tbp_cod;
+//   Prepare;
+//   Open;
+//
+//   if not (qry_table_price_product.State in [dsInsert,dsEdit])  then
+//    qry.Edit;
+//
+//   if qry_table_price_producttpp_id.AsInteger = 0 then
+//    qry_table_price_producttpp_id.AsInteger:=Fields[0].AsInteger;
+//    qry_table_price_productproduct_pro_cod.Value:=qry_productpro_cod.Value;
+//    qry_table_price_producttpp_value.AsFloat:=StrToFloat(cxTextEditValor.Text);
+//  end;
 end;
 
 end.

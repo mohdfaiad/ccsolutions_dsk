@@ -169,7 +169,7 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm, class_required_field;
+uses ufrm_dm;
 
 procedure Tfrm_requisition.Action_deleteExecute(Sender: TObject);
 begin
@@ -222,7 +222,7 @@ end;
 procedure Tfrm_requisition.FormCreate(Sender: TObject);
 begin
   inherited;
-  schadapter.AfterApplyUpdate:=limpaCache;
+//  schadapter.AfterApplyUpdate:=limpaCache;
 end;
 
 procedure Tfrm_requisition.limpaCache(Sender: TObject);
@@ -234,10 +234,10 @@ end;
 procedure Tfrm_requisition.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qryreq_dt_registration.AsDateTime := now;
-  qryenterprise_ent_id.AsInteger    := frm_dm.qry_enterpriseent_id.AsInteger;
-  qry.Post;
-  qry.Edit;
+//  qryreq_dt_registration.AsDateTime := now;
+//  qryenterprise_ent_id.AsInteger    := frm_dm.qry_enterpriseent_id.AsInteger;
+//  qry.Post;
+//  qry.Edit;
 end;
 
 procedure Tfrm_requisition.qry_requisition_itenAfterInsert(DataSet: TDataSet);

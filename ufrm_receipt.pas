@@ -154,37 +154,37 @@ begin
 procedure Tfrm_receipt.Action_saveExecute(Sender: TObject);
 begin
   inherited;
-
-  if ds.DataSet.State in [dsEdit] then
-    Exit;
-
-   with frm_dm.qry,sql do
-    begin
-      close;
-      Text:= ' select case when max(rec_id) is null then 1 ' +
-          '      else (max(rec_id) + 1) end as maxID from receipt '+
-          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-      Prepare;
-      Open;
-      if not (qry.State in [dsInsert,dsEdit])  then
-        qry.Edit;
-
-      if qryrec_id.AsInteger = 0 then
-        qryrec_id.AsInteger:=Fields[0].AsInteger;
-
-
-        qry.Post;
-        qry.ApplyUpdates(0);
-    end;
-
-   qry.Close;
-   qry.Close;
-   qry.SQL.Text:= ' select receipt.*,hex(client_cli_cod) clientCod,hex(enterprise_ent_cod) enterpriseCod from receipt '+
-                  ' where rec_deleted_at is null ';
-   qry.Prepare;
-   qry.open;
-   qry.Edit;
-
+//
+//  if ds.DataSet.State in [dsEdit] then
+//    Exit;
+//
+//   with frm_dm.qry,sql do
+//    begin
+//      close;
+//      Text:= ' select case when max(rec_id) is null then 1 ' +
+//          '      else (max(rec_id) + 1) end as maxID from receipt '+
+//          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+//      Prepare;
+//      Open;
+//      if not (qry.State in [dsInsert,dsEdit])  then
+//        qry.Edit;
+//
+//      if qryrec_id.AsInteger = 0 then
+//        qryrec_id.AsInteger:=Fields[0].AsInteger;
+//
+//
+//        qry.Post;
+//        qry.ApplyUpdates(0);
+//    end;
+//
+//   qry.Close;
+//   qry.Close;
+//   qry.SQL.Text:= ' select receipt.*,hex(client_cli_cod) clientCod,hex(enterprise_ent_cod) enterpriseCod from receipt '+
+//                  ' where rec_deleted_at is null ';
+//   qry.Prepare;
+//   qry.open;
+//   qry.Edit;
+
 end;
 
 procedure Tfrm_receipt.cxDBLookupComboBox1PropertiesCloseUp(Sender: TObject);
@@ -231,7 +231,7 @@ end;
 procedure Tfrm_receipt.FormCreate(Sender: TObject);
 begin
   inherited;
-  schadapter.AfterApplyUpdate := limpaCache;
+//  schadapter.AfterApplyUpdate := limpaCache;
 end;
 
 procedure Tfrm_receipt.limpaCache(Sender: TObject);
@@ -242,30 +242,30 @@ end;
 procedure Tfrm_receipt.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
- With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select hex(uuid_to_bin(uuid()))';
-   prepare;
-   open;
-
-   rec_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into receipt (rec_id,rec_cod,contract_ctr_cod,rec_dt_registration) ' +
-         ' select 0,unhex( '+  QuotedStr(rec_cod) + '), unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' +',now()';
-
-   Prepare;
-   ExecSQL;
-  end;
-
-   qry.Close;
-   qry.SQL.Text:= ' select receipt.*,hex(client_cli_cod) clientCod,hex(enterprise_ent_cod) enterpriseCod from receipt ' +
-                  ' where rec_deleted_at is null ' +
-                  ' and rec_cod = unhex('+ QuotedStr(rec_cod) + ')';
-   qry.Prepare;
-   qry.open;
-   qry.Edit;
+// With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select hex(uuid_to_bin(uuid()))';
+//   prepare;
+//   open;
+//
+//   rec_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into receipt (rec_id,rec_cod,contract_ctr_cod,rec_dt_registration) ' +
+//         ' select 0,unhex( '+  QuotedStr(rec_cod) + '), unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')' +',now()';
+//
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//   qry.Close;
+//   qry.SQL.Text:= ' select receipt.*,hex(client_cli_cod) clientCod,hex(enterprise_ent_cod) enterpriseCod from receipt ' +
+//                  ' where rec_deleted_at is null ' +
+//                  ' and rec_cod = unhex('+ QuotedStr(rec_cod) + ')';
+//   qry.Prepare;
+//   qry.open;
+//   qry.Edit;
 
 end;
 

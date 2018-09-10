@@ -34,7 +34,8 @@ uses
   cxTextEdit, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket,
-  ACBrCEP, frxClass;
+  ACBrCEP, frxClass, cxDataControllerConditionalFormattingRulesManagerDialog,
+  cxDBLookupComboBox, cxImageList;
 
 type
   Tfrm_material = class(Tfrm_form_default)
@@ -74,21 +75,21 @@ uses ufrm_dm;
 procedure Tfrm_material.Action_cancelExecute(Sender: TObject);
 begin
   inherited;
- if (qrymat_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
- with frm_dm.qry,sql do
- begin
-  Close;
-  Text:= ' delete from material ' +
-         ' where mat_cod = ' + mat_cod;
-  Prepare;
-  ExecSQL;
-
-  qry.Close;
-  qry.sql.text:= ' select * from material ' +
-                 ' where mat_deleted_at is null';
-  qry.Prepare;
-  qry.open;
- end;
+// if (qrymat_id.AsInteger = 0) and (not(qry.State in [dsEdit])) then
+// with frm_dm.qry,sql do
+// begin
+//  Close;
+//  Text:= ' delete from material ' +
+//         ' where mat_cod = ' + mat_cod;
+//  Prepare;
+//  ExecSQL;
+//
+//  qry.Close;
+//  qry.sql.text:= ' select * from material ' +
+//                 ' where mat_deleted_at is null';
+//  qry.Prepare;
+//  qry.open;
+// end;
 end;
 
 procedure Tfrm_material.Action_deleteExecute(Sender: TObject);
@@ -112,30 +113,30 @@ end;
 
 procedure Tfrm_material.Action_saveExecute(Sender: TObject);
 begin
-with frm_dm.qry,sql do
- begin
-   close;
-   Text:= ' select case when max(mat_id) is null then 1 ' +
-          '      else (max(mat_id) + 1) end as maxID from material '+
-          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-   Prepare;
-   Open;
-   if not (qry.State in [dsInsert,dsEdit])  then
-    qry.Edit;
-
-   if qrymat_id.AsInteger = 0 then
-    qrymat_id.AsInteger:=Fields[0].AsInteger;
-
-  end;
-
-  inherited;
-   if ds.DataSet.State in [dsEdit] then
-      Exit;
-       qry.Close;
-       qry.sql.text:= ' select * from material ' +
-                      ' where mat_deleted_at is null ';
-       qry.Prepare;
-       qry.open;
+//with frm_dm.qry,sql do
+// begin
+//   close;
+//   Text:= ' select case when max(mat_id) is null then 1 ' +
+//          '      else (max(mat_id) + 1) end as maxID from material '+
+//          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+//   Prepare;
+//   Open;
+//   if not (qry.State in [dsInsert,dsEdit])  then
+//    qry.Edit;
+//
+//   if qrymat_id.AsInteger = 0 then
+//    qrymat_id.AsInteger:=Fields[0].AsInteger;
+//
+//  end;
+//
+//  inherited;
+//   if ds.DataSet.State in [dsEdit] then
+//      Exit;
+//       qry.Close;
+//       qry.sql.text:= ' select * from material ' +
+//                      ' where mat_deleted_at is null ';
+//       qry.Prepare;
+//       qry.open;
 end;
 
 procedure Tfrm_material.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -148,30 +149,30 @@ end;
 procedure Tfrm_material.qryAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-With frm_dm.qry,sql do
-  begin
-   close;
-   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
-   prepare;
-   open;
-
-   mat_cod:=Fields[0].AsString;
-
-   Close;
-   Text:='insert into material (mat_id,mat_cod,contract_ctr_cod) ' +
-         ' select 0,'+ mat_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-   Prepare;
-   ExecSQL;
-  end;
-
-   qry.Close;
-   qry.sql.text:= ' select * from material ' +
-                  ' where mat_cod = ' + mat_cod +
-                  ' and mat_deleted_at is null';
-   qry.Prepare;
-   qry.open;
-   qry.Edit;
-   qrymat_dt_registration.AsDateTime:=Now;
+//With frm_dm.qry,sql do
+//  begin
+//   close;
+//   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
+//   prepare;
+//   open;
+//
+//   mat_cod:=Fields[0].AsString;
+//
+//   Close;
+//   Text:='insert into material (mat_id,mat_cod,contract_ctr_cod) ' +
+//         ' select 0,'+ mat_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
+//   Prepare;
+//   ExecSQL;
+//  end;
+//
+//   qry.Close;
+//   qry.sql.text:= ' select * from material ' +
+//                  ' where mat_cod = ' + mat_cod +
+//                  ' and mat_deleted_at is null';
+//   qry.Prepare;
+//   qry.open;
+//   qry.Edit;
+//   qrymat_dt_registration.AsDateTime:=Now;
 end;
 
 end.

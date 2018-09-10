@@ -1,9 +1,10 @@
 object frm_login: Tfrm_login
+  Tag = 99
   Left = 0
   Top = 0
   BorderIcons = []
   BorderStyle = bsSingle
-  ClientHeight = 273
+  ClientHeight = 241
   ClientWidth = 594
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,7 +22,7 @@ object frm_login: Tfrm_login
     Left = 0
     Top = 0
     Width = 594
-    Height = 273
+    Height = 241
     Align = alClient
     TabOrder = 0
     Properties.ActivePage = tbsht_login
@@ -29,20 +30,21 @@ object frm_login: Tfrm_login
     Properties.Images = cxImageList_1
     LookAndFeel.NativeStyle = True
     LookAndFeel.SkinName = 'Office2010Blue'
-    ClientRectBottom = 269
+    ExplicitHeight = 273
+    ClientRectBottom = 237
     ClientRectLeft = 4
     ClientRectRight = 590
     ClientRectTop = 25
     object tbsht_login: TcxTabSheet
       Caption = 'Acesso ao Sistema'
       ImageIndex = 2
+      ExplicitHeight = 244
       object Image1: TImage
-        AlignWithMargins = True
         Left = 259
         Top = 3
         Width = 324
-        Height = 238
-        Align = alRight
+        Height = 198
+        Align = alCustom
         Center = True
         Picture.Data = {
           0B546478504E47496D61676589504E470D0A1A0A0000000D49484452000007D0
@@ -2168,38 +2170,38 @@ object frm_login: Tfrm_login
       end
       object edt_contract: TcxTextEdit
         Left = 3
-        Top = 45
+        Top = 26
         TabOrder = 0
         Width = 250
       end
       object edt_username: TcxTextEdit
         Left = 3
-        Top = 95
+        Top = 76
         Properties.CharCase = ecLowerCase
         TabOrder = 1
         Width = 250
       end
       object cxLabel2: TcxLabel
         Left = 3
-        Top = 72
+        Top = 53
         Caption = 'Usu'#225'rio'
         Transparent = True
       end
       object cxLabel1: TcxLabel
         Left = 3
-        Top = 22
+        Top = 3
         Caption = 'Contrato'
         Transparent = True
       end
       object cxLabel3: TcxLabel
         Left = 3
-        Top = 122
+        Top = 103
         Caption = 'Senha'
         Transparent = True
       end
       object lbl_recovery_password: TcxLabel
         Left = 162
-        Top = 172
+        Top = 153
         Cursor = crHandPoint
         Caption = 'Recuperar Senha.'
         ParentColor = False
@@ -2213,7 +2215,7 @@ object frm_login: Tfrm_login
       end
       object btn_signin: TcxButton
         Left = 3
-        Top = 208
+        Top = 176
         Width = 122
         Height = 25
         Action = Action_access
@@ -2221,7 +2223,7 @@ object frm_login: Tfrm_login
       end
       object btn_cancel: TcxButton
         Left = 131
-        Top = 208
+        Top = 176
         Width = 122
         Height = 25
         Action = Action_cancel
@@ -2229,7 +2231,7 @@ object frm_login: Tfrm_login
       end
       object edt_password: TcxButtonEdit
         Left = 3
-        Top = 145
+        Top = 126
         ParentFont = False
         Properties.Buttons = <
           item
@@ -2282,13 +2284,13 @@ object frm_login: Tfrm_login
     object tbsht_alter_password: TcxTabSheet
       Caption = 'Alterar Senha'
       ImageIndex = 2
+      ExplicitHeight = 244
       object Image2: TImage
-        AlignWithMargins = True
         Left = 259
         Top = 3
         Width = 324
-        Height = 238
-        Align = alRight
+        Height = 198
+        Align = alCustom
         Center = True
         Picture.Data = {
           0B546478504E47496D61676589504E470D0A1A0A0000000D49484452000007D0
@@ -4411,98 +4413,42 @@ object frm_login: Tfrm_login
           00000013E80000000000000090037A9B45A141B8E4530000000049454E44AE42
           6082}
         Proportional = True
-        ExplicitLeft = 262
-        ExplicitTop = 6
-      end
-      object cxLabel5: TcxLabel
-        Left = 3
-        Top = 52
-        Caption = 'Senha Atual'
-        Transparent = True
       end
       object cxLabel6: TcxLabel
         Left = 3
-        Top = 95
+        Top = 3
         Caption = 'Nova Senha'
         Transparent = True
       end
       object cxLabel7: TcxLabel
         Left = 3
-        Top = 138
+        Top = 53
         Caption = 'Confirmar Senha'
         Transparent = True
       end
-      object cxButton3: TcxButton
+      object btnAlterPassword: TcxButton
         Left = 3
-        Top = 208
+        Top = 176
         Width = 122
         Height = 25
-        Caption = 'Alterar'
-        OptionsImage.ImageIndex = 0
+        Caption = 'Confirmar'
         OptionsImage.Images = cxImageList_1
-        TabOrder = 7
+        TabOrder = 4
+        OnClick = btnAlterPasswordClick
       end
-      object cxButton4: TcxButton
+      object btnAlterPasswordCancel: TcxButton
         Left = 131
-        Top = 208
+        Top = 176
         Width = 122
         Height = 25
         Caption = 'Cancelar'
-        OptionsImage.ImageIndex = 1
         OptionsImage.Images = cxImageList_1
-        TabOrder = 9
-      end
-      object edt_passwordCurrent: TcxButtonEdit
-        Left = 3
-        Top = 70
-        Properties.Buttons = <
-          item
-            Default = True
-            Glyph.SourceDPI = 96
-            Glyph.Data = {
-              424D360400000000000036000000280000001000000010000000010020000000
-              000000000000C40E0000C40E0000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000040000000A00000010000000130000001500000014000000110000
-              000C000000050000000100000000000000000000000000000000000000030000
-              000C070404263F271F836E4235CA7A4839DE915644FF774436DE693C30CE3A20
-              19870704032B000000100000000400000000000000000000000300000011442C
-              2486976253F5BE998EFFD9C5BEFFE0CFCAFFEFE6E3FFDDCAC4FFD3BCB5FFB48B
-              7FFF895140F540231B920000001800000005000000010102041455362D9CC5A3
-              98FFF2E9E7FFF5EFEDFFBCAEA8FF71574CFF593A2DFF755B4EFFBEAEA7FFEBE2
-              DEFFE5D8D3FFB79085FF4E2A21A90101021A000000032F23246BB58D80FFF9F5
-              F4FFF7F3F2FFC1B3ADFF826555FFB19A85FFC2AC97FFB09783FF7F6251FFC0B0
-              A9FFECE3DFFFECE2DFFFA37467FF28191A750000000A5E4F60E1BCB1ACFFF6F3
-              F3FFF8F4F3FF7A5E50FFBEA995FF857162FF3F2A22FF746053FFB8A38FFF8066
-              58FFEEE5E2FFECE2DFFFB1A29CFF503F50E40000000D182C4D885C6372FFB2B0
-              B0FFF1EEEDFF725242FFDDD1B9FF806D5EFF493229FF493228FFCFC0A9FF7455
-              45FFEBE3E1FFABA6A3FF505566FF142A55AA0000000A05080F21395F9DFA697F
-              9AFF626160FF55443CFFB2A894FFE4E0C1FF584135FF847466FFA49887FF5848
-              3FFF5F5C5CFF4E6586FF2F5191FF050B173C000000040000000312213B685A7F
-              B7FFA6C5E3FF7990ABFF444D59FF3E4248FF2B2A25FF3C4148FF3E4856FF627D
-              9EFF789DC9FF3C609FFD0B172E63000000060000000000000000000000030F1B
-              3159315593ED6F91C1FF9BB9DCFFB0CDE9FFCBE8FCFFA7C7E6FF87AAD3FF5A7E
-              B3FF284B8BF10A15295800000006000000010000000000000000000000000000
-              00020204071112223E6F1C3765B0213F76D0274C91FC1E3C74D0193362B40F1F
-              3D75020408170000000300000000000000000000000000000000000000000000
-              0000000000000000000200000003000000040000000500000005000000040000
-              0002000000010000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000}
-            Kind = bkGlyph
-          end>
-        Properties.EchoMode = eemPassword
-        TabOrder = 4
-        Width = 250
+        TabOrder = 5
+        OnClick = btnAlterPasswordCancelClick
       end
       object edt_passwordNew: TcxButtonEdit
         Left = 3
-        Top = 112
+        Top = 26
         Properties.Buttons = <
           item
             Default = True
@@ -4545,12 +4491,12 @@ object frm_login: Tfrm_login
             Kind = bkGlyph
           end>
         Properties.EchoMode = eemPassword
-        TabOrder = 5
+        TabOrder = 2
         Width = 250
       end
       object edt_passwordConfirm: TcxButtonEdit
         Left = 3
-        Top = 157
+        Top = 76
         Properties.Buttons = <
           item
             Default = True
@@ -4593,32 +4539,20 @@ object frm_login: Tfrm_login
             Kind = bkGlyph
           end>
         Properties.EchoMode = eemPassword
-        TabOrder = 6
-        Width = 250
-      end
-      object edt_UsuarioElter: TcxTextEdit
-        Left = 3
-        Top = 27
         TabOrder = 3
         Width = 250
-      end
-      object cxLabel8: TcxLabel
-        Left = 3
-        Top = 9
-        Caption = 'Usu'#225'rio Atual'
-        Transparent = True
       end
     end
     object tbsht_recovery_password: TcxTabSheet
       Caption = 'Recuperar Senha '
       ImageIndex = 2
+      ExplicitHeight = 244
       object Image3: TImage
-        AlignWithMargins = True
         Left = 259
         Top = 3
         Width = 324
-        Height = 238
-        Align = alRight
+        Height = 198
+        Align = alCustom
         Center = True
         Picture.Data = {
           0B546478504E47496D61676589504E470D0A1A0A0000000D49484452000007D0
@@ -6741,51 +6675,47 @@ object frm_login: Tfrm_login
           00000013E80000000000000090037A9B45A141B8E4530000000049454E44AE42
           6082}
         Proportional = True
-        ExplicitLeft = 262
-        ExplicitTop = 6
       end
       object cxLabel9: TcxLabel
         Left = 3
-        Top = 22
+        Top = 3
         Caption = 'Dt. Nasc.'
         Transparent = True
       end
       object cxLabel10: TcxLabel
         Left = 3
-        Top = 72
+        Top = 53
         Caption = 'E-mail'
         Transparent = True
       end
       object cxemail: TcxTextEdit
         Left = 3
-        Top = 95
+        Top = 76
         Properties.CharCase = ecLowerCase
         TabOrder = 2
         Width = 250
       end
       object cxButton5: TcxButton
         Left = 3
-        Top = 208
+        Top = 176
         Width = 122
         Height = 25
-        Caption = 'Enviar'
-        OptionsImage.ImageIndex = 0
+        Caption = 'Confirmar'
         OptionsImage.Images = cxImageList_1
         TabOrder = 3
       end
       object cxButton6: TcxButton
         Left = 131
-        Top = 208
+        Top = 176
         Width = 122
         Height = 25
         Caption = 'Cancelar'
-        OptionsImage.ImageIndex = 1
         OptionsImage.Images = cxImageList_1
         TabOrder = 4
       end
       object cxDateNasc: TcxDateEdit
         Left = 3
-        Top = 45
+        Top = 26
         TabOrder = 5
         Width = 250
       end
@@ -6793,25 +6723,23 @@ object frm_login: Tfrm_login
   end
   object ActionList_1: TActionList
     Images = cxImageList_1
-    Left = 424
-    Top = 208
+    Left = 456
+    Top = 136
     object Action_access: TAction
-      Caption = 'Acessar'
+      Caption = 'Confirmar'
       Hint = 'Acessar ao Sistema'
-      ImageIndex = 0
       OnExecute = Action_accessExecute
     end
     object Action_cancel: TAction
       Caption = 'Cancelar'
       Hint = 'Cancelar Acesso'
-      ImageIndex = 1
       OnExecute = Action_cancelExecute
     end
   end
   object cxImageList_1: TcxImageList
     SourceDPI = 96
     FormatVersion = 1
-    DesignInfo = 13631944
+    DesignInfo = 8913384
     ImageInfo = <
       item
         Image.Data = {
@@ -6927,8 +6855,8 @@ object frm_login: Tfrm_login
   end
   object ACBrEnterTab_1: TACBrEnterTab
     EnterAsTab = True
-    Left = 392
-    Top = 208
+    Left = 424
+    Top = 136
   end
   object ACBrMail_1: TACBrMail
     Host = 'mail.ccsbrasil.com'
@@ -6944,8 +6872,8 @@ object frm_login: Tfrm_login
     Subject = 'Change Password'
     DefaultCharset = UTF_8
     IDECharset = ISO_8859_1
-    Left = 360
-    Top = 208
+    Left = 392
+    Top = 136
   end
   object mem: TFDMemTable
     FetchOptions.AssignedValues = [evMode]

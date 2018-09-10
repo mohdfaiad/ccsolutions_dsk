@@ -85,7 +85,7 @@ inherited frm_main: Tfrm_main
         end>
       OneOnRow = False
     end
-    object dxBarManager_1Bar2: TdxBar [3]
+    object dxBarManager_1Bar2: TdxBar
       Caption = #218'til'
       CaptionButtons = <>
       DockedLeft = 0
@@ -105,7 +105,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar3: TdxBar [4]
+    object dxBarManager_1Bar3: TdxBar
       Caption = 'Laborat'#243'rio'
       CaptionButtons = <>
       DockedLeft = 0
@@ -133,7 +133,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar4: TdxBar [5]
+    object dxBarManager_1Bar4: TdxBar
       Caption = 'F'#225'brica'
       CaptionButtons = <>
       DockedLeft = 0
@@ -153,7 +153,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar5: TdxBar [6]
+    object dxBarManager_1Bar5: TdxBar
       Caption = 'Cadastro'
       CaptionButtons = <>
       DockedLeft = 349
@@ -184,9 +184,6 @@ inherited frm_main: Tfrm_main
       UseOwnFont = False
       Visible = True
       WholeRow = False
-    end
-    inherited dxBarButton2: TdxBarButton
-      Action = Action_material
     end
     object dxBarLargeButton1: TdxBarLargeButton
       Action = Action_contract
@@ -570,6 +567,7 @@ inherited frm_main: Tfrm_main
       Caption = 'Paciente'
       Hint = 'Manuten'#231#227'o Clientes'
       ImageIndex = 12
+      OnExecute = Action_patientExecute
     end
     object Action_supplier: TAction
       Category = 'Cadastros'

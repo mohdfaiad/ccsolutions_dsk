@@ -3,12 +3,7 @@ unit u_class_rest_enterprise;
 interface
 
 uses
-  System.SysUtils,
-
-  FireDAC.Comp.Client,
-
-  u_class_rest_method,
-  u_class_connection;
+  System.SysUtils, FireDAC.Comp.Client, u_class_rest_method, u_class_connection;
 
 type
   Trest_enterprise = class(Trest_methods)
@@ -34,8 +29,8 @@ class function Trest_enterprise.GetEnterprise(mem: TFDMemTable): Boolean;
 begin
   try
     try
-      Trest_enterprise.v_method        := '/api/rest/enterprises/Enterprise';
-      Trest_enterprise.v_parameter     := Tconnection.ctr_token;
+      v_method        := '/api/rest/enterprises/Enterprise';
+      v_parameter     := Tconnection.ctr_token;
 
       begin
         if get(Trest_methods.v_method, Trest_methods.v_parameter) then begin

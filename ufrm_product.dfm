@@ -5,6 +5,10 @@ inherited frm_product: Tfrm_product
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pro_id: TcxGridDBColumn
@@ -79,8 +83,16 @@ inherited frm_product: Tfrm_product
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 77
@@ -458,10 +470,6 @@ inherited frm_product: Tfrm_product
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Medidas e Pesos'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0

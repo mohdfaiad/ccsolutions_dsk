@@ -116,6 +116,8 @@ uses
   cxDBLookupComboBox,
   cxDataControllerConditionalFormattingRulesManagerDialog,
   cxImageList,
+  cxGraphics,
+  cxCheckBox,
 
   Data.DB,
 
@@ -136,35 +138,100 @@ uses
 
   ACBrBase,
   ACBrEnterTab,
-  ACBrSocket,
-  ACBrCEP,
 
   frxClass,
 
-  ufrm_form_default, cxGraphics;
+  ufrm_form_default,
+
+  u_class_connection,
+  u_class_rest_insurance;
 
 type
   Tfrm_insurance = class(Tfrm_form_default)
-    qryins_first_name: TStringField;
-    qryins_last_name: TStringField;
-    qryins_email: TStringField;
-    qryins_cnpj: TStringField;
-    qryins_add_bus_zipcode: TStringField;
-    qryins_add_bus_address: TStringField;
-    qryins_add_bus_number: TStringField;
-    qryins_add_bus_street: TStringField;
-    qryins_add_bus_complement: TStringField;
-    qryins_add_bus_city: TStringField;
-    qryins_add_bus_state: TStringField;
-    qryins_add_bus_country: TStringField;
-    qryins_phone1: TStringField;
-    qryins_phone2: TStringField;
-    qryins_phone3: TStringField;
-    qryins_phone4: TStringField;
-    qryins_contact: TStringField;
+    dbedt_first_name: TcxDBTextEdit;
+    dxLayoutItem3: TdxLayoutItem;
+    dbedt_last_name: TcxDBTextEdit;
+    dxLayoutItem4: TdxLayoutItem;
+    dbedt_email: TcxDBTextEdit;
+    dxLayoutItem5: TdxLayoutItem;
+    dxLayoutGroup3: TdxLayoutGroup;
+    dbedt_cnpj: TcxDBTextEdit;
+    dxLayoutItem6: TdxLayoutItem;
+    dbedt_im: TcxDBTextEdit;
+    dxLayoutItem7: TdxLayoutItem;
+    cxTabSheet1: TcxTabSheet;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutGroup4: TdxLayoutGroup;
+    dbedt_add_bus_zipcode: TcxDBButtonEdit;
+    dxLayoutItem8: TdxLayoutItem;
+    dbedt_add_bus_address: TcxDBTextEdit;
+    dxLayoutItem9: TdxLayoutItem;
+    dbedt_add_bus_number: TcxDBTextEdit;
+    dxLayoutItem10: TdxLayoutItem;
+    dbedt_add_bus_street: TcxDBTextEdit;
+    dxLayoutItem11: TdxLayoutItem;
+    dbedt_add_bus_complement: TcxDBTextEdit;
+    dxLayoutItem12: TdxLayoutItem;
+    dbedt_add_bus_city: TcxDBTextEdit;
+    dxLayoutItem13: TdxLayoutItem;
+    dbedt_add_bus_state: TcxDBTextEdit;
+    dxLayoutItem14: TdxLayoutItem;
+    dbedt_add_bus_country: TcxDBTextEdit;
+    dxLayoutItem15: TdxLayoutItem;
+    cxTabSheet2: TcxTabSheet;
+    dxLayoutControl2Group_Root: TdxLayoutGroup;
+    dxLayoutControl2: TdxLayoutControl;
+    dxLayoutGroup6: TdxLayoutGroup;
+    dxLayoutGroup7: TdxLayoutGroup;
+    dbedt_dt_maturity_contract: TcxDBDateEdit;
+    dxLayoutItem21: TdxLayoutItem;
+    dbedt_day_maturity: TcxDBSpinEdit;
+    dxLayoutItem22: TdxLayoutItem;
+    dbedt_dt_open: TcxDBDateEdit;
+    dxLayoutItem24: TdxLayoutItem;
+    lookupComboBoxTable: TcxLookupComboBox;
+    dxLayoutItem26: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup10: TdxLayoutAutoCreatedGroup;
+    dbedt_nickname: TcxDBTextEdit;
+    dxLayoutItem23: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    memins_cod: TStringField;
+    memtable_price_tbp_cod: TStringField;
+    memins_id: TLongWordField;
+    memins_first_name: TStringField;
+    memins_last_name: TStringField;
+    memins_nickname: TStringField;
+    memins_email: TStringField;
+    memins_cnpj: TStringField;
+    memins_im: TStringField;
+    memins_add_bus_zipcode: TStringField;
+    memins_add_bus_address: TStringField;
+    memins_add_bus_number: TStringField;
+    memins_add_bus_street: TStringField;
+    memins_add_bus_complement: TStringField;
+    memins_add_bus_city: TStringField;
+    memins_add_bus_state: TStringField;
+    memins_add_bus_country: TStringField;
+    memins_phone1: TStringField;
+    memins_phone2: TStringField;
+    memins_phone3: TStringField;
+    memins_phone4: TStringField;
+    memins_contact: TStringField;
+    memins_dt_maturity_contract: TDateField;
+    memins_day_maturity: TByteField;
+    memins_dt_open: TDateField;
+    memins_status: TShortintField;
+    memins_deleted_at: TDateTimeField;
+    memins_dt_registration: TDateTimeField;
     cxGrid_1DBTableView1ins_id: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_first_name: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_last_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1ins_nickname: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_email: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_cnpj: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_im: TcxGridDBColumn;
@@ -182,114 +249,34 @@ type
     cxGrid_1DBTableView1ins_phone4: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_contact: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_dt_maturity_contract: TcxGridDBColumn;
-    cxGrid_1DBTableView1ins_dt_open: TcxGridDBColumn;
-    cxGrid_1DBTableView1ins_dt_registration: TcxGridDBColumn;
-    cxDBTextEdit1: TcxDBTextEdit;
-    dxLayoutItem3: TdxLayoutItem;
-    cxDBTextEdit2: TcxDBTextEdit;
-    dxLayoutItem4: TdxLayoutItem;
-    cxDBTextEdit3: TcxDBTextEdit;
-    dxLayoutItem5: TdxLayoutItem;
-    dxLayoutGroup3: TdxLayoutGroup;
-    cxDBTextEdit4: TcxDBTextEdit;
-    dxLayoutItem6: TdxLayoutItem;
-    cxDBTextEdit5: TcxDBTextEdit;
-    dxLayoutItem7: TdxLayoutItem;
-    cxTabSheet1: TcxTabSheet;
-    dxLayoutControl1Group_Root: TdxLayoutGroup;
-    dxLayoutControl1: TdxLayoutControl;
-    dxLayoutGroup4: TdxLayoutGroup;
-    dxLayoutGroup5: TdxLayoutGroup;
-    btnEditCEP: TcxDBButtonEdit;
-    dxLayoutItem8: TdxLayoutItem;
-    edtRua: TcxDBTextEdit;
-    dxLayoutItem9: TdxLayoutItem;
-    edtNumero_Casa: TcxDBTextEdit;
-    dxLayoutItem10: TdxLayoutItem;
-    edtBairro: TcxDBTextEdit;
-    dxLayoutItem11: TdxLayoutItem;
-    edtComplemento: TcxDBTextEdit;
-    dxLayoutItem12: TdxLayoutItem;
-    edtCidade: TcxDBTextEdit;
-    dxLayoutItem13: TdxLayoutItem;
-    edtUF_End: TcxDBTextEdit;
-    dxLayoutItem14: TdxLayoutItem;
-    edtPais_End: TcxDBTextEdit;
-    dxLayoutItem15: TdxLayoutItem;
-    cxDBTextEdit13: TcxDBTextEdit;
-    dxLayoutItem16: TdxLayoutItem;
-    cxDBTextEdit14: TcxDBTextEdit;
-    dxLayoutItem17: TdxLayoutItem;
-    cxDBTextEdit15: TcxDBTextEdit;
-    dxLayoutItem18: TdxLayoutItem;
-    cxDBTextEdit16: TcxDBTextEdit;
-    dxLayoutItem19: TdxLayoutItem;
-    cxDBTextEdit17: TcxDBTextEdit;
-    dxLayoutItem20: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup4: TdxLayoutAutoCreatedGroup;
-    cxTabSheet2: TcxTabSheet;
-    dxLayoutControl2Group_Root: TdxLayoutGroup;
-    dxLayoutControl2: TdxLayoutControl;
-    dxLayoutGroup6: TdxLayoutGroup;
-    dxLayoutGroup7: TdxLayoutGroup;
-    cxDBDateEdit1: TcxDBDateEdit;
-    dxLayoutItem21: TdxLayoutItem;
-    cxDBSpinEdit1: TcxDBSpinEdit;
-    dxLayoutItem22: TdxLayoutItem;
-    cxDBDateEdit2: TcxDBDateEdit;
-    dxLayoutItem24: TdxLayoutItem;
-    cxDBComboBox1: TcxDBComboBox;
-    dxLayoutItem25: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    cxGrid_1DBTableView1ins_status: TcxGridDBColumn;
-    qry_table_price: TFDQuery;
-    ds_table_price: TDataSource;
-    qry_table_pricetbp_id: TLongWordField;
-    qry_table_pricetbp_name: TStringField;
-    qry_table_pricecontract_ctr_cod: TBytesField;
-    qry_table_pricecodTabela: TStringField;
-    lookupComboBoxTable: TcxLookupComboBox;
-    dxLayoutItem26: TdxLayoutItem;
-    qry_table_pricetbp_cod: TBytesField;
-    qrycodTabela: TStringField;
-    qryins_cod: TBytesField;
-    qrycontract_ctr_cod: TBytesField;
-    qrytable_price_tbp_cod: TBytesField;
-    qryins_id: TLongWordField;
-    qryins_nickname: TStringField;
-    qryins_im: TStringField;
-    qryins_dt_maturity_contract: TDateField;
-    qryins_day_maturity: TByteField;
-    qryins_dt_open: TDateField;
-    qryins_deleted_at: TDateTimeField;
-    qryins_dt_registration: TDateTimeField;
-    dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup10: TdxLayoutAutoCreatedGroup;
-    cxDBTextEdit6: TcxDBTextEdit;
-    dxLayoutItem23: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
-    cxGrid_1DBTableView1ins_nickname: TcxGridDBColumn;
     cxGrid_1DBTableView1ins_day_maturity: TcxGridDBColumn;
-    acbr_cep: TACBrCEP;
+    cxGrid_1DBTableView1ins_dt_open: TcxGridDBColumn;
+    cxGrid_1DBTableView1ins_status: TcxGridDBColumn;
+    cxGrid_1DBTableView1ins_dt_registration: TcxGridDBColumn;
+    dbchk_status: TcxDBCheckBox;
+    dxLayoutItem25: TdxLayoutItem;
+    tbsht_contact: TcxTabSheet;
+    dxLayoutControl3: TdxLayoutControl;
+    dbedt_phone2: TcxDBTextEdit;
+    dbedt_phone4: TcxDBTextEdit;
+    dbedt_phone1: TcxDBTextEdit;
+    dbedt_phone3: TcxDBTextEdit;
+    dbedt_contact: TcxDBTextEdit;
+    dxLayoutGroup8: TdxLayoutGroup;
+    dxLayoutGroup10: TdxLayoutGroup;
+    dxLayoutItem28: TdxLayoutItem;
+    dxLayoutItem29: TdxLayoutItem;
+    dxLayoutItem30: TdxLayoutItem;
+    dxLayoutItem31: TdxLayoutItem;
+    dxLayoutItem39: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure qryAfterInsert(DataSet: TDataSet);
-    procedure Action_cancelExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
-    procedure cxTabSheet_1Show(Sender: TObject);
-    procedure lookupComboBoxTablePropertiesCloseUp(Sender: TObject);
-    procedure cxTabSheet_2Show(Sender: TObject);
-    procedure lookupComboBoxTablePropertiesPopup(Sender: TObject);
-    procedure cxDBButtonEdit1PropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
-    procedure ACBrCEP_1BuscaEfetuada(Sender: TObject);
-    procedure cxDBTextEdit1Exit(Sender: TObject);
   private
-    { Private declarations }
-    ins_cod:string;
+    procedure afterInsert;
+    procedure afterUpdate;
+
   public
-    { Public declarations }
 
   end;
 
@@ -302,112 +289,116 @@ implementation
 
 uses ufrm_dm;
 
-procedure Tfrm_insurance.ACBrCEP_1BuscaEfetuada(Sender: TObject);
- var
-  i:Integer;
-begin
+procedure Tfrm_insurance.Action_saveExecute(Sender: TObject);
+var
+  strproc_create, strproc_update : TFDStoredProc;
+begin
   inherited;
-  for I := 0 to acbr_cep.Enderecos.Count -1 do begin
-     edtRua.Text            := acbr_cep.Enderecos[i].Logradouro;
-     edtBairro.Text         := acbr_cep.Enderecos[i].Bairro;
-     edtComplemento.Text    := acbr_cep.Enderecos[i].Complemento;
-     edtCidade.Text    	    := acbr_cep.Enderecos[i].Municipio;
-     edtUF_End.Text         := acbr_cep.Enderecos[i].UF;
-     edtPais_End.Text       := 'BRASIL';
-     edtNumero_Casa.SetFocus;
+  case ds.State of
+    dsEdit:
+      try
+        try
+          strproc_update := TFDStoredProc.Create(Self);
+          strproc_update.Connection := frm_dm.connCCS;
+          strproc_update.StoredProcName := 'proc_insurance_update';
+          strproc_update.Prepare;
+
+          strproc_update.ParamByName('p_ctr_token').AsString              := Tconnection.ctr_token;
+          strproc_update.ParamByName('p_ins_cod').AsString                := memins_cod.AsString;
+//          strproc_update.ParamByName('p_table_price_tbp_cod').AsString    := memins_cod.AsString;
+          strproc_update.ParamByName('p_ins_first_name').AsString         := dbedt_first_name.Text;
+          strproc_update.ParamByName('p_ins_last_name').AsString          := dbedt_last_name.Text;
+          strproc_update.ParamByName('p_ins_nickname').AsString           := dbedt_nickname.Text;
+          strproc_update.ParamByName('p_ins_email').AsString              := dbedt_email.Text;
+          strproc_update.ParamByName('p_ins_cnpj').AsString               := dbedt_cnpj.Text;
+          strproc_update.ParamByName('p_ins_im').AsString                 := dbedt_im.Text;
+          strproc_update.ParamByName('p_ins_add_bus_zipcode').AsString    := dbedt_add_bus_zipcode.Text;
+          strproc_update.ParamByName('p_ins_add_bus_address').AsString    := dbedt_add_bus_address.Text;
+          strproc_update.ParamByName('p_ins_add_bus_number').AsString     := dbedt_add_bus_number.Text;
+          strproc_update.ParamByName('p_ins_add_bus_street').AsString     := dbedt_add_bus_street.Text;
+          strproc_update.ParamByName('p_ins_add_bus_complement').AsString := dbedt_add_bus_complement.Text;
+          strproc_update.ParamByName('p_ins_add_bus_city').AsString       := dbedt_add_bus_city.Text;
+          strproc_update.ParamByName('p_ins_add_bus_state').AsString      := dbedt_add_bus_state.Text;
+          strproc_update.ParamByName('p_ins_add_bus_country').AsString    := dbedt_add_bus_country.Text;
+          strproc_update.ParamByName('p_ins_phone1').AsString             := dbedt_phone1.Text;
+          strproc_update.ParamByName('p_ins_phone2').AsString             := dbedt_phone2.Text;
+          strproc_update.ParamByName('p_ins_phone3').AsString             := dbedt_phone3.Text;
+          strproc_update.ParamByName('p_ins_phone4').AsString             := dbedt_phone4.Text;
+          strproc_update.ParamByName('p_ins_contact').AsString            := dbedt_contact.Text;
+          strproc_update.ParamByName('p_ins_dt_maturity_contract').AsDate := dbedt_dt_maturity_contract.Date;
+          strproc_update.ParamByName('p_ins_day_maturity').AsInteger      := dbedt_day_maturity.Value;
+          strproc_update.ParamByName('p_ins_dt_open').AsDate              := dbedt_dt_open.Date;
+          strproc_update.ParamByName('p_ins_status').AsShortInt           := dbchk_status.Checked.ToInteger;
+          strproc_update.ExecProc;
+
+          afterUpdate;
+        except on E: Exception do
+          ShowMessage('Erro: ' + E.Message);
+        end;
+      finally
+      end;
+
+    dsInsert:
+      try
+        try
+          if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+            strproc_create := TFDStoredProc.Create(Self);
+            strproc_create.Connection := frm_dm.connCCS;
+            strproc_create.StoredProcName := 'proc_insurance_create';
+            strproc_create.Prepare;
+
+            strproc_create.ParamByName('p_ctr_token').AsString              := Tconnection.ctr_token;
+//            strproc_create.ParamByName('p_table_price_tbp_cod').AsString    := memins_cod.AsString;
+            strproc_create.ParamByName('p_ins_first_name').AsString         := dbedt_first_name.Text;
+            strproc_create.ParamByName('p_ins_last_name').AsString          := dbedt_last_name.Text;
+            strproc_create.ParamByName('p_ins_nickname').AsString           := dbedt_nickname.Text;
+            strproc_create.ParamByName('p_ins_email').AsString              := dbedt_email.Text;
+            strproc_create.ParamByName('p_ins_cnpj').AsString               := dbedt_cnpj.Text;
+            strproc_create.ParamByName('p_ins_im').AsString                 := dbedt_im.Text;
+            strproc_create.ParamByName('p_ins_add_bus_zipcode').AsString    := dbedt_add_bus_zipcode.Text;
+            strproc_create.ParamByName('p_ins_add_bus_address').AsString    := dbedt_add_bus_address.Text;
+            strproc_create.ParamByName('p_ins_add_bus_number').AsString     := dbedt_add_bus_number.Text;
+            strproc_create.ParamByName('p_ins_add_bus_street').AsString     := dbedt_add_bus_street.Text;
+            strproc_create.ParamByName('p_ins_add_bus_complement').AsString := dbedt_add_bus_complement.Text;
+            strproc_create.ParamByName('p_ins_add_bus_city').AsString       := dbedt_add_bus_city.Text;
+            strproc_create.ParamByName('p_ins_add_bus_state').AsString      := dbedt_add_bus_state.Text;
+            strproc_create.ParamByName('p_ins_add_bus_country').AsString    := dbedt_add_bus_country.Text;
+            strproc_create.ParamByName('p_ins_phone1').AsString             := dbedt_phone1.Text;
+            strproc_create.ParamByName('p_ins_phone2').AsString             := dbedt_phone2.Text;
+            strproc_create.ParamByName('p_ins_phone3').AsString             := dbedt_phone3.Text;
+            strproc_create.ParamByName('p_ins_phone4').AsString             := dbedt_phone4.Text;
+            strproc_create.ParamByName('p_ins_contact').AsString            := dbedt_contact.Text;
+            strproc_create.ParamByName('p_ins_dt_maturity_contract').AsDate := dbedt_dt_maturity_contract.Date;
+            strproc_create.ParamByName('p_ins_day_maturity').AsInteger      := dbedt_day_maturity.Value;
+            strproc_create.ParamByName('p_ins_dt_open').AsDate              := dbedt_dt_open.Date;
+            strproc_create.ParamByName('p_ins_status').AsShortInt           := dbchk_status.Checked.ToInteger;
+            strproc_create.ExecProc;
+
+            afterInsert;
+          end else begin
+            ds.DataSet.Cancel;
+          end;
+          except on E: Exception do
+            ShowMessage('Erro: ' + E.Message);
+          end;
+      finally
+      end;
   end;
 end;
 
-procedure Tfrm_insurance.Action_cancelExecute(Sender: TObject);
+procedure Tfrm_insurance.afterInsert;
 begin
-  inherited;
-//
-// if not result then
-// Exit;
-//
-//
-// with frm_dm.qry,sql do
-// begin
-//  Close;
-//  Text:= ' delete from insurance ' +
-//         ' where ins_cod = ' + ins_cod;
-//  Prepare;
-//  ExecSQL;
-//
-//  qry.Close;
-//  qry.sql.text:= ' select insurance.*,concat(''0x'',hex(table_price_tbp_cod)) as codTabela from insurance' +
-//                 ' where ins_deleted_at is null';
-//  qry.Prepare;
-//  qry.open;
-// end;
-
+  ShowMessage('Registro Iserido com Sucesso');
+  cxTabSheet_3.Show;
+  Trest_insurance.GetInsurance(mem);
+  ds.DataSet.Last;
 end;
 
-
-procedure Tfrm_insurance.Action_saveExecute(Sender: TObject);
+procedure Tfrm_insurance.afterUpdate;
 begin
-   inherited;
-//if ds.DataSet.State in [dsEdit] then
-//    Exit;
-//
-//
-//with frm_dm.qry,sql do
-// begin
-//   close;
-//   Text:= ' select case when max(ins_id) is null then 1 ' +
-//          '      else (max(ins_id) + 1) end as maxID from insurance '+
-//          ' where contract_ctr_cod = unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-//   Prepare;
-//   Open;
-//   if not (qry.State in [dsInsert,dsEdit])  then
-//    qry.Edit;
-//
-//   if qryins_id.AsInteger = 0 then
-//    qryins_id.AsInteger:=Fields[0].AsInteger;
-//    qry.Post;
-//    qry.ApplyUpdates(0);
-// end;
-//
-//
-//    if ds.DataSet.State in [dsEdit] then
-//      Exit;
-//
-//       qry.Close;
-//       qry.sql.text:= ' select insurance.*,concat(''0x'',hex(table_price_tbp_cod)) as codTabela from insurance' +
-//                      ' where ins_deleted_at is null ';
-//       qry.Prepare;
-//       qry.open;
-
-end;
-
-procedure Tfrm_insurance.cxDBButtonEdit1PropertiesButtonClick(Sender: TObject; AButtonIndex: Integer);
-begin
-  inherited;
-    acbr_cep.BuscarPorCEP(btnEditCEP.Text);
-end;
-
-procedure Tfrm_insurance.cxDBTextEdit1Exit(Sender: TObject);
-begin
-  inherited;
-if Trim(cxDBTextEdit2.TExt) = ''  then
-  qryins_last_name.AsString:=qryins_first_name.AsString;
-end;
-
-procedure Tfrm_insurance.cxTabSheet_1Show(Sender: TObject);
-begin
-  inherited;
-   qry.Close;
-   qry.sql.text:= ' select insurance.*,concat(''0x'',hex(table_price_tbp_cod)) as codTabela from insurance';
-   qry.Prepare;
-   qry.open;
-   qry.Refresh;
-end;
-
-procedure Tfrm_insurance.cxTabSheet_2Show(Sender: TObject);
-begin
-  inherited;
-  qry_table_price.Locate('codTabela', qrycodTabela.AsString,[]);
-  lookupComboBoxTable.Text:=qry_table_pricetbp_name.AsString;
+  ShowMessage('Registro Atualizado com sucesso');
+  cxTabSheet_3.Show;
+  Trest_insurance.GetInsurance(mem);
 end;
 
 procedure Tfrm_insurance.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -417,50 +408,10 @@ begin
   frm_insurance := Nil;
 end;
 
-procedure Tfrm_insurance.lookupComboBoxTablePropertiesCloseUp(Sender: TObject);
+procedure Tfrm_insurance.FormCreate(Sender: TObject);
 begin
   inherited;
-  qry_table_price.Locate('tbp_name',lookupComboBoxTable.Text,[]);
-  qrytable_price_tbp_cod.Value:=qry_table_pricetbp_cod.Value;
-end;
-
-procedure Tfrm_insurance.lookupComboBoxTablePropertiesPopup(Sender: TObject);
-begin
-  inherited;
-  qry_table_price.Close;
-  qry_table_price.Prepare;
-  qry_table_price.Open;
-end;
-
-procedure Tfrm_insurance.qryAfterInsert(DataSet: TDataSet);
-begin
-  inherited;
-//
-// With frm_dm.qry,sql do
-//  begin
-//   close;
-//   text:='select concat(''0x'',hex(unhex(replace(uuid(),''-'',''''))))';
-//   prepare;
-//   open;
-//
-//   ins_cod:=Fields[0].AsString;
-//
-//   Close;
-//   Text:='insert into insurance (ins_id,ins_cod,contract_ctr_cod) ' +
-//         ' select 0,'+ ins_cod + ',unhex(' + QuotedStr(frm_dm.v_contract_ctr_cod) + ')';
-//   Prepare;
-//   ExecSQL;
-//  end;
-//
-//   qry.Unprepare;
-//   qry.Close;
-//   qry.sql.text:= ' select insurance.*,concat(''0x'',hex(table_price_tbp_cod)) as codTabela from insurance ' +
-//                  ' where ins_cod = ' + ins_cod +
-//                  ' and ins_deleted_at is null ';
-//   qry.Prepare;
-//   qry.open;
-//   qry.Edit;
-//   qryins_dt_registration.AsDateTime:=Now;
+  Trest_insurance.GetInsurance(mem);
 end;
 
 end.

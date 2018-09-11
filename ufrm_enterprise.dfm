@@ -789,9 +789,6 @@ inherited frm_enterprise: Tfrm_enterprise
   end
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
-    inherited cxBarEditItem_1: TcxBarEditItem
-      Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports\cadastro\basico\empresa'
-    end
   end
   inherited ActionList_1: TActionList
     inherited Action_save: TAction

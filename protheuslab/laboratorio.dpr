@@ -42,7 +42,11 @@ uses
   ufrm_contract_user in '..\ufrm_contract_user.pas' {frm_contract_user},
   u_class_rest_material in '..\u_class_rest_material.pas',
   u_class_connection in '..\u_class_connection.pas',
-  u_class_rest_medicine in '..\u_class_rest_medicine.pas';
+  u_class_rest_medicine in '..\u_class_rest_medicine.pas',
+  u_class_rest_product in '..\u_class_rest_product.pas',
+  u_class_rest_insurance in '..\u_class_rest_insurance.pas',
+  ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
+  u_class_rest_table_price in '..\u_class_rest_table_price.pas';
 
 {$R *.res}
 

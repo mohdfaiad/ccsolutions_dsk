@@ -219,7 +219,6 @@ inherited frm_main: Tfrm_main
       Hint = 'Exames'
       Visible = ivAlways
       ButtonStyle = bsDropDown
-      DropDownMenu = rbpopmenu_1
       HotGlyph.SourceDPI = 96
       HotGlyph.Data = {
         424D361000000000000036000000280000002000000020000000010020000000
@@ -379,7 +378,6 @@ inherited frm_main: Tfrm_main
       Hint = 'Requisi'#231#227'o'
       Visible = ivAlways
       ButtonStyle = bsDropDown
-      DropDownMenu = rbpopmenu_2
       HotGlyph.SourceDPI = 96
       HotGlyph.Data = {
         424D361000000000000036000000280000002000000020000000010020000000
@@ -2637,35 +2635,5 @@ inherited frm_main: Tfrm_main
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000}
       end>
-  end
-  object rbpopmenu_1: TdxRibbonPopupMenu
-    BarManager = dxBarManager_1
-    ItemLinks = <
-      item
-        Visible = True
-        ItemName = 'dxBarButton5'
-      end
-      item
-        Visible = True
-        ItemName = 'dxBarButton3'
-      end>
-    Ribbon = dxRibbon1
-    UseOwnFont = False
-    Left = 656
-    Top = 56
-    PixelsPerInch = 96
-  end
-  object rbpopmenu_2: TdxRibbonPopupMenu
-    BarManager = dxBarManager_1
-    ItemLinks = <
-      item
-        Visible = True
-        ItemName = 'dxBarButton4'
-      end>
-    Ribbon = dxRibbon1
-    UseOwnFont = False
-    Left = 688
-    Top = 56
-    PixelsPerInch = 96
   end
 end

@@ -175,7 +175,8 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses
+  ufrm_dm;
 
 procedure Tfrm_material.Action_saveExecute(Sender: TObject);
 var

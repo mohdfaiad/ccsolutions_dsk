@@ -118,7 +118,8 @@ uses
   ufrm_dm,
   ufrm_supplier,
   ufrm_client,
-  ufrm_contract_user;
+  ufrm_contract_user,
+  ufrm_table_price;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -142,7 +143,6 @@ type
     dxBarLargeButton8: TdxBarLargeButton;
     Action_report: TAction;
     dxBarLargeButton9: TdxBarLargeButton;
-    rbpopmenu_1: TdxRibbonPopupMenu;
     dxBarButton3: TdxBarButton;
     dxBarManager_1Bar5: TdxBar;
     dxBarLargeButton7: TdxBarLargeButton;
@@ -154,7 +154,6 @@ type
     dxBarButton1: TdxBarButton;
     Action_requisition_type: TAction;
     dxBarLargeButton11: TdxBarLargeButton;
-    rbpopmenu_2: TdxRibbonPopupMenu;
     dxBarButton4: TdxBarButton;
     dxBarButton5: TdxBarButton;
     acTable: TAction;
@@ -195,18 +194,15 @@ implementation
 procedure Tfrm_main.acTableExecute(Sender: TObject);
 begin
   inherited;
-//  if not Assigned(frm_table_price) then
-//  begin
-//    frm_table_price := Tfrm_table_price.Create(Self);
-//    frm_table_price.Height := Bevel_1.Height;
-//    frm_table_price.Width := Bevel_1.Width;
-//    frm_table_price.Show;
-//  end
-//  else
-//  begin
-//    frm_table_price.WindowState := wsNormal;
-//    frm_table_price.Show;
-//  end;
+  if not Assigned(frm_table_price) then begin
+    frm_table_price := Tfrm_table_price.Create(Self);
+    frm_table_price.Height := Bevel_1.Height;
+    frm_table_price.Width := Bevel_1.Width;
+    frm_table_price.Show;
+  end else begin
+    frm_table_price.WindowState := wsNormal;
+    frm_table_price.Show;
+  end;
 end;
 
 procedure Tfrm_main.Action_contractExecute(Sender: TObject);

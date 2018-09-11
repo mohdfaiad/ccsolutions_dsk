@@ -3,12 +3,7 @@ unit u_class_rest_product;
 interface
 
 uses
-  System.SysUtils,
-
-  FireDAC.Comp.Client,
-
-  u_class_rest_method,
-  u_class_connection;
+  System.SysUtils, FireDAC.Comp.Client, u_class_rest_method, u_class_connection;
 
 type
   Trest_product = class(Trest_methods)

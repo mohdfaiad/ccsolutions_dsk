@@ -315,6 +315,10 @@ type
     dxLayoutItem5: TdxLayoutItem;
     dxLayoutGroup7: TdxLayoutGroup;
     griddbcci_value_reseller: TcxGridDBColumn;
+    memClientContractItencci_value_total: TBCDField;
+    griddbcci_value_total: TcxGridDBColumn;
+    memClientContractItencci_value_discount: TBCDField;
+    griddbcci_value_discount: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
@@ -322,6 +326,7 @@ type
   private
     procedure afterInsert;
     procedure afterUpdate;
+    procedure calcProductIten;
 
   public
 
@@ -409,6 +414,11 @@ begin
   Trest_client_contract.GetClientContract(mem);
 end;
 
+procedure Tfrm_client_contract.calcProductIten;
+begin
+  memClientContractItencci_value_total.Value := memClientContractItencci_value_discount.Value - (memClientContractItencci_value.Value * memClientContractItencci_quant.Value);
+end;
+
 procedure Tfrm_client_contract.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -447,6 +457,8 @@ begin
               strproc_update.ParamByName('p_cci_cod').AsString          := memClientContractItencci_cod.AsString;
               strproc_update.ParamByName('p_product_pro_cod').AsString  := memProductpro_cod.AsString;
               strproc_update.ParamByName('p_cci_value').AsBCD           := memClientContractItencci_value.AsCurrency;
+              strproc_update.ParamByName('p_cci_value_discount').AsBCD  := memClientContractItencci_value_discount.AsCurrency;
+              strproc_update.ParamByName('p_cci_value_total').AsBCD     := memClientContractItencci_value_total.AsCurrency;
               strproc_update.ParamByName('p_cci_value_reseller').AsBCD  := memClientContractItencci_value_reseller.AsCurrency;
               strproc_update.ParamByName('p_cci_quant').AsBCD           := memClientContractItencci_quant.AsCurrency;
               strproc_update.ExecProc;
@@ -468,6 +480,8 @@ begin
               strproc_create.ParamByName('p_client_contract_cli_ctr_cod').AsString  := memcli_ctr_cod.AsString;
               strproc_create.ParamByName('p_product_pro_cod').AsString              := memProductpro_cod.AsString;
               strproc_create.ParamByName('p_cci_value').AsBCD                       := memClientContractItencci_value.AsCurrency;
+              strproc_create.ParamByName('p_cci_value_discount').AsBCD              := memClientContractItencci_value_discount.AsCurrency;
+              strproc_create.ParamByName('p_cci_value_total').AsBCD                 := memClientContractItencci_value_total.AsCurrency;
               strproc_create.ParamByName('p_cci_value_reseller').AsBCD              := memClientContractItencci_value_reseller.AsCurrency;
               strproc_create.ParamByName('p_cci_quant').AsBCD                       := memClientContractItencci_quant.AsCurrency;
               strproc_create.ExecProc;

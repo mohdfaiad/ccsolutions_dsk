@@ -67,7 +67,7 @@ inherited frm_main: Tfrm_main
           ItemName = 'dxBarLargeButton7'
         end>
     end
-    object dxBarManager_1Bar2: TdxBar [3]
+    object dxBarManager_1Bar2: TdxBar
       Caption = #218'til'
       CaptionButtons = <>
       DockedLeft = 0
@@ -87,7 +87,7 @@ inherited frm_main: Tfrm_main
       Visible = True
       WholeRow = False
     end
-    object dxBarManager_1Bar3: TdxBar [4]
+    object dxBarManager_1Bar3: TdxBar
       Caption = 'Contratos'
       CaptionButtons = <>
       DockedLeft = 0

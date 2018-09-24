@@ -4,7 +4,12 @@ inherited frm_client_contract: Tfrm_client_contract
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1cli_ctr_id: TcxGridDBColumn
@@ -31,8 +36,17 @@ inherited frm_client_contract: Tfrm_client_contract
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = cxTabSheet2
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'cli_ctr_id'
@@ -263,11 +277,29 @@ inherited frm_client_contract: Tfrm_client_contract
                 object griddbcci_value: TcxGridDBColumn
                   DataBinding.FieldName = 'cci_value'
                   PropertiesClassName = 'TcxCurrencyEditProperties'
+                  Properties.DecimalPlaces = 4
+                  Properties.DisplayFormat = 'R$ ,0.0000;-R$ ,0.0000'
                   Width = 100
                 end
                 object griddbcci_quant: TcxGridDBColumn
                   DataBinding.FieldName = 'cci_quant'
                   PropertiesClassName = 'TcxCurrencyEditProperties'
+                  Properties.DecimalPlaces = 4
+                  Properties.DisplayFormat = '0.0000'
+                  Width = 100
+                end
+                object griddbcci_value_discount: TcxGridDBColumn
+                  DataBinding.FieldName = 'cci_value_discount'
+                  PropertiesClassName = 'TcxCurrencyEditProperties'
+                  Properties.DecimalPlaces = 4
+                  Properties.DisplayFormat = 'R$ ,0.0000;-R$ ,0.0000'
+                  Width = 100
+                end
+                object griddbcci_value_total: TcxGridDBColumn
+                  DataBinding.FieldName = 'cci_value_total'
+                  PropertiesClassName = 'TcxCurrencyEditProperties'
+                  Properties.DecimalPlaces = 4
+                  Properties.DisplayFormat = 'R$ ,0.0000;-R$ ,0.0000'
                   Width = 100
                 end
                 object griddbcci_value_reseller: TcxGridDBColumn
@@ -1307,11 +1339,23 @@ inherited frm_client_contract: Tfrm_client_contract
         Size = 4
       end
       item
+        Name = 'cci_value_total'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'cci_value_reseller'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
         Name = 'cci_dt_registration'
         DataType = ftDateTime
       end
       item
-        Name = 'cci_value_reseller'
+        Name = 'cci_value_discount'
         DataType = ftBCD
         Precision = 12
         Size = 4
@@ -1364,6 +1408,20 @@ inherited frm_client_contract: Tfrm_client_contract
       DisplayLabel = 'Quant.'
       FieldName = 'cci_quant'
       Origin = 'cci_quant'
+      Precision = 12
+    end
+    object memClientContractItencci_value_discount: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Vl. Desc.'
+      FieldName = 'cci_value_discount'
+      Origin = 'cci_value_discount'
+      Precision = 12
+    end
+    object memClientContractItencci_value_total: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Vl. Total'
+      FieldName = 'cci_value_total'
+      Origin = 'cci_value_total'
       Precision = 12
     end
     object memClientContractItencci_value_reseller: TBCDField

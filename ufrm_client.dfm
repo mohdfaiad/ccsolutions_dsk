@@ -5,6 +5,10 @@ inherited frm_client: Tfrm_client
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1cli_id: TcxGridDBColumn
@@ -211,8 +215,16 @@ inherited frm_client: Tfrm_client
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 28
+          ExplicitWidth = 986
+          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 93
@@ -498,10 +510,6 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1131,10 +1139,6 @@ inherited frm_client: Tfrm_client
         end
         object tbsht_contact: TcxTabSheet
           Caption = 'Contatos'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1272,10 +1276,6 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1335,10 +1335,6 @@ inherited frm_client: Tfrm_client
         end
         object tbsht_telephony: TcxTabSheet
           Caption = 'Telefonia'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object pgctrl_telephony: TcxPageControl
             AlignWithMargins = True
             Left = 3
@@ -1347,7 +1343,7 @@ inherited frm_client: Tfrm_client
             Height = 556
             Align = alClient
             TabOrder = 0
-            Properties.ActivePage = cxTabSheet3
+            Properties.ActivePage = tbsht_dids
             Properties.CustomButtons.Buttons = <>
             Properties.HotImages = cxImageList_1
             Properties.Images = cxImageList_1
@@ -1355,12 +1351,206 @@ inherited frm_client: Tfrm_client
             ClientRectLeft = 2
             ClientRectRight = 974
             ClientRectTop = 28
+            object tbsht_dids: TcxTabSheet
+              Caption = 'DIDs'
+              object dxLayoutControl4: TdxLayoutControl
+                Left = 0
+                Top = 0
+                Width = 972
+                Height = 522
+                Align = alClient
+                TabOrder = 0
+                LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
+                OnDblClick = dxLayoutControl_1DblClick
+                object grid: TcxGrid
+                  Left = 17
+                  Top = 134
+                  Width = 938
+                  Height = 368
+                  TabOrder = 3
+                  object gridtblview: TcxGridDBTableView
+                    Navigator.Buttons.ConfirmDelete = True
+                    Navigator.Buttons.CustomButtons = <>
+                    Navigator.Buttons.Images = cxImageList_1
+                    Navigator.Buttons.First.ImageIndex = 0
+                    Navigator.Buttons.PriorPage.Visible = False
+                    Navigator.Buttons.Prior.ImageIndex = 1
+                    Navigator.Buttons.Next.ImageIndex = 2
+                    Navigator.Buttons.NextPage.Visible = False
+                    Navigator.Buttons.Last.ImageIndex = 3
+                    Navigator.Buttons.Insert.ImageIndex = 4
+                    Navigator.Buttons.Delete.ImageIndex = 8
+                    Navigator.Buttons.Edit.ImageIndex = 5
+                    Navigator.Buttons.Post.ImageIndex = 6
+                    Navigator.Buttons.Cancel.ImageIndex = 7
+                    Navigator.Buttons.Refresh.ImageIndex = 9
+                    Navigator.Buttons.SaveBookmark.Visible = False
+                    Navigator.Buttons.GotoBookmark.Visible = False
+                    Navigator.Buttons.Filter.ImageIndex = 11
+                    DataController.DataSource = dsClientDID
+                    DataController.Summary.DefaultGroupSummaryItems = <>
+                    DataController.Summary.FooterSummaryItems = <>
+                    DataController.Summary.SummaryGroups = <>
+                    Images = cxImageList_1
+                    OptionsData.Editing = False
+                    object gridtblviewdid_number: TcxGridDBColumn
+                      DataBinding.FieldName = 'did_number'
+                      Width = 150
+                    end
+                    object gridtblviewprv_name: TcxGridDBColumn
+                      DataBinding.FieldName = 'prv_name'
+                      Width = 250
+                    end
+                    object gridtblviewcld_dt_registration: TcxGridDBColumn
+                      DataBinding.FieldName = 'cld_dt_registration'
+                      Width = 125
+                    end
+                  end
+                  object gridlvl: TcxGridLevel
+                    GridView = gridtblview
+                  end
+                end
+                object cxDBLookupComboBox1: TcxDBLookupComboBox
+                  Left = 266
+                  Top = 66
+                  DataBinding.DataField = 'provider_prv_cod'
+                  DataBinding.DataSource = dsClientDID
+                  Properties.CharCase = ecUpperCase
+                  Properties.KeyFieldNames = 'prv_cod'
+                  Properties.ListColumns = <
+                    item
+                      Width = 250
+                      FieldName = 'prv_name'
+                    end
+                    item
+                      Width = 75
+                      FieldName = 'prv_id'
+                    end>
+                  Properties.ListSource = dsProvider
+                  Style.HotTrack = False
+                  TabOrder = 1
+                  Width = 145
+                end
+                object cxDBLookupComboBox2: TcxDBLookupComboBox
+                  Left = 66
+                  Top = 66
+                  DataBinding.DataField = 'did_did_cod'
+                  DataBinding.DataSource = dsClientDID
+                  Properties.CharCase = ecUpperCase
+                  Properties.KeyFieldNames = 'did_cod'
+                  Properties.ListColumns = <
+                    item
+                      Width = 150
+                      FieldName = 'did_number'
+                    end
+                    item
+                      Width = 75
+                      FieldName = 'did_id'
+                    end>
+                  Properties.ListOptions.SyncMode = True
+                  Properties.ListSource = dsDID
+                  Style.HotTrack = False
+                  TabOrder = 0
+                  Width = 145
+                end
+                object cxDBNavigator1: TcxDBNavigator
+                  Left = 733
+                  Top = 103
+                  Width = 222
+                  Height = 25
+                  Buttons.OnButtonClick = cxDBNavigator1ButtonsButtonClick
+                  Buttons.CustomButtons = <>
+                  Buttons.Images = cxImageList_1
+                  Buttons.First.ImageIndex = 0
+                  Buttons.PriorPage.Visible = False
+                  Buttons.Prior.ImageIndex = 1
+                  Buttons.Next.ImageIndex = 2
+                  Buttons.NextPage.Visible = False
+                  Buttons.Last.ImageIndex = 3
+                  Buttons.Insert.ImageIndex = 4
+                  Buttons.Delete.ImageIndex = 8
+                  Buttons.Edit.ImageIndex = 5
+                  Buttons.Post.ImageIndex = 6
+                  Buttons.Cancel.ImageIndex = 7
+                  Buttons.Refresh.ImageIndex = 9
+                  Buttons.SaveBookmark.Visible = False
+                  Buttons.GotoBookmark.Visible = False
+                  Buttons.Filter.Visible = False
+                  DataSource = dsClientDID
+                  TabOrder = 2
+                end
+                object dxLayoutGroup7: TdxLayoutGroup
+                  AlignHorz = ahLeft
+                  AlignVert = avTop
+                  SizeOptions.AssignedValues = [sovSizableHorz]
+                  SizeOptions.SizableHorz = True
+                  ButtonOptions.Buttons = <>
+                  Hidden = True
+                  LayoutDirection = ldHorizontal
+                  ShowBorder = False
+                  Index = -1
+                end
+                object dxLayoutGroup11: TdxLayoutGroup
+                  Parent = dxLayoutGroup7
+                  AlignHorz = ahLeft
+                  AlignVert = avTop
+                  CaptionOptions.Text = 'DID'
+                  SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
+                  SizeOptions.SizableHorz = True
+                  SizeOptions.SizableVert = True
+                  SizeOptions.Height = 502
+                  SizeOptions.Width = 952
+                  ButtonOptions.Buttons = <>
+                  ItemIndex = 1
+                  Index = 0
+                end
+                object dxLayoutItem37: TdxLayoutItem
+                  Parent = dxLayoutGroup11
+                  Control = grid
+                  ControlOptions.OriginalHeight = 368
+                  ControlOptions.OriginalWidth = 250
+                  ControlOptions.ShowBorder = False
+                  Index = 2
+                end
+                object dxLayoutGroup12: TdxLayoutGroup
+                  Parent = dxLayoutGroup11
+                  CaptionOptions.Text = 'Dados'
+                  ButtonOptions.Buttons = <>
+                  LayoutDirection = ldHorizontal
+                  Index = 0
+                end
+                object dxLayoutItem43: TdxLayoutItem
+                  Parent = dxLayoutGroup12
+                  CaptionOptions.Text = 'Provedor'
+                  Control = cxDBLookupComboBox1
+                  ControlOptions.OriginalHeight = 21
+                  ControlOptions.OriginalWidth = 145
+                  ControlOptions.ShowBorder = False
+                  Index = 1
+                end
+                object dxLayoutItem38: TdxLayoutItem
+                  Parent = dxLayoutGroup12
+                  AlignVert = avClient
+                  CaptionOptions.Text = 'N'#250'mero'
+                  Control = cxDBLookupComboBox2
+                  ControlOptions.OriginalHeight = 21
+                  ControlOptions.OriginalWidth = 145
+                  ControlOptions.ShowBorder = False
+                  Index = 0
+                end
+                object dxLayoutItem44: TdxLayoutItem
+                  Parent = dxLayoutGroup11
+                  AlignHorz = ahRight
+                  Control = cxDBNavigator1
+                  ControlOptions.OriginalHeight = 25
+                  ControlOptions.OriginalWidth = 222
+                  ControlOptions.ShowBorder = False
+                  Index = 1
+                end
+              end
+            end
             object cxTabSheet3: TcxTabSheet
               Caption = 'Integra'#231#227'o'
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 0
-              ExplicitHeight = 0
               object dxLayoutControl5: TdxLayoutControl
                 Left = 0
                 Top = 0
@@ -2604,12 +2794,12 @@ inherited frm_client: Tfrm_client
       item
         Name = 'cli_first_name'
         DataType = ftString
-        Size = 85
+        Size = 120
       end
       item
         Name = 'cli_last_name'
         DataType = ftString
-        Size = 85
+        Size = 120
       end
       item
         Name = 'cli_email'
@@ -2880,16 +3070,17 @@ inherited frm_client: Tfrm_client
     object memcli_first_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Nome'
+      DisplayWidth = 120
       FieldName = 'cli_first_name'
       Origin = 'cli_first_name'
-      Size = 85
+      Size = 120
     end
     object memcli_last_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Nome Fantasia'
       FieldName = 'cli_last_name'
       Origin = 'cli_last_name'
-      Size = 85
+      Size = 120
     end
     object memcli_email: TStringField
       AutoGenerateValue = arDefault
@@ -3271,7 +3462,7 @@ inherited frm_client: Tfrm_client
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 864
+    Left = 672
     Top = 104
     object memClientASTPPcla_cod: TStringField
       AutoGenerateValue = arDefault
@@ -3303,7 +3494,7 @@ inherited frm_client: Tfrm_client
   end
   object dsClientASTPP: TDataSource
     DataSet = memClientASTPP
-    Left = 896
+    Left = 704
     Top = 104
   end
   object memClientSIPPulse: TFDMemTable
@@ -3319,8 +3510,8 @@ inherited frm_client: Tfrm_client
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 864
-    Top = 152
+    Left = 736
+    Top = 104
     object memClientSIPPulsecls_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'
@@ -3351,7 +3542,219 @@ inherited frm_client: Tfrm_client
   end
   object dsClientSIPPulse: TDataSource
     DataSet = memClientSIPPulse
+    Left = 768
+    Top = 104
+  end
+  object memDID: TFDMemTable
+    Active = True
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 800
+    Top = 104
+    object memDIDdid_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'did_cod'
+      Origin = 'did_cod'
+      Size = 32
+    end
+    object memDIDdid_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'did_id'
+      Origin = 'did_id'
+    end
+    object memDIDdid_number: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'N'#250'mero'
+      FieldName = 'did_number'
+      Origin = 'did_number'
+      Size = 25
+    end
+    object memDIDdid_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'did_deleted_at'
+      Origin = 'did_deleted_at'
+    end
+    object memDIDdid_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'did_dt_registration'
+      Origin = 'did_dt_registration'
+    end
+  end
+  object dsDID: TDataSource
+    DataSet = memDID
+    Left = 832
+    Top = 104
+  end
+  object memProvider: TFDMemTable
+    Active = True
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 864
+    Top = 104
+    object memProviderprv_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'prv_cod'
+      Origin = 'prv_cod'
+      Size = 32
+    end
+    object memProviderprv_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'prv_id'
+      Origin = 'prv_id'
+    end
+    object memProviderprv_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'prv_name'
+      Origin = 'prv_name'
+      Size = 85
+    end
+    object memProviderprv_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'prv_deleted_at'
+      Origin = 'prv_deleted_at'
+    end
+    object memProviderprv_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'prv_dt_registration'
+      Origin = 'prv_dt_registration'
+    end
+  end
+  object dsProvider: TDataSource
+    DataSet = memProvider
     Left = 896
-    Top = 152
+    Top = 104
+  end
+  object memClientDID: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'cld_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'client_cli_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'did_did_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'provider_prv_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'cld_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'cld_dt_registration'
+        DataType = ftDateTime
+      end>
+    IndexDefs = <>
+    IndexFieldNames = 'client_cli_cod'
+    MasterSource = ds
+    MasterFields = 'cli_cod'
+    DetailFields = 'client_cli_cod'
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 928
+    Top = 104
+    object memClientDIDcld_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cld_cod'
+      Origin = 'cld_cod'
+      Size = 32
+    end
+    object memClientDIDclient_cli_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Cliente'
+      FieldName = 'client_cli_cod'
+      Origin = 'client_cli_cod'
+      Size = 32
+    end
+    object memClientDIDdid_did_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'DID'
+      FieldName = 'did_did_cod'
+      Origin = 'did_did_cod'
+      Size = 32
+    end
+    object memClientDIDprovider_prv_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Provedor'
+      FieldName = 'provider_prv_cod'
+      Origin = 'provider_prv_cod'
+      Size = 32
+    end
+    object memClientDIDcld_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'cld_deleted_at'
+      Origin = 'cld_deleted_at'
+    end
+    object memClientDIDcld_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'cld_dt_registration'
+      Origin = 'cld_dt_registration'
+    end
+    object memClientDIDdid_number: TStringField
+      DisplayLabel = 'N'#250'mero'
+      FieldKind = fkLookup
+      FieldName = 'did_number'
+      LookupDataSet = memDID
+      LookupKeyFields = 'did_cod'
+      LookupResultField = 'did_number'
+      KeyFields = 'did_did_cod'
+      Size = 25
+      Lookup = True
+    end
+    object memClientDIDprv_name: TStringField
+      DisplayLabel = 'Provedor'
+      FieldKind = fkLookup
+      FieldName = 'prv_name'
+      LookupDataSet = memProvider
+      LookupKeyFields = 'prv_cod'
+      LookupResultField = 'prv_name'
+      KeyFields = 'provider_prv_cod'
+      Size = 85
+      Lookup = True
+    end
+  end
+  object dsClientDID: TDataSource
+    DataSet = memClientDID
+    Left = 960
+    Top = 104
   end
 end

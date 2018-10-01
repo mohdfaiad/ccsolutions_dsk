@@ -117,6 +117,7 @@ uses
   cxDBLookupEdit,
   dxLayoutControlAdapters,
   cxCurrencyEdit,
+  cxDBNavigator,
 
   Data.DB,
 
@@ -319,10 +320,26 @@ type
     griddbcci_value_total: TcxGridDBColumn;
     memClientContractItencci_value_discount: TBCDField;
     griddbcci_value_discount: TcxGridDBColumn;
+    dxLayoutGroup8: TdxLayoutGroup;
+    dbedt_cci_value: TcxDBCurrencyEdit;
+    dxLayoutItem6: TdxLayoutItem;
+    dbedt_cci_quant: TcxDBCurrencyEdit;
+    dxLayoutItem8: TdxLayoutItem;
+    dbedt_cci_value_discount: TcxDBCurrencyEdit;
+    dxLayoutItem10: TdxLayoutItem;
+    dbedt_cci_value_total: TcxDBCurrencyEdit;
+    dxLayoutItem11: TdxLayoutItem;
+    dbedt_cci_value_reseller: TcxDBCurrencyEdit;
+    dxLayoutItem12: TdxLayoutItem;
+    dblookupcmb_product_pro_cod: TcxDBLookupComboBox;
+    dxLayoutItem13: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    cxDBNavigator1: TcxDBNavigator;
+    dxLayoutItem14: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
-    procedure griddbNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
+    procedure cxDBNavigator1ButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
   private
     procedure afterInsert;
     procedure afterUpdate;
@@ -419,25 +436,7 @@ begin
   memClientContractItencci_value_total.Value := memClientContractItencci_value_discount.Value - (memClientContractItencci_value.Value * memClientContractItencci_quant.Value);
 end;
 
-procedure Tfrm_client_contract.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-  inherited;
-  frm_client_contract.Destroy;
-  frm_client_contract := Nil;
-end;
-
-procedure Tfrm_client_contract.FormCreate(Sender: TObject);
-begin
-  inherited;
-  Trest_client.GetClient(memClient);
-  Trest_product.GetProduct(memProduct);
-  Trest_reseller.GetReseller(memReseller);
-  Trest_client_contract.GetClientContract(mem);
-  Trest_client_contract_iten.GetClientContractIten(memClientContractIten, memcli_ctr_cod.AsString);
-end;
-
-procedure Tfrm_client_contract.griddbNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
+procedure Tfrm_client_contract.cxDBNavigator1ButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
 var
   strproc_create, strproc_update : TFDStoredProc;
 begin
@@ -492,6 +491,23 @@ begin
           end;
       end;
   end;
+end;
+
+procedure Tfrm_client_contract.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_client_contract.Destroy;
+  frm_client_contract := Nil;
+end;
+
+procedure Tfrm_client_contract.FormCreate(Sender: TObject);
+begin
+  inherited;
+  Trest_client.GetClient(memClient);
+  Trest_product.GetProduct(memProduct);
+  Trest_reseller.GetReseller(memReseller);
+  Trest_client_contract.GetClientContract(mem);
+  Trest_client_contract_iten.GetClientContractIten(memClientContractIten);
 end;
 
 end.

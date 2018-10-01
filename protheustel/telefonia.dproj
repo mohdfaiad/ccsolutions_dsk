@@ -188,6 +188,17 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\u_class_rest_print_astpp.pas"/>
+        <DCCReference Include="..\ufrm_did.pas">
+            <Form>frm_did</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_provider.pas">
+            <Form>frm_provider</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\u_class_rest_did.pas"/>
+        <DCCReference Include="..\u_class_rest_provider.pas"/>
+        <DCCReference Include="..\u_class_rest_client_did.pas"/>
         <None Include="ModelSupport_telefonia\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

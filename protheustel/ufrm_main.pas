@@ -113,7 +113,11 @@ uses
   ufrm_report,
   ufrm_supplier,
   ufrm_voip_server,
-  ufrm_import_astpp;
+  ufrm_import_astpp,
+  ufrm_print_astpp,
+  ufrm_import_sippulse,
+  ufrm_did,
+  ufrm_provider;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -151,9 +155,14 @@ type
     Action_invoice_astpp: TAction;
     Action_invoice_sippulse: TAction;
     dxBarButton6: TdxBarButton;
-    dxBarSeparator1: TdxBarSeparator;
     dxBarButton7: TdxBarButton;
     dxBarButton8: TdxBarButton;
+    dxBarLargeButton8: TdxBarLargeButton;
+    dxBarSubItem3: TdxBarSubItem;
+    dxBarButton2: TdxBarButton;
+    Action_provider: TAction;
+    Action_did: TAction;
+    dxBarButton9: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -166,6 +175,8 @@ type
     procedure Action_import_astppExecute(Sender: TObject);
     procedure Action_invoice_astppExecute(Sender: TObject);
     procedure Action_import_sippulseExecute(Sender: TObject);
+    procedure Action_providerExecute(Sender: TObject);
+    procedure Action_didExecute(Sender: TObject);
   private
 
   public
@@ -179,8 +190,6 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_print_astpp, ufrm_import_sippulse;
-
 procedure Tfrm_main.Action_phonebookExecute(Sender: TObject);
 begin
   inherited;
@@ -192,6 +201,20 @@ begin
   end else begin
     frm_phonebook.WindowState := wsNormal;
     frm_phonebook.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_providerExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_provider) then begin
+    frm_provider := Tfrm_provider.Create(Self);
+    frm_provider.Height := Bevel_1.Height;
+    frm_provider.Width := Bevel_1.Width;
+    frm_provider.Show;
+  end else begin
+    frm_provider.WindowState := wsNormal;
+    frm_provider.Show;
   end;
 end;
 
@@ -248,6 +271,20 @@ begin
   end else begin
     frm_contract_user.WindowState := wsNormal;
     frm_contract_user.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_didExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_did) then begin
+    frm_did := Tfrm_did.Create(Self);
+    frm_did.Height := Bevel_1.Height;
+    frm_did.Width := Bevel_1.Width;
+    frm_did.Show;
+  end else begin
+    frm_did.WindowState := wsNormal;
+    frm_did.Show;
   end;
 end;
 

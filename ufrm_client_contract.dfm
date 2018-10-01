@@ -225,12 +225,11 @@ inherited frm_client_contract: Tfrm_client_contract
             OnDblClick = dxLayoutControl_1DblClick
             object grid: TcxGrid
               Left = 17
-              Top = 38
+              Top = 161
               Width = 952
-              Height = 400
-              TabOrder = 0
+              Height = 381
+              TabOrder = 7
               object griddb: TcxGridDBTableView
-                Navigator.Buttons.OnButtonClick = griddbNavigatorButtonsButtonClick
                 Navigator.Buttons.ConfirmDelete = True
                 Navigator.Buttons.CustomButtons = <>
                 Navigator.Buttons.Images = cxImageList_1
@@ -249,12 +248,13 @@ inherited frm_client_contract: Tfrm_client_contract
                 Navigator.Buttons.SaveBookmark.Visible = False
                 Navigator.Buttons.GotoBookmark.Visible = False
                 Navigator.Buttons.Filter.ImageIndex = 11
-                Navigator.Visible = True
                 DataController.DataSource = dsClientContractIten
                 DataController.Summary.DefaultGroupSummaryItems = <>
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
                 Images = cxImageList_1
+                OptionsData.Appending = True
+                OptionsData.Editing = False
                 object griddbproduct_pro_cod: TcxGridDBColumn
                   DataBinding.FieldName = 'product_pro_cod'
                   PropertiesClassName = 'TcxLookupComboBoxProperties'
@@ -286,7 +286,7 @@ inherited frm_client_contract: Tfrm_client_contract
                   PropertiesClassName = 'TcxCurrencyEditProperties'
                   Properties.DecimalPlaces = 4
                   Properties.DisplayFormat = '0.0000'
-                  Width = 100
+                  Width = 75
                 end
                 object griddbcci_value_discount: TcxGridDBColumn
                   DataBinding.FieldName = 'cci_value_discount'
@@ -312,6 +312,109 @@ inherited frm_client_contract: Tfrm_client_contract
                 GridView = griddb
               end
             end
+            object dbedt_cci_value: TcxDBCurrencyEdit
+              Left = 64
+              Top = 93
+              DataBinding.DataField = 'cci_value'
+              DataBinding.DataSource = dsClientContractIten
+              Properties.DecimalPlaces = 4
+              Properties.DisplayFormat = 'R$ ,0.0000;-R$ ,0.0000'
+              Style.HotTrack = False
+              TabOrder = 1
+              Width = 121
+            end
+            object dbedt_cci_quant: TcxDBCurrencyEdit
+              Left = 230
+              Top = 93
+              DataBinding.DataField = 'cci_quant'
+              DataBinding.DataSource = dsClientContractIten
+              Properties.DecimalPlaces = 4
+              Properties.DisplayFormat = '0.0000'
+              Style.HotTrack = False
+              TabOrder = 2
+              Width = 121
+            end
+            object dbedt_cci_value_discount: TcxDBCurrencyEdit
+              Left = 404
+              Top = 93
+              DataBinding.DataField = 'cci_value_discount'
+              DataBinding.DataSource = dsClientContractIten
+              Properties.DecimalPlaces = 4
+              Properties.DisplayFormat = 'R$ ,0.0000;-R$ ,0.0000'
+              Style.HotTrack = False
+              TabOrder = 3
+              Width = 121
+            end
+            object dbedt_cci_value_total: TcxDBCurrencyEdit
+              Left = 575
+              Top = 93
+              DataBinding.DataField = 'cci_value_total'
+              DataBinding.DataSource = dsClientContractIten
+              Properties.DecimalPlaces = 4
+              Properties.DisplayFormat = 'R$ ,0.0000;-R$ ,0.0000'
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 121
+            end
+            object dbedt_cci_value_reseller: TcxDBCurrencyEdit
+              Left = 765
+              Top = 93
+              DataBinding.DataField = 'cci_value_reseller'
+              DataBinding.DataSource = dsClientContractIten
+              Properties.DecimalPlaces = 4
+              Properties.DisplayFormat = 'R$ ,0.0000;-R$ ,0.0000'
+              Style.HotTrack = False
+              TabOrder = 5
+              Width = 121
+            end
+            object dblookupcmb_product_pro_cod: TcxDBLookupComboBox
+              Left = 64
+              Top = 66
+              DataBinding.DataField = 'product_pro_cod'
+              DataBinding.DataSource = dsClientContractIten
+              Properties.CharCase = ecUpperCase
+              Properties.KeyFieldNames = 'pro_cod'
+              Properties.ListColumns = <
+                item
+                  Width = 250
+                  FieldName = 'pro_name'
+                end
+                item
+                  Width = 75
+                  FieldName = 'pro_id'
+                end>
+              Properties.ListOptions.SyncMode = True
+              Properties.ListSource = dsProduct
+              Style.HotTrack = False
+              TabOrder = 0
+              Width = 287
+            end
+            object cxDBNavigator1: TcxDBNavigator
+              Left = 727
+              Top = 130
+              Width = 242
+              Height = 25
+              Buttons.OnButtonClick = cxDBNavigator1ButtonsButtonClick
+              Buttons.CustomButtons = <>
+              Buttons.Images = cxImageList_1
+              Buttons.First.ImageIndex = 0
+              Buttons.PriorPage.Visible = False
+              Buttons.Prior.ImageIndex = 1
+              Buttons.Next.ImageIndex = 2
+              Buttons.NextPage.Visible = False
+              Buttons.Last.ImageIndex = 3
+              Buttons.Insert.ImageIndex = 4
+              Buttons.Delete.ImageIndex = 8
+              Buttons.Edit.ImageIndex = 5
+              Buttons.Post.ImageIndex = 6
+              Buttons.Cancel.ImageIndex = 7
+              Buttons.Refresh.ImageIndex = 9
+              Buttons.SaveBookmark.Visible = False
+              Buttons.GotoBookmark.Visible = False
+              Buttons.Filter.Visible = False
+              DataSource = dsClientContractIten
+              TabOrder = 6
+            end
             object dxLayoutGroup4: TdxLayoutGroup
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -326,22 +429,108 @@ inherited frm_client_contract: Tfrm_client_contract
               Parent = dxLayoutGroup4
               AlignHorz = ahClient
               AlignVert = avTop
-              CaptionOptions.Text = 'Dados'
+              CaptionOptions.Text = 'Contrato'
               SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
               SizeOptions.SizableHorz = True
               SizeOptions.SizableVert = True
-              SizeOptions.Height = 438
+              SizeOptions.Height = 542
               SizeOptions.Width = 966
               ButtonOptions.Buttons = <>
+              ItemIndex = 1
               Index = 0
             end
             object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutGroup6
+              AlignHorz = ahClient
+              AlignVert = avTop
               Control = grid
-              ControlOptions.OriginalHeight = 400
+              ControlOptions.OriginalHeight = 381
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
+              Index = 2
+            end
+            object dxLayoutGroup8: TdxLayoutGroup
+              Parent = dxLayoutGroup6
+              CaptionOptions.Text = 'Dados'
+              ButtonOptions.Buttons = <>
+              ItemIndex = 1
               Index = 0
+            end
+            object dxLayoutItem6: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignVert = avClient
+              CaptionOptions.Text = 'Valor'
+              Control = dbedt_cci_value
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem8: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignVert = avClient
+              CaptionOptions.Text = 'Quant.'
+              Control = dbedt_cci_quant
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem10: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignVert = avClient
+              CaptionOptions.Text = 'Vl. Desc.'
+              Control = dbedt_cci_value_discount
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
+            object dxLayoutItem11: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignVert = avClient
+              CaptionOptions.Text = 'Vl. Total'
+              Control = dbedt_cci_value_total
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 3
+            end
+            object dxLayoutItem12: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignVert = avClient
+              CaptionOptions.Text = 'Vl. Revenda'
+              Control = dbedt_cci_value_reseller
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 4
+            end
+            object dxLayoutItem13: TdxLayoutItem
+              Parent = dxLayoutGroup8
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              CaptionOptions.Text = 'Servi'#231'o'
+              Control = dblookupcmb_product_pro_cod
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 287
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup8
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
+            object dxLayoutItem14: TdxLayoutItem
+              Parent = dxLayoutGroup6
+              AlignHorz = ahRight
+              Control = cxDBNavigator1
+              ControlOptions.OriginalHeight = 25
+              ControlOptions.OriginalWidth = 242
+              ControlOptions.ShowBorder = False
+              Index = 1
             end
           end
         end
@@ -509,8 +698,8 @@ inherited frm_client_contract: Tfrm_client_contract
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 896
-    Top = 152
+    Left = 800
+    Top = 104
     object memProductpro_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'
@@ -707,8 +896,8 @@ inherited frm_client_contract: Tfrm_client_contract
   end
   object dsProduct: TDataSource
     DataSet = memProduct
-    Left = 928
-    Top = 152
+    Left = 832
+    Top = 104
   end
   object memReseller: TFDMemTable
     Active = True
@@ -719,7 +908,7 @@ inherited frm_client_contract: Tfrm_client_contract
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 896
+    Left = 736
     Top = 104
     object memResellerres_cod: TStringField
       AutoGenerateValue = arDefault
@@ -910,7 +1099,7 @@ inherited frm_client_contract: Tfrm_client_contract
   end
   object dsReseller: TDataSource
     DataSet = memReseller
-    Left = 928
+    Left = 768
     Top = 104
   end
   object memClient: TFDMemTable
@@ -922,8 +1111,8 @@ inherited frm_client_contract: Tfrm_client_contract
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 896
-    Top = 200
+    Left = 864
+    Top = 104
     object memClientcli_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'
@@ -1305,8 +1494,8 @@ inherited frm_client_contract: Tfrm_client_contract
   end
   object dsClient: TDataSource
     DataSet = memClient
-    Left = 928
-    Top = 200
+    Left = 896
+    Top = 104
   end
   object memClientContractIten: TFDMemTable
     Active = True
@@ -1373,8 +1562,8 @@ inherited frm_client_contract: Tfrm_client_contract
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 896
-    Top = 248
+    Left = 928
+    Top = 104
     object memClientContractItencci_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'
@@ -1450,7 +1639,7 @@ inherited frm_client_contract: Tfrm_client_contract
   end
   object dsClientContractIten: TDataSource
     DataSet = memClientContractIten
-    Left = 928
-    Top = 248
+    Left = 960
+    Top = 104
   end
 end

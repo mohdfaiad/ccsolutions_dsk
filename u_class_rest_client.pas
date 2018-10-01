@@ -3,12 +3,7 @@ unit u_class_rest_client;
 interface
 
 uses
-  System.SysUtils,
-
-  FireDAC.Comp.Client,
-
-  u_class_rest_method,
-  u_class_connection;
+  System.SysUtils, FireDAC.Comp.Client, u_class_rest_method, u_class_connection;
 
 type
   Trest_client = class(Trest_methods)

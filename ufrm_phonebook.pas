@@ -177,7 +177,6 @@ type
     procedure dxBarButton_saveClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
-    function GetPhonebook : Boolean;
     procedure afterInsert;
     procedure afterUpdate;
 
@@ -198,7 +197,7 @@ procedure Tfrm_phonebook.afterInsert;
 begin
   ShowMessage('Registro Iserido com Sucesso');
   cxTabSheet_3.Show;
-  GetPhonebook;
+  Trest_phonebook.GetPhonebook(mem);
   ds.DataSet.Last;
 end;
 
@@ -206,7 +205,7 @@ procedure Tfrm_phonebook.afterUpdate;
 begin
   ShowMessage('Registro Atualizado com sucesso');
   cxTabSheet_3.Show;
-  GetPhonebook;
+  Trest_phonebook.GetPhonebook(mem);
 end;
 
 procedure Tfrm_phonebook.dxBarButton_saveClick(Sender: TObject);
@@ -279,23 +278,7 @@ end;
 procedure Tfrm_phonebook.FormCreate(Sender: TObject);
 begin
   inherited;
-  GetPhonebook;
-end;
-
-function Tfrm_phonebook.GetPhonebook: Boolean;
-begin
-  try
-    try
-      Trest_phonebook.v_method        := '/api/rest/phonebooks/Phonebook';
-      Trest_phonebook.v_parameter     := Tconnection.ctr_token;
-      Trest_phonebook.GetPhonebook(mem);
-
-      Result := True;
-    except on E: Exception do
-      Result := False;
-    end;
-  finally
-  end;
+  Trest_phonebook.GetPhonebook(mem);
 end;
 
 end.

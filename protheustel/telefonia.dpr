@@ -38,7 +38,12 @@ uses
   ufrm_import_sippulse in '..\ufrm_import_sippulse.pas' {frm_import_sippulse},
   u_class_rest_supplier in '..\u_class_rest_supplier.pas',
   ufrm_print_astpp in '..\ufrm_print_astpp.pas' {frm_print_astpp},
-  u_class_rest_print_astpp in '..\u_class_rest_print_astpp.pas';
+  u_class_rest_print_astpp in '..\u_class_rest_print_astpp.pas',
+  ufrm_did in '..\ufrm_did.pas' {frm_did},
+  ufrm_provider in '..\ufrm_provider.pas' {frm_provider},
+  u_class_rest_did in '..\u_class_rest_did.pas',
+  u_class_rest_provider in '..\u_class_rest_provider.pas',
+  u_class_rest_client_did in '..\u_class_rest_client_did.pas';
 
 {$R *.res}
 

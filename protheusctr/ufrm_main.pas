@@ -126,6 +126,9 @@ type
     dxBarManager_1Bar3: TdxBar;
     dxBarLargeButton8: TdxBarLargeButton;
     Action_client_contract: TAction;
+    dxBarManager_1Bar4: TdxBar;
+    dxBarLargeButton9: TdxBarLargeButton;
+    Action_report: TAction;
     procedure FormCreate(Sender: TObject);
     procedure Action_phonebookExecute(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
@@ -135,6 +138,7 @@ type
     procedure Action_resellerExecute(Sender: TObject);
     procedure Action_productExecute(Sender: TObject);
     procedure Action_client_contractExecute(Sender: TObject);
+    procedure Action_reportExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -148,6 +152,22 @@ implementation
 
 {$R *.dfm}
 
+uses ufrm_report;
+
+procedure Tfrm_main.Action_reportExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_report) then begin
+    frm_report := Tfrm_report.Create(Self);
+    frm_report.Height := Bevel_1.Height;
+    frm_report.Width := Bevel_1.Width;
+    frm_report.Show;
+  end else begin
+    frm_report.WindowState := wsNormal;
+    frm_report.Show;
+  end;
+end;
+
 procedure Tfrm_main.Action_resellerExecute(Sender: TObject);
 begin
   inherited;
@@ -155,7 +175,7 @@ begin
     frm_reseller := Tfrm_reseller.Create(Self);
     frm_reseller.Height := Bevel_1.Height;
     frm_reseller.Width := Bevel_1.Width;
-    frm_reseller.Show
+    frm_reseller.Show;
   end else begin
     frm_reseller.WindowState := wsNormal;
     frm_reseller.Show;
@@ -169,7 +189,7 @@ begin
     frm_client := Tfrm_client.Create(Self);
     frm_client.Height := Bevel_1.Height;
     frm_client.Width := Bevel_1.Width;
-    frm_client.Show
+    frm_client.Show;
   end else begin
     frm_client.WindowState := wsNormal;
     frm_client.Show;
@@ -183,7 +203,7 @@ begin
     frm_client_contract := Tfrm_client_contract.Create(Self);
     frm_client_contract.Height := Bevel_1.Height;
     frm_client_contract.Width := Bevel_1.Width;
-    frm_client_contract.Show
+    frm_client_contract.Show;
   end else begin
     frm_client_contract.WindowState := wsNormal;
     frm_client_contract.Show;
@@ -197,7 +217,7 @@ begin
     frm_contract := Tfrm_contract.Create(Self);
     frm_contract.Height := Bevel_1.Height;
     frm_contract.Width := Bevel_1.Width;
-    frm_contract.Show
+    frm_contract.Show;
   end else begin
     frm_contract.WindowState := wsNormal;
     frm_contract.Show;
@@ -211,7 +231,7 @@ begin
     frm_contract_user := Tfrm_contract_user.Create(Self);
     frm_contract_user.Height := Bevel_1.Height;
     frm_contract_user.Width := Bevel_1.Width;
-    frm_contract_user.Show
+    frm_contract_user.Show;
   end else begin
     frm_contract_user.WindowState := wsNormal;
     frm_contract_user.Show;
@@ -225,7 +245,7 @@ begin
     frm_enterprise := Tfrm_enterprise.Create(Self);
     frm_enterprise.Height := Bevel_1.Height;
     frm_enterprise.Width := Bevel_1.Width;
-    frm_enterprise.Show
+    frm_enterprise.Show;
   end else begin
     frm_enterprise.WindowState := wsNormal;
     frm_enterprise.Show;
@@ -239,7 +259,7 @@ begin
     frm_phonebook := Tfrm_phonebook.Create(Self);
     frm_phonebook.Height := Bevel_1.Height;
     frm_phonebook.Width := Bevel_1.Width;
-    frm_phonebook.Show
+    frm_phonebook.Show;
   end else begin
     frm_phonebook.WindowState := wsNormal;
     frm_phonebook.Show;
@@ -253,7 +273,7 @@ begin
     frm_product := Tfrm_product.Create(Self);
     frm_product.Height := Bevel_1.Height;
     frm_product.Width := Bevel_1.Width;
-    frm_product.Show
+    frm_product.Show;
   end else begin
     frm_product.WindowState := wsNormal;
     frm_product.Show;
@@ -266,8 +286,7 @@ begin
   frm_login := Tfrm_login.Create(Self);
   frm_login.ShowModal;
 
-  if frm_login.ModalResult <> mrOk then
-  begin
+  if frm_login.ModalResult <> mrOk then begin
     MessageDlg('Você não se autenticou. A aplicação será encerrada!', mtWarning, [mbOK], 0);
     Application.Terminate;
   end;

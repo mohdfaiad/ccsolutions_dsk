@@ -3,12 +3,7 @@ unit u_class_rest_client_contract_iten;
 interface
 
 uses
-  System.SysUtils,
-
-  FireDAC.Comp.Client,
-
-  u_class_rest_method,
-  u_class_connection;
+  System.SysUtils, FireDAC.Comp.Client, u_class_rest_method, u_class_connection;
 
 type
   Trest_client_contract_iten = class(Trest_methods)
@@ -17,7 +12,7 @@ type
   protected
 
   public
-    class function GetClientContractIten(mem: TFDMemTable; const AClientContract: string): Boolean;
+    class function GetClientContractIten(mem: TFDMemTable): Boolean;
 
   published
 
@@ -30,12 +25,12 @@ uses
 
 { Trest_client_contract_iten }
 
-class function Trest_client_contract_iten.GetClientContractIten(mem: TFDMemTable; const AClientContract: string): Boolean;
+class function Trest_client_contract_iten.GetClientContractIten(mem: TFDMemTable): Boolean;
 begin
   try
     try
-      v_method        := '/api/rest/client_contract_itens/ClientContractIten';
-      v_parameter     := Tconnection.ctr_token +'/'+ AClientContract;
+      v_method        := '/api/rest/ClientContractIten/ClientContractItens';
+      v_parameter     := Tconnection.ctr_token;
 
       begin
         if Get(Trest_methods.v_method, Trest_methods.v_parameter) then begin

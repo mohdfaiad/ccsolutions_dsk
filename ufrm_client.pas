@@ -124,6 +124,8 @@ uses
   cxCheckBox,
   cxSpinEdit,
   cxCurrencyEdit,
+  cxLookupEdit,
+  cxDBLookupEdit,
 
   Data.DB,
 
@@ -155,7 +157,10 @@ uses
   u_class_connection,
   u_class_rest_client,
   u_class_rest_client_astpp,
-  u_class_rest_client_sippulse;
+  u_class_rest_client_sippulse,
+  u_class_rest_did,
+  u_class_rest_provider,
+  u_class_rest_client_did, cxDBNavigator;
 
 type
   Tfrm_client = class(Tfrm_form_default)
@@ -405,6 +410,48 @@ type
     memClientSIPPulsecls_account_sippulse: TStringField;
     memClientSIPPulsecls_dt_registration: TDateTimeField;
     sipgridviewcls_account_sippulse: TcxGridDBColumn;
+    tbsht_dids: TcxTabSheet;
+    dxLayoutControl4: TdxLayoutControl;
+    grid: TcxGrid;
+    gridtblview: TcxGridDBTableView;
+    gridlvl: TcxGridLevel;
+    dxLayoutGroup7: TdxLayoutGroup;
+    dxLayoutGroup11: TdxLayoutGroup;
+    dxLayoutItem37: TdxLayoutItem;
+    dxLayoutGroup12: TdxLayoutGroup;
+    memDID: TFDMemTable;
+    dsDID: TDataSource;
+    memProvider: TFDMemTable;
+    dsProvider: TDataSource;
+    memDIDdid_cod: TStringField;
+    memDIDdid_id: TLongWordField;
+    memDIDdid_number: TStringField;
+    memDIDdid_deleted_at: TDateTimeField;
+    memDIDdid_dt_registration: TDateTimeField;
+    memProviderprv_cod: TStringField;
+    memProviderprv_id: TLongWordField;
+    memProviderprv_name: TStringField;
+    memProviderprv_deleted_at: TDateTimeField;
+    memProviderprv_dt_registration: TDateTimeField;
+    memClientDID: TFDMemTable;
+    dsClientDID: TDataSource;
+    cxDBLookupComboBox1: TcxDBLookupComboBox;
+    dxLayoutItem43: TdxLayoutItem;
+    memClientDIDcld_cod: TStringField;
+    memClientDIDclient_cli_cod: TStringField;
+    memClientDIDdid_did_cod: TStringField;
+    memClientDIDprovider_prv_cod: TStringField;
+    memClientDIDcld_deleted_at: TDateTimeField;
+    memClientDIDcld_dt_registration: TDateTimeField;
+    gridtblviewcld_dt_registration: TcxGridDBColumn;
+    cxDBLookupComboBox2: TcxDBLookupComboBox;
+    dxLayoutItem38: TdxLayoutItem;
+    memClientDIDdid_number: TStringField;
+    memClientDIDprv_name: TStringField;
+    gridtblviewdid_number: TcxGridDBColumn;
+    gridtblviewprv_name: TcxGridDBColumn;
+    cxDBNavigator1: TcxDBNavigator;
+    dxLayoutItem44: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -412,6 +459,8 @@ type
     procedure Action_consult_cnpjExecute(Sender: TObject);
     procedure astppgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
     procedure sipgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
+    procedure cxDBNavigator1ButtonsButtonClick(Sender: TObject;
+      AButtonIndex: Integer; var ADone: Boolean);
   private
     procedure afterInsert;
     procedure afterUpdate;
@@ -553,8 +602,7 @@ begin
           strproc_create.ParamByName('p_cli_add_del_city').AsString       := dbedt_add_del_city.Text;
           strproc_create.ParamByName('p_cli_add_del_state').AsString      := dbedt_add_del_state.Text;
           strproc_create.ParamByName('p_cli_add_del_country').AsString    := dbedt_add_del_country.Text;
-          strproc_create.ParamByName('p_cli_phone1').AsString             := dbedt_phone1.Text;
-          strproc_create.ParamByName('p_cli_phone2').AsString             := dbedt_phone2.Text;
+          strproc_create.ParamByName('p_cli_phone1').AsString             := dbedt_phone1.Text;          strproc_create.ParamByName('p_cli_phone2').AsString             := dbedt_phone2.Text;
           strproc_create.ParamByName('p_cli_phone3').AsString             := dbedt_phone3.Text;
           strproc_create.ParamByName('p_cli_phone4').AsString             := dbedt_phone4.Text;
           strproc_create.ParamByName('p_cli_contact').AsString            := dbedt_contact.Text;
@@ -585,6 +633,9 @@ begin
   Trest_client.GetClient(mem);
   Trest_client_astpp.GetClientATPP(memClientASTPP);
   Trest_client_sippulse.GetClientSIPPulse(memClientSIPPulse);
+  Trest_did.GetDID(memDID);
+  Trest_provider.GetProvider(memProvider);
+  Trest_client_did.GetClientDID(memClientDID);
 end;
 
 procedure Tfrm_client.sipgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
@@ -696,4 +747,53 @@ begin
   end;
 end;
  
+procedure Tfrm_client.cxDBNavigator1ButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
+var
+  strproc_create, strproc_update : TFDStoredProc;
+begin
+  inherited;
+  case AButtonIndex of
+    NBDI_POST:
+      case dsClientDID.State of
+        dsEdit:
+          try
+            try
+              strproc_update := TFDStoredProc.Create(Self);
+              strproc_update.Connection := frm_dm.connCCS;
+              strproc_update.StoredProcName := 'proc_client_did_update';
+              strproc_update.Prepare;
+
+              strproc_update.ParamByName('p_ctr_token').AsString         := Tconnection.ctr_token;
+              strproc_update.ParamByName('p_cld_cod').AsString           := memClientDIDcld_cod.AsString;
+              strproc_update.ParamByName('p_did_did_cod').AsString       := memClientDIDdid_did_cod.AsString;
+              strproc_update.ParamByName('p_provider_prv_cod').AsString  := memClientDIDprovider_prv_cod.AsString;
+              strproc_update.ExecProc;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+
+        dsInsert:
+          try
+            try
+              strproc_create := TFDStoredProc.Create(Self);
+              strproc_create.Connection := frm_dm.connCCS;
+              strproc_create.StoredProcName := 'proc_client_did_create';
+              strproc_create.Prepare;
+
+              strproc_create.ParamByName('p_ctr_token').AsString          := Tconnection.ctr_token;
+              strproc_create.ParamByName('p_client_cli_cod').AsString     := memcli_cod.AsString;
+              strproc_create.ParamByName('p_did_did_cod').AsString        := memClientDIDdid_did_cod.AsString;
+              strproc_create.ParamByName('p_provider_prv_cod').AsString   := memClientDIDprovider_prv_cod.AsString;
+              strproc_create.ExecProc;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+      end;
+  end;
+end;
+
 end.

@@ -3,12 +3,7 @@ unit u_class_rest_client_contract;
 interface
 
 uses
-  System.SysUtils,
-
-  FireDAC.Comp.Client,
-
-  u_class_rest_method,
-  u_class_connection;
+  System.SysUtils, FireDAC.Comp.Client, u_class_rest_method, u_class_connection;
 
 type
   Trest_client_contract = class(Trest_methods)
@@ -34,7 +29,7 @@ class function Trest_client_contract.GetClientContract(mem: TFDMemTable): Boolea
 begin
   try
     try
-      v_method        := '/api/rest/client_contracts/ClientContract';
+      v_method        := '/api/rest/ClientContract/ClientContracts';
       v_parameter     := Tconnection.ctr_token;
 
       begin

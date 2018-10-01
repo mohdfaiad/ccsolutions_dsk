@@ -3,12 +3,7 @@ unit u_class_rest_reseller;
 interface
 
 uses
-  System.SysUtils,
-
-  FireDAC.Comp.Client,
-
-  u_class_rest_method,
-  u_class_connection;
+  System.SysUtils, FireDAC.Comp.Client, u_class_rest_method, u_class_connection;
 
 type
   Trest_reseller = class(Trest_methods)
@@ -34,7 +29,7 @@ class function Trest_reseller.GetReseller(mem: TFDMemTable): Boolean;
 begin
   try
     try
-      v_method        := '/api/rest/resellers/Reseller';
+      v_method        := '/api/rest/Reseller/Resellers';
       v_parameter     := Tconnection.ctr_token;
 
       begin

@@ -37,7 +37,10 @@ uses
   u_class_rest_client_contract_iten in '..\u_class_rest_client_contract_iten.pas',
   u_class_rest_client_astpp in '..\u_class_rest_client_astpp.pas',
   u_class_rest_client_sippulse in '..\u_class_rest_client_sippulse.pas',
-  u_class_rest_phonebook in '..\u_class_rest_phonebook.pas';
+  u_class_rest_phonebook in '..\u_class_rest_phonebook.pas',
+  u_class_rest_did in '..\u_class_rest_did.pas',
+  u_class_rest_provider in '..\u_class_rest_provider.pas',
+  u_class_rest_client_did in '..\u_class_rest_client_did.pas';
 
 {$R *.res}
 

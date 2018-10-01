@@ -29,7 +29,7 @@ class function Trest_product.GetProduct(mem: TFDMemTable): Boolean;
 begin
   try
     try
-      v_method        := '/api/rest/products/Product';
+      v_method        := '/api/rest/Product/Products';
       v_parameter     := Tconnection.ctr_token;
 
       begin

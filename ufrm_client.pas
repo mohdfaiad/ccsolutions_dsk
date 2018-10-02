@@ -766,7 +766,7 @@ begin
               strproc_update.ParamByName('p_ctr_token').AsString         := Tconnection.ctr_token;
               strproc_update.ParamByName('p_cld_cod').AsString           := memClientDIDcld_cod.AsString;
               strproc_update.ParamByName('p_did_did_cod').AsString       := memClientDIDdid_did_cod.AsString;
-              strproc_update.ParamByName('p_provider_prv_cod').AsString  := memClientDIDprovider_prv_cod.AsString;
+              strproc_update.ParamByName('p_provider_prv_cod').AsString  := memProviderprv_cod.AsString;
               strproc_update.ExecProc;
             except on E: Exception do
               ShowMessage('Erro: ' + E.Message);
@@ -785,7 +785,7 @@ begin
               strproc_create.ParamByName('p_ctr_token').AsString          := Tconnection.ctr_token;
               strproc_create.ParamByName('p_client_cli_cod').AsString     := memcli_cod.AsString;
               strproc_create.ParamByName('p_did_did_cod').AsString        := memClientDIDdid_did_cod.AsString;
-              strproc_create.ParamByName('p_provider_prv_cod').AsString   := memClientDIDprovider_prv_cod.AsString;
+              strproc_create.ParamByName('p_provider_prv_cod').AsString   := memProviderprv_cod.AsString;
               strproc_create.ExecProc;
             except on E: Exception do
               ShowMessage('Erro: ' + E.Message);

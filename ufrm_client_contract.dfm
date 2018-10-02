@@ -4,7 +4,6 @@ inherited frm_client_contract: Tfrm_client_contract
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -41,7 +40,6 @@ inherited frm_client_contract: Tfrm_client_contract
       ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet2
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -307,6 +305,10 @@ inherited frm_client_contract: Tfrm_client_contract
                   PropertiesClassName = 'TcxCurrencyEditProperties'
                   Width = 100
                 end
+                object griddbcci_dt_registration: TcxGridDBColumn
+                  DataBinding.FieldName = 'cci_dt_registration'
+                  Width = 125
+                end
               end
               object gridlvl: TcxGridLevel
                 GridView = griddb
@@ -373,6 +375,7 @@ inherited frm_client_contract: Tfrm_client_contract
               DataBinding.DataField = 'product_pro_cod'
               DataBinding.DataSource = dsClientContractIten
               Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
               Properties.KeyFieldNames = 'pro_cod'
               Properties.ListColumns = <
                 item
@@ -436,7 +439,7 @@ inherited frm_client_contract: Tfrm_client_contract
               SizeOptions.Height = 542
               SizeOptions.Width = 966
               ButtonOptions.Buttons = <>
-              ItemIndex = 1
+              ItemIndex = 2
               Index = 0
             end
             object dxLayoutItem4: TdxLayoutItem
@@ -1627,6 +1630,7 @@ inherited frm_client_contract: Tfrm_client_contract
       Origin = 'cci_dt_registration'
     end
     object memClientContractItenproduct_name: TStringField
+      DisplayLabel = 'Produto'
       FieldKind = fkLookup
       FieldName = 'product_name'
       LookupDataSet = memProduct

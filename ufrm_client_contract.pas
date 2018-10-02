@@ -336,6 +336,7 @@ type
     dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     cxDBNavigator1: TcxDBNavigator;
     dxLayoutItem14: TdxLayoutItem;
+    griddbcci_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
@@ -461,6 +462,7 @@ begin
               strproc_update.ParamByName('p_cci_value_reseller').AsBCD  := memClientContractItencci_value_reseller.AsCurrency;
               strproc_update.ParamByName('p_cci_quant').AsBCD           := memClientContractItencci_quant.AsCurrency;
               strproc_update.ExecProc;
+              dblookupcmb_product_pro_cod.SetFocus
             except on E: Exception do
               ShowMessage('Erro: ' + E.Message);
             end;
@@ -484,6 +486,7 @@ begin
               strproc_create.ParamByName('p_cci_value_reseller').AsBCD              := memClientContractItencci_value_reseller.AsCurrency;
               strproc_create.ParamByName('p_cci_quant').AsBCD                       := memClientContractItencci_quant.AsCurrency;
               strproc_create.ExecProc;
+              dblookupcmb_product_pro_cod.SetFocus
             except on E: Exception do
               ShowMessage('Erro: ' + E.Message);
             end;

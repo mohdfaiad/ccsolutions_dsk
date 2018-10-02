@@ -4,6 +4,7 @@ inherited frm_client: Tfrm_client
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -220,6 +221,7 @@ inherited frm_client: Tfrm_client
       ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
+        Properties.ActivePage = tbsht_telephony
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -1399,7 +1401,7 @@ inherited frm_client: Tfrm_client
                     end
                     object gridtblviewprv_name: TcxGridDBColumn
                       DataBinding.FieldName = 'prv_name'
-                      Width = 250
+                      Width = 150
                     end
                     object gridtblviewcld_dt_registration: TcxGridDBColumn
                       DataBinding.FieldName = 'cld_dt_registration'
@@ -1416,6 +1418,7 @@ inherited frm_client: Tfrm_client
                   DataBinding.DataField = 'provider_prv_cod'
                   DataBinding.DataSource = dsClientDID
                   Properties.CharCase = ecUpperCase
+                  Properties.DropDownListStyle = lsFixedList
                   Properties.KeyFieldNames = 'prv_cod'
                   Properties.ListColumns = <
                     item
@@ -1426,6 +1429,7 @@ inherited frm_client: Tfrm_client
                       Width = 75
                       FieldName = 'prv_id'
                     end>
+                  Properties.ListOptions.SyncMode = True
                   Properties.ListSource = dsProvider
                   Style.HotTrack = False
                   TabOrder = 1
@@ -1437,6 +1441,7 @@ inherited frm_client: Tfrm_client
                   DataBinding.DataField = 'did_did_cod'
                   DataBinding.DataSource = dsClientDID
                   Properties.CharCase = ecUpperCase
+                  Properties.DropDownListStyle = lsFixedList
                   Properties.KeyFieldNames = 'did_cod'
                   Properties.ListColumns = <
                     item

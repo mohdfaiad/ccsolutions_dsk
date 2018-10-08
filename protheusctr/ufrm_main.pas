@@ -104,7 +104,12 @@ uses
   ufrm_phonebook,
   ufrm_contract,
   ufrm_enterprise,
-  ufrm_contract_user, ufrm_reseller, ufrm_product, ufrm_client_contract;
+  ufrm_contract_user,
+  ufrm_reseller,
+  ufrm_product,
+  ufrm_client_contract,
+  ufrm_report,
+  ufrm_proposal_contract;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -124,11 +129,14 @@ type
     Action_product: TAction;
     dxBarLargeButton7: TdxBarLargeButton;
     dxBarManager_1Bar3: TdxBar;
-    dxBarLargeButton8: TdxBarLargeButton;
     Action_client_contract: TAction;
     dxBarManager_1Bar4: TdxBar;
     dxBarLargeButton9: TdxBarLargeButton;
     Action_report: TAction;
+    Action_proposal_contract: TAction;
+    dxBarSubItem1: TdxBarSubItem;
+    dxBarButton1: TdxBarButton;
+    dxBarButton2: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_phonebookExecute(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
@@ -139,6 +147,7 @@ type
     procedure Action_productExecute(Sender: TObject);
     procedure Action_client_contractExecute(Sender: TObject);
     procedure Action_reportExecute(Sender: TObject);
+    procedure Action_proposal_contractExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -151,8 +160,6 @@ var
 implementation
 
 {$R *.dfm}
-
-uses ufrm_report;
 
 procedure Tfrm_main.Action_reportExecute(Sender: TObject);
 begin
@@ -277,6 +284,20 @@ begin
   end else begin
     frm_product.WindowState := wsNormal;
     frm_product.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_proposal_contractExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_proposal_contract) then begin
+    frm_proposal_contract := Tfrm_proposal_contract.Create(Self);
+    frm_proposal_contract.Height := Bevel_1.Height;
+    frm_proposal_contract.Width := Bevel_1.Width;
+    frm_proposal_contract.Show;
+  end else begin
+    frm_proposal_contract.WindowState := wsNormal;
+    frm_proposal_contract.Show;
   end;
 end;
 

@@ -452,6 +452,8 @@ type
     gridtblviewprv_name: TcxGridDBColumn;
     cxDBNavigator1: TcxDBNavigator;
     dxLayoutItem44: TdxLayoutItem;
+    dxLayoutGroup17: TdxLayoutGroup;
+    dxLayoutGroup18: TdxLayoutGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);

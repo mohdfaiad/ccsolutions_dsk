@@ -43,6 +43,8 @@ inherited frm_main: Tfrm_main
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
     inherited dxBarManager_1Bar1: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 79
       FloatClientHeight = 324
       ItemLinks = <
@@ -103,7 +105,7 @@ inherited frm_main: Tfrm_main
       ItemLinks = <
         item
           Visible = True
-          ItemName = 'dxBarLargeButton8'
+          ItemName = 'dxBarSubItem1'
         end>
       OneOnRow = True
       Row = 0
@@ -159,12 +161,31 @@ inherited frm_main: Tfrm_main
       Action = Action_product
       Category = 0
     end
-    object dxBarLargeButton8: TdxBarLargeButton
-      Action = Action_client_contract
-      Category = 0
-    end
     object dxBarLargeButton9: TdxBarLargeButton
       Action = Action_report
+      Category = 0
+    end
+    object dxBarSubItem1: TdxBarSubItem
+      Caption = 'Servi'#231'os'
+      Category = 0
+      Visible = ivAlways
+      ImageIndex = 7
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton1'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton2'
+        end>
+    end
+    object dxBarButton1: TdxBarButton
+      Action = Action_proposal_contract
+      Category = 0
+    end
+    object dxBarButton2: TdxBarButton
+      Action = Action_client_contract
       Category = 0
     end
   end
@@ -222,7 +243,6 @@ inherited frm_main: Tfrm_main
       Category = 'Modulo'
       Caption = 'Contratos'
       Hint = 'Manuten'#231#227'o Contratos Clientes'
-      ImageIndex = 7
       OnExecute = Action_client_contractExecute
     end
     object Action_report: TAction
@@ -231,6 +251,11 @@ inherited frm_main: Tfrm_main
       Hint = 'Manuten'#231#227'o Relat'#243'rios'
       ImageIndex = 8
       OnExecute = Action_reportExecute
+    end
+    object Action_proposal_contract: TAction
+      Category = 'Modulo'
+      Caption = 'Propostas'
+      OnExecute = Action_proposal_contractExecute
     end
   end
   inherited cxImageList_1: TcxImageList

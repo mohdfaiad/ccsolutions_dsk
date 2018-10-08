@@ -45,6 +45,7 @@ begin
             mem.FieldByName('cli_ctr_cod').AsString             := frm_dm.mem_rest.FieldByName('cli_ctr_cod').AsString;
             mem.FieldByName('client_cli_cod').AsString          := frm_dm.mem_rest.FieldByName('client_cli_cod').AsString;
             mem.FieldByName('reseller_res_cod').AsString        := frm_dm.mem_rest.FieldByName('reseller_res_cod').AsString;
+            mem.FieldByName('requisition_req_cod').AsString     := frm_dm.mem_rest.FieldByName('requisition_req_cod').AsString;
             mem.FieldByName('cli_ctr_id').AsInteger             := frm_dm.mem_rest.FieldByName('cli_ctr_id').AsInteger;
             mem.FieldByName('cli_ctr_status').AsString          := frm_dm.mem_rest.FieldByName('cli_ctr_status').AsString;
             mem.FieldByName('cli_ctr_value_reseller').AsString  := frm_dm.mem_rest.FieldByName('cli_ctr_value_reseller').AsString;

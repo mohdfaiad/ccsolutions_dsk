@@ -208,6 +208,17 @@
         <DCCReference Include="..\u_class_rest_did.pas"/>
         <DCCReference Include="..\u_class_rest_provider.pas"/>
         <DCCReference Include="..\u_class_rest_client_did.pas"/>
+        <DCCReference Include="..\ufrm_proposal_contract.pas">
+            <Form>frm_proposal_contract</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\u_class_rest_proposal_contract.pas"/>
+        <DCCReference Include="..\u_class_rest_proposal_contract_iten.pas"/>
+        <DCCReference Include="..\ufrm_dm_shared.pas">
+            <Form>frm_dm_shared</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

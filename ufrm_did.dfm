@@ -105,6 +105,7 @@ inherited frm_did: Tfrm_did
   end
   inherited mem: TFDMemTable [12]
     Active = True
+    IndexFieldNames = 'did_id'
     object memdid_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'

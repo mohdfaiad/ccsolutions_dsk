@@ -5,6 +5,10 @@ inherited frm_phonebook: Tfrm_phonebook
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pho_id: TcxGridDBColumn
@@ -43,6 +47,10 @@ inherited frm_phonebook: Tfrm_phonebook
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
+      ExplicitLeft = 2
+      ExplicitTop = 28
+      ExplicitWidth = 1000
+      ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
@@ -289,6 +297,7 @@ inherited frm_phonebook: Tfrm_phonebook
         DataType = ftString
         Size = 20
       end>
+    IndexFieldNames = 'pho_id'
     StoreDefs = True
     object mempho_cod: TStringField
       DisplayLabel = 'C'#243'd.'

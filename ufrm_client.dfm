@@ -4,7 +4,6 @@ inherited frm_client: Tfrm_client
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -221,7 +220,6 @@ inherited frm_client: Tfrm_client
       ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = tbsht_telephony
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -1375,20 +1373,34 @@ inherited frm_client: Tfrm_client
                     Navigator.Buttons.CustomButtons = <>
                     Navigator.Buttons.Images = cxImageList_1
                     Navigator.Buttons.First.ImageIndex = 0
+                    Navigator.Buttons.First.Visible = False
                     Navigator.Buttons.PriorPage.Visible = False
                     Navigator.Buttons.Prior.ImageIndex = 1
+                    Navigator.Buttons.Prior.Visible = False
                     Navigator.Buttons.Next.ImageIndex = 2
+                    Navigator.Buttons.Next.Visible = False
                     Navigator.Buttons.NextPage.Visible = False
                     Navigator.Buttons.Last.ImageIndex = 3
+                    Navigator.Buttons.Last.Visible = False
                     Navigator.Buttons.Insert.ImageIndex = 4
+                    Navigator.Buttons.Insert.Visible = False
                     Navigator.Buttons.Delete.ImageIndex = 8
+                    Navigator.Buttons.Delete.Visible = False
                     Navigator.Buttons.Edit.ImageIndex = 5
+                    Navigator.Buttons.Edit.Visible = False
                     Navigator.Buttons.Post.ImageIndex = 6
+                    Navigator.Buttons.Post.Visible = False
                     Navigator.Buttons.Cancel.ImageIndex = 7
+                    Navigator.Buttons.Cancel.Visible = False
                     Navigator.Buttons.Refresh.ImageIndex = 9
+                    Navigator.Buttons.Refresh.Visible = False
                     Navigator.Buttons.SaveBookmark.Visible = False
                     Navigator.Buttons.GotoBookmark.Visible = False
                     Navigator.Buttons.Filter.ImageIndex = 11
+                    Navigator.Buttons.Filter.Visible = True
+                    Navigator.InfoPanel.DisplayMask = '[RecordIndex] de [RecordCount]'
+                    Navigator.InfoPanel.Visible = True
+                    Navigator.Visible = True
                     DataController.DataSource = dsClientDID
                     DataController.Summary.DefaultGroupSummaryItems = <>
                     DataController.Summary.FooterSummaryItems = <>
@@ -1567,7 +1579,7 @@ inherited frm_client: Tfrm_client
                 OnDblClick = dxLayoutControl_1DblClick
                 object astppgrid: TcxGrid
                   Left = 17
-                  Top = 38
+                  Top = 82
                   Width = 459
                   Height = 150
                   TabOrder = 0
@@ -1591,6 +1603,8 @@ inherited frm_client: Tfrm_client
                     Navigator.Buttons.SaveBookmark.Visible = False
                     Navigator.Buttons.GotoBookmark.Visible = False
                     Navigator.Buttons.Filter.ImageIndex = 11
+                    Navigator.InfoPanel.DisplayMask = '[RecordIndex] de [RecordCount]'
+                    Navigator.InfoPanel.Visible = True
                     Navigator.Visible = True
                     DataController.DataSource = dsClientASTPP
                     DataController.Summary.DefaultGroupSummaryItems = <>
@@ -1610,7 +1624,7 @@ inherited frm_client: Tfrm_client
                 end
                 object sipgrid: TcxGrid
                   Left = 496
-                  Top = 38
+                  Top = 82
                   Width = 459
                   Height = 150
                   TabOrder = 1
@@ -1634,6 +1648,8 @@ inherited frm_client: Tfrm_client
                     Navigator.Buttons.SaveBookmark.Visible = False
                     Navigator.Buttons.GotoBookmark.Visible = False
                     Navigator.Buttons.Filter.ImageIndex = 11
+                    Navigator.InfoPanel.DisplayMask = '[RecordIndex] de [RecordCount]'
+                    Navigator.InfoPanel.Visible = True
                     Navigator.Visible = True
                     DataController.DataSource = dsClientSIPPulse
                     DataController.Summary.DefaultGroupSummaryItems = <>
@@ -1656,6 +1672,7 @@ inherited frm_client: Tfrm_client
                   SizeOptions.SizableHorz = True
                   ButtonOptions.Buttons = <>
                   Hidden = True
+                  ItemIndex = 1
                   LayoutDirection = ldHorizontal
                   ShowBorder = False
                   Index = -1
@@ -1679,7 +1696,7 @@ inherited frm_client: Tfrm_client
                   ControlOptions.OriginalHeight = 150
                   ControlOptions.OriginalWidth = 250
                   ControlOptions.ShowBorder = False
-                  Index = 0
+                  Index = 1
                 end
                 object dxLayoutItem40: TdxLayoutItem
                   Parent = dxLayoutGroup16
@@ -1687,7 +1704,7 @@ inherited frm_client: Tfrm_client
                   ControlOptions.OriginalHeight = 150
                   ControlOptions.OriginalWidth = 250
                   ControlOptions.ShowBorder = False
-                  Index = 0
+                  Index = 1
                 end
                 object dxLayoutGroup16: TdxLayoutGroup
                   Parent = dxLayoutGroup13
@@ -1698,6 +1715,18 @@ inherited frm_client: Tfrm_client
                   SizeOptions.Width = 473
                   ButtonOptions.Buttons = <>
                   Index = 1
+                end
+                object dxLayoutGroup17: TdxLayoutGroup
+                  Parent = dxLayoutGroup15
+                  CaptionOptions.Text = 'Dados'
+                  ButtonOptions.Buttons = <>
+                  Index = 0
+                end
+                object dxLayoutGroup18: TdxLayoutGroup
+                  Parent = dxLayoutGroup16
+                  CaptionOptions.Text = 'Dados'
+                  ButtonOptions.Buttons = <>
+                  Index = 0
                 end
               end
             end

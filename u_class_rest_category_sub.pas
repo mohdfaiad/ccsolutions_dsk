@@ -3,12 +3,7 @@ unit u_class_rest_category_sub;
 interface
 
 uses
-  System.SysUtils,
-
-  FireDAC.Comp.Client,
-
-  u_class_rest_method,
-  u_class_connection;
+  System.SysUtils, FireDAC.Comp.Client, u_class_rest_method, u_class_connection;
 
 type
   Trest_ticket_category_sub = class(Trest_methods)
@@ -34,7 +29,7 @@ class function Trest_ticket_category_sub.GetTicketCategorySub(mem: TFDMemTable):
 begin
   try
     try
-      Trest_ticket_category_sub.v_method        := '/api/rest/ticket_category_subs/TicketCategorySub';
+      Trest_ticket_category_sub.v_method        := '/api/rest/TicketCategorySub/TicketCategorySubs';
       Trest_ticket_category_sub.v_parameter     := Tconnection.ctr_token;
 
       begin

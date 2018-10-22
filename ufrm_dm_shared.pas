@@ -3,9 +3,20 @@ unit ufrm_dm_shared;
 interface
 
 uses
-  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
-  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  System.SysUtils,
+  System.Classes,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+
+  Data.DB;
 
 type
   Tfrm_dm_shared = class(TDataModule)
@@ -131,10 +142,32 @@ type
     memProposalContractreq_id: TLongWordField;
     memProposalContractreq_deleted_at: TDateTimeField;
     memProposalContractreq_dt_registration: TDateTimeField;
+    memMaterial: TFDMemTable;
+    memMaterialmat_cod: TStringField;
+    memMaterialmat_id: TLongWordField;
+    memMaterialmat_name: TStringField;
+    memMaterialmat_status: TShortintField;
+    memMaterialmat_deleted_at: TDateTimeField;
+    memMaterialmat_dt_registration: TDateTimeField;
+    dsMaterial: TDataSource;
+    memProvider: TFDMemTable;
+    memProviderprv_cod: TStringField;
+    memProviderprv_id: TLongWordField;
+    memProviderprv_name: TStringField;
+    memProviderprv_deleted_at: TDateTimeField;
+    memProviderprv_dt_registration: TDateTimeField;
+    dsProvider: TDataSource;
+    dsDID: TDataSource;
+    memDID: TFDMemTable;
+    memDIDdid_cod: TStringField;
+    memDIDdid_id: TLongWordField;
+    memDIDdid_number: TStringField;
+    memDIDdid_deleted_at: TDateTimeField;
+    memDIDdid_dt_registration: TDateTimeField;
   private
-    { Private declarations }
+
   public
-    { Public declarations }
+
   end;
 
 var

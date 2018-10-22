@@ -3,12 +3,7 @@ unit u_class_rest_ticket_type;
 interface
 
 uses
-  System.SysUtils,
-
-  FireDAC.Comp.Client,
-
-  u_class_rest_method,
-  u_class_connection;
+  System.SysUtils, FireDAC.Comp.Client, u_class_rest_method, u_class_connection;
 
 type
   Trest_ticket_type = class(Trest_methods)
@@ -34,7 +29,7 @@ class function Trest_ticket_type.GetTicketType(mem: TFDMemTable): Boolean;
 begin
   try
     try
-      v_method        := '/api/rest/ticket_types/TicketType';
+      v_method        := '/api/rest/TicketType/TicketTypes';
       v_parameter     := Tconnection.ctr_token;
 
       begin

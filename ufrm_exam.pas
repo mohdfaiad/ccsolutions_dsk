@@ -204,19 +204,12 @@ type
     mempro_dt_registration: TDateTimeField;
     dbchk_status: TcxDBCheckBox;
     dxLayoutItem4: TdxLayoutItem;
-    memMaterial: TFDMemTable;
-    dsMaterial: TDataSource;
-    memMaterialmat_cod: TStringField;
-    memMaterialmat_id: TLongWordField;
-    memMaterialmat_name: TStringField;
-    memMaterialmat_status: TShortintField;
-    memMaterialmat_deleted_at: TDateTimeField;
-    memMaterialmat_dt_registration: TDateTimeField;
     dblookupcmb_mat_cod: TcxDBLookupComboBox;
     dxLayoutItem6: TdxLayoutItem;
     cxGrid_1DBTableView1pro_status: TcxGridDBColumn;
     cxGrid_1DBTableView1material_name: TcxGridDBColumn;
-    memmaterial_name: TStringField;   procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    memmaterial_name: TStringField;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
@@ -336,7 +329,7 @@ end;
 
 procedure Tfrm_exam.afterInsert;
 begin
-  ShowMessage('Registro Iserido com Sucesso');
+  ShowMessage('Registro Inserido com Sucesso');
   cxTabSheet_3.Show;
   Trest_product.GetProduct(mem);
   ds.DataSet.Last;
@@ -360,7 +353,7 @@ procedure Tfrm_exam.FormCreate(Sender: TObject);
 begin
   inherited;
   Trest_product.GetProduct(mem);
-  Trest_material.GetMaterial(memMaterial)
+//  Trest_material.GetMaterial(memMaterial)
 end;
 
 end.

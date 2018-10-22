@@ -46,15 +46,20 @@ uses
   u_class_rest_product in '..\u_class_rest_product.pas',
   u_class_rest_insurance in '..\u_class_rest_insurance.pas',
   ufrm_table_price in '..\ufrm_table_price.pas' {frm_table_price},
-  u_class_rest_table_price in '..\u_class_rest_table_price.pas';
+  u_class_rest_table_price in '..\u_class_rest_table_price.pas',
+  u_class_rest_client_did in '..\u_class_rest_client_did.pas',
+  u_class_rest_provider in '..\u_class_rest_provider.pas',
+  u_class_rest_did in '..\u_class_rest_did.pas',
+  ufrm_dm_shared in '..\ufrm_dm_shared.pas' {frm_dm_shared: TDataModule};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Modulo := 'Laboratorio';
+  Modulo := 'LABORATORIO';
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfrm_dm, frm_dm);
   Application.CreateForm(Tfrm_main, frm_main);
+  Application.CreateForm(Tfrm_dm_shared, frm_dm_shared);
   Application.Run;
 end.

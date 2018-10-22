@@ -4,6 +4,7 @@ inherited frm_insurance: Tfrm_insurance
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
+    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -128,27 +129,31 @@ inherited frm_insurance: Tfrm_insurance
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 67
+              Top = 37
               DataBinding.DataField = 'ins_id'
               ExplicitLeft = 67
+              ExplicitTop = 37
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
               Left = 240
+              Top = 37
               DataBinding.DataField = 'ins_dt_registration'
               ExplicitLeft = 240
+              ExplicitTop = 37
             end
             object dbedt_im: TcxDBTextEdit [2]
               Left = 240
-              Top = 249
+              Top = 219
               DataBinding.DataField = 'ins_im'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 10
+              TabOrder = 9
               Width = 130
             end
             object dbedt_dt_open: TcxDBDateEdit [3]
               Left = 67
-              Top = 103
+              Top = 101
               DataBinding.DataField = 'ins_dt_open'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -157,79 +162,57 @@ inherited frm_insurance: Tfrm_insurance
             end
             object dbedt_last_name: TcxDBTextEdit [4]
               Left = 422
-              Top = 157
+              Top = 128
               DataBinding.DataField = 'ins_last_name'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Style.HotTrack = False
-              TabOrder = 7
-              Width = 303
-            end
-            object lookupComboBoxTable: TcxLookupComboBox [5]
-              Left = 67
-              Top = 130
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 350
-              Properties.KeyFieldNames = 'codTabela'
-              Properties.ListColumns = <
-                item
-                  Caption = 'Nome'
-                  Width = 250
-                  FieldName = 'tbp_name'
-                end
-                item
-                  Caption = 'C'#243'd. ID'
-                  Width = 75
-                  FieldName = 'tbp_id'
-                end>
-              Style.HotTrack = False
-              TabOrder = 4
-              Width = 303
-            end
-            object dbedt_first_name: TcxDBTextEdit [6]
-              Left = 67
-              Top = 157
-              DataBinding.DataField = 'ins_first_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 5
               Width = 303
             end
-            object dbedt_cnpj: TcxDBTextEdit [7]
+            object dbedt_first_name: TcxDBTextEdit [5]
               Left = 67
-              Top = 249
+              Top = 128
+              DataBinding.DataField = 'ins_first_name'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 303
+            end
+            object dbedt_cnpj: TcxDBTextEdit [6]
+              Left = 67
+              Top = 219
               DataBinding.DataField = 'ins_cnpj'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 9
+              TabOrder = 8
               Width = 121
             end
-            object dbedt_email: TcxDBTextEdit [8]
+            object dbedt_email: TcxDBTextEdit [7]
               Left = 67
-              Top = 184
+              Top = 155
               DataBinding.DataField = 'ins_email'
               DataBinding.DataSource = ds
               Properties.CharCase = ecLowerCase
               Style.HotTrack = False
-              TabOrder = 6
+              TabOrder = 7
               Width = 303
             end
-            object dbedt_nickname: TcxDBTextEdit [9]
+            object dbedt_nickname: TcxDBTextEdit [8]
               Left = 771
-              Top = 157
+              Top = 128
               DataBinding.DataField = 'ins_nickname'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
-              TabOrder = 8
+              TabOrder = 6
               Width = 198
             end
-            object dbchk_status: TcxDBCheckBox [10]
+            object dbchk_status: TcxDBCheckBox [9]
               Left = 376
-              Top = 38
+              Top = 37
               Caption = 'Status'
               DataBinding.DataField = 'ins_status'
               DataBinding.DataSource = ds
@@ -285,45 +268,18 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup2
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              Index = 1
-              AutoCreated = True
-            end
             object dxLayoutItem4: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup8
-              AlignHorz = ahRight
+              Parent = dxLayoutAutoCreatedGroup2
               AlignVert = avClient
               CaptionOptions.Text = 'Fantasia'
               Control = dbedt_last_name
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 303
               ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup9
-              AlignHorz = ahClient
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
               Index = 1
-              AutoCreated = True
-            end
-            object dxLayoutItem26: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup7
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Tabela'
-              Control = lookupComboBoxTable
-              ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 303
-              ControlOptions.ShowBorder = False
-              Index = 0
             end
             object dxLayoutItem3: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup10
+              Parent = dxLayoutAutoCreatedGroup2
               AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Raz'#227'o'
@@ -332,13 +288,6 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.OriginalWidth = 303
               ControlOptions.ShowBorder = False
               Index = 0
-            end
-            object dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup7
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 1
-              AutoCreated = True
             end
             object dxLayoutItem6: TdxLayoutItem
               Parent = dxLayoutGroup3
@@ -363,21 +312,21 @@ inherited frm_insurance: Tfrm_insurance
               Index = 1
             end
             object dxLayoutAutoCreatedGroup10: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutAutoCreatedGroup9
+              Parent = dxLayoutGroup2
               AlignHorz = ahLeft
-              Index = 0
+              AlignVert = avTop
+              Index = 1
               AutoCreated = True
             end
             object dxLayoutItem23: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup8
-              AlignHorz = ahRight
+              Parent = dxLayoutAutoCreatedGroup2
               AlignVert = avClient
               CaptionOptions.Text = 'Apelido'
               Control = dbedt_nickname
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 198
               ControlOptions.ShowBorder = False
-              Index = 1
+              Index = 2
             end
             object dxLayoutItem25: TdxLayoutItem
               Parent = dxLayoutGroup1
@@ -388,6 +337,13 @@ inherited frm_insurance: Tfrm_insurance
               ControlOptions.OriginalWidth = 53
               ControlOptions.ShowBorder = False
               Index = 2
+            end
+            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutAutoCreatedGroup10
+              AlignVert = avClient
+              LayoutDirection = ldHorizontal
+              Index = 0
+              AutoCreated = True
             end
           end
         end
@@ -403,7 +359,7 @@ inherited frm_insurance: Tfrm_insurance
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             object dbedt_add_bus_zipcode: TcxDBButtonEdit
               Left = 55
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'ins_add_bus_zipcode'
               DataBinding.DataSource = ds
               Properties.Buttons = <
@@ -417,18 +373,18 @@ inherited frm_insurance: Tfrm_insurance
               Width = 121
             end
             object dbedt_add_bus_complement: TcxDBTextEdit
-              Left = 797
-              Top = 38
+              Left = 704
+              Top = 64
               DataBinding.DataField = 'ins_add_bus_complement'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 4
-              Width = 172
+              Width = 265
             end
             object dbedt_add_bus_address: TcxDBTextEdit
-              Left = 206
-              Top = 38
+              Left = 55
+              Top = 64
               DataBinding.DataField = 'ins_add_bus_address'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -437,8 +393,8 @@ inherited frm_insurance: Tfrm_insurance
               Width = 272
             end
             object dbedt_add_bus_number: TcxDBTextEdit
-              Left = 514
-              Top = 38
+              Left = 371
+              Top = 64
               DataBinding.DataField = 'ins_add_bus_number'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -447,28 +403,28 @@ inherited frm_insurance: Tfrm_insurance
               Width = 50
             end
             object dbedt_add_bus_street: TcxDBTextEdit
-              Left = 603
-              Top = 38
+              Left = 460
+              Top = 64
               DataBinding.DataField = 'ins_add_bus_street'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 3
-              Width = 150
+              Width = 200
             end
             object dbedt_add_bus_city: TcxDBTextEdit
               Left = 55
-              Top = 65
+              Top = 91
               DataBinding.DataField = 'ins_add_bus_city'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 5
-              Width = 178
+              Width = 272
             end
             object dbedt_add_bus_state: TcxDBTextEdit
-              Left = 277
-              Top = 65
+              Left = 371
+              Top = 91
               DataBinding.DataField = 'ins_add_bus_state'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -477,14 +433,14 @@ inherited frm_insurance: Tfrm_insurance
               Width = 50
             end
             object dbedt_add_bus_country: TcxDBTextEdit
-              Left = 357
-              Top = 65
+              Left = 460
+              Top = 91
               DataBinding.DataField = 'ins_add_bus_country'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 7
-              Width = 121
+              Width = 200
             end
             object dxLayoutControl1Group_Root: TdxLayoutGroup
               AlignHorz = ahLeft
@@ -499,10 +455,11 @@ inherited frm_insurance: Tfrm_insurance
               Parent = dxLayoutControl1Group_Root
               CaptionOptions.Text = 'Endere'#231'o'
               ButtonOptions.Buttons = <>
+              ItemIndex = 2
               Index = 0
             end
             object dxLayoutItem8: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup6
+              Parent = dxLayoutGroup4
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'CEP'
@@ -513,74 +470,57 @@ inherited frm_insurance: Tfrm_insurance
               Index = 0
             end
             object dxLayoutItem12: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup6
+              Parent = dxLayoutAutoCreatedGroup3
               AlignVert = avClient
               CaptionOptions.Text = 'Compl.'
               Control = dbedt_add_bus_complement
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 172
+              ControlOptions.OriginalWidth = 265
               ControlOptions.ShowBorder = False
-              Index = 4
+              Index = 3
             end
             object dxLayoutItem9: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup6
-              AlignHorz = ahLeft
+              Parent = dxLayoutAutoCreatedGroup3
               AlignVert = avClient
               CaptionOptions.Text = 'Rua'
               Control = dbedt_add_bus_address
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 272
               ControlOptions.ShowBorder = False
-              Index = 1
-            end
-            object dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup4
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
               Index = 0
-              AutoCreated = True
             end
             object dxLayoutItem10: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup6
+              Parent = dxLayoutAutoCreatedGroup3
               AlignVert = avClient
               CaptionOptions.Text = 'N'#250'm.'
               Control = dbedt_add_bus_number
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 50
               ControlOptions.ShowBorder = False
-              Index = 2
+              Index = 1
             end
             object dxLayoutItem11: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup6
+              Parent = dxLayoutAutoCreatedGroup3
               AlignVert = avClient
               CaptionOptions.Text = 'Bairro'
               Control = dbedt_add_bus_street
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 150
+              ControlOptions.OriginalWidth = 200
               ControlOptions.ShowBorder = False
-              Index = 3
+              Index = 2
             end
             object dxLayoutItem13: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup3
-              AlignHorz = ahLeft
+              Parent = dxLayoutAutoCreatedGroup5
               AlignVert = avClient
               CaptionOptions.Text = 'Cidade'
               Control = dbedt_add_bus_city
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 178
+              ControlOptions.OriginalWidth = 272
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup4
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 1
-              AutoCreated = True
-            end
             object dxLayoutItem14: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup3
-              AlignHorz = ahLeft
+              Parent = dxLayoutAutoCreatedGroup5
               AlignVert = avClient
               CaptionOptions.Text = 'Estado'
               Control = dbedt_add_bus_state
@@ -590,15 +530,30 @@ inherited frm_insurance: Tfrm_insurance
               Index = 1
             end
             object dxLayoutItem15: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup3
-              AlignHorz = ahLeft
+              Parent = dxLayoutAutoCreatedGroup5
               AlignVert = avClient
               CaptionOptions.Text = 'Pa'#237's'
               Control = dbedt_add_bus_country
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 200
               ControlOptions.ShowBorder = False
               Index = 2
+            end
+            object dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup4
+              AlignHorz = ahClient
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 2
+              AutoCreated = True
+            end
+            object dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup4
+              AlignHorz = ahClient
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
             end
           end
         end
@@ -614,7 +569,7 @@ inherited frm_insurance: Tfrm_insurance
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             object dbedt_phone2: TcxDBTextEdit
               Left = 208
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'ins_phone2'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -624,7 +579,7 @@ inherited frm_insurance: Tfrm_insurance
             end
             object dbedt_phone4: TcxDBTextEdit
               Left = 526
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'ins_phone4'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -634,7 +589,7 @@ inherited frm_insurance: Tfrm_insurance
             end
             object dbedt_phone1: TcxDBTextEdit
               Left = 49
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'ins_phone1'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -644,7 +599,7 @@ inherited frm_insurance: Tfrm_insurance
             end
             object dbedt_phone3: TcxDBTextEdit
               Left = 367
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'ins_phone3'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -654,13 +609,13 @@ inherited frm_insurance: Tfrm_insurance
             end
             object dbedt_contact: TcxDBTextEdit
               Left = 697
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'ins_contact'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 4
-              Width = 272
+              Width = 121
             end
             object dxLayoutGroup8: TdxLayoutGroup
               AlignHorz = ahLeft
@@ -675,6 +630,7 @@ inherited frm_insurance: Tfrm_insurance
               Parent = dxLayoutGroup8
               CaptionOptions.Text = 'Contato'
               ButtonOptions.Buttons = <>
+              ItemIndex = 4
               LayoutDirection = ldHorizontal
               Index = 0
             end
@@ -724,12 +680,11 @@ inherited frm_insurance: Tfrm_insurance
             end
             object dxLayoutItem39: TdxLayoutItem
               Parent = dxLayoutGroup10
-              AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Contato'
               Control = dbedt_contact
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 272
+              ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 4
             end
@@ -747,7 +702,7 @@ inherited frm_insurance: Tfrm_insurance
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             object dbedt_dt_maturity_contract: TcxDBDateEdit
               Left = 128
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'ins_dt_maturity_contract'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -756,7 +711,7 @@ inherited frm_insurance: Tfrm_insurance
             end
             object dbedt_day_maturity: TcxDBSpinEdit
               Left = 319
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'ins_day_maturity'
               DataBinding.DataSource = ds
               Style.HotTrack = False

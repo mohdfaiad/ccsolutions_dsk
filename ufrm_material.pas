@@ -233,7 +233,7 @@ end;
 
 procedure Tfrm_material.afterInsert;
 begin
-  ShowMessage('Registro Iserido com Sucesso');
+  ShowMessage('Registro Inserido com Sucesso');
   cxTabSheet_3.Show;
   Trest_material.GetMaterial(mem);
   ds.DataSet.Last;

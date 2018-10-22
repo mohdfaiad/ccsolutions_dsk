@@ -45,7 +45,11 @@ uses
   u_class_rest_ticket_type in '..\u_class_rest_ticket_type.pas',
   u_class_rest_ticket_priority in '..\u_class_rest_ticket_priority.pas',
   u_class_rest_category in '..\u_class_rest_category.pas',
-  u_class_rest_category_sub in '..\u_class_rest_category_sub.pas';
+  u_class_rest_category_sub in '..\u_class_rest_category_sub.pas',
+  u_class_rest_did in '..\u_class_rest_did.pas',
+  u_class_rest_provider in '..\u_class_rest_provider.pas',
+  u_class_rest_client_did in '..\u_class_rest_client_did.pas',
+  ufrm_dm_shared in '..\ufrm_dm_shared.pas' {frm_dm_shared: TDataModule};
 
 {$R *.res}
 
@@ -53,6 +57,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfrm_dm, frm_dm);
+  Application.CreateForm(Tfrm_dm_shared, frm_dm_shared);
   Application.CreateForm(Tfrm_main, frm_main);
   Application.Run;
 end.

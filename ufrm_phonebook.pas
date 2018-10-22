@@ -174,8 +174,8 @@ type
     cxGrid_1DBTableView1pho_contact: TcxGridDBColumn;
     cxGrid_1DBTableView1pho_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure dxBarButton_saveClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Action_saveExecute(Sender: TObject);
   private
     procedure afterInsert;
     procedure afterUpdate;
@@ -193,22 +193,7 @@ implementation
 
 uses ufrm_dm;
 
-procedure Tfrm_phonebook.afterInsert;
-begin
-  ShowMessage('Registro Iserido com Sucesso');
-  cxTabSheet_3.Show;
-  Trest_phonebook.GetPhonebook(mem);
-  ds.DataSet.Last;
-end;
-
-procedure Tfrm_phonebook.afterUpdate;
-begin
-  ShowMessage('Registro Atualizado com sucesso');
-  cxTabSheet_3.Show;
-  Trest_phonebook.GetPhonebook(mem);
-end;
-
-procedure Tfrm_phonebook.dxBarButton_saveClick(Sender: TObject);
+procedure Tfrm_phonebook.Action_saveExecute(Sender: TObject);
 var
   strproc_create, strproc_update : TFDStoredProc;
 begin
@@ -266,6 +251,21 @@ begin
       finally
       end;
   end;
+end;
+
+procedure Tfrm_phonebook.afterInsert;
+begin
+  ShowMessage('Registro Iserido com Sucesso');
+  cxTabSheet_3.Show;
+  Trest_phonebook.GetPhonebook(mem);
+  ds.DataSet.Last;
+end;
+
+procedure Tfrm_phonebook.afterUpdate;
+begin
+  ShowMessage('Registro Atualizado com sucesso');
+  cxTabSheet_3.Show;
+  Trest_phonebook.GetPhonebook(mem);
 end;
 
 procedure Tfrm_phonebook.FormClose(Sender: TObject; var Action: TCloseAction);

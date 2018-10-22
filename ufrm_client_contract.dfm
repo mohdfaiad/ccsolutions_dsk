@@ -47,14 +47,22 @@ inherited frm_client_contract: Tfrm_client_contract
           ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
+              Left = 65
+              Top = 37
               DataBinding.DataField = 'cli_ctr_id'
+              ExplicitLeft = 65
+              ExplicitTop = 37
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
+              Left = 238
+              Top = 37
               DataBinding.DataField = 'cli_ctr_dt_registration'
+              ExplicitLeft = 238
+              ExplicitTop = 37
             end
             object dbchk_status: TcxDBCheckBox [2]
-              Left = 368
-              Top = 38
+              Left = 374
+              Top = 37
               Caption = 'Status'
               DataBinding.DataField = 'cli_ctr_status'
               DataBinding.DataSource = ds
@@ -67,13 +75,13 @@ inherited frm_client_contract: Tfrm_client_contract
               Transparent = True
             end
             object cxDBLookupComboBox1: TcxDBLookupComboBox [3]
-              Left = 59
-              Top = 103
+              Left = 65
+              Top = 101
               DataBinding.DataField = 'client_cli_cod'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 450
+              Properties.DropDownWidth = 350
               Properties.KeyFieldNames = 'cli_cod'
               Properties.ListColumns = <
                 item
@@ -91,8 +99,8 @@ inherited frm_client_contract: Tfrm_client_contract
               Width = 303
             end
             object cxDBLookupComboBox3: TcxDBLookupComboBox [4]
-              Left = 416
-              Top = 103
+              Left = 424
+              Top = 101
               DataBinding.DataField = 'requisition_req_cod'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -108,15 +116,71 @@ inherited frm_client_contract: Tfrm_client_contract
               Properties.ListSource = frm_dm_shared.dsProposalContract
               Style.HotTrack = False
               TabOrder = 4
-              Width = 145
+              Width = 121
+            end
+            object dbedt_data_signature: TcxDBDateEdit [5]
+              Left = 625
+              Top = 101
+              DataBinding.DataField = 'cli_ctr_date_signature'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 5
+              Width = 130
+            end
+            object dbmem_annotation: TcxDBMemo [6]
+              Left = 17
+              Top = 229
+              DataBinding.DataField = 'cli_ctr_annotation'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.ScrollBars = ssVertical
+              Style.HotTrack = False
+              TabOrder = 8
+              Height = 89
+              Width = 952
+            end
+            object dblookupcmbReseller: TcxDBLookupComboBox [7]
+              Left = 65
+              Top = 165
+              DataBinding.DataField = 'reseller_res_cod'
+              DataBinding.DataSource = ds
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
+              Properties.KeyFieldNames = 'res_cod'
+              Properties.ListColumns = <
+                item
+                  Width = 275
+                  FieldName = 'res_first_name'
+                end
+                item
+                  Width = 75
+                  FieldName = 'res_id'
+                end>
+              Properties.ListOptions.SyncMode = True
+              Properties.ListSource = frm_dm_shared.dsReseller
+              Style.HotTrack = False
+              TabOrder = 6
+              Width = 303
+            end
+            object dbedt_value_reseller: TcxDBCurrencyEdit [8]
+              Left = 424
+              Top = 165
+              DataBinding.DataField = 'cli_ctr_value_reseller'
+              DataBinding.DataSource = ds
+              Properties.DecimalPlaces = 4
+              Properties.DisplayFormat = 'R$ ,0.0000;-R$ ,0.0000'
+              Style.HotTrack = False
+              TabOrder = 7
+              Width = 121
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
-              ItemIndex = 1
+              ItemIndex = 2
             end
             inherited dxLayoutGroup2: TdxLayoutGroup
               AlignHorz = ahClient
               AlignVert = avTop
-              ItemIndex = 1
+              ItemIndex = 2
               LayoutDirection = ldHorizontal
             end
             object dxLayoutItem3: TdxLayoutItem
@@ -147,99 +211,64 @@ inherited frm_client_contract: Tfrm_client_contract
               CaptionOptions.Text = 'Proposta'
               Control = cxDBLookupComboBox3
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 145
+              ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
               Index = 1
             end
-          end
-        end
-        object cxTabSheet1: TcxTabSheet
-          Caption = 'Revenda'
-          object dxLayoutControl1: TdxLayoutControl
-            Left = 0
-            Top = 0
-            Width = 986
-            Height = 562
-            Align = alClient
-            TabOrder = 0
-            LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-            OnDblClick = dxLayoutControl_1DblClick
-            object cxDBLookupComboBox2: TcxDBLookupComboBox
-              Left = 65
-              Top = 38
-              DataBinding.DataField = 'reseller_res_cod'
-              DataBinding.DataSource = ds
-              Properties.CharCase = ecUpperCase
-              Properties.DropDownListStyle = lsFixedList
-              Properties.DropDownWidth = 450
-              Properties.KeyFieldNames = 'res_cod'
-              Properties.ListColumns = <
-                item
-                  Width = 300
-                  FieldName = 'res_first_name'
-                end
-                item
-                  Width = 50
-                  FieldName = 'res_id'
-                end>
-              Properties.ListOptions.SyncMode = True
-              Properties.ListSource = frm_dm_shared.dsReseller
-              Style.HotTrack = False
-              TabOrder = 0
-              Width = 303
+            object dxLayoutItem16: TdxLayoutItem
+              Parent = dxLayoutGroup2
+              AlignVert = avClient
+              CaptionOptions.Text = 'Dt. Assinatura'
+              Control = dbedt_data_signature
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 130
+              ControlOptions.ShowBorder = False
+              Index = 2
             end
-            object cxDBCurrencyEdit1: TcxDBCurrencyEdit
-              Left = 417
-              Top = 38
-              DataBinding.DataField = 'cli_ctr_value_reseller'
-              DataBinding.DataSource = ds
-              Style.HotTrack = False
-              TabOrder = 1
-              Width = 121
-            end
-            object dxLayoutGroup3: TdxLayoutGroup
-              AlignHorz = ahLeft
-              AlignVert = avTop
+            object dxLayoutGroup9: TdxLayoutGroup
+              Parent = dxLayoutControl_1Group_Root
+              CaptionOptions.Text = 'Nota'#231#245'es'
+              SizeOptions.AssignedValues = [sovSizableHorz]
+              SizeOptions.SizableHorz = True
+              SizeOptions.Width = 966
               ButtonOptions.Buttons = <>
-              Hidden = True
-              ItemIndex = 1
-              LayoutDirection = ldHorizontal
-              ShowBorder = False
-              Index = -1
+              Index = 3
             end
-            object dxLayoutGroup5: TdxLayoutGroup
-              Parent = dxLayoutGroup3
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              CaptionOptions.Text = 'Dados'
-              ButtonOptions.Buttons = <>
-              LayoutDirection = ldHorizontal
+            object dxLayoutItem17: TdxLayoutItem
+              Parent = dxLayoutGroup9
+              Control = dbmem_annotation
+              ControlOptions.OriginalHeight = 89
+              ControlOptions.OriginalWidth = 185
+              ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem9: TdxLayoutItem
-              Parent = dxLayoutGroup5
-              AlignHorz = ahLeft
-              AlignVert = avTop
+            object dxLayoutGroup10: TdxLayoutGroup
+              Parent = dxLayoutControl_1Group_Root
               CaptionOptions.Text = 'Revenda'
-              Control = cxDBLookupComboBox2
+              ButtonOptions.Buttons = <>
+              ItemIndex = 1
+              LayoutDirection = ldHorizontal
+              Index = 2
+            end
+            object dxLayoutItem5: TdxLayoutItem
+              Parent = dxLayoutGroup10
+              AlignHorz = ahLeft
+              AlignVert = avClient
+              CaptionOptions.Text = 'Revenda'
+              Control = dblookupcmbReseller
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 303
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object dxLayoutItem5: TdxLayoutItem
-              Parent = dxLayoutGroup7
-              CaptionOptions.Text = 'Valor'
-              Control = cxDBCurrencyEdit1
+            object dxLayoutItem9: TdxLayoutItem
+              Parent = dxLayoutGroup10
+              AlignVert = avClient
+              CaptionOptions.Text = 'Comiss'#227'o'
+              Control = dbedt_value_reseller
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 121
               ControlOptions.ShowBorder = False
-              Index = 0
-            end
-            object dxLayoutGroup7: TdxLayoutGroup
-              Parent = dxLayoutGroup3
-              CaptionOptions.Text = 'Comiss'#227'o do Contrato'
-              ButtonOptions.Buttons = <>
               Index = 1
             end
           end
@@ -257,10 +286,10 @@ inherited frm_client_contract: Tfrm_client_contract
             OnDblClick = dxLayoutControl_1DblClick
             object grid: TcxGrid
               Left = 17
-              Top = 161
+              Top = 289
               Width = 952
-              Height = 381
-              TabOrder = 7
+              Height = 253
+              TabOrder = 9
               object griddb: TcxGridDBTableView
                 Navigator.Buttons.ConfirmDelete = True
                 Navigator.Buttons.CustomButtons = <>
@@ -362,63 +391,63 @@ inherited frm_client_contract: Tfrm_client_contract
               end
             end
             object dbedt_cci_value: TcxDBCurrencyEdit
-              Left = 409
-              Top = 66
+              Left = 387
+              Top = 37
               DataBinding.DataField = 'cci_value'
               DataBinding.DataSource = dsClientContractIten
               Properties.DecimalPlaces = 4
               Properties.DisplayFormat = 'R$ ,0.0000;-R$ ,0.0000'
               Style.HotTrack = False
               TabOrder = 1
-              Width = 121
+              Width = 100
             end
             object dbedt_cci_quant: TcxDBCurrencyEdit
-              Left = 64
-              Top = 93
+              Left = 532
+              Top = 37
               DataBinding.DataField = 'cci_quant'
               DataBinding.DataSource = dsClientContractIten
               Properties.DecimalPlaces = 4
               Properties.DisplayFormat = '0.0000'
               Style.HotTrack = False
               TabOrder = 2
-              Width = 121
+              Width = 100
             end
             object dbedt_cci_value_discount: TcxDBCurrencyEdit
-              Left = 238
-              Top = 93
+              Left = 685
+              Top = 37
               DataBinding.DataField = 'cci_value_discount'
               DataBinding.DataSource = dsClientContractIten
               Properties.DecimalPlaces = 4
               Properties.DisplayFormat = 'R$ ,0.0000;-R$ ,0.0000'
               Style.HotTrack = False
               TabOrder = 3
-              Width = 121
+              Width = 100
             end
             object dbedt_cci_value_total: TcxDBCurrencyEdit
-              Left = 409
-              Top = 93
+              Left = 835
+              Top = 37
               DataBinding.DataField = 'cci_value_total'
               DataBinding.DataSource = dsClientContractIten
               Properties.DecimalPlaces = 4
               Properties.DisplayFormat = 'R$ ,0.0000;-R$ ,0.0000'
               Style.HotTrack = False
               TabOrder = 4
-              Width = 121
+              Width = 120
             end
             object dbedt_cci_value_reseller: TcxDBCurrencyEdit
-              Left = 599
-              Top = 93
+              Left = 387
+              Top = 101
               DataBinding.DataField = 'cci_value_reseller'
               DataBinding.DataSource = dsClientContractIten
               Properties.DecimalPlaces = 4
               Properties.DisplayFormat = 'R$ ,0.0000;-R$ ,0.0000'
               Style.HotTrack = False
-              TabOrder = 5
-              Width = 121
+              TabOrder = 6
+              Width = 100
             end
             object dblookupcmb_product_pro_cod: TcxDBLookupComboBox
-              Left = 64
-              Top = 66
+              Left = 65
+              Top = 37
               DataBinding.DataField = 'product_pro_cod'
               DataBinding.DataSource = dsClientContractIten
               Properties.CharCase = ecUpperCase
@@ -437,11 +466,11 @@ inherited frm_client_contract: Tfrm_client_contract
               Properties.ListSource = frm_dm_shared.dsProduct
               Style.HotTrack = False
               TabOrder = 0
-              Width = 295
+              Width = 287
             end
             object cxDBNavigator1: TcxDBNavigator
               Left = 727
-              Top = 130
+              Top = 258
               Width = 242
               Height = 25
               Buttons.OnButtonClick = cxDBNavigator1ButtonsButtonClick
@@ -463,7 +492,43 @@ inherited frm_client_contract: Tfrm_client_contract
               Buttons.GotoBookmark.Visible = False
               Buttons.Filter.Visible = False
               DataSource = dsClientContractIten
-              TabOrder = 6
+              TabOrder = 8
+            end
+            object dblookupcmb_cci_reseller: TcxDBLookupComboBox
+              Left = 65
+              Top = 101
+              DataBinding.DataField = 'reseller_res_cod'
+              DataBinding.DataSource = dsClientContractIten
+              Properties.CharCase = ecUpperCase
+              Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
+              Properties.KeyFieldNames = 'res_cod'
+              Properties.ListColumns = <
+                item
+                  Width = 275
+                  FieldName = 'res_first_name'
+                end
+                item
+                  Width = 75
+                  FieldName = 'res_id'
+                end>
+              Properties.ListOptions.SyncMode = True
+              Properties.ListSource = frm_dm_shared.dsReseller
+              Style.HotTrack = False
+              TabOrder = 5
+              Width = 287
+            end
+            object dbmem_cci_annotation: TcxDBMemo
+              Left = 17
+              Top = 165
+              DataBinding.DataField = 'cci_annotation'
+              DataBinding.DataSource = dsClientContractIten
+              Properties.CharCase = ecUpperCase
+              Properties.ScrollBars = ssVertical
+              Style.HotTrack = False
+              TabOrder = 7
+              Height = 50
+              Width = 952
             end
             object dxLayoutGroup4: TdxLayoutGroup
               AlignHorz = ahLeft
@@ -479,97 +544,97 @@ inherited frm_client_contract: Tfrm_client_contract
               Parent = dxLayoutGroup4
               AlignHorz = ahClient
               AlignVert = avTop
-              CaptionOptions.Text = 'Contrato'
+              CaptionOptions.Text = 'Itens'
               SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
               SizeOptions.SizableHorz = True
               SizeOptions.SizableVert = True
-              SizeOptions.Height = 542
+              SizeOptions.Height = 259
               SizeOptions.Width = 966
               ButtonOptions.Buttons = <>
-              Index = 0
+              ItemIndex = 1
+              Index = 3
             end
             object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutGroup6
               AlignHorz = ahClient
               AlignVert = avTop
               Control = grid
-              ControlOptions.OriginalHeight = 381
+              ControlOptions.OriginalHeight = 253
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
-              Index = 2
+              Index = 1
             end
             object dxLayoutGroup8: TdxLayoutGroup
-              Parent = dxLayoutGroup6
+              Parent = dxLayoutGroup4
               CaptionOptions.Text = 'Dados'
               ButtonOptions.Buttons = <>
-              ItemIndex = 1
+              ItemIndex = 4
+              LayoutDirection = ldHorizontal
               Index = 0
             end
             object dxLayoutItem6: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
+              Parent = dxLayoutGroup8
+              AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Valor'
               Control = dbedt_cci_value
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 100
               ControlOptions.ShowBorder = False
               Index = 1
             end
             object dxLayoutItem8: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
+              Parent = dxLayoutGroup8
+              AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Quant.'
               Control = dbedt_cci_quant
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 100
               ControlOptions.ShowBorder = False
-              Index = 0
+              Index = 2
             end
             object dxLayoutItem10: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
+              Parent = dxLayoutGroup8
+              AlignHorz = ahLeft
               AlignVert = avClient
               CaptionOptions.Text = 'Vl. Desc.'
               Control = dbedt_cci_value_discount
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 100
               ControlOptions.ShowBorder = False
-              Index = 1
+              Index = 3
             end
             object dxLayoutItem11: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
+              Parent = dxLayoutGroup8
               AlignVert = avClient
               CaptionOptions.Text = 'Vl. Total'
               Control = dbedt_cci_value_total
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 120
               ControlOptions.ShowBorder = False
-              Index = 2
+              Index = 4
             end
             object dxLayoutItem12: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup2
+              Parent = dxLayoutGroup3
               AlignVert = avClient
-              CaptionOptions.Text = 'Vl. Revenda'
+              CaptionOptions.Text = 'Valor'
               Control = dbedt_cci_value_reseller
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 100
               ControlOptions.ShowBorder = False
-              Index = 3
+              Index = 1
             end
             object dxLayoutItem13: TdxLayoutItem
-              Parent = dxLayoutAutoCreatedGroup1
-              AlignVert = avClient
+              Parent = dxLayoutGroup8
+              AlignHorz = ahLeft
+              AlignVert = avTop
               CaptionOptions.Text = 'Servi'#231'o'
               Control = dblookupcmb_product_pro_cod
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 295
+              ControlOptions.OriginalWidth = 287
               ControlOptions.ShowBorder = False
               Index = 0
-            end
-            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup8
-              LayoutDirection = ldHorizontal
-              Index = 1
-              AutoCreated = True
             end
             object dxLayoutItem14: TdxLayoutItem
               Parent = dxLayoutGroup6
@@ -578,14 +643,39 @@ inherited frm_client_contract: Tfrm_client_contract
               ControlOptions.OriginalHeight = 25
               ControlOptions.OriginalWidth = 242
               ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem18: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              AlignVert = avClient
+              CaptionOptions.Text = 'Revenda'
+              Control = dblookupcmb_cci_reseller
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 287
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem19: TdxLayoutItem
+              Parent = dxLayoutGroup5
+              Control = dbmem_cci_annotation
+              ControlOptions.OriginalHeight = 50
+              ControlOptions.OriginalWidth = 185
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutGroup3: TdxLayoutGroup
+              Parent = dxLayoutGroup4
+              CaptionOptions.Text = 'Revenda'
+              ButtonOptions.Buttons = <>
+              ItemIndex = 1
+              LayoutDirection = ldHorizontal
               Index = 1
             end
-            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
-              Parent = dxLayoutGroup8
-              AlignVert = avTop
-              LayoutDirection = ldHorizontal
-              Index = 0
-              AutoCreated = True
+            object dxLayoutGroup5: TdxLayoutGroup
+              Parent = dxLayoutGroup4
+              CaptionOptions.Text = 'Anota'#231#245'es'
+              ButtonOptions.Buttons = <>
+              Index = 2
             end
           end
         end
@@ -646,12 +736,13 @@ inherited frm_client_contract: Tfrm_client_contract
         Size = 32
       end
       item
-        Name = 'cli_ctr_id'
-        DataType = ftLongWord
+        Name = 'requisition_req_cod'
+        DataType = ftString
+        Size = 32
       end
       item
-        Name = 'cli_ctr_status'
-        DataType = ftShortint
+        Name = 'cli_ctr_id'
+        DataType = ftLongWord
       end
       item
         Name = 'cli_ctr_value_reseller'
@@ -660,14 +751,21 @@ inherited frm_client_contract: Tfrm_client_contract
         Size = 4
       end
       item
-        Name = 'cli_ctr_dt_registration'
-        DataType = ftDateTime
+        Name = 'cli_ctr_date_signature'
+        DataType = ftDate
       end
       item
-        Name = 'requisition_req_cod'
-        Attributes = [faReadonly]
+        Name = 'cli_ctr_status'
+        DataType = ftShortint
+      end
+      item
+        Name = 'cli_ctr_annotation'
         DataType = ftString
-        Size = 32
+        Size = 255
+      end
+      item
+        Name = 'cli_ctr_dt_registration'
+        DataType = ftDateTime
       end>
     IndexFieldNames = 'cli_ctr_id'
     StoreDefs = True
@@ -712,11 +810,23 @@ inherited frm_client_contract: Tfrm_client_contract
       Origin = 'cli_ctr_value_reseller'
       Precision = 12
     end
+    object memcli_ctr_date_signature: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_ctr_date_signature'
+      Origin = 'cli_ctr_date_signature'
+    end
     object memcli_ctr_status: TShortintField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Status'
       FieldName = 'cli_ctr_status'
       Origin = 'cli_ctr_status'
+    end
+    object memcli_ctr_annotation: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Anota'#231#245'es'
+      FieldName = 'cli_ctr_annotation'
+      Origin = 'cli_ctr_annotation'
+      Size = 255
     end
     object memcli_ctr_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
@@ -808,6 +918,17 @@ inherited frm_client_contract: Tfrm_client_contract
       item
         Name = 'cci_dt_registration'
         DataType = ftDateTime
+      end
+      item
+        Name = 'reseller_res_cod'
+        Attributes = [faReadonly]
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'cci_annotation'
+        DataType = ftString
+        Size = 255
       end>
     IndexDefs = <>
     IndexFieldNames = 'client_contract_cli_ctr_cod'
@@ -822,8 +943,8 @@ inherited frm_client_contract: Tfrm_client_contract
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 928
-    Top = 104
+    Left = 800
+    Top = 56
     object memClientContractItencci_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'
@@ -843,6 +964,13 @@ inherited frm_client_contract: Tfrm_client_contract
       DisplayLabel = 'Produto'
       FieldName = 'product_pro_cod'
       Origin = 'product_pro_cod'
+      Size = 32
+    end
+    object memClientContractItenreseller_res_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Revenda'
+      FieldName = 'reseller_res_cod'
+      Origin = 'reseller_res_cod'
       Size = 32
     end
     object memClientContractItencci_value: TBCDField
@@ -880,6 +1008,13 @@ inherited frm_client_contract: Tfrm_client_contract
       Origin = 'cci_value_reseller'
       Precision = 12
     end
+    object memClientContractItencci_annotation: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Anota'#231#245'es'
+      FieldName = 'cci_annotation'
+      Origin = 'cci_annotation'
+      Size = 255
+    end
     object memClientContractItencci_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Reg.'
@@ -900,7 +1035,7 @@ inherited frm_client_contract: Tfrm_client_contract
   end
   object dsClientContractIten: TDataSource
     DataSet = memClientContractIten
-    Left = 960
-    Top = 104
+    Left = 832
+    Top = 56
   end
 end

@@ -126,6 +126,7 @@ uses
   cxCurrencyEdit,
   cxLookupEdit,
   cxDBLookupEdit,
+  cxDBNavigator,
 
   Data.DB,
 
@@ -160,7 +161,7 @@ uses
   u_class_rest_client_sippulse,
   u_class_rest_did,
   u_class_rest_provider,
-  u_class_rest_client_did, cxDBNavigator;
+  u_class_rest_client_did, dxSkinTheBezier;
 
 type
   Tfrm_client = class(Tfrm_form_default)
@@ -419,41 +420,27 @@ type
     dxLayoutGroup11: TdxLayoutGroup;
     dxLayoutItem37: TdxLayoutItem;
     dxLayoutGroup12: TdxLayoutGroup;
-    memDID: TFDMemTable;
-    dsDID: TDataSource;
-    memProvider: TFDMemTable;
-    dsProvider: TDataSource;
-    memDIDdid_cod: TStringField;
-    memDIDdid_id: TLongWordField;
-    memDIDdid_number: TStringField;
-    memDIDdid_deleted_at: TDateTimeField;
-    memDIDdid_dt_registration: TDateTimeField;
-    memProviderprv_cod: TStringField;
-    memProviderprv_id: TLongWordField;
-    memProviderprv_name: TStringField;
-    memProviderprv_deleted_at: TDateTimeField;
-    memProviderprv_dt_registration: TDateTimeField;
-    memClientDID: TFDMemTable;
-    dsClientDID: TDataSource;
     cxDBLookupComboBox1: TcxDBLookupComboBox;
     dxLayoutItem43: TdxLayoutItem;
-    memClientDIDcld_cod: TStringField;
-    memClientDIDclient_cli_cod: TStringField;
-    memClientDIDdid_did_cod: TStringField;
-    memClientDIDprovider_prv_cod: TStringField;
-    memClientDIDcld_deleted_at: TDateTimeField;
-    memClientDIDcld_dt_registration: TDateTimeField;
     gridtblviewcld_dt_registration: TcxGridDBColumn;
     cxDBLookupComboBox2: TcxDBLookupComboBox;
     dxLayoutItem38: TdxLayoutItem;
-    memClientDIDdid_number: TStringField;
-    memClientDIDprv_name: TStringField;
     gridtblviewdid_number: TcxGridDBColumn;
     gridtblviewprv_name: TcxGridDBColumn;
     cxDBNavigator1: TcxDBNavigator;
     dxLayoutItem44: TdxLayoutItem;
     dxLayoutGroup17: TdxLayoutGroup;
     dxLayoutGroup18: TdxLayoutGroup;
+    dsClientDID: TDataSource;
+    memClientDID: TFDMemTable;
+    memClientDIDcld_cod: TStringField;
+    memClientDIDclient_cli_cod: TStringField;
+    memClientDIDdid_did_cod: TStringField;
+    memClientDIDprovider_prv_cod: TStringField;
+    memClientDIDcld_deleted_at: TDateTimeField;
+    memClientDIDcld_dt_registration: TDateTimeField;
+    memClientDIDdid_number: TStringField;
+    memClientDIDprv_name: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -461,8 +448,7 @@ type
     procedure Action_consult_cnpjExecute(Sender: TObject);
     procedure astppgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
     procedure sipgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
-    procedure cxDBNavigator1ButtonsButtonClick(Sender: TObject;
-      AButtonIndex: Integer; var ADone: Boolean);
+    procedure cxDBNavigator1ButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
   private
     procedure afterInsert;
     procedure afterUpdate;
@@ -478,7 +464,8 @@ implementation
 
 {$R *.dfm}
 
-uses ufrm_dm;
+uses
+  ufrm_dm, ufrm_dm_shared;
 
 procedure Tfrm_client.Action_consult_cnpjExecute(Sender: TObject);
 begin
@@ -635,8 +622,8 @@ begin
   Trest_client.GetClient(mem);
   Trest_client_astpp.GetClientATPP(memClientASTPP);
   Trest_client_sippulse.GetClientSIPPulse(memClientSIPPulse);
-  Trest_did.GetDID(memDID);
-  Trest_provider.GetProvider(memProvider);
+  Trest_did.GetDID(frm_dm_shared.memDID);
+  Trest_provider.GetProvider(frm_dm_shared.memProvider);
   Trest_client_did.GetClientDID(memClientDID);
 end;
 
@@ -751,7 +738,7 @@ end;
  
 procedure Tfrm_client.cxDBNavigator1ButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
 var
-  strproc_create, strproc_update : TFDStoredProc;
+  strproc_create, strproc_update, strproc_delete : TFDStoredProc;
 begin
   inherited;
   case AButtonIndex of
@@ -768,7 +755,7 @@ begin
               strproc_update.ParamByName('p_ctr_token').AsString         := Tconnection.ctr_token;
               strproc_update.ParamByName('p_cld_cod').AsString           := memClientDIDcld_cod.AsString;
               strproc_update.ParamByName('p_did_did_cod').AsString       := memClientDIDdid_did_cod.AsString;
-              strproc_update.ParamByName('p_provider_prv_cod').AsString  := memProviderprv_cod.AsString;
+              strproc_update.ParamByName('p_provider_prv_cod').AsString  := frm_dm_shared.memProviderprv_cod.AsString;
               strproc_update.ExecProc;
             except on E: Exception do
               ShowMessage('Erro: ' + E.Message);
@@ -787,13 +774,30 @@ begin
               strproc_create.ParamByName('p_ctr_token').AsString          := Tconnection.ctr_token;
               strproc_create.ParamByName('p_client_cli_cod').AsString     := memcli_cod.AsString;
               strproc_create.ParamByName('p_did_did_cod').AsString        := memClientDIDdid_did_cod.AsString;
-              strproc_create.ParamByName('p_provider_prv_cod').AsString   := memProviderprv_cod.AsString;
+              strproc_create.ParamByName('p_provider_prv_cod').AsString   := frm_dm_shared.memProviderprv_cod.AsString;
               strproc_create.ExecProc;
             except on E: Exception do
               ShowMessage('Erro: ' + E.Message);
             end;
           finally
           end;
+      end;
+
+    NBDI_DELETE:
+      try
+        try
+          strproc_delete := TFDStoredProc.Create(Self);
+          strproc_delete.Connection := frm_dm.connCCS;
+          strproc_delete.StoredProcName := 'proc_client_did_delete';
+          strproc_delete.Prepare;
+
+          strproc_delete.ParamByName('p_ctr_token').AsString  := Tconnection.ctr_token;
+          strproc_delete.ParamByName('p_cld_cod').AsString    := memClientDIDcld_cod.AsString;
+          strproc_delete.ExecProc;
+        except on E: Exception do
+          ShowMessage('Erro: ' + E.Message);
+        end;
+      finally
       end;
   end;
 end;

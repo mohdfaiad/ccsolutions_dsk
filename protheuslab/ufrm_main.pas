@@ -119,7 +119,7 @@ uses
   ufrm_supplier,
   ufrm_client,
   ufrm_contract_user,
-  ufrm_table_price;
+  ufrm_table_price, dxSkinTheBezier;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -142,8 +142,6 @@ type
     dxBarManager_1Bar4: TdxBar;
     dxBarLargeButton8: TdxBarLargeButton;
     Action_report: TAction;
-    dxBarLargeButton9: TdxBarLargeButton;
-    dxBarButton3: TdxBarButton;
     dxBarManager_1Bar5: TdxBar;
     dxBarLargeButton7: TdxBarLargeButton;
     Action_insurance: TAction;
@@ -155,12 +153,13 @@ type
     Action_requisition_type: TAction;
     dxBarLargeButton11: TdxBarLargeButton;
     dxBarButton4: TdxBarButton;
-    dxBarButton5: TdxBarButton;
     acTable: TAction;
     acAlterarPreco: TAction;
     dxBarButton7: TdxBarButton;
     dxBarLargeButton13: TdxBarLargeButton;
     dxBarLargeButton14: TdxBarLargeButton;
+    dxBarSubItem1: TdxBarSubItem;
+    dxBarButton2: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -174,14 +173,12 @@ type
     procedure Action_departmentExecute(Sender: TObject);
     procedure Action_medicineExecute(Sender: TObject);
     procedure Action_requisition_typeExecute(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure dxBarLargeButton13Click(Sender: TObject);
     procedure acTableExecute(Sender: TObject);
     procedure Action_patientExecute(Sender: TObject);
   private
-    { Private declarations }
+
   public
-    { Public declarations }
+
   end;
 
 var
@@ -385,43 +382,6 @@ begin
     frm_supplier.WindowState := wsNormal;
      frm_supplier.Show;
   end;
-end;
-
-procedure Tfrm_main.Button1Click(Sender: TObject);
-begin
-  inherited;
-// //--Função para verificar se o Usuário está com permicionamento para acessar os dados de alguma empresa--
-//    TCheck_Enterprise.ValidaEmpresa;
-//
-//    if not Assigned(frm_supplier) then
-//  begin
-//    frm_requisition := Tfrm_requisition.Create(Self);
-//    frm_requisition.Height := Bevel_1.Height;
-//    frm_requisition.Width := Bevel_1.Width;
-//    frm_requisition.Show;
-//  end
-//  else
-//  begin
-//    frm_requisition.WindowState := wsNormal;
-//     frm_requisition.Show;
-//  end;
-end;
-
-procedure Tfrm_main.dxBarLargeButton13Click(Sender: TObject);
-begin
-  inherited;
-//  if not Assigned(frm_Requisition_Lab) then
-//  begin
-//    frm_Requisition_Lab := Tfrm_Requisition_Lab.Create(Self);
-//    frm_Requisition_Lab.Height := Bevel_1.Height;
-//    frm_Requisition_Lab.Width := Bevel_1.Width;
-//    frm_Requisition_Lab.Show;
-//  end
-//  else
-//  begin
-//    frm_Requisition_Lab.WindowState := wsNormal;
-//    frm_Requisition_Lab.Show;
-//  end;
 end;
 
 procedure Tfrm_main.FormCreate(Sender: TObject);

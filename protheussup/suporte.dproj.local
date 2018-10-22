@@ -1,27 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2018/04/28 18:45:13.000.973,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\ufrm_protheussup.dfm=C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2018/04/28 18:45:26.000.161,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\protheussup.dproj=C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2018/04/28 18:48:40.000.433,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\ufrm_main.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm</Transaction>
-    <Transaction>2018/04/28 18:56:10.000.195,C:\development\ccsolutions\ccsolutions_dsk\trunk\utthred_logged.pas=C:\development\ccsolutions\ccsolutions_dsk\trunk\uttred_logged.pas</Transaction>
-    <Transaction>2018/05/01 10:15:06.000.564,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_ticket_type.dfm</Transaction>
-    <Transaction>2018/05/01 10:19:36.000.718,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_ticket_category.dfm</Transaction>
-    <Transaction>2018/05/01 11:06:21.000.187,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_ticket.dfm</Transaction>
-    <Transaction>2018/05/01 12:38:04.000.898,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_reseller.dfm</Transaction>
-    <Transaction>2018/05/09 17:09:48.000.453,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_ticket_priority.dfm</Transaction>
-    <Transaction>2018/05/10 12:30:29.000.077,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_ticket_interaction.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm</Transaction>
-    <Transaction>2018/09/07 19:54:58.000.753,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\suporte.dproj=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\protheussup.dproj</Transaction>
-    <Transaction>2018/09/07 19:55:04.000.802,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\ufrm_suporte.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\ufrm_protheussup.dfm</Transaction>
-    <Transaction>2018/09/07 20:44:48.000.585,=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.pas</Transaction>
-    <Transaction>2018/09/07 20:46:14.000.467,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.pas=C:\development\ccsolutions\ccsolutions_dsk\trunk\u_class_rest_supplier.pas</Transaction>
-    <Transaction>2018/09/08 13:44:41.416,=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.pas</Transaction>
-    <Transaction>2018/09/08 13:45:04.246,C:\development\ccsolutions\ccsolutions_dsk\trunk\u_class_rest_ticket_type.pas=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.pas</Transaction>
-    <Transaction>2018/09/08 14:23:34.724,=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.pas</Transaction>
-    <Transaction>2018/09/08 14:23:53.649,C:\development\ccsolutions\ccsolutions_dsk\trunk\u_class_rest_ticket_priority.pas=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.pas</Transaction>
-    <Transaction>2018/09/08 16:24:57.733,=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.pas</Transaction>
-    <Transaction>2018/09/08 16:25:18.640,C:\development\ccsolutions\ccsolutions_dsk\trunk\u_class_rest_category.pas=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.pas</Transaction>
-    <Transaction>2018/09/08 16:25:25.789,=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.pas</Transaction>
-    <Transaction>2018/09/08 16:25:31.571,C:\development\ccsolutions\ccsolutions_dsk\trunk\u_class_rest_category_sub.pas=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.pas</Transaction>
+    <Transaction>2018/04/28 18:45:13.000.973,C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\ufrm_protheussup.dfm</Transaction>
+    <Transaction>2018/04/28 18:45:26.000.161,C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\protheussup.dproj</Transaction>
+    <Transaction>2018/04/28 18:48:40.000.433,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\ufrm_main.dfm</Transaction>
+    <Transaction>2018/04/28 18:56:10.000.195,C:\development\ccsolutions\ccsolutions_dsk\trunk\uttred_logged.pas=C:\development\ccsolutions\ccsolutions_dsk\trunk\utthred_logged.pas</Transaction>
+    <Transaction>2018/05/01 10:15:06.000.564,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_ticket_type.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm</Transaction>
+    <Transaction>2018/05/01 10:19:36.000.718,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_ticket_category.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm</Transaction>
+    <Transaction>2018/05/01 11:06:21.000.187,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_ticket.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm</Transaction>
+    <Transaction>2018/05/01 12:38:04.000.898,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_reseller.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm</Transaction>
+    <Transaction>2018/05/09 17:09:48.000.453,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_ticket_priority.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm</Transaction>
+    <Transaction>2018/05/10 12:30:29.000.077,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_ticket_interaction.dfm</Transaction>
+    <Transaction>2018/09/07 19:54:58.000.753,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\protheussup.dproj=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\suporte.dproj</Transaction>
+    <Transaction>2018/09/07 19:55:04.000.802,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\ufrm_protheussup.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\ufrm_suporte.dfm</Transaction>
   </Transactions>
 </BorlandProject>

@@ -4,7 +4,6 @@ inherited frm_exam: Tfrm_exam
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
@@ -53,7 +52,6 @@ inherited frm_exam: Tfrm_exam
       ExplicitWidth = 1000
       ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
-        Properties.ActivePage = cxTabSheet1
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
@@ -158,7 +156,6 @@ inherited frm_exam: Tfrm_exam
                   FieldName = 'mat_id'
                 end>
               Properties.ListOptions.SyncMode = True
-              Properties.ListSource = dsMaterial
               Style.HotTrack = False
               TabOrder = 5
               Width = 121
@@ -670,7 +667,6 @@ inherited frm_exam: Tfrm_exam
       DisplayLabel = 'Material'
       FieldKind = fkLookup
       FieldName = 'material_name'
-      LookupDataSet = memMaterial
       LookupKeyFields = 'mat_cod'
       LookupResultField = 'mat_name'
       KeyFields = 'material_mat_cod'
@@ -689,60 +685,5 @@ inherited frm_exam: Tfrm_exam
     inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
       PixelsPerInch = 96
     end
-  end
-  object memMaterial: TFDMemTable
-    Active = True
-    FetchOptions.AssignedValues = [evMode]
-    FetchOptions.Mode = fmAll
-    ResourceOptions.AssignedValues = [rvSilentMode]
-    ResourceOptions.SilentMode = True
-    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
-    UpdateOptions.CheckRequired = False
-    UpdateOptions.AutoCommitUpdates = True
-    Left = 896
-    Top = 104
-    object memMaterialmat_cod: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'C'#243'd.'
-      FieldName = 'mat_cod'
-      Origin = 'mat_cod'
-      Size = 32
-    end
-    object memMaterialmat_id: TLongWordField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'ID'
-      FieldName = 'mat_id'
-      Origin = 'mat_id'
-    end
-    object memMaterialmat_name: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
-      FieldName = 'mat_name'
-      Origin = 'mat_name'
-      Size = 35
-    end
-    object memMaterialmat_status: TShortintField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Status'
-      FieldName = 'mat_status'
-      Origin = 'mat_status'
-    end
-    object memMaterialmat_deleted_at: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Deletado em'
-      FieldName = 'mat_deleted_at'
-      Origin = 'mat_deleted_at'
-    end
-    object memMaterialmat_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'mat_dt_registration'
-      Origin = 'mat_dt_registration'
-    end
-  end
-  object dsMaterial: TDataSource
-    DataSet = memMaterial
-    Left = 928
-    Top = 104
   end
 end

@@ -3,12 +3,7 @@ unit u_class_rest_ticket_priority;
 interface
 
 uses
-  System.SysUtils,
-
-  FireDAC.Comp.Client,
-
-  u_class_rest_method,
-  u_class_connection;
+  System.SysUtils, FireDAC.Comp.Client, u_class_rest_method, u_class_connection;
 
 type
   Trest_ticket_priority = class(Trest_methods)
@@ -34,7 +29,7 @@ class function Trest_ticket_priority.GetTicketPriority(mem: TFDMemTable): Boolea
 begin
   try
     try
-      Trest_ticket_priority.v_method        := '/api/rest/ticket_prioritys/TicketPriority';
+      Trest_ticket_priority.v_method        := '/api/rest/TicketPriority/TicketPrioritys';
       Trest_ticket_priority.v_parameter     := Tconnection.ctr_token;
 
       begin

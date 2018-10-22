@@ -151,7 +151,7 @@ uses
   ufrm_form_default,
 
   u_class_connection,
-  u_class_rest_table_price;
+  u_class_rest_table_price, dxSkinTheBezier;
 
 type
   Tfrm_table_price = class(Tfrm_form_default)

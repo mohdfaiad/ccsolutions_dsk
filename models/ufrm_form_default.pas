@@ -144,7 +144,7 @@ uses
   frxDesgn,
   frxClass,
 
-  ufrm_main_default;
+  ufrm_main_default, dxSkinTheBezier;
 
 type
   Tfrm_form_default = class(TForm)

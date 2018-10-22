@@ -107,7 +107,7 @@ uses
   Vcl.Buttons,
 
   ACBrBase,
-  ACBrDownload;
+  ACBrDownload, dxSkinTheBezier;
 type
   Tfrm_main_default = class(TdxRibbonForm)
     dxBarManager_1: TdxBarManager;

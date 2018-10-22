@@ -228,17 +228,21 @@ inherited frm_client: Tfrm_client
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 93
+              Top = 37
               DataBinding.DataField = 'cli_id'
               ExplicitLeft = 93
+              ExplicitTop = 37
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Left = 270
+              Left = 301
+              Top = 37
               DataBinding.DataField = 'cli_dt_registration'
-              ExplicitLeft = 270
+              ExplicitLeft = 301
+              ExplicitTop = 37
             end
             object dbedt_cpfcnpj: TcxDBTextEdit [2]
               Left = 93
-              Top = 249
+              Top = 246
               DataBinding.DataField = 'cli_cpfcnpj'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -247,8 +251,8 @@ inherited frm_client: Tfrm_client
               Width = 121
             end
             object dbedt_rgie: TcxDBTextEdit [3]
-              Left = 270
-              Top = 249
+              Left = 301
+              Top = 246
               DataBinding.DataField = 'cli_rgie'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -257,8 +261,8 @@ inherited frm_client: Tfrm_client
               Width = 130
             end
             object dbedt_im: TcxDBTextEdit [4]
-              Left = 423
-              Top = 249
+              Left = 454
+              Top = 246
               DataBinding.DataField = 'cli_im'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -268,37 +272,37 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_email: TcxDBTextEdit [5]
               Left = 93
-              Top = 184
+              Top = 182
               DataBinding.DataField = 'cli_email'
               DataBinding.DataSource = ds
               Properties.CharCase = ecLowerCase
               Style.HotTrack = False
               TabOrder = 8
-              Width = 307
+              Width = 338
             end
             object dbedt_first_name: TcxDBTextEdit [6]
               Left = 93
-              Top = 130
+              Top = 128
               DataBinding.DataField = 'cli_first_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 6
-              Width = 307
+              Width = 338
             end
             object dbedt_last_name: TcxDBTextEdit [7]
               Left = 93
-              Top = 157
+              Top = 155
               DataBinding.DataField = 'cli_last_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 7
-              Width = 307
+              Width = 338
             end
             object dbedt_dt_birthopen: TcxDBDateEdit [8]
-              Left = 270
-              Top = 103
+              Left = 301
+              Top = 101
               DataBinding.DataField = 'cli_dt_birthopen'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -307,7 +311,7 @@ inherited frm_client: Tfrm_client
             end
             object dbcmb_type: TcxDBComboBox [9]
               Left = 93
-              Top = 103
+              Top = 101
               DataBinding.DataField = 'cli_type'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -320,8 +324,8 @@ inherited frm_client: Tfrm_client
               Width = 121
             end
             object dbedt_suframa: TcxDBTextEdit [10]
-              Left = 595
-              Top = 249
+              Left = 626
+              Top = 246
               DataBinding.DataField = 'cli_suframa'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -330,8 +334,8 @@ inherited frm_client: Tfrm_client
               Width = 121
             end
             object dbchk_status: TcxDBCheckBox [11]
-              Left = 406
-              Top = 38
+              Left = 437
+              Top = 37
               Caption = 'Status'
               DataBinding.DataField = 'cli_status'
               DataBinding.DataSource = ds
@@ -344,8 +348,8 @@ inherited frm_client: Tfrm_client
               Transparent = True
             end
             object dbimg: TcxDBImage [12]
-              Left = 595
-              Top = 103
+              Left = 626
+              Top = 101
               DataBinding.DataField = 'cli_image1'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -457,7 +461,7 @@ inherited frm_client: Tfrm_client
               Parent = dxLayoutAutoCreatedGroup15
               AlignHorz = ahLeft
               AlignVert = avClient
-              CaptionOptions.Text = 'Dt. Nasc.'
+              CaptionOptions.Text = 'Dt. Nasc./Aber.'
               Control = dbedt_dt_birthopen
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 130
@@ -520,7 +524,7 @@ inherited frm_client: Tfrm_client
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             object dbedt_add_del_city: TcxDBTextEdit
               Left = 55
-              Top = 330
+              Top = 327
               DataBinding.DataField = 'cli_add_del_city'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -530,7 +534,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_del_country: TcxDBTextEdit
               Left = 455
-              Top = 330
+              Top = 327
               DataBinding.DataField = 'cli_add_del_country'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -540,7 +544,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bus_zipcode: TcxDBButtonEdit
               Left = 55
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'cli_add_bus_zipcode'
               DataBinding.DataSource = ds
               Properties.Buttons = <
@@ -555,7 +559,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bus_country: TcxDBTextEdit
               Left = 455
-              Top = 92
+              Top = 91
               DataBinding.DataField = 'cli_add_bus_country'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -565,7 +569,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bus_city: TcxDBTextEdit
               Left = 55
-              Top = 92
+              Top = 91
               DataBinding.DataField = 'cli_add_bus_city'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -575,7 +579,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bus_address: TcxDBTextEdit
               Left = 55
-              Top = 65
+              Top = 64
               DataBinding.DataField = 'cli_add_bus_address'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -585,7 +589,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bus_number: TcxDBTextEdit
               Left = 341
-              Top = 65
+              Top = 64
               DataBinding.DataField = 'cli_add_bus_number'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -595,7 +599,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bus_street: TcxDBTextEdit
               Left = 455
-              Top = 65
+              Top = 64
               DataBinding.DataField = 'cli_add_bus_street'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -605,7 +609,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_del_address: TcxDBTextEdit
               Left = 55
-              Top = 303
+              Top = 300
               DataBinding.DataField = 'cli_add_del_address'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -615,7 +619,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_del_zipcode: TcxDBButtonEdit
               Left = 55
-              Top = 276
+              Top = 273
               DataBinding.DataField = 'cli_add_del_zipcode'
               DataBinding.DataSource = ds
               Properties.Buttons = <
@@ -630,7 +634,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_del_number: TcxDBTextEdit
               Left = 341
-              Top = 303
+              Top = 300
               DataBinding.DataField = 'cli_add_del_number'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -640,7 +644,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_del_street: TcxDBTextEdit
               Left = 455
-              Top = 303
+              Top = 300
               DataBinding.DataField = 'cli_add_del_street'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -650,7 +654,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bil_zipcode: TcxDBButtonEdit
               Left = 55
-              Top = 157
+              Top = 155
               DataBinding.DataField = 'cli_add_bil_zipcode'
               DataBinding.DataSource = ds
               Properties.Buttons = <
@@ -665,7 +669,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bil_address: TcxDBTextEdit
               Left = 55
-              Top = 184
+              Top = 182
               DataBinding.DataField = 'cli_add_bil_address'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -675,7 +679,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bil_number: TcxDBTextEdit
               Left = 341
-              Top = 184
+              Top = 182
               DataBinding.DataField = 'cli_add_bil_number'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -685,7 +689,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bil_street: TcxDBTextEdit
               Left = 455
-              Top = 184
+              Top = 182
               DataBinding.DataField = 'cli_add_bil_street'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -695,7 +699,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bil_city: TcxDBTextEdit
               Left = 55
-              Top = 211
+              Top = 209
               DataBinding.DataField = 'cli_add_bil_city'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -705,7 +709,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bil_country: TcxDBTextEdit
               Left = 455
-              Top = 211
+              Top = 209
               DataBinding.DataField = 'cli_add_bil_country'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -715,7 +719,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bus_complement: TcxDBTextEdit
               Left = 699
-              Top = 65
+              Top = 64
               DataBinding.DataField = 'cli_add_bus_complement'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -725,7 +729,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bil_complement: TcxDBTextEdit
               Left = 699
-              Top = 184
+              Top = 182
               DataBinding.DataField = 'cli_add_bil_complement'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -735,7 +739,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_del_complement: TcxDBTextEdit
               Left = 699
-              Top = 303
+              Top = 300
               DataBinding.DataField = 'cli_add_del_complement'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -745,7 +749,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bus_state: TcxDBTextEdit
               Left = 341
-              Top = 92
+              Top = 91
               DataBinding.DataField = 'cli_add_bus_state'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -755,7 +759,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_bil_state: TcxDBTextEdit
               Left = 341
-              Top = 211
+              Top = 209
               DataBinding.DataField = 'cli_add_bil_state'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -765,7 +769,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_add_del_state: TcxDBTextEdit
               Left = 341
-              Top = 330
+              Top = 327
               DataBinding.DataField = 'cli_add_del_state'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -1149,7 +1153,7 @@ inherited frm_client: Tfrm_client
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             object dbedt_phone1: TcxDBTextEdit
               Left = 49
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'cli_phone1'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -1159,7 +1163,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_phone2: TcxDBTextEdit
               Left = 208
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'cli_phone2'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -1169,7 +1173,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_phone3: TcxDBTextEdit
               Left = 367
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'cli_phone3'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -1178,7 +1182,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_phone4: TcxDBTextEdit
               Left = 526
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'cli_phone4'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -1188,7 +1192,7 @@ inherited frm_client: Tfrm_client
             end
             object dbedt_contact: TcxDBTextEdit
               Left = 707
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'cli_contact'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -1296,7 +1300,7 @@ inherited frm_client: Tfrm_client
             OnDblClick = dxLayoutControl_1DblClick
             object dbspn_day_maturity: TcxDBSpinEdit
               Left = 67
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'cli_day_maturity'
               DataBinding.DataSource = ds
               Style.HotTrack = False
@@ -1364,9 +1368,9 @@ inherited frm_client: Tfrm_client
                 OnDblClick = dxLayoutControl_1DblClick
                 object grid: TcxGrid
                   Left = 17
-                  Top = 134
+                  Top = 132
                   Width = 938
-                  Height = 368
+                  Height = 370
                   TabOrder = 3
                   object gridtblview: TcxGridDBTableView
                     Navigator.Buttons.ConfirmDelete = True
@@ -1426,7 +1430,7 @@ inherited frm_client: Tfrm_client
                 end
                 object cxDBLookupComboBox1: TcxDBLookupComboBox
                   Left = 266
-                  Top = 66
+                  Top = 64
                   DataBinding.DataField = 'provider_prv_cod'
                   DataBinding.DataSource = dsClientDID
                   Properties.CharCase = ecUpperCase
@@ -1442,14 +1446,14 @@ inherited frm_client: Tfrm_client
                       FieldName = 'prv_id'
                     end>
                   Properties.ListOptions.SyncMode = True
-                  Properties.ListSource = dsProvider
+                  Properties.ListSource = frm_dm_shared.dsProvider
                   Style.HotTrack = False
                   TabOrder = 1
                   Width = 145
                 end
                 object cxDBLookupComboBox2: TcxDBLookupComboBox
                   Left = 66
-                  Top = 66
+                  Top = 64
                   DataBinding.DataField = 'did_did_cod'
                   DataBinding.DataSource = dsClientDID
                   Properties.CharCase = ecUpperCase
@@ -1465,14 +1469,14 @@ inherited frm_client: Tfrm_client
                       FieldName = 'did_id'
                     end>
                   Properties.ListOptions.SyncMode = True
-                  Properties.ListSource = dsDID
+                  Properties.ListSource = frm_dm_shared.dsDID
                   Style.HotTrack = False
                   TabOrder = 0
                   Width = 145
                 end
                 object cxDBNavigator1: TcxDBNavigator
                   Left = 733
-                  Top = 103
+                  Top = 101
                   Width = 222
                   Height = 25
                   Buttons.OnButtonClick = cxDBNavigator1ButtonsButtonClick
@@ -1518,13 +1522,12 @@ inherited frm_client: Tfrm_client
                   SizeOptions.Height = 502
                   SizeOptions.Width = 952
                   ButtonOptions.Buttons = <>
-                  ItemIndex = 1
                   Index = 0
                 end
                 object dxLayoutItem37: TdxLayoutItem
                   Parent = dxLayoutGroup11
                   Control = grid
-                  ControlOptions.OriginalHeight = 368
+                  ControlOptions.OriginalHeight = 370
                   ControlOptions.OriginalWidth = 250
                   ControlOptions.ShowBorder = False
                   Index = 2
@@ -1579,7 +1582,7 @@ inherited frm_client: Tfrm_client
                 OnDblClick = dxLayoutControl_1DblClick
                 object astppgrid: TcxGrid
                   Left = 17
-                  Top = 82
+                  Top = 80
                   Width = 459
                   Height = 150
                   TabOrder = 0
@@ -1624,7 +1627,7 @@ inherited frm_client: Tfrm_client
                 end
                 object sipgrid: TcxGrid
                   Left = 496
-                  Top = 82
+                  Top = 80
                   Width = 459
                   Height = 150
                   TabOrder = 1
@@ -1672,7 +1675,6 @@ inherited frm_client: Tfrm_client
                   SizeOptions.SizableHorz = True
                   ButtonOptions.Buttons = <>
                   Hidden = True
-                  ItemIndex = 1
                   LayoutDirection = ldHorizontal
                   ShowBorder = False
                   Index = -1
@@ -3496,7 +3498,7 @@ inherited frm_client: Tfrm_client
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 672
+    Left = 800
     Top = 104
     object memClientASTPPcla_cod: TStringField
       AutoGenerateValue = arDefault
@@ -3528,7 +3530,7 @@ inherited frm_client: Tfrm_client
   end
   object dsClientASTPP: TDataSource
     DataSet = memClientASTPP
-    Left = 704
+    Left = 832
     Top = 104
   end
   object memClientSIPPulse: TFDMemTable
@@ -3544,7 +3546,7 @@ inherited frm_client: Tfrm_client
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 736
+    Left = 864
     Top = 104
     object memClientSIPPulsecls_cod: TStringField
       AutoGenerateValue = arDefault
@@ -3576,105 +3578,12 @@ inherited frm_client: Tfrm_client
   end
   object dsClientSIPPulse: TDataSource
     DataSet = memClientSIPPulse
-    Left = 768
-    Top = 104
-  end
-  object memDID: TFDMemTable
-    Active = True
-    FetchOptions.AssignedValues = [evMode]
-    FetchOptions.Mode = fmAll
-    ResourceOptions.AssignedValues = [rvSilentMode]
-    ResourceOptions.SilentMode = True
-    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
-    UpdateOptions.CheckRequired = False
-    UpdateOptions.AutoCommitUpdates = True
-    Left = 800
-    Top = 104
-    object memDIDdid_cod: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'C'#243'd.'
-      FieldName = 'did_cod'
-      Origin = 'did_cod'
-      Size = 32
-    end
-    object memDIDdid_id: TLongWordField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'ID'
-      FieldName = 'did_id'
-      Origin = 'did_id'
-    end
-    object memDIDdid_number: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'N'#250'mero'
-      FieldName = 'did_number'
-      Origin = 'did_number'
-      Size = 25
-    end
-    object memDIDdid_deleted_at: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Deletado em'
-      FieldName = 'did_deleted_at'
-      Origin = 'did_deleted_at'
-    end
-    object memDIDdid_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'did_dt_registration'
-      Origin = 'did_dt_registration'
-    end
-  end
-  object dsDID: TDataSource
-    DataSet = memDID
-    Left = 832
-    Top = 104
-  end
-  object memProvider: TFDMemTable
-    Active = True
-    FetchOptions.AssignedValues = [evMode]
-    FetchOptions.Mode = fmAll
-    ResourceOptions.AssignedValues = [rvSilentMode]
-    ResourceOptions.SilentMode = True
-    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
-    UpdateOptions.CheckRequired = False
-    UpdateOptions.AutoCommitUpdates = True
-    Left = 864
-    Top = 104
-    object memProviderprv_cod: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'C'#243'd.'
-      FieldName = 'prv_cod'
-      Origin = 'prv_cod'
-      Size = 32
-    end
-    object memProviderprv_id: TLongWordField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'ID'
-      FieldName = 'prv_id'
-      Origin = 'prv_id'
-    end
-    object memProviderprv_name: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
-      FieldName = 'prv_name'
-      Origin = 'prv_name'
-      Size = 85
-    end
-    object memProviderprv_deleted_at: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Deletado em'
-      FieldName = 'prv_deleted_at'
-      Origin = 'prv_deleted_at'
-    end
-    object memProviderprv_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'prv_dt_registration'
-      Origin = 'prv_dt_registration'
-    end
-  end
-  object dsProvider: TDataSource
-    DataSet = memProvider
     Left = 896
+    Top = 104
+  end
+  object dsClientDID: TDataSource
+    DataSet = memClientDID
+    Left = 959
     Top = 104
   end
   object memClientDID: TFDMemTable
@@ -3721,7 +3630,7 @@ inherited frm_client: Tfrm_client
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 928
+    Left = 927
     Top = 104
     object memClientDIDcld_cod: TStringField
       AutoGenerateValue = arDefault
@@ -3767,7 +3676,7 @@ inherited frm_client: Tfrm_client
       DisplayLabel = 'N'#250'mero'
       FieldKind = fkLookup
       FieldName = 'did_number'
-      LookupDataSet = memDID
+      LookupDataSet = frm_dm_shared.memDID
       LookupKeyFields = 'did_cod'
       LookupResultField = 'did_number'
       KeyFields = 'did_did_cod'
@@ -3778,17 +3687,12 @@ inherited frm_client: Tfrm_client
       DisplayLabel = 'Provedor'
       FieldKind = fkLookup
       FieldName = 'prv_name'
-      LookupDataSet = memProvider
+      LookupDataSet = frm_dm_shared.memProvider
       LookupKeyFields = 'prv_cod'
       LookupResultField = 'prv_name'
       KeyFields = 'provider_prv_cod'
       Size = 85
       Lookup = True
     end
-  end
-  object dsClientDID: TDataSource
-    DataSet = memClientDID
-    Left = 960
-    Top = 104
   end
 end

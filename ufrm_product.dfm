@@ -1050,6 +1050,7 @@ inherited frm_product: Tfrm_product
   end
   inherited mem: TFDMemTable [11]
     Active = True
+    IndexFieldNames = 'pro_id'
     object mempro_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'

@@ -2,8 +2,8 @@ object frm_report: Tfrm_report
   Left = 0
   Top = 0
   Caption = 'Fabrica de Relat'#243'rios'
-  ClientHeight = 561
-  ClientWidth = 784
+  ClientHeight = 691
+  ClientWidth = 1008
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,16 +21,18 @@ object frm_report: Tfrm_report
   object dxBarDockControl_1: TdxBarDockControl
     Left = 0
     Top = 0
-    Width = 784
+    Width = 1008
     Height = 55
     Align = dalTop
     BarManager = dxBarManager_1
+    ExplicitLeft = 104
+    ExplicitTop = 48
   end
   object cxShellTreeView1: TcxShellTreeView
     Left = 0
     Top = 55
-    Width = 784
-    Height = 506
+    Width = 1008
+    Height = 636
     Align = alClient
     Indent = 19
     Options.FileMask = '*.fr3'
@@ -40,6 +42,8 @@ object frm_report: Tfrm_report
     StateImages = cxImageList_1
     TabOrder = 1
     OnDblClick = cxShellTreeView1DblClick
+    ExplicitWidth = 784
+    ExplicitHeight = 506
   end
   object dxBarManager_1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
@@ -56,8 +60,8 @@ object frm_report: Tfrm_report
     ImageOptions.Images = cxImageList_1
     PopupMenuLinks = <>
     UseSystemFont = True
-    Left = 648
-    Top = 48
+    Left = 872
+    Top = 72
     PixelsPerInch = 96
     object dxBarManager_1Bar1: TdxBar
       Caption = 'Navega'#231#227'o'
@@ -130,7 +134,7 @@ object frm_report: Tfrm_report
       CaptionButtons = <>
       DockControl = dxBarDockControl_1
       DockedDockControl = dxBarDockControl_1
-      DockedLeft = 129
+      DockedLeft = 189
       DockedTop = 0
       FloatLeft = 818
       FloatTop = 8
@@ -187,6 +191,28 @@ object frm_report: Tfrm_report
         end>
       OneOnRow = False
       Row = 1
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object dxBarManager_1Bar6: TdxBar
+      Caption = 'Query'
+      CaptionButtons = <>
+      DockControl = dxBarDockControl_1
+      DockedDockControl = dxBarDockControl_1
+      DockedLeft = 129
+      DockedTop = 0
+      FloatLeft = 1042
+      FloatTop = 8
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton3'
+        end>
+      OneOnRow = False
+      Row = 0
       UseOwnFont = False
       Visible = True
       WholeRow = False
@@ -333,11 +359,15 @@ object frm_report: Tfrm_report
       Properties.Root.CustomPath = 'C:\ccsolutions_dsk\reports'
       Properties.ViewOptions = [scvoShowFiles, scvoShowZipFilesWithFolders]
     end
+    object dxBarButton3: TdxBarButton
+      Action = Action_query
+      Category = 0
+    end
   end
   object ActionList_1: TActionList
     Images = cxImageList_1
-    Left = 712
-    Top = 48
+    Left = 936
+    Top = 72
     object Action_insert: TAction
       Caption = 'Inserir'
       Hint = 'Inserir Relat'#243'rio'
@@ -373,11 +403,15 @@ object frm_report: Tfrm_report
       ImageIndex = 2
       OnExecute = Action_closeExecute
     end
+    object Action_query: TAction
+      Caption = 'Query'
+      ImageIndex = 9
+    end
   end
   object PopupMenu_1: TPopupMenu
     Images = cxImageList_1
-    Left = 616
-    Top = 48
+    Left = 840
+    Top = 72
     object Primeiro1: TMenuItem
       Caption = 'Primeiro'
       Hint = 'Registro Primeiro'
@@ -420,7 +454,7 @@ object frm_report: Tfrm_report
   object cxImageList_1: TcxImageList
     SourceDPI = 96
     FormatVersion = 1
-    DesignInfo = 3146409
+    DesignInfo = 4719497
     ImageInfo = <
       item
         Image.Data = {
@@ -756,12 +790,49 @@ object frm_report: Tfrm_report
           FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
           FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00}
         MaskColor = clFuchsia
+      end
+      item
+        Image.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000000000000000000000000000000000000000000000000000097A7
+          76FF97A776FF97A776FF97A776FF0000000097A776FF97A776FF97A776FF97A7
+          76FF0000000097A776FF97A776FF97A776FF97A776FF000000000000000097A7
+          76FF97A776FF97A776FF97A776FF0000000097A776FF97A776FF97A776FF97A7
+          76FF0000000097A776FF97A776FF97A776FF97A776FF000000000000000097A7
+          76FF97A776FF97A776FF97A776FF0000000097A776FF97A776FF97A776FF97A7
+          76FF0000000097A776FF97A776FF97A776FF97A776FF000000000000000097A7
+          76FF97A776FF97A776FF97A776FF0000000097A776FF97A776FF97A776FF97A7
+          76FF0000000097A776FF97A776FF97A776FF97A776FF00000000000000000000
+          000000000000B0B0B0FF000000000000000000000000B0B0B0FFB0B0B0FF0000
+          00000000000000000000B0B0B0FF000000000000000000000000000000000000
+          000000000000B0B0B0FFB0B0B0FFB0B0B0FFB0B0B0FFB0B0B0FFB0B0B0FFB0B0
+          B0FFB0B0B0FFB0B0B0FFB0B0B0FF000000000000000000000000000000000000
+          00000000000000000000000000000000000000000000B0B0B0FFB0B0B0FF0000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000B8824DFFB8824DFFB8824DFFB8824DFFB882
+          4DFFB8824DFF0000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000B8824DFFB8824DFFB8824DFFB8824DFFB882
+          4DFFB8824DFF0000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000B8824DFFB8824DFFB8824DFFB8824DFFB882
+          4DFFB8824DFF0000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000B8824DFFB8824DFFB8824DFFB8824DFFB882
+          4DFFB8824DFF0000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000B8824DFFB8824DFFB8824DFFB8824DFFB882
+          4DFFB8824DFF0000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000B8824DFFB8824DFFB8824DFFB8824DFFB882
+          4DFFB8824DFF0000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000}
       end>
   end
   object ACBrEnterTab_1: TACBrEnterTab
     EnterAsTab = True
-    Left = 584
-    Top = 48
+    Left = 744
+    Top = 72
   end
   object frxdesigner: TfrxDesigner
     DefaultScriptLanguage = 'PascalScript'
@@ -782,8 +853,8 @@ object frm_report: Tfrm_report
     Restrictions = []
     RTLLanguage = False
     MemoParentFont = False
-    Left = 552
-    Top = 48
+    Left = 808
+    Top = 72
   end
   object frxreport: TfrxReport
     Version = '6.1.9'
@@ -800,8 +871,8 @@ object frm_report: Tfrm_report
       'begin'
       ''
       'end.')
-    Left = 520
-    Top = 48
+    Left = 776
+    Top = 72
     Datasets = <
       item
       end

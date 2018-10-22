@@ -853,4 +853,157 @@ object frm_dm_shared: Tfrm_dm_shared
     Left = 160
     Top = 160
   end
+  object memMaterial: TFDMemTable
+    Active = True
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 48
+    Top = 208
+    object memMaterialmat_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'mat_cod'
+      Origin = 'mat_cod'
+      Size = 32
+    end
+    object memMaterialmat_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'mat_id'
+      Origin = 'mat_id'
+    end
+    object memMaterialmat_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'mat_name'
+      Origin = 'mat_name'
+      Size = 35
+    end
+    object memMaterialmat_status: TShortintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'mat_status'
+      Origin = 'mat_status'
+    end
+    object memMaterialmat_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'mat_deleted_at'
+      Origin = 'mat_deleted_at'
+    end
+    object memMaterialmat_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'mat_dt_registration'
+      Origin = 'mat_dt_registration'
+    end
+  end
+  object dsMaterial: TDataSource
+    DataSet = memMaterial
+    Left = 159
+    Top = 208
+  end
+  object memProvider: TFDMemTable
+    Active = True
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 48
+    Top = 256
+    object memProviderprv_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'prv_cod'
+      Origin = 'prv_cod'
+      Size = 32
+    end
+    object memProviderprv_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'prv_id'
+      Origin = 'prv_id'
+    end
+    object memProviderprv_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'prv_name'
+      Origin = 'prv_name'
+      Size = 85
+    end
+    object memProviderprv_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'prv_deleted_at'
+      Origin = 'prv_deleted_at'
+    end
+    object memProviderprv_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'prv_dt_registration'
+      Origin = 'prv_dt_registration'
+    end
+  end
+  object dsProvider: TDataSource
+    DataSet = memProvider
+    Left = 160
+    Top = 256
+  end
+  object dsDID: TDataSource
+    DataSet = memDID
+    Left = 160
+    Top = 304
+  end
+  object memDID: TFDMemTable
+    Active = True
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 48
+    Top = 304
+    object memDIDdid_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'did_cod'
+      Origin = 'did_cod'
+      Size = 32
+    end
+    object memDIDdid_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'did_id'
+      Origin = 'did_id'
+    end
+    object memDIDdid_number: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'N'#250'mero'
+      FieldName = 'did_number'
+      Origin = 'did_number'
+      Size = 25
+    end
+    object memDIDdid_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'did_deleted_at'
+      Origin = 'did_deleted_at'
+    end
+    object memDIDdid_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'did_dt_registration'
+      Origin = 'did_dt_registration'
+    end
+  end
 end

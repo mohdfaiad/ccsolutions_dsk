@@ -43,7 +43,6 @@ begin
           while not (frm_dm.mem_rest.Eof) do begin
             mem.Append;
             mem.FieldByName('ins_cod').AsString                   := frm_dm.mem_rest.FieldByName('ins_cod').AsString;
-            mem.FieldByName('table_price_tbp_cod').AsString       := frm_dm.mem_rest.FieldByName('table_price_tbp_cod').AsString;
             mem.FieldByName('ins_id').AsInteger                   := frm_dm.mem_rest.FieldByName('ins_id').AsInteger;
             mem.FieldByName('ins_first_name').AsString            := frm_dm.mem_rest.FieldByName('ins_first_name').AsString;
             mem.FieldByName('ins_last_name').AsString             := frm_dm.mem_rest.FieldByName('ins_last_name').AsString;

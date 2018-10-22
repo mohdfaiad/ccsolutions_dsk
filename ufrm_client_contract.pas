@@ -149,7 +149,7 @@ uses
   u_class_rest_reseller,
   u_class_rest_client_contract,
   u_class_rest_client_contract_iten,
-  u_class_rest_proposal_contract;
+  u_class_rest_proposal_contract, dxSkinTheBezier, cxMemo;
 
 type
   Tfrm_client_contract = class(Tfrm_form_default)
@@ -170,12 +170,6 @@ type
     dxLayoutItem7: TdxLayoutItem;
     memclient_name: TStringField;
     cxGrid_1DBTableView1client_name: TcxGridDBColumn;
-    cxTabSheet1: TcxTabSheet;
-    dxLayoutControl1: TdxLayoutControl;
-    cxDBLookupComboBox2: TcxDBLookupComboBox;
-    dxLayoutGroup3: TdxLayoutGroup;
-    dxLayoutGroup5: TdxLayoutGroup;
-    dxLayoutItem9: TdxLayoutItem;
     cxTabSheet2: TcxTabSheet;
     dxLayoutControl2: TdxLayoutControl;
     dxLayoutGroup4: TdxLayoutGroup;
@@ -198,9 +192,6 @@ type
     griddbproduct_pro_cod: TcxGridDBColumn;
     memcli_ctr_value_reseller: TBCDField;
     memClientContractItencci_value_reseller: TBCDField;
-    cxDBCurrencyEdit1: TcxDBCurrencyEdit;
-    dxLayoutItem5: TdxLayoutItem;
-    dxLayoutGroup7: TdxLayoutGroup;
     griddbcci_value_reseller: TcxGridDBColumn;
     memClientContractItencci_value_total: TBCDField;
     griddbcci_value_total: TcxGridDBColumn;
@@ -219,14 +210,32 @@ type
     dxLayoutItem12: TdxLayoutItem;
     dblookupcmb_product_pro_cod: TcxDBLookupComboBox;
     dxLayoutItem13: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     cxDBNavigator1: TcxDBNavigator;
     dxLayoutItem14: TdxLayoutItem;
     griddbcci_dt_registration: TcxGridDBColumn;
     cxDBLookupComboBox3: TcxDBLookupComboBox;
     dxLayoutItem15: TdxLayoutItem;
     memrequisition_req_cod: TStringField;
-    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    dbedt_data_signature: TcxDBDateEdit;
+    dxLayoutItem16: TdxLayoutItem;
+    memcli_ctr_date_signature: TDateField;
+    dxLayoutGroup9: TdxLayoutGroup;
+    memcli_ctr_annotation: TStringField;
+    dbmem_annotation: TcxDBMemo;
+    dxLayoutItem17: TdxLayoutItem;
+    dxLayoutGroup10: TdxLayoutGroup;
+    dblookupcmbReseller: TcxDBLookupComboBox;
+    dxLayoutItem5: TdxLayoutItem;
+    dbedt_value_reseller: TcxDBCurrencyEdit;
+    dxLayoutItem9: TdxLayoutItem;
+    memClientContractItenreseller_res_cod: TStringField;
+    memClientContractItencci_annotation: TStringField;
+    dblookupcmb_cci_reseller: TcxDBLookupComboBox;
+    dxLayoutItem18: TdxLayoutItem;
+    dbmem_cci_annotation: TcxDBMemo;
+    dxLayoutItem19: TdxLayoutItem;
+    dxLayoutGroup3: TdxLayoutGroup;
+    dxLayoutGroup5: TdxLayoutGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
@@ -270,7 +279,9 @@ begin
             strproc_update.ParamByName('p_client_cli_cod').AsString       := frm_dm_shared.memClientcli_cod.AsString;
             strproc_update.ParamByName('p_reseller_res_cod').AsString     := memreseller_res_cod.AsString;
             strproc_update.ParamByName('p_requisition_req_cod').AsString  := frm_dm_shared.memProposalContractreq_cod.AsString;
-            strproc_update.ParamByName('p_cli_ctr_value_reseller').AsBCD  := memcli_ctr_value_reseller.AsCurrency;
+            strproc_update.ParamByName('p_cli_ctr_value_reseller').AsBCD  := dbedt_value_reseller.Value;
+            strproc_update.ParamByName('p_cli_ctr_date_signature').AsDate := dbedt_data_signature.Date;
+            strproc_update.ParamByName('p_cli_ctr_annotation').AsString   := dbmem_annotation.Lines.Text;
             strproc_update.ParamByName('p_cli_ctr_status').AsShortInt     := dbchk_status.Checked.ToInteger;
             strproc_update.ExecProc;
 
@@ -296,7 +307,9 @@ begin
           strproc_create.ParamByName('p_client_cli_cod').AsString       := frm_dm_shared.memClientcli_cod.AsString;
           strproc_create.ParamByName('p_reseller_res_cod').AsString     := memReseller_res_cod.AsString;
           strproc_create.ParamByName('p_requisition_req_cod').AsString  := frm_dm_shared.memProposalContractreq_cod.AsString;
-          strproc_create.ParamByName('p_cli_ctr_value_reseller').AsBCD  := memcli_ctr_value_reseller.AsCurrency;
+          strproc_create.ParamByName('p_cli_ctr_value_reseller').AsBCD  := dbedt_value_reseller.Value;
+          strproc_create.ParamByName('p_cli_ctr_date_signature').AsDate := dbedt_data_signature.Date;
+          strproc_create.ParamByName('p_cli_ctr_annotation').AsString   := dbmem_annotation.Lines.Text;
           strproc_create.ParamByName('p_cli_ctr_status').AsShortInt     := dbchk_status.Checked.ToInteger;
           strproc_create.ExecProc;
 
@@ -331,7 +344,7 @@ end;
 
 procedure Tfrm_client_contract.cxDBNavigator1ButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
 var
-  strproc_create, strproc_update : TFDStoredProc;
+  strproc_create, strproc_update, strproc_delete : TFDStoredProc;
 begin
   inherited;
   case AButtonIndex of
@@ -348,11 +361,13 @@ begin
               strproc_update.ParamByName('p_ctr_token').AsString        := Tconnection.ctr_token;
               strproc_update.ParamByName('p_cci_cod').AsString          := memClientContractItencci_cod.AsString;
               strproc_update.ParamByName('p_product_pro_cod').AsString  := frm_dm_shared.memProductpro_cod.AsString;
-              strproc_update.ParamByName('p_cci_value').AsBCD           := memClientContractItencci_value.AsCurrency;
-              strproc_update.ParamByName('p_cci_value_discount').AsBCD  := memClientContractItencci_value_discount.AsCurrency;
-              strproc_update.ParamByName('p_cci_value_total').AsBCD     := memClientContractItencci_value_total.AsCurrency;
-              strproc_update.ParamByName('p_cci_value_reseller').AsBCD  := memClientContractItencci_value_reseller.AsCurrency;
-              strproc_update.ParamByName('p_cci_quant').AsBCD           := memClientContractItencci_quant.AsCurrency;
+              strproc_update.ParamByName('p_cci_value').AsBCD           := dbedt_cci_value.Value;
+              strproc_update.ParamByName('p_cci_value_discount').AsBCD  := dbedt_cci_value_discount.Value;
+              strproc_update.ParamByName('p_cci_value_total').AsBCD     := dbedt_cci_value_total.Value;
+              strproc_update.ParamByName('p_cci_value_reseller').AsBCD  := dbedt_value_reseller.Value;
+              strproc_update.ParamByName('p_cci_quant').AsBCD           := dbedt_cci_quant.Value;
+              strproc_update.ParamByName('p_reseller_res_cod').AsString := frm_dm_shared.memResellerres_cod.AsString;
+              strproc_update.ParamByName('p_cci_annotation').AsString   := dbmem_cci_annotation.Lines.Text;
               strproc_update.ExecProc;
               dblookupcmb_product_pro_cod.SetFocus
             except on E: Exception do
@@ -372,11 +387,13 @@ begin
               strproc_create.ParamByName('p_ctr_token').AsString                    := Tconnection.ctr_token;
               strproc_create.ParamByName('p_client_contract_cli_ctr_cod').AsString  := memcli_ctr_cod.AsString;
               strproc_create.ParamByName('p_product_pro_cod').AsString              := frm_dm_shared.memProductpro_cod.AsString;
-              strproc_create.ParamByName('p_cci_value').AsBCD                       := memClientContractItencci_value.AsCurrency;
-              strproc_create.ParamByName('p_cci_value_discount').AsBCD              := memClientContractItencci_value_discount.AsCurrency;
-              strproc_create.ParamByName('p_cci_value_total').AsBCD                 := memClientContractItencci_value_total.AsCurrency;
-              strproc_create.ParamByName('p_cci_value_reseller').AsBCD              := memClientContractItencci_value_reseller.AsCurrency;
-              strproc_create.ParamByName('p_cci_quant').AsBCD                       := memClientContractItencci_quant.AsCurrency;
+              strproc_create.ParamByName('p_cci_value').AsBCD                       := dbedt_cci_value.Value;
+              strproc_create.ParamByName('p_cci_value_discount').AsBCD              := dbedt_cci_value_discount.Value;
+              strproc_create.ParamByName('p_cci_value_total').AsBCD                 := dbedt_cci_value_total.Value;
+              strproc_create.ParamByName('p_cci_value_reseller').AsBCD              := dbedt_value_reseller.Value;
+              strproc_create.ParamByName('p_cci_quant').AsBCD                       := dbedt_cci_quant.Value;
+              strproc_create.ParamByName('p_reseller_res_cod').AsString             := frm_dm_shared.memResellerres_cod.AsString;
+              strproc_create.ParamByName('p_cci_annotation').AsString               := dbmem_cci_annotation.Lines.Text;
               strproc_create.ExecProc;
               dblookupcmb_product_pro_cod.SetFocus
             except on E: Exception do
@@ -384,6 +401,23 @@ begin
             end;
           finally
           end;
+      end;
+
+    NBDI_DELETE:
+      try
+        try
+          strproc_delete := TFDStoredProc.Create(Self);
+          strproc_delete.Connection := frm_dm.connCCS;
+          strproc_delete.StoredProcName := 'proc_client_contract_iten_delete';
+          strproc_delete.Prepare;
+
+          strproc_delete.ParamByName('p_ctr_token').AsString  := Tconnection.ctr_token;
+          strproc_delete.ParamByName('p_cci_cod').AsString    := memClientContractItencci_cod.AsString;
+          strproc_delete.ExecProc;
+        except on E: Exception do
+          ShowMessage('Erro: ' + E.Message);
+        end;
+      finally
       end;
   end;
 end;

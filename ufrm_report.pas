@@ -101,7 +101,7 @@ uses
   frxClass,
   frxDesgn,
 
-  FireDAC.Stan.Param;
+  FireDAC.Stan.Param, dxSkinTheBezier;
 
 type
   Tfrm_report = class(TForm)
@@ -146,6 +146,9 @@ type
     dxBarSubItem_Salvar: TdxBarSubItem;
     dxBarButton2: TdxBarButton;
     cxEdt_Item_rep: TcxBarEditItem;
+    dxBarManager_1Bar6: TdxBar;
+    dxBarButton3: TdxBarButton;
+    Action_query: TAction;
     procedure Action_closeExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_insertExecute(Sender: TObject);

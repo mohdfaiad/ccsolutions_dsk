@@ -144,7 +144,7 @@ uses
   ufrm_form_default,
 
   u_class_connection,
-  u_class_rest_insurance;
+  u_class_rest_insurance, dxSkinTheBezier;
 
 type
   Tfrm_insurance = class(Tfrm_form_default)
@@ -190,16 +190,9 @@ type
     dxLayoutItem22: TdxLayoutItem;
     dbedt_dt_open: TcxDBDateEdit;
     dxLayoutItem24: TdxLayoutItem;
-    lookupComboBoxTable: TcxLookupComboBox;
-    dxLayoutItem26: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup7: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup8: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup9: TdxLayoutAutoCreatedGroup;
     dxLayoutAutoCreatedGroup10: TdxLayoutAutoCreatedGroup;
     dbedt_nickname: TcxDBTextEdit;
     dxLayoutItem23: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup6: TdxLayoutAutoCreatedGroup;
-    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
     memins_cod: TStringField;
     memtable_price_tbp_cod: TStringField;
     memins_id: TLongWordField;
@@ -269,6 +262,9 @@ type
     dxLayoutItem30: TdxLayoutItem;
     dxLayoutItem31: TdxLayoutItem;
     dxLayoutItem39: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup5: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup3: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
@@ -305,7 +301,6 @@ var
 
           strproc_update.ParamByName('p_ctr_token').AsString              := Tconnection.ctr_token;
           strproc_update.ParamByName('p_ins_cod').AsString                := memins_cod.AsString;
-//          strproc_update.ParamByName('p_table_price_tbp_cod').AsString    := memins_cod.AsString;
           strproc_update.ParamByName('p_ins_first_name').AsString         := dbedt_first_name.Text;
           strproc_update.ParamByName('p_ins_last_name').AsString          := dbedt_last_name.Text;
           strproc_update.ParamByName('p_ins_nickname').AsString           := dbedt_nickname.Text;
@@ -329,6 +324,7 @@ var
           strproc_update.ParamByName('p_ins_day_maturity').AsInteger      := dbedt_day_maturity.Value;
           strproc_update.ParamByName('p_ins_dt_open').AsDate              := dbedt_dt_open.Date;
           strproc_update.ParamByName('p_ins_status').AsShortInt           := dbchk_status.Checked.ToInteger;
+          strproc_update.ParamByName('p_ins_image').AsString              := '';
           strproc_update.ExecProc;
 
           afterUpdate;
@@ -348,7 +344,6 @@ var
             strproc_create.Prepare;
 
             strproc_create.ParamByName('p_ctr_token').AsString              := Tconnection.ctr_token;
-//            strproc_create.ParamByName('p_table_price_tbp_cod').AsString    := memins_cod.AsString;
             strproc_create.ParamByName('p_ins_first_name').AsString         := dbedt_first_name.Text;
             strproc_create.ParamByName('p_ins_last_name').AsString          := dbedt_last_name.Text;
             strproc_create.ParamByName('p_ins_nickname').AsString           := dbedt_nickname.Text;
@@ -372,6 +367,7 @@ var
             strproc_create.ParamByName('p_ins_day_maturity').AsInteger      := dbedt_day_maturity.Value;
             strproc_create.ParamByName('p_ins_dt_open').AsDate              := dbedt_dt_open.Date;
             strproc_create.ParamByName('p_ins_status').AsShortInt           := dbchk_status.Checked.ToInteger;
+            strproc_create.ParamByName('p_ins_image').AsString              := '';
             strproc_create.ExecProc;
 
             afterInsert;

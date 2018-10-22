@@ -3,32 +3,116 @@ unit ufrm_main;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_main_default, cxGraphics,
-  cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxRibbonSkins, dxSkinsCore,
-  dxSkinBlack, dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee,
-  dxSkinDarkRoom, dxSkinDarkSide, dxSkinDevExpressDarkStyle,
-  dxSkinDevExpressStyle, dxSkinFoggy, dxSkinGlassOceans, dxSkinHighContrast,
-  dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky,
-  dxSkinMcSkin, dxSkinMetropolis, dxSkinMetropolisDark, dxSkinMoneyTwins,
-  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
-  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinOffice2010Black,
-  dxSkinOffice2010Blue, dxSkinOffice2010Silver, dxSkinOffice2013DarkGray,
-  dxSkinOffice2013LightGray, dxSkinOffice2013White, dxSkinOffice2016Colorful,
-  dxSkinOffice2016Dark, dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic,
-  dxSkinSharp, dxSkinSharpPlus, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
-  dxSkinSummer2008, dxSkinTheAsphaltWorld, dxSkinsDefaultPainters,
-  dxSkinValentine, dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint, System.UItypes,
-  dxSkinXmas2008Blue, dxSkinsdxRibbonPainter, dxRibbonCustomizationForm,
-  cxContainer, cxEdit, dxSkinscxPCPainter, dxSkinsdxBarPainter, Vcl.ExtCtrls,
-  cxLocalization, System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList,
-  dxSkinsForm, dxBar, dxStatusBar, dxRibbonStatusBar, cxLabel, dxGalleryControl,
-  dxRibbonBackstageViewGalleryControl, dxRibbonBackstageView, cxClasses,
-  dxRibbon, dxGDIPlusClasses, ufrm_login, ufrm_contract, ufrm_contract_user,
-  ufrm_enterprise, ufrm_client, ufrm_supplier, ufrm_phonebook, ufrm_report,
-  ufrm_ticket_category, ufrm_ticket_type, ufrm_ticket, ufrm_reseller, ufrm_ticket_priority, ufrm_ticket_interaction,
-  cxImageList;
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  System.Actions,
+  System.UItypes,
+
+  Vcl.ExtCtrls,
+  Vcl.ImgList,
+  Vcl.ActnList,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+
+  cxGraphics,
+  cxControls,
+  cxLookAndFeels,
+  cxLookAndFeelPainters,
+  dxRibbonSkins,
+  dxSkinsCore,
+  dxSkinBlack,
+  dxSkinBlue,
+  dxSkinBlueprint,
+  dxSkinCaramel,
+  dxSkinCoffee,
+  dxSkinDarkRoom,
+  dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle,
+  dxSkinDevExpressStyle,
+  dxSkinFoggy,
+  dxSkinGlassOceans,
+  dxSkinHighContrast,
+  dxSkiniMaginary,
+  dxSkinLilian,
+  dxSkinLiquidSky,
+  dxSkinLondonLiquidSky,
+  dxSkinMcSkin,
+  dxSkinMetropolis,
+  dxSkinMetropolisDark,
+  dxSkinMoneyTwins,
+  dxSkinOffice2007Black,
+  dxSkinOffice2007Blue,
+  dxSkinOffice2007Green,
+  dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver,
+  dxSkinOffice2010Black,
+  dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver,
+  dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray,
+  dxSkinOffice2013White,
+  dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark,
+  dxSkinPumpkin,
+  dxSkinSeven,
+  dxSkinSevenClassic,
+  dxSkinSharp,
+  dxSkinSharpPlus,
+  dxSkinSilver,
+  dxSkinSpringTime,
+  dxSkinStardust,
+  dxSkinSummer2008,
+  dxSkinTheAsphaltWorld,
+  dxSkinsDefaultPainters,
+  dxSkinValentine,
+  dxSkinVisualStudio2013Blue,
+  dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light,
+  dxSkinVS2010,
+  dxSkinWhiteprint,
+  dxSkinXmas2008Blue,
+  dxSkinsdxRibbonPainter,
+  dxRibbonCustomizationForm,
+  cxContainer,
+  cxEdit,
+  dxSkinscxPCPainter,
+  dxSkinsdxBarPainter,
+  cxLocalization,
+  dxSkinsForm,
+  dxBar,
+  dxStatusBar,
+  dxRibbonStatusBar,
+  cxLabel,
+  dxGalleryControl,
+  dxRibbonBackstageViewGalleryControl,
+  dxRibbonBackstageView,
+  cxClasses,
+  dxRibbon,
+  dxGDIPlusClasses,
+  cxImageList,
+
+  ufrm_login,
+  ufrm_contract,
+  ufrm_contract_user,
+  ufrm_enterprise,
+  ufrm_client,
+  ufrm_supplier,
+  ufrm_phonebook,
+  ufrm_report,
+  ufrm_ticket_category,
+  ufrm_ticket_type,
+  ufrm_ticket,
+  ufrm_reseller,
+  ufrm_ticket_priority,
+  ufrm_ticket_interaction,
+  ufrm_main_default;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -49,22 +133,20 @@ type
     dxBarManager_1Bar4: TdxBar;
     dxBarLargeButton7: TdxBarLargeButton;
     Action_report: TAction;
-    dxBarLargeButton8: TdxBarLargeButton;
-    rbpopupmenu_1: TdxRibbonPopupMenu;
     Action_ticket_type: TAction;
     Action_ticket_category: TAction;
-    dxBarButton1: TdxBarButton;
-    dxBarButton3: TdxBarButton;
-    dxBarButton4: TdxBarButton;
     Action_ticket: TAction;
     dxBarManager_1Bar5: TdxBar;
     Action_reseller: TAction;
     dxBarLargeButton9: TdxBarLargeButton;
     Action_ticket_priority: TAction;
-    dxBarButton5: TdxBarButton;
-    dxBarSubItem2: TdxBarSubItem;
-    dxBarButton6: TdxBarButton;
     Action_ticket_interaction: TAction;
+    dxBarSubItem3: TdxBarSubItem;
+    dxBarButton2: TdxBarButton;
+    dxBarButton7: TdxBarButton;
+    dxBarButton8: TdxBarButton;
+    dxBarButton10: TdxBarButton;
+    dxBarButton11: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -280,8 +362,7 @@ begin
   frm_login := Tfrm_login.Create(Self);
   frm_login.ShowModal;
 
-  if frm_login.ModalResult <> mrOk then
-  begin
+  if frm_login.ModalResult <> mrOk then begin
     MessageDlg('Você não se autenticou. A aplicação será encerrada!', mtWarning, [mbOK], 0);
     Application.Terminate;
   end;

@@ -45,6 +45,7 @@ begin
             mem.FieldByName('cci_cod').AsString                     := frm_dm.mem_rest.FieldByName('cci_cod').AsString;
             mem.FieldByName('client_contract_cli_ctr_cod').AsString := frm_dm.mem_rest.FieldByName('client_contract_cli_ctr_cod').AsString;
             mem.FieldByName('product_pro_cod').AsString             := frm_dm.mem_rest.FieldByName('product_pro_cod').AsString;
+            mem.FieldByName('reseller_res_cod').AsString            := frm_dm.mem_rest.FieldByName('reseller_res_cod').AsString;
             mem.FieldByName('cci_value').AsString                   := frm_dm.mem_rest.FieldByName('cci_value').AsString;
             mem.FieldByName('cci_quant').AsString                   := frm_dm.mem_rest.FieldByName('cci_quant').AsString;
             mem.FieldByName('cci_value_discount').AsString          := frm_dm.mem_rest.FieldByName('cci_value_discount').AsString;

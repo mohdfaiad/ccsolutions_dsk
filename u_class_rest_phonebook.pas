@@ -29,7 +29,7 @@ class function Trest_phonebook.GetPhonebook(mem: TFDMemTable): Boolean;
 begin
   try
     try
-      Trest_phonebook.v_method        := '/api/rest/phonebooks/Phonebook';
+      Trest_phonebook.v_method        := '/api/rest/Phonebook/Phonebooks';
       Trest_phonebook.v_parameter     := Tconnection.ctr_token;
 
       begin

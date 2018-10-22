@@ -214,6 +214,11 @@ inherited frm_phonebook: Tfrm_phonebook
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
   end
+  inherited ActionList_1: TActionList
+    inherited Action_save: TAction
+      OnExecute = Action_saveExecute
+    end
+  end
   inherited cxImageList_1: TcxImageList
     FormatVersion = 1
   end

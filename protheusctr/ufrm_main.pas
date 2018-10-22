@@ -109,7 +109,7 @@ uses
   ufrm_product,
   ufrm_client_contract,
   ufrm_report,
-  ufrm_proposal_contract;
+  ufrm_proposal_contract, dxSkinTheBezier;
 
 type
   Tfrm_main = class(Tfrm_main_default)

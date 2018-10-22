@@ -43,16 +43,17 @@ uses
   ufrm_provider in '..\ufrm_provider.pas' {frm_provider},
   u_class_rest_did in '..\u_class_rest_did.pas',
   u_class_rest_provider in '..\u_class_rest_provider.pas',
-  u_class_rest_client_did in '..\u_class_rest_client_did.pas';
+  u_class_rest_client_did in '..\u_class_rest_client_did.pas',
+  ufrm_dm_shared in '..\ufrm_dm_shared.pas' {frm_dm_shared: TDataModule};
 
 {$R *.res}
 
 
 begin
-
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfrm_dm, frm_dm);
+  Application.CreateForm(Tfrm_dm_shared, frm_dm_shared);
   Application.CreateForm(Tfrm_main, frm_main);
   Application.Run;
 end.

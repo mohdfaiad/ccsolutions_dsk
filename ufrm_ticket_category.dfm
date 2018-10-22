@@ -48,57 +48,66 @@ inherited frm_ticket_category: Tfrm_ticket_category
             inherited dbedt_dt_registration: TcxDBDateEdit
               DataBinding.DataField = 'tkc_dt_registration'
             end
-            object cxGrid1: TcxGrid [2]
+            object grid: TcxGrid [2]
               Left = 17
-              Top = 168
+              Top = 237
               Width = 952
-              Height = 244
-              TabOrder = 4
-              object cxGrid1DBTableView1: TcxGridDBTableView
-                Navigator.Buttons.OnButtonClick = cxGrid1DBTableView1NavigatorButtonsButtonClick
+              Height = 305
+              TabOrder = 7
+              object gridview: TcxGridDBTableView
                 Navigator.Buttons.ConfirmDelete = True
                 Navigator.Buttons.CustomButtons = <>
                 Navigator.Buttons.Images = cxImageList_1
                 Navigator.Buttons.First.ImageIndex = 0
+                Navigator.Buttons.First.Visible = False
                 Navigator.Buttons.PriorPage.Visible = False
                 Navigator.Buttons.Prior.ImageIndex = 1
+                Navigator.Buttons.Prior.Visible = False
                 Navigator.Buttons.Next.ImageIndex = 2
+                Navigator.Buttons.Next.Visible = False
                 Navigator.Buttons.NextPage.Visible = False
                 Navigator.Buttons.Last.ImageIndex = 3
+                Navigator.Buttons.Last.Visible = False
                 Navigator.Buttons.Insert.ImageIndex = 4
+                Navigator.Buttons.Insert.Visible = False
                 Navigator.Buttons.Append.Visible = False
                 Navigator.Buttons.Delete.ImageIndex = 8
+                Navigator.Buttons.Delete.Visible = False
                 Navigator.Buttons.Edit.ImageIndex = 5
+                Navigator.Buttons.Edit.Visible = False
                 Navigator.Buttons.Post.ImageIndex = 6
+                Navigator.Buttons.Post.Visible = False
                 Navigator.Buttons.Cancel.ImageIndex = 7
+                Navigator.Buttons.Cancel.Visible = False
                 Navigator.Buttons.Refresh.ImageIndex = 9
+                Navigator.Buttons.Refresh.Visible = False
                 Navigator.Buttons.SaveBookmark.Visible = False
                 Navigator.Buttons.GotoBookmark.Visible = False
                 Navigator.Buttons.Filter.ImageIndex = 11
+                Navigator.InfoPanel.DisplayMask = '[RecordIndex] de [RecordCount]'
+                Navigator.InfoPanel.Visible = True
                 Navigator.Visible = True
-                DataController.DataSource = dsTicketCategorySub
+                DataController.DataSource = dsSub
                 DataController.Summary.DefaultGroupSummaryItems = <>
                 DataController.Summary.FooterSummaryItems = <>
                 DataController.Summary.SummaryGroups = <>
                 Images = cxImageList_1
-                object cxGrid1DBTableView1tks_name: TcxGridDBColumn
+                OptionsData.Editing = False
+                object gridviewtks_name: TcxGridDBColumn
                   DataBinding.FieldName = 'tks_name'
-                  PropertiesClassName = 'TcxTextEditProperties'
-                  Properties.CharCase = ecUpperCase
-                  Width = 200
+                  Width = 250
                 end
-                object cxGrid1DBTableView1tks_status: TcxGridDBColumn
+                object gridviewtks_status: TcxGridDBColumn
                   DataBinding.FieldName = 'tks_status'
-                  Options.Editing = False
+                  Width = 65
                 end
-                object cxGrid1DBTableView1tks_dt_registration: TcxGridDBColumn
+                object gridviewtks_dt_registration: TcxGridDBColumn
                   DataBinding.FieldName = 'tks_dt_registration'
-                  Options.Editing = False
                   Width = 125
                 end
               end
-              object cxGrid1Level1: TcxGridLevel
-                GridView = cxGrid1DBTableView1
+              object gridlvl: TcxGridLevel
+                GridView = gridview
               end
             end
             object dbedt_name: TcxDBTextEdit [3]
@@ -125,6 +134,63 @@ inherited frm_ticket_category: Tfrm_ticket_category
               TabOrder = 2
               Transparent = True
             end
+            object dbedt_sub_name: TcxDBTextEdit [5]
+              Left = 59
+              Top = 168
+              DataBinding.DataField = 'tks_name'
+              DataBinding.DataSource = dsSub
+              Properties.CharCase = ecUpperCase
+              Style.HotTrack = False
+              TabOrder = 4
+              Width = 303
+            end
+            object dbchk_status_sub: TcxDBCheckBox [6]
+              Left = 368
+              Top = 168
+              Caption = 'Status'
+              DataBinding.DataField = 'tks_status'
+              DataBinding.DataSource = dsSub
+              Properties.Alignment = taRightJustify
+              Properties.ValueChecked = 1
+              Properties.ValueGrayed = '1'
+              Properties.ValueUnchecked = 0
+              Style.HotTrack = False
+              TabOrder = 5
+              Transparent = True
+            end
+            object dxBevel1: TdxBevel [7]
+              Left = 17
+              Top = 195
+              Width = 952
+              Height = 5
+              Shape = dxbsLineBottom
+            end
+            object cxDBNavigator1: TcxDBNavigator [8]
+              Left = 757
+              Top = 206
+              Width = 212
+              Height = 25
+              Buttons.OnButtonClick = cxDBNavigator1ButtonsButtonClick
+              Buttons.CustomButtons = <>
+              Buttons.Images = cxImageList_1
+              Buttons.First.ImageIndex = 0
+              Buttons.PriorPage.Visible = False
+              Buttons.Prior.ImageIndex = 1
+              Buttons.Next.ImageIndex = 2
+              Buttons.NextPage.Visible = False
+              Buttons.Last.ImageIndex = 3
+              Buttons.Insert.ImageIndex = 4
+              Buttons.Delete.ImageIndex = 8
+              Buttons.Edit.ImageIndex = 5
+              Buttons.Post.ImageIndex = 6
+              Buttons.Cancel.ImageIndex = 7
+              Buttons.Refresh.ImageIndex = 9
+              Buttons.SaveBookmark.Visible = False
+              Buttons.GotoBookmark.Visible = False
+              Buttons.Filter.Visible = False
+              DataSource = dsSub
+              TabOrder = 6
+            end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
               ItemIndex = 2
             end
@@ -141,18 +207,19 @@ inherited frm_ticket_category: Tfrm_ticket_category
               SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
               SizeOptions.SizableHorz = True
               SizeOptions.SizableVert = True
-              SizeOptions.Height = 282
+              SizeOptions.Height = 412
               SizeOptions.Width = 966
               ButtonOptions.Buttons = <>
+              ItemIndex = 2
               Index = 2
             end
             object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutGroup3
-              Control = cxGrid1
-              ControlOptions.OriginalHeight = 244
+              Control = grid
+              ControlOptions.OriginalHeight = 305
               ControlOptions.OriginalWidth = 250
               ControlOptions.ShowBorder = False
-              Index = 0
+              Index = 3
             end
             object dxLayoutItem3: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -175,6 +242,50 @@ inherited frm_ticket_category: Tfrm_ticket_category
               ControlOptions.ShowBorder = False
               Index = 2
             end
+            object dxLayoutItem6: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              CaptionOptions.Text = 'Nome'
+              Control = dbedt_sub_name
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 303
+              ControlOptions.ShowBorder = False
+              Index = 0
+            end
+            object dxLayoutItem9: TdxLayoutItem
+              Parent = dxLayoutAutoCreatedGroup1
+              CaptionOptions.Text = 'cxDBCheckBox1'
+              CaptionOptions.Visible = False
+              Control = dbchk_status_sub
+              ControlOptions.OriginalHeight = 19
+              ControlOptions.OriginalWidth = 53
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup3
+              LayoutDirection = ldHorizontal
+              Index = 0
+              AutoCreated = True
+            end
+            object dxLayoutItem7: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              AlignHorz = ahClient
+              AlignVert = avTop
+              Control = dxBevel1
+              ControlOptions.OriginalHeight = 5
+              ControlOptions.OriginalWidth = 50
+              ControlOptions.ShowBorder = False
+              Index = 1
+            end
+            object dxLayoutItem8: TdxLayoutItem
+              Parent = dxLayoutGroup3
+              AlignHorz = ahRight
+              Control = cxDBNavigator1
+              ControlOptions.OriginalHeight = 25
+              ControlOptions.OriginalWidth = 212
+              ControlOptions.ShowBorder = False
+              Index = 2
+            end
           end
         end
       end
@@ -182,19 +293,11 @@ inherited frm_ticket_category: Tfrm_ticket_category
   end
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
-    inherited dxBarManager_1Bar6: TdxBar
-      ItemLinks = <
-        item
-          Visible = True
-          ItemName = 'dxBarButton1'
-        end>
-    end
     object dxBarButton1: TdxBarButton
       Caption = 'Sub'
       Category = 0
       Hint = 'Sub'
       Visible = ivAlways
-      OnClick = dxBarButton1Click
     end
   end
   inherited ActionList_1: TActionList
@@ -229,6 +332,7 @@ inherited frm_ticket_category: Tfrm_ticket_category
   end
   inherited mem: TFDMemTable [11]
     Active = True
+    IndexFieldNames = 'tkc_id'
     object memtkc_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'
@@ -280,8 +384,36 @@ inherited frm_ticket_category: Tfrm_ticket_category
       PixelsPerInch = 96
     end
   end
-  object memTicketCategorySub: TFDMemTable
-    FieldDefs = <>
+  object memSub: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'tks_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'ticket_category_tkc_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'tks_name'
+        DataType = ftString
+        Size = 35
+      end
+      item
+        Name = 'tks_status'
+        DataType = ftShortint
+      end
+      item
+        Name = 'tks_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'tks_dt_registration'
+        DataType = ftDateTime
+      end>
     IndexDefs = <>
     IndexFieldNames = 'ticket_category_tkc_cod'
     MasterSource = ds
@@ -297,48 +429,48 @@ inherited frm_ticket_category: Tfrm_ticket_category
     StoreDefs = True
     Left = 928
     Top = 104
-    object memTicketCategorySubtks_cod: TStringField
+    object memSubtks_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'
       FieldName = 'tks_cod'
       Origin = 'tks_cod'
       Size = 32
     end
-    object memTicketCategorySubticket_category_tkc_cod: TStringField
+    object memSubticket_category_tkc_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Categoria'
       FieldName = 'ticket_category_tkc_cod'
       Origin = 'ticket_category_tkc_cod'
       Size = 32
     end
-    object memTicketCategorySubtks_name: TStringField
+    object memSubtks_name: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Nome'
       FieldName = 'tks_name'
       Origin = 'tks_name'
       Size = 35
     end
-    object memTicketCategorySubtks_status: TShortintField
+    object memSubtks_status: TShortintField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Status'
       FieldName = 'tks_status'
       Origin = 'tks_status'
     end
-    object memTicketCategorySubtks_deleted_at: TDateTimeField
+    object memSubtks_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Deletado em'
       FieldName = 'tks_deleted_at'
       Origin = 'tks_deleted_at'
     end
-    object memTicketCategorySubtks_dt_registration: TDateTimeField
+    object memSubtks_dt_registration: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'tks_dt_registration'
       Origin = 'tks_dt_registration'
     end
   end
-  object dsTicketCategorySub: TDataSource
-    DataSet = memTicketCategorySub
+  object dsSub: TDataSource
+    DataSet = memSub
     Left = 960
     Top = 104
   end

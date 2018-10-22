@@ -4,17 +4,12 @@ inherited frm_table_price: Tfrm_table_price
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
-    Properties.ActivePage = cxTabSheet_2
-    ExplicitWidth = 1105
-    ExplicitHeight = 626
     inherited cxTabSheet_1: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 1097
-      ExplicitHeight = 592
+      ExplicitWidth = 1000
+      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
-        ExplicitWidth = 1091
-        ExplicitHeight = 586
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1tbp_id: TcxGridDBColumn
             DataBinding.FieldName = 'tbp_id'
@@ -38,28 +33,28 @@ inherited frm_table_price: Tfrm_table_price
     inherited cxTabSheet_2: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 28
-      ExplicitWidth = 1097
-      ExplicitHeight = 592
+      ExplicitWidth = 1000
+      ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
-        ExplicitWidth = 1091
-        ExplicitHeight = 586
         inherited cxTabSheet_3: TcxTabSheet
           ExplicitLeft = 2
           ExplicitTop = 28
-          ExplicitWidth = 1083
-          ExplicitHeight = 552
+          ExplicitWidth = 986
+          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
-            ExplicitWidth = 1083
-            ExplicitHeight = 552
             inherited dbedt_id: TcxDBTextEdit
+              Top = 37
               DataBinding.DataField = 'tbp_id'
+              ExplicitTop = 37
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
+              Top = 37
               DataBinding.DataField = 'tbp_dt_registration'
+              ExplicitTop = 37
             end
             object dbedt_name: TcxDBTextEdit [2]
               Left = 59
-              Top = 103
+              Top = 101
               DataBinding.DataField = 'tbp_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -69,7 +64,7 @@ inherited frm_table_price: Tfrm_table_price
             end
             object dbchk_status: TcxDBCheckBox [3]
               Left = 368
-              Top = 38
+              Top = 37
               Caption = 'Status'
               DataBinding.DataField = 'tbp_status'
               DataBinding.DataSource = ds
@@ -104,9 +99,6 @@ inherited frm_table_price: Tfrm_table_price
         end
       end
     end
-  end
-  inherited dxBarDockControl_1: TdxBarDockControl
-    ExplicitWidth = 1105
   end
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
@@ -143,6 +135,7 @@ inherited frm_table_price: Tfrm_table_price
   end
   inherited mem: TFDMemTable [11]
     Active = True
+    IndexFieldNames = 'tbp_id'
     object memtbp_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'

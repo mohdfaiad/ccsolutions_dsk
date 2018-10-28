@@ -94,6 +94,7 @@ uses
   cxBarEditItem,
   cxImageList,
   cxTreeView,
+  dxSkinTheBezier,
 
   ACBrBase,
   ACBrEnterTab,
@@ -101,7 +102,7 @@ uses
   frxClass,
   frxDesgn,
 
-  FireDAC.Stan.Param, dxSkinTheBezier;
+  FireDAC.Stan.Param;
 
 type
   Tfrm_report = class(TForm)
@@ -175,7 +176,8 @@ implementation
 {$R *.dfm}
 
 uses
-  ufrm_dm;
+  ufrm_dm,
+  ufrm_dm_report;
 
 procedure Tfrm_report.Action_closeExecute(Sender: TObject);
 begin
@@ -218,10 +220,7 @@ end;
 procedure Tfrm_report.deleteReport;
 begin
   if Application.MessageBox
-    ('Ao excluir o registro, o mesmo não poderá ser recuperado novamente!',
-    'Deseja excluir o Registro?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2)
-    = IDYES then
-  begin
+    ('Ao excluir o registro, o mesmo não poderá ser recuperado novamente!', 'Deseja excluir o Registro?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
     DeleteFile(cxShellTreeView1.Path);
   end;
 end;

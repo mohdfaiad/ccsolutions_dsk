@@ -11,7 +11,6 @@ uses
   ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
   ufrm_main in 'ufrm_main.pas' {frm_main},
   ufrm_form_default in '..\models\ufrm_form_default.pas' {frm_form_default},
-  ufrm_dm_ds in '..\ufrm_dm_ds.pas' {frm_dm_ds: TDataModule},
   ufrm_dm_report in '..\ufrm_dm_report.pas' {frm_dm_report: TDataModule},
   ufrm_report in '..\ufrm_report.pas' {frm_report},
   ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
@@ -44,7 +43,7 @@ uses
   ufrm_proposal_contract in '..\ufrm_proposal_contract.pas' {frm_proposal_contract},
   u_class_rest_proposal_contract in '..\u_class_rest_proposal_contract.pas',
   u_class_rest_proposal_contract_iten in '..\u_class_rest_proposal_contract_iten.pas',
-  ufrm_dm_shared in '..\ufrm_dm_shared.pas' {frm_dm_shared: TDataModule};
+  ufrm_dm_ds in '..\ufrm_dm_ds.pas' {frm_dm_ds: TDataModule};
 
 {$R *.res}
 
@@ -52,7 +51,8 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfrm_dm, frm_dm);
-  Application.CreateForm(Tfrm_dm_shared, frm_dm_shared);
+  Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
+  Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
   Application.Run;
 end.

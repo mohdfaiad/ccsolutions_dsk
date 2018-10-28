@@ -465,7 +465,7 @@ implementation
 {$R *.dfm}
 
 uses
-  ufrm_dm, ufrm_dm_shared;
+  ufrm_dm, ufrm_dm_ds;
 
 procedure Tfrm_client.Action_consult_cnpjExecute(Sender: TObject);
 begin
@@ -591,7 +591,8 @@ begin
           strproc_create.ParamByName('p_cli_add_del_city').AsString       := dbedt_add_del_city.Text;
           strproc_create.ParamByName('p_cli_add_del_state').AsString      := dbedt_add_del_state.Text;
           strproc_create.ParamByName('p_cli_add_del_country').AsString    := dbedt_add_del_country.Text;
-          strproc_create.ParamByName('p_cli_phone1').AsString             := dbedt_phone1.Text;          strproc_create.ParamByName('p_cli_phone2').AsString             := dbedt_phone2.Text;
+          strproc_create.ParamByName('p_cli_phone1').AsString             := dbedt_phone1.Text;
+          strproc_create.ParamByName('p_cli_phone2').AsString             := dbedt_phone2.Text;
           strproc_create.ParamByName('p_cli_phone3').AsString             := dbedt_phone3.Text;
           strproc_create.ParamByName('p_cli_phone4').AsString             := dbedt_phone4.Text;
           strproc_create.ParamByName('p_cli_contact').AsString            := dbedt_contact.Text;
@@ -622,8 +623,8 @@ begin
   Trest_client.GetClient(mem);
   Trest_client_astpp.GetClientATPP(memClientASTPP);
   Trest_client_sippulse.GetClientSIPPulse(memClientSIPPulse);
-  Trest_did.GetDID(frm_dm_shared.memDID);
-  Trest_provider.GetProvider(frm_dm_shared.memProvider);
+  Trest_did.GetDID(frm_dm_ds.memDID);
+  Trest_provider.GetProvider(frm_dm_ds.memProvider);
   Trest_client_did.GetClientDID(memClientDID);
 end;
 
@@ -755,7 +756,7 @@ begin
               strproc_update.ParamByName('p_ctr_token').AsString         := Tconnection.ctr_token;
               strproc_update.ParamByName('p_cld_cod').AsString           := memClientDIDcld_cod.AsString;
               strproc_update.ParamByName('p_did_did_cod').AsString       := memClientDIDdid_did_cod.AsString;
-              strproc_update.ParamByName('p_provider_prv_cod').AsString  := frm_dm_shared.memProviderprv_cod.AsString;
+              strproc_update.ParamByName('p_provider_prv_cod').AsString  := frm_dm_ds.memProviderprv_cod.AsString;
               strproc_update.ExecProc;
             except on E: Exception do
               ShowMessage('Erro: ' + E.Message);
@@ -774,7 +775,7 @@ begin
               strproc_create.ParamByName('p_ctr_token').AsString          := Tconnection.ctr_token;
               strproc_create.ParamByName('p_client_cli_cod').AsString     := memcli_cod.AsString;
               strproc_create.ParamByName('p_did_did_cod').AsString        := memClientDIDdid_did_cod.AsString;
-              strproc_create.ParamByName('p_provider_prv_cod').AsString   := frm_dm_shared.memProviderprv_cod.AsString;
+              strproc_create.ParamByName('p_provider_prv_cod').AsString   := frm_dm_ds.memProviderprv_cod.AsString;
               strproc_create.ExecProc;
             except on E: Exception do
               ShowMessage('Erro: ' + E.Message);

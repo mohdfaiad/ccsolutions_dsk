@@ -236,6 +236,9 @@ type
     dxLayoutItem19: TdxLayoutItem;
     dxLayoutGroup3: TdxLayoutGroup;
     dxLayoutGroup5: TdxLayoutGroup;
+    memcli_ctr_start_service: TDateField;
+    dbedt_cli_ctr_start_service: TcxDBDateEdit;
+    dxLayoutItem20: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
@@ -255,7 +258,7 @@ var
 implementation
 
 uses
-  ufrm_dm, ufrm_dm_shared;
+  ufrm_dm, ufrm_dm_ds;
 
 {$R *.dfm}
 
@@ -276,11 +279,12 @@ begin
           if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
             strproc_update.ParamByName('p_ctr_token').AsString            := Tconnection.ctr_token;
             strproc_update.ParamByName('p_cli_ctr_cod').AsString          := memcli_ctr_cod.AsString;
-            strproc_update.ParamByName('p_client_cli_cod').AsString       := frm_dm_shared.memClientcli_cod.AsString;
+            strproc_update.ParamByName('p_client_cli_cod').AsString       := frm_dm_ds.memClientcli_cod.AsString;
             strproc_update.ParamByName('p_reseller_res_cod').AsString     := memreseller_res_cod.AsString;
-            strproc_update.ParamByName('p_requisition_req_cod').AsString  := frm_dm_shared.memProposalContractreq_cod.AsString;
+            strproc_update.ParamByName('p_requisition_req_cod').AsString  := frm_dm_ds.memProposalContractreq_cod.AsString;
             strproc_update.ParamByName('p_cli_ctr_value_reseller').AsBCD  := dbedt_value_reseller.Value;
             strproc_update.ParamByName('p_cli_ctr_date_signature').AsDate := dbedt_data_signature.Date;
+            strproc_update.ParamByName('p_cli_ctr_start_service').AsDate  := dbedt_cli_ctr_start_service.Date;
             strproc_update.ParamByName('p_cli_ctr_annotation').AsString   := dbmem_annotation.Lines.Text;
             strproc_update.ParamByName('p_cli_ctr_status').AsShortInt     := dbchk_status.Checked.ToInteger;
             strproc_update.ExecProc;
@@ -304,11 +308,12 @@ begin
           strproc_create.Prepare;
 
           strproc_create.ParamByName('p_ctr_token').AsString            := Tconnection.ctr_token;
-          strproc_create.ParamByName('p_client_cli_cod').AsString       := frm_dm_shared.memClientcli_cod.AsString;
+          strproc_create.ParamByName('p_client_cli_cod').AsString       := frm_dm_ds.memClientcli_cod.AsString;
           strproc_create.ParamByName('p_reseller_res_cod').AsString     := memReseller_res_cod.AsString;
-          strproc_create.ParamByName('p_requisition_req_cod').AsString  := frm_dm_shared.memProposalContractreq_cod.AsString;
+          strproc_create.ParamByName('p_requisition_req_cod').AsString  := frm_dm_ds.memProposalContractreq_cod.AsString;
           strproc_create.ParamByName('p_cli_ctr_value_reseller').AsBCD  := dbedt_value_reseller.Value;
           strproc_create.ParamByName('p_cli_ctr_date_signature').AsDate := dbedt_data_signature.Date;
+          strproc_create.ParamByName('p_cli_ctr_start_service').AsDate  := dbedt_cli_ctr_start_service.Date;
           strproc_create.ParamByName('p_cli_ctr_annotation').AsString   := dbmem_annotation.Lines.Text;
           strproc_create.ParamByName('p_cli_ctr_status').AsShortInt     := dbchk_status.Checked.ToInteger;
           strproc_create.ExecProc;
@@ -360,13 +365,13 @@ begin
 
               strproc_update.ParamByName('p_ctr_token').AsString        := Tconnection.ctr_token;
               strproc_update.ParamByName('p_cci_cod').AsString          := memClientContractItencci_cod.AsString;
-              strproc_update.ParamByName('p_product_pro_cod').AsString  := frm_dm_shared.memProductpro_cod.AsString;
+              strproc_update.ParamByName('p_product_pro_cod').AsString  := frm_dm_ds.memProductpro_cod.AsString;
               strproc_update.ParamByName('p_cci_value').AsBCD           := dbedt_cci_value.Value;
               strproc_update.ParamByName('p_cci_value_discount').AsBCD  := dbedt_cci_value_discount.Value;
               strproc_update.ParamByName('p_cci_value_total').AsBCD     := dbedt_cci_value_total.Value;
               strproc_update.ParamByName('p_cci_value_reseller').AsBCD  := dbedt_value_reseller.Value;
               strproc_update.ParamByName('p_cci_quant').AsBCD           := dbedt_cci_quant.Value;
-              strproc_update.ParamByName('p_reseller_res_cod').AsString := frm_dm_shared.memResellerres_cod.AsString;
+              strproc_update.ParamByName('p_reseller_res_cod').AsString := frm_dm_ds.memResellerres_cod.AsString;
               strproc_update.ParamByName('p_cci_annotation').AsString   := dbmem_cci_annotation.Lines.Text;
               strproc_update.ExecProc;
               dblookupcmb_product_pro_cod.SetFocus
@@ -386,13 +391,13 @@ begin
 
               strproc_create.ParamByName('p_ctr_token').AsString                    := Tconnection.ctr_token;
               strproc_create.ParamByName('p_client_contract_cli_ctr_cod').AsString  := memcli_ctr_cod.AsString;
-              strproc_create.ParamByName('p_product_pro_cod').AsString              := frm_dm_shared.memProductpro_cod.AsString;
+              strproc_create.ParamByName('p_product_pro_cod').AsString              := frm_dm_ds.memProductpro_cod.AsString;
               strproc_create.ParamByName('p_cci_value').AsBCD                       := dbedt_cci_value.Value;
               strproc_create.ParamByName('p_cci_value_discount').AsBCD              := dbedt_cci_value_discount.Value;
               strproc_create.ParamByName('p_cci_value_total').AsBCD                 := dbedt_cci_value_total.Value;
               strproc_create.ParamByName('p_cci_value_reseller').AsBCD              := dbedt_value_reseller.Value;
               strproc_create.ParamByName('p_cci_quant').AsBCD                       := dbedt_cci_quant.Value;
-              strproc_create.ParamByName('p_reseller_res_cod').AsString             := frm_dm_shared.memResellerres_cod.AsString;
+              strproc_create.ParamByName('p_reseller_res_cod').AsString             := frm_dm_ds.memResellerres_cod.AsString;
               strproc_create.ParamByName('p_cci_annotation').AsString               := dbmem_cci_annotation.Lines.Text;
               strproc_create.ExecProc;
               dblookupcmb_product_pro_cod.SetFocus
@@ -432,10 +437,10 @@ end;
 procedure Tfrm_client_contract.FormCreate(Sender: TObject);
 begin
   inherited;
-  Trest_client.GetClient(frm_dm_shared.memClient);
-  Trest_product.GetProduct(frm_dm_shared.memProduct);
-  Trest_reseller.GetReseller(frm_dm_shared.memReseller);
-  Trest_proposal_contract.GetProposalContract(frm_dm_shared.memProposalContract);
+  Trest_client.GetClient(frm_dm_ds.memClient);
+  Trest_product.GetProduct(frm_dm_ds.memProduct);
+  Trest_reseller.GetReseller(frm_dm_ds.memReseller);
+  Trest_proposal_contract.GetProposalContract(frm_dm_ds.memProposalContract);
   Trest_client_contract.GetClientContract(mem);
   Trest_client_contract_iten.GetClientContractIten(memClientContractIten);
 end;

@@ -137,11 +137,6 @@
             <Form>frm_form_default</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\ufrm_dm_ds.pas">
-            <Form>frm_dm_ds</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="..\ufrm_dm_report.pas">
             <Form>frm_dm_report</Form>
             <FormType>dfm</FormType>
@@ -214,8 +209,8 @@
         </DCCReference>
         <DCCReference Include="..\u_class_rest_proposal_contract.pas"/>
         <DCCReference Include="..\u_class_rest_proposal_contract_iten.pas"/>
-        <DCCReference Include="..\ufrm_dm_shared.pas">
-            <Form>frm_dm_shared</Form>
+        <DCCReference Include="..\ufrm_dm_ds.pas">
+            <Form>frm_dm_ds</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>

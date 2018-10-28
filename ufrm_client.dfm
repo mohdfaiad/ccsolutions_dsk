@@ -423,7 +423,7 @@ inherited frm_client: Tfrm_client
               CaptionOptions.Text = 'E-mail'
               Control = dbedt_email
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 307
+              ControlOptions.OriginalWidth = 338
               ControlOptions.ShowBorder = False
               Index = 3
             end
@@ -514,6 +514,10 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1143,6 +1147,10 @@ inherited frm_client: Tfrm_client
         end
         object tbsht_contact: TcxTabSheet
           Caption = 'Contatos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1280,6 +1288,10 @@ inherited frm_client: Tfrm_client
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Financeiro'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label1: TLabel
             Left = 0
             Top = 22
@@ -1339,6 +1351,10 @@ inherited frm_client: Tfrm_client
         end
         object tbsht_telephony: TcxTabSheet
           Caption = 'Telefonia'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object pgctrl_telephony: TcxPageControl
             AlignWithMargins = True
             Left = 3
@@ -1357,6 +1373,10 @@ inherited frm_client: Tfrm_client
             ClientRectTop = 28
             object tbsht_dids: TcxTabSheet
               Caption = 'DIDs'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object dxLayoutControl4: TdxLayoutControl
                 Left = 0
                 Top = 0
@@ -1446,7 +1466,6 @@ inherited frm_client: Tfrm_client
                       FieldName = 'prv_id'
                     end>
                   Properties.ListOptions.SyncMode = True
-                  Properties.ListSource = frm_dm_shared.dsProvider
                   Style.HotTrack = False
                   TabOrder = 1
                   Width = 145
@@ -1469,7 +1488,6 @@ inherited frm_client: Tfrm_client
                       FieldName = 'did_id'
                     end>
                   Properties.ListOptions.SyncMode = True
-                  Properties.ListSource = frm_dm_shared.dsDID
                   Style.HotTrack = False
                   TabOrder = 0
                   Width = 145
@@ -1571,6 +1589,10 @@ inherited frm_client: Tfrm_client
             end
             object cxTabSheet3: TcxTabSheet
               Caption = 'Integra'#231#227'o'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object dxLayoutControl5: TdxLayoutControl
                 Left = 0
                 Top = 0
@@ -3587,36 +3609,7 @@ inherited frm_client: Tfrm_client
     Top = 104
   end
   object memClientDID: TFDMemTable
-    Active = True
-    FieldDefs = <
-      item
-        Name = 'cld_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'client_cli_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'did_did_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'provider_prv_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'cld_deleted_at'
-        DataType = ftDateTime
-      end
-      item
-        Name = 'cld_dt_registration'
-        DataType = ftDateTime
-      end>
+    FieldDefs = <>
     IndexDefs = <>
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
@@ -3676,7 +3669,6 @@ inherited frm_client: Tfrm_client
       DisplayLabel = 'N'#250'mero'
       FieldKind = fkLookup
       FieldName = 'did_number'
-      LookupDataSet = frm_dm_shared.memDID
       LookupKeyFields = 'did_cod'
       LookupResultField = 'did_number'
       KeyFields = 'did_did_cod'
@@ -3687,7 +3679,6 @@ inherited frm_client: Tfrm_client
       DisplayLabel = 'Provedor'
       FieldKind = fkLookup
       FieldName = 'prv_name'
-      LookupDataSet = frm_dm_shared.memProvider
       LookupKeyFields = 'prv_cod'
       LookupResultField = 'prv_name'
       KeyFields = 'provider_prv_cod'

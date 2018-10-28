@@ -1,7 +1,7 @@
 object frm_dm: Tfrm_dm
   OldCreateOrder = False
   Height = 279
-  Width = 191
+  Width = 196
   object connCCS: TFDConnection
     Params.Strings = (
       'ConnectionDef=database')

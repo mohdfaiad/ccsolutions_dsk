@@ -50,6 +50,7 @@ begin
             mem.FieldByName('cli_ctr_status').AsString          := frm_dm.mem_rest.FieldByName('cli_ctr_status').AsString;
             mem.FieldByName('cli_ctr_value_reseller').AsString  := frm_dm.mem_rest.FieldByName('cli_ctr_value_reseller').AsString;
             mem.FieldByName('cli_ctr_date_signature').AsString  := frm_dm.mem_rest.FieldByName('cli_ctr_date_signature').AsString;
+            mem.FieldByName('cli_ctr_start_service').AsString   := frm_dm.mem_rest.FieldByName('cli_ctr_start_service').AsString;
             mem.FieldByName('cli_ctr_annotation').AsString      := frm_dm.mem_rest.FieldByName('cli_ctr_annotation').AsString;
             mem.FieldByName('cli_ctr_dt_registration').AsString := frm_dm.mem_rest.FieldByName('cli_ctr_dt_registration').AsString;
             mem.Post;

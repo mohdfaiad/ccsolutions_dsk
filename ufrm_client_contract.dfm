@@ -93,7 +93,6 @@ inherited frm_client_contract: Tfrm_client_contract
                   FieldName = 'cli_id'
                 end>
               Properties.ListOptions.SyncMode = True
-              Properties.ListSource = frm_dm_shared.dsClient
               Style.HotTrack = False
               TabOrder = 3
               Width = 303
@@ -113,13 +112,12 @@ inherited frm_client_contract: Tfrm_client_contract
                   FieldName = 'req_id'
                 end>
               Properties.ListOptions.SyncMode = True
-              Properties.ListSource = frm_dm_shared.dsProposalContract
               Style.HotTrack = False
               TabOrder = 4
               Width = 121
             end
             object dbedt_data_signature: TcxDBDateEdit [5]
-              Left = 625
+              Left = 603
               Top = 101
               DataBinding.DataField = 'cli_ctr_date_signature'
               DataBinding.DataSource = ds
@@ -135,7 +133,7 @@ inherited frm_client_contract: Tfrm_client_contract
               Properties.CharCase = ecUpperCase
               Properties.ScrollBars = ssVertical
               Style.HotTrack = False
-              TabOrder = 8
+              TabOrder = 9
               Height = 89
               Width = 952
             end
@@ -158,9 +156,8 @@ inherited frm_client_contract: Tfrm_client_contract
                   FieldName = 'res_id'
                 end>
               Properties.ListOptions.SyncMode = True
-              Properties.ListSource = frm_dm_shared.dsReseller
               Style.HotTrack = False
-              TabOrder = 6
+              TabOrder = 7
               Width = 303
             end
             object dbedt_value_reseller: TcxDBCurrencyEdit [8]
@@ -171,7 +168,16 @@ inherited frm_client_contract: Tfrm_client_contract
               Properties.DecimalPlaces = 4
               Properties.DisplayFormat = 'R$ ,0.0000;-R$ ,0.0000'
               Style.HotTrack = False
-              TabOrder = 7
+              TabOrder = 8
+              Width = 121
+            end
+            object dbedt_cli_ctr_start_service: TcxDBDateEdit [9]
+              Left = 783
+              Top = 101
+              DataBinding.DataField = 'cli_ctr_start_service'
+              DataBinding.DataSource = ds
+              Style.HotTrack = False
+              TabOrder = 6
               Width = 121
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
@@ -218,7 +224,7 @@ inherited frm_client_contract: Tfrm_client_contract
             object dxLayoutItem16: TdxLayoutItem
               Parent = dxLayoutGroup2
               AlignVert = avClient
-              CaptionOptions.Text = 'Dt. Assinatura'
+              CaptionOptions.Text = 'Dt. Assin.'
               Control = dbedt_data_signature
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 130
@@ -271,10 +277,23 @@ inherited frm_client_contract: Tfrm_client_contract
               ControlOptions.ShowBorder = False
               Index = 1
             end
+            object dxLayoutItem20: TdxLayoutItem
+              Parent = dxLayoutGroup2
+              CaptionOptions.Text = 'Dt. Inic.'
+              Control = dbedt_cli_ctr_start_service
+              ControlOptions.OriginalHeight = 21
+              ControlOptions.OriginalWidth = 121
+              ControlOptions.ShowBorder = False
+              Index = 3
+            end
           end
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Servi'#231'os do Contrato'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -345,7 +364,6 @@ inherited frm_client_contract: Tfrm_client_contract
                       FieldName = 'pro_id'
                     end>
                   Properties.ListOptions.SyncMode = True
-                  Properties.ListSource = frm_dm_shared.dsProduct
                   Width = 250
                 end
                 object griddbcci_value: TcxGridDBColumn
@@ -463,7 +481,6 @@ inherited frm_client_contract: Tfrm_client_contract
                   FieldName = 'pro_id'
                 end>
               Properties.ListOptions.SyncMode = True
-              Properties.ListSource = frm_dm_shared.dsProduct
               Style.HotTrack = False
               TabOrder = 0
               Width = 287
@@ -513,7 +530,6 @@ inherited frm_client_contract: Tfrm_client_contract
                   FieldName = 'res_id'
                 end>
               Properties.ListOptions.SyncMode = True
-              Properties.ListSource = frm_dm_shared.dsReseller
               Style.HotTrack = False
               TabOrder = 5
               Width = 287
@@ -718,55 +734,6 @@ inherited frm_client_contract: Tfrm_client_contract
   inherited cxGridPopupMenu_1: TcxGridPopupMenu [11]
   end
   inherited mem: TFDMemTable [12]
-    Active = True
-    FieldDefs = <
-      item
-        Name = 'cli_ctr_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'client_cli_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'reseller_res_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'requisition_req_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'cli_ctr_id'
-        DataType = ftLongWord
-      end
-      item
-        Name = 'cli_ctr_value_reseller'
-        DataType = ftBCD
-        Precision = 12
-        Size = 4
-      end
-      item
-        Name = 'cli_ctr_date_signature'
-        DataType = ftDate
-      end
-      item
-        Name = 'cli_ctr_status'
-        DataType = ftShortint
-      end
-      item
-        Name = 'cli_ctr_annotation'
-        DataType = ftString
-        Size = 255
-      end
-      item
-        Name = 'cli_ctr_dt_registration'
-        DataType = ftDateTime
-      end>
     IndexFieldNames = 'cli_ctr_id'
     StoreDefs = True
     object memcli_ctr_cod: TStringField
@@ -815,6 +782,12 @@ inherited frm_client_contract: Tfrm_client_contract
       FieldName = 'cli_ctr_date_signature'
       Origin = 'cli_ctr_date_signature'
     end
+    object memcli_ctr_start_service: TDateField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Inic.'
+      FieldName = 'cli_ctr_start_service'
+      Origin = 'cli_ctr_start_service'
+    end
     object memcli_ctr_status: TShortintField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Status'
@@ -838,7 +811,6 @@ inherited frm_client_contract: Tfrm_client_contract
       DisplayLabel = 'Revenda'
       FieldKind = fkLookup
       FieldName = 'reseller_name'
-      LookupDataSet = frm_dm_shared.memReseller
       LookupKeyFields = 'res_cod'
       LookupResultField = 'res_first_name'
       KeyFields = 'reseller_res_cod'
@@ -849,7 +821,6 @@ inherited frm_client_contract: Tfrm_client_contract
       DisplayLabel = 'Cliente'
       FieldKind = fkLookup
       FieldName = 'client_name'
-      LookupDataSet = frm_dm_shared.memClient
       LookupKeyFields = 'cli_cod'
       LookupResultField = 'cli_first_name'
       KeyFields = 'client_cli_cod'
@@ -868,68 +839,7 @@ inherited frm_client_contract: Tfrm_client_contract
     end
   end
   object memClientContractIten: TFDMemTable
-    Active = True
-    FieldDefs = <
-      item
-        Name = 'cci_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'client_contract_cli_ctr_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'product_pro_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'cci_value'
-        DataType = ftBCD
-        Precision = 12
-        Size = 4
-      end
-      item
-        Name = 'cci_quant'
-        DataType = ftBCD
-        Precision = 12
-        Size = 4
-      end
-      item
-        Name = 'cci_value_discount'
-        DataType = ftBCD
-        Precision = 12
-        Size = 4
-      end
-      item
-        Name = 'cci_value_total'
-        DataType = ftBCD
-        Precision = 12
-        Size = 4
-      end
-      item
-        Name = 'cci_value_reseller'
-        DataType = ftBCD
-        Precision = 12
-        Size = 4
-      end
-      item
-        Name = 'cci_dt_registration'
-        DataType = ftDateTime
-      end
-      item
-        Name = 'reseller_res_cod'
-        Attributes = [faReadonly]
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'cci_annotation'
-        DataType = ftString
-        Size = 255
-      end>
+    FieldDefs = <>
     IndexDefs = <>
     IndexFieldNames = 'client_contract_cli_ctr_cod'
     MasterSource = ds
@@ -1025,7 +935,6 @@ inherited frm_client_contract: Tfrm_client_contract
       DisplayLabel = 'Produto'
       FieldKind = fkLookup
       FieldName = 'product_name'
-      LookupDataSet = frm_dm_shared.memProduct
       LookupKeyFields = 'pro_cod'
       LookupResultField = 'pro_name'
       KeyFields = 'product_pro_cod'

@@ -54,14 +54,18 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
           inherited dxLayoutControl_1: TdxLayoutControl
             TabOrder = 1
             inherited dbedt_id: TcxDBTextEdit
+              Top = 37
               DataBinding.DataField = 'req_id'
+              ExplicitTop = 37
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
+              Top = 37
               DataBinding.DataField = 'req_dt_registration'
+              ExplicitTop = 37
             end
             object cxDBLookupComboBox1: TcxDBLookupComboBox [2]
               Left = 59
-              Top = 103
+              Top = 101
               DataBinding.DataField = 'client_cli_cod'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -78,7 +82,6 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
                   FieldName = 'cli_id'
                 end>
               Properties.ListOptions.SyncMode = True
-              Properties.ListSource = frm_dm_shared.dsClient
               Style.HotTrack = False
               TabOrder = 2
               Width = 303
@@ -106,7 +109,7 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
             LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
             object cxDBNavigator1: TcxDBNavigator
               Left = 764
-              Top = 75
+              Top = 74
               Width = 212
               Height = 25
               Buttons.OnButtonClick = cxDBNavigator1ButtonsButtonClick
@@ -132,7 +135,7 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
             end
             object grid: TcxGrid
               Left = 17
-              Top = 134
+              Top = 132
               Width = 952
               Height = 200
               TabOrder = 6
@@ -185,7 +188,7 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
             end
             object dbedt_value: TcxDBCurrencyEdit
               Left = 349
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'rei_value'
               DataBinding.DataSource = dsProposalContractIten
               Properties.DecimalPlaces = 4
@@ -196,7 +199,7 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
             end
             object dbedt_quant: TcxDBCurrencyEdit
               Left = 515
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'rei_quant'
               DataBinding.DataSource = dsProposalContractIten
               Properties.DecimalPlaces = 4
@@ -207,7 +210,7 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
             end
             object dbedt_discount: TcxDBCurrencyEdit
               Left = 692
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'rei_discount'
               DataBinding.DataSource = dsProposalContractIten
               Properties.DecimalPlaces = 4
@@ -218,7 +221,7 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
             end
             object dbedt_value_total: TcxDBCurrencyEdit
               Left = 848
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'rei_value_total'
               DataBinding.DataSource = dsProposalContractIten
               Properties.DecimalPlaces = 4
@@ -229,7 +232,7 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
             end
             object dblookupcmb_product: TcxDBLookupComboBox
               Left = 60
-              Top = 38
+              Top = 37
               DataBinding.DataField = 'product_pro_cod'
               DataBinding.DataSource = dsProposalContractIten
               Properties.CharCase = ecUpperCase
@@ -246,7 +249,6 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
                   FieldName = 'pro_id'
                 end>
               Properties.ListOptions.SyncMode = True
-              Properties.ListSource = frm_dm_shared.dsProduct
               Style.HotTrack = False
               TabOrder = 0
               Width = 254
@@ -446,7 +448,7 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
       DisplayLabel = 'Cliente'
       FieldKind = fkLookup
       FieldName = 'client_first_name'
-      LookupDataSet = frm_dm_shared.memClient
+      LookupDataSet = frm_dm_ds.memClient
       LookupKeyFields = 'cli_cod'
       LookupResultField = 'cli_first_name'
       KeyFields = 'client_cli_cod'
@@ -529,8 +531,8 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 928
-    Top = 104
+    Left = 800
+    Top = 56
     object memProposalContractItenrei_cod: TStringField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'd.'
@@ -596,7 +598,7 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
       DisplayLabel = 'Produto'
       FieldKind = fkLookup
       FieldName = 'product_cod'
-      LookupDataSet = frm_dm_shared.memProduct
+      LookupDataSet = frm_dm_ds.memProduct
       LookupKeyFields = 'pro_cod'
       LookupResultField = 'pro_name'
       KeyFields = 'product_pro_cod'
@@ -606,7 +608,7 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
   end
   object dsProposalContractIten: TDataSource
     DataSet = memProposalContractIten
-    Left = 960
-    Top = 104
+    Left = 832
+    Top = 56
   end
 end

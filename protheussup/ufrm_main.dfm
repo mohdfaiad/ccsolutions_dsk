@@ -204,15 +204,11 @@ inherited frm_main: Tfrm_main
         end
         item
           Visible = True
-          ItemName = 'dxBarButton8'
+          ItemName = 'dxBarSubItem2'
         end
         item
           Visible = True
-          ItemName = 'dxBarButton10'
-        end
-        item
-          Visible = True
-          ItemName = 'dxBarButton11'
+          ItemName = 'dxBarSubItem1'
         end>
     end
     object dxBarButton2: TdxBarButton
@@ -233,6 +229,44 @@ inherited frm_main: Tfrm_main
     end
     object dxBarButton11: TdxBarButton
       Action = Action_ticket_interaction
+      Category = 0
+    end
+    object dxBarButton1: TdxBarButton
+      Caption = 'New Button'
+      Category = 0
+      Hint = 'New Button'
+      Visible = ivAlways
+    end
+    object dxBarSubItem1: TdxBarSubItem
+      Caption = 'Ticket'
+      Category = 0
+      Visible = ivAlways
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton10'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton11'
+        end>
+    end
+    object dxBarSubItem2: TdxBarSubItem
+      Caption = 'Categoria'
+      Category = 0
+      Visible = ivAlways
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton8'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton3'
+        end>
+    end
+    object dxBarButton3: TdxBarButton
+      Action = Action_ticket_category_sub
       Category = 0
     end
   end
@@ -293,9 +327,15 @@ inherited frm_main: Tfrm_main
     end
     object Action_ticket_category: TAction
       Category = 'Ticket'
-      Caption = 'Categoria e Subcategoria'
-      Hint = 'Manuten'#231#227'o Categorias e Subcategorias de Tickets'
+      Caption = 'Categorias'
+      Hint = 'Manuten'#231#227'o Categorias'
       OnExecute = Action_ticket_categoryExecute
+    end
+    object Action_ticket_category_sub: TAction
+      Category = 'Ticket'
+      Caption = 'Subcategorias'
+      Hint = 'Manuten'#231#227'o Subcategorias'
+      OnExecute = Action_ticket_category_subExecute
     end
     object Action_ticket: TAction
       Category = 'Ticket'

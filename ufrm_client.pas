@@ -420,13 +420,10 @@ type
     dxLayoutGroup11: TdxLayoutGroup;
     dxLayoutItem37: TdxLayoutItem;
     dxLayoutGroup12: TdxLayoutGroup;
-    cxDBLookupComboBox1: TcxDBLookupComboBox;
-    dxLayoutItem43: TdxLayoutItem;
     gridtblviewcld_dt_registration: TcxGridDBColumn;
     cxDBLookupComboBox2: TcxDBLookupComboBox;
     dxLayoutItem38: TdxLayoutItem;
     gridtblviewdid_number: TcxGridDBColumn;
-    gridtblviewprv_name: TcxGridDBColumn;
     cxDBNavigator1: TcxDBNavigator;
     dxLayoutItem44: TdxLayoutItem;
     dxLayoutGroup17: TdxLayoutGroup;
@@ -436,11 +433,9 @@ type
     memClientDIDcld_cod: TStringField;
     memClientDIDclient_cli_cod: TStringField;
     memClientDIDdid_did_cod: TStringField;
-    memClientDIDprovider_prv_cod: TStringField;
     memClientDIDcld_deleted_at: TDateTimeField;
     memClientDIDcld_dt_registration: TDateTimeField;
     memClientDIDdid_number: TStringField;
-    memClientDIDprv_name: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -465,7 +460,8 @@ implementation
 {$R *.dfm}
 
 uses
-  ufrm_dm, ufrm_dm_ds;
+  ufrm_dm,
+  ufrm_dm_ds;
 
 procedure Tfrm_client.Action_consult_cnpjExecute(Sender: TObject);
 begin
@@ -756,7 +752,6 @@ begin
               strproc_update.ParamByName('p_ctr_token').AsString         := Tconnection.ctr_token;
               strproc_update.ParamByName('p_cld_cod').AsString           := memClientDIDcld_cod.AsString;
               strproc_update.ParamByName('p_did_did_cod').AsString       := memClientDIDdid_did_cod.AsString;
-              strproc_update.ParamByName('p_provider_prv_cod').AsString  := frm_dm_ds.memProviderprv_cod.AsString;
               strproc_update.ExecProc;
             except on E: Exception do
               ShowMessage('Erro: ' + E.Message);
@@ -775,7 +770,6 @@ begin
               strproc_create.ParamByName('p_ctr_token').AsString          := Tconnection.ctr_token;
               strproc_create.ParamByName('p_client_cli_cod').AsString     := memcli_cod.AsString;
               strproc_create.ParamByName('p_did_did_cod').AsString        := memClientDIDdid_did_cod.AsString;
-              strproc_create.ParamByName('p_provider_prv_cod').AsString   := frm_dm_ds.memProviderprv_cod.AsString;
               strproc_create.ExecProc;
             except on E: Exception do
               ShowMessage('Erro: ' + E.Message);

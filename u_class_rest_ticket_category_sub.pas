@@ -1,4 +1,4 @@
-unit u_class_rest_category_sub;
+unit u_class_rest_ticket_category_sub;
 
 interface
 
@@ -44,6 +44,7 @@ begin
             mem.Append;
             mem.FieldByName('tks_cod').AsString                 := frm_dm.mem_rest.FieldByName('tks_cod').AsString;
             mem.FieldByName('ticket_category_tkc_cod').AsString := frm_dm.mem_rest.FieldByName('ticket_category_tkc_cod').AsString;
+            mem.FieldByName('tks_id').AsInteger                 := frm_dm.mem_rest.FieldByName('tks_id').AsInteger;
             mem.FieldByName('tks_name').AsString                := frm_dm.mem_rest.FieldByName('tks_name').AsString;
             mem.FieldByName('tks_status').AsString              := frm_dm.mem_rest.FieldByName('tks_status').AsString;
             mem.FieldByName('tks_deleted_at').AsString          := frm_dm.mem_rest.FieldByName('tks_deleted_at').AsString;

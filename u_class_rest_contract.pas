@@ -33,6 +33,9 @@ class function Trest_contract.GetContract(mem: TFDMemTable): Boolean;
 begin
   try
     try
+      v_method        := '/api/rest/Contract/Contracts';
+      v_parameter     := Tconnection.ctr_token;
+
       begin
         if get(Trest_methods.v_method, Trest_methods.v_parameter) then begin
           frm_dm.rest_response.RootElement := Trest_methods.v_root_element;

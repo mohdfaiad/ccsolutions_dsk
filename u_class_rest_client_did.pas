@@ -45,7 +45,6 @@ begin
             mem.FieldByName('cld_cod').AsString             := frm_dm.mem_rest.FieldByName('cld_cod').AsString;
             mem.FieldByName('client_cli_cod').AsString      := frm_dm.mem_rest.FieldByName('client_cli_cod').AsString;
             mem.FieldByName('did_did_cod').AsString         := frm_dm.mem_rest.FieldByName('did_did_cod').AsString;
-            mem.FieldByName('provider_prv_cod').AsString    := frm_dm.mem_rest.FieldByName('provider_prv_cod').AsString;
             mem.FieldByName('cld_deleted_at').AsString      := frm_dm.mem_rest.FieldByName('cld_deleted_at').AsString;
             mem.FieldByName('cld_dt_registration').AsString := frm_dm.mem_rest.FieldByName('cld_dt_registration').AsString;
             mem.Post;

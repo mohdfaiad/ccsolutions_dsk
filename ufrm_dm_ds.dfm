@@ -4,7 +4,7 @@ object frm_dm_ds: Tfrm_dm_ds
   Width = 959
   object dsClient: TDataSource
     DataSet = memClient
-    Left = 160
+    Left = 168
     Top = 16
   end
   object memClient: TFDMemTable
@@ -399,7 +399,7 @@ object frm_dm_ds: Tfrm_dm_ds
   end
   object dsProduct: TDataSource
     DataSet = memProduct
-    Left = 160
+    Left = 168
     Top = 112
   end
   object memProduct: TFDMemTable
@@ -609,7 +609,7 @@ object frm_dm_ds: Tfrm_dm_ds
   end
   object dsReseller: TDataSource
     DataSet = memReseller
-    Left = 160
+    Left = 168
     Top = 64
   end
   object memReseller: TFDMemTable
@@ -850,7 +850,7 @@ object frm_dm_ds: Tfrm_dm_ds
   end
   object dsProposalContract: TDataSource
     DataSet = memProposalContract
-    Left = 160
+    Left = 168
     Top = 160
   end
   object memMaterial: TFDMemTable
@@ -905,7 +905,7 @@ object frm_dm_ds: Tfrm_dm_ds
   end
   object dsMaterial: TDataSource
     DataSet = memMaterial
-    Left = 159
+    Left = 167
     Top = 208
   end
   object memProvider: TFDMemTable
@@ -954,16 +954,45 @@ object frm_dm_ds: Tfrm_dm_ds
   end
   object dsProvider: TDataSource
     DataSet = memProvider
-    Left = 160
+    Left = 168
     Top = 256
   end
   object dsDID: TDataSource
     DataSet = memDID
-    Left = 160
+    Left = 168
     Top = 304
   end
   object memDID: TFDMemTable
     Active = True
+    FieldDefs = <
+      item
+        Name = 'did_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'did_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'did_number'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'did_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'did_dt_registration'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'provider_prv_cod'
+        DataType = ftString
+        Size = 32
+      end>
+    IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -971,6 +1000,7 @@ object frm_dm_ds: Tfrm_dm_ds
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
     Left = 48
     Top = 304
     object memDIDdid_cod: TStringField
@@ -978,6 +1008,13 @@ object frm_dm_ds: Tfrm_dm_ds
       DisplayLabel = 'C'#243'd.'
       FieldName = 'did_cod'
       Origin = 'did_cod'
+      Size = 32
+    end
+    object memDIDprovider_prv_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Provedor'
+      FieldName = 'provider_prv_cod'
+      Origin = 'provider_prv_cod'
       Size = 32
     end
     object memDIDdid_id: TLongWordField
@@ -1005,5 +1042,525 @@ object frm_dm_ds: Tfrm_dm_ds
       FieldName = 'did_dt_registration'
       Origin = 'did_dt_registration'
     end
+  end
+  object memTicketPriority: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 48
+    Top = 352
+    object memTicketPrioritytkp_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd'
+      FieldName = 'tkp_cod'
+      Origin = 'tkp_cod'
+      Size = 32
+    end
+    object memTicketPrioritytkp_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'tkp_id'
+      Origin = 'tkp_id'
+    end
+    object memTicketPrioritytkp_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'tkp_name'
+      Origin = 'tkp_name'
+      Size = 35
+    end
+    object memTicketPrioritytkp_status: TShortintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'tkp_status'
+      Origin = 'tkp_status'
+    end
+    object memTicketPrioritytkp_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'tkp_deleted_at'
+      Origin = 'tkp_deleted_at'
+    end
+    object memTicketPrioritytkp_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'tkp_dt_registration'
+      Origin = 'tkp_dt_registration'
+    end
+  end
+  object dsTicketPriority: TDataSource
+    DataSet = memTicketPriority
+    Left = 168
+    Top = 352
+  end
+  object memTicketType: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 48
+    Top = 400
+    object memTicketTypetky_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'tky_cod'
+      Origin = 'tky_cod'
+      Size = 32
+    end
+    object memTicketTypetky_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'tky_id'
+      Origin = 'tky_id'
+    end
+    object memTicketTypetky_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'tky_name'
+      Origin = 'tky_name'
+      Size = 50
+    end
+    object memTicketTypetky_status: TShortintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'tky_status'
+      Origin = 'tky_status'
+    end
+    object memTicketTypetky_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'tky_deleted_at'
+      Origin = 'tky_deleted_at'
+    end
+    object memTicketTypetky_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'tky_dt_registration'
+      Origin = 'tky_dt_registration'
+    end
+  end
+  object dsTicketType: TDataSource
+    DataSet = memTicketType
+    Left = 168
+    Top = 400
+  end
+  object memTicketCategory: TFDMemTable
+    Active = True
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 48
+    Top = 448
+    object memTicketCategorytkc_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'tkc_cod'
+      Origin = 'tkc_cod'
+      Size = 32
+    end
+    object memTicketCategorytkc_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'tkc_id'
+      Origin = 'tkc_id'
+    end
+    object memTicketCategorytkc_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'tkc_name'
+      Origin = 'tkc_name'
+      Size = 35
+    end
+    object memTicketCategorytkc_status: TShortintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'tkc_status'
+      Origin = 'tkc_status'
+    end
+    object memTicketCategorytkc_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'tkc_deleted_at'
+      Origin = 'tkc_deleted_at'
+    end
+    object memTicketCategorytkc_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'tkc_dt_registration'
+      Origin = 'tkc_dt_registration'
+    end
+  end
+  object dsTicketCategory: TDataSource
+    DataSet = memTicketCategory
+    Left = 168
+    Top = 448
+  end
+  object memTicketCategorySub: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 48
+    Top = 496
+    object memTicketCategorySubtks_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'tks_cod'
+      Origin = 'tks_cod'
+      Size = 32
+    end
+    object memTicketCategorySubticket_category_tkc_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Categoria'
+      FieldName = 'ticket_category_tkc_cod'
+      Origin = 'ticket_category_tkc_cod'
+      Size = 32
+    end
+    object memTicketCategorySubtks_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'tks_id'
+      Origin = 'tks_id'
+    end
+    object memTicketCategorySubtks_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'tks_name'
+      Origin = 'tks_name'
+      Size = 35
+    end
+    object memTicketCategorySubtks_status: TShortintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'tks_status'
+      Origin = 'tks_status'
+    end
+    object memTicketCategorySubtks_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'tks_deleted_at'
+      Origin = 'tks_deleted_at'
+    end
+    object memTicketCategorySubtks_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'tks_dt_registration'
+      Origin = 'tks_dt_registration'
+    end
+  end
+  object dsTicketCategorySub: TDataSource
+    DataSet = memTicketCategorySub
+    Left = 168
+    Top = 496
+  end
+  object memContractUser: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 280
+    Top = 16
+    object memContractUserctr_usr_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'ctr_usr_cod'
+      Origin = 'ctr_usr_cod'
+      Size = 32
+    end
+    object memContractUserctr_usr_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'ctr_usr_id'
+      Origin = 'ctr_usr_id'
+    end
+    object memContractUserctr_usr_first_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'ctr_usr_first_name'
+      Origin = 'ctr_usr_first_name'
+      Size = 85
+    end
+    object memContractUserctr_usr_last_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Sobrenome'
+      FieldName = 'ctr_usr_last_name'
+      Origin = 'ctr_usr_last_name'
+      Size = 85
+    end
+    object memContractUserctr_usr_username: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Usu'#225'rio'
+      FieldName = 'ctr_usr_username'
+      Origin = 'ctr_usr_username'
+      Size = 65
+    end
+    object memContractUserctr_usr_email: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'E-mail'
+      FieldName = 'ctr_usr_email'
+      Origin = 'ctr_usr_email'
+      Size = 65
+    end
+    object memContractUserctr_usr_dt_birth: TDateField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Nasc.'
+      FieldName = 'ctr_usr_dt_birth'
+      Origin = 'ctr_usr_dt_birth'
+    end
+    object memContractUserctr_usr_status: TShortintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'ctr_usr_status'
+      Origin = 'ctr_usr_status'
+    end
+    object memContractUserctr_usr_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'ctr_usr_deleted_at'
+      Origin = 'ctr_usr_deleted_at'
+    end
+    object memContractUserctr_usr_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'ctr_usr_dt_registration'
+      Origin = 'ctr_usr_dt_registration'
+    end
+  end
+  object dsContractUser: TDataSource
+    DataSet = memContractUser
+    Left = 392
+    Top = 16
+  end
+  object memEnterprise: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 280
+    Top = 64
+    object memEnterpriseent_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'ent_cod'
+      Origin = 'ent_cod'
+      Size = 32
+    end
+    object memEnterpriseent_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'ent_id'
+      Origin = 'ent_id'
+    end
+    object memEnterpriseent_type: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tipo'
+      FieldName = 'ent_type'
+      Origin = 'ent_type'
+      FixedChar = True
+      Size = 1
+    end
+    object memEnterpriseent_first_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Raz'#227'o Social'
+      FieldName = 'ent_first_name'
+      Origin = 'ent_first_name'
+      Size = 85
+    end
+    object memEnterpriseent_last_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome Fantasia'
+      FieldName = 'ent_last_name'
+      Origin = 'ent_last_name'
+      Size = 85
+    end
+    object memEnterpriseent_nickname: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Apelido'
+      FieldName = 'ent_nickname'
+      Origin = 'ent_nickname'
+      Size = 85
+    end
+    object memEnterpriseent_email: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'E-mail'
+      FieldName = 'ent_email'
+      Origin = 'ent_email'
+      Size = 65
+    end
+    object memEnterpriseent_cnpj: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'CNPJ'
+      FieldName = 'ent_cnpj'
+      Origin = 'ent_cnpj'
+      Size = 25
+    end
+    object memEnterpriseent_ie: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'IE'
+      FieldName = 'ent_ie'
+      Origin = 'ent_ie'
+      Size = 25
+    end
+    object memEnterpriseent_im: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'IM'
+      FieldName = 'ent_im'
+      Origin = 'ent_im'
+      Size = 25
+    end
+    object memEnterpriseent_suframa: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Suframa'
+      FieldName = 'ent_suframa'
+      Origin = 'ent_suframa'
+      Size = 25
+    end
+    object memEnterpriseent_add_bus_zipcode: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'CEP'
+      FieldName = 'ent_add_bus_zipcode'
+      Origin = 'ent_add_bus_zipcode'
+      Size = 9
+    end
+    object memEnterpriseent_add_bus_address: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Rua'
+      FieldName = 'ent_add_bus_address'
+      Origin = 'ent_add_bus_address'
+      Size = 50
+    end
+    object memEnterpriseent_add_bus_number: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'N'#250'm.'
+      FieldName = 'ent_add_bus_number'
+      Origin = 'ent_add_bus_number'
+      Size = 5
+    end
+    object memEnterpriseent_add_bus_street: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Bairro'
+      FieldName = 'ent_add_bus_street'
+      Origin = 'ent_add_bus_street'
+      Size = 45
+    end
+    object memEnterpriseent_add_bus_complement: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Compl.'
+      FieldName = 'ent_add_bus_complement'
+      Origin = 'ent_add_bus_complement'
+      Size = 50
+    end
+    object memEnterpriseent_add_bus_city: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Cidade'
+      FieldName = 'ent_add_bus_city'
+      Origin = 'ent_add_bus_city'
+      Size = 35
+    end
+    object memEnterpriseent_add_bus_state: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'UF'
+      FieldName = 'ent_add_bus_state'
+      Origin = 'ent_add_bus_state'
+      FixedChar = True
+      Size = 3
+    end
+    object memEnterpriseent_add_bus_country: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Pa'#237's'
+      FieldName = 'ent_add_bus_country'
+      Origin = 'ent_add_bus_country'
+      Size = 25
+    end
+    object memEnterpriseent_phone1: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 1'
+      FieldName = 'ent_phone1'
+      Origin = 'ent_phone1'
+      Size = 15
+    end
+    object memEnterpriseent_phone2: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 2'
+      FieldName = 'ent_phone2'
+      Origin = 'ent_phone2'
+      Size = 15
+    end
+    object memEnterpriseent_phone3: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 3'
+      FieldName = 'ent_phone3'
+      Origin = 'ent_phone3'
+      Size = 15
+    end
+    object memEnterpriseent_phone4: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Fax'
+      FieldName = 'ent_phone4'
+      Origin = 'ent_phone4'
+      Size = 15
+    end
+    object memEnterpriseent_contact: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Contato'
+      FieldName = 'ent_contact'
+      Origin = 'ent_contact'
+      Size = 25
+    end
+    object memEnterpriseent_dt_open: TDateField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Aber.'
+      FieldName = 'ent_dt_open'
+      Origin = 'ent_dt_open'
+    end
+    object memEnterpriseent_status: TShortintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'ent_status'
+      Origin = 'ent_status'
+    end
+    object memEnterpriseent_image1: TBlobField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Logo'
+      FieldName = 'ent_image1'
+      Origin = 'ent_image1'
+    end
+    object memEnterpriseent_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'ent_deleted_at'
+      Origin = 'ent_deleted_at'
+    end
+    object memEnterpriseent_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'ent_dt_registration'
+      Origin = 'ent_dt_registration'
+    end
+  end
+  object dsEnterprise: TDataSource
+    DataSet = memEnterprise
+    Left = 392
+    Top = 64
   end
 end

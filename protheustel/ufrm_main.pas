@@ -117,7 +117,7 @@ uses
   ufrm_print_astpp,
   ufrm_import_sippulse,
   ufrm_did,
-  ufrm_provider;
+  ufrm_provider, dxSkinTheBezier;
 
 type
   Tfrm_main = class(Tfrm_main_default)

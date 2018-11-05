@@ -97,7 +97,9 @@ uses
   dxRibbon,
   dxGDIPlusClasses,
   cxImageList,
+  dxSkinTheBezier,
 
+  ufrm_main_default,
   ufrm_login,
   ufrm_contract,
   ufrm_contract_user,
@@ -112,7 +114,7 @@ uses
   ufrm_reseller,
   ufrm_ticket_priority,
   ufrm_ticket_interaction,
-  ufrm_main_default;
+  ufrm_ticket_category_sub;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -147,6 +149,11 @@ type
     dxBarButton8: TdxBarButton;
     dxBarButton10: TdxBarButton;
     dxBarButton11: TdxBarButton;
+    dxBarButton1: TdxBarButton;
+    dxBarSubItem1: TdxBarSubItem;
+    dxBarSubItem2: TdxBarSubItem;
+    Action_ticket_category_sub: TAction;
+    dxBarButton3: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);
@@ -161,6 +168,7 @@ type
     procedure Action_resellerExecute(Sender: TObject);
     procedure Action_ticket_priorityExecute(Sender: TObject);
     procedure Action_ticket_interactionExecute(Sender: TObject);
+    procedure Action_ticket_category_subExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -311,6 +319,20 @@ begin
   end else begin
     frm_ticket_category.WindowState := wsNormal;
     frm_ticket_category.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_ticket_category_subExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_ticket_category_sub) then begin
+    frm_ticket_category_sub := Tfrm_ticket_category_sub.Create(Self);
+    frm_ticket_category_sub.Height := Bevel_1.Height;
+    frm_ticket_category_sub.Width := Bevel_1.Width;
+    frm_ticket_category_sub.Show;
+  end else begin
+    frm_ticket_category_sub.WindowState := wsNormal;
+    frm_ticket_category_sub.Show;
   end;
 end;
 

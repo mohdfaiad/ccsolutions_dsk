@@ -13,5 +13,7 @@
     <Transaction>2018/05/10 12:30:29.000.077,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_ticket_interaction.dfm</Transaction>
     <Transaction>2018/09/07 19:54:58.000.753,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\protheussup.dproj=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\suporte.dproj</Transaction>
     <Transaction>2018/09/07 19:55:04.000.802,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\ufrm_protheussup.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\ufrm_suporte.dfm</Transaction>
+    <Transaction>2018/11/04 20:14:43.000.375,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_ticket_category_sub.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheussup\Unit1.dfm</Transaction>
+    <Transaction>2018/11/04 22:09:57.000.807,C:\development\ccsolutions\ccsolutions_dsk\trunk\u_class_rest_category_sub.pas=C:\development\ccsolutions\ccsolutions_dsk\trunk\u_class_rest_ticket_category_sub.pas</Transaction>
   </Transactions>
 </BorlandProject>

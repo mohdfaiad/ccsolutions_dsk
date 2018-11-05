@@ -143,7 +143,7 @@ uses
   ufrm_form_default,
 
   u_class_connection,
-  u_class_rest_contract;
+  u_class_rest_contract, dxSkinTheBezier;
 
 type
   Tfrm_contract = class(Tfrm_form_default)
@@ -255,18 +255,7 @@ end;
 
 function Tfrm_contract.GetContract: Boolean;
 begin
-  try
-    try
-      Trest_contract.v_method        := '/api/rest/contracts/Contract';
-      Trest_contract.v_parameter     := Tconnection.ctr_token;
-      Trest_contract.GetContract(mem);
-
-      Result := True;
-    except on E: Exception do
-      Result := False;
-    end;
-  finally
-  end;
+  Trest_contract.GetContract(mem);
 end;
 
 end.

@@ -85,7 +85,7 @@ inherited frm_client_contract: Tfrm_client_contract
               Properties.KeyFieldNames = 'cli_cod'
               Properties.ListColumns = <
                 item
-                  Width = 300
+                  Width = 250
                   FieldName = 'cli_first_name'
                 end
                 item
@@ -93,6 +93,7 @@ inherited frm_client_contract: Tfrm_client_contract
                   FieldName = 'cli_id'
                 end>
               Properties.ListOptions.SyncMode = True
+              Properties.ListSource = frm_dm_ds.dsClient
               Style.HotTrack = False
               TabOrder = 3
               Width = 303
@@ -112,6 +113,7 @@ inherited frm_client_contract: Tfrm_client_contract
                   FieldName = 'req_id'
                 end>
               Properties.ListOptions.SyncMode = True
+              Properties.ListSource = frm_dm_ds.dsProposalContract
               Style.HotTrack = False
               TabOrder = 4
               Width = 121
@@ -148,7 +150,7 @@ inherited frm_client_contract: Tfrm_client_contract
               Properties.KeyFieldNames = 'res_cod'
               Properties.ListColumns = <
                 item
-                  Width = 275
+                  Width = 250
                   FieldName = 'res_first_name'
                 end
                 item
@@ -156,6 +158,7 @@ inherited frm_client_contract: Tfrm_client_contract
                   FieldName = 'res_id'
                 end>
               Properties.ListOptions.SyncMode = True
+              Properties.ListSource = frm_dm_ds.dsReseller
               Style.HotTrack = False
               TabOrder = 7
               Width = 303
@@ -290,10 +293,6 @@ inherited frm_client_contract: Tfrm_client_contract
         end
         object cxTabSheet2: TcxTabSheet
           Caption = 'Servi'#231'os do Contrato'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -351,6 +350,7 @@ inherited frm_client_contract: Tfrm_client_contract
                 object griddbproduct_pro_cod: TcxGridDBColumn
                   DataBinding.FieldName = 'product_pro_cod'
                   PropertiesClassName = 'TcxLookupComboBoxProperties'
+                  Properties.CharCase = ecUpperCase
                   Properties.DropDownListStyle = lsFixedList
                   Properties.DropDownWidth = 350
                   Properties.KeyFieldNames = 'pro_cod'
@@ -364,6 +364,7 @@ inherited frm_client_contract: Tfrm_client_contract
                       FieldName = 'pro_id'
                     end>
                   Properties.ListOptions.SyncMode = True
+                  Properties.ListSource = frm_dm_ds.dsProduct
                   Width = 250
                 end
                 object griddbcci_value: TcxGridDBColumn
@@ -470,6 +471,7 @@ inherited frm_client_contract: Tfrm_client_contract
               DataBinding.DataSource = dsClientContractIten
               Properties.CharCase = ecUpperCase
               Properties.DropDownListStyle = lsFixedList
+              Properties.DropDownWidth = 350
               Properties.KeyFieldNames = 'pro_cod'
               Properties.ListColumns = <
                 item
@@ -481,6 +483,7 @@ inherited frm_client_contract: Tfrm_client_contract
                   FieldName = 'pro_id'
                 end>
               Properties.ListOptions.SyncMode = True
+              Properties.ListSource = frm_dm_ds.dsProduct
               Style.HotTrack = False
               TabOrder = 0
               Width = 287
@@ -522,7 +525,8 @@ inherited frm_client_contract: Tfrm_client_contract
               Properties.KeyFieldNames = 'res_cod'
               Properties.ListColumns = <
                 item
-                  Width = 275
+                  Caption = 'Nome'
+                  Width = 250
                   FieldName = 'res_first_name'
                 end
                 item
@@ -530,6 +534,7 @@ inherited frm_client_contract: Tfrm_client_contract
                   FieldName = 'res_id'
                 end>
               Properties.ListOptions.SyncMode = True
+              Properties.ListSource = frm_dm_ds.dsReseller
               Style.HotTrack = False
               TabOrder = 5
               Width = 287
@@ -734,6 +739,59 @@ inherited frm_client_contract: Tfrm_client_contract
   inherited cxGridPopupMenu_1: TcxGridPopupMenu [11]
   end
   inherited mem: TFDMemTable [12]
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'cli_ctr_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'client_cli_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'reseller_res_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'requisition_req_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'cli_ctr_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'cli_ctr_value_reseller'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'cli_ctr_date_signature'
+        DataType = ftDate
+      end
+      item
+        Name = 'cli_ctr_start_service'
+        DataType = ftDate
+      end
+      item
+        Name = 'cli_ctr_status'
+        DataType = ftShortint
+      end
+      item
+        Name = 'cli_ctr_annotation'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'cli_ctr_dt_registration'
+        DataType = ftDateTime
+      end>
     IndexFieldNames = 'cli_ctr_id'
     StoreDefs = True
     object memcli_ctr_cod: TStringField
@@ -811,6 +869,7 @@ inherited frm_client_contract: Tfrm_client_contract
       DisplayLabel = 'Revenda'
       FieldKind = fkLookup
       FieldName = 'reseller_name'
+      LookupDataSet = frm_dm_ds.memReseller
       LookupKeyFields = 'res_cod'
       LookupResultField = 'res_first_name'
       KeyFields = 'reseller_res_cod'
@@ -821,6 +880,7 @@ inherited frm_client_contract: Tfrm_client_contract
       DisplayLabel = 'Cliente'
       FieldKind = fkLookup
       FieldName = 'client_name'
+      LookupDataSet = frm_dm_ds.memClient
       LookupKeyFields = 'cli_cod'
       LookupResultField = 'cli_first_name'
       KeyFields = 'client_cli_cod'
@@ -839,7 +899,67 @@ inherited frm_client_contract: Tfrm_client_contract
     end
   end
   object memClientContractIten: TFDMemTable
-    FieldDefs = <>
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'cci_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'client_contract_cli_ctr_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'product_pro_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'reseller_res_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'cci_value'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'cci_quant'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'cci_value_discount'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'cci_value_total'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'cci_value_reseller'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'cci_annotation'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'cci_dt_registration'
+        DataType = ftDateTime
+      end>
     IndexDefs = <>
     IndexFieldNames = 'client_contract_cli_ctr_cod'
     MasterSource = ds
@@ -935,6 +1055,7 @@ inherited frm_client_contract: Tfrm_client_contract
       DisplayLabel = 'Produto'
       FieldKind = fkLookup
       FieldName = 'product_name'
+      LookupDataSet = frm_dm_ds.memProduct
       LookupKeyFields = 'pro_cod'
       LookupResultField = 'pro_name'
       KeyFields = 'product_pro_cod'

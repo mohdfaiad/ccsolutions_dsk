@@ -116,6 +116,7 @@ uses
   cxCheckBox,
   cxDBNavigator,
   dxBevel,
+  dxSkinTheBezier,
 
   Data.DB,
 
@@ -139,22 +140,16 @@ uses
   ACBrBase,
   ACBrEnterTab,
 
-  ufrm_dm,
   ufrm_form_default,
 
   u_class_connection,
-  u_class_rest_category,
-  u_class_rest_category_sub;
+  u_class_rest_ticket_category,
+  u_class_rest_ticket_category_sub;
 
 type
   Tfrm_ticket_category = class(Tfrm_form_default)
     dbedt_name: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
-    dxLayoutGroup3: TdxLayoutGroup;
-    gridview: TcxGridDBTableView;
-    gridlvl: TcxGridLevel;
-    grid: TcxGrid;
-    dxLayoutItem4: TdxLayoutItem;
     memtkc_cod: TStringField;
     memtkc_id: TLongWordField;
     memtkc_name: TStringField;
@@ -163,35 +158,14 @@ type
     memtkc_dt_registration: TDateTimeField;
     dbchk_status: TcxDBCheckBox;
     dxLayoutItem5: TdxLayoutItem;
-    memSub: TFDMemTable;
-    dsSub: TDataSource;
     cxGrid_1DBTableView1tkc_id: TcxGridDBColumn;
     cxGrid_1DBTableView1tkc_name: TcxGridDBColumn;
     cxGrid_1DBTableView1tkc_status: TcxGridDBColumn;
     cxGrid_1DBTableView1tkc_dt_registration: TcxGridDBColumn;
-    memSubtks_cod: TStringField;
-    memSubticket_category_tkc_cod: TStringField;
-    memSubtks_name: TStringField;
-    memSubtks_status: TShortintField;
-    memSubtks_deleted_at: TDateTimeField;
-    memSubtks_dt_registration: TDateTimeField;
     dxBarButton1: TdxBarButton;
-    dbedt_sub_name: TcxDBTextEdit;
-    dxLayoutItem6: TdxLayoutItem;
-    dbchk_status_sub: TcxDBCheckBox;
-    dxLayoutItem9: TdxLayoutItem;
-    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    dxBevel1: TdxBevel;
-    dxLayoutItem7: TdxLayoutItem;
-    cxDBNavigator1: TcxDBNavigator;
-    dxLayoutItem8: TdxLayoutItem;
-    gridviewtks_name: TcxGridDBColumn;
-    gridviewtks_status: TcxGridDBColumn;
-    gridviewtks_dt_registration: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
-    procedure cxDBNavigator1ButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
   private
     procedure afterInsert;
     procedure afterUpdate;
@@ -204,6 +178,9 @@ var
   frm_ticket_category: Tfrm_ticket_category;
 
 implementation
+
+uses
+  ufrm_dm;
 
 {$R *.dfm}
 
@@ -275,55 +252,6 @@ begin
   Trest_ticket_category.GetTicketCategory(mem);
 end;
 
-procedure Tfrm_ticket_category.cxDBNavigator1ButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
-var
-  strproc_create, strproc_update : TFDStoredProc;
-begin
-  inherited;
-  case AButtonIndex of
-    NBDI_POST:
-      case dsSub.State of
-        dsEdit:
-          try
-            try
-              strproc_update := TFDStoredProc.Create(Self);
-              strproc_update.Connection := frm_dm.connCCS;
-              strproc_update.StoredProcName := 'proc_ticket_category_sub_update';
-              strproc_update.Prepare;
-
-              strproc_update.ParamByName('p_ctr_token').AsString                := Tconnection.ctr_token;
-              strproc_update.ParamByName('p_tks_cod').AsString                  := memSubtks_cod.AsString;
-              strproc_update.ParamByName('p_tks_name').AsString                 := dbedt_sub_name.Text;
-              strproc_update.ParamByName('p_tks_status').AsShortInt             := dbchk_status_sub.Checked.ToInteger;
-              strproc_update.ExecProc;
-            except on E: Exception do
-              ShowMessage('Erro: ' + E.Message);
-            end;
-          finally
-          end;
-
-        dsInsert:
-          try
-            try
-              strproc_create := TFDStoredProc.Create(Self);
-              strproc_create.Connection := frm_dm.connCCS;
-              strproc_create.StoredProcName := 'proc_ticket_category_sub_create';
-              strproc_create.Prepare;
-
-              strproc_create.ParamByName('p_ctr_token').AsString                := Tconnection.ctr_token;
-              strproc_create.ParamByName('p_ticket_category_tkc_cod').AsString  := memtkc_cod.AsString;
-              strproc_create.ParamByName('p_tks_name').AsString                 := dbedt_sub_name.Text;
-              strproc_create.ParamByName('p_tks_status').AsShortInt             := dbchk_status_sub.Checked.ToInteger;
-              strproc_create.ExecProc;
-            except on E: Exception do
-              ShowMessage('Erro: ' + E.Message);
-            end;
-          finally
-          end;
-      end;
-  end;
-end;
-
 procedure Tfrm_ticket_category.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -335,7 +263,6 @@ procedure Tfrm_ticket_category.FormCreate(Sender: TObject);
 begin
   inherited;
   Trest_ticket_category.GetTicketCategory(mem);
-  Trest_ticket_category_sub.GetTicketCategorySub(memSub)
 end;
 
 end.

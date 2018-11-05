@@ -148,7 +148,7 @@ uses
   ufrm_form_default,
 
   u_class_connection,
-  u_class_rest_contract_user;
+  u_class_rest_contract_user, dxSkinTheBezier;
 
 type
   Tfrm_contract_user = class(Tfrm_form_default)
@@ -311,18 +311,7 @@ end;
 
 function Tfrm_contract_user.getContract_User: Boolean;
 begin
-  try
-    try
-      Trest_contract_user.v_method        := '/api/rest/contract_users/Contract_User';
-      Trest_contract_user.v_parameter     := Tconnection.ctr_token;
-      Trest_contract_user.GetContract_User(mem);
-
-      Result := True;
-    except on E: Exception do
-      Result := False;
-    end;
-  finally
-  end;
+  Trest_contract_user.GetContractUser(mem);
 end;
 
 end.

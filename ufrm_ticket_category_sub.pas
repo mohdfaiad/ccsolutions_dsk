@@ -1,4 +1,4 @@
-unit ufrm_did;
+unit ufrm_ticket_category_sub;
 
 interface
 
@@ -12,9 +12,9 @@ uses
   System.ImageList,
   System.Actions,
 
-  Vcl.ImgList,
-  Vcl.Menus,
   Vcl.ActnList,
+  Vcl.Menus,
+  Vcl.ImgList,
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
@@ -58,8 +58,7 @@ uses
   dxSkinOffice2013White,
   dxSkinOffice2016Colorful,
   dxSkinOffice2016Dark,
-  dxSkinPumpkin,
-  dxSkinSeven,
+  dxSkinPumpkin, dxSkinSeven,
   dxSkinSevenClassic,
   dxSkinSharp,
   dxSkinSharpPlus,
@@ -68,6 +67,7 @@ uses
   dxSkinStardust,
   dxSkinSummer2008,
   dxSkinTheAsphaltWorld,
+  dxSkinTheBezier,
   dxSkinsDefaultPainters,
   dxSkinValentine,
   dxSkinVisualStudio2013Blue,
@@ -85,10 +85,12 @@ uses
   cxEdit,
   cxNavigator,
   cxDataControllerConditionalFormattingRulesManagerDialog,
+  Data.DB,
   cxDBData,
   cxContainer,
   dxLayoutcxEditAdapters,
   cxDBLookupComboBox,
+  dxLayoutLookAndFeels,
   cxImageList,
   cxGridCustomPopupMenu,
   cxGridPopupMenu,
@@ -109,12 +111,9 @@ uses
   cxGridDBTableView,
   cxGrid,
   cxPC,
-  dxLayoutLookAndFeels,
-  dxSkinTheBezier,
   cxLookupEdit,
   cxDBLookupEdit,
-
-  Data.DB,
+  cxCheckBox,
 
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
@@ -137,26 +136,32 @@ uses
   ACBrEnterTab,
 
   ufrm_form_default,
-
   u_class_connection,
-  u_class_rest_did,
-  u_class_rest_provider;
+  u_class_rest_ticket_category,
+  u_class_rest_ticket_category_sub;
 
 type
-  Tfrm_did = class(Tfrm_form_default)
-    memdid_cod: TStringField;
-    memdid_id: TLongWordField;
-    memdid_number: TStringField;
-    memdid_deleted_at: TDateTimeField;
-    memdid_dt_registration: TDateTimeField;
-    cxGrid_1DBTableView1did_id: TcxGridDBColumn;
-    cxGrid_1DBTableView1did_number: TcxGridDBColumn;
-    cxGrid_1DBTableView1did_dt_registration: TcxGridDBColumn;
-    dbedt_did_number: TcxDBTextEdit;
+  Tfrm_ticket_category_sub = class(Tfrm_form_default)
+    memtks_cod: TStringField;
+    memticket_category_tkc_cod: TStringField;
+    memtks_id: TLongWordField;
+    memtks_name: TStringField;
+    memtks_status: TShortintField;
+    memtks_deleted_at: TDateTimeField;
+    memtks_dt_registration: TDateTimeField;
+    dbedt_tks_name: TcxDBTextEdit;
     dxLayoutItem3: TdxLayoutItem;
-    cxDBLookupComboBox1: TcxDBLookupComboBox;
+    dblookupcmb_ticket_category_tkc_cod: TcxDBLookupComboBox;
     dxLayoutItem4: TdxLayoutItem;
-    memprovider_prv_cod: TStringField;
+    cxGrid_1DBTableView1tks_id: TcxGridDBColumn;
+    cxGrid_1DBTableView1tks_name: TcxGridDBColumn;
+    cxGrid_1DBTableView1tks_status: TcxGridDBColumn;
+    cxGrid_1DBTableView1tks_dt_registration: TcxGridDBColumn;
+    dbchk_status_sub: TcxDBCheckBox;
+    dxLayoutItem5: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
+    memtkc_name: TStringField;
+    cxGrid_1DBTableView1tkc_name: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);
@@ -169,7 +174,7 @@ type
   end;
 
 var
-  frm_did: Tfrm_did;
+  frm_ticket_category_sub: Tfrm_ticket_category_sub;
 
 implementation
 
@@ -179,30 +184,28 @@ uses
 
 {$R *.dfm}
 
-procedure Tfrm_did.Action_saveExecute(Sender: TObject);
+procedure Tfrm_ticket_category_sub.Action_saveExecute(Sender: TObject);
 var
   strproc_create, strproc_update : TFDStoredProc;
 begin
+  inherited;
   case ds.State of
     dsEdit:
       try
         try
-          if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
-            strproc_update := TFDStoredProc.Create(Self);
-            strproc_update.Connection := frm_dm.connCCS;
-            strproc_update.StoredProcName := 'proc_did_update';
-            strproc_update.Prepare;
+          strproc_update := TFDStoredProc.Create(Self);
+          strproc_update.Connection := frm_dm.connCCS;
+          strproc_update.StoredProcName := 'proc_ticket_category_sub_update';
+          strproc_update.Prepare;
 
-            strproc_update.ParamByName('p_ctr_token').AsString        := Tconnection.ctr_token;
-            strproc_update.ParamByName('p_provider_prv_cod').AsString := frm_dm_ds.memProviderprv_cod.AsString;
-            strproc_update.ParamByName('p_did_cod').AsString          := memdid_cod.AsString;
-            strproc_update.ParamByName('p_did_number').AsString       := dbedt_did_number.Text;
-            strproc_update.ExecProc;
+          strproc_update.ParamByName('p_ctr_token').AsString                := Tconnection.ctr_token;
+          strproc_update.ParamByName('p_tks_cod').AsString                  := memtks_cod.AsString;
+          strproc_update.ParamByName('p_ticket_category_tkc_cod').AsString  := frm_dm_ds.memTicketCategorytkc_cod.AsString;
+          strproc_update.ParamByName('p_tks_name').AsString                 := dbedt_tks_name.Text;
+          strproc_update.ParamByName('p_tks_status').AsShortInt             := dbchk_status_sub.Checked.ToInteger;
+          strproc_update.ExecProc;
 
-            afterUpdate;
-          end else begin
-            ds.DataSet.Cancel;
-          end;
+          afterUpdate;
         except on E: Exception do
           ShowMessage('Erro: ' + E.Message);
         end;
@@ -214,12 +217,13 @@ begin
         try
           strproc_create := TFDStoredProc.Create(Self);
           strproc_create.Connection := frm_dm.connCCS;
-          strproc_create.StoredProcName := 'proc_did_create';
+          strproc_create.StoredProcName := 'proc_ticket_category_sub_create';
           strproc_create.Prepare;
 
-          strproc_create.ParamByName('p_ctr_token').AsString        := Tconnection.ctr_token;
-          strproc_create.ParamByName('p_provider_prv_cod').AsString := frm_dm_ds.memProviderprv_cod.AsString;
-          strproc_create.ParamByName('p_did_number').AsString       := dbedt_did_number.Text;
+          strproc_create.ParamByName('p_ctr_token').AsString                := Tconnection.ctr_token;
+          strproc_create.ParamByName('p_ticket_category_tkc_cod').AsString  := frm_dm_ds.memTicketCategorytkc_cod.AsString;
+          strproc_create.ParamByName('p_tks_name').AsString                 := dbedt_tks_name.Text;
+          strproc_create.ParamByName('p_tks_status').AsShortInt             := dbchk_status_sub.Checked.ToInteger;
           strproc_create.ExecProc;
 
           afterInsert;
@@ -231,33 +235,33 @@ begin
   end;
 end;
 
-procedure Tfrm_did.afterInsert;
+procedure Tfrm_ticket_category_sub.afterInsert;
 begin
   ShowMessage('Registro Iserido com Sucesso');
   cxTabSheet_3.Show;
-  Trest_did.GetDID(mem);
+  Trest_ticket_category_sub.GetTicketCategorySub(mem);
   ds.DataSet.Last;
 end;
 
-procedure Tfrm_did.afterUpdate;
+procedure Tfrm_ticket_category_sub.afterUpdate;
 begin
   ShowMessage('Registro Atualizado com sucesso');
   cxTabSheet_3.Show;
-  Trest_did.GetDID(mem);
+  Trest_ticket_category_sub.GetTicketCategorySub(mem);
 end;
 
-procedure Tfrm_did.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure Tfrm_ticket_category_sub.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-  frm_did.Destroy;
-  frm_did := Nil;
+  frm_ticket_category_sub.Destroy;
+  frm_ticket_category_sub := Nil;
 end;
 
-procedure Tfrm_did.FormCreate(Sender: TObject);
+procedure Tfrm_ticket_category_sub.FormCreate(Sender: TObject);
 begin
   inherited;
-  Trest_provider.GetProvider(frm_dm_ds.memProvider);
-  Trest_did.GetDID(mem);
+  Trest_ticket_category.GetTicketCategory(frm_dm_ds.memTicketCategory);
+  Trest_ticket_category_sub.GetTicketCategorySub(mem);
 end;
 
 end.

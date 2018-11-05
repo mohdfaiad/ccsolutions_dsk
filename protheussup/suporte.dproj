@@ -226,15 +226,14 @@
         <DCCReference Include="..\u_class_rest_supplier.pas"/>
         <DCCReference Include="..\u_class_rest_ticket_type.pas"/>
         <DCCReference Include="..\u_class_rest_ticket_priority.pas"/>
-        <DCCReference Include="..\u_class_rest_category.pas"/>
-        <DCCReference Include="..\u_class_rest_category_sub.pas"/>
+        <DCCReference Include="..\u_class_rest_ticket_category.pas"/>
+        <DCCReference Include="..\u_class_rest_ticket_category_sub.pas"/>
         <DCCReference Include="..\u_class_rest_did.pas"/>
         <DCCReference Include="..\u_class_rest_provider.pas"/>
         <DCCReference Include="..\u_class_rest_client_did.pas"/>
-        <DCCReference Include="..\ufrm_dm_shared.pas">
-            <Form>frm_dm_shared</Form>
+        <DCCReference Include="..\ufrm_ticket_category_sub.pas">
+            <Form>frm_ticket_category_sub</Form>
             <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

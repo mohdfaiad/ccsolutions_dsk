@@ -1391,7 +1391,7 @@ inherited frm_client: Tfrm_client
                   Top = 132
                   Width = 938
                   Height = 370
-                  TabOrder = 3
+                  TabOrder = 2
                   object gridtblview: TcxGridDBTableView
                     Navigator.Buttons.ConfirmDelete = True
                     Navigator.Buttons.CustomButtons = <>
@@ -1435,10 +1435,6 @@ inherited frm_client: Tfrm_client
                       DataBinding.FieldName = 'did_number'
                       Width = 150
                     end
-                    object gridtblviewprv_name: TcxGridDBColumn
-                      DataBinding.FieldName = 'prv_name'
-                      Width = 150
-                    end
                     object gridtblviewcld_dt_registration: TcxGridDBColumn
                       DataBinding.FieldName = 'cld_dt_registration'
                       Width = 125
@@ -1447,28 +1443,6 @@ inherited frm_client: Tfrm_client
                   object gridlvl: TcxGridLevel
                     GridView = gridtblview
                   end
-                end
-                object cxDBLookupComboBox1: TcxDBLookupComboBox
-                  Left = 266
-                  Top = 64
-                  DataBinding.DataField = 'provider_prv_cod'
-                  DataBinding.DataSource = dsClientDID
-                  Properties.CharCase = ecUpperCase
-                  Properties.DropDownListStyle = lsFixedList
-                  Properties.KeyFieldNames = 'prv_cod'
-                  Properties.ListColumns = <
-                    item
-                      Width = 250
-                      FieldName = 'prv_name'
-                    end
-                    item
-                      Width = 75
-                      FieldName = 'prv_id'
-                    end>
-                  Properties.ListOptions.SyncMode = True
-                  Style.HotTrack = False
-                  TabOrder = 1
-                  Width = 145
                 end
                 object cxDBLookupComboBox2: TcxDBLookupComboBox
                   Left = 66
@@ -1488,6 +1462,7 @@ inherited frm_client: Tfrm_client
                       FieldName = 'did_id'
                     end>
                   Properties.ListOptions.SyncMode = True
+                  Properties.ListSource = frm_dm_ds.dsDID
                   Style.HotTrack = False
                   TabOrder = 0
                   Width = 145
@@ -1516,7 +1491,7 @@ inherited frm_client: Tfrm_client
                   Buttons.GotoBookmark.Visible = False
                   Buttons.Filter.Visible = False
                   DataSource = dsClientDID
-                  TabOrder = 2
+                  TabOrder = 1
                 end
                 object dxLayoutGroup7: TdxLayoutGroup
                   AlignHorz = ahLeft
@@ -1556,15 +1531,6 @@ inherited frm_client: Tfrm_client
                   ButtonOptions.Buttons = <>
                   LayoutDirection = ldHorizontal
                   Index = 0
-                end
-                object dxLayoutItem43: TdxLayoutItem
-                  Parent = dxLayoutGroup12
-                  CaptionOptions.Text = 'Provedor'
-                  Control = cxDBLookupComboBox1
-                  ControlOptions.OriginalHeight = 21
-                  ControlOptions.OriginalWidth = 145
-                  ControlOptions.ShowBorder = False
-                  Index = 1
                 end
                 object dxLayoutItem38: TdxLayoutItem
                   Parent = dxLayoutGroup12
@@ -3609,7 +3575,31 @@ inherited frm_client: Tfrm_client
     Top = 104
   end
   object memClientDID: TFDMemTable
-    FieldDefs = <>
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'cld_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'client_cli_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'did_did_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'cld_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'cld_dt_registration'
+        DataType = ftDateTime
+      end>
     IndexDefs = <>
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds
@@ -3646,13 +3636,6 @@ inherited frm_client: Tfrm_client
       Origin = 'did_did_cod'
       Size = 32
     end
-    object memClientDIDprovider_prv_cod: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Provedor'
-      FieldName = 'provider_prv_cod'
-      Origin = 'provider_prv_cod'
-      Size = 32
-    end
     object memClientDIDcld_deleted_at: TDateTimeField
       AutoGenerateValue = arDefault
       DisplayLabel = 'Deletado em'
@@ -3669,20 +3652,11 @@ inherited frm_client: Tfrm_client
       DisplayLabel = 'N'#250'mero'
       FieldKind = fkLookup
       FieldName = 'did_number'
+      LookupDataSet = frm_dm_ds.memDID
       LookupKeyFields = 'did_cod'
       LookupResultField = 'did_number'
       KeyFields = 'did_did_cod'
       Size = 25
-      Lookup = True
-    end
-    object memClientDIDprv_name: TStringField
-      DisplayLabel = 'Provedor'
-      FieldKind = fkLookup
-      FieldName = 'prv_name'
-      LookupKeyFields = 'prv_cod'
-      LookupResultField = 'prv_name'
-      KeyFields = 'provider_prv_cod'
-      Size = 85
       Lookup = True
     end
   end

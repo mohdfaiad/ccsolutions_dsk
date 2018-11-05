@@ -44,7 +44,8 @@ uses
   u_class_rest_did in '..\u_class_rest_did.pas',
   u_class_rest_provider in '..\u_class_rest_provider.pas',
   u_class_rest_client_did in '..\u_class_rest_client_did.pas',
-  ufrm_dm_shared in '..\ufrm_dm_shared.pas' {frm_dm_shared: TDataModule};
+  ufrm_dm_ds in '..\ufrm_dm_ds.pas' {frm_dm_ds: TDataModule},
+  ufrm_dm_report in '..\ufrm_dm_report.pas' {frm_dm_report: TDataModule};
 
 {$R *.res}
 
@@ -53,7 +54,8 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfrm_dm, frm_dm);
-  Application.CreateForm(Tfrm_dm_shared, frm_dm_shared);
+  Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
+  Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
   Application.Run;
 end.

@@ -12,6 +12,6 @@
     <Transaction>2018/08/26 20:51:29.000.944,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_client_contract.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheusctr\Unit1.dfm</Transaction>
     <Transaction>2018/10/02 07:55:48.000.635,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_proposal_contract.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheusctr\Unit1.dfm</Transaction>
     <Transaction>2018/10/05 09:29:01.000.594,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_dm_shared.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheusctr\Unit1.dfm</Transaction>
-    <Transaction>2018/10/23 07:01:03.933,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_dm_ds.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_dm_shared.dfm</Transaction>
+    <Transaction>2018/10/23 07:01:03.000.933,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_dm_ds.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_dm_shared.dfm</Transaction>
   </Transactions>
 </BorlandProject>

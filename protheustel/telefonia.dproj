@@ -199,8 +199,13 @@
         <DCCReference Include="..\u_class_rest_did.pas"/>
         <DCCReference Include="..\u_class_rest_provider.pas"/>
         <DCCReference Include="..\u_class_rest_client_did.pas"/>
-        <DCCReference Include="..\ufrm_dm_shared.pas">
-            <Form>frm_dm_shared</Form>
+        <DCCReference Include="..\ufrm_dm_ds.pas">
+            <Form>frm_dm_ds</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_dm_report.pas">
+            <Form>frm_dm_report</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>

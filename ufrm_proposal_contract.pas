@@ -115,6 +115,7 @@ uses
   cxDBLookupEdit,
   cxCurrencyEdit,
   dxBevel,
+  dxSkinTheBezier,
 
   Data.DB,
 
@@ -218,7 +219,8 @@ var
 implementation
 
 uses
-  ufrm_dm, ufrm_dm_shared;
+  ufrm_dm,
+  ufrm_dm_ds;
 
 {$R *.dfm}
 
@@ -261,7 +263,7 @@ begin
           strproc_create.Prepare;
 
           strproc_create.ParamByName('p_ctr_token').AsString                  := Tconnection.ctr_token;
-          strproc_create.ParamByName('p_client_cli_cod').AsString             := frm_dm_shared.memClientcli_cod.AsString;
+          strproc_create.ParamByName('p_client_cli_cod').AsString             := frm_dm_ds.memClientcli_cod.AsString;
           strproc_create.ExecProc;
 
           afterInsert;
@@ -353,8 +355,8 @@ end;
 procedure Tfrm_proposal_contract.FormCreate(Sender: TObject);
 begin
   inherited;
-  Trest_client.GetClient(frm_dm_shared.memClient);
-  Trest_product.GetProduct(frm_dm_shared.memProduct);
+  Trest_client.GetClient(frm_dm_ds.memClient);
+  Trest_product.GetProduct(frm_dm_ds.memProduct);
   Trest_proposal_contract.GetProposalContract(mem);
   Trest_proposal_contract_iten.GetProposalContractIten(memProposalContractIten);
 end;

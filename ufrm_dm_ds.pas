@@ -241,7 +241,48 @@ type
     memContractUserctr_usr_deleted_at: TDateTimeField;
     memContractUserctr_usr_dt_registration: TDateTimeField;
     memTicketCategorySubtks_id: TLongWordField;
-  private
+    memClientContract: TFDMemTable;
+    dsClientContract: TDataSource;
+    memClientContractIten: TFDMemTable;
+    dsClientContractIten: TDataSource;
+    memClientContractcli_ctr_cod: TStringField;
+    memClientContractclient_cli_cod: TStringField;
+    memClientContractreseller_res_cod: TStringField;
+    memClientContractrequisition_req_cod: TStringField;
+    memClientContractcli_ctr_id: TLongWordField;
+    memClientContractcli_ctr_value_reseller: TBCDField;
+    memClientContractcli_ctr_date_signature: TDateField;
+    memClientContractcli_ctr_start_service: TDateField;
+    memClientContractcli_ctr_status: TShortintField;
+    memClientContractcli_ctr_annotation: TStringField;
+    memClientContractcli_ctr_dt_registration: TDateTimeField;
+    memClientContractreseller_name: TStringField;
+    memClientContractclient_name: TStringField;
+    memClientContractItencci_cod: TStringField;
+    memClientContractItenclient_contract_cli_ctr_cod: TStringField;
+    memClientContractItenproduct_pro_cod: TStringField;
+    memClientContractItenreseller_res_cod: TStringField;
+    memClientContractItencci_value: TBCDField;
+    memClientContractItencci_quant: TBCDField;
+    memClientContractItencci_value_discount: TBCDField;
+    memClientContractItencci_value_total: TBCDField;
+    memClientContractItencci_value_reseller: TBCDField;
+    memClientContractItencci_annotation: TStringField;
+    memClientContractItencci_dt_registration: TDateTimeField;
+    memClientContractItenproduct_name: TStringField;
+    memContract: TFDMemTable;
+    dsContract: TDataSource;
+    memContractctr_cod: TStringField;
+    memContractctr_id: TLargeintField;
+    memContractctr_first_name: TStringField;
+    memContractctr_last_name: TStringField;
+    memContractctr_email: TStringField;
+    memContractctr_phone1: TStringField;
+    memContractctr_dt_birth: TDateField;
+    memContractctr_user_license: TWordField;
+    memContractctr_status: TShortintField;
+    memContractctr_deleted_at: TDateTimeField;
+    memContractctr_dt_registration: TDateTimeField;  private
 
   public
 

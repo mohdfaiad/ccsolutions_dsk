@@ -27,18 +27,6 @@ uses
 
 type
   Tfrm_dm_report = class(TDataModule)
-    strpContract: TFDStoredProc;
-    fdsContract: TfrxDBDataset;
-    strpEnterprise: TFDStoredProc;
-    fdsEnterprise: TfrxDBDataset;
-    FDStoredProc2: TFDStoredProc;
-    frxDBDataset2: TfrxDBDataset;
-    strpClient: TFDStoredProc;
-    fdsClient: TfrxDBDataset;
-    strpClientContract: TFDStoredProc;
-    fdsClientContract: TfrxDBDataset;
-    strpClientContractIten: TFDStoredProc;
-    fdsClientContractIten: TfrxDBDataset;
   private
     { Private declarations }
   public
@@ -53,7 +41,7 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 uses
-  ufrm_dm;
+  ufrm_dm_ds;
 
 {$R *.dfm}
 

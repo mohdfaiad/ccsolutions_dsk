@@ -144,7 +144,7 @@ uses
   ufrm_form_default,
 
   u_class_rest_supplier,
-  u_class_connection;
+  u_class_connection, dxSkinTheBezier, frxChart, frxDesgn;
 
 type
   Tfrm_supplier = class(Tfrm_form_default)

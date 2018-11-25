@@ -118,6 +118,8 @@ uses
   dxLayoutControlAdapters,
   cxCurrencyEdit,
   cxDBNavigator,
+  dxSkinTheBezier,
+  cxMemo,
 
   Data.DB,
 
@@ -149,7 +151,7 @@ uses
   u_class_rest_reseller,
   u_class_rest_client_contract,
   u_class_rest_client_contract_iten,
-  u_class_rest_proposal_contract, dxSkinTheBezier, cxMemo;
+  u_class_rest_proposal_contract, frxChart, frxDesgn, frxDBSet;
 
 type
   Tfrm_client_contract = class(Tfrm_form_default)
@@ -239,6 +241,9 @@ type
     memcli_ctr_start_service: TDateField;
     dbedt_cli_ctr_start_service: TcxDBDateEdit;
     dxLayoutItem20: TdxLayoutItem;
+    fdsClientContract: TfrxDBDataset;
+    fdsClientContractIten: TfrxDBDataset;
+    fdsReseller: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Action_saveExecute(Sender: TObject);

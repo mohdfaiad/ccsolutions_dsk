@@ -11,7 +11,6 @@ uses
   ufrm_search_enterprise in '..\ufrm_search_enterprise.pas' {frm_search_enterprise},
   ufrm_main in 'ufrm_main.pas' {frm_main},
   ufrm_form_default in '..\models\ufrm_form_default.pas' {frm_form_default},
-  ufrm_dm_report in '..\ufrm_dm_report.pas' {frm_dm_report: TDataModule},
   ufrm_report in '..\ufrm_report.pas' {frm_report},
   ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
   ufrm_contract in '..\ufrm_contract.pas' {frm_contract},
@@ -52,7 +51,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfrm_dm, frm_dm);
   Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
-  Application.CreateForm(Tfrm_dm_report, frm_dm_report);
   Application.CreateForm(Tfrm_main, frm_main);
   Application.Run;
 end.

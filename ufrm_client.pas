@@ -161,7 +161,7 @@ uses
   u_class_rest_client_sippulse,
   u_class_rest_did,
   u_class_rest_provider,
-  u_class_rest_client_did, dxSkinTheBezier;
+  u_class_rest_client_did, dxSkinTheBezier, frxChart, frxDesgn;
 
 type
   Tfrm_client = class(Tfrm_form_default)

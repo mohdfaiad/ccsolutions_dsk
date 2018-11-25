@@ -119,6 +119,7 @@ uses
   cxLocalization,
   cxDataControllerConditionalFormattingRulesManagerDialog,
   cxImageList,
+  dxSkinTheBezier,
 
   Data.DB,
 
@@ -144,7 +145,7 @@ uses
   frxDesgn,
   frxClass,
 
-  ufrm_main_default, dxSkinTheBezier;
+  ufrm_main_default, frxChart, Vcl.StdCtrls;
 
 type
   Tfrm_form_default = class(TForm)
@@ -229,8 +230,11 @@ type
     dxBarButton_import: TdxBarButton;
     schadp: TFDSchemaAdapter;
     frxReport_1: TfrxReport;
-    cxlooComBoxRep: TcxBarEditItem;
     mem: TFDMemTable;
+    frxDesigner_1: TfrxDesigner;
+    frxChartObject_1: TfrxChartObject;
+    Action_report_designer: TAction;
+    cxBarEditItem_1: TcxBarEditItem;
     procedure cxGrid_1DBTableView1DblClick(Sender: TObject);
     procedure Action_insertUpdate(Sender: TObject);
     procedure Action_insertExecute(Sender: TObject);
@@ -247,6 +251,8 @@ type
     procedure Action_exportExecute(Sender: TObject);
     procedure Action_importExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Action_printExecute(Sender: TObject);
+    procedure Action_report_designerExecute(Sender: TObject);
   private
 
   public
@@ -350,6 +356,14 @@ begin
   ds.DataSet.Next;
 end;
 
+procedure Tfrm_form_default.Action_printExecute(Sender: TObject);
+begin
+//  frxDesigner_1.SaveDir := cxBarEditItem_1.GetNamePath;
+//  frxDesigner_1.OpenDir := cxBarEditItem_1.Path;
+//  frxReport_1.LoadFromFile(cxBarEditItem_1.Path, True);
+//  frxReport_1.DesignReport();
+end;
+
 procedure Tfrm_form_default.Action_priorExecute(Sender: TObject);
 begin
   ds.DataSet.Prior;
@@ -360,9 +374,13 @@ begin
   ds.DataSet.Refresh;
 end;
 
+procedure Tfrm_form_default.Action_report_designerExecute(Sender: TObject);
+begin
+  frxReport_1.DesignReport();
+end;
+
 procedure Tfrm_form_default.cxGrid_1DBTableView1DblClick(Sender: TObject);
 begin
-//  Action_edit.Execute;
   cxTabSheet_3.Show;
 end;
 

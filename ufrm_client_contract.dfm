@@ -48,17 +48,13 @@ inherited frm_client_contract: Tfrm_client_contract
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               Left = 65
-              Top = 37
               DataBinding.DataField = 'cli_ctr_id'
               ExplicitLeft = 65
-              ExplicitTop = 37
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
               Left = 238
-              Top = 37
               DataBinding.DataField = 'cli_ctr_dt_registration'
               ExplicitLeft = 238
-              ExplicitTop = 37
             end
             object dbchk_status: TcxDBCheckBox [2]
               Left = 374
@@ -898,7 +894,7 @@ inherited frm_client_contract: Tfrm_client_contract
       PixelsPerInch = 96
     end
   end
-  object memClientContractIten: TFDMemTable
+  object memClientContractIten: TFDMemTable [16]
     Active = True
     FieldDefs = <
       item
@@ -1063,9 +1059,36 @@ inherited frm_client_contract: Tfrm_client_contract
       Lookup = True
     end
   end
-  object dsClientContractIten: TDataSource
+  object dsClientContractIten: TDataSource [17]
     DataSet = memClientContractIten
     Left = 832
     Top = 56
+  end
+  object fdsClientContract: TfrxDBDataset
+    Description = 'Cotnratos do Cliente'
+    UserName = 'Contratos'
+    CloseDataSource = False
+    DataSet = mem
+    BCDToCurrency = False
+    Left = 778
+    Top = 235
+  end
+  object fdsClientContractIten: TfrxDBDataset
+    Description = 'Itens do Contrato'
+    UserName = 'Contratos - Itens'
+    CloseDataSource = False
+    DataSet = memClientContractIten
+    BCDToCurrency = False
+    Left = 778
+    Top = 283
+  end
+  object fdsReseller: TfrxDBDataset
+    Description = 'Revenda Respons'#225'vel'
+    UserName = 'Revendas'
+    CloseDataSource = False
+    DataSet = frm_dm_ds.memReseller
+    BCDToCurrency = False
+    Left = 778
+    Top = 331
   end
 end

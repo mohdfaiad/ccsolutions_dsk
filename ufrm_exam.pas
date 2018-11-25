@@ -117,6 +117,7 @@ uses
   cxDataControllerConditionalFormattingRulesManagerDialog,
   cxImageList,
   cxCheckBox,
+  dxSkinTheBezier,
 
   Data.DB,
 
@@ -141,6 +142,8 @@ uses
   QExport4Dialog,
 
   frxClass,
+  frxChart,
+  frxDesgn,
 
   ufrm_form_default,
 
@@ -170,9 +173,6 @@ type
     cxTabSheet1: TcxTabSheet;
     dxLayoutControl1: TdxLayoutControl;
     dxLayoutGroup3: TdxLayoutGroup;
-    dxLayoutGroup5: TdxLayoutGroup;
-    dbmem_description: TcxDBMemo;
-    dxLayoutItem11: TdxLayoutItem;
 
     mempro_cod: TStringField;
     memmaterial_mat_cod: TStringField;
@@ -207,8 +207,10 @@ type
     dblookupcmb_mat_cod: TcxDBLookupComboBox;
     dxLayoutItem6: TdxLayoutItem;
     cxGrid_1DBTableView1pro_status: TcxGridDBColumn;
-    cxGrid_1DBTableView1material_name: TcxGridDBColumn;
-    memmaterial_name: TStringField;
+    dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup;
+    dxLayoutGroup4: TdxLayoutGroup;
+    dbmem_description: TcxDBMemo;
+    dxLayoutItem9: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_saveExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -228,7 +230,8 @@ implementation
 {$R *.dfm}
 
 uses
-  ufrm_dm;
+  ufrm_dm,
+  ufrm_dm_ds;
 
 procedure Tfrm_exam.Action_saveExecute(Sender: TObject);
 var
@@ -261,7 +264,7 @@ begin
             strproc_update.ParamByName('p_pro_tag').AsString                    := dbedt_tag.Text;
             strproc_update.ParamByName('p_pro_description').AsMemo              := ''; //dbmem_description.Text;
             strproc_update.ParamByName('p_pro_gender').AsString                 := dbcmb_gender.Text;
-            strproc_update.ParamByName('p_pro_annotation').AsMemo               := dbmem_description.Text;
+            strproc_update.ParamByName('p_pro_annotation').AsMemo               := dbmem_description.Lines.Text;
             strproc_update.ParamByName('p_pro_barcod').AsString                 := ''; //dbedt_barcod.Text;
             strproc_update.ParamByName('p_pro_barcod_manufacturer').AsString    := ''; //dbedt_barcod_manufacturer.Text;
             strproc_update.ParamByName('p_pro_height').AsBCD                    := 0; //dbedt_height.Value;
@@ -306,7 +309,7 @@ begin
           strproc_create.ParamByName('p_pro_tag').AsString                    := dbedt_tag.Text;
           strproc_create.ParamByName('p_pro_description').AsMemo              := ''; //dbmem_description.Text;
           strproc_create.ParamByName('p_pro_gender').AsString                 := dbcmb_gender.Text;
-          strproc_create.ParamByName('p_pro_annotation').AsMemo               := dbmem_description.Text;
+          strproc_create.ParamByName('p_pro_annotation').AsString               := dbmem_description.Lines.Text;
           strproc_create.ParamByName('p_pro_barcod').AsString                 := ''; //dbedt_barcod.Text;
           strproc_create.ParamByName('p_pro_barcod_manufacturer').AsString    := ''; //dbedt_barcod_manufacturer.Text;
           strproc_create.ParamByName('p_pro_height').AsBCD                    := 0; //dbedt_height.Value;
@@ -353,7 +356,7 @@ procedure Tfrm_exam.FormCreate(Sender: TObject);
 begin
   inherited;
   Trest_product.GetProduct(mem);
-//  Trest_material.GetMaterial(memMaterial)
+  Trest_material.GetMaterial(frm_dm_ds.memMaterial)
 end;
 
 end.

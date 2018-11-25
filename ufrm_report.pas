@@ -101,6 +101,7 @@ uses
 
   frxClass,
   frxDesgn,
+  frxChart,
 
   FireDAC.Stan.Param;
 
@@ -150,6 +151,7 @@ type
     dxBarManager_1Bar6: TdxBar;
     dxBarButton3: TdxBarButton;
     Action_query: TAction;
+    frxChartObject_1: TfrxChartObject;
     procedure Action_closeExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_insertExecute(Sender: TObject);
@@ -176,8 +178,7 @@ implementation
 {$R *.dfm}
 
 uses
-  ufrm_dm,
-  ufrm_dm_report;
+  ufrm_dm;
 
 procedure Tfrm_report.Action_closeExecute(Sender: TObject);
 begin

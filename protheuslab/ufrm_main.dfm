@@ -395,10 +395,18 @@ inherited frm_main: Tfrm_main
         item
           Visible = True
           ItemName = 'dxBarButton2'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton3'
         end>
     end
     object dxBarButton2: TdxBarButton
       Action = Action_material
+      Category = 0
+    end
+    object dxBarButton3: TdxBarButton
+      Action = Action_exam
       Category = 0
     end
   end

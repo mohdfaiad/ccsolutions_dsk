@@ -36,7 +36,8 @@ uses
   cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxMemo, cxCurrencyEdit,
   cxShellComboBox, QImport3Wizard, QExport4Dialog, cxBarEditItem, ACBrSocket,
   ACBrCEP, frxClass, frxDBSet, ACBrExtenso, Vcl.Grids, Vcl.DBGrids,
-  cxDataControllerConditionalFormattingRulesManagerDialog, cxImageList;
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxImageList,
+  dxSkinTheBezier, frxChart, frxDesgn;
 
 type
   Tfrm_receipt = class(Tfrm_form_default)

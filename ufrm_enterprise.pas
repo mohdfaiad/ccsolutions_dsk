@@ -124,6 +124,7 @@ uses
   cxDataControllerConditionalFormattingRulesManagerDialog,
   cxImageList,
   cxCheckBox,
+  dxSkinTheBezier,
 
   Data.DB,
 
@@ -149,6 +150,8 @@ uses
 
   frxClass,
   frxDBSet,
+  frxChart,
+  frxDesgn,
 
   ufrm_dm,
   ufrm_form_default,

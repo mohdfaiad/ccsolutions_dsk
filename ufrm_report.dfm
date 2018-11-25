@@ -853,7 +853,7 @@ object frm_report: Tfrm_report
     Top = 72
   end
   object frxreport: TfrxReport
-    Version = '6.1.9'
+    Version = '6.2.6'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -919,5 +919,9 @@ object frm_report: Tfrm_report
         end
       end
     end
+  end
+  object frxChartObject_1: TfrxChartObject
+    Left = 712
+    Top = 72
   end
 end

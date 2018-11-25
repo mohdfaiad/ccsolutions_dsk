@@ -160,6 +160,7 @@ type
     dxBarLargeButton14: TdxBarLargeButton;
     dxBarSubItem1: TdxBarSubItem;
     dxBarButton2: TdxBarButton;
+    dxBarButton3: TdxBarButton;
     procedure FormCreate(Sender: TObject);
     procedure Action_contractExecute(Sender: TObject);
     procedure Action_contract_userExecute(Sender: TObject);

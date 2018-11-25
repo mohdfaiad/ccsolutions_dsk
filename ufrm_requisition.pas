@@ -25,7 +25,8 @@ uses
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC, cxLookupEdit,
   cxDBLookupEdit, cxDBLookupComboBox, Vcl.Grids, Vcl.DBGrids, frxDBSet, cxCheckBox, dxLayoutControlAdapters,
   Vcl.StdCtrls, Vcl.Buttons,
-  cxDataControllerConditionalFormattingRulesManagerDialog, cxImageList;
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxImageList,
+  dxSkinTheBezier, frxChart, frxDesgn;
 
 type
   Tfrm_requisition = class(Tfrm_form_default)

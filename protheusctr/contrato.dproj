@@ -137,11 +137,6 @@
             <Form>frm_form_default</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\ufrm_dm_report.pas">
-            <Form>frm_dm_report</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="..\ufrm_report.pas">
             <Form>frm_report</Form>
             <FormType>dfm</FormType>

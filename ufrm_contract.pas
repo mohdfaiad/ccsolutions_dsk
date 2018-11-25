@@ -115,6 +115,7 @@ uses
   cxDBLookupComboBox,
   cxDataControllerConditionalFormattingRulesManagerDialog,
   cxImageList,
+  dxSkinTheBezier,
 
   Data.DB,
 
@@ -143,7 +144,7 @@ uses
   ufrm_form_default,
 
   u_class_connection,
-  u_class_rest_contract, dxSkinTheBezier;
+  u_class_rest_contract, frxChart, frxDesgn;
 
 type
   Tfrm_contract = class(Tfrm_form_default)

@@ -136,11 +136,6 @@
             <Form>frm_supplier</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\ufrm_dm_report.pas">
-            <Form>frm_dm_report</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="..\ufrm_report.pas">
             <Form>frm_report</Form>
             <FormType>dfm</FormType>
@@ -241,11 +236,6 @@
         <DCCReference Include="..\u_class_rest_client_did.pas"/>
         <DCCReference Include="..\u_class_rest_provider.pas"/>
         <DCCReference Include="..\u_class_rest_did.pas"/>
-        <DCCReference Include="..\ufrm_dm_shared.pas">
-            <Form>frm_dm_shared</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -267,6 +257,7 @@
                     <Source Name="MainSource">laboratorio.dpr</Source>
                 </Source>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\19.0\Bpl\dclcxPivotGridOLAPRS25.bpl">ExpressPivotGrid OLAP by Developer Express Inc.</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k250.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp250.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>

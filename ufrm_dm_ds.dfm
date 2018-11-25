@@ -9,6 +9,273 @@ object frm_dm_ds: Tfrm_dm_ds
   end
   object memClient: TFDMemTable
     Active = True
+    FieldDefs = <
+      item
+        Name = 'cli_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'table_price_tbp_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'cli_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'cli_type'
+        DataType = ftString
+        Size = 2
+      end
+      item
+        Name = 'cli_first_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'cli_last_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'cli_email'
+        DataType = ftString
+        Size = 65
+      end
+      item
+        Name = 'cli_cpfcnpj'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_rgie'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_im'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_suframa'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_add_bus_zipcode'
+        DataType = ftString
+        Size = 9
+      end
+      item
+        Name = 'cli_add_bus_address'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'cli_add_bus_number'
+        DataType = ftString
+        Size = 5
+      end
+      item
+        Name = 'cli_add_bus_street'
+        DataType = ftString
+        Size = 45
+      end
+      item
+        Name = 'cli_add_bus_complement'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'cli_add_bus_city'
+        DataType = ftString
+        Size = 35
+      end
+      item
+        Name = 'cli_add_bus_state'
+        DataType = ftString
+        Size = 3
+      end
+      item
+        Name = 'cli_add_bus_country'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_add_bil_zipcode'
+        DataType = ftString
+        Size = 9
+      end
+      item
+        Name = 'cli_add_bil_address'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'cli_add_bil_number'
+        DataType = ftString
+        Size = 5
+      end
+      item
+        Name = 'cli_add_bil_street'
+        DataType = ftString
+        Size = 45
+      end
+      item
+        Name = 'cli_add_bil_complement'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'cli_add_bil_city'
+        DataType = ftString
+        Size = 35
+      end
+      item
+        Name = 'cli_add_bil_state'
+        DataType = ftString
+        Size = 3
+      end
+      item
+        Name = 'cli_add_bil_country'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_add_del_zipcode'
+        DataType = ftString
+        Size = 9
+      end
+      item
+        Name = 'cli_add_del_address'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'cli_add_del_number'
+        DataType = ftString
+        Size = 5
+      end
+      item
+        Name = 'cli_add_del_street'
+        DataType = ftString
+        Size = 45
+      end
+      item
+        Name = 'cli_add_del_complement'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'cli_add_del_city'
+        DataType = ftString
+        Size = 35
+      end
+      item
+        Name = 'cli_add_del_state'
+        DataType = ftString
+        Size = 3
+      end
+      item
+        Name = 'cli_add_del_country'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_phone1'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'cli_phone2'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'cli_phone3'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'cli_phone4'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'cli_contact'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_day_maturity'
+        DataType = ftInteger
+      end
+      item
+        Name = 'cli_dt_birthopen'
+        DataType = ftDate
+      end
+      item
+        Name = 'cli_weight'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'cli_height'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'cli_blood_type'
+        DataType = ftString
+        Size = 5
+      end
+      item
+        Name = 'cli_rh_factor'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'cli_du_factor'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'cli_cns'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_gender'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'cli_skin_color'
+        DataType = ftString
+        Size = 30
+      end
+      item
+        Name = 'cli_status'
+        DataType = ftShortint
+      end
+      item
+        Name = 'cli_image1'
+        DataType = ftBlob
+      end
+      item
+        Name = 'cli_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'cli_dt_registration'
+        DataType = ftDateTime
+      end>
+    IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -16,6 +283,7 @@ object frm_dm_ds: Tfrm_dm_ds
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
     Left = 48
     Top = 16
     object memClientcli_cod: TStringField
@@ -404,6 +672,146 @@ object frm_dm_ds: Tfrm_dm_ds
   end
   object memProduct: TFDMemTable
     Active = True
+    FieldDefs = <
+      item
+        Name = 'pro_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'material_mat_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'supplier_sup_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'product_class_prc_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'product_class_sub_prs_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'manufacturer_man_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'brand_bra_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'ncm_ncm_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'product_unit_pru_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'pro_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'pro_type'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'pro_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'pro_initials'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'pro_tag'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'pro_description'
+        DataType = ftMemo
+      end
+      item
+        Name = 'pro_gender'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'pro_annotation'
+        DataType = ftMemo
+      end
+      item
+        Name = 'pro_barcod'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'pro_barcod_manufacturer'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'pro_height'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'pro_width'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'pro_length'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'pro_weight'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'pro_liter'
+        DataType = ftBCD
+        Precision = 12
+        Size = 4
+      end
+      item
+        Name = 'pro_delivery_term'
+        DataType = ftInteger
+      end
+      item
+        Name = 'pro_status'
+        DataType = ftShortint
+      end
+      item
+        Name = 'pro_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'pro_dt_registration'
+        DataType = ftDateTime
+      end>
+    IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -411,6 +819,7 @@ object frm_dm_ds: Tfrm_dm_ds
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
     Left = 48
     Top = 112
     object memProductpro_cod: TStringField
@@ -614,6 +1023,138 @@ object frm_dm_ds: Tfrm_dm_ds
   end
   object memReseller: TFDMemTable
     Active = True
+    FieldDefs = <
+      item
+        Name = 'res_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'res_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'res_type'
+        DataType = ftString
+        Size = 2
+      end
+      item
+        Name = 'res_first_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'res_last_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'res_email'
+        DataType = ftString
+        Size = 65
+      end
+      item
+        Name = 'res_cpfcnpj'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'res_rgie'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'res_im'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'res_suframa'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'res_add_bus_zipcode'
+        DataType = ftString
+        Size = 9
+      end
+      item
+        Name = 'res_add_bus_address'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'res_add_bus_number'
+        DataType = ftString
+        Size = 5
+      end
+      item
+        Name = 'res_add_bus_street'
+        DataType = ftString
+        Size = 45
+      end
+      item
+        Name = 'res_add_bus_complement'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'res_add_bus_city'
+        DataType = ftString
+        Size = 35
+      end
+      item
+        Name = 'res_add_bus_state'
+        DataType = ftString
+        Size = 3
+      end
+      item
+        Name = 'res_add_bus_country'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'res_phone1'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'res_phone2'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'res_phone3'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'res_phone4'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'res_contact'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'res_dt_birthopen'
+        DataType = ftDate
+      end
+      item
+        Name = 'res_status'
+        DataType = ftShortint
+      end
+      item
+        Name = 'res_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'res_dt_registration'
+        DataType = ftDateTime
+      end>
+    IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -621,6 +1162,7 @@ object frm_dm_ds: Tfrm_dm_ds
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
     Left = 48
     Top = 64
     object memResellerres_cod: TStringField
@@ -811,6 +1353,7 @@ object frm_dm_ds: Tfrm_dm_ds
     end
   end
   object memProposalContract: TFDMemTable
+    Active = True
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -855,6 +1398,34 @@ object frm_dm_ds: Tfrm_dm_ds
   end
   object memMaterial: TFDMemTable
     Active = True
+    FieldDefs = <
+      item
+        Name = 'mat_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'mat_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'mat_name'
+        DataType = ftString
+        Size = 35
+      end
+      item
+        Name = 'mat_status'
+        DataType = ftShortint
+      end
+      item
+        Name = 'mat_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'mat_dt_registration'
+        DataType = ftDateTime
+      end>
+    IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -862,6 +1433,7 @@ object frm_dm_ds: Tfrm_dm_ds
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
     Left = 48
     Top = 208
     object memMaterialmat_cod: TStringField
@@ -910,6 +1482,30 @@ object frm_dm_ds: Tfrm_dm_ds
   end
   object memProvider: TFDMemTable
     Active = True
+    FieldDefs = <
+      item
+        Name = 'prv_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'prv_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'prv_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'prv_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'prv_dt_registration'
+        DataType = ftDateTime
+      end>
+    IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -917,6 +1513,7 @@ object frm_dm_ds: Tfrm_dm_ds
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
     Left = 48
     Top = 256
     object memProviderprv_cod: TStringField
@@ -971,6 +1568,11 @@ object frm_dm_ds: Tfrm_dm_ds
         Size = 32
       end
       item
+        Name = 'provider_prv_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
         Name = 'did_id'
         DataType = ftLongWord
       end
@@ -986,11 +1588,6 @@ object frm_dm_ds: Tfrm_dm_ds
       item
         Name = 'did_dt_registration'
         DataType = ftDateTime
-      end
-      item
-        Name = 'provider_prv_cod'
-        DataType = ftString
-        Size = 32
       end>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
@@ -1044,6 +1641,7 @@ object frm_dm_ds: Tfrm_dm_ds
     end
   end
   object memTicketPriority: TFDMemTable
+    Active = True
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -1098,6 +1696,7 @@ object frm_dm_ds: Tfrm_dm_ds
     Top = 352
   end
   object memTicketType: TFDMemTable
+    Active = True
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -1153,6 +1752,34 @@ object frm_dm_ds: Tfrm_dm_ds
   end
   object memTicketCategory: TFDMemTable
     Active = True
+    FieldDefs = <
+      item
+        Name = 'tkc_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'tkc_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'tkc_name'
+        DataType = ftString
+        Size = 35
+      end
+      item
+        Name = 'tkc_status'
+        DataType = ftShortint
+      end
+      item
+        Name = 'tkc_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'tkc_dt_registration'
+        DataType = ftDateTime
+      end>
+    IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -1160,6 +1787,7 @@ object frm_dm_ds: Tfrm_dm_ds
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
     Left = 48
     Top = 448
     object memTicketCategorytkc_cod: TStringField
@@ -1207,6 +1835,7 @@ object frm_dm_ds: Tfrm_dm_ds
     Top = 448
   end
   object memTicketCategorySub: TFDMemTable
+    Active = True
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -1268,6 +1897,7 @@ object frm_dm_ds: Tfrm_dm_ds
     Top = 496
   end
   object memContractUser: TFDMemTable
+    Active = True
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -1345,10 +1975,11 @@ object frm_dm_ds: Tfrm_dm_ds
   end
   object dsContractUser: TDataSource
     DataSet = memContractUser
-    Left = 392
+    Left = 400
     Top = 16
   end
   object memEnterprise: TFDMemTable
+    Active = True
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
@@ -1560,7 +2191,309 @@ object frm_dm_ds: Tfrm_dm_ds
   end
   object dsEnterprise: TDataSource
     DataSet = memEnterprise
-    Left = 392
+    Left = 400
     Top = 64
+  end
+  object memClientContract: TFDMemTable
+    Active = True
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 280
+    Top = 112
+    object memClientContractcli_ctr_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cli_ctr_cod'
+      Origin = 'cli_ctr_cod'
+      Size = 32
+    end
+    object memClientContractclient_cli_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Cliente'
+      FieldName = 'client_cli_cod'
+      Origin = 'client_cli_cod'
+      Size = 32
+    end
+    object memClientContractreseller_res_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Revendedor'
+      FieldName = 'reseller_res_cod'
+      Origin = 'reseller_res_cod'
+      Size = 32
+    end
+    object memClientContractrequisition_req_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Proposta'
+      FieldName = 'requisition_req_cod'
+      Origin = 'requisition_req_cod'
+      Size = 32
+    end
+    object memClientContractcli_ctr_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'cli_ctr_id'
+      Origin = 'cli_ctr_id'
+    end
+    object memClientContractcli_ctr_value_reseller: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Vl. Revenda'
+      FieldName = 'cli_ctr_value_reseller'
+      Origin = 'cli_ctr_value_reseller'
+      Precision = 12
+    end
+    object memClientContractcli_ctr_date_signature: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'cli_ctr_date_signature'
+      Origin = 'cli_ctr_date_signature'
+    end
+    object memClientContractcli_ctr_start_service: TDateField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Inic.'
+      FieldName = 'cli_ctr_start_service'
+      Origin = 'cli_ctr_start_service'
+    end
+    object memClientContractcli_ctr_status: TShortintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'cli_ctr_status'
+      Origin = 'cli_ctr_status'
+    end
+    object memClientContractcli_ctr_annotation: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Anota'#231#245'es'
+      FieldName = 'cli_ctr_annotation'
+      Origin = 'cli_ctr_annotation'
+      Size = 255
+    end
+    object memClientContractcli_ctr_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'cli_ctr_dt_registration'
+      Origin = 'cli_ctr_dt_registration'
+    end
+    object memClientContractreseller_name: TStringField
+      DisplayLabel = 'Revenda'
+      FieldKind = fkLookup
+      FieldName = 'reseller_name'
+      LookupDataSet = memReseller
+      LookupKeyFields = 'res_cod'
+      LookupResultField = 'res_first_name'
+      KeyFields = 'reseller_res_cod'
+      Size = 85
+      Lookup = True
+    end
+    object memClientContractclient_name: TStringField
+      DisplayLabel = 'Cliente'
+      FieldKind = fkLookup
+      FieldName = 'client_name'
+      LookupDataSet = memClient
+      LookupKeyFields = 'cli_cod'
+      LookupResultField = 'cli_first_name'
+      KeyFields = 'client_cli_cod'
+      Size = 85
+      Lookup = True
+    end
+  end
+  object dsClientContract: TDataSource
+    DataSet = memClientContract
+    Left = 400
+    Top = 112
+  end
+  object memClientContractIten: TFDMemTable
+    Active = True
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 280
+    Top = 160
+    object memClientContractItencci_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cci_cod'
+      Origin = 'cci_cod'
+      Size = 32
+    end
+    object memClientContractItenclient_contract_cli_ctr_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Contrato'
+      FieldName = 'client_contract_cli_ctr_cod'
+      Origin = 'client_contract_cli_ctr_cod'
+      Size = 32
+    end
+    object memClientContractItenproduct_pro_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Produto'
+      FieldName = 'product_pro_cod'
+      Origin = 'product_pro_cod'
+      Size = 32
+    end
+    object memClientContractItenreseller_res_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Revenda'
+      FieldName = 'reseller_res_cod'
+      Origin = 'reseller_res_cod'
+      Size = 32
+    end
+    object memClientContractItencci_value: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Valor'
+      FieldName = 'cci_value'
+      Origin = 'cci_value'
+      Precision = 12
+    end
+    object memClientContractItencci_quant: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Quant.'
+      FieldName = 'cci_quant'
+      Origin = 'cci_quant'
+      Precision = 12
+    end
+    object memClientContractItencci_value_discount: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Vl. Desc.'
+      FieldName = 'cci_value_discount'
+      Origin = 'cci_value_discount'
+      Precision = 12
+    end
+    object memClientContractItencci_value_total: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Vl. Total'
+      FieldName = 'cci_value_total'
+      Origin = 'cci_value_total'
+      Precision = 12
+    end
+    object memClientContractItencci_value_reseller: TBCDField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Vl. Revenda'
+      FieldName = 'cci_value_reseller'
+      Origin = 'cci_value_reseller'
+      Precision = 12
+    end
+    object memClientContractItencci_annotation: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Anota'#231#245'es'
+      FieldName = 'cci_annotation'
+      Origin = 'cci_annotation'
+      Size = 255
+    end
+    object memClientContractItencci_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'cci_dt_registration'
+      Origin = 'cci_dt_registration'
+    end
+    object memClientContractItenproduct_name: TStringField
+      DisplayLabel = 'Produto'
+      FieldKind = fkLookup
+      FieldName = 'product_name'
+      LookupDataSet = memProduct
+      LookupKeyFields = 'pro_cod'
+      LookupResultField = 'pro_name'
+      KeyFields = 'product_pro_cod'
+      Size = 85
+      Lookup = True
+    end
+  end
+  object dsClientContractIten: TDataSource
+    DataSet = memClientContractIten
+    Left = 400
+    Top = 160
+  end
+  object memContract: TFDMemTable
+    Active = True
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 280
+    Top = 208
+    object memContractctr_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'ctr_cod'
+      Origin = 'ctr_cod'
+      Size = 32
+    end
+    object memContractctr_id: TLargeintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'ctr_id'
+      Origin = 'ctr_id'
+    end
+    object memContractctr_first_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'ctr_first_name'
+      Origin = 'ctr_first_name'
+      Size = 85
+    end
+    object memContractctr_last_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Sobrenome'
+      FieldName = 'ctr_last_name'
+      Origin = 'ctr_last_name'
+      Size = 85
+    end
+    object memContractctr_email: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'E-mail'
+      FieldName = 'ctr_email'
+      Origin = 'ctr_email'
+      Size = 65
+    end
+    object memContractctr_phone1: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Tel. 1'
+      FieldName = 'ctr_phone1'
+      Origin = 'ctr_phone1'
+      Size = 15
+    end
+    object memContractctr_dt_birth: TDateField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Nasc.'
+      FieldName = 'ctr_dt_birth'
+      Origin = 'ctr_dt_birth'
+    end
+    object memContractctr_user_license: TWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Licen'#231'a'
+      FieldName = 'ctr_user_license'
+      Origin = 'ctr_user_license'
+    end
+    object memContractctr_status: TShortintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'ctr_status'
+      Origin = 'ctr_status'
+    end
+    object memContractctr_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'ctr_deleted_at'
+      Origin = 'ctr_deleted_at'
+    end
+    object memContractctr_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'ctr_dt_registration'
+      Origin = 'ctr_dt_registration'
+    end
+  end
+  object dsContract: TDataSource
+    DataSet = memContract
+    Left = 400
+    Top = 208
   end
 end

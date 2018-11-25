@@ -5,10 +5,6 @@ inherited frm_exam: Tfrm_exam
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1pro_id: TcxGridDBColumn
@@ -18,10 +14,6 @@ inherited frm_exam: Tfrm_exam
           object cxGrid_1DBTableView1pro_type: TcxGridDBColumn
             DataBinding.FieldName = 'pro_type'
             Width = 50
-          end
-          object cxGrid_1DBTableView1material_name: TcxGridDBColumn
-            DataBinding.FieldName = 'material_name'
-            Width = 150
           end
           object cxGrid_1DBTableView1pro_name: TcxGridDBColumn
             DataBinding.FieldName = 'pro_name'
@@ -47,16 +39,8 @@ inherited frm_exam: Tfrm_exam
       end
     end
     inherited cxTabSheet_2: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 602
       inherited cxPageControl_2: TcxPageControl
         inherited cxTabSheet_3: TcxTabSheet
-          ExplicitLeft = 2
-          ExplicitTop = 28
-          ExplicitWidth = 986
-          ExplicitHeight = 562
           inherited dxLayoutControl_1: TdxLayoutControl
             inherited dbedt_id: TcxDBTextEdit
               DataBinding.DataField = 'pro_id'
@@ -66,7 +50,7 @@ inherited frm_exam: Tfrm_exam
             end
             object dbcmb_type: TcxDBComboBox [2]
               Left = 59
-              Top = 103
+              Top = 101
               DataBinding.DataField = 'pro_type'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -80,7 +64,7 @@ inherited frm_exam: Tfrm_exam
             end
             object dbcmb_gender: TcxDBComboBox [3]
               Left = 232
-              Top = 103
+              Top = 101
               DataBinding.DataField = 'pro_gender'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -91,41 +75,41 @@ inherited frm_exam: Tfrm_exam
                 'A')
               Style.HotTrack = False
               TabOrder = 4
-              Width = 121
+              Width = 130
             end
             object dbedt_name: TcxDBTextEdit [4]
               Left = 59
-              Top = 130
+              Top = 128
               DataBinding.DataField = 'pro_name'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 6
-              Width = 464
+              Width = 473
             end
             object dbedt_initials: TcxDBTextEdit [5]
-              Left = 59
-              Top = 157
+              Left = 565
+              Top = 128
               DataBinding.DataField = 'pro_initials'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 7
-              Width = 464
+              Width = 404
             end
             object dbedt_tag: TcxDBTextEdit [6]
               Left = 59
-              Top = 184
+              Top = 155
               DataBinding.DataField = 'pro_tag'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Style.HotTrack = False
               TabOrder = 8
-              Width = 464
+              Width = 910
             end
             object dbchk_status: TcxDBCheckBox [7]
               Left = 368
-              Top = 38
+              Top = 37
               Caption = 'Status'
               DataBinding.DataField = 'pro_status'
               DataBinding.DataSource = ds
@@ -138,8 +122,8 @@ inherited frm_exam: Tfrm_exam
               Transparent = True
             end
             object dblookupcmb_mat_cod: TcxDBLookupComboBox [8]
-              Left = 402
-              Top = 103
+              Left = 411
+              Top = 101
               DataBinding.DataField = 'material_mat_cod'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
@@ -148,7 +132,7 @@ inherited frm_exam: Tfrm_exam
               Properties.KeyFieldNames = 'mat_cod'
               Properties.ListColumns = <
                 item
-                  Width = 150
+                  Width = 250
                   FieldName = 'mat_name'
                 end
                 item
@@ -156,11 +140,15 @@ inherited frm_exam: Tfrm_exam
                   FieldName = 'mat_id'
                 end>
               Properties.ListOptions.SyncMode = True
+              Properties.ListSource = frm_dm_ds.dsMaterial
               Style.HotTrack = False
               TabOrder = 5
               Width = 121
             end
             inherited dxLayoutControl_1Group_Root: TdxLayoutGroup
+              ItemIndex = 1
+            end
+            inherited dxLayoutGroup2: TdxLayoutGroup
               ItemIndex = 1
             end
             object dxLayoutItem8: TdxLayoutItem
@@ -179,7 +167,7 @@ inherited frm_exam: Tfrm_exam
               CaptionOptions.Text = 'Sexo'
               Control = dbcmb_gender
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 121
+              ControlOptions.OriginalWidth = 130
               ControlOptions.ShowBorder = False
               Index = 1
             end
@@ -190,26 +178,25 @@ inherited frm_exam: Tfrm_exam
               AutoCreated = True
             end
             object dxLayoutItem3: TdxLayoutItem
-              Parent = dxLayoutGroup2
+              Parent = dxLayoutAutoCreatedGroup2
               AlignHorz = ahLeft
               AlignVert = avTop
               CaptionOptions.Text = 'Nome'
               Control = dbedt_name
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 464
+              ControlOptions.OriginalWidth = 473
               ControlOptions.ShowBorder = False
-              Index = 1
+              Index = 0
             end
             object dxLayoutItem10: TdxLayoutItem
-              Parent = dxLayoutGroup2
-              AlignHorz = ahLeft
-              AlignVert = avTop
+              Parent = dxLayoutAutoCreatedGroup2
+              AlignVert = avClient
               CaptionOptions.Text = 'Sigla'
               Control = dbedt_initials
               ControlOptions.OriginalHeight = 21
-              ControlOptions.OriginalWidth = 464
+              ControlOptions.OriginalWidth = 404
               ControlOptions.ShowBorder = False
-              Index = 2
+              Index = 1
             end
             object dxLayoutItem5: TdxLayoutItem
               Parent = dxLayoutGroup2
@@ -218,7 +205,7 @@ inherited frm_exam: Tfrm_exam
               ControlOptions.OriginalHeight = 21
               ControlOptions.OriginalWidth = 277
               ControlOptions.ShowBorder = False
-              Index = 3
+              Index = 2
             end
             object dxLayoutItem4: TdxLayoutItem
               Parent = dxLayoutGroup1
@@ -240,6 +227,13 @@ inherited frm_exam: Tfrm_exam
               ControlOptions.ShowBorder = False
               Index = 2
             end
+            object dxLayoutAutoCreatedGroup2: TdxLayoutAutoCreatedGroup
+              Parent = dxLayoutGroup2
+              AlignVert = avTop
+              LayoutDirection = ldHorizontal
+              Index = 1
+              AutoCreated = True
+            end
           end
         end
         object cxTabSheet1: TcxTabSheet
@@ -255,14 +249,14 @@ inherited frm_exam: Tfrm_exam
             OnDblClick = dxLayoutControl_1DblClick
             object dbmem_description: TcxDBMemo
               Left = 17
-              Top = 38
+              Top = 20
               DataBinding.DataField = 'pro_annotation'
               DataBinding.DataSource = ds
               Properties.CharCase = ecUpperCase
               Properties.ScrollBars = ssVertical
               Style.HotTrack = False
               TabOrder = 0
-              Height = 89
+              Height = 522
               Width = 952
             end
             object dxLayoutGroup3: TdxLayoutGroup
@@ -273,19 +267,21 @@ inherited frm_exam: Tfrm_exam
               ShowBorder = False
               Index = -1
             end
-            object dxLayoutGroup5: TdxLayoutGroup
+            object dxLayoutGroup4: TdxLayoutGroup
               Parent = dxLayoutGroup3
-              CaptionOptions.Text = 'Informa'#231#245'es do Exame'
-              LayoutLookAndFeel = dxLayoutSkinLookAndFeel1
-              SizeOptions.AssignedValues = [sovSizableHorz]
+              AlignHorz = ahLeft
+              SizeOptions.AssignedValues = [sovSizableHorz, sovSizableVert]
               SizeOptions.SizableHorz = True
+              SizeOptions.SizableVert = True
+              SizeOptions.Height = 542
+              SizeOptions.Width = 966
               ButtonOptions.Buttons = <>
               Index = 0
             end
-            object dxLayoutItem11: TdxLayoutItem
-              Parent = dxLayoutGroup5
+            object dxLayoutItem9: TdxLayoutItem
+              Parent = dxLayoutGroup4
               Control = dbmem_description
-              ControlOptions.OriginalHeight = 89
+              ControlOptions.OriginalHeight = 522
               ControlOptions.OriginalWidth = 185
               ControlOptions.ShowBorder = False
               Index = 0
@@ -469,6 +465,7 @@ inherited frm_exam: Tfrm_exam
         Name = 'pro_dt_registration'
         DataType = ftDateTime
       end>
+    IndexFieldNames = 'pro_id'
     StoreDefs = True
     object mempro_cod: TStringField
       AutoGenerateValue = arDefault
@@ -662,16 +659,6 @@ inherited frm_exam: Tfrm_exam
       DisplayLabel = 'Dt. Reg.'
       FieldName = 'pro_dt_registration'
       Origin = 'pro_dt_registration'
-    end
-    object memmaterial_name: TStringField
-      DisplayLabel = 'Material'
-      FieldKind = fkLookup
-      FieldName = 'material_name'
-      LookupKeyFields = 'mat_cod'
-      LookupResultField = 'mat_name'
-      KeyFields = 'material_mat_cod'
-      Size = 85
-      Lookup = True
     end
   end
   inherited cxGridPopupMenu_1: TcxGridPopupMenu [12]

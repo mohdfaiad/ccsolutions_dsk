@@ -10,7 +10,6 @@ uses
   ufrm_phonebook in '..\ufrm_phonebook.pas' {frm_phonebook},
   ufrm_receipt in '..\ufrm_receipt.pas' {frm_receipt},
   ufrm_supplier in '..\ufrm_supplier.pas' {frm_supplier},
-  ufrm_dm_report in '..\ufrm_dm_report.pas' {frm_dm_report: TDataModule},
   ufrm_report in '..\ufrm_report.pas' {frm_report},
   ufrm_exam in '..\ufrm_exam.pas' {frm_exam},
   ufrm_material in '..\ufrm_material.pas' {frm_material},
@@ -49,8 +48,7 @@ uses
   u_class_rest_table_price in '..\u_class_rest_table_price.pas',
   u_class_rest_client_did in '..\u_class_rest_client_did.pas',
   u_class_rest_provider in '..\u_class_rest_provider.pas',
-  u_class_rest_did in '..\u_class_rest_did.pas',
-  ufrm_dm_shared in '..\ufrm_dm_shared.pas' {frm_dm_shared: TDataModule};
+  u_class_rest_did in '..\u_class_rest_did.pas';
 
 {$R *.res}
 
@@ -59,7 +57,7 @@ begin
   Modulo := 'LABORATORIO';
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfrm_dm, frm_dm);
+  Application.CreateForm(Tfrm_dm_ds, frm_dm_ds);
   Application.CreateForm(Tfrm_main, frm_main);
-  Application.CreateForm(Tfrm_dm_shared, frm_dm_shared);
   Application.Run;
 end.

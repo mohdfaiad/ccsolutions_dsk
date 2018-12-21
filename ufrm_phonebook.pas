@@ -137,7 +137,7 @@ uses
   u_class_connection,
   u_class_rest_phonebook,
 
-  ufrm_form_default;
+  ufrm_form_default, dxSkinTheBezier, frxChart, frxDesgn;
 
 type
   Tfrm_phonebook = class(Tfrm_form_default)

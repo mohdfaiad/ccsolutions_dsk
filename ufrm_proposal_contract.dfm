@@ -5,10 +5,6 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1req_id: TcxGridDBColumn
@@ -54,14 +50,10 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
           inherited dxLayoutControl_1: TdxLayoutControl
             TabOrder = 1
             inherited dbedt_id: TcxDBTextEdit
-              Top = 37
               DataBinding.DataField = 'req_id'
-              ExplicitTop = 37
             end
             inherited dbedt_dt_registration: TcxDBDateEdit
-              Top = 37
               DataBinding.DataField = 'req_dt_registration'
-              ExplicitTop = 37
             end
             object cxDBLookupComboBox1: TcxDBLookupComboBox [2]
               Left = 59
@@ -99,6 +91,10 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
         end
         object cxTabSheet1: TcxTabSheet
           Caption = 'Itens'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -265,7 +261,6 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
               Parent = dxLayoutControl1Group_Root
               CaptionOptions.Text = 'Dados'
               ButtonOptions.Buttons = <>
-              ItemIndex = 3
               LayoutDirection = ldHorizontal
               Index = 0
             end
@@ -365,28 +360,14 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
   end
   inherited ACBrEnterTab_1: TACBrEnterTab [6]
   end
-  inherited QExport4Dialog_1: TQExport4Dialog [7]
-    Formats.IntegerFormat = '#,###,##0'
-    Formats.FloatFormat = '#,###,##0.00'
-    Formats.DateFormat = 'dd/MM/yy'
-    Formats.TimeFormat = 'hh:mm'
-    Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
-    Formats.CurrencyFormat = 'R$#,###,##0.00'
+  inherited schadp: TFDSchemaAdapter [7]
   end
-  inherited QImport3Wizard_1: TQImport3Wizard [8]
-    Formats.ShortDateFormat = 'dd/MM/yy'
-    Formats.LongDateFormat = 'd MMMM yyyy'
-    Formats.ShortTimeFormat = 'hh:mm'
-    Formats.LongTimeFormat = 'hh:mm:ss'
-  end
-  inherited schadp: TFDSchemaAdapter [9]
-  end
-  inherited frxReport_1: TfrxReport [10]
+  inherited frxReport_1: TfrxReport [8]
     Datasets = <>
     Variables = <>
     Style = <>
   end
-  inherited mem: TFDMemTable [11]
+  inherited mem: TFDMemTable [9]
     Active = True
     FieldDefs = <
       item
@@ -456,12 +437,16 @@ inherited frm_proposal_contract: Tfrm_proposal_contract
       Lookup = True
     end
   end
-  inherited cxGridPopupMenu_1: TcxGridPopupMenu [12]
+  inherited cxGridPopupMenu_1: TcxGridPopupMenu [10]
   end
-  inherited PopupMenu_1: TPopupMenu [13]
+  inherited PopupMenu_1: TPopupMenu [11]
   end
-  inherited cxImageList_1: TcxImageList [14]
+  inherited frxDesigner_1: TfrxDesigner [12]
+  end
+  inherited cxImageList_1: TcxImageList [13]
     FormatVersion = 1
+  end
+  inherited frxChartObject_1: TfrxChartObject [14]
   end
   inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList [15]
     inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel

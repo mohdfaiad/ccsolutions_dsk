@@ -142,7 +142,7 @@ uses
   ufrm_form_default,
 
   u_class_connection,
-  u_class_rest_reseller;
+  u_class_rest_reseller, dxSkinTheBezier, frxChart, frxDesgn;
 
 type
   Tfrm_reseller = class(Tfrm_form_default)

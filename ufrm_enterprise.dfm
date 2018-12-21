@@ -436,6 +436,10 @@ inherited frm_enterprise: Tfrm_enterprise
         end
         object cxTabSheet_address: TcxTabSheet
           Caption = 'Endere'#231'os'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl_address: TdxLayoutControl
             Left = 0
             Top = 0
@@ -652,6 +656,10 @@ inherited frm_enterprise: Tfrm_enterprise
         end
         object tbsht_contact: TcxTabSheet
           Caption = 'Contatos'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
@@ -795,23 +803,9 @@ inherited frm_enterprise: Tfrm_enterprise
   end
   inherited ACBrEnterTab_1: TACBrEnterTab [6]
   end
-  inherited QExport4Dialog_1: TQExport4Dialog [7]
-    Formats.IntegerFormat = '#,###,##0'
-    Formats.FloatFormat = '#,###,##0.00'
-    Formats.DateFormat = 'dd/MM/yy'
-    Formats.TimeFormat = 'hh:mm'
-    Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
-    Formats.CurrencyFormat = 'R$#,###,##0.00'
+  inherited cxGridPopupMenu_1: TcxGridPopupMenu [7]
   end
-  inherited QImport3Wizard_1: TQImport3Wizard [8]
-    Formats.ShortDateFormat = 'dd/MM/yy'
-    Formats.LongDateFormat = 'd MMMM yyyy'
-    Formats.ShortTimeFormat = 'hh:mm'
-    Formats.LongTimeFormat = 'hh:mm:ss'
-  end
-  inherited cxGridPopupMenu_1: TcxGridPopupMenu [9]
-  end
-  inherited frxReport_1: TfrxReport [10]
+  inherited frxReport_1: TfrxReport [8]
     ReportOptions.CreateDate = 43193.605400104200000000
     ReportOptions.LastChange = 43290.579703252310000000
     Datasets = <
@@ -820,9 +814,9 @@ inherited frm_enterprise: Tfrm_enterprise
     Variables = <>
     Style = <>
   end
-  inherited PopupMenu_1: TPopupMenu [11]
+  inherited PopupMenu_1: TPopupMenu [9]
   end
-  inherited mem: TFDMemTable [12]
+  inherited mem: TFDMemTable [10]
     Active = True
     FieldDefs = <
       item
@@ -1166,10 +1160,14 @@ inherited frm_enterprise: Tfrm_enterprise
       Origin = 'ent_dt_registration'
     end
   end
-  inherited cxImageList_1: TcxImageList [13]
+  inherited cxImageList_1: TcxImageList [11]
     FormatVersion = 1
   end
-  inherited schadp: TFDSchemaAdapter [14]
+  inherited frxDesigner_1: TfrxDesigner [12]
+  end
+  inherited schadp: TFDSchemaAdapter [13]
+  end
+  inherited frxChartObject_1: TfrxChartObject [14]
   end
   inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList [15]
     inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel

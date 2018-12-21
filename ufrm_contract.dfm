@@ -218,25 +218,11 @@ inherited frm_contract: Tfrm_contract
   end
   inherited ACBrEnterTab_1: TACBrEnterTab [6]
   end
-  inherited QExport4Dialog_1: TQExport4Dialog [7]
-    Formats.IntegerFormat = '#,###,##0'
-    Formats.FloatFormat = '#,###,##0.00'
-    Formats.DateFormat = 'dd/MM/yy'
-    Formats.TimeFormat = 'hh:mm'
-    Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
-    Formats.CurrencyFormat = 'R$#,###,##0.00'
+  inherited schadp: TFDSchemaAdapter [7]
   end
-  inherited QImport3Wizard_1: TQImport3Wizard [8]
-    Formats.ShortDateFormat = 'dd/MM/yy'
-    Formats.LongDateFormat = 'd MMMM yyyy'
-    Formats.ShortTimeFormat = 'hh:mm'
-    Formats.LongTimeFormat = 'hh:mm:ss'
+  inherited cxGridPopupMenu_1: TcxGridPopupMenu [8]
   end
-  inherited schadp: TFDSchemaAdapter [9]
-  end
-  inherited cxGridPopupMenu_1: TcxGridPopupMenu [10]
-  end
-  inherited frxReport_1: TfrxReport [11]
+  inherited frxReport_1: TfrxReport [9]
     ReportOptions.CreateDate = 43193.605400104200000000
     ReportOptions.LastChange = 43286.747143391200000000
     Datasets = <
@@ -245,7 +231,7 @@ inherited frm_contract: Tfrm_contract
     Variables = <>
     Style = <>
   end
-  inherited mem: TFDMemTable [12]
+  inherited mem: TFDMemTable [10]
     Active = True
     FieldDefs = <
       item
@@ -372,7 +358,7 @@ inherited frm_contract: Tfrm_contract
       Origin = 'ctr_dt_registration'
     end
   end
-  inherited PopupMenu_1: TPopupMenu [13]
+  inherited PopupMenu_1: TPopupMenu [11]
     inherited Primeiro1: TMenuItem
       Enabled = False
     end
@@ -392,8 +378,12 @@ inherited frm_contract: Tfrm_contract
       Enabled = False
     end
   end
-  inherited cxImageList_1: TcxImageList [14]
+  inherited frxDesigner_1: TfrxDesigner [12]
+  end
+  inherited cxImageList_1: TcxImageList [13]
     FormatVersion = 1
+  end
+  inherited frxChartObject_1: TfrxChartObject [14]
   end
   inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList [15]
     inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel

@@ -20,6 +20,7 @@ uses
   Vcl.Dialogs,
   Vcl.Menus,
   Vcl.ExtCtrls,
+  Vcl.StdCtrls,
 
   cxGraphics,
   cxControls,
@@ -144,8 +145,9 @@ uses
 
   frxDesgn,
   frxClass,
+  frxChart,
 
-  ufrm_main_default, frxChart, Vcl.StdCtrls;
+  ufrm_main_default;
 
 type
   Tfrm_form_default = class(TForm)
@@ -217,7 +219,6 @@ type
     dbedt_dt_registration: TcxDBDateEdit;
     dxLayoutItem2: TdxLayoutItem;
     ACBrEnterTab_1: TACBrEnterTab;
-    QExport4Dialog_1: TQExport4Dialog;
     Action_export: TAction;
     dxBarButton_export: TdxBarButton;
     Action_print: TAction;
@@ -225,7 +226,6 @@ type
     Action_print_edit: TAction;
     dxBarButton_report_preview: TdxBarButton;
     dxBarManager_1Bar6: TdxBar;
-    QImport3Wizard_1: TQImport3Wizard;
     Action_import: TAction;
     dxBarButton_import: TdxBarButton;
     schadp: TFDSchemaAdapter;

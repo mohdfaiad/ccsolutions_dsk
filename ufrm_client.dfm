@@ -340,7 +340,7 @@ inherited frm_client: Tfrm_client
               Transparent = True
             end
             object dbimg: TcxDBImage [12]
-              Left = 626
+              Left = 848
               Top = 101
               DataBinding.DataField = 'cli_image1'
               DataBinding.DataSource = ds
@@ -1758,23 +1758,9 @@ inherited frm_client: Tfrm_client
   end
   inherited ACBrEnterTab_1: TACBrEnterTab [6]
   end
-  inherited QExport4Dialog_1: TQExport4Dialog [7]
-    Formats.IntegerFormat = '#,###,##0'
-    Formats.FloatFormat = '#,###,##0.00'
-    Formats.DateFormat = 'dd/MM/yy'
-    Formats.TimeFormat = 'hh:mm'
-    Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
-    Formats.CurrencyFormat = 'R$#,###,##0.00'
+  inherited schadp: TFDSchemaAdapter [7]
   end
-  inherited QImport3Wizard_1: TQImport3Wizard [8]
-    Formats.ShortDateFormat = 'dd/MM/yy'
-    Formats.LongDateFormat = 'd MMMM yyyy'
-    Formats.ShortTimeFormat = 'hh:mm'
-    Formats.LongTimeFormat = 'hh:mm:ss'
-  end
-  inherited schadp: TFDSchemaAdapter [9]
-  end
-  inherited frxReport_1: TfrxReport [10]
+  inherited frxReport_1: TfrxReport [8]
     ReportOptions.CreateDate = 43193.605400104200000000
     ReportOptions.LastChange = 43290.649473935170000000
     Datasets = <
@@ -1783,11 +1769,11 @@ inherited frm_client: Tfrm_client
     Variables = <>
     Style = <>
   end
-  inherited cxGridPopupMenu_1: TcxGridPopupMenu [11]
+  inherited cxGridPopupMenu_1: TcxGridPopupMenu [9]
   end
-  inherited PopupMenu_1: TPopupMenu [12]
+  inherited PopupMenu_1: TPopupMenu [10]
   end
-  inherited mem: TFDMemTable [13]
+  inherited mem: TFDMemTable [11]
     Active = True
     FieldDefs = <
       item
@@ -2437,8 +2423,12 @@ inherited frm_client: Tfrm_client
       Origin = 'cli_dt_registration'
     end
   end
-  inherited cxImageList_1: TcxImageList [14]
+  inherited frxDesigner_1: TfrxDesigner [12]
+  end
+  inherited cxImageList_1: TcxImageList [13]
     FormatVersion = 1
+  end
+  inherited frxChartObject_1: TfrxChartObject [14]
   end
   inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList [15]
     inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
@@ -2569,31 +2559,7 @@ inherited frm_client: Tfrm_client
     Top = 104
   end
   object memClientDID: TFDMemTable
-    Active = True
-    FieldDefs = <
-      item
-        Name = 'cld_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'client_cli_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'did_did_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'cld_deleted_at'
-        DataType = ftDateTime
-      end
-      item
-        Name = 'cld_dt_registration'
-        DataType = ftDateTime
-      end>
+    FieldDefs = <>
     IndexDefs = <>
     IndexFieldNames = 'client_cli_cod'
     MasterSource = ds

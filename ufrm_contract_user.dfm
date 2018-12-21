@@ -5,10 +5,6 @@ inherited frm_contract_user: Tfrm_contract_user
   TextHeight = 13
   inherited cxPageControl_1: TcxPageControl
     inherited cxTabSheet_1: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 28
-      ExplicitWidth = 1000
-      ExplicitHeight = 602
       inherited cxGrid_1: TcxGrid
         inherited cxGrid_1DBTableView1: TcxGridDBTableView
           object cxGrid_1DBTableView1ctr_usr_id: TcxGridDBColumn
@@ -219,6 +215,15 @@ inherited frm_contract_user: Tfrm_contract_user
   end
   inherited dxBarManager_1: TdxBarManager
     PixelsPerInch = 96
+    inherited dxBarManager_1Bar4: TdxBar
+      DockedLeft = 376
+    end
+    inherited dxBarManager_1Bar5: TdxBar
+      DockedLeft = 532
+    end
+    inherited dxBarManager_1Bar6: TdxBar
+      DockedLeft = 685
+    end
   end
   inherited ActionList_1: TActionList
     inherited Action_save: TAction
@@ -235,30 +240,16 @@ inherited frm_contract_user: Tfrm_contract_user
   end
   inherited ACBrEnterTab_1: TACBrEnterTab [6]
   end
-  inherited QExport4Dialog_1: TQExport4Dialog [7]
-    Formats.IntegerFormat = '#,###,##0'
-    Formats.FloatFormat = '#,###,##0.00'
-    Formats.DateFormat = 'dd/MM/yy'
-    Formats.TimeFormat = 'hh:mm'
-    Formats.DateTimeFormat = 'dd/MM/yy hh:mm:ss'
-    Formats.CurrencyFormat = 'R$#,###,##0.00'
+  inherited schadp: TFDSchemaAdapter [7]
   end
-  inherited QImport3Wizard_1: TQImport3Wizard [8]
-    Formats.ShortDateFormat = 'dd/MM/yy'
-    Formats.LongDateFormat = 'd MMMM yyyy'
-    Formats.ShortTimeFormat = 'hh:mm'
-    Formats.LongTimeFormat = 'hh:mm:ss'
-  end
-  inherited schadp: TFDSchemaAdapter [9]
-  end
-  inherited frxReport_1: TfrxReport [10]
+  inherited frxReport_1: TfrxReport [8]
     Datasets = <>
     Variables = <>
     Style = <>
   end
-  inherited cxGridPopupMenu_1: TcxGridPopupMenu [11]
+  inherited cxGridPopupMenu_1: TcxGridPopupMenu [9]
   end
-  inherited PopupMenu_1: TPopupMenu [12]
+  inherited PopupMenu_1: TPopupMenu [10]
     object N3: TMenuItem
       Caption = '-'
       Enabled = False
@@ -267,7 +258,123 @@ inherited frm_contract_user: Tfrm_contract_user
       Action = Action_alter_password
     end
   end
-  inherited cxImageList_1: TcxImageList [13]
+  inherited mem: TFDMemTable [11]
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'ctr_usr_cod'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'ctr_usr_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'ctr_usr_first_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'ctr_usr_last_name'
+        DataType = ftString
+        Size = 85
+      end
+      item
+        Name = 'ctr_usr_username'
+        DataType = ftString
+        Size = 65
+      end
+      item
+        Name = 'ctr_usr_email'
+        DataType = ftString
+        Size = 65
+      end
+      item
+        Name = 'ctr_usr_dt_birth'
+        DataType = ftDate
+      end
+      item
+        Name = 'ctr_usr_status'
+        DataType = ftShortint
+      end
+      item
+        Name = 'ctr_usr_deleted_at'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'ctr_usr_dt_registration'
+        DataType = ftDateTime
+      end>
+    IndexFieldNames = 'ctr_usr_id'
+    StoreDefs = True
+    object memctr_usr_cod: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'ctr_usr_cod'
+      Origin = 'ctr_usr_cod'
+      Size = 32
+    end
+    object memctr_usr_id: TLongWordField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ID'
+      FieldName = 'ctr_usr_id'
+      Origin = 'ctr_usr_id'
+    end
+    object memctr_usr_first_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome'
+      FieldName = 'ctr_usr_first_name'
+      Origin = 'ctr_usr_first_name'
+      Size = 85
+    end
+    object memctr_usr_last_name: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Sobrenome'
+      FieldName = 'ctr_usr_last_name'
+      Origin = 'ctr_usr_last_name'
+      Size = 85
+    end
+    object memctr_usr_username: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Usu'#225'rio'
+      FieldName = 'ctr_usr_username'
+      Origin = 'ctr_usr_username'
+      Size = 65
+    end
+    object memctr_usr_email: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'E-mail'
+      FieldName = 'ctr_usr_email'
+      Origin = 'ctr_usr_email'
+      Size = 65
+    end
+    object memctr_usr_dt_birth: TDateField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Nasc.'
+      FieldName = 'ctr_usr_dt_birth'
+      Origin = 'ctr_usr_dt_birth'
+    end
+    object memctr_usr_status: TShortintField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status'
+      FieldName = 'ctr_usr_status'
+      Origin = 'ctr_usr_status'
+    end
+    object memctr_usr_deleted_at: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Deletado em'
+      FieldName = 'ctr_usr_deleted_at'
+      Origin = 'ctr_usr_deleted_at'
+    end
+    object memctr_usr_dt_registration: TDateTimeField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Dt. Reg.'
+      FieldName = 'ctr_usr_dt_registration'
+      Origin = 'ctr_usr_dt_registration'
+    end
+  end
+  inherited cxImageList_1: TcxImageList [12]
     FormatVersion = 1
     ImageInfo = <
       item
@@ -901,125 +1008,11 @@ inherited frm_contract_user: Tfrm_contract_user
           0001000000000000000000000000000000000000000000000000}
       end>
   end
+  inherited frxDesigner_1: TfrxDesigner [13]
+  end
   inherited dxLayoutLookAndFeelList_1: TdxLayoutLookAndFeelList [14]
     inherited dxLayoutSkinLookAndFeel1: TdxLayoutSkinLookAndFeel
       PixelsPerInch = 96
-    end
-  end
-  inherited mem: TFDMemTable
-    Active = True
-    FieldDefs = <
-      item
-        Name = 'ctr_usr_cod'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'ctr_usr_id'
-        DataType = ftLongWord
-      end
-      item
-        Name = 'ctr_usr_first_name'
-        DataType = ftString
-        Size = 85
-      end
-      item
-        Name = 'ctr_usr_last_name'
-        DataType = ftString
-        Size = 85
-      end
-      item
-        Name = 'ctr_usr_username'
-        DataType = ftString
-        Size = 65
-      end
-      item
-        Name = 'ctr_usr_email'
-        DataType = ftString
-        Size = 65
-      end
-      item
-        Name = 'ctr_usr_dt_birth'
-        DataType = ftDate
-      end
-      item
-        Name = 'ctr_usr_status'
-        DataType = ftShortint
-      end
-      item
-        Name = 'ctr_usr_deleted_at'
-        DataType = ftDateTime
-      end
-      item
-        Name = 'ctr_usr_dt_registration'
-        DataType = ftDateTime
-      end>
-    IndexFieldNames = 'ctr_usr_id'
-    StoreDefs = True
-    object memctr_usr_cod: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'C'#243'd.'
-      FieldName = 'ctr_usr_cod'
-      Origin = 'ctr_usr_cod'
-      Size = 32
-    end
-    object memctr_usr_id: TLongWordField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'ID'
-      FieldName = 'ctr_usr_id'
-      Origin = 'ctr_usr_id'
-    end
-    object memctr_usr_first_name: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Nome'
-      FieldName = 'ctr_usr_first_name'
-      Origin = 'ctr_usr_first_name'
-      Size = 85
-    end
-    object memctr_usr_last_name: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Sobrenome'
-      FieldName = 'ctr_usr_last_name'
-      Origin = 'ctr_usr_last_name'
-      Size = 85
-    end
-    object memctr_usr_username: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Usu'#225'rio'
-      FieldName = 'ctr_usr_username'
-      Origin = 'ctr_usr_username'
-      Size = 65
-    end
-    object memctr_usr_email: TStringField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'E-mail'
-      FieldName = 'ctr_usr_email'
-      Origin = 'ctr_usr_email'
-      Size = 65
-    end
-    object memctr_usr_dt_birth: TDateField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Nasc.'
-      FieldName = 'ctr_usr_dt_birth'
-      Origin = 'ctr_usr_dt_birth'
-    end
-    object memctr_usr_status: TShortintField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Status'
-      FieldName = 'ctr_usr_status'
-      Origin = 'ctr_usr_status'
-    end
-    object memctr_usr_deleted_at: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Deletado em'
-      FieldName = 'ctr_usr_deleted_at'
-      Origin = 'ctr_usr_deleted_at'
-    end
-    object memctr_usr_dt_registration: TDateTimeField
-      AutoGenerateValue = arDefault
-      DisplayLabel = 'Dt. Reg.'
-      FieldName = 'ctr_usr_dt_registration'
-      Origin = 'ctr_usr_dt_registration'
     end
   end
 end

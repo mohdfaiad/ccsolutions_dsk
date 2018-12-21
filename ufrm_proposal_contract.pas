@@ -145,7 +145,7 @@ uses
   u_class_rest_product,
   u_class_rest_client,
   u_class_rest_proposal_contract,
-  u_class_rest_proposal_contract_iten;
+  u_class_rest_proposal_contract_iten, cxShellComboBox, frxChart, frxDesgn;
 
 type
   Tfrm_proposal_contract = class(Tfrm_form_default)

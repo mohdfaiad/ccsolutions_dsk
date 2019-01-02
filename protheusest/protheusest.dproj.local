@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<BorlandProject>
-	<Transactions>
-    <Transaction>2018/05/17 10:11:37.000.429,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_contract_userOld.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_contract_user.dfm</Transaction>
-    <Transaction>2018/05/17 10:13:22.000.980,C:\development\ccsolutions\ccsolutions_dsk\trunk\ufrm_contract_user.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheusest\Unit1.dfm</Transaction>
-  </Transactions>
-</BorlandProject>

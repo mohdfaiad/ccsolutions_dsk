@@ -1,0 +1,23 @@
+inherited frm_form_default1: Tfrm_form_default1
+  Caption = 'frm_form_default1'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited PageControl_1: TPageControl
+    inherited TabSheet_manutencao: TTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      inherited PageControl_2: TPageControl
+        inherited TabSheet_dados: TTabSheet
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
+        end
+      end
+    end
+  end
+  inherited Panel_top: TPanel
+    ExplicitTop = 25
+  end
+end

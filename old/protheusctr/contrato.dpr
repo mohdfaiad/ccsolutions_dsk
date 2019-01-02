@@ -1,0 +1,24 @@
+program contrato;
+
+uses
+  Vcl.Forms,
+  ufrm_protheusctr in 'ufrm_protheusctr.pas' {frm_protheusctr},
+  ufrm_main_default in '..\models\ufrm_main_default.pas' {frm_main_default},
+  uthred_logged in '..\uthred_logged.pas',
+  ufrm_login in '..\ufrm_login.pas' {frm_login},
+  ufrm_dm in '..\ufrm_dm.pas' {frm_dm: TDataModule},
+  ufrm_search in '..\models\ufrm_search.pas' {frm_search},
+  ufrm_main in 'ufrm_main.pas' {frm_main},
+  ufrm_form_default in '..\models\ufrm_form_default.pas' {frm_form_default},
+  ufrm_cliente in '..\ufrm_cliente.pas' {frm_cliente},
+  u_class_connection in '..\u_class_connection.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tfrm_dm, frm_dm);
+  Application.CreateForm(Tfrm_main, frm_main);
+  Application.Run;
+end.

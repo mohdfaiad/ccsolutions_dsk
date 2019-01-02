@@ -1,0 +1,30 @@
+unit ufrm_main_default;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.ImageList, Vcl.ImgList,
+  System.Actions, Vcl.ActnList, Vcl.ToolWin, Vcl.ComCtrls, Vcl.Menus;
+
+type
+  Tfrm_main_default = class(TForm)
+    MainMenu_1: TMainMenu;
+    StatusBar1: TStatusBar;
+    ToolBar1: TToolBar;
+    ActionList_1: TActionList;
+    ImageList_1: TImageList;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_main_default: Tfrm_main_default;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,30 @@
+unit ufrm_dm;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+
+  Data.DB,
+REST.Types, uDWAbout, uRESTDWPoolerDB;
+
+type
+  Tfrm_dm = class(TDataModule)
+    database: TRESTDWDataBase;
+  private
+
+  public
+
+  end;
+
+var
+  frm_dm: Tfrm_dm;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

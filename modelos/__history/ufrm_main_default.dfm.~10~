@@ -1,0 +1,77 @@
+object frm_main_default: Tfrm_main_default
+  Left = 0
+  Top = 0
+  Caption = 'Default - Main'
+  ClientHeight = 729
+  ClientWidth = 1008
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenu_1
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object StatusBar_1: TStatusBar
+    Left = 0
+    Top = 710
+    Width = 1008
+    Height = 19
+    Panels = <>
+    ExplicitLeft = 512
+    ExplicitTop = 376
+    ExplicitWidth = 0
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Top = 0
+    Width = 1008
+    Height = 29
+    Caption = 'ToolBar_1'
+    TabOrder = 1
+    ExplicitLeft = 440
+    ExplicitTop = 368
+    ExplicitWidth = 150
+  end
+  object MainMenu_1: TMainMenu
+    Images = ImageList_1
+    Left = 880
+    Top = 56
+    object Sistema1: TMenuItem
+      Caption = 'Sistema'
+      object SairdoSistema1: TMenuItem
+        Action = Action_sair
+      end
+    end
+    object Cotnrato1: TMenuItem
+      Caption = 'Cadastros'
+    end
+    object Relatrios1: TMenuItem
+      Caption = 'M'#243'dulo'
+    end
+    object Relatrios2: TMenuItem
+      Caption = 'Relat'#243'rios'
+    end
+    object Utilitrios1: TMenuItem
+      Caption = 'Utilit'#225'rios'
+    end
+    object Ajuda1: TMenuItem
+      Caption = 'Ajuda'
+    end
+  end
+  object ActionList_1: TActionList
+    Images = ImageList_1
+    Left = 944
+    Top = 56
+    object Action_sair: TAction
+      Caption = 'Sair do Sistema'
+      Hint = 'Sair do Sistema'
+    end
+  end
+  object ImageList_1: TImageList
+    Left = 912
+    Top = 56
+  end
+end

@@ -1,0 +1,461 @@
+unit ufrm_client;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  System.Actions,
+
+  Vcl.ActnList,
+  Vcl.ImgList,
+  Vcl.Menus,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.StdCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+
+  cxGraphics,
+  cxControls,
+  cxLookAndFeels,
+  cxLookAndFeelPainters,
+  dxSkinsCore,
+  dxSkinBlack,
+  dxSkinBlue,
+  dxSkinBlueprint,
+  dxSkinCaramel,
+  dxSkinCoffee,
+  dxSkinDarkRoom,
+  dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle,
+  dxSkinDevExpressStyle,
+  dxSkinFoggy,
+  dxSkinGlassOceans,
+  dxSkinHighContrast,
+  dxSkiniMaginary,
+  dxSkinLilian,
+  dxSkinLiquidSky,
+  dxSkinLondonLiquidSky,
+  dxSkinMcSkin,
+  dxSkinMetropolis,
+  dxSkinMetropolisDark,
+  dxSkinMoneyTwins,
+  dxSkinOffice2007Black,
+  dxSkinOffice2007Blue,
+  dxSkinOffice2007Green,
+  dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver,
+  dxSkinOffice2010Black,
+  dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver,
+  dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray,
+  dxSkinOffice2013White,
+  dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark,
+  dxSkinPumpkin,
+  dxSkinSeven,
+  dxSkinSevenClassic,
+  dxSkinSharp,
+  dxSkinSharpPlus,
+  dxSkinSilver,
+  dxSkinSpringTime,
+  dxSkinStardust,
+  dxSkinSummer2008,
+  dxSkinTheAsphaltWorld,
+  dxSkinsDefaultPainters,
+  dxSkinValentine,
+  dxSkinVisualStudio2013Blue,
+  dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light,
+  dxSkinVS2010,
+  dxSkinWhiteprint,
+  dxSkinXmas2008Blue,
+  dxSkinscxPCPainter,
+  dxBarBuiltInMenu,
+  cxStyles,
+  cxCustomData,
+  cxFilter,
+  cxData,
+  cxDataStorage,
+  cxEdit,
+  cxNavigator,
+  cxDBData,
+  cxContainer,
+  dxLayoutcxEditAdapters,
+  dxSkinsdxBarPainter,
+  dxLayoutLookAndFeels,
+  cxGridCustomPopupMenu,
+  cxGridPopupMenu,
+  dxBar,
+  cxClasses,
+  dxLayoutContainer,
+  cxMaskEdit,
+  cxDropDownEdit,
+  cxCalendar,
+  cxDBEdit,
+  cxTextEdit,
+  dxLayoutControl,
+  cxGridLevel,
+  cxGridCustomView,
+  cxGridCustomTableView,
+  cxGridTableView,
+  cxGridDBTableView,
+  cxGrid,
+  cxPC,
+  cxButtonEdit,
+  cxImage,
+  cxShellComboBox,
+  cxBarEditItem,
+  dxBarExtItems,
+  dxLayoutControlAdapters,
+  cxButtons,
+  cxDBLookupComboBox,
+  cxDataControllerConditionalFormattingRulesManagerDialog,
+  cxImageList,
+  cxCheckBox,
+  cxSpinEdit,
+  cxCurrencyEdit,
+  cxLookupEdit,
+  cxDBLookupEdit,
+  cxDBNavigator,
+  dxSkinTheBezier,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.Stan.Async,
+  FireDAC.DApt,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+
+  ACBrEnterTab,
+  ACBrBase,
+
+  frxClass,
+  frxDBSet,
+  frxChart,
+  frxDesgn,
+
+  ufrm_form_default,
+  ufrm_consult_cnpj,
+  ufrm_consult_cpf,
+
+  u_class_connection,
+  u_class_rest_client,
+  u_class_rest_client_astpp,
+  u_class_rest_client_sippulse,
+  u_class_rest_did,
+  u_class_rest_provider,
+  u_class_rest_client_did,
+
+  uDWAbout,
+  uRESTDWPoolerDB,
+  uDWConstsData;
+
+type
+  Tfrm_client = class(Tfrm_form_default)
+    dbedt_first_name: TcxDBTextEdit;
+    dxLayoutItem3: TdxLayoutItem;
+    dbedt_last_name: TcxDBTextEdit;
+    dxLayoutItem4: TdxLayoutItem;
+    dbedt_dt_birthopen: TcxDBDateEdit;
+    dxLayoutItem6: TdxLayoutItem;
+    cxTabSheet_address: TcxTabSheet;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
+    dxLayoutGroup3: TdxLayoutGroup;
+    dxLayoutGroup6: TdxLayoutGroup;
+    dbedt_cpfcnpj: TcxDBTextEdit;
+    dxLayoutItem32: TdxLayoutItem;
+    dbedt_rgie: TcxDBTextEdit;
+    dxLayoutItem33: TdxLayoutItem;
+    dbedt_im: TcxDBTextEdit;
+    dxLayoutItem34: TdxLayoutItem;
+    dbedt_suframa: TcxDBTextEdit;
+    dxLayoutItem35: TdxLayoutItem;
+    dbcmb_type: TcxDBComboBox;
+    dxLayoutItem36: TdxLayoutItem;
+    dxLayoutAutoCreatedGroup11: TdxLayoutAutoCreatedGroup;
+    dxLayoutAutoCreatedGroup15: TdxLayoutAutoCreatedGroup;
+    cxTabSheet2: TcxTabSheet;
+    dxLayoutControl3: TdxLayoutControl;
+    dxLayoutGroup9: TdxLayoutGroup;
+    dxLayoutGroup10: TdxLayoutGroup;
+    dxBarButton5: TdxBarButton;
+    Action_consult_cpf: TAction;
+    Action_consult_cnpj: TAction;
+    Label1: TLabel;
+    dbchk_status: TcxDBCheckBox;
+    dxLayoutItem41: TdxLayoutItem;
+    dbspn_day_maturity: TcxDBSpinEdit;
+    dxLayoutItem42: TdxLayoutItem;
+    dbimg: TcxDBImage;
+    dxLayoutItem29: TdxLayoutItem;
+    dxBarButton2: TdxBarButton;
+    clientSQLcli_codigo: TStringField;
+    clientSQLusuario_usr_codigo: TStringField;
+    clientSQLcli_id: TLongWordField;
+    clientSQLcli_nome: TStringField;
+    clientSQLcli_nome_fantasia: TStringField;
+    clientSQLcli_tipo: TStringField;
+    clientSQLcli_rgie: TStringField;
+    clientSQLcli_cpfcnpj: TStringField;
+    clientSQLcli_data_deletado: TDateTimeField;
+    clientSQLcli_data_registro: TDateTimeField;
+    clientSQLcli_im: TStringField;
+    clientSQLcli_suframa: TStringField;
+    clientSQLcli_data: TDateField;
+    clientSQLcli_status: TShortintField;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure Action_consult_cpfExecute(Sender: TObject);
+    procedure Action_consult_cnpjExecute(Sender: TObject);
+    procedure astppgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
+    procedure sipgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
+    procedure cxDBNavigator1ButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
+  private
+    procedure statusTipo;
+    procedure afterInsert;
+    procedure afterUpdate;
+
+  public
+
+  end;
+
+var
+  frm_client: Tfrm_client;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  ufrm_dm,
+  ufrm_dm_ds;
+
+procedure Tfrm_client.Action_consult_cnpjExecute(Sender: TObject);
+begin
+  inherited;
+  frm_consult_cnpj := Tfrm_consult_cnpj.Create(Self);
+  frm_consult_cnpj.ShowModal;
+end;
+
+procedure Tfrm_client.Action_consult_cpfExecute(Sender: TObject);
+begin
+  inherited;
+  frm_consult_cpf := Tfrm_consult_cpf.Create(Self);
+  frm_consult_cpf.ShowModal;
+end;
+
+procedure Tfrm_client.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_client.Destroy;
+  frm_client := Nil;
+end;
+
+procedure Tfrm_client.FormCreate(Sender: TObject);
+begin
+  inherited;
+  Trest_client.GetClient(mem);
+  Trest_client_astpp.GetClientATPP(memClientASTPP);
+  Trest_client_sippulse.GetClientSIPPulse(memClientSIPPulse);
+  Trest_did.GetDID(frm_dm_ds.memDID);
+  Trest_provider.GetProvider(frm_dm_ds.memProvider);
+  Trest_client_did.GetClientDID(memClientDID);
+end;
+
+procedure Tfrm_client.sipgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
+var
+  strproc_create, strproc_update : TFDStoredProc;
+begin
+  inherited;
+  case AButtonIndex of
+    NBDI_POST:
+      case dsClientSIPPulse.State of
+        dsEdit:
+          try
+            try
+              strproc_update := TFDStoredProc.Create(Self);
+              strproc_update.Connection := frm_dm.connCCS;
+              strproc_update.StoredProcName := 'proc_client_sippulse_update';
+              strproc_update.Prepare;
+
+              strproc_update.ParamByName('p_ctr_token').AsString            := Tconnection.ctr_token;
+              strproc_update.ParamByName('p_cls_cod').AsString              := memClientSIPPulsecls_cod.AsString;
+              strproc_update.ParamByName('p_cls_account_sippulse').AsString := memClientSIPPulsecls_account_sippulse.AsString;
+              strproc_update.ExecProc;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+
+        dsInsert:
+          try
+            try
+              strproc_create := TFDStoredProc.Create(Self);
+              strproc_create.Connection := frm_dm.connCCS;
+              strproc_create.StoredProcName := 'proc_client_sippulse_create';
+              strproc_create.Prepare;
+
+              strproc_create.ParamByName('p_ctr_token').AsString            := Tconnection.ctr_token;
+              strproc_create.ParamByName('p_client_cli_cod').AsString       := memcli_cod.AsString;
+              strproc_create.ParamByName('p_cls_account_sippulse').AsString := memClientSIPPulsecls_account_sippulse.AsString;
+              strproc_create.ExecProc;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+      end;
+  end;
+end;
+
+procedure Tfrm_client.statusTipo;
+begin
+
+end;
+
+procedure Tfrm_client.afterInsert;
+begin
+  ShowMessage('Registro Iserido com Sucesso');
+  cxTabSheet_3.Show;
+  Trest_client.GetClient(mem);
+  ds.DataSet.Last;
+end;
+
+procedure Tfrm_client.afterUpdate;
+begin
+  ShowMessage('Registro Atualizado com sucesso');
+  cxTabSheet_3.Show;
+  Trest_client.GetClient(mem);
+end;
+
+procedure Tfrm_client.astppgridviewNavigatorButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
+var
+  strproc_create, strproc_update : TFDStoredProc;
+begin
+  inherited;
+  case AButtonIndex of
+    NBDI_POST:
+      case dsClientASTPP.State of
+        dsEdit:
+          try
+            try
+              strproc_update := TFDStoredProc.Create(Self);
+              strproc_update.Connection := frm_dm.connCCS;
+              strproc_update.StoredProcName := 'proc_client_astpp_update';
+              strproc_update.Prepare;
+
+              strproc_update.ParamByName('p_ctr_token').AsString          := Tconnection.ctr_token;
+              strproc_update.ParamByName('p_cla_cod').AsString            := memClientASTPPcla_cod.AsString;
+              strproc_update.ParamByName('p_cla_account_astpp').AsString  := memClientASTPPcla_account_astpp.AsString;
+              strproc_update.ExecProc;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+
+        dsInsert:
+          try
+            try
+              strproc_create := TFDStoredProc.Create(Self);
+              strproc_create.Connection := frm_dm.connCCS;
+              strproc_create.StoredProcName := 'proc_client_astpp_create';
+              strproc_create.Prepare;
+
+              strproc_create.ParamByName('p_ctr_token').AsString          := Tconnection.ctr_token;
+              strproc_create.ParamByName('p_client_cli_cod').AsString     := memcli_cod.AsString;
+              strproc_create.ParamByName('p_cla_account_astpp').AsString  := memClientASTPPcla_account_astpp.AsString;
+              strproc_create.ExecProc;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+      end;
+  end;
+end;
+ 
+procedure Tfrm_client.cxDBNavigator1ButtonsButtonClick(Sender: TObject; AButtonIndex: Integer; var ADone: Boolean);
+var
+  strproc_create, strproc_update, strproc_delete : TFDStoredProc;
+begin
+  inherited;
+  case AButtonIndex of
+    NBDI_POST:
+      case dsClientDID.State of
+        dsEdit:
+          try
+            try
+              strproc_update := TFDStoredProc.Create(Self);
+              strproc_update.Connection := frm_dm.connCCS;
+              strproc_update.StoredProcName := 'proc_client_did_update';
+              strproc_update.Prepare;
+
+              strproc_update.ParamByName('p_ctr_token').AsString         := Tconnection.ctr_token;
+              strproc_update.ParamByName('p_cld_cod').AsString           := memClientDIDcld_cod.AsString;
+              strproc_update.ParamByName('p_did_did_cod').AsString       := memClientDIDdid_did_cod.AsString;
+              strproc_update.ExecProc;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+
+        dsInsert:
+          try
+            try
+              strproc_create := TFDStoredProc.Create(Self);
+              strproc_create.Connection := frm_dm.connCCS;
+              strproc_create.StoredProcName := 'proc_client_did_create';
+              strproc_create.Prepare;
+
+              strproc_create.ParamByName('p_ctr_token').AsString          := Tconnection.ctr_token;
+              strproc_create.ParamByName('p_client_cli_cod').AsString     := memcli_cod.AsString;
+              strproc_create.ParamByName('p_did_did_cod').AsString        := memClientDIDdid_did_cod.AsString;
+              strproc_create.ExecProc;
+            except on E: Exception do
+              ShowMessage('Erro: ' + E.Message);
+            end;
+          finally
+          end;
+      end;
+
+    NBDI_DELETE:
+      try
+        try
+          strproc_delete := TFDStoredProc.Create(Self);
+          strproc_delete.Connection := frm_dm.connCCS;
+          strproc_delete.StoredProcName := 'proc_client_did_delete';
+          strproc_delete.Prepare;
+
+          strproc_delete.ParamByName('p_ctr_token').AsString  := Tconnection.ctr_token;
+          strproc_delete.ParamByName('p_cld_cod').AsString    := memClientDIDcld_cod.AsString;
+          strproc_delete.ExecProc;
+        except on E: Exception do
+          ShowMessage('Erro: ' + E.Message);
+        end;
+      finally
+      end;
+  end;
+end;
+
+end.

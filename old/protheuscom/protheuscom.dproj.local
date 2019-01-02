@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/04/06 20:55:56.000.598,C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\ufrm_protheuscom.dfm</Transaction>
+    <Transaction>2018/04/06 20:56:02.000.889,C:\Users\eltonbahia\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\protheuscom.dproj</Transaction>
+    <Transaction>2018/04/06 20:58:49.000.334,C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\Unit1.dfm=C:\development\ccsolutions\ccsolutions_dsk\trunk\protheuscom\ufrm_main.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

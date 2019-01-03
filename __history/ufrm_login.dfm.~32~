@@ -1,9 +1,10 @@
 object frm_login: Tfrm_login
+  Tag = 99
   Left = 0
   Top = 0
   BorderIcons = []
   BorderStyle = bsSingle
-  ClientHeight = 221
+  ClientHeight = 234
   ClientWidth = 544
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,37 +14,31 @@ object frm_login: Tfrm_login
   Font.Style = []
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 202
+    Top = 215
     Width = 544
     Height = 19
     Panels = <>
-    ExplicitLeft = 328
-    ExplicitTop = 160
-    ExplicitWidth = 0
   end
   object PageControl_1: TPageControl
     Left = 0
     Top = 0
     Width = 544
-    Height = 202
+    Height = 215
     ActivePage = TabSheet_login
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 635
-    ExplicitHeight = 280
     object TabSheet_login: TTabSheet
       Caption = 'Acesso'
-      ExplicitLeft = 8
-      ExplicitTop = 22
       object Image_1: TImage
         Left = 259
         Top = 3
         Width = 274
-        Height = 169
+        Height = 182
         Center = True
         Picture.Data = {
           0B546478504E47496D61676589504E470D0A1A0A0000000D4948445200000548
@@ -1779,21 +1774,21 @@ object frm_login: Tfrm_login
       end
       object Label_usuario: TLabel
         Left = 3
-        Top = 3
+        Top = 49
         Width = 36
         Height = 13
         Caption = 'Usu'#225'rio'
       end
       object Label_senha: TLabel
         Left = 3
-        Top = 49
+        Top = 95
         Width = 30
         Height = 13
         Caption = 'Senha'
       end
       object Label_recuperarsenha: TLabel
         Left = 167
-        Top = 134
+        Top = 141
         Width = 86
         Height = 13
         Caption = 'Recuperar senha.'
@@ -1807,47 +1802,67 @@ object frm_login: Tfrm_login
         ParentColor = False
         ParentFont = False
       end
+      object Label_contrato: TLabel
+        Left = 3
+        Top = 3
+        Width = 43
+        Height = 13
+        Caption = 'Contrato'
+      end
       object Button1: TButton
         Left = 3
-        Top = 95
+        Top = 160
         Width = 122
         Height = 25
-        Caption = 'Button1'
-        TabOrder = 0
+        Action = Action_acessar
+        TabOrder = 3
       end
       object Button2: TButton
         Left = 131
-        Top = 95
+        Top = 160
         Width = 122
         Height = 25
-        Caption = 'Button2'
-        TabOrder = 1
+        Action = Action_cancelar
+        TabOrder = 4
       end
       object edt_usuario: TEdit
-        Left = 3
-        Top = 22
-        Width = 250
-        Height = 21
-        TabOrder = 2
-      end
-      object edt_senha: TEdit
         Left = 3
         Top = 68
         Width = 250
         Height = 21
-        TabOrder = 3
+        CharCase = ecLowerCase
+        TabOrder = 1
+      end
+      object edt_senha: TEdit
+        Left = 3
+        Top = 114
+        Width = 250
+        Height = 21
+        PasswordChar = '*'
+        TabOrder = 2
+      end
+      object edt_contrato: TEdit
+        Left = 3
+        Top = 22
+        Width = 250
+        Height = 21
+        CharCase = ecUpperCase
+        TabOrder = 0
       end
     end
     object TabSheet_alterarsenha: TTabSheet
       Caption = 'Alterar Senha'
       ImageIndex = 1
       ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 281
       ExplicitHeight = 165
     end
     object TabSheet_recuperarsenha: TTabSheet
       Caption = 'Recuperar Senha'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 281
       ExplicitHeight = 165
     end
@@ -1865,5 +1880,13 @@ object frm_login: Tfrm_login
     Images = ImageList_1
     Left = 488
     Top = 48
+    object Action_acessar: TAction
+      Caption = 'Acessar'
+      OnExecute = Action_acessarExecute
+    end
+    object Action_cancelar: TAction
+      Caption = 'Cancelar'
+      OnExecute = Action_cancelarExecute
+    end
   end
 end

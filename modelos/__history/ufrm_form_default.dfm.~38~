@@ -26,7 +26,6 @@ object frm_form_default: Tfrm_form_default
     ButtonHeight = 25
     ButtonWidth = 28
     Caption = 'ToolBar_1'
-    DisabledImages = imglist
     DrawingStyle = dsGradient
     HotImages = imglist
     Images = imglist
@@ -110,6 +109,8 @@ object frm_form_default: Tfrm_form_default
     Height = 604
     ActivePage = TabSheet_pesquisar
     Align = alClient
+    DoubleBuffered = False
+    ParentDoubleBuffered = False
     TabOrder = 1
     object TabSheet_pesquisar: TTabSheet
       Caption = 'Pesquisar'
@@ -119,6 +120,8 @@ object frm_form_default: Tfrm_form_default
         Width = 1000
         Height = 576
         Align = alClient
+        DataSource = datasource
+        DrawingStyle = gdsGradient
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -177,7 +180,7 @@ object frm_form_default: Tfrm_form_default
     end
     object spdbtn_filtrar: TSpeedButton
       Left = 366
-      Top = 21
+      Top = 22
       Width = 28
       Height = 25
       Action = Action_filtrar
@@ -1087,6 +1090,11 @@ object frm_form_default: Tfrm_form_default
   object datasource: TDataSource
     DataSet = clientSQL
     Left = 896
+    Top = 8
+  end
+  object acbr_enter: TACBrEnterTab
+    EnterAsTab = True
+    Left = 800
     Top = 8
   end
 end

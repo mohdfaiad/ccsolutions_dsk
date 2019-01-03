@@ -23,9 +23,6 @@ object frm_login: Tfrm_login
     Width = 544
     Height = 19
     Panels = <>
-    ExplicitLeft = 328
-    ExplicitTop = 160
-    ExplicitWidth = 0
   end
   object PageControl_1: TPageControl
     Left = 0
@@ -35,12 +32,8 @@ object frm_login: Tfrm_login
     ActivePage = TabSheet_login
     Align = alClient
     TabOrder = 1
-    ExplicitTop = -6
     object TabSheet_login: TTabSheet
       Caption = 'Acesso'
-      ExplicitLeft = 8
-      ExplicitTop = 22
-      ExplicitHeight = 174
       object Image_1: TImage
         Left = 259
         Top = 3
@@ -1860,15 +1853,10 @@ object frm_login: Tfrm_login
     object TabSheet_alterarsenha: TTabSheet
       Caption = 'Alterar Senha'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitWidth = 281
-      ExplicitHeight = 165
     end
     object TabSheet_recuperarsenha: TTabSheet
       Caption = 'Recuperar Senha'
       ImageIndex = 2
-      ExplicitWidth = 281
-      ExplicitHeight = 165
     end
   end
   object acbr_enter: TACBrEnterTab

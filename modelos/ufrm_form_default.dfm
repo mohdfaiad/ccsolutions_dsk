@@ -164,6 +164,7 @@ object frm_form_default: Tfrm_form_default
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 3
+    ExplicitTop = 19
     object lbl_texto: TLabel
       Left = 4
       Top = 6

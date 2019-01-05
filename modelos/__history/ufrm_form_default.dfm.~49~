@@ -107,7 +107,7 @@ object frm_form_default: Tfrm_form_default
     Top = 77
     Width = 1008
     Height = 602
-    ActivePage = TabSheet_pesquisar
+    ActivePage = TabSheet_manutencao
     Align = alClient
     DoubleBuffered = False
     ParentDoubleBuffered = False

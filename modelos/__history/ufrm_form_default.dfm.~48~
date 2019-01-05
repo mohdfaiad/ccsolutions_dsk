@@ -107,7 +107,7 @@ object frm_form_default: Tfrm_form_default
     Top = 77
     Width = 1008
     Height = 602
-    ActivePage = TabSheet_pesquisar
+    ActivePage = TabSheet_manutencao
     Align = alClient
     DoubleBuffered = False
     ParentDoubleBuffered = False
@@ -155,12 +155,11 @@ object frm_form_default: Tfrm_form_default
       end
       object PageControl_2: TPageControl
         Left = 0
-        Top = 49
+        Top = 392
         Width = 1000
-        Height = 525
+        Height = 182
         ActivePage = TabSheet_dados
         Align = alBottom
-        Anchors = [akLeft, akTop, akRight, akBottom]
         TabOrder = 0
         object TabSheet_dados: TTabSheet
           Caption = 'Dados'

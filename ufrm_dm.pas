@@ -3,15 +3,20 @@ unit ufrm_dm;
 interface
 
 uses
-  System.SysUtils, System.Classes, uDWAbout, uRESTDWPoolerDB;
+  System.SysUtils,
+  System.Classes,
+
+  uDWAbout,
+  uRESTDWPoolerDB;
 
 type
   Tfrm_dm = class(TDataModule)
     database: TRESTDWDataBase;
   private
-    { Private declarations }
+
   public
-    { Public declarations }
+    usuario_usr_token, usuario_usr_codigo: string;
+
   end;
 
 var

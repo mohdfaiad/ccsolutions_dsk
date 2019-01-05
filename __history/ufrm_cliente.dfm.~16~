@@ -3,4 +3,9 @@ inherited frm_cliente: Tfrm_cliente
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
+  inherited clientSQL: TRESTDWClientSQL
+    DataBase = frm_dm.database
+    SQL.Strings = (
+      'call proc_cliente_read('#39#39');')
+  end
 end

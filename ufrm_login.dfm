@@ -22,7 +22,18 @@ object frm_login: Tfrm_login
     Top = 215
     Width = 544
     Height = 19
-    Panels = <>
+    Panels = <
+      item
+        Text = 'Servidor Status:'
+        Width = 100
+      end
+      item
+        Alignment = taCenter
+        Width = 75
+      end
+      item
+        Width = 50
+      end>
   end
   object PageControl_1: TPageControl
     Left = 0
@@ -1880,5 +1891,35 @@ object frm_login: Tfrm_login
       Caption = 'Cancelar'
       OnExecute = Action_cancelarExecute
     end
+  end
+  object clientSQL: TRESTDWClientSQL
+    Active = False
+    Filtered = False
+    FieldDefs = <>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    MasterCascadeDelete = True
+    Datapacks = -1
+    DataCache = False
+    Params = <>
+    CacheUpdateRecords = True
+    AutoCommitData = False
+    AutoRefreshAfterCommit = False
+    ActionCursor = crSQLWait
+    ReflectChanges = True
+    Left = 392
+    Top = 48
+  end
+  object Timer_1: TTimer
+    OnTimer = Timer_1Timer
+    Left = 360
+    Top = 48
   end
 end

@@ -25,7 +25,24 @@ uses
   ACBrBase,
   ACBrEnterTab,
 
-  dxGDIPlusClasses;
+  dxGDIPlusClasses,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+
+  Data.DB,
+
+  uDWConstsData,
+  uRESTDWPoolerDB,
+
+  ufrm_dm, IdTCPClient;
 
 type
   Tfrm_login = class(TForm)
@@ -49,13 +66,16 @@ type
     Action_cancelar: TAction;
     edt_contrato: TEdit;
     Label_contrato: TLabel;
+    clientSQL: TRESTDWClientSQL;
+    Timer_1: TTimer;
     procedure Action_cancelarExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Action_acessarExecute(Sender: TObject);
+    procedure Timer_1Timer(Sender: TObject);
   private
-    { Private declarations }
+    function StatusServidor(Endereco: String; Porta: Integer): boolean;
   public
-    { Public declarations }
+
   end;
 
 var
@@ -66,8 +86,33 @@ implementation
 {$R *.dfm}
 
 procedure Tfrm_login.Action_acessarExecute(Sender: TObject);
+var
+  SQL: String;
 begin
-//
+  SQL :=  'set @po_usuario_usr_token = 0;'   +
+          'set @po_usuario_usr_codigo = 0;'  +
+          'set @po_usuario_autenticado = 0;' +
+          'call proc_usuario_acesso_acessar('+ QuotedStr(edt_contrato.Text) +', '+ QuotedStr(edt_usuario.Text) +', '+ QuotedStr(edt_senha.Text) +', @po_usuario_usr_token, @po_usuario_usr_codigo, @po_usuario_autenticado);'  +
+          'select @po_usuario_usr_token as usuario_usr_token, @po_usuario_usr_codigo as usuario_usr_codigo, @po_usuario_autenticado as usuario_autenticado;';
+
+
+  clientSQL := TRESTDWClientSQL.Create(Self);
+
+  clientSQL.Active    := False;
+  clientSQL.DataBase  := frm_dm.database;
+  clientSQL.SQL.Clear;
+  clientSQL.SQL.Text  := SQL;
+  clientSQL.Active    := True;
+
+  if clientSQL.FieldByName('usuario_autenticado').AsInteger = 1 then begin
+    frm_dm.usuario_usr_token  := clientSQL.FieldByName('usuario_usr_token').AsString;
+    frm_dm.usuario_usr_codigo := clientSQL.FieldByName('usuario_usr_codigo').AsString;
+
+    ModalResult := mrOk;
+  end else begin
+    ShowMessage('Usuário ou Senha inválida!');
+    edt_contrato.SetFocus;
+  end;
 end;
 
 procedure Tfrm_login.Action_cancelarExecute(Sender: TObject);
@@ -100,6 +145,38 @@ begin
     PageControl_1.Pages[2].TabVisible := False;
     TabSheet_alterarsenha.Show;
 //    edt_passwordNew.SetFocus;
+  end;
+end;
+
+function Tfrm_login.StatusServidor(Endereco: String; Porta: Integer): boolean;
+var
+  verificar: TIdTCPClient;
+begin
+  Result := False;
+
+  verificar := TIdTCPClient.Create(Nil);
+  try
+    try
+      verificar.Host := Endereco;
+      verificar.Port := Porta;
+      verificar.ConnectTimeout := 1000;
+      verificar.Connect;
+
+      Result := verificar.Connected;
+    except on E: Exception do
+      ShowMessage('Error: ' + E.Message);
+    end;
+  finally
+    FreeAndNil(verificar);
+  end;
+end;
+
+procedure Tfrm_login.Timer_1Timer(Sender: TObject);
+begin
+  if StatusServidor('127.0.0.1', 80) then begin
+    StatusBar1.Panels[1].Text := 'Online';
+  end else begin
+    StatusBar1.Panels[1].Text := 'Offline'
   end;
 end;
 

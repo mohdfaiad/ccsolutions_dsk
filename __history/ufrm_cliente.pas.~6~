@@ -10,10 +10,24 @@ uses
   uDWAbout, uRESTDWPoolerDB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   uDWConstsData, System.Actions, Vcl.ActnList, System.ImageList, Vcl.ImgList,
   Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls,
-  Vcl.ToolWin, ufrm_dm, ACBrBase, ACBrEnterTab, Vcl.Menus;
+  Vcl.ToolWin, ufrm_dm, ACBrBase, ACBrEnterTab;
 
 type
   Tfrm_cliente = class(Tfrm_form_default)
+    clientSQLcli_codigo: TStringField;
+    clientSQLusuario_usr_codigo: TStringField;
+    clientSQLcli_id: TLongWordField;
+    clientSQLcli_nome: TStringField;
+    clientSQLcli_nome_fantasia: TStringField;
+    clientSQLcli_tipo: TStringField;
+    clientSQLcli_rgie: TStringField;
+    clientSQLcli_cpfcnpj: TStringField;
+    clientSQLcli_im: TStringField;
+    clientSQLcli_suframa: TStringField;
+    clientSQLcli_data: TDateField;
+    clientSQLcli_status: TShortintField;
+    clientSQLcli_data_deletado: TDateTimeField;
+    clientSQLcli_data_registro: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }

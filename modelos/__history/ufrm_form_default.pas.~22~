@@ -10,7 +10,7 @@ uses
   Data.DB, uDWAbout, uRESTDWPoolerDB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   uDWConstsData, System.Actions, Vcl.ActnList, System.ImageList, Vcl.ImgList,
   Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, ACBrBase,
-  ACBrEnterTab, Vcl.Menus, Vcl.Mask, Vcl.DBCtrls;
+  ACBrEnterTab, Vcl.Menus;
 
 type
   Tfrm_form_default = class(TForm)
@@ -73,10 +73,6 @@ type
     Atualizar1: TMenuItem;
     N2: TMenuItem;
     Fechar1: TMenuItem;
-    Label1: TLabel;
-    dbedt_id: TDBEdit;
-    dbedt_data_registro: TDBEdit;
-    Label2: TLabel;
     procedure Action_fecharExecute(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure Action_primeiroExecute(Sender: TObject);

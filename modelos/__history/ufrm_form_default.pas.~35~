@@ -3,51 +3,14 @@ unit ufrm_form_default;
 interface
 
 uses
-  Winapi.Windows,
-  Winapi.Messages,
-
-  System.SysUtils,
-  System.Variants,
-  System.Classes,
-  System.Actions,
-  System.ImageList,
-
-  Vcl.Graphics,
-  Vcl.Controls,
-  Vcl.Forms,
-  Vcl.Dialogs,
-  Vcl.ToolWin,
-  Vcl.ComCtrls,
-  Vcl.ActnList,
-  Vcl.ImgList,
-  Vcl.Grids,
-  Vcl.DBGrids,
-  Vcl.ExtCtrls,
-  Vcl.StdCtrls,
-  Vcl.Buttons,
-  Vcl.Menus,
-  Vcl.Mask,
-  Vcl.DBCtrls,
-
-  FireDAC.Stan.Intf,
-  FireDAC.Stan.Option,
-  FireDAC.Stan.Param,
-  FireDAC.Stan.Error,
-  FireDAC.DatS,
-  FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf,
-  FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client,
-  FireDAC.DApt,
-
-  Data.DB,
-
-  uDWAbout,
-  uRESTDWPoolerDB,
-  uDWConstsData,
-
-  ACBrBase,
-  ACBrEnterTab;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ToolWin, Vcl.ComCtrls,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  Data.DB, uDWAbout, uRESTDWPoolerDB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  uDWConstsData, System.Actions, Vcl.ActnList, System.ImageList, Vcl.ImgList,
+  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, ACBrBase,
+  ACBrEnterTab, Vcl.Menus, Vcl.Mask, Vcl.DBCtrls, FireDAC.DApt;
 
 type
   Tfrm_form_default = class(TForm)
@@ -130,7 +93,6 @@ type
     procedure Action_filtrarExecute(Sender: TObject);
     procedure DBGrid_1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
-    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -146,27 +108,27 @@ implementation
 
 procedure Tfrm_form_default.Action_anteriorExecute(Sender: TObject);
 begin
-  ds.DataSet.Prior;
+  datasource.DataSet.Prior;
 end;
 
 procedure Tfrm_form_default.Action_atualizarExecute(Sender: TObject);
 begin
-  ds.DataSet.Refresh;
+  datasource.DataSet.Refresh;
 end;
 
 procedure Tfrm_form_default.Action_cancelarExecute(Sender: TObject);
 begin
-  ds.DataSet.Cancel;
+  datasource.DataSet.Cancel;
 end;
 
 procedure Tfrm_form_default.Action_editarExecute(Sender: TObject);
 begin
-    ds.DataSet.Edit;
+    datasource.DataSet.Edit;
 end;
 
 procedure Tfrm_form_default.Action_excluirExecute(Sender: TObject);
 begin
-  ds.DataSet.Delete;
+  datasource.DataSet.Delete;
 end;
 
 procedure Tfrm_form_default.Action_fecharExecute(Sender: TObject);
@@ -186,27 +148,27 @@ end;
 procedure Tfrm_form_default.Action_inserirExecute(Sender: TObject);
 begin
   TabSheet_dados.Show;
-  ds.DataSet.Insert;
+  datasource.DataSet.Insert;
 end;
 
 procedure Tfrm_form_default.Action_primeiroExecute(Sender: TObject);
 begin
-  ds.DataSet.First;
+  datasource.DataSet.First;
 end;
 
 procedure Tfrm_form_default.Action_proximoExecute(Sender: TObject);
 begin
-  ds.DataSet.Next;
+  datasource.DataSet.Next;
 end;
 
 procedure Tfrm_form_default.Action_salvarExecute(Sender: TObject);
 begin
-  ds.DataSet.Post;
+  datasource.DataSet.Post;
 end;
 
 procedure Tfrm_form_default.Action_ultimoExecute(Sender: TObject);
 begin
-  ds.DataSet.Last;
+  datasource.DataSet.Last;
 end;
 
 procedure Tfrm_form_default.DBGrid_1DblClick(Sender: TObject);
@@ -227,11 +189,6 @@ begin
   end;
 
   DBGrid_1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
-end;
-
-procedure Tfrm_form_default.FormShow(Sender: TObject);
-begin
-  TabSheet_pesquisar.Show;
 end;
 
 end.

@@ -130,7 +130,6 @@ type
     procedure Action_filtrarExecute(Sender: TObject);
     procedure DBGrid_1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
-    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -227,11 +226,6 @@ begin
   end;
 
   DBGrid_1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
-end;
-
-procedure Tfrm_form_default.FormShow(Sender: TObject);
-begin
-  TabSheet_pesquisar.Show;
 end;
 
 end.

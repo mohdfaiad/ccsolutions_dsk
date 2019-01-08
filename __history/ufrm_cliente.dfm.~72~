@@ -5,6 +5,7 @@ inherited frm_cliente: Tfrm_cliente
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl_1: TPageControl
+    ActivePage = TabSheet_manutencao
     inherited TabSheet_pesquisar: TTabSheet
       inherited DBGrid_1: TDBGrid
         Columns = <
@@ -522,43 +523,6 @@ inherited frm_cliente: Tfrm_cliente
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
-            Columns = <
-              item
-                Expanded = False
-                FieldName = 'cli_con_tipo'
-                Width = 50
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'cli_con_telefone1'
-                Width = 100
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'cli_con_telefone2'
-                Width = 100
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'cli_con_telefone3'
-                Width = 100
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'cli_con_telefone4'
-                Width = 100
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'cli_con_contato'
-                Width = 150
-                Visible = True
-              end>
           end
           object DBEdit9: TDBEdit
             Left = 134

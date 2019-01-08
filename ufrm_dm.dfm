@@ -1,11 +1,11 @@
 object frm_dm: Tfrm_dm
   OldCreateOrder = False
-  Height = 150
-  Width = 215
+  Height = 136
+  Width = 257
   object database: TRESTDWDataBase
-    Active = True
+    Active = False
     Compression = True
-    MyIP = '127.0.0.1'
+    MyIP = '0.0.0.0'
     Login = 'webservice'
     Password = 'webservicePa$$word'
     Proxy = False
@@ -23,7 +23,36 @@ object frm_dm: Tfrm_dm
     StrsTrim2Len = True
     ParamCreate = True
     ClientConnectionDefs.Active = False
-    Left = 32
+    Left = 24
+    Top = 64
+  end
+  object connDB: TFDConnection
+    Params.Strings = (
+      'ConnectionDef=database')
+    Connected = True
+    LoginPrompt = False
+    Left = 24
+    Top = 16
+  end
+  object waitCursor: TFDGUIxWaitCursor
+    Provider = 'Console'
+    Left = 176
+    Top = 16
+  end
+  object driverLink: TFDPhysMySQLDriverLink
+    VendorHome = 'C:\ccsolutions_wbs\'
+    VendorLib = 'libmysql.dll'
+    Left = 120
+    Top = 16
+  end
+  object mamDB: TFDManager
+    DriverDefFileName = 'C:\ccsolutions_wbs\config\banco.ini'
+    ConnectionDefFileName = 'C:\ccsolutions_wbs\config\banco.ini'
+    FormatOptions.AssignedValues = [fvMapRules]
+    FormatOptions.OwnMapRules = True
+    FormatOptions.MapRules = <>
+    Active = True
+    Left = 72
     Top = 16
   end
 end

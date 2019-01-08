@@ -160,8 +160,6 @@ type
     procedure afterInsert;
     procedure afterUpdate;
     procedure cliente_read(AToken: String);
-    procedure cliente_contato_read(AToken, AClienteCodigo: String);
-    procedure cliente_endereco_read(AToken, AClienteCodigo: String);
 
   public
 
@@ -271,36 +269,6 @@ procedure Tfrm_cliente.FormShow(Sender: TObject);
 begin
   inherited;
   cliente_read(frm_dm.usuario_usr_token);
-  cliente_contato_read(frm_dm.usuario_usr_token, clientSQLcli_codigo.AsString);
-  cliente_endereco_read(frm_dm.usuario_usr_token, clientSQLcli_codigo.AsString);
-end;
-
-procedure Tfrm_cliente.cliente_contato_read(AToken, AClienteCodigo: String);
-var
-  SQL: String;
-begin
-  inherited;
-  SQL := 'call proc_cliente_contato_read('+QuotedStr(AToken) +', '+ QuotedStr(AClienteCodigo) +');';
-
-  sqlcliente_contato.Active    := False;
-  sqlcliente_contato.DataBase  := frm_dm.database;
-  sqlcliente_contato.SQL.Clear;
-  sqlcliente_contato.SQL.Text  := SQL;
-  sqlcliente_contato.Active    := True
-end;
-
-procedure Tfrm_cliente.cliente_endereco_read(AToken, AClienteCodigo: String);
-var
-  SQL: String;
-begin
-  inherited;
-  SQL := 'call proc_cliente_endereco_read('+QuotedStr(AToken) +', '+ QuotedStr(AClienteCodigo) +');';
-
-  sqlcliente_endereco.Active    := False;
-  sqlcliente_endereco.DataBase  := frm_dm.database;
-  sqlcliente_endereco.SQL.Clear;
-  sqlcliente_endereco.SQL.Text  := SQL;
-  sqlcliente_endereco.Active    := True
 end;
 
 procedure Tfrm_cliente.cliente_read(AToken: String);

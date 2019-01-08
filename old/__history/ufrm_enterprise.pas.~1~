@@ -157,8 +157,7 @@ uses
   ufrm_form_default,
 
   u_class_connection,
-  u_class_rest_enterprise, uDWAbout, uRESTDWPoolerDB, uDWConstsData,
-  Vcl.Buttons, Vcl.Mask, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.ToolWin;
+  u_class_rest_enterprise;
 
 type
   Tfrm_enterprise = class(Tfrm_form_default)

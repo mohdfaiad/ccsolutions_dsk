@@ -140,9 +140,7 @@ uses
 
   u_class_connection,
   u_class_rest_did,
-  u_class_rest_provider, uDWAbout, uRESTDWPoolerDB, uDWConstsData, Vcl.StdCtrls,
-  Vcl.Buttons, Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids,
-  Vcl.ComCtrls, Vcl.ToolWin;
+  u_class_rest_provider;
 
 type
   Tfrm_did = class(Tfrm_form_default)

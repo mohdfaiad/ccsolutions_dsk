@@ -7,11 +7,18 @@ uses
   System.Classes,
 
   uDWAbout,
-  uRESTDWPoolerDB;
+  uRESTDWPoolerDB, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error,
+  FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
+  FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef,
+  FireDAC.ConsoleUI.Wait, FireDAC.Comp.Client, FireDAC.Comp.UI, Data.DB;
 
 type
   Tfrm_dm = class(TDataModule)
     database: TRESTDWDataBase;
+    connDB: TFDConnection;
+    waitCursor: TFDGUIxWaitCursor;
+    driverLink: TFDPhysMySQLDriverLink;
+    mamDB: TFDManager;
   private
 
   public

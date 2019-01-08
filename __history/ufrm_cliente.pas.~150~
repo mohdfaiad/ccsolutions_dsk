@@ -294,7 +294,7 @@ var
   SQL: String;
 begin
   inherited;
-  SQL := 'call proc_cliente_endereco_read('+QuotedStr(AToken) +', '+ QuotedStr(AClienteCodigo) +');';
+  SQL := 'call proc_endereco_read('+QuotedStr(AToken) +', '+ QuotedStr(AClienteCodigo) +');';
 
   sqlcliente_endereco.Active    := False;
   sqlcliente_endereco.DataBase  := frm_dm.database;

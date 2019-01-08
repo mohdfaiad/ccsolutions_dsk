@@ -86,7 +86,6 @@ inherited frm_cliente: Tfrm_cliente
       ExplicitLeft = 8
       ExplicitTop = 22
       inherited PageControl_2: TPageControl
-        ActivePage = TabSheet_endereco
         inherited TabSheet_dados: TTabSheet
           object Label3: TLabel
             Left = 3

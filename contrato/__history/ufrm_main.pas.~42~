@@ -1,0 +1,109 @@
+unit ufrm_main;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  System.Actions,
+
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ImgList,
+  Vcl.ActnList,
+  Vcl.Menus,
+  Vcl.ToolWin,
+  Vcl.ComCtrls,
+  Vcl.ExtCtrls,
+
+  dxGDIPlusClasses,
+
+  ufrm_main_default,
+  ufrm_login,
+  ufrm_cliente,
+  ufrm_usuario;
+
+type
+  Tfrm_main = class(Tfrm_main_default)
+    Action_cliente: TAction;
+    Clientes1: TMenuItem;
+    Action_usuario: TAction;
+    DadosdoUsurio1: TMenuItem;
+    N1: TMenuItem;
+    procedure Action_clienteExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Action_usuarioExecute(Sender: TObject);
+  private
+    procedure showForm(form: TForm);
+  public
+
+  end;
+
+var
+  frm_main: Tfrm_main;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tfrm_main.Action_clienteExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_cliente) then begin
+    frm_cliente := Tfrm_cliente.Create(Self);
+    frm_cliente.Height := Bevel_1.Height - 4;
+    frm_cliente.Width := Bevel_1.Width - 4;
+    frm_cliente.Show;
+  end else begin
+    frm_cliente.WindowState := wsNormal;
+    frm_cliente.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_usuarioExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_usuario) then begin
+    frm_usuario := Tfrm_usuario.Create(Self);
+    frm_usuario.Height := Bevel_1.Height - 4;
+    frm_usuario.Width := Bevel_1.Width - 4;
+    frm_usuario.Show;
+  end else begin
+    frm_usuario.WindowState := wsNormal;
+    frm_usuario.Show;
+  end;
+end;
+
+procedure Tfrm_main.FormCreate(Sender: TObject);
+begin
+  inherited;
+  frm_login := Tfrm_login.Create(Self);
+  frm_login.ShowModal;
+
+  if frm_login.ModalResult <> mrOk then begin
+    MessageDlg('Você não se autenticou. A aplicação será encerrada!', mtWarning, [mbOK], 0);
+    Application.Terminate;
+  end;
+end;
+
+procedure Tfrm_main.showForm(form: TForm);
+begin
+//  if not Assigned(form) then begin
+//    frm_cliente := Tform.Create(Self);
+//    form.Height := Bevel_1.Height;
+//    form.Width := Bevel_1.Width;
+//    form.Show;
+//  end else begin
+//    form.WindowState := wsNormal;
+//    form.Show;
+//  end;
+end;
+
+end.

@@ -40,14 +40,14 @@ object frm_dm: Tfrm_dm
     Top = 16
   end
   object driverLink: TFDPhysMySQLDriverLink
-    VendorHome = 'C:\ccsolutions_wbs\'
+    VendorHome = 'C:\ccsolutions\'
     VendorLib = 'libmysql.dll'
     Left = 120
     Top = 16
   end
   object mamDB: TFDManager
-    DriverDefFileName = 'C:\ccsolutions_wbs\config\banco.ini'
-    ConnectionDefFileName = 'C:\ccsolutions_wbs\config\banco.ini'
+    DriverDefFileName = 'C:\ccsolutions\config\banco.ini'
+    ConnectionDefFileName = 'C:\ccsolutions\config\banco.ini'
     FormatOptions.AssignedValues = [fvMapRules]
     FormatOptions.OwnMapRules = True
     FormatOptions.MapRules = <>

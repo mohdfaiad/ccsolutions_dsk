@@ -1,0 +1,117 @@
+unit ufrm_usuario;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.Actions,
+  System.ImageList,
+
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ActnList,
+  Vcl.ImgList,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  Vcl.ExtCtrls,
+  Vcl.Mask,
+  Vcl.DBCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.ComCtrls,
+  Vcl.Menus,
+  Vcl.ToolWin,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet,
+
+  ACBrBase,
+  ACBrEnterTab,
+
+  uDWAbout,
+  uRESTDWPoolerDB,
+  uDWConstsData,
+
+  ufrm_form_default,
+  ufrm_dm;
+
+type
+  Tfrm_usuario = class(Tfrm_form_default)
+    clientSQLusr_id: TStringField;
+    clientSQLusr_codigo: TStringField;
+    clientSQLusr_token: TStringField;
+    clientSQLusr_email: TStringField;
+    clientSQLusr_telefone: TStringField;
+    clientSQLusr_data_deletado: TDateTimeField;
+    clientSQLusr_data_registro: TDateTimeField;
+    clientSQLusr_status: TShortintField;
+    procedure FormShow(Sender: TObject);
+  private
+    procedure afterInsert;
+    procedure afterUpdate;
+    procedure usuario_read(AToken: String);
+
+  public
+
+  end;
+
+var
+  frm_usuario: Tfrm_usuario;
+
+implementation
+
+{$R *.dfm}
+
+{ Tfrm_form_default1 }
+
+procedure Tfrm_usuario.afterInsert;
+begin
+  ShowMessage('Registro Inserido com Sucesso');
+  TabSheet_dados.Show;
+  ds.DataSet.Last;
+end;
+
+procedure Tfrm_usuario.afterUpdate;
+begin
+  ShowMessage('Registro Atualizado com sucesso');
+  TabSheet_dados.Show;
+end;
+
+procedure Tfrm_usuario.usuario_read(AToken: String);
+var
+  SQL: String;
+begin
+  inherited;
+  SQL := 'call proc_usuario_read('+QuotedStr(AToken) +');';
+
+  clientSQL.Active    := False;
+  clientSQL.DataBase  := frm_dm.database;
+  clientSQL.SQL.Clear;
+  clientSQL.SQL.Text  := SQL;
+  clientSQL.Active    := True
+end;
+
+procedure Tfrm_usuario.FormShow(Sender: TObject);
+begin
+  inherited;
+  usuario_read(frm_dm.usuario_usr_token);
+end;
+
+end.

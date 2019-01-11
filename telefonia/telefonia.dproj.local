@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/12/22 21:09:26.000.551,=C:\Users\Usuario\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/12/26 21:12:07.000.275,=C:\Users\Usuario\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/12/26 21:16:20.000.718,=C:\Users\Usuario\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/01/10 21:42:15.856,=C:\Users\Usuario\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/01/10 21:42:42.622,C:\development\sources\ccsolutions_dsk\telefonia\ufrm_main_telefonia.dfm=C:\Users\Usuario\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2019/01/10 21:42:42.622,C:\development\sources\ccsolutions_dsk\telefonia\ufrm_main_telefonia.pas=C:\Users\Usuario\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/01/10 21:42:46.419,C:\development\sources\ccsolutions_dsk\telefonia\telefonia.dproj=C:\Users\Usuario\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2019/01/10 21:43:07.301,=C:\development\sources\ccsolutions_dsk\modelos\ufrm_form_default.pas</Transaction>
+    <Transaction>2019/01/10 21:43:07.492,=C:\development\sources\ccsolutions_dsk\modelos\ufrm_main_default.pas</Transaction>
+    <Transaction>2019/01/10 21:43:28.486,=C:\development\sources\ccsolutions_dsk\telefonia\Unit1.pas</Transaction>
+    <Transaction>2019/01/10 21:43:58.283,C:\development\sources\ccsolutions_dsk\telefonia\ufrm_main.pas=C:\development\sources\ccsolutions_dsk\telefonia\Unit1.pas</Transaction>
+    <Transaction>2019/01/10 21:43:58.283,C:\development\sources\ccsolutions_dsk\telefonia\ufrm_main.dfm=C:\development\sources\ccsolutions_dsk\telefonia\Unit1.dfm</Transaction>
+    <Transaction>2019/01/10 21:44:23.915,=C:\development\sources\ccsolutions_dsk\ufrm_dm.pas</Transaction>
+    <Transaction>2019/01/10 21:44:24.064,=C:\development\sources\ccsolutions_dsk\ufrm_login.pas</Transaction>
+    <Transaction>2019/01/10 21:47:38.526,=C:\development\sources\ccsolutions_dsk\ufrm_cliente.pas</Transaction>
+    <Transaction>2019/01/10 21:47:38.673,=C:\development\sources\ccsolutions_dsk\ufrm_contrato.pas</Transaction>
+    <Transaction>2019/01/10 21:47:38.797,=C:\development\sources\ccsolutions_dsk\ufrm_provedor.pas</Transaction>
+    <Transaction>2019/01/10 21:47:38.927,=C:\development\sources\ccsolutions_dsk\ufrm_revenda.pas</Transaction>
+    <Transaction>2019/01/10 21:47:39.055,=C:\development\sources\ccsolutions_dsk\ufrm_usuario.pas</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,7 +1,6 @@
 inherited frm_cliente: Tfrm_cliente
   Caption = 'Manuten'#231#227'o: Clientes'
   OnClose = FormClose
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl_1: TPageControl
@@ -83,11 +82,16 @@ inherited frm_cliente: Tfrm_cliente
       end
     end
     inherited TabSheet_manutencao: TTabSheet
-      ExplicitLeft = 8
-      ExplicitTop = 22
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1000
+      ExplicitHeight = 626
       inherited PageControl_2: TPageControl
-        ActivePage = TabSheet_endereco
         inherited TabSheet_dados: TTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 24
+          ExplicitWidth = 992
+          ExplicitHeight = 549
           object Label3: TLabel
             Left = 3
             Top = 49
@@ -233,8 +237,10 @@ inherited frm_cliente: Tfrm_cliente
         object TabSheet_endereco: TTabSheet
           Caption = 'Endere'#231'os'
           ImageIndex = 1
-          ExplicitLeft = 7
-          ExplicitTop = 26
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label11: TLabel
             Left = 134
             Top = 3
@@ -257,7 +263,7 @@ inherited frm_cliente: Tfrm_cliente
             Caption = 'N'#250'm.'
           end
           object Label14: TLabel
-            Left = 677
+            Left = 702
             Top = 3
             Width = 28
             Height = 13
@@ -305,12 +311,14 @@ inherited frm_cliente: Tfrm_cliente
             Height = 5
             Shape = bsBottomLine
           end
-          object DBGrid1: TDBGrid
+          object DBGrid_cliente_endereco: TDBGrid
             Left = 3
             Top = 137
             Width = 986
             Height = 357
             DataSource = dscliente_endereco
+            DrawingStyle = gdsGradient
+            Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
             TabOrder = 0
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
@@ -373,128 +381,151 @@ inherited frm_cliente: Tfrm_cliente
                 Visible = True
               end>
           end
-          object DBEdit1: TDBEdit
+          object dbedt_cli_end_cep: TDBEdit
             Left = 134
             Top = 22
             Width = 125
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_end_cep'
+            DataSource = dscliente_endereco
             TabOrder = 1
           end
-          object DBEdit2: TDBEdit
+          object dbedt_cli_end_rua: TDBEdit
             Left = 265
             Top = 22
             Width = 300
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_end_rua'
+            DataSource = dscliente_endereco
             TabOrder = 2
           end
-          object DBEdit3: TDBEdit
+          object dbedt_cli_end_numero: TDBEdit
             Left = 571
             Top = 22
             Width = 125
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_end_numero'
+            DataSource = dscliente_endereco
             TabOrder = 3
           end
-          object DBEdit4: TDBEdit
+          object dbedt_cli_end_bairro: TDBEdit
             Left = 702
             Top = 22
             Width = 287
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_end_bairro'
+            DataSource = dscliente_endereco
             TabOrder = 4
           end
-          object DBEdit5: TDBEdit
+          object dbedt_cli_end_complemento: TDBEdit
             Left = 3
             Top = 68
             Width = 256
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_end_complemento'
+            DataSource = dscliente_endereco
             TabOrder = 5
           end
-          object DBEdit6: TDBEdit
+          object dbedt_cli_end_cidade: TDBEdit
             Left = 265
             Top = 68
             Width = 300
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_end_cidade'
+            DataSource = dscliente_endereco
             TabOrder = 6
           end
-          object DBEdit7: TDBEdit
+          object dbedt_cli_end_estado: TDBEdit
             Left = 571
             Top = 68
             Width = 125
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_end_estado'
+            DataSource = dscliente_endereco
             TabOrder = 7
           end
-          object DBEdit8: TDBEdit
+          object dbedt_cli_end_pais: TDBEdit
             Left = 702
             Top = 68
             Width = 125
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_end_pais'
+            DataSource = dscliente_endereco
             TabOrder = 8
           end
-          object DBComboBox1: TDBComboBox
+          object dbcmb_cli_end_tipo: TDBComboBox
             Left = 3
             Top = 22
             Width = 125
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_end_tipo'
+            DataSource = dscliente_endereco
             Items.Strings = (
               'C'
               'F'
               'E')
             TabOrder = 9
           end
-          object DBNavigator1: TDBNavigator
+          object dbnav_cliente_endereco: TDBNavigator
             Left = 749
             Top = 106
             Width = 240
             Height = 25
             DataSource = dscliente_endereco
             TabOrder = 10
+            OnClick = dbnav_cliente_enderecoClick
           end
         end
         object TabSheet_contato: TTabSheet
           Caption = 'Contatos'
           ImageIndex = 2
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label20: TLabel
             Left = 134
             Top = 3
-            Width = 19
+            Width = 27
             Height = 13
-            Caption = 'CEP'
+            Caption = 'Tel. 1'
           end
           object Label21: TLabel
             Left = 265
             Top = 3
-            Width = 19
+            Width = 27
             Height = 13
-            Caption = 'Rua'
+            Caption = 'Tel. 2'
           end
           object Label22: TLabel
             Left = 396
             Top = 3
-            Width = 25
+            Width = 27
             Height = 13
-            Caption = 'N'#250'm.'
+            Caption = 'Tel. 3'
           end
           object Label23: TLabel
             Left = 527
             Top = 3
-            Width = 28
+            Width = 27
             Height = 13
-            Caption = 'Bairro'
+            Caption = 'Tel. 4'
           end
           object Label24: TLabel
             Left = 658
             Top = 3
-            Width = 65
+            Width = 39
             Height = 13
-            Caption = 'Complemento'
+            Caption = 'Contato'
           end
           object Label28: TLabel
             Left = 3
@@ -510,12 +541,14 @@ inherited frm_cliente: Tfrm_cliente
             Height = 5
             Shape = bsBottomLine
           end
-          object DBGrid2: TDBGrid
+          object DBGrid_cliente_contato: TDBGrid
             Left = 3
             Top = 91
             Width = 986
             Height = 403
             DataSource = dscliente_contato
+            DrawingStyle = gdsGradient
+            Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
             TabOrder = 0
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
@@ -560,59 +593,71 @@ inherited frm_cliente: Tfrm_cliente
                 Visible = True
               end>
           end
-          object DBEdit9: TDBEdit
+          object dbedt_cli_con_telefone1: TDBEdit
             Left = 134
             Top = 22
             Width = 125
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_con_telefone1'
+            DataSource = dscliente_contato
             TabOrder = 1
           end
-          object DBEdit10: TDBEdit
+          object dbedt_cli_con_telefone2: TDBEdit
             Left = 265
             Top = 22
             Width = 125
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_con_telefone2'
+            DataSource = dscliente_contato
             TabOrder = 2
           end
-          object DBEdit11: TDBEdit
+          object dbedt_cli_con_telefone3: TDBEdit
             Left = 396
             Top = 22
             Width = 125
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_con_telefone3'
+            DataSource = dscliente_contato
             TabOrder = 3
           end
-          object DBEdit12: TDBEdit
+          object dbedt_cli_con_telefone4: TDBEdit
             Left = 527
             Top = 22
             Width = 125
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_con_telefone4'
+            DataSource = dscliente_contato
             TabOrder = 4
           end
-          object DBEdit13: TDBEdit
+          object dbedt_cli_con_contato: TDBEdit
             Left = 658
             Top = 22
             Width = 331
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_con_contato'
+            DataSource = dscliente_contato
             TabOrder = 5
           end
-          object DBComboBox2: TDBComboBox
+          object dbcmb_cli_con_tipo: TDBComboBox
             Left = 3
             Top = 22
             Width = 125
             Height = 21
             CharCase = ecUpperCase
+            DataField = 'cli_con_tipo'
+            DataSource = dscliente_contato
             Items.Strings = (
               'C'
               'F'
               'E')
             TabOrder = 6
           end
-          object DBNavigator2: TDBNavigator
+          object dbnav_cliente_contato: TDBNavigator
             Left = 749
             Top = 60
             Width = 240
@@ -643,7 +688,6 @@ inherited frm_cliente: Tfrm_cliente
     end
   end
   inherited clientSQL: TRESTDWClientSQL
-    Active = True
     FieldDefs = <
       item
         Name = 'cli_codigo'
@@ -782,9 +826,72 @@ inherited frm_cliente: Tfrm_cliente
     end
   end
   object sqlcliente_endereco: TRESTDWClientSQL
-    Active = True
+    Active = False
     Filtered = False
-    FieldDefs = <>
+    FieldDefs = <
+      item
+        Name = 'cli_end_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'cliente_cli_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'cli_end_tipo'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'cli_end_cep'
+        DataType = ftString
+        Size = 9
+      end
+      item
+        Name = 'cli_end_rua'
+        DataType = ftString
+        Size = 125
+      end
+      item
+        Name = 'cli_end_numero'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'cli_end_bairro'
+        DataType = ftString
+        Size = 75
+      end
+      item
+        Name = 'cli_end_complemento'
+        DataType = ftString
+        Size = 100
+      end
+      item
+        Name = 'cli_end_cidade'
+        DataType = ftString
+        Size = 45
+      end
+      item
+        Name = 'cli_end_estado'
+        DataType = ftString
+        Size = 3
+      end
+      item
+        Name = 'cli_end_pais'
+        DataType = ftString
+        Size = 45
+      end
+      item
+        Name = 'cli_end_data_deletado'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'cli_end_data_registro'
+        DataType = ftDateTime
+      end>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
@@ -794,6 +901,7 @@ inherited frm_cliente: Tfrm_cliente
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
+    MasterDataSet = clientSQL
     MasterCascadeDelete = True
     Datapacks = -1
     DataCache = False
@@ -801,6 +909,8 @@ inherited frm_cliente: Tfrm_cliente
     DataBase = frm_dm.database
     SQL.Strings = (
       'call proc_cliente_endereco_read('#39#39', '#39#39');')
+    RelationFields.Strings = (
+      'cli_codigo=cliente_cli_codigo')
     CacheUpdateRecords = True
     AutoCommitData = False
     AutoRefreshAfterCommit = False
@@ -873,9 +983,57 @@ inherited frm_cliente: Tfrm_cliente
     end
   end
   object sqlcliente_contato: TRESTDWClientSQL
-    Active = True
+    Active = False
     Filtered = False
-    FieldDefs = <>
+    FieldDefs = <
+      item
+        Name = 'cli_con_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'cliente_cli_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'cli_con_tipo'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'cli_con_telefone1'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'cli_con_telefone2'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'cli_con_telefone3'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'cli_con_telefone4'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'cli_con_contato'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_con_data_deletado'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'cli_con_data_registro'
+        DataType = ftDateTime
+      end>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll

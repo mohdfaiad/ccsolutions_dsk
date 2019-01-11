@@ -1864,10 +1864,18 @@ object frm_login: Tfrm_login
     object TabSheet_alterarsenha: TTabSheet
       Caption = 'Alterar Senha'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
     object TabSheet_recuperarsenha: TTabSheet
       Caption = 'Recuperar Senha'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
   end
   object acbr_enter: TACBrEnterTab

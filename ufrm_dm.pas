@@ -6,11 +6,25 @@ uses
   System.SysUtils,
   System.Classes,
 
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.MySQL,
+  FireDAC.Phys.MySQLDef,
+  FireDAC.ConsoleUI.Wait,
+  FireDAC.Comp.Client,
+  FireDAC.Comp.UI,
+
+  Data.DB,
+
   uDWAbout,
-  uRESTDWPoolerDB, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error,
-  FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
-  FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef,
-  FireDAC.ConsoleUI.Wait, FireDAC.Comp.Client, FireDAC.Comp.UI, Data.DB;
+  uRESTDWPoolerDB;
 
 type
   Tfrm_dm = class(TDataModule)

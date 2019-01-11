@@ -1,0 +1,31 @@
+unit ufrm_provedor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_form_default, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.DApt, FireDAC.Comp.Client, Vcl.Menus, ACBrBase, ACBrEnterTab,
+  uDWAbout, uRESTDWPoolerDB, FireDAC.Comp.DataSet, uDWConstsData,
+  System.Actions, Vcl.ActnList, System.ImageList, Vcl.ImgList, Vcl.Mask,
+  Vcl.DBCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls,
+  Vcl.ToolWin;
+
+type
+  Tfrm_provedor = class(Tfrm_form_default)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_provedor: Tfrm_provedor;
+
+implementation
+
+{$R *.dfm}
+
+end.

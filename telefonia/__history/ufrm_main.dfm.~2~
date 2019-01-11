@@ -1,0 +1,8 @@
+inherited frm_main: Tfrm_main
+  Caption = 'M'#243'dulo Telefonia - CCS.'
+  OnCreate = FormCreate
+  ExplicitWidth = 1024
+  ExplicitHeight = 788
+  PixelsPerInch = 96
+  TextHeight = 13
+end

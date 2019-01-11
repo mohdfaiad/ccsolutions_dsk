@@ -13,6 +13,7 @@ object frm_main_default: Tfrm_main_default
   FormStyle = fsMDIForm
   Menu = MainMenu_1
   OldCreateOrder = False
+  Position = poDesigned
   ShowHint = True
   WindowState = wsMaximized
   PixelsPerInch = 96
@@ -2167,9 +2168,6 @@ object frm_main_default: Tfrm_main_default
     Width = 1008
     Height = 19
     Panels = <>
-    ExplicitLeft = 512
-    ExplicitTop = 376
-    ExplicitWidth = 0
   end
   object ToolBar1: TToolBar
     Left = 0
@@ -2177,10 +2175,8 @@ object frm_main_default: Tfrm_main_default
     Width = 1008
     Height = 29
     Caption = 'ToolBar_1'
+    Images = ImageList_1
     TabOrder = 1
-    ExplicitLeft = 440
-    ExplicitTop = 368
-    ExplicitWidth = 150
   end
   object MainMenu_1: TMainMenu
     Images = ImageList_1

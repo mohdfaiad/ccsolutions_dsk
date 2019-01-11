@@ -61,7 +61,6 @@ type
     storedProc: TRESTDWStoredProc;
     ds: TDataSource;
     DBGrid_1: TDBGrid;
-    Panel_button: TPanel;
     btn_primeiro: TToolButton;
     btn_anterior: TToolButton;
     btn_proximo: TToolButton;
@@ -74,12 +73,6 @@ type
     btn_excluir: TToolButton;
     ToolButton11: TToolButton;
     btn_atualizar: TToolButton;
-    Panel_top: TPanel;
-    lbl_texto: TLabel;
-    edt_texto: TEdit;
-    cmbbox_campo: TComboBox;
-    lbl_campo: TLabel;
-    spdbtn_filtrar: TSpeedButton;
     Action_primeiro: TAction;
     Action_anterior: TAction;
     Action_proximo: TAction;
@@ -115,6 +108,11 @@ type
     dbedt_data_registro: TDBEdit;
     Label2: TLabel;
     schadp: TFDSchemaAdapter;
+    Panel_top: TPanel;
+    lbl_texto: TLabel;
+    lbl_campo: TLabel;
+    cmbbox_campo: TComboBox;
+    btnedt_texto: TButtonedEdit;
     procedure Action_fecharExecute(Sender: TObject);
     procedure DBGrid_1DblClick(Sender: TObject);
     procedure Action_primeiroExecute(Sender: TObject);
@@ -127,7 +125,6 @@ type
     procedure Action_salvarExecute(Sender: TObject);
     procedure Action_excluirExecute(Sender: TObject);
     procedure Action_atualizarExecute(Sender: TObject);
-    procedure Action_filtrarExecute(Sender: TObject);
     procedure DBGrid_1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure FormShow(Sender: TObject);
@@ -161,7 +158,8 @@ end;
 
 procedure Tfrm_form_default.Action_editarExecute(Sender: TObject);
 begin
-    ds.DataSet.Edit;
+  ds.DataSet.Edit;
+  TabSheet_dados.Show;
 end;
 
 procedure Tfrm_form_default.Action_excluirExecute(Sender: TObject);
@@ -176,11 +174,6 @@ begin
   end else begin
     TabSheet_pesquisar.Show;
   end;
-end;
-
-procedure Tfrm_form_default.Action_filtrarExecute(Sender: TObject);
-begin
-//
 end;
 
 procedure Tfrm_form_default.Action_inserirExecute(Sender: TObject);

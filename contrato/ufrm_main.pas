@@ -3,21 +3,53 @@ unit ufrm_main;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_main_default, System.ImageList,
-  Vcl.ImgList, System.Actions, Vcl.ActnList, Vcl.Menus, Vcl.ToolWin,
-  Vcl.ComCtrls, dxGDIPlusClasses, Vcl.ExtCtrls, ufrm_cliente, ufrm_login;
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  System.Actions,
+
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ImgList,
+  Vcl.ActnList,
+  Vcl.Menus,
+  Vcl.ToolWin,
+  Vcl.ComCtrls,
+  Vcl.ExtCtrls,
+
+  dxGDIPlusClasses,
+
+  ufrm_main_default,
+  ufrm_login,
+  ufrm_cliente,
+  ufrm_usuario, ufrm_contrato, ufrm_revenda;
 
 type
   Tfrm_main = class(Tfrm_main_default)
     Action_cliente: TAction;
     Clientes1: TMenuItem;
+    Action_usuario: TAction;
+    DadosdoUsurio1: TMenuItem;
+    N1: TMenuItem;
+    Action_contrato: TAction;
+    Action_revenda: TAction;
+    Revendas1: TMenuItem;
+    Contratos1: TMenuItem;
     procedure Action_clienteExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Action_usuarioExecute(Sender: TObject);
+    procedure Action_contratoExecute(Sender: TObject);
+    procedure Action_revendaExecute(Sender: TObject);
   private
-    { Private declarations }
+
   public
-    { Public declarations }
+
   end;
 
 var
@@ -32,12 +64,46 @@ begin
   inherited;
   if not Assigned(frm_cliente) then begin
     frm_cliente := Tfrm_cliente.Create(Self);
-//    frm_cliente.Height := Bevel_1.Height;
-//    frm_cliente.Width := Bevel_1.Width;
     frm_cliente.Show;
   end else begin
     frm_cliente.WindowState := wsNormal;
     frm_cliente.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_contratoExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_contrato) then begin
+    frm_contrato := Tfrm_contrato.Create(Self);
+    frm_contrato.Show;
+  end else begin
+    frm_contrato.WindowState := wsNormal;
+    frm_contrato.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_revendaExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_revenda) then begin
+    frm_revenda := Tfrm_revenda.Create(Self);
+    frm_revenda.Show;
+  end else begin
+    frm_revenda.WindowState := wsNormal;
+    frm_revenda.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_usuarioExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_usuario) then begin
+    frm_usuario := Tfrm_usuario.Create(Self);
+    frm_usuario.Show;
+  end else begin
+    frm_usuario.WindowState := wsNormal;
+    frm_usuario.Show;
   end;
 end;
 

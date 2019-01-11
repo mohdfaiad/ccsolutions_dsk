@@ -1,0 +1,94 @@
+unit ufrm_revenda;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.Actions,
+  System.ImageList,
+
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ActnList,
+  Vcl.Menus,
+  Vcl.ImgList,
+  Vcl.Mask,
+  Vcl.DBCtrls,
+  Vcl.StdCtrls,
+  Vcl.ExtCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.ComCtrls,
+  Vcl.ToolWin,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet,
+
+  ACBrBase,
+  ACBrEnterTab,
+
+  uDWAbout,
+  uRESTDWPoolerDB,
+  uDWConstsData,
+
+  ufrm_form_default,
+  ufrm_dm;
+
+type
+  Tfrm_revenda = class(Tfrm_form_default)
+    clientSQLrev_codigo: TStringField;
+    clientSQLusuario_usr_codigo: TStringField;
+    clientSQLrev_nome: TStringField;
+    clientSQLrev_nome_fantasia: TStringField;
+    clientSQLrev_cnpj: TStringField;
+    clientSQLrev_ie: TStringField;
+    clientSQLrev_data_deletado: TDateTimeField;
+    clientSQLrev_data_registro: TDateTimeField;
+    clientSQLrev_id: TLongWordField;
+    dbedt_rev_nome: TDBEdit;
+    Label3: TLabel;
+    Label4: TLabel;
+    dbedt_rev_nome_fantasia: TDBEdit;
+    Label5: TLabel;
+    dbedt_rev_cnpj: TDBEdit;
+    Label6: TLabel;
+    dbedt_rev_ie: TDBEdit;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_revenda: Tfrm_revenda;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tfrm_revenda.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_revenda.Destroy;
+  frm_revenda := Nil;
+end;
+
+end.

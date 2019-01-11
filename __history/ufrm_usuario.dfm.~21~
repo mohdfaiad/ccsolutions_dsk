@@ -1,0 +1,280 @@
+inherited frm_usuario: Tfrm_usuario
+  Caption = 'Manuten'#231#227'o - Usu'#225'rio'
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited ToolBar1: TToolBar
+    inherited btn_primeiro: TToolButton
+      Enabled = False
+    end
+    inherited btn_anterior: TToolButton
+      Enabled = False
+    end
+    inherited btn_proximo: TToolButton
+      Enabled = False
+    end
+    inherited btn_ultimo: TToolButton
+      Enabled = False
+    end
+    inherited btn_inserir: TToolButton
+      Enabled = False
+    end
+    inherited btn_excluir: TToolButton
+      Enabled = False
+    end
+  end
+  inherited PageControl_1: TPageControl
+    ActivePage = TabSheet_manutencao
+    ExplicitTop = 25
+    ExplicitHeight = 654
+    inherited TabSheet_pesquisar: TTabSheet
+      ExplicitHeight = 626
+      inherited DBGrid_1: TDBGrid
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'usr_id'
+            Width = 75
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'usr_codigo'
+            Width = 225
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'usr_token'
+            Width = 225
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'usr_email'
+            Width = 225
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'usr_telefone'
+            Width = 100
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'usr_data_registro'
+            Width = 125
+            Visible = True
+          end>
+      end
+      inherited Panel_top: TPanel
+        ExplicitLeft = 0
+      end
+    end
+    inherited TabSheet_manutencao: TTabSheet
+      ExplicitHeight = 626
+      inherited PageControl_2: TPageControl
+        ExplicitHeight = 577
+        inherited TabSheet_dados: TTabSheet
+          ExplicitHeight = 549
+          object Label3: TLabel
+            Left = 3
+            Top = 3
+            Width = 29
+            Height = 13
+            Caption = 'Token'
+          end
+          object Label4: TLabel
+            Left = 3
+            Top = 49
+            Width = 27
+            Height = 13
+            Caption = 'Nome'
+          end
+          object Label5: TLabel
+            Left = 396
+            Top = 49
+            Width = 28
+            Height = 13
+            Caption = 'E-mail'
+          end
+          object Label6: TLabel
+            Left = 658
+            Top = 49
+            Width = 27
+            Height = 13
+            Caption = 'Tel. 1'
+          end
+          object Label7: TLabel
+            Left = 265
+            Top = 49
+            Width = 45
+            Height = 13
+            Caption = 'Dt. Nasc.'
+          end
+          object dbedt_usr_token: TDBEdit
+            Left = 3
+            Top = 22
+            Width = 256
+            Height = 21
+            CharCase = ecUpperCase
+            DataField = 'usr_token'
+            DataSource = ds
+            Enabled = False
+            TabOrder = 0
+          end
+          object dbedt_usr_nome: TDBEdit
+            Left = 3
+            Top = 68
+            Width = 256
+            Height = 21
+            CharCase = ecUpperCase
+            DataField = 'usr_nome'
+            DataSource = ds
+            TabOrder = 1
+          end
+          object dbedt_usr_email: TDBEdit
+            Left = 396
+            Top = 68
+            Width = 256
+            Height = 21
+            CharCase = ecLowerCase
+            DataField = 'usr_email'
+            DataSource = ds
+            Enabled = False
+            TabOrder = 3
+          end
+          object dbedt_usr_telefone: TDBEdit
+            Left = 658
+            Top = 68
+            Width = 125
+            Height = 21
+            CharCase = ecUpperCase
+            DataField = 'usr_telefone'
+            DataSource = ds
+            TabOrder = 4
+          end
+          object dbedt_usr_data_nascimento: TDBEdit
+            Left = 265
+            Top = 68
+            Width = 125
+            Height = 21
+            CharCase = ecUpperCase
+            DataField = 'usr_data_nascimento'
+            DataSource = ds
+            MaxLength = 10
+            TabOrder = 2
+          end
+        end
+      end
+      inherited dbedt_id: TDBEdit
+        DataField = 'usr_id'
+      end
+      inherited dbedt_data_registro: TDBEdit
+        DataField = 'usr_data_registro'
+      end
+    end
+  end
+  inherited clientSQL: TRESTDWClientSQL
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'usr_id'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'usr_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'usr_token'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'usr_nome'
+        DataType = ftString
+        Size = 125
+      end
+      item
+        Name = 'usr_email'
+        DataType = ftString
+        Size = 125
+      end
+      item
+        Name = 'usr_telefone'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'usr_data_nascimento'
+        DataType = ftDate
+      end
+      item
+        Name = 'usr_status'
+        DataType = ftShortint
+      end
+      item
+        Name = 'usr_data_deletado'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'usr_data_registro'
+        DataType = ftDateTime
+      end>
+    DataBase = frm_dm.database
+    SQL.Strings = (
+      'call proc_usuario_read('#39#39');')
+    object clientSQLusr_id: TStringField
+      DisplayLabel = 'ID'
+      FieldName = 'usr_id'
+      Required = True
+      Size = 32
+    end
+    object clientSQLusr_codigo: TStringField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'usr_codigo'
+      Size = 32
+    end
+    object clientSQLusr_token: TStringField
+      DisplayLabel = 'Token'
+      FieldName = 'usr_token'
+      Size = 32
+    end
+    object clientSQLusr_nome: TStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'usr_nome'
+      Size = 125
+    end
+    object clientSQLusr_email: TStringField
+      DisplayLabel = 'E-mail'
+      FieldName = 'usr_email'
+      Size = 125
+    end
+    object clientSQLusr_telefone: TStringField
+      DisplayLabel = 'Tel. 1'
+      FieldName = 'usr_telefone'
+      Size = 15
+    end
+    object clientSQLusr_data_nascimento: TDateField
+      DisplayLabel = 'Dt. Nasc.'
+      FieldName = 'usr_data_nascimento'
+      EditMask = '!99/99/0000;1;_'
+    end
+    object clientSQLusr_status: TShortintField
+      DisplayLabel = 'Status'
+      FieldName = 'usr_status'
+    end
+    object clientSQLusr_data_deletado: TDateTimeField
+      DisplayLabel = 'Dt. Deletado'
+      FieldName = 'usr_data_deletado'
+    end
+    object clientSQLusr_data_registro: TDateTimeField
+      DisplayLabel = 'Dt. Registro'
+      FieldName = 'usr_data_registro'
+    end
+  end
+end

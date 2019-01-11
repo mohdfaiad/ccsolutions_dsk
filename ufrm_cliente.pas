@@ -87,42 +87,42 @@ type
     Label5: TLabel;
     dbchkbox_cli_status: TDBCheckBox;
     TabSheet_endereco: TTabSheet;
-    DBGrid1: TDBGrid;
-    DBEdit1: TDBEdit;
+    DBGrid_cliente_endereco: TDBGrid;
+    dbedt_cli_end_cep: TDBEdit;
     Label11: TLabel;
-    DBEdit2: TDBEdit;
+    dbedt_cli_end_rua: TDBEdit;
     Label12: TLabel;
-    DBEdit3: TDBEdit;
+    dbedt_cli_end_numero: TDBEdit;
     Label13: TLabel;
-    DBEdit4: TDBEdit;
+    dbedt_cli_end_bairro: TDBEdit;
     Label14: TLabel;
-    DBEdit5: TDBEdit;
+    dbedt_cli_end_complemento: TDBEdit;
     Label15: TLabel;
-    DBEdit6: TDBEdit;
+    dbedt_cli_end_cidade: TDBEdit;
     Label16: TLabel;
-    DBEdit7: TDBEdit;
+    dbedt_cli_end_estado: TDBEdit;
     Label17: TLabel;
-    DBEdit8: TDBEdit;
+    dbedt_cli_end_pais: TDBEdit;
     Label18: TLabel;
-    DBComboBox1: TDBComboBox;
+    dbcmb_cli_end_tipo: TDBComboBox;
     Label19: TLabel;
-    DBNavigator1: TDBNavigator;
+    dbnav_cliente_endereco: TDBNavigator;
     Bevel1: TBevel;
     TabSheet_contato: TTabSheet;
-    DBGrid2: TDBGrid;
-    DBEdit9: TDBEdit;
+    DBGrid_cliente_contato: TDBGrid;
+    dbedt_cli_con_telefone1: TDBEdit;
     Label20: TLabel;
-    DBEdit10: TDBEdit;
+    dbedt_cli_con_telefone2: TDBEdit;
     Label21: TLabel;
-    DBEdit11: TDBEdit;
+    dbedt_cli_con_telefone3: TDBEdit;
     Label22: TLabel;
-    DBEdit12: TDBEdit;
+    dbedt_cli_con_telefone4: TDBEdit;
     Label23: TLabel;
-    DBEdit13: TDBEdit;
+    dbedt_cli_con_contato: TDBEdit;
     Label24: TLabel;
-    DBComboBox2: TDBComboBox;
+    dbcmb_cli_con_tipo: TDBComboBox;
     Label28: TLabel;
-    DBNavigator2: TDBNavigator;
+    dbnav_cliente_contato: TDBNavigator;
     Bevel2: TBevel;
     sqlcliente_endereco: TRESTDWClientSQL;
     sqlcliente_contato: TRESTDWClientSQL;
@@ -155,6 +155,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure Action_salvarExecute(Sender: TObject);
     procedure Action_inserirExecute(Sender: TObject);
+    procedure dbnav_cliente_enderecoClick(Sender: TObject; Button: TNavigateBtn);
   private
     function valorBoolean(ACheckBox: TDBCheckBox): ShortInt;
     procedure afterInsert;
@@ -183,7 +184,6 @@ end;
 
 procedure Tfrm_cliente.Action_salvarExecute(Sender: TObject);
 var
-  vError: String;
   storedProcInsert, storedProcUpdate : TFDStoredProc;
 begin
   valorBoolean(dbchkbox_cli_status);
@@ -250,6 +250,7 @@ end;
 procedure Tfrm_cliente.afterInsert;
 begin
   ShowMessage('Registro Inserido com Sucesso');
+  cliente_read(frm_dm.usuario_usr_token);
   TabSheet_dados.Show;
   ds.DataSet.Last;
 end;
@@ -307,7 +308,6 @@ procedure Tfrm_cliente.cliente_read(AToken: String);
 var
   SQL: String;
 begin
-  inherited;
   SQL := 'call proc_cliente_read('+QuotedStr(AToken) +');';
 
   clientSQL.Active    := False;
@@ -315,6 +315,71 @@ begin
   clientSQL.SQL.Clear;
   clientSQL.SQL.Text  := SQL;
   clientSQL.Active    := True
+end;
+
+procedure Tfrm_cliente.dbnav_cliente_enderecoClick(Sender: TObject; Button: TNavigateBtn);
+var
+  storedProcInsert, storedProcUpdate : TFDStoredProc;
+begin
+  inherited;
+  case Button of
+    nbPost:
+      case dscliente_endereco.State of
+        dsEdit:
+          try
+            try
+              storedProcUpdate := TFDStoredProc.Create(Self);
+              storedProcUpdate.Connection := frm_dm.connDB;
+              storedProcUpdate.StoredProcName := 'proc_cliente_endereco_update';
+              storedProcUpdate.Prepare;
+              storedProcUpdate.ParamByName('p_usuario_usr_token').AsString  := frm_dm.usuario_usr_token;
+              storedProcUpdate.ParamByName('p_cli_codigo').AsString         := clientSQLcli_codigo.AsString;
+              storedProcUpdate.ParamByName('p_cli_nome').AsString           := dbedt_cli_nome.Text;
+              storedProcUpdate.ParamByName('p_cli_nome_fantasia').AsString  := dbedt_cli_nome_fantasia.Text;
+              storedProcUpdate.ParamByName('p_cli_tipo').AsString           := dbcmb_cli_tipo.Text;
+              storedProcUpdate.ParamByName('p_cli_rgie').AsString           := dbedt_cli_rgie.Text;
+              storedProcUpdate.ParamByName('p_cli_cpfcnpj').AsString        := dbedt_cli_cpfcnpj.Text;
+              storedProcUpdate.ParamByName('p_cli_im').AsString             := dbedt_cli_im.Text;
+              storedProcUpdate.ParamByName('p_cli_suframa').AsString        := dbedt_cli_suframa.Text;
+              storedProcUpdate.ParamByName('p_cli_data').AsDate             := StrToDate(dbedt_cli_data.Text);
+              storedProcUpdate.ParamByName('p_cli_status').AsShortInt       := valorBoolean(dbchkbox_cli_status);
+              storedProcUpdate.ExecProc;
+
+//              afterUpdate;
+            except on E: Exception do
+              ShowMessage('Erro Update: ' + E.Message);
+            end;
+          finally
+          end;
+
+        dsInsert:
+          try
+            try
+              storedProcInsert := TFDStoredProc.Create(Self);
+              storedProcInsert.Connection := frm_dm.connDB;
+              storedProcInsert.StoredProcName := 'proc_cliente_endereco_create';
+              storedProcInsert.Prepare;
+              storedProcInsert.ParamByName('p_usuario_usr_token').AsString    := frm_dm.usuario_usr_token;
+              storedProcInsert.ParamByName('p_cliente_cli_codigo').AsString   := clientSQLcli_codigo.AsString;
+              storedProcInsert.ParamByName('p_cli_con_tipo').AsString         := dbcmb_cli_end_tipo.Text;
+              storedProcInsert.ParamByName('p_cli_con_cep').AsString          := dbedt_cli_end_cep.Text;
+              storedProcInsert.ParamByName('p_cli_con_rua').AsString          := dbedt_cli_end_rua.Text;
+              storedProcInsert.ParamByName('p_cli_con_numero').AsString       := dbedt_cli_end_numero.Text;
+              storedProcInsert.ParamByName('p_cli_con_bairro').AsString       := dbedt_cli_end_bairro.Text;
+              storedProcInsert.ParamByName('p_cli_con_complemento').AsString  := dbedt_cli_end_complemento.Text;
+              storedProcInsert.ParamByName('p_cli_con_cidade').AsString       := dbedt_cli_end_cidade.Text;
+              storedProcInsert.ParamByName('p_cli_con_estado').AsString       := dbedt_cli_end_estado.Text;
+              storedProcInsert.ParamByName('p_cli_con_pais').AsString         := dbedt_cli_end_pais.Text;
+              storedProcInsert.ExecProc;
+
+//              afterInsert;
+            except on E: Exception do
+              ShowMessage('Error Inserir: ' + E.Message);
+            end;
+          finally
+          end;
+      end;
+  end;
 end;
 
 function Tfrm_cliente.valorBoolean(ACheckBox: TDBCheckBox): ShortInt;

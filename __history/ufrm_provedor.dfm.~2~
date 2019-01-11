@@ -1,0 +1,5 @@
+inherited frm_provedor: Tfrm_provedor
+  Caption = 'Manuten'#231#227'o: Provedores'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

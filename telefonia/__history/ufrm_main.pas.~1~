@@ -1,0 +1,26 @@
+unit ufrm_main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_main_default, System.ImageList,
+  Vcl.ImgList, System.Actions, Vcl.ActnList, Vcl.Menus, Vcl.ToolWin,
+  Vcl.ComCtrls, dxGDIPlusClasses, Vcl.ExtCtrls;
+
+type
+  Tfrm_main = class(Tfrm_main_default)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_main: Tfrm_main;
+
+implementation
+
+{$R *.dfm}
+
+end.

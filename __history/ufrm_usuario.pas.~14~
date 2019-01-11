@@ -1,0 +1,170 @@
+unit ufrm_usuario;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.Actions,
+  System.ImageList,
+
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ActnList,
+  Vcl.ImgList,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  Vcl.ExtCtrls,
+  Vcl.Mask,
+  Vcl.DBCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.ComCtrls,
+  Vcl.Menus,
+  Vcl.ToolWin,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet,
+
+  ACBrBase,
+  ACBrEnterTab,
+
+  uDWAbout,
+  uRESTDWPoolerDB,
+  uDWConstsData,
+
+  ufrm_form_default,
+  ufrm_dm;
+
+type
+  Tfrm_usuario = class(Tfrm_form_default)
+    clientSQLusr_id: TStringField;
+    clientSQLusr_codigo: TStringField;
+    clientSQLusr_token: TStringField;
+    clientSQLusr_email: TStringField;
+    clientSQLusr_telefone: TStringField;
+    clientSQLusr_data_deletado: TDateTimeField;
+    clientSQLusr_data_registro: TDateTimeField;
+    clientSQLusr_status: TShortintField;
+    dbedt_usr_token: TDBEdit;
+    Label3: TLabel;
+    dbedt_usr_nome: TDBEdit;
+    Label4: TLabel;
+    clientSQLusr_nome: TStringField;
+    dbedt_usr_email: TDBEdit;
+    Label5: TLabel;
+    dbedt_usr_telefone: TDBEdit;
+    Label6: TLabel;
+    clientSQLusr_data_nascimento: TDateField;
+    dbedt_usr_data_nascimento: TDBEdit;
+    Label7: TLabel;
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Action_salvarExecute(Sender: TObject);
+  private
+    procedure afterInsert;
+    procedure afterUpdate;
+    procedure usuario_read(AToken: String);
+
+  public
+
+  end;
+
+var
+  frm_usuario: Tfrm_usuario;
+
+implementation
+
+{$R *.dfm}
+
+{ Tfrm_form_default1 }
+
+procedure Tfrm_usuario.Action_salvarExecute(Sender: TObject);
+var
+  storedProcInsert, storedProcUpdate : TFDStoredProc;
+begin
+  case ds.State of
+    dsEdit:
+      try
+        try
+          if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+            storedProcUpdate := TFDStoredProc.Create(Self);
+            storedProcUpdate.Connection := frm_dm.connDB;
+            storedProcUpdate.StoredProcName := 'proc_cliente_update';
+            storedProcUpdate.Prepare;
+            storedProcUpdate.ParamByName('p_usr_codigo').AsString         := clientSQLusr_codigo.AsString;
+            storedProcUpdate.ParamByName('p_usr_token').AsString          := dbedt_usr_token.Text;
+            storedProcUpdate.ParamByName('p_usr_nome').AsString           := dbedt_usr_nome.Text;
+            storedProcUpdate.ParamByName('p_usr_data_nascimento').AsDate  := StrToDate(dbedt_usr_data_nascimento.Text);
+            storedProcUpdate.ParamByName('p_usr_telefone').AsString       := dbedt_usr_telefone.Text;
+            storedProcUpdate.ExecProc;
+
+            afterUpdate;
+          end else begin
+            ds.DataSet.Cancel;
+          end;
+        except on E: Exception do
+          ShowMessage('Erro Update: ' + E.Message);
+        end;
+      finally
+      end;
+  end;
+end;
+
+procedure Tfrm_usuario.afterInsert;
+begin
+  ShowMessage('Registro Inserido com Sucesso');
+  TabSheet_dados.Show;
+  ds.DataSet.Last;
+end;
+
+procedure Tfrm_usuario.afterUpdate;
+begin
+  ShowMessage('Registro Atualizado com sucesso');
+  TabSheet_dados.Show;
+end;
+
+procedure Tfrm_usuario.usuario_read(AToken: String);
+var
+  SQL: String;
+begin
+  inherited;
+  SQL := 'call proc_usuario_read('+QuotedStr(AToken) +');';
+
+  clientSQL.Active    := False;
+  clientSQL.DataBase  := frm_dm.database;
+  clientSQL.SQL.Clear;
+  clientSQL.SQL.Text  := SQL;
+  clientSQL.Active    := True
+end;
+
+procedure Tfrm_usuario.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_usuario.Destroy;
+  frm_usuario := Nil;
+end;
+
+procedure Tfrm_usuario.FormShow(Sender: TObject);
+begin
+  inherited;
+  usuario_read(frm_dm.usuario_usr_token);
+end;
+
+end.

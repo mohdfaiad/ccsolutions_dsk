@@ -100,7 +100,7 @@ begin
   SQL :=  'set @po_usuario_usr_token = 0;'   +
           'set @po_usuario_usr_codigo = 0;'  +
           'set @po_usuario_autenticado = 0;' +
-          'call proc_usuario_acesso_acessar('+ QuotedStr(edt_contrato.Text) +', '+ QuotedStr(edt_usuario.Text) +', '+ QuotedStr(edt_senha.Text) +', @po_usuario_usr_token, @po_usuario_usr_codigo, @po_usuario_autenticado);'  +
+          'call proc_usr_ctr_acesso('+ QuotedStr(edt_contrato.Text) +', '+ QuotedStr(edt_usuario.Text) +', '+ QuotedStr(edt_senha.Text) +', @po_usuario_usr_token, @po_usuario_usr_codigo, @po_usuario_autenticado);'  +
           'select @po_usuario_usr_token as usuario_usr_token, @po_usuario_usr_codigo as usuario_usr_codigo, @po_usuario_autenticado as usuario_autenticado;';
 
   clientSQL := TRESTDWClientSQL.Create(Self);
@@ -214,11 +214,11 @@ end;
 
 procedure Tfrm_login.Timer_1Timer(Sender: TObject);
 begin
-  if StatusServidor('127.0.0.1', 80) then begin
-    StatusBar1.Panels[1].Text := 'Online';
-  end else begin
-    StatusBar1.Panels[1].Text := 'Offline'
-  end;
+//  if StatusServidor('127.0.0.1', 80) then begin
+//    StatusBar1.Panels[1].Text := 'Online';
+//  end else begin
+//    StatusBar1.Panels[1].Text := 'Offline'
+//  end;
 end;
 
 end.

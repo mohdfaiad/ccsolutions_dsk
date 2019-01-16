@@ -1,0 +1,90 @@
+unit ufrm_numero_cliente;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.Actions,
+  System.ImageList,
+
+  Vcl.Menus,
+  Vcl.ActnList,
+  Vcl.ImgList,
+  Vcl.Mask,
+  Vcl.DBCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.StdCtrls,
+  Vcl.ExtCtrls,
+  Vcl.ComCtrls,
+  Vcl.ToolWin,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet,
+
+  ACBrBase,
+  ACBrEnterTab,
+
+  uDWAbout,
+  uRESTDWPoolerDB,
+  uDWConstsData,
+
+  ufrm_form_default,
+  ufrm_dm;
+
+type
+  Tfrm_numero_cliente = class(Tfrm_form_default)
+    clientSQLnuc_codigo: TStringField;
+    clientSQLnumero_num_codigo: TStringField;
+    clientSQLcliente_cli_codigo: TStringField;
+    clientSQLnuc_id: TLongWordField;
+    clientSQLnuc_status: TShortintField;
+    clientSQLnuc_data_deletado: TDateTimeField;
+    clientSQLnuc_data_registro: TDateTimeField;
+    sqlcliente: TRESTDWClientSQL;
+    dscliente: TDataSource;
+    dsnumero: TDataSource;
+    sqlnumero: TRESTDWClientSQL;
+    clientSQLcliente_nome: TStringField;
+    clientSQLnumero_numero: TStringField;
+    dblkpcmbbox_nuc_cliente_cli_codigo: TDBLookupComboBox;
+    Label3: TLabel;
+    dblkpcmbbox_nuc_numero_num_codigo: TDBLookupComboBox;
+    Label4: TLabel;
+  private
+    procedure afterInsert;
+    procedure afterUpdate;
+    procedure numero_cliente_read(AToken: String);
+    procedure cliente_read(AToken: String);
+
+  public
+
+  end;
+
+var
+  frm_numero_cliente: Tfrm_numero_cliente;
+
+implementation
+
+{$R *.dfm}
+
+end.

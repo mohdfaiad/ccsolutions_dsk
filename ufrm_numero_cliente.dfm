@@ -1,0 +1,384 @@
+inherited frm_numero_cliente: Tfrm_numero_cliente
+  Caption = 'Manuten'#231#227'o: Configura'#231#245'es de DIDs'
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited PageControl_1: TPageControl
+    inherited TabSheet_pesquisar: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1000
+      ExplicitHeight = 676
+      inherited PageControl_registros: TPageControl
+        inherited TabSheet_registros_ativos: TTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 24
+          ExplicitWidth = 992
+          ExplicitHeight = 598
+          inherited DBGrid_1: TDBGrid
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'nuc_id'
+                Width = 75
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cliente_nome'
+                Width = 275
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'numero_numero'
+                Width = 125
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'nuc_status'
+                Width = 50
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'nuc_data_registro'
+                Width = 125
+                Visible = True
+              end>
+          end
+        end
+      end
+    end
+    inherited TabSheet_manutencao: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1000
+      ExplicitHeight = 676
+      inherited PageControl_2: TPageControl
+        inherited TabSheet_dados: TTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 24
+          ExplicitWidth = 992
+          ExplicitHeight = 598
+          object Label3: TLabel
+            Left = 3
+            Top = 3
+            Width = 33
+            Height = 13
+            Caption = 'Cliente'
+          end
+          object Label4: TLabel
+            Left = 396
+            Top = 3
+            Width = 37
+            Height = 13
+            Caption = 'N'#250'mero'
+          end
+          object dblkpcmbbox_nuc_cliente_cli_codigo: TDBLookupComboBox
+            Left = 3
+            Top = 22
+            Width = 387
+            Height = 21
+            DataField = 'cliente_cli_codigo'
+            DataSource = ds
+            KeyField = 'cli_codigo'
+            ListField = 'cli_nome'
+            ListSource = dscliente
+            TabOrder = 0
+          end
+          object dblkpcmbbox_nuc_numero_num_codigo: TDBLookupComboBox
+            Left = 396
+            Top = 22
+            Width = 150
+            Height = 21
+            DataField = 'numero_num_codigo'
+            DataSource = ds
+            KeyField = 'num_codigo'
+            ListField = 'num_numero'
+            ListSource = dsnumero
+            TabOrder = 1
+          end
+        end
+      end
+      inherited Panel_manutencao_top: TPanel
+        inherited dbedt_data_registro: TDBEdit
+          DataField = 'nuc_data_registro'
+        end
+        inherited dbedt_id: TDBEdit
+          DataField = 'nuc_id'
+        end
+        object dbchkbox_nuc_status: TDBCheckBox
+          Left = 269
+          Top = 24
+          Width = 60
+          Height = 17
+          Caption = 'Status'
+          DataField = 'nuc_status'
+          DataSource = ds
+          TabOrder = 2
+          ValueChecked = '1'
+          ValueUnchecked = '0'
+        end
+      end
+    end
+  end
+  inherited clientSQL: TRESTDWClientSQL
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'nuc_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'numero_num_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'cliente_cli_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'nuc_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'nuc_status'
+        DataType = ftShortint
+      end
+      item
+        Name = 'nuc_data_deletado'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'nuc_data_registro'
+        DataType = ftDateTime
+      end>
+    IndexFieldNames = 'nuc_id'
+    DataBase = frm_dm.database
+    SQL.Strings = (
+      'call proc_numero_cliente_read('#39#39');')
+    object clientSQLnuc_codigo: TStringField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'nuc_codigo'
+      Size = 32
+    end
+    object clientSQLnumero_num_codigo: TStringField
+      DisplayLabel = 'C'#243'd. N'#250'mero'
+      FieldName = 'numero_num_codigo'
+      Size = 32
+    end
+    object clientSQLcliente_cli_codigo: TStringField
+      DisplayLabel = 'C'#243'd. Cliente'
+      FieldName = 'cliente_cli_codigo'
+      Size = 32
+    end
+    object clientSQLnuc_id: TLongWordField
+      DisplayLabel = 'ID'
+      FieldName = 'nuc_id'
+    end
+    object clientSQLnuc_status: TShortintField
+      DisplayLabel = 'Status'
+      FieldName = 'nuc_status'
+    end
+    object clientSQLnuc_data_deletado: TDateTimeField
+      DisplayLabel = 'Dt. Deletado'
+      FieldName = 'nuc_data_deletado'
+    end
+    object clientSQLnuc_data_registro: TDateTimeField
+      DisplayLabel = 'Dt. Registro'
+      FieldName = 'nuc_data_registro'
+    end
+    object clientSQLcliente_nome: TStringField
+      DisplayLabel = 'Cliente'
+      FieldKind = fkLookup
+      FieldName = 'cliente_nome'
+      LookupDataSet = sqlcliente
+      LookupKeyFields = 'cli_codigo'
+      LookupResultField = 'cli_nome'
+      KeyFields = 'cliente_cli_codigo'
+      Size = 125
+      Lookup = True
+    end
+    object clientSQLnumero_numero: TStringField
+      DisplayLabel = 'N'#250'mero'
+      FieldKind = fkLookup
+      FieldName = 'numero_numero'
+      LookupDataSet = sqlnumero
+      LookupKeyFields = 'num_codigo'
+      LookupResultField = 'num_numero'
+      KeyFields = 'numero_num_codigo'
+      Size = 15
+      Lookup = True
+    end
+  end
+  object sqlcliente: TRESTDWClientSQL
+    Active = True
+    Filtered = False
+    FieldDefs = <
+      item
+        Name = 'cli_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'usuario_usr_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'cli_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'cli_nome'
+        DataType = ftString
+        Size = 125
+      end
+      item
+        Name = 'cli_nome_fantasia'
+        DataType = ftString
+        Size = 125
+      end
+      item
+        Name = 'cli_tipo'
+        DataType = ftString
+        Size = 2
+      end
+      item
+        Name = 'cli_rgie'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_cpfcnpj'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_im'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_suframa'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'cli_data'
+        DataType = ftDate
+      end
+      item
+        Name = 'cli_status'
+        DataType = ftShortint
+      end
+      item
+        Name = 'cli_data_deletado'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'cli_data_registro'
+        DataType = ftDateTime
+      end>
+    IndexDefs = <>
+    IndexFieldNames = 'cli_nome'
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    MasterCascadeDelete = True
+    Datapacks = -1
+    DataCache = False
+    Params = <>
+    DataBase = frm_dm.database
+    SQL.Strings = (
+      'call proc_cliente_read('#39#39');')
+    CacheUpdateRecords = True
+    AutoCommitData = False
+    AutoRefreshAfterCommit = False
+    ActionCursor = crSQLWait
+    ReflectChanges = False
+    Left = 864
+    Top = 56
+  end
+  object dscliente: TDataSource
+    DataSet = sqlcliente
+    Left = 896
+    Top = 56
+  end
+  object dsnumero: TDataSource
+    DataSet = sqlnumero
+    Left = 832
+    Top = 56
+  end
+  object sqlnumero: TRESTDWClientSQL
+    Active = True
+    Filtered = False
+    FieldDefs = <
+      item
+        Name = 'num_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'usuario_usr_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'provedor_prv_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'num_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'num_numero'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'num_data_deletado'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'num_data_registro'
+        DataType = ftDateTime
+      end>
+    IndexDefs = <>
+    IndexFieldNames = 'num_numero'
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    MasterCascadeDelete = True
+    Datapacks = -1
+    DataCache = False
+    Params = <>
+    DataBase = frm_dm.database
+    SQL.Strings = (
+      'call proc_numero_read('#39#39');')
+    CacheUpdateRecords = True
+    AutoCommitData = False
+    AutoRefreshAfterCommit = False
+    ActionCursor = crSQLWait
+    ReflectChanges = False
+    Left = 800
+    Top = 56
+  end
+end

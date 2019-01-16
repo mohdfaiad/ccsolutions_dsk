@@ -82,7 +82,7 @@ object frm_form_default: Tfrm_form_default
     object btn_excluir: TToolButton
       Left = 232
       Top = 0
-      Action = Action_excluir
+      Action = Action_deletar
     end
     object btn_atualizar: TToolButton
       Left = 260
@@ -114,30 +114,8 @@ object frm_form_default: Tfrm_form_default
     MultiLine = True
     ParentDoubleBuffered = False
     TabOrder = 1
-    ExplicitHeight = 654
     object TabSheet_pesquisar: TTabSheet
       Caption = 'Pesquisar'
-      ExplicitHeight = 626
-      object DBGrid_1: TDBGrid
-        Left = 0
-        Top = 50
-        Width = 1000
-        Height = 626
-        Align = alClient
-        BorderStyle = bsNone
-        DataSource = ds
-        DrawingStyle = gdsGradient
-        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-        PopupMenu = PopupMenu_1
-        TabOrder = 0
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWindowText
-        TitleFont.Height = -11
-        TitleFont.Name = 'Tahoma'
-        TitleFont.Style = []
-        OnDrawColumnCell = DBGrid_1DrawColumnCell
-        OnDblClick = DBGrid_1DblClick
-      end
       object Panel_top: TPanel
         Left = 0
         Top = 0
@@ -146,7 +124,7 @@ object frm_form_default: Tfrm_form_default
         Align = alTop
         BevelInner = bvRaised
         BevelOuter = bvLowered
-        TabOrder = 1
+        TabOrder = 0
         object lbl_texto: TLabel
           Left = 7
           Top = 3
@@ -167,7 +145,7 @@ object frm_form_default: Tfrm_form_default
           Width = 200
           Height = 21
           Style = csDropDownList
-          TabOrder = 0
+          TabOrder = 1
         end
         object btnedt_texto: TButtonedEdit
           Left = 7
@@ -177,62 +155,100 @@ object frm_form_default: Tfrm_form_default
           Images = imglist
           RightButton.ImageIndex = 11
           RightButton.Visible = True
-          TabOrder = 1
+          TabOrder = 0
+        end
+      end
+      object PageControl_registros: TPageControl
+        Left = 0
+        Top = 50
+        Width = 1000
+        Height = 626
+        ActivePage = TabSheet_registros_ativos
+        Align = alClient
+        TabOrder = 1
+        object TabSheet_registros_ativos: TTabSheet
+          Caption = 'Registros'
+          object DBGrid_1: TDBGrid
+            Left = 0
+            Top = 0
+            Width = 992
+            Height = 598
+            Align = alClient
+            BorderStyle = bsNone
+            DataSource = ds
+            DrawingStyle = gdsGradient
+            Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+            PopupMenu = PopupMenu_1
+            TabOrder = 0
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+            OnDrawColumnCell = DBGrid_1DrawColumnCell
+            OnDblClick = DBGrid_1DblClick
+          end
         end
       end
     end
     object TabSheet_manutencao: TTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
-      ExplicitHeight = 626
-      object Label1: TLabel
-        Left = 7
-        Top = 3
-        Width = 11
-        Height = 13
-        Caption = 'ID'
-      end
-      object Label2: TLabel
-        Left = 138
-        Top = 3
-        Width = 58
-        Height = 13
-        Caption = 'Dt. Registro'
-      end
       object PageControl_2: TPageControl
         Left = 0
-        Top = 49
+        Top = 50
         Width = 1000
-        Height = 627
+        Height = 626
         ActivePage = TabSheet_dados
-        Align = alBottom
-        Anchors = [akLeft, akTop, akRight, akBottom]
+        Align = alClient
         TabOrder = 0
-        ExplicitHeight = 577
         object TabSheet_dados: TTabSheet
           Caption = 'Dados'
-          ExplicitHeight = 549
         end
       end
-      object dbedt_id: TDBEdit
-        Left = 7
-        Top = 22
-        Width = 125
-        Height = 21
-        CharCase = ecUpperCase
-        DataSource = ds
-        Enabled = False
+      object Panel_manutencao_top: TPanel
+        Left = 0
+        Top = 0
+        Width = 1000
+        Height = 50
+        Align = alTop
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
         TabOrder = 1
-      end
-      object dbedt_data_registro: TDBEdit
-        Left = 138
-        Top = 22
-        Width = 125
-        Height = 21
-        CharCase = ecUpperCase
-        DataSource = ds
-        Enabled = False
-        TabOrder = 2
+        object Label2: TLabel
+          Left = 138
+          Top = 3
+          Width = 58
+          Height = 13
+          Caption = 'Dt. Registro'
+        end
+        object Label1: TLabel
+          Left = 7
+          Top = 3
+          Width = 11
+          Height = 13
+          Caption = 'ID'
+        end
+        object dbedt_data_registro: TDBEdit
+          Left = 138
+          Top = 22
+          Width = 125
+          Height = 21
+          CharCase = ecUpperCase
+          DataSource = ds
+          Enabled = False
+          TabOrder = 1
+        end
+        object dbedt_id: TDBEdit
+          Left = 7
+          Top = 22
+          Width = 125
+          Height = 21
+          CharCase = ecUpperCase
+          DataSource = ds
+          Enabled = False
+          TabOrder = 0
+        end
       end
     end
   end
@@ -1045,60 +1061,72 @@ object frm_form_default: Tfrm_form_default
     Top = 8
     object Action_primeiro: TAction
       Caption = 'Primeiro'
+      Hint = 'Primeiro Registro'
       ImageIndex = 0
       OnExecute = Action_primeiroExecute
     end
     object Action_anterior: TAction
       Caption = 'Anterior'
+      Hint = 'Registro Anterior'
       ImageIndex = 1
       OnExecute = Action_anteriorExecute
     end
     object Action_proximo: TAction
       Caption = 'Pr'#243'ximo'
+      Hint = 'Pr'#243'ximo Registro'
       ImageIndex = 2
       OnExecute = Action_proximoExecute
     end
     object Action_ultimo: TAction
       Caption = #218'ltimo'
+      Hint = #218'ltimo Registro'
       ImageIndex = 3
       OnExecute = Action_ultimoExecute
     end
     object Action_inserir: TAction
       Caption = 'Inserir'
+      Hint = 'Inserir Registro'
       ImageIndex = 4
       OnExecute = Action_inserirExecute
     end
     object Action_editar: TAction
       Caption = 'Editar'
+      Hint = 'Editar Registro'
       ImageIndex = 5
       OnExecute = Action_editarExecute
     end
     object Action_cancelar: TAction
       Caption = 'Cancelar'
+      Hint = 'Cancelar Altera'#231#245'es'
       ImageIndex = 6
       OnExecute = Action_cancelarExecute
     end
     object Action_salvar: TAction
       Caption = 'Salvar'
+      Hint = 'Salvar Altera'#231#245'es'
       ImageIndex = 7
       OnExecute = Action_salvarExecute
     end
-    object Action_excluir: TAction
-      Caption = 'Excluir'
+    object Action_deletar: TAction
+      Caption = 'Deletar'
+      Hint = 'Deletar Registro'
       ImageIndex = 8
-      OnExecute = Action_excluirExecute
+      OnExecute = Action_deletarExecute
     end
     object Action_atualizar: TAction
       Caption = 'Atualizar'
+      Hint = 'Atualizar Informa'#231#245'es'
       ImageIndex = 9
       OnExecute = Action_atualizarExecute
     end
     object Action_fechar: TAction
       Caption = 'Fechar'
+      Hint = 'Fechar Formul'#225'rio'
       ImageIndex = 10
       OnExecute = Action_fecharExecute
     end
     object Action_filtrar: TAction
+      Hint = 'Filtrar'
       ImageIndex = 11
     end
   end
@@ -1134,6 +1162,7 @@ object frm_form_default: Tfrm_form_default
   end
   object ds: TDataSource
     DataSet = clientSQL
+    OnStateChange = dsStateChange
     Left = 896
     Top = 8
   end
@@ -1174,7 +1203,7 @@ object frm_form_default: Tfrm_form_default
       Action = Action_salvar
     end
     object Excluir1: TMenuItem
-      Action = Action_excluir
+      Action = Action_deletar
     end
     object Atualizar1: TMenuItem
       Action = Action_atualizar

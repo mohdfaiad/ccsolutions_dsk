@@ -25,51 +25,69 @@ inherited frm_usuario: Tfrm_usuario
   end
   inherited PageControl_1: TPageControl
     inherited TabSheet_pesquisar: TTabSheet
-      inherited DBGrid_1: TDBGrid
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'usr_id'
-            Width = 75
-            Visible = True
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1000
+      ExplicitHeight = 676
+      inherited PageControl_registros: TPageControl
+        inherited TabSheet_registros_ativos: TTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 24
+          ExplicitWidth = 992
+          ExplicitHeight = 598
+          inherited DBGrid_1: TDBGrid
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'usr_id'
+                Width = 75
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'usr_codigo'
+                Width = 225
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'usr_token'
+                Width = 225
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'usr_email'
+                Width = 225
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'usr_telefone'
+                Width = 100
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'usr_data_registro'
+                Width = 125
+                Visible = True
+              end>
           end
-          item
-            Expanded = False
-            FieldName = 'usr_codigo'
-            Width = 225
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'usr_token'
-            Width = 225
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'usr_email'
-            Width = 225
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'usr_telefone'
-            Width = 100
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'usr_data_registro'
-            Width = 125
-            Visible = True
-          end>
+        end
       end
     end
     inherited TabSheet_manutencao: TTabSheet
-      ExplicitHeight = 626
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1000
+      ExplicitHeight = 676
       inherited PageControl_2: TPageControl
         inherited TabSheet_dados: TTabSheet
-          ExplicitHeight = 549
+          ExplicitLeft = 4
+          ExplicitTop = 24
+          ExplicitWidth = 992
+          ExplicitHeight = 598
           object Label3: TLabel
             Left = 3
             Top = 3
@@ -160,15 +178,18 @@ inherited frm_usuario: Tfrm_usuario
           end
         end
       end
-      inherited dbedt_id: TDBEdit
-        DataField = 'usr_id'
-      end
-      inherited dbedt_data_registro: TDBEdit
-        DataField = 'usr_data_registro'
+      inherited Panel_manutencao_top: TPanel
+        inherited dbedt_data_registro: TDBEdit
+          DataField = 'usr_data_registro'
+        end
+        inherited dbedt_id: TDBEdit
+          DataField = 'usr_id'
+        end
       end
     end
   end
   inherited clientSQL: TRESTDWClientSQL
+    Active = True
     FieldDefs = <
       item
         Name = 'usr_id'
@@ -216,6 +237,7 @@ inherited frm_usuario: Tfrm_usuario
         Name = 'usr_data_registro'
         DataType = ftDateTime
       end>
+    IndexFieldNames = 'usr_id'
     DataBase = frm_dm.database
     SQL.Strings = (
       'call proc_usuario_read('#39#39');')

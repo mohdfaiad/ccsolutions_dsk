@@ -1,0 +1,142 @@
+unit ufrm_provedor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_form_default, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.DApt, FireDAC.Comp.Client, Vcl.Menus, ACBrBase, ACBrEnterTab,
+  uDWAbout, uRESTDWPoolerDB, FireDAC.Comp.DataSet, uDWConstsData,
+  System.Actions, Vcl.ActnList, System.ImageList, Vcl.ImgList, Vcl.Mask,
+  Vcl.DBCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls,
+  Vcl.ToolWin, ufrm_dm;
+
+type
+  Tfrm_provedor = class(Tfrm_form_default)
+    clientSQLprv_codigo: TStringField;
+    clientSQLusuario_usr_codigo: TStringField;
+    clientSQLprv_nome: TStringField;
+    clientSQLprv_data_deletado: TDateTimeField;
+    clientSQLprv_data_registro: TDateTimeField;
+    clientSQLprv_id: TLongWordField;
+    dbedt_prv_nome: TDBEdit;
+    Label3: TLabel;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Action_salvarExecute(Sender: TObject);
+  private
+    procedure afterInsert;
+    procedure afterUpdate;
+    procedure cliente_read(AToken: String);
+
+  public
+
+  end;
+
+var
+  frm_provedor: Tfrm_provedor;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tfrm_provedor.Action_salvarExecute(Sender: TObject);
+var
+  storedProcInsert, storedProcUpdate : TFDStoredProc;
+begin
+  case ds.State of
+    dsEdit:
+      try
+        try
+          if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+            storedProcUpdate := TFDStoredProc.Create(Self);
+            storedProcUpdate.Connection := frm_dm.connDB;
+            storedProcUpdate.StoredProcName := 'proc_cliente_update';
+            storedProcUpdate.Prepare;
+            storedProcUpdate.ParamByName('p_usuario_usr_token').AsString  := frm_dm.usuario_usr_token;
+            storedProcUpdate.ParamByName('p_cli_codigo').AsString         := clientSQLcli_codigo.AsString;
+            storedProcUpdate.ParamByName('p_cli_nome').AsString           := dbedt_cli_nome.Text;
+            storedProcUpdate.ParamByName('p_cli_nome_fantasia').AsString  := dbedt_cli_nome_fantasia.Text;
+            storedProcUpdate.ParamByName('p_cli_tipo').AsString           := dbcmb_cli_tipo.Text;
+            storedProcUpdate.ParamByName('p_cli_rgie').AsString           := dbedt_cli_rgie.Text;
+            storedProcUpdate.ParamByName('p_cli_cpfcnpj').AsString        := dbedt_cli_cpfcnpj.Text;
+            storedProcUpdate.ParamByName('p_cli_im').AsString             := dbedt_cli_im.Text;
+            storedProcUpdate.ParamByName('p_cli_suframa').AsString        := dbedt_cli_suframa.Text;
+            storedProcUpdate.ParamByName('p_cli_data').AsDate             := StrToDate(dbedt_cli_data.Text);
+            storedProcUpdate.ParamByName('p_cli_status').AsShortInt       := valorBoolean(dbchkbox_cli_status);
+            storedProcUpdate.ExecProc;
+
+            afterUpdate;
+          end else begin
+            ds.DataSet.Cancel;
+          end;
+        except on E: Exception do
+          ShowMessage('Erro Update: ' + E.Message);
+        end;
+      finally
+      end;
+
+    dsInsert:
+      try
+        try
+          storedProcInsert := TFDStoredProc.Create(Self);
+          storedProcInsert.Connection := frm_dm.connDB;
+          storedProcInsert.StoredProcName := 'proc_cliente_create';
+          storedProcInsert.Prepare;
+          storedProcInsert.ParamByName('p_usuario_usr_token').AsString  := frm_dm.usuario_usr_token;
+          storedProcInsert.ParamByName('p_cli_nome').AsString           := dbedt_cli_nome.Text;
+          storedProcInsert.ParamByName('p_cli_nome_fantasia').AsString  := dbedt_cli_nome_fantasia.Text;
+          storedProcInsert.ParamByName('p_cli_tipo').AsString           := dbcmb_cli_tipo.Text;
+          storedProcInsert.ParamByName('p_cli_rgie').AsString           := dbedt_cli_rgie.Text;
+          storedProcInsert.ParamByName('p_cli_cpfcnpj').AsString        := dbedt_cli_cpfcnpj.Text;
+          storedProcInsert.ParamByName('p_cli_im').AsString             := dbedt_cli_im.Text;
+          storedProcInsert.ParamByName('p_cli_suframa').AsString        := dbedt_cli_suframa.Text;
+          storedProcInsert.ParamByName('p_cli_data').AsDate             := StrToDate(dbedt_cli_data.Text);
+          storedProcInsert.ParamByName('p_cli_status').AsShortInt       := valorBoolean(dbchkbox_cli_status);
+          storedProcInsert.ExecProc;
+
+          afterInsert;
+        except on E: Exception do
+          ShowMessage('Error Inserir: ' + E.Message);
+        end;
+      finally
+      end;
+  end;
+end;
+
+procedure Tfrm_provedor.afterInsert;
+begin
+  ShowMessage('Registro Inserido com Sucesso');
+  cliente_read(frm_dm.usuario_usr_token);
+  TabSheet_dados.Show;
+  ds.DataSet.Last;
+end;
+
+procedure Tfrm_provedor.afterUpdate;
+begin
+  ShowMessage('Registro Atualizado com sucesso');
+  TabSheet_dados.Show;
+end;
+
+procedure Tfrm_provedor.cliente_read(AToken: String);
+var
+  SQL: String;
+begin
+  SQL := 'call proc_provedor_read('+QuotedStr(AToken) +');';
+
+  clientSQL.Active    := False;
+  clientSQL.DataBase  := frm_dm.database;
+  clientSQL.SQL.Clear;
+  clientSQL.SQL.Text  := SQL;
+  clientSQL.Active    := True
+end;
+
+procedure Tfrm_provedor.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_provedor.Destroy;
+  frm_provedor := Nil;
+end;
+
+end.

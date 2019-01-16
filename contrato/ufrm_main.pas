@@ -11,6 +11,7 @@ uses
   System.Classes,
   System.ImageList,
   System.Actions,
+  System.UITypes,
 
   Vcl.Graphics,
   Vcl.Controls,
@@ -28,7 +29,10 @@ uses
   ufrm_main_default,
   ufrm_login,
   ufrm_cliente,
-  ufrm_usuario, ufrm_contrato, ufrm_revenda;
+  ufrm_usuario,
+  ufrm_contrato,
+  ufrm_revenda,
+  ufrm_produto;
 
 type
   Tfrm_main = class(Tfrm_main_default)
@@ -41,11 +45,18 @@ type
     Action_revenda: TAction;
     Revendas1: TMenuItem;
     Contratos1: TMenuItem;
+    Action_produto: TAction;
+    ProdutoseServios1: TMenuItem;
+    Action_logoff: TAction;
+    rocarUsurio1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
     procedure Action_clienteExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Action_usuarioExecute(Sender: TObject);
     procedure Action_contratoExecute(Sender: TObject);
     procedure Action_revendaExecute(Sender: TObject);
+    procedure Action_produtoExecute(Sender: TObject);
   private
 
   public
@@ -80,6 +91,18 @@ begin
   end else begin
     frm_contrato.WindowState := wsNormal;
     frm_contrato.Show;
+  end;
+end;
+
+procedure Tfrm_main.Action_produtoExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(frm_produto) then begin
+    frm_produto := Tfrm_produto.Create(Self);
+    frm_produto.Show;
+  end else begin
+    frm_produto.WindowState := wsNormal;
+    frm_produto.Show;
   end;
 end;
 

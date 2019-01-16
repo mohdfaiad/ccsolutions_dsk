@@ -10,8 +10,8 @@ uses
   System.Variants,
   System.Classes,
   System.Actions,
-
   System.ImageList,
+
   Vcl.ActnList,
   Vcl.ImgList,
   Vcl.Mask,
@@ -27,6 +27,7 @@ uses
   Vcl.Forms,
   Vcl.Dialogs,
   Vcl.Menus,
+  Vcl.Buttons,
 
   Data.DB,
 
@@ -98,19 +99,87 @@ type
     sqlrevendarev_data_deletado: TDateTimeField;
     sqlrevendarev_data_registro: TDateTimeField;
     clientSQLrevenda_nome: TStringField;
-    clientSQLctr_valor: TSingleField;
-    dbedt_ctr_valor: TDBEdit;
+    dbedt_ctr_revenda_valor: TDBEdit;
     Label7: TLabel;
     clientSQLcliente_nome: TStringField;
+    TabSheet_contrato_itens: TTabSheet;
+    sqlcontrato_item: TRESTDWClientSQL;
+    dscontrato_item: TDataSource;
+    sqlcontrato_itemctr_ite_codigo: TStringField;
+    sqlcontrato_itemusuario_usr_codigo: TStringField;
+    sqlcontrato_itemrevenda_rev_codigo: TStringField;
+    sqlcontrato_itemproduto_pro_codigo: TStringField;
+    sqlcontrato_itemctr_ite_valor: TSingleField;
+    sqlcontrato_itemctr_ite_valor_total: TSingleField;
+    sqlcontrato_itemctr_ite_quantidade: TSingleField;
+    sqlcontrato_itemctr_ite_desconto_valor: TSingleField;
+    sqlcontrato_itemctr_ite_desconto_porcentagem: TSingleField;
+    sqlcontrato_itemctr_ite_revenda_valor: TSingleField;
+    sqlcontrato_itemctr_ite_anotacoes: TMemoField;
+    sqlcontrato_itemctr_ite_data_deletado: TDateTimeField;
+    sqlcontrato_itemctr_ite_data_registro: TDateTimeField;
+    DBGrid_contrato_iten: TDBGrid;
+    dbedt_ctr_ite_valor: TDBEdit;
+    Label8: TLabel;
+    dblkpcmbbox_produto_ctr_codigo: TDBLookupComboBox;
+    Label9: TLabel;
+    Label10: TLabel;
+    dblkpcmbbox_item_revenda_rev_codigo: TDBLookupComboBox;
+    dbedt_ctr_ite_quantidade: TDBEdit;
+    Label11: TLabel;
+    dbedt_ctr_ite_desconto_valor: TDBEdit;
+    Label12: TLabel;
+    dbedt_ctr_ite_desconto_porcentagem: TDBEdit;
+    Label13: TLabel;
+    dbedt_ctr_ite_valor_total: TDBEdit;
+    Label14: TLabel;
+    dbedt_ctr_ite_revenda_valor: TDBEdit;
+    Label15: TLabel;
+    Bevel1: TBevel;
+    sqlproduto: TRESTDWClientSQL;
+    dsproduto: TDataSource;
+    sqlprodutopro_codigo: TStringField;
+    sqlprodutousuario_usr_codigo: TStringField;
+    sqlprodutopro_id: TLongWordField;
+    sqlprodutopro_tipo: TStringField;
+    sqlprodutopro_nome: TStringField;
+    sqlprodutopro_descricao: TMemoField;
+    sqlprodutopro_data_deletado: TDateTimeField;
+    sqlprodutopro_data_registro: TDateTimeField;
+    dbmem_ctr_ite_anotacoes: TDBMemo;
+    Label16: TLabel;
+    Bevel2: TBevel;
+    sqlcontrato_itemcontrato_ctr_codigo: TStringField;
+    sqlcontrato_itemrevenda_nome: TStringField;
+    sqlcontrato_itemproduto_nome: TStringField;
+    Action_contrato_iten_inserir: TAction;
+    Action_contrato_iten_salvar: TAction;
+    Action_contrato_iten_deletar: TAction;
+    Action_contrato_iten_cancelar: TAction;
+    Panel_contrato_iten: TPanel;
+    SpeedButton_ctr_ite_inserir: TSpeedButton;
+    SpeedButton_ctr_ite_cancelar: TSpeedButton;
+    SpeedButton_ctr_ite_salvar: TSpeedButton;
+    SpeedButton_ctr_ite_deletar: TSpeedButton;
+    clientSQLctr_revenda_valor: TSingleField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action_salvarExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure Action_contrato_iten_inserirExecute(Sender: TObject);
+    procedure Action_contrato_iten_salvarExecute(Sender: TObject);
+    procedure dsDataChange(Sender: TObject; Field: TField);
+    procedure Action_contrato_iten_deletarExecute(Sender: TObject);
+    procedure Action_contrato_iten_cancelarExecute(Sender: TObject);
+    procedure dscontrato_itemStateChange(Sender: TObject);
   private
     procedure afterInsert;
     procedure afterUpdate;
     procedure contrato_read(AToken: String);
+    procedure contrato_iten_read(AToken: String);
     procedure cliente_read(AToken: String);
     procedure revenda_read(AToken: String);
+    procedure produto_read(AToken: String);
+    procedure filtro;
 
   public
 
@@ -122,6 +191,105 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Tfrm_contrato.Action_contrato_iten_cancelarExecute(Sender: TObject);
+begin
+  inherited;
+  dscontrato_item.DataSet.Cancel;
+end;
+
+procedure Tfrm_contrato.Action_contrato_iten_deletarExecute(Sender: TObject);
+var
+  storedProcDelete: TFDStoredProc;
+begin
+  inherited;
+  try
+    try
+      if MessageDlg('Deseja Excluir o Registro?', mtconfirmation, [mbYes, mbNo], 0) = mrYes then Begin
+        storedProcdelete := TFDStoredProc.Create(Self);
+        storedProcdelete.Connection := frm_dm.connDB;
+        storedProcdelete.StoredProcName := 'proc_contrato_item_delete';
+        storedProcdelete.Prepare;
+        storedProcdelete.ParamByName('p_usuario_usr_token').AsString  := frm_dm.usuario_usr_token;
+        storedProcdelete.ParamByName('p_ctr_ite_codigo').AsString     := sqlcontrato_itemctr_ite_codigo.AsString;
+        storedProcdelete.ExecProc;
+
+        dscontrato_item.DataSet.Delete;
+      end;
+    except on E: Exception do
+      ShowMessage('Erro Update: ' + E.Message);
+    end;
+  finally
+  end;
+end;
+
+procedure Tfrm_contrato.Action_contrato_iten_inserirExecute(Sender: TObject);
+begin
+  inherited;
+  dscontrato_item.DataSet.Insert;
+end;
+
+procedure Tfrm_contrato.Action_contrato_iten_salvarExecute(Sender: TObject);
+var
+  storedProcInsert, storedProcUpdate : TFDStoredProc;
+begin
+  inherited;
+  case dscontrato_item.State of
+    dsEdit:
+      try
+        try
+          storedProcUpdate := TFDStoredProc.Create(Self);
+          storedProcUpdate.Connection := frm_dm.connDB;
+          storedProcUpdate.StoredProcName := 'proc_contrato_item_update';
+          storedProcUpdate.Prepare;
+          storedProcUpdate.ParamByName('p_usuario_usr_token').AsString            := frm_dm.usuario_usr_token;
+          storedProcUpdate.ParamByName('p_ctr_ite_codigo').AsString               := sqlcontrato_itemctr_ite_codigo.AsString;
+          storedProcUpdate.ParamByName('p_revenda_rev_codigo').AsString           := sqlrevendarev_codigo.AsString;
+          storedProcUpdate.ParamByName('p_produto_pro_codigo').AsString           := sqlprodutopro_codigo.AsString;
+          storedProcUpdate.ParamByName('p_ctr_ite_valor').AsFloat                 := StrToFloat(dbedt_ctr_ite_valor.Text);
+          storedProcUpdate.ParamByName('p_ctr_ite_valor_total').AsFloat           := StrToFloat(dbedt_ctr_ite_valor_total.Text);
+          storedProcUpdate.ParamByName('p_ctr_ite_quantidade').AsFloat            := StrToFloat(dbedt_ctr_ite_quantidade.Text);
+          storedProcUpdate.ParamByName('p_ctr_ite_desconto_valor').AsFloat        := StrToFloat(dbedt_ctr_ite_desconto_valor.Text);
+          storedProcUpdate.ParamByName('p_ctr_ite_desconto_porcentagem').AsFloat  := StrToFloat(dbedt_ctr_ite_desconto_porcentagem.Text);
+          storedProcUpdate.ParamByName('p_ctr_ite_revenda_valor').AsFloat         := StrToFloat(dbedt_ctr_ite_revenda_valor.Text);
+          storedProcUpdate.ParamByName('p_ctr_ite_anotacoes').AsMemo              := dbmem_ctr_ite_anotacoes.Lines.Text;
+          storedProcUpdate.ExecProc;
+
+          contrato_iten_read(frm_dm.usuario_usr_token);
+        except on E: Exception do
+          ShowMessage('Erro Update: ' + E.Message);
+        end;
+      finally
+      end;
+
+    dsInsert:
+      try
+        try
+          storedProcInsert := TFDStoredProc.Create(Self);
+          storedProcInsert.Connection := frm_dm.connDB;
+          storedProcInsert.StoredProcName := 'proc_contrato_item_create';
+          storedProcInsert.Prepare;
+          storedProcInsert.ParamByName('p_usuario_usr_token').AsString            := frm_dm.usuario_usr_token;
+          storedProcInsert.ParamByName('p_contrato_ctr_codigo').AsString          := clientSQLctr_codigo.AsString;
+          storedProcInsert.ParamByName('p_revenda_rev_codigo').AsString           := sqlrevendarev_codigo.AsString;
+          storedProcInsert.ParamByName('p_produto_pro_codigo').AsString           := sqlprodutopro_codigo.AsString;
+          storedProcInsert.ParamByName('p_ctr_ite_valor').AsFloat                 := StrToFloat(dbedt_ctr_ite_valor.Text);
+          storedProcInsert.ParamByName('p_ctr_ite_valor_total').AsFloat           := StrToFloat(dbedt_ctr_ite_valor_total.Text);
+          storedProcInsert.ParamByName('p_ctr_ite_quantidade').AsFloat            := StrToFloat(dbedt_ctr_ite_quantidade.Text);
+          storedProcInsert.ParamByName('p_ctr_ite_desconto_valor').AsFloat        := StrToFloat(dbedt_ctr_ite_desconto_valor.Text);
+          storedProcInsert.ParamByName('p_ctr_ite_desconto_porcentagem').AsFloat  := StrToFloat(dbedt_ctr_ite_desconto_porcentagem.Text);
+          storedProcInsert.ParamByName('p_ctr_ite_revenda_valor').AsFloat         := StrToFloat(dbedt_ctr_ite_revenda_valor.Text);
+          storedProcInsert.ParamByName('p_ctr_ite_anotacoes').AsMemo              := dbmem_ctr_ite_anotacoes.Lines.Text;
+          storedProcInsert.ExecProc;
+
+          contrato_iten_read(frm_dm.usuario_usr_token);
+        except on E: Exception do
+          ShowMessage('Error Inserir: ' + E.Message);
+        end;
+      finally
+      end;
+  end;
+end;
 
 procedure Tfrm_contrato.Action_salvarExecute(Sender: TObject);
 var
@@ -140,7 +308,7 @@ begin
             storedProcUpdate.ParamByName('p_ctr_codigo').AsString         := clientSQLctr_codigo.AsString;
             storedProcUpdate.ParamByName('p_cliente_cli_codigo').AsString := sqlcliente.FieldByName('cli_codigo').AsString;
             storedProcUpdate.ParamByName('p_revenda_rev_codigo').AsString := sqlrevenda.FieldByName('rev_codigo').AsString;
-            storedProcUpdate.ParamByName('p_ctr_valor').AsFloat           := StrToFloat(dbedt_ctr_valor.Text);
+            storedProcUpdate.ParamByName('p_ctr_revenda_valor').AsFloat   := StrToFloat(dbedt_ctr_revenda_valor.Text);
             storedProcUpdate.ParamByName('p_ctr_data_contrato').AsDate    := StrToDate(dbedt_ctr_data_contrato.Text);
             storedProcUpdate.ParamByName('p_ctr_data_assinatura').AsDate  := StrToDate(dbedt_ctr_data_assinatura.Text);
             storedProcUpdate.ExecProc;
@@ -165,7 +333,7 @@ begin
           storedProcInsert.ParamByName('p_usuario_usr_token').AsString  := frm_dm.usuario_usr_token;
           storedProcInsert.ParamByName('p_cliente_cli_codigo').AsString := sqlcliente.FieldByName('cli_codigo').AsString;
           storedProcInsert.ParamByName('p_revenda_rev_codigo').AsString := sqlrevenda.FieldByName('rev_codigo').AsString;
-          storedProcInsert.ParamByName('p_ctr_valor').AsFloat           := StrToFloat(dbedt_ctr_valor.Text);
+          storedProcInsert.ParamByName('p_ctr_revenda_valor').AsFloat   := StrToFloat(dbedt_ctr_revenda_valor.Text);
           storedProcInsert.ParamByName('p_ctr_data_contrato').AsDate    := StrToDate(dbedt_ctr_data_contrato.Text);
           storedProcInsert.ParamByName('p_ctr_data_assinatura').AsDate  := StrToDate(dbedt_ctr_data_assinatura.Text);
           storedProcInsert.ExecProc;
@@ -207,6 +375,21 @@ begin
   sqlcliente.Active    := True
 end;
 
+procedure Tfrm_contrato.contrato_iten_read(AToken: String);
+var
+  SQL: String;
+begin
+  inherited;
+  SQL := 'call proc_contrato_item_read('+QuotedStr(AToken) +');';
+
+  sqlcontrato_item.Active     := False;
+  sqlcontrato_item.DataBase   := frm_dm.database;
+  sqlcontrato_item.SQL.Clear;
+  sqlcontrato_item.SQL.Text   := SQL;
+  sqlcontrato_item.Active     := True;
+  filtro;
+end;
+
 procedure Tfrm_contrato.contrato_read(AToken: String);
 var
   SQL: String;
@@ -221,6 +404,28 @@ begin
   clientSQL.Active    := True
 end;
 
+procedure Tfrm_contrato.dscontrato_itemStateChange(Sender: TObject);
+begin
+  inherited;
+  SpeedButton_ctr_ite_inserir.Enabled  := not(dscontrato_item.DataSet.State in [dsInsert, dsEdit]);
+  SpeedButton_ctr_ite_salvar.Enabled   := (dscontrato_item.DataSet.State in [dsInsert, dsEdit]);
+  SpeedButton_ctr_ite_deletar.Enabled  := (dscontrato_item.DataSet.State in [dsBrowse, dsEdit]);
+  SpeedButton_ctr_ite_cancelar.Enabled := (dscontrato_item.DataSet.State in [dsInsert, dsEdit]);
+end;
+
+procedure Tfrm_contrato.dsDataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+  filtro;
+end;
+
+procedure Tfrm_contrato.filtro;
+begin
+  dscontrato_item.DataSet.Filtered  := False;
+  dscontrato_item.DataSet.Filter    := 'contrato_ctr_codigo = ' + QuotedStr(clientSQLctr_codigo.AsString);
+  dscontrato_item.DataSet.Filtered  := True;
+end;
+
 procedure Tfrm_contrato.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -233,7 +438,23 @@ begin
   inherited;
   cliente_read(frm_dm.usuario_usr_token);
   revenda_read(frm_dm.usuario_usr_token);
+  produto_read(frm_dm.usuario_usr_token);
   contrato_read(frm_dm.usuario_usr_token);
+  contrato_iten_read(frm_dm.usuario_usr_token);
+end;
+
+procedure Tfrm_contrato.produto_read(AToken: String);
+var
+  SQL: String;
+begin
+  inherited;
+  SQL := 'call proc_produto_read('+QuotedStr(AToken) +');';
+
+  sqlproduto.Active    := False;
+  sqlproduto.DataBase  := frm_dm.database;
+  sqlproduto.SQL.Clear;
+  sqlproduto.SQL.Text  := SQL;
+  sqlproduto.Active    := True
 end;
 
 procedure Tfrm_contrato.revenda_read(AToken: String);

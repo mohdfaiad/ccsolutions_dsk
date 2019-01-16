@@ -1,0 +1,138 @@
+unit ufrm_numero;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.Actions,
+  System.ImageList,
+
+  Vcl.ImgList,
+  Vcl.Mask,
+  Vcl.DBCtrls,
+  Vcl.StdCtrls,
+  Vcl.ExtCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.ComCtrls,
+  Vcl.ToolWin,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.Menus,
+  Vcl.ActnList,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet,
+
+  ACBrBase,
+  ACBrEnterTab,
+
+  uDWAbout,
+  uRESTDWPoolerDB,
+  uDWConstsData,
+
+  ufrm_form_default,
+  ufrm_dm;
+
+type
+  Tfrm_numero = class(Tfrm_form_default)
+    clientSQLnum_codigo: TStringField;
+    clientSQLusuario_usr_codigo: TStringField;
+    clientSQLprovedor_prv_codigo: TStringField;
+    clientSQLnum_id: TLongWordField;
+    clientSQLnum_numero: TStringField;
+    clientSQLnum_data_deletado: TDateTimeField;
+    clientSQLnum_data_registro: TDateTimeField;
+    sqlprovedor: TRESTDWClientSQL;
+    dsprovedor: TDataSource;
+    sqlprovedorprv_codigo: TStringField;
+    sqlprovedorusuario_usr_codigo: TStringField;
+    sqlprovedorprv_id: TLongWordField;
+    sqlprovedorprv_nome: TStringField;
+    sqlprovedorprv_data_deletado: TDateTimeField;
+    sqlprovedorprv_data_registro: TDateTimeField;
+    clientSQLprovedor_nome: TStringField;
+    dblkpcmbbox_provedor_prv_codigo: TDBLookupComboBox;
+    dbedt_num_numero: TDBEdit;
+    Label3: TLabel;
+    Label4: TLabel;
+    procedure Action_salvarExecute(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_numero: Tfrm_numero;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tfrm_numero.Action_salvarExecute(Sender: TObject);
+var
+  storedProcInsert, storedProcUpdate : TFDStoredProc;
+begin
+  case ds.State of
+    dsEdit:
+      try
+        try
+          if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+            storedProcUpdate := TFDStoredProc.Create(Self);
+            storedProcUpdate.Connection := frm_dm.connDB;
+            storedProcUpdate.StoredProcName := 'proc_numero_update';
+            storedProcUpdate.Prepare;
+            storedProcUpdate.ParamByName('p_usuario_usr_token').AsString  := frm_dm.usuario_usr_token;
+            storedProcUpdate.ParamByName('p_num_codigo').AsString         := clientSQLnum_codigo.AsString;
+            storedProcUpdate.ParamByName('p_num_numero').AsString         := dbedt_num_numero.Text;
+            storedProcUpdate.ExecProc;
+
+            afterUpdate;
+          end else begin
+            ds.DataSet.Cancel;
+          end;
+        except on E: Exception do
+          ShowMessage('Erro Update: ' + E.Message);
+        end;
+      finally
+      end;
+
+    dsInsert:
+      try
+        try
+          storedProcInsert := TFDStoredProc.Create(Self);
+          storedProcInsert.Connection := frm_dm.connDB;
+          storedProcInsert.StoredProcName := 'proc_numero_create';
+          storedProcInsert.Prepare;
+          storedProcInsert.ParamByName('p_usuario_usr_token').AsString  := frm_dm.usuario_usr_token;
+          storedProcInsert.ParamByName('p_num_numero').AsString         := dbedt_num_numero.Text;
+          storedProcInsert.ExecProc;
+
+          afterInsert;
+        except on E: Exception do
+          ShowMessage('Error Inserir: ' + E.Message);
+        end;
+      finally
+      end;
+  end;
+end;
+
+end.

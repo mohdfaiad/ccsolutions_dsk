@@ -47,7 +47,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
-        <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
+        <DCC_ExeOutput>C:\ccsolutions\mod_contrato\</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
         <DCC_S>false</DCC_S>
@@ -68,7 +68,7 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <DCC_ExeOutput>C:\ccsolutions\mod_contrato\</DCC_ExeOutput>
+        <DCC_ExeOutput>C:\ccsolutions\mod_contrato\win32</DCC_ExeOutput>
         <DCC_DcuOutput>C:\Temp\ccsolutions\contrato\.\$(Platform)\$(Config)</DCC_DcuOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
@@ -145,6 +145,10 @@
             <Form>frm_revenda</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\ufrm_produto.pas">
+            <Form>frm_produto</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -172,7 +176,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="C:\ccsolutions\mod_contrato\contrato.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\ccsolutions\mod_contrato\win32\contrato.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>contrato.exe</RemoteName>
                         <Overwrite>true</Overwrite>

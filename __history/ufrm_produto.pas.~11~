@@ -1,0 +1,171 @@
+unit ufrm_produto;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.Actions,
+  System.ImageList,
+
+  Vcl.ActnList,
+  Vcl.ImgList,
+  Vcl.Mask,
+  Vcl.DBCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.StdCtrls,
+  Vcl.ExtCtrls,
+  Vcl.ComCtrls,
+  Vcl.ToolWin,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.Menus,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet,
+
+  ACBrBase,
+  ACBrEnterTab,
+
+  uDWAbout,
+  uRESTDWPoolerDB,
+  uDWConstsData,
+
+  ufrm_form_default,
+  ufrm_dm;
+
+type
+  Tfrm_produto = class(Tfrm_form_default)
+    clientSQLpro_codigo: TStringField;
+    clientSQLusuario_usr_codigo: TStringField;
+    clientSQLpro_id: TLongWordField;
+    clientSQLpro_tipo: TStringField;
+    clientSQLpro_nome: TStringField;
+    clientSQLpro_descricao: TMemoField;
+    clientSQLpro_data_deletado: TDateTimeField;
+    clientSQLpro_data_registro: TDateTimeField;
+    dbedt_pro_nome: TDBEdit;
+    Label3: TLabel;
+    dbmem_pro_descricao: TDBMemo;
+    Label4: TLabel;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Action_salvarExecute(Sender: TObject);
+  private
+    procedure afterInsert;
+    procedure afterUpdate;
+    procedure produto_read(AToken: String);
+
+  public
+
+  end;
+
+var
+  frm_produto: Tfrm_produto;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tfrm_produto.Action_salvarExecute(Sender: TObject);
+var
+  storedProcInsert, storedProcUpdate : TFDStoredProc;
+begin
+  case ds.State of
+    dsEdit:
+      try
+        try
+          if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+            storedProcUpdate := TFDStoredProc.Create(Self);
+            storedProcUpdate.Connection := frm_dm.connDB;
+            storedProcUpdate.StoredProcName := 'proc_contrato_update';
+            storedProcUpdate.Prepare;
+            storedProcUpdate.ParamByName('p_usuario_usr_token').AsString  := frm_dm.usuario_usr_token;
+            storedProcUpdate.ParamByName('p_ctr_codigo').AsString         := clientSQLctr_codigo.AsString;
+            storedProcUpdate.ParamByName('p_cliente_cli_codigo').AsString := sqlcliente.FieldByName('cli_codigo').AsString;
+            storedProcUpdate.ParamByName('p_revenda_rev_codigo').AsString := sqlrevenda.FieldByName('rev_codigo').AsString;
+            storedProcUpdate.ExecProc;
+
+            afterUpdate;
+          end else begin
+            ds.DataSet.Cancel;
+          end;
+        except on E: Exception do
+          ShowMessage('Erro Update: ' + E.Message);
+        end;
+      finally
+      end;
+
+    dsInsert:
+      try
+        try
+          storedProcInsert := TFDStoredProc.Create(Self);
+          storedProcInsert.Connection := frm_dm.connDB;
+          storedProcInsert.StoredProcName := 'proc_contrato_create';
+          storedProcInsert.Prepare;
+          storedProcInsert.ParamByName('p_usuario_usr_token').AsString  := frm_dm.usuario_usr_token;
+          storedProcInsert.ParamByName('p_cliente_cli_codigo').AsString := sqlcliente.FieldByName('cli_codigo').AsString;
+          storedProcInsert.ParamByName('p_revenda_rev_codigo').AsString := sqlrevenda.FieldByName('rev_codigo').AsString;
+          storedProcInsert.ExecProc;
+
+          afterInsert;
+        except on E: Exception do
+          ShowMessage('Error Inserir: ' + E.Message);
+        end;
+      finally
+      end;
+  end;
+end;
+
+procedure Tfrm_produto.afterInsert;
+begin
+  ShowMessage('Registro Inserido com Sucesso');
+  produto_read(frm_dm.usuario_usr_token);
+  TabSheet_dados.Show;
+  ds.DataSet.Last;
+end;
+
+procedure Tfrm_produto.afterUpdate;
+begin
+  ShowMessage('Registro Atualizado com sucesso');
+  TabSheet_dados.Show;
+end;
+
+procedure Tfrm_produto.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_produto.Destroy;
+  frm_produto := Nil;
+end;
+
+procedure Tfrm_produto.produto_read(AToken: String);
+var
+  SQL: String;
+begin
+  inherited;
+  SQL := 'call proc_produto_read('+QuotedStr(AToken) +');';
+
+  ClientSQL.Active    := False;
+  ClientSQL.DataBase  := frm_dm.database;
+  ClientSQL.SQL.Clear;
+  ClientSQL.SQL.Text  := SQL;
+  ClientSQL.Active    := True
+end;
+
+end.

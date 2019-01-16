@@ -5,93 +5,89 @@ inherited frm_cliente: Tfrm_cliente
   TextHeight = 13
   inherited PageControl_1: TPageControl
     inherited TabSheet_pesquisar: TTabSheet
-      inherited DBGrid_1: TDBGrid
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'cli_id'
-            Width = 75
-            Visible = True
+      inherited PageControl_registros: TPageControl
+        inherited TabSheet_registros_ativos: TTabSheet
+          inherited DBGrid_1: TDBGrid
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'cli_id'
+                Width = 75
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cli_nome'
+                Width = 250
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cli_nome_fantasia'
+                Width = 250
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cli_tipo'
+                Width = 35
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cli_rgie'
+                Width = 100
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cli_cpfcnpj'
+                Width = 100
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cli_im'
+                Width = 100
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cli_suframa'
+                Width = 100
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cli_data'
+                Width = 100
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cli_status'
+                Width = 50
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cli_data_deletado'
+                Width = 125
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cli_data_registro'
+                Width = 125
+                Visible = True
+              end>
           end
-          item
-            Expanded = False
-            FieldName = 'cli_nome'
-            Width = 250
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'cli_nome_fantasia'
-            Width = 250
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'cli_tipo'
-            Width = 35
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'cli_rgie'
-            Width = 100
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'cli_cpfcnpj'
-            Width = 100
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'cli_im'
-            Width = 100
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'cli_suframa'
-            Width = 100
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'cli_data'
-            Width = 100
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'cli_status'
-            Width = 50
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'cli_data_deletado'
-            Width = 125
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'cli_data_registro'
-            Width = 125
-            Visible = True
-          end>
+        end
       end
     end
     inherited TabSheet_manutencao: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 1000
-      ExplicitHeight = 626
       inherited PageControl_2: TPageControl
         inherited TabSheet_dados: TTabSheet
-          ExplicitLeft = 4
-          ExplicitTop = 24
-          ExplicitWidth = 992
-          ExplicitHeight = 549
           object Label3: TLabel
             Left = 3
             Top = 49
@@ -237,10 +233,9 @@ inherited frm_cliente: Tfrm_cliente
         object TabSheet_endereco: TTabSheet
           Caption = 'Endere'#231'os'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
+          DesignSize = (
+            992
+            598)
           object Label11: TLabel
             Left = 134
             Top = 3
@@ -309,13 +304,15 @@ inherited frm_cliente: Tfrm_cliente
             Top = 95
             Width = 986
             Height = 5
+            Anchors = [akLeft, akTop, akRight]
             Shape = bsBottomLine
           end
           object DBGrid_cliente_endereco: TDBGrid
             Left = 3
-            Top = 137
+            Top = 140
             Width = 986
-            Height = 357
+            Height = 455
+            Anchors = [akLeft, akTop, akRight]
             DataSource = dscliente_endereco
             DrawingStyle = gdsGradient
             Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -466,6 +463,7 @@ inherited frm_cliente: Tfrm_cliente
             Top = 22
             Width = 125
             Height = 21
+            Style = csDropDownList
             CharCase = ecUpperCase
             DataField = 'cli_end_tipo'
             DataSource = dscliente_endereco
@@ -475,23 +473,64 @@ inherited frm_cliente: Tfrm_cliente
               'E')
             TabOrder = 9
           end
-          object dbnav_cliente_endereco: TDBNavigator
-            Left = 749
+          object Panel_contrato_iten: TPanel
+            Left = 3
             Top = 106
-            Width = 240
-            Height = 25
-            DataSource = dscliente_endereco
+            Width = 986
+            Height = 28
+            Anchors = [akLeft, akTop, akRight]
+            BevelOuter = bvNone
             TabOrder = 10
-            OnClick = dbnav_cliente_enderecoClick
+            object SpeedButton_cli_end_inserir: TSpeedButton
+              Left = 886
+              Top = 0
+              Width = 25
+              Height = 28
+              Action = Action_cliente_endereco_inserir
+              Align = alRight
+              ExplicitLeft = 892
+            end
+            object SpeedButton_cli_end_cancelar: TSpeedButton
+              Left = 911
+              Top = 0
+              Width = 25
+              Height = 28
+              Action = Action_cliente_endereco_cancelar
+              Align = alRight
+              ExplicitLeft = 892
+              ExplicitTop = 2
+              ExplicitHeight = 24
+            end
+            object SpeedButton_cli_end_salvar: TSpeedButton
+              Left = 936
+              Top = 0
+              Width = 25
+              Height = 28
+              Action = Action_cliente_endereco_salvar
+              Align = alRight
+              ExplicitLeft = 915
+              ExplicitTop = 1
+              ExplicitHeight = 24
+            end
+            object SpeedButton_cli_end_deletar: TSpeedButton
+              Left = 961
+              Top = 0
+              Width = 25
+              Height = 28
+              Action = Action_cliente_endereco_deletar
+              Align = alRight
+              ExplicitLeft = 938
+              ExplicitTop = 2
+              ExplicitHeight = 24
+            end
           end
         end
         object TabSheet_contato: TTabSheet
           Caption = 'Contatos'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
+          DesignSize = (
+            992
+            598)
           object Label20: TLabel
             Left = 134
             Top = 3
@@ -539,13 +578,15 @@ inherited frm_cliente: Tfrm_cliente
             Top = 49
             Width = 986
             Height = 5
+            Anchors = [akLeft, akTop, akRight]
             Shape = bsBottomLine
           end
           object DBGrid_cliente_contato: TDBGrid
             Left = 3
-            Top = 91
+            Top = 94
             Width = 986
-            Height = 403
+            Height = 501
+            Anchors = [akLeft, akTop, akRight, akBottom]
             DataSource = dscliente_contato
             DrawingStyle = gdsGradient
             Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -648,6 +689,7 @@ inherited frm_cliente: Tfrm_cliente
             Top = 22
             Width = 125
             Height = 21
+            Style = csDropDownList
             CharCase = ecUpperCase
             DataField = 'cli_con_tipo'
             DataSource = dscliente_contato
@@ -657,21 +699,66 @@ inherited frm_cliente: Tfrm_cliente
               'E')
             TabOrder = 6
           end
-          object dbnav_cliente_contato: TDBNavigator
-            Left = 749
+          object Panel1: TPanel
+            Left = 3
             Top = 60
-            Width = 240
-            Height = 25
-            DataSource = dscliente_contato
+            Width = 986
+            Height = 28
+            Anchors = [akLeft, akTop, akRight]
+            BevelOuter = bvNone
             TabOrder = 7
+            object SpeedButton1: TSpeedButton
+              Left = 886
+              Top = 0
+              Width = 25
+              Height = 28
+              Action = Action_cliente_contato_inserir
+              Align = alRight
+              ExplicitLeft = 892
+            end
+            object SpeedButton2: TSpeedButton
+              Left = 911
+              Top = 0
+              Width = 25
+              Height = 28
+              Action = Action_cliente_contato_cancelar
+              Align = alRight
+              ExplicitLeft = 892
+              ExplicitTop = 2
+              ExplicitHeight = 24
+            end
+            object SpeedButton3: TSpeedButton
+              Left = 936
+              Top = 0
+              Width = 25
+              Height = 28
+              Action = Action_cliente_contato_salvar
+              Align = alRight
+              ExplicitLeft = 915
+              ExplicitTop = 1
+              ExplicitHeight = 24
+            end
+            object SpeedButton4: TSpeedButton
+              Left = 961
+              Top = 0
+              Width = 25
+              Height = 28
+              Action = Action_cliente_contato_deletar
+              Align = alRight
+              ExplicitLeft = 938
+              ExplicitTop = 2
+              ExplicitHeight = 24
+            end
           end
         end
       end
-      inherited dbedt_id: TDBEdit
-        DataField = 'cli_id'
-      end
-      inherited dbedt_data_registro: TDBEdit
-        DataField = 'cli_data_registro'
+      inherited Panel_manutencao_top: TPanel
+        inherited dbedt_data_registro: TDBEdit
+          DataField = 'cli_data_registro'
+        end
+        inherited dbedt_id: TDBEdit
+          DataField = 'cli_id'
+        end
       end
       object dbchkbox_cli_status: TDBCheckBox
         Left = 269
@@ -681,13 +768,48 @@ inherited frm_cliente: Tfrm_cliente
         Caption = 'Status'
         DataField = 'cli_status'
         DataSource = ds
-        TabOrder = 3
+        TabOrder = 2
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
     end
   end
+  inherited actlist: TActionList
+    object Action_cliente_endereco_inserir: TAction
+      Hint = 'Inserir Registro'
+      ImageIndex = 4
+    end
+    object Action_cliente_endereco_salvar: TAction
+      Hint = 'Salvar Altera'#231#245'es'
+      ImageIndex = 7
+    end
+    object Action_cliente_endereco_deletar: TAction
+      Hint = 'Deletar Registro'
+      ImageIndex = 8
+    end
+    object Action_cliente_endereco_cancelar: TAction
+      Hint = 'Cancelar Altera'#231#245'es'
+      ImageIndex = 6
+    end
+    object Action_cliente_contato_inserir: TAction
+      Hint = 'Inserir Registro'
+      ImageIndex = 4
+    end
+    object Action_cliente_contato_salvar: TAction
+      Hint = 'Salvar Altera'#231#245'es'
+      ImageIndex = 7
+    end
+    object Action_cliente_contato_deletar: TAction
+      Hint = 'Deletar Registro'
+      ImageIndex = 8
+    end
+    object Action_cliente_contato_cancelar: TAction
+      Hint = 'Cancelar Altera'#231#245'es'
+      ImageIndex = 6
+    end
+  end
   inherited clientSQL: TRESTDWClientSQL
+    Active = True
     FieldDefs = <
       item
         Name = 'cli_codigo'
@@ -826,7 +948,7 @@ inherited frm_cliente: Tfrm_cliente
     end
   end
   object sqlcliente_endereco: TRESTDWClientSQL
-    Active = False
+    Active = True
     Filtered = False
     FieldDefs = <
       item
@@ -983,7 +1105,7 @@ inherited frm_cliente: Tfrm_cliente
     end
   end
   object sqlcliente_contato: TRESTDWClientSQL
-    Active = False
+    Active = True
     Filtered = False
     FieldDefs = <
       item
@@ -1055,8 +1177,8 @@ inherited frm_cliente: Tfrm_cliente
     AutoRefreshAfterCommit = False
     ActionCursor = crSQLWait
     ReflectChanges = False
-    Left = 864
-    Top = 104
+    Left = 800
+    Top = 56
     object sqlcliente_contatocli_con_codigo: TStringField
       DisplayLabel = 'C'#243'd.'
       FieldName = 'cli_con_codigo'
@@ -1113,7 +1235,7 @@ inherited frm_cliente: Tfrm_cliente
   end
   object dscliente_contato: TDataSource
     DataSet = sqlcliente_contato
-    Left = 896
-    Top = 104
+    Left = 832
+    Top = 56
   end
 end

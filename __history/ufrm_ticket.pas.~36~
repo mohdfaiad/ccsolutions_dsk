@@ -1,0 +1,205 @@
+unit ufrm_ticket;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.Actions,
+  System.ImageList,
+
+  Vcl.ActnList,
+  Vcl.ImgList,
+  Vcl.Mask,
+  Vcl.DBCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.StdCtrls,
+  Vcl.ExtCtrls,
+  Vcl.ComCtrls,
+  Vcl.ToolWin,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.Menus,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet,
+
+  ACBrBase,
+  ACBrEnterTab,
+
+  uDWAbout,
+  uRESTDWPoolerDB,
+  uDWConstsData,
+
+  ufrm_form_default,
+  ufrm_dm;
+
+type
+  Tfrm_ticket = class(Tfrm_form_default)
+    clientSQLtck_codigo: TStringField;
+    clientSQLusuario_usr_codigo: TStringField;
+    clientSQLcliente_cli_codigo: TStringField;
+    clientSQLtck_id: TLongWordField;
+    clientSQLtck_data_abertura: TDateTimeField;
+    clientSQLtck_data_fechamento: TDateTimeField;
+    clientSQLtck_status: TStringField;
+    clientSQLtck_data_deletado: TDateTimeField;
+    clientSQLtck_data_registro: TDateTimeField;
+    dscliente: TDataSource;
+    sqlcliente: TRESTDWClientSQL;
+    dblkpcmbbox_tck_cliente_cli_codigo: TDBLookupComboBox;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    dbcmbbox_tck_status: TDBComboBox;
+    Label6: TLabel;
+    dbedt_tck_data_fechamento: TDBEdit;
+    dbedt_tck_data_abertura: TDBEdit;
+    Button1: TButton;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Action_salvarExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    procedure afterInsert;
+    procedure afterUpdate;
+    procedure ticket_read(AToken: String);
+    procedure cliente_read(AToken: String);
+
+  public
+
+  end;
+
+var
+  frm_ticket: Tfrm_ticket;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tfrm_ticket.Action_salvarExecute(Sender: TObject);
+var
+  storedProcInsert, storedProcUpdate : TFDStoredProc;
+begin
+  case ds.State of
+    dsEdit:
+      try
+        try
+          if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+            storedProcUpdate := TFDStoredProc.Create(Self);
+            storedProcUpdate.Connection := frm_dm.connDB;
+            storedProcUpdate.StoredProcName := 'proc_ticket_update';
+            storedProcUpdate.Prepare;
+            storedProcUpdate.ParamByName('p_usuario_usr_token').AsString      := frm_dm.usuario_usr_token;
+            storedProcUpdate.ParamByName('p_tck_codigo').AsString             := clientSQLtck_codigo.AsString;
+            storedProcUpdate.ParamByName('p_cliente_cli_codigo').AsString     := sqlcliente.FieldByName('cli_codigo').AsString;
+            storedProcUpdate.ParamByName('p_tck_data_abertura').AsDateTime    := StrToDateTime(dbedt_tck_data_abertura.Text);
+            storedProcUpdate.ParamByName('p_tck_data_fechamento').AsDateTime  := StrToDateTime(dbedt_tck_data_fechamento.Text);
+            storedProcUpdate.ParamByName('p_tck_status').AsString             := dbcmbbox_tck_status.Items.Text;
+            storedProcUpdate.ExecProc;
+
+            afterUpdate;
+          end else begin
+            ds.DataSet.Cancel;
+          end;
+        except on E: Exception do
+          ShowMessage('Erro Update: ' + E.Message);
+        end;
+      finally
+      end;
+
+    dsInsert:
+      try
+        try
+          storedProcInsert := TFDStoredProc.Create(Self);
+          storedProcInsert.Connection := frm_dm.connDB;
+          storedProcInsert.StoredProcName := 'proc_ticket_create';
+          storedProcInsert.Prepare;
+          storedProcInsert.ParamByName('p_usuario_usr_token').AsString      := frm_dm.usuario_usr_token;
+          storedProcInsert.ParamByName('p_cliente_cli_codigo').AsString     := sqlcliente.FieldByName('cli_codigo').AsString;
+          storedProcInsert.ParamByName('p_tck_data_abertura').AsDateTime    := StrToDateTime(dbedt_tck_data_abertura.Text);
+          storedProcInsert.ParamByName('p_tck_data_fechamento').AsDateTime  := StrToDateTime(dbedt_tck_data_fechamento.Text);
+          storedProcInsert.ParamByName('p_tck_status').AsString             := 'A'; //dbcmbbox_tck_status.Items.Text;
+          storedProcInsert.ExecProc;
+
+          afterInsert;
+        except on E: Exception do
+          ShowMessage('Error Inserir: ' + E.Message);
+        end;
+      finally
+      end;
+  end;
+end;
+
+procedure Tfrm_ticket.afterInsert;
+begin
+  ShowMessage('Registro Inserido com Sucesso');
+  ticket_read(frm_dm.usuario_usr_token);
+  TabSheet_dados.Show;
+  ds.DataSet.Last;
+end;
+
+procedure Tfrm_ticket.afterUpdate;
+begin
+  ds.DataSet.Post;
+  ShowMessage('Registro Atualizado com sucesso');
+  TabSheet_dados.Show;
+end;
+
+procedure Tfrm_ticket.cliente_read(AToken: String);
+var
+  SQL: String;
+begin
+  SQL := 'call proc_cliente_read('+ QuotedStr(AToken) +');';
+
+  sqlcliente.Active    := False;
+  sqlcliente.DataBase  := frm_dm.database;
+  sqlcliente.SQL.Clear;
+  sqlcliente.SQL.Text  := SQL;
+  sqlcliente.Active    := True
+end;
+
+procedure Tfrm_ticket.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_ticket.Destroy;
+  frm_ticket := Nil;
+end;
+
+procedure Tfrm_ticket.FormShow(Sender: TObject);
+begin
+  inherited;
+  cliente_read(frm_dm.usuario_usr_token);
+  ticket_read(frm_dm.usuario_usr_token);
+end;
+
+procedure Tfrm_ticket.ticket_read(AToken: String);
+var
+  SQL: String;
+begin
+  SQL := 'call proc_ticket_read('+ QuotedStr(AToken) +');';
+
+  clientSQL.Active    := False;
+  clientSQL.DataBase  := frm_dm.database;
+  clientSQL.SQL.Clear;
+  clientSQL.SQL.Text  := SQL;
+  clientSQL.Active    := True
+end;
+
+end.

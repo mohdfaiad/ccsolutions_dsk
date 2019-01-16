@@ -5,57 +5,69 @@ inherited frm_revenda: Tfrm_revenda
   TextHeight = 13
   inherited PageControl_1: TPageControl
     inherited TabSheet_pesquisar: TTabSheet
-      inherited DBGrid_1: TDBGrid
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'rev_id'
-            Width = 75
-            Visible = True
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1000
+      ExplicitHeight = 676
+      inherited PageControl_registros: TPageControl
+        inherited TabSheet_registros_ativos: TTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 24
+          ExplicitWidth = 992
+          ExplicitHeight = 598
+          inherited DBGrid_1: TDBGrid
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'rev_id'
+                Width = 75
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'rev_nome'
+                Width = 275
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'rev_nome_fantasia'
+                Width = 275
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'rev_cnpj'
+                Width = 125
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'rev_ie'
+                Width = 125
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'rev_data_registro'
+                Width = 125
+                Visible = True
+              end>
           end
-          item
-            Expanded = False
-            FieldName = 'rev_nome'
-            Width = 275
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'rev_nome_fantasia'
-            Width = 275
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'rev_cnpj'
-            Width = 125
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'rev_ie'
-            Width = 125
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'rev_data_registro'
-            Width = 125
-            Visible = True
-          end>
+        end
       end
     end
     inherited TabSheet_manutencao: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
       ExplicitWidth = 1000
-      ExplicitHeight = 626
+      ExplicitHeight = 676
       inherited PageControl_2: TPageControl
         inherited TabSheet_dados: TTabSheet
           ExplicitLeft = 4
           ExplicitTop = 24
           ExplicitWidth = 992
-          ExplicitHeight = 549
+          ExplicitHeight = 598
           object Label3: TLabel
             Left = 3
             Top = 3
@@ -126,15 +138,61 @@ inherited frm_revenda: Tfrm_revenda
           end
         end
       end
-      inherited dbedt_id: TDBEdit
-        DataField = 'rev_id'
-      end
-      inherited dbedt_data_registro: TDBEdit
-        DataField = 'rev_data_registro'
+      inherited Panel_manutencao_top: TPanel
+        inherited dbedt_data_registro: TDBEdit
+          DataField = 'rev_data_registro'
+        end
+        inherited dbedt_id: TDBEdit
+          DataField = 'rev_id'
+        end
       end
     end
   end
   inherited clientSQL: TRESTDWClientSQL
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'rev_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'usuario_usr_codigo'
+        DataType = ftString
+        Size = 32
+      end
+      item
+        Name = 'rev_id'
+        DataType = ftLongWord
+      end
+      item
+        Name = 'rev_nome'
+        DataType = ftString
+        Size = 125
+      end
+      item
+        Name = 'rev_nome_fantasia'
+        DataType = ftString
+        Size = 125
+      end
+      item
+        Name = 'rev_cnpj'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'rev_ie'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'rev_data_deletado'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'rev_data_registro'
+        DataType = ftDateTime
+      end>
     IndexFieldNames = 'rev_id'
     DataBase = frm_dm.database
     SQL.Strings = (

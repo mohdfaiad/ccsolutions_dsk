@@ -60,7 +60,6 @@ type
     clientSQL: TRESTDWClientSQL;
     storedProc: TRESTDWStoredProc;
     ds: TDataSource;
-    DBGrid_1: TDBGrid;
     btn_primeiro: TToolButton;
     btn_anterior: TToolButton;
     btn_proximo: TToolButton;
@@ -81,7 +80,7 @@ type
     Action_editar: TAction;
     Action_salvar: TAction;
     Action_cancelar: TAction;
-    Action_excluir: TAction;
+    Action_deletar: TAction;
     Action_fechar: TAction;
     Action_atualizar: TAction;
     Action_filtrar: TAction;
@@ -103,16 +102,20 @@ type
     Atualizar1: TMenuItem;
     N2: TMenuItem;
     Fechar1: TMenuItem;
-    Label1: TLabel;
-    dbedt_id: TDBEdit;
-    dbedt_data_registro: TDBEdit;
-    Label2: TLabel;
     schadp: TFDSchemaAdapter;
     Panel_top: TPanel;
     lbl_texto: TLabel;
     lbl_campo: TLabel;
     cmbbox_campo: TComboBox;
     btnedt_texto: TButtonedEdit;
+    PageControl_registros: TPageControl;
+    TabSheet_registros_ativos: TTabSheet;
+    DBGrid_1: TDBGrid;
+    Panel_manutencao_top: TPanel;
+    dbedt_data_registro: TDBEdit;
+    Label2: TLabel;
+    dbedt_id: TDBEdit;
+    Label1: TLabel;
     procedure Action_fecharExecute(Sender: TObject);
     procedure DBGrid_1DblClick(Sender: TObject);
     procedure Action_primeiroExecute(Sender: TObject);
@@ -123,15 +126,15 @@ type
     procedure Action_editarExecute(Sender: TObject);
     procedure Action_cancelarExecute(Sender: TObject);
     procedure Action_salvarExecute(Sender: TObject);
-    procedure Action_excluirExecute(Sender: TObject);
+    procedure Action_deletarExecute(Sender: TObject);
     procedure Action_atualizarExecute(Sender: TObject);
-    procedure DBGrid_1DrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure DBGrid_1DrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure FormShow(Sender: TObject);
+    procedure dsStateChange(Sender: TObject);
   private
-    { Private declarations }
+
   public
-    { Public declarations }
+
   end;
 
 var
@@ -162,7 +165,7 @@ begin
   TabSheet_dados.Show;
 end;
 
-procedure Tfrm_form_default.Action_excluirExecute(Sender: TObject);
+procedure Tfrm_form_default.Action_deletarExecute(Sender: TObject);
 begin
   ds.DataSet.Delete;
 end;
@@ -220,6 +223,16 @@ begin
   end;
 
   DBGrid_1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+end;
+
+procedure Tfrm_form_default.dsStateChange(Sender: TObject);
+begin
+  btn_inserir.Enabled  := not(ds.DataSet.State in [dsInsert, dsEdit]);
+  btn_salvar.Enabled   := (ds.DataSet.State in [dsInsert, dsEdit]);
+  btn_editar.Enabled   := (ds.DataSet.State in [dsBrowse]);
+  btn_excluir.Enabled  := (ds.DataSet.State in [dsBrowse, dsEdit]);
+  btn_cancelar.Enabled := (ds.DataSet.State in [dsInsert, dsEdit]);
+//  BtnPesquisa.Enabled := not (DSPadrao.DataSet.State in [dsInsert, dsEdit]);
 end;
 
 procedure Tfrm_form_default.FormShow(Sender: TObject);

@@ -1,0 +1,58 @@
+inherited frm_provedor: Tfrm_provedor
+  Caption = 'Manuten'#231#227'o: Provedores'
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited PageControl_1: TPageControl
+    ActivePage = TabSheet_manutencao
+    ExplicitHeight = 704
+    inherited TabSheet_manutencao: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1000
+      ExplicitHeight = 676
+      inherited PageControl_2: TPageControl
+        ExplicitHeight = 627
+        inherited TabSheet_dados: TTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 24
+          ExplicitWidth = 992
+          ExplicitHeight = 599
+        end
+      end
+    end
+  end
+  inherited clientSQL: TRESTDWClientSQL
+    Active = True
+    DataBase = frm_dm.database
+    SQL.Strings = (
+      'call proc_provedor_read('#39#39');')
+    object clientSQLprv_codigo: TStringField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'prv_codigo'
+      Size = 32
+    end
+    object clientSQLusuario_usr_codigo: TStringField
+      DisplayLabel = 'C'#243'd. Usu'#225'rio'
+      FieldName = 'usuario_usr_codigo'
+      Size = 32
+    end
+    object clientSQLprv_id: TLongWordField
+      DisplayLabel = 'ID'
+      FieldName = 'prv_id'
+    end
+    object clientSQLprv_nome: TStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'prv_nome'
+      Size = 125
+    end
+    object clientSQLprv_data_deletado: TDateTimeField
+      DisplayLabel = 'Dt. Deletado'
+      FieldName = 'prv_data_deletado'
+    end
+    object clientSQLprv_data_registro: TDateTimeField
+      DisplayLabel = 'Dt. Registro'
+      FieldName = 'prv_data_registro'
+    end
+  end
+end

@@ -148,6 +148,30 @@
             <Form>frm_usuario</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\ufrm_numero.pas">
+            <Form>frm_numero</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_produto.pas">
+            <Form>frm_produto</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_fornecedor.pas">
+            <Form>frm_fornecedor</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_ticket.pas">
+            <Form>frm_ticket</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_numero_cliente.pas">
+            <Form>frm_numero_cliente</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ufrm_servidor.pas">
+            <Form>frm_servidor</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -175,7 +199,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="Win32\Debug\telefonia.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\ccsolutions\mod_telefonia\win32\telefonia.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>telefonia.exe</RemoteName>
                         <Overwrite>true</Overwrite>

@@ -1,0 +1,51 @@
+unit ufrm_produto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrm_form_default, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.DApt, FireDAC.Comp.Client, Vcl.Menus, ACBrBase, ACBrEnterTab,
+  uDWAbout, uRESTDWPoolerDB, FireDAC.Comp.DataSet, uDWConstsData,
+  System.Actions, Vcl.ActnList, System.ImageList, Vcl.ImgList, Vcl.Mask,
+  Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls,
+  Vcl.ToolWin, ufrm_dm;
+
+type
+  Tfrm_produto = class(Tfrm_form_default)
+    clientSQLpro_codigo: TStringField;
+    clientSQLusuario_usr_codigo: TStringField;
+    clientSQLpro_id: TLongWordField;
+    clientSQLpro_tipo: TStringField;
+    clientSQLpro_nome: TStringField;
+    clientSQLpro_descricao: TMemoField;
+    clientSQLpro_data_deletado: TDateTimeField;
+    clientSQLpro_data_registro: TDateTimeField;
+    dbedt_pro_nome: TDBEdit;
+    Label3: TLabel;
+    DBMemo1: TDBMemo;
+    Label4: TLabel;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_produto: Tfrm_produto;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tfrm_produto.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_produto.Destroy;
+  frm_produto := Nil;
+end;
+
+end.

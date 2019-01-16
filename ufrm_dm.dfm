@@ -1,13 +1,14 @@
 object frm_dm: Tfrm_dm
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
   Height = 136
   Width = 257
   object database: TRESTDWDataBase
-    Active = False
+    Active = True
     Compression = True
-    MyIP = '0.0.0.0'
-    Login = 'webservice'
-    Password = 'webservicePa$$word'
+    MyIP = '127.0.0.1'
+    Login = 'root'
+    Password = 'root'
     Proxy = False
     ProxyOptions.Port = 8888
     PoolerService = '127.0.0.1'
@@ -46,8 +47,8 @@ object frm_dm: Tfrm_dm
     Top = 16
   end
   object mamDB: TFDManager
-    DriverDefFileName = 'C:\ccsolutions\config\banco.ini'
-    ConnectionDefFileName = 'C:\ccsolutions\config\banco.ini'
+    DriverDefFileName = 'C:\ccsolutions\config\database.ini'
+    ConnectionDefFileName = 'C:\ccsolutions\config\database.ini'
     FormatOptions.AssignedValues = [fvMapRules]
     FormatOptions.OwnMapRules = True
     FormatOptions.MapRules = <>

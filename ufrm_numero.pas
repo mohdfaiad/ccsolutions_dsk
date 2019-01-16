@@ -1,0 +1,201 @@
+unit ufrm_numero;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.Actions,
+  System.ImageList,
+  system.UITypes,
+
+  Vcl.ImgList,
+  Vcl.Mask,
+  Vcl.DBCtrls,
+  Vcl.StdCtrls,
+  Vcl.ExtCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.ComCtrls,
+  Vcl.ToolWin,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.Menus,
+  Vcl.ActnList,
+
+  Data.DB,
+
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet,
+
+  ACBrBase,
+  ACBrEnterTab,
+
+  uDWAbout,
+  uRESTDWPoolerDB,
+  uDWConstsData,
+
+  ufrm_form_default,
+  ufrm_dm;
+
+type
+  Tfrm_numero = class(Tfrm_form_default)
+    clientSQLnum_codigo: TStringField;
+    clientSQLusuario_usr_codigo: TStringField;
+    clientSQLprovedor_prv_codigo: TStringField;
+    clientSQLnum_id: TLongWordField;
+    clientSQLnum_numero: TStringField;
+    clientSQLnum_data_deletado: TDateTimeField;
+    clientSQLnum_data_registro: TDateTimeField;
+    sqlprovedor: TRESTDWClientSQL;
+    dsprovedor: TDataSource;
+    sqlprovedorprv_codigo: TStringField;
+    sqlprovedorusuario_usr_codigo: TStringField;
+    sqlprovedorprv_id: TLongWordField;
+    sqlprovedorprv_nome: TStringField;
+    sqlprovedorprv_data_deletado: TDateTimeField;
+    sqlprovedorprv_data_registro: TDateTimeField;
+    clientSQLprovedor_nome: TStringField;
+    dblkpcmbbox_provedor_prv_codigo: TDBLookupComboBox;
+    dbedt_num_numero: TDBEdit;
+    Label3: TLabel;
+    Label4: TLabel;
+    procedure Action_salvarExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    procedure afterInsert;
+    procedure afterUpdate;
+    procedure numero_read(AToken: String);
+    procedure provedor_read(AToken: String);
+
+  public
+
+  end;
+
+var
+  frm_numero: Tfrm_numero;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tfrm_numero.Action_salvarExecute(Sender: TObject);
+var
+  storedProcInsert, storedProcUpdate : TFDStoredProc;
+begin
+  case ds.State of
+    dsEdit:
+      try
+        try
+          if Application.MessageBox('Ao Salvar as alterações, as informações antigas não poderão ser recuperadas!', 'Deseja Salvar as Alterações?', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = IDYES then begin
+            storedProcUpdate := TFDStoredProc.Create(Self);
+            storedProcUpdate.Connection := frm_dm.connDB;
+            storedProcUpdate.StoredProcName := 'proc_numero_update';
+            storedProcUpdate.Prepare;
+            storedProcUpdate.ParamByName('p_usuario_usr_token').AsString    := frm_dm.usuario_usr_token;
+            storedProcUpdate.ParamByName('p_num_codigo').AsString           := clientSQLnum_codigo.AsString;
+            storedProcUpdate.ParamByName('p_provedor_prv_codigo').AsString  := sqlprovedorprv_codigo.AsString;
+            storedProcUpdate.ParamByName('p_num_numero').AsString           := dbedt_num_numero.Text;
+            storedProcUpdate.ExecProc;
+
+            afterUpdate;
+          end else begin
+            ds.DataSet.Cancel;
+          end;
+        except on E: Exception do
+          ShowMessage('Erro Update: ' + E.Message);
+        end;
+      finally
+      end;
+
+    dsInsert:
+      try
+        try
+          storedProcInsert := TFDStoredProc.Create(Self);
+          storedProcInsert.Connection := frm_dm.connDB;
+          storedProcInsert.StoredProcName := 'proc_numero_create';
+          storedProcInsert.Prepare;
+          storedProcInsert.ParamByName('p_usuario_usr_token').AsString    := frm_dm.usuario_usr_token;
+          storedProcInsert.ParamByName('p_provedor_prv_codigo').AsString  := sqlprovedorprv_codigo.AsString;
+          storedProcInsert.ParamByName('p_num_numero').AsString           := dbedt_num_numero.Text;
+          storedProcInsert.ExecProc;
+
+          afterInsert;
+        except on E: Exception do
+          ShowMessage('Error Inserir: ' + E.Message);
+        end;
+      finally
+      end;
+  end;
+end;
+
+procedure Tfrm_numero.afterInsert;
+begin
+  ShowMessage('Registro Inserido com Sucesso');
+  numero_read(frm_dm.usuario_usr_token);
+  TabSheet_dados.Show;
+  ds.DataSet.Last;
+end;
+
+procedure Tfrm_numero.afterUpdate;
+begin
+  ShowMessage('Registro Atualizado com sucesso');
+  TabSheet_dados.Show;
+end;
+
+procedure Tfrm_numero.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_numero.Destroy;
+  frm_numero := Nil;
+end;
+
+procedure Tfrm_numero.FormShow(Sender: TObject);
+begin
+  inherited;
+  provedor_read(frm_dm.usuario_usr_token);
+  numero_read(frm_dm.usuario_usr_token);
+end;
+
+procedure Tfrm_numero.numero_read(AToken: String);
+var
+  SQL: String;
+begin
+  SQL := 'call proc_numero_read('+QuotedStr(AToken) +');';
+
+  clientSQL.Active    := False;
+  clientSQL.DataBase  := frm_dm.database;
+  clientSQL.SQL.Clear;
+  clientSQL.SQL.Text  := SQL;
+  clientSQL.Active    := True
+end;
+
+procedure Tfrm_numero.provedor_read(AToken: String);
+var
+  SQL: String;
+begin
+  SQL := 'call proc_provedor_read('+QuotedStr(AToken) +');';
+
+  sqlprovedor.Active    := False;
+  sqlprovedor.DataBase  := frm_dm.database;
+  sqlprovedor.SQL.Clear;
+  sqlprovedor.SQL.Text  := SQL;
+  sqlprovedor.Active    := True
+end;
+
+end.

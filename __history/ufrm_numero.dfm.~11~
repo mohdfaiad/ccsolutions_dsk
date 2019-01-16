@@ -1,0 +1,195 @@
+inherited frm_numero: Tfrm_numero
+  Caption = 'Manuten'#231#227'o - N'#250'meros DIDs'
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited PageControl_1: TPageControl
+    inherited TabSheet_pesquisar: TTabSheet
+      inherited DBGrid_1: TDBGrid
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'num_id'
+            Width = 75
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'num_numero'
+            Width = 100
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'provedor_nome'
+            Width = 250
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'num_data_registro'
+            Width = 125
+            Visible = True
+          end>
+      end
+    end
+    inherited TabSheet_manutencao: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1000
+      ExplicitHeight = 676
+      inherited PageControl_2: TPageControl
+        ExplicitHeight = 627
+        inherited TabSheet_dados: TTabSheet
+          ExplicitTop = 24
+          ExplicitWidth = 992
+          ExplicitHeight = 599
+          object Label3: TLabel
+            Left = 3
+            Top = 49
+            Width = 44
+            Height = 13
+            Caption = 'Provedor'
+          end
+          object Label4: TLabel
+            Left = 3
+            Top = 3
+            Width = 58
+            Height = 13
+            Caption = 'N'#250'mero DID'
+          end
+          object dblkpcmbbox_provedor_prv_codigo: TDBLookupComboBox
+            Left = 3
+            Top = 68
+            Width = 256
+            Height = 21
+            DataField = 'provedor_prv_codigo'
+            DataSource = ds
+            KeyField = 'prv_codigo'
+            ListField = 'prv_nome'
+            ListSource = dsprovedor
+            TabOrder = 0
+          end
+          object dbedt_num_numero: TDBEdit
+            Left = 3
+            Top = 22
+            Width = 125
+            Height = 21
+            DataField = 'num_numero'
+            DataSource = ds
+            TabOrder = 1
+          end
+        end
+      end
+      inherited dbedt_id: TDBEdit
+        DataField = 'num_id'
+      end
+      inherited dbedt_data_registro: TDBEdit
+        DataField = 'num_data_registro'
+      end
+    end
+  end
+  inherited clientSQL: TRESTDWClientSQL
+    Active = True
+    DataBase = frm_dm.database
+    SQL.Strings = (
+      'call proc_numero_read('#39#39');')
+    object clientSQLnum_codigo: TStringField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'num_codigo'
+      Size = 32
+    end
+    object clientSQLusuario_usr_codigo: TStringField
+      DisplayLabel = 'C'#243'd. Usu'#225'rio'
+      FieldName = 'usuario_usr_codigo'
+      Size = 32
+    end
+    object clientSQLprovedor_prv_codigo: TStringField
+      DisplayLabel = 'C'#243'd. Provedor'
+      FieldName = 'provedor_prv_codigo'
+      Size = 32
+    end
+    object clientSQLnum_id: TLongWordField
+      DisplayLabel = 'ID'
+      FieldName = 'num_id'
+    end
+    object clientSQLnum_numero: TStringField
+      DisplayLabel = 'N'#250'mero DID'
+      FieldName = 'num_numero'
+      Size = 15
+    end
+    object clientSQLnum_data_deletado: TDateTimeField
+      DisplayLabel = 'Dt. Deletado'
+      FieldName = 'num_data_deletado'
+    end
+    object clientSQLnum_data_registro: TDateTimeField
+      DisplayLabel = 'Dt. Registro'
+      FieldName = 'num_data_registro'
+    end
+    object clientSQLprovedor_nome: TStringField
+      DisplayLabel = 'Provedor'
+      FieldKind = fkLookup
+      FieldName = 'provedor_nome'
+      LookupDataSet = sqlprovedor
+      LookupKeyFields = 'prv_codigo'
+      LookupResultField = 'prv_nome'
+      KeyFields = 'provedor_prv_codigo'
+      Size = 125
+      Lookup = True
+    end
+  end
+  object sqlprovedor: TRESTDWClientSQL
+    Active = True
+    Filtered = False
+    FieldDefs = <>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    MasterCascadeDelete = True
+    Datapacks = -1
+    DataCache = False
+    Params = <>
+    DataBase = frm_dm.database
+    SQL.Strings = (
+      'call proc_provedor_read('#39#39');')
+    CacheUpdateRecords = True
+    AutoCommitData = False
+    AutoRefreshAfterCommit = False
+    ActionCursor = crSQLWait
+    ReflectChanges = False
+    Left = 864
+    Top = 56
+    object sqlprovedorprv_codigo: TStringField
+      FieldName = 'prv_codigo'
+      Size = 32
+    end
+    object sqlprovedorusuario_usr_codigo: TStringField
+      FieldName = 'usuario_usr_codigo'
+      Size = 32
+    end
+    object sqlprovedorprv_id: TLongWordField
+      FieldName = 'prv_id'
+    end
+    object sqlprovedorprv_nome: TStringField
+      FieldName = 'prv_nome'
+      Size = 125
+    end
+    object sqlprovedorprv_data_deletado: TDateTimeField
+      FieldName = 'prv_data_deletado'
+    end
+    object sqlprovedorprv_data_registro: TDateTimeField
+      FieldName = 'prv_data_registro'
+    end
+  end
+  object dsprovedor: TDataSource
+    DataSet = sqlprovedor
+    Left = 896
+    Top = 56
+  end
+end

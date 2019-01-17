@@ -119,8 +119,6 @@ type
     cmbbox_operador: TComboBox;
     Label25: TLabel;
     Action_limparfiltro: TAction;
-    Button_filtrar: TButton;
-    Button_limprarfiltro: TButton;
     procedure Action_fecharExecute(Sender: TObject);
     procedure DBGrid_1DblClick(Sender: TObject);
     procedure Action_primeiroExecute(Sender: TObject);
@@ -244,7 +242,7 @@ begin
 
   DBGrid_1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
 
-  W := 10 + DBGrid_1.Canvas.TextExtent(Column.Field.DisplayText).cx;
+  W := 20 + DBGrid_1.Canvas.TextExtent(Column.Field.DisplayText).cx;
 
   if W > column.Width then begin
     Column.Width := w
@@ -258,6 +256,7 @@ begin
   btn_editar.Enabled   := (ds.DataSet.State in [dsBrowse]);
   btn_excluir.Enabled  := (ds.DataSet.State in [dsBrowse, dsEdit]);
   btn_cancelar.Enabled := (ds.DataSet.State in [dsInsert, dsEdit]);
+//  BtnPesquisa.Enabled := not (DSPadrao.DataSet.State in [dsInsert, dsEdit]);
 end;
 
 procedure Tfrm_form_default.filtrar(edit: TButtonedEdit; operador, campo: TComboBox; datasource: TDataSource);
@@ -283,10 +282,10 @@ end;
 
 procedure Tfrm_form_default.FormActivate(Sender: TObject);
 Var
-  I: Integer;
+  i : Integer;
 begin
   for I := 0 to DBGrid_1.Columns.Count - 1 do begin
-    DBGrid_1.Columns[I].Width := 10 + DBGrid_1.Canvas.TextWidth(DBGrid_1.Columns[I].Title.Caption)
+    DBGrid_1.Columns[i].Width := 20 + DBGrid_1.Canvas.TextWidth(DBGrid_1.Columns[i].Title.Caption)
   end;
 end;
 

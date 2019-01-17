@@ -15,7 +15,6 @@ object frm_form_default: Tfrm_form_default
   Position = poDesigned
   ShowHint = True
   Visible = True
-  OnActivate = FormActivate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -162,8 +161,12 @@ object frm_form_default: Tfrm_form_default
           Height = 21
           Images = imglist
           LeftButton.ImageIndex = 21
+          LeftButton.Visible = True
           RightButton.ImageIndex = 11
+          RightButton.Visible = True
           TabOrder = 0
+          OnLeftButtonClick = Action_limparfiltroExecute
+          OnRightButtonClick = Action_filtrarExecute
         end
         object cmbbox_operador: TComboBox
           Left = 138
@@ -187,24 +190,6 @@ object frm_form_default: Tfrm_form_default
             'LIKE'
             'IN'
             '*')
-        end
-        object Button_filtrar: TButton
-          Left = 475
-          Top = 21
-          Width = 70
-          Height = 23
-          Action = Action_filtrar
-          Images = imglist
-          TabOrder = 3
-        end
-        object Button_limprarfiltro: TButton
-          Left = 551
-          Top = 21
-          Width = 70
-          Height = 23
-          Action = Action_limparfiltro
-          Images = imglist
-          TabOrder = 4
         end
       end
       object PageControl_registros: TPageControl
@@ -243,6 +228,10 @@ object frm_form_default: Tfrm_form_default
     object TabSheet_manutencao: TTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object PageControl_2: TPageControl
         Left = 0
         Top = 50
@@ -253,6 +242,10 @@ object frm_form_default: Tfrm_form_default
         TabOrder = 0
         object TabSheet_dados: TTabSheet
           Caption = 'Dados'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
       end
       object Panel_manutencao_top: TPanel
@@ -1175,13 +1168,11 @@ object frm_form_default: Tfrm_form_default
       OnExecute = Action_fecharExecute
     end
     object Action_filtrar: TAction
-      Caption = 'Filtrar'
       Hint = 'Filtrar'
       ImageIndex = 11
       OnExecute = Action_filtrarExecute
     end
     object Action_limparfiltro: TAction
-      Caption = 'Limpar'
       Hint = 'Limpar Filtro'
       ImageIndex = 21
       OnExecute = Action_limparfiltroExecute

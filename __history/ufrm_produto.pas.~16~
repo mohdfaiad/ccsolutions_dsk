@@ -148,7 +148,6 @@ end;
 
 procedure Tfrm_produto.afterUpdate;
 begin
-  ds.DataSet.Post;
   ShowMessage('Registro Atualizado com sucesso');
   TabSheet_dados.Show;
 end;

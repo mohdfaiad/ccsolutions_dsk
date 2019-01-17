@@ -119,8 +119,6 @@ type
     cmbbox_operador: TComboBox;
     Label25: TLabel;
     Action_limparfiltro: TAction;
-    Button_filtrar: TButton;
-    Button_limprarfiltro: TButton;
     procedure Action_fecharExecute(Sender: TObject);
     procedure DBGrid_1DblClick(Sender: TObject);
     procedure Action_primeiroExecute(Sender: TObject);
@@ -139,6 +137,7 @@ type
     procedure Action_filtrarExecute(Sender: TObject);
     procedure Action_limparfiltroExecute(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure DBGrid_1TitleClick(Column: TColumn);
   private
     procedure listarFields(combobox: TComboBox; datasource: TDataSource);
     procedure filtrar(edit: TButtonedEdit; operador, campo: TComboBox; datasource: TDataSource);
@@ -248,6 +247,20 @@ begin
 
   if W > column.Width then begin
     Column.Width := w
+  end;
+end;
+
+procedure Tfrm_form_default.DBGrid_1TitleClick(Column: TColumn);
+begin
+  with ds.DataSet do begin
+    DisableControls;
+    Close;
+    Filter:= 'ORDER BY ' + QuotedStr(Column.FieldName);
+    // Restore the title settings, otherwise everything
+    // will be blue after a while
+    DBGrid_1.Columns.RestoreDefaults;
+    Column.Title.Font.Color := clBlue;
+    EnableControls;
   end;
 end;
 

@@ -119,8 +119,6 @@ type
     cmbbox_operador: TComboBox;
     Label25: TLabel;
     Action_limparfiltro: TAction;
-    Button_filtrar: TButton;
-    Button_limprarfiltro: TButton;
     procedure Action_fecharExecute(Sender: TObject);
     procedure DBGrid_1DblClick(Sender: TObject);
     procedure Action_primeiroExecute(Sender: TObject);
@@ -258,6 +256,7 @@ begin
   btn_editar.Enabled   := (ds.DataSet.State in [dsBrowse]);
   btn_excluir.Enabled  := (ds.DataSet.State in [dsBrowse, dsEdit]);
   btn_cancelar.Enabled := (ds.DataSet.State in [dsInsert, dsEdit]);
+//  BtnPesquisa.Enabled := not (DSPadrao.DataSet.State in [dsInsert, dsEdit]);
 end;
 
 procedure Tfrm_form_default.filtrar(edit: TButtonedEdit; operador, campo: TComboBox; datasource: TDataSource);
@@ -272,7 +271,6 @@ var
   I: Integer;
 begin
   combobox.Items.Clear;
-
   with datasource do begin
     for I := 0 to DataSet.FieldCount - 1 do
     begin

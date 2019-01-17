@@ -173,13 +173,12 @@ type
     procedure Action_inserirExecute(Sender: TObject);
     procedure dbnav_cliente_enderecoClick(Sender: TObject; Button: TNavigateBtn);
   private
+    function valorBoolean(ACheckBox: TDBCheckBox): ShortInt;
     procedure afterInsert;
     procedure afterUpdate;
     procedure cliente_read(AToken: String);
     procedure cliente_contato_read(AToken, AClienteCodigo: String);
     procedure cliente_endereco_read(AToken, AClienteCodigo: String);
-
-    function valorBoolean(ACheckBox: TDBCheckBox): ShortInt;
 
   public
 

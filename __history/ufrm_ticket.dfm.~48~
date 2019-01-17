@@ -4,9 +4,18 @@ inherited frm_ticket: Tfrm_ticket
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl_1: TPageControl
+    ActivePage = TabSheet_manutencao
     inherited TabSheet_pesquisar: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1000
+      ExplicitHeight = 676
       inherited PageControl_registros: TPageControl
         inherited TabSheet_registros_ativos: TTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 24
+          ExplicitWidth = 992
+          ExplicitHeight = 598
           inherited DBGrid_1: TDBGrid
             Columns = <
               item
@@ -49,8 +58,16 @@ inherited frm_ticket: Tfrm_ticket
       end
     end
     inherited TabSheet_manutencao: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1000
+      ExplicitHeight = 676
       inherited PageControl_2: TPageControl
         inherited TabSheet_dados: TTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 24
+          ExplicitWidth = 992
+          ExplicitHeight = 598
           object Label3: TLabel
             Left = 3
             Top = 49

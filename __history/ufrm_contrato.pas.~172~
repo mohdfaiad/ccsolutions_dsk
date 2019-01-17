@@ -11,7 +11,6 @@ uses
   System.Classes,
   System.Actions,
   System.ImageList,
-  System.UITypes,
 
   Vcl.ActnList,
   Vcl.ImgList,
@@ -316,16 +315,15 @@ begin
             storedProcUpdate.Connection := frm_dm.connDB;
             storedProcUpdate.StoredProcName := 'proc_contrato_update';
             storedProcUpdate.Prepare;
-            storedProcUpdate.ParamByName('p_usuario_usr_token').AsString    := frm_dm.usuario_usr_token;
-            storedProcUpdate.ParamByName('p_ctr_codigo').AsString           := clientSQLctr_codigo.AsString;
-            storedProcUpdate.ParamByName('p_cliente_cli_codigo').AsString   := sqlcliente.FieldByName('cli_codigo').AsString;
-            storedProcUpdate.ParamByName('p_revenda_rev_codigo').AsString   := sqlrevenda.FieldByName('rev_codigo').AsString;
-            storedProcUpdate.ParamByName('p_ctr_revenda_valor').AsFloat     := StrToFloat(dbedt_ctr_revenda_valor.Text);
-            storedProcUpdate.ParamByName('p_ctr_data_contrato').AsDate      := StrToDate(dbedt_ctr_data_contrato.Text);
-            storedProcUpdate.ParamByName('p_ctr_data_assinatura').AsDate    := StrToDate(dbedt_ctr_data_assinatura.Text);
-            storedProcUpdate.ParamByName('p_ctr_dia_vencimento').AsShortInt := StrToInt(dbcmbbox_ctr_dia_vencimento.Text);
-            storedProcUpdate.ParamByName('p_ctr_anotacoes').AsMemo          := dbmem_ctr_anotacoes.Lines.Text;
-            storedProcUpdate.ParamByName('p_ctr_status').AsShortInt         := valorBoolean(dbchkbox_ctr_status);
+            storedProcUpdate.ParamByName('p_usuario_usr_token').AsString  := frm_dm.usuario_usr_token;
+            storedProcUpdate.ParamByName('p_ctr_codigo').AsString         := clientSQLctr_codigo.AsString;
+            storedProcUpdate.ParamByName('p_cliente_cli_codigo').AsString := sqlcliente.FieldByName('cli_codigo').AsString;
+            storedProcUpdate.ParamByName('p_revenda_rev_codigo').AsString := sqlrevenda.FieldByName('rev_codigo').AsString;
+            storedProcUpdate.ParamByName('p_ctr_revenda_valor').AsFloat   := StrToFloat(dbedt_ctr_revenda_valor.Text);
+            storedProcUpdate.ParamByName('p_ctr_data_contrato').AsDate    := StrToDate(dbedt_ctr_data_contrato.Text);
+            storedProcUpdate.ParamByName('p_ctr_data_assinatura').AsDate  := StrToDate(dbedt_ctr_data_assinatura.Text);
+            storedProcUpdate.ParamByName('p_ctr_anotacoes').AsMemo        := dbmem_ctr_anotacoes.Lines.Text;
+            storedProcUpdate.ParamByName('p_ctr_status').AsShortInt       := valorBoolean(dbchkbox_ctr_status);
             storedProcUpdate.ExecProc;
 
             afterUpdate;
@@ -345,15 +343,15 @@ begin
           storedProcInsert.Connection := frm_dm.connDB;
           storedProcInsert.StoredProcName := 'proc_contrato_create';
           storedProcInsert.Prepare;
-          storedProcInsert.ParamByName('p_usuario_usr_token').AsString    := frm_dm.usuario_usr_token;
-          storedProcInsert.ParamByName('p_cliente_cli_codigo').AsString   := sqlcliente.FieldByName('cli_codigo').AsString;
-          storedProcInsert.ParamByName('p_revenda_rev_codigo').AsString   := sqlrevenda.FieldByName('rev_codigo').AsString;
-          storedProcInsert.ParamByName('p_ctr_revenda_valor').AsFloat     := StrToFloat(dbedt_ctr_revenda_valor.Text);
-          storedProcInsert.ParamByName('p_ctr_data_contrato').AsDate      := StrToDate(dbedt_ctr_data_contrato.Text);
-          storedProcInsert.ParamByName('p_ctr_data_assinatura').AsDate    := StrToDate(dbedt_ctr_data_assinatura.Text);
-          storedProcInsert.ParamByName('p_ctr_dia_vencimento').AsShortInt := StrToInt(dbcmbbox_ctr_dia_vencimento.Text);
-          storedProcInsert.ParamByName('p_ctr_anotacoes').AsMemo          := dbmem_ctr_anotacoes.Lines.Text;
-          storedProcInsert.ParamByName('p_ctr_status').AsShortInt         := valorBoolean(dbchkbox_ctr_status);
+          storedProcInsert.ParamByName('p_usuario_usr_token').AsString  := frm_dm.usuario_usr_token;
+          storedProcInsert.ParamByName('p_cliente_cli_codigo').AsString := sqlcliente.FieldByName('cli_codigo').AsString;
+          storedProcInsert.ParamByName('p_revenda_rev_codigo').AsString := sqlrevenda.FieldByName('rev_codigo').AsString;
+          storedProcInsert.ParamByName('p_ctr_revenda_valor').AsFloat   := StrToFloat(dbedt_ctr_revenda_valor.Text);
+          storedProcInsert.ParamByName('p_ctr_data_contrato').AsDate    := StrToDate(dbedt_ctr_data_contrato.Text);
+          storedProcInsert.ParamByName('p_ctr_data_assinatura').AsDate  := StrToDate(dbedt_ctr_data_assinatura.Text);
+          storedProcInsert.ParamByName('p_ctr_dia_assinatura').AsString := dbcmbbox_ctr_dia_vencimento.Text;
+          storedProcInsert.ParamByName('p_ctr_anotacoes').AsMemo        := dbmem_ctr_anotacoes.Lines.Text;
+          storedProcInsert.ParamByName('p_ctr_status').AsShortInt       := valorBoolean(dbchkbox_ctr_status);
           storedProcInsert.ExecProc;
 
           afterInsert;

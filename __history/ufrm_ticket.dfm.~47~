@@ -5,8 +5,16 @@ inherited frm_ticket: Tfrm_ticket
   TextHeight = 13
   inherited PageControl_1: TPageControl
     inherited TabSheet_pesquisar: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1000
+      ExplicitHeight = 676
       inherited PageControl_registros: TPageControl
         inherited TabSheet_registros_ativos: TTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 24
+          ExplicitWidth = 992
+          ExplicitHeight = 598
           inherited DBGrid_1: TDBGrid
             Columns = <
               item
@@ -49,8 +57,16 @@ inherited frm_ticket: Tfrm_ticket
       end
     end
     inherited TabSheet_manutencao: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1000
+      ExplicitHeight = 676
       inherited PageControl_2: TPageControl
         inherited TabSheet_dados: TTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 24
+          ExplicitWidth = 992
+          ExplicitHeight = 598
           object Label3: TLabel
             Left = 3
             Top = 49
@@ -141,47 +157,6 @@ inherited frm_ticket: Tfrm_ticket
   inherited clientSQL: TRESTDWClientSQL
     Active = True
     AfterInsert = clientSQLAfterInsert
-    FieldDefs = <
-      item
-        Name = 'tck_codigo'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'usuario_usr_codigo'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'cliente_cli_codigo'
-        DataType = ftString
-        Size = 32
-      end
-      item
-        Name = 'tck_id'
-        DataType = ftLongWord
-      end
-      item
-        Name = 'tck_data_abertura'
-        DataType = ftDateTime
-      end
-      item
-        Name = 'tck_data_fechamento'
-        DataType = ftDateTime
-      end
-      item
-        Name = 'tck_status'
-        DataType = ftString
-        Size = 1
-      end
-      item
-        Name = 'tck_data_deletado'
-        DataType = ftDateTime
-      end
-      item
-        Name = 'tck_data_registro'
-        DataType = ftDateTime
-      end>
     IndexFieldNames = 'tck_id'
     DataBase = frm_dm.database
     SQL.Strings = (

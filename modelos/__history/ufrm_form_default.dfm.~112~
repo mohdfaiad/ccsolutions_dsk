@@ -162,8 +162,12 @@ object frm_form_default: Tfrm_form_default
           Height = 21
           Images = imglist
           LeftButton.ImageIndex = 21
+          LeftButton.Visible = True
           RightButton.ImageIndex = 11
+          RightButton.Visible = True
           TabOrder = 0
+          OnLeftButtonClick = Action_limparfiltroExecute
+          OnRightButtonClick = Action_filtrarExecute
         end
         object cmbbox_operador: TComboBox
           Left = 138
@@ -187,24 +191,6 @@ object frm_form_default: Tfrm_form_default
             'LIKE'
             'IN'
             '*')
-        end
-        object Button_filtrar: TButton
-          Left = 475
-          Top = 21
-          Width = 70
-          Height = 23
-          Action = Action_filtrar
-          Images = imglist
-          TabOrder = 3
-        end
-        object Button_limprarfiltro: TButton
-          Left = 551
-          Top = 21
-          Width = 70
-          Height = 23
-          Action = Action_limparfiltro
-          Images = imglist
-          TabOrder = 4
         end
       end
       object PageControl_registros: TPageControl
@@ -236,6 +222,7 @@ object frm_form_default: Tfrm_form_default
             TitleFont.Style = []
             OnDrawColumnCell = DBGrid_1DrawColumnCell
             OnDblClick = DBGrid_1DblClick
+            OnTitleClick = DBGrid_1TitleClick
           end
         end
       end
@@ -1175,13 +1162,11 @@ object frm_form_default: Tfrm_form_default
       OnExecute = Action_fecharExecute
     end
     object Action_filtrar: TAction
-      Caption = 'Filtrar'
       Hint = 'Filtrar'
       ImageIndex = 11
       OnExecute = Action_filtrarExecute
     end
     object Action_limparfiltro: TAction
-      Caption = 'Limpar'
       Hint = 'Limpar Filtro'
       ImageIndex = 21
       OnExecute = Action_limparfiltroExecute
